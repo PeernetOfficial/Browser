@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MvvmCross.IoC;
+using MvvmCross.Platforms.Wpf.Binding;
 using MvvmCross.Platforms.Wpf.Core;
+using MvvmCross.Plugin;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Infrastructure;
 using RestSharp;
@@ -38,6 +40,14 @@ namespace Peernet.Browser.WPF
             // register services
             iocProvider.RegisterType<IRestClient, RestClient>();
             iocProvider.RegisterType<IApiClient, ApiClient>();
+        }
+
+        public override void LoadPlugins(IMvxPluginManager pluginManager)
+        {
+            base.LoadPlugins(pluginManager);
+
+            pluginManager.EnsurePluginLoaded<MvvmCross.Plugin.MethodBinding.Plugin>(true);
+            pluginManager.EnsurePluginLoaded<MvvmCross.Plugin.FieldBinding.Plugin>(true);
         }
     }
 }

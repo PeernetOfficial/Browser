@@ -1,10 +1,8 @@
-﻿using MvvmCross.ViewModels;
+﻿using MvvmCross.Plugin.FieldBinding;
+using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -15,8 +13,29 @@ namespace Peernet.Browser.Application.ViewModels
         public StatusViewModel(IApiClient apiClient)
         {
             this.apiClient = apiClient;
+
         }
 
+        public readonly INotifyChange<string> Connected = new NotifyChange<string>("Connecting...");
+        public readonly INotifyChange<string> Peers = new NotifyChange<string>();
 
+        public async override void Start()
+        {
+            base.Start();
+
+            await GetConnectionStatus();
+        }
+
+        private async Task GetConnectionStatus()
+        {
+            var status = await this.apiClient.GetStatus();
+            
+            Connected.Value = status.IsConnected ? "OnLine" : "OffLine";
+            Peers.Value = $"{status.CountPeerList} Peers";
+        }
+        
+        
+        
+        
     }
 }

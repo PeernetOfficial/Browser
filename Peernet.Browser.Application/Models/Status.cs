@@ -10,6 +10,6 @@ namespace Peernet.Browser.Application.Models
     {
         public int StatusCode { get; set; }
         public bool IsConnected { get; set; }
-        public int CountPeerList { get; set; }
+        public ulong CountPeerList { get; set; }
     }
 }
