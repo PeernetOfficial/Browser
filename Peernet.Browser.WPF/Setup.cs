@@ -40,6 +40,7 @@ namespace Peernet.Browser.WPF
             // register services
             iocProvider.RegisterType<IRestClient, RestClient>();
             iocProvider.RegisterType<IApiClient, ApiClient>();
+            iocProvider.RegisterType<ISocketClient, SocketClient>();
         }
 
         public override void LoadPlugins(IMvxPluginManager pluginManager)

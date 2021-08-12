@@ -8,18 +8,53 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Peernet.Browser.WPF.Views" 
              mc:Ignorable="d" 
-             d:DesignHeight="20" d:DesignWidth="200"
+             d:DesignHeight="400" d:DesignWidth="600"
              >
-    <StatusBar Name="sbar" 
-           VerticalAlignment="Bottom" Foreground="#FF6DA43E">
 
-        <StatusBarItem>
-            <TextBlock mvx:Bi.nd="Text Connected" ></TextBlock>
-        </StatusBarItem>
-        <Separator Background="#FF6DA43E"/>
-        <StatusBarItem>
-            <TextBlock  mvx:Bi.nd="Text Peers"></TextBlock>
-        </StatusBarItem>
-    </StatusBar>
+    <DockPanel>
+        <StatusBar Name="sbar" 
+           VerticalAlignment="Bottom" Foreground="#FF6DA43E" DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <TextBlock mvx:Bi.nd="Text Connected" ></TextBlock>
+            </StatusBarItem>
+            <Separator Background="#FF6DA43E"/>
+            <StatusBarItem>
+                <TextBlock mvx:Bi.nd="Text Peers"></TextBlock>
+            </StatusBarItem>
+        </StatusBar>
+        
+        <Grid Margin="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+            </Grid.RowDefinitions>
+            <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+                <TextBlock 
+                    Grid.Row="0" 
+                    x:Name="CommandLineOutput" 
+                    Background="Black" 
+                    Foreground="#e0e0e0" 
+                    mvx:Bi.nd="Text CommandLineOutput" 
+                    ScrollViewer.CanContentScroll="True" 
+                    />
+            </ScrollViewer>
+            <TextBox Grid.Row="1"
+                     x:Name="CommandLineInput"  
+                     Background="Black" 
+                     Foreground="#e0e0e0"  
+                     mvx:Bi.nd="Text CommandLineInput" 
+                     HorizontalAlignment="Stretch" 
+                     VerticalAlignment="Center" 
+                     TextWrapping="Wrap" 
+                     >
+                <TextBox.InputBindings>
+                    <KeyBinding Command="{Binding SendToPeernetConsole}" Key="Enter" />
+                </TextBox.InputBindings>
 
+            </TextBox>
+         </Grid>
+    </DockPanel>
 </views:MvxWpfView>
