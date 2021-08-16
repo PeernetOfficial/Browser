@@ -13,6 +13,7 @@ namespace Peernet.Browser.Application
         public override void Initialize()
         {
             RegisterAppStart<StatusViewModel>();
+            RegisterAppStart<HomeViewModel>();
         }
     }
 }

@@ -13,7 +13,5 @@ namespace Peernet.Browser.WPF.Views
     public partial class StatusView : MvxWpfView
     {
         public StatusView() => InitializeComponent();
-
-        
     }
 }
