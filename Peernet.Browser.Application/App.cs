@@ -1,4 +1,5 @@
-﻿using MvvmCross.ViewModels;
+﻿using MvvmCross.Navigation;
+using MvvmCross.ViewModels;
 using Peernet.Browser.Application.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,6 @@ namespace Peernet.Browser.Application
     {
         public override void Initialize()
         {
-            RegisterAppStart<StatusViewModel>();
             RegisterAppStart<HomeViewModel>();
         }
     }

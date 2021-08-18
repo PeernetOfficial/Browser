@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Peernet.Browser.WPF.Controls.Footer"
+             xmlns:mvx="clr-namespace:MvvmCross.Platforms.Wpf.Binding;assembly=MvvmCross.Platforms.Wpf"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Peernet.Browser.WPF.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <DockPanel>
+            <StatusBar Name="sbar" 
+               VerticalAlignment="Bottom" Foreground="#FF6DA43E" DockPanel.Dock="Bottom">
+                <StatusBarItem>
+                    <TextBlock mvx:Bi.nd="Text Connected" ></TextBlock>
+                </StatusBarItem>
+                <Separator Background="#FF6DA43E"/>
+                <StatusBarItem>
+                    <TextBlock mvx:Bi.nd="Text Peers"></TextBlock>
+                </StatusBarItem>
+            </StatusBar>
+        </DockPanel>
+    </Grid>
+</UserControl>
