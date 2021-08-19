@@ -41,20 +41,23 @@
 
             <Image Grid.Row="0" Grid.Column="3" Source="/Assets/Logo.png" Width="274" Height="30"/>
 
-            <DockPanel Background="Transparent"  Grid.Row="1" Grid.Column="3">
-                <TextBox Background="#ffffff" 
-                         Opacity="0.06" 
-                         DockPanel.Dock="Left" 
+            <Border Grid.Row="1" Grid.Column="3" BorderBrush="White" BorderThickness="1" CornerRadius="3,3,3,3">
+                <Border.Background>
+                    <SolidColorBrush Color="White" Opacity="0.06"></SolidColorBrush>
+                </Border.Background>
+                <DockPanel>
+                    <TextBox DockPanel.Dock="Left" 
                          Height="Auto" 
                          mvx:Bi.nd="Text SearchInput" 
                          Width="300"
+                         Background="Transparent"
+                         Foreground="White"
+                         BorderThickness="0"
                          >
-                    <TextBox.BorderBrush>
-                        <SolidColorBrush Color="White"/>
-                    </TextBox.BorderBrush>
-                </TextBox>
-                <Image DockPanel.Dock="Right" Source="/Assets/Search.png" Height="Auto" Width="20" />
-            </DockPanel>
+                    </TextBox>
+                    <Image DockPanel.Dock="Right" Source="/Assets/Search.png" Height="Auto" Width="20" />
+                </DockPanel>
+            </Border>
         </Grid>
         <controls:Footer Grid.Row="2" DataContext="{Binding FooterViewModel}" />
     </Grid>
