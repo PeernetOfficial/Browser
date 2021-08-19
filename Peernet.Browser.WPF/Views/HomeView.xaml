@@ -12,6 +12,9 @@
              d:DesignHeight="400" d:DesignWidth="600"
              >
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/AppBase.png" />
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -19,7 +22,7 @@
         </Grid.RowDefinitions>
 
         <controls:NavigationBar Grid.Row="0" DataContext="{Binding NavigationBarViewModel}" />
-        <Grid Grid.Row="1" Background = "Blue">
+        <Grid Grid.Row="1" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -36,12 +39,21 @@
                 <RowDefinition Height = "*" />
             </Grid.RowDefinitions>
 
-            <DockPanel Background="White"  Grid.Row="1" Grid.Column="3">
-                <Image DockPanel.Dock="Left" Source="/Assets/Vector.png" Height="Auto"/>
-                <TextBox x:Name="SearchBox" Height="Auto" mvx:Bi.nd="Text SearchInput" Width="50"/>
-                <Button DockPanel.Dock="Right" mvx:Bi.nd="Command Search">
-                    Search
-                </Button>
+            <Image Grid.Row="0" Grid.Column="3" Source="/Assets/Logo.png" Width="274" Height="30"/>
+
+            <DockPanel Background="Transparent"  Grid.Row="1" Grid.Column="3">
+                <TextBox Background="#ffffff" 
+                         Opacity="0.06" 
+                         DockPanel.Dock="Left" 
+                         Height="Auto" 
+                         mvx:Bi.nd="Text SearchInput" 
+                         Width="300"
+                         >
+                    <TextBox.BorderBrush>
+                        <SolidColorBrush Color="White"/>
+                    </TextBox.BorderBrush>
+                </TextBox>
+                <Image DockPanel.Dock="Right" Source="/Assets/Search.png" Height="Auto" Width="20" />
             </DockPanel>
         </Grid>
         <controls:Footer Grid.Row="2" DataContext="{Binding FooterViewModel}" />

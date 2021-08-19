@@ -6,34 +6,43 @@
              xmlns:local="clr-namespace:Peernet.Browser.WPF.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background = "Blue">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
+            <RowDefinition Height = "Auto" />
             <RowDefinition Height = "*" />
-            <RowDefinition Height = "*" />
-            <RowDefinition Height = "*" />
+
         </Grid.RowDefinitions>
 
-        <Button Grid.Column = "1" HorizontalAlignment = "Center" VerticalAlignment = "Center" Width = "Auto" Command="{Binding NavigateHomeCommand}" >
-            Home
-        </Button>
-        <Button Grid.Column = "2" HorizontalAlignment = "Center" VerticalAlignment = "Center" Width = "Auto" Command="{Binding NavigateDirectoryCommand}" >
-            Directory
-        </Button>
-        <Button Grid.Column = "3" HorizontalAlignment = "Center" VerticalAlignment = "Center" Width = "Auto" Command="{Binding NavigateUserCommand}" >
-            User
-        </Button>
-        <Button Grid.Column = "4" HorizontalAlignment = "Center" VerticalAlignment = "Center" Width = "Auto" Command="{Binding NavigateSettingsCommand}" >
-            Settings
-        </Button>
+        <StackPanel Grid.Column = "3" Orientation="Horizontal">
+            <Button HorizontalAlignment = "Center" VerticalAlignment = "Center" Width = "20" Height="20" Command="{Binding NavigateHomeCommand}" Margin="10,10,10,0" BorderThickness="0">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Assets/Home.png" Stretch="Fill"></ImageBrush>
+                </Button.Background>
+            </Button>
+            <Button HorizontalAlignment = "Center" VerticalAlignment = "Center" Width = "20" Height="20" Command="{Binding NavigateDirectoryCommand}" Margin="10,10,10,0" BorderThickness="0">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Assets/Directory.png" Stretch="Fill"></ImageBrush>
+                </Button.Background>
+            </Button>
+            <Button HorizontalAlignment = "Center" VerticalAlignment = "Center" Width = "20" Height="20" Command="{Binding NavigateUserCommand}" Margin="10,10,10,0" BorderThickness="0">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Assets/User.png" Stretch="Fill"></ImageBrush>
+                </Button.Background>
+            </Button>
+            <Button HorizontalAlignment = "Center" VerticalAlignment = "Center" Width = "20" Height="20" Command="{Binding NavigateSettingsCommand}" Margin="10,10,10,0" BorderThickness="0">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Assets/Settings.png" Stretch="Fill"></ImageBrush>
+                </Button.Background>
+            </Button>
+        </StackPanel>
+
     </Grid>
 </UserControl>

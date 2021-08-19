@@ -8,15 +8,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <DockPanel>
-            <StatusBar Name="sbar" 
-               VerticalAlignment="Bottom" Foreground="#FF6DA43E" DockPanel.Dock="Bottom">
+        <DockPanel >
+            <StatusBar Background="Transparent" VerticalAlignment="Bottom" Foreground="#FF6DA43E" DockPanel.Dock="Bottom">
                 <StatusBarItem>
-                    <TextBlock mvx:Bi.nd="Text Connected" ></TextBlock>
+                    <Image Source="/Assets/Peers.png" Height="20" Width="20"/>
+                </StatusBarItem>
+                <StatusBarItem>
+                    <TextBlock mvx:Bi.nd="Text Connected" Foreground="White" ></TextBlock>
                 </StatusBarItem>
                 <Separator Background="#FF6DA43E"/>
                 <StatusBarItem>
-                    <TextBlock mvx:Bi.nd="Text Peers"></TextBlock>
+                    <TextBlock mvx:Bi.nd="Text Peers" Foreground="White" ></TextBlock>
                 </StatusBarItem>
             </StatusBar>
         </DockPanel>
