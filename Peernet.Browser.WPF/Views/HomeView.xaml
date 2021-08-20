@@ -9,7 +9,7 @@
              xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls" 
              xmlns:local="clr-namespace:Peernet.Browser.WPF.Views" 
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="600"
+             d:DesignHeight="900" d:DesignWidth="1441"
              >
     <Grid>
         <Grid.Background>
@@ -35,31 +35,34 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition Height = "*" />
-                <RowDefinition Height = "20" />
+                <RowDefinition Height = "Auto" />
                 <RowDefinition Height = "*" />
             </Grid.RowDefinitions>
 
-            <Image Grid.Row="0" Grid.Column="3" Source="/Assets/Logo.png" Width="274" Height="30"/>
-
-            <Border Grid.Row="1" Grid.Column="3" BorderBrush="White" BorderThickness="1" CornerRadius="3,3,3,3">
-                <Border.Background>
-                    <SolidColorBrush Color="White" Opacity="0.06"></SolidColorBrush>
-                </Border.Background>
-                <DockPanel>
-                    <TextBox DockPanel.Dock="Left" 
+            <StackPanel Grid.Row="1" Grid.Column="3" >
+                <Image Source="/Assets/Logo.png" Width="278.04" Height="66" Margin="0,0,0,142" />
+                <Border BorderBrush="White" BorderThickness="0" CornerRadius="3,3,3,3">
+                    <Border.Background>
+                        <SolidColorBrush Color="White" Opacity="0.0605"></SolidColorBrush>
+                    </Border.Background>
+                    <DockPanel Width="612" Height="44" >
+                        <TextBox DockPanel.Dock="Left" 
                          Height="Auto" 
                          mvx:Bi.nd="Text SearchInput" 
-                         Width="300"
+                         Width="Auto"
                          Background="Transparent"
                          Foreground="White"
-                         BorderThickness="0" >
-                        <TextBox.InputBindings>
-                            <KeyBinding Command="{Binding Search}" Key="Enter" />
-                        </TextBox.InputBindings>
-                    </TextBox>
-                    <Image DockPanel.Dock="Right" Source="/Assets/Search.png" Height="Auto" Width="20" />
-                </DockPanel>
-            </Border>
+                         BorderThickness="0" Margin="0,0,0,448" >
+                            <TextBox.InputBindings>
+                                <KeyBinding Command="{Binding Search}" Key="Enter" />
+                            </TextBox.InputBindings>
+                        </TextBox>
+                        <Image DockPanel.Dock="Right" Source="/Assets/Search.png" Height="14.22" Width="14.22" Margin="577.78,0,0,0" />
+                    </DockPanel>
+                </Border>
+
+            </StackPanel>
+
         </Grid>
         <controls:Footer Grid.Row="2" DataContext="{Binding FooterViewModel}" />
     </Grid>
