@@ -26,9 +26,6 @@ namespace Peernet.Browser.Infrastructure
 
         public Task<Status> GetStatus()
         {
-
-            
-
             try
             {
                 RestRequest request = new("status", DataFormat.Json);
@@ -38,7 +35,6 @@ namespace Peernet.Browser.Infrastructure
             {
                 return Task.FromResult<Status>(new Status());
             }
-            
         }
     }
 }

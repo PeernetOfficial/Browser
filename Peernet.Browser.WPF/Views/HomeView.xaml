@@ -52,8 +52,10 @@
                          Width="300"
                          Background="Transparent"
                          Foreground="White"
-                         BorderThickness="0"
-                         >
+                         BorderThickness="0" >
+                        <TextBox.InputBindings>
+                            <KeyBinding Command="{Binding Search}" Key="Enter" />
+                        </TextBox.InputBindings>
                     </TextBox>
                     <Image DockPanel.Dock="Right" Source="/Assets/Search.png" Height="Auto" Width="20" />
                 </DockPanel>
