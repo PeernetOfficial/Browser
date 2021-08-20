@@ -18,13 +18,14 @@
         </Style>
         <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
         <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
-        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD" />
         <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
         <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
         <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
         <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
         <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
         <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <SolidColorBrush x:Key="ToolTip.Static.Background" Color="#FFFFFF" Opacity="0.06"/>
         <Style x:Key="NavBarButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
             <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
@@ -65,6 +66,15 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style TargetType="{x:Type ToolTip}">
+            <Setter Property="Background" Value="{StaticResource ToolTip.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ToolTip.Static.Background}"/>
+            <Setter Property="FontFamily" Value="Inter"/>
+            <Setter Property="FontStyle" Value="Normal"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Foreground" Value="#FCFCFC"/>
+            <Setter Property="Border.CornerRadius" Value="1"/>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -82,7 +92,7 @@
 
         <StackPanel Grid.Column = "3" Orientation="Horizontal">
             <Button Style="{DynamicResource NavBarButtonStyle}"
-                Command="{Binding NavigateHomeCommand}" 
+                Command="{Binding NavigateHomeCommand}"
                 ToolTip="Home" >
                 <Button.Background>
                     <ImageBrush ImageSource="/Assets/Home.png" Stretch="Fill"></ImageBrush>
