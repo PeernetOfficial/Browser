@@ -1,6 +1,8 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using MvvmCross.IoC;
 using MvvmCross.Navigation;
+using MvvmCross.Platforms.Wpf.Binding;
 using MvvmCross.Platforms.Wpf.Core;
 using MvvmCross.Plugin;
 using Peernet.Browser.Application.Services;
@@ -9,6 +11,11 @@ using Peernet.Browser.Infrastructure;
 using RestSharp;
 using Serilog;
 using Serilog.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.WPF
 {
@@ -36,8 +43,11 @@ namespace Peernet.Browser.WPF
             iocProvider.RegisterType<IRestClient, RestClient>();
             iocProvider.RegisterType<IApiClient, ApiClient>();
             iocProvider.RegisterType<ISocketClient, SocketClient>();
+            iocProvider.RegisterType<IApplicationManager, ApplicationManager>();
+            
             iocProvider.RegisterType<NavigationBarViewModel>(
                 () => new NavigationBarViewModel(iocProvider.Resolve<IMvxNavigationService>()));
+            
             iocProvider.RegisterType<FooterViewModel>(
                 () => new FooterViewModel(
                     iocProvider.Resolve<IApiClient>(),

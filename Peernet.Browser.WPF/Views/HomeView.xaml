@@ -11,6 +11,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="900" d:DesignWidth="1441"
              >
+    
     <Grid Name="mask" Background="Transparent">
         <Border BorderThickness="2" Padding="1" BorderBrush="#FC2C2F36" CornerRadius="4,4,4,4"></Border>
         <Grid Margin="0">
@@ -19,13 +20,30 @@
             </Grid.Background>
 
             <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <controls:NavigationBar Grid.Row="0" DataContext="{Binding NavigationBarViewModel}" />
-            <Grid Grid.Row="1" >
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                    <Button Style="{StaticResource MinimizeButtonStyle}" mvx:Bi.nd="Command Minimize" />
+                    <Button Style="{StaticResource MaximizeButtonStyle}" mvx:Bi.nd="Command Maximize"  />
+                    <Button Style="{StaticResource CloseButtonStyle}" mvx:Bi.nd="Command CloseApp" />
+                </StackPanel>
+
+            </Grid>
+            
+            <controls:NavigationBar Grid.Row="1" DataContext="{Binding NavigationBarViewModel}" />
+            
+            <Grid Grid.Row="2" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
@@ -37,13 +55,13 @@
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height = "*" />
+                    <RowDefinition Height = "200" />
                     <RowDefinition Height = "Auto" />
                     <RowDefinition Height = "*" />
                 </Grid.RowDefinitions>
 
-                <StackPanel Grid.Row="1" Grid.Column="3" >
-                    <Image Source="/Assets/Logo.png" Width="278.04" Height="66" Margin="0,0,0,142" />
+                <StackPanel Grid.Row="3" Grid.Column="3" >
+                    <Image Source="/Assets/Logo.png" Width="278.04" Height="66" Margin="0,0,0,90" />
                     <Border BorderBrush="White" BorderThickness="0" CornerRadius="3,3,3,3">
                         <Border.Background>
                             <SolidColorBrush Color="White" Opacity="0.0605"></SolidColorBrush>
@@ -65,8 +83,10 @@
                     </Border>
 
                 </StackPanel>
+                
             </Grid>
-            <controls:Footer Grid.Row="2" DataContext="{Binding FooterViewModel}" />
+            
+            <controls:Footer Grid.Row="3" DataContext="{Binding FooterViewModel}" />
         </Grid>
     </Grid>
 </views:MvxWpfView>

@@ -7,5 +7,6 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public class MainViewModel : MvxViewModel
     {
+
     }
 }
