@@ -12,15 +12,17 @@ namespace Peernet.Browser.Application.ViewModels
         public readonly INotifyChange<string> SearchInput = new NotifyChange<string>();
         
         private readonly IApplicationManager applicationManager;
-        private readonly NavigationBarViewModel navigationBarViewModel;
-        private readonly FooterViewModel footerViewModel;
-
+        
         public HomeViewModel(NavigationBarViewModel navigationBarViewModel, FooterViewModel footerViewModel, IApplicationManager applicationManager)
         {
-            this.navigationBarViewModel = navigationBarViewModel;
-            this.footerViewModel = footerViewModel;
+            this.NavigationBarViewModel = navigationBarViewModel;
+            this.FooterViewModel = footerViewModel;
             this.applicationManager = applicationManager;
         }
+
+
+        public NavigationBarViewModel NavigationBarViewModel { get; private set; }
+        public FooterViewModel FooterViewModel { get; private set; }
 
         public IMvxAsyncCommand Search
         {
@@ -39,8 +41,8 @@ namespace Peernet.Browser.Application.ViewModels
         {
             base.Prepare();
 
-            this.footerViewModel.Prepare();
-            this.navigationBarViewModel.Prepare();
+            this.FooterViewModel.Prepare();
+            this.NavigationBarViewModel.Prepare();
         }
 
         // application control methods
