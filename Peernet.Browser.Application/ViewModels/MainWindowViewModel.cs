@@ -5,7 +5,7 @@ using Peernet.Browser.Application.Services;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class MainViewModel : MvxViewModel
+    public class MainWindowViewModel : MvxViewModel
     {
 
     }

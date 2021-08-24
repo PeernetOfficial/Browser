@@ -26,21 +26,8 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
 
-                <StackPanel Grid.Column="2" Orientation="Horizontal">
-                    <Button Style="{StaticResource MinimizeButtonStyle}" mvx:Bi.nd="Command Minimize" />
-                    <Button Style="{StaticResource MaximizeButtonStyle}" mvx:Bi.nd="Command Maximize"  />
-                    <Button Style="{StaticResource CloseButtonStyle}" mvx:Bi.nd="Command CloseApp" />
-                </StackPanel>
-
-            </Grid>
-            
+            <controls:ControlButtonsView Grid.Row="0" DataContext="{Binding ControlButtonsViewModel}"  />
             <controls:NavigationBar Grid.Row="1" DataContext="{Binding NavigationBarViewModel}" />
             
             <Grid Grid.Row="2" >

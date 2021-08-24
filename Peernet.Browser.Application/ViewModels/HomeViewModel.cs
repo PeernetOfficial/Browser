@@ -13,16 +13,17 @@ namespace Peernet.Browser.Application.ViewModels
         
         private readonly IApplicationManager applicationManager;
         
-        public HomeViewModel(NavigationBarViewModel navigationBarViewModel, FooterViewModel footerViewModel, IApplicationManager applicationManager)
+        public HomeViewModel(NavigationBarViewModel navigationBarViewModel, FooterViewModel footerViewModel, ControlButtonsViewModel controlButtonsViewModel)
         {
-            this.NavigationBarViewModel = navigationBarViewModel;
-            this.FooterViewModel = footerViewModel;
-            this.applicationManager = applicationManager;
+            NavigationBarViewModel = navigationBarViewModel;
+            FooterViewModel = footerViewModel;
+            ControlButtonsViewModel = controlButtonsViewModel;
         }
 
 
         public NavigationBarViewModel NavigationBarViewModel { get; private set; }
         public FooterViewModel FooterViewModel { get; private set; }
+        public ControlButtonsViewModel ControlButtonsViewModel { get; }
 
         public IMvxAsyncCommand Search
         {
@@ -43,30 +44,7 @@ namespace Peernet.Browser.Application.ViewModels
 
             this.FooterViewModel.Prepare();
             this.NavigationBarViewModel.Prepare();
+            this.ControlButtonsViewModel.Prepare();
         }
-
-        // application control methods
-        public void CloseApp()
-        {
-            this.applicationManager.Shutdown();
-        }
-
-        public void Maximize()
-        {
-            if (this.applicationManager.IsMaximized)
-            {
-                this.applicationManager.Restore();
-            } 
-            else 
-            { 
-                this.applicationManager.Maximize(); 
-            }
-        }
-
-        public void Minimize()
-        {
-            this.applicationManager.Minimize();
-        }
-
     }
 }

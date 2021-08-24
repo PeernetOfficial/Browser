@@ -52,7 +52,13 @@ namespace Peernet.Browser.WPF
                 () => new FooterViewModel(
                     iocProvider.Resolve<IApiClient>(),
                     iocProvider.Resolve<ISocketClient>()));
+
+            iocProvider.RegisterType<ControlButtonsViewModel>(
+                () => new ControlButtonsViewModel(
+                    iocProvider.Resolve<IApplicationManager>()));
         }
+
+
 
         public override void LoadPlugins(IMvxPluginManager pluginManager)
         {
