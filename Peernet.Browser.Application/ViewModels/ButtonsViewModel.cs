@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class ControlButtonsViewModel : MvxViewModel
+    public class ButtonsViewModel : MvxViewModel
     {
         private readonly IApplicationManager applicationManager;
 
-        public ControlButtonsViewModel(IApplicationManager applicationManager)
+        public ButtonsViewModel(IApplicationManager applicationManager)
         {
             this.applicationManager = applicationManager;
         }

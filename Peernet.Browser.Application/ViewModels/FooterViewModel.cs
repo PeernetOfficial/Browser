@@ -40,10 +40,8 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        public async override void Prepare()
+        public async override Task Initialize()
         {
-            base.Prepare();
-
             await ConnectToPeernetAPI();
             await ConnectToPeernetConsole();
         }

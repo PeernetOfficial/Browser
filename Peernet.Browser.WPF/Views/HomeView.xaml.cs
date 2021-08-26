@@ -13,9 +13,6 @@ namespace Peernet.Browser.WPF.Views
     [MvxViewFor(typeof(HomeViewModel))]
     public partial class HomeView : MvxWpfView
     {
-        public HomeView()
-        {
-            InitializeComponent();
-        }
+        public HomeView() => InitializeComponent();
     }
 }
