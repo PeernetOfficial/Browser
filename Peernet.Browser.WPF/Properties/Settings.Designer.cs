@@ -23,21 +23,27 @@ namespace Peernet.Browser.WPF.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("http://127.0.0.1:112")]
         public string ApiUrl {
             get {
                 return ((string)(this["ApiUrl"]));
             }
+            set {
+                this["ApiUrl"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("ws://127.0.0.1:112/console")]
         public string SocketUrl {
             get {
                 return ((string)(this["SocketUrl"]));
+            }
+            set {
+                this["SocketUrl"] = value;
             }
         }
     }

@@ -12,10 +12,10 @@ namespace Peernet.Browser.Infrastructure
     {
         private readonly IRestClient restClient;
         
-        public ApiClient(IRestClient restClient, IApiClientConfigProvider configProvider)
+        public ApiClient(IRestClient restClient, ISettingsManager settings)
         {
             this.restClient = restClient;
-            this.restClient.BaseUrl = new Uri(configProvider.Uri);
+            this.restClient.BaseUrl = new Uri(settings.ApiUrl);
         }
 
         public async Task<MyInfo> GetMyInfo()

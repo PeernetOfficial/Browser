@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Peernet.Browser.WPF
+namespace Peernet.Browser.WPF.Services
 {
     public class ApplicationManager : IApplicationManager
     {
