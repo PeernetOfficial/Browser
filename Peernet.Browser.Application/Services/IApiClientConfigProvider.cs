@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.Services
 {
-    interface IApiConfigProvider
+    public interface IApiClientConfigProvider
     {
+        string Uri { get; }
     }
 }

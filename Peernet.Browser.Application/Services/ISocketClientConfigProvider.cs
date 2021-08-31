@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Peernet.Browser.Infrastructure
+namespace Peernet.Browser.Application.Services
 {
-    public class ApiConfigProvider
+    public interface ISocketClientConfigProvider
     {
-        
+        string Uri { get; }
     }
 }

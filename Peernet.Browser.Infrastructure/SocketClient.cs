@@ -13,11 +13,17 @@ namespace Peernet.Browser.Infrastructure
     public class SocketClient : ISocketClient
     {
         private ClientWebSocket socket;
+        private readonly ISocketClientConfigProvider socketClientConfigProvider;
+
+        public SocketClient(ISocketClientConfigProvider socketClientConfigProvider)
+        {
+            this.socketClientConfigProvider = socketClientConfigProvider;
+        }
 
         public async Task Connect()
         {
             this.socket = new();
-            await socket.ConnectAsync(new Uri("ws://127.0.0.1:112/console"), CancellationToken.None);
+            await socket.ConnectAsync(new Uri(this.socketClientConfigProvider.Uri), CancellationToken.None);
         }
 
         public async Task Send(string data)

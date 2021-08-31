@@ -11,11 +11,11 @@ namespace Peernet.Browser.Infrastructure
     public class ApiClient : IApiClient
     {
         private readonly IRestClient restClient;
-
-        public ApiClient(IRestClient restClient)
+        
+        public ApiClient(IRestClient restClient, IApiClientConfigProvider configProvider)
         {
             this.restClient = restClient;
-            this.restClient.BaseUrl = new Uri("http://127.0.0.1:112");
+            this.restClient.BaseUrl = new Uri(configProvider.Uri);
         }
 
         public async Task<MyInfo> GetMyInfo()
