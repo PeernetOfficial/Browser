@@ -9,23 +9,52 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public class HomeViewModel : MvxViewModel
     {
-        public readonly INotifyChange<string> SearchInput = new NotifyChange<string>();
-        
-        public HomeViewModel()
-        {
+        public string _searchInput = string.Empty;
+        public string SearchInput 
+        { 
+            get => _searchInput; 
+            set
+            { SetProperty(ref _searchInput, value); } 
         }
 
-        public IMvxAsyncCommand Search
+        public bool _showHint = true;
+        public bool ShowHint
+        {
+            get => _showHint;
+            set { SetProperty(ref _showHint, value); }
+        }
+
+        public bool _showSearchBox = false;
+        public bool ShowSearchBox
+        {
+            get => _showSearchBox;
+            set { SetProperty(ref _showSearchBox, value); }
+        }
+
+        public IMvxCommand Search
         {
             get
             {
-                return new MvxAsyncCommand(() =>
+                return new MvxCommand(() =>
                 {
-                    SearchInput.Value = "Searching...";
-
-                    return Task.CompletedTask;
+                    SearchInput = "Searching...";
                 });
             }
         }
+
+        public IMvxCommand RemoveHint
+        {
+            get
+            {
+                return new MvxCommand(() =>
+                {
+                    if (ShowHint)
+                    {
+                        ShowHint = false;
+                        ShowSearchBox = true;
+                    }
+                });
+            }
+        } 
     }
 }
