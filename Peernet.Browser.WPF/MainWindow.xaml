@@ -1,4 +1,4 @@
-﻿<views:MvxWindow  x:Class="Peernet.Browser.WPF.MainWindow"
+﻿<views:MvxWindow Style="{DynamicResource MvxWindowMicaStyle}"  x:Class="Peernet.Browser.WPF.MainWindow"
         xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
         xmlns:mvx="clr-namespace:MvvmCross.Platforms.Wpf.Binding;assembly=MvvmCross.Platforms.Wpf"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -10,5 +10,21 @@
         xmlns:viewmodels="clr-namespace:Peernet.Browser.Application.ViewModels;assembly=Peernet.Browser.Application"
         mc:Ignorable="d"
         Height="900" Width="1441" >
+    <views:MvxWindow.Resources>
+        <Style x:Key="MvxWindowMicaStyle" TargetType="{x:Type views:MvxWindow}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type views:MvxWindow}">
+                        <Grid>
+                            <Grid.Background>
+                                <ImageBrush ImageSource="/Assets/AppBase.png"/>
+                            </Grid.Background>
+                            <ContentPresenter/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </views:MvxWindow.Resources>
 
 </views:MvxWindow>
