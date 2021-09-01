@@ -1,11 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
 using MvvmCross.IoC;
-using MvvmCross.Navigation;
 using MvvmCross.Platforms.Wpf.Core;
 using MvvmCross.Plugin;
 using Peernet.Browser.Application.Services;
-using Peernet.Browser.Application.ViewModels;
 using Peernet.Browser.Infrastructure;
+using Peernet.Browser.WPF.Services;
 using RestSharp;
 using Serilog;
 using Serilog.Extensions.Logging;
@@ -33,15 +32,12 @@ namespace Peernet.Browser.WPF
         protected override void RegisterBindingBuilderCallbacks(IMvxIoCProvider iocProvider)
         {
             // register services
+            iocProvider.RegisterType<ISettingsManager, SettingsManager>();
+            iocProvider.RegisterType<IApplicationManager, ApplicationManager>();
+
             iocProvider.RegisterType<IRestClient, RestClient>();
             iocProvider.RegisterType<IApiClient, ApiClient>();
             iocProvider.RegisterType<ISocketClient, SocketClient>();
-            iocProvider.RegisterType<NavigationBarViewModel>(
-                () => new NavigationBarViewModel(iocProvider.Resolve<IMvxNavigationService>()));
-            iocProvider.RegisterType<FooterViewModel>(
-                () => new FooterViewModel(
-                    iocProvider.Resolve<IApiClient>(),
-                    iocProvider.Resolve<ISocketClient>()));
         }
 
         public override void LoadPlugins(IMvxPluginManager pluginManager)
@@ -50,6 +46,7 @@ namespace Peernet.Browser.WPF
 
             pluginManager.EnsurePluginLoaded<MvvmCross.Plugin.MethodBinding.Plugin>(true);
             pluginManager.EnsurePluginLoaded<MvvmCross.Plugin.FieldBinding.Plugin>(true);
+            pluginManager.EnsurePluginLoaded<MvvmCross.Plugin.Control.Plugin>(true);
         }
     }
 }
