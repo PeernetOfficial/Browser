@@ -1,8 +1,6 @@
-﻿using MvvmCross.Plugin.FieldBinding;
-using Peernet.Browser.Application.Services;
+﻿using Peernet.Browser.Application.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.WebSockets;
 using System.Text;
 using System.Threading;

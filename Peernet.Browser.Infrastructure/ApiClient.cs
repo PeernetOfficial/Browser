@@ -2,8 +2,6 @@
 using Peernet.Browser.Application.Services;
 using RestSharp;
 using System;
-using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure

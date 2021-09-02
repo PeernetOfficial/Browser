@@ -1,17 +1,10 @@
 ﻿using Peernet.Browser.Application.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Peernet.Browser.WPF.Services
 {
     public class ApplicationManager : IApplicationManager
     {
         private MainWindow window;
-
-        
         public bool IsMaximized 
         {
             get

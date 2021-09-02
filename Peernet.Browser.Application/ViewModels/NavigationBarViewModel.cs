@@ -7,11 +7,11 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public class NavigationBarViewModel : MvxViewModel
     {
-        private readonly IMvxNavigationService _navigationService;
+        private readonly IMvxNavigationService navigationService;
 
         public NavigationBarViewModel(IMvxNavigationService navigationService)
         {
-            _navigationService = navigationService;
+            this.navigationService = navigationService;
         }
 
         public IMvxAsyncCommand NavigateHomeCommand
@@ -20,7 +20,7 @@ namespace Peernet.Browser.Application.ViewModels
             {
                 return new MvxAsyncCommand(async() =>
                 {
-                    await _navigationService.Navigate<HomeViewModel>();
+                    await navigationService.Navigate<HomeViewModel>();
                 });
             }
         }

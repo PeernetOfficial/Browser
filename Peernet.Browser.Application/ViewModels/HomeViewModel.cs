@@ -1,15 +1,22 @@
 ﻿using MvvmCross.Commands;
-using MvvmCross.Plugin.FieldBinding;
 using MvvmCross.ViewModels;
-using Peernet.Browser.Application.Services;
-using System;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public class HomeViewModel : MvxViewModel
     {
-        public readonly INotifyChange<string> SearchInput = new NotifyChange<string>();
+        private string searchInput;
+
+        public string SearchInput
+        {
+            get => searchInput;
+            set
+            {
+                searchInput = value;
+                RaisePropertyChanged(nameof(SearchInput));
+            }
+        }
         
         public HomeViewModel()
         {
@@ -21,7 +28,7 @@ namespace Peernet.Browser.Application.ViewModels
             {
                 return new MvxAsyncCommand(() =>
                 {
-                    SearchInput.Value = "Searching...";
+                    SearchInput = "Searching...";
 
                     return Task.CompletedTask;
                 });
