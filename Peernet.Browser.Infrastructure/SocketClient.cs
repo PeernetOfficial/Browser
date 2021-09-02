@@ -1,8 +1,6 @@
-﻿using MvvmCross.Plugin.FieldBinding;
-using Peernet.Browser.Application.Services;
+﻿using Peernet.Browser.Application.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
@@ -49,7 +47,7 @@ namespace Peernet.Browser.Infrastructure
             while (!result.EndOfMessage);
 
             // Optional step to convert to a string (UTF-8 encoding).
-           return Encoding.UTF8.GetString(allBytes.ToArray(), 0, allBytes.Count);
+            return Encoding.UTF8.GetString(allBytes.ToArray(), 0, allBytes.Count);
         }
     }
 }

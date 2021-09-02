@@ -2,8 +2,6 @@
 using Peernet.Browser.Application.Services;
 using RestSharp;
 using System;
-using System.Net.Http;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure
@@ -11,7 +9,7 @@ namespace Peernet.Browser.Infrastructure
     public class ApiClient : IApiClient
     {
         private readonly IRestClient restClient;
-        
+
         public ApiClient(IRestClient restClient, ISettingsManager settings)
         {
             this.restClient = restClient;
