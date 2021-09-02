@@ -31,9 +31,11 @@ namespace Peernet.Browser.WPF
 
         protected override void RegisterBindingBuilderCallbacks(IMvxIoCProvider iocProvider)
         {
-            // register services
-            iocProvider.RegisterType<ISettingsManager, SettingsManager>();
-            iocProvider.RegisterType<IApplicationManager, ApplicationManager>();
+            // register managers
+            CreatableTypes()
+                .EndingWith("Manager")
+                .AsInterfaces()
+                .RegisterAsLazySingleton();
 
             iocProvider.RegisterType<IRestClient, RestClient>();
             iocProvider.RegisterType<IApiClient, ApiClient>();
