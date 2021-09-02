@@ -2,7 +2,6 @@
 using MvvmCross.Platforms.Wpf.Views;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.ViewModels;
-using System.Windows.Controls;
 
 namespace Peernet.Browser.WPF.Views
 {

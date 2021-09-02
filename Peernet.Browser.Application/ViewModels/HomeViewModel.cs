@@ -1,23 +1,21 @@
 ﻿using MvvmCross.Commands;
-using MvvmCross.Plugin.FieldBinding;
 using MvvmCross.ViewModels;
-using Peernet.Browser.Application.Services;
-using System;
-using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public class HomeViewModel : MvxViewModel
     {
         public string _searchInput = string.Empty;
-        public string SearchInput 
-        { 
-            get => _searchInput; 
+
+        public string SearchInput
+        {
+            get => _searchInput;
             set
-            { SetProperty(ref _searchInput, value); } 
+            { SetProperty(ref _searchInput, value); }
         }
 
         public bool _showHint = true;
+
         public bool ShowHint
         {
             get => _showHint;
@@ -25,6 +23,7 @@ namespace Peernet.Browser.Application.ViewModels
         }
 
         public bool _showSearchBox = false;
+
         public bool ShowSearchBox
         {
             get => _showSearchBox;
@@ -55,6 +54,6 @@ namespace Peernet.Browser.Application.ViewModels
                     }
                 });
             }
-        } 
+        }
     }
 }
