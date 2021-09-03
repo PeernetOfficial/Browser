@@ -18,7 +18,7 @@ namespace Peernet.Browser.Application.ViewModels
         {
             get
             {
-                return new MvxAsyncCommand(async() =>
+                return new MvxAsyncCommand(async () =>
                 {
                     await _navigationService.Navigate<HomeViewModel>();
                 });

@@ -1,10 +1,6 @@
-﻿using System;
+﻿using MvvmCross.Platforms.Wpf.Views;
 using System.Windows;
 using System.Windows.Input;
-using MvvmCross.Platforms.Wpf.Presenters.Attributes;
-using MvvmCross.Platforms.Wpf.Views;
-using MvvmCross.ViewModels;
-using Peernet.Browser.Application.ViewModels;
 
 namespace Peernet.Browser.WPF
 {
@@ -13,10 +9,10 @@ namespace Peernet.Browser.WPF
     /// </summary>
     public partial class MainWindow : MvxWindow
     {
-        public MainWindow() {
-
+        public MainWindow()
+        {
             InitializeComponent();
-       
+
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             this.MouseDown += Window_MouseDown;
         }
@@ -28,6 +24,5 @@ namespace Peernet.Browser.WPF
                 this.DragMove();
             }
         }
-
     }
 }

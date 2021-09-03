@@ -1,9 +1,5 @@
 ﻿using MvvmCross.Commands;
-using MvvmCross.Plugin.FieldBinding;
 using MvvmCross.ViewModels;
-using Peernet.Browser.Application.Services;
-using System;
-using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -14,7 +10,7 @@ namespace Peernet.Browser.Application.ViewModels
         { 
             get => _searchInput; 
             set
-            { SetProperty(ref _searchInput, value); } 
+            { SetProperty(ref _searchInput, value); }
         }
 
         private bool _showHint = true;
@@ -55,6 +51,6 @@ namespace Peernet.Browser.Application.ViewModels
                     }
                 });
             }
-        } 
+        }
     }
 }

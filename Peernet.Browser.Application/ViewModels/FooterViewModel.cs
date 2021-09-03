@@ -88,6 +88,5 @@ namespace Peernet.Browser.Application.ViewModels
                 return false;
             }
         }
-
     }
 }
