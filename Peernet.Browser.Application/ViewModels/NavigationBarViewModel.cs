@@ -11,6 +11,19 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IMvxNavigationService navigationService;
         private bool isProfileMenuVisible;
 
+        // To be replaced with some Service fed data
+        private User user = new User { Name = "ElonMusk3", ImagePath = "/Assets/SomeHandsome.png" };
+
+        public User User
+        {
+            get => user;
+            set
+            {
+                user = value;
+                RaisePropertyChanged(nameof(User));
+            }
+        }
+
         public bool IsProfileMenuVisible
         {
             get => isProfileMenuVisible;
@@ -79,5 +92,23 @@ namespace Peernet.Browser.Application.ViewModels
                 });
             }
         }
+
+        public IMvxAsyncCommand GoToYourFilesCommand
+        {
+            get
+            {
+                return new MvxAsyncCommand(() =>
+                {
+                    return Task.CompletedTask;
+                });
+            }
+        }
+    }
+
+    public class User
+    {
+        public string Name { get; set; }
+
+        public string ImagePath { get; set; }
     }
 }

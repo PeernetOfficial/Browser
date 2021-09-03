@@ -8,11 +8,25 @@
     d:DesignHeight="40"
     d:DesignWidth="1441">
 
-    <Border BorderBrush="White" BorderThickness="0" CornerRadius="3,3,3,3" Width="212">
+    <Border BorderBrush="White" BorderThickness="0" CornerRadius="4,4,4,4" Width="212">
         <Border.Background>
-            <SolidColorBrush Color="#2C2C2C"></SolidColorBrush>
+            <SolidColorBrush Color="White"></SolidColorBrush>
         </Border.Background>
+        <Border.Effect>
+            <DropShadowEffect ShadowDepth="3" BlurRadius="16" Color="Black" Opacity="0.14"/>
+        </Border.Effect>
         <StackPanel>
+            <Grid Margin="17,18,0,17">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0" Source="{Binding User.ImagePath}" Width="47" Height="47"/>
+                <StackPanel Grid.Column="1" Margin="8,0,0,0">
+                    <TextBlock Foreground="#113E48" FontFamily="Inter" FontSize="14" FontWeight="Medium" Text="{Binding User.Name}"/>
+                    <Button HorizontalAlignment="Left" Foreground="#113E48" FontSize="12" Margin="0,13,0,0" Style="{StaticResource NavbarMenuButtonStyle}" Content="Go to your files" Command="{Binding GoToYourFilesCommand}" />
+                </StackPanel>
+            </Grid>
             <Separator Opacity="0.2" Width="179" />
             <ItemsControl
             ItemsSource="{Binding Items}"
@@ -20,12 +34,12 @@
             Foreground="White">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Button Command="{Binding Command}" Content="{Binding Text}" Style="{StaticResource NavbarMenuFontStyle}" />
+                        <Button Command="{Binding Command}" Content="{Binding Text}" Style="{StaticResource NavbarMenuButtonStyle}" />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
             <Separator Opacity="0.2" Width="179" />
-            <Button Style="{StaticResource NavbarMenuFontStyle}" Foreground="#8F8F8F" Content="Delete node" />
+            <Button Style="{StaticResource NavbarMenuButtonStyle}" Foreground="#8F8F8F" Content="Delete node" />
         </StackPanel>
     </Border>
 </UserControl>
