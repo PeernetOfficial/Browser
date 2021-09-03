@@ -1,7 +1,6 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
-using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -29,9 +28,9 @@ namespace Peernet.Browser.Application.ViewModels
         {
             get
             {
-                return new MvxAsyncCommand(() =>
+                return new MvxAsyncCommand(async () =>
                 {
-                    return Task.CompletedTask;
+                    await _navigationService.Navigate<UsersViewModel>();
                 });
             }
         }
@@ -40,9 +39,9 @@ namespace Peernet.Browser.Application.ViewModels
         {
             get
             {
-                return new MvxAsyncCommand(() =>
+                return new MvxAsyncCommand(async () =>
                 {
-                    return Task.CompletedTask;
+                    await _navigationService.Navigate<DictionaryViewModel>();
                 });
             }
         }
@@ -51,9 +50,9 @@ namespace Peernet.Browser.Application.ViewModels
         {
             get
             {
-                return new MvxAsyncCommand(() =>
+                return new MvxAsyncCommand(async () =>
                 {
-                    return Task.CompletedTask;
+                    await _navigationService.Navigate<SettingsViewModel>();
                 });
             }
         }
