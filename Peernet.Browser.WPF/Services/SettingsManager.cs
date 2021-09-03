@@ -4,15 +4,14 @@ namespace Peernet.Browser.WPF
 {
     public class SettingsManager : ISettingsManager
     {
-        public string ApiUrl 
+        public string ApiUrl
         {
             get => Properties.Settings.Default.ApiUrl;
-            set 
+            set
             {
                 Properties.Settings.Default.ApiUrl = value;
                 Properties.Settings.Default.Save();
-
-            } 
+            }
         }
 
         public string SocketUrl

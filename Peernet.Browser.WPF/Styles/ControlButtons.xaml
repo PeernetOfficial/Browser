@@ -21,41 +21,38 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Grid x:Name="LayoutRoot" Background="Transparent" Width="44" Height="40">
-                        <TextBlock x:Name="txt" 
-                                   Text="{TemplateBinding Content}" 
-                                   FontFamily="Segoe MDL2 Assets" 
-                                   FontSize="10" 
-                                   Foreground="#C7C7C7" 
-                                   HorizontalAlignment="Center" 
-                                   VerticalAlignment="Center"
-                                   />
+                        <TextBlock x:Name="txt"
+                                   Text="{TemplateBinding Content}"
+                                   FontFamily="Segoe MDL2 Assets"
+                                   FontSize="10"
+                                   Foreground="#C7C7C7"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="LayoutRoot" Property="Background" Value="#60FFFFFF"/>
-                            
+                            <Setter TargetName="LayoutRoot" Property="Background" Value="#60FFFFFF" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-       
     </Style>
 
     <Style x:Key="MinimizeButtonStyle" TargetType="Button" BasedOn="{StaticResource CaptionButtonStyle}">
-        <Setter Property="Content" Value="&#xE949;"/>
+        <Setter Property="Content" Value="&#xE949;" />
     </Style>
 
     <Style x:Key="MaximizeButtonStyle" TargetType="Button" BasedOn="{StaticResource CaptionButtonStyle}">
-        <Setter Property="Content" Value="&#xE739;"/>
+        <Setter Property="Content" Value="&#xE739;" />
     </Style>
 
     <Style x:Key="RestoreButtonStyle" TargetType="Button" BasedOn="{StaticResource CaptionButtonStyle}">
-        <Setter Property="Content" Value="&#xE923;"/>
+        <Setter Property="Content" Value="&#xE923;" />
     </Style>
 
     <Style x:Key="CloseButtonStyle" TargetType="Button" BasedOn="{StaticResource CaptionButtonStyle}">
-        <Setter Property="Content" Value="&#xE106;"/>
+        <Setter Property="Content" Value="&#xE106;" />
     </Style>
 
     <Style x:Key="NavBarButtonStyle" TargetType="{x:Type Button}">

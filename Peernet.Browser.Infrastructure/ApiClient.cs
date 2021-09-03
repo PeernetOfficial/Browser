@@ -9,7 +9,7 @@ namespace Peernet.Browser.Infrastructure
     public class ApiClient : IApiClient
     {
         private readonly IRestClient restClient;
-        
+
         public ApiClient(IRestClient restClient, ISettingsManager settings)
         {
             this.restClient = restClient;

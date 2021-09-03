@@ -33,9 +33,9 @@ namespace Peernet.Browser.Infrastructure
         {
             // Read the bytes from the web socket and accumulate all into a list.
             var buffer = new ArraySegment<byte>(new byte[1024]);
-            WebSocketReceiveResult result = null;
             var allBytes = new List<byte>();
 
+            WebSocketReceiveResult result;
             do
             {
                 result = await this.socket.ReceiveAsync(buffer, CancellationToken.None);
@@ -47,7 +47,7 @@ namespace Peernet.Browser.Infrastructure
             while (!result.EndOfMessage);
 
             // Optional step to convert to a string (UTF-8 encoding).
-           return Encoding.UTF8.GetString(allBytes.ToArray(), 0, allBytes.Count);
+            return Encoding.UTF8.GetString(allBytes.ToArray(), 0, allBytes.Count);
         }
     }
 }

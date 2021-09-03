@@ -4,19 +4,34 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Peernet.Browser.WPF"
+        xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls"
         mc:Ignorable="d"
-        WindowStyle="None"
+        WindowStyle="None" Background="Transparent"
         AllowsTransparency="True"
-        Height="900" Width="1441" 
+        Height="900" Width="1441"
         WindowStartupLocation="CenterScreen">
+    <views:MvxWindow.ContentTemplate>
+        <DataTemplate>
+            <Grid>
+                <Border BorderThickness="2" Padding="1" BorderBrush="#FC2C2F36" CornerRadius="4,4,4,4"></Border>
+                <Grid Margin="0">
+                    <Grid.Background>
+                        <SolidColorBrush Color="#202020" />
+                    </Grid.Background>
 
-    <WindowChrome.WindowChrome>
-        <WindowChrome 
-            ResizeBorderThickness="6"
-            GlassFrameThickness="0"
-            CaptionHeight="0"
-            ></WindowChrome>
-    </WindowChrome.WindowChrome>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
+                    <controls:ButtonsControl Grid.Row="0" InitializeOnLoad="true" />
+                    <controls:NavigationBarControl Grid.Row="1" InitializeOnLoad="true" />
+                    <ContentPresenter Content="{Binding}" Grid.Row="2" />
+                    <controls:FooterControl Grid.Row="3" InitializeOnLoad="true" />
+                </Grid>
+            </Grid>
+        </DataTemplate>
+    </views:MvxWindow.ContentTemplate>
 </views:MvxWindow>

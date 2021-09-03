@@ -2,7 +2,7 @@
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class MainWindowViewModel : MvxViewModel
+    public class ExploreViewModel : MvxViewModel
     {
     }
 }

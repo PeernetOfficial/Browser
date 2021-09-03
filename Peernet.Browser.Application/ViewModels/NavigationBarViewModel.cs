@@ -23,7 +23,6 @@ namespace Peernet.Browser.Application.ViewModels
 
         public List<MenuItemViewModel> Items { get; set; }
 
-
         public NavigationBarViewModel(IMvxNavigationService navigationService)
         {
             this.navigationService = navigationService;
@@ -39,36 +38,36 @@ namespace Peernet.Browser.Application.ViewModels
         {
             get
             {
-                return new MvxAsyncCommand(async() =>
+                return new MvxAsyncCommand(async () =>
                 {
                     await navigationService.Navigate<HomeViewModel>();
                 });
             }
         }
 
-        public IMvxAsyncCommand NavigateUserCommand
+        public IMvxAsyncCommand NavigateExploreCommand
         {
             get
             {
-                return new MvxAsyncCommand(() =>
+                return new MvxAsyncCommand(async () =>
                 {
-                    return Task.CompletedTask;
+                    await navigationService.Navigate<ExploreViewModel>();
                 });
             }
         }
 
-        public IMvxAsyncCommand NavigateDictionaryCommand
+        public IMvxAsyncCommand NavigateDirectoryCommand
         {
             get
             {
-                return new MvxAsyncCommand(() =>
+                return new MvxAsyncCommand(async () =>
                 {
-                    return Task.CompletedTask;
+                    await navigationService.Navigate<DirectoryViewModel>();
                 });
             }
         }
 
-        public IMvxAsyncCommand OpenProfileMenuCommand
+        public IMvxAsyncCommand OpenCloseProfileMenuCommand
         {
             get
             {
