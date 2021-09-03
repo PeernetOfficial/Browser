@@ -23,12 +23,15 @@
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding ConnectionStatus}" Value="Offline">
                                         <Setter Property="Source" Value="/Assets/Offline.png"/>
+                                        <Setter Property="ToolTip" Value="Offline"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding ConnectionStatus}" Value="Online">
                                         <Setter Property="Source" Value="/Assets/Online.png"/>
+                                        <Setter Property="ToolTip" Value="Connected"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding ConnectionStatus}" Value="Connecting">
                                         <Setter Property="Source" Value="/Assets/Connecting.png"/>
+                                        <Setter Property="ToolTip" Value="Connecting"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>

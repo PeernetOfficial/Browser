@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Fonts.xaml" />
     </ResourceDictionary.MergedDictionaries>
@@ -97,18 +96,8 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
-    <Style TargetType="{x:Type ToolTip}">
-        <Setter Property="Background" Value="{StaticResource ToolTip.Static.Background}"/>
-        <Setter Property="BorderBrush" Value="{StaticResource ToolTip.Static.Background}"/>
-        <Setter Property="FontFamily" Value="Inter"/>
-        <Setter Property="FontStyle" Value="Normal"/>
-        <Setter Property="FontWeight" Value="Normal"/>
-        <Setter Property="Foreground" Value="#FCFCFC"/>
-        <Setter Property="Border.CornerRadius" Value="1,1,1,1"/>
-    </Style>
 
-    <Style TargetType="{x:Type ContextMenu}">
+    <Style TargetType="{x:Type ToolTip}">
         <Setter Property="Background" Value="{StaticResource ToolTip.Static.Background}"/>
         <Setter Property="BorderBrush" Value="{StaticResource ToolTip.Static.Background}"/>
         <Setter Property="FontFamily" Value="Inter"/>
@@ -133,7 +122,7 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="Background" TargetName="border" Value="{StaticResource ShareHover}"/>
-                            <Setter Property="Width" Value="130"/>
+                            <Setter Property="Width" Value="138"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
