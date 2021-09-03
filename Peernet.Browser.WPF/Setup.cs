@@ -4,7 +4,6 @@ using MvvmCross.Platforms.Wpf.Core;
 using MvvmCross.Plugin;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Infrastructure;
-using Peernet.Browser.WPF.Services;
 using RestSharp;
 using Serilog;
 using Serilog.Extensions.Logging;
@@ -20,13 +19,12 @@ namespace Peernet.Browser.WPF
 
         protected override ILoggerFactory CreateLogFactory()
         {
-            // serilog configuration
-            Log.Logger = new LoggerConfiguration()
+            var Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
                 .WriteTo.Trace()
                 .CreateLogger();
 
-            return new SerilogLoggerFactory();
+            return new SerilogLoggerFactory(Logger);
         }
 
         protected override void RegisterBindingBuilderCallbacks(IMvxIoCProvider iocProvider)
