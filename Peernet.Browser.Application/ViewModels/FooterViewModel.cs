@@ -62,6 +62,7 @@ namespace Peernet.Browser.Application.ViewModels
                 RaisePropertyChanged(nameof(CommandLineInput));
             }
         }
+
         public IMvxAsyncCommand SendToPeernetConsole
         {
             get

@@ -16,11 +16,12 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IMvxAsyncCommand CloseAppCommand
         {
-            get  
+            get
             {
-                return new MvxAsyncCommand(() => { 
+                return new MvxAsyncCommand(() =>
+                {
                     CloseApp();
-                    
+
                     return Task.CompletedTask;
                 });
             }
@@ -30,7 +31,8 @@ namespace Peernet.Browser.Application.ViewModels
         {
             get
             {
-                return new MvxAsyncCommand(() => {
+                return new MvxAsyncCommand(() =>
+                {
                     Maximize();
 
                     return Task.CompletedTask;
@@ -42,7 +44,8 @@ namespace Peernet.Browser.Application.ViewModels
         {
             get
             {
-                return new MvxAsyncCommand(() => {
+                return new MvxAsyncCommand(() =>
+                {
                     Minimize();
 
                     return Task.CompletedTask;

@@ -1,6 +1,5 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
-using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -20,9 +19,9 @@ namespace Peernet.Browser.Application.ViewModels
         }
 
         public HomeViewModel()
-        { 
+        {
         }
-        
+
         public bool ShowHint
         {
             get => showHint;
@@ -30,6 +29,7 @@ namespace Peernet.Browser.Application.ViewModels
         }
 
         private bool _showSearchBox = false;
+
         public bool ShowSearchBox
         {
             get => _showSearchBox;
