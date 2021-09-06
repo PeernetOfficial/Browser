@@ -1,6 +1,8 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using Peernet.Browser.Application.Models;
+using Peernet.Browser.Application.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -9,10 +11,11 @@ namespace Peernet.Browser.Application.ViewModels
     public class NavigationBarViewModel : MvxViewModel
     {
         private readonly IMvxNavigationService navigationService;
+        private readonly IProfileService profileService;
         private bool isProfileMenuVisible;
 
         // To be replaced with some Service fed data
-        private User user = new User { Name = "ElonMusk3", ImagePath = "/Assets/SomeHandsome.png" };
+        private User user;
 
         public User User
         {
@@ -36,15 +39,12 @@ namespace Peernet.Browser.Application.ViewModels
 
         public List<MenuItemViewModel> Items { get; set; }
 
-        public NavigationBarViewModel(IMvxNavigationService navigationService)
+        public NavigationBarViewModel(IMvxNavigationService navigationService, IProfileService profileService)
         {
             this.navigationService = navigationService;
-            Items = new List<MenuItemViewModel>
-            {
-                new MenuItemViewModel("About"),
-                new MenuItemViewModel("FAQ (Help)"),
-                new MenuItemViewModel("Backup to a file")
-            };
+            this.profileService = profileService;
+
+            InitializeContext();
         }
 
         public IMvxAsyncCommand NavigateHomeCommand
@@ -103,12 +103,21 @@ namespace Peernet.Browser.Application.ViewModels
                 });
             }
         }
-    }
 
-    public class User
-    {
-        public string Name { get; set; }
+        private void InitializeContext()
+        {
+            User = new User
+            {
+                Name = profileService.GetUserName(),
+                Image = profileService.GetUserImage()
+            };
 
-        public string ImagePath { get; set; }
+            Items = new List<MenuItemViewModel>
+            {
+                new MenuItemViewModel("About"),
+                new MenuItemViewModel("FAQ (Help)"),
+                new MenuItemViewModel("Backup to a file")
+            };
+        }
     }
 }

@@ -2,6 +2,7 @@
 using MvvmCross.IoC;
 using MvvmCross.Platforms.Wpf.Core;
 using MvvmCross.Plugin;
+using Peernet.Browser.Application.Http;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Infrastructure;
 using RestSharp;
@@ -35,9 +36,10 @@ namespace Peernet.Browser.WPF
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            iocProvider.RegisterType<IRestClient, RestClient>();
+            iocProvider.RegisterType<IRestClientFactory, RestClientFactory>();
             iocProvider.RegisterType<IApiClient, ApiClient>();
             iocProvider.RegisterType<ISocketClient, SocketClient>();
+            iocProvider.RegisterType<IProfileService, ProfileService>();
         }
 
         public override void LoadPlugins(IMvxPluginManager pluginManager)
