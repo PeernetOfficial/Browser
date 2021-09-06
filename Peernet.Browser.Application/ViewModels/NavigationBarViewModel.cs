@@ -1,16 +1,50 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public class NavigationBarViewModel : MvxViewModel
     {
-        private readonly IMvxNavigationService _navigationService;
+        private readonly IMvxNavigationService navigationService;
+        private bool isProfileMenuVisible;
+
+        // To be replaced with some Service fed data
+        private User user = new User { Name = "ElonMusk3", ImagePath = "/Assets/SomeHandsome.png" };
+
+        public User User
+        {
+            get => user;
+            set
+            {
+                user = value;
+                RaisePropertyChanged(nameof(User));
+            }
+        }
+
+        public bool IsProfileMenuVisible
+        {
+            get => isProfileMenuVisible;
+            set
+            {
+                isProfileMenuVisible = value;
+                RaisePropertyChanged(nameof(IsProfileMenuVisible));
+            }
+        }
+
+        public List<MenuItemViewModel> Items { get; set; }
 
         public NavigationBarViewModel(IMvxNavigationService navigationService)
         {
-            _navigationService = navigationService;
+            this.navigationService = navigationService;
+            Items = new List<MenuItemViewModel>
+            {
+                new MenuItemViewModel("About"),
+                new MenuItemViewModel("FAQ (Help)"),
+                new MenuItemViewModel("Backup to a file")
+            };
         }
 
         public IMvxAsyncCommand NavigateHomeCommand
@@ -19,42 +53,62 @@ namespace Peernet.Browser.Application.ViewModels
             {
                 return new MvxAsyncCommand(async () =>
                 {
-                    await _navigationService.Navigate<HomeViewModel>();
+                    await navigationService.Navigate<HomeViewModel>();
                 });
             }
         }
 
-        public IMvxAsyncCommand NavigateUserCommand
+        public IMvxAsyncCommand NavigateExploreCommand
         {
             get
             {
                 return new MvxAsyncCommand(async () =>
                 {
-                    await _navigationService.Navigate<UsersViewModel>();
+                    await navigationService.Navigate<ExploreViewModel>();
                 });
             }
         }
 
-        public IMvxAsyncCommand NavigateDictionaryCommand
+        public IMvxAsyncCommand NavigateDirectoryCommand
         {
             get
             {
                 return new MvxAsyncCommand(async () =>
                 {
-                    await _navigationService.Navigate<DictionaryViewModel>();
+                    await navigationService.Navigate<DirectoryViewModel>();
                 });
             }
         }
 
-        public IMvxAsyncCommand NavigateSettingsCommand
+        public IMvxAsyncCommand OpenCloseProfileMenuCommand
         {
             get
             {
-                return new MvxAsyncCommand(async () =>
+                return new MvxAsyncCommand(() =>
                 {
-                    await _navigationService.Navigate<SettingsViewModel>();
+                    IsProfileMenuVisible ^= true;
+
+                    return Task.CompletedTask;
                 });
             }
         }
+
+        public IMvxAsyncCommand GoToYourFilesCommand
+        {
+            get
+            {
+                return new MvxAsyncCommand(() =>
+                {
+                    return Task.CompletedTask;
+                });
+            }
+        }
+    }
+
+    public class User
+    {
+        public string Name { get; set; }
+
+        public string ImagePath { get; set; }
     }
 }

@@ -5,8 +5,7 @@ namespace Peernet.Browser.WPF.Services
     public class ApplicationManager : IApplicationManager
     {
         private MainWindow window;
-
-        public bool IsMaximized
+        public bool IsMaximized 
         {
             get
             {

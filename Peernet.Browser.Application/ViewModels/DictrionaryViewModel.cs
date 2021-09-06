@@ -2,7 +2,7 @@
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class DictionaryViewModel : MvxViewModel
+    public class DirectoryViewModel : MvxViewModel
     {
     }
 }

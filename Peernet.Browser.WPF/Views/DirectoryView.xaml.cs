@@ -6,12 +6,15 @@ using Peernet.Browser.Application.ViewModels;
 namespace Peernet.Browser.WPF.Views
 {
     /// <summary>
-    /// Interaction logic for UsersView.xaml
+    /// Interaction logic for DictionaryView.xaml
     /// </summary>
     [MvxContentPresentation]
-    [MvxViewFor(typeof(UsersViewModel))]
-    public partial class UsersView : MvxWpfView
+    [MvxViewFor(typeof(DirectoryViewModel))]
+    public partial class DictionaryView : MvxWpfView
     {
-        public UsersView() => InitializeComponent();
+        public DictionaryView()
+        {
+            InitializeComponent();
+        }
     }
 }

@@ -2,21 +2,50 @@
     x:Class="Peernet.Browser.WPF.Controls.FooterControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:mvx="clr-namespace:MvvmCross.Platforms.Wpf.Binding;assembly=MvvmCross.Platforms.Wpf"
     xmlns:controls="clr-namespace:MvvmCross.Plugin.Control.Platforms.Wpf;assembly=MvvmCross.Plugin.Control.Platforms.Wpf">
     <Grid>
-        <DockPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <DockPanel Grid.Column="0">
             <StatusBar Background="Transparent" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="83,0,0,34">
                 <StatusBarItem>
-                    <Image Source="/Assets/Peers.png" Height="20" Width="20" />
+                    <Image Height="20" Width="20">
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ConnectionStatus}" Value="Offline">
+                                        <Setter Property="Source" Value="/Assets/Offline.png" />
+                                        <Setter Property="ToolTip" Value="Offline" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ConnectionStatus}" Value="Online">
+                                        <Setter Property="Source" Value="/Assets/Online.png" />
+                                        <Setter Property="ToolTip" Value="Connected" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding ConnectionStatus}" Value="Connecting">
+                                        <Setter Property="Source" Value="/Assets/Connecting.png" />
+                                        <Setter Property="ToolTip" Value="Connecting" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
                 </StatusBarItem>
-                <StatusBarItem>
-                    <TextBlock mvx:Bi.nd="Text Connected" Foreground="White" ></TextBlock>
-                </StatusBarItem>
-                <StatusBarItem>
-                    <TextBlock mvx:Bi.nd="Text Peers" Foreground="White" ></TextBlock>
+                <StatusBarItem Margin="18,0,0,0">
+                    <TextBlock Text="{Binding Peers}" Foreground="#113E48" FontFamily="Inter" FontSize="14"></TextBlock>
                 </StatusBarItem>
             </StatusBar>
         </DockPanel>
+        <Button Grid.Column="1"
+                VerticalAlignment="Bottom"
+                Style="{DynamicResource ShareButtonStyle}"
+                Command="{Binding UploadFileCommand}"
+                Margin="0,0,80,25">
+            <Button.Background>
+                <ImageBrush ImageSource="/Assets/Share.png" />
+            </Button.Background>
+        </Button>
     </Grid>
 </controls:MvxWpfControl>
