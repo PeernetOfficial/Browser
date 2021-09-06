@@ -5,22 +5,31 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public class HomeViewModel : MvxViewModel
     {
-        private string _searchInput = string.Empty;
-        public string SearchInput 
-        { 
-            get => _searchInput; 
+        private string searchInput;
+        private bool showHint;
+
+        public string SearchInput
+        {
+            get => searchInput;
             set
-            { SetProperty(ref _searchInput, value); }
+            {
+                searchInput = value;
+                RaisePropertyChanged(nameof(SearchInput));
+            }
         }
 
-        private bool _showHint = true;
+        public HomeViewModel()
+        {
+        }
+
         public bool ShowHint
         {
-            get => _showHint;
-            set { SetProperty(ref _showHint, value); }
+            get => showHint;
+            set { SetProperty(ref showHint, value); }
         }
 
         private bool _showSearchBox = false;
+
         public bool ShowSearchBox
         {
             get => _showSearchBox;

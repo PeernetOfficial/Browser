@@ -44,8 +44,6 @@ namespace Peernet.Browser.WPF
         {
             base.LoadPlugins(pluginManager);
 
-            pluginManager.EnsurePluginLoaded<MvvmCross.Plugin.MethodBinding.Plugin>(true);
-            pluginManager.EnsurePluginLoaded<MvvmCross.Plugin.FieldBinding.Plugin>(true);
             pluginManager.EnsurePluginLoaded<MvvmCross.Plugin.Control.Plugin>(true);
         }
     }

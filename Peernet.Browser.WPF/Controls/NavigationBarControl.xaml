@@ -1,8 +1,10 @@
 ﻿<controls:MvxWpfControl
-             xmlns:controls="clr-namespace:MvvmCross.Plugin.Control.Platforms.Wpf;assembly=MvvmCross.Plugin.Control.Platforms.Wpf"
-             x:Class="Peernet.Browser.WPF.Controls.NavigationBarControl"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    x:Class="Peernet.Browser.WPF.Controls.NavigationBarControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:MvvmCross.Plugin.Control.Platforms.Wpf;assembly=MvvmCross.Plugin.Control.Platforms.Wpf"
+    xmlns:domaincontrols="clr-namespace:Peernet.Browser.WPF.Controls">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -16,35 +18,38 @@
             <RowDefinition Height = "*" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Column = "3" Orientation="Horizontal">
-            <Button Style="{DynamicResource NavBarButtonStyle}"
+        <StackPanel Grid.Column = "3" Orientation="Vertical">
+            <StackPanel  Orientation="Horizontal">
+                <Button Style="{DynamicResource NavBarButtonStyle}"
                 Command="{Binding NavigateHomeCommand}"
                 ToolTip="Home">
-                <Button.Background>
-                    <ImageBrush ImageSource="/Assets/Home.png" Stretch="Fill" />
-                </Button.Background>
-            </Button>
-            <Button Style="{DynamicResource NavBarButtonStyle}"
-                Command="{Binding NavigateDictionaryCommand}"
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Assets/Home.png" Stretch="Fill" />
+                    </Button.Background>
+                </Button>
+                <Button Style="{DynamicResource NavBarButtonStyle}"
+                Command="{Binding NavigateExploreCommand}"
+                ToolTip="Explore">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Assets/Explore.png" Stretch="Fill" />
+                    </Button.Background>
+                </Button>
+                <Button Style="{DynamicResource NavBarButtonStyle}"
+                Command="{Binding NavigateDirectoryCommand}"
                 ToolTip="Directory">
-                <Button.Background>
-                    <ImageBrush ImageSource="/Assets/Directory.png" Stretch="Fill" />
-                </Button.Background>
-            </Button>
-            <Button Style="{DynamicResource NavBarButtonStyle}"
-                Command="{Binding NavigateUserCommand}"
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Assets/Directory.png" Stretch="Fill" />
+                    </Button.Background>
+                </Button>
+                <Button Style="{DynamicResource NavBarButtonStyle}"
+                Command="{Binding OpenCloseProfileMenuCommand}"
                 ToolTip="User">
-                <Button.Background>
-                    <ImageBrush ImageSource="/Assets/User.png" Stretch="Fill" />
-                </Button.Background>
-            </Button>
-            <Button Style="{DynamicResource NavBarButtonStyle}"
-                Command="{Binding NavigateSettingsCommand}"
-                ToolTip="Settings">
-                <Button.Background>
-                    <ImageBrush ImageSource="/Assets/Settings.png" Stretch="Fill" />
-                </Button.Background>
-            </Button>
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Assets/User.png" Stretch="Fill" />
+                    </Button.Background>
+                </Button>
+            </StackPanel>
+            <domaincontrols:ProfileMenuControl HorizontalAlignment="Right" Visibility="{Binding IsProfileMenuVisible, Converter={StaticResource BoolToVisibility}}" />
         </StackPanel>
     </Grid>
 </controls:MvxWpfControl>
