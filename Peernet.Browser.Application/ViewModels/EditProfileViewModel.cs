@@ -21,6 +21,14 @@ namespace Peernet.Browser.Application.ViewModels
             return mvxNavigationService.Close(this);
         });
 
+        public IMvxAsyncCommand SaveChangesCommand => new MvxAsyncCommand(() =>
+        {
+
+
+            GlobalContext.IsMainWindowActive = true;
+            return mvxNavigationService.Close(this);
+        });
+
         public IUserContext UserContext { get; set; }
     }
 }

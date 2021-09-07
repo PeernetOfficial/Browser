@@ -10,7 +10,6 @@ namespace Peernet.Browser.Application.ViewModels
     {
         private readonly IMvxNavigationService navigationService;
 
-        private bool isProfileMenuVisible;
 
         public NavigationBarViewModel(IMvxNavigationService navigationService, IUserContext userContext)
         {
@@ -27,16 +26,6 @@ namespace Peernet.Browser.Application.ViewModels
                 {
                     return Task.CompletedTask;
                 });
-            }
-        }
-
-        public bool IsProfileMenuVisible
-        {
-            get => isProfileMenuVisible;
-            set
-            {
-                isProfileMenuVisible = value;
-                RaisePropertyChanged(nameof(IsProfileMenuVisible));
             }
         }
 
@@ -79,7 +68,7 @@ namespace Peernet.Browser.Application.ViewModels
             {
                 return new MvxAsyncCommand(() =>
                 {
-                    IsProfileMenuVisible ^= true;
+                    GlobalContext.IsProfileMenuVisible ^= true;
 
                     return Task.CompletedTask;
                 });

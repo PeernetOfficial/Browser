@@ -24,6 +24,7 @@ namespace Peernet.Browser.Application.Contexts
         }
 
         public List<MenuItemViewModel> Items => menuItemViewModels.Value;
+
         public User User => user.Value;
 
         private List<MenuItemViewModel> InitializeMenuItems()
@@ -38,6 +39,7 @@ namespace Peernet.Browser.Application.Contexts
                     () =>
                     {
                         GlobalContext.IsMainWindowActive = false;
+                        GlobalContext.IsProfileMenuVisible = false;
                         mvxNavigationService.Navigate<EditProfileViewModel>();
                     })
                 };

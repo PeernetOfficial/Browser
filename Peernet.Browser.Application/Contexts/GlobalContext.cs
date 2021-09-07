@@ -7,6 +7,8 @@ namespace Peernet.Browser.Application.Contexts
     {
         private static bool isMainWindowActive = true;
 
+        private static bool isProfileMenuVisible;
+
         public static event EventHandler<PropertyChangedEventArgs> StaticPropertyChanged = delegate { };
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -18,6 +20,16 @@ namespace Peernet.Browser.Application.Contexts
             {
                 isMainWindowActive = value;
                 NotifyStaticPropertyChanged(nameof(IsMainWindowActive));
+            }
+        }
+
+        public static bool IsProfileMenuVisible
+        {
+            get => isProfileMenuVisible;
+            set
+            {
+                isProfileMenuVisible = value;
+                NotifyStaticPropertyChanged(nameof(IsProfileMenuVisible));
             }
         }
 
