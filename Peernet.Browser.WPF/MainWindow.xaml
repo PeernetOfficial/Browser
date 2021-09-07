@@ -12,11 +12,14 @@
         WindowStartupLocation="CenterScreen">
     <views:MvxWindow.ContentTemplate>
         <DataTemplate>
-            <Border BorderThickness="0" Padding="1" BorderBrush="Transparent" CornerRadius="8,8,8,8">
+            <Border BorderThickness="0" Padding="1" CornerRadius="{StaticResource MainRadius}">
+                <Border.Background>
+                    <SolidColorBrush Color="{StaticResource MainBackground}" />
+                </Border.Background>
+                <Border.BorderBrush>
+                    <SolidColorBrush Color="{StaticResource MainBackground}" />
+                </Border.BorderBrush>
                 <Grid>
-                    <Grid.Background>
-                        <SolidColorBrush Color="#EFF5F9" />
-                    </Grid.Background>
                     <DockPanel>
                         <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
                             <controls:ButtonsControl InitializeOnLoad="true" />

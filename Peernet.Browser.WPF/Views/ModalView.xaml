@@ -1,0 +1,117 @@
+﻿<views:MvxWindow x:Class="Peernet.Browser.WPF.Views.ModalView"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
+                 Height="900"
+                 Width="1441"
+                 WindowStyle="None"
+                 AllowsTransparency="True"
+                 WindowStartupLocation="CenterOwner"
+                 Background="Transparent">
+    <views:MvxWindow.ContentTemplate>
+        <DataTemplate>
+            <Border BorderThickness="0" Padding="1" BorderBrush="Transparent" CornerRadius="{StaticResource MainRadius}">
+                <Border.Background>
+                    <SolidColorBrush Color="Gray" Opacity="0.5" />
+                </Border.Background>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="7*" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="1" Grid.Column="1" BorderThickness="0" Padding="60" BorderBrush="Transparent" CornerRadius="{StaticResource MainRadius}">
+                        <Border.Background>
+                            <SolidColorBrush Color="{StaticResource MainBackground}" />
+                        </Border.Background>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <DockPanel Grid.Row="0">
+                                <TextBlock FontSize="16">Permanent Record_book_by_Edward_Snowden.</TextBlock>
+                                <TextBlock FontWeight="Bold" FontSize="16">pdf</TextBlock>
+                            </DockPanel>
+
+                            <StackPanel Grid.Row="1">
+                                <DockPanel TextBlock.Foreground="{StaticResource LightGrayBrush}">
+                                    <TextBlock Padding="0 5" FontSize="12">Document</TextBlock>
+                                    <Canvas Height="12" Width="20">
+                                        <Ellipse Canvas.Left="8" Canvas.Top="4" Height="4" Width="4" Fill="{StaticResource LightGrayBrush}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                    </Canvas>
+                                    <TextBlock Padding="0 5" FontSize="12">PDF</TextBlock>
+                                </DockPanel>
+                                <TextBlock Style="{StaticResource Title}">Author:</TextBlock>
+                                <TextBlock Style="{StaticResource Active}">ElonMusk2</TextBlock>
+                                <TextBlock Style="{StaticResource Title}">Size:</TextBlock>
+                                <TextBlock Style="{StaticResource Active}">350 718 bytes (352 kB)</TextBlock>
+                                <TextBlock Style="{StaticResource Title}">Created:</TextBlock>
+                                <TextBlock Style="{StaticResource Active}">Wednesday, 18 August 2021 at 16:05</TextBlock>
+                                <TextBlock Style="{StaticResource Title}">Modified:</TextBlock>
+                                <TextBlock Style="{StaticResource Active}">Wednesday, 18 August 2021 at 16:05</TextBlock>
+                            </StackPanel>
+
+                            <DockPanel Grid.Row="2" LastChildFill="False" Margin="0 15">
+                                <Image Margin="7 0" Width="11" Source="/Assets/DirectorySmall.png" />
+                                <TextBlock Foreground="{StaticResource LightGrayBrush}">Your files</TextBlock>
+                                <TextBlock Padding="5 0 0 0" Style="{StaticResource Title}">/</TextBlock>
+                                <Image Margin="7 0" Width="11" Source="/Assets/DirectorySmall.png" />
+                                <TextBlock Foreground="{StaticResource LightGrayBrush}">Books</TextBlock>
+                                <Button DockPanel.Dock="Right" Foreground="{StaticResource DarkGreenBrush}" Style="{StaticResource LinkButton}">Change</Button>
+                            </DockPanel>
+
+                            <StackPanel Grid.Row="3">
+                                <TextBlock Style="{StaticResource Title}">File name</TextBlock>
+                                <TextBox Foreground="{StaticResource DarkGreenBrush}" Template="{StaticResource TextBoxBaseControlTemplate}" Margin="0 5" Height="30" Padding="7">
+                                    Permanent Record
+                                </TextBox>
+                                <Border  Grid.Row="1" Grid.Column="1" BorderThickness="0" Padding="9" BorderBrush="Transparent" CornerRadius="{StaticResource MainRadius}">
+                                    <Border.Background>
+                                        <SolidColorBrush Color="White" />
+                                    </Border.Background>
+                                    <Grid>
+                                        <TextBlock Text="Add description with #tags to make your file searchable!" Foreground="{StaticResource LightGrayBrush}">
+                                            <TextBlock.Visibility>
+                                                <MultiBinding Converter="{StaticResource TextInputToVisibilityConverter}">
+                                                    <Binding ElementName="txtUserEntry2" Path="Text.IsEmpty" />
+                                                    <Binding ElementName="txtUserEntry2" Path="IsFocused" />
+                                                </MultiBinding>
+                                            </TextBlock.Visibility>
+                                        </TextBlock>
+                                        <TextBox Background="Transparent" Name="txtUserEntry2"
+                                                 Foreground="{StaticResource DarkGreenBrush}"
+                                                 Template="{StaticResource TextBoxBaseControlTemplate}" Height="160"
+                                                 AcceptsReturn="True" TextWrapping="Wrap" AcceptsTab="True" />
+                                    </Grid>
+                                </Border>
+                            </StackPanel>
+
+                            <TextBlock Cursor="Hand"
+                                FontWeight="Bold" Foreground="{StaticResource DarkGreenBrush}"
+                                       Margin="0 15" Grid.Row="4">+ SHARE ANTOHER FILE</TextBlock>
+
+                            <DockPanel VerticalAlignment="Stretch" Grid.Row="5" LastChildFill="False" HorizontalAlignment="Right">
+                                <Button Style="{StaticResource PrimaryButton}">Hide</Button>
+                                <Button Style="{StaticResource AcceptButton}">Confirm</Button>
+                            </DockPanel>
+
+                            <Grid>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </views:MvxWindow.ContentTemplate>
+</views:MvxWindow>

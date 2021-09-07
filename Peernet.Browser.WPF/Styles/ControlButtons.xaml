@@ -126,4 +126,46 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="LinkButton" TargetType="Button">
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <TextBlock TextDecorations="Underline">
+                        <ContentPresenter />
+                    </TextBlock>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="PrimaryButton" TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <TextBlock Height="Auto" Width="90" TextAlignment="Center" VerticalAlignment="Center" Cursor="Hand" Foreground="{StaticResource DarkGreenBrush}">
+                        <ContentPresenter />
+                    </TextBlock>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="AcceptButton" TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Height="Auto" Width="90" Cursor="Hand" Grid.Row="1" Grid.Column="1" BorderThickness="0" BorderBrush="Transparent" CornerRadius="{StaticResource MainRadius}">
+                        <Border.Background>
+                            <SolidColorBrush Color="{StaticResource DarkGreen}" />
+                        </Border.Background>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White">
+                        <ContentPresenter />
+                        </TextBlock>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>
