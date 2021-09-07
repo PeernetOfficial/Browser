@@ -21,15 +21,15 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Source="{Binding User.Image}" Width="47" Height="47"/>
+                <Image Grid.Column="0" Source="{Binding UserContext.User.Image}" Width="47" Height="47"/>
                 <StackPanel Grid.Column="1" Margin="8,0,0,0">
-                    <TextBlock Foreground="#113E48" FontFamily="Inter" FontSize="14" FontWeight="Medium" Text="{Binding User.Name}"/>
+                    <TextBlock Foreground="#113E48" FontFamily="Inter" FontSize="14" FontWeight="Medium" Text="{Binding UserContext.User.Name}"/>
                     <Button HorizontalAlignment="Left" Foreground="#113E48" FontSize="12" Margin="0,13,0,0" Style="{StaticResource NavbarMenuButtonStyle}" Content="Go to your files" Command="{Binding GoToYourFilesCommand}" />
                 </StackPanel>
             </Grid>
             <Separator Opacity="0.2" Width="179" />
             <ItemsControl
-            ItemsSource="{Binding Items}"
+            ItemsSource="{Binding UserContext.Items}"
             Background="Transparent"
             Foreground="White">
                 <ItemsControl.ItemTemplate>

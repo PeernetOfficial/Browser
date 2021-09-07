@@ -1,9 +1,7 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
-using Peernet.Browser.Application.Models;
-using Peernet.Browser.Application.Services;
-using System.Collections.Generic;
+using Peernet.Browser.Application.Contexts;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
@@ -11,19 +9,24 @@ namespace Peernet.Browser.Application.ViewModels
     public class NavigationBarViewModel : MvxViewModel
     {
         private readonly IMvxNavigationService navigationService;
-        private readonly IProfileService profileService;
+
         private bool isProfileMenuVisible;
 
-        // To be replaced with some Service fed data
-        private User user;
-
-        public User User
+        public NavigationBarViewModel(IMvxNavigationService navigationService, IUserContext userContext)
         {
-            get => user;
-            set
+            this.navigationService = navigationService;
+
+            UserContext = userContext;
+        }
+
+        public IMvxAsyncCommand GoToYourFilesCommand
+        {
+            get
             {
-                user = value;
-                RaisePropertyChanged(nameof(User));
+                return new MvxAsyncCommand(() =>
+                {
+                    return Task.CompletedTask;
+                });
             }
         }
 
@@ -37,23 +40,13 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        public List<MenuItemViewModel> Items { get; set; }
-
-        public NavigationBarViewModel(IMvxNavigationService navigationService, IProfileService profileService)
-        {
-            this.navigationService = navigationService;
-            this.profileService = profileService;
-
-            InitializeContext();
-        }
-
-        public IMvxAsyncCommand NavigateHomeCommand
+        public IMvxAsyncCommand NavigateDirectoryCommand
         {
             get
             {
                 return new MvxAsyncCommand(async () =>
                 {
-                    await navigationService.Navigate<HomeViewModel>();
+                    await navigationService.Navigate<DirectoryViewModel>();
                 });
             }
         }
@@ -69,13 +62,13 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        public IMvxAsyncCommand NavigateDirectoryCommand
+        public IMvxAsyncCommand NavigateHomeCommand
         {
             get
             {
                 return new MvxAsyncCommand(async () =>
                 {
-                    await navigationService.Navigate<DirectoryViewModel>();
+                    await navigationService.Navigate<HomeViewModel>();
                 });
             }
         }
@@ -93,31 +86,6 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        public IMvxAsyncCommand GoToYourFilesCommand
-        {
-            get
-            {
-                return new MvxAsyncCommand(() =>
-                {
-                    return Task.CompletedTask;
-                });
-            }
-        }
-
-        private void InitializeContext()
-        {
-            User = new User
-            {
-                Name = profileService.GetUserName(),
-                Image = profileService.GetUserImage()
-            };
-
-            Items = new List<MenuItemViewModel>
-            {
-                new MenuItemViewModel("About"),
-                new MenuItemViewModel("FAQ (Help)"),
-                new MenuItemViewModel("Backup to a file")
-            };
-        }
+        public IUserContext UserContext { get; set; }
     }
 }
