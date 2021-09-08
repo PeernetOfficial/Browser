@@ -1,7 +1,7 @@
-﻿using Peernet.Browser.Application.Models;
+﻿using Peernet.Browser.Application.Http;
+using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.Services;
 using RestSharp;
-using System;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure
@@ -10,10 +10,9 @@ namespace Peernet.Browser.Infrastructure
     {
         private readonly IRestClient restClient;
 
-        public ApiClient(IRestClient restClient, ISettingsManager settings)
+        public ApiClient(IRestClientFactory restClientFactory, ISettingsManager settings)
         {
-            this.restClient = restClient;
-            this.restClient.BaseUrl = new Uri(settings.ApiUrl);
+            restClient = restClientFactory.CreateRestClient();
         }
 
         public async Task<MyInfo> GetMyInfo()
