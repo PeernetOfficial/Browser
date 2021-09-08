@@ -11,12 +11,9 @@ namespace Peernet.Browser.Application.Contexts
     {
         private readonly IMvxNavigationService mvxNavigationService;
         private readonly IProfileService profileService;
+        private User user;
 
         public event PropertyChangedEventHandler PropertyChanged;
-        
-        private UserContext()
-        {
-        }
 
         public UserContext(IProfileService profileService, IMvxNavigationService mvxNavigationService)
         {
@@ -29,7 +26,14 @@ namespace Peernet.Browser.Application.Contexts
 
         public List<MenuItemViewModel> Items { get; private set; }
 
-        public User User { get; private set; }
+        public User User
+        {
+            get => user; set
+            {
+                user = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(User)));
+            }
+        }
 
         public bool HasUserChanged { get; private set; }
 
@@ -69,16 +73,6 @@ namespace Peernet.Browser.Application.Contexts
         public void SubscribeToUserModifications(object sender, PropertyChangedEventArgs e)
         {
             HasUserChanged = true;
-        }
-
-        public UserContext GetSnapshot()
-        {
-            return new UserContext(profileService, mvxNavigationService)
-            {
-                HasUserChanged = HasUserChanged,
-                Items = new UserContext { Items = Items }.Items,
-                User = new UserContext { User = User.GetClone() }.User,
-            };
         }
     }
 }
