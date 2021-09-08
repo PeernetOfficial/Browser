@@ -4,6 +4,7 @@
                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
+                  xmlns:contexts="clr-namespace:Peernet.Browser.Application.Contexts;assembly=Peernet.Browser.Application"
                   xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls"
                   mc:Ignorable="d"
         WindowStyle="None" Background="Transparent"
@@ -12,14 +13,32 @@
         WindowStartupLocation="CenterScreen">
     <views:MvxWindow.ContentTemplate>
         <DataTemplate>
-            <Border BorderThickness="0" Padding="1" CornerRadius="{StaticResource MainRadius}">
+            <Border BorderThickness="0" BorderBrush="Transparent" CornerRadius="8,8,8,8">
                 <Border.Background>
                     <SolidColorBrush Color="{StaticResource MainBackground}" />
                 </Border.Background>
-                <Border.BorderBrush>
-                    <SolidColorBrush Color="{StaticResource MainBackground}" />
-                </Border.BorderBrush>
                 <Grid>
+                    <Grid.Style>
+                        <Style TargetType="{x:Type Grid}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=(contexts:GlobalContext.IsMainWindowActive)}" Value="False">
+                                    <Setter Property="Background">
+                                        <Setter.Value>
+                                            <SolidColorBrush Color="#000000" Opacity="0.3" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=(contexts:GlobalContext.IsMainWindowActive)}" Value="True">
+                                    <Setter Property="Background">
+                                        <Setter.Value>
+                                            <SolidColorBrush Color="{StaticResource MainBackground}" />
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+
                     <DockPanel>
                         <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
                             <controls:ButtonsControl InitializeOnLoad="true" />

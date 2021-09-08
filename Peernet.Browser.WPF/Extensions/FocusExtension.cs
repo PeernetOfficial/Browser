@@ -15,7 +15,7 @@ namespace Peernet.Browser.WPF.Extensions
         {
             if (element == null)
             {
-                throw new ArgumentNullException("element");
+                throw new ArgumentNullException(nameof(element));
             }
 
             return (bool?)element.GetValue(IsFocusedProperty);
@@ -25,7 +25,7 @@ namespace Peernet.Browser.WPF.Extensions
         {
             if (element == null)
             {
-                throw new ArgumentNullException("element");
+                throw new ArgumentNullException(nameof(element));
             }
 
             element.SetValue(IsFocusedProperty, value);

@@ -1,10 +1,12 @@
 ﻿using Microsoft.Extensions.Logging;
 using MvvmCross.IoC;
+using MvvmCross.Navigation;
 using MvvmCross.Platforms.Wpf.Core;
 using MvvmCross.Plugin;
+using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.Application.Http;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Infrastructure;
-using RestSharp;
 using Serilog;
 using Serilog.Extensions.Logging;
 
@@ -35,9 +37,11 @@ namespace Peernet.Browser.WPF
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            iocProvider.RegisterType<IRestClient, RestClient>();
+            iocProvider.RegisterType<IRestClientFactory, RestClientFactory>();
             iocProvider.RegisterType<IApiClient, ApiClient>();
             iocProvider.RegisterType<ISocketClient, SocketClient>();
+            iocProvider.RegisterType<IProfileService, ProfileService>();
+            iocProvider.RegisterSingleton<IUserContext>(() => new UserContext(iocProvider.Resolve<IProfileService>(), iocProvider.Resolve<IMvxNavigationService>()));
         }
 
         public override void LoadPlugins(IMvxPluginManager pluginManager)

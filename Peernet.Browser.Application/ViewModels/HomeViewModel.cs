@@ -5,46 +5,12 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public class HomeViewModel : MvxViewModel
     {
+        private bool _showSearchBox = false;
         private string searchInput;
         private bool showHint;
 
-        public string SearchInput
-        {
-            get => searchInput;
-            set
-            {
-                searchInput = value;
-                RaisePropertyChanged(nameof(SearchInput));
-            }
-        }
-
         public HomeViewModel()
         {
-        }
-
-        public bool ShowHint
-        {
-            get => showHint;
-            set { SetProperty(ref showHint, value); }
-        }
-
-        private bool _showSearchBox = false;
-
-        public bool ShowSearchBox
-        {
-            get => _showSearchBox;
-            set { SetProperty(ref _showSearchBox, value); }
-        }
-
-        public IMvxCommand Search
-        {
-            get
-            {
-                return new MvxCommand(() =>
-                {
-                    SearchInput = "Searching...";
-                });
-            }
         }
 
         public IMvxCommand RemoveHint
@@ -60,6 +26,37 @@ namespace Peernet.Browser.Application.ViewModels
                     }
                 });
             }
+        }
+
+        public IMvxCommand Search
+        {
+            get
+            {
+                return new MvxCommand(() =>
+                {
+                    SearchInput = "Searching...";
+                });
+            }
+        }
+
+        public string SearchInput
+        {
+            get => searchInput;
+            set
+            {
+                searchInput = value;
+                RaisePropertyChanged(nameof(SearchInput));
+            }
+        }
+        public bool ShowHint
+        {
+            get => showHint;
+            set { SetProperty(ref showHint, value); }
+        }
+        public bool ShowSearchBox
+        {
+            get => _showSearchBox;
+            set { SetProperty(ref _showSearchBox, value); }
         }
     }
 }
