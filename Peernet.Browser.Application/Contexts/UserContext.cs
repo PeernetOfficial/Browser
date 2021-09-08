@@ -4,6 +4,7 @@ using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 
 namespace Peernet.Browser.Application.Contexts
 {
@@ -63,10 +64,13 @@ namespace Peernet.Browser.Application.Contexts
 
         private User InitializeUser()
         {
+            var image = profileService.GetUserImage();
+            var name = profileService.GetUserName();
+
             return new User
             {
-                Name = profileService.GetUserName(),
-                Image = profileService.GetUserImage()
+                Name = string.IsNullOrEmpty(name) ? null : name,
+                Image = image.Length == 0 ? null : image
             };
         }
 

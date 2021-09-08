@@ -16,7 +16,7 @@ namespace Peernet.Browser.WPF.Views
     {
         public EditProfileView() => InitializeComponent();
 
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void OpenFileDialog(object sender, System.Windows.RoutedEventArgs e)
         {
             var dialog = new OpenFileDialog();
             if( dialog.ShowDialog() == true)

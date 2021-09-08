@@ -3,7 +3,6 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Services;
-using System;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
@@ -33,6 +32,14 @@ namespace Peernet.Browser.Application.ViewModels
 
             GlobalContext.IsMainWindowActive = true;
             return mvxNavigationService.Close(this);
+        });
+
+        public IMvxAsyncCommand RemovePhotoCommand => new MvxAsyncCommand(() =>
+        {
+            // Removal of Image is not supported by API yet
+            UserContext.User.Image = null;
+
+            return Task.CompletedTask;
         });
 
         public IMvxAsyncCommand SaveChangesCommand => new MvxAsyncCommand(() =>
