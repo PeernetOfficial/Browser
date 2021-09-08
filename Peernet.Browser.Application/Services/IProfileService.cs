@@ -11,6 +11,6 @@ namespace Peernet.Browser.Application.Services
 
         ApiBlockchainBlockStatus AddUserName(string userName);
 
-        ApiBlockchainBlockStatus AddUserImage(string imagePath);
+        ApiBlockchainBlockStatus AddUserImage(byte[] content);
     }
 }

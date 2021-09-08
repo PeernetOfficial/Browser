@@ -2,30 +2,42 @@
 using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels;
-using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Peernet.Browser.Application.Contexts
 {
-    public class UserContext : IUserContext
+    public class UserContext : INotifyPropertyChanged, IUserContext
     {
         private readonly IMvxNavigationService mvxNavigationService;
         private readonly IProfileService profileService;
-        private Lazy<List<MenuItemViewModel>> menuItemViewModels;
-        private Lazy<User> user;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        
+        private UserContext()
+        {
+        }
 
         public UserContext(IProfileService profileService, IMvxNavigationService mvxNavigationService)
         {
             this.profileService = profileService;
             this.mvxNavigationService = mvxNavigationService;
 
-            user = new Lazy<User>(() => InitializeUser());
-            menuItemViewModels = new Lazy<List<MenuItemViewModel>>(() => InitializeMenuItems());
+            ReloadContext();
+            User.PropertyChanged += SubscribeToUserModifications;
         }
 
-        public List<MenuItemViewModel> Items => menuItemViewModels.Value;
+        public List<MenuItemViewModel> Items { get; private set; }
 
-        public User User => user.Value;
+        public User User { get; private set; }
+
+        public bool HasUserChanged { get; private set; }
+
+        public void ReloadContext()
+        {
+            User = InitializeUser();
+            Items = InitializeMenuItems();
+        }
 
         private List<MenuItemViewModel> InitializeMenuItems()
         {
@@ -51,6 +63,21 @@ namespace Peernet.Browser.Application.Contexts
             {
                 Name = profileService.GetUserName(),
                 Image = profileService.GetUserImage()
+            };
+        }
+
+        public void SubscribeToUserModifications(object sender, PropertyChangedEventArgs e)
+        {
+            HasUserChanged = true;
+        }
+
+        public UserContext GetSnapshot()
+        {
+            return new UserContext(profileService, mvxNavigationService)
+            {
+                HasUserChanged = HasUserChanged,
+                Items = new UserContext { Items = Items }.Items,
+                User = new UserContext { User = User.GetClone() }.User,
             };
         }
     }

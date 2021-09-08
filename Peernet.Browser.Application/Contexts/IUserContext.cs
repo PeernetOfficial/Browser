@@ -7,6 +7,13 @@ namespace Peernet.Browser.Application.Contexts
     public interface IUserContext
     {
         List<MenuItemViewModel> Items { get; }
+
         User User { get; }
+
+        bool HasUserChanged { get; }
+
+        void ReloadContext();
+
+        UserContext GetSnapshot();
     }
 }
