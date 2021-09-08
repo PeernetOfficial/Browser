@@ -1,6 +1,7 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.Services;
 using System.Threading.Tasks;
@@ -127,6 +128,8 @@ namespace Peernet.Browser.Application.ViewModels
 
         private Task<bool> UploadFile()
         {
+            GlobalContext.IsMainWindowActive = false;
+            GlobalContext.IsProfileMenuVisible = false;
             return navigationService.Navigate<ModalViewModel>();
         }
     }
