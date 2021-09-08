@@ -8,12 +8,10 @@ namespace Peernet.Browser.Application.Contexts
     {
         List<MenuItemViewModel> Items { get; }
 
-        User User { get; }
+        User User { get; set; }
 
         bool HasUserChanged { get; }
 
         void ReloadContext();
-
-        UserContext GetSnapshot();
     }
 }

@@ -3,7 +3,6 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Services;
-using System;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
@@ -13,7 +12,6 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IMvxNavigationService mvxNavigationService;
         private readonly IProfileService profileService;
 
-        private static IUserContext userContextSnapshot; 
 
         public EditProfileViewModel(IMvxNavigationService mvxNavigationService, IUserContext userContext, IProfileService profileService)
         {
@@ -21,7 +19,6 @@ namespace Peernet.Browser.Application.ViewModels
             this.profileService = profileService;
 
             UserContext = userContext;
-            userContextSnapshot = userContext.GetSnapshot();
         }
 
         public IMvxAsyncCommand UploadFileCommand => new MvxAsyncCommand(() => 
@@ -31,11 +28,18 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IMvxAsyncCommand CloseCommand => new MvxAsyncCommand(() =>
         {
-            UserContext = userContextSnapshot;
             UserContext.ReloadContext();
 
             GlobalContext.IsMainWindowActive = true;
             return mvxNavigationService.Close(this);
+        });
+
+        public IMvxAsyncCommand RemovePhotoCommand => new MvxAsyncCommand(() =>
+        {
+            // Removal of Image is not supported by API yet
+            UserContext.User.Image = null;
+
+            return Task.CompletedTask;
         });
 
         public IMvxAsyncCommand SaveChangesCommand => new MvxAsyncCommand(() =>

@@ -1,12 +1,13 @@
 ﻿using Peernet.Browser.Application.Http;
 using Peernet.Browser.Application.Models;
+using Peernet.Browser.Application.Services;
 using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Peernet.Browser.Application.Services
+namespace Peernet.Browser.Infrastructure
 {
     public class ProfileService : IProfileService
     {
