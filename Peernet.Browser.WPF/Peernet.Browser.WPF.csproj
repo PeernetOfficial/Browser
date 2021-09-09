@@ -10,6 +10,7 @@
     <None Remove="Assets\Connecting.png" />
     <None Remove="Assets\DefaultProfileImage.png" />
     <None Remove="Assets\Directory.png" />
+    <None Remove="Assets\DirectorySmall.png" />
     <None Remove="Assets\Explore.png" />
     <None Remove="Assets\Home.png" />
     <None Remove="Assets\Logo.png" />
@@ -50,6 +51,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Directory.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\DirectorySmall.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Explore.png">
@@ -109,7 +113,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Update="Styles\Colors.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
     <Page Update="Styles\NavigationBar.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="Styles\TextBlock.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
   </ItemGroup>

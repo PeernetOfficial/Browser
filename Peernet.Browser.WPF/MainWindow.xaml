@@ -15,7 +15,7 @@
         <DataTemplate>
             <Border BorderThickness="0" BorderBrush="Transparent" CornerRadius="8,8,8,8">
                 <Border.Background>
-                    <SolidColorBrush Color="#EFF5F9" />
+                    <SolidColorBrush Color="{StaticResource MainBackground}" />
                 </Border.Background>
                 <Grid>
                     <Grid.Style>
@@ -31,7 +31,7 @@
                                 <DataTrigger Binding="{Binding Path=(contexts:GlobalContext.IsMainWindowActive)}" Value="True">
                                     <Setter Property="Background">
                                         <Setter.Value>
-                                            <SolidColorBrush Color="#EFF5F9" />
+                                            <SolidColorBrush Color="{StaticResource MainBackground}" />
                                         </Setter.Value>
                                     </Setter>
                                 </DataTrigger>

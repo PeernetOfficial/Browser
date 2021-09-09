@@ -1,5 +1,7 @@
 ﻿using MvvmCross.Commands;
+using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.Services;
 using System.Threading.Tasks;
@@ -9,37 +11,29 @@ namespace Peernet.Browser.Application.ViewModels
     public class FooterViewModel : MvxViewModel
     {
         private const int reconnectDelay = 2000;
-
         private readonly IApiClient apiClient;
+        private readonly IMvxNavigationService navigationService;
         private readonly ISocketClient socketClient;
+        private string commandLineInput;
+        private string commandLineOutput;
         private ConnectionStatus connectionStatus = ConnectionStatus.Offline;
         private string peers;
-        private string commandLineOutput;
-        private string commandLineInput;
 
-        public FooterViewModel(IApiClient apiClient, ISocketClient socketClient)
+        public FooterViewModel(IApiClient apiClient, ISocketClient socketClient, IMvxNavigationService navigationService)
         {
             this.apiClient = apiClient;
             this.socketClient = socketClient;
+            this.navigationService = navigationService;
+
+            UploadFileCommand = new MvxAsyncCommand(UploadFile);
         }
 
-        public ConnectionStatus ConnectionStatus
+        public string CommandLineInput
         {
-            get => connectionStatus;
+            get => commandLineInput;
             set
             {
-                connectionStatus = value;
-                RaisePropertyChanged(nameof(ConnectionStatus));
-            }
-        }
-
-        public string Peers
-        {
-            get => peers;
-            set
-            {
-                peers = value;
-                RaisePropertyChanged(nameof(Peers));
+                SetProperty(ref commandLineInput, value);
             }
         }
 
@@ -48,18 +42,25 @@ namespace Peernet.Browser.Application.ViewModels
             get => commandLineOutput;
             set
             {
-                commandLineOutput = value;
-                RaisePropertyChanged(nameof(CommandLineOutput));
+                SetProperty(ref commandLineOutput, value);
             }
         }
 
-        public string CommandLineInput
+        public ConnectionStatus ConnectionStatus
         {
-            get => commandLineInput;
+            get => connectionStatus;
             set
             {
-                commandLineInput = value;
-                RaisePropertyChanged(nameof(CommandLineInput));
+                SetProperty(ref connectionStatus, value);
+            }
+        }
+
+        public string Peers
+        {
+            get => peers;
+            set
+            {
+                SetProperty(ref peers, value);
             }
         }
 
@@ -76,17 +77,12 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
+        public IMvxAsyncCommand UploadFileCommand { get; set; }
+
         public async override Task Initialize()
         {
             await ConnectToPeernetAPI();
             await ConnectToPeernetConsole();
-        }
-
-        private async Task ConnectToPeernetConsole()
-        {
-            await this.socketClient.Connect();
-
-            CommandLineOutput = await this.socketClient.Receive();
         }
 
         private async Task ConnectToPeernetAPI()
@@ -102,6 +98,13 @@ namespace Peernet.Browser.Application.ViewModels
                     await Task.Delay(reconnectDelay);
                 }
             }
+        }
+
+        private async Task ConnectToPeernetConsole()
+        {
+            await this.socketClient.Connect();
+
+            CommandLineOutput = await this.socketClient.Receive();
         }
 
         private async Task<bool> GetPeernetStatus()
@@ -121,6 +124,13 @@ namespace Peernet.Browser.Application.ViewModels
 
                 return false;
             }
+        }
+
+        private Task<bool> UploadFile()
+        {
+            GlobalContext.IsMainWindowActive = false;
+            GlobalContext.IsProfileMenuVisible = false;
+            return navigationService.Navigate<ModalViewModel>();
         }
     }
 }
