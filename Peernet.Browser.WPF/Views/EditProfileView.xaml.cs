@@ -8,9 +8,9 @@ using System.IO;
 namespace Peernet.Browser.WPF.Views
 {
     /// <summary>
-    /// Interaction logic for EditProfileControl.xaml
+    /// Interaction logic for EditProfileView.xaml
     /// </summary>
-    [MvxContentPresentation(WindowIdentifier = nameof(MainWindow), StackNavigation = true)]
+    [MvxContentPresentation(WindowIdentifier = nameof(EditProfileView), StackNavigation = true)]
     [MvxViewFor(typeof(EditProfileViewModel))]
     public partial class EditProfileView : MvxWpfView
     {
@@ -19,10 +19,13 @@ namespace Peernet.Browser.WPF.Views
         private void OpenFileDialog(object sender, System.Windows.RoutedEventArgs e)
         {
             var dialog = new OpenFileDialog();
-            if( dialog.ShowDialog() == true)
+            dialog.Filter = "Image Files (*.png;*.jpg)|*.png;*.jpg";
+
+            if ( dialog.ShowDialog() == true)
             {
                 var file = dialog.FileName;
                 var content = File.ReadAllBytes(file);
+
                 ((EditProfileViewModel)ViewModel).UserContext.User.Image = content;
             }
         }
