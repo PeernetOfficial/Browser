@@ -2,6 +2,6 @@
 {
     public class ApiBlockchainAddFiles
     {
-        public ApiBlockRecordFile Files { get; set; }
+        public ApiBlockRecordFile[] Files { get; set; }
     }
 }
