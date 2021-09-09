@@ -124,4 +124,8 @@
     </Page>
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="../CmdUpdateScript.bat" />
+  </Target>
+
 </Project>
