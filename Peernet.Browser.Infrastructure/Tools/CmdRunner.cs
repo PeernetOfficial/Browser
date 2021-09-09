@@ -22,6 +22,7 @@ namespace Peernet.Browser.Infrastructure.Tools
             _p = new Process();
             _p.StartInfo.FileName = Path;
             _p.StartInfo.Arguments = Args;
+            _p.StartInfo.Verb = "runas";
         }
 
         public string Args { get; }

@@ -12,17 +12,13 @@ namespace Peernet.Browser.WPF
         public MainWindow()
         {
             InitializeComponent();
-
-            this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
-            this.MouseDown += Window_MouseDown;
+            MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+            MouseDown += Window_MouseDown;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                this.DragMove();
-            }
+            if (e.ChangedButton == MouseButton.Left) DragMove();
         }
     }
 }

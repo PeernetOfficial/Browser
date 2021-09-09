@@ -1,4 +1,4 @@
-cd../../Cmd
+cd ../Cmd
 git pull
 go build
 rmdir ..\Browser\Peernet.Browser.Infrastructure\Tools\CmdSource /s /q

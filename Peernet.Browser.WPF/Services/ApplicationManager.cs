@@ -4,58 +4,29 @@ namespace Peernet.Browser.WPF.Services
 {
     public class ApplicationManager : IApplicationManager
     {
+        public ApplicationManager()
+        {
+            SetWindow();
+        }
+
         private MainWindow window;
-        public bool IsMaximized 
-        {
-            get
-            {
-                if (this.window == null)
-                {
-                    this.window = (MainWindow)(System.Windows.Application.Current.MainWindow);
-                }
 
-                return this.window.WindowState == System.Windows.WindowState.Maximized;
-            }
+        private void SetWindow()
+        {
+            if (window == null) window = (MainWindow)System.Windows.Application.Current.MainWindow;
         }
 
-        public void Maximize()
+        public bool IsMaximized
         {
-            if (this.window == null)
-            {
-                this.window = (MainWindow)(System.Windows.Application.Current.MainWindow);
-            }
-
-            this.window.WindowState = System.Windows.WindowState.Maximized;
+            get => window.WindowState == System.Windows.WindowState.Maximized;
         }
 
-        public void Minimize()
-        {
-            if (this.window == null)
-            {
-                this.window = (MainWindow)(System.Windows.Application.Current.MainWindow);
-            }
+        public void Maximize() => window.WindowState = System.Windows.WindowState.Maximized;
 
-            this.window.WindowState = System.Windows.WindowState.Minimized;
-        }
+        public void Minimize() => window.WindowState = System.Windows.WindowState.Minimized;
 
-        public void Shutdown()
-        {
-            if (this.window == null)
-            {
-                this.window = (MainWindow)(System.Windows.Application.Current.MainWindow);
-            }
+        public void Shutdown() => window.Close();
 
-            this.window.Close();
-        }
-
-        public void Restore()
-        {
-            if (this.window == null)
-            {
-                this.window = (MainWindow)(System.Windows.Application.Current.MainWindow);
-            }
-
-            this.window.WindowState = System.Windows.WindowState.Normal;
-        }
+        public void Restore() => window.WindowState = System.Windows.WindowState.Normal;
     }
 }
