@@ -24,8 +24,6 @@ namespace Peernet.Browser.Application.ViewModels
             this.apiClient = apiClient;
             this.socketClient = socketClient;
             this.navigationService = navigationService;
-
-            UploadFileCommand = new MvxAsyncCommand(UploadFile);
         }
 
         public string CommandLineInput
@@ -77,8 +75,6 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        public IMvxAsyncCommand UploadFileCommand { get; set; }
-
         public async override Task Initialize()
         {
             await ConnectToPeernetAPI();
@@ -126,11 +122,11 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        private Task<bool> UploadFile()
+        public void UploadFiles(string[] files)
         {
             GlobalContext.IsMainWindowActive = false;
             GlobalContext.IsProfileMenuVisible = false;
-            return navigationService.Navigate<ModalViewModel>();
+            navigationService.Navigate<ModalViewModel, string[]>(files);
         }
     }
 }

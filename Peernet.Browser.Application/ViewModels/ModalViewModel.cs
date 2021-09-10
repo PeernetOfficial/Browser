@@ -3,10 +3,11 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Models;
+using System.Linq;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class ModalViewModel : MvxViewModel
+    public class ModalViewModel : MvxViewModel<string[]>
     {
         private readonly IMvxNavigationService mvxNavigationService;
 
@@ -51,17 +52,6 @@ namespace Peernet.Browser.Application.ViewModels
 
         private void Add()
         {
-            Selected = new SharedFileModel
-            {
-                FullPath = "Permanent Record_book_by_Edward_Snowden.",
-                FileName = $"Permanent Record {Files.Count + 1}",
-                FileType = "pdf",
-                Size = "350 718 bytes (352 KB)",
-                CreateDate = "18 August 2021 at 16:05",
-                Author = "ElonMusk2",
-                Directory = "Books"
-            };
-            Files.Add(Selected);
         }
 
         private void Hide()
@@ -82,6 +72,14 @@ namespace Peernet.Browser.Application.ViewModels
         private void Change()
         {
         }
+
+        public override void Prepare(string[] files)
+        {
+            foreach (var f in files) PrepareSingleFile(f);
+            Selected = Files.First();
+        }
+
+        private void PrepareSingleFile(string s) => Files.Add(new SharedFileModel(s));
 
         public IMvxCommand ConfirmCommand { get; }
         public IMvxCommand HideCommand { get; }

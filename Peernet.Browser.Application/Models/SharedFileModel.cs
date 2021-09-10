@@ -1,9 +1,35 @@
 ﻿using MvvmCross.ViewModels;
+using System;
+using System.IO;
 
 namespace Peernet.Browser.Application.Models
 {
     public class SharedFileModel : MvxNotifyPropertyChanged
     {
+        public SharedFileModel(string path)
+        {
+            var f = new FileInfo(path);
+            FullPath = f.Name;
+            FileType = f.Extension;
+            Size = GetSizeString(f.Length);
+            Author = "Current user";
+            CreateDate = DateTime.Now.ToString();
+            Directory = "Default";
+        }
+
+        private string GetSizeString(long len)
+        {
+            var o = len;
+            var sizes = new[] { "B", "KB", "MB", "GB", "TB" };
+            int order = 0;
+            while (len >= 1024 && order < sizes.Length - 1)
+            {
+                order++;
+                len = len / 1024;
+            }
+            return string.Format("{2} bytes ({0:0.##} {1})", len, sizes[order], o);
+        }
+
         private string _fullPath;
 
         private string _fileType;
