@@ -3,6 +3,7 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Models;
+using Peernet.Browser.Application.Services;
 using System.Linq;
 
 namespace Peernet.Browser.Application.ViewModels
@@ -10,7 +11,7 @@ namespace Peernet.Browser.Application.ViewModels
     public class ModalViewModel : MvxViewModel<string[]>
     {
         private readonly IMvxNavigationService mvxNavigationService;
-
+        private readonly IApplicationManager applicationManager;
         private SharedFileModel selected;
 
         public SharedFileModel Selected
@@ -23,9 +24,10 @@ namespace Peernet.Browser.Application.ViewModels
 
         public string FilesLength => $"{Files.IndexOf(Selected) + 1}/{Files.Count}";
 
-        public ModalViewModel(IMvxNavigationService mvxNavigationService)
+        public ModalViewModel(IMvxNavigationService mvxNavigationService, IApplicationManager applicationManager)
         {
             this.mvxNavigationService = mvxNavigationService;
+            this.applicationManager = applicationManager;
 
             ConfirmCommand = new MvxCommand(Confirm);
             HideCommand = new MvxCommand(Hide);
@@ -47,11 +49,14 @@ namespace Peernet.Browser.Application.ViewModels
 
         private void Confirm()
         {
+            //TODO: use service and client
             Hide();
         }
 
         private void Add()
         {
+            var files = applicationManager.OpenFileDialog();
+            if (files.Any()) Prepare(files);
         }
 
         private void Hide()
@@ -71,15 +76,19 @@ namespace Peernet.Browser.Application.ViewModels
 
         private void Change()
         {
+            //TODO: USE service??
         }
 
         public override void Prepare(string[] files)
         {
-            foreach (var f in files) PrepareSingleFile(f);
+            foreach (var f in files)
+            {
+                var toAdd = new SharedFileModel(f);
+                if (Files.Any(x => x.FullPath == toAdd.FullPath)) continue;
+                Files.Add(toAdd);
+            }
             Selected = Files.First();
         }
-
-        private void PrepareSingleFile(string s) => Files.Add(new SharedFileModel(s));
 
         public IMvxCommand ConfirmCommand { get; }
         public IMvxCommand HideCommand { get; }

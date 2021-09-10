@@ -4,6 +4,7 @@ using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.Services;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
@@ -13,17 +14,21 @@ namespace Peernet.Browser.Application.ViewModels
         private const int reconnectDelay = 2000;
         private readonly IApiClient apiClient;
         private readonly IMvxNavigationService navigationService;
+        private readonly IApplicationManager applicationManager;
         private readonly ISocketClient socketClient;
         private string commandLineInput;
         private string commandLineOutput;
         private ConnectionStatus connectionStatus = ConnectionStatus.Offline;
         private string peers;
 
-        public FooterViewModel(IApiClient apiClient, ISocketClient socketClient, IMvxNavigationService navigationService)
+        public FooterViewModel(IApiClient apiClient, ISocketClient socketClient, IMvxNavigationService navigationService, IApplicationManager applicationManager)
         {
             this.apiClient = apiClient;
             this.socketClient = socketClient;
             this.navigationService = navigationService;
+            this.applicationManager = applicationManager;
+
+            UploadCommand = new MvxCommand(UploadFiles);
         }
 
         public string CommandLineInput
@@ -75,6 +80,8 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
+        public IMvxCommand UploadCommand { get; }
+
         public async override Task Initialize()
         {
             await ConnectToPeernetAPI();
@@ -122,11 +129,13 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        public void UploadFiles(string[] files)
+        private void UploadFiles()
         {
+            var f = applicationManager.OpenFileDialog();
+            if (!f.Any()) return;
             GlobalContext.IsMainWindowActive = false;
             GlobalContext.IsProfileMenuVisible = false;
-            navigationService.Navigate<ModalViewModel, string[]>(files);
+            navigationService.Navigate<ModalViewModel, string[]>(f);
         }
     }
 }

@@ -9,8 +9,9 @@ namespace Peernet.Browser.Application.Models
         public SharedFileModel(string path)
         {
             var f = new FileInfo(path);
-            FullPath = f.Name;
             FileType = f.Extension;
+            FullPath = f.Name.Replace(FileType, "");
+            FileName = FullPath;
             Size = GetSizeString(f.Length);
             Author = "Current user";
             CreateDate = DateTime.Now.ToString();
@@ -27,7 +28,7 @@ namespace Peernet.Browser.Application.Models
                 order++;
                 len = len / 1024;
             }
-            return string.Format("{2} bytes ({0:0.##} {1})", len, sizes[order], o);
+            return $"{o} bytes ({len:0.##} {sizes[order]})";
         }
 
         private string _fullPath;
