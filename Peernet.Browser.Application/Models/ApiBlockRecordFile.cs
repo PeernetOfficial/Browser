@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Peernet.Browser.Application.Models
 {
+    [Serializable]
     public class ApiBlockRecordFile
     {
+        public ApiBlockRecordFile()
+        {
+        }
         public Guid Id { get; set; }
 
         public byte[] Hash { get; set; }
@@ -24,8 +27,11 @@ namespace Peernet.Browser.Application.Models
 
         public string Description { get; set; }
 
-        public ApiFileMetadata[] MetaData { get; set; }
+        [JsonIgnore]
+        public string Date => DateTime.Parse(MetaData.First(md => md.Name == "Date Shared").Value).ToShortDateString();
 
-        public ApiFileTagRaw[] TagsRaw { get; set; }
+        public List<ApiFileMetadata> MetaData { get; set; }
+
+        public List<ApiFileTagRaw> TagsRaw { get; set; }
     }
 }
