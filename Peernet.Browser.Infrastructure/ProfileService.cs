@@ -1,25 +1,25 @@
-﻿using Peernet.Browser.Application.Http;
+﻿using Peernet.Browser.Application.Extensions;
+using Peernet.Browser.Application.Http;
 using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.Services;
 using RestSharp;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure
 {
-    public class ProfileService : IProfileService
+    public class ProfileService : ServiceBase, IProfileService
     {
-        private const string CoreSegment = "profile";
         private const string ReadSegment = "read";
         private const string WriteSegment = "write";
-        private readonly RestClient restClient;
 
         public ProfileService(IRestClientFactory restClientFactory)
+            : base(restClientFactory)
         {
-            restClient = restClientFactory.CreateRestClient();
         }
+
+        public override string CoreSegment => "profile";
 
         public ApiBlockchainBlockStatus AddUserImage(byte[] content)
         {
@@ -36,7 +36,7 @@ namespace Peernet.Browser.Infrastructure
                 }
             });
 
-            return Task.Run(async () => await restClient.PostAsync<ApiBlockchainBlockStatus>(request)).ConfigureAwait(false).GetAwaiter().GetResult();
+            return Task.Run(async () => await RestClient.PostAsync<ApiBlockchainBlockStatus>(request)).GetResultBlockingWithoutContextSynchronization();
         }
 
         public ApiBlockchainBlockStatus AddUserName(string userName)
@@ -54,7 +54,7 @@ namespace Peernet.Browser.Infrastructure
                 }
             });
 
-            return Task.Run(async () => await restClient.PostAsync<ApiBlockchainBlockStatus>(request)).ConfigureAwait(false).GetAwaiter().GetResult();
+            return Task.Run(async () => await RestClient.PostAsync<ApiBlockchainBlockStatus>(request)).GetResultBlockingWithoutContextSynchronization();
         }
 
         public byte[] GetUserImage()
@@ -67,8 +67,8 @@ namespace Peernet.Browser.Infrastructure
 
             var response = Task.Run(async () =>
             {
-                return await restClient.GetAsync<ApiProfileData>(request);
-            }).ConfigureAwait(false).GetAwaiter().GetResult();
+                return await RestClient.GetAsync<ApiProfileData>(request);
+            }).GetResultBlockingWithoutContextSynchronization();
 
             return response.Blobs?.FirstOrDefault(f => f.Type == userImageBlobIndex)?.Data;
         }
@@ -80,14 +80,9 @@ namespace Peernet.Browser.Infrastructure
             var request = new RestRequest(GetRelativeRequestPath(ReadSegment), Method.GET);
             request.AddParameter("field", userNameFieldIndex);
 
-            var response = Task.Run(async () => await restClient.GetAsync<ApiProfileData>(request)).ConfigureAwait(false).GetAwaiter().GetResult();
+            var response = Task.Run(async () => await RestClient.GetAsync<ApiProfileData>(request)).GetResultBlockingWithoutContextSynchronization();
 
             return response.Fields?.FirstOrDefault(f => f.Type == userNameFieldIndex)?.Text;
-        }
-
-        private static Uri GetRelativeRequestPath(string readWriteSegment)
-        {
-            return new Uri($"{CoreSegment}/{readWriteSegment}", UriKind.Relative);
         }
     }
 }

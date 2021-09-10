@@ -42,6 +42,7 @@ namespace Peernet.Browser.WPF
             iocProvider.RegisterType<ISocketClient, SocketClient>();
             iocProvider.RegisterType<IProfileService, ProfileService>();
             iocProvider.RegisterSingleton<IUserContext>(() => new UserContext(iocProvider.Resolve<IProfileService>(), iocProvider.Resolve<IMvxNavigationService>()));
+            iocProvider.RegisterType<IBlockchainService, BlockchainService>();
         }
 
         public override void LoadPlugins(IMvxPluginManager pluginManager)
