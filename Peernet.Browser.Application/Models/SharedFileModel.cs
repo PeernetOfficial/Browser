@@ -6,6 +6,22 @@ namespace Peernet.Browser.Application.Models
 {
     public class SharedFileModel : MvxNotifyPropertyChanged
     {
+        private string author;
+
+        private string createDate;
+
+        private string desc;
+
+        private string directory;
+
+        private string fileName;
+
+        private string fileType;
+
+        private string fullPath;
+
+        private string size;
+
         public SharedFileModel(string path)
         {
             var f = new FileInfo(path);
@@ -18,81 +34,65 @@ namespace Peernet.Browser.Application.Models
             Directory = "Default";
         }
 
-        private string GetSizeString(long len)
+        public string Author
         {
-            var o = len;
+            get => author;
+            set => SetProperty(ref author, value);
+        }
+
+        public string CreateDate
+        {
+            get => createDate;
+            set => SetProperty(ref createDate, value);
+        }
+
+        public string Desc
+        {
+            get => desc;
+            set => SetProperty(ref desc, value);
+        }
+
+        public string Directory
+        {
+            get => directory;
+            set => SetProperty(ref directory, value);
+        }
+
+        public string FileName
+        {
+            get => fileName;
+            set => SetProperty(ref fileName, value);
+        }
+
+        public string FileType
+        {
+            get => fileType;
+            set => SetProperty(ref fileType, value);
+        }
+
+        public string FullPath
+        {
+            get => fullPath;
+            set => SetProperty(ref fullPath, value);
+        }
+
+        public string Size
+        {
+            get => size;
+            set => SetProperty(ref size, value);
+        }
+
+        private string GetSizeString(long o)
+        {
+            var len = o;
             var sizes = new[] { "B", "KB", "MB", "GB", "TB" };
             int order = 0;
             while (len >= 1024 && order < sizes.Length - 1)
             {
                 order++;
-                len = len / 1024;
+                len /= 1024;
             }
             return $"{o} bytes ({len:0.##} {sizes[order]})";
-        }
-
-        private string _fullPath;
-
-        private string _fileType;
-
-        public string FullPath
-        {
-            get => _fullPath;
-            set => SetProperty(ref _fullPath, value);
-        }
-
-        public string FileType
-        {
-            get => _fileType;
-            set => SetProperty(ref _fileType, value);
-        }
-
-        private string _fileName;
-
-        public string FileName
-        {
-            get => _fileName;
-            set => SetProperty(ref _fileName, value);
-        }
-
-        private string _desc;
-
-        public string Desc
-        {
-            get => _desc;
-            set => SetProperty(ref _desc, value);
-        }
-
-        private string _author;
-
-        public string Author
-        {
-            get => _author;
-            set => SetProperty(ref _author, value);
-        }
-
-        private string _size;
-
-        public string Size
-        {
-            get => _size;
-            set => SetProperty(ref _size, value);
-        }
-
-        private string _createDate;
-
-        public string CreateDate
-        {
-            get => _createDate;
-            set => SetProperty(ref _createDate, value);
-        }
-
-        private string _directory;
-
-        public string Directory
-        {
-            get => _directory;
-            set => SetProperty(ref _directory, value);
         }
     }
 }

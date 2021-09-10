@@ -10,19 +10,9 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public class ModalViewModel : MvxViewModel<string[]>
     {
-        private readonly IMvxNavigationService mvxNavigationService;
         private readonly IApplicationManager applicationManager;
+        private readonly IMvxNavigationService mvxNavigationService;
         private SharedFileModel selected;
-
-        public SharedFileModel Selected
-        {
-            get => selected;
-            private set => SetProperty(ref selected, value);
-        }
-
-        public bool IsCountVisable => Files.Count > 1;
-
-        public string FilesLength => $"{Files.IndexOf(Selected) + 1}/{Files.Count}";
 
         public ModalViewModel(IMvxNavigationService mvxNavigationService, IApplicationManager applicationManager)
         {
@@ -45,18 +35,56 @@ namespace Peernet.Browser.Application.ViewModels
             };
         }
 
+        public IMvxCommand AddCommand { get; }
+
+        public IMvxCommand ChangeCommand { get; }
+
+        public IMvxCommand ConfirmCommand { get; }
+
         public MvxObservableCollection<SharedFileModel> Files { get; } = new MvxObservableCollection<SharedFileModel>();
 
-        private void Confirm()
+        public string FilesLength => $"{Files.IndexOf(Selected) + 1}/{Files.Count}";
+
+        public IMvxCommand HideCommand { get; }
+
+        public bool IsCountVisable => Files.Count > 1;
+
+        public IMvxCommand LeftCommand { get; }
+
+        public IMvxCommand RightCommand { get; }
+
+        public SharedFileModel Selected
         {
-            //TODO: use service and client
-            Hide();
+            get => selected;
+            private set => SetProperty(ref selected, value);
+        }
+
+        public override void Prepare(string[] files)
+        {
+            foreach (var f in files)
+            {
+                var toAdd = new SharedFileModel(f);
+                if (Files.Any(x => x.FullPath == toAdd.FullPath)) continue;
+                Files.Add(toAdd);
+            }
+            Selected = Files.First();
         }
 
         private void Add()
         {
             var files = applicationManager.OpenFileDialog();
             if (files.Any()) Prepare(files);
+        }
+
+        private void Change()
+        {
+            //TODO: USE service??
+        }
+
+        private void Confirm()
+        {
+            //TODO: use service and client
+            Hide();
         }
 
         private void Hide()
@@ -73,28 +101,5 @@ namespace Peernet.Browser.Application.ViewModels
             Selected = Files[index];
             RaisePropertyChanged(nameof(FilesLength));
         }
-
-        private void Change()
-        {
-            //TODO: USE service??
-        }
-
-        public override void Prepare(string[] files)
-        {
-            foreach (var f in files)
-            {
-                var toAdd = new SharedFileModel(f);
-                if (Files.Any(x => x.FullPath == toAdd.FullPath)) continue;
-                Files.Add(toAdd);
-            }
-            Selected = Files.First();
-        }
-
-        public IMvxCommand ConfirmCommand { get; }
-        public IMvxCommand HideCommand { get; }
-        public IMvxCommand LeftCommand { get; }
-        public IMvxCommand RightCommand { get; }
-        public IMvxCommand AddCommand { get; }
-        public IMvxCommand ChangeCommand { get; }
     }
 }
