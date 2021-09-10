@@ -11,5 +11,7 @@
         public void Minimize();
 
         public bool IsMaximized { get; }
+
+        string[] OpenFileDialog(bool multiselect = true, string filter = "");
     }
 }

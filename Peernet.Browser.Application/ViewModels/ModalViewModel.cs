@@ -3,28 +3,21 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Models;
+using Peernet.Browser.Application.Services;
+using System.Linq;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class ModalViewModel : MvxViewModel
+    public class ModalViewModel : MvxViewModel<string[]>
     {
+        private readonly IApplicationManager applicationManager;
         private readonly IMvxNavigationService mvxNavigationService;
-
         private SharedFileModel selected;
 
-        public SharedFileModel Selected
-        {
-            get => selected;
-            private set => SetProperty(ref selected, value);
-        }
-
-        public bool IsCountVisable => Files.Count > 1;
-
-        public string FilesLength => $"{Files.IndexOf(Selected) + 1}/{Files.Count}";
-
-        public ModalViewModel(IMvxNavigationService mvxNavigationService)
+        public ModalViewModel(IMvxNavigationService mvxNavigationService, IApplicationManager applicationManager)
         {
             this.mvxNavigationService = mvxNavigationService;
+            this.applicationManager = applicationManager;
 
             ConfirmCommand = new MvxCommand(Confirm);
             HideCommand = new MvxCommand(Hide);
@@ -42,26 +35,56 @@ namespace Peernet.Browser.Application.ViewModels
             };
         }
 
+        public IMvxCommand AddCommand { get; }
+
+        public IMvxCommand ChangeCommand { get; }
+
+        public IMvxCommand ConfirmCommand { get; }
+
         public MvxObservableCollection<SharedFileModel> Files { get; } = new MvxObservableCollection<SharedFileModel>();
 
-        private void Confirm()
+        public string FilesLength => $"{Files.IndexOf(Selected) + 1}/{Files.Count}";
+
+        public IMvxCommand HideCommand { get; }
+
+        public bool IsCountVisable => Files.Count > 1;
+
+        public IMvxCommand LeftCommand { get; }
+
+        public IMvxCommand RightCommand { get; }
+
+        public SharedFileModel Selected
         {
-            Hide();
+            get => selected;
+            private set => SetProperty(ref selected, value);
+        }
+
+        public override void Prepare(string[] files)
+        {
+            foreach (var f in files)
+            {
+                var toAdd = new SharedFileModel(f);
+                if (Files.Any(x => x.FullPath == toAdd.FullPath)) continue;
+                Files.Add(toAdd);
+            }
+            Selected = Files.First();
         }
 
         private void Add()
         {
-            Selected = new SharedFileModel
-            {
-                FullPath = "Permanent Record_book_by_Edward_Snowden.",
-                FileName = $"Permanent Record {Files.Count + 1}",
-                FileType = "pdf",
-                Size = "350 718 bytes (352 KB)",
-                CreateDate = "Wednesday, 18 August 2021 at 16:05",
-                Author = "ElonMusk2",
-                ModyfieDate = "Wednesday, 18 August 2021 at 16:05"
-            };
-            Files.Add(Selected);
+            var files = applicationManager.OpenFileDialog();
+            if (files.Any()) Prepare(files);
+        }
+
+        private void Change()
+        {
+            //TODO: USE service??
+        }
+
+        private void Confirm()
+        {
+            //TODO: use service and client
+            Hide();
         }
 
         private void Hide()
@@ -78,16 +101,5 @@ namespace Peernet.Browser.Application.ViewModels
             Selected = Files[index];
             RaisePropertyChanged(nameof(FilesLength));
         }
-
-        private void Change()
-        {
-        }
-
-        public IMvxCommand ConfirmCommand { get; }
-        public IMvxCommand HideCommand { get; }
-        public IMvxCommand LeftCommand { get; }
-        public IMvxCommand RightCommand { get; }
-        public IMvxCommand AddCommand { get; }
-        public IMvxCommand ChangeCommand { get; }
     }
 }

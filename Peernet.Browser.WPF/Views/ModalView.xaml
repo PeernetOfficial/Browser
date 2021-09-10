@@ -8,6 +8,11 @@
             <SolidColorBrush Color="{StaticResource MainBackground}" />
         </Border.Background>
         <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -15,14 +20,25 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="30" />
-                <RowDefinition Height="30" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <DockPanel Grid.Row="0">
+
+            <Border VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" CornerRadius="{StaticResource MainRadius}"
+                    Width="500" Height="300">
+                <Border.Background>
+                    <ImageBrush Stretch="Fill" ImageSource="/Assets/temp1.png" />
+                </Border.Background>
+            </Border>
+            <Button  Grid.Row="5" Grid.Column="0" Command="{Binding AddCommand}" HorizontalAlignment="Left" Style="{StaticResource PrimaryButton}"
+                    Foreground="{StaticResource DarkGreenBrush}"
+                    FontWeight="Bold" >+ SHARE ANTOHER FILE</Button>
+
+            <DockPanel Grid.Row="0" Grid.Column="2">
                 <TextBlock Text="{Binding Selected.FullPath}" Foreground="{StaticResource DarkGreenBrush}" FontSize="16" />
                 <TextBlock Text="{Binding Selected.FileType}" Foreground="{StaticResource DarkGreenBrush}" FontWeight="Bold" FontSize="16" />
             </DockPanel>
 
-            <StackPanel Grid.Row="1">
+            <StackPanel Grid.Row="1" Grid.Column="2">
                 <DockPanel TextBlock.Foreground="{StaticResource LightGrayBrush}">
                     <TextBlock Padding="0 5" FontSize="12">Document</TextBlock>
                     <Canvas Height="12" Width="20">
@@ -30,30 +46,21 @@
                     </Canvas>
                     <TextBlock Text="{Binding Selected.FileType}" Padding="0 5" FontSize="12" />
                 </DockPanel>
-                <TextBlock Style="{StaticResource Title}">Author:</TextBlock>
-                <TextBlock Text="{Binding Selected.Author}" Style="{StaticResource Active}" />
-                <TextBlock Style="{StaticResource Title}">Size:</TextBlock>
-                <TextBlock Text="{Binding Selected.Size}" Style="{StaticResource Active}" />
-                <TextBlock Style="{StaticResource Title}">Created:</TextBlock>
-                <TextBlock Text="{Binding Selected.CreateDate}" Style="{StaticResource Active}" />
-                <TextBlock Style="{StaticResource Title}">Modified:</TextBlock>
-                <TextBlock Text="{Binding Selected.ModyfieDate}" Style="{StaticResource Active}" />
             </StackPanel>
 
-            <DockPanel Grid.Row="2" LastChildFill="False" Margin="0 15">
-                <Image Margin="7 0" Width="11" Source="/Assets/DirectorySmall.png" />
-                <TextBlock Foreground="{StaticResource LightGrayBrush}">Your files</TextBlock>
-                <TextBlock Padding="5 0 0 0" Style="{StaticResource Title}">/</TextBlock>
-                <Image Margin="7 0" Width="11" Source="/Assets/DirectorySmall.png" />
-                <TextBlock Foreground="{StaticResource LightGrayBrush}">Books</TextBlock>
+            <DockPanel Grid.Row="2"  Grid.Column="2" LastChildFill="False" Margin="0 15">
+                <Image Margin="0 0 7 0" Width="11" Source="/Assets/DirectorySmall.png" />
+                <TextBlock Foreground="{StaticResource LightGrayBrush}">Your files /</TextBlock>
+                <Image Margin="5 0 7 0" Width="11" Source="/Assets/DirectorySmallActive.png" />
+                <TextBlock Foreground="{StaticResource DarkGreenBrush}" Text="{Binding Selected.Directory}" />
                 <Button DockPanel.Dock="Right" Foreground="{StaticResource DarkGreenBrush}" Style="{StaticResource LinkButton}">Change</Button>
             </DockPanel>
 
-            <StackPanel Grid.Row="3">
+            <StackPanel Grid.Row="3"  Grid.Column="2">
                 <TextBlock Style="{StaticResource Title}">File name</TextBlock>
                 <TextBox  Text="{Binding Selected.FileName}" Foreground="{StaticResource DarkGreenBrush}"
                           Template="{StaticResource RoundedTextBox}" Margin="0 5" Height="30" Padding="7" />
-                <Border  Grid.Row="1" Grid.Column="1" BorderThickness="0" Padding="9" BorderBrush="Transparent" CornerRadius="{StaticResource MainRadius}">
+                <Border BorderThickness="0" Padding="9" BorderBrush="Transparent" CornerRadius="{StaticResource MainRadius}">
                     <Border.Background>
                         <SolidColorBrush Color="White" />
                     </Border.Background>
@@ -68,20 +75,37 @@
                         </TextBlock>
                         <TextBox Text="{Binding Selected.Desc}" Foreground="{StaticResource DarkGreenBrush}"
                                  Background="Transparent" Name="txtUserEntry2"
-                                                 Template="{StaticResource RoundedTextBox}" Height="160"
+                                                 Template="{StaticResource RoundedTextBox}" Height="132"
                                                  AcceptsReturn="True" TextWrapping="Wrap" AcceptsTab="True" />
                     </Grid>
                 </Border>
             </StackPanel>
 
-            <Button Command="{Binding AddCommand}" HorizontalAlignment="Left" Style="{StaticResource PrimaryButton}" Foreground="{StaticResource DarkGreenBrush}" FontWeight="Bold" Margin="0 15" Grid.Row="4">+ SHARE ANTOHER FILE</Button>
+            <Grid Margin="0 15 0 60" Grid.Row="4" Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="150" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
 
-            <DockPanel Grid.Row="5" LastChildFill="False" HorizontalAlignment="Right">
-                <Button Width="90" Style="{StaticResource PrimaryButton}">Hide</Button>
-                <Button Width="90" Style="{StaticResource AcceptButton}"  Command="{Binding ConfirmCommand}">Confirm</Button>
+                <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource Title}">Author:</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Selected.Author}" Style="{StaticResource Active}" />
+                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource Title}">Created:</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Selected.CreateDate}" Style="{StaticResource Active}" />
+                <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource Title}">Size:</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Selected.Size}" Style="{StaticResource Active}" />
+            </Grid>
+
+            <DockPanel Grid.Column="2" Grid.Row="5" LastChildFill="False" HorizontalAlignment="Right">
+                <Button Height="30" Width="110" Style="{StaticResource PrimaryButton}"  Command="{Binding HideCommand}">Hide</Button>
+                <Button Height="30"  Width="110" Style="{StaticResource AcceptButton}"  Command="{Binding ConfirmCommand}">Confirm</Button>
             </DockPanel>
 
-            <Grid Visibility="{Binding IsCountVisable, Converter={StaticResource BoolToVisibility}}" Margin="0 10 0 0" Grid.Row="6">
+            <Grid Visibility="{Binding IsCountVisable, Converter={StaticResource BoolToVisibility}}" Margin="0 10 0 0" Grid.Row="6" Grid.ColumnSpan="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />

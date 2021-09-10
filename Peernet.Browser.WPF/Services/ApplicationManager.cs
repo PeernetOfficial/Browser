@@ -1,4 +1,5 @@
-﻿using Peernet.Browser.Application.Services;
+﻿using Microsoft.Win32;
+using Peernet.Browser.Application.Services;
 
 namespace Peernet.Browser.WPF.Services
 {
@@ -28,5 +29,13 @@ namespace Peernet.Browser.WPF.Services
         public void Shutdown() => window.Close();
 
         public void Restore() => window.WindowState = System.Windows.WindowState.Normal;
+
+        public string[] OpenFileDialog(bool multiselect = true, string filter = "")
+        {
+            var dialog = new OpenFileDialog { Multiselect = multiselect };
+            dialog.Filter = filter;
+            if (dialog.ShowDialog().GetValueOrDefault()) return dialog.FileNames;
+            else return new string[0];
+        }
     }
 }
