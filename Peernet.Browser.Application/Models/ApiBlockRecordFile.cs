@@ -5,7 +5,6 @@ using Newtonsoft.Json;
 
 namespace Peernet.Browser.Application.Models
 {
-    [Serializable]
     public class ApiBlockRecordFile
     {
         public ApiBlockRecordFile()
@@ -27,8 +26,7 @@ namespace Peernet.Browser.Application.Models
 
         public string Description { get; set; }
 
-        [JsonIgnore]
-        public string Date => DateTime.Parse(MetaData.First(md => md.Name == "Date Shared").Value).ToShortDateString();
+        public DateTime Date { get; set; }
 
         public List<ApiFileMetadata> MetaData { get; set; }
 
