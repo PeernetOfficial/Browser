@@ -60,12 +60,12 @@ namespace Peernet.Browser.Application.Models
             set => SetProperty(ref _createDate, value);
         }
 
-        private string _modyfieDate;
+        private string _directory;
 
-        public string ModyfieDate
+        public string Directory
         {
-            get => _modyfieDate;
-            set => SetProperty(ref _modyfieDate, value);
+            get => _directory;
+            set => SetProperty(ref _directory, value);
         }
     }
 }

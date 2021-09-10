@@ -57,9 +57,9 @@ namespace Peernet.Browser.Application.ViewModels
                 FileName = $"Permanent Record {Files.Count + 1}",
                 FileType = "pdf",
                 Size = "350 718 bytes (352 KB)",
-                CreateDate = "Wednesday, 18 August 2021 at 16:05",
+                CreateDate = "18 August 2021 at 16:05",
                 Author = "ElonMusk2",
-                ModyfieDate = "Wednesday, 18 August 2021 at 16:05"
+                Directory = "Books"
             };
             Files.Add(Selected);
         }
