@@ -4,7 +4,7 @@ using System.IO;
 
 namespace Peernet.Browser.Application.Models
 {
-    public class SharedFileModel : MvxNotifyPropertyChanged
+    public class SharedNewFileModel : MvxNotifyPropertyChanged
     {
         private string author;
 
@@ -22,7 +22,7 @@ namespace Peernet.Browser.Application.Models
 
         private string size;
 
-        public SharedFileModel(string path)
+        public SharedNewFileModel(string path)
         {
             var f = new FileInfo(path);
             FileType = f.Extension;

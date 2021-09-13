@@ -9,6 +9,6 @@ namespace Peernet.Browser.Application.Services
 
         ApiBlockchainAddFiles GetSelfList();
 
-        void AddFiles(IEnumerable<SharedFileModel> files);
+        void AddFiles(IEnumerable<SharedNewFileModel> files);
     }
 }

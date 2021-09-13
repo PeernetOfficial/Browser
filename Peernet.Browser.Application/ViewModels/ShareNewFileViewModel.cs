@@ -13,7 +13,7 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IApplicationManager applicationManager;
         private readonly IMvxNavigationService mvxNavigationService;
         private readonly IBlockchainService blockchainService;
-        private SharedFileModel selected;
+        private SharedNewFileModel selected;
 
         public ShareNewFileViewModel(IMvxNavigationService mvxNavigationService, IApplicationManager applicationManager, IBlockchainService blockchainService)
         {
@@ -33,7 +33,7 @@ namespace Peernet.Browser.Application.ViewModels
             Files.CollectionChanged += (s, o) =>
             {
                 RaisePropertyChanged(nameof(FilesLength));
-                RaisePropertyChanged(nameof(IsCountVisable));
+                RaisePropertyChanged(nameof(IsCountVisible));
             };
         }
 
@@ -43,19 +43,19 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IMvxCommand ConfirmCommand { get; }
 
-        public MvxObservableCollection<SharedFileModel> Files { get; } = new MvxObservableCollection<SharedFileModel>();
+        public MvxObservableCollection<SharedNewFileModel> Files { get; } = new MvxObservableCollection<SharedNewFileModel>();
 
         public string FilesLength => $"{Files.IndexOf(Selected) + 1}/{Files.Count}";
 
         public IMvxCommand HideCommand { get; }
 
-        public bool IsCountVisable => Files.Count > 1;
+        public bool IsCountVisible => Files.Count > 1;
 
         public IMvxCommand LeftCommand { get; }
 
         public IMvxCommand RightCommand { get; }
 
-        public SharedFileModel Selected
+        public SharedNewFileModel Selected
         {
             get => selected;
             private set => SetProperty(ref selected, value);
@@ -65,7 +65,7 @@ namespace Peernet.Browser.Application.ViewModels
         {
             foreach (var f in files)
             {
-                var toAdd = new SharedFileModel(f);
+                var toAdd = new SharedNewFileModel(f);
                 if (Files.Any(x => x.FullPath == toAdd.FullPath)) continue;
                 Files.Add(toAdd);
             }

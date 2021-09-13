@@ -32,7 +32,7 @@ namespace Peernet.Browser.Infrastructure
             return Task.Run(() => RestClient.GetAsync<ApiBlockchainAddFiles>(request)).GetResultBlockingWithoutContextSynchronization();
         }
 
-        public void AddFiles(IEnumerable<SharedFileModel> files)
+        public void AddFiles(IEnumerable<SharedNewFileModel> files)
         {
             var data = files
                 .Select(x =>
