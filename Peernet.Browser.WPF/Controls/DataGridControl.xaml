@@ -3,11 +3,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d">
+             mc:Ignorable="d"
+             x:Name="SharedFilesDataGrid">
     <Grid>
-        <DataGrid Style="{DynamicResource DataGridStyle}" ItemsSource="{Binding SharedFiles}" AutoGenerateColumns="False">
+        <DataGrid Style="{DynamicResource DataGridStyle}" ItemsSource="{Binding SharedFiles}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTemplateColumn Header="Name">
+                <DataGridTemplateColumn Header="NAME" SortMemberPath="Name">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid>
@@ -21,14 +22,14 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Type">
+                <DataGridTemplateColumn Header="TYPE" SortMemberPath="Type">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Type}" VerticalAlignment="Center" HorizontalAlignment="Left" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Date">
+                <DataGridTemplateColumn Header="DATE" SortMemberPath="Date">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Date, StringFormat=d}" VerticalAlignment="Center" HorizontalAlignment="Left" />
@@ -44,17 +45,18 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Button Grid.Column="0" Style="{StaticResource DataGridActionButton}">
+                                <!--Reference with ElementName is not a good approach - think of something better, although we don't want any logic in models -->
+                                <Button Grid.Column="0" Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.EditCommand, ElementName=SharedFilesDataGrid}" CommandParameter="{Binding}">
                                     <Button.Background>
                                         <ImageBrush ImageSource="/Assets/Edit.png" />
                                     </Button.Background>
                                 </Button>
-                                <Button Grid.Column="1" Style="{StaticResource DataGridActionButton}">
+                                <Button Grid.Column="1" Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.ShareCommand, ElementName=SharedFilesDataGrid}" CommandParameter="{Binding}">
                                     <Button.Background>
                                         <ImageBrush ImageSource="/Assets/Share.png" />
                                     </Button.Background>
                                 </Button>
-                                <Button Grid.Column="2" Style="{StaticResource DataGridActionButton}">
+                                <Button Grid.Column="2" Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.DeleteCommand, ElementName=SharedFilesDataGrid}" CommandParameter="{Binding}">
                                     <Button.Background>
                                         <ImageBrush ImageSource="/Assets/Bin.png" />
                                     </Button.Background>

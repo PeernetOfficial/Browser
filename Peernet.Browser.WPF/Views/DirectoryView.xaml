@@ -14,8 +14,17 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0" Width="233" />
-            <Separator Style="{StaticResource StandardSeparatorStyle}" Grid.Column="1" />
-            <controls:DataGridControl Grid.Column="2" />
+            <Separator Style="{StaticResource StandardSeparatorStyle}" Grid.Column="1" Width="400" RenderTransformOrigin="0.5,0.5" >
+                <Separator.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Separator.RenderTransform>
+            </Separator>
+            <controls:DataGridControl Grid.Column="2" Margin="37,0,0,0"/>
         </Grid>
     </Border>
 </views:MvxWpfView>

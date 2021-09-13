@@ -1,4 +1,5 @@
-﻿using MvvmCross.ViewModels;
+﻿using MvvmCross.Commands;
+using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.Services;
 using System.Collections.Generic;
@@ -11,6 +12,37 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IBlockchainService blockchainService;
         private List<ApiBlockRecordFile> sharedFiles;
 
+        public DirectoryViewModel(IBlockchainService blockchainService)
+        {
+            this.blockchainService = blockchainService;
+        }
+
+        public IMvxAsyncCommand<ApiBlockRecordFile> DeleteCommand =>
+            new MvxAsyncCommand<ApiBlockRecordFile>(
+                (ApiBlockRecordFile apiBlockRecordFile) =>
+            {
+                // Logic to be implemented
+
+                return Task.CompletedTask;
+            });
+
+        public IMvxAsyncCommand<ApiBlockRecordFile> EditCommand =>
+            new MvxAsyncCommand<ApiBlockRecordFile>((ApiBlockRecordFile apiBlockRecordFile) =>
+        {
+            // Logic to be implemented
+
+            return Task.CompletedTask;
+        });
+
+        public IMvxAsyncCommand<ApiBlockRecordFile> ShareCommand =>
+            new MvxAsyncCommand<ApiBlockRecordFile>(
+                (ApiBlockRecordFile apiBlockRecordFile) =>
+        {
+            // Logic to be implemented
+
+            return Task.CompletedTask;
+        });
+
         public List<ApiBlockRecordFile> SharedFiles
         {
             get => sharedFiles;
@@ -20,12 +52,6 @@ namespace Peernet.Browser.Application.ViewModels
                 RaisePropertyChanged(nameof(SharedFiles));
             }
         }
-
-        public DirectoryViewModel(IBlockchainService blockchainService)
-        {
-            this.blockchainService = blockchainService;
-        }
-
         public override Task Initialize()
         {
             var header = blockchainService.GetSelfHeader();
