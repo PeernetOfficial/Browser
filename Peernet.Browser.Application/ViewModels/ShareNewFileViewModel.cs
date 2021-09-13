@@ -8,16 +8,18 @@ using System.Linq;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class ModalViewModel : MvxViewModel<string[]>
+    public class ShareNewFileViewModel : MvxViewModel<string[]>
     {
         private readonly IApplicationManager applicationManager;
         private readonly IMvxNavigationService mvxNavigationService;
+        private readonly IBlockchainService blockchainService;
         private SharedFileModel selected;
 
-        public ModalViewModel(IMvxNavigationService mvxNavigationService, IApplicationManager applicationManager)
+        public ShareNewFileViewModel(IMvxNavigationService mvxNavigationService, IApplicationManager applicationManager, IBlockchainService blockchainService)
         {
             this.mvxNavigationService = mvxNavigationService;
             this.applicationManager = applicationManager;
+            this.blockchainService = blockchainService;
 
             ConfirmCommand = new MvxCommand(Confirm);
             HideCommand = new MvxCommand(Hide);
@@ -83,7 +85,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         private void Confirm()
         {
-            //TODO: use service and client
+            blockchainService.AddFiles(Files);
             Hide();
         }
 

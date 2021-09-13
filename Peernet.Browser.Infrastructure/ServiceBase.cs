@@ -1,4 +1,5 @@
 ﻿using Peernet.Browser.Application.Http;
+using Peernet.Browser.Application.Services;
 using RestSharp;
 using System;
 
@@ -6,8 +7,11 @@ namespace Peernet.Browser.Infrastructure
 {
     public abstract class ServiceBase
     {
-        protected ServiceBase(IRestClientFactory restClientFactory)
+        protected readonly ICmdClient cmdClient;
+
+        protected ServiceBase(IRestClientFactory restClientFactory, ICmdClient cmdClient)
         {
+            this.cmdClient = cmdClient;
             RestClient = restClientFactory.CreateRestClient();
         }
 

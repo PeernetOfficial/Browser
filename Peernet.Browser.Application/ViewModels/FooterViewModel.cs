@@ -12,16 +12,16 @@ namespace Peernet.Browser.Application.ViewModels
     public class FooterViewModel : MvxViewModel
     {
         private const int reconnectDelay = 2000;
-        private readonly IApiClient apiClient;
-        private readonly IMvxNavigationService navigationService;
+        private readonly ICmdClient apiClient;
         private readonly IApplicationManager applicationManager;
+        private readonly IMvxNavigationService navigationService;
         private readonly ISocketClient socketClient;
         private string commandLineInput;
         private string commandLineOutput;
         private ConnectionStatus connectionStatus = ConnectionStatus.Offline;
         private string peers;
 
-        public FooterViewModel(IApiClient apiClient, ISocketClient socketClient, IMvxNavigationService navigationService, IApplicationManager applicationManager)
+        public FooterViewModel(ICmdClient apiClient, ISocketClient socketClient, IMvxNavigationService navigationService, IApplicationManager applicationManager)
         {
             this.apiClient = apiClient;
             this.socketClient = socketClient;
@@ -29,56 +29,34 @@ namespace Peernet.Browser.Application.ViewModels
             this.applicationManager = applicationManager;
 
             UploadCommand = new MvxCommand(UploadFiles);
+            SendToPeernetConsole = new MvxAsyncCommand(SendToPeernetMethod);
         }
 
         public string CommandLineInput
         {
             get => commandLineInput;
-            set
-            {
-                SetProperty(ref commandLineInput, value);
-            }
+            set => SetProperty(ref commandLineInput, value);
         }
 
         public string CommandLineOutput
         {
             get => commandLineOutput;
-            set
-            {
-                SetProperty(ref commandLineOutput, value);
-            }
+            set => SetProperty(ref commandLineOutput, value);
         }
 
         public ConnectionStatus ConnectionStatus
         {
             get => connectionStatus;
-            set
-            {
-                SetProperty(ref connectionStatus, value);
-            }
+            set => SetProperty(ref connectionStatus, value);
         }
 
         public string Peers
         {
             get => peers;
-            set
-            {
-                SetProperty(ref peers, value);
-            }
+            set => SetProperty(ref peers, value);
         }
 
-        public IMvxAsyncCommand SendToPeernetConsole
-        {
-            get
-            {
-                return new MvxAsyncCommand(async () =>
-                {
-                    await this.socketClient.Send(CommandLineInput);
-                    CommandLineInput = string.Empty;
-                    CommandLineOutput = await this.socketClient.Receive();
-                });
-            }
-        }
+        public IMvxAsyncCommand SendToPeernetConsole { get; }
 
         public IMvxCommand UploadCommand { get; }
 
@@ -94,7 +72,7 @@ namespace Peernet.Browser.Application.ViewModels
             while (!success)
             {
                 ConnectionStatus = ConnectionStatus.Connecting;
-                success = await GetPeernetStatus();
+                success = GetPeernetStatus();
 
                 if (!success)
                 {
@@ -105,16 +83,15 @@ namespace Peernet.Browser.Application.ViewModels
 
         private async Task ConnectToPeernetConsole()
         {
-            await this.socketClient.Connect();
-
-            CommandLineOutput = await this.socketClient.Receive();
+            await socketClient.Connect();
+            CommandLineOutput = await socketClient.Receive();
         }
 
-        private async Task<bool> GetPeernetStatus()
+        private bool GetPeernetStatus()
         {
             try
             {
-                var status = await this.apiClient.GetStatus();
+                var status = apiClient.GetStatus();
                 ConnectionStatus = status.IsConnected ? ConnectionStatus.Online : ConnectionStatus.Offline;
                 Peers = $"{status.CountPeerList} Peers";
 
@@ -129,13 +106,20 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
+        private async Task SendToPeernetMethod()
+        {
+            await socketClient.Send(CommandLineInput);
+            CommandLineInput = string.Empty;
+            CommandLineOutput = await socketClient.Receive();
+        }
+
         private void UploadFiles()
         {
             var f = applicationManager.OpenFileDialog();
             if (!f.Any()) return;
             GlobalContext.IsMainWindowActive = false;
             GlobalContext.IsProfileMenuVisible = false;
-            navigationService.Navigate<ModalViewModel, string[]>(f);
+            navigationService.Navigate<ShareNewFileViewModel, string[]>(f);
         }
     }
 }

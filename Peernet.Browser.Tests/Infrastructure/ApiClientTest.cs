@@ -18,7 +18,7 @@ namespace Peernet.Browser.Tests.Infrastructure
             var s2 = new Mock<ISettingsManager>();
             s2.Setup(foo => foo.ApiUrl).Returns("http://127.0.0.1:112");
             //Act
-            var o = new ApiClient(s1.Object, s2.Object);
+            var o = new CmdClient(s1.Object, s2.Object);
             //Assert
             Assert.IsNotNull(o);
         }

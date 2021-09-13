@@ -9,9 +9,9 @@ namespace Peernet.Browser.WPF.Views
     /// Interaction logic for ModalView.xaml
     /// </summary>
     [MvxContentPresentation]
-    [MvxViewFor(typeof(ModalViewModel))]
-    public partial class ModalView : MvxWpfView
+    [MvxViewFor(typeof(ShareNewFileViewModel))]
+    public partial class ShareNewFileView : MvxWpfView
     {
-        public ModalView() => InitializeComponent();
+        public ShareNewFileView() => InitializeComponent();
     }
 }

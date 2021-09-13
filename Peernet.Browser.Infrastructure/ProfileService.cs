@@ -15,7 +15,7 @@ namespace Peernet.Browser.Infrastructure
         private const string WriteSegment = "write";
 
         public ProfileService(IRestClientFactory restClientFactory)
-            : base(restClientFactory)
+            : base(restClientFactory, null)
         {
         }
 
