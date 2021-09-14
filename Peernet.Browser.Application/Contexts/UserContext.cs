@@ -4,7 +4,6 @@ using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 
 namespace Peernet.Browser.Application.Contexts
 {
@@ -13,8 +12,6 @@ namespace Peernet.Browser.Application.Contexts
         private readonly IMvxNavigationService mvxNavigationService;
         private readonly IProfileService profileService;
         private User user;
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public UserContext(IProfileService profileService, IMvxNavigationService mvxNavigationService)
         {
@@ -25,18 +22,21 @@ namespace Peernet.Browser.Application.Contexts
             User.PropertyChanged += SubscribeToUserModifications;
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+        
+        public bool HasUserChanged { get; private set; }
+        
         public List<MenuItemViewModel> Items { get; private set; }
 
         public User User
         {
-            get => user; set
+            get => user;
+            set
             {
                 user = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(User)));
             }
         }
-
-        public bool HasUserChanged { get; private set; }
 
         public void ReloadContext()
         {
@@ -44,14 +44,19 @@ namespace Peernet.Browser.Application.Contexts
             Items = InitializeMenuItems();
         }
 
+        public void SubscribeToUserModifications(object sender, PropertyChangedEventArgs e)
+        {
+            HasUserChanged = true;
+        }
+
         private List<MenuItemViewModel> InitializeMenuItems()
         {
             return new List<MenuItemViewModel>
             {
-                new MenuItemViewModel("About"),
-                new MenuItemViewModel("FAQ (Help)"),
-                new MenuItemViewModel("Backup to a file"),
-                new MenuItemViewModel(
+                new("About"),
+                new("FAQ (Help)"),
+                new("Backup to a file"),
+                new(
                     "Edit profile",
                     () =>
                     {
@@ -72,11 +77,6 @@ namespace Peernet.Browser.Application.Contexts
                 Name = string.IsNullOrEmpty(name) ? null : name,
                 Image = image.Length == 0 ? null : image
             };
-        }
-
-        public void SubscribeToUserModifications(object sender, PropertyChangedEventArgs e)
-        {
-            HasUserChanged = true;
         }
     }
 }

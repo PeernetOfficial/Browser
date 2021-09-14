@@ -19,15 +19,16 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IMvxAsyncCommand<ApiBlockRecordFile> DeleteCommand =>
             new MvxAsyncCommand<ApiBlockRecordFile>(
-                (ApiBlockRecordFile apiBlockRecordFile) =>
+                apiBlockRecordFile =>
             {
-                // Logic to be implemented
+                blockchainService.DeleteSelfFile(apiBlockRecordFile);
 
                 return Task.CompletedTask;
             });
 
         public IMvxAsyncCommand<ApiBlockRecordFile> EditCommand =>
-            new MvxAsyncCommand<ApiBlockRecordFile>((ApiBlockRecordFile apiBlockRecordFile) =>
+            new MvxAsyncCommand<ApiBlockRecordFile>(
+                apiBlockRecordFile =>
         {
             // Logic to be implemented
 
@@ -36,7 +37,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IMvxAsyncCommand<ApiBlockRecordFile> ShareCommand =>
             new MvxAsyncCommand<ApiBlockRecordFile>(
-                (ApiBlockRecordFile apiBlockRecordFile) =>
+                apiBlockRecordFile =>
         {
             // Logic to be implemented
 
