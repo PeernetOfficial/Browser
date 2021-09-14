@@ -31,7 +31,7 @@ namespace Peernet.Browser.Infrastructure
 
         public MyInfo GetMyInfo() => GetResult<MyInfo>("peer/self");
 
-        public Status GetStatus() => GetResult<Status>("status");
+        public Status GetStatus() => GetResult<Status>("status") ?? new Status();
 
         private T GetResult<T>(string method)
         {

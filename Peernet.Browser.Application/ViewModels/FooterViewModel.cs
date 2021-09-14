@@ -89,21 +89,10 @@ namespace Peernet.Browser.Application.ViewModels
 
         private bool GetPeernetStatus()
         {
-            try
-            {
-                var status = apiClient.GetStatus();
-                ConnectionStatus = status.IsConnected ? ConnectionStatus.Online : ConnectionStatus.Offline;
-                Peers = $"{status.CountPeerList} Peers";
-
-                return status.IsConnected;
-            }
-            catch (System.Net.WebException)
-            {
-                Peers = string.Empty;
-                ConnectionStatus = ConnectionStatus.Offline;
-
-                return false;
-            }
+            var status = apiClient.GetStatus();
+            ConnectionStatus = status.IsConnected ? ConnectionStatus.Online : ConnectionStatus.Offline;
+            Peers = $"{status.CountPeerList} Peers";
+            return status.IsConnected;
         }
 
         private async Task SendToPeernetMethod()
