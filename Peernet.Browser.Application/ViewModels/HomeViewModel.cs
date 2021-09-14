@@ -3,15 +3,11 @@ using MvvmCross.ViewModels;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class HomeViewModel : MvxViewModel
+    public class HomeViewModel : MvxViewModel, ISearchable
     {
         private bool _showSearchBox = false;
         private string searchInput;
         private bool showHint;
-
-        public HomeViewModel()
-        {
-        }
 
         public IMvxCommand RemoveHint
         {
