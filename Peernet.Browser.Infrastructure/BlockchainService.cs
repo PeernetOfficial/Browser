@@ -3,14 +3,16 @@ using Peernet.Browser.Application.Http;
 using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.Services;
 using RestSharp;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure
 {
     public class BlockchainService : ServiceBase, IBlockchainService
     {
-        public BlockchainService(IRestClientFactory restClientFactory)
-            : base(restClientFactory)
+        public BlockchainService(IRestClientFactory restClientFactory, ICmdClient cmdClient)
+            : base(restClientFactory, cmdClient)
         {
         }
 
@@ -28,6 +30,20 @@ namespace Peernet.Browser.Infrastructure
             var request = new RestRequest(GetRelativeRequestPath("list/file"), Method.GET);
 
             return Task.Run(() => RestClient.GetAsync<ApiBlockchainAddFiles>(request)).GetResultBlockingWithoutContextSynchronization();
+        }
+
+        public void AddFiles(IEnumerable<SharedNewFileModel> files)
+        {
+            var data = files
+                .Select(x =>
+                    new ApiBlockRecordFile
+                    {
+                        Description = x.Desc,
+                        Name = x.FileName,
+                        Folder = x.Directory
+                    })
+                .ToArray();
+            cmdClient.AddFiles(data);
         }
     }
 }

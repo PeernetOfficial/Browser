@@ -46,5 +46,17 @@ namespace Peernet.Browser.WPF.Properties {
                 this["SocketUrl"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string CmdPath {
+            get {
+                return ((string)(this["CmdPath"]));
+            }
+            set {
+                this["CmdPath"] = value;
+            }
+        }
     }
 }

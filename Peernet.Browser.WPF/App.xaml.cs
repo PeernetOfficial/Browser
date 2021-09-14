@@ -22,8 +22,8 @@ namespace Peernet.Browser.WPF
 
         public override void ApplicationInitialized()
         {
-            _runner = new CmdRunner();
-            //_runner.Run();
+            _runner = new CmdRunner(new SettingsManager().CmdPath);
+            if (_runner.FileExist) _runner.Run();
             base.ApplicationInitialized();
         }
     }
