@@ -3,25 +3,49 @@
                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                   xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf">
 
-    <Border BorderThickness="0" Padding="40" BorderBrush="Transparent" CornerRadius="{StaticResource MainRadius}">
+    <Border Width="700" BorderThickness="0" Padding="40" BorderBrush="Transparent" CornerRadius="{StaticResource MainRadius}">
         <Border.Background>
             <SolidColorBrush Color="{StaticResource MainBackground}" />
         </Border.Background>
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="30" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="30" />
-                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
+
+            <DockPanel Grid.Row="0">
+                <TextBlock FontWeight="DemiBold" FontSize="16">Your filters</TextBlock>
+                <Button Margin="15 0" VerticalAlignment="Center" Style="{StaticResource LinkButton}">Clear all</Button>
+            </DockPanel>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Grid.RowSpan="2">
+                    <TextBlock Margin="0 15 0 8">DATE</TextBlock>
+
+                    <Border Padding="8" BorderBrush="{StaticResource LightGrayBrush}" BorderThickness="0.5" Height="300" CornerRadius="{StaticResource MainRadius}">
+                        <StackPanel>
+                            <CheckBox Template="{StaticResource RoundedCheckBox}" VerticalContentAlignment="Center">Any time</CheckBox>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+
+            <DockPanel HorizontalAlignment="Right" Grid.Row="2">
+                <Button Height="30" Width="110" Style="{StaticResource PrimaryButton}">Cancel</Button>
+                <Button Height="30" Width="110" Style="{StaticResource AcceptButton}">Apply filters</Button>
+            </DockPanel>
         </Grid>
     </Border>
 </views:MvxWpfView>

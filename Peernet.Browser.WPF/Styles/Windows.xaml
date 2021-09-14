@@ -6,7 +6,7 @@
     <ControlTemplate x:Key="RoundedTextBox" TargetType="{x:Type TextBoxBase}">
         <Border Background="{TemplateBinding Background}"
                 x:Name="Bd" BorderBrush="Transparent"
-                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3">
+                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{StaticResource MainRadius}">
             <ScrollViewer x:Name="PART_ContentHost" />
         </Border>
         <ControlTemplate.Triggers>
@@ -19,6 +19,22 @@
             </Trigger>
             <Trigger Property="Height" Value="Auto">
                 <Setter Property="MinHeight" Value="20" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="RoundedCheckBox" TargetType="{x:Type CheckBox}">
+        <StackPanel Orientation="Horizontal">
+            <Border Padding="3" Margin="0 0 10 0" x:Name="checkboxBorder" Background="Transparent" BorderThickness="0.5" CornerRadius="{StaticResource MainRadius}"
+                BorderBrush="{DynamicResource DarkGreenBrush}">
+                <Image x:Name="checkboxImage"  Width="8" />
+            </Border>
+            <ContentPresenter />
+        </StackPanel>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter TargetName="checkboxImage" Property="Source" Value="../Assets/checked.png" />
+                <Setter TargetName="checkboxBorder" Property="Background" Value="{DynamicResource DarkGreenBrush}" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
