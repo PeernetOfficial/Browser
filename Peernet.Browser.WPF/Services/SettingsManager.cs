@@ -23,5 +23,15 @@ namespace Peernet.Browser.WPF
                 Properties.Settings.Default.Save();
             }
         }
+
+        public string CmdPath
+        {
+            get => Properties.Settings.Default.CmdPath;
+            set
+            {
+                Properties.Settings.Default.CmdPath = value;
+                Properties.Settings.Default.Save();
+            }
+        }
     }
 }

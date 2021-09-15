@@ -1,61 +1,41 @@
-﻿using Peernet.Browser.Application.Services;
+﻿using Microsoft.Win32;
+using Peernet.Browser.Application.Services;
 
 namespace Peernet.Browser.WPF.Services
 {
     public class ApplicationManager : IApplicationManager
     {
+        public ApplicationManager()
+        {
+            SetWindow();
+        }
+
         private MainWindow window;
-        public bool IsMaximized 
-        {
-            get
-            {
-                if (this.window == null)
-                {
-                    this.window = (MainWindow)(System.Windows.Application.Current.MainWindow);
-                }
 
-                return this.window.WindowState == System.Windows.WindowState.Maximized;
-            }
+        private void SetWindow()
+        {
+            if (window == null) window = (MainWindow)System.Windows.Application.Current.MainWindow;
         }
 
-        public void Maximize()
+        public bool IsMaximized
         {
-            if (this.window == null)
-            {
-                this.window = (MainWindow)(System.Windows.Application.Current.MainWindow);
-            }
-
-            this.window.WindowState = System.Windows.WindowState.Maximized;
+            get => window.WindowState == System.Windows.WindowState.Maximized;
         }
 
-        public void Minimize()
+        public void Maximize() => window.WindowState = System.Windows.WindowState.Maximized;
+
+        public void Minimize() => window.WindowState = System.Windows.WindowState.Minimized;
+
+        public void Shutdown() => window.Close();
+
+        public void Restore() => window.WindowState = System.Windows.WindowState.Normal;
+
+        public string[] OpenFileDialog(bool multiselect = true, string filter = "")
         {
-            if (this.window == null)
-            {
-                this.window = (MainWindow)(System.Windows.Application.Current.MainWindow);
-            }
-
-            this.window.WindowState = System.Windows.WindowState.Minimized;
-        }
-
-        public void Shutdown()
-        {
-            if (this.window == null)
-            {
-                this.window = (MainWindow)(System.Windows.Application.Current.MainWindow);
-            }
-
-            this.window.Close();
-        }
-
-        public void Restore()
-        {
-            if (this.window == null)
-            {
-                this.window = (MainWindow)(System.Windows.Application.Current.MainWindow);
-            }
-
-            this.window.WindowState = System.Windows.WindowState.Normal;
+            var dialog = new OpenFileDialog { Multiselect = multiselect };
+            dialog.Filter = filter;
+            if (dialog.ShowDialog().GetValueOrDefault()) return dialog.FileNames;
+            else return new string[0];
         }
     }
 }

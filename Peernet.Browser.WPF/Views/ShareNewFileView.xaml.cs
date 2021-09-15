@@ -6,12 +6,12 @@ using Peernet.Browser.Application.ViewModels;
 namespace Peernet.Browser.WPF.Views
 {
     /// <summary>
-    /// Interaction logic for ModalView.xaml
+    /// Interaction logic for ShareNewFileView.xaml
     /// </summary>
     [MvxContentPresentation]
-    [MvxViewFor(typeof(ModalViewModel))]
-    public partial class ModalView : MvxWpfView
+    [MvxViewFor(typeof(ShareNewFileViewModel))]
+    public partial class ShareNewFileView : MvxWpfView
     {
-        public ModalView() => InitializeComponent();
+        public ShareNewFileView() => InitializeComponent();
     }
 }

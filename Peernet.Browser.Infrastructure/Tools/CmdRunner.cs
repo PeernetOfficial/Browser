@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 
 namespace Peernet.Browser.Infrastructure.Tools
@@ -11,21 +12,19 @@ namespace Peernet.Browser.Infrastructure.Tools
         private Process _p;
         private const string _processName = "Cmd";
 
-        public CmdRunner(CmdArgs args) : this()
+        public bool FileExist { get; }
+
+        public CmdRunner(string path = "")
         {
-            if (args != null) Args = args.ToString();
-            else Args = "";
+            if (File.Exists(path))
+            {
+                _p = new Process();
+                _p.StartInfo.FileName = path;
+                FileExist = true;
+            };
         }
 
-        public CmdRunner()
-        {
-            _p = new Process();
-            _p.StartInfo.FileName = Path;
-            _p.StartInfo.Arguments = Args;
-        }
-
-        public string Args { get; }
-        public string Path { get; } = $"Tools/CmdSource/{_processName}.exe";
+        public string Path { get; }
 
         public bool IsRunning { get; private set; }
 

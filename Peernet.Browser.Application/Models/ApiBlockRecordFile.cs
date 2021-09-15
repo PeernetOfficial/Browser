@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using Newtonsoft.Json;
 
 namespace Peernet.Browser.Application.Models
 {
     public class ApiBlockRecordFile
     {
-        public ApiBlockRecordFile()
-        {
-        }
         public Guid Id { get; set; }
 
         public byte[] Hash { get; set; }
