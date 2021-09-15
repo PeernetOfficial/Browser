@@ -16,7 +16,7 @@ namespace Peernet.Browser.Application.ViewModels
         private IReadOnlyCollection<ApiBlockRecordFile> sharedFiles;
         private string searchInput;
         private List<ApiBlockRecordFile> activeSearchResults;
-        private bool showHint;
+        private bool showHint = true;
 
         public DirectoryViewModel(IBlockchainService blockchainService)
         {
@@ -106,19 +106,13 @@ namespace Peernet.Browser.Application.ViewModels
         public bool ShowHint
         {
             get => showHint;
-            set
-            {
-                SetProperty(ref showHint, value);
-            }
+            set => SetProperty(ref showHint, value);
         }
 
         public bool ShowSearchBox
         {
             get => _showSearchBox;
-            set
-            {
-                SetProperty(ref _showSearchBox, value);
-            }
+            set => SetProperty(ref _showSearchBox, value);
         }
 
         public override Task Initialize()

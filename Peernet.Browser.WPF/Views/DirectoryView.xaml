@@ -29,10 +29,10 @@
                     </StackPanel>
                 </Expander>
             </StackPanel>
-            <Separator Style="{StaticResource StandardSeparatorStyle}" Grid.Column="1" Width="400" RenderTransformOrigin="0.5,0.5" >
+            <Separator Style="{StaticResource StandardSeparatorStyle}" Grid.Column="1" Width="400" RenderTransformOrigin="0.5,0.5">
                 <Separator.RenderTransform>
                     <TransformGroup>
-                        <RotateTransform Angle="90"/>
+                        <RotateTransform Angle="90" />
                     </TransformGroup>
                 </Separator.RenderTransform>
             </Separator>
@@ -42,8 +42,8 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Grid.Column="0" Margin="63, 40, 0, 0">Path</TextBlock>
@@ -52,13 +52,13 @@
                         <SolidColorBrush Opacity="0.06" Color="Black" />
                     </Border.BorderBrush>
                     <Grid>
-                        <TextBlock Width="80" Padding="15" TextBlock.FontSize="14" Visibility="{Binding ShowHint, Converter={StaticResource BoolToVisibility}}"
+                        <TextBlock Width="80" Padding="15" FontSize="14" Visibility="{Binding ShowHint, Converter={StaticResource BoolToVisibility}}"
                                    TextAlignment="Center"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Left"
                                    FontFamily="Inter"
                                    Background="Transparent"
-                                   Foreground="{StaticResource LightGray2Brush}" Text="Search">
+                                   Foreground="#B0B0B0" Text="Search">
                         </TextBlock>
 
                         <Grid>
@@ -88,7 +88,7 @@
                         </Grid>
                     </Grid>
                 </Border>
-                <controls:DataGridControl  Grid.Row="1" Grid.ColumnSpan="2" Margin="37,0,0,0"/>
+                <controls:DataGridControl  Grid.Row="1" Grid.ColumnSpan="2" Margin="37,0,0,0" />
             </Grid>
         </Grid>
     </Border>

@@ -7,7 +7,7 @@ namespace Peernet.Browser.Application.ViewModels
     {
         private bool _showSearchBox = false;
         private string searchInput;
-        private bool showHint;
+        private bool showHint = true;
 
         public IMvxCommand RemoveHint
         {
