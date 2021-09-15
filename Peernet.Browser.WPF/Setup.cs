@@ -15,9 +15,11 @@ namespace Peernet.Browser.WPF
 {
     public class Setup : MvxWpfSetup<Application.App>
     {
-        protected override ILoggerProvider CreateLogProvider()
+        public override void LoadPlugins(IMvxPluginManager pluginManager)
         {
-            return new SerilogLoggerProvider();
+            base.LoadPlugins(pluginManager);
+
+            pluginManager.EnsurePluginLoaded<MvvmCross.Plugin.Control.Plugin>(true);
         }
 
         protected override ILoggerFactory CreateLogFactory()
@@ -28,6 +30,11 @@ namespace Peernet.Browser.WPF
                 .CreateLogger();
 
             return new SerilogLoggerFactory(Logger);
+        }
+
+        protected override ILoggerProvider CreateLogProvider()
+        {
+            return new SerilogLoggerProvider();
         }
 
         protected override void RegisterBindingBuilderCallbacks(IMvxIoCProvider iocProvider)
@@ -44,18 +51,17 @@ namespace Peernet.Browser.WPF
             iocProvider.RegisterType<IProfileService, ProfileService>();
             iocProvider.RegisterSingleton<IUserContext>(() => new UserContext(iocProvider.Resolve<IProfileService>(), iocProvider.Resolve<IMvxNavigationService>()));
             iocProvider.RegisterType<IBlockchainService, BlockchainService>();
+
+            ObserveNavigation(iocProvider);
+        }
+
+        private static void ObserveNavigation(IMvxIoCProvider iocProvider)
+        {
             iocProvider.Resolve<IMvxNavigationService>().DidNavigate +=
-                delegate(object sender, IMvxNavigateEventArgs args)
+                delegate (object sender, IMvxNavigateEventArgs args)
                 {
                     GlobalContext.CurrentViewModel = args.ViewModel.GetType().Name;
                 };
-        }
-
-        public override void LoadPlugins(IMvxPluginManager pluginManager)
-        {
-            base.LoadPlugins(pluginManager);
-
-            pluginManager.EnsurePluginLoaded<MvvmCross.Plugin.Control.Plugin>(true);
         }
     }
 }

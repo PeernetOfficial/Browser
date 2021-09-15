@@ -39,14 +39,14 @@
                         </Style>
                     </Grid.Style>
 
-                    <DockPanel>
+                    <DockPanel Panel.ZIndex="2">
                         <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
                             <controls:ButtonsControl InitializeOnLoad="true" />
                             <controls:NavigationBarControl InitializeOnLoad="true" />
                         </StackPanel>
                         <controls:FooterControl InitializeOnLoad="true" DockPanel.Dock="Bottom" />
                     </DockPanel>
-                    <ContentPresenter Content="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <ContentPresenter Content="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center" Panel.ZIndex="1"/>
                 </Grid>
             </Border>
         </DataTemplate>
