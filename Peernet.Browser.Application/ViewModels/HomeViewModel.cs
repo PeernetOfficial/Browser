@@ -5,10 +5,9 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public class HomeViewModel : MvxViewModel, ISearchable
     {
-        private bool _showSearchBox = false;
         private string searchInput;
         private bool showHint = true;
-
+        private bool showSearchBox = false;
         public IMvxCommand RemoveHint
         {
             get
@@ -44,15 +43,17 @@ namespace Peernet.Browser.Application.ViewModels
                 RaisePropertyChanged(nameof(SearchInput));
             }
         }
+
         public bool ShowHint
         {
             get => showHint;
-            set { SetProperty(ref showHint, value); }
+            set => SetProperty(ref showHint, value);
         }
+
         public bool ShowSearchBox
         {
-            get => _showSearchBox;
-            set { SetProperty(ref _showSearchBox, value); }
+            get => showSearchBox;
+            set => SetProperty(ref showSearchBox, value);
         }
     }
 }

@@ -1,8 +1,8 @@
-﻿using System;
-using MvvmCross.Commands;
+﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,19 +12,28 @@ namespace Peernet.Browser.Application.ViewModels
     public class DirectoryViewModel : MvxViewModel, ISearchable
     {
         private readonly IBlockchainService blockchainService;
-        private bool _showSearchBox;
-        private IReadOnlyCollection<ApiBlockRecordFile> sharedFiles;
-        private string searchInput;
         private List<ApiBlockRecordFile> activeSearchResults;
+        private string searchInput;
+        private IReadOnlyCollection<ApiBlockRecordFile> sharedFiles;
         private bool showHint = true;
-
+        private bool showSearchBox;
         public DirectoryViewModel(IBlockchainService blockchainService)
         {
             this.blockchainService = blockchainService;
         }
 
+        public List<ApiBlockRecordFile> ActiveSearchResults
+        {
+            get => activeSearchResults;
+            set
+            {
+                activeSearchResults = value;
+                RaisePropertyChanged(nameof(ActiveSearchResults));
+            }
+        }
+
         public IMvxAsyncCommand<ApiBlockRecordFile> DeleteCommand =>
-            new MvxAsyncCommand<ApiBlockRecordFile>(
+                    new MvxAsyncCommand<ApiBlockRecordFile>(
                 apiBlockRecordFile =>
             {
                 blockchainService.DeleteSelfFile(apiBlockRecordFile);
@@ -92,17 +101,6 @@ namespace Peernet.Browser.Application.ViewModels
 
             return Task.CompletedTask;
         });
-
-        public List<ApiBlockRecordFile> ActiveSearchResults
-        {
-            get => activeSearchResults;
-            set
-            {
-                activeSearchResults = value;
-                RaisePropertyChanged(nameof(ActiveSearchResults));
-            }
-        }
-
         public bool ShowHint
         {
             get => showHint;
@@ -111,8 +109,8 @@ namespace Peernet.Browser.Application.ViewModels
 
         public bool ShowSearchBox
         {
-            get => _showSearchBox;
-            set => SetProperty(ref _showSearchBox, value);
+            get => showSearchBox;
+            set => SetProperty(ref showSearchBox, value);
         }
 
         public override Task Initialize()
