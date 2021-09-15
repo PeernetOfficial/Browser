@@ -5,19 +5,30 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public class FiltersViewModel : MvxViewModel
     {
-        public MvxObservableCollection<CustomCheckBoxModel> DateFilters { get; } = new MvxObservableCollection<CustomCheckBoxModel>();
-        public MvxObservableCollection<CustomCheckBoxModel> FileFormatFilters { get; } = new MvxObservableCollection<CustomCheckBoxModel>();
-        public MvxObservableCollection<CustomCheckBoxModel> SortOrderFilters { get; } = new MvxObservableCollection<CustomCheckBoxModel>();
-
-        private void Init()
+        public FiltersViewModel()
         {
-            DateFilters.Add(PrepareCheckBox("Any time", true));
-            DateFilters.Add(PrepareCheckBox("Last 24 hours"));
-            DateFilters.Add(PrepareCheckBox("Last Week"));
-            DateFilters.Add(PrepareCheckBox("Last 30 Days"));
-            DateFilters.Add(PrepareCheckBox("Last Month"));
-            DateFilters.Add(PrepareCheckBox("Last Year"));
-            DateFilters.Add(PrepareCheckBox("Custom"));
+            DateFilters = new CustomFilterModel(GetDateOption());
+            FileFormatFilters = new CustomFilterModel(GetFileFormatOption());
+            SortOrderFilters = new CustomFilterModel(GetSortOption(), false);
+        }
+
+        public CustomFilterModel DateFilters { get; }
+        public CustomFilterModel FileFormatFilters { get; }
+        public CustomFilterModel SortOrderFilters { get; }
+
+        private string[] GetDateOption()
+        {
+            return new[] { "Any time", "Last 24 hours", "Last Week", "Last 30 Days", "Last Month", "Last Year", "Custom" };
+        }
+
+        private string[] GetFileFormatOption()
+        {
+            return new[] { "" };
+        }
+
+        private string[] GetSortOption()
+        {
+            return new[] { "" };
         }
 
         private CustomCheckBoxModel PrepareCheckBox(string text, bool isReset = false)
