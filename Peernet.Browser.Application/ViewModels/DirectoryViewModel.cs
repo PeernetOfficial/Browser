@@ -26,11 +26,8 @@ namespace Peernet.Browser.Application.ViewModels
         public List<ApiBlockRecordFile> ActiveSearchResults
         {
             get => activeSearchResults;
-            set
-            {
-                activeSearchResults = value;
-                RaisePropertyChanged(nameof(ActiveSearchResults));
-            }
+            set => SetProperty(ref activeSearchResults, value);
+
         }
 
         public IMvxAsyncCommand<ApiBlockRecordFile> DeleteCommand =>
@@ -87,11 +84,7 @@ namespace Peernet.Browser.Application.ViewModels
         public string SearchInput
         {
             get => searchInput;
-            set
-            {
-                searchInput = value;
-                RaisePropertyChanged(nameof(SearchInput));
-            }
+            set => SetProperty(ref searchInput, value);
         }
 
         public IMvxAsyncCommand<ApiBlockRecordFile> ShareCommand =>
@@ -124,6 +117,11 @@ namespace Peernet.Browser.Application.ViewModels
             }
 
             return base.Initialize();
+        }
+
+        private void CreateFileSystemStructure()
+        {
+
         }
     }
 }

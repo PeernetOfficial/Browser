@@ -9,9 +9,9 @@ namespace Peernet.Browser.Application.Models
 
         public byte[] Hash { get; set; }
 
-        public int Type { get; set; }
+        public LowLevelFileType Type { get; set; }
 
-        public int Format { get; set; }
+        public HighLevelFileType Format { get; set; }
 
         public int Size { get; set; }
 

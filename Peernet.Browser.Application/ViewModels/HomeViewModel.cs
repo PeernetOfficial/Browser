@@ -8,6 +8,7 @@ namespace Peernet.Browser.Application.ViewModels
         private string searchInput;
         private bool showHint = true;
         private bool showSearchBox = false;
+
         public IMvxCommand RemoveHint
         {
             get
@@ -37,11 +38,7 @@ namespace Peernet.Browser.Application.ViewModels
         public string SearchInput
         {
             get => searchInput;
-            set
-            {
-                searchInput = value;
-                RaisePropertyChanged(nameof(SearchInput));
-            }
+            set => SetProperty(ref searchInput, value);
         }
 
         public bool ShowHint
