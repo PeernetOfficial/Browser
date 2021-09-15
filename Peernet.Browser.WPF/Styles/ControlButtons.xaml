@@ -5,17 +5,6 @@
         <ResourceDictionary Source="Fonts.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD" />
-    <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070" />
-    <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD" />
-    <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1" />
-    <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6" />
-    <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B" />
-    <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4" />
-    <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5" />
-    <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383" />
-    <SolidColorBrush x:Key="ToolTip.Static.Background" Color="#FFFFFF" Opacity="0.06" />
-
     <Style x:Key="CaptionButtonStyle" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
@@ -55,58 +44,9 @@
         <Setter Property="Content" Value="&#xE106;" />
     </Style>
 
-    <Style x:Key="NavBarButtonStyle" TargetType="{x:Type Button}">
-        <Setter Property="Background" Value="{StaticResource Button.Static.Background}" />
-        <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}" />
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-        <Setter Property="HorizontalContentAlignment" Value="Center" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="Padding" Value="1" />
-        <Setter Property="Height" Value="18" />
-        <Setter Property="Width" Value="18" />
-        <Setter Property="Margin" Value="10,37,75,0" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="ToolTipService.InitialShowDelay" Value="500" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true">
-                        <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsDefaulted" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="true">
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}" />
-                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}" />
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}" />
-                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}" />
-                            <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+    <ImageBrush x:Key="UploadHover" ImageSource="/Assets/Upload_Hover.png" />
 
-    <Style TargetType="{x:Type ToolTip}">
-        <Setter Property="Background" Value="{StaticResource ToolTip.Static.Background}" />
-        <Setter Property="BorderBrush" Value="{StaticResource ToolTip.Static.Background}" />
-        <Setter Property="FontFamily" Value="Inter" />
-        <Setter Property="FontStyle" Value="Normal" />
-        <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="Foreground" Value="#FCFCFC" />
-        <Setter Property="Border.CornerRadius" Value="1,1,1,1" />
-    </Style>
-
-    <ImageBrush x:Key="ShareHover" ImageSource="/Assets/Share_Hover.png" />
-
-    <Style x:Key="ShareButtonStyle" TargetType="Button">
+    <Style x:Key="UploadButtonStyle" TargetType="Button">
         <Setter Property="Width" Value="52" />
         <Setter Property="Height" Value="52" />
         <Setter Property="BorderThickness" Value="0" />
@@ -118,7 +58,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="{StaticResource ShareHover}" />
+                            <Setter Property="Background" TargetName="border" Value="{StaticResource UploadHover}" />
                             <Setter Property="Width" Value="138" />
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -144,7 +84,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <TextBlock Height="Auto" TextAlignment="Center" VerticalAlignment="Center" Cursor="Hand">
+                    <TextBlock Height="Auto" TextAlignment="Center" VerticalAlignment="Center" Cursor="Hand" Foreground="{StaticResource DarkGreenBrush}">
                         <ContentPresenter />
                     </TextBlock>
                 </ControlTemplate>

@@ -12,7 +12,7 @@
     </views:MvxWpfView.Resources>
     <Border BorderThickness="1" CornerRadius="7,7,7,7">
         <Border.Background>
-            <SolidColorBrush Color="#F3F3F3" />
+            <SolidColorBrush Color="{StaticResource ModalBackground}" />
         </Border.Background>
         <Border.Effect>
             <DropShadowEffect ShadowDepth="32" BlurRadius="64" Color="Black" Opacity="0.1876" />
@@ -24,17 +24,17 @@
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="AUto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="Edit your profile" FontWeight="SemiBold" Foreground="#113E48" FontFamily="Inter" FontSize="16" Margin="35,27,0,0" />
-            <Button Grid.Column="1" Style="{StaticResource CloseButtonStyle}" Command="{Binding CloseCommand}" Margin="0,31,35,0" HorizontalAlignment="Right" VerticalAlignment="Top" />
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Edit your profile" FontWeight="SemiBold" Foreground="{StaticResource DarkGreenBrush}" FontSize="16" Margin="35,27,0,0" />
+            <Button Grid.Column="1" Style="{StaticResource CloseButtonStyle}" Command="{Binding CloseCommand}" Margin="0,11,15,0" HorizontalAlignment="Right" VerticalAlignment="Top" />
             <StackPanel Grid.Row="1" Grid.Column="0" Margin="35,35,27,0">
-                <TextBlock Text="Profile photo" Foreground="#113E48" />
-                <Border Background="#CACCD1" Width="200" Height="200" Margin="0,8,0,0">
+                <TextBlock Text="Profile photo" Foreground="{StaticResource DarkGreenBrush}" />
+                <Border Background="{StaticResource LightGray2Brush}" Width="200" Height="200" Margin="0,8,0,0">
                     <Border>
                         <Border.Style>
                             <Style TargetType="{x:Type Border}">
@@ -50,23 +50,21 @@
                         </Border.Style>
                     </Border>
                 </Border>
-                <Border CornerRadius="4,4,4,4" Background="#113E48" Margin="0,16,0,0">
-                    <Button Content="Upload an image" Width="200" Height="43" Background="Transparent" Foreground="White" BorderThickness="0" Command="{Binding UploadFileCommand}" Click="OpenFileDialog" />
-                </Border>
-                <Button Content="Remove photo" Command="{Binding RemovePhotoCommand}" Foreground="#113E48" Background="Transparent" BorderThickness="0" Margin="0,12,0,0" />
+                <Button Width="200" Height="43" Style="{StaticResource AcceptButton}" Content="Upload an image" Command="{Binding UploadFileCommand}" Margin="0,16,0,0" />
+                <Button Content="Remove photo" Command="{Binding RemovePhotoCommand}" Style="{StaticResource PrimaryButton}" Margin="0,12,0,0" />
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="1">
-                <TextBlock Text="Nickname" Foreground="#113E48" Margin="0,32,0,0" />
+                <TextBlock Text="Nickname" Foreground="{StaticResource DarkGreenBrush}" Margin="0,32,0,0" />
                 <TextBox Text="{Binding UserContext.User.Name, TargetNullValue='Set nickname'}" Width="346" Height="36" Margin="0,11,35,0" FontSize="14" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="11.58, 0, 0, 0" >
                     <TextBox.Style>
                         <Style TargetType="{x:Type TextBox}">
-                            <Setter Property="Foreground" Value="#113E48" />
+                            <Setter Property="Foreground" Value="{StaticResource DarkGreenBrush}" />
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding UserContext.User.Image}" Value="{x:Null}">
                                     <Setter Property="Foreground" Value="#C7C7C7" />
                                 </DataTrigger>
                                 <Trigger Property="IsFocused" Value="True">
-                                    <Setter Property="Foreground" Value="#113E48" />
+                                    <Setter Property="Foreground" Value="{StaticResource DarkGreenBrush}" />
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
@@ -79,10 +77,8 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Content="Cancel" Command="{Binding CloseCommand}" Foreground="#113E48" Background="Transparent" BorderThickness="0" Margin="0,29,28,28" HorizontalAlignment="Right" />
-                <Border Grid.Column="1" CornerRadius="4,4,4,4" Background="#113E48" HorizontalAlignment="Right" Margin="0,16,35,15">
-                    <Button Content="Save Changes" Background="Transparent" Foreground="White" Width="181" Height="43" BorderThickness="0" Command="{Binding SaveChangesCommand}" />
-                </Border>
+                <Button Grid.Column="0" Content="Cancel" Command="{Binding CloseCommand}" Style="{StaticResource PrimaryButton}" Margin="0,29,28,28" HorizontalAlignment="Right" />
+                <Button Grid.Column="1" Width="181" Height="43" Style="{StaticResource AcceptButton}" Content="Save Changes" Command="{Binding SaveChangesCommand}" HorizontalAlignment="Right" Margin="0,16,35,15" />
             </Grid>
         </Grid>
     </Border>

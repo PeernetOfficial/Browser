@@ -1,7 +1,9 @@
-﻿namespace Peernet.Browser.Application.Models
+﻿using System.Collections.Generic;
+
+namespace Peernet.Browser.Application.Models
 {
     public class ApiBlockchainAddFiles
     {
-        public ApiBlockRecordFile Files { get; set; }
+        public List<ApiBlockRecordFile> Files { get; set; }
     }
 }

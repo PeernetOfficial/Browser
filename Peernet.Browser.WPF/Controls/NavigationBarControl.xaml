@@ -20,34 +20,22 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Column = "3" Orientation="Vertical">
-            <StackPanel  Orientation="Horizontal">
-                <Button Style="{DynamicResource NavBarButtonStyle}"
+            <StackPanel Orientation="Horizontal">
+                <Button Style="{DynamicResource HomeNavBarButtonStyle}"
                 Command="{Binding NavigateHomeCommand}"
                 ToolTip="Home">
-                    <Button.Background>
-                        <ImageBrush ImageSource="/Assets/Home.png" Stretch="Fill" />
-                    </Button.Background>
                 </Button>
-                <Button Style="{DynamicResource NavBarButtonStyle}"
+                <Button Style="{DynamicResource ExploreNavBarButtonStyle}"
                 Command="{Binding NavigateExploreCommand}"
                 ToolTip="Explore">
-                    <Button.Background>
-                        <ImageBrush ImageSource="/Assets/Explore.png" Stretch="Fill" />
-                    </Button.Background>
                 </Button>
-                <Button Style="{DynamicResource NavBarButtonStyle}"
+                <Button Style="{DynamicResource DirectoryNavBarButtonStyle}"
                 Command="{Binding NavigateDirectoryCommand}"
                 ToolTip="Directory">
-                    <Button.Background>
-                        <ImageBrush ImageSource="/Assets/Directory.png" Stretch="Fill" />
-                    </Button.Background>
                 </Button>
-                <Button Style="{DynamicResource NavBarButtonStyle}"
+                <Button Style="{DynamicResource UserNavBarButtonStyle}"
                 Command="{Binding OpenCloseProfileMenuCommand}"
                 ToolTip="User">
-                    <Button.Background>
-                        <ImageBrush ImageSource="/Assets/User.png" Stretch="Fill" />
-                    </Button.Background>
                 </Button>
             </StackPanel>
             <domaincontrols:ProfileMenuControl HorizontalAlignment="Right" Visibility="{Binding Path=(contexts:GlobalContext.IsProfileMenuVisible), Converter={StaticResource BoolToVisibility}}" />

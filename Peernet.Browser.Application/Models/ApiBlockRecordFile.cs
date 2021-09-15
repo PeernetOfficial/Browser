@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Peernet.Browser.Application.Models
 {
@@ -8,9 +9,9 @@ namespace Peernet.Browser.Application.Models
 
         public byte[] Hash { get; set; }
 
-        public int Type { get; set; }
+        public LowLevelFileType Type { get; set; }
 
-        public int Format { get; set; }
+        public HighLevelFileType Format { get; set; }
 
         public int Size { get; set; }
 
@@ -20,8 +21,10 @@ namespace Peernet.Browser.Application.Models
 
         public string Description { get; set; }
 
-        public ApiFileMetadata[] MetaData { get; set; }
+        public DateTime Date { get; set; }
 
-        public ApiFileTagRaw[] TagsRaw { get; set; }
+        public List<ApiFileMetadata> MetaData { get; set; }
+
+        public List<ApiFileTagRaw> TagsRaw { get; set; }
     }
 }

@@ -10,5 +10,7 @@ namespace Peernet.Browser.Application.Services
         ApiBlockchainAddFiles GetSelfList();
 
         void AddFiles(IEnumerable<SharedNewFileModel> files);
+
+        void DeleteSelfFile(ApiBlockRecordFile apiBlockRecordFile);
     }
 }
