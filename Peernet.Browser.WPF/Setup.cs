@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using MvvmCross.IoC;
 using MvvmCross.Navigation;
+using MvvmCross.Navigation.EventArguments;
 using MvvmCross.Platforms.Wpf.Core;
 using MvvmCross.Plugin;
 using Peernet.Browser.Application.Contexts;
@@ -43,6 +44,11 @@ namespace Peernet.Browser.WPF
             iocProvider.RegisterType<IProfileService, ProfileService>();
             iocProvider.RegisterSingleton<IUserContext>(() => new UserContext(iocProvider.Resolve<IProfileService>(), iocProvider.Resolve<IMvxNavigationService>()));
             iocProvider.RegisterType<IBlockchainService, BlockchainService>();
+            iocProvider.Resolve<IMvxNavigationService>().DidNavigate +=
+                delegate(object sender, IMvxNavigateEventArgs args)
+                {
+                    GlobalContext.CurrentViewModel = args.ViewModel.GetType().Name;
+                };
         }
 
         public override void LoadPlugins(IMvxPluginManager pluginManager)

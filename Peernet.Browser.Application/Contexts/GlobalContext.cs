@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
+using MvvmCross.Navigation;
+using MvvmCross.ViewModels;
 
 namespace Peernet.Browser.Application.Contexts
 {
@@ -8,6 +10,8 @@ namespace Peernet.Browser.Application.Contexts
         private static bool isMainWindowActive = true;
 
         private static bool isProfileMenuVisible;
+
+        private static string currentViewModel;
 
         public static event EventHandler<PropertyChangedEventArgs> StaticPropertyChanged = delegate { };
 
@@ -30,6 +34,16 @@ namespace Peernet.Browser.Application.Contexts
             {
                 isProfileMenuVisible = value;
                 NotifyStaticPropertyChanged(nameof(IsProfileMenuVisible));
+            }
+        }
+
+        public static string CurrentViewModel
+        {
+            get => currentViewModel;
+            set
+            {
+                currentViewModel = value;
+                NotifyStaticPropertyChanged(nameof(CurrentViewModel));
             }
         }
 

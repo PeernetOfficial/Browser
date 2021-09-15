@@ -1,6 +1,5 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
-using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
 
@@ -21,7 +20,7 @@ namespace Peernet.Browser.Application.ViewModels
         }
 
         public IMvxAsyncCommand Command { get; }
-     
+
         public string Text { get; }
     }
 }

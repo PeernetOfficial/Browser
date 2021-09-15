@@ -6,12 +6,12 @@ using Peernet.Browser.Application.ViewModels;
 namespace Peernet.Browser.WPF.Views
 {
     /// <summary>
-    /// Interaction logic for UsersView.xaml
+    /// Interaction logic for ExploreView.xaml
     /// </summary>
     [MvxContentPresentation]
     [MvxViewFor(typeof(ExploreViewModel))]
-    public partial class UsersView : MvxWpfView
+    public partial class ExploreView : MvxWpfView
     {
-        public UsersView() => InitializeComponent();
+        public ExploreView() => InitializeComponent();
     }
 }

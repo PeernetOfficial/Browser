@@ -17,6 +17,7 @@ namespace Peernet.Browser.Application.ViewModels
         private IReadOnlyCollection<ApiBlockRecordFile> sharedFiles;
         private bool showHint = true;
         private bool showSearchBox;
+
         public DirectoryViewModel(IBlockchainService blockchainService)
         {
             this.blockchainService = blockchainService;

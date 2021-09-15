@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:contexts="clr-namespace:Peernet.Browser.Application.Contexts;assembly=Peernet.Browser.Application">
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">
             <Setter.Value>
@@ -18,7 +19,7 @@
     <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4" />
     <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5" />
     <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383" />
-    <SolidColorBrush x:Key="ToolTip.Static.Background" Color="#FFFFFF" Opacity="0.06" />
+    <SolidColorBrush x:Key="ToolTip.Static.Background" Color="#FFFFFF" Opacity="0.7" />
 
     <Style x:Key="ButtonBaseStyle" TargetType="{x:Type Button}">
         <Setter Property="Background" Value="{StaticResource Button.Static.Background}" />
@@ -63,15 +64,69 @@
         <Setter Property="Width" Value="18" />
         <Setter Property="Margin" Value="10,37,75,0" />
     </Style>
-    
+
+    <ImageBrush x:Key="DirectoryTabImageBrush" ImageSource="/Assets/Directory.png" />
+    <ImageBrush x:Key="FocusedDirectoryTabImageBrush" ImageSource="/Assets/Directory_Focused.png" />
+
+    <Style x:Key="DirectoryNavBarButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource NavBarButtonStyle}">
+        <Setter Property="Background" Value="{StaticResource DirectoryTabImageBrush}" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=(contexts:GlobalContext.CurrentViewModel)}" Value="DirectoryViewModel">
+                <Setter Property="Background" Value="{StaticResource FocusedDirectoryTabImageBrush}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <ImageBrush x:Key="HomeTabImageBrush" ImageSource="/Assets/Home.png" />
+    <ImageBrush x:Key="FocusedHomeTabImageBrush" ImageSource="/Assets/Home_Focused.png" />
+
+    <Style x:Key="HomeNavBarButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource NavBarButtonStyle}">
+        <Setter Property="Background" Value="{StaticResource HomeTabImageBrush}" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=(contexts:GlobalContext.CurrentViewModel)}" Value="HomeViewModel">
+                <Setter Property="Background" Value="{StaticResource FocusedHomeTabImageBrush}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <ImageBrush x:Key="UserTabImageBrush" ImageSource="/Assets/User.png" />
+    <ImageBrush x:Key="FocusedUserTabImageBrush" ImageSource="/Assets/User_Focused.png" />
+
+    <Style x:Key="UserNavBarButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource NavBarButtonStyle}">
+        <Setter Property="Background" Value="{StaticResource UserTabImageBrush}" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=(contexts:GlobalContext.IsProfileMenuVisible)}" Value="True">
+                <Setter Property="Background" Value="{StaticResource FocusedUserTabImageBrush}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <ImageBrush x:Key="ExploreTabImageBrush" ImageSource="/Assets/Explore.png" />
+    <ImageBrush x:Key="FocusedExploreTabImageBrush" ImageSource="/Assets/Explore_Focused.png" />
+
+    <Style x:Key="ExploreNavBarButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource NavBarButtonStyle}">
+        <Setter Property="Background" Value="{StaticResource ExploreTabImageBrush}" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=(contexts:GlobalContext.CurrentViewModel)}" Value="ExploreViewModel">
+                <Setter Property="Background" Value="{StaticResource FocusedExploreTabImageBrush}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
     <Style TargetType="{x:Type ToolTip}">
         <Setter Property="Background" Value="{StaticResource ToolTip.Static.Background}" />
         <Setter Property="BorderBrush" Value="{StaticResource ToolTip.Static.Background}" />
         <Setter Property="FontFamily" Value="Inter" />
         <Setter Property="FontStyle" Value="Normal" />
         <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="Foreground" Value="#FCFCFC" />
+        <Setter Property="Foreground" Value="Black" />
         <Setter Property="Border.CornerRadius" Value="1,1,1,1" />
+        <Setter Property="HasDropShadow" Value="True" />
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Black" Opacity="0.14" BlurRadius="70" ShadowDepth="32" />
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style x:Key="NavbarMenuButtonStyle" TargetType="{x:Type Button}">
