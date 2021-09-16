@@ -6,7 +6,8 @@
     xmlns:models="clr-namespace:Peernet.Browser.Application.Models;assembly=Peernet.Browser.Application"
     xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls"
     xmlns:extensions="clr-namespace:Peernet.Browser.WPF.Extensions"
-    Height="600" Width="1441">
+    Height="600" Width="1441"
+    x:Name="DirectoryView">
     <Border Background="White" BorderThickness="0" CornerRadius="8,8,8,8">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -20,11 +21,15 @@
                     <HierarchicalDataTemplate DataType="{x:Type models:VirtualFileSystemTier}" ItemsSource="{Binding Path=VirtualFileSystemTiers}">
                         <StackPanel Orientation="Horizontal">
                             <Image Width="11" Height="10" Source="/Assets/Directory_GrayedOut.png" />
-                            <TextBlock x:Name="PART_EditableTextBox" Text="{Binding Path=Name}" Margin="7, 0, 0, 0"/>
+                            <TextBlock x:Name="PART_EditableTextBox" Text="{Binding Path=Name}" Margin="7, 0, 0, 0">
+                                <TextBlock.InputBindings>
+                                    <MouseBinding  Command="{Binding DataContext.UpdateActiveSearchResults, ElementName=DirectoryView}" CommandParameter="{Binding}" Gesture="LeftDoubleClick"/>
+                                </TextBlock.InputBindings>
+                            </TextBlock>
                         </StackPanel>
                     </HierarchicalDataTemplate>
                 </StackPanel.Resources>
-                <TreeView BorderThickness="0" HorizontalAlignment="Center">
+                <TreeView BorderThickness="0" HorizontalAlignment="Center" >
                     <TreeViewItem Template="{DynamicResource TreeViewItemTemplate}" ItemsSource="{Binding VirtualFileSystem.VirtualFileSystemTiers}" Header="Your Files" />
                 </TreeView>
             </StackPanel>
