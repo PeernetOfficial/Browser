@@ -17,6 +17,7 @@ namespace Peernet.Browser.Application.ViewModels
         private IReadOnlyCollection<ApiBlockRecordFile> sharedFiles;
         private bool showHint = true;
         private bool showSearchBox;
+        private VirtualFileSystem virtualFileSystem;
 
         public DirectoryViewModel(IBlockchainService blockchainService)
         {
@@ -27,7 +28,12 @@ namespace Peernet.Browser.Application.ViewModels
         {
             get => activeSearchResults;
             set => SetProperty(ref activeSearchResults, value);
+        }
 
+        public VirtualFileSystem VirtualFileSystem
+        {
+            get => virtualFileSystem;
+            set => SetProperty(ref virtualFileSystem, value);
         }
 
         public IMvxAsyncCommand<ApiBlockRecordFile> DeleteCommand =>
@@ -116,12 +122,9 @@ namespace Peernet.Browser.Application.ViewModels
                 ActiveSearchResults = sharedFiles.ToList();
             }
 
+            VirtualFileSystem = new VirtualFileSystem(sharedFiles);
+
             return base.Initialize();
-        }
-
-        private void CreateFileSystemStructure()
-        {
-
         }
     }
 }
