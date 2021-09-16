@@ -2,16 +2,18 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <StackPanel>
-        <TextBlock Foreground="{StaticResource DarkGreenBrush}" Margin="0 15 0 8" Text="{Binding Title}" />
+        <TextBlock Margin="0 15 0 8" Text="{Binding Title}" />
         <Border Padding="15 10" BorderBrush="{StaticResource LightGrayBrush}" BorderThickness="0.5" CornerRadius="{StaticResource MainRadius}">
-            <ItemsControl ItemsSource="{Binding Items}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <CheckBox Foreground="{StaticResource DarkGreenBrush}" Margin="0 10" Template="{StaticResource RoundedCheckBox}"
+            <ScrollViewer MaxHeight="241" VerticalScrollBarVisibility="Auto" Style="{StaticResource FavsScrollViewer}">
+                <ItemsControl ItemsSource="{Binding Items}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox Foreground="{StaticResource DarkGreenBrush}" Margin="10" Template="{StaticResource RoundedCheckBox}"
                                   VerticalContentAlignment="Center" IsChecked="{Binding IsChecked}" Content="{Binding Content}" />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
         </Border>
     </StackPanel>
 </UserControl>

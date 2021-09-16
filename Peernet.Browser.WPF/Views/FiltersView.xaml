@@ -4,7 +4,7 @@
                   xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
                   xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls">
 
-    <Border Width="700" BorderThickness="0" Padding="40" BorderBrush="Transparent" CornerRadius="{StaticResource MainRadius}">
+    <Border BorderThickness="0" Padding="40" BorderBrush="Transparent" CornerRadius="{StaticResource MainRadius}">
         <Border.Background>
             <SolidColorBrush Color="{StaticResource MainBackground}" />
         </Border.Background>
@@ -27,7 +27,7 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
-                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
@@ -37,14 +37,44 @@
                 <controls:CustomFilterControl Grid.Column="3" Grid.RowSpan="2" Margin="15 0 0 0" DataContext="{Binding SortOrderFilters}" />
 
                 <StackPanel Grid.Row="0" Grid.Column="2">
-                    <TextBlock Foreground="{StaticResource DarkGreenBrush}" Margin="0 15 0 8" Text="HEALTH" />
-                    <Border BorderBrush="{StaticResource LightGrayBrush}" BorderThickness="0.5" CornerRadius="{StaticResource MainRadius}">
-                        <TextBlock>Hi</TextBlock>
+                    <TextBlock Margin="0 15 0 8" Text="HEALTH" />
+                    <Border Padding="15 10"  BorderBrush="{StaticResource LightGrayBrush}" BorderThickness="0.5" CornerRadius="{StaticResource MainRadius}">
+                        <StackPanel>
+                            <CheckBox Foreground="{StaticResource DarkGreenBrush}" Margin="0 10" Template="{StaticResource RoundedCheckBox}"
+                                  VerticalContentAlignment="Center">
+                                <DockPanel>
+                                    <Canvas Width="7" Height="7" Margin="0 0 5 0">
+                                        <Ellipse Fill="#13BB1A" Width="7" Height="7" />
+                                    </Canvas>
+                                    <TextBlock>Grean health indicator</TextBlock>
+                                </DockPanel>
+                            </CheckBox>
+
+                            <CheckBox Foreground="{StaticResource DarkGreenBrush}" Margin="0 10" Template="{StaticResource RoundedCheckBox}"
+                                  VerticalContentAlignment="Center">
+                                <DockPanel>
+                                    <Canvas Width="7" Height="7" Margin="0 0 5 0">
+                                        <Ellipse Fill="#F8C537" Width="7" Height="7" />
+                                    </Canvas>
+                                    <TextBlock>Yellow health indicator</TextBlock>
+                                </DockPanel>
+                            </CheckBox>
+
+                            <CheckBox Foreground="{StaticResource DarkGreenBrush}" Margin="0 10" Template="{StaticResource RoundedCheckBox}"
+                                  VerticalContentAlignment="Center">
+                                <DockPanel>
+                                    <Canvas Width="7" Height="7" Margin="0 0 5 0">
+                                        <Ellipse Fill="#C50000" Width="7" Height="7" />
+                                    </Canvas>
+                                    <TextBlock>Red health indicator</TextBlock>
+                                </DockPanel>
+                            </CheckBox>
+                        </StackPanel>
                     </Border>
                 </StackPanel>
 
                 <StackPanel Grid.Row="1" Grid.Column="2">
-                    <TextBlock Foreground="{StaticResource DarkGreenBrush}" Margin="0 15 0 8" Text="SIZE" />
+                    <TextBlock Margin="0 15 0 8" Text="SIZE" />
                     <Border BorderBrush="{StaticResource LightGrayBrush}" BorderThickness="0.5" CornerRadius="{StaticResource MainRadius}">
                         <TextBlock>Helo</TextBlock>
                     </Border>
