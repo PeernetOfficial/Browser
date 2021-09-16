@@ -10,7 +10,7 @@ namespace Peernet.Browser.Application.Models
     {
         public VirtualFileSystemTier(string name, int depth)
         {
-            FileSystemTiers = new List<VirtualFileSystemTier>();
+            VirtualFileSystemTiers = new List<VirtualFileSystemTier>();
             Name = name;
             Depth = depth;
         }
@@ -21,6 +21,6 @@ namespace Peernet.Browser.Application.Models
 
         public ApiBlockchainAddFiles Files { get; set; }
 
-        public List<VirtualFileSystemTier> FileSystemTiers { get; set; }
+        public List<VirtualFileSystemTier> VirtualFileSystemTiers { get; set; }
     }
 }

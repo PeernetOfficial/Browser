@@ -42,7 +42,7 @@ namespace Peernet.Browser.Application.Models
                 }
                 else
                 {
-                    higherTier.FileSystemTiers.Add(tier);
+                    higherTier.VirtualFileSystemTiers.Add(tier);
                     higherTier = tier;
 
                     if (i == totalDepth - 1)
@@ -72,14 +72,14 @@ namespace Peernet.Browser.Application.Models
             }
             else
             {
-                var candidateTierDescendant = candidateTier.FileSystemTiers.FirstOrDefault();
+                var candidateTierDescendant = candidateTier.VirtualFileSystemTiers.FirstOrDefault();
                 if (candidateTierDescendant == null)
                 {
                     matchingTierThatIsAlreadyInTheFileSystem.Files.Files.Add(candidateTier.Files.Files.First());
                     return;
                 }
 
-                AddFileToTheSystem(candidateTierDescendant, matchingTierThatIsAlreadyInTheFileSystem.FileSystemTiers);
+                AddFileToTheSystem(candidateTierDescendant, matchingTierThatIsAlreadyInTheFileSystem.VirtualFileSystemTiers);
             }
         }
     }
