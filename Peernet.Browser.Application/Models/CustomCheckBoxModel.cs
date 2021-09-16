@@ -7,7 +7,7 @@ namespace Peernet.Browser.Application.Models
     {
         private bool isChecked;
 
-        private string value;
+        private string content;
 
         public Action<CustomCheckBoxModel> IsCheckChanged { get; set; }
 
@@ -17,18 +17,15 @@ namespace Peernet.Browser.Application.Models
             get => isChecked;
             set
             {
-                SetProperty(ref isChecked, value);
-                IsCheckChanged?.Invoke(this);
+                if (SetProperty(ref isChecked, value)) IsCheckChanged?.Invoke(this);
             }
         }
 
-        public bool ResetAll { get; set; }
-
-        public string Value
+        public string Content
 
         {
-            get => value;
-            set => SetProperty(ref value, value);
+            get => content;
+            set => SetProperty(ref content, value);
         }
     }
 }

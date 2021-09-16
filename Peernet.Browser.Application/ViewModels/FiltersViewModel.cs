@@ -7,9 +7,9 @@ namespace Peernet.Browser.Application.ViewModels
     {
         public FiltersViewModel()
         {
-            DateFilters = new CustomFilterModel(GetDateOption());
-            FileFormatFilters = new CustomFilterModel(GetFileFormatOption());
-            SortOrderFilters = new CustomFilterModel(GetSortOption(), false);
+            DateFilters = new CustomFilterModel("Date", GetDateOption());
+            FileFormatFilters = new CustomFilterModel("File format", GetFileFormatOption());
+            SortOrderFilters = new CustomFilterModel("Sort order", GetSortOption(), false);
         }
 
         public CustomFilterModel DateFilters { get; }
@@ -23,21 +23,12 @@ namespace Peernet.Browser.Application.ViewModels
 
         private string[] GetFileFormatOption()
         {
-            return new[] { "" };
+            return new[] { "All", "PDF file", "Word File", "Website", "Excel File", "Powerpoint File", "EPUB File", "Images", "Movies" };
         }
 
         private string[] GetSortOption()
         {
-            return new[] { "" };
-        }
-
-        private CustomCheckBoxModel PrepareCheckBox(string text, bool isReset = false)
-        {
-            return new CustomCheckBoxModel { ResetAll = isReset, Value = text, IsCheckChanged = IsChekcedChanged };
-        }
-
-        private void IsChekcedChanged(CustomCheckBoxModel c)
-        {
+            return new[] { "Most relevant", "Least relevean", "Newest", "Oldest" };
         }
     }
 }
