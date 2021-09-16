@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using MvvmCross.IoC;
 using MvvmCross.Navigation;
+using MvvmCross.Navigation.EventArguments;
 using MvvmCross.Platforms.Wpf.Core;
 using MvvmCross.Plugin;
 using Peernet.Browser.Application.Contexts;
@@ -14,9 +15,11 @@ namespace Peernet.Browser.WPF
 {
     public class Setup : MvxWpfSetup<Application.App>
     {
-        protected override ILoggerProvider CreateLogProvider()
+        public override void LoadPlugins(IMvxPluginManager pluginManager)
         {
-            return new SerilogLoggerProvider();
+            base.LoadPlugins(pluginManager);
+
+            pluginManager.EnsurePluginLoaded<MvvmCross.Plugin.Control.Plugin>(true);
         }
 
         protected override ILoggerFactory CreateLogFactory()
@@ -27,6 +30,11 @@ namespace Peernet.Browser.WPF
                 .CreateLogger();
 
             return new SerilogLoggerFactory(Logger);
+        }
+
+        protected override ILoggerProvider CreateLogProvider()
+        {
+            return new SerilogLoggerProvider();
         }
 
         protected override void RegisterBindingBuilderCallbacks(IMvxIoCProvider iocProvider)
@@ -43,13 +51,17 @@ namespace Peernet.Browser.WPF
             iocProvider.RegisterType<IProfileService, ProfileService>();
             iocProvider.RegisterSingleton<IUserContext>(() => new UserContext(iocProvider.Resolve<IProfileService>(), iocProvider.Resolve<IMvxNavigationService>()));
             iocProvider.RegisterType<IBlockchainService, BlockchainService>();
+
+            ObserveNavigation(iocProvider);
         }
 
-        public override void LoadPlugins(IMvxPluginManager pluginManager)
+        private static void ObserveNavigation(IMvxIoCProvider iocProvider)
         {
-            base.LoadPlugins(pluginManager);
-
-            pluginManager.EnsurePluginLoaded<MvvmCross.Plugin.Control.Plugin>(true);
+            iocProvider.Resolve<IMvxNavigationService>().DidNavigate +=
+                delegate (object sender, IMvxNavigateEventArgs args)
+                {
+                    GlobalContext.CurrentViewModel = args.ViewModel.GetType().Name;
+                };
         }
     }
 }
