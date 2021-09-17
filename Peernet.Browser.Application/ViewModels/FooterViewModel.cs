@@ -104,10 +104,6 @@ namespace Peernet.Browser.Application.ViewModels
 
         private void UploadFiles()
         {
-            GlobalContext.IsMainWindowActive = false;
-            GlobalContext.IsProfileMenuVisible = false;
-            navigationService.Navigate<FiltersViewModel>();
-            return;
             var f = applicationManager.OpenFileDialog();
             if (!f.Any()) return;
             GlobalContext.IsMainWindowActive = false;
