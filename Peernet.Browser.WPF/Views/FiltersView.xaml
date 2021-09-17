@@ -76,14 +76,14 @@
                 <StackPanel Grid.Row="1" Grid.Column="2">
                     <TextBlock Margin="0 15 0 8" Text="SIZE" />
                     <Border BorderBrush="{StaticResource LightGrayBrush}" BorderThickness="0.5" CornerRadius="{StaticResource MainRadius}">
-                        <controls:MyRangeSlider  Maximum="100" Minimum="0" RangeMax="80"  RangeMin="20" />
+                        <controls:MyRangeSlider  Maximum="{Binding RangeFilter.Max}" Minimum="{Binding RangeFilter.Min}" RangeMax="{Binding RangeFilter.CurrentMax}"  RangeMin="{Binding RangeFilter.CurrentMin}" />
                     </Border>
                 </StackPanel>
             </Grid>
 
             <DockPanel HorizontalAlignment="Right" Grid.Row="2">
-                <Button Height="30" Width="110" Style="{StaticResource PrimaryButton}">Cancel</Button>
-                <Button Height="30" Width="110" Style="{StaticResource AcceptButton}">Apply filters</Button>
+                <Button Command="{Binding CancelCommand}" Height="30" Width="110" Style="{StaticResource PrimaryButton}">Cancel</Button>
+                <Button Command="{Binding ApplyFiltersCommand}" Height="30" Width="110" Style="{StaticResource AcceptButton}">Apply filters</Button>
             </DockPanel>
         </Grid>
     </Border>

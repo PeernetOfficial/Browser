@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace Peernet.Browser.Application.Models
 {
+
     public class CustomFilterModel : MvxNotifyPropertyChanged
     {
         private readonly CustomCheckBoxModel first;

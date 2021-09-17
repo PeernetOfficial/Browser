@@ -10,10 +10,17 @@ namespace Peernet.Browser.WPF.Controls
     /// </summary>
     public sealed partial class MyRangeSlider : UserControl
     {
-        public double Minimum
+        public static readonly DependencyProperty MaximumProperty = DependencyProperty.Register("Maximum", typeof(double), typeof(MyRangeSlider), new PropertyMetadata(1.0));
+
+        public static readonly DependencyProperty MinimumProperty = DependencyProperty.Register("Minimum", typeof(double), typeof(MyRangeSlider), new PropertyMetadata(0.0));
+
+        public static readonly DependencyProperty RangeMaxProperty = DependencyProperty.Register("RangeMax", typeof(double), typeof(MyRangeSlider), new PropertyMetadata(1.0, OnRangeMaxPropertyChanged));
+
+        public static readonly DependencyProperty RangeMinProperty = DependencyProperty.Register("RangeMin", typeof(double), typeof(MyRangeSlider), new PropertyMetadata(0.0, OnRangeMinPropertyChanged));
+
+        public MyRangeSlider()
         {
-            get { return (double)GetValue(MinimumProperty); }
-            set { SetValue(MinimumProperty, value); }
+            InitializeComponent();
         }
 
         public double Maximum
@@ -22,55 +29,61 @@ namespace Peernet.Browser.WPF.Controls
             set { SetValue(MaximumProperty, value); }
         }
 
-        public double RangeMin
+        public double Minimum
         {
-            get { return (double)GetValue(RangeMinProperty); }
-            set { SetValue(RangeMinProperty, value); }
+            get { return (double)GetValue(MinimumProperty); }
+            set { SetValue(MinimumProperty, value); }
         }
 
         public double RangeMax
         {
             get { return (double)GetValue(RangeMaxProperty); }
-            set { SetValue(RangeMaxProperty, value); }
+            set
+            {
+                SetValue(RangeMaxProperty, value);
+                SetTextBlock(false);
+            }
         }
 
-        public static readonly DependencyProperty MinimumProperty = DependencyProperty.Register("Minimum", typeof(double), typeof(MyRangeSlider), new PropertyMetadata(0.0));
-
-        public static readonly DependencyProperty MaximumProperty = DependencyProperty.Register("Maximum", typeof(double), typeof(MyRangeSlider), new PropertyMetadata(1.0));
-
-        public static readonly DependencyProperty RangeMinProperty = DependencyProperty.Register("RangeMin", typeof(double), typeof(MyRangeSlider), new PropertyMetadata(0.0, OnRangeMinPropertyChanged));
-
-        public static readonly DependencyProperty RangeMaxProperty = DependencyProperty.Register("RangeMax", typeof(double), typeof(MyRangeSlider), new PropertyMetadata(1.0, OnRangeMaxPropertyChanged));
-
-        public MyRangeSlider()
+        public double RangeMin
         {
-            InitializeComponent();
+            get { return (double)GetValue(RangeMinProperty); }
+            set
+            {
+                SetValue(RangeMinProperty, value);
+                SetTextBlock(true);
+            }
         }
 
-        private static void OnRangeMinPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        public void UpdateMaxThumb(double max, bool update = false)
         {
-            var slider = (MyRangeSlider)d;
-            var newValue = (double)e.NewValue;
+            if (ContainerCanvas != null)
+            {
+                if (update || !MaxThumb.IsDragging)
+                {
+                    var relativeRight = (max - Minimum) / (Maximum - Minimum) * ContainerCanvas.ActualWidth;
 
-            if (newValue < slider.Minimum)
-            {
-                slider.RangeMin = slider.Minimum;
-            }
-            else if (newValue > slider.Maximum)
-            {
-                slider.RangeMin = slider.Maximum;
-            }
-            else
-            {
-                slider.RangeMin = newValue;
-            }
+                    Canvas.SetLeft(MaxThumb, relativeRight);
 
-            if (slider.RangeMin > slider.RangeMax)
-            {
-                slider.RangeMax = slider.RangeMin;
+                    ActiveRectangle.Width = (max - RangeMin) / (Maximum - Minimum) * ContainerCanvas.ActualWidth;
+                }
             }
+        }
 
-            slider.UpdateMinThumb(slider.RangeMin);
+        public void UpdateMinThumb(double min, bool update = false)
+        {
+            if (ContainerCanvas != null)
+            {
+                if (update || !MinThumb.IsDragging)
+                {
+                    var relativeLeft = (min - Minimum) / (Maximum - Minimum) * ContainerCanvas.ActualWidth;
+
+                    Canvas.SetLeft(MinThumb, relativeLeft);
+                    Canvas.SetLeft(ActiveRectangle, relativeLeft);
+
+                    ActiveRectangle.Width = (RangeMax - min) / (Maximum - Minimum) * ContainerCanvas.ActualWidth;
+                }
+            }
         }
 
         private static void OnRangeMaxPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -99,35 +112,30 @@ namespace Peernet.Browser.WPF.Controls
             slider.UpdateMaxThumb(slider.RangeMax);
         }
 
-        public void UpdateMinThumb(double min, bool update = false)
+        private static void OnRangeMinPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (ContainerCanvas != null)
+            var slider = (MyRangeSlider)d;
+            var newValue = (double)e.NewValue;
+
+            if (newValue < slider.Minimum)
             {
-                if (update || !MinThumb.IsDragging)
-                {
-                    var relativeLeft = (min - Minimum) / (Maximum - Minimum) * ContainerCanvas.ActualWidth;
-
-                    Canvas.SetLeft(MinThumb, relativeLeft);
-                    Canvas.SetLeft(ActiveRectangle, relativeLeft);
-
-                    ActiveRectangle.Width = (RangeMax - min) / (Maximum - Minimum) * ContainerCanvas.ActualWidth;
-                }
+                slider.RangeMin = slider.Minimum;
             }
-        }
-
-        public void UpdateMaxThumb(double max, bool update = false)
-        {
-            if (ContainerCanvas != null)
+            else if (newValue > slider.Maximum)
             {
-                if (update || !MaxThumb.IsDragging)
-                {
-                    var relativeRight = (max - Minimum) / (Maximum - Minimum) * ContainerCanvas.ActualWidth;
-
-                    Canvas.SetLeft(MaxThumb, relativeRight);
-
-                    ActiveRectangle.Width = (max - RangeMin) / (Maximum - Minimum) * ContainerCanvas.ActualWidth;
-                }
+                slider.RangeMin = slider.Maximum;
             }
+            else
+            {
+                slider.RangeMin = newValue;
+            }
+
+            if (slider.RangeMin > slider.RangeMax)
+            {
+                slider.RangeMax = slider.RangeMin;
+            }
+
+            slider.UpdateMinThumb(slider.RangeMin);
         }
 
         private void ContainerCanvas_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -142,20 +150,6 @@ namespace Peernet.Browser.WPF.Controls
             ActiveRectangle.Width = (RangeMax - RangeMin) / (Maximum - Minimum) * ContainerCanvas.ActualWidth;
         }
 
-        private void MinThumb_DragDelta(object sender, DragDeltaEventArgs e)
-        {
-            var min = DragThumb(MinThumb, 0, Canvas.GetLeft(MaxThumb), e.HorizontalChange);
-            UpdateMinThumb(min, true);
-            RangeMin = Math.Round(min);
-        }
-
-        private void MaxThumb_DragDelta(object sender, DragDeltaEventArgs e)
-        {
-            var max = DragThumb(MaxThumb, Canvas.GetLeft(MinThumb), ContainerCanvas.ActualWidth, e.HorizontalChange);
-            UpdateMaxThumb(max, true);
-            RangeMax = Math.Round(max);
-        }
-
         private double DragThumb(Thumb thumb, double min, double max, double offset)
         {
             var currentPos = Canvas.GetLeft(thumb);
@@ -167,6 +161,20 @@ namespace Peernet.Browser.WPF.Controls
             return Minimum + nextPos / ContainerCanvas.ActualWidth * (Maximum - Minimum);
         }
 
+        private void MaxThumb_DragCompleted(object sender, DragCompletedEventArgs e)
+        {
+            UpdateMaxThumb(RangeMax);
+            Canvas.SetZIndex(MinThumb, 0);
+            Canvas.SetZIndex(MaxThumb, 10);
+        }
+
+        private void MaxThumb_DragDelta(object sender, DragDeltaEventArgs e)
+        {
+            var max = DragThumb(MaxThumb, Canvas.GetLeft(MinThumb), ContainerCanvas.ActualWidth, e.HorizontalChange);
+            UpdateMaxThumb(max, true);
+            RangeMax = Math.Round(max);
+        }
+
         private void MinThumb_DragCompleted(object sender, DragCompletedEventArgs e)
         {
             UpdateMinThumb(RangeMin);
@@ -174,11 +182,19 @@ namespace Peernet.Browser.WPF.Controls
             Canvas.SetZIndex(MaxThumb, 0);
         }
 
-        private void MaxThumb_DragCompleted(object sender, DragCompletedEventArgs e)
+        private void MinThumb_DragDelta(object sender, DragDeltaEventArgs e)
         {
-            UpdateMaxThumb(RangeMax);
-            Canvas.SetZIndex(MinThumb, 0);
-            Canvas.SetZIndex(MaxThumb, 10);
+            var min = DragThumb(MinThumb, 0, Canvas.GetLeft(MaxThumb), e.HorizontalChange);
+            UpdateMinThumb(min, true);
+            RangeMin = Math.Round(min);
+        }
+
+        private void SetTextBlock(bool isMin)
+        {
+            var val = isMin ? RangeMin : RangeMax;
+            var t = $"{val}GB";
+            if (isMin) MInT.Text = t;
+            else MaxT.Text = t;
         }
     }
 }

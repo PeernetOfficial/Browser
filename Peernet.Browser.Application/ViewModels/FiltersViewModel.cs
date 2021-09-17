@@ -1,20 +1,48 @@
-﻿using MvvmCross.ViewModels;
+﻿using MvvmCross.Commands;
+using MvvmCross.Navigation;
+using MvvmCross.ViewModels;
+using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Models;
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public class FiltersViewModel : MvxViewModel
     {
-        public FiltersViewModel()
+        private readonly IMvxNavigationService mvxNavigationService;
+
+        public FiltersViewModel(IMvxNavigationService mvxNavigationService)
         {
+            this.mvxNavigationService = mvxNavigationService;
+
             DateFilters = new CustomFilterModel("Date", GetDateOption());
             FileFormatFilters = new CustomFilterModel("File format", GetFileFormatOption());
             SortOrderFilters = new CustomFilterModel("Sort order", GetSortOption(), false);
+            RangeFilter = new RangeSliderModel { Min = 10, Max = 90, CurrentMin = 20, CurrentMax = 80 };
+
+            CancelCommand = new MvxCommand(Hide);
+            ApplyFiltersCommand = new MvxCommand(ApplyFilters);
         }
 
         public CustomFilterModel DateFilters { get; }
         public CustomFilterModel FileFormatFilters { get; }
         public CustomFilterModel SortOrderFilters { get; }
+        public RangeSliderModel RangeFilter { get; }
+
+        public IMvxCommand CancelCommand { get; }
+
+        public IMvxCommand ApplyFiltersCommand { get; }
+
+        private void Hide()
+        {
+            GlobalContext.IsMainWindowActive = true;
+            mvxNavigationService.Close(this);
+        }
+
+        private void ApplyFilters()
+        {
+            //TODO: pass filter models
+            Hide();
+        }
 
         private string[] GetDateOption()
         {
