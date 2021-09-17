@@ -35,6 +35,11 @@ namespace Peernet.Browser.Infrastructure
 
         public ApiResponseStatus GetStatus() => GetResult<ApiResponseStatus>("status") ?? new ApiResponseStatus();
 
+        public ApiBlockchainBlock ReadBlock(int block)
+        {
+            return GetResult<ApiBlockchainBlock>($"/blockchain/self/read?block={block}");
+        }
+
         private T GetResult<T>(string method)
         {
             try

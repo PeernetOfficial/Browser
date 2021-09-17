@@ -44,7 +44,8 @@ namespace Peernet.Browser.Infrastructure
                         Date = System.DateTime.Now
                     })
                 .ToList();
-            var res = cmdClient.AddFiles(new ApiBlockchainAddFiles { Files = data });
+            //TODO: add some log? messages?
+            cmdClient.AddFiles(new ApiBlockchainAddFiles { Files = data });
         }
 
         public void DeleteSelfFile(ApiBlockRecordFile apiBlockRecordFile)

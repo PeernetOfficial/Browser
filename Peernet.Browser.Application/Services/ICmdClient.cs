@@ -22,5 +22,12 @@ namespace Peernet.Browser.Application.Services
         /// <param name="files"></param>
         /// <returns></returns>
         ApiBlockchainBlockStatus AddFiles(ApiBlockchainAddFiles files);
+
+        /// <summary>
+        /// Read a block of the blockchain
+        /// </summary>
+        /// <param name="block"></param>
+        /// <returns></returns>
+        ApiBlockchainBlock ReadBlock(int block);
     }
 }
