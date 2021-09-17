@@ -9,7 +9,7 @@ namespace System.Linq
         public static void Foreach<T>(this IEnumerable<T> list, Action<T> a)
         {
             if (list.IsNullOrEmpty() || a == null) return;
-            foreach (var l in list) a?.Invoke(l);
+            foreach (var l in list) a(l);
         }
     }
 }
