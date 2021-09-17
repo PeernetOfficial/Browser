@@ -116,6 +116,8 @@ namespace Peernet.Browser.Application.ViewModels
             }
 
             VirtualFileSystem = new VirtualFileSystem(sharedFiles);
+            AddRecentCategory(VirtualFileSystem, sharedFiles);
+            AddAllFilesCategory(VirtualFileSystem, sharedFiles);
 
             return base.Initialize();
         }
@@ -124,7 +126,7 @@ namespace Peernet.Browser.Application.ViewModels
         {
             var files = new List<ApiBlockRecordFile>();
 
-            var currentTierFiles = tier?.Files?.Files;
+            var currentTierFiles = tier?.Files;
             if (currentTierFiles != null)
             {
                 files.AddRange(currentTierFiles);
@@ -144,6 +146,26 @@ namespace Peernet.Browser.Application.ViewModels
         private List<ApiBlockRecordFile> ApplySearchResultsFiltering(IEnumerable<ApiBlockRecordFile> results)
         {
             return !string.IsNullOrEmpty(SearchInput) ? results.Where(f => f.Name.Contains(SearchInput, StringComparison.OrdinalIgnoreCase)).ToList() : results.ToList();
+        }
+
+        private void AddRecentCategory(VirtualFileSystem fileSystem, IEnumerable<ApiBlockRecordFile> allFiles)
+        {
+            var recentFilesTier = new VirtualFileSystemTier("Recent", 0)
+            {
+                Files = allFiles.OrderByDescending(f => f.Date).Take(10).ToList()
+            };
+        
+            fileSystem.VirtualFileSystemTiers.Add(recentFilesTier);
+        }
+        
+        private void AddAllFilesCategory(VirtualFileSystem fileSystem, IEnumerable<ApiBlockRecordFile> allFiles)
+        {
+            var allFilesTier = new VirtualFileSystemTier("AllFiles", 0)
+            {
+                Files = allFiles.ToList()
+            };
+            
+            fileSystem.VirtualFileSystemTiers.Add(allFilesTier);
         }
     }
 }

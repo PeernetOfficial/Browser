@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Peernet.Browser.Application.Models
 {
@@ -10,7 +6,6 @@ namespace Peernet.Browser.Application.Models
     {
         public VirtualFileSystemTier(string name, int depth)
         {
-            VirtualFileSystemTiers = new List<VirtualFileSystemTier>();
             Name = name;
             Depth = depth;
         }
@@ -19,8 +14,8 @@ namespace Peernet.Browser.Application.Models
 
         public int Depth { get; }
 
-        public ApiBlockchainAddFiles Files { get; set; }
+        public List<ApiBlockRecordFile> Files { get; set; } = new();
 
-        public List<VirtualFileSystemTier> VirtualFileSystemTiers { get; set; }
+        public List<VirtualFileSystemTier> VirtualFileSystemTiers { get; set; } = new();
     }
 }

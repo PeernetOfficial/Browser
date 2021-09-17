@@ -8,19 +8,29 @@ namespace Peernet.Browser.Application.Models
     {
         public VirtualFileSystem(IEnumerable<ApiBlockRecordFile> sharedFiles)
         {
-            VirtualFileSystemTiers = new List<VirtualFileSystemTier>();
             CreateFileSystemStructure(sharedFiles);
         }
 
-        public List<VirtualFileSystemTier> VirtualFileSystemTiers { get; set; }
+        public List<VirtualFileSystemTier> VirtualFileSystemTiers { get; set; } = new();
+
+        public List<VirtualFileSystemCategory> VirtualFileSystemCategories { get; set; } = new();
 
         // Organize Files into the structured system
         private void CreateFileSystemStructure(IEnumerable<ApiBlockRecordFile> sharedFiles)
         {
-            foreach (var file in sharedFiles)
+            // materialize
+            var sharedFilesList = sharedFiles.ToList();
+
+            foreach (var file in sharedFilesList)
             {
                 var coreTier = StructureTheFile(file);
                 AddFileToTheSystem(coreTier, VirtualFileSystemTiers);
+            }
+
+            foreach (LowLevelFileType type in Enum.GetValues(typeof(LowLevelFileType)))
+            {
+                var category = new VirtualFileSystemCategory(type.ToString(), sharedFilesList.Where(f => f.Type == type).ToList());
+                VirtualFileSystemCategories.Add(category);
             }
         }
 
@@ -47,10 +57,7 @@ namespace Peernet.Browser.Application.Models
 
                     if (i == totalDepth - 1)
                     {
-                        tier.Files = new ApiBlockchainAddFiles
-                        {
-                            Files = new List<ApiBlockRecordFile> { file }
-                        };
+                        tier.Files = new List<ApiBlockRecordFile> { file };
                     }
                 }
             }
@@ -75,12 +82,25 @@ namespace Peernet.Browser.Application.Models
                 var candidateTierDescendant = candidateTier.VirtualFileSystemTiers.FirstOrDefault();
                 if (candidateTierDescendant == null)
                 {
-                    matchingTierThatIsAlreadyInTheFileSystem.Files.Files.Add(candidateTier.Files.Files.First());
+                    matchingTierThatIsAlreadyInTheFileSystem.Files.Add(candidateTier.Files.First());
                     return;
                 }
 
                 AddFileToTheSystem(candidateTierDescendant, matchingTierThatIsAlreadyInTheFileSystem.VirtualFileSystemTiers);
             }
         }
+    }
+
+    public class VirtualFileSystemCategory
+    {
+        public VirtualFileSystemCategory(string category, List<ApiBlockRecordFile> categoryFiles)
+        {
+            Name = category;
+            Files = categoryFiles;
+        }
+
+        public string Name { get; }
+
+        public List<ApiBlockRecordFile> Files { get; set; }
     }
 }
