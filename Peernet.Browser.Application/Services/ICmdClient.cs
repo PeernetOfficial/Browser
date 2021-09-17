@@ -8,18 +8,26 @@ namespace Peernet.Browser.Application.Services
         /// Provides current connectivity status to the network
         /// </summary>
         /// <returns></returns>
-        Status GetStatus();
+        ApiResponseStatus GetStatus();
 
         /// <summary>
         /// Provides information about the self peer details
         /// </summary>
         /// <returns></returns>
-        MyInfo GetMyInfo();
+        ApiResponsePeerSelf GetMyInfo();
 
         /// <summary>
         /// Add file to the blockchain
         /// </summary>
         /// <param name="files"></param>
-        void AddFiles(ApiBlockRecordFile[] files);
+        /// <returns></returns>
+        ApiBlockchainBlockStatus AddFiles(ApiBlockchainAddFiles files);
+
+        /// <summary>
+        /// Read a block of the blockchain
+        /// </summary>
+        /// <param name="block"></param>
+        /// <returns></returns>
+        ApiBlockchainBlock ReadBlock(int block);
     }
 }

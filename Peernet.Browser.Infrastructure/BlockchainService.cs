@@ -40,10 +40,12 @@ namespace Peernet.Browser.Infrastructure
                     {
                         Description = x.Desc,
                         Name = x.FileName,
-                        Folder = x.Directory
+                        Folder = x.Directory,
+                        Date = System.DateTime.Now
                     })
-                .ToArray();
-            cmdClient.AddFiles(data);
+                .ToList();
+            //TODO: add some log? messages?
+            cmdClient.AddFiles(new ApiBlockchainAddFiles { Files = data });
         }
 
         public void DeleteSelfFile(ApiBlockRecordFile apiBlockRecordFile)
