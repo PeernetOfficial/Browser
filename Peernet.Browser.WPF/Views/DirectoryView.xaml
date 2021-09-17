@@ -18,12 +18,12 @@
 
             <StackPanel Grid.Column="0" Width="233" HorizontalAlignment="Center" Margin="0,28,0,0">
                 <StackPanel.Resources>
-                    <HierarchicalDataTemplate DataType="{x:Type models:VirtualFileSystemTier}" ItemsSource="{Binding Path=VirtualFileSystemTiers}">
+                    <HierarchicalDataTemplate DataType="{x:Type models:VirtualFileSystemEntity}" ItemsSource="{Binding Path=VirtualFileSystemTiers}">
                         <StackPanel Orientation="Horizontal">
                             <Image Width="11" Height="10" Source="/Assets/Directory_GrayedOut.png" />
                             <TextBlock x:Name="PART_EditableTextBox" Text="{Binding Path=Name}" Margin="7, 0, 0, 0">
                                 <TextBlock.InputBindings>
-                                    <MouseBinding  Command="{Binding DataContext.UpdateActiveSearchResults, ElementName=DirectoryView}" CommandParameter="{Binding}" Gesture="LeftDoubleClick"/>
+                                    <MouseBinding Command="{Binding DataContext.UpdateActiveSearchResults, ElementName=DirectoryView}" CommandParameter="{Binding}" Gesture="LeftDoubleClick"/>
                                 </TextBlock.InputBindings>
                             </TextBlock>
                         </StackPanel>
@@ -41,8 +41,6 @@
                 </StackPanel.Resources>
                 <TreeView BorderThickness="0" HorizontalAlignment="Center" >
                     <TreeViewItem Template="{DynamicResource TreeViewItemTemplate}" ItemsSource="{Binding VirtualFileSystem.VirtualFileSystemTiers}" Header="Your Files" />
-                </TreeView>
-                <TreeView BorderThickness="0" HorizontalAlignment="Center" >
                     <TreeViewItem Template="{DynamicResource TreeViewItemTemplate}" ItemsSource="{Binding VirtualFileSystem.VirtualFileSystemCategories}" Header="Libraries" />
                 </TreeView>
             </StackPanel>

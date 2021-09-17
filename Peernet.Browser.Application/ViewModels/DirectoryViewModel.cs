@@ -75,8 +75,9 @@ namespace Peernet.Browser.Application.ViewModels
             get { return new MvxCommand(() => { ActiveSearchResults = ApplySearchResultsFiltering(sharedFiles); }); }
         }
 
-        public IMvxCommand<VirtualFileSystemTier> UpdateActiveSearchResults => new MvxCommand<VirtualFileSystemTier>(
-            tier => { ActiveSearchResults = ApplySearchResultsFiltering(GetFilesFromTierRecursively(tier)); });
+        public IMvxCommand<VirtualFileSystemEntity> UpdateActiveSearchResults =>
+            new MvxCommand<VirtualFileSystemEntity>(
+                tier => { ActiveSearchResults = ApplySearchResultsFiltering(tier.GetAllFiles()); });
 
 
         public string SearchInput
@@ -122,49 +123,27 @@ namespace Peernet.Browser.Application.ViewModels
             return base.Initialize();
         }
 
-        private List<ApiBlockRecordFile> GetFilesFromTierRecursively(VirtualFileSystemTier tier)
-        {
-            var files = new List<ApiBlockRecordFile>();
-
-            var currentTierFiles = tier?.Files;
-            if (currentTierFiles != null)
-            {
-                files.AddRange(currentTierFiles);
-            }
-
-            if (tier.VirtualFileSystemTiers is { Count: > 0 })
-            {
-                foreach (var subTier in tier.VirtualFileSystemTiers)
-                {
-                    files.AddRange(GetFilesFromTierRecursively(subTier));
-                }
-            }
-
-            return files;
-        }
-
         private List<ApiBlockRecordFile> ApplySearchResultsFiltering(IEnumerable<ApiBlockRecordFile> results)
         {
-            return !string.IsNullOrEmpty(SearchInput) ? results.Where(f => f.Name.Contains(SearchInput, StringComparison.OrdinalIgnoreCase)).ToList() : results.ToList();
+            return !string.IsNullOrEmpty(SearchInput)
+                ? results.Where(f => f.Name.Contains(SearchInput, StringComparison.OrdinalIgnoreCase)).ToList()
+                : results.ToList();
         }
 
         private void AddRecentCategory(VirtualFileSystem fileSystem, IEnumerable<ApiBlockRecordFile> allFiles)
         {
-            var recentFilesTier = new VirtualFileSystemTier("Recent", 0)
-            {
-                Files = allFiles.OrderByDescending(f => f.Date).Take(10).ToList()
-            };
-        
+            var recentFilesTier = new VirtualFileSystemTier("Recent", 0);
+            recentFilesTier.Files.AddRange(allFiles.OrderByDescending(f => f.Date).Take(10).ToList());
+
+
             fileSystem.VirtualFileSystemTiers.Add(recentFilesTier);
         }
-        
+
         private void AddAllFilesCategory(VirtualFileSystem fileSystem, IEnumerable<ApiBlockRecordFile> allFiles)
         {
-            var allFilesTier = new VirtualFileSystemTier("AllFiles", 0)
-            {
-                Files = allFiles.ToList()
-            };
-            
+            var allFilesTier = new VirtualFileSystemTier("AllFiles", 0);
+            allFilesTier.Files.AddRange(allFiles);
+
             fileSystem.VirtualFileSystemTiers.Add(allFilesTier);
         }
     }

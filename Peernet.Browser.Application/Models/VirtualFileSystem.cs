@@ -29,7 +29,7 @@ namespace Peernet.Browser.Application.Models
 
             foreach (LowLevelFileType type in Enum.GetValues(typeof(LowLevelFileType)))
             {
-                var category = new VirtualFileSystemCategory(type.ToString(), sharedFilesList.Where(f => f.Type == type).ToList());
+                var category = new VirtualFileSystemCategory(type.ToString(), sharedFilesList.Where(f => (LowLevelFileType)f.Type == type).ToList());
                 VirtualFileSystemCategories.Add(category);
             }
         }
@@ -57,7 +57,7 @@ namespace Peernet.Browser.Application.Models
 
                     if (i == totalDepth - 1)
                     {
-                        tier.Files = new List<ApiBlockRecordFile> { file };
+                        tier.Files.Add(file);
                     }
                 }
             }
@@ -89,18 +89,5 @@ namespace Peernet.Browser.Application.Models
                 AddFileToTheSystem(candidateTierDescendant, matchingTierThatIsAlreadyInTheFileSystem.VirtualFileSystemTiers);
             }
         }
-    }
-
-    public class VirtualFileSystemCategory
-    {
-        public VirtualFileSystemCategory(string category, List<ApiBlockRecordFile> categoryFiles)
-        {
-            Name = category;
-            Files = categoryFiles;
-        }
-
-        public string Name { get; }
-
-        public List<ApiBlockRecordFile> Files { get; set; }
     }
 }
