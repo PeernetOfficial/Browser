@@ -15,23 +15,30 @@ namespace Peernet.Browser.Infrastructure
             restClient = restClientFactory.CreateRestClient();
         }
 
-        public void AddFiles(ApiBlockRecordFile[] files)
+        public ApiBlockchainBlockStatus AddFiles(ApiBlockchainAddFiles files)
         {
             try
             {
                 var request = new RestRequest("blockchain/self/add/file", DataFormat.Json);
-                request.AddParameter("Files", files);
-                restClient.Post(request);
+                request.AddJsonBody(files);
+                var response = restClient.Post<ApiBlockchainBlockStatus>(request);
+                return response.Data;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
+                return null;
             }
         }
 
-        public MyInfo GetMyInfo() => GetResult<MyInfo>("peer/self");
+        public ApiResponsePeerSelf GetMyInfo() => GetResult<ApiResponsePeerSelf>("peer/self");
 
-        public Status GetStatus() => GetResult<Status>("status") ?? new Status();
+        public ApiResponseStatus GetStatus() => GetResult<ApiResponseStatus>("status") ?? new ApiResponseStatus();
+
+        public ApiBlockchainBlock ReadBlock(int block)
+        {
+            return GetResult<ApiBlockchainBlock>($"/blockchain/self/read?block={block}");
+        }
 
         private T GetResult<T>(string method)
         {
