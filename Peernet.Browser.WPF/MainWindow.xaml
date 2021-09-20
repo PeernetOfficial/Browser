@@ -33,14 +33,16 @@
                         </Style>
                     </Border.Style>
                     <Grid>
-                        <DockPanel IsEnabled="{Binding Path=(contexts:GlobalContext.IsMainWindowActive)}">
-                            <StackPanel Orientation="Vertical" DockPanel.Dock="Top">
-                                <controls:ButtonsControl InitializeOnLoad="true" />
-                                <controls:NavigationBarControl InitializeOnLoad="true" />
-                            </StackPanel>
-                            <controls:FooterControl InitializeOnLoad="true" DockPanel.Dock="Bottom" />
-                        </DockPanel>
-                        <ContentPresenter Content="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <controls:ButtonsControl Grid.Row="0" InitializeOnLoad="true"  IsEnabled="{Binding Path=(contexts:GlobalContext.IsMainWindowActive)}" />
+                        <controls:NavigationBarControl Grid.Row="1" InitializeOnLoad="true"  IsEnabled="{Binding Path=(contexts:GlobalContext.IsMainWindowActive)}" />
+                        <ContentPresenter Grid.Row="2" Content="{Binding}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                        <controls:FooterControl Grid.Row="3" InitializeOnLoad="true" DockPanel.Dock="Bottom"  IsEnabled="{Binding Path=(contexts:GlobalContext.IsMainWindowActive)}" />
                     </Grid>
                 </Border>
             </Border>
