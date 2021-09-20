@@ -6,6 +6,7 @@
     xmlns:models="clr-namespace:Peernet.Browser.Application.Models;assembly=Peernet.Browser.Application"
     xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls"
     xmlns:extensions="clr-namespace:Peernet.Browser.WPF.Extensions"
+    xmlns:virtualFileSystem="clr-namespace:Peernet.Browser.Application.VirtualFileSystem;assembly=Peernet.Browser.Application"
     Height="600" Width="1441"
     x:Name="DirectoryView">
     <Border Background="White" BorderThickness="0" CornerRadius="8,8,8,8">
@@ -18,9 +19,9 @@
 
             <StackPanel Grid.Column="0" Width="233" HorizontalAlignment="Center" Margin="0,28,0,0">
                 <StackPanel.Resources>
-                    <HierarchicalDataTemplate DataType="{x:Type models:VirtualFileSystemEntity}" ItemsSource="{Binding Path=VirtualFileSystemTiers}">
+                    <HierarchicalDataTemplate DataType="{x:Type virtualFileSystem:VirtualFileSystemEntity}" ItemsSource="{Binding Path=VirtualFileSystemTiers}">
                         <StackPanel Orientation="Horizontal">
-                            <Image Width="11" Height="10" Source="/Assets/Directory_GrayedOut.png" />
+                            <Image Width="11" Height="10" Source="{Binding Type, Converter={StaticResource VirtualFileSystemEntityTypeToImageSourceConverter}}" />
                             <TextBlock x:Name="PART_EditableTextBox" Text="{Binding Path=Name}" Margin="7, 0, 0, 0">
                                 <TextBlock.InputBindings>
                                     <MouseBinding Command="{Binding DataContext.UpdateActiveSearchResults, ElementName=DirectoryView}" CommandParameter="{Binding}" Gesture="LeftDoubleClick"/>
@@ -28,9 +29,9 @@
                             </TextBlock>
                         </StackPanel>
                     </HierarchicalDataTemplate>
-                    <HierarchicalDataTemplate DataType="{x:Type models:VirtualFileSystemCategory}" ItemsSource="{Binding Path=VirtualFileSystemCategories}">
+                    <HierarchicalDataTemplate DataType="{x:Type virtualFileSystem:VirtualFileSystemCategory}">
                         <StackPanel Orientation="Horizontal">
-                            <Image Width="11" Height="10" Source="/Assets/Directory_GrayedOut.png" />
+                            <Image Width="11" Height="10" Source="{Binding Type, Converter={StaticResource VirtualFileSystemEntityTypeToImageSourceConverter}}" />
                             <TextBlock Text="{Binding Path=Name}" Margin="7, 0, 0, 0">
                                 <TextBlock.InputBindings>
                                     <MouseBinding  Command="{Binding DataContext.UpdateActiveSearchResults, ElementName=DirectoryView}" CommandParameter="{Binding}" Gesture="LeftDoubleClick"/>

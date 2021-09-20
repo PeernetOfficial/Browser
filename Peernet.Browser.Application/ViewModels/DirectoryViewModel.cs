@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.VirtualFileSystem;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -17,7 +18,7 @@ namespace Peernet.Browser.Application.ViewModels
         private IReadOnlyCollection<ApiBlockRecordFile> sharedFiles;
         private bool showHint = true;
         private bool showSearchBox;
-        private VirtualFileSystem virtualFileSystem;
+        private VirtualFileSystem.VirtualFileSystem virtualFileSystem;
 
         public DirectoryViewModel(IBlockchainService blockchainService)
         {
@@ -30,7 +31,7 @@ namespace Peernet.Browser.Application.ViewModels
             set => SetProperty(ref activeSearchResults, value);
         }
 
-        public VirtualFileSystem VirtualFileSystem
+        public VirtualFileSystem.VirtualFileSystem VirtualFileSystem
         {
             get => virtualFileSystem;
             set => SetProperty(ref virtualFileSystem, value);
@@ -116,9 +117,9 @@ namespace Peernet.Browser.Application.ViewModels
                 ActiveSearchResults = sharedFiles.ToList();
             }
 
-            VirtualFileSystem = new VirtualFileSystem(sharedFiles);
-            AddRecentCategory(VirtualFileSystem, sharedFiles);
-            AddAllFilesCategory(VirtualFileSystem, sharedFiles);
+            VirtualFileSystem = new VirtualFileSystem.VirtualFileSystem(sharedFiles);
+            AddRecentTier(sharedFiles);
+            AddAllFilesTier(sharedFiles);
 
             return base.Initialize();
         }
@@ -130,21 +131,23 @@ namespace Peernet.Browser.Application.ViewModels
                 : results.ToList();
         }
 
-        private void AddRecentCategory(VirtualFileSystem fileSystem, IEnumerable<ApiBlockRecordFile> allFiles)
+        private void AddRecentTier(IEnumerable<ApiBlockRecordFile> allFiles)
         {
-            var recentFilesTier = new VirtualFileSystemTier("Recent", 0);
-            recentFilesTier.Files.AddRange(allFiles.OrderByDescending(f => f.Date).Take(10).ToList());
-
-
-            fileSystem.VirtualFileSystemTiers.Add(recentFilesTier);
+            var filtered = allFiles.OrderByDescending(f => f.Date).Take(10);
+            AddTier("Recent", VirtualFileSystemEntityType.Recent, 0, filtered);
         }
 
-        private void AddAllFilesCategory(VirtualFileSystem fileSystem, IEnumerable<ApiBlockRecordFile> allFiles)
+        private void AddAllFilesTier(IEnumerable<ApiBlockRecordFile> allFiles)
         {
-            var allFilesTier = new VirtualFileSystemTier("AllFiles", 0);
-            allFilesTier.Files.AddRange(allFiles);
+            AddTier("AllFiles", VirtualFileSystemEntityType.All, 0, allFiles);
+        }
 
-            fileSystem.VirtualFileSystemTiers.Add(allFilesTier);
+        private void AddTier(string name, VirtualFileSystemEntityType type, int depth, IEnumerable<ApiBlockRecordFile> files)
+        {
+            var tier = new VirtualFileSystemTier(name, type, depth);
+            tier.Files.AddRange(files);
+
+            VirtualFileSystem.VirtualFileSystemTiers.Add(tier);
         }
     }
 }

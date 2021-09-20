@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using Peernet.Browser.Application.Models;
 
-namespace Peernet.Browser.Application.Models
+namespace Peernet.Browser.Application.VirtualFileSystem
 {
     public class VirtualFileSystemTier : VirtualFileSystemEntity
     {
-        public VirtualFileSystemTier(string name, int depth)
-            : base(name, new List<ApiBlockRecordFile>())
+        public VirtualFileSystemTier(string name, VirtualFileSystemEntityType type, int depth)
+            : base(name, type, new List<ApiBlockRecordFile>())
         { 
             Depth = depth;
         }

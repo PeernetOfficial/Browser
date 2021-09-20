@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using Peernet.Browser.Application.Models;
 
-namespace Peernet.Browser.Application.Models
+namespace Peernet.Browser.Application.VirtualFileSystem
 {
     public class VirtualFileSystem
     {
@@ -27,11 +29,8 @@ namespace Peernet.Browser.Application.Models
                 AddFileToTheSystem(coreTier, VirtualFileSystemTiers);
             }
 
-            foreach (LowLevelFileType type in Enum.GetValues(typeof(LowLevelFileType)))
-            {
-                var category = new VirtualFileSystemCategory(type.ToString(), sharedFilesList.Where(f => (LowLevelFileType)f.Type == type).ToList());
-                VirtualFileSystemCategories.Add(category);
-            }
+            FilesToCategoryBinder binder = new(sharedFilesList);
+            VirtualFileSystemCategories = binder.Bind();
         }
 
         private VirtualFileSystemTier StructureTheFile(ApiBlockRecordFile file)
@@ -43,7 +42,7 @@ namespace Peernet.Browser.Application.Models
             VirtualFileSystemTier higherTier = null;
             for (int i = 0; i < totalDepth; i++)
             {
-                var tier = new VirtualFileSystemTier(directories[i], i);
+                var tier = new VirtualFileSystemTier(directories[i], VirtualFileSystemEntityType.Directory, i);
 
                 if (coreTier == null)
                 {
@@ -88,6 +87,20 @@ namespace Peernet.Browser.Application.Models
 
                 AddFileToTheSystem(candidateTierDescendant, matchingTierThatIsAlreadyInTheFileSystem.VirtualFileSystemTiers);
             }
+        }
+
+        private static string GetPluralInvariant(string s)
+        {
+            const char pluralSuffix = 's';
+            var last = s.Last();
+            if (last != 's')
+            {
+                StringBuilder builder = new(s);
+                builder.Append(pluralSuffix);
+                s = builder.ToString();
+            }
+
+            return s;
         }
     }
 }
