@@ -3,54 +3,26 @@ using MvvmCross.ViewModels;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class HomeViewModel : MvxViewModel, ISearchable
+    public class HomeViewModel : MvxViewModel
     {
         private string searchInput;
-        private bool showHint = true;
-        private bool showSearchBox = false;
 
-        public IMvxCommand RemoveHint
+        public HomeViewModel()
         {
-            get
-            {
-                return new MvxCommand(() =>
-                {
-                    if (ShowHint)
-                    {
-                        ShowHint = false;
-                        ShowSearchBox = true;
-                    }
-                });
-            }
+            Search = new MvxCommand(SearchAction);
         }
 
-        public IMvxCommand Search
+        private void SearchAction()
         {
-            get
-            {
-                return new MvxCommand(() =>
-                {
-                    SearchInput = "Searching...";
-                });
-            }
+            SearchInput = "";
         }
+
+        public IMvxCommand Search { get; }
 
         public string SearchInput
         {
             get => searchInput;
             set => SetProperty(ref searchInput, value);
-        }
-
-        public bool ShowHint
-        {
-            get => showHint;
-            set => SetProperty(ref showHint, value);
-        }
-
-        public bool ShowSearchBox
-        {
-            get => showSearchBox;
-            set => SetProperty(ref showSearchBox, value);
         }
     }
 }
