@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Peernet.Browser.Application.Models;
 
 namespace Peernet.Browser.Application.VirtualFileSystem
@@ -20,6 +19,12 @@ namespace Peernet.Browser.Application.VirtualFileSystem
         public List<VirtualFileSystemTier> VirtualFileSystemTiers { get; set; } = new();
 
         public List<VirtualFileSystemCategory> VirtualFileSystemCategories { get; set; } = new();
+
+        public void Sort()
+        {
+            VirtualFileSystemTiers = VirtualFileSystemTiers.OrderBy(t => t.Name).ToList();
+            VirtualFileSystemCategories = VirtualFileSystemCategories.OrderBy(t => t.Name).ToList();
+        }
 
         // Organize Files into the structured system
         private void CreateFileSystemStructure(IEnumerable<ApiBlockRecordFile> sharedFiles)
@@ -56,10 +61,11 @@ namespace Peernet.Browser.Application.VirtualFileSystem
                     higherTier.VirtualFileSystemTiers.Add(tier);
                     higherTier = tier;
 
-                    if (i == totalDepth - 1)
-                    {
-                        tier.Files.Add(file);
-                    }
+                }
+
+                if (i == totalDepth - 1)
+                {
+                    tier.Files.Add(file);
                 }
             }
 

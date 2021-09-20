@@ -11,7 +11,6 @@ namespace Peernet.Browser.WPF.Converters
         VirtualFileSystemEntityTypeToImageSourceConverter : MvxNativeValueConverter<
             VirtualFileSystemEntityTypeToImageSourceValueConverter>
     {
-
     }
 
     internal class VirtualFileSystemEntityTypeToImageSourceValueConverter : MvxValueConverter<VirtualFileSystemEntityType, string>
@@ -38,16 +37,19 @@ namespace Peernet.Browser.WPF.Converters
                     asset = GetAsset("Video.png");
                     break;
                 case VirtualFileSystemEntityType.Binary:
-                    asset = GetAsset("AllFiles.png");
+                    asset = GetAsset("Binary.png");
                     break;
                 case VirtualFileSystemEntityType.Picture:
                     asset = GetAsset("Picture.png");
                     break;
                 case VirtualFileSystemEntityType.Document:
-                    asset = GetAsset("FileImage.png");
+                    asset = GetAsset("Document.png");
                     break;
                 case VirtualFileSystemEntityType.Directory:
-                    asset = GetAsset("Directory_GrayedOut.png");
+                    asset = GetAsset("File.png");
+                    break;
+                case VirtualFileSystemEntityType.Text:
+                    asset = GetAsset("Text.png");
                     break;
             }
 

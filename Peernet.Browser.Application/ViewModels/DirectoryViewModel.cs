@@ -35,7 +35,11 @@ namespace Peernet.Browser.Application.ViewModels
 
         public VirtualFileSystem.VirtualFileSystem VirtualFileSystem
         {
-            get => virtualFileSystem;
+            get
+            {
+                virtualFileSystem.Sort();
+                return virtualFileSystem;
+            }
             set => SetProperty(ref virtualFileSystem, value);
         }
 
@@ -141,7 +145,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         private void AddAllFilesTier(IEnumerable<ApiBlockRecordFile> allFiles)
         {
-            AddTier("AllFiles", VirtualFileSystemEntityType.All, 0, allFiles);
+            AddTier("All files", VirtualFileSystemEntityType.All, 0, allFiles);
         }
 
         private void AddTier(string name, VirtualFileSystemEntityType type, int depth, IEnumerable<ApiBlockRecordFile> files)
