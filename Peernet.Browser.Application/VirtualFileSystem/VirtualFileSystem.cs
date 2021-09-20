@@ -8,8 +8,12 @@ namespace Peernet.Browser.Application.VirtualFileSystem
 {
     public class VirtualFileSystem
     {
-        public VirtualFileSystem(IEnumerable<ApiBlockRecordFile> sharedFiles)
+        private readonly IFilesToCategoryBinder binder;
+
+        public VirtualFileSystem(IEnumerable<ApiBlockRecordFile> sharedFiles, IFilesToCategoryBinder binder)
         {
+            this.binder = binder;
+
             CreateFileSystemStructure(sharedFiles);
         }
 
@@ -23,14 +27,12 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             // materialize
             var sharedFilesList = sharedFiles.ToList();
 
-            foreach (var file in sharedFilesList)
+            foreach (var coreTier in sharedFilesList.Select(StructureTheFile))
             {
-                var coreTier = StructureTheFile(file);
                 AddFileToTheSystem(coreTier, VirtualFileSystemTiers);
             }
 
-            FilesToCategoryBinder binder = new(sharedFilesList);
-            VirtualFileSystemCategories = binder.Bind();
+            VirtualFileSystemCategories = binder.Bind(sharedFilesList);
         }
 
         private VirtualFileSystemTier StructureTheFile(ApiBlockRecordFile file)

@@ -5,16 +5,9 @@ using Peernet.Browser.Application.Models;
 
 namespace Peernet.Browser.Application.VirtualFileSystem
 {
-    public class FilesToCategoryBinder
+    public class FilesToCategoryBinder : IFilesToCategoryBinder
     {
-        private List<ApiBlockRecordFile> files;
-
-        public FilesToCategoryBinder(List<ApiBlockRecordFile> files)
-        {
-            this.files = files;
-        }
-
-        public List<VirtualFileSystemCategory> Bind()
+        public List<VirtualFileSystemCategory> Bind(List<ApiBlockRecordFile> files)
         {
             var remainingFiles = files;
             List<VirtualFileSystemCategory> categories = new();
@@ -66,15 +59,13 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             return categories;
         }
 
-        private List<ApiBlockRecordFile> RemoveFilesFromCollection(List<ApiBlockRecordFile> collection,
+        private void RemoveFilesFromCollection(List<ApiBlockRecordFile> collection,
             List<ApiBlockRecordFile> filesToRemove)
         {
             foreach (var selectedFile in filesToRemove)
             {
                 collection.Remove(selectedFile);
             }
-
-            return collection;
         }
     }
 }

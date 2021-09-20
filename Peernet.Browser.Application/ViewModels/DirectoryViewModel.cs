@@ -19,10 +19,12 @@ namespace Peernet.Browser.Application.ViewModels
         private bool showHint = true;
         private bool showSearchBox;
         private VirtualFileSystem.VirtualFileSystem virtualFileSystem;
+        private readonly IVirtualFileSystemFactory virtualFileSystemFactory;
 
-        public DirectoryViewModel(IBlockchainService blockchainService)
+        public DirectoryViewModel(IBlockchainService blockchainService, IVirtualFileSystemFactory virtualFileSystemFactory)
         {
             this.blockchainService = blockchainService;
+            this.virtualFileSystemFactory = virtualFileSystemFactory;
         }
 
         public List<ApiBlockRecordFile> ActiveSearchResults
@@ -117,7 +119,7 @@ namespace Peernet.Browser.Application.ViewModels
                 ActiveSearchResults = sharedFiles.ToList();
             }
 
-            VirtualFileSystem = new VirtualFileSystem.VirtualFileSystem(sharedFiles);
+            VirtualFileSystem = virtualFileSystemFactory.CreateVirtualFileSystem(sharedFiles);
             AddRecentTier(sharedFiles);
             AddAllFilesTier(sharedFiles);
 
