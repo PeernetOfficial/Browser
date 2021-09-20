@@ -9,7 +9,5 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             : base(category, type, categoryFiles)
         {
         }
-
-        public override List<ApiBlockRecordFile> GetAllFiles() => Files;
     }
 }

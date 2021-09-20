@@ -90,19 +90,5 @@ namespace Peernet.Browser.Application.VirtualFileSystem
                 AddFileToTheSystem(candidateTierDescendant, matchingTierThatIsAlreadyInTheFileSystem.VirtualFileSystemTiers);
             }
         }
-
-        private static string GetPluralInvariant(string s)
-        {
-            const char pluralSuffix = 's';
-            var last = s.Last();
-            if (last != 's')
-            {
-                StringBuilder builder = new(s);
-                builder.Append(pluralSuffix);
-                s = builder.ToString();
-            }
-
-            return s;
-        }
     }
 }
