@@ -36,12 +36,11 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
-                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <controls:ButtonsControl Grid.Row="0" InitializeOnLoad="true"  IsEnabled="{Binding Path=(contexts:GlobalContext.IsMainWindowActive)}" />
                         <controls:NavigationBarControl Panel.ZIndex="2" Grid.Row="1" InitializeOnLoad="true"  IsEnabled="{Binding Path=(contexts:GlobalContext.IsMainWindowActive)}" />
                         <ContentPresenter Grid.Row="1" Content="{Binding}" Panel.ZIndex="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                        <controls:FooterControl Grid.Row="2" InitializeOnLoad="true" DockPanel.Dock="Bottom"  IsEnabled="{Binding Path=(contexts:GlobalContext.IsMainWindowActive)}" />
+                        <controls:FooterControl Panel.ZIndex="2" Grid.Row="1" InitializeOnLoad="true" DockPanel.Dock="Bottom"  IsEnabled="{Binding Path=(contexts:GlobalContext.IsMainWindowActive)}" />
                     </Grid>
                 </Border>
             </Border>
