@@ -11,9 +11,14 @@ namespace Peernet.Browser.Application.ViewModels
         public HomeViewModel()
         {
             Search = new MvxCommand(Model.Clear);
+            Tabs.Add(new SearchTabElement { Title = "Snowden documentary", Content = "Snowden documentary" });
+            Tabs.Add(new SearchTabElement { Title = "Micro hydro power", Content = "Micro hydro power" });
+            Tabs.Add(new SearchTabElement { Title = "File sharing", Content = "File sharing" });
         }
 
         public IMvxCommand Search { get; }
+
+        public MvxObservableCollection<SearchTabElement> Tabs { get; } = new MvxObservableCollection<SearchTabElement>();
     }
 
     public class SearchTabElement : MvxNotifyPropertyChanged
@@ -24,6 +29,14 @@ namespace Peernet.Browser.Application.ViewModels
         {
             get => title;
             set => SetProperty(ref title, value);
+        }
+
+        private string content;
+
+        public string Content
+        {
+            get => content;
+            set => SetProperty(ref content, value);
         }
     }
 
