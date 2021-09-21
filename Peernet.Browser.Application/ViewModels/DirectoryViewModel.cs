@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.VirtualFileSystem;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -17,36 +18,49 @@ namespace Peernet.Browser.Application.ViewModels
         private IReadOnlyCollection<ApiBlockRecordFile> sharedFiles;
         private bool showHint = true;
         private bool showSearchBox;
+        private VirtualFileSystem.VirtualFileSystem virtualFileSystem;
+        private readonly IVirtualFileSystemFactory virtualFileSystemFactory;
 
-        public DirectoryViewModel(IBlockchainService blockchainService)
+        public DirectoryViewModel(IBlockchainService blockchainService, IVirtualFileSystemFactory virtualFileSystemFactory)
         {
             this.blockchainService = blockchainService;
+            this.virtualFileSystemFactory = virtualFileSystemFactory;
         }
 
         public List<ApiBlockRecordFile> ActiveSearchResults
         {
             get => activeSearchResults;
             set => SetProperty(ref activeSearchResults, value);
+        }
 
+        public VirtualFileSystem.VirtualFileSystem VirtualFileSystem
+        {
+            get
+            {
+                virtualFileSystem.Sort();
+                return virtualFileSystem;
+            }
+            set => SetProperty(ref virtualFileSystem, value);
         }
 
         public IMvxAsyncCommand<ApiBlockRecordFile> DeleteCommand =>
-                    new MvxAsyncCommand<ApiBlockRecordFile>(
+            new MvxAsyncCommand<ApiBlockRecordFile>(
                 apiBlockRecordFile =>
-            {
-                blockchainService.DeleteSelfFile(apiBlockRecordFile);
+                {
+                    blockchainService.DeleteSelfFile(apiBlockRecordFile);
 
-                return Task.CompletedTask;
-            });
+                    return Task.CompletedTask;
+                });
+
 
         public IMvxAsyncCommand<ApiBlockRecordFile> EditCommand =>
             new MvxAsyncCommand<ApiBlockRecordFile>(
                 apiBlockRecordFile =>
-        {
-            // Logic to be implemented
+                {
+                    // Logic to be implemented
 
-            return Task.CompletedTask;
-        });
+                    return Task.CompletedTask;
+                });
 
         public IMvxCommand RemoveHint
         {
@@ -65,21 +79,13 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IMvxCommand Search
         {
-            get
-            {
-                return new MvxCommand(() =>
-                {
-                    if (!string.IsNullOrEmpty(SearchInput))
-                    {
-                        ActiveSearchResults = sharedFiles.Where(f => f.Name.Contains(SearchInput, StringComparison.OrdinalIgnoreCase)).ToList();
-                    }
-                    else
-                    {
-                        ActiveSearchResults = sharedFiles.ToList();
-                    }
-                });
-            }
+            get { return new MvxCommand(() => { ActiveSearchResults = ApplySearchResultsFiltering(sharedFiles); }); }
         }
+
+        public IMvxCommand<VirtualFileSystemEntity> UpdateActiveSearchResults =>
+            new MvxCommand<VirtualFileSystemEntity>(
+                tier => { ActiveSearchResults = ApplySearchResultsFiltering(tier.GetAllFiles()); });
+
 
         public string SearchInput
         {
@@ -88,13 +94,14 @@ namespace Peernet.Browser.Application.ViewModels
         }
 
         public IMvxAsyncCommand<ApiBlockRecordFile> ShareCommand =>
-                                    new MvxAsyncCommand<ApiBlockRecordFile>(
+            new MvxAsyncCommand<ApiBlockRecordFile>(
                 apiBlockRecordFile =>
-        {
-            // Logic to be implemented
+                {
+                    // Logic to be implemented
 
-            return Task.CompletedTask;
-        });
+                    return Task.CompletedTask;
+                });
+
         public bool ShowHint
         {
             get => showHint;
@@ -116,12 +123,37 @@ namespace Peernet.Browser.Application.ViewModels
                 ActiveSearchResults = sharedFiles.ToList();
             }
 
+            VirtualFileSystem = virtualFileSystemFactory.CreateVirtualFileSystem(sharedFiles);
+            AddRecentTier(sharedFiles);
+            AddAllFilesTier(sharedFiles);
+
             return base.Initialize();
         }
 
-        private void CreateFileSystemStructure()
+        private List<ApiBlockRecordFile> ApplySearchResultsFiltering(IEnumerable<ApiBlockRecordFile> results)
         {
+            return !string.IsNullOrEmpty(SearchInput)
+                ? results.Where(f => f.Name.Contains(SearchInput, StringComparison.OrdinalIgnoreCase)).ToList()
+                : results.ToList();
+        }
 
+        private void AddRecentTier(IEnumerable<ApiBlockRecordFile> allFiles)
+        {
+            var filtered = allFiles.OrderByDescending(f => f.Date).Take(10);
+            AddTier("Recent", VirtualFileSystemEntityType.Recent, 0, filtered);
+        }
+
+        private void AddAllFilesTier(IEnumerable<ApiBlockRecordFile> allFiles)
+        {
+            AddTier("All files", VirtualFileSystemEntityType.All, 0, allFiles);
+        }
+
+        private void AddTier(string name, VirtualFileSystemEntityType type, int depth, IEnumerable<ApiBlockRecordFile> files)
+        {
+            var tier = new VirtualFileSystemTier(name, type, depth);
+            tier.Files.AddRange(files);
+
+            VirtualFileSystem.VirtualFileSystemTiers.Add(tier);
         }
     }
 }

@@ -7,6 +7,7 @@ using MvvmCross.Plugin;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Http;
 using Peernet.Browser.Application.Services;
+using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.Browser.Infrastructure;
 using Serilog;
 using Serilog.Extensions.Logging;
@@ -24,12 +25,12 @@ namespace Peernet.Browser.WPF
 
         protected override ILoggerFactory CreateLogFactory()
         {
-            var Logger = new LoggerConfiguration()
+            var logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
                 .WriteTo.Trace()
                 .CreateLogger();
 
-            return new SerilogLoggerFactory(Logger);
+            return new SerilogLoggerFactory(logger);
         }
 
         protected override ILoggerProvider CreateLogProvider()
@@ -51,6 +52,8 @@ namespace Peernet.Browser.WPF
             iocProvider.RegisterType<IProfileService, ProfileService>();
             iocProvider.RegisterSingleton<IUserContext>(() => new UserContext(iocProvider.Resolve<IProfileService>(), iocProvider.Resolve<IMvxNavigationService>()));
             iocProvider.RegisterType<IBlockchainService, BlockchainService>();
+            iocProvider.RegisterType<IVirtualFileSystemFactory, VirtualFileSystemFactory>();
+            iocProvider.RegisterType<IFilesToCategoryBinder, FilesToCategoryBinder>();
 
             ObserveNavigation(iocProvider);
         }
