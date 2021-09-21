@@ -20,6 +20,7 @@ namespace Peernet.Browser.Application.ViewModels
         private bool showSearchBox;
         private VirtualFileSystem.VirtualFileSystem virtualFileSystem;
         private readonly IVirtualFileSystemFactory virtualFileSystemFactory;
+        private List<VirtualFileSystemTier> pathElements;
 
         public DirectoryViewModel(IBlockchainService blockchainService, IVirtualFileSystemFactory virtualFileSystemFactory)
         {
@@ -41,6 +42,12 @@ namespace Peernet.Browser.Application.ViewModels
                 return virtualFileSystem;
             }
             set => SetProperty(ref virtualFileSystem, value);
+        }
+
+        public List<VirtualFileSystemTier> PathElements
+        {
+            get => pathElements;
+            set => SetProperty(ref pathElements, value);
         }
 
         public IMvxAsyncCommand<ApiBlockRecordFile> DeleteCommand =>

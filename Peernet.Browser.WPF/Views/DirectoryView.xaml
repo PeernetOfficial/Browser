@@ -40,7 +40,12 @@
                         </StackPanel>
                     </HierarchicalDataTemplate>
                 </StackPanel.Resources>
-                <TreeView BorderThickness="0" HorizontalAlignment="Center" >
+                <TreeView BorderThickness="0" HorizontalAlignment="Center">
+                    <TreeView.ItemContainerStyle>
+                        <Style TargetType="{x:Type TreeViewItem}">
+                            <EventSetter Event="MouseDoubleClick" Handler="TreeViewItem_OnSelected" />
+                        </Style>
+                    </TreeView.ItemContainerStyle>
                     <TreeViewItem Template="{DynamicResource TreeViewItemTemplate}" ItemsSource="{Binding VirtualFileSystem.VirtualFileSystemTiers}" Header="Your Files" Foreground="{StaticResource DarkGreenBrush}" />
                     <TreeViewItem Template="{DynamicResource TreeViewItemTemplate}" ItemsSource="{Binding VirtualFileSystem.VirtualFileSystemCategories}" Header="Libraries" Foreground="{StaticResource DarkGreenBrush}" />
                 </TreeView>
@@ -62,7 +67,25 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Margin="63, 40, 0, 0">Path</TextBlock>
+                <ItemsControl Grid.Row="0" Grid.Column="0" Margin="63, 40, 0, 0" ItemsSource="{Binding PathElements}" >
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"></StackPanel>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text=">">
+                                    <TextBlock.Foreground>
+                                        <SolidColorBrush Opacity="0.6" Color="Black"></SolidColorBrush>
+                                    </TextBlock.Foreground>
+                                </TextBlock>
+                                <Button Height="15" Width="40" Content="{Binding Path=Name}"></Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
                 <Border Grid.Row="0" Grid.Column="1" Width="229" Height="40" HorizontalAlignment="Right" Margin="0,28, 85, 27" BorderThickness="1" CornerRadius="3,3,3,3">
                     <Border.BorderBrush>
                         <SolidColorBrush Opacity="0.06" Color="Black" />
