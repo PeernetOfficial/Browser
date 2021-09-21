@@ -41,6 +41,11 @@ namespace Peernet.Browser.Application.VirtualFileSystem
                         AddCategory("Audio", f => f.Type == LowLevelFileType.Audio);
                         break;
                     }
+                    case VirtualFileSystemEntityType.Ebook:
+                    {
+                        AddCategory("Ebook", f => f.Format == HighLevelFileType.Ebook);
+                        break;
+                    }
                 }
 
                 void AddCategory(

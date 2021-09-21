@@ -2,7 +2,6 @@
 using System.Globalization;
 using MvvmCross.Converters;
 using MvvmCross.Platforms.Wpf.Converters;
-using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.VirtualFileSystem;
 
 namespace Peernet.Browser.WPF.Converters
@@ -50,6 +49,9 @@ namespace Peernet.Browser.WPF.Converters
                     break;
                 case VirtualFileSystemEntityType.Text:
                     asset = GetAsset("Text.png");
+                    break;
+                case VirtualFileSystemEntityType.Ebook:
+                    asset = GetAsset("Ebook.png");
                     break;
             }
 
