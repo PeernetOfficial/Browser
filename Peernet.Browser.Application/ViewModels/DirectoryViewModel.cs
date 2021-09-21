@@ -4,6 +4,7 @@ using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Peernet.Browser.Application.VirtualFileSystem;
@@ -20,7 +21,7 @@ namespace Peernet.Browser.Application.ViewModels
         private bool showSearchBox;
         private VirtualFileSystem.VirtualFileSystem virtualFileSystem;
         private readonly IVirtualFileSystemFactory virtualFileSystemFactory;
-        private List<VirtualFileSystemTier> pathElements;
+        private ObservableCollection<VirtualFileSystemTier> pathElements;
 
         public DirectoryViewModel(IBlockchainService blockchainService, IVirtualFileSystemFactory virtualFileSystemFactory)
         {
@@ -44,7 +45,7 @@ namespace Peernet.Browser.Application.ViewModels
             set => SetProperty(ref virtualFileSystem, value);
         }
 
-        public List<VirtualFileSystemTier> PathElements
+        public ObservableCollection<VirtualFileSystemTier> PathElements
         {
             get => pathElements;
             set => SetProperty(ref pathElements, value);

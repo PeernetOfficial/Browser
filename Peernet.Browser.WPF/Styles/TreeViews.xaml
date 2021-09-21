@@ -38,6 +38,7 @@
         <Setter Property="Padding" Value="1,0,0,0" />
         <Setter Property="Foreground" Value="{StaticResource GrayedOutItemBrush}" />
         <Setter Property="IsExpanded" Value="True" />
+        <Setter Property="Focusable" Value="True" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="Margin" Value="0, 4, 0, 4" />
         <Setter Property="Template">
@@ -86,10 +87,11 @@
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Padding="{TemplateBinding Padding}">
-                            <ContentControl x:Name="PART_Header"
-                              Content="{TemplateBinding Header}"
-                              Foreground="{TemplateBinding Foreground}"
-                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                            <ContentControl 
+                                x:Name="PART_Header"
+                                Content="{TemplateBinding Header}"
+                                Foreground="{TemplateBinding Foreground}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
                         </Border>
                         <ItemsPresenter x:Name="ItemsHost"
                           Grid.Row="1"
