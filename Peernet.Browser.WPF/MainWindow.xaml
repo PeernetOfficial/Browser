@@ -35,14 +35,13 @@
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <controls:ButtonsControl Grid.Row="0" InitializeOnLoad="true"  IsEnabled="{Binding Path=(contexts:GlobalContext.IsMainWindowActive)}" />
                         <controls:NavigationBarControl Grid.Row="1" InitializeOnLoad="true"  IsEnabled="{Binding Path=(contexts:GlobalContext.IsMainWindowActive)}" />
-                        <ContentPresenter Grid.Row="2" Content="{Binding}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                        <controls:FooterControl Grid.Row="3" InitializeOnLoad="true" DockPanel.Dock="Bottom"  IsEnabled="{Binding Path=(contexts:GlobalContext.IsMainWindowActive)}" />
+                        <ContentPresenter Grid.Row="1" Content="{Binding}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                        <controls:FooterControl Grid.Row="2" InitializeOnLoad="true" DockPanel.Dock="Bottom"  IsEnabled="{Binding Path=(contexts:GlobalContext.IsMainWindowActive)}" />
                     </Grid>
                 </Border>
             </Border>
