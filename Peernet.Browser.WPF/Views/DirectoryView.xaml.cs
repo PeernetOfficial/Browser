@@ -19,7 +19,7 @@ namespace Peernet.Browser.WPF.Views
     [MvxViewFor(typeof(DirectoryViewModel))]
     public partial class DictionaryView : MvxWpfView
     {
-        private Dictionary<VirtualFileSystemTier, TreeViewItem> pathElements;
+        private Dictionary<VirtualFileSystemEntity, TreeViewItem> pathElements;
 
         public DictionaryView()
         {
@@ -29,23 +29,23 @@ namespace Peernet.Browser.WPF.Views
         private void TreeViewItem_OnSelected(object sender, RoutedEventArgs e)
         {
             var parentObject = GetParentObject((DependencyObject)e.OriginalSource);
-            var tiers = GetAllTiersToTheTreeCore(parentObject);
+            var entities = GetAllEntitiesToTheTreeCore(parentObject);
 
-            ((DirectoryViewModel)ViewModel).PathElements = new ObservableCollection<VirtualFileSystemTier>(tiers.Keys);
+            ((DirectoryViewModel)ViewModel).PathElements = new ObservableCollection<VirtualFileSystemEntity>(entities.Keys);
 
-            pathElements = tiers;
+            pathElements = entities;
         }
 
-        private Dictionary<VirtualFileSystemTier, TreeViewItem> GetAllTiersToTheTreeCore(DependencyObject parentObject)
+        private Dictionary<VirtualFileSystemEntity, TreeViewItem> GetAllEntitiesToTheTreeCore(DependencyObject parentObject)
         {
-            Dictionary<VirtualFileSystemTier, TreeViewItem> treeViewItems = new();
+            Dictionary<VirtualFileSystemEntity, TreeViewItem> treeViewItems = new();
             string header = null;
 
             while (parentObject != null)
             {
-                if (parentObject is TreeViewItem { DataContext: VirtualFileSystemTier tier } treeViewItem)
+                if (parentObject is TreeViewItem { DataContext: VirtualFileSystemEntity entity } treeViewItem)
                 {
-                    treeViewItems.Add(tier, treeViewItem);
+                    treeViewItems.Add(entity, treeViewItem);
                     header ??= treeViewItem.Header.ToString();
                 }
                 
@@ -91,15 +91,15 @@ namespace Peernet.Browser.WPF.Views
 
         private void SelectedTreeItem(object sender, RoutedEventArgs e)
         {
-            var tier = (VirtualFileSystemTier)((FrameworkElement)e.OriginalSource).DataContext;
-            var item = pathElements[tier];
+            var entity = (VirtualFileSystemEntity)((FrameworkElement)e.OriginalSource).DataContext;
+            var item = pathElements[entity];
             item.IsSelected = true;
             item.Focus();
 
 
             var elements = ((DirectoryViewModel)ViewModel).PathElements;
-            var index = elements.IndexOf(tier);
-            List<VirtualFileSystemTier> itemsToRemove = new();
+            var index = elements.IndexOf(entity);
+            List<VirtualFileSystemEntity> itemsToRemove = new();
             for (var i = index + 1; i < elements.Count; i++)
             {
                 itemsToRemove.Add(elements[i]);

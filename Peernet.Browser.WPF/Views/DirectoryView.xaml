@@ -34,7 +34,7 @@
                             <Image Width="11" Height="10" Source="{Binding Type, Converter={StaticResource VirtualFileSystemEntityTypeToImageSourceConverter}}" />
                             <TextBlock Text="{Binding Path=Name}" Margin="7, 0, 0, 0">
                                 <TextBlock.InputBindings>
-                                    <MouseBinding  Command="{Binding DataContext.UpdateActiveSearchResults, ElementName=DirectoryView}" CommandParameter="{Binding}" Gesture="LeftDoubleClick"/>
+                                    <MouseBinding Command="{Binding DataContext.UpdateActiveSearchResults, ElementName=DirectoryView}" CommandParameter="{Binding}" Gesture="LeftDoubleClick"/>
                                 </TextBlock.InputBindings>
                             </TextBlock>
                         </StackPanel>
@@ -50,13 +50,11 @@
                     <TreeViewItem Template="{DynamicResource TreeViewItemTemplate}" ItemsSource="{Binding VirtualFileSystem.VirtualFileSystemCategories}" Header="Libraries" Foreground="{StaticResource DarkGreenBrush}" />
                 </TreeView>
             </StackPanel>
-            <Separator Style="{StaticResource StandardSeparatorStyle}" Grid.Column="1" Width="500" RenderTransformOrigin="0.5,0.5">
-                <Separator.RenderTransform>
-                    <TransformGroup>
-                        <RotateTransform Angle="90" />
-                    </TransformGroup>
-                </Separator.RenderTransform>
-            </Separator>
+            <Border Grid.Column="1" Width="1" Margin="0,28,0,66" BorderThickness="0">
+                <Border.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.1" />
+                </Border.Background>
+            </Border>
             <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -132,7 +130,7 @@
                         </Grid>
                     </Grid>
                 </Border>
-                <controls:SharedFilesDataGridControl  Grid.Row="1" Grid.ColumnSpan="2" Margin="37,0,0,0" />
+                <controls:SharedFilesDataGridControl Grid.Row="1" Grid.ColumnSpan="2" Margin="37,0,0,0" />
             </Grid>
         </Grid>
     </Border>

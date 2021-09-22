@@ -21,7 +21,7 @@ namespace Peernet.Browser.Application.ViewModels
         private bool showSearchBox;
         private VirtualFileSystem.VirtualFileSystem virtualFileSystem;
         private readonly IVirtualFileSystemFactory virtualFileSystemFactory;
-        private ObservableCollection<VirtualFileSystemTier> pathElements;
+        private ObservableCollection<VirtualFileSystemEntity> pathElements;
 
         public DirectoryViewModel(IBlockchainService blockchainService, IVirtualFileSystemFactory virtualFileSystemFactory)
         {
@@ -45,7 +45,7 @@ namespace Peernet.Browser.Application.ViewModels
             set => SetProperty(ref virtualFileSystem, value);
         }
 
-        public ObservableCollection<VirtualFileSystemTier> PathElements
+        public ObservableCollection<VirtualFileSystemEntity> PathElements
         {
             get => pathElements;
             set => SetProperty(ref pathElements, value);
