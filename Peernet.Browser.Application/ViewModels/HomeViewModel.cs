@@ -1,56 +1,32 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Models;
+using System.Linq;
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public class HomeViewModel : MvxViewModel
     {
-        public SearchModeModel Model { get; } = new();
+        private string searchInput;
+        private int selectedIndex;
 
         public HomeViewModel()
         {
-            Search = new MvxCommand(Model.Clear);
-            Tabs.Add(new SearchTabElement { Title = "Snowden documentary", Content = "Snowden documentary" });
-            Tabs.Add(new SearchTabElement { Title = "Micro hydro power", Content = "Micro hydro power" });
-            Tabs.Add(new SearchTabElement { Title = "File sharing", Content = "File sharing" });
+            SearchCommand = new MvxCommand(Search);
+            Tabs.CollectionChanged += (o, s) =>
+            {
+                RaisePropertyChanged(nameof(IsVisible));
+                RaisePropertyChanged(nameof(IsNotVisible));
+                RaisePropertyChanged(nameof(Alignment));
+            }
+            ;
         }
 
-        public IMvxCommand Search { get; }
+        public Alignments Alignment => IsVisible ? Alignments.Stretch : Alignments.Center;
 
-        public MvxObservableCollection<SearchTabElement> Tabs { get; } = new MvxObservableCollection<SearchTabElement>();
-    }
-
-    public class SearchTabElement : MvxNotifyPropertyChanged
-    {
-        private string title;
-
-        public string Title
-        {
-            get => title;
-            set => SetProperty(ref title, value);
-        }
-
-        private string content;
-
-        public string Content
-        {
-            get => content;
-            set => SetProperty(ref content, value);
-        }
-    }
-
-    public class SearchModeModel : MvxNotifyPropertyChanged
-    {
-        private Alignments alignment = Alignments.Center;
-
-        public Alignments Alignment
-        {
-            get => alignment;
-            set => SetProperty(ref alignment, value);
-        }
-
-        private string searchInput;
+        public bool IsNotVisible => !IsVisible;
+        public bool IsVisible => Tabs.Any();
+        public IMvxCommand SearchCommand { get; }
 
         public string SearchInput
         {
@@ -58,33 +34,21 @@ namespace Peernet.Browser.Application.ViewModels
             set => SetProperty(ref searchInput, value);
         }
 
-        private bool imgVisibility = true;
-
-        public bool ImgVisibility
+        public int SelectedIndex
         {
-            get => imgVisibility;
-            set
-            {
-                SetProperty(ref imgVisibility, value);
-                RaisePropertyChanged(nameof(ImgVisibilityRev));
-            }
+            get => selectedIndex;
+            set => SetProperty(ref selectedIndex, value);
         }
 
-        public bool ImgVisibilityRev => !ImgVisibility;
+        public MvxObservableCollection<SearchTabElement> Tabs { get; } = new MvxObservableCollection<SearchTabElement>();
 
-        public void Clear()
+        private void RemoveTab(SearchTabElement e) => Tabs.Remove(e);
+
+        private void Search()
         {
+            Tabs.Add(new SearchTabElement(RemoveTab) { Title = SearchInput });
             SearchInput = "";
-            ChangeMode();
-        }
-
-        private bool isSearched;
-
-        private void ChangeMode()
-        {
-            isSearched = !isSearched;
-            ImgVisibility = !isSearched;
-            Alignment = isSearched ? Alignments.Stretch : Alignments.Center;
+            SelectedIndex = Tabs.Count - 1;
         }
     }
 }
