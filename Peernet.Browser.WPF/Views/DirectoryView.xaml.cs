@@ -7,6 +7,7 @@ using System.Windows.Media;
 using MvvmCross.Platforms.Wpf.Presenters.Attributes;
 using MvvmCross.Platforms.Wpf.Views;
 using MvvmCross.ViewModels;
+using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.ViewModels;
 using Peernet.Browser.Application.VirtualFileSystem;
 
@@ -39,19 +40,25 @@ namespace Peernet.Browser.WPF.Views
         private Dictionary<VirtualFileSystemEntity, TreeViewItem> GetAllEntitiesToTheTreeCore(DependencyObject parentObject)
         {
             Dictionary<VirtualFileSystemEntity, TreeViewItem> treeViewItems = new();
-            string header = null;
 
             while (parentObject != null)
             {
                 if (parentObject is TreeViewItem { DataContext: VirtualFileSystemEntity entity } treeViewItem)
                 {
+                    entity.IsVisualTreeVertex = false;
                     treeViewItems.Add(entity, treeViewItem);
-                    header ??= treeViewItem.Header.ToString();
                 }
-                
+
+                if (parentObject is TreeViewItem { DataContext: DirectoryViewModel } treeView)
+                {
+                    treeViewItems.TryAdd(
+                        new VirtualFileSystemTier(treeView.Header.ToString(), VirtualFileSystemEntityType.All, -1), treeView);
+                }
+
                 parentObject = GetParentObject(parentObject);
             }
 
+            treeViewItems.First().Key.IsVisualTreeVertex = true;
             treeViewItems = treeViewItems.Reverse().ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
             return treeViewItems;
         }
@@ -106,6 +113,7 @@ namespace Peernet.Browser.WPF.Views
             }
 
             elements.RemoveRange(itemsToRemove);
+            elements.Last().IsVisualTreeVertex = true;
         }
     }
 }

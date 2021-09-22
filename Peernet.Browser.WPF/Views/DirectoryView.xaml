@@ -22,7 +22,7 @@
                     <HierarchicalDataTemplate DataType="{x:Type virtualFileSystem:VirtualFileSystemEntity}" ItemsSource="{Binding Path=VirtualFileSystemTiers}">
                         <StackPanel Orientation="Horizontal">
                             <Image Width="11" Height="10" Source="{Binding Type, Converter={StaticResource VirtualFileSystemEntityTypeToImageSourceConverter}}" />
-                            <TextBlock x:Name="PART_EditableTextBox" Text="{Binding Path=Name}" Margin="7, 0, 0, 0">
+                            <TextBlock Text="{Binding Path=Name}" Margin="7, 0, 0, 0">
                                 <TextBlock.InputBindings>
                                     <MouseBinding Command="{Binding DataContext.UpdateActiveSearchResults, ElementName=DirectoryView}" CommandParameter="{Binding}" Gesture="LeftDoubleClick"/>
                                 </TextBlock.InputBindings>
@@ -79,11 +79,14 @@
                                         <SolidColorBrush Opacity="0.6" Color="Black" />
                                     </TextBlock.Foreground>
                                 </TextBlock>
-                                <Button Height="20" Content="{Binding Path=Name}" Click="SelectedTreeItem" Style="{StaticResource TreeViewNavigationPathButtonStyle}" VerticalAlignment="Center" Command="{Binding DataContext.UpdateActiveSearchResults, ElementName=DirectoryView}" CommandParameter="{Binding}" />
+                                <Button x:Name="segment" Height="20" Content="{Binding Path=Name}" Click="SelectedTreeItem" Style="{StaticResource TreeViewNavigationPathButtonStyle}" VerticalAlignment="Center" Command="{Binding DataContext.UpdateActiveSearchResults, ElementName=DirectoryView}" CommandParameter="{Binding}" />
                             </StackPanel>
                             <DataTemplate.Triggers>
                                 <DataTrigger Binding="{Binding RelativeSource={RelativeSource PreviousData}}" Value="{x:Null}">
                                     <Setter Property="Visibility" TargetName="separator" Value="Collapsed"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=IsVisualTreeVertex}" Value="True">
+                                    <Setter Property="FontWeight" TargetName="segment" Value="SemiBold" />
                                 </DataTrigger>
                             </DataTemplate.Triggers>
                         </DataTemplate>

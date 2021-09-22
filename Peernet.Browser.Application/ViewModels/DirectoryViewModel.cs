@@ -56,6 +56,7 @@ namespace Peernet.Browser.Application.ViewModels
                 apiBlockRecordFile =>
                 {
                     blockchainService.DeleteSelfFile(apiBlockRecordFile);
+                    Initialize();
 
                     return Task.CompletedTask;
                 });
