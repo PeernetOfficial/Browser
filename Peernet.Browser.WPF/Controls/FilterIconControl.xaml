@@ -17,6 +17,7 @@
     <DockPanel Margin="0 0 20 0" LastChildFill="False">
         <svgc:SvgViewbox Margin="0 2 7 2" Source="{Binding ImgSource}" />
         <TextBlock FontSize="15" VerticalAlignment="Center" TextAlignment="Left" Text="{Binding Name}" />
+        <svgc:SvgViewbox Visibility="{Binding ShowArrow, Converter={StaticResource BoolToVisibility}}" Margin="8 8 0 8" Source="/Assets/Filters/ArrowDown.svg" />
     </DockPanel>
     <UserControl.InputBindings>
         <MouseBinding MouseAction="LeftClick" Command="{Binding SelectCommand}" />

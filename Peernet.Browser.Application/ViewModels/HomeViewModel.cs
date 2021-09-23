@@ -1,5 +1,6 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
+using Peernet.Browser.Application.Enums;
 using Peernet.Browser.Application.Models;
 using System.Linq;
 
