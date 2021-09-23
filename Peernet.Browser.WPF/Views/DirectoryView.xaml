@@ -22,7 +22,7 @@
                     <HierarchicalDataTemplate DataType="{x:Type virtualFileSystem:VirtualFileSystemEntity}" ItemsSource="{Binding Path=VirtualFileSystemTiers}">
                         <StackPanel Orientation="Horizontal">
                             <Image Width="11" Height="10" Source="{Binding Type, Converter={StaticResource VirtualFileSystemEntityTypeToImageSourceConverter}}" />
-                            <TextBlock x:Name="PART_EditableTextBox" Text="{Binding Path=Name}" Margin="7, 0, 0, 0">
+                            <TextBlock Text="{Binding Path=Name}" Margin="7, 0, 0, 0">
                                 <TextBlock.InputBindings>
                                     <MouseBinding Command="{Binding DataContext.UpdateActiveSearchResults, ElementName=DirectoryView}" CommandParameter="{Binding}" Gesture="LeftDoubleClick"/>
                                 </TextBlock.InputBindings>
@@ -34,24 +34,27 @@
                             <Image Width="11" Height="10" Source="{Binding Type, Converter={StaticResource VirtualFileSystemEntityTypeToImageSourceConverter}}" />
                             <TextBlock Text="{Binding Path=Name}" Margin="7, 0, 0, 0">
                                 <TextBlock.InputBindings>
-                                    <MouseBinding  Command="{Binding DataContext.UpdateActiveSearchResults, ElementName=DirectoryView}" CommandParameter="{Binding}" Gesture="LeftDoubleClick"/>
+                                    <MouseBinding Command="{Binding DataContext.UpdateActiveSearchResults, ElementName=DirectoryView}" CommandParameter="{Binding}" Gesture="LeftDoubleClick"/>
                                 </TextBlock.InputBindings>
                             </TextBlock>
                         </StackPanel>
                     </HierarchicalDataTemplate>
                 </StackPanel.Resources>
-                <TreeView BorderThickness="0" HorizontalAlignment="Center" >
+                <TreeView BorderThickness="0" HorizontalAlignment="Center">
+                    <TreeView.ItemContainerStyle>
+                        <Style TargetType="{x:Type TreeViewItem}">
+                            <EventSetter Event="MouseDoubleClick" Handler="TreeViewItem_OnSelected" />
+                        </Style>
+                    </TreeView.ItemContainerStyle>
                     <TreeViewItem Template="{DynamicResource TreeViewItemTemplate}" ItemsSource="{Binding VirtualFileSystem.VirtualFileSystemTiers}" Header="Your Files" Foreground="{StaticResource DarkGreenBrush}" />
                     <TreeViewItem Template="{DynamicResource TreeViewItemTemplate}" ItemsSource="{Binding VirtualFileSystem.VirtualFileSystemCategories}" Header="Libraries" Foreground="{StaticResource DarkGreenBrush}" />
                 </TreeView>
             </StackPanel>
-            <Separator Style="{StaticResource StandardSeparatorStyle}" Grid.Column="1" Width="500" RenderTransformOrigin="0.5,0.5">
-                <Separator.RenderTransform>
-                    <TransformGroup>
-                        <RotateTransform Angle="90" />
-                    </TransformGroup>
-                </Separator.RenderTransform>
-            </Separator>
+            <Border Grid.Column="1" Width="1" Margin="0,28,0,66" BorderThickness="0">
+                <Border.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.1" />
+                </Border.Background>
+            </Border>
             <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -62,7 +65,33 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Margin="63, 40, 0, 0">Path</TextBlock>
+                <ItemsControl Grid.Row="0" Grid.Column="0" Margin="63, 40, 0, 0" ItemsSource="{Binding PathElements}" >
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                                <TextBlock x:Name="separator" Text=">" VerticalAlignment="Center">
+                                    <TextBlock.Foreground>
+                                        <SolidColorBrush Opacity="0.6" Color="Black" />
+                                    </TextBlock.Foreground>
+                                </TextBlock>
+                                <Button x:Name="segment" Height="20" Content="{Binding Path=Name}" Click="SelectedTreeItem" Style="{StaticResource TreeViewNavigationPathButtonStyle}" VerticalAlignment="Center" Command="{Binding DataContext.UpdateActiveSearchResults, ElementName=DirectoryView}" CommandParameter="{Binding}" />
+                            </StackPanel>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource PreviousData}}" Value="{x:Null}">
+                                    <Setter Property="Visibility" TargetName="separator" Value="Collapsed"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=IsVisualTreeVertex}" Value="True">
+                                    <Setter Property="FontWeight" TargetName="segment" Value="SemiBold" />
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
                 <Border Grid.Row="0" Grid.Column="1" Width="229" Height="40" HorizontalAlignment="Right" Margin="0,28, 85, 27" BorderThickness="1" CornerRadius="3,3,3,3">
                     <Border.BorderBrush>
                         <SolidColorBrush Opacity="0.06" Color="Black" />
@@ -104,7 +133,7 @@
                         </Grid>
                     </Grid>
                 </Border>
-                <controls:SharedFilesDataGridControl  Grid.Row="1" Grid.ColumnSpan="2" Margin="37,0,0,0" />
+                <controls:SharedFilesDataGridControl Grid.Row="1" Grid.ColumnSpan="2" Margin="37,0,0,0" />
             </Grid>
         </Grid>
     </Border>

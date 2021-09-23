@@ -1,7 +1,15 @@
-﻿using MvvmCross.Platforms.Wpf.Presenters.Attributes;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using MvvmCross.Platforms.Wpf.Presenters.Attributes;
 using MvvmCross.Platforms.Wpf.Views;
 using MvvmCross.ViewModels;
+using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.ViewModels;
+using Peernet.Browser.Application.VirtualFileSystem;
 
 namespace Peernet.Browser.WPF.Views
 {
@@ -12,9 +20,100 @@ namespace Peernet.Browser.WPF.Views
     [MvxViewFor(typeof(DirectoryViewModel))]
     public partial class DictionaryView : MvxWpfView
     {
+        private Dictionary<VirtualFileSystemEntity, TreeViewItem> pathElements;
+
         public DictionaryView()
         {
             InitializeComponent();
+        }
+
+        private void TreeViewItem_OnSelected(object sender, RoutedEventArgs e)
+        {
+            var parentObject = GetParentObject((DependencyObject)e.OriginalSource);
+            var entities = GetAllEntitiesToTheTreeCore(parentObject);
+
+            ((DirectoryViewModel)ViewModel).PathElements = new ObservableCollection<VirtualFileSystemEntity>(entities.Keys);
+
+            pathElements = entities;
+        }
+
+        private Dictionary<VirtualFileSystemEntity, TreeViewItem> GetAllEntitiesToTheTreeCore(DependencyObject parentObject)
+        {
+            Dictionary<VirtualFileSystemEntity, TreeViewItem> treeViewItems = new();
+
+            while (parentObject != null)
+            {
+                if (parentObject is TreeViewItem { DataContext: VirtualFileSystemEntity entity } treeViewItem)
+                {
+                    entity.IsVisualTreeVertex = false;
+                    treeViewItems.Add(entity, treeViewItem);
+                }
+
+                if (parentObject is TreeViewItem { DataContext: DirectoryViewModel } treeView)
+                {
+                    treeViewItems.TryAdd(
+                        new VirtualFileSystemTier(treeView.Header.ToString(), VirtualFileSystemEntityType.All, -1), treeView);
+                }
+
+                parentObject = GetParentObject(parentObject);
+            }
+
+            treeViewItems.First().Key.IsVisualTreeVertex = true;
+            treeViewItems = treeViewItems.Reverse().ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+            return treeViewItems;
+        }
+
+        public static DependencyObject GetParentObject(DependencyObject child)
+        {
+            if (child == null)
+            {
+                return null;
+            }
+
+            //handle content elements separately
+            if (child is ContentElement contentElement)
+            {
+                DependencyObject parent = ContentOperations.GetParent(contentElement);
+                if (parent != null)
+                {
+                    return parent;
+                }
+
+                return contentElement is FrameworkContentElement fce ? fce.Parent : null;
+            }
+
+            //also try searching for parent in framework elements (such as DockPanel, etc)
+            if (child is FrameworkElement frameworkElement)
+            {
+                DependencyObject parent = frameworkElement.Parent;
+                if (parent != null)
+                {
+                    return parent;
+                }
+            }
+
+            //if it's not a ContentElement/FrameworkElement, rely on VisualTreeHelper
+            return VisualTreeHelper.GetParent(child);
+        }
+
+        private void SelectedTreeItem(object sender, RoutedEventArgs e)
+        {
+            var entity = (VirtualFileSystemEntity)((FrameworkElement)e.OriginalSource).DataContext;
+            var item = pathElements[entity];
+            item.IsSelected = true;
+            item.Focus();
+
+
+            var elements = ((DirectoryViewModel)ViewModel).PathElements;
+            var index = elements.IndexOf(entity);
+            List<VirtualFileSystemEntity> itemsToRemove = new();
+            for (var i = index + 1; i < elements.Count; i++)
+            {
+                itemsToRemove.Add(elements[i]);
+            }
+
+            elements.RemoveRange(itemsToRemove);
+            elements.Last().IsVisualTreeVertex = true;
         }
     }
 }
