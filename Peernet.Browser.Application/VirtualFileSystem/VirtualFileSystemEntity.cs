@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Models;
 
@@ -8,6 +7,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
     public class VirtualFileSystemEntity : MvxNotifyPropertyChanged
     {
         private bool isVisualTreeVertex;
+        private bool isSelected;
 
         protected VirtualFileSystemEntity(string name, VirtualFileSystemEntityType type, List<ApiBlockRecordFile> files)
         {
@@ -22,10 +22,21 @@ namespace Peernet.Browser.Application.VirtualFileSystem
 
         public List<ApiBlockRecordFile> Files { get; }
 
+        public bool IsSelected
+        {
+            get => isSelected;
+            set => SetProperty(ref isSelected, value);
+        }
+
         public bool IsVisualTreeVertex
         {
             get => isVisualTreeVertex;
             set => SetProperty(ref isVisualTreeVertex, value);
+        }
+
+        public virtual void ResetSelection()
+        {
+            IsSelected = false;
         }
 
         public virtual List<ApiBlockRecordFile> GetAllFiles() => Files;

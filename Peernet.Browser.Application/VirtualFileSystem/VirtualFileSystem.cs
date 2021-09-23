@@ -26,6 +26,12 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             VirtualFileSystemCategories = VirtualFileSystemCategories.OrderBy(t => t.Name).ToList();
         }
 
+        public void ResetSelection()
+        {
+            VirtualFileSystemTiers.ForEach(e => e.ResetSelection());
+            VirtualFileSystemCategories.ForEach(e => e.ResetSelection());
+        }
+
         // Organize Files into the structured system
         private void CreateFileSystemStructure(IEnumerable<ApiBlockRecordFile> sharedFiles)
         {

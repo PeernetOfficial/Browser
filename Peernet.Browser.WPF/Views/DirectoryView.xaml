@@ -21,7 +21,7 @@
                 <StackPanel.Resources>
                     <HierarchicalDataTemplate DataType="{x:Type virtualFileSystem:VirtualFileSystemTier}" ItemsSource="{Binding Path=VirtualFileSystemTiers}">
                         <StackPanel Orientation="Horizontal">
-                            <Image Width="11" Height="10" Style="{StaticResource HierarchicalDataTemplateImageStyle}" />
+                            <Image Width="11" Height="10" Style="{StaticResource VirtualFileSystemEntityImageStyle}" />
                             <TextBlock x:Name="TreeViewItemText" Text="{Binding Path=Name}" Margin="7, 0, 0, 0">
                                 <TextBlock.InputBindings>
                                     <MouseBinding Command="{Binding DataContext.UpdateActiveSearchResults, ElementName=DirectoryView}" CommandParameter="{Binding}" Gesture="LeftDoubleClick"/>
@@ -31,7 +31,7 @@
                     </HierarchicalDataTemplate>
                     <HierarchicalDataTemplate DataType="{x:Type virtualFileSystem:VirtualFileSystemCategory}">
                         <StackPanel Orientation="Horizontal">
-                            <Image Width="11" Height="10" Style="{StaticResource HierarchicalDataTemplateImageStyle}" />
+                            <Image Width="11" Height="10" Style="{StaticResource VirtualFileSystemEntityImageStyle}" />
                             <TextBlock Text="{Binding Path=Name}" Margin="7, 0, 0, 0">
                                 <TextBlock.InputBindings>
                                     <MouseBinding Command="{Binding DataContext.UpdateActiveSearchResults, ElementName=DirectoryView}" CommandParameter="{Binding}" Gesture="LeftDoubleClick"/>
@@ -79,7 +79,7 @@
                                         <SolidColorBrush Opacity="0.6" Color="Black" />
                                     </TextBlock.Foreground>
                                 </TextBlock>
-                                <Button x:Name="segment" Height="20" Content="{Binding Path=Name}" Click="SelectedTreeItem" Style="{StaticResource TreeViewNavigationPathButtonStyle}" VerticalAlignment="Center" Command="{Binding DataContext.UpdateActiveSearchResults, ElementName=DirectoryView}" CommandParameter="{Binding}" />
+                                <Button x:Name="segment" Height="20" Content="{Binding Path=Name}" Click="PathSegment_OnSelected" Style="{StaticResource TreeViewNavigationPathButtonStyle}" VerticalAlignment="Center" Command="{Binding DataContext.UpdateActiveSearchResults, ElementName=DirectoryView}" CommandParameter="{Binding}" />
                             </StackPanel>
                             <DataTemplate.Triggers>
                                 <DataTrigger Binding="{Binding RelativeSource={RelativeSource PreviousData}}" Value="{x:Null}">

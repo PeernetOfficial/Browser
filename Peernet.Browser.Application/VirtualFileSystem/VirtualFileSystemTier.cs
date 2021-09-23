@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Peernet.Browser.Application.Models;
 
 namespace Peernet.Browser.Application.VirtualFileSystem
@@ -15,5 +14,12 @@ namespace Peernet.Browser.Application.VirtualFileSystem
         public int Depth { get; }
 
         public List<VirtualFileSystemTier> VirtualFileSystemTiers { get; set; } = new();
+
+        public override void ResetSelection()
+        {
+            VirtualFileSystemTiers.ForEach(t => t.ResetSelection());
+
+            base.ResetSelection();
+        }
     }
 }
