@@ -21,11 +21,6 @@ namespace Peernet.Browser.Application.ViewModels
             UserContext = userContext;
         }
 
-        public IMvxAsyncCommand UploadFileCommand => new MvxAsyncCommand(() => 
-        {
-            return Task.CompletedTask;
-        });
-
         public IMvxAsyncCommand CloseCommand => new MvxAsyncCommand(() =>
         {
             UserContext.ReloadContext();
@@ -36,7 +31,6 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IMvxAsyncCommand RemovePhotoCommand => new MvxAsyncCommand(() =>
         {
-            // Removal of Image is not supported by API yet
             UserContext.User.Image = null;
 
             return Task.CompletedTask;
@@ -44,7 +38,6 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IMvxAsyncCommand SaveChangesCommand => new MvxAsyncCommand(() =>
         {
-            // Add check for value change in relation to previous
             if (UserContext.HasUserChanged)
             {
                 profileService.AddUserName(UserContext.User.Name);

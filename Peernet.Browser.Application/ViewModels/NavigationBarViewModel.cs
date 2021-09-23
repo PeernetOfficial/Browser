@@ -10,7 +10,6 @@ namespace Peernet.Browser.Application.ViewModels
     {
         private readonly IMvxNavigationService navigationService;
 
-
         public NavigationBarViewModel(IMvxNavigationService navigationService, IUserContext userContext)
         {
             this.navigationService = navigationService;

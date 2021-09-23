@@ -11,5 +11,13 @@ namespace System.Linq
             if (list.IsNullOrEmpty() || a == null) return;
             foreach (var l in list) a(l);
         }
+
+        public static void RemoveRange<T>(this IList<T> collection, IEnumerable<T> filesToRemove)
+        {
+            foreach (var selectedFile in filesToRemove)
+            {
+                collection.Remove(selectedFile);
+            }
+        }
     }
 }
