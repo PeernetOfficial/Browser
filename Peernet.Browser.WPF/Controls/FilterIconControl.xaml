@@ -8,15 +8,15 @@
             <Setter Property="Foreground" Value="{StaticResource LightGrayBrush}" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="FontWeight" Value="DemiBold" />
                     <Setter Property="Foreground" Value="{StaticResource DarkGreenBrush}" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <DockPanel LastChildFill="False">
+    <DockPanel Margin="0 0 20 0" LastChildFill="False">
         <svgc:SvgViewbox Margin="0 2 7 2" Source="{Binding ImgSource}" />
-        <TextBlock FontSize="14" VerticalAlignment="Center" TextAlignment="Left" Text="{Binding Name}" />
+        <TextBlock FontSize="15" VerticalAlignment="Center" TextAlignment="Left" Text="{Binding Name}" />
     </DockPanel>
     <UserControl.InputBindings>
         <MouseBinding MouseAction="LeftClick" Command="{Binding SelectCommand}" />

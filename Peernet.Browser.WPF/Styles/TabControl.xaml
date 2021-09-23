@@ -9,7 +9,7 @@
                 <ControlTemplate TargetType="{x:Type TabItem}">
                     <Border Margin="40 0 0 0" x:Name="PART_Border" Background="Transparent" BorderThickness="1" BorderBrush="Transparent" CornerRadius="4 4 0 0" Padding="10">
                         <DockPanel>
-                            <TextBlock x:Name="PART_title" Text="{Binding Title}" />
+                            <TextBlock FontSize="15" FontFamily="{StaticResource InterThin}" x:Name="PART_title" Text="{Binding Title}" />
                             <Button Command="{Binding DeleteCommand}" Visibility="Hidden" x:Name="PART_Btm" Margin="10 0 0 0" Style="{DynamicResource PrimaryButton}">x</Button>
                         </DockPanel>
                     </Border>
@@ -17,7 +17,7 @@
                         <Trigger Property="IsSelected" Value="True">
                             <Setter TargetName="PART_Border" Property="Background" Value="White" />
                             <Setter TargetName="PART_Btm" Property="Visibility" Value="Visible" />
-                            <Setter TargetName="PART_title" Property="FontWeight" Value="Bold" />
+                            <Setter TargetName="PART_title" Property="FontWeight" Value="DemiBold" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
