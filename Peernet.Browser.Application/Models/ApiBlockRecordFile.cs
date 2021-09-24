@@ -5,7 +5,7 @@ namespace Peernet.Browser.Application.Models
 {
     public class ApiBlockRecordFile
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         public byte[] Hash { get; set; }
 

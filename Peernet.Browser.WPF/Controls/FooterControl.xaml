@@ -17,15 +17,15 @@
                             <Style TargetType="{x:Type Image}">
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding ConnectionStatus}" Value="Offline">
-                                        <Setter Property="Source" Value="/Assets/Offline.png" />
+                                        <Setter Property="Source" Value="{DynamicResource OfflineDrawingImage}" />
                                         <Setter Property="ToolTip" Value="Offline" />
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding ConnectionStatus}" Value="Online">
-                                        <Setter Property="Source" Value="/Assets/Online.png" />
+                                        <Setter Property="Source" Value="{DynamicResource OnlineDrawingImage}" />
                                         <Setter Property="ToolTip" Value="Connected" />
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding ConnectionStatus}" Value="Connecting">
-                                        <Setter Property="Source" Value="/Assets/Connecting.png" />
+                                        <Setter Property="Source" Value="{DynamicResource ConnectingDrawingImage}" />
                                         <Setter Property="ToolTip" Value="Connecting" />
                                     </DataTrigger>
                                 </Style.Triggers>
@@ -44,7 +44,7 @@
                 Command="{Binding UploadCommand}"
                 Margin="0,0,80,25">
             <Button.Background>
-                <ImageBrush ImageSource="/Assets/Upload.png" />
+                <ImageBrush ImageSource="{DynamicResource UploadDrawingImage}" />
             </Button.Background>
         </Button>
     </Grid>

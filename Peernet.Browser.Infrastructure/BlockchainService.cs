@@ -51,9 +51,9 @@ namespace Peernet.Browser.Infrastructure
         public void DeleteSelfFile(ApiBlockRecordFile apiBlockRecordFile)
         {
             var request = new RestRequest(GetRelativeRequestPath("delete/file"), Method.POST);
-            request.AddJsonBody(apiBlockRecordFile);
+            request.AddJsonBody(new ApiBlockchainAddFiles { Files = new List<ApiBlockRecordFile> { apiBlockRecordFile }});
 
-            Task.Run(() => RestClient.PostAsync<ApiBlockchainAddFiles>(request)).GetResultBlockingWithoutContextSynchronization();
+            Task.Run(() => RestClient.PostAsync<ApiBlockchainBlockStatus>(request)).GetResultBlockingWithoutContextSynchronization();
         }
     }
 }

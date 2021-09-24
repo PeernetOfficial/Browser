@@ -20,7 +20,7 @@
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalAlignment}" />
-                                <Image Grid.Column="1" x:Name="SortElement" Height="5" Width="5" HorizontalAlignment="Left" Margin="8,0,30,0" Visibility="Hidden" Source="/Assets/Sort.png"/>
+                                <Image Grid.Column="1" x:Name="SortElement" Height="5" Width="5" HorizontalAlignment="Left" Margin="8,0,30,0" Visibility="Hidden" Source="{DynamicResource SortDrawingImage}"/>
                             </Grid>
                         </Border>
                     </Grid>
@@ -86,6 +86,8 @@
         <Setter Property="ScrollViewer.PanningMode" Value="Both" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="GridLinesVisibility" Value="None" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="HeadersVisibility" Value="Column" />
         <Setter Property="Template">
             <Setter.Value>

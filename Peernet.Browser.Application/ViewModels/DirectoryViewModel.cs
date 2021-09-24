@@ -4,6 +4,7 @@ using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Peernet.Browser.Application.VirtualFileSystem;
@@ -20,6 +21,7 @@ namespace Peernet.Browser.Application.ViewModels
         private bool showSearchBox;
         private VirtualFileSystem.VirtualFileSystem virtualFileSystem;
         private readonly IVirtualFileSystemFactory virtualFileSystemFactory;
+        private ObservableCollection<VirtualFileSystemEntity> pathElements;
 
         public DirectoryViewModel(IBlockchainService blockchainService, IVirtualFileSystemFactory virtualFileSystemFactory)
         {
@@ -43,11 +45,18 @@ namespace Peernet.Browser.Application.ViewModels
             set => SetProperty(ref virtualFileSystem, value);
         }
 
+        public ObservableCollection<VirtualFileSystemEntity> PathElements
+        {
+            get => pathElements;
+            set => SetProperty(ref pathElements, value);
+        }
+
         public IMvxAsyncCommand<ApiBlockRecordFile> DeleteCommand =>
             new MvxAsyncCommand<ApiBlockRecordFile>(
                 apiBlockRecordFile =>
                 {
                     blockchainService.DeleteSelfFile(apiBlockRecordFile);
+                    Initialize();
 
                     return Task.CompletedTask;
                 });
@@ -93,15 +102,6 @@ namespace Peernet.Browser.Application.ViewModels
             set => SetProperty(ref searchInput, value);
         }
 
-        public IMvxAsyncCommand<ApiBlockRecordFile> ShareCommand =>
-            new MvxAsyncCommand<ApiBlockRecordFile>(
-                apiBlockRecordFile =>
-                {
-                    // Logic to be implemented
-
-                    return Task.CompletedTask;
-                });
-
         public bool ShowHint
         {
             get => showHint;
@@ -112,6 +112,13 @@ namespace Peernet.Browser.Application.ViewModels
         {
             get => showSearchBox;
             set => SetProperty(ref showSearchBox, value);
+        }
+
+
+        public void ChangeSelectedEntity(VirtualFileSystemEntity entity)
+        {
+            VirtualFileSystem.ResetSelection();
+            entity.IsSelected = true;
         }
 
         public override Task Initialize()
