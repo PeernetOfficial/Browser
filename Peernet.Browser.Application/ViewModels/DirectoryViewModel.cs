@@ -102,15 +102,6 @@ namespace Peernet.Browser.Application.ViewModels
             set => SetProperty(ref searchInput, value);
         }
 
-        public IMvxAsyncCommand<ApiBlockRecordFile> ShareCommand =>
-            new MvxAsyncCommand<ApiBlockRecordFile>(
-                apiBlockRecordFile =>
-                {
-                    // Logic to be implemented
-
-                    return Task.CompletedTask;
-                });
-
         public bool ShowHint
         {
             get => showHint;
@@ -121,6 +112,13 @@ namespace Peernet.Browser.Application.ViewModels
         {
             get => showSearchBox;
             set => SetProperty(ref showSearchBox, value);
+        }
+
+
+        public void ChangeSelectedEntity(VirtualFileSystemEntity entity)
+        {
+            VirtualFileSystem.ResetSelection();
+            entity.IsSelected = true;
         }
 
         public override Task Initialize()

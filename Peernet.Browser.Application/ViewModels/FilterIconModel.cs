@@ -1,47 +1,36 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using System;
+using Peernet.Browser.Application.VirtualFileSystem;
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public class FilterIconModel : MvxNotifyPropertyChanged
     {
-        public Filters FilterType { get; }
+        public VirtualFileSystemEntityType Type { get; }
 
-        public FilterIconModel(int count, Filters filterType, Action<FilterIconModel> selected)
+        public FilterIconModel(int count, VirtualFileSystemEntityType type, Action<FilterIconModel> selected)
         {
-            FilterType = filterType;
+            Type = type;
             Count = count;
             SelectCommand = new MvxCommand(() => selected(this));
             Name = GetName();
-            ImgSource = GetSource();
         }
 
         public int Count { get; }
-
-        public string ImgSource { get; private set; }
 
         private bool isSelected;
 
         public bool IsSelected
         {
             get => isSelected;
-            set
-            {
-                if (SetProperty(ref isSelected, value))
-                {
-                    ImgSource = GetSource();
-                    RaisePropertyChanged(nameof(ImgSource));
-                }
-            }
+            set => SetProperty(ref isSelected, value);
         }
 
         public string Name { get; }
 
         public IMvxCommand SelectCommand { get; }
 
-        private string GetSource() => $"/Assets/Filters/{FilterType}{(isSelected ? "_active" : "")}.svg";
-
-        private string GetName() => $"{FilterType} ({Count})";
+        private string GetName() => $"{Type} ({Count})";
     }
 }

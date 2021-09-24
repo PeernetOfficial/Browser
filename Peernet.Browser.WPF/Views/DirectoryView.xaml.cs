@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using MvvmCross.Platforms.Wpf.Presenters.Attributes;
+using MvvmCross.Platforms.Wpf.Views;
+using MvvmCross.ViewModels;
+using Peernet.Browser.Application.ViewModels;
+using Peernet.Browser.Application.VirtualFileSystem;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using MvvmCross.Platforms.Wpf.Presenters.Attributes;
-using MvvmCross.Platforms.Wpf.Views;
-using MvvmCross.ViewModels;
-using Peernet.Browser.Application.Models;
-using Peernet.Browser.Application.ViewModels;
-using Peernet.Browser.Application.VirtualFileSystem;
 
 namespace Peernet.Browser.WPF.Views
 {
@@ -27,43 +27,7 @@ namespace Peernet.Browser.WPF.Views
             InitializeComponent();
         }
 
-        private void TreeViewItem_OnSelected(object sender, RoutedEventArgs e)
-        {
-            var parentObject = GetParentObject((DependencyObject)e.OriginalSource);
-            var entities = GetAllEntitiesToTheTreeCore(parentObject);
-
-            ((DirectoryViewModel)ViewModel).PathElements = new ObservableCollection<VirtualFileSystemEntity>(entities.Keys);
-
-            pathElements = entities;
-        }
-
-        private Dictionary<VirtualFileSystemEntity, TreeViewItem> GetAllEntitiesToTheTreeCore(DependencyObject parentObject)
-        {
-            Dictionary<VirtualFileSystemEntity, TreeViewItem> treeViewItems = new();
-
-            while (parentObject != null)
-            {
-                if (parentObject is TreeViewItem { DataContext: VirtualFileSystemEntity entity } treeViewItem)
-                {
-                    entity.IsVisualTreeVertex = false;
-                    treeViewItems.Add(entity, treeViewItem);
-                }
-
-                if (parentObject is TreeViewItem { DataContext: DirectoryViewModel } treeView)
-                {
-                    treeViewItems.TryAdd(
-                        new VirtualFileSystemTier(treeView.Header.ToString(), VirtualFileSystemEntityType.All, -1), treeView);
-                }
-
-                parentObject = GetParentObject(parentObject);
-            }
-
-            treeViewItems.First().Key.IsVisualTreeVertex = true;
-            treeViewItems = treeViewItems.Reverse().ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-            return treeViewItems;
-        }
-
-        public static DependencyObject GetParentObject(DependencyObject child)
+        private static DependencyObject GetParentObject(DependencyObject child)
         {
             if (child == null)
             {
@@ -96,15 +60,43 @@ namespace Peernet.Browser.WPF.Views
             return VisualTreeHelper.GetParent(child);
         }
 
-        private void SelectedTreeItem(object sender, RoutedEventArgs e)
+        private Dictionary<VirtualFileSystemEntity, TreeViewItem> GetAllEntitiesToTheTreeCore(DependencyObject parentObject)
+        {
+            Dictionary<VirtualFileSystemEntity, TreeViewItem> treeViewItems = new();
+
+            while (parentObject != null)
+            {
+                if (parentObject is TreeViewItem { DataContext: VirtualFileSystemEntity entity } treeViewItem)
+                {
+                    entity.IsVisualTreeVertex = false;
+                    treeViewItems.Add(entity, treeViewItem);
+                }
+
+                if (parentObject is TreeViewItem { DataContext: DirectoryViewModel } treeView)
+                {
+                    treeViewItems.TryAdd(
+                        new VirtualFileSystemTier(treeView.Header.ToString(), VirtualFileSystemEntityType.All, -1), treeView);
+                }
+
+                parentObject = GetParentObject(parentObject);
+            }
+
+            treeViewItems.First().Key.IsVisualTreeVertex = true;
+            treeViewItems = treeViewItems.Reverse().ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+            return treeViewItems;
+        }
+
+        private void PathSegment_OnSelected(object sender, RoutedEventArgs e)
         {
             var entity = (VirtualFileSystemEntity)((FrameworkElement)e.OriginalSource).DataContext;
             var item = pathElements[entity];
             item.IsSelected = true;
+
+            var viewModel = (DirectoryViewModel)ViewModel;
+            viewModel.ChangeSelectedEntity(entity);
             item.Focus();
 
-
-            var elements = ((DirectoryViewModel)ViewModel).PathElements;
+            var elements = viewModel.PathElements;
             var index = elements.IndexOf(entity);
             List<VirtualFileSystemEntity> itemsToRemove = new();
             for (var i = index + 1; i < elements.Count; i++)
@@ -114,6 +106,18 @@ namespace Peernet.Browser.WPF.Views
 
             elements.RemoveRange(itemsToRemove);
             elements.Last().IsVisualTreeVertex = true;
+        }
+
+        private void TreeViewItem_OnSelected(object sender, RoutedEventArgs e)
+        {
+            var parentObject = GetParentObject((DependencyObject)e.OriginalSource);
+            var entities = GetAllEntitiesToTheTreeCore(parentObject);
+
+            var viewModel = (DirectoryViewModel)ViewModel;
+            viewModel.PathElements = new ObservableCollection<VirtualFileSystemEntity>(entities.Keys);
+
+            viewModel.ChangeSelectedEntity(entities.Last().Key);
+            pathElements = entities;
         }
     }
 }

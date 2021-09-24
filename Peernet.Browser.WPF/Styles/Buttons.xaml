@@ -58,18 +58,16 @@
 
     <Style x:Key="NavBarButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonBaseStyle}">
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-
-        <Setter Property="Padding" Value="1" />
-        <Setter Property="Height" Value="18" />
-        <Setter Property="Width" Value="18" />
-        <Setter Property="Margin" Value="10,37,75,0" />
+        <Setter Property="Margin" Value="0,37,73,0" />
     </Style>
 
-    <ImageBrush x:Key="DirectoryTabImageBrush" ImageSource="/Assets/Directory.png" />
-    <ImageBrush x:Key="FocusedDirectoryTabImageBrush" ImageSource="/Assets/Directory_Focused.png" />
+    <ImageBrush x:Key="DirectoryTabImageBrush" ImageSource="{DynamicResource DirectoryDrawingImage}" />
+    <ImageBrush x:Key="FocusedDirectoryTabImageBrush" ImageSource="{DynamicResource Directory_FocusedDrawingImage}" />
 
     <Style x:Key="DirectoryNavBarButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource NavBarButtonStyle}">
         <Setter Property="Background" Value="{StaticResource DirectoryTabImageBrush}" />
+        <Setter Property="Width" Value="24" />
+        <Setter Property="Height" Value="23" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=(contexts:GlobalContext.CurrentViewModel)}" Value="DirectoryViewModel">
                 <Setter Property="Background" Value="{StaticResource FocusedDirectoryTabImageBrush}" />
@@ -77,10 +75,12 @@
         </Style.Triggers>
     </Style>
 
-    <ImageBrush x:Key="HomeTabImageBrush" ImageSource="/Assets/Home.png" />
-    <ImageBrush x:Key="FocusedHomeTabImageBrush" ImageSource="/Assets/Home_Focused.png" />
+    <ImageBrush x:Key="HomeTabImageBrush" ImageSource="{DynamicResource HomeDrawingImage}" />
+    <ImageBrush x:Key="FocusedHomeTabImageBrush" ImageSource="{DynamicResource Home_FocusedDrawingImage}" />
 
     <Style x:Key="HomeNavBarButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource NavBarButtonStyle}">
+        <Setter Property="Height" Value="19" />
+        <Setter Property="Width" Value="18" />
         <Setter Property="Background" Value="{StaticResource HomeTabImageBrush}" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=(contexts:GlobalContext.CurrentViewModel)}" Value="HomeViewModel">
@@ -89,10 +89,12 @@
         </Style.Triggers>
     </Style>
 
-    <ImageBrush x:Key="UserTabImageBrush" ImageSource="/Assets/User.png" />
-    <ImageBrush x:Key="FocusedUserTabImageBrush" ImageSource="/Assets/User_Focused.png" />
+    <ImageBrush x:Key="UserTabImageBrush" ImageSource="{DynamicResource UserDrawingImage}" />
+    <ImageBrush x:Key="FocusedUserTabImageBrush" ImageSource="{DynamicResource User_FocusedDrawingImage}" />
 
     <Style x:Key="UserNavBarButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource NavBarButtonStyle}">
+        <Setter Property="Width" Value="24" />
+        <Setter Property="Height" Value="24" />
         <Setter Property="Background" Value="{StaticResource UserTabImageBrush}" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=(contexts:GlobalContext.IsProfileMenuVisible)}" Value="True">
@@ -101,11 +103,13 @@
         </Style.Triggers>
     </Style>
 
-    <ImageBrush x:Key="ExploreTabImageBrush" ImageSource="/Assets/Explore.png" />
-    <ImageBrush x:Key="FocusedExploreTabImageBrush" ImageSource="/Assets/Explore_Focused.png" />
+    <ImageBrush x:Key="ExploreTabImageBrush" ImageSource="{DynamicResource ExploreDrawingImage}" />
+    <ImageBrush x:Key="FocusedExploreTabImageBrush" ImageSource="{DynamicResource Explore_FocusedDrawingImage}" />
 
     <Style x:Key="ExploreNavBarButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource NavBarButtonStyle}">
         <Setter Property="Background" Value="{StaticResource ExploreTabImageBrush}" />
+        <Setter Property="Width" Value="23" />
+        <Setter Property="Height" Value="23" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=(contexts:GlobalContext.CurrentViewModel)}" Value="ExploreViewModel">
                 <Setter Property="Background" Value="{StaticResource FocusedExploreTabImageBrush}" />
