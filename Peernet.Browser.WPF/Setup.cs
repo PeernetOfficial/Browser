@@ -54,6 +54,7 @@ namespace Peernet.Browser.WPF
             iocProvider.RegisterType<IBlockchainService, BlockchainService>();
             iocProvider.RegisterType<IVirtualFileSystemFactory, VirtualFileSystemFactory>();
             iocProvider.RegisterType<IFilesToCategoryBinder, FilesToCategoryBinder>();
+            iocProvider.RegisterType<IExploreService, ExploreService>();
 
             ObserveNavigation(iocProvider);
         }
