@@ -21,7 +21,6 @@ namespace Peernet.Browser.Application.Models
                 IsSelected = true;
                 ShowArrow = true;
             }
-            else RefreshSource();
             SelectCommand = new MvxCommand(() =>
             {
                 if (!alwaysSelected) IsSelected = !IsSelected;
@@ -33,12 +32,6 @@ namespace Peernet.Browser.Application.Models
 
         public bool ShowArrow { get; }
 
-        private void RefreshSource()
-        {
-            ImgSource = $"/Assets/Filters/{FilterType}{(IsSelected ? "_active" : "")}.svg";
-            RaisePropertyChanged(nameof(ImgSource));
-        }
-
         private void RefreshName()
         {
             var surfix = showCount ? $" ({Count})" : "";
@@ -46,17 +39,12 @@ namespace Peernet.Browser.Application.Models
             RaisePropertyChanged(nameof(Name));
         }
 
-        public string ImgSource { get; private set; }
-
         private bool isSelected;
 
         public bool IsSelected
         {
             get => isSelected;
-            set
-            {
-                if (SetProperty(ref isSelected, value)) RefreshSource();
-            }
+            set => SetProperty(ref isSelected, value);
         }
 
         public string Name { get; private set; }
