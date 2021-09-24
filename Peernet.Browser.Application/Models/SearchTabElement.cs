@@ -2,7 +2,7 @@
 using MvvmCross.ViewModels;
 using System;
 
-namespace Peernet.Browser.Application.ViewModels
+namespace Peernet.Browser.Application.Models
 {
     public class SearchTabElement : MvxNotifyPropertyChanged
     {

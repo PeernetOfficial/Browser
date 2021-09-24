@@ -6,10 +6,11 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="55" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="55" />
         </Grid.RowDefinitions>
-        <ItemsControl VerticalContentAlignment="Center" ItemsSource="{Binding FilterIconModels}">
+        <ItemsControl Grid.Row="0" VerticalContentAlignment="Center" ItemsSource="{Binding FilterIconModels}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal" />
@@ -21,5 +22,82 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+
+        <DockPanel LastChildFill="False" Grid.Row="0"  HorizontalAlignment="Right">
+            <local:FilterIconControl Padding="0 10 0 10" Height="41"  DataContext="{Binding ColumnsModel}" />
+            <local:FilterIconControl Padding="0 10 0 10" Height="41"  DataContext="{Binding FiltersModel}" />
+        </DockPanel>
+        <DockPanel Margin="14" Grid.Row="1">
+            <TextBlock FontSize="14" Foreground="{StaticResource DarkGreenBrush}">Your filters:</TextBlock>
+
+            <Button Background="{StaticResource LightGrayBrush}" Style="{StaticResource PrimaryButton}">Last Week X</Button>
+            <Button Style="{StaticResource PrimaryButton}">Word File X</Button>
+            <Button Style="{StaticResource PrimaryButton}">Pdf File X</Button>
+            <Button FontSize="14" HorizontalAlignment="Right" Style="{StaticResource LinkButton}">Clear all filters</Button>
+        </DockPanel>
+
+        <DataGrid HorizontalAlignment="Stretch" Grid.Row="2"  Style="{DynamicResource DataGridStyle}" ItemsSource="{Binding TableResult}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="" SortMemberPath="First">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Width="10" Source="{DynamicResource ArrowDownDrawingImage}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*" Header="NAME" SortMemberPath="Name">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image Width="13.71" Height="20" Grid.Column="0" Source="{DynamicResource FileImageDrawingImage}" />
+                                <TextBlock Grid.Column="1" Text="{Binding Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="TYPE" SortMemberPath="Format">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Format}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="DATE" SortMemberPath="Date">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Date, StringFormat=d}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <!--Reference with ElementName is not a good approach - think of something better, although we don't want any logic in models -->
+                                <Button Grid.Column="0" Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.EditCommand, ElementName=SharedFilesDataGrid}" CommandParameter="{Binding}">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="{DynamicResource EditDrawingImage}" />
+                                    </Button.Background>
+                                </Button>
+                                <Button Grid.Column="2" Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.DeleteCommand, ElementName=SharedFilesDataGrid}" CommandParameter="{Binding}">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="{DynamicResource BinDrawingImage}" />
+                                    </Button.Background>
+                                </Button>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

@@ -1,4 +1,4 @@
-﻿namespace Peernet.Browser.Application.Models
+﻿namespace Peernet.Browser.Application.Enums
 {
     public enum Alignments
     {

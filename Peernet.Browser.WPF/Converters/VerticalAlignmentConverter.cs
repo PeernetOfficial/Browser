@@ -1,4 +1,4 @@
-﻿using Peernet.Browser.Application.Models;
+﻿using Peernet.Browser.Application.Enums;
 using System;
 using System.Globalization;
 using System.Windows;
