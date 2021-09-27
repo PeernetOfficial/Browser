@@ -2,7 +2,47 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:vfs="clr-namespace:Peernet.Browser.Application.VirtualFileSystem;assembly=Peernet.Browser.Application">
 
-    <Style x:Key="BaseVirtualFileSystemImageStyle" TargetType="{x:Type Image}">
+    <Style x:Key="ExploreCategoriesImageStyle" TargetType="{x:Type Image}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.Text}">
+                <Setter Property="Source" Value="{DynamicResource TextCutDrawingImage}" />
+                <Setter Property="Width" Value="39" />
+                <Setter Property="Height" Value="52" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.Audio}">
+                <Setter Property="Source" Value="{DynamicResource AudioCutDrawingImage}" />
+                <Setter Property="Width" Value="42" />
+                <Setter Property="Height" Value="52" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.Video}">
+                <Setter Property="Source" Value="{DynamicResource VideoCutDrawingImage}" />
+                <Setter Property="Width" Value="52" />
+                <Setter Property="Height" Value="42" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.Binary}">
+                <Setter Property="Source" Value="{DynamicResource BinaryCutDrawingImage}" />
+                <Setter Property="Width" Value="39" />
+                <Setter Property="Height" Value="52" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.Document}">
+                <Setter Property="Source" Value="{DynamicResource FileCutDrawingImage}" />
+                <Setter Property="Width" Value="39" />
+                <Setter Property="Height" Value="52" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.Ebook}">
+                <Setter Property="Source" Value="{DynamicResource EbookCutDrawingImage}" />
+                <Setter Property="Width" Value="52" />
+                <Setter Property="Height" Value="42" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.Picture}">
+                <Setter Property="Source" Value="{DynamicResource PictureCutDrawingImage}" />
+                <Setter Property="Width" Value="52" />
+                <Setter Property="Height" Value="42" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="VirtualFileSystemEntityImageStyle" TargetType="{x:Type Image}">
         <Style.Triggers>
             <DataTrigger Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.Text}">
                 <Setter Property="Source" Value="{DynamicResource TextDrawingImage}" />
@@ -34,14 +74,6 @@
             <DataTrigger Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.Picture}">
                 <Setter Property="Source" Value="{DynamicResource PictureDrawingImage}" />
             </DataTrigger>
-        </Style.Triggers>
-    </Style>
-
-    <Style x:Key="ExploreCategoriesImageStyle" TargetType="{x:Type Image}" BasedOn="{StaticResource BaseVirtualFileSystemImageStyle}">
-    </Style>
-
-    <Style x:Key="VirtualFileSystemEntityImageStyle" TargetType="{x:Type Image}" BasedOn="{StaticResource BaseVirtualFileSystemImageStyle}">
-        <Style.Triggers>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.Picture}" />

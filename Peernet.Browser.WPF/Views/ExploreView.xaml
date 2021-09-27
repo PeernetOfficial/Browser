@@ -19,41 +19,42 @@
                 <ItemsControl ItemsSource="{Binding CategoryTypes}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal"/>
+                            <StackPanel Orientation="Horizontal" />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border BorderThickness="0" CornerRadius="4, 4, 4, 4">
-                                <Border.InputBindings>
-                                    <MouseBinding Command="{Binding Path=DataContext.SelectCategoryCommand, ElementName=ExplorePage}" CommandParameter="{Binding}" Gesture="LeftClick" />
-                                </Border.InputBindings>
+                            <Border BorderThickness="1" CornerRadius="4" Margin="0, 0, 48, 0">
+                                <Border.BorderBrush>
+                                    <SolidColorBrush Color="Black" Opacity="0.08"></SolidColorBrush>
+                                </Border.BorderBrush>
                                 <Border.Effect>
-                                    <DropShadowEffect ShadowDepth="7" BlurRadius="16" Color="Black" Opacity="0.14"/>
+                                    <DropShadowEffect ShadowDepth="7" BlurRadius="16" Color="Black" Opacity="0.14" />
                                 </Border.Effect>
-                                <Grid Height="117" Width="142" Margin="0, 0, 48, 0">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
-                                    <Image Width="52" Height="52" Grid.Row="0" HorizontalAlignment="Left" Style="{StaticResource ExploreCategoriesImageStyle}" />
-                                    <Border Grid.Row="1" BorderBrush="White" Width="142" Height="73">
-                                        <Border.Background>
-                                            <SolidColorBrush Color="White"></SolidColorBrush>
-                                        </Border.Background>
-                                        <TextBlock Text="{Binding Name}" Style="{StaticResource Active}" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    </Border>
-                                    <Grid.Style>
-                                        <Style TargetType="{x:Type Grid}">
-                                        <Setter Property="Background" Value="{StaticResource GrayedOutBackgroundBrush}" />
+                                <StackPanel>
+                                    <Border CornerRadius="4, 4, 0, 0" Height="44" Width="142">
+                                    <Border.Style>
+                                        <Style TargetType="{x:Type Border}">
+                                            <Setter Property="Background" Value="{StaticResource GrayedOutBackgroundBrush}" />
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding IsSelected}" Value="True">
                                                     <Setter Property="Background" Value="{StaticResource DarkGreenBrush}"/>
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
-                                    </Grid.Style>
-                                </Grid>
+                                    </Border.Style>
+                                    <Border.InputBindings>
+                                        <MouseBinding Command="{Binding Path=DataContext.SelectCategoryCommand, ElementName=ExplorePage}" CommandParameter="{Binding}" Gesture="LeftClick" />
+                                    </Border.InputBindings>
+                                    <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{StaticResource ExploreCategoriesImageStyle}" />
+                                    </Border>
+                                    <Border CornerRadius="0, 0, 4, 4" Width="142" Height="73" VerticalAlignment="Bottom">
+                                        <Border.Background>
+                                            <SolidColorBrush Color="White"></SolidColorBrush>
+                                        </Border.Background>
+                                        <TextBlock Text="{Binding Name}" Style="{StaticResource ActiveSelectable}" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                    </Border>
+                                </StackPanel>
                             </Border>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
