@@ -1,12 +1,11 @@
-﻿using MvvmCross.ViewModels;
+﻿using MvvmCross.Commands;
+using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.VirtualFileSystem;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
-using MvvmCross.Commands;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -15,17 +14,23 @@ namespace Peernet.Browser.Application.ViewModels
         public ObservableCollection<ApiBlockRecordFile> activeSearchResults;
         private readonly IExploreService exploreService;
         private readonly IVirtualFileSystemFactory virtualFileSystemFactory;
+        private List<VirtualFileSystemCategory> categoryTypes;
         private IReadOnlyCollection<ApiBlockRecordFile> sharedFiles;
         private VirtualFileSystem.VirtualFileSystem virtualFileSystem;
-        private List<VirtualFileSystemCategory> categoryTypes;
-
-        public ObservableCollection<VirtualFileSystemCategory> CategoryTypes => new(categoryTypes);
 
         public ExploreViewModel(IVirtualFileSystemFactory virtualFileSystemFactory, IExploreService exploreService)
         {
             this.virtualFileSystemFactory = virtualFileSystemFactory;
             this.exploreService = exploreService;
         }
+
+        public ObservableCollection<ApiBlockRecordFile> ActiveSearchResults
+        {
+            get => activeSearchResults;
+            set => SetProperty(ref activeSearchResults, value);
+        }
+
+        public ObservableCollection<VirtualFileSystemCategory> CategoryTypes => new(categoryTypes);
 
         public IMvxAsyncCommand<ApiBlockRecordFile> DownloadCommand =>
             new MvxAsyncCommand<ApiBlockRecordFile>(
@@ -68,13 +73,6 @@ namespace Peernet.Browser.Application.ViewModels
                     return Task.CompletedTask;
                 });
 
-
-        public ObservableCollection<ApiBlockRecordFile> ActiveSearchResults
-        {
-            get => activeSearchResults;
-            set => SetProperty(ref activeSearchResults, value);
-        }
-
         public override Task Initialize()
         {
             var exploreResult = exploreService.GetFiles(20);
@@ -84,6 +82,11 @@ namespace Peernet.Browser.Application.ViewModels
             categoryTypes = GetCategoryTypes();
 
             return base.Initialize();
+        }
+
+        private static VirtualFileSystemCategory GetCategory(VirtualFileSystemEntityType type)
+        {
+            return new VirtualFileSystemCategory(type.ToString(), type, null);
         }
 
         // It could return mapping Tuple where Keys are Categories and Values are integer values representing Type. (Binary, -2);(Document,5)
@@ -99,11 +102,6 @@ namespace Peernet.Browser.Application.ViewModels
                 GetCategory(VirtualFileSystemEntityType.Text),
                 GetCategory(VirtualFileSystemEntityType.Binary)
             };
-        }
-
-        private static VirtualFileSystemCategory GetCategory(VirtualFileSystemEntityType type)
-        {
-            return new VirtualFileSystemCategory(type.ToString(), type, null);
         }
     }
 }

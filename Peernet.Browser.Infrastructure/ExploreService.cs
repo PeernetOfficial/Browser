@@ -1,9 +1,9 @@
-﻿using System.Threading.Tasks;
-using Peernet.Browser.Application.Extensions;
+﻿using Peernet.Browser.Application.Extensions;
 using Peernet.Browser.Application.Http;
 using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.Services;
 using RestSharp;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure
 {
@@ -14,6 +14,8 @@ namespace Peernet.Browser.Infrastructure
         {
         }
 
+        public override string CoreSegment => "explore";
+
         public SearchResult GetFiles(int limit, int? type = null)
         {
             var request = new RestRequest(CoreSegment, Method.GET);
@@ -23,10 +25,8 @@ namespace Peernet.Browser.Infrastructure
             {
                 request.AddQueryParameter("type", type.ToString());
             }
-            
+
             return Task.Run(() => RestClient.GetAsync<SearchResult>(request)).GetResultBlockingWithoutContextSynchronization();
         }
-
-        public override string CoreSegment => "explore";
     }
 }

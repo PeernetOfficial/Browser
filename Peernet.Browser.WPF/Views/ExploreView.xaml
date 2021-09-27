@@ -9,10 +9,10 @@
     <Border Background="White" BorderThickness="0" CornerRadius="8,8,8,8">
         <Grid Margin="80,40, 10, 0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Style="{StaticResource Active}" FontWeight="Medium" FontSize="32">Explore</TextBlock>
             <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0, 24, 0, 31">
@@ -36,16 +36,16 @@
                                 </Border.InputBindings>
                                 <StackPanel>
                                     <Border CornerRadius="4, 4, 0, 0" Height="44" Width="142">
-                                    <Border.Style>
-                                        <Style TargetType="{x:Type Border}">
-                                            <Setter Property="Background" Value="{StaticResource GrayedOutBackgroundBrush}" />
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                                                    <Setter Property="Background" Value="{StaticResource DarkGreenBrush}"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Border.Style>
+                                        <Border.Style>
+                                            <Style TargetType="{x:Type Border}">
+                                                <Setter Property="Background" Value="{StaticResource GrayedOutBackgroundBrush}" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                        <Setter Property="Background" Value="{StaticResource DarkGreenBrush}" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Border.Style>
                                         <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{StaticResource ExploreCategoriesImageStyle}" />
                                     </Border>
                                     <Border CornerRadius="0, 0, 4, 4" Width="142" Height="73" VerticalAlignment="Bottom">
