@@ -4,6 +4,7 @@ using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.VirtualFileSystem;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using MvvmCross.Commands;
 
@@ -16,9 +17,9 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IVirtualFileSystemFactory virtualFileSystemFactory;
         private IReadOnlyCollection<ApiBlockRecordFile> sharedFiles;
         private VirtualFileSystem.VirtualFileSystem virtualFileSystem;
-        private List<VirtualFileSystemEntityType> categoryTypes;
+        private List<VirtualFileSystemCategory> categoryTypes;
 
-        public List<VirtualFileSystemEntityType> CategoryTypes => categoryTypes;
+        public ObservableCollection<VirtualFileSystemCategory> CategoryTypes => new(categoryTypes);
 
         public ExploreViewModel(IVirtualFileSystemFactory virtualFileSystemFactory, IExploreService exploreService)
         {
@@ -34,12 +35,29 @@ namespace Peernet.Browser.Application.ViewModels
 
                     return Task.CompletedTask;
                 });
-        
-        public IMvxAsyncCommand<VirtualFileSystemEntityType> SelectCategoryCommand =>
-            new MvxAsyncCommand<VirtualFileSystemEntityType>(
-                type =>
+
+        public IMvxAsyncCommand<VirtualFileSystemCategory> SelectCategoryCommand =>
+            new MvxAsyncCommand<VirtualFileSystemCategory>(
+                category =>
                 {
-                    ActiveSearchResults = new ObservableCollection<ApiBlockRecordFile>(exploreService.GetFiles(50, LowLevelFileType.Document).Files);
+                    categoryTypes.ForEach(c => c.ResetSelection());
+
+                    category.IsSelected = true;
+                    if (category.Type == VirtualFileSystemEntityType.Binary)
+                    {
+                        ActiveSearchResults =
+                            new ObservableCollection<ApiBlockRecordFile>(exploreService.GetFiles(20, -2).Files);
+                    }
+                    //if (type == VirtualFileSystemEntityType.Ebook)
+                    //{
+                    //    ActiveSearchResults =
+                    //        new ObservableCollection<ApiBlockRecordFile>(exploreService.GetFiles(50, ?).Files);
+                    //}
+                    else
+                    {
+                        ActiveSearchResults = new ObservableCollection<ApiBlockRecordFile>(exploreService
+                            .GetFiles(20, (int)category.Type).Files);
+                    }
 
                     return Task.CompletedTask;
                 });
@@ -53,7 +71,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         public override Task Initialize()
         {
-            var exploreResult = exploreService.GetFiles(50);
+            var exploreResult = exploreService.GetFiles(20);
             sharedFiles = new ReadOnlyCollection<ApiBlockRecordFile>(exploreResult.Files);
             ActiveSearchResults = new ObservableCollection<ApiBlockRecordFile>(sharedFiles);
 
@@ -62,18 +80,24 @@ namespace Peernet.Browser.Application.ViewModels
             return base.Initialize();
         }
 
-        private static List<VirtualFileSystemEntityType> GetCategoryTypes()
+        // It could return mapping Tuple where Keys are Categories and Values are integer values representing Type. (Binary, -2);(Document,5)
+        private static List<VirtualFileSystemCategory> GetCategoryTypes()
         {
-            return new List<VirtualFileSystemEntityType>
+            return new List<VirtualFileSystemCategory>
             {
-                VirtualFileSystemEntityType.Document,
-                VirtualFileSystemEntityType.Video,
-                VirtualFileSystemEntityType.Audio,
-                VirtualFileSystemEntityType.Ebook,
-                VirtualFileSystemEntityType.Picture,
-                VirtualFileSystemEntityType.Text,
-                VirtualFileSystemEntityType.Binary
+                GetCategory(VirtualFileSystemEntityType.Document),
+                GetCategory(VirtualFileSystemEntityType.Video),
+                GetCategory(VirtualFileSystemEntityType.Audio),
+                GetCategory(VirtualFileSystemEntityType.Ebook),
+                GetCategory(VirtualFileSystemEntityType.Picture),
+                GetCategory(VirtualFileSystemEntityType.Text),
+                GetCategory(VirtualFileSystemEntityType.Binary)
             };
+        }
+
+        private static VirtualFileSystemCategory GetCategory(VirtualFileSystemEntityType type)
+        {
+            return new VirtualFileSystemCategory(type.ToString(), type, null);
         }
     }
 }

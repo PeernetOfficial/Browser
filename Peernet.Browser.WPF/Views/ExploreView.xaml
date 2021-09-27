@@ -31,18 +31,28 @@
                                 <Border.Effect>
                                     <DropShadowEffect ShadowDepth="7" BlurRadius="16" Color="Black" Opacity="0.14"/>
                                 </Border.Effect>
-                                <Grid Height="117" Width="142" Background="{StaticResource DarkGreenBrush}" Margin="0, 0, 48, 0">
+                                <Grid Height="117" Width="142" Margin="0, 0, 48, 0">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
-                                    <Image Width="52" Height="52" Grid.Row="0" HorizontalAlignment="Left" Source="{DynamicResource FileDrawingImage}" />
+                                    <Image Width="52" Height="52" Grid.Row="0" HorizontalAlignment="Left" Style="{StaticResource ExploreCategoriesImageStyle}" />
                                     <Border Grid.Row="1" BorderBrush="White" Width="142" Height="73">
                                         <Border.Background>
                                             <SolidColorBrush Color="White"></SolidColorBrush>
                                         </Border.Background>
-                                        <TextBlock Text="{Binding}" Style="{StaticResource Active}" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Name}" Style="{StaticResource Active}" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                     </Border>
+                                    <Grid.Style>
+                                        <Style TargetType="{x:Type Grid}">
+                                        <Setter Property="Background" Value="{StaticResource GrayedOutBackgroundBrush}" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                    <Setter Property="Background" Value="{StaticResource DarkGreenBrush}"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Grid.Style>
                                 </Grid>
                             </Border>
                         </DataTemplate>

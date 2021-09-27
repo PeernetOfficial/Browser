@@ -4,6 +4,6 @@ namespace Peernet.Browser.Application.Services
 {
     public interface IExploreService
     {
-        SearchResult GetFiles(int limit, LowLevelFileType? type = null);
+        SearchResult GetFiles(int limit, int? type = null);
     }
 }

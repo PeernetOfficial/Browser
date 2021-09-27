@@ -16,7 +16,7 @@ namespace Peernet.Browser.Infrastructure
             restClient = restClientFactory.CreateRestClient();
         }
 
-        public SearchResult GetFiles(int limit, LowLevelFileType? type = null)
+        public SearchResult GetFiles(int limit, int? type = null)
         {
             var request = new RestRequest(CoreSegment, Method.GET);
             request.AddQueryParameter("limit", limit.ToString());

@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:vfs="clr-namespace:Peernet.Browser.Application.VirtualFileSystem;assembly=Peernet.Browser.Application">
 
-    <Style x:Key="VirtualFileSystemEntityImageStyle" TargetType="{x:Type Image}">
+    <Style x:Key="BaseVirtualFileSystemImageStyle" TargetType="{x:Type Image}">
         <Style.Triggers>
             <DataTrigger Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.Text}">
                 <Setter Property="Source" Value="{DynamicResource TextDrawingImage}" />
@@ -34,6 +34,14 @@
             <DataTrigger Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.Picture}">
                 <Setter Property="Source" Value="{DynamicResource PictureDrawingImage}" />
             </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="ExploreCategoriesImageStyle" TargetType="{x:Type Image}" BasedOn="{StaticResource BaseVirtualFileSystemImageStyle}">
+    </Style>
+
+    <Style x:Key="VirtualFileSystemEntityImageStyle" TargetType="{x:Type Image}" BasedOn="{StaticResource BaseVirtualFileSystemImageStyle}">
+        <Style.Triggers>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.Picture}" />
