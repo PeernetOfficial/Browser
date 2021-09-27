@@ -24,13 +24,16 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border BorderThickness="1" CornerRadius="4" Margin="0, 0, 48, 0">
+                            <Border BorderThickness="1" CornerRadius="4" Margin="0, 0, 48, 0" Cursor="Hand">
                                 <Border.BorderBrush>
                                     <SolidColorBrush Color="Black" Opacity="0.08"></SolidColorBrush>
                                 </Border.BorderBrush>
                                 <Border.Effect>
                                     <DropShadowEffect ShadowDepth="7" BlurRadius="16" Color="Black" Opacity="0.14" />
                                 </Border.Effect>
+                                <Border.InputBindings>
+                                    <MouseBinding Command="{Binding Path=DataContext.SelectCategoryCommand, ElementName=ExplorePage}" CommandParameter="{Binding}" Gesture="LeftClick" />
+                                </Border.InputBindings>
                                 <StackPanel>
                                     <Border CornerRadius="4, 4, 0, 0" Height="44" Width="142">
                                     <Border.Style>
@@ -43,10 +46,7 @@
                                             </Style.Triggers>
                                         </Style>
                                     </Border.Style>
-                                    <Border.InputBindings>
-                                        <MouseBinding Command="{Binding Path=DataContext.SelectCategoryCommand, ElementName=ExplorePage}" CommandParameter="{Binding}" Gesture="LeftClick" />
-                                    </Border.InputBindings>
-                                    <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{StaticResource ExploreCategoriesImageStyle}" />
+                                        <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{StaticResource ExploreCategoriesImageStyle}" />
                                     </Border>
                                     <Border CornerRadius="0, 0, 4, 4" Width="142" Height="73" VerticalAlignment="Bottom">
                                         <Border.Background>

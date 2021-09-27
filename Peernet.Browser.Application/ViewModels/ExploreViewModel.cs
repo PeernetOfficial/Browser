@@ -40,6 +40,11 @@ namespace Peernet.Browser.Application.ViewModels
             new MvxAsyncCommand<VirtualFileSystemCategory>(
                 category =>
                 {
+                    if (category.IsSelected)
+                    {
+                        return Task.CompletedTask;
+                    }
+
                     categoryTypes.ForEach(c => c.ResetSelection());
 
                     category.IsSelected = true;
@@ -48,6 +53,7 @@ namespace Peernet.Browser.Application.ViewModels
                         ActiveSearchResults =
                             new ObservableCollection<ApiBlockRecordFile>(exploreService.GetFiles(20, -2).Files);
                     }
+                    // Product Owner to clarify the behaviour
                     //if (type == VirtualFileSystemEntityType.Ebook)
                     //{
                     //    ActiveSearchResults =

@@ -9,11 +9,9 @@ namespace Peernet.Browser.Infrastructure
 {
     public class ExploreService : ServiceBase, IExploreService
     {
-        private readonly RestClient restClient;
-
-        public ExploreService(IRestClientFactory restClientFactory, ICmdClient cmdClient) : base(restClientFactory, cmdClient)
+        public ExploreService(IRestClientFactory restClientFactory, ICmdClient cmdClient)
+            : base(restClientFactory, cmdClient)
         {
-            restClient = restClientFactory.CreateRestClient();
         }
 
         public SearchResult GetFiles(int limit, int? type = null)
