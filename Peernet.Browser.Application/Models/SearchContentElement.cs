@@ -1,5 +1,4 @@
 ﻿using MvvmCross;
-using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
@@ -9,26 +8,6 @@ using System;
 
 namespace Peernet.Browser.Application.Models
 {
-    public class SearchResult : MvxNotifyPropertyChanged
-    {
-        public SearchResult(ApiBlockRecordFile source, Action<SearchResult> download)
-        {
-            DownloadCommand = new MvxCommand(() => download?.Invoke(this));
-
-            Name = source.Name;
-            Date = source.Date.ToString();
-            Size = $"{source.Size} MB";
-            SharedBy = $"123 Peers";
-        }
-
-        public string Name { get; }
-        public string Date { get; }
-        public string Size { get; }
-        public string SharedBy { get; }
-        public HealthType Health { get; }
-        public IMvxCommand DownloadCommand { get; }
-    }
-
     public class SearchContentElement : MvxNotifyPropertyChanged
     {
         private readonly IMvxNavigationService navigationService;

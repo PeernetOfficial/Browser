@@ -8,71 +8,29 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public class NavigationBarViewModel : MvxViewModel
     {
-        private readonly IMvxNavigationService navigationService;
-
         public NavigationBarViewModel(IMvxNavigationService navigationService, IUserContext userContext)
         {
-            this.navigationService = navigationService;
-
+            NavigateExploreCommand = new MvxCommand(() => navigationService.Navigate<ExploreViewModel>());
+            NavigateHomeCommand = new MvxCommand(() => navigationService.Navigate<HomeViewModel>());
+            NavigateHomeCommand = new MvxCommand(() => navigationService.Navigate<DirectoryViewModel>());
+            GoToYourFilesCommand = new MvxAsyncCommand(() => Task.CompletedTask);
+            OpenCloseProfileMenuCommand = new MvxAsyncCommand(() =>
+            {
+                GlobalContext.IsProfileMenuVisible ^= true;
+                return Task.CompletedTask;
+            });
             UserContext = userContext;
         }
 
-        public IMvxAsyncCommand GoToYourFilesCommand
-        {
-            get
-            {
-                return new MvxAsyncCommand(() =>
-                {
-                    return Task.CompletedTask;
-                });
-            }
-        }
+        public IMvxAsyncCommand GoToYourFilesCommand { get; }
 
-        public IMvxAsyncCommand NavigateDirectoryCommand
-        {
-            get
-            {
-                return new MvxAsyncCommand(async () =>
-                {
-                    await navigationService.Navigate<DirectoryViewModel>();
-                });
-            }
-        }
+        public IMvxCommand NavigateDirectoryCommand { get; }
 
-        public IMvxAsyncCommand NavigateExploreCommand
-        {
-            get
-            {
-                return new MvxAsyncCommand(async () =>
-                {
-                    await navigationService.Navigate<ExploreViewModel>();
-                });
-            }
-        }
+        public IMvxCommand NavigateExploreCommand { get; }
 
-        public IMvxAsyncCommand NavigateHomeCommand
-        {
-            get
-            {
-                return new MvxAsyncCommand(async () =>
-                {
-                    await navigationService.Navigate<HomeViewModel>();
-                });
-            }
-        }
+        public IMvxCommand NavigateHomeCommand { get; }
 
-        public IMvxAsyncCommand OpenCloseProfileMenuCommand
-        {
-            get
-            {
-                return new MvxAsyncCommand(() =>
-                {
-                    GlobalContext.IsProfileMenuVisible ^= true;
-
-                    return Task.CompletedTask;
-                });
-            }
-        }
+        public IMvxAsyncCommand OpenCloseProfileMenuCommand { get; }
 
         public IUserContext UserContext { get; set; }
     }
