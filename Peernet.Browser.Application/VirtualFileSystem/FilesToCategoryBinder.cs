@@ -56,7 +56,6 @@ namespace Peernet.Browser.Application.VirtualFileSystem
                     categories.Add(new VirtualFileSystemCategory(categoryName, type, selectedFiles));
                     remainingFiles.RemoveRange(selectedFiles);
                 }
-
             }
 
             categories.Add(new VirtualFileSystemCategory("Binary", VirtualFileSystemEntityType.Binary, remainingFiles));

@@ -13,7 +13,10 @@ namespace Peernet.Browser.Application.VirtualFileSystem
         {
             this.binder = binder;
 
-            CreateFileSystemStructure(sharedFiles);
+            if (sharedFiles != null)
+            {
+                CreateFileSystemStructure(sharedFiles);
+            }
         }
 
         public List<VirtualFileSystemTier> VirtualFileSystemTiers { get; set; } = new();

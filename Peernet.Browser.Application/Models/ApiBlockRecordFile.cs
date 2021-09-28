@@ -24,7 +24,5 @@ namespace Peernet.Browser.Application.Models
         public DateTime Date { get; set; }
 
         public List<ApiFileMetadata> MetaData { get; set; }
-
-        public List<ApiFileTagRaw> TagsRaw { get; set; }
     }
 }

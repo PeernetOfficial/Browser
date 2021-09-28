@@ -7,6 +7,7 @@
         ProfileFieldWebsite = 2, // Website address
         ProfileFieldTwitter = 3, // Twitter account without the @
         ProfileFieldYouTube = 4, // YouTube channel URL
-        ProfileFieldAddress = 5 // Physical address
+        ProfileFieldAddress = 5, // Physical address
+        ProfilePicture = 6 // Profile picture, blob
     }
 }

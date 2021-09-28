@@ -18,11 +18,11 @@ namespace Peernet.Browser.WPF.Views
     /// </summary>
     [MvxContentPresentation]
     [MvxViewFor(typeof(DirectoryViewModel))]
-    public partial class DictionaryView : MvxWpfView
+    public partial class DirectoryView : MvxWpfView
     {
         private Dictionary<VirtualFileSystemEntity, TreeViewItem> pathElements;
 
-        public DictionaryView()
+        public DirectoryView()
         {
             InitializeComponent();
         }

@@ -13,6 +13,7 @@ namespace Peernet.Browser.Infrastructure
     {
         private const string ReadSegment = "read";
         private const string WriteSegment = "write";
+        private const string DeleteSegment = "delete";
 
         public ProfileService(IRestClientFactory restClientFactory)
             : base(restClientFactory, null)
@@ -26,12 +27,12 @@ namespace Peernet.Browser.Infrastructure
             var request = new RestRequest(GetRelativeRequestPath(WriteSegment), Method.POST);
             request.AddJsonBody(new ApiProfileData
             {
-                Blobs = new List<Blob>
+                Fields = new List<ApiBlockRecordProfile>
                 {
-                    new Blob
+                    new()
                     {
-                        Type = 0,
-                        Data = content
+                        Type = (int)ProfileField.ProfilePicture,
+                        Blob = content
                     }
                 }
             });
@@ -44,11 +45,11 @@ namespace Peernet.Browser.Infrastructure
             var request = new RestRequest(GetRelativeRequestPath(WriteSegment), Method.POST);
             request.AddJsonBody(new ApiProfileData
             {
-                Fields = new List<Field>
+                Fields = new List<ApiBlockRecordProfile>
                 {
-                    new Field
+                    new()
                     {
-                        Type = 0,
+                        Type = (int)ProfileField.ProfileFieldName,
                         Text = userName
                     }
                 }
@@ -59,18 +60,15 @@ namespace Peernet.Browser.Infrastructure
 
         public byte[] GetUserImage()
         {
-            int userImageBlobIndex = (int)ProfileBlob.ProfileBlobPicture;
+            int userImageBlobIndex = (int)ProfileField.ProfilePicture;
 
             var request = new RestRequest(GetRelativeRequestPath(ReadSegment), Method.GET);
-            request.AddParameter("blob", userImageBlobIndex);
+            request.AddParameter("field", userImageBlobIndex);
             request.RequestFormat = DataFormat.Json;
 
-            var response = Task.Run(async () =>
-            {
-                return await RestClient.GetAsync<ApiProfileData>(request);
-            }).GetResultBlockingWithoutContextSynchronization();
+            var response = Task.Run(async () => await RestClient.GetAsync<ApiProfileData>(request)).GetResultBlockingWithoutContextSynchronization();
 
-            return response.Blobs?.FirstOrDefault(f => f.Type == userImageBlobIndex)?.Data;
+            return response.Fields?.FirstOrDefault(f => f.Type == userImageBlobIndex)?.Blob;
         }
 
         public string GetUserName()
@@ -83,6 +81,23 @@ namespace Peernet.Browser.Infrastructure
             var response = Task.Run(async () => await RestClient.GetAsync<ApiProfileData>(request)).GetResultBlockingWithoutContextSynchronization();
 
             return response.Fields?.FirstOrDefault(f => f.Type == userNameFieldIndex)?.Text;
+        }
+
+        public ApiBlockchainBlockStatus DeleteUserImage()
+        {
+            var request = new RestRequest(GetRelativeRequestPath(DeleteSegment), Method.POST);
+            request.AddJsonBody(new ApiProfileData
+            {
+                Fields = new List<ApiBlockRecordProfile>
+                {
+                    new()
+                    {
+                        Type = (int)ProfileField.ProfilePicture,
+                    }
+                }
+            });
+
+            return Task.Run(async () => await RestClient.PostAsync<ApiBlockchainBlockStatus>(request)).GetResultBlockingWithoutContextSynchronization();
         }
     }
 }

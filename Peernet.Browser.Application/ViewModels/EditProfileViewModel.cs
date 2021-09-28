@@ -12,7 +12,6 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IMvxNavigationService mvxNavigationService;
         private readonly IProfileService profileService;
 
-
         public EditProfileViewModel(IMvxNavigationService mvxNavigationService, IUserContext userContext, IProfileService profileService)
         {
             this.mvxNavigationService = mvxNavigationService;
@@ -31,7 +30,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IMvxAsyncCommand RemovePhotoCommand => new MvxAsyncCommand(() =>
         {
-            UserContext.User.Image = null;
+            profileService.DeleteUserImage();
 
             return Task.CompletedTask;
         });
