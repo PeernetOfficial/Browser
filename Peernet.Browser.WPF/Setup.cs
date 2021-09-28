@@ -46,15 +46,12 @@ namespace Peernet.Browser.WPF
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            CreatableTypes()
-                .EndingWith("Service")
-                .AsInterfaces()
-                .RegisterAsLazySingleton();
-
             iocProvider.RegisterType<IRestClientFactory, RestClientFactory>();
             iocProvider.RegisterType<ICmdClient, CmdClient>();
             iocProvider.RegisterType<ISocketClient, SocketClient>();
+            iocProvider.RegisterType<IProfileService, ProfileService>();
             iocProvider.RegisterSingleton<IUserContext>(() => new UserContext(iocProvider.Resolve<IProfileService>(), iocProvider.Resolve<IMvxNavigationService>()));
+            iocProvider.RegisterType<IBlockchainService, BlockchainService>();
             iocProvider.RegisterType<IVirtualFileSystemFactory, VirtualFileSystemFactory>();
             iocProvider.RegisterType<IFilesToCategoryBinder, FilesToCategoryBinder>();
 

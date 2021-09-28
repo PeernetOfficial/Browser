@@ -1,32 +1,67 @@
 ﻿using MvvmCross.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Peernet.Browser.Application.Models
 {
-
-    public class CustomFilterModel : MvxNotifyPropertyChanged
+    public abstract class CustomFilterModel<T> : MvxNotifyPropertyChanged where T : Enum
     {
-        private readonly CustomCheckBoxModel first;
+        protected readonly CustomCheckBoxModel first;
 
-        public CustomFilterModel(string title, string[] elements, bool firstReset = true)
+        public CustomFilterModel(string title, bool firstReset = true, bool showDot = false)
         {
             Title = title.ToUpper();
-            if (elements.IsNullOrEmpty()) throw new ArgumentException("elements");
-            Items.AddRange(elements.Select(x => new CustomCheckBoxModel { Content = x, IsCheckChanged = IsChekcedChanged }));
+            Items.AddRange(GetElements().Select(x => new CustomCheckBoxModel { Id = x.Key, Content = x.Value, IsCheckChanged = IsCheckedChanged, ShowDot = showDot }));
             if (firstReset) first = Items.First();
+        }
+
+        protected virtual IEnumerable<KeyValuePair<int, string>> GetElements()
+        {
+            var type = typeof(T);
+            foreach (T val in Enum.GetValues(type))
+            {
+                var d = val.GetDescription();
+                if (d != null)
+                {
+                    yield return new KeyValuePair<int, string>(Convert.ToInt32(val), d);
+                }
+            }
         }
 
         public string Title { get; }
 
         public MvxObservableCollection<CustomCheckBoxModel> Items { get; } = new MvxObservableCollection<CustomCheckBoxModel>();
 
-        private void IsChekcedChanged(CustomCheckBoxModel c)
+        private void IsCheckedChanged(CustomCheckBoxModel c)
         {
             if (first?.IsChecked != true || !c.IsChecked) return;
             var isFirst = first == c;
-            if (isFirst) Items.Where(x => x != c).Foreach(x => x.IsChecked = false);
+            if (isFirst || first == null) Items.Where(x => x != c).Foreach(x => x.IsChecked = false);
             else first.IsChecked = false;
+        }
+
+        public T[] GetSelected()
+        {
+            return Items.Where(x => x.IsChecked).Select(x => (T)(object)x.Id).ToArray();
+        }
+
+        public void Set(T[] vals)
+        {
+            if (vals.IsNullOrEmpty()) return;
+            foreach (var i in Items)
+            {
+                if (vals.Contains((T)(object)i.Id)) i.IsChecked = true;
+            }
+        }
+
+        public void Set(object val)
+        {
+            if (val == null) return;
+            foreach (var i in Items)
+            {
+                if ((int)val == i.Id) i.IsChecked = true;
+            }
         }
     }
 }
