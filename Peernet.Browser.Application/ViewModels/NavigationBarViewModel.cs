@@ -12,7 +12,7 @@ namespace Peernet.Browser.Application.ViewModels
         {
             NavigateExploreCommand = new MvxCommand(() => navigationService.Navigate<ExploreViewModel>());
             NavigateHomeCommand = new MvxCommand(() => navigationService.Navigate<HomeViewModel>());
-            NavigateHomeCommand = new MvxCommand(() => navigationService.Navigate<DirectoryViewModel>());
+            NavigateDirectoryCommand = new MvxCommand(() => navigationService.Navigate<DirectoryViewModel>());
             GoToYourFilesCommand = new MvxAsyncCommand(() => Task.CompletedTask);
             OpenCloseProfileMenuCommand = new MvxAsyncCommand(() =>
             {

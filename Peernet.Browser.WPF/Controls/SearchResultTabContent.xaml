@@ -24,6 +24,8 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
+        <local:FiltersControl Grid.Row="2" DataContext="{Binding Filters}" />
+
         <DockPanel LastChildFill="False" Grid.Row="0"  HorizontalAlignment="Right">
             <local:FilterIconControl Padding="0 10 0 10" Height="41"  DataContext="{Binding ColumnsIconModel}" />
             <local:FilterIconControl Padding="0 10 0 10" Height="41"  DataContext="{Binding FiltersIconModel}" />
@@ -76,9 +78,27 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Width="200" Header="DATE" Binding="{Binding Date}" />
-                <DataGridTextColumn Width="120" Header="SIZE" Binding="{Binding Size}" />
-                <DataGridTextColumn Header="SHARED BY" Binding="{Binding SharedBy}" />
+                <DataGridTextColumn  TextBlock.TextAlignment="Left" Width="200" Header="DATE" Binding="{Binding Date}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="120" Header="SIZE" Binding="{Binding Size}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="SHARED BY" Binding="{Binding SharedBy}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
