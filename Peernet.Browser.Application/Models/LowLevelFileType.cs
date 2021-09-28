@@ -11,6 +11,7 @@
         Executable = 6,
         Container = 7,
         Compressed = 8,
-        Folder = 9
+        Folder = 9,
+        Ebook = 10
     }
 }
