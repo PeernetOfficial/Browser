@@ -2,12 +2,19 @@
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Enums;
 using System;
+using System.Collections.Generic;
 
 namespace Peernet.Browser.Application.Models
 {
     public class SearchResult : MvxNotifyPropertyChanged
     {
-        public SearchResult(ApiBlockRecordFile source, Action<SearchResult> download)
+        public List<ApiBlockRecordFile> Files { get; set; }
+        public int Status { get; set; }
+    }
+
+    public class SearchResult2 : MvxNotifyPropertyChanged
+    {
+        public SearchResult2(ApiBlockRecordFile source, Action<SearchResult2> download)
         {
             DownloadCommand = new MvxCommand(() => download?.Invoke(this));
 

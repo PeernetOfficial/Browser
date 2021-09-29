@@ -13,7 +13,7 @@ namespace Peernet.Browser.Application.Models
         private readonly IMvxNavigationService navigationService;
         public MvxObservableCollection<IconModel> FilterIconModels { get; } = new MvxObservableCollection<IconModel>();
 
-        public MvxObservableCollection<SearchResult> TableResult { get; } = new MvxObservableCollection<SearchResult>();
+        public MvxObservableCollection<SearchResult2> TableResult { get; } = new MvxObservableCollection<SearchResult2>();
 
         public IconModel FiltersIconModel { get; }
         public IconModel ColumnsIconModel { get; }
@@ -42,11 +42,11 @@ namespace Peernet.Browser.Application.Models
 
             for (var i = 0; i < 100; i++)
             {
-                TableResult.Add(new SearchResult(new ApiBlockRecordFile { Date = DateTime.Now.AddMinutes(i), Name = $"Name_{i}", Size = i }, Download));
+                TableResult.Add(new SearchResult2(new ApiBlockRecordFile { Date = DateTime.Now.AddMinutes(i), Name = $"Name_{i}", Size = i }, Download));
             }
         }
 
-        private void Download(SearchResult row)
+        private void Download(SearchResult2 row)
         {
         }
 
