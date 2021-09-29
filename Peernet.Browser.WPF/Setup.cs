@@ -5,6 +5,7 @@ using MvvmCross.Navigation.EventArguments;
 using MvvmCross.Platforms.Wpf.Core;
 using MvvmCross.Plugin;
 using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Http;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.VirtualFileSystem;
@@ -55,6 +56,8 @@ namespace Peernet.Browser.WPF
             iocProvider.RegisterType<IVirtualFileSystemFactory, VirtualFileSystemFactory>();
             iocProvider.RegisterType<IFilesToCategoryBinder, FilesToCategoryBinder>();
             iocProvider.RegisterType<IExploreService, ExploreService>();
+            iocProvider.RegisterType<IDownloadService, DownloadService>();
+            iocProvider.RegisterSingleton<IDownloadManager>(new DownloadManager(iocProvider.Resolve<IDownloadService>()));
 
             ObserveNavigation(iocProvider);
         }

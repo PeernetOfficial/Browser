@@ -3,7 +3,6 @@ using MvvmCross.Platforms.Wpf.Views;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.ViewModels;
 using Peernet.Browser.Application.VirtualFileSystem;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;

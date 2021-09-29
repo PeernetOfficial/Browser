@@ -2,6 +2,7 @@
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.Services;
 using System.Linq;
@@ -21,12 +22,13 @@ namespace Peernet.Browser.Application.ViewModels
         private ConnectionStatus connectionStatus = ConnectionStatus.Offline;
         private string peers;
 
-        public FooterViewModel(ICmdClient apiClient, ISocketClient socketClient, IMvxNavigationService navigationService, IApplicationManager applicationManager)
+        public FooterViewModel(ICmdClient apiClient, ISocketClient socketClient, IMvxNavigationService navigationService, IApplicationManager applicationManager, IDownloadManager downloadManager)
         {
             this.apiClient = apiClient;
             this.socketClient = socketClient;
             this.navigationService = navigationService;
             this.applicationManager = applicationManager;
+            DownloadManager = downloadManager;
 
             UploadCommand = new MvxCommand(UploadFiles);
             SendToPeernetConsole = new MvxAsyncCommand(SendToPeernetMethod);
@@ -50,6 +52,8 @@ namespace Peernet.Browser.Application.ViewModels
             set => SetProperty(ref connectionStatus, value);
         }
 
+        public IDownloadManager DownloadManager { get; }
+
         public string Peers
         {
             get => peers;
@@ -60,7 +64,20 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IMvxCommand UploadCommand { get; }
 
-        public async override Task Initialize()
+        public IMvxCommand PauseDownloadCommand { get; }
+
+        public IMvxAsyncCommand<ApiBlockRecordFile> CancelDownloadCommand => new MvxAsyncCommand<ApiBlockRecordFile>(
+            file =>
+            {
+                // Make API call and validate result
+
+                DownloadManager.DequeueDownload(file);
+
+                return Task.CompletedTask;
+            });
+
+
+        public override async Task Initialize()
         {
             await ConnectToPeernetAPI();
             await ConnectToPeernetConsole();
