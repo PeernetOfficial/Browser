@@ -1,5 +1,4 @@
-﻿using MvvmCross.Commands;
-using MvvmCross.Navigation;
+﻿using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Models;
@@ -19,6 +18,7 @@ namespace Peernet.Browser.Application.ViewModels
         public override void Prepare(FiltersModel p)
         {
             Filters = p;
+            p.Close = Hide;
         }
 
         private readonly IMvxNavigationService mvxNavigationService;
@@ -26,24 +26,12 @@ namespace Peernet.Browser.Application.ViewModels
         public FiltersViewModel(IMvxNavigationService mvxNavigationService)
         {
             this.mvxNavigationService = mvxNavigationService;
-            CancelCommand = new MvxCommand(Hide);
-            ApplyFiltersCommand = new MvxCommand(ApplyFilters);
         }
-
-        public IMvxCommand CancelCommand { get; }
-
-        public IMvxCommand ApplyFiltersCommand { get; }
 
         private void Hide()
         {
             GlobalContext.IsMainWindowActive = true;
             mvxNavigationService.Close(this);
-        }
-
-        private void ApplyFilters()
-        {
-            //TODO: pass filter models
-            Hide();
         }
     }
 }

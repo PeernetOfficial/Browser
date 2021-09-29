@@ -1,6 +1,6 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
-using Peernet.Browser.Application.Contexts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,6 +8,7 @@ namespace Peernet.Browser.Application.Models
 {
     public class FiltersModel : MvxNotifyPropertyChanged
     {
+        public Action Close { get; set; }
         public SearchFilterResultModel SearchFilterResult { get; } = new SearchFilterResultModel();
 
         public FiltersModel()
@@ -39,7 +40,7 @@ namespace Peernet.Browser.Application.Models
 
         public MvxObservableCollection<FilterResultModel> Results { get; } = new MvxObservableCollection<FilterResultModel>();
 
-        public bool IsVisible => true;
+        public bool IsVisible => Results.Any();
 
         private void Remove(FilterResultModel o) => Results.Remove(o);
 
@@ -54,22 +55,6 @@ namespace Peernet.Browser.Application.Models
         public IMvxCommand ApplyFiltersCommand { get; }
 
         public IMvxCommand ClearCommand { get; }
-
-        private void Hide()
-        {
-            IsOpen = false;
-        }
-
-        private bool isOpen;
-
-        public bool IsOpen
-        {
-            get => isOpen;
-            set
-            {
-                if (SetProperty(ref isOpen, value)) IsOpenChange();
-            }
-        }
 
         private void ApplyFilters()
         {
@@ -86,9 +71,9 @@ namespace Peernet.Browser.Application.Models
             Hide();
         }
 
-        private void IsOpenChange() => GlobalContext.IsMainWindowActive = !IsOpen;
+        private void Hide() => Close?.Invoke();
 
-        public void Open()
+        private void Open()
         {
             DateFilters.Set(SearchFilterResult.Time);
             FileFormatFilters.Set(SearchFilterResult.FileFormats);
@@ -99,8 +84,6 @@ namespace Peernet.Browser.Application.Models
             RangeFilter.CurrentMin = SearchFilterResult.SizeFrom ?? SearchFilterResult.SizeMin;
             RangeFilter.Max = SearchFilterResult.SizeMax;
             RangeFilter.Min = SearchFilterResult.SizeMin;
-
-            IsOpen = true;
         }
     }
 }

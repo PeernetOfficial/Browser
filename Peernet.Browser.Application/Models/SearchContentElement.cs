@@ -13,7 +13,7 @@ namespace Peernet.Browser.Application.Models
         private readonly IMvxNavigationService navigationService;
         public MvxObservableCollection<IconModel> FilterIconModels { get; } = new MvxObservableCollection<IconModel>();
 
-        public MvxObservableCollection<SearchResult2> TableResult { get; } = new MvxObservableCollection<SearchResult2>();
+        public MvxObservableCollection<SearchResultRow> TableResult { get; } = new MvxObservableCollection<SearchResultRow>();
 
         public IconModel FiltersIconModel { get; }
         public IconModel ColumnsIconModel { get; }
@@ -42,11 +42,11 @@ namespace Peernet.Browser.Application.Models
 
             for (var i = 0; i < 100; i++)
             {
-                TableResult.Add(new SearchResult2(new ApiBlockRecordFile { Date = DateTime.Now.AddMinutes(i), Name = $"Name_{i}", Size = i }, Download));
+                TableResult.Add(new SearchResultRow(new ApiBlockRecordFile { Date = DateTime.Now.AddMinutes(i), Name = $"Name_{i}", Size = i }, Download));
             }
         }
 
-        private void Download(SearchResult2 row)
+        private void Download(SearchResultRow row)
         {
         }
 
@@ -54,7 +54,7 @@ namespace Peernet.Browser.Application.Models
         {
             GlobalContext.IsMainWindowActive = false;
             GlobalContext.IsProfileMenuVisible = false;
-            navigationService.Navigate<FiltersViewModel>();
+            navigationService.Navigate<FiltersViewModel, FiltersModel>(Filters);
         }
     }
 }
