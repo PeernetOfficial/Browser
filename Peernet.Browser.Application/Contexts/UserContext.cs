@@ -75,7 +75,7 @@ namespace Peernet.Browser.Application.Contexts
             return new User
             {
                 Name = string.IsNullOrEmpty(name) ? null : name,
-                Image = image.Length == 0 ? null : image
+                Image = image?.Length == 0 ? null : image
             };
         }
     }

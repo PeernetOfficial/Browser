@@ -1,10 +1,10 @@
-﻿<UserControl x:Class="Peernet.Browser.WPF.Controls.SharedFilesDataGridControl"
+﻿<UserControl x:Class="Peernet.Browser.WPF.Controls.ExploreFilesDataGridControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Name="SharedFilesDataGrid">
+             x:Name="ExploreFilesDataGrid">
     <Grid>
         <DataGrid Style="{DynamicResource DataGridStyle}" ItemsSource="{Binding ActiveSearchResults}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False">
             <DataGrid.Columns>
@@ -22,13 +22,6 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="TYPE" SortMemberPath="Format" Width="Auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Format}" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="DATE" SortMemberPath="Date" Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -36,24 +29,27 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="SIZE" SortMemberPath="Size" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Size}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!--<DataGridTemplateColumn Header="SHARED BY" SortMemberPath="SharedBy" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding SharedBy}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>-->
                 <DataGridTemplateColumn Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <!--Reference with ElementName is not a good approach - think of something better, although we don't want any logic in models -->
-                                <Button Grid.Column="0" Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.EditCommand, ElementName=SharedFilesDataGrid}" CommandParameter="{Binding}">
+                                <Button Width="12" Height="17" Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.DownloadCommand, ElementName=ExploreFilesDataGrid}" CommandParameter="{Binding}">
                                     <Button.Background>
-                                        <ImageBrush ImageSource="{DynamicResource EditDrawingImage}" />
-                                    </Button.Background>
-                                </Button>
-                                <Button Grid.Column="2" Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.DeleteCommand, ElementName=SharedFilesDataGrid}" CommandParameter="{Binding}">
-                                    <Button.Background>
-                                        <ImageBrush ImageSource="{DynamicResource BinDrawingImage}" />
+                                        <ImageBrush ImageSource="{DynamicResource DownloadDrawingImage}" />
                                     </Button.Background>
                                 </Button>
                             </Grid>

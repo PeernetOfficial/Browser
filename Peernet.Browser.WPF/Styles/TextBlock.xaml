@@ -11,6 +11,16 @@
         <Setter Property="Foreground" Value="{StaticResource DarkGreenBrush}" />
         <Setter Property="Padding" Value="0 2" />
     </Style>
+    <Style TargetType="{x:Type TextBlock}" x:Key="ActiveSelectable">
+        <Setter Property="Foreground" Value="#8F8F8F" />
+        <Setter Property="Padding" Value="0 2" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource DarkGreenBrush}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
     <Style TargetType="{x:Type TextBlock}" x:Key="Title">
         <Setter Property="Foreground" Value="{StaticResource LightGrayBrush}" />
         <Setter Property="Padding" Value="0 2" />
