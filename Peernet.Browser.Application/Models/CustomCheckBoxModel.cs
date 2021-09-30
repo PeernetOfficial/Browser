@@ -21,7 +21,7 @@ namespace Peernet.Browser.Application.Models
             }
         }
 
-        public int Id { get; set; }
+        public Enum EnumerationMember { get; set; }
 
         public string Content
 

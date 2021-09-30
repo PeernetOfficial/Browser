@@ -5,7 +5,7 @@ namespace Peernet.Browser.Application.Enums
     public enum HealthType
     {
         [Description("Grean health indicator")]
-        Grean,
+        Green,
 
         [Description("Yellow health indicator")]
         Yellow,

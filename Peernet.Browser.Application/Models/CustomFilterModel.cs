@@ -12,11 +12,11 @@ namespace Peernet.Browser.Application.Models
         protected CustomFilterModel(string title, bool firstReset = true, bool showDot = false)
         {
             Title = title.ToUpper();
-            Items.AddRange(GetElements().Select(x => new CustomCheckBoxModel { Id = x.Key, Content = x.Value, IsCheckChanged = IsCheckedChanged, ShowDot = showDot }));
+            Items.AddRange(GetElements().Select(x => new CustomCheckBoxModel { EnumerationMember = x.Key, Content = x.Value, IsCheckChanged = IsCheckedChanged, ShowDot = showDot }));
             if (firstReset) first = Items.First();
         }
 
-        protected virtual IEnumerable<KeyValuePair<int, string>> GetElements()
+        protected virtual IEnumerable<KeyValuePair<Enum, string>> GetElements()
         {
             var type = typeof(T);
             foreach (T val in Enum.GetValues(type))
@@ -24,7 +24,7 @@ namespace Peernet.Browser.Application.Models
                 var d = val.GetDescription();
                 if (d != null)
                 {
-                    yield return new KeyValuePair<int, string>((int)(object)val, d);
+                    yield return new KeyValuePair<Enum, string>(val, d);
                 }
             }
         }
@@ -43,7 +43,7 @@ namespace Peernet.Browser.Application.Models
 
         public T[] GetSelected()
         {
-            return Items.Where(x => x.IsChecked).Select(x => (T)(object)x.Id).ToArray();
+            return Items.Where(x => x.IsChecked).Select(x => (T)x.EnumerationMember).ToArray();
         }
 
         public void Set(T[] vals)
@@ -51,16 +51,16 @@ namespace Peernet.Browser.Application.Models
             if (vals.IsNullOrEmpty()) return;
             foreach (var i in Items)
             {
-                if (vals.Contains((T)(object)i.Id)) i.IsChecked = true;
+                if (vals.Contains((T)i.EnumerationMember)) i.IsChecked = true;
             }
         }
 
-        public void Set(object val)
+        public void Set(Enum val)
         {
             if (val == null) return;
             foreach (var i in Items)
             {
-                if ((int)val == i.Id) i.IsChecked = true;
+                if (val.Equals(i.EnumerationMember)) i.IsChecked = true;
             }
         }
     }

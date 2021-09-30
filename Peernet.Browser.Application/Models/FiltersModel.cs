@@ -59,7 +59,7 @@ namespace Peernet.Browser.Application.Models
 
         public void Reset(int min, int max)
         {
-            SearchFilterResult.HealthType = HealthType.Grean;
+            SearchFilterResult.HealthType = HealthType.Green;
             SearchFilterResult.FileFormats = new[] { FileFormats.All };
             SearchFilterResult.Order = SortOrders.MostRelevant;
             SearchFilterResult.Time = TimePeriods.Any;

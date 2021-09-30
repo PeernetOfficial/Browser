@@ -15,6 +15,7 @@ namespace Peernet.Browser.Application.Models
             Date = source.Date.ToString();
             Size = $"{source.Size} MB";
             SharedBy = $"123 Peers";
+            Health = HealthType.Yellow;
         }
 
         public int Id { get; set; }
