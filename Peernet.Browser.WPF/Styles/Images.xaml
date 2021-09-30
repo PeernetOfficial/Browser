@@ -148,6 +148,34 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="DotStyle" TargetType="{x:Type Image}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding EnumerationMember}" Value="{x:Static enums:HealthType.Green}">
+                <Setter Property="Source" Value="{DynamicResource GreenDotDrawingImage}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding EnumerationMember}" Value="{x:Static enums:HealthType.Yellow}">
+                <Setter Property="Source" Value="{DynamicResource YellowDotDrawingImage}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding EnumerationMember}" Value="{x:Static enums:HealthType.Red}">
+                <Setter Property="Source" Value="{DynamicResource RedDotDrawingImage}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="HealthStyle" TargetType="{x:Type Image}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Health}" Value="{x:Static enums:HealthType.Green}">
+                <Setter Property="Source" Value="{DynamicResource GreenDotDrawingImage}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Health}" Value="{x:Static enums:HealthType.Yellow}">
+                <Setter Property="Source" Value="{DynamicResource YellowDotDrawingImage}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Health}" Value="{x:Static enums:HealthType.Red}">
+                <Setter Property="Source" Value="{DynamicResource RedDotDrawingImage}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
     <Style x:Key="IconsStyle" TargetType="{x:Type Image}">
         <Style.Triggers>
             <DataTrigger Binding="{Binding FilterType}" Value="{x:Static enums:FiltersType.Text}">

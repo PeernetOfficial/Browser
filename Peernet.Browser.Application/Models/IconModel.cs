@@ -5,12 +5,12 @@ using System;
 
 namespace Peernet.Browser.Application.Models
 {
-    public class FilterIconModel : MvxNotifyPropertyChanged
+    public class IconModel : MvxNotifyPropertyChanged
     {
         private readonly bool showCount;
         public FiltersType FilterType { get; }
 
-        public FilterIconModel(FiltersType filterType, bool alwaysSelected = false, Action onClick = null, int? count = null)
+        public IconModel(FiltersType filterType, bool alwaysSelected = false, Action onClick = null, int? count = null)
         {
             showCount = count.HasValue;
             FilterType = filterType;
