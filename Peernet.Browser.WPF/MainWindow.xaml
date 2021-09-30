@@ -40,6 +40,8 @@
                             <RowDefinition Height="40" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
+
+                        <Image Visibility="{Binding Path=(contexts:GlobalContext.IsLogoVisible), Converter={StaticResource BoolToVisibility}}"  Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="70 0" Source="{StaticResource LogoAbbreviationDrawingImage}" Height="50" />
                         <controls:ButtonsControl Grid.Row="0" InitializeOnLoad="true" />
                         <controls:NavigationBarControl Panel.ZIndex="1" Margin="0 37 0 0" HorizontalAlignment="Right" Grid.Row="1" InitializeOnLoad="true" />
                         <ContentPresenter Grid.Row="1" Content="{Binding}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />

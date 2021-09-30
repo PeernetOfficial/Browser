@@ -1,5 +1,6 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
+using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Enums;
 using Peernet.Browser.Application.Models;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace Peernet.Browser.Application.ViewModels
                 RaisePropertyChanged(nameof(IsVisible));
                 RaisePropertyChanged(nameof(IsNotVisible));
                 RaisePropertyChanged(nameof(Alignment));
+                GlobalContext.IsLogoVisible = IsVisible;
             };
         }
 

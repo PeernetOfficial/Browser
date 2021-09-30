@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf">
     <Grid VerticalAlignment="{Binding Alignment, Converter={StaticResource VerticalAlignmentConverter}}">
-        <Image HorizontalAlignment="Left" VerticalAlignment="Top" Margin="60 0" Source="{StaticResource LogoAbbreviationDrawingImage}" Height="40" Visibility="{Binding IsVisible, Converter={StaticResource BoolToVisibility}}" />
         <StackPanel Width="600">
             <Image Source="{StaticResource LogoDrawingImage}" Height="65" Visibility="{Binding IsNotVisible, Converter={StaticResource BoolToVisibility}}" />
             <Border Padding="13" BorderBrush="{StaticResource LightGray2Brush}" BorderThickness="1" Margin="0 90 0 0" CornerRadius="{StaticResource MainRadius}">
