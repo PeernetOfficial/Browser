@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using MvvmCross.ViewModels;
+using System.Collections.Generic;
 
 namespace Peernet.Browser.Application.Models
 {
-    public class SearchResult
+    public class SearchResult : MvxNotifyPropertyChanged
     {
-        public int Status { get; set; }
-
         public List<ApiBlockRecordFile> Files { get; set; }
+        public int Status { get; set; }
     }
 }

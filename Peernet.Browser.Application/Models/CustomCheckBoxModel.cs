@@ -21,11 +21,15 @@ namespace Peernet.Browser.Application.Models
             }
         }
 
+        public Enum EnumerationMember { get; set; }
+
         public string Content
 
         {
             get => content;
             set => SetProperty(ref content, value);
         }
+
+        public bool ShowDot { get; set; }
     }
 }
