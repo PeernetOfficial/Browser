@@ -9,7 +9,7 @@ namespace Peernet.Browser.Application.Models
     {
         protected readonly CustomCheckBoxModel first;
 
-        public CustomFilterModel(string title, bool firstReset = true, bool showDot = false)
+        protected CustomFilterModel(string title, bool firstReset = true, bool showDot = false)
         {
             Title = title.ToUpper();
             Items.AddRange(GetElements().Select(x => new CustomCheckBoxModel { Id = x.Key, Content = x.Value, IsCheckChanged = IsCheckedChanged, ShowDot = showDot }));
@@ -24,7 +24,7 @@ namespace Peernet.Browser.Application.Models
                 var d = val.GetDescription();
                 if (d != null)
                 {
-                    yield return new KeyValuePair<int, string>(Convert.ToInt32(val), d);
+                    yield return new KeyValuePair<int, string>((int)(object)val, d);
                 }
             }
         }

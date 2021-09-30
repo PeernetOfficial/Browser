@@ -5,6 +5,8 @@ using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Enums;
 using Peernet.Browser.Application.ViewModels;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Peernet.Browser.Application.Models
 {
@@ -20,8 +22,12 @@ namespace Peernet.Browser.Application.Models
 
         public FiltersModel Filters { get; }
 
+        private readonly List<ApiBlockRecordFile> Files = new List<ApiBlockRecordFile>();
+
         public SearchContentElement()
         {
+            PrepareFakeFiles();
+
             navigationService = Mvx.IoCProvider.Resolve<IMvxNavigationService>();
 
             FilterIconModels.Add(new IconModel(FiltersType.All, count: 2357));
@@ -37,13 +43,25 @@ namespace Peernet.Browser.Application.Models
             FiltersIconModel = new IconModel(FiltersType.Filters, true, OpenFilters);
 
             Filters = new FiltersModel();
+            Filters.Reset(0, 15);
+            Filters.Refresh();
 
-            Filters.Refresh(new[] { "Last Week", "Word File", "2GB - 10GB" });
+            RefreshTable();
+        }
 
+        private void PrepareFakeFiles()
+        {
             for (var i = 0; i < 100; i++)
             {
-                TableResult.Add(new SearchResultRow(new ApiBlockRecordFile { Date = DateTime.Now.AddMinutes(i), Name = $"Name_{i}", Size = i }, Download));
+                var id = i % 5;
+                Files.Add(new ApiBlockRecordFile { Id = id.ToString(), Date = DateTime.Now.AddMinutes(i), Name = $"Name_{i}", Size = i });
             }
+        }
+
+        private void RefreshTable()
+        {
+            TableResult.Clear();
+            TableResult.AddRange(Files.Select(x => new SearchResultRow(x, Download)));
         }
 
         private void Download(SearchResultRow row)

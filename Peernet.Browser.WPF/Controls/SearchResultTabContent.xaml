@@ -58,7 +58,7 @@
                 <DataGridTemplateColumn Header="" SortMemberPath="First">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image Width="10" Source="{DynamicResource ArrowDown_ActiveDrawingImage}" />
+                            <Image Width="10" Style="{StaticResource DotStyle}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -100,9 +100,9 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Style="{StaticResource DataGridActionButton}" Command="{Binding DownloadCommand}">
+                            <Button Width="12" Height="17"  Style="{StaticResource DataGridActionButton}" Command="{Binding DownloadCommand}">
                                 <Button.Background>
-                                    <ImageBrush ImageSource="{DynamicResource ArrowDownDrawingImage}" />
+                                    <ImageBrush ImageSource="{DynamicResource DownloadDrawingImage}" />
                                 </Button.Background>
                             </Button>
                         </DataTemplate>

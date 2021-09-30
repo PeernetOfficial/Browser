@@ -1,5 +1,6 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
+using Peernet.Browser.Application.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace Peernet.Browser.Application.Models
 {
     public class FiltersModel : MvxNotifyPropertyChanged
     {
-        public Action Close { get; set; }
+        public Action CloseAction { get; set; }
         public SearchFilterResultModel SearchFilterResult { get; } = new SearchFilterResultModel();
 
         public FiltersModel()
@@ -56,6 +57,19 @@ namespace Peernet.Browser.Application.Models
 
         public IMvxCommand ClearCommand { get; }
 
+        public void Reset(int min, int max)
+        {
+            SearchFilterResult.HealthType = HealthType.Grean;
+            SearchFilterResult.FileFormats = new[] { FileFormats.All };
+            SearchFilterResult.Order = SortOrders.MostRelevant;
+            SearchFilterResult.Time = TimePeriods.Any;
+
+            SearchFilterResult.SizeMin = min;
+            SearchFilterResult.SizeMax = max;
+
+            Bind();
+        }
+
         private void ApplyFilters()
         {
             SearchFilterResult.Order = SortOrderFilters.GetSelected().FirstOrDefault();
@@ -71,9 +85,9 @@ namespace Peernet.Browser.Application.Models
             Hide();
         }
 
-        private void Hide() => Close?.Invoke();
+        private void Hide() => CloseAction?.Invoke();
 
-        private void Open()
+        private void Bind()
         {
             DateFilters.Set(SearchFilterResult.Time);
             FileFormatFilters.Set(SearchFilterResult.FileFormats);

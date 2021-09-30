@@ -10,12 +10,14 @@ namespace Peernet.Browser.Application.Models
         public SearchResultRow(ApiBlockRecordFile source, Action<SearchResultRow> download)
         {
             DownloadCommand = new MvxCommand(() => download?.Invoke(this));
-
+            Id = int.Parse(source.Id);
             Name = source.Name;
             Date = source.Date.ToString();
             Size = $"{source.Size} MB";
             SharedBy = $"123 Peers";
         }
+
+        public int Id { get; set; }
 
         public string Name { get; }
         public string Date { get; }

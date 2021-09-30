@@ -18,7 +18,7 @@ namespace Peernet.Browser.Application.ViewModels
         public override void Prepare(FiltersModel p)
         {
             Filters = p;
-            p.Close = Hide;
+            p.CloseAction = Hide;
         }
 
         private readonly IMvxNavigationService mvxNavigationService;

@@ -21,6 +21,8 @@ namespace Peernet.Browser.WPF.Controls
         public MyRangeSlider()
         {
             InitializeComponent();
+            SetTextBlock(true);
+            SetTextBlock(false);
         }
 
         public double Maximum
@@ -192,8 +194,8 @@ namespace Peernet.Browser.WPF.Controls
         private void SetTextBlock(bool isMin)
         {
             var val = isMin ? RangeMin : RangeMax;
-            var t = $"{val}GB";
-            if (isMin) MInT.Text = t;
+            var t = $"{val}MB";
+            if (isMin) MinT.Text = t;
             else MaxT.Text = t;
         }
     }
