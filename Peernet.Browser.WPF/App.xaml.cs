@@ -10,20 +10,21 @@ namespace Peernet.Browser.WPF
     /// </summary>
     public partial class App : MvxApplication
     {
-        private CmdRunner _runner;
+        private CmdRunner cmdRunner;
 
         protected override void RegisterSetup() => this.RegisterSetupType<Setup>();
 
         protected override void OnExit(ExitEventArgs e)
         {
-            _runner.Dispose();
+            cmdRunner.Dispose();
             base.OnExit(e);
         }
 
         public override void ApplicationInitialized()
         {
-            _runner = new CmdRunner(new SettingsManager().CmdPath);
-            if (_runner.FileExist) _runner.Run();
+            cmdRunner = new CmdRunner(new SettingsManager().CmdPath);
+            cmdRunner.Run();
+
             base.ApplicationInitialized();
         }
     }

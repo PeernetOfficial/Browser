@@ -8,23 +8,25 @@ namespace Peernet.Browser.Infrastructure.Tools
 {
     public class CmdRunner : IRunable, IDisposable
     {
-        private bool _wasRun;
-        private Process _p;
-        private const string _processName = "Cmd";
-
-        public bool FileExist { get; }
+        private const string processName = "Cmd.exe";
+        private readonly bool fileExist;
+        private Process process;
+        private bool wasRun;
 
         public CmdRunner(string path = "")
         {
-            if (File.Exists(path))
+            if (Directory.Exists(path))
             {
-                _p = new Process();
-                _p.StartInfo.FileName = path;
-                FileExist = true;
+                process = new Process();
+                process.StartInfo = new ProcessStartInfo($"{path}\\{processName}")
+                {
+                    UseShellExecute = false,
+                    WorkingDirectory = path
+                };
+
+                fileExist = true;
             };
         }
-
-        public string Path { get; }
 
         public bool IsRunning { get; private set; }
 
@@ -36,39 +38,46 @@ namespace Peernet.Browser.Infrastructure.Tools
 
         public void Run()
         {
-            if (IsRunningCheck()) IsRunning = true;
-            else RunProcess();
-        }
-
-        private bool IsRunningCheck() => Process.GetProcesses().Any(x => x.ProcessName.Contains(_processName));
-
-        private void RunProcess()
-        {
-            try
+            if (IsRunningCheck())
             {
-                _p.Start();
-                _p.Refresh();
                 IsRunning = true;
-                _wasRun = true;
             }
-            catch (Win32Exception ex)
+            if (fileExist)
             {
-                Console.WriteLine(ex.Message);
+                RunProcess();
             }
         }
 
         protected virtual void Dispose(bool disposing)
         {
-            if (disposing)
+            if (disposing && process != null)
             {
-                if (_p != null)
+                if (wasRun)
                 {
-                    if (_wasRun) _p.Kill();
-                    _p.Dispose();
-                    _p = null;
-                    IsRunning = false;
-                    _wasRun = false;
+                    process.Kill();
                 }
+
+                process.Dispose();
+                process = null;
+                IsRunning = false;
+                wasRun = false;
+            }
+        }
+
+        private bool IsRunningCheck() => Process.GetProcesses().Any(x => x.ProcessName.Contains(processName));
+
+        private void RunProcess()
+        {
+            try
+            {
+                process.Start();
+                process.Refresh();
+                IsRunning = true;
+                wasRun = true;
+            }
+            catch (Win32Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
     }
