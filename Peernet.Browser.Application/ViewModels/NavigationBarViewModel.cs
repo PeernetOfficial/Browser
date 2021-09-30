@@ -8,11 +8,14 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public class NavigationBarViewModel : MvxViewModel
     {
+        private readonly IMvxNavigationService navigationService;
+
         public NavigationBarViewModel(IMvxNavigationService navigationService, IUserContext userContext)
         {
-            NavigateExploreCommand = new MvxCommand(() => navigationService.Navigate<ExploreViewModel>());
-            NavigateHomeCommand = new MvxCommand(() => navigationService.Navigate<HomeViewModel>());
-            NavigateDirectoryCommand = new MvxCommand(() => navigationService.Navigate<DirectoryViewModel>());
+            this.navigationService = navigationService;
+            NavigateExploreCommand = new MvxCommand(() => Navigate<ExploreViewModel>());
+            NavigateHomeCommand = new MvxCommand(() => Navigate<HomeViewModel>(false));
+            NavigateDirectoryCommand = new MvxCommand(() => Navigate<DirectoryViewModel>());
             GoToYourFilesCommand = new MvxAsyncCommand(() => Task.CompletedTask);
             OpenCloseProfileMenuCommand = new MvxAsyncCommand(() =>
             {
@@ -20,6 +23,12 @@ namespace Peernet.Browser.Application.ViewModels
                 return Task.CompletedTask;
             });
             UserContext = userContext;
+        }
+
+        private void Navigate<T>(bool showLogo = true) where T : IMvxViewModel
+        {
+            navigationService.Navigate<T>();
+            GlobalContext.IsLogoVisible = showLogo;
         }
 
         public IMvxAsyncCommand GoToYourFilesCommand { get; }

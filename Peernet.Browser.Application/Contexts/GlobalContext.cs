@@ -1,13 +1,13 @@
 ﻿using System;
 using System.ComponentModel;
-using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
 
 namespace Peernet.Browser.Application.Contexts
 {
     public class GlobalContext : INotifyPropertyChanged
     {
         private static bool isMainWindowActive = true;
+
+        public static bool isLogoVisible;
 
         private static bool isProfileMenuVisible;
 
@@ -24,6 +24,16 @@ namespace Peernet.Browser.Application.Contexts
             {
                 isMainWindowActive = value;
                 NotifyStaticPropertyChanged(nameof(IsMainWindowActive));
+            }
+        }
+
+        public static bool IsLogoVisible
+        {
+            get => isLogoVisible;
+            set
+            {
+                isLogoVisible = value;
+                NotifyStaticPropertyChanged(nameof(isLogoVisible));
             }
         }
 
