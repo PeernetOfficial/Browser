@@ -108,7 +108,7 @@ namespace Peernet.Browser.Application.ViewModels
         {
             var status = apiClient.GetStatus();
             ConnectionStatus = status.IsConnected ? ConnectionStatus.Online : ConnectionStatus.Offline;
-            Peers = $"{status.CountPeerList} Peers";
+            Peers = status.CountPeerList.ToString();
             return status.IsConnected;
         }
 
