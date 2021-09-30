@@ -6,16 +6,19 @@
     xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls"
     xmlns:extensions="clr-namespace:Peernet.Browser.WPF.Extensions"
     xmlns:virtualFileSystem="clr-namespace:Peernet.Browser.Application.VirtualFileSystem;assembly=Peernet.Browser.Application"
-    Height="700" Width="1441"
     x:Name="DirectoryPage">
 
-    <Border Background="White" BorderThickness="0" CornerRadius="8,8,8,8">
+    <Border Background="White" BorderThickness="0" CornerRadius="8,8,8,8"  VerticalAlignment="Stretch" Margin="0, 65, 0, 0">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
             <StackPanel Grid.Column="0" Width="233" HorizontalAlignment="Center" Margin="0,28,0,0">
                 <StackPanel.Resources>
@@ -133,8 +136,9 @@
                         </Grid>
                     </Grid>
                 </Border>
-                <controls:SharedFilesDataGridControl Grid.Row="1" Grid.ColumnSpan="2" Margin="37,0,0,0" />
+                <controls:SharedFilesDataGridControl  Height="648" Grid.Row="1" Grid.ColumnSpan="2" Margin="37,0,0,0" />
             </Grid>
+            <Separator Style="{StaticResource StandardSeparatorStyle}" Grid.Row="1" Grid.ColumnSpan="3"/>
         </Grid>
     </Border>
 </views:MvxWpfView>
