@@ -1,122 +1,95 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:contexts="clr-namespace:Peernet.Browser.Application.Contexts;assembly=Peernet.Browser.Application">
-    <Style x:Key="FocusVisual">
-        <Setter Property="Control.Template">
-            <Setter.Value>
-                <ControlTemplate>
-                    <Rectangle Margin="2" StrokeDashArray="1 2" SnapsToDevicePixels="true" StrokeThickness="1" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD" />
-    <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070" />
-    <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD" />
-    <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1" />
-    <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6" />
-    <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B" />
-    <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4" />
-    <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5" />
-    <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383" />
-    <SolidColorBrush x:Key="ToolTip.Static.Background" Color="#FFFFFF" Opacity="0.7" />
 
     <Style x:Key="ButtonBaseStyle" TargetType="{x:Type Button}">
-        <Setter Property="Background" Value="{StaticResource Button.Static.Background}" />
-        <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}" />
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="ToolTipService.InitialShowDelay" Value="500" />
+        <Setter Property="Margin" Value="0 0 73 0" />
+        <Setter Property="ToolTipService.InitialShowDelay" Value="300" />
+        <Setter Property="Width" Value="18" />
+        <Setter Property="Height" Value="18" />
+        <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true">
-                        <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}"
+                            BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true">
+                        <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsDefaulted" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                        </Trigger>
-                        <Trigger Property="IsMouseOver" Value="true">
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}" />
-                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}" />
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}" />
-                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}" />
-                            <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}" />
-                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true" />
+                        <Trigger Property="IsPressed" Value="true" />
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style x:Key="NavBarButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonBaseStyle}">
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-        <Setter Property="Margin" Value="0,37,73,0" />
-    </Style>
-
     <ImageBrush x:Key="DirectoryTabImageBrush" ImageSource="{DynamicResource DirectoryDrawingImage}" />
     <ImageBrush x:Key="FocusedDirectoryTabImageBrush" ImageSource="{DynamicResource Directory_FocusedDrawingImage}" />
 
-    <Style x:Key="DirectoryNavBarButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource NavBarButtonStyle}">
+    <Style x:Key="DirectoryNavBarButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonBaseStyle}">
         <Setter Property="Background" Value="{StaticResource DirectoryTabImageBrush}" />
-        <Setter Property="Width" Value="24" />
-        <Setter Property="Height" Value="23" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=(contexts:GlobalContext.CurrentViewModel)}" Value="DirectoryViewModel">
                 <Setter Property="Background" Value="{StaticResource FocusedDirectoryTabImageBrush}" />
             </DataTrigger>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Background" Value="{StaticResource FocusedDirectoryTabImageBrush}" />
+            </Trigger>
         </Style.Triggers>
     </Style>
 
     <ImageBrush x:Key="HomeTabImageBrush" ImageSource="{DynamicResource HomeDrawingImage}" />
     <ImageBrush x:Key="FocusedHomeTabImageBrush" ImageSource="{DynamicResource Home_FocusedDrawingImage}" />
 
-    <Style x:Key="HomeNavBarButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource NavBarButtonStyle}">
-        <Setter Property="Height" Value="19" />
-        <Setter Property="Width" Value="18" />
+    <Style x:Key="HomeNavBarButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonBaseStyle}">
         <Setter Property="Background" Value="{StaticResource HomeTabImageBrush}" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=(contexts:GlobalContext.CurrentViewModel)}" Value="HomeViewModel">
                 <Setter Property="Background" Value="{StaticResource FocusedHomeTabImageBrush}" />
             </DataTrigger>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Background" Value="{StaticResource FocusedHomeTabImageBrush}" />
+            </Trigger>
         </Style.Triggers>
     </Style>
 
     <ImageBrush x:Key="UserTabImageBrush" ImageSource="{DynamicResource UserDrawingImage}" />
     <ImageBrush x:Key="FocusedUserTabImageBrush" ImageSource="{DynamicResource User_FocusedDrawingImage}" />
 
-    <Style x:Key="UserNavBarButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource NavBarButtonStyle}">
-        <Setter Property="Width" Value="24" />
-        <Setter Property="Height" Value="24" />
+    <Style x:Key="UserNavBarButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonBaseStyle}">
         <Setter Property="Background" Value="{StaticResource UserTabImageBrush}" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=(contexts:GlobalContext.IsProfileMenuVisible)}" Value="True">
                 <Setter Property="Background" Value="{StaticResource FocusedUserTabImageBrush}" />
             </DataTrigger>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Background" Value="{StaticResource FocusedUserTabImageBrush}" />
+            </Trigger>
         </Style.Triggers>
     </Style>
 
     <ImageBrush x:Key="ExploreTabImageBrush" ImageSource="{DynamicResource ExploreDrawingImage}" />
     <ImageBrush x:Key="FocusedExploreTabImageBrush" ImageSource="{DynamicResource Explore_FocusedDrawingImage}" />
 
-    <Style x:Key="ExploreNavBarButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource NavBarButtonStyle}">
+    <Style x:Key="ExploreNavBarButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonBaseStyle}">
         <Setter Property="Background" Value="{StaticResource ExploreTabImageBrush}" />
-        <Setter Property="Width" Value="23" />
-        <Setter Property="Height" Value="23" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=(contexts:GlobalContext.CurrentViewModel)}" Value="ExploreViewModel">
                 <Setter Property="Background" Value="{StaticResource FocusedExploreTabImageBrush}" />
             </DataTrigger>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Background" Value="{StaticResource FocusedExploreTabImageBrush}" />
+            </Trigger>
         </Style.Triggers>
     </Style>
 
+    <SolidColorBrush x:Key="ToolTip.Static.Background" Color="#FFFFFF" Opacity="0.7" />
     <Style TargetType="{x:Type ToolTip}">
         <Setter Property="Background" Value="{StaticResource ToolTip.Static.Background}" />
         <Setter Property="BorderBrush" Value="{StaticResource ToolTip.Static.Background}" />
@@ -151,13 +124,12 @@
         <Setter Property="Cursor" Value="Hand" />
     </Style>
 
-
     <Style x:Key="TreeViewNavigationPathButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="Foreground">
             <Setter.Value>
-                <SolidColorBrush Color="Black" Opacity="0.89"/>
+                <SolidColorBrush Color="Black" Opacity="0.89" />
             </Setter.Value>
         </Setter>
         <Setter Property="HorizontalContentAlignment" Value="Center" />

@@ -5,40 +5,13 @@
     xmlns:controls="clr-namespace:MvvmCross.Plugin.Control.Platforms.Wpf;assembly=MvvmCross.Plugin.Control.Platforms.Wpf"
     xmlns:contexts="clr-namespace:Peernet.Browser.Application.Contexts;assembly=Peernet.Browser.Application"
     xmlns:domaincontrols="clr-namespace:Peernet.Browser.WPF.Controls">
-
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height = "Auto" />
-            <RowDefinition Height = "*" />
-        </Grid.RowDefinitions>
-
-        <StackPanel Grid.Column = "3" Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
-                <Button Style="{DynamicResource HomeNavBarButtonStyle}"
-                Command="{Binding NavigateHomeCommand}"
-                ToolTip="Home">
-                </Button>
-                <Button Style="{DynamicResource ExploreNavBarButtonStyle}"
-                Command="{Binding NavigateExploreCommand}"
-                ToolTip="Explore">
-                </Button>
-                <Button Style="{DynamicResource DirectoryNavBarButtonStyle}"
-                Command="{Binding NavigateDirectoryCommand}"
-                ToolTip="Directory">
-                </Button>
-                <Button Style="{DynamicResource UserNavBarButtonStyle}"
-                Command="{Binding OpenCloseProfileMenuCommand}"
-                ToolTip="User">
-                </Button>
-            </StackPanel>
-            <domaincontrols:ProfileMenuControl HorizontalAlignment="Right" Visibility="{Binding Path=(contexts:GlobalContext.IsProfileMenuVisible), Converter={StaticResource BoolToVisibility}}" />
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
+            <Button Style="{DynamicResource HomeNavBarButtonStyle}" Command="{Binding NavigateHomeCommand}" ToolTip="Home" />
+            <Button Style="{DynamicResource ExploreNavBarButtonStyle}" Command="{Binding NavigateExploreCommand}" ToolTip="Explore" />
+            <Button Style="{DynamicResource DirectoryNavBarButtonStyle}" Command="{Binding NavigateDirectoryCommand}" ToolTip="Directory" />
+            <Button Style="{DynamicResource UserNavBarButtonStyle}" Command="{Binding OpenCloseProfileMenuCommand}" ToolTip="User" />
         </StackPanel>
-    </Grid>
+        <domaincontrols:ProfileMenuControl HorizontalAlignment="Right" Visibility="{Binding Path=(contexts:GlobalContext.IsProfileMenuVisible), Converter={StaticResource BoolToVisibility}}" />
+    </StackPanel>
 </controls:MvxWpfControl>

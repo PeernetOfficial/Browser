@@ -37,13 +37,13 @@
                     </Border.Style>
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="40" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <controls:ButtonsControl Panel.ZIndex="2" Grid.Row="0" InitializeOnLoad="true" />
-                        <controls:NavigationBarControl Panel.ZIndex="2" Grid.Row="1" InitializeOnLoad="true" />
-                        <ContentPresenter Grid.Row="1" Content="{Binding}" Panel.ZIndex="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                        <controls:FooterControl Panel.ZIndex="2" Grid.Row="1" InitializeOnLoad="true" DockPanel.Dock="Bottom" />
+                        <controls:ButtonsControl Grid.Row="0" InitializeOnLoad="true" />
+                        <controls:NavigationBarControl Panel.ZIndex="1" Margin="0 37 0 0" HorizontalAlignment="Right" Grid.Row="1" InitializeOnLoad="true" />
+                        <ContentPresenter Grid.Row="1" Content="{Binding}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                        <controls:FooterControl Grid.Row="2" InitializeOnLoad="true" DockPanel.Dock="Bottom" />
                     </Grid>
                 </Border>
             </Border>
