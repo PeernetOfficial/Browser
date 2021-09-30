@@ -5,9 +5,9 @@ using System;
 
 namespace Peernet.Browser.Application.Models
 {
-    public class SearchResultRow : MvxNotifyPropertyChanged
+    public class SearchResultRowModel : MvxNotifyPropertyChanged
     {
-        public SearchResultRow(ApiBlockRecordFile source, Action<SearchResultRow> download)
+        public SearchResultRowModel(ApiBlockRecordFile source, Action<SearchResultRowModel> download)
         {
             DownloadCommand = new MvxCommand(() => download?.Invoke(this));
             EnumerationMember = (HealthType)int.Parse(source.Id);

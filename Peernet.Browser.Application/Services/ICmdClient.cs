@@ -29,5 +29,26 @@ namespace Peernet.Browser.Application.Services
         /// <param name="block"></param>
         /// <returns></returns>
         ApiBlockchainBlock ReadBlock(int block);
+
+        /// <summary>
+        /// Submit a search request
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        SearchRequestResponse SubmitSearch(SearchRequest request);
+
+        /// <summary>
+        /// Return search results
+        /// </summary>
+        /// <param name="id">UUID</param>
+        /// <param name="limit"></param>
+        /// <returns></returns>
+        SearchResult ResturnSearch(int id, int? limit = null);
+
+        /// <summary>
+        /// Terminate a search
+        /// </summary>
+        /// <param name="id">UUID</param>
+        void TerminateSearch(int id);
     }
 }
