@@ -36,7 +36,7 @@ namespace Peernet.Browser.Application.Models
         {
             var toAdd = news.Select(x => new FilterResultModel(Remove) { Content = x }).ToArray();
             Results.Clear();
-            Results.AddRange(toAdd);
+            toAdd.Foreach(ta => Results.Add(ta));
         }
 
         public MvxObservableCollection<FilterResultModel> Results { get; } = new MvxObservableCollection<FilterResultModel>();
@@ -82,6 +82,7 @@ namespace Peernet.Browser.Application.Models
             SearchFilterResult.SizeMin = RangeFilter.Min;
             SearchFilterResult.SizeMax = RangeFilter.Max;
 
+            Refresh();
             Hide();
         }
 
