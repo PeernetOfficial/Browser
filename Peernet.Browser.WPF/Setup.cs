@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
+using MvvmCross.Base;
 using MvvmCross.IoC;
 using MvvmCross.Navigation;
 using MvvmCross.Navigation.EventArguments;
 using MvvmCross.Platforms.Wpf.Core;
+using MvvmCross.Platforms.Wpf.Views;
 using MvvmCross.Plugin;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Download;
@@ -58,7 +60,7 @@ namespace Peernet.Browser.WPF
             iocProvider.RegisterType<IExploreService, ExploreService>();
             iocProvider.RegisterType<IDownloadService, DownloadService>();
             iocProvider.RegisterSingleton<IDownloadManager>(new DownloadManager(iocProvider.Resolve<IDownloadService>()));
-
+            GlobalContext.UiThreadDispatcher = iocProvider.Resolve<IMvxMainThreadAsyncDispatcher>();
             ObserveNavigation(iocProvider);
         }
 

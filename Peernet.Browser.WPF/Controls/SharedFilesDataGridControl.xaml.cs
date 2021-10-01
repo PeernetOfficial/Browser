@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Models;
 
 namespace Peernet.Browser.WPF.Controls
@@ -19,7 +20,7 @@ namespace Peernet.Browser.WPF.Controls
             var file = (ApiBlockRecordFile)((FrameworkElement)e.OriginalSource).DataContext;
             var link = $"peer://{file.NodeId}/{file.Hash}/{file.Folder}/{file.Name}";
             Clipboard.SetText(link);
-            MessageBox.Show("Copied to clipboard!");
+            GlobalContext.Notifications.Add(new Notification { Text = "Copied to clipboard!" });
         }
     }
 }
