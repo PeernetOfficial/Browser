@@ -5,26 +5,26 @@ using System;
 
 namespace Peernet.Browser.Application.Models
 {
-    public class SearchResultRow : MvxNotifyPropertyChanged
+    public class SearchResultRowModel : MvxNotifyPropertyChanged
     {
-        public SearchResultRow(ApiBlockRecordFile source, Action<SearchResultRow> download)
+        public SearchResultRowModel(ApiBlockRecordFile source, Action<SearchResultRowModel> download)
         {
             DownloadCommand = new MvxCommand(() => download?.Invoke(this));
-            Id = int.Parse(source.Id);
+            EnumerationMember = (HealthType)int.Parse(source.Id);
             Name = source.Name;
             Date = source.Date.ToString();
             Size = $"{source.Size} MB";
             SharedBy = source.SharedByCount;
-            Health = HealthType.Yellow;
+            FlameIsVisible = source.Size > 15;
         }
 
-        public int Id { get; set; }
+        public HealthType EnumerationMember { get; set; }
 
         public string Name { get; }
         public string Date { get; }
         public string Size { get; }
         public int SharedBy { get; }
-        public HealthType Health { get; }
+        public bool FlameIsVisible { get; }
         public IMvxCommand DownloadCommand { get; }
     }
 }
