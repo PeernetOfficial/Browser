@@ -1,7 +1,6 @@
 ﻿using Peernet.Browser.Application.Enums;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Peernet.Browser.Application.Models
 {
@@ -19,17 +18,19 @@ namespace Peernet.Browser.Application.Models
 
         public SortOrders? Order { get; set; }
 
-        public FileFormats[] FileFormats { get; set; }
+        public FileFormats? FileFormat { get; set; }
 
         public IEnumerable<string> Get()
         {
             var res = new List<string>();
             if (Time.HasValue) res.Add(Time.Value.GetDescription());
             if (HealthType.HasValue) res.Add(HealthType.Value.GetDescription());
-            if (!FileFormats.IsNullOrEmpty()) res.AddRange(FileFormats.Select(x => x.GetDescription()));
+            if (FileFormat.HasValue) res.Add(FileFormat.Value.GetDescription());
             if (Order.HasValue) res.Add(Order.Value.GetDescription());
             if (SizeFrom.HasValue && SizeTo.HasValue) res.Add($"{SizeFrom}GB - {SizeTo}GB");
             return res;
         }
+
+        public string InputText { get; set; }
     }
 }

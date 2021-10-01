@@ -41,9 +41,9 @@ namespace Peernet.Browser.Application.Models
             else first.IsChecked = false;
         }
 
-        public T[] GetSelected()
+        public T GetSelected()
         {
-            return Items.Where(x => x.IsChecked).Select(x => (T)x.EnumerationMember).ToArray();
+            return Items.Where(x => x.IsChecked).Select(x => (T)x.EnumerationMember).FirstOrDefault();
         }
 
         public void Set(T[] vals)

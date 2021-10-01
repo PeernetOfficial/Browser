@@ -27,10 +27,7 @@ namespace Peernet.Browser.Application.Models
             Results.CollectionChanged += (o, s) => RaisePropertyChanged(nameof(IsVisible));
         }
 
-        public void Refresh()
-        {
-            Refresh(SearchFilterResult.Get());
-        }
+        public void Refresh() => Refresh(SearchFilterResult.Get());
 
         public void Refresh(IEnumerable<string> news)
         {
@@ -60,7 +57,7 @@ namespace Peernet.Browser.Application.Models
         public void Reset(int min, int max)
         {
             SearchFilterResult.HealthType = HealthType.Green;
-            SearchFilterResult.FileFormats = new[] { FileFormats.All };
+            SearchFilterResult.FileFormat = FileFormats.All;
             SearchFilterResult.Order = SortOrders.MostRelevant;
             SearchFilterResult.Time = TimePeriods.Any;
 
@@ -72,10 +69,10 @@ namespace Peernet.Browser.Application.Models
 
         private void ApplyFilters()
         {
-            SearchFilterResult.Order = SortOrderFilters.GetSelected().FirstOrDefault();
-            SearchFilterResult.FileFormats = FileFormatFilters.GetSelected();
-            SearchFilterResult.Time = DateFilters.GetSelected().FirstOrDefault();
-            SearchFilterResult.HealthType = HealthFiltes.GetSelected().FirstOrDefault();
+            SearchFilterResult.Order = SortOrderFilters.GetSelected();
+            SearchFilterResult.FileFormat = FileFormatFilters.GetSelected();
+            SearchFilterResult.Time = DateFilters.GetSelected();
+            SearchFilterResult.HealthType = HealthFiltes.GetSelected();
 
             SearchFilterResult.SizeFrom = RangeFilter.CurrentMin;
             SearchFilterResult.SizeTo = RangeFilter.CurrentMin;
@@ -90,7 +87,7 @@ namespace Peernet.Browser.Application.Models
         private void Bind()
         {
             DateFilters.Set(SearchFilterResult.Time);
-            FileFormatFilters.Set(SearchFilterResult.FileFormats);
+            FileFormatFilters.Set(SearchFilterResult.FileFormat);
             SortOrderFilters.Set(SearchFilterResult.Order);
             HealthFiltes.Set(SearchFilterResult.HealthType);
 

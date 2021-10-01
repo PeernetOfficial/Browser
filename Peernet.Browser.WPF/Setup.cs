@@ -55,6 +55,7 @@ namespace Peernet.Browser.WPF
             iocProvider.RegisterType<IVirtualFileSystemFactory, VirtualFileSystemFactory>();
             iocProvider.RegisterType<IFilesToCategoryBinder, FilesToCategoryBinder>();
             iocProvider.RegisterType<IExploreService, ExploreService>();
+            iocProvider.RegisterType<ISearchService, SearchService>();
 
             ObserveNavigation(iocProvider);
         }

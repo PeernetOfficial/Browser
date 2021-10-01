@@ -29,6 +29,6 @@ namespace Peernet.Browser.Application.Enums
         Images,
 
         [Description("Movies")]
-        Movies,
+        Movies
     }
 }

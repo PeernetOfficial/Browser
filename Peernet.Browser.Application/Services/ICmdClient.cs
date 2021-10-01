@@ -43,12 +43,12 @@ namespace Peernet.Browser.Application.Services
         /// <param name="id">UUID</param>
         /// <param name="limit"></param>
         /// <returns></returns>
-        SearchResult ResturnSearch(int id, int? limit = null);
+        SearchResult ResturnSearch(string id, int? limit = null);
 
         /// <summary>
         /// Terminate a search
         /// </summary>
         /// <param name="id">UUID</param>
-        void TerminateSearch(int id);
+        void TerminateSearch(string id);
     }
 }
