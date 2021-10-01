@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json;
 
 namespace Peernet.Browser.Application.Models
 {
@@ -26,5 +28,9 @@ namespace Peernet.Browser.Application.Models
         public string NodeId { get; set; }
 
         public List<ApiFileMetadata> MetaData { get; set; }
+
+        [JsonIgnore]
+        public int SharedByCount =>
+            MetaData?.FirstOrDefault(md => md.Type == MetadataType.TagSharedByCount)?.Number ?? 0;
     }
 }

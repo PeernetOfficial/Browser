@@ -14,7 +14,7 @@ namespace Peernet.Browser.Application.Models
             Name = source.Name;
             Date = source.Date.ToString();
             Size = $"{source.Size} MB";
-            SharedBy = $"123 Peers";
+            SharedBy = source.SharedByCount;
             Health = HealthType.Yellow;
         }
 
@@ -23,7 +23,7 @@ namespace Peernet.Browser.Application.Models
         public string Name { get; }
         public string Date { get; }
         public string Size { get; }
-        public string SharedBy { get; }
+        public int SharedBy { get; }
         public HealthType Health { get; }
         public IMvxCommand DownloadCommand { get; }
     }

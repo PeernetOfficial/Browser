@@ -43,7 +43,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
                     }
                     case VirtualFileSystemEntityType.Ebook:
                     {
-                        AddCategory("Ebook", f => f.Format == HighLevelFileType.Ebook);
+                        AddCategory("Ebook", f => f.Type == LowLevelFileType.Ebook);
                         break;
                     }
                 }

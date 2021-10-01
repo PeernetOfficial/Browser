@@ -26,7 +26,7 @@
                         <DataTemplate>
                             <Border BorderThickness="1" CornerRadius="4" Margin="0, 0, 48, 0" Cursor="Hand">
                                 <Border.BorderBrush>
-                                    <SolidColorBrush Color="Black" Opacity="0.08"></SolidColorBrush>
+                                    <SolidColorBrush Color="Black" Opacity="0.08" />
                                 </Border.BorderBrush>
                                 <Border.Effect>
                                     <DropShadowEffect ShadowDepth="7" BlurRadius="16" Color="Black" Opacity="0.14" />
@@ -52,7 +52,18 @@
                                         <Border.Background>
                                             <SolidColorBrush Color="White"></SolidColorBrush>
                                         </Border.Background>
-                                        <TextBlock Text="{Binding Name}" Style="{StaticResource ActiveSelectable}" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <TextBlock.Style>
+                                                <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource ActiveSelectable}">
+                                                    <Setter Property="FontWeight" Value="Medium" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                            <Setter Property="FontWeight" Value="SemiBold" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
                                     </Border>
                                 </StackPanel>
                             </Border>

@@ -24,7 +24,7 @@
                 <StackPanel.Resources>
                     <HierarchicalDataTemplate DataType="{x:Type virtualFileSystem:VirtualFileSystemTier}" ItemsSource="{Binding Path=VirtualFileSystemTiers}">
                         <StackPanel Orientation="Horizontal">
-                            <Image Width="11" Height="10" Style="{StaticResource VirtualFileSystemEntityImageStyle}" />
+                            <Image Width="14" Height="13" Style="{StaticResource VirtualFileSystemEntityImageStyle}" />
                             <TextBlock x:Name="TreeViewItemText" Text="{Binding Path=Name}" Margin="7, 0, 0, 0">
                                 <TextBlock.InputBindings>
                                     <MouseBinding Command="{Binding DataContext.UpdateActiveSearchResults, ElementName=DirectoryPage}" CommandParameter="{Binding}" Gesture="LeftDoubleClick"/>
@@ -34,7 +34,7 @@
                     </HierarchicalDataTemplate>
                     <HierarchicalDataTemplate DataType="{x:Type virtualFileSystem:VirtualFileSystemCategory}">
                         <StackPanel Orientation="Horizontal">
-                            <Image Width="11" Height="10" Style="{StaticResource VirtualFileSystemEntityImageStyle}" />
+                            <Image Width="14" Height="13" Style="{StaticResource VirtualFileSystemEntityImageStyle}" />
                             <TextBlock Text="{Binding Path=Name}" Margin="7, 0, 0, 0">
                                 <TextBlock.InputBindings>
                                     <MouseBinding Command="{Binding DataContext.UpdateActiveSearchResults, ElementName=DirectoryPage}" CommandParameter="{Binding}" Gesture="LeftDoubleClick"/>
@@ -136,7 +136,7 @@
                         </Grid>
                     </Grid>
                 </Border>
-                <controls:SharedFilesDataGridControl  Height="648" Grid.Row="1" Grid.ColumnSpan="2" Margin="37,0,0,0" />
+                <controls:SharedFilesDataGridControl Height="648" Grid.Row="1" Grid.ColumnSpan="2" Margin="37,0,0,0" />
             </Grid>
             <Separator Style="{StaticResource StandardSeparatorStyle}" Grid.Row="1" Grid.ColumnSpan="3"/>
         </Grid>
