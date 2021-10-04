@@ -70,6 +70,10 @@ namespace Peernet.Browser.Application.Models
         {
             this.min = min;
             this.max = max;
+            SearchFilterResult.SizeMax = max;
+            SearchFilterResult.SizeMin = min;
+            SearchFilterResult.SizeTo = max;
+            SearchFilterResult.SizeFrom = min;
         }
 
         public void Reset(bool withApply = false)
@@ -98,10 +102,10 @@ namespace Peernet.Browser.Application.Models
             SortOrderFilters.Set(SearchFilterResult.Order);
             HealthFiltes.Set(SearchFilterResult.Health);
 
-            RangeFilter.CurrentMax = SearchFilterResult.SizeTo;
-            RangeFilter.CurrentMin = SearchFilterResult.SizeFrom;
             RangeFilter.Max = SearchFilterResult.SizeMax;
             RangeFilter.Min = SearchFilterResult.SizeMin;
+            RangeFilter.CurrentMax = SearchFilterResult.SizeTo;
+            RangeFilter.CurrentMin = SearchFilterResult.SizeFrom;
         }
 
         private void Apply()
@@ -120,7 +124,7 @@ namespace Peernet.Browser.Application.Models
             RefreshTabs();
         }
 
-        private void InitSearch() => SearchFilterResult = new SearchFilterResultModel { OnRemoveAction = RemoveAction, SizeMin = min, SizeMax = max, InputText = inputText };
+        private void InitSearch() => SearchFilterResult = new SearchFilterResultModel { OnRemoveAction = RemoveAction, SizeMin = min, SizeMax = max, SizeFrom = min, SizeTo = max, InputText = inputText };
 
         private void RemoveAction(SearchFiltersType type)
         {
