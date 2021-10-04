@@ -15,7 +15,7 @@
 
             <DockPanel Grid.Row="0">
                 <TextBlock FontWeight="DemiBold" FontSize="16">Your filters</TextBlock>
-                <Button Command="{Binding Clear}" Margin="15 0" VerticalAlignment="Center" Style="{StaticResource LinkButton}">Clear all</Button>
+                <Button Command="{Binding ClearCommand}" Margin="15 0" VerticalAlignment="Center" Style="{StaticResource LinkButton}">Clear all</Button>
             </DockPanel>
 
             <Grid Grid.Row="1">
@@ -27,18 +27,16 @@
                     <ColumnDefinition />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition />
-                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
                 <controls:CustomFilterControl Grid.Column="0" Grid.RowSpan="2" Margin="0 0 15 0" DataContext="{Binding DateFilters}" />
                 <controls:CustomFilterControl Grid.Column="1" Grid.RowSpan="2" Margin="0 0 15 0" DataContext="{Binding FileFormatFilters}" />
-                <controls:CustomFilterControl Grid.Column="3" Grid.RowSpan="2" Margin="15 0 0 0" DataContext="{Binding SortOrderFilters}" />
                 <controls:CustomFilterControl  Grid.Row="0" Grid.Column="2" DataContext="{Binding HealthFiltes}" />
 
                 <StackPanel Grid.Row="1" Grid.Column="2">
                     <TextBlock Margin="0 15 0 8" Text="SIZE" />
                     <Border BorderBrush="{StaticResource LightGrayBrush}" BorderThickness="0.5" CornerRadius="{StaticResource MainRadius}">
-                        <controls:MyRangeSlider  Maximum="{Binding RangeFilter.Max}" Minimum="{Binding RangeFilter.Min}" RangeMax="{Binding RangeFilter.CurrentMax}"  RangeMin="{Binding RangeFilter.CurrentMin}" />
+                        <controls:MyRangeSlider  Maximum="{Binding RangeFilter.Max}" Minimum="{Binding RangeFilter.Min}" RangeMax="{Binding RangeFilter.CurrentMax, Mode=TwoWay}"  RangeMin="{Binding RangeFilter.CurrentMin, Mode=TwoWay}" />
                     </Border>
                 </StackPanel>
             </Grid>

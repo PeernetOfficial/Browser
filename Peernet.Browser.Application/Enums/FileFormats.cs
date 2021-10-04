@@ -4,9 +4,6 @@ namespace Peernet.Browser.Application.Enums
 {
     public enum FileFormats
     {
-        [Description("All")]
-        All,
-
         [Description("PDF File")]
         Pdf,
 

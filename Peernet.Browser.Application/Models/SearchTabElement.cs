@@ -13,7 +13,7 @@ namespace Peernet.Browser.Application.Models
         public SearchTabElement(string title, Action<SearchTabElement> deleteAction, ISearchService searchService)
         {
             Title = title;
-            Content = new SearchContentElement(searchService.Search);
+            Content = new SearchContentElement(new FiltersModel(title, searchService.Search));
             DeleteCommand = new MvxCommand(() => deleteAction(this));
         }
 

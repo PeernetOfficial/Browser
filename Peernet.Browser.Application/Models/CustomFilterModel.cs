@@ -7,13 +7,10 @@ namespace Peernet.Browser.Application.Models
 {
     public abstract class CustomFilterModel<T> : MvxNotifyPropertyChanged where T : Enum
     {
-        protected readonly CustomCheckBoxModel first;
-
         protected CustomFilterModel(string title, bool firstReset = true, bool showDot = false)
         {
             Title = title.ToUpper();
             Items.AddRange(GetElements().Select(x => new CustomCheckBoxModel { EnumerationMember = x.Key, Content = x.Value, IsCheckChanged = IsCheckedChanged, ShowDot = showDot }));
-            if (firstReset) first = Items.First();
         }
 
         protected virtual IEnumerable<KeyValuePair<Enum, string>> GetElements()
@@ -35,16 +32,15 @@ namespace Peernet.Browser.Application.Models
 
         private void IsCheckedChanged(CustomCheckBoxModel c)
         {
-            if (first?.IsChecked != true || !c.IsChecked) return;
-            var isFirst = first == c;
-            if (isFirst || first == null) Items.Where(x => x != c).Foreach(x => x.IsChecked = false);
-            else first.IsChecked = false;
+            if (c.IsChecked) Items.Where(x => x != c).Foreach(x => x.IsChecked = false);
         }
 
         public T GetSelected()
         {
-            return Items.Where(x => x.IsChecked).Select(x => (T)x.EnumerationMember).FirstOrDefault();
+            return (T)Items.First(x => x.IsChecked).EnumerationMember;
         }
+
+        public bool IsSelected => Items.Any(x => x.IsChecked);
 
         public void Set(T[] vals)
         {
@@ -63,5 +59,7 @@ namespace Peernet.Browser.Application.Models
                 if (val.Equals(i.EnumerationMember)) i.IsChecked = true;
             }
         }
+
+        public void DeselctAll() => Items.Foreach(x => x.IsChecked = false);
     }
 }

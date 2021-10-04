@@ -6,12 +6,13 @@ namespace Peernet.Browser.Application.Models
 {
     public class SearchFilterResultModel
     {
+        public Action<SearchFiltersType> OnRemoveAction { get; set; }
         public TimePeriods? Time { get; set; }
 
-        public HealthType? HealthType { get; set; }
+        public HealthType? Health { get; set; }
 
-        public int? SizeFrom { get; set; }
-        public int? SizeTo { get; set; }
+        public int SizeFrom { get; set; }
+        public int SizeTo { get; set; }
 
         public int SizeMin { get; set; }
         public int SizeMax { get; set; }
@@ -20,17 +21,21 @@ namespace Peernet.Browser.Application.Models
 
         public FileFormats? FileFormat { get; set; }
 
-        public IEnumerable<string> Get()
+        public IEnumerable<FilterResultModel> Get()
         {
-            var res = new List<string>();
-            if (Time.HasValue) res.Add(Time.Value.GetDescription());
-            if (HealthType.HasValue) res.Add(HealthType.Value.GetDescription());
-            if (FileFormat.HasValue) res.Add(FileFormat.Value.GetDescription());
-            if (Order.HasValue) res.Add(Order.Value.GetDescription());
-            if (SizeFrom.HasValue && SizeTo.HasValue) res.Add($"{SizeFrom}GB - {SizeTo}GB");
+            var res = new List<FilterResultModel>();
+            if (Time.HasValue) res.Add(new FilterResultModel(Remove) { Type = SearchFiltersType.TimePeriods, Content = Time.Value.GetDescription() });
+            if (Health.HasValue) res.Add(new FilterResultModel(Remove) { Type = SearchFiltersType.HealthType, Content = Health.Value.GetDescription() });
+            if (FileFormat.HasValue) res.Add(new FilterResultModel(Remove) { Type = SearchFiltersType.FileFormats, Content = FileFormat.Value.GetDescription() });
+            if (Order.HasValue) res.Add(new FilterResultModel(Remove) { Type = SearchFiltersType.Sortorder, Content = Order.Value.GetDescription() });
+            if (!IsSizeDefault) res.Add(new FilterResultModel(Remove) { Type = SearchFiltersType.Size, Content = $"{SizeFrom}MB - {SizeTo}MB" });
             return res;
         }
 
         public string InputText { get; set; }
+
+        private void Remove(FilterResultModel o) => OnRemoveAction?.Invoke(o.Type);
+
+        private bool IsSizeDefault => SizeTo == SizeMax && SizeMin == SizeFrom;
     }
 }
