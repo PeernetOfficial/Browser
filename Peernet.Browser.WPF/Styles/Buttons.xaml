@@ -19,8 +19,8 @@
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Margin" Value="0 0 73 0" />
         <Setter Property="ToolTipService.InitialShowDelay" Value="300" />
-        <Setter Property="Width" Value="18" />
-        <Setter Property="Height" Value="18" />
+        <Setter Property="Width" Value="24" />
+        <Setter Property="Height" Value="24" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
             <Setter.Value>
@@ -101,17 +101,24 @@
     </Style>
 
     <Style TargetType="{x:Type ToolTip}">
-        <Setter Property="Background" Value="{StaticResource ToolTip.Static.Background}" />
-        <Setter Property="BorderBrush" Value="{StaticResource ToolTip.Static.Background}" />
         <Setter Property="FontFamily" Value="Inter" />
-        <Setter Property="FontStyle" Value="Normal" />
-        <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="Foreground" Value="Black" />
-        <Setter Property="Border.CornerRadius" Value="1,1,1,1" />
-        <Setter Property="HasDropShadow" Value="True" />
-        <Setter Property="Effect">
+        <Setter Property="Template">
             <Setter.Value>
-                <DropShadowEffect Color="Black" Opacity="0.14" BlurRadius="70" ShadowDepth="32" />
+                <ControlTemplate TargetType="{x:Type ToolTip}">
+                    <Border Margin="15" CornerRadius="1" Padding="10, 2, 10, 2">
+                        <Border.BorderBrush>
+                            <SolidColorBrush Color="White" />
+                        </Border.BorderBrush>
+                        <Border.Background>
+                            <SolidColorBrush Color="White" />
+                        </Border.Background>
+                        <Border.Effect>
+                            <DropShadowEffect Color="Black" Opacity="0.27" ShadowDepth="0" BlurRadius="25" />
+                        </Border.Effect>
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Border>
+                </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
@@ -125,13 +132,25 @@
         <Setter Property="Margin" Value="20,10,0,10" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="Transparent" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style x:Key="DataGridActionButton"  TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonBaseStyle}">
         <Setter Property="Width" Value="16" />
         <Setter Property="Height" Value="16" />
         <Setter Property="Margin" Value="20,0,20,0" />
-        <Setter Property="Cursor" Value="Hand" />
     </Style>
 
     <Style x:Key="TreeViewNavigationPathButtonStyle" TargetType="{x:Type Button}">

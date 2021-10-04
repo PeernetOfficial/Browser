@@ -4,7 +4,7 @@ namespace Peernet.Browser.Application.Models
 {
     public class ApiFileMetadata
     {
-        public int Type { get; set; }
+        public MetadataType Type { get; set; }
 
         public string Name { get; set; }
 
@@ -13,5 +13,7 @@ namespace Peernet.Browser.Application.Models
         public byte[] Blob { get; set; }
 
         public DateTime Date { get; set; }
+
+        public int Number { get; set; }
     }
 }

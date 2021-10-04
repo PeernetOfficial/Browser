@@ -6,6 +6,7 @@ using Peernet.Browser.Application.VirtualFileSystem;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.Download;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -13,15 +14,14 @@ namespace Peernet.Browser.Application.ViewModels
     {
         public ObservableCollection<ApiBlockRecordFile> activeSearchResults;
         private readonly IExploreService exploreService;
-        private readonly IVirtualFileSystemFactory virtualFileSystemFactory;
+        private readonly IDownloadManager downloadManager;
         private List<VirtualFileSystemCategory> categoryTypes;
         private IReadOnlyCollection<ApiBlockRecordFile> sharedFiles;
-        private VirtualFileSystem.VirtualFileSystem virtualFileSystem;
 
-        public ExploreViewModel(IVirtualFileSystemFactory virtualFileSystemFactory, IExploreService exploreService)
+        public ExploreViewModel(IExploreService exploreService, IDownloadManager downloadManager)
         {
-            this.virtualFileSystemFactory = virtualFileSystemFactory;
             this.exploreService = exploreService;
+            this.downloadManager = downloadManager;
         }
 
         public ObservableCollection<ApiBlockRecordFile> ActiveSearchResults
@@ -36,7 +36,7 @@ namespace Peernet.Browser.Application.ViewModels
             new MvxAsyncCommand<ApiBlockRecordFile>(
                 apiBlockRecordFile =>
                 {
-                    // Asynchronous download operation to be performed
+                    downloadManager.QueueUpDownload(apiBlockRecordFile);
 
                     return Task.CompletedTask;
                 });

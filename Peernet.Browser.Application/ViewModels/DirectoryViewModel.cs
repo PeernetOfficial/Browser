@@ -131,16 +131,13 @@ namespace Peernet.Browser.Application.ViewModels
             var header = blockchainService.GetSelfHeader();
             if (header.Height > 0)
             {
-                sharedFiles = blockchainService.GetSelfList().Files;
+                sharedFiles = blockchainService.GetSelfList().Files ?? new();
                 ActiveSearchResults = sharedFiles?.ToList();
             }
 
             VirtualFileSystem = virtualFileSystemFactory.CreateVirtualFileSystem(sharedFiles);
-            if (sharedFiles != null)
-            {
-                AddRecentTier(sharedFiles);
-                AddAllFilesTier(sharedFiles);
-            }
+            AddRecentTier(sharedFiles);
+            AddAllFilesTier(sharedFiles);
 
             return base.Initialize();
         }
