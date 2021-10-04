@@ -1,9 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using MvvmCross.Base;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Models;
-using Peernet.Browser.Application.VirtualFileSystem;
 
 namespace Peernet.Browser.WPF.Controls
 {
