@@ -13,21 +13,11 @@ namespace Peernet.Browser.Application.Models
 {
     public class SearchContentElement : MvxNotifyPropertyChanged
     {
-        public MvxObservableCollection<IconModel> FilterIconModels { get; } = new MvxObservableCollection<IconModel>();
-
-        public MvxObservableCollection<SearchResultRowModel> TableResult { get; } = new MvxObservableCollection<SearchResultRowModel>();
-
-        public IconModel FiltersIconModel { get; }
-        public IconModel ColumnsIconModel { get; }
-
-        public FiltersModel Filters { get; }
-
-        public IMvxCommand ClearCommand { get; }
-
         public SearchContentElement(FiltersModel model)
         {
             if (model == null) throw new ArgumentNullException();
             Filters = model;
+            Filters.CloseAction += (x) => { if (x) Refresh(); };
 
             ColumnsIconModel = new IconModel(FiltersType.Columns, true);
             FiltersIconModel = new IconModel(FiltersType.Filters, true, OpenFilters);
@@ -36,24 +26,24 @@ namespace Peernet.Browser.Application.Models
             Refresh();
         }
 
-        private void OnFilterIconClick(IconModel i) => FilterIconModels.Where(x => x != i).Foreach(x => x.IsSelected = false);
+        public IMvxCommand ClearCommand { get; }
+        public IconModel ColumnsIconModel { get; }
+        public MvxObservableCollection<IconModel> FilterIconModels { get; } = new MvxObservableCollection<IconModel>();
 
-        private void Refresh()
-        {
-            var data = Filters.GetData(Download);
-            TableResult.Clear();
-            TableResult.AddRange(data.Rows);
-            RefreshIconFilters(data.Stats);
-        }
-
-        private void RefreshIconFilters(IDictionary<FiltersType, int> stats)
-        {
-            FilterIconModels.Clear();
-            stats.Foreach(x => FilterIconModels.Add(new IconModel(x.Key, onClick: OnFilterIconClick, count: x.Value)));
-        }
+        public FiltersModel Filters { get; }
+        public IconModel FiltersIconModel { get; }
+        public MvxObservableCollection<SearchResultRowModel> TableResult { get; } = new MvxObservableCollection<SearchResultRowModel>();
 
         private void Download(SearchResultRowModel row)
         {
+        }
+
+        private void OnFilterIconClick(IconModel i)
+        {
+            FilterIconModels.Where(x => x != i).Foreach(x => x.IsSelected = false);
+            i.IsSelected = true;
+            Filters.SearchFilterResult.FilterType = i.FilterType;
+            Refresh();
         }
 
         private void OpenFilters(IconModel m)
@@ -63,6 +53,20 @@ namespace Peernet.Browser.Application.Models
             GlobalContext.IsProfileMenuVisible = false;
             Filters.BindFromSearchFilterResult();
             navigationService.Navigate<FiltersViewModel, FiltersModel>(Filters);
+        }
+
+        private void Refresh()
+        {
+            var data = Filters.GetData(Download);
+            TableResult.Clear();
+            data.Rows.Foreach(x => TableResult.Add(x));
+            RefreshIconFilters(data.Stats, data.Filters.FilterType);
+        }
+
+        private void RefreshIconFilters(IDictionary<FiltersType, int> stats, FiltersType selected)
+        {
+            FilterIconModels.Clear();
+            stats.Foreach(x => FilterIconModels.Add(new IconModel(x.Key, onClick: OnFilterIconClick, count: x.Value) { IsSelected = x.Key == selected }));
         }
     }
 }

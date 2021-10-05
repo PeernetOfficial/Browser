@@ -20,10 +20,11 @@ namespace Peernet.Browser.Infrastructure
 
         public SearchResultModel Search(SearchFilterResultModel model)
         {
+            if (!model.PrevId.IsNullOrEmpty()) Terminate(model.PrevId);
             var res = new SearchResultModel { Filters = model, Stats = GetStats(), Size = new Tuple<int, int>(0, 15) };
             var response = api.SubmitSearch(Map(model));
             if (response.Status != 0) return res;
-
+            res.Id = response.Id;
             var result = api.ResturnSearch(response.Id);
             results.Add(response.Id, result);
             if (result.Status > 1) return res;
@@ -31,6 +32,36 @@ namespace Peernet.Browser.Infrastructure
                 .Select(x => new SearchResultRowModel(x))
                 .ToArray();
             return res;
+        }
+
+        public void Terminate(string id)
+        {
+            api.TerminateSearch(id);
+            results.Remove(id);
+        }
+
+        private Tuple<DateTime, DateTime> GetDateRange(TimePeriods p)
+        {
+            var from = DateTime.Now;
+            switch (p)
+            {
+                case TimePeriods.Last24:
+                    from = from.AddDays(-1);
+                    break;
+
+                case TimePeriods.LastWeek:
+                    from = from.AddDays(-7);
+                    break;
+
+                case TimePeriods.LastMounth:
+                    from = from.AddDays(-30);
+                    break;
+
+                case TimePeriods.LastYear:
+                    from = from.AddDays(-365);
+                    break;
+            }
+            return new Tuple<DateTime, DateTime>(from, DateTime.Now);
         }
 
         private IDictionary<FiltersType, int> GetStats()
@@ -45,12 +76,6 @@ namespace Peernet.Browser.Infrastructure
             res.Add(FiltersType.Text, 182);
             res.Add(FiltersType.Binary, 1);
             return res;
-        }
-
-        public void Terminate(string id)
-        {
-            api.TerminateSearch(id);
-            results.Remove(id);
         }
 
         private SearchRequest Map(SearchFilterResultModel model)
@@ -81,30 +106,6 @@ namespace Peernet.Browser.Infrastructure
                 //TODO: res.FileFormat = model.FileFormat.Value;
             }
             return res;
-        }
-
-        private Tuple<DateTime, DateTime> GetDateRange(TimePeriods p)
-        {
-            var from = DateTime.Now;
-            switch (p)
-            {
-                case TimePeriods.Last24:
-                    from = from.AddDays(-1);
-                    break;
-
-                case TimePeriods.LastWeek:
-                    from = from.AddDays(-7);
-                    break;
-
-                case TimePeriods.LastMounth:
-                    from = from.AddDays(-30);
-                    break;
-
-                case TimePeriods.LastYear:
-                    from = from.AddDays(-365);
-                    break;
-            }
-            return new Tuple<DateTime, DateTime>(from, DateTime.Now);
         }
     }
 }

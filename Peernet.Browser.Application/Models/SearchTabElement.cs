@@ -7,9 +7,6 @@ namespace Peernet.Browser.Application.Models
 {
     public class SearchTabElement : MvxNotifyPropertyChanged
     {
-        public string Title { get; }
-        public SearchContentElement Content { get; }
-
         public SearchTabElement(string title, Action<SearchTabElement> deleteAction, ISearchService searchService)
         {
             Title = title;
@@ -17,6 +14,8 @@ namespace Peernet.Browser.Application.Models
             DeleteCommand = new MvxCommand(() => deleteAction(this));
         }
 
+        public SearchContentElement Content { get; }
         public IMvxCommand DeleteCommand { get; }
+        public string Title { get; }
     }
 }

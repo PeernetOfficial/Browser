@@ -8,12 +8,11 @@ namespace Peernet.Browser.Application.Models
 {
     public class FiltersModel : MvxNotifyPropertyChanged
     {
-        private readonly Func<SearchFilterResultModel, SearchResultModel> refreshAction;
         private readonly string inputText;
-        private int min;
+        private readonly Func<SearchFilterResultModel, SearchResultModel> refreshAction;
         private int max;
-        public Action CloseAction { get; set; }
-        public SearchFilterResultModel SearchFilterResult { get; private set; }
+        private int min;
+        private string uuId;
 
         public FiltersModel(string inputText, Func<SearchFilterResultModel, SearchResultModel> refreshAction)
         {
@@ -35,45 +34,39 @@ namespace Peernet.Browser.Application.Models
             InitSearch();
         }
 
-        private void RefreshTabs()
-        {
-            var toAdd = SearchFilterResult.Get();
-            Results.Clear();
-            toAdd.Foreach(x => Results.Add(x));
-        }
-
-        public MvxObservableCollection<FilterResultModel> Results { get; } = new MvxObservableCollection<FilterResultModel>();
-
+        public IMvxCommand ApplyFiltersCommand { get; }
+        public IMvxCommand CancelCommand { get; }
+        public IMvxCommand ClearCommand { get; }
+        public Action<bool> CloseAction { get; set; }
+        public DateFilterModel DateFilters { get; }
+        public FileFormatFilterModel FileFormatFilters { get; }
+        public HealthFilterModel HealthFiltes { get; }
         public bool IsVisible => Results.Any();
+        public RangeSliderModel RangeFilter { get; }
+        public MvxObservableCollection<FilterResultModel> Results { get; } = new MvxObservableCollection<FilterResultModel>();
+        public SearchFilterResultModel SearchFilterResult { get; private set; }
+        public SortFormatFilterModel SortOrderFilters { get; }
+
+        public void BindFromSearchFilterResult()
+        {
+            DateFilters.Set(SearchFilterResult.Time);
+            FileFormatFilters.Set(SearchFilterResult.FileFormat);
+            SortOrderFilters.Set(SearchFilterResult.Order);
+            HealthFiltes.Set(SearchFilterResult.Health);
+
+            RangeFilter.Max = SearchFilterResult.SizeMax;
+            RangeFilter.Min = SearchFilterResult.SizeMin;
+            RangeFilter.CurrentMax = SearchFilterResult.SizeTo;
+            RangeFilter.CurrentMin = SearchFilterResult.SizeFrom;
+        }
 
         public SearchResultModel GetData(Action<SearchResultRowModel> downloadAction)
         {
             var res = refreshAction(SearchFilterResult);
+            uuId = res.Id;
             SetMinMax(res.Size.Item1, res.Size.Item2);
             res.Rows.Foreach(x => x.DownloadAction = downloadAction);
             return res;
-        }
-
-        public DateFilterModel DateFilters { get; }
-        public FileFormatFilterModel FileFormatFilters { get; }
-        public SortFormatFilterModel SortOrderFilters { get; }
-        public RangeSliderModel RangeFilter { get; }
-        public HealthFilterModel HealthFiltes { get; }
-
-        public IMvxCommand CancelCommand { get; }
-
-        public IMvxCommand ApplyFiltersCommand { get; }
-
-        public IMvxCommand ClearCommand { get; }
-
-        public void SetMinMax(int min, int max)
-        {
-            this.min = min;
-            this.max = max;
-            SearchFilterResult.SizeMax = max;
-            SearchFilterResult.SizeMin = min;
-            SearchFilterResult.SizeTo = max;
-            SearchFilterResult.SizeFrom = min;
         }
 
         public void Reset(bool withApply = false)
@@ -87,25 +80,14 @@ namespace Peernet.Browser.Application.Models
             if (withApply) Apply();
         }
 
-        private void Hide() => CloseAction?.Invoke();
-
-        private void ApplyFilters()
+        public void SetMinMax(int min, int max)
         {
-            Apply();
-            Hide();
-        }
-
-        public void BindFromSearchFilterResult()
-        {
-            DateFilters.Set(SearchFilterResult.Time);
-            FileFormatFilters.Set(SearchFilterResult.FileFormat);
-            SortOrderFilters.Set(SearchFilterResult.Order);
-            HealthFiltes.Set(SearchFilterResult.Health);
-
-            RangeFilter.Max = SearchFilterResult.SizeMax;
-            RangeFilter.Min = SearchFilterResult.SizeMin;
-            RangeFilter.CurrentMax = SearchFilterResult.SizeTo;
-            RangeFilter.CurrentMin = SearchFilterResult.SizeFrom;
+            this.min = min;
+            this.max = max;
+            SearchFilterResult.SizeMax = max;
+            SearchFilterResult.SizeMin = min;
+            SearchFilterResult.SizeTo = max;
+            SearchFilterResult.SizeFrom = min;
         }
 
         private void Apply()
@@ -124,7 +106,22 @@ namespace Peernet.Browser.Application.Models
             RefreshTabs();
         }
 
-        private void InitSearch() => SearchFilterResult = new SearchFilterResultModel { OnRemoveAction = RemoveAction, SizeMin = min, SizeMax = max, SizeFrom = min, SizeTo = max, InputText = inputText };
+        private void ApplyFilters()
+        {
+            Apply();
+            CloseAction?.Invoke(true);
+        }
+
+        private void Hide() => CloseAction?.Invoke(false);
+
+        private void InitSearch() => SearchFilterResult = new SearchFilterResultModel { OnRemoveAction = RemoveAction, SizeMin = min, SizeMax = max, SizeFrom = min, SizeTo = max, InputText = inputText, PrevId = uuId };
+
+        private void RefreshTabs()
+        {
+            var toAdd = SearchFilterResult.Get();
+            Results.Clear();
+            toAdd.Foreach(x => Results.Add(x));
+        }
 
         private void RemoveAction(SearchFiltersType type)
         {

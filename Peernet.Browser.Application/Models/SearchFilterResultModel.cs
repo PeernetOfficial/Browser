@@ -6,20 +6,19 @@ namespace Peernet.Browser.Application.Models
 {
     public class SearchFilterResultModel
     {
-        public Action<SearchFiltersType> OnRemoveAction { get; set; }
-        public TimePeriods? Time { get; set; }
-
-        public HealthType? Health { get; set; }
-
-        public int SizeFrom { get; set; }
-        public int SizeTo { get; set; }
-
-        public int SizeMin { get; set; }
-        public int SizeMax { get; set; }
-
-        public SortOrders? Order { get; set; }
-
         public FileFormats? FileFormat { get; set; }
+        public FiltersType FilterType { get; set; }
+        public HealthType? Health { get; set; }
+        public string InputText { get; set; }
+        public Action<SearchFiltersType> OnRemoveAction { get; set; }
+        public SortOrders? Order { get; set; }
+        public string PrevId { get; set; }
+        public int SizeFrom { get; set; }
+        public int SizeMax { get; set; }
+        public int SizeMin { get; set; }
+        public int SizeTo { get; set; }
+        public TimePeriods? Time { get; set; }
+        private bool IsSizeDefault => SizeTo == SizeMax && SizeMin == SizeFrom;
 
         public IEnumerable<FilterResultModel> Get()
         {
@@ -32,10 +31,6 @@ namespace Peernet.Browser.Application.Models
             return res;
         }
 
-        public string InputText { get; set; }
-
         private void Remove(FilterResultModel o) => OnRemoveAction?.Invoke(o.Type);
-
-        private bool IsSizeDefault => SizeTo == SizeMax && SizeMin == SizeFrom;
     }
 }
