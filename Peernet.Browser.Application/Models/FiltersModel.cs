@@ -25,7 +25,6 @@ namespace Peernet.Browser.Application.Models
 
             DateFilters = new DateFilterModel();
             FileFormatFilters = new FileFormatFilterModel();
-            SortOrderFilters = new SortFormatFilterModel();
             HealthFiltes = new HealthFilterModel();
             RangeFilter = new RangeSliderModel();
 
@@ -45,13 +44,11 @@ namespace Peernet.Browser.Application.Models
         public RangeSliderModel RangeFilter { get; }
         public MvxObservableCollection<FilterResultModel> Results { get; } = new MvxObservableCollection<FilterResultModel>();
         public SearchFilterResultModel SearchFilterResult { get; private set; }
-        public SortFormatFilterModel SortOrderFilters { get; }
 
         public void BindFromSearchFilterResult()
         {
             DateFilters.Set(SearchFilterResult.Time);
             FileFormatFilters.Set(SearchFilterResult.FileFormat);
-            SortOrderFilters.Set(SearchFilterResult.Order);
             HealthFiltes.Set(SearchFilterResult.Health);
 
             RangeFilter.Max = SearchFilterResult.SizeMax;
@@ -93,7 +90,6 @@ namespace Peernet.Browser.Application.Models
         private void Apply()
         {
             InitSearch();
-            SearchFilterResult.Order = SortOrderFilters.IsSelected ? SortOrderFilters.GetSelected() : null;
             SearchFilterResult.FileFormat = FileFormatFilters.IsSelected ? FileFormatFilters.GetSelected() : null;
             SearchFilterResult.Time = DateFilters.IsSelected ? DateFilters.GetSelected() : null;
             SearchFilterResult.Health = HealthFiltes.IsSelected ? HealthFiltes.GetSelected() : null;
@@ -146,10 +142,6 @@ namespace Peernet.Browser.Application.Models
 
                 case SearchFiltersType.FileFormats:
                     FileFormatFilters.DeselctAll();
-                    break;
-
-                case SearchFiltersType.Sortorder:
-                    SortOrderFilters.DeselctAll();
                     break;
 
                 case SearchFiltersType.TimePeriods:
