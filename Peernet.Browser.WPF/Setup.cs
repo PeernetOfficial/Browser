@@ -4,7 +4,6 @@ using MvvmCross.IoC;
 using MvvmCross.Navigation;
 using MvvmCross.Navigation.EventArguments;
 using MvvmCross.Platforms.Wpf.Core;
-using MvvmCross.Platforms.Wpf.Views;
 using MvvmCross.Plugin;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Download;
@@ -14,6 +13,7 @@ using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.Browser.Infrastructure;
 using Serilog;
 using Serilog.Extensions.Logging;
+using System.Reflection;
 
 namespace Peernet.Browser.WPF
 {
@@ -49,17 +49,19 @@ namespace Peernet.Browser.WPF
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
+            var assembly = typeof(CmdClient).GetTypeInfo().Assembly;
+            CreatableTypes(assembly)
+                .EndingWith("Service")
+                .AsInterfaces()
+                .RegisterAsLazySingleton();
+
             iocProvider.RegisterType<IRestClientFactory, RestClientFactory>();
             iocProvider.RegisterType<ICmdClient, CmdClient>();
             iocProvider.RegisterType<ISocketClient, SocketClient>();
-            iocProvider.RegisterType<IProfileService, ProfileService>();
             iocProvider.RegisterSingleton<IUserContext>(() => new UserContext(iocProvider.Resolve<IProfileService>(), iocProvider.Resolve<IMvxNavigationService>()));
-            iocProvider.RegisterType<IBlockchainService, BlockchainService>();
             iocProvider.RegisterType<IVirtualFileSystemFactory, VirtualFileSystemFactory>();
             iocProvider.RegisterType<IFilesToCategoryBinder, FilesToCategoryBinder>();
-            iocProvider.RegisterType<IExploreService, ExploreService>();
-            iocProvider.RegisterType<ISearchService, SearchService>();
-            iocProvider.RegisterType<IDownloadService, DownloadService>();
+
             iocProvider.RegisterSingleton<IDownloadManager>(new DownloadManager(iocProvider.Resolve<IDownloadService>()));
             GlobalContext.UiThreadDispatcher = iocProvider.Resolve<IMvxMainThreadAsyncDispatcher>();
             ObserveNavigation(iocProvider);
