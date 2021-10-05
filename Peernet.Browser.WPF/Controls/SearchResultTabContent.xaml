@@ -98,7 +98,7 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="{Binding SharedBy}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                <TextBlock Grid.Column="0" Text="{Binding SharedBy, StringFormat={}{0} Peers}" VerticalAlignment="Center" HorizontalAlignment="Left" />
                                 <Image Visibility="{Binding FlameIsVisible, Converter={StaticResource BoolToVisibility}}" Height="20" Grid.Column="1" Source="{DynamicResource FlameDrawingImage}" />
                             </Grid>
                         </DataTemplate>

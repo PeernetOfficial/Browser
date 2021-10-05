@@ -13,7 +13,7 @@ namespace Peernet.Browser.Application.Models
             Name = source.Name;
             Date = source.Date.ToString();
             Size = $"{source.Size} MB";
-            SharedBy = $"123 Peers";
+            SharedBy = source.SharedByCount;
             FlameIsVisible = source.Size > 15;
         }
 
@@ -22,7 +22,7 @@ namespace Peernet.Browser.Application.Models
         public string Name { get; }
         public string Date { get; }
         public string Size { get; }
-        public string SharedBy { get; }
+        public int SharedBy { get; }
         public bool FlameIsVisible { get; }
         public IMvxCommand DownloadCommand { get; }
 

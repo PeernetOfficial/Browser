@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:context="clr-namespace:Peernet.Browser.Application.Contexts;assembly=Peernet.Browser.Application"
              mc:Ignorable="d"
              x:Name="SharedFilesDataGrid">
     <Grid>
@@ -49,6 +50,11 @@
                                 <Button Grid.Column="0" Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.EditCommand, ElementName=SharedFilesDataGrid}" CommandParameter="{Binding}">
                                     <Button.Background>
                                         <ImageBrush ImageSource="{DynamicResource EditDrawingImage}" />
+                                    </Button.Background>
+                                </Button>
+                                <Button Grid.Column="1" Style="{StaticResource DataGridActionButton}" Click="CopyLinkToClipboard_OnClick">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="{DynamicResource ShareDrawingImage}" />
                                     </Button.Background>
                                 </Button>
                                 <Button Grid.Column="2" Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.DeleteCommand, ElementName=SharedFilesDataGrid}" CommandParameter="{Binding}">

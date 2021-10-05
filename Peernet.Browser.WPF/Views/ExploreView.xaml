@@ -4,18 +4,18 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls"
-      Height="700" Width="1441"
       x:Name="ExplorePage">
-    <Border Background="White" BorderThickness="0" CornerRadius="8,8,8,8">
-        <Grid Margin="80,40, 10, 0">
+    <Border Background="White" BorderThickness="0" CornerRadius="8,8,8,8" VerticalAlignment="Stretch" Margin="0, 65, 0, 0">
+        <Grid Margin="0,40, 0, 0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Style="{StaticResource Active}" FontWeight="Medium" FontSize="32">Explore</TextBlock>
-            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0, 24, 0, 31">
+            <TextBlock Grid.Row="0" Style="{StaticResource Active}" FontWeight="Medium" FontSize="32" Text="Explore" Margin="80, 0, 10, 0" />
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="80, 24, 10, 31">
                 <ItemsControl ItemsSource="{Binding CategoryTypes}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -26,7 +26,7 @@
                         <DataTemplate>
                             <Border BorderThickness="1" CornerRadius="4" Margin="0, 0, 48, 0" Cursor="Hand">
                                 <Border.BorderBrush>
-                                    <SolidColorBrush Color="Black" Opacity="0.08"></SolidColorBrush>
+                                    <SolidColorBrush Color="Black" Opacity="0.08" />
                                 </Border.BorderBrush>
                                 <Border.Effect>
                                     <DropShadowEffect ShadowDepth="7" BlurRadius="16" Color="Black" Opacity="0.14" />
@@ -52,7 +52,18 @@
                                         <Border.Background>
                                             <SolidColorBrush Color="White"></SolidColorBrush>
                                         </Border.Background>
-                                        <TextBlock Text="{Binding Name}" Style="{StaticResource ActiveSelectable}" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <TextBlock.Style>
+                                                <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource ActiveSelectable}">
+                                                    <Setter Property="FontWeight" Value="Medium" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                            <Setter Property="FontWeight" Value="SemiBold" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
                                     </Border>
                                 </StackPanel>
                             </Border>
@@ -60,8 +71,9 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </StackPanel>
-            <Separator Style="{StaticResource StandardSeparatorStyle}" Grid.Row="2" />
-            <controls:ExploreFilesDataGridControl Height="390"  Grid.Row="3" VerticalAlignment="Bottom" Margin="0, 20, 0, 0" />
+            <Separator Style="{StaticResource StandardSeparatorStyle}" Grid.Row="2"/>
+            <controls:ExploreFilesDataGridControl Height="457"  Grid.Row="3" VerticalAlignment="Bottom" Margin="80, 20, 10, 0" />
+            <Separator Style="{StaticResource StandardSeparatorStyle}" Grid.Row="4" />
         </Grid>
     </Border>
 </views:MvxWpfView>
