@@ -7,7 +7,13 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public class FiltersViewModel : MvxViewModel<FiltersModel>
     {
+        private readonly IMvxNavigationService mvxNavigationService;
         private FiltersModel filters;
+
+        public FiltersViewModel(IMvxNavigationService mvxNavigationService)
+        {
+            this.mvxNavigationService = mvxNavigationService;
+        }
 
         public FiltersModel Filters
         {
@@ -18,18 +24,12 @@ namespace Peernet.Browser.Application.ViewModels
         public override void Prepare(FiltersModel p)
         {
             Filters = p;
-            p.CloseAction = Hide;
+            p.CloseAction += Hide;
         }
 
-        private readonly IMvxNavigationService mvxNavigationService;
-
-        public FiltersViewModel(IMvxNavigationService mvxNavigationService)
+        private void Hide(bool withApply)
         {
-            this.mvxNavigationService = mvxNavigationService;
-        }
-
-        private void Hide()
-        {
+            Filters.CloseAction -= Hide;
             GlobalContext.IsMainWindowActive = true;
             mvxNavigationService.Close(this);
         }

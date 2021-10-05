@@ -1,4 +1,5 @@
 ﻿using MvvmCross;
+using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
@@ -12,67 +13,60 @@ namespace Peernet.Browser.Application.Models
 {
     public class SearchContentElement : MvxNotifyPropertyChanged
     {
-        private readonly IMvxNavigationService navigationService;
-        public MvxObservableCollection<IconModel> FilterIconModels { get; } = new MvxObservableCollection<IconModel>();
-
-        public MvxObservableCollection<SearchResultRowModel> TableResult { get; } = new MvxObservableCollection<SearchResultRowModel>();
-
-        public IconModel FiltersIconModel { get; }
-        public IconModel ColumnsIconModel { get; }
-
-        public FiltersModel Filters { get; }
-
-        private readonly List<ApiBlockRecordFile> Files = new List<ApiBlockRecordFile>();
-
-        public SearchContentElement()
+        public SearchContentElement(FiltersModel model)
         {
-            PrepareFakeFiles();
-
-            navigationService = Mvx.IoCProvider.Resolve<IMvxNavigationService>();
-
-            FilterIconModels.Add(new IconModel(FiltersType.All, count: 2357));
-            FilterIconModels.Add(new IconModel(FiltersType.Audio, count: 217));
-            FilterIconModels.Add(new IconModel(FiltersType.Video, count: 844));
-            FilterIconModels.Add(new IconModel(FiltersType.Ebooks, count: 629));
-            FilterIconModels.Add(new IconModel(FiltersType.Documents, count: 632));
-            FilterIconModels.Add(new IconModel(FiltersType.Pictures, count: 214));
-            FilterIconModels.Add(new IconModel(FiltersType.Text, count: 182));
-            FilterIconModels.Add(new IconModel(FiltersType.Binary, count: 1));
+            if (model == null) throw new ArgumentNullException();
+            Filters = model;
+            Filters.CloseAction += (x) => { if (x) Refresh(); };
 
             ColumnsIconModel = new IconModel(FiltersType.Columns, true);
             FiltersIconModel = new IconModel(FiltersType.Filters, true, OpenFilters);
+            ClearCommand = new MvxCommand(() => Filters.Reset(true));
 
-            Filters = new FiltersModel();
-            Filters.Reset(0, 15);
-            Filters.Refresh();
-
-            RefreshTable();
+            Refresh();
         }
 
-        private void PrepareFakeFiles()
-        {
-            for (var i = 0; i < 100; i++)
-            {
-                var id = i % 5;
-                Files.Add(new ApiBlockRecordFile { Id = id.ToString(), Date = DateTime.Now.AddMinutes(i), Name = $"Name_{i}", Size = i });
-            }
-        }
+        public IMvxCommand ClearCommand { get; }
+        public IconModel ColumnsIconModel { get; }
+        public MvxObservableCollection<IconModel> FilterIconModels { get; } = new MvxObservableCollection<IconModel>();
 
-        private void RefreshTable()
-        {
-            TableResult.Clear();
-            TableResult.AddRange(Files.Select(x => new SearchResultRowModel(x, Download)));
-        }
+        public FiltersModel Filters { get; }
+        public IconModel FiltersIconModel { get; }
+        public MvxObservableCollection<SearchResultRowModel> TableResult { get; } = new MvxObservableCollection<SearchResultRowModel>();
 
         private void Download(SearchResultRowModel row)
         {
         }
 
-        private void OpenFilters()
+        private void OnFilterIconClick(IconModel i)
         {
+            FilterIconModels.Where(x => x != i).Foreach(x => x.IsSelected = false);
+            i.IsSelected = true;
+            Filters.SearchFilterResult.FilterType = i.FilterType;
+            Refresh();
+        }
+
+        private void OpenFilters(IconModel m)
+        {
+            var navigationService = Mvx.IoCProvider.Resolve<IMvxNavigationService>();
             GlobalContext.IsMainWindowActive = false;
             GlobalContext.IsProfileMenuVisible = false;
+            Filters.BindFromSearchFilterResult();
             navigationService.Navigate<FiltersViewModel, FiltersModel>(Filters);
+        }
+
+        private void Refresh()
+        {
+            var data = Filters.GetData(Download);
+            TableResult.Clear();
+            data.Rows.Foreach(x => TableResult.Add(x));
+            RefreshIconFilters(data.Stats, data.Filters.FilterType);
+        }
+
+        private void RefreshIconFilters(IDictionary<FiltersType, int> stats, FiltersType selected)
+        {
+            FilterIconModels.Clear();
+            stats.Foreach(x => FilterIconModels.Add(new IconModel(x.Key, onClick: OnFilterIconClick, count: x.Value) { IsSelected = x.Key == selected }));
         }
     }
 }

@@ -31,7 +31,7 @@ namespace Peernet.Browser.Infrastructure
             return GetResult<ApiBlockchainBlock>($"/blockchain/self/read?block={block}");
         }
 
-        public SearchResult ResturnSearch(int id, int? limit = null)
+        public SearchResult ResturnSearch(string id, int? limit = null)
         {
             var p = new Dictionary<string, object>();
             p.Add("id", id);
@@ -44,7 +44,7 @@ namespace Peernet.Browser.Infrastructure
             return PostResult<SearchRequestResponse>("/search", request);
         }
 
-        public void TerminateSearch(int id)
+        public void TerminateSearch(string id)
         {
             GetResult<string>($"/search/terminate?id={id}");
         }

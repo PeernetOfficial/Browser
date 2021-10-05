@@ -3,17 +3,20 @@ using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Enums;
 using Peernet.Browser.Application.Models;
+using Peernet.Browser.Application.Services;
 using System.Linq;
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public class HomeViewModel : MvxViewModel
     {
+        private readonly ISearchService searchService;
         private string searchInput;
         private int selectedIndex = -1;
 
-        public HomeViewModel()
+        public HomeViewModel(ISearchService searchService)
         {
+            this.searchService = searchService;
             SearchCommand = new MvxCommand(Search);
             Tabs.CollectionChanged += (o, s) =>
             {
@@ -58,7 +61,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         private void Search()
         {
-            var toAdd = new SearchTabElement(SearchInput, RemoveTab);
+            var toAdd = new SearchTabElement(SearchInput, RemoveTab, searchService);
             Tabs.Add(toAdd);
             SearchInput = "";
             SelectedIndex = Tabs.Count - 1;

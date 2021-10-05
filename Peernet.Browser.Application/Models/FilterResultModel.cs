@@ -1,19 +1,15 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
+using Peernet.Browser.Application.Enums;
 using System;
 
 namespace Peernet.Browser.Application.Models
 {
     public class FilterResultModel : MvxNotifyPropertyChanged
     {
-        private string content;
+        public string Content { get; set; }
 
-        public string Content
-
-        {
-            get => content;
-            set => SetProperty(ref content, value);
-        }
+        public SearchFiltersType Type { get; set; }
 
         public FilterResultModel(Action<FilterResultModel> click)
         {

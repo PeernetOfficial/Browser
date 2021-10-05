@@ -1,16 +1,15 @@
 ﻿using MvvmCross.Commands;
-using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Enums;
 using System;
 
 namespace Peernet.Browser.Application.Models
 {
-    public class SearchResultRowModel : MvxNotifyPropertyChanged
+    public class SearchResultRowModel
     {
-        public SearchResultRowModel(ApiBlockRecordFile source, Action<SearchResultRowModel> download)
+        public SearchResultRowModel(ApiBlockRecordFile source)
         {
-            DownloadCommand = new MvxCommand(() => download?.Invoke(this));
-            EnumerationMember = (HealthType)int.Parse(source.Id);
+            DownloadCommand = new MvxCommand(() => DownloadAction?.Invoke(this));
+            EnumerationMember = (HealthType)(DateTime.Now.Ticks % 4);
             Name = source.Name;
             Date = source.Date.ToString();
             Size = $"{source.Size} MB";
@@ -18,7 +17,7 @@ namespace Peernet.Browser.Application.Models
             FlameIsVisible = source.Size > 15;
         }
 
-        public HealthType EnumerationMember { get; set; }
+        public HealthType EnumerationMember { get; }
 
         public string Name { get; }
         public string Date { get; }
@@ -26,5 +25,7 @@ namespace Peernet.Browser.Application.Models
         public int SharedBy { get; }
         public bool FlameIsVisible { get; }
         public IMvxCommand DownloadCommand { get; }
+
+        public Action<SearchResultRowModel> DownloadAction { get; set; }
     }
 }
