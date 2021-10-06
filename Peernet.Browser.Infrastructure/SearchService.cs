@@ -84,8 +84,7 @@ namespace Peernet.Browser.Infrastructure
             {
                 Term = model.InputText,
                 Timeout = 0,
-                MaxResults = 0,
-                Sort = 2
+                MaxResults = 0
             };
             if (model.Time.HasValue)
             {
@@ -93,15 +92,15 @@ namespace Peernet.Browser.Infrastructure
                 res.DateFrom = r.Item1.ToString();
                 res.DateTo = r.Item2.ToString();
             }
-            if (model.Health.HasValue)
+            if (!model.Healths.IsNullOrEmpty())
             {
                 //TODO: ??
             }
-            if (model.Order.HasValue)
+            if (!model.ColumnName.IsNullOrEmpty() && model.SortType != DataGridSortingTypeEnum.None)
             {
                 //TODO: res.Sort = model.SortColumn.Value;
             }
-            if (model.FileFormat.HasValue)
+            if (!model.FileFormats.IsNullOrEmpty())
             {
                 //TODO: res.FileFormat = model.FileFormat.Value;
             }

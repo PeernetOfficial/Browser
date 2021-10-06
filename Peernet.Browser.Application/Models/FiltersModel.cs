@@ -48,8 +48,8 @@ namespace Peernet.Browser.Application.Models
         public void BindFromSearchFilterResult()
         {
             DateFilters.Set(SearchFilterResult.Time);
-            FileFormatFilters.Set(SearchFilterResult.FileFormat);
-            HealthFiltes.Set(SearchFilterResult.Health);
+            FileFormatFilters.Set(SearchFilterResult.FileFormats);
+            HealthFiltes.Set(SearchFilterResult.Healths);
 
             RangeFilter.Max = SearchFilterResult.SizeMax;
             RangeFilter.Min = SearchFilterResult.SizeMin;
@@ -69,7 +69,6 @@ namespace Peernet.Browser.Application.Models
         public void Reset(bool withApply = false)
         {
             Reset(SearchFiltersType.FileFormats);
-            Reset(SearchFiltersType.Sortorder);
             Reset(SearchFiltersType.TimePeriods);
             Reset(SearchFiltersType.Size);
             Reset(SearchFiltersType.HealthType);
@@ -90,9 +89,9 @@ namespace Peernet.Browser.Application.Models
         private void Apply()
         {
             InitSearch();
-            SearchFilterResult.FileFormat = FileFormatFilters.IsSelected ? FileFormatFilters.GetSelected() : null;
+            SearchFilterResult.FileFormats = FileFormatFilters.IsSelected ? FileFormatFilters.GetAllSelected() : null;
             SearchFilterResult.Time = DateFilters.IsSelected ? DateFilters.GetSelected() : null;
-            SearchFilterResult.Health = HealthFiltes.IsSelected ? HealthFiltes.GetSelected() : null;
+            SearchFilterResult.Healths = HealthFiltes.IsSelected ? HealthFiltes.GetAllSelected() : null;
 
             SearchFilterResult.SizeFrom = RangeFilter.CurrentMin;
             SearchFilterResult.SizeTo = RangeFilter.CurrentMax;

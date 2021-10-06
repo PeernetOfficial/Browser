@@ -3,9 +3,9 @@
     public class SearchRequestResponse
     {
         /// <summary>
-        /// Status of the search: 0 = Success (ID valid), 1 = Invalid Term, 2 = Error Max Concurrent Searches
+        /// Status of the search
         /// </summary>
-        public int Status { get; set; }
+        public SearchRequestResponseStatusEnum Status { get; set; }
 
         /// <summary>
         /// UUID

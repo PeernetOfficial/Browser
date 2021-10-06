@@ -30,14 +30,9 @@
         public string DateTo { get; set; }
 
         /// <summary>
-        ///  Sort order:
-        ///  0 = No sorting,
-        ///  1 = Relevance ASC,
-        ///  2 = Relevance DESC (this should be default),
-        ///  3 = Date ASC,
-        ///  4 = Date DESC
+        ///  Sort order
         /// </summary>
-        public int Sort { get; set; }
+        public SearchRequestSortTypeEnum Sort { get; set; }
 
         /// <summary>
         /// Optional: Previous search IDs to terminate.
@@ -56,11 +51,11 @@
         /// <summary>
         /// File type such as binary, text document etc. See core.TypeX.
         /// </summary>
-        public int FileType { get; set; }
+        public LowLevelFileType FileType { get; set; }
 
         /// <summary>
         /// File format such as PDF, Word, Ebook, etc. See core.FormatX.
         /// </summary>
-        public int FileFormat { get; set; }
+        public HighLevelFileType FileFormat { get; set; }
     }
 }

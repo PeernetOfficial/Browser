@@ -22,7 +22,13 @@ namespace Peernet.Browser.Application.Models
             ColumnsIconModel = new IconModel(FiltersType.Columns, true);
             FiltersIconModel = new IconModel(FiltersType.Filters, true, OpenFilters);
             ClearCommand = new MvxCommand(() => Filters.Reset(true));
+            Refresh();
+        }
 
+        public void OnSorting(string columnName, DataGridSortingTypeEnum type)
+        {
+            Filters.SearchFilterResult.ColumnName = columnName;
+            Filters.SearchFilterResult.SortType = type;
             Refresh();
         }
 

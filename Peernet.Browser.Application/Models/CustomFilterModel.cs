@@ -32,12 +32,21 @@ namespace Peernet.Browser.Application.Models
 
         private void IsCheckedChanged(CustomCheckBoxModel c)
         {
-            if (c.IsChecked) Items.Where(x => x != c).Foreach(x => x.IsChecked = false);
+            //TODO: will be used int RadioButton type
+            //if (c.IsChecked) Items.Where(x => x != c).Foreach(x => x.IsChecked = false);
         }
 
         public T GetSelected()
         {
             return (T)Items.First(x => x.IsChecked).EnumerationMember;
+        }
+
+        public T[] GetAllSelected()
+        {
+            return Items
+                .Where(x => x.IsChecked)
+                .Select(x => (T)x.EnumerationMember)
+                .ToArray();
         }
 
         public bool IsSelected => Items.Any(x => x.IsChecked);
