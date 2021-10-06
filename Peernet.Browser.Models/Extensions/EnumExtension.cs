@@ -15,5 +15,9 @@ namespace Peernet.Browser.Models.Extensions
                 .FirstOrDefault() as DescriptionAttribute;
             return descriptionAttribute?.Description;
         }
+
+        public static bool IsDefault<T>(this T val) where T : Enum => (int)(object)val == 0;
+
+        public static T GetDefault<T>(this T val) where T : Enum => (T)Enum.GetValues(typeof(T)).GetValue(0);
     }
 }

@@ -6,6 +6,7 @@ using Peernet.Browser.Models.Presentation;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.Extensions;
 
 namespace Peernet.Browser.Application.Contexts
 {

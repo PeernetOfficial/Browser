@@ -2,19 +2,25 @@
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Extensions;
 using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Models.Presentation
 {
     public class FiltersModel : MvxNotifyPropertyChanged
     {
-        public Action CloseAction { get; set; }
-        public SearchFilterResultModel SearchFilterResult { get; } = new SearchFilterResultModel();
+        private readonly string inputText;
+        private readonly Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction;
+        private int max;
+        private int min;
+        private string uuId;
 
-        public FiltersModel()
+        public FiltersModel(string inputText, Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction)
         {
-            ClearCommand = new MvxCommand(() => Results.Clear());
+            this.inputText = inputText;
+            this.refreshAction = refreshAction;
+
+            ClearCommand = new MvxCommand(() => Reset());
             CancelCommand = new MvxCommand(Hide);
             ApplyFiltersCommand = new MvxCommand(ApplyFilters);
 
@@ -25,80 +31,132 @@ namespace Peernet.Browser.Models.Presentation
             RangeFilter = new RangeSliderModel();
 
             Results.CollectionChanged += (o, s) => RaisePropertyChanged(nameof(IsVisible));
+
+            InitSearch();
         }
-
-        public void Refresh()
-        {
-            Refresh(SearchFilterResult.Get());
-        }
-
-        public void Refresh(IEnumerable<string> news)
-        {
-            var toAdd = news.Select(x => new FilterResultModel(Remove) { Content = x }).ToArray();
-            Results.Clear();
-            toAdd.Foreach(ta => Results.Add(ta));
-        }
-
-        public MvxObservableCollection<FilterResultModel> Results { get; } = new MvxObservableCollection<FilterResultModel>();
-
-        public bool IsVisible => Enumerable.Any<FilterResultModel>(Results);
-
-        private void Remove(FilterResultModel o) => Results.Remove(o);
-
-        public DateFilterModel DateFilters { get; }
-        public FileFormatFilterModel FileFormatFilters { get; }
-        public SortFormatFilterModel SortOrderFilters { get; }
-        public RangeSliderModel RangeFilter { get; }
-        public HealthFilterModel HealthFiltes { get; }
-
-        public IMvxCommand CancelCommand { get; }
 
         public IMvxCommand ApplyFiltersCommand { get; }
-
+        public IMvxCommand CancelCommand { get; }
         public IMvxCommand ClearCommand { get; }
+        public Action<bool> CloseAction { get; set; }
+        public DateFilterModel DateFilters { get; }
+        public FileFormatFilterModel FileFormatFilters { get; }
+        public HealthFilterModel HealthFiltes { get; }
+        public bool IsVisible => Results.Any();
+        public RangeSliderModel RangeFilter { get; }
+        public MvxObservableCollection<FilterResultModel> Results { get; } = new MvxObservableCollection<FilterResultModel>();
+        public SearchFilterResultModel SearchFilterResult { get; private set; }
+        public SortFormatFilterModel SortOrderFilters { get; }
 
-        public void Reset(int min, int max)
+        public void BindFromSearchFilterResult()
         {
-            SearchFilterResult.HealthType = HealthType.Green;
-            SearchFilterResult.FileFormats = new[] { FileFormats.All };
-            SearchFilterResult.Order = SortOrders.MostRelevant;
-            SearchFilterResult.Time = TimePeriods.Any;
+            DateFilters.Set(SearchFilterResult.Time);
+            FileFormatFilters.Set(SearchFilterResult.FileFormat);
+            SortOrderFilters.Set(SearchFilterResult.Order);
+            HealthFiltes.Set(SearchFilterResult.Health);
 
-            SearchFilterResult.SizeMin = min;
+            RangeFilter.Max = SearchFilterResult.SizeMax;
+            RangeFilter.Min = SearchFilterResult.SizeMin;
+            RangeFilter.CurrentMax = SearchFilterResult.SizeTo;
+            RangeFilter.CurrentMin = SearchFilterResult.SizeFrom;
+        }
+
+        public async Task<SearchResultModel> GetData(Action<SearchResultRowModel> downloadAction)
+        {
+            var res = await refreshAction(SearchFilterResult);
+            uuId = res.Id;
+            SetMinMax(res.Size.Item1, res.Size.Item2);
+            res.Rows.Foreach(x => x.DownloadAction = downloadAction);
+            return res;
+        }
+
+        public void Reset(bool withApply = false)
+        {
+            Reset(SearchFiltersType.FileFormats);
+            Reset(SearchFiltersType.Sortorder);
+            Reset(SearchFiltersType.TimePeriods);
+            Reset(SearchFiltersType.Size);
+            Reset(SearchFiltersType.HealthType);
+
+            if (withApply) Apply();
+        }
+
+        public void SetMinMax(int min, int max)
+        {
+            this.min = min;
+            this.max = max;
             SearchFilterResult.SizeMax = max;
+            SearchFilterResult.SizeMin = min;
+            SearchFilterResult.SizeTo = max;
+            SearchFilterResult.SizeFrom = min;
+        }
 
-            Bind();
+        private void Apply()
+        {
+            InitSearch();
+            SearchFilterResult.Order = SortOrderFilters.IsSelected ? SortOrderFilters.GetSelected() : null;
+            SearchFilterResult.FileFormat = FileFormatFilters.IsSelected ? FileFormatFilters.GetSelected() : null;
+            SearchFilterResult.Time = DateFilters.IsSelected ? DateFilters.GetSelected() : null;
+            SearchFilterResult.Health = HealthFiltes.IsSelected ? HealthFiltes.GetSelected() : null;
+
+            SearchFilterResult.SizeFrom = RangeFilter.CurrentMin;
+            SearchFilterResult.SizeTo = RangeFilter.CurrentMax;
+            SearchFilterResult.SizeMin = RangeFilter.Min;
+            SearchFilterResult.SizeMax = RangeFilter.Max;
+
+            RefreshTabs();
         }
 
         private void ApplyFilters()
         {
-            SearchFilterResult.Order = SortOrderFilters.GetSelected().FirstOrDefault();
-            SearchFilterResult.FileFormats = FileFormatFilters.GetSelected();
-            SearchFilterResult.Time = DateFilters.GetSelected().FirstOrDefault();
-            SearchFilterResult.HealthType = HealthFiltes.GetSelected().FirstOrDefault();
-
-            SearchFilterResult.SizeFrom = RangeFilter.CurrentMin;
-            SearchFilterResult.SizeTo = RangeFilter.CurrentMin;
-            SearchFilterResult.SizeMin = RangeFilter.Min;
-            SearchFilterResult.SizeMax = RangeFilter.Max;
-
-            Refresh();
-            Hide();
+            Apply();
+            CloseAction?.Invoke(true);
         }
 
-        private void Hide() => CloseAction?.Invoke();
+        private void Hide() => CloseAction?.Invoke(false);
 
-        private void Bind()
+        private void InitSearch() => SearchFilterResult = new SearchFilterResultModel { OnRemoveAction = RemoveAction, SizeMin = min, SizeMax = max, SizeFrom = min, SizeTo = max, InputText = inputText, PrevId = uuId };
+
+        private void RefreshTabs()
         {
-            DateFilters.Set(SearchFilterResult.Time);
-            FileFormatFilters.Set(SearchFilterResult.FileFormats);
-            SortOrderFilters.Set(SearchFilterResult.Order);
-            HealthFiltes.Set(SearchFilterResult.HealthType);
+            var toAdd = SearchFilterResult.Get();
+            Results.Clear();
+            toAdd.Foreach(x => Results.Add(x));
+        }
 
-            RangeFilter.CurrentMax = SearchFilterResult.SizeTo ?? SearchFilterResult.SizeMax;
-            RangeFilter.CurrentMin = SearchFilterResult.SizeFrom ?? SearchFilterResult.SizeMin;
-            RangeFilter.Max = SearchFilterResult.SizeMax;
-            RangeFilter.Min = SearchFilterResult.SizeMin;
+        private void RemoveAction(SearchFiltersType type)
+        {
+            Reset(type);
+            Apply();
+        }
+
+        private void Reset(SearchFiltersType type)
+        {
+            switch (type)
+            {
+                case SearchFiltersType.Size:
+                    RangeFilter.Min = SearchFilterResult.SizeMin;
+                    RangeFilter.Max = SearchFilterResult.SizeMax;
+                    RangeFilter.CurrentMax = SearchFilterResult.SizeMax;
+                    RangeFilter.CurrentMin = SearchFilterResult.SizeMin;
+                    break;
+
+                case SearchFiltersType.HealthType:
+                    HealthFiltes.DeselctAll();
+                    break;
+
+                case SearchFiltersType.FileFormats:
+                    FileFormatFilters.DeselctAll();
+                    break;
+
+                case SearchFiltersType.Sortorder:
+                    SortOrderFilters.DeselctAll();
+                    break;
+
+                case SearchFiltersType.TimePeriods:
+                    DateFilters.DeselctAll();
+                    break;
+            }
         }
     }
 }

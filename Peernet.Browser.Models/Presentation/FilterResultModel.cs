@@ -6,14 +6,9 @@ namespace Peernet.Browser.Models.Presentation
 {
     public class FilterResultModel : MvxNotifyPropertyChanged
     {
-        private string content;
+        public string Content { get; set; }
 
-        public string Content
-
-        {
-            get => content;
-            set => SetProperty(ref content, value);
-        }
+        public SearchFiltersType Type { get; set; }
 
         public FilterResultModel(Action<FilterResultModel> click)
         {

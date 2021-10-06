@@ -4,9 +4,6 @@ namespace Peernet.Browser.Models.Presentation
 {
     public enum FileFormats
     {
-        [Description("All")]
-        All,
-
         [Description("PDF File")]
         Pdf,
 
@@ -29,6 +26,6 @@ namespace Peernet.Browser.Models.Presentation
         Images,
 
         [Description("Movies")]
-        Movies,
+        Movies
     }
 }
