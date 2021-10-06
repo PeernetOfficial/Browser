@@ -2,25 +2,25 @@
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.VirtualFileSystem;
-using Peernet.Browser.Application.Wrappers;
 using Peernet.Browser.Models.Domain;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.Facades;
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public class ExploreViewModel : MvxViewModel
     {
         public ObservableCollection<ApiBlockRecordFile> activeSearchResults;
-        private readonly IExploreWrapper exploreService;
+        private readonly IExploreFacade exploreFacade;
         private readonly IDownloadManager downloadManager;
         private static List<VirtualFileSystemCategory> categoryTypes = GetCategoryTypes();
         private IReadOnlyCollection<ApiBlockRecordFile> sharedFiles;
 
-        public ExploreViewModel(IExploreWrapper exploreService, IDownloadManager downloadManager)
+        public ExploreViewModel(IExploreFacade exploreFacade, IDownloadManager downloadManager)
         {
-            this.exploreService = exploreService;
+            this.exploreFacade = exploreFacade;
             this.downloadManager = downloadManager;
         }
 
@@ -56,18 +56,18 @@ namespace Peernet.Browser.Application.ViewModels
                     if (category.Type == VirtualFileSystemEntityType.Binary)
                     {
                         ActiveSearchResults =
-                            new ObservableCollection<ApiBlockRecordFile>((await exploreService.GetFiles(20, -2)).Files);
+                            new ObservableCollection<ApiBlockRecordFile>((await exploreFacade.GetFiles(20, -2)).Files);
                     }
                     else
                     {
-                        ActiveSearchResults = new ObservableCollection<ApiBlockRecordFile>((await exploreService
+                        ActiveSearchResults = new ObservableCollection<ApiBlockRecordFile>((await exploreFacade
                             .GetFiles(20, (int)category.Type)).Files);
                     }
                 });
 
         public override async Task Initialize()
         {
-            var exploreResult = await exploreService.GetFiles(20);
+            var exploreResult = await exploreFacade.GetFiles(20);
             sharedFiles = new ReadOnlyCollection<ApiBlockRecordFile>(exploreResult.Files);
             ActiveSearchResults = new ObservableCollection<ApiBlockRecordFile>(sharedFiles);
 

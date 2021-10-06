@@ -63,6 +63,7 @@ namespace Peernet.Browser.WPF
             iocProvider.RegisterType<IVirtualFileSystemFactory, VirtualFileSystemFactory>();
             iocProvider.RegisterType<IFilesToCategoryBinder, FilesToCategoryBinder>();
             iocProvider.RegisterType<IExploreWrapper, ExploreWrapper>();
+            iocProvider.RegisterType<IExploreFacade, ExploreFacade>();
             iocProvider.RegisterType<IDownloadWrapper, DownloadWrapper>();
             iocProvider.RegisterSingleton<IDownloadManager>(new DownloadManager(iocProvider.Resolve<IDownloadWrapper>()));
             GlobalContext.UiThreadDispatcher = iocProvider.Resolve<IMvxMainThreadAsyncDispatcher>();

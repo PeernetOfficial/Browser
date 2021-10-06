@@ -8,12 +8,13 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.Facades;
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public class DirectoryViewModel : MvxViewModel, ISearchable
     {
-        private readonly IBlockchainWrapper blockchainService;
+        private readonly IBlockchainFacade blockchainService;
         private readonly IVirtualFileSystemFactory virtualFileSystemFactory;
         private List<ApiBlockRecordFile> activeSearchResults;
         private ObservableCollection<VirtualFileSystemEntity> pathElements;
@@ -23,7 +24,7 @@ namespace Peernet.Browser.Application.ViewModels
         private bool showSearchBox;
         private VirtualFileSystem.VirtualFileSystem virtualFileSystem;
 
-        public DirectoryViewModel(IBlockchainWrapper blockchainService, IVirtualFileSystemFactory virtualFileSystemFactory)
+        public DirectoryViewModel(IBlockchainFacade blockchainService, IVirtualFileSystemFactory virtualFileSystemFactory)
         {
             this.blockchainService = blockchainService;
             this.virtualFileSystemFactory = virtualFileSystemFactory;
@@ -126,7 +127,7 @@ namespace Peernet.Browser.Application.ViewModels
             var header = await blockchainService.GetSelfHeader();
             if (header.Height > 0)
             {
-                sharedFiles = (await blockchainService.GetSelfList()).Files ?? new();
+                sharedFiles = await blockchainService.GetSelfList() ?? new();
                 ActiveSearchResults = sharedFiles?.ToList();
             }
 

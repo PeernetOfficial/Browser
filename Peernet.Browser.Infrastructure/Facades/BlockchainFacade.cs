@@ -10,11 +10,27 @@ namespace Peernet.Browser.Infrastructure.Facades
 {
     public class BlockchainFacade : IBlockchainFacade
     {
-        private readonly IBlockchainWrapper blockchainService;
+        private readonly IBlockchainWrapper blockchainWrapper;
 
-        public BlockchainFacade(IBlockchainWrapper blockchainService)
+        public BlockchainFacade(IBlockchainWrapper blockchainWrapper)
         {
-            this.blockchainService = blockchainService;
+            this.blockchainWrapper = blockchainWrapper;
+        }
+
+        // todo: it should consume some presentation model
+        public async Task DeleteSelfFile(ApiBlockRecordFile apiBlockRecordFile)
+        {
+            await blockchainWrapper.DeleteSelfFile(apiBlockRecordFile);
+        }
+
+        public async Task<ApiBlockchainHeader> GetSelfHeader()
+        {
+            return await blockchainWrapper.GetSelfHeader();
+        }
+
+        public async Task<List<ApiBlockRecordFile>> GetSelfList()
+        {
+            return (await blockchainWrapper.GetSelfList()).Files;
         }
 
         public async Task AddFilesAsync(IEnumerable<SharedNewFileModel> files)
@@ -30,7 +46,7 @@ namespace Peernet.Browser.Infrastructure.Facades
                     })
                 .ToList();
 
-            await blockchainService.AddFiles(new ApiBlockchainAddFiles { Files = data });
+            await blockchainWrapper.AddFiles(new ApiBlockchainAddFiles { Files = data });
         }
     }
 }

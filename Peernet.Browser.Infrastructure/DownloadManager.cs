@@ -30,13 +30,13 @@ namespace Peernet.Browser.Infrastructure
 
             if (status.APIStatus == APIStatus.DownloadResponseSuccess)
             {
-                ActiveFileDownloads.Add(new((string)status.Id, (ApiBlockRecordFile)file));
+                ActiveFileDownloads.Add(new(status.Id, file));
             }
 
             if (status.APIStatus == APIStatus.DownloadResponseFileInvalid)
             {
                 // This is just for testing, whole condition should be handled in proper way once clear how.
-                ActiveFileDownloads.Add(new((string)status.Id, (ApiBlockRecordFile)file));
+                ActiveFileDownloads.Add(new(status.Id, file));
             }
         }
 
