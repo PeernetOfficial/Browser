@@ -28,7 +28,7 @@ namespace Peernet.Browser.Application.Models
             var res = new List<FilterResultModel>();
             if (Time.HasValue) res.Add(new FilterResultModel(Remove) { Type = SearchFiltersType.TimePeriods, Content = Time.Value.GetDescription() });
             if (!Healths.IsNullOrEmpty()) Healths.Foreach(x => res.Add(new FilterResultModel(Remove) { Type = SearchFiltersType.HealthType, Content = x.GetDescription() }));
-            if (!FileFormats.IsNullOrEmpty()) Healths.Foreach(x => res.Add(new FilterResultModel(Remove) { Type = SearchFiltersType.FileFormats, Content = x.GetDescription() }));
+            if (!FileFormats.IsNullOrEmpty()) FileFormats.Foreach(x => res.Add(new FilterResultModel(Remove) { Type = SearchFiltersType.FileFormats, Content = x.GetDescription() }));
             if (!IsSizeDefault) res.Add(new FilterResultModel(Remove) { Type = SearchFiltersType.Size, Content = $"{SizeFrom}MB - {SizeTo}MB" });
             return res;
         }

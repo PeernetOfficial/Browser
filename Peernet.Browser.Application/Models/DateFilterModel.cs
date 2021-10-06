@@ -6,6 +6,7 @@ namespace Peernet.Browser.Application.Models
     {
         public DateFilterModel() : base("Date")
         {
+            MinHeight = 241;
         }
     }
 }

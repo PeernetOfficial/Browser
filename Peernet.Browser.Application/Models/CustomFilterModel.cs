@@ -7,10 +7,17 @@ namespace Peernet.Browser.Application.Models
 {
     public abstract class CustomFilterModel<T> : MvxNotifyPropertyChanged where T : Enum
     {
-        protected CustomFilterModel(string title, bool firstReset = true, bool showDot = false)
+        protected CustomFilterModel(string title, bool showDot = false)
         {
             Title = title.ToUpper();
-            Items.AddRange(GetElements().Select(x => new CustomCheckBoxModel { EnumerationMember = x.Key, Content = x.Value, IsCheckChanged = IsCheckedChanged, ShowDot = showDot }));
+            Items.AddRange(GetElements()
+                .Select(x => new CustomCheckBoxModel
+                {
+                    EnumerationMember = x.Key,
+                    Content = x.Value,
+                    IsCheckChanged = IsCheckedChanged,
+                    ShowDot = showDot
+                }));
         }
 
         protected virtual IEnumerable<KeyValuePair<Enum, string>> GetElements()
@@ -25,6 +32,8 @@ namespace Peernet.Browser.Application.Models
                 }
             }
         }
+
+        public double MinHeight { get; set; }
 
         public string Title { get; }
 

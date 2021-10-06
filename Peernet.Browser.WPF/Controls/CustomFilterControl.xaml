@@ -4,7 +4,7 @@
     <StackPanel>
         <TextBlock Margin="0 15 0 8" Text="{Binding Title}" />
         <Border Padding="15 10" BorderBrush="{StaticResource LightGrayBrush}" BorderThickness="0.5" CornerRadius="{StaticResource MainRadius}">
-            <ScrollViewer MaxHeight="241" VerticalScrollBarVisibility="Auto" Style="{StaticResource FavsScrollViewer}">
+            <ScrollViewer MinHeight="{Binding MinHeight}" MaxHeight="241" VerticalScrollBarVisibility="Auto" Style="{StaticResource FavsScrollViewer}">
                 <ItemsControl ItemsSource="{Binding Items}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
