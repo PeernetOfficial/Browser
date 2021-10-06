@@ -20,7 +20,7 @@ namespace Peernet.Browser.Application.Models
         public TimePeriods? Time { get; set; }
         private bool IsSizeDefault => SizeTo == SizeMax && SizeMin == SizeFrom;
 
-        public string ColumnName { get; set; }
+        public DataGridSortingNameEnum SortName { get; set; }
         public DataGridSortingTypeEnum SortType { get; set; }
 
         public IEnumerable<FilterResultModel> Get()

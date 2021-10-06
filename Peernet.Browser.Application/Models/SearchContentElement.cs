@@ -27,7 +27,7 @@ namespace Peernet.Browser.Application.Models
 
         public void OnSorting(string columnName, DataGridSortingTypeEnum type)
         {
-            Filters.SearchFilterResult.ColumnName = columnName;
+            Filters.SearchFilterResult.SortName = SearchResultRowModel.Parse(columnName);
             Filters.SearchFilterResult.SortType = type;
             Refresh();
         }

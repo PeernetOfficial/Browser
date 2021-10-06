@@ -84,7 +84,10 @@ namespace Peernet.Browser.Infrastructure
             {
                 Term = model.InputText,
                 Timeout = 0,
-                MaxResults = 0
+                MaxResults = 0,
+                FileFormat = HighLevelFileType.NotUsed,
+                FileType = LowLevelFileType.NotUsed,
+                Sort = SearchRequestSortTypeEnum.SortNone
             };
             if (model.Time.HasValue)
             {
@@ -96,9 +99,25 @@ namespace Peernet.Browser.Infrastructure
             {
                 //TODO: ??
             }
-            if (!model.ColumnName.IsNullOrEmpty() && model.SortType != DataGridSortingTypeEnum.None)
+            if (model.SortName != DataGridSortingNameEnum.None && model.SortType != DataGridSortingTypeEnum.None)
             {
-                //TODO: res.Sort = model.SortColumn.Value;
+                switch (model.SortName)
+                {
+                    case DataGridSortingNameEnum.Name:
+                        res.Sort = model.SortType == DataGridSortingTypeEnum.Asc ? SearchRequestSortTypeEnum.SortNameAsc : SearchRequestSortTypeEnum.SortNameDesc;
+                        break;
+
+                    case DataGridSortingNameEnum.Date:
+                        res.Sort = model.SortType == DataGridSortingTypeEnum.Asc ? SearchRequestSortTypeEnum.SortDateAsc : SearchRequestSortTypeEnum.SortDateDesc;
+                        break;
+
+                    case DataGridSortingNameEnum.Size:
+                        break;
+
+                    case DataGridSortingNameEnum.Share:
+                        res.Sort = model.SortType == DataGridSortingTypeEnum.Asc ? SearchRequestSortTypeEnum.SortRelevanceAsc : SearchRequestSortTypeEnum.SortRelevanceDec;
+                        break;
+                }
             }
             if (!model.FileFormats.IsNullOrEmpty())
             {

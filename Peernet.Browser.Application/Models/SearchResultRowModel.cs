@@ -27,5 +27,26 @@ namespace Peernet.Browser.Application.Models
         public IMvxCommand DownloadCommand { get; }
 
         public Action<SearchResultRowModel> DownloadAction { get; set; }
+
+        public static DataGridSortingNameEnum Parse(string name)
+        {
+            switch (name)
+            {
+                case nameof(Name):
+                    return DataGridSortingNameEnum.Name;
+
+                case nameof(Date):
+                    return DataGridSortingNameEnum.Date;
+
+                case nameof(Size):
+                    return DataGridSortingNameEnum.Size;
+
+                case nameof(SharedBy):
+                    return DataGridSortingNameEnum.Share;
+
+                default:
+                    return DataGridSortingNameEnum.None;
+            }
+        }
     }
 }

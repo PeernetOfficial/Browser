@@ -42,13 +42,6 @@
         public int[] Terminate { get; set; }
 
         /// <summary>
-        /// 0 = No filters used,
-        /// 1 = Use file type filter,
-        /// 2 = Use file format filter.
-        /// </summary>
-        public int TypeFilter { get; set; }
-
-        /// <summary>
         /// File type such as binary, text document etc. See core.TypeX.
         /// </summary>
         public LowLevelFileType FileType { get; set; }
