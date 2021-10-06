@@ -7,8 +7,11 @@ namespace Peernet.Browser.Application.Models
 {
     public abstract class CustomFilterModel<T> : MvxNotifyPropertyChanged where T : Enum
     {
-        protected CustomFilterModel(string title, bool showDot = false)
+        private readonly bool isRadio;
+
+        protected CustomFilterModel(string title, bool showDot = false, bool isRadio = false)
         {
+            this.isRadio = isRadio;
             Title = title.ToUpper();
             Items.AddRange(GetElements()
                 .Select(x => new CustomCheckBoxModel
@@ -16,7 +19,8 @@ namespace Peernet.Browser.Application.Models
                     EnumerationMember = x.Key,
                     Content = x.Value,
                     IsCheckChanged = IsCheckedChanged,
-                    ShowDot = showDot
+                    ShowDot = showDot,
+                    IsRadio = isRadio
                 }));
         }
 
@@ -41,8 +45,7 @@ namespace Peernet.Browser.Application.Models
 
         private void IsCheckedChanged(CustomCheckBoxModel c)
         {
-            //TODO: will be used int RadioButton type
-            //if (c.IsChecked) Items.Where(x => x != c).Foreach(x => x.IsChecked = false);
+            if (c.IsChecked && isRadio) Items.Where(x => x != c).Foreach(x => x.IsChecked = false);
         }
 
         public T GetSelected()

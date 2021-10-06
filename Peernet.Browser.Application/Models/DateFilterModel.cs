@@ -4,7 +4,7 @@ namespace Peernet.Browser.Application.Models
 {
     public class DateFilterModel : CustomFilterModel<TimePeriods>
     {
-        public DateFilterModel() : base("Date")
+        public DateFilterModel() : base("Date", isRadio: true)
         {
             MinHeight = 241;
         }
