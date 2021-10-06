@@ -1,9 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Peernet.Browser.Application.Http;
-using Peernet.Browser.Application.Services;
 using Peernet.Browser.Infrastructure;
-using RestSharp;
 
 namespace Peernet.Browser.Tests.Infrastructure
 {
@@ -14,11 +12,11 @@ namespace Peernet.Browser.Tests.Infrastructure
         public void CtorTest()
         {
             //Prepare
-            var s1 = new Mock<IRestClientFactory>();
-            var s2 = new Mock<ISettingsManager>();
-            s2.Setup(foo => foo.ApiUrl).Returns("http://127.0.0.1:112");
+            var s1 = new Mock<IHttpClientFactory>();
+
             //Act
-            var o = new CmdClient(s1.Object, s2.Object);
+            var o = new ApiService(s1.Object);
+
             //Assert
             Assert.IsNotNull(o);
         }

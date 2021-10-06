@@ -1,41 +1,58 @@
-﻿using Peernet.Browser.Application.Extensions;
+﻿using System;
+using Peernet.Browser.Application.Helpers;
 using Peernet.Browser.Application.Http;
 using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.Services;
-using RestSharp;
+using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure
 {
     public class DownloadService : ServiceBase, IDownloadService
     {
+        private const string ActionSegment = "action";
         private const string StartSegment = "start";
         private const string StatusSegment = "status";
 
-        public DownloadService(IRestClientFactory restClientFactory, ICmdClient cmdClient)
-            : base(restClientFactory, cmdClient)
+        public DownloadService(IHttpClientFactory httpClientFactory)
+            : base(httpClientFactory)
         {
         }
 
         public override string CoreSegment => "download";
 
-        public ApiResponseDownloadStatus GetStatus(string hash, string blockchain)
+        public async Task<ApiResponseDownloadStatus> GetAction(string id, DownloadAction action)
         {
-            var request = new RestRequest(GetRelativeRequestPath(StatusSegment), Method.GET);
-            request.AddQueryParameter(nameof(hash), hash);
-            request.AddQueryParameter(nameof(blockchain), blockchain);
+            var parameters = new Dictionary<string, string>
+            {
+                [nameof(id)] = id,
+                [nameof(action)] = ((int)action).ToString()
+            };
 
-            return Task.Run(async () => await RestClient.GetAsync<ApiResponseDownloadStatus>(request)).GetResultBlockingWithoutContextSynchronization();
+            return await HttpHelper.GetResult<ApiResponseDownloadStatus>(HttpClient, HttpMethod.Get, GetRelativeRequestPath(ActionSegment), parameters);
         }
 
-        public ApiResponseDownloadStatus Start(string path, string hash, string blockchain)
+        public async Task<ApiResponseDownloadStatus> GetStatus(string id)
         {
-            var request = new RestRequest(GetRelativeRequestPath(StartSegment), Method.GET);
-            request.AddQueryParameter(nameof(path), path);
-            request.AddQueryParameter(nameof(hash), hash);
-            request.AddQueryParameter(nameof(blockchain), blockchain);
+            var parameters = new Dictionary<string, string>
+            {
+                [nameof(id)] = id
+            };
 
-            return Task.Run(async () => await RestClient.GetAsync<ApiResponseDownloadStatus>(request)).GetResultBlockingWithoutContextSynchronization();
+            return await HttpHelper.GetResult<ApiResponseDownloadStatus>(HttpClient, HttpMethod.Get, GetRelativeRequestPath(StatusSegment), parameters);
+        }
+
+        public async Task<ApiResponseDownloadStatus> Start(string path, byte[] hash, byte[] node)
+        {
+            var parameters = new Dictionary<string, string>
+            {
+                [nameof(path)] = path,
+                [nameof(hash)] = Convert.ToHexString(hash),
+                [nameof(node)] = Convert.ToHexString(node)
+            };
+
+            return await HttpHelper.GetResult<ApiResponseDownloadStatus>(HttpClient, HttpMethod.Get, GetRelativeRequestPath(StartSegment), parameters);
         }
     }
 }

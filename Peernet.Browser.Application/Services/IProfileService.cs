@@ -5,14 +5,14 @@ namespace Peernet.Browser.Application.Services
 {
     public interface IProfileService
     {
-        string GetUserName();
+        Task<ApiBlockchainBlockStatus> AddUserImage(byte[] content);
 
-        byte[] GetUserImage();
+        Task<ApiBlockchainBlockStatus> AddUserName(string userName);
 
-        ApiBlockchainBlockStatus AddUserName(string userName);
+        Task<ApiBlockchainBlockStatus> DeleteUserImage();
 
-        ApiBlockchainBlockStatus AddUserImage(byte[] content);
+        Task<byte[]> GetUserImage();
 
-        ApiBlockchainBlockStatus DeleteUserImage();
+        Task<string> GetUserName();
     }
 }

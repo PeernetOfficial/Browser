@@ -1,37 +1,87 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using Peernet.Browser.Application.Download;
+﻿using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.Services;
+using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure
 {
-    public class DownloadManager : INotifyPropertyChanged, IDownloadManager
+    public class DownloadManager : INotifyPropertyChanged, IDownloadManager, IDisposable
     {
         private readonly IDownloadService downloadService;
+        private readonly Timer timer;
 
         public DownloadManager(IDownloadService downloadService)
         {
             this.downloadService = downloadService;
+            timer = new Timer(async _ => await UpdateStatuses(), new AutoResetEvent(false), 1000, Timeout.Infinite);
         }
 
-        public ObservableCollection<ApiBlockRecordFile> ActiveFileDownloads { get; set; } = new();
+        public ObservableCollection<DownloadModel> ActiveFileDownloads { get; set; } = new();
 
-        public void QueueUpDownload(ApiBlockRecordFile file)
+        public async Task QueueUpDownload(ApiBlockRecordFile file)
         {
-            var status = downloadService.Start(@"C:/Temp", file.Hash, file.NodeId);
+            var status = await downloadService.Start(@"C:/Temp", file.Hash, file.NodeId);
 
-            if (status.Status == DownloadStatus.Success)
+            if (status.APIStatus == APIStatus.DownloadResponseSuccess)
             {
-                ActiveFileDownloads.Add(file);
+                ActiveFileDownloads.Add(new(status.Id, file));
+            }
+
+            if (status.APIStatus == APIStatus.DownloadResponseFileInvalid)
+            {
+                // This is just for testing, whole condition should be handled in proper way once clear how.
+                ActiveFileDownloads.Add(new(status.Id, file));
             }
         }
 
-        public void DequeueDownload(ApiBlockRecordFile file)
+        public async Task DequeueDownload(string id)
         {
-            ActiveFileDownloads.Remove(file);
+            var downloadToDequeue = ActiveFileDownloads.First(d => d.Id == id);
+            ActiveFileDownloads.Remove(downloadToDequeue);
+        }
+
+        public async Task<ApiResponseDownloadStatus> PauseDownload(string id)
+        {
+            return await downloadService.GetAction(id, DownloadAction.Pause);
+        }
+
+        public async Task<ApiResponseDownloadStatus> ResumeDownload(string id)
+        {
+            return await downloadService.GetAction(id, DownloadAction.Resume);
+        }
+
+        public async Task<ApiResponseDownloadStatus> CancelDownload(string id)
+        {
+            return await downloadService.GetAction(id, DownloadAction.Cancel);
+        }
+
+        private async Task UpdateStatuses()
+        {
+            foreach (var download in ActiveFileDownloads)
+            {
+                var status = await downloadService.GetStatus(download.Id);
+                download.Progress = status.Progress.Percentage;
+
+                if (status.DownloadStatus == DownloadStatus.DownloadFinished)
+                {
+                    ActiveFileDownloads.Remove(download);
+                }
+            }
+
+            timer.Change(1000, Timeout.Infinite);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public void Dispose()
+        {
+            timer?.Dispose();
+        }
     }
 }

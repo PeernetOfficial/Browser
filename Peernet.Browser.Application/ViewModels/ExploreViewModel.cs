@@ -15,7 +15,7 @@ namespace Peernet.Browser.Application.ViewModels
         public ObservableCollection<ApiBlockRecordFile> activeSearchResults;
         private readonly IExploreService exploreService;
         private readonly IDownloadManager downloadManager;
-        private List<VirtualFileSystemCategory> categoryTypes;
+        private static List<VirtualFileSystemCategory> categoryTypes = GetCategoryTypes();
         private IReadOnlyCollection<ApiBlockRecordFile> sharedFiles;
 
         public ExploreViewModel(IExploreService exploreService, IDownloadManager downloadManager)
@@ -43,11 +43,11 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IMvxAsyncCommand<VirtualFileSystemCategory> SelectCategoryCommand =>
             new MvxAsyncCommand<VirtualFileSystemCategory>(
-                category =>
+                async category =>
                 {
                     if (category.IsSelected)
                     {
-                        return Task.CompletedTask;
+                        return;
                     }
 
                     categoryTypes.ForEach(c => c.ResetSelection());
@@ -56,26 +56,22 @@ namespace Peernet.Browser.Application.ViewModels
                     if (category.Type == VirtualFileSystemEntityType.Binary)
                     {
                         ActiveSearchResults =
-                            new ObservableCollection<ApiBlockRecordFile>(exploreService.GetFiles(20, -2).Files);
+                            new ObservableCollection<ApiBlockRecordFile>((await exploreService.GetFiles(20, -2)).Files);
                     }
                     else
                     {
-                        ActiveSearchResults = new ObservableCollection<ApiBlockRecordFile>(exploreService
-                            .GetFiles(20, (int)category.Type).Files);
+                        ActiveSearchResults = new ObservableCollection<ApiBlockRecordFile>((await exploreService
+                            .GetFiles(20, (int)category.Type)).Files);
                     }
-
-                    return Task.CompletedTask;
                 });
 
-        public override Task Initialize()
+        public override async Task Initialize()
         {
-            var exploreResult = exploreService.GetFiles(20);
+            var exploreResult = await exploreService.GetFiles(20);
             sharedFiles = new ReadOnlyCollection<ApiBlockRecordFile>(exploreResult.Files);
             ActiveSearchResults = new ObservableCollection<ApiBlockRecordFile>(sharedFiles);
 
-            categoryTypes = GetCategoryTypes();
-
-            return base.Initialize();
+            await base.Initialize();
         }
 
         private static VirtualFileSystemCategory GetCategory(VirtualFileSystemEntityType type)

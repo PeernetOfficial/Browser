@@ -5,6 +5,8 @@ using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.Services;
 using System.Linq;
+using System.Threading.Tasks;
+using Peernet.Browser.Application.Facades;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -12,16 +14,16 @@ namespace Peernet.Browser.Application.ViewModels
     {
         private readonly IApplicationManager applicationManager;
         private readonly IMvxNavigationService mvxNavigationService;
-        private readonly IBlockchainService blockchainService;
+        private readonly IBlockchainFacade blockchainFacade;
         private SharedNewFileModel selected;
 
-        public ShareNewFileViewModel(IMvxNavigationService mvxNavigationService, IApplicationManager applicationManager, IBlockchainService blockchainService)
+        public ShareNewFileViewModel(IMvxNavigationService mvxNavigationService, IApplicationManager applicationManager, IBlockchainFacade blockchainFacade)
         {
             this.mvxNavigationService = mvxNavigationService;
             this.applicationManager = applicationManager;
-            this.blockchainService = blockchainService;
+            this.blockchainFacade = blockchainFacade;
 
-            ConfirmCommand = new MvxCommand(Confirm);
+            ConfirmCommand = new MvxAsyncCommand(Confirm);
             HideCommand = new MvxCommand(Hide);
 
             LeftCommand = new MvxCommand(() => Manipulate(false));
@@ -41,7 +43,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IMvxCommand ChangeCommand { get; }
 
-        public IMvxCommand ConfirmCommand { get; }
+        public IMvxAsyncCommand ConfirmCommand { get; }
 
         public MvxObservableCollection<SharedNewFileModel> Files { get; } = new MvxObservableCollection<SharedNewFileModel>();
 
@@ -83,9 +85,9 @@ namespace Peernet.Browser.Application.ViewModels
             //TODO: USE service??
         }
 
-        private void Confirm()
+        private async Task Confirm()
         {
-            blockchainService.AddFiles(Files);
+            await blockchainFacade.AddFilesAsync(Files);
             Hide();
         }
 

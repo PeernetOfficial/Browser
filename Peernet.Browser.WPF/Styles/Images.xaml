@@ -6,25 +6,25 @@
 
     <Style x:Key="DownloadItemImageStyle" TargetType="{x:Type Image}">
         <Style.Triggers>
-            <DataTrigger Binding="{Binding Type}" Value="{x:Static models:LowLevelFileType.Text}">
+            <DataTrigger Binding="{Binding File.Type}" Value="{x:Static models:LowLevelFileType.Text}">
                 <Setter Property="Source" Value="{DynamicResource Text_SelectedDrawingImage}" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding Type}" Value="{x:Static models:LowLevelFileType.Audio}">
+            <DataTrigger Binding="{Binding File.Type}" Value="{x:Static models:LowLevelFileType.Audio}">
                 <Setter Property="Source" Value="{DynamicResource Audio_SelectedDrawingImage}" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding Type}" Value="{x:Static models:LowLevelFileType.Video}">
+            <DataTrigger Binding="{Binding File.Type}" Value="{x:Static models:LowLevelFileType.Video}">
                 <Setter Property="Source" Value="{DynamicResource Video_SelectedDrawingImage}" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding Type}" Value="{x:Static models:LowLevelFileType.Binary}">
+            <DataTrigger Binding="{Binding File.Type}" Value="{x:Static models:LowLevelFileType.Binary}">
                 <Setter Property="Source" Value="{DynamicResource Binary_SelectedDrawingImage}" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding Type}" Value="{x:Static models:LowLevelFileType.Ebook}">
+            <DataTrigger Binding="{Binding File.Type}" Value="{x:Static models:LowLevelFileType.Ebook}">
                 <Setter Property="Source" Value="{DynamicResource Ebook_SelectedDrawingImage}" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding Type}" Value="{x:Static models:LowLevelFileType.Document}">
+            <DataTrigger Binding="{Binding File.Type}" Value="{x:Static models:LowLevelFileType.Document}">
                 <Setter Property="Source" Value="{DynamicResource Document_SelectedDrawingImage}" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding Type}" Value="{x:Static models:LowLevelFileType.Picture}">
+            <DataTrigger Binding="{Binding File.Type}" Value="{x:Static models:LowLevelFileType.Picture}">
                 <Setter Property="Source" Value="{DynamicResource Picture_SelectedDrawingImage}" />
             </DataTrigger>
         </Style.Triggers>

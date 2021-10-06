@@ -13,7 +13,7 @@ namespace Peernet.Browser.Application.ViewModels
     public class FooterViewModel : MvxViewModel
     {
         private const int reconnectDelay = 2000;
-        private readonly ICmdClient apiClient;
+        private readonly IApiService apiClient;
         private readonly IApplicationManager applicationManager;
         private readonly IMvxNavigationService navigationService;
         private readonly ISocketClient socketClient;
@@ -22,7 +22,7 @@ namespace Peernet.Browser.Application.ViewModels
         private ConnectionStatus connectionStatus = ConnectionStatus.Offline;
         private string peers;
 
-        public FooterViewModel(ICmdClient apiClient, ISocketClient socketClient, IMvxNavigationService navigationService, IApplicationManager applicationManager, IDownloadManager downloadManager)
+        public FooterViewModel(IApiService apiClient, ISocketClient socketClient, IMvxNavigationService navigationService, IApplicationManager applicationManager, IDownloadManager downloadManager)
         {
             this.apiClient = apiClient;
             this.socketClient = socketClient;
@@ -64,14 +64,24 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IMvxCommand UploadCommand { get; }
 
-        public IMvxCommand PauseDownloadCommand { get; }
-
-        public IMvxAsyncCommand<ApiBlockRecordFile> CancelDownloadCommand => new MvxAsyncCommand<ApiBlockRecordFile>(
-            file =>
+        public IMvxCommand PauseDownloadCommand => new MvxAsyncCommand<string>(
+            id =>
             {
                 // Make API call and validate result
+                DownloadManager.PauseDownload(id);
+                // This call shouldn't be made(either pause or dequeue should do all the job) - wait for the specification
+                DownloadManager.DequeueDownload(id);
 
-                DownloadManager.DequeueDownload(file);
+                return Task.CompletedTask;
+            });
+
+        public IMvxAsyncCommand<string> CancelDownloadCommand => new MvxAsyncCommand<string>(
+            id =>
+            {
+                // Make API call and validate result
+                DownloadManager.CancelDownload(id);
+                // This call shouldn't be made(either cancel or dequeue should do all the job) - wait for the specification
+                DownloadManager.DequeueDownload(id);
 
                 return Task.CompletedTask;
             });
@@ -89,7 +99,7 @@ namespace Peernet.Browser.Application.ViewModels
             while (!success)
             {
                 ConnectionStatus = ConnectionStatus.Connecting;
-                success = GetPeernetStatus();
+                success = await GetPeernetStatus();
 
                 if (!success)
                 {
@@ -104,9 +114,9 @@ namespace Peernet.Browser.Application.ViewModels
             CommandLineOutput = await socketClient.Receive();
         }
 
-        private bool GetPeernetStatus()
+        private async Task<bool> GetPeernetStatus()
         {
-            var status = apiClient.GetStatus();
+            var status = await apiClient.GetStatus();
             ConnectionStatus = status.IsConnected ? ConnectionStatus.Online : ConnectionStatus.Offline;
             Peers = status.CountPeerList.ToString();
             return status.IsConnected;

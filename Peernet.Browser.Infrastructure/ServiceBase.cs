@@ -1,27 +1,21 @@
 ﻿using Peernet.Browser.Application.Http;
-using Peernet.Browser.Application.Services;
-using RestSharp;
-using System;
+using System.Net.Http;
 
 namespace Peernet.Browser.Infrastructure
 {
     public abstract class ServiceBase
     {
-        protected readonly ICmdClient cmdClient;
-
-        protected ServiceBase(IRestClientFactory restClientFactory, ICmdClient cmdClient)
+        protected ServiceBase(IHttpClientFactory httpClientFactory)
         {
-            this.cmdClient = cmdClient;
-            RestClient = restClientFactory.CreateRestClient();
+            HttpClient = httpClientFactory.CreateHttpClient();
         }
 
-        public RestClient RestClient { get; }
-
         public abstract string CoreSegment { get; }
+        public HttpClient HttpClient { get; }
 
-        protected Uri GetRelativeRequestPath(string consecutiveSegments)
+        protected string GetRelativeRequestPath(string consecutiveSegments)
         {
-            return new Uri($"{CoreSegment}/{consecutiveSegments}", UriKind.Relative);
+            return string.IsNullOrEmpty(consecutiveSegments) ? CoreSegment : $"{CoreSegment}/{consecutiveSegments}";
         }
     }
 }

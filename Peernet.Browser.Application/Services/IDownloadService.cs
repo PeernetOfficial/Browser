@@ -1,11 +1,14 @@
-﻿using Peernet.Browser.Application.Models;
+﻿using System.Threading.Tasks;
+using Peernet.Browser.Application.Models;
 
 namespace Peernet.Browser.Application.Services
 {
     public interface IDownloadService
     {
-        ApiResponseDownloadStatus Start(string path, string hash, string blockchain);
+        Task<ApiResponseDownloadStatus> Start(string path, byte[] hash, byte[] node);
 
-        ApiResponseDownloadStatus GetStatus(string hash, string blockchain);
+        Task<ApiResponseDownloadStatus> GetStatus(string id);
+
+        Task<ApiResponseDownloadStatus> GetAction(string id, DownloadAction action);
     }
 }

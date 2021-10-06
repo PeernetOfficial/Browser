@@ -9,7 +9,7 @@ namespace Peernet.Browser.Application.Models
     {
         public string Id { get; set; }
 
-        public string Hash { get; set; }
+        public byte[] Hash { get; set; }
 
         public LowLevelFileType Type { get; set; }
 
@@ -25,7 +25,7 @@ namespace Peernet.Browser.Application.Models
 
         public DateTime Date { get; set; }
 
-        public string NodeId { get; set; }
+        public byte[] NodeId { get; set; }
 
         public List<ApiFileMetadata> MetaData { get; set; }
 

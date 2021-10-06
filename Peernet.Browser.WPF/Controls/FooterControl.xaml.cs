@@ -28,7 +28,7 @@ namespace Peernet.Browser.WPF.Controls
                 DownloadsToggleButton.Content = "Show";
                 DownloadsToggleButton.FontSize = 10;
                 FileNameText.Text =
-                    $"{downloads.FirstOrDefault()?.Name}...";
+                    $"{downloads.FirstOrDefault().File.Name}...";
                 if (downloads.Count > 1)
                 {
                     FilesCounterText.Text = $" (+{downloads.Count - 1} files) ";

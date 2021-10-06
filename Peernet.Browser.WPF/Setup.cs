@@ -8,10 +8,12 @@ using MvvmCross.Platforms.Wpf.Views;
 using MvvmCross.Plugin;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Download;
+using Peernet.Browser.Application.Facades;
 using Peernet.Browser.Application.Http;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.Browser.Infrastructure;
+using Peernet.Browser.Infrastructure.Facades;
 using Serilog;
 using Serilog.Extensions.Logging;
 
@@ -49,12 +51,13 @@ namespace Peernet.Browser.WPF
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            iocProvider.RegisterType<IRestClientFactory, RestClientFactory>();
-            iocProvider.RegisterType<ICmdClient, CmdClient>();
+            iocProvider.RegisterType<IHttpClientFactory, HttpClientFactory>();
+            iocProvider.RegisterType<IApiService, ApiService>();
             iocProvider.RegisterType<ISocketClient, SocketClient>();
             iocProvider.RegisterType<IProfileService, ProfileService>();
             iocProvider.RegisterSingleton<IUserContext>(() => new UserContext(iocProvider.Resolve<IProfileService>(), iocProvider.Resolve<IMvxNavigationService>()));
             iocProvider.RegisterType<IBlockchainService, BlockchainService>();
+            iocProvider.RegisterType<IBlockchainFacade, BlockchainFacade>();
             iocProvider.RegisterType<IVirtualFileSystemFactory, VirtualFileSystemFactory>();
             iocProvider.RegisterType<IFilesToCategoryBinder, FilesToCategoryBinder>();
             iocProvider.RegisterType<IExploreService, ExploreService>();

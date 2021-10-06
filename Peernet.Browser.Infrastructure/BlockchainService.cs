@@ -1,59 +1,54 @@
-﻿using Peernet.Browser.Application.Extensions;
+﻿using Peernet.Browser.Application.Helpers;
 using Peernet.Browser.Application.Http;
 using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.Services;
-using RestSharp;
 using System.Collections.Generic;
-using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure
 {
     public class BlockchainService : ServiceBase, IBlockchainService
     {
-        public BlockchainService(IRestClientFactory restClientFactory, ICmdClient cmdClient)
-            : base(restClientFactory, cmdClient)
+        public BlockchainService(IHttpClientFactory httpClientFactory)
+            : base(httpClientFactory)
         {
         }
 
         public override string CoreSegment => "blockchain/self";
 
-        public ApiBlockchainHeader GetSelfHeader()
+        public async Task<ApiBlockchainBlockStatus> AddFiles(ApiBlockchainAddFiles files)
         {
-            var request = new RestRequest(GetRelativeRequestPath("header"), Method.GET);
-
-            return Task.Run(() => RestClient.GetAsync<ApiBlockchainHeader>(request)).GetResultBlockingWithoutContextSynchronization();
+            return await HttpHelper.GetResult<ApiBlockchainBlockStatus>(HttpClient, HttpMethod.Post, GetRelativeRequestPath("add/file"));
         }
 
-        public ApiBlockchainAddFiles GetSelfList()
+        public async Task DeleteSelfFile(ApiBlockRecordFile apiBlockRecordFile)
         {
-            var request = new RestRequest(GetRelativeRequestPath("list/file"), Method.GET);
-
-            return Task.Run(() => RestClient.GetAsync<ApiBlockchainAddFiles>(request)).GetResultBlockingWithoutContextSynchronization();
+            var content = JsonContent.Create(new ApiBlockchainAddFiles { Files = new List<ApiBlockRecordFile> { apiBlockRecordFile } });
+            await HttpHelper.GetResult<ApiBlockchainBlockStatus>(HttpClient, HttpMethod.Post, GetRelativeRequestPath("delete/file"), content: content);
         }
 
-        public void AddFiles(IEnumerable<SharedNewFileModel> files)
+        public async Task<ApiBlockchainHeader> GetSelfHeader()
         {
-            var data = files
-                .Select(x =>
-                    new ApiBlockRecordFile
-                    {
-                        Description = x.Desc,
-                        Name = x.FileName,
-                        Folder = x.Directory,
-                        Date = System.DateTime.Now
-                    })
-                .ToList();
-            //TODO: add some log? messages?
-            cmdClient.AddFiles(new ApiBlockchainAddFiles { Files = data });
+            return await HttpHelper.GetResult<ApiBlockchainHeader>(HttpClient, HttpMethod.Get, GetRelativeRequestPath("header"));
         }
 
-        public void DeleteSelfFile(ApiBlockRecordFile apiBlockRecordFile)
+        public async Task<ApiBlockchainAddFiles> GetSelfList()
         {
-            var request = new RestRequest(GetRelativeRequestPath("delete/file"), Method.POST);
-            request.AddJsonBody(new ApiBlockchainAddFiles { Files = new List<ApiBlockRecordFile> { apiBlockRecordFile }});
+            return await HttpHelper.GetResult<ApiBlockchainAddFiles>(HttpClient, HttpMethod.Get, GetRelativeRequestPath("list/file"));
+        }
 
-            Task.Run(() => RestClient.PostAsync<ApiBlockchainBlockStatus>(request)).GetResultBlockingWithoutContextSynchronization();
+        public async Task<ApiBlockchainBlock> ReadBlock(int block)
+        {
+            var parameters = new Dictionary<string, string>
+            {
+                [nameof(block)] = block.ToString()
+            };
+
+            return await HttpHelper.GetResult<ApiBlockchainBlock>(HttpClient, HttpMethod.Get,
+                GetRelativeRequestPath("read"),
+                parameters);
         }
     }
 }

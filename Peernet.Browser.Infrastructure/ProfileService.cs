@@ -1,31 +1,31 @@
-﻿using Peernet.Browser.Application.Extensions;
+﻿using Peernet.Browser.Application.Helpers;
 using Peernet.Browser.Application.Http;
 using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.Services;
-using RestSharp;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure
 {
     public class ProfileService : ServiceBase, IProfileService
     {
+        private const string DeleteSegment = "delete";
         private const string ReadSegment = "read";
         private const string WriteSegment = "write";
-        private const string DeleteSegment = "delete";
 
-        public ProfileService(IRestClientFactory restClientFactory)
-            : base(restClientFactory, null)
+        public ProfileService(IHttpClientFactory httpClientFactory)
+            : base(httpClientFactory)
         {
         }
 
         public override string CoreSegment => "profile";
 
-        public ApiBlockchainBlockStatus AddUserImage(byte[] content)
+        public async Task<ApiBlockchainBlockStatus> AddUserImage(byte[] content)
         {
-            var request = new RestRequest(GetRelativeRequestPath(WriteSegment), Method.POST);
-            request.AddJsonBody(new ApiProfileData
+            var jsonContent = JsonContent.Create(new ApiProfileData
             {
                 Fields = new List<ApiBlockRecordProfile>
                 {
@@ -37,13 +37,12 @@ namespace Peernet.Browser.Infrastructure
                 }
             });
 
-            return Task.Run(async () => await RestClient.PostAsync<ApiBlockchainBlockStatus>(request)).GetResultBlockingWithoutContextSynchronization();
+            return await HttpHelper.GetResult<ApiBlockchainBlockStatus>(HttpClient, HttpMethod.Post, GetRelativeRequestPath(WriteSegment), content: jsonContent);
         }
 
-        public ApiBlockchainBlockStatus AddUserName(string userName)
+        public async Task<ApiBlockchainBlockStatus> AddUserName(string userName)
         {
-            var request = new RestRequest(GetRelativeRequestPath(WriteSegment), Method.POST);
-            request.AddJsonBody(new ApiProfileData
+            var jsonContent = JsonContent.Create(new ApiProfileData
             {
                 Fields = new List<ApiBlockRecordProfile>
                 {
@@ -55,38 +54,12 @@ namespace Peernet.Browser.Infrastructure
                 }
             });
 
-            return Task.Run(async () => await RestClient.PostAsync<ApiBlockchainBlockStatus>(request)).GetResultBlockingWithoutContextSynchronization();
+            return await HttpHelper.GetResult<ApiBlockchainBlockStatus>(HttpClient, HttpMethod.Post, GetRelativeRequestPath(WriteSegment), content: jsonContent);
         }
 
-        public byte[] GetUserImage()
+        public async Task<ApiBlockchainBlockStatus> DeleteUserImage()
         {
-            int userImageBlobIndex = (int)ProfileField.ProfilePicture;
-
-            var request = new RestRequest(GetRelativeRequestPath(ReadSegment), Method.GET);
-            request.AddParameter("field", userImageBlobIndex);
-            request.RequestFormat = DataFormat.Json;
-
-            var response = Task.Run(async () => await RestClient.GetAsync<ApiProfileData>(request)).GetResultBlockingWithoutContextSynchronization();
-
-            return response.Fields?.FirstOrDefault(f => f.Type == userImageBlobIndex)?.Blob;
-        }
-
-        public string GetUserName()
-        {
-            int userNameFieldIndex = (int)ProfileField.ProfileFieldName;
-
-            var request = new RestRequest(GetRelativeRequestPath(ReadSegment), Method.GET);
-            request.AddParameter("field", userNameFieldIndex);
-
-            var response = Task.Run(async () => await RestClient.GetAsync<ApiProfileData>(request)).GetResultBlockingWithoutContextSynchronization();
-
-            return response.Fields?.FirstOrDefault(f => f.Type == userNameFieldIndex)?.Text;
-        }
-
-        public ApiBlockchainBlockStatus DeleteUserImage()
-        {
-            var request = new RestRequest(GetRelativeRequestPath(DeleteSegment), Method.POST);
-            request.AddJsonBody(new ApiProfileData
+            var jsonContent = JsonContent.Create(new ApiProfileData
             {
                 Fields = new List<ApiBlockRecordProfile>
                 {
@@ -97,7 +70,35 @@ namespace Peernet.Browser.Infrastructure
                 }
             });
 
-            return Task.Run(async () => await RestClient.PostAsync<ApiBlockchainBlockStatus>(request)).GetResultBlockingWithoutContextSynchronization();
+            return await HttpHelper.GetResult<ApiBlockchainBlockStatus>(HttpClient, HttpMethod.Post, GetRelativeRequestPath(DeleteSegment), content: jsonContent);
+        }
+
+        public async Task<byte[]> GetUserImage()
+        {
+            const int userImageBlobIndex = (int)ProfileField.ProfilePicture;
+
+            var parameters = new Dictionary<string, string>
+            {
+                ["field"] = userImageBlobIndex.ToString()
+            };
+
+            var result = await HttpHelper.GetResult<ApiProfileData>(HttpClient, HttpMethod.Get, GetRelativeRequestPath(ReadSegment), parameters);
+
+            return result.Fields?.FirstOrDefault(f => f.Type == userImageBlobIndex)?.Blob;
+        }
+
+        public async Task<string> GetUserName()
+        {
+            const int userNameFieldIndex = (int)ProfileField.ProfileFieldName;
+
+            var parameters = new Dictionary<string, string>
+            {
+                ["field"] = userNameFieldIndex.ToString()
+            };
+
+            var result = await HttpHelper.GetResult<ApiProfileData>(HttpClient, HttpMethod.Get, GetRelativeRequestPath(ReadSegment), parameters);
+
+            return result.Fields?.FirstOrDefault(f => f.Type == userNameFieldIndex)?.Text;
         }
     }
 }

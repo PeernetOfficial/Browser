@@ -4,6 +4,8 @@ using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Threading.Tasks;
+using Peernet.Browser.Application.Extensions;
 
 namespace Peernet.Browser.Application.Contexts
 {
@@ -17,13 +19,13 @@ namespace Peernet.Browser.Application.Contexts
         {
             this.profileService = profileService;
             this.mvxNavigationService = mvxNavigationService;
-
-            ReloadContext();
+            
+            ReloadContext(); 
             User.PropertyChanged += SubscribeToUserModifications;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        
+
         public bool HasUserChanged { get; private set; }
         
         public List<MenuItemViewModel> Items { get; private set; }
@@ -40,7 +42,7 @@ namespace Peernet.Browser.Application.Contexts
 
         public void ReloadContext()
         {
-            User = InitializeUser();
+            User = Task.Run(async () => await InitializeUser()).GetResultBlockingWithoutContextSynchronization();
             Items = InitializeMenuItems();
         }
 
@@ -67,10 +69,10 @@ namespace Peernet.Browser.Application.Contexts
                 };
         }
 
-        private User InitializeUser()
+        private async Task<User> InitializeUser()
         {
-            var image = profileService.GetUserImage();
-            var name = profileService.GetUserName();
+            var image = await profileService.GetUserImage();
+            var name = await profileService.GetUserName();
 
             return new User
             {

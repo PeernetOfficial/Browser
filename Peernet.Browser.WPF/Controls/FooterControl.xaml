@@ -65,12 +65,12 @@
                                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
                                     <Image Grid.Column="0" Height="20" Width="15" Style="{StaticResource DownloadItemImageStyle}" HorizontalAlignment="Left" />
-                                    <TextBlock Grid.Column="1" Text="{Binding Name}" Style="{StaticResource Active}" FontWeight="SemiBold" VerticalAlignment="Center" ToolTip="{Binding Name}" Margin="5,0,0,0" />
-                                    <TextBlock Grid.Column="2" Text="75%" Style="{StaticResource Active}" VerticalAlignment="Center" FontWeight="SemiBold" Margin="10,0,0,0" />
-                                    <ProgressBar Grid.Column="3" Margin="12,0,0,0" Minimum="0" Maximum="100" Value="70" Width="100" Background="#F2F2F2" Foreground="{StaticResource DarkGreenBrush}" BorderThickness="0" Height="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    <TextBlock Grid.Column="1" Text="{Binding File.Name}" Style="{StaticResource Active}" FontWeight="SemiBold" VerticalAlignment="Center" ToolTip="{Binding File.Name}" Margin="5,0,0,0" />
+                                    <TextBlock Grid.Column="2" Text="{Binding Progress, StringFormat={}{0}%}" Style="{StaticResource Active}" VerticalAlignment="Center" FontWeight="SemiBold" Margin="10,0,0,0" />
+                                    <ProgressBar Grid.Column="3" Margin="12,0,0,0" Minimum="0" Maximum="100" Value="{Binding Progress}" Width="100" Background="#F2F2F2" Foreground="{StaticResource DarkGreenBrush}" BorderThickness="0" Height="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                     <StackPanel Grid.Column="4" Orientation="Horizontal">
-                                        <Button Cursor="Hand" Foreground="{StaticResource DarkGreenBrush}" Style="{StaticResource PauseButtonStyle}" Command="{Binding DataContext.PauseDownloadCommand, ElementName=Footer}" CommandParameter="{Binding}" />
-                                        <Button Cursor="Hand" Foreground="{StaticResource DarkGreenBrush}" Style="{StaticResource CloseButtonStyle}" Command="{Binding DataContext.CancelDownloadCommand, ElementName=Footer}" CommandParameter="{Binding}" />
+                                        <Button Cursor="Hand" Foreground="{StaticResource DarkGreenBrush}" Style="{StaticResource PauseButtonStyle}" Command="{Binding DataContext.PauseDownloadCommand, ElementName=Footer}" CommandParameter="{Binding Id}" />
+                                        <Button Cursor="Hand" Foreground="{StaticResource DarkGreenBrush}" Style="{StaticResource CloseButtonStyle}" Command="{Binding DataContext.CancelDownloadCommand, ElementName=Footer}" CommandParameter="{Binding Id}" />
                                     </StackPanel>
                                 </Grid>
                             </DataTemplate>

@@ -1,32 +1,35 @@
-﻿using Peernet.Browser.Application.Extensions;
+﻿using System.Collections.Generic;
+using System.Net.Http;
 using Peernet.Browser.Application.Http;
 using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.Services;
-using RestSharp;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.Helpers;
 
 namespace Peernet.Browser.Infrastructure
 {
     public class ExploreService : ServiceBase, IExploreService
     {
-        public ExploreService(IRestClientFactory restClientFactory, ICmdClient cmdClient)
-            : base(restClientFactory, cmdClient)
+        public ExploreService(IHttpClientFactory httpClientFactory)
+            : base(httpClientFactory)
         {
         }
 
         public override string CoreSegment => "explore";
 
-        public SearchResult GetFiles(int limit, int? type = null)
+        public async Task<SearchResult> GetFiles(int limit, int? type = null)
         {
-            var request = new RestRequest(CoreSegment, Method.GET);
-            request.AddQueryParameter("limit", limit.ToString());
+            var parameters = new Dictionary<string, string>
+            {
+                [nameof(limit)] = limit.ToString()
+            };
 
             if (type != null)
             {
-                request.AddQueryParameter("type", type.ToString());
+                parameters.Add("type", type.ToString());
             }
 
-            return Task.Run(() => RestClient.GetAsync<SearchResult>(request)).GetResultBlockingWithoutContextSynchronization();
+            return await HttpHelper.GetResult<SearchResult>(HttpClient, HttpMethod.Get, GetRelativeRequestPath(string.Empty), parameters);
         }
     }
 }

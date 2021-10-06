@@ -2,7 +2,11 @@
 {
     public enum  DownloadStatus
     {
-        Success = 0,
-        Error = 1,
+        DownloadWaitMetadata = 0,
+        DownloadWaitSwarm = 1,
+        DownloadActive = 2,
+        DownloadPause = 3,
+        DownloadCanceled = 4,
+        DownloadFinished = 5
     }
 }
