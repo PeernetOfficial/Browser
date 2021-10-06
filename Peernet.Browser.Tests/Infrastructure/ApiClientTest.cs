@@ -1,7 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Peernet.Browser.Application.Http;
-using Peernet.Browser.Infrastructure;
 using Peernet.Browser.Infrastructure.Wrappers;
 
 namespace Peernet.Browser.Tests.Infrastructure

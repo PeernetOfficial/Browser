@@ -3,13 +3,12 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Download;
+using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Services;
+using Peernet.Browser.Application.Wrappers;
+using Peernet.Browser.Models.Presentation;
 using System.Linq;
 using System.Threading.Tasks;
-using Peernet.Browser.Application.Managers;
-using Peernet.Browser.Application.Wrappers;
-using Peernet.Browser.Models;
-using Peernet.Browser.Models.Presentation;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -88,7 +87,6 @@ namespace Peernet.Browser.Application.ViewModels
 
                 return Task.CompletedTask;
             });
-
 
         public override async Task Initialize()
         {

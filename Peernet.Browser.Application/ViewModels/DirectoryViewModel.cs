@@ -1,15 +1,13 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
-using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.VirtualFileSystem;
+using Peernet.Browser.Application.Wrappers;
+using Peernet.Browser.Models.Domain;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Peernet.Browser.Application.Wrappers;
-using Peernet.Browser.Models;
-using Peernet.Browser.Models.Domain;
 
 namespace Peernet.Browser.Application.ViewModels
 {

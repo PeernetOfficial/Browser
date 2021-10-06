@@ -1,9 +1,8 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
-using System.Linq;
-using Peernet.Browser.Models;
 using Peernet.Browser.Models.Presentation;
+using System.Linq;
 
 namespace Peernet.Browser.Application.ViewModels
 {

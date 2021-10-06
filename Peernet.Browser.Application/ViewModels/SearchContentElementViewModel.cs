@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using MvvmCross;
+﻿using MvvmCross;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
-using Peernet.Browser.Models;
 using Peernet.Browser.Models.Domain;
 using Peernet.Browser.Models.Presentation;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Peernet.Browser.Application.ViewModels
 {

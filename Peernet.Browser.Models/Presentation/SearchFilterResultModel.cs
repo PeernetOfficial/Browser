@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Peernet.Browser.Application.Extensions;
+﻿using Peernet.Browser.Application.Extensions;
 using Peernet.Browser.Models.Extensions;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Peernet.Browser.Models.Presentation
 {

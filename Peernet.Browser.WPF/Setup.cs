@@ -4,7 +4,6 @@ using MvvmCross.IoC;
 using MvvmCross.Navigation;
 using MvvmCross.Navigation.EventArguments;
 using MvvmCross.Platforms.Wpf.Core;
-using MvvmCross.Platforms.Wpf.Views;
 using MvvmCross.Plugin;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Download;

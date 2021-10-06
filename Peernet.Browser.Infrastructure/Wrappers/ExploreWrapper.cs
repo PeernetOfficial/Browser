@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Peernet.Browser.Application.Helpers;
+using Peernet.Browser.Application.Http;
+using Peernet.Browser.Application.Wrappers;
+using Peernet.Browser.Models.Domain;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Peernet.Browser.Application.Helpers;
-using Peernet.Browser.Application.Http;
-using Peernet.Browser.Application.Services;
-using Peernet.Browser.Application.Wrappers;
-using Peernet.Browser.Models;
-using Peernet.Browser.Models.Domain;
 
 namespace Peernet.Browser.Infrastructure.Wrappers
 {

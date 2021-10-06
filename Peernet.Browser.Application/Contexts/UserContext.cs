@@ -1,13 +1,11 @@
 ﻿using MvvmCross.Navigation;
-using Peernet.Browser.Application.Services;
+using Peernet.Browser.Application.Facades;
 using Peernet.Browser.Application.ViewModels;
+using Peernet.Browser.Models.Extensions;
+using Peernet.Browser.Models.Presentation;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
-using Peernet.Browser.Application.Facades;
-using Peernet.Browser.Models;
-using Peernet.Browser.Models.Extensions;
-using Peernet.Browser.Models.Presentation;
 
 namespace Peernet.Browser.Application.Contexts
 {
@@ -21,15 +19,15 @@ namespace Peernet.Browser.Application.Contexts
         {
             this.profileFacade = profileFacade;
             this.mvxNavigationService = mvxNavigationService;
-            
-            ReloadContext(); 
+
+            ReloadContext();
             User.PropertyChanged += SubscribeToUserModifications;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public bool HasUserChanged { get; private set; }
-        
+
         public List<MenuItemViewModel> Items { get; private set; }
 
         public User User

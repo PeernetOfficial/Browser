@@ -1,6 +1,6 @@
-﻿using System;
+﻿using MvvmCross.ViewModels;
+using System;
 using System.IO;
-using MvvmCross.ViewModels;
 
 namespace Peernet.Browser.Models.Presentation
 {

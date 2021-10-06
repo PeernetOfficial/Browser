@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using MvvmCross.ViewModels;
+﻿using MvvmCross.ViewModels;
+using System.Collections.Generic;
 
 namespace Peernet.Browser.Models.Domain
 {

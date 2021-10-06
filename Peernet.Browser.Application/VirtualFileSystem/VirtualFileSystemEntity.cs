@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using MvvmCross.ViewModels;
-using Peernet.Browser.Models;
+﻿using MvvmCross.ViewModels;
 using Peernet.Browser.Models.Domain;
+using System.Collections.Generic;
 
 namespace Peernet.Browser.Application.VirtualFileSystem
 {

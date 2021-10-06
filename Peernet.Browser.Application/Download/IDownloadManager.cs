@@ -1,8 +1,7 @@
-﻿using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using Peernet.Browser.Models;
-using Peernet.Browser.Models.Domain;
+﻿using Peernet.Browser.Models.Domain;
 using Peernet.Browser.Models.Presentation;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.Download
 {

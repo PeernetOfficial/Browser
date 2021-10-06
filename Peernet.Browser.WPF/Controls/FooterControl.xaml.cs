@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using System.Windows;
-using MvvmCross.Plugin.Control.Platforms.Wpf;
+﻿using MvvmCross.Plugin.Control.Platforms.Wpf;
 using Peernet.Browser.Application.ViewModels;
+using System.Linq;
+using System.Windows;
 
 namespace Peernet.Browser.WPF.Controls
 {

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using Peernet.Browser.Application.Extensions;
-using Peernet.Browser.Models;
+﻿using Peernet.Browser.Application.Extensions;
 using Peernet.Browser.Models.Domain;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Peernet.Browser.Application.VirtualFileSystem
 {
@@ -20,35 +18,35 @@ namespace Peernet.Browser.Application.VirtualFileSystem
                 switch (type)
                 {
                     case VirtualFileSystemEntityType.Picture:
-                    {
-                        AddCategory("Pictures", f => f.Type == LowLevelFileType.Picture);
-                        break;
-                    }
+                        {
+                            AddCategory("Pictures", f => f.Type == LowLevelFileType.Picture);
+                            break;
+                        }
                     case VirtualFileSystemEntityType.Video:
-                    {
-                        AddCategory("Videos", f => f.Type == LowLevelFileType.Video);
-                        break;
-                    }
+                        {
+                            AddCategory("Videos", f => f.Type == LowLevelFileType.Video);
+                            break;
+                        }
                     case VirtualFileSystemEntityType.Document:
-                    {
-                        AddCategory("Documents", f => f.Type == LowLevelFileType.Document);
-                        break;
-                    }
+                        {
+                            AddCategory("Documents", f => f.Type == LowLevelFileType.Document);
+                            break;
+                        }
                     case VirtualFileSystemEntityType.Text:
-                    {
-                        AddCategory("Text", f => f.Type == LowLevelFileType.Text);
-                        break;
-                    }
+                        {
+                            AddCategory("Text", f => f.Type == LowLevelFileType.Text);
+                            break;
+                        }
                     case VirtualFileSystemEntityType.Audio:
-                    {
-                        AddCategory("Audio", f => f.Type == LowLevelFileType.Audio);
-                        break;
-                    }
+                        {
+                            AddCategory("Audio", f => f.Type == LowLevelFileType.Audio);
+                            break;
+                        }
                     case VirtualFileSystemEntityType.Ebook:
-                    {
-                        AddCategory("Ebook", f => f.Type == LowLevelFileType.Ebook);
-                        break;
-                    }
+                        {
+                            AddCategory("Ebook", f => f.Type == LowLevelFileType.Ebook);
+                            break;
+                        }
                 }
 
                 void AddCategory(

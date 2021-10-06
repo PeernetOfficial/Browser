@@ -1,6 +1,7 @@
 ﻿using MvvmCross.Platforms.Wpf.Presenters.Attributes;
 using MvvmCross.Platforms.Wpf.Views;
 using MvvmCross.ViewModels;
+using Peernet.Browser.Application.Extensions;
 using Peernet.Browser.Application.ViewModels;
 using Peernet.Browser.Application.VirtualFileSystem;
 using System.Collections.Generic;
@@ -9,8 +10,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using Peernet.Browser.Application.Extensions;
-using Peernet.Browser.Models.Extensions;
 
 namespace Peernet.Browser.WPF.Views
 {

@@ -1,6 +1,5 @@
-﻿using System.Threading.Tasks;
-using Peernet.Browser.Models;
-using Peernet.Browser.Models.Domain;
+﻿using Peernet.Browser.Models.Domain;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.Wrappers
 {

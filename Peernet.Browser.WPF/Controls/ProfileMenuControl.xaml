@@ -13,17 +13,17 @@
             <SolidColorBrush Color="White"></SolidColorBrush>
         </Border.Background>
         <Border.Effect>
-            <DropShadowEffect ShadowDepth="3" BlurRadius="16" Color="Black" Opacity="0.14"/>
+            <DropShadowEffect ShadowDepth="3" BlurRadius="16" Color="Black" Opacity="0.14" />
         </Border.Effect>
         <StackPanel>
             <Grid Margin="17,18,0,17">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Source="{Binding UserContext.User.Image}" Width="47" Height="47"/>
+                <Image Grid.Column="0" Source="{Binding UserContext.User.Image}" Width="47" Height="47" />
                 <StackPanel Grid.Column="1" Margin="8,0,0,0">
-                    <TextBlock Foreground="#113E48" FontFamily="Inter" FontSize="14" FontWeight="Medium" Text="{Binding UserContext.User.Name}"/>
+                    <TextBlock Foreground="#113E48" FontFamily="Inter" FontSize="14" FontWeight="Medium" Text="{Binding UserContext.User.Name}" />
                     <Button HorizontalAlignment="Left" Foreground="#113E48" FontSize="12" Margin="0,13,0,0" Style="{StaticResource NavbarMenuButtonStyle}" Content="Go to your files" Command="{Binding GoToYourFilesCommand}" />
                 </StackPanel>
             </Grid>

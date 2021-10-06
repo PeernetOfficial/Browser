@@ -1,7 +1,6 @@
 ﻿using Peernet.Browser.Application.ViewModels;
-using System.Collections.Generic;
-using Peernet.Browser.Models;
 using Peernet.Browser.Models.Presentation;
+using System.Collections.Generic;
 
 namespace Peernet.Browser.Application.Contexts
 {

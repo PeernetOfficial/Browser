@@ -1,8 +1,7 @@
-﻿using System.Collections.ObjectModel;
-using System.Threading;
-using Peernet.Browser.Application.Contexts;
-using Peernet.Browser.Models;
+﻿using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Models.Presentation;
+using System.Collections.ObjectModel;
+using System.Threading;
 
 namespace Peernet.Browser.Application
 {
@@ -21,7 +20,7 @@ namespace Peernet.Browser.Application
 
             item.Timer = new Timer(state =>
                 {
-                    GlobalContext.UiThreadDispatcher.ExecuteOnMainThreadAsync(()=> Remove(item));
+                    GlobalContext.UiThreadDispatcher.ExecuteOnMainThreadAsync(() => Remove(item));
                 },
             autoEvent, timeout, 3000);
 
