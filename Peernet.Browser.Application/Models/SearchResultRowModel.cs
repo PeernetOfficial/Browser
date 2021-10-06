@@ -14,7 +14,7 @@ namespace Peernet.Browser.Application.Models
             Date = source.Date.ToString();
             Size = $"{source.Size} MB";
             SharedBy = source.SharedByCount;
-            FlameIsVisible = source.Size > 15;
+            FlameIsVisible = source.SharedByCount > 15;
         }
 
         public HealthType EnumerationMember { get; }
