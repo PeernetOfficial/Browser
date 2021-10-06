@@ -1,12 +1,22 @@
 ﻿using Peernet.Browser.Application.Enums;
+using System;
 
 namespace Peernet.Browser.Application.Models
 {
     public class DateFilterModel : CustomFilterModel<TimePeriods>
     {
-        public DateFilterModel() : base("Date", isRadio: true)
+        private readonly Action<bool> onIsCustomSlectionChange;
+
+        public DateFilterModel(Action<bool> onIsCustomSlectionChange) : base("Date", isRadio: true)
         {
+            this.onIsCustomSlectionChange = onIsCustomSlectionChange;
             MinHeight = 241;
+        }
+
+        protected override void IsCheckedChanged(CustomCheckBoxModel c)
+        {
+            base.IsCheckedChanged(c);
+            onIsCustomSlectionChange?.Invoke((TimePeriods)c.EnumerationMember == TimePeriods.Custom && c.IsChecked);
         }
     }
 }

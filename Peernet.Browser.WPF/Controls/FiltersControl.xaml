@@ -29,7 +29,12 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <controls:CustomFilterControl Grid.Column="0" Grid.RowSpan="2" Margin="0 0 15 0" DataContext="{Binding DateFilters}" />
+                <DockPanel Grid.Column="0" Grid.RowSpan="2" Margin="0 0 15 0">
+                    <controls:CustomFilterControl DataContext="{Binding DateFilters}" />
+                    <Border Visibility="{Binding ShowCalendar, Converter={StaticResource BoolToVisibility}}" Grid.RowSpan="2"  Grid.Column="1" Margin="0 37 0 12" Padding="15 10" BorderBrush="{StaticResource LightGrayBrush}" BorderThickness="0 0.5 0.5 0.5" CornerRadius="{StaticResource MainRadius}">
+                        <Calendar IsTodayHighlighted="False" SelectionMode="SingleRange" />
+                    </Border>
+                </DockPanel>
                 <controls:CustomFilterControl Grid.Column="1" Grid.RowSpan="2" Margin="0 0 15 0" DataContext="{Binding FileFormatFilters}" />
                 <controls:CustomFilterControl Grid.Row="0" Grid.Column="2" DataContext="{Binding HealthFiltes}" />
 

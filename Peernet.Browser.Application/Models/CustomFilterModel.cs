@@ -43,7 +43,7 @@ namespace Peernet.Browser.Application.Models
 
         public MvxObservableCollection<CustomCheckBoxModel> Items { get; } = new MvxObservableCollection<CustomCheckBoxModel>();
 
-        private void IsCheckedChanged(CustomCheckBoxModel c)
+        protected virtual void IsCheckedChanged(CustomCheckBoxModel c)
         {
             if (c.IsChecked && isRadio) Items.Where(x => x != c).Foreach(x => x.IsChecked = false);
         }

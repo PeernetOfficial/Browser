@@ -23,7 +23,7 @@ namespace Peernet.Browser.Application.Models
             CancelCommand = new MvxCommand(Hide);
             ApplyFiltersCommand = new MvxCommand(ApplyFilters);
 
-            DateFilters = new DateFilterModel();
+            DateFilters = new DateFilterModel((x) => ShowCalendar = x);
             FileFormatFilters = new FileFormatFilterModel();
             HealthFiltes = new HealthFilterModel();
             RangeFilter = new RangeSliderModel();
@@ -31,6 +31,14 @@ namespace Peernet.Browser.Application.Models
             Results.CollectionChanged += (o, s) => RaisePropertyChanged(nameof(IsVisible));
 
             InitSearch();
+        }
+
+        private bool showCalendar;
+
+        public bool ShowCalendar
+        {
+            get => showCalendar;
+            set => SetProperty(ref showCalendar, value);
         }
 
         public IMvxCommand ApplyFiltersCommand { get; }
