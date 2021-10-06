@@ -1,22 +1,24 @@
 ﻿using Peernet.Browser.Application.Download;
-using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.Services;
+using Peernet.Browser.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.Wrappers;
+using Peernet.Browser.Models.Domain;
+using Peernet.Browser.Models.Presentation;
 
 namespace Peernet.Browser.Infrastructure
 {
     public class DownloadManager : INotifyPropertyChanged, IDownloadManager, IDisposable
     {
-        private readonly IDownloadService downloadService;
+        private readonly IDownloadWrapper downloadService;
         private readonly Timer timer;
 
-        public DownloadManager(IDownloadService downloadService)
+        public DownloadManager(IDownloadWrapper downloadService)
         {
             this.downloadService = downloadService;
             timer = new Timer(async _ => await UpdateStatuses(), new AutoResetEvent(false), 1000, Timeout.Infinite);
@@ -30,13 +32,13 @@ namespace Peernet.Browser.Infrastructure
 
             if (status.APIStatus == APIStatus.DownloadResponseSuccess)
             {
-                ActiveFileDownloads.Add(new(status.Id, file));
+                ActiveFileDownloads.Add(new((string)status.Id, (ApiBlockRecordFile)file));
             }
 
             if (status.APIStatus == APIStatus.DownloadResponseFileInvalid)
             {
                 // This is just for testing, whole condition should be handled in proper way once clear how.
-                ActiveFileDownloads.Add(new(status.Id, file));
+                ActiveFileDownloads.Add(new((string)status.Id, (ApiBlockRecordFile)file));
             }
         }
 

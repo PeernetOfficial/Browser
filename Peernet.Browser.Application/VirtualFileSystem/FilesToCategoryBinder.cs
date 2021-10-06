@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using Peernet.Browser.Application.Models;
+using Peernet.Browser.Application.Extensions;
+using Peernet.Browser.Models;
+using Peernet.Browser.Models.Domain;
 
 namespace Peernet.Browser.Application.VirtualFileSystem
 {
     public class FilesToCategoryBinder : IFilesToCategoryBinder
     {
-        public List<VirtualFileSystemCategory> Bind(List<ApiBlockRecordFile> files)
+        public List<VirtualFileSystemCategory> Bind(IEnumerable<ApiBlockRecordFile> files)
         {
-            var remainingFiles = files;
+            var remainingFiles = files.ToList();
             List<VirtualFileSystemCategory> categories = new();
 
             foreach (VirtualFileSystemEntityType type in Enum.GetValues(typeof(VirtualFileSystemEntityType)))

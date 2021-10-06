@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Services;
 
 namespace Peernet.Browser.WPF.Services

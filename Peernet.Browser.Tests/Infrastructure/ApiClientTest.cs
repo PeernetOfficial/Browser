@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Peernet.Browser.Application.Http;
 using Peernet.Browser.Infrastructure;
+using Peernet.Browser.Infrastructure.Wrappers;
 
 namespace Peernet.Browser.Tests.Infrastructure
 {
@@ -15,7 +16,7 @@ namespace Peernet.Browser.Tests.Infrastructure
             var s1 = new Mock<IHttpClientFactory>();
 
             //Act
-            var o = new ApiService(s1.Object);
+            var o = new ApiWrapper(s1.Object);
 
             //Assert
             Assert.IsNotNull(o);

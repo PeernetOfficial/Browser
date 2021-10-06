@@ -1,6 +1,5 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
-using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.VirtualFileSystem;
 using System;
@@ -8,12 +7,15 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.Wrappers;
+using Peernet.Browser.Models;
+using Peernet.Browser.Models.Domain;
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public class DirectoryViewModel : MvxViewModel, ISearchable
     {
-        private readonly IBlockchainService blockchainService;
+        private readonly IBlockchainWrapper blockchainService;
         private readonly IVirtualFileSystemFactory virtualFileSystemFactory;
         private List<ApiBlockRecordFile> activeSearchResults;
         private ObservableCollection<VirtualFileSystemEntity> pathElements;
@@ -23,7 +25,7 @@ namespace Peernet.Browser.Application.ViewModels
         private bool showSearchBox;
         private VirtualFileSystem.VirtualFileSystem virtualFileSystem;
 
-        public DirectoryViewModel(IBlockchainService blockchainService, IVirtualFileSystemFactory virtualFileSystemFactory)
+        public DirectoryViewModel(IBlockchainWrapper blockchainService, IVirtualFileSystemFactory virtualFileSystemFactory)
         {
             this.blockchainService = blockchainService;
             this.virtualFileSystemFactory = virtualFileSystemFactory;
@@ -111,11 +113,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         public VirtualFileSystem.VirtualFileSystem VirtualFileSystem
         {
-            get
-            {
-                virtualFileSystem.Sort();
-                return virtualFileSystem;
-            }
+            get => virtualFileSystem;
             set => SetProperty(ref virtualFileSystem, value);
         }
 

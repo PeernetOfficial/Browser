@@ -3,17 +3,20 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Download;
-using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.Services;
 using System.Linq;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Application.Wrappers;
+using Peernet.Browser.Models;
+using Peernet.Browser.Models.Presentation;
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public class FooterViewModel : MvxViewModel
     {
         private const int reconnectDelay = 2000;
-        private readonly IApiService apiClient;
+        private readonly IApiWrapper apiClient;
         private readonly IApplicationManager applicationManager;
         private readonly IMvxNavigationService navigationService;
         private readonly ISocketClient socketClient;
@@ -22,7 +25,7 @@ namespace Peernet.Browser.Application.ViewModels
         private ConnectionStatus connectionStatus = ConnectionStatus.Offline;
         private string peers;
 
-        public FooterViewModel(IApiService apiClient, ISocketClient socketClient, IMvxNavigationService navigationService, IApplicationManager applicationManager, IDownloadManager downloadManager)
+        public FooterViewModel(IApiWrapper apiClient, ISocketClient socketClient, IMvxNavigationService navigationService, IApplicationManager applicationManager, IDownloadManager downloadManager)
         {
             this.apiClient = apiClient;
             this.socketClient = socketClient;

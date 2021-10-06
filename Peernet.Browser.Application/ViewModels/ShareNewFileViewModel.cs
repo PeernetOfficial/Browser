@@ -2,11 +2,13 @@
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
-using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.Services;
 using System.Linq;
 using System.Threading.Tasks;
 using Peernet.Browser.Application.Facades;
+using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Models;
+using Peernet.Browser.Models.Presentation;
 
 namespace Peernet.Browser.Application.ViewModels
 {

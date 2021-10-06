@@ -1,6 +1,7 @@
 ﻿using Peernet.Browser.Application.Services;
 using System;
 using System.Net.Http;
+using Peernet.Browser.Application.Managers;
 
 namespace Peernet.Browser.Application.Http
 {

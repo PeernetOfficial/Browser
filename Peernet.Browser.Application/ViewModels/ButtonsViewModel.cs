@@ -2,6 +2,7 @@
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Services;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.Managers;
 
 namespace Peernet.Browser.Application.ViewModels
 {

@@ -1,8 +1,9 @@
-﻿using Peernet.Browser.Application.Enums;
-using System;
+﻿using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
+using Peernet.Browser.Models;
+using Peernet.Browser.Models.Presentation;
 
 namespace Peernet.Browser.WPF.Converters
 {

@@ -1,24 +1,26 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
-using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.VirtualFileSystem;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Peernet.Browser.Application.Download;
+using Peernet.Browser.Application.Wrappers;
+using Peernet.Browser.Models;
+using Peernet.Browser.Models.Domain;
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public class ExploreViewModel : MvxViewModel
     {
         public ObservableCollection<ApiBlockRecordFile> activeSearchResults;
-        private readonly IExploreService exploreService;
+        private readonly IExploreWrapper exploreService;
         private readonly IDownloadManager downloadManager;
         private static List<VirtualFileSystemCategory> categoryTypes = GetCategoryTypes();
         private IReadOnlyCollection<ApiBlockRecordFile> sharedFiles;
 
-        public ExploreViewModel(IExploreService exploreService, IDownloadManager downloadManager)
+        public ExploreViewModel(IExploreWrapper exploreService, IDownloadManager downloadManager)
         {
             this.exploreService = exploreService;
             this.downloadManager = downloadManager;

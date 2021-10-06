@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Peernet.Browser.Application.Extensions
+namespace Peernet.Browser.Models.Extensions
 {
     public static class TaskExtensions
     {

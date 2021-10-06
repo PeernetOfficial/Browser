@@ -9,6 +9,8 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Peernet.Browser.Application.Extensions;
+using Peernet.Browser.Models.Extensions;
 
 namespace Peernet.Browser.WPF.Views
 {

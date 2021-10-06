@@ -1,9 +1,9 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
-using Peernet.Browser.Application.Enums;
-using Peernet.Browser.Application.Models;
 using System.Linq;
+using Peernet.Browser.Models;
+using Peernet.Browser.Models.Presentation;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -46,11 +46,11 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        public SearchContentElement Content => SelectedIndex < 0 ? null : Tabs[SelectedIndex].Content;
+        public SearchContentElementViewModel Content => SelectedIndex < 0 ? null : Tabs[SelectedIndex].Content;
 
-        public MvxObservableCollection<SearchTabElement> Tabs { get; } = new MvxObservableCollection<SearchTabElement>();
+        public MvxObservableCollection<SearchTabElementViewModel> Tabs { get; } = new MvxObservableCollection<SearchTabElementViewModel>();
 
-        private void RemoveTab(SearchTabElement e)
+        private void RemoveTab(SearchTabElementViewModel e)
         {
             Tabs.Remove(e);
             SelectedIndex = IsVisible ? 0 : -1;
@@ -58,7 +58,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         private void Search()
         {
-            var toAdd = new SearchTabElement(SearchInput, RemoveTab);
+            var toAdd = new SearchTabElementViewModel(SearchInput, RemoveTab);
             Tabs.Add(toAdd);
             SearchInput = "";
             SelectedIndex = Tabs.Count - 1;

@@ -12,8 +12,10 @@ using Peernet.Browser.Application.Facades;
 using Peernet.Browser.Application.Http;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.VirtualFileSystem;
+using Peernet.Browser.Application.Wrappers;
 using Peernet.Browser.Infrastructure;
 using Peernet.Browser.Infrastructure.Facades;
+using Peernet.Browser.Infrastructure.Wrappers;
 using Serilog;
 using Serilog.Extensions.Logging;
 
@@ -52,17 +54,18 @@ namespace Peernet.Browser.WPF
                 .RegisterAsLazySingleton();
 
             iocProvider.RegisterType<IHttpClientFactory, HttpClientFactory>();
-            iocProvider.RegisterType<IApiService, ApiService>();
+            iocProvider.RegisterType<IApiWrapper, ApiWrapper>();
             iocProvider.RegisterType<ISocketClient, SocketClient>();
-            iocProvider.RegisterType<IProfileService, ProfileService>();
-            iocProvider.RegisterSingleton<IUserContext>(() => new UserContext(iocProvider.Resolve<IProfileService>(), iocProvider.Resolve<IMvxNavigationService>()));
-            iocProvider.RegisterType<IBlockchainService, BlockchainService>();
+            iocProvider.RegisterType<IProfileWrapper, ProfileWrapper>();
+            iocProvider.RegisterType<IProfileFacade, ProfileFacade>();
+            iocProvider.RegisterSingleton<IUserContext>(() => new UserContext(iocProvider.Resolve<IProfileFacade>(), iocProvider.Resolve<IMvxNavigationService>()));
+            iocProvider.RegisterType<IBlockchainWrapper, BlockchainWrapper>();
             iocProvider.RegisterType<IBlockchainFacade, BlockchainFacade>();
             iocProvider.RegisterType<IVirtualFileSystemFactory, VirtualFileSystemFactory>();
             iocProvider.RegisterType<IFilesToCategoryBinder, FilesToCategoryBinder>();
-            iocProvider.RegisterType<IExploreService, ExploreService>();
-            iocProvider.RegisterType<IDownloadService, DownloadService>();
-            iocProvider.RegisterSingleton<IDownloadManager>(new DownloadManager(iocProvider.Resolve<IDownloadService>()));
+            iocProvider.RegisterType<IExploreWrapper, ExploreWrapper>();
+            iocProvider.RegisterType<IDownloadWrapper, DownloadWrapper>();
+            iocProvider.RegisterSingleton<IDownloadManager>(new DownloadManager(iocProvider.Resolve<IDownloadWrapper>()));
             GlobalContext.UiThreadDispatcher = iocProvider.Resolve<IMvxMainThreadAsyncDispatcher>();
             ObserveNavigation(iocProvider);
         }

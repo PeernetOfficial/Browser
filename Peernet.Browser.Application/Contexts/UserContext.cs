@@ -1,23 +1,25 @@
 ﻿using MvvmCross.Navigation;
-using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
-using Peernet.Browser.Application.Extensions;
+using Peernet.Browser.Application.Facades;
+using Peernet.Browser.Models;
+using Peernet.Browser.Models.Extensions;
+using Peernet.Browser.Models.Presentation;
 
 namespace Peernet.Browser.Application.Contexts
 {
     public class UserContext : INotifyPropertyChanged, IUserContext
     {
         private readonly IMvxNavigationService mvxNavigationService;
-        private readonly IProfileService profileService;
+        private readonly IProfileFacade profileFacade;
         private User user;
 
-        public UserContext(IProfileService profileService, IMvxNavigationService mvxNavigationService)
+        public UserContext(IProfileFacade profileFacade, IMvxNavigationService mvxNavigationService)
         {
-            this.profileService = profileService;
+            this.profileFacade = profileFacade;
             this.mvxNavigationService = mvxNavigationService;
             
             ReloadContext(); 
@@ -42,7 +44,8 @@ namespace Peernet.Browser.Application.Contexts
 
         public void ReloadContext()
         {
-            User = Task.Run(async () => await InitializeUser()).GetResultBlockingWithoutContextSynchronization();
+            // Needs to be placed on the ThreadPool to avoid deadlock
+            User = Task.Run(async () => await profileFacade.GetUser()).GetResultBlockingWithoutContextSynchronization();
             Items = InitializeMenuItems();
         }
 
@@ -67,18 +70,6 @@ namespace Peernet.Browser.Application.Contexts
                         mvxNavigationService.Navigate<EditProfileViewModel>();
                     })
                 };
-        }
-
-        private async Task<User> InitializeUser()
-        {
-            var image = await profileService.GetUserImage();
-            var name = await profileService.GetUserName();
-
-            return new User
-            {
-                Name = string.IsNullOrEmpty(name) ? null : name,
-                Image = image?.Length == 0 ? null : image
-            };
         }
     }
 }

@@ -3,8 +3,9 @@ using System.Linq;
 using FakeItEasy;
 using FizzWare.NBuilder;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.VirtualFileSystem;
+using Peernet.Browser.Models;
+using Peernet.Browser.Models.Domain;
 
 namespace Peernet.Browser.Tests.Application.VirtualFileSystem
 {

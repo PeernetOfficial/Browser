@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using MvvmCross.Base;
-using Peernet.Browser.Application.Models;
 
 namespace Peernet.Browser.Application.Contexts
 {
