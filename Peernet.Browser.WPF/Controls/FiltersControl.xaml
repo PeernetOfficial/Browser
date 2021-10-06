@@ -33,6 +33,7 @@
                     <controls:CustomFilterControl DataContext="{Binding DateFilters}" />
                     <Border Visibility="{Binding ShowCalendar, Converter={StaticResource BoolToVisibility}}" Grid.RowSpan="2"  Grid.Column="1" Margin="0 37 0 12" Padding="15 10" BorderBrush="{StaticResource LightGrayBrush}" BorderThickness="0 0.5 0.5 0.5" CornerRadius="{StaticResource MainRadius}">
                         <Calendar IsTodayHighlighted="False" SelectionMode="SingleRange" />
+                        <!--http://www.nullskull.com/a/1382/styling-the-wpf-calendar-to-resemble-outlooks-month-view-calendar.aspx-->
                     </Border>
                 </DockPanel>
                 <controls:CustomFilterControl Grid.Column="1" Grid.RowSpan="2" Margin="0 0 15 0" DataContext="{Binding FileFormatFilters}" />
@@ -45,7 +46,6 @@
                     </Border>
                 </StackPanel>
             </Grid>
-
             <DockPanel HorizontalAlignment="Right" Grid.Row="2">
                 <Button Command="{Binding CancelCommand}" Height="30" Width="110" Style="{StaticResource PrimaryButton}">Cancel</Button>
                 <Button Command="{Binding ApplyFiltersCommand}" Height="30" Width="110" Style="{StaticResource AcceptButton}">Apply filters</Button>
