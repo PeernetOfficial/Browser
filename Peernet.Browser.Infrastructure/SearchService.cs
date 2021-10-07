@@ -49,30 +49,6 @@ namespace Peernet.Browser.Infrastructure
             results.Remove(id);
         }
 
-        private Tuple<DateTime, DateTime> GetDateRange(TimePeriods p)
-        {
-            var from = DateTime.Now;
-            switch (p)
-            {
-                case TimePeriods.Last24:
-                    from = from.AddDays(-1);
-                    break;
-
-                case TimePeriods.LastWeek:
-                    from = from.AddDays(-7);
-                    break;
-
-                case TimePeriods.LastMounth:
-                    from = from.AddDays(-30);
-                    break;
-
-                case TimePeriods.LastYear:
-                    from = from.AddDays(-365);
-                    break;
-            }
-            return new Tuple<DateTime, DateTime>(from, DateTime.Now);
-        }
-
         private IDictionary<FiltersType, int> GetStats()
         {
             var res = new Dictionary<FiltersType, int>();
@@ -100,7 +76,7 @@ namespace Peernet.Browser.Infrastructure
             };
             if (model.Time.HasValue)
             {
-                var r = GetDateRange(model.Time.Value);
+                var r = model.GetDateRange();
                 res.DateFrom = r.Item1.ToString();
                 res.DateTo = r.Item2.ToString();
             }

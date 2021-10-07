@@ -11,8 +11,11 @@ namespace Peernet.Browser.Application.Models
     {
         private readonly string inputText;
         private readonly Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction;
+        private DateTime? dateFrom;
+        private DateTime? dateTo;
         private int max;
         private int min;
+        private bool showCalendar;
         private string uuId;
 
         public FiltersModel(string inputText, Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction)
@@ -34,25 +37,45 @@ namespace Peernet.Browser.Application.Models
             InitSearch();
         }
 
-        private bool showCalendar;
+        public IMvxCommand ApplyFiltersCommand { get; }
+
+        public IMvxCommand CancelCommand { get; }
+
+        public IMvxCommand ClearCommand { get; }
+
+        public Action<bool> CloseAction { get; set; }
+
+        public DateFilterModel DateFilters { get; }
+
+        public DateTime? DateFrom
+        {
+            get => dateFrom;
+            set => SetProperty(ref dateFrom, value);
+        }
+
+        public DateTime? DateTo
+        {
+            get => dateTo;
+            set => SetProperty(ref dateTo, value);
+        }
+
+        public FileFormatFilterModel FileFormatFilters { get; }
+
+        public HealthFilterModel HealthFiltes { get; }
+
+        public bool IsVisible => Results.Any();
+
+        public RangeSliderModel RangeFilter { get; }
+
+        public MvxObservableCollection<FilterResultModel> Results { get; } = new MvxObservableCollection<FilterResultModel>();
+
+        public SearchFilterResultModel SearchFilterResult { get; private set; }
 
         public bool ShowCalendar
         {
             get => showCalendar;
             set => SetProperty(ref showCalendar, value);
         }
-
-        public IMvxCommand ApplyFiltersCommand { get; }
-        public IMvxCommand CancelCommand { get; }
-        public IMvxCommand ClearCommand { get; }
-        public Action<bool> CloseAction { get; set; }
-        public DateFilterModel DateFilters { get; }
-        public FileFormatFilterModel FileFormatFilters { get; }
-        public HealthFilterModel HealthFiltes { get; }
-        public bool IsVisible => Results.Any();
-        public RangeSliderModel RangeFilter { get; }
-        public MvxObservableCollection<FilterResultModel> Results { get; } = new MvxObservableCollection<FilterResultModel>();
-        public SearchFilterResultModel SearchFilterResult { get; private set; }
 
         public void BindFromSearchFilterResult()
         {
@@ -64,6 +87,9 @@ namespace Peernet.Browser.Application.Models
             RangeFilter.Min = SearchFilterResult.SizeMin;
             RangeFilter.CurrentMax = SearchFilterResult.SizeTo;
             RangeFilter.CurrentMin = SearchFilterResult.SizeFrom;
+
+            DateFrom = SearchFilterResult.TimeFrom;
+            DateTo = SearchFilterResult.TimeTo;
         }
 
         public async Task<SearchResultModel> GetData(Action<SearchResultRowModel> downloadAction)
@@ -101,6 +127,12 @@ namespace Peernet.Browser.Application.Models
             SearchFilterResult.FileFormats = FileFormatFilters.IsSelected ? FileFormatFilters.GetAllSelected() : null;
             SearchFilterResult.Time = DateFilters.IsSelected ? DateFilters.GetSelected() : null;
             SearchFilterResult.Healths = HealthFiltes.IsSelected ? HealthFiltes.GetAllSelected() : null;
+
+            SearchFilterResult.TimeFrom = DateFrom;
+            SearchFilterResult.TimeTo = DateTo;
+
+            DateTo = null;
+            DateFrom = null;
 
             SearchFilterResult.SizeFrom = RangeFilter.CurrentMin;
             SearchFilterResult.SizeTo = RangeFilter.CurrentMax;
