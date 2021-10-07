@@ -1,7 +1,7 @@
-﻿using Peernet.Browser.Models.Domain;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Peernet.Browser.Models.Domain;
 
-namespace Peernet.Browser.Application.Services
+namespace Peernet.Browser.Application.Wrappers
 {
     public interface IApiWrapper
     {

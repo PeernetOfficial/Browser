@@ -1,17 +1,23 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
-namespace Peernet.Browser.Application.Helpers
+namespace Peernet.Browser.Application.Http
 {
-    public static class HttpHelper
+    public class HttpExecutor : IHttpExecutor
     {
-        public static async Task<T> GetResult<T>(
-            HttpClient httpClient,
+        private readonly HttpClient httpClient;
+
+        public HttpExecutor(IHttpClientFactory httpClientFactory)
+        {
+            httpClient = httpClientFactory.CreateHttpClient();
+        }
+
+        public async Task<T> GetResult<T>(
             HttpMethod method,
             string relativePath,
             Dictionary<string, string> queryParameters = null,

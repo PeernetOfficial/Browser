@@ -9,7 +9,6 @@ using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Facades;
 using Peernet.Browser.Application.Http;
-using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.Browser.Application.Wrappers;
 using Peernet.Browser.Infrastructure;
@@ -53,6 +52,7 @@ namespace Peernet.Browser.WPF
                 .RegisterAsLazySingleton();
 
             iocProvider.RegisterType<IHttpClientFactory, HttpClientFactory>();
+            iocProvider.RegisterType<IApiFacade, ApiFacade>();
             iocProvider.RegisterType<IApiWrapper, ApiWrapper>();
             iocProvider.RegisterType<ISocketClient, SocketClient>();
             iocProvider.RegisterType<IProfileWrapper, ProfileWrapper>();
@@ -67,6 +67,7 @@ namespace Peernet.Browser.WPF
             iocProvider.RegisterType<ISearchWrapper, SearchWrapper>();
             iocProvider.RegisterType<ISearchFacade, SearchFacade>();
             iocProvider.RegisterType<IDownloadWrapper, DownloadWrapper>();
+            iocProvider.RegisterType<IHttpExecutor, HttpExecutor>();
             iocProvider.RegisterSingleton<IDownloadManager>(new DownloadManager(iocProvider.Resolve<IDownloadWrapper>()));
             GlobalContext.UiThreadDispatcher = iocProvider.Resolve<IMvxMainThreadAsyncDispatcher>();
             ObserveNavigation(iocProvider);

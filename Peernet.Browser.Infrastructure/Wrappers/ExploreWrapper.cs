@@ -1,5 +1,4 @@
-﻿using Peernet.Browser.Application.Helpers;
-using Peernet.Browser.Application.Http;
+﻿using Peernet.Browser.Application.Http;
 using Peernet.Browser.Application.Wrappers;
 using Peernet.Browser.Models.Domain;
 using System.Collections.Generic;
@@ -10,9 +9,11 @@ namespace Peernet.Browser.Infrastructure.Wrappers
 {
     public class ExploreWrapper : WrapperBase, IExploreWrapper
     {
-        public ExploreWrapper(IHttpClientFactory httpClientFactory)
-            : base(httpClientFactory)
+        private readonly IHttpExecutor httpExecutor;
+
+        public ExploreWrapper(IHttpClientFactory factory)
         {
+            this.httpExecutor = new HttpExecutor(factory);
         }
 
         public override string CoreSegment => "explore";
@@ -29,7 +30,7 @@ namespace Peernet.Browser.Infrastructure.Wrappers
                 parameters.Add("type", type.ToString());
             }
 
-            return await HttpHelper.GetResult<SearchResult>(HttpClient, HttpMethod.Get, GetRelativeRequestPath(string.Empty), parameters);
+            return await httpExecutor.GetResult<SearchResult>(HttpMethod.Get, GetRelativeRequestPath(string.Empty), parameters);
         }
     }
 }

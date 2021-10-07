@@ -1,19 +1,20 @@
-﻿using Peernet.Browser.Application.Helpers;
-using Peernet.Browser.Application.Http;
+﻿using Peernet.Browser.Application.Http;
+using Peernet.Browser.Application.Wrappers;
 using Peernet.Browser.Models.Domain;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using Peernet.Browser.Application.Wrappers;
 
 namespace Peernet.Browser.Infrastructure.Wrappers
 {
     public class SearchWrapper : WrapperBase, ISearchWrapper
     {
-        public SearchWrapper(IHttpClientFactory httpClientFactory)
-            : base(httpClientFactory)
+        private readonly IHttpExecutor httpExecutor;
+
+        public SearchWrapper(IHttpExecutor httpExecutor)
         {
+            this.httpExecutor = httpExecutor;
         }
 
         public override string CoreSegment => "search";
@@ -26,12 +27,12 @@ namespace Peernet.Browser.Infrastructure.Wrappers
                 [nameof(limit)] = limit.ToString()
             };
 
-            return await HttpHelper.GetResult<SearchResult>(HttpClient, HttpMethod.Get, GetRelativeRequestPath("result"), parameters);
+            return await httpExecutor.GetResult<SearchResult>(HttpMethod.Get, GetRelativeRequestPath("result"), parameters);
         }
 
         public async Task<SearchRequestResponse> SubmitSearch(SearchRequest searchRequest)
         {
-            return await HttpHelper.GetResult<SearchRequestResponse>(HttpClient, HttpMethod.Post, GetRelativeRequestPath(string.Empty), content: JsonContent.Create(searchRequest));
+            return await httpExecutor.GetResult<SearchRequestResponse>(HttpMethod.Post, GetRelativeRequestPath(string.Empty), content: JsonContent.Create(searchRequest));
         }
 
         public async Task TerminateSearch(string id)
@@ -41,7 +42,7 @@ namespace Peernet.Browser.Infrastructure.Wrappers
                 [nameof(id)] = id,
             };
 
-            await HttpHelper.GetResult<SearchResult>(HttpClient, HttpMethod.Get, GetRelativeRequestPath("terminate"), parameters);
+            await httpExecutor.GetResult<SearchResult>(HttpMethod.Get, GetRelativeRequestPath("terminate"), parameters);
         }
     }
 }

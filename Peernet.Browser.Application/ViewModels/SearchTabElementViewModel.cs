@@ -2,7 +2,6 @@
 using MvvmCross.ViewModels;
 using System;
 using Peernet.Browser.Application.Facades;
-using Peernet.Browser.Application.Services;
 using Peernet.Browser.Models.Presentation;
 
 namespace Peernet.Browser.Application.ViewModels

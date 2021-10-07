@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.Contexts;
 
 namespace Peernet.Browser.Infrastructure
 {
@@ -19,14 +20,17 @@ namespace Peernet.Browser.Infrastructure
         public DownloadManager(IDownloadWrapper downloadService)
         {
             this.downloadService = downloadService;
-            timer = new Timer(async _ => await UpdateStatuses(), new AutoResetEvent(false), 1000, Timeout.Infinite);
+            timer = new Timer(
+                async _ => await GlobalContext.UiThreadDispatcher.ExecuteOnMainThreadAsync(async () =>
+                    await UpdateStatuses()), new AutoResetEvent(false), 1000, Timeout.Infinite);
         }
 
+        // TODO: It needs to be both concurrent and observable collection
         public ObservableCollection<DownloadModel> ActiveFileDownloads { get; set; } = new();
 
         public async Task QueueUpDownload(ApiBlockRecordFile file)
         {
-            var status = await downloadService.Start(@"C:/Temp", file.Hash, file.NodeId);
+            var status = await downloadService.Start($"C:/Temp/{file.Name}", file.Hash, file.NodeId);
 
             if (status.APIStatus == APIStatus.DownloadResponseSuccess)
             {
@@ -70,6 +74,7 @@ namespace Peernet.Browser.Infrastructure
 
                 if (status.DownloadStatus == DownloadStatus.DownloadFinished)
                 {
+
                     ActiveFileDownloads.Remove(download);
                 }
             }

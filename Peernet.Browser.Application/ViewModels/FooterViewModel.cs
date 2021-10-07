@@ -4,18 +4,18 @@ using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Managers;
-using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.Wrappers;
 using Peernet.Browser.Models.Presentation;
 using System.Linq;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.Facades;
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public class FooterViewModel : MvxViewModel
     {
         private const int reconnectDelay = 2000;
-        private readonly IApiWrapper apiClient;
+        private readonly IApiFacade apiFacade;
         private readonly IApplicationManager applicationManager;
         private readonly IMvxNavigationService navigationService;
         private readonly ISocketClient socketClient;
@@ -24,9 +24,9 @@ namespace Peernet.Browser.Application.ViewModels
         private ConnectionStatus connectionStatus = ConnectionStatus.Offline;
         private string peers;
 
-        public FooterViewModel(IApiWrapper apiClient, ISocketClient socketClient, IMvxNavigationService navigationService, IApplicationManager applicationManager, IDownloadManager downloadManager)
+        public FooterViewModel(IApiFacade apiFacade, ISocketClient socketClient, IMvxNavigationService navigationService, IApplicationManager applicationManager, IDownloadManager downloadManager)
         {
-            this.apiClient = apiClient;
+            this.apiFacade = apiFacade;
             this.socketClient = socketClient;
             this.navigationService = navigationService;
             this.applicationManager = applicationManager;
@@ -117,7 +117,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         private async Task<bool> GetPeernetStatus()
         {
-            var status = await apiClient.GetStatus();
+            var status = await apiFacade.GetStatus();
             ConnectionStatus = status.IsConnected ? ConnectionStatus.Online : ConnectionStatus.Offline;
             Peers = status.CountPeerList.ToString();
             return status.IsConnected;

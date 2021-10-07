@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Peernet.Browser.Application.Extensions;
 using Peernet.Browser.Application.Facades;
 using Peernet.Browser.Application.Wrappers;
+using Peernet.Browser.Infrastructure.Wrappers;
 using Peernet.Browser.Models.Domain;
 using Peernet.Browser.Models.Presentation;
 

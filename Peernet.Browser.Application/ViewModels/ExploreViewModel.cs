@@ -15,7 +15,7 @@ namespace Peernet.Browser.Application.ViewModels
         public ObservableCollection<ApiBlockRecordFile> activeSearchResults;
         private readonly IExploreFacade exploreFacade;
         private readonly IDownloadManager downloadManager;
-        private static List<VirtualFileSystemCategory> categoryTypes = GetCategoryTypes();
+        private static readonly List<VirtualFileSystemCategory> categoryTypes = GetCategoryTypes();
         private IReadOnlyCollection<ApiBlockRecordFile> sharedFiles;
 
         public ExploreViewModel(IExploreFacade exploreFacade, IDownloadManager downloadManager)
@@ -34,11 +34,9 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IMvxAsyncCommand<ApiBlockRecordFile> DownloadCommand =>
             new MvxAsyncCommand<ApiBlockRecordFile>(
-                apiBlockRecordFile =>
+                async apiBlockRecordFile =>
                 {
-                    downloadManager.QueueUpDownload(apiBlockRecordFile);
-
-                    return Task.CompletedTask;
+                    await downloadManager.QueueUpDownload(apiBlockRecordFile);
                 });
 
         public IMvxAsyncCommand<VirtualFileSystemCategory> SelectCategoryCommand =>
@@ -79,7 +77,6 @@ namespace Peernet.Browser.Application.ViewModels
             return new VirtualFileSystemCategory(type.ToString(), type, null);
         }
 
-        // It could return mapping Tuple where Keys are Categories and Values are integer values representing Type. (Binary, -2);(Document,5)
         private static List<VirtualFileSystemCategory> GetCategoryTypes()
         {
             return new List<VirtualFileSystemCategory>

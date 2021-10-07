@@ -2,6 +2,7 @@
 using Peernet.Browser.Application.Wrappers;
 using Peernet.Browser.Models.Presentation;
 using System.Threading.Tasks;
+using Peernet.Browser.Infrastructure.Wrappers;
 
 namespace Peernet.Browser.Infrastructure.Facades
 {

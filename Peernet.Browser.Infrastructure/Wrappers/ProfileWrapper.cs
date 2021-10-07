@@ -1,5 +1,4 @@
-﻿using Peernet.Browser.Application.Helpers;
-using Peernet.Browser.Application.Http;
+﻿using Peernet.Browser.Application.Http;
 using Peernet.Browser.Application.Wrappers;
 using Peernet.Browser.Models.Domain;
 using System.Collections.Generic;
@@ -16,9 +15,11 @@ namespace Peernet.Browser.Infrastructure.Wrappers
         private const string ReadSegment = "read";
         private const string WriteSegment = "write";
 
-        public ProfileWrapper(IHttpClientFactory httpClientFactory)
-            : base(httpClientFactory)
+        private readonly IHttpExecutor httpExecutor;
+
+        public ProfileWrapper(IHttpExecutor httpExecutor)
         {
+            this.httpExecutor = httpExecutor;
         }
 
         public override string CoreSegment => "profile";
@@ -37,7 +38,7 @@ namespace Peernet.Browser.Infrastructure.Wrappers
                 }
             });
 
-            return await HttpHelper.GetResult<ApiBlockchainBlockStatus>(HttpClient, HttpMethod.Post, GetRelativeRequestPath(WriteSegment), content: jsonContent);
+            return await httpExecutor.GetResult<ApiBlockchainBlockStatus>(HttpMethod.Post, GetRelativeRequestPath(WriteSegment), content: jsonContent);
         }
 
         public async Task<ApiBlockchainBlockStatus> AddUserName(string userName)
@@ -54,7 +55,7 @@ namespace Peernet.Browser.Infrastructure.Wrappers
                 }
             });
 
-            return await HttpHelper.GetResult<ApiBlockchainBlockStatus>(HttpClient, HttpMethod.Post, GetRelativeRequestPath(WriteSegment), content: jsonContent);
+            return await httpExecutor.GetResult<ApiBlockchainBlockStatus>(HttpMethod.Post, GetRelativeRequestPath(WriteSegment), content: jsonContent);
         }
 
         public async Task<ApiBlockchainBlockStatus> DeleteUserImage()
@@ -70,7 +71,7 @@ namespace Peernet.Browser.Infrastructure.Wrappers
                 }
             });
 
-            return await HttpHelper.GetResult<ApiBlockchainBlockStatus>(HttpClient, HttpMethod.Post, GetRelativeRequestPath(DeleteSegment), content: jsonContent);
+            return await httpExecutor.GetResult<ApiBlockchainBlockStatus>(HttpMethod.Post, GetRelativeRequestPath(DeleteSegment), content: jsonContent);
         }
 
         public async Task<byte[]> GetUserImage()
@@ -82,7 +83,7 @@ namespace Peernet.Browser.Infrastructure.Wrappers
                 ["field"] = userImageBlobIndex.ToString()
             };
 
-            var result = await HttpHelper.GetResult<ApiProfileData>(HttpClient, HttpMethod.Get, GetRelativeRequestPath(ReadSegment), parameters);
+            var result = await httpExecutor.GetResult<ApiProfileData>(HttpMethod.Get, GetRelativeRequestPath(ReadSegment), parameters);
 
             return result.Fields?.FirstOrDefault(f => f.Type == userImageBlobIndex)?.Blob;
         }
@@ -96,7 +97,7 @@ namespace Peernet.Browser.Infrastructure.Wrappers
                 ["field"] = userNameFieldIndex.ToString()
             };
 
-            var result = await HttpHelper.GetResult<ApiProfileData>(HttpClient, HttpMethod.Get, GetRelativeRequestPath(ReadSegment), parameters);
+            var result = await httpExecutor.GetResult<ApiProfileData>(HttpMethod.Get, GetRelativeRequestPath(ReadSegment), parameters);
 
             return result.Fields?.FirstOrDefault(f => f.Type == userNameFieldIndex)?.Text;
         }

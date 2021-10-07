@@ -1,5 +1,4 @@
-﻿using Peernet.Browser.Application.Helpers;
-using Peernet.Browser.Application.Http;
+﻿using Peernet.Browser.Application.Http;
 using Peernet.Browser.Application.Wrappers;
 using Peernet.Browser.Models.Domain;
 using System;
@@ -15,9 +14,11 @@ namespace Peernet.Browser.Infrastructure.Wrappers
         private const string StartSegment = "start";
         private const string StatusSegment = "status";
 
-        public DownloadWrapper(IHttpClientFactory httpClientFactory)
-            : base(httpClientFactory)
+        private readonly IHttpExecutor httpExecutor;
+
+        public DownloadWrapper(IHttpExecutor httpExecutor)
         {
+            this.httpExecutor = httpExecutor;
         }
 
         public override string CoreSegment => "download";
@@ -30,7 +31,7 @@ namespace Peernet.Browser.Infrastructure.Wrappers
                 [nameof(action)] = ((int)action).ToString()
             };
 
-            return await HttpHelper.GetResult<ApiResponseDownloadStatus>(HttpClient, HttpMethod.Get, GetRelativeRequestPath(ActionSegment), parameters);
+            return await httpExecutor.GetResult<ApiResponseDownloadStatus>(HttpMethod.Get, GetRelativeRequestPath(ActionSegment), parameters);
         }
 
         public async Task<ApiResponseDownloadStatus> GetStatus(string id)
@@ -40,7 +41,7 @@ namespace Peernet.Browser.Infrastructure.Wrappers
                 [nameof(id)] = id
             };
 
-            return await HttpHelper.GetResult<ApiResponseDownloadStatus>(HttpClient, HttpMethod.Get, GetRelativeRequestPath(StatusSegment), parameters);
+            return await httpExecutor.GetResult<ApiResponseDownloadStatus>(HttpMethod.Get, GetRelativeRequestPath(StatusSegment), parameters);
         }
 
         public async Task<ApiResponseDownloadStatus> Start(string path, byte[] hash, byte[] node)
@@ -52,7 +53,7 @@ namespace Peernet.Browser.Infrastructure.Wrappers
                 [nameof(node)] = Convert.ToHexString(node)
             };
 
-            return await HttpHelper.GetResult<ApiResponseDownloadStatus>(HttpClient, HttpMethod.Get, GetRelativeRequestPath(StartSegment), parameters);
+            return await httpExecutor.GetResult<ApiResponseDownloadStatus>(HttpMethod.Get, GetRelativeRequestPath(StartSegment), parameters);
         }
     }
 }

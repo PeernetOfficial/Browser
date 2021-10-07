@@ -5,6 +5,7 @@ using Peernet.Browser.Models.Presentation;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Peernet.Browser.Infrastructure.Wrappers;
 
 namespace Peernet.Browser.Infrastructure.Facades
 {

@@ -12,7 +12,7 @@ namespace Peernet.Browser.Tests.Infrastructure
         public void CtorTest()
         {
             //Prepare
-            var s1 = new Mock<IHttpClientFactory>();
+            var s1 = new Mock<IHttpExecutor>();
 
             //Act
             var o = new ApiWrapper(s1.Object);
