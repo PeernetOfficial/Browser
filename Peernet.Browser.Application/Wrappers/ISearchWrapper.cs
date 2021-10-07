@@ -5,7 +5,7 @@ namespace Peernet.Browser.Application.Wrappers
 {
     public interface ISearchWrapper
     {
-        Task<SearchResult> GetSearchResult(string id, int limit = 20);
+        Task<SearchResult> GetSearchResult(string id, int? limit = null);
 
         Task<SearchRequestResponse> SubmitSearch(SearchRequest searchRequest);
 

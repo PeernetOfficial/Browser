@@ -19,13 +19,17 @@ namespace Peernet.Browser.Infrastructure.Wrappers
 
         public override string CoreSegment => "search";
 
-        public async Task<SearchResult> GetSearchResult(string id, int limit = 20)
+        public async Task<SearchResult> GetSearchResult(string id, int? limit = null)
         {
             var parameters = new Dictionary<string, string>
             {
-                [nameof(id)] = id,
-                [nameof(limit)] = limit.ToString()
+                [nameof(id)] = id
             };
+
+            if (limit != null)
+            {
+                parameters.Add(nameof(limit), limit.ToString());
+            }
 
             return await httpExecutor.GetResult<SearchResult>(HttpMethod.Get, GetRelativeRequestPath("result"), parameters);
         }
