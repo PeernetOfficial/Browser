@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Peernet.Browser.Application.Http;
+using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Infrastructure.Wrappers;
 
 namespace Peernet.Browser.Tests.Infrastructure
@@ -12,7 +12,7 @@ namespace Peernet.Browser.Tests.Infrastructure
         public void CtorTest()
         {
             //Prepare
-            var s1 = new Mock<IHttpExecutor>();
+            var s1 = new Mock<ISettingsManager>();
 
             //Act
             var o = new ApiWrapper(s1.Object);

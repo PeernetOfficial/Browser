@@ -1,20 +1,21 @@
-﻿using Peernet.Browser.Application.Http;
-using Peernet.Browser.Application.Wrappers;
+﻿using Peernet.Browser.Application.Wrappers;
 using Peernet.Browser.Models.Domain;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Infrastructure.Http;
 
 namespace Peernet.Browser.Infrastructure.Wrappers
 {
-    public class SearchWrapper : WrapperBase, ISearchWrapper
+    internal class SearchWrapper : WrapperBase, ISearchWrapper
     {
         private readonly IHttpExecutor httpExecutor;
 
-        public SearchWrapper(IHttpExecutor httpExecutor)
+        public SearchWrapper(ISettingsManager settingsManager)
         {
-            this.httpExecutor = httpExecutor;
+            httpExecutor = new HttpExecutor(settingsManager);
         }
 
         public override string CoreSegment => "search";

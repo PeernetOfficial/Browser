@@ -1,5 +1,5 @@
-﻿using Peernet.Browser.Application.Http;
-using Peernet.Browser.Application.Wrappers;
+﻿using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Infrastructure.Http;
 using Peernet.Browser.Models.Domain;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure.Wrappers
 {
-    public class ProfileWrapper : WrapperBase, IProfileWrapper
+    internal class ProfileWrapper : WrapperBase, IProfileWrapper
     {
         private const string DeleteSegment = "delete";
         private const string ReadSegment = "read";
@@ -17,9 +17,9 @@ namespace Peernet.Browser.Infrastructure.Wrappers
 
         private readonly IHttpExecutor httpExecutor;
 
-        public ProfileWrapper(IHttpExecutor httpExecutor)
+        public ProfileWrapper(ISettingsManager settingsManager)
         {
-            this.httpExecutor = httpExecutor;
+            this.httpExecutor = new HttpExecutor(settingsManager);
         }
 
         public override string CoreSegment => "profile";

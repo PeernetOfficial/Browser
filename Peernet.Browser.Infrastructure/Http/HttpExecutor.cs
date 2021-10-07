@@ -5,16 +5,17 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Peernet.Browser.Application.Managers;
 
-namespace Peernet.Browser.Application.Http
+namespace Peernet.Browser.Infrastructure.Http
 {
-    public class HttpExecutor : IHttpExecutor
+    internal class HttpExecutor : IHttpExecutor
     {
         private readonly HttpClient httpClient;
 
-        public HttpExecutor(IHttpClientFactory httpClientFactory)
+        public HttpExecutor(ISettingsManager settingsManager)
         {
-            httpClient = httpClientFactory.CreateHttpClient();
+            httpClient = new HttpClientFactory(settingsManager).CreateHttpClient();
         }
 
         public async Task<T> GetResult<T>(

@@ -1,6 +1,6 @@
 ﻿namespace Peernet.Browser.Infrastructure.Wrappers
 {
-    public abstract class WrapperBase
+    internal abstract class WrapperBase
     {
         public abstract string CoreSegment { get; }
 

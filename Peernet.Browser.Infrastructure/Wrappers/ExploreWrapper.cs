@@ -1,5 +1,5 @@
-﻿using Peernet.Browser.Application.Http;
-using Peernet.Browser.Application.Wrappers;
+﻿using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Infrastructure.Http;
 using Peernet.Browser.Models.Domain;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure.Wrappers
 {
-    public class ExploreWrapper : WrapperBase, IExploreWrapper
+    internal class ExploreWrapper : WrapperBase, IExploreWrapper
     {
         private readonly IHttpExecutor httpExecutor;
 
-        public ExploreWrapper(IHttpClientFactory factory)
+        public ExploreWrapper(ISettingsManager settingsManager)
         {
-            this.httpExecutor = new HttpExecutor(factory);
+            this.httpExecutor = new HttpExecutor(settingsManager);
         }
 
         public override string CoreSegment => "explore";

@@ -1,8 +1,8 @@
 ﻿using Peernet.Browser.Application.Facades;
-using Peernet.Browser.Application.Wrappers;
+using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Infrastructure.Wrappers;
 using Peernet.Browser.Models.Presentation;
 using System.Threading.Tasks;
-using Peernet.Browser.Infrastructure.Wrappers;
 
 namespace Peernet.Browser.Infrastructure.Facades
 {
@@ -10,9 +10,9 @@ namespace Peernet.Browser.Infrastructure.Facades
     {
         private readonly IProfileWrapper profileService;
 
-        public ProfileFacade(IProfileWrapper profileService)
+        public ProfileFacade(ISettingsManager settingsManager)
         {
-            this.profileService = profileService;
+            this.profileService = new ProfileWrapper(settingsManager);
         }
 
         public async Task<User> GetUser()

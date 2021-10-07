@@ -1,9 +1,9 @@
-﻿using Peernet.Browser.Models.Domain;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Peernet.Browser.Models.Domain;
 
-namespace Peernet.Browser.Application.Wrappers
+namespace Peernet.Browser.Infrastructure.Wrappers
 {
-    public interface IBlockchainWrapper
+    internal interface IBlockchainWrapper
     {
         Task<ApiBlockchainHeader> GetSelfHeader();
 

@@ -5,6 +5,7 @@ using Peernet.Browser.Models.Presentation;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Infrastructure.Wrappers;
 
 namespace Peernet.Browser.Infrastructure.Facades
@@ -13,9 +14,9 @@ namespace Peernet.Browser.Infrastructure.Facades
     {
         private readonly IBlockchainWrapper blockchainWrapper;
 
-        public BlockchainFacade(IBlockchainWrapper blockchainWrapper)
+        public BlockchainFacade(ISettingsManager settingsManager)
         {
-            this.blockchainWrapper = blockchainWrapper;
+            this.blockchainWrapper = new BlockchainWrapper(settingsManager);
         }
 
         // todo: it should consume some presentation model

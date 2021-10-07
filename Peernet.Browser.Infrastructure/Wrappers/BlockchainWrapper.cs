@@ -1,5 +1,5 @@
-﻿using Peernet.Browser.Application.Http;
-using Peernet.Browser.Application.Wrappers;
+﻿using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Infrastructure.Http;
 using Peernet.Browser.Models.Domain;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure.Wrappers
 {
-    public class BlockchainWrapper : WrapperBase, IBlockchainWrapper
+    internal class BlockchainWrapper : WrapperBase, IBlockchainWrapper
     {
         private readonly IHttpExecutor httpExecutor;
 
-        public BlockchainWrapper(IHttpExecutor httpExecutor)
+        public BlockchainWrapper(ISettingsManager settingsManager)
         {
-            this.httpExecutor = httpExecutor;
+            this.httpExecutor = new HttpExecutor(settingsManager);
         }
 
         public override string CoreSegment => "blockchain/self";

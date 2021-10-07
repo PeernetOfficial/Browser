@@ -1,7 +1,9 @@
 ﻿using Peernet.Browser.Application.Facades;
 using Peernet.Browser.Models.Domain;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Wrappers;
+using Peernet.Browser.Infrastructure.Wrappers;
 
 namespace Peernet.Browser.Infrastructure.Facades
 {
@@ -9,9 +11,9 @@ namespace Peernet.Browser.Infrastructure.Facades
     {
         private readonly IExploreWrapper exploreWrapper;
 
-        public ExploreFacade(IExploreWrapper exploreWrapper)
+        public ExploreFacade(ISettingsManager settingsManager)
         {
-            this.exploreWrapper = exploreWrapper;
+            this.exploreWrapper = new ExploreWrapper(settingsManager);
         }
 
         // todo: it should return UI model

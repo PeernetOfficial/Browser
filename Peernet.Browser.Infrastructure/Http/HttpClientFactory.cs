@@ -1,10 +1,10 @@
-﻿using Peernet.Browser.Application.Managers;
-using System;
+﻿using System;
 using System.Net.Http;
+using Peernet.Browser.Application.Managers;
 
-namespace Peernet.Browser.Application.Http
+namespace Peernet.Browser.Infrastructure.Http
 {
-    public class HttpClientFactory : IHttpClientFactory
+    internal class HttpClientFactory : IHttpClientFactory
     {
         private readonly ISettingsManager settingsManager;
 

@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Peernet.Browser.Models.Domain;
 
-namespace Peernet.Browser.Application.Wrappers
+namespace Peernet.Browser.Infrastructure.Wrappers
 {
-    public interface IApiWrapper
+    internal interface IApiWrapper
     {
         /// <summary>
         /// Provides current connectivity status to the network

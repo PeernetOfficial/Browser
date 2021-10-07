@@ -4,12 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Peernet.Browser.Application.Extensions;
 using Peernet.Browser.Application.Facades;
-using Peernet.Browser.Application.Wrappers;
+using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Infrastructure.Wrappers;
 using Peernet.Browser.Models.Domain;
 using Peernet.Browser.Models.Presentation;
 
-namespace Peernet.Browser.Infrastructure
+namespace Peernet.Browser.Infrastructure.Facades
 {
     public class SearchFacade : ISearchFacade
     {
@@ -17,9 +17,9 @@ namespace Peernet.Browser.Infrastructure
 
         private readonly IDictionary<string, SearchResult> results = new Dictionary<string, SearchResult>();
 
-        public SearchFacade(ISearchWrapper searchWrapper)
+        public SearchFacade(ISettingsManager settingsManager)
         {
-            this.searchWrapper = searchWrapper;
+            searchWrapper = new SearchWrapper(settingsManager);
         }
 
         public async Task<SearchResultModel> Search(SearchFilterResultModel model)

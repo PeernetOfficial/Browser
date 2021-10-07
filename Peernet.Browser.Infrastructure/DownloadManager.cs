@@ -9,17 +9,19 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Infrastructure.Wrappers;
 
 namespace Peernet.Browser.Infrastructure
 {
     public class DownloadManager : INotifyPropertyChanged, IDownloadManager, IDisposable
     {
-        private readonly IDownloadWrapper downloadService;
+        private readonly IDownloadWrapper _downloadWrapper;
         private readonly Timer timer;
 
-        public DownloadManager(IDownloadWrapper downloadService)
+        public DownloadManager(ISettingsManager settingsManager)
         {
-            this.downloadService = downloadService;
+            _downloadWrapper = new DownloadWrapper(settingsManager);
             timer = new Timer(
                 async _ => await GlobalContext.UiThreadDispatcher.ExecuteOnMainThreadAsync(async () =>
                     await UpdateStatuses()), new AutoResetEvent(false), 1000, Timeout.Infinite);
@@ -30,7 +32,7 @@ namespace Peernet.Browser.Infrastructure
 
         public async Task QueueUpDownload(ApiBlockRecordFile file)
         {
-            var status = await downloadService.Start($"C:/Temp/{file.Name}", file.Hash, file.NodeId);
+            var status = await _downloadWrapper.Start($"C:/Temp/{file.Name}", file.Hash, file.NodeId);
 
             if (status.APIStatus == APIStatus.DownloadResponseSuccess)
             {
@@ -52,24 +54,24 @@ namespace Peernet.Browser.Infrastructure
 
         public async Task<ApiResponseDownloadStatus> PauseDownload(string id)
         {
-            return await downloadService.GetAction(id, DownloadAction.Pause);
+            return await _downloadWrapper.GetAction(id, DownloadAction.Pause);
         }
 
         public async Task<ApiResponseDownloadStatus> ResumeDownload(string id)
         {
-            return await downloadService.GetAction(id, DownloadAction.Resume);
+            return await _downloadWrapper.GetAction(id, DownloadAction.Resume);
         }
 
         public async Task<ApiResponseDownloadStatus> CancelDownload(string id)
         {
-            return await downloadService.GetAction(id, DownloadAction.Cancel);
+            return await _downloadWrapper.GetAction(id, DownloadAction.Cancel);
         }
 
         private async Task UpdateStatuses()
         {
             foreach (var download in ActiveFileDownloads)
             {
-                var status = await downloadService.GetStatus(download.Id);
+                var status = await _downloadWrapper.GetStatus(download.Id);
                 download.Progress = status.Progress.Percentage;
 
                 if (status.DownloadStatus == DownloadStatus.DownloadFinished)

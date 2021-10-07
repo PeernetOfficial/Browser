@@ -3,9 +3,9 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace Peernet.Browser.Application.Http
+namespace Peernet.Browser.Infrastructure.Http
 {
-    public interface IHttpExecutor
+    internal interface IHttpExecutor
     {
         Task<T> GetResult<T>(
             HttpMethod method,

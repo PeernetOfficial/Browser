@@ -1,14 +1,14 @@
-﻿using Peernet.Browser.Application.Http;
-using Peernet.Browser.Application.Wrappers;
-using Peernet.Browser.Models.Domain;
+﻿using Peernet.Browser.Models.Domain;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Infrastructure.Http;
 
 namespace Peernet.Browser.Infrastructure.Wrappers
 {
-    public class DownloadWrapper : WrapperBase, IDownloadWrapper
+    internal class DownloadWrapper : WrapperBase, IDownloadWrapper
     {
         private const string ActionSegment = "action";
         private const string StartSegment = "start";
@@ -16,9 +16,9 @@ namespace Peernet.Browser.Infrastructure.Wrappers
 
         private readonly IHttpExecutor httpExecutor;
 
-        public DownloadWrapper(IHttpExecutor httpExecutor)
+        public DownloadWrapper(ISettingsManager settingsManager)
         {
-            this.httpExecutor = httpExecutor;
+            httpExecutor = new HttpExecutor(settingsManager);
         }
 
         public override string CoreSegment => "download";

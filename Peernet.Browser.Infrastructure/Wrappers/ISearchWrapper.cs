@@ -1,9 +1,9 @@
-﻿using Peernet.Browser.Models.Domain;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Peernet.Browser.Models.Domain;
 
-namespace Peernet.Browser.Application.Wrappers
+namespace Peernet.Browser.Infrastructure.Wrappers
 {
-    public interface ISearchWrapper
+    internal interface ISearchWrapper
     {
         Task<SearchResult> GetSearchResult(string id, int? limit = null);
 
