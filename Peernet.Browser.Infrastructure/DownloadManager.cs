@@ -1,5 +1,7 @@
-﻿using Peernet.Browser.Application.Download;
-using Peernet.Browser.Application.Wrappers;
+﻿using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.Application.Download;
+using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Infrastructure.Wrappers;
 using Peernet.Browser.Models.Domain;
 using Peernet.Browser.Models.Presentation;
 using System;
@@ -8,9 +10,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Peernet.Browser.Application.Contexts;
-using Peernet.Browser.Application.Managers;
-using Peernet.Browser.Infrastructure.Wrappers;
 
 namespace Peernet.Browser.Infrastructure
 {
@@ -76,7 +75,6 @@ namespace Peernet.Browser.Infrastructure
 
                 if (status.DownloadStatus == DownloadStatus.DownloadFinished)
                 {
-
                     ActiveFileDownloads.Remove(download);
                 }
             }

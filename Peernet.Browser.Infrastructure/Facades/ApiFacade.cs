@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
-using Peernet.Browser.Application.Facades;
+﻿using Peernet.Browser.Application.Facades;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Infrastructure.Wrappers;
 using Peernet.Browser.Models.Domain;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure.Facades
 {
@@ -12,7 +12,7 @@ namespace Peernet.Browser.Infrastructure.Facades
 
         public ApiFacade(ISettingsManager settingsManager)
         {
-            this.apiWrapper = new ApiWrapper(settingsManager);
+            apiWrapper = new ApiWrapper(settingsManager);
         }
 
         public async Task<ApiResponseStatus> GetStatus()

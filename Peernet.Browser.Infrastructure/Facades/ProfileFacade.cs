@@ -8,17 +8,17 @@ namespace Peernet.Browser.Infrastructure.Facades
 {
     public class ProfileFacade : IProfileFacade
     {
-        private readonly IProfileWrapper profileService;
+        private readonly IProfileWrapper profileWrapper;
 
         public ProfileFacade(ISettingsManager settingsManager)
         {
-            this.profileService = new ProfileWrapper(settingsManager);
+            profileWrapper = new ProfileWrapper(settingsManager);
         }
 
         public async Task<User> GetUser()
         {
-            var image = await profileService.GetUserImage();
-            var name = await profileService.GetUserName();
+            var image = await profileWrapper.GetUserImage();
+            var name = await profileWrapper.GetUserName();
 
             return new User
             {
@@ -29,13 +29,13 @@ namespace Peernet.Browser.Infrastructure.Facades
 
         public async Task UpdateUser(string name, byte[] image)
         {
-            await profileService.AddUserName(name);
-            await profileService.AddUserImage(image);
+            await profileWrapper.AddUserName(name);
+            await profileWrapper.AddUserImage(image);
         }
 
         public async Task DeleteUserImage()
         {
-            await profileService.DeleteUserImage();
+            await profileWrapper.DeleteUserImage();
         }
     }
 }

@@ -13,8 +13,6 @@ using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.Browser.Application.Wrappers;
 using Peernet.Browser.Infrastructure;
 using Peernet.Browser.Infrastructure.Facades;
-using Peernet.Browser.Infrastructure.Http;
-using Peernet.Browser.Infrastructure.Wrappers;
 using Serilog;
 using Serilog.Extensions.Logging;
 

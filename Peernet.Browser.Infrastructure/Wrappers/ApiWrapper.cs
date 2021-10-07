@@ -1,8 +1,8 @@
-﻿using Peernet.Browser.Models.Domain;
+﻿using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Infrastructure.Http;
+using Peernet.Browser.Models.Domain;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Peernet.Browser.Application.Managers;
-using Peernet.Browser.Infrastructure.Http;
 
 namespace Peernet.Browser.Infrastructure.Wrappers
 {
@@ -12,7 +12,7 @@ namespace Peernet.Browser.Infrastructure.Wrappers
 
         public ApiWrapper(ISettingsManager settingsManager)
         {
-            this.httpExecutor = new HttpExecutor(settingsManager);
+            httpExecutor = new HttpExecutor(settingsManager);
         }
 
         public override string CoreSegment => string.Empty;

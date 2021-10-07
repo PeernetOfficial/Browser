@@ -13,7 +13,7 @@ namespace Peernet.Browser.Infrastructure.Wrappers
 
         public ExploreWrapper(ISettingsManager settingsManager)
         {
-            this.httpExecutor = new HttpExecutor(settingsManager);
+            httpExecutor = new HttpExecutor(settingsManager);
         }
 
         public override string CoreSegment => "explore";

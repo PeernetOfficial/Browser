@@ -14,7 +14,7 @@ namespace Peernet.Browser.Infrastructure.Wrappers
 
         public BlockchainWrapper(ISettingsManager settingsManager)
         {
-            this.httpExecutor = new HttpExecutor(settingsManager);
+            httpExecutor = new HttpExecutor(settingsManager);
         }
 
         public override string CoreSegment => "blockchain/self";

@@ -14,7 +14,7 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public class DirectoryViewModel : MvxViewModel, ISearchable
     {
-        private readonly IBlockchainFacade blockchainService;
+        private readonly IBlockchainFacade blockchainFacade;
         private readonly IVirtualFileSystemFactory virtualFileSystemFactory;
         private List<ApiBlockRecordFile> activeSearchResults;
         private ObservableCollection<VirtualFileSystemEntity> pathElements;
@@ -24,9 +24,9 @@ namespace Peernet.Browser.Application.ViewModels
         private bool showSearchBox;
         private VirtualFileSystem.VirtualFileSystem virtualFileSystem;
 
-        public DirectoryViewModel(IBlockchainFacade blockchainService, IVirtualFileSystemFactory virtualFileSystemFactory)
+        public DirectoryViewModel(IBlockchainFacade blockchainFacade, IVirtualFileSystemFactory virtualFileSystemFactory)
         {
-            this.blockchainService = blockchainService;
+            this.blockchainFacade = blockchainFacade;
             this.virtualFileSystemFactory = virtualFileSystemFactory;
         }
 
@@ -40,7 +40,7 @@ namespace Peernet.Browser.Application.ViewModels
             new MvxAsyncCommand<ApiBlockRecordFile>(
                 async apiBlockRecordFile =>
                 {
-                    await blockchainService.DeleteSelfFile(apiBlockRecordFile);
+                    await blockchainFacade.DeleteSelfFile(apiBlockRecordFile);
                     await Initialize();
                 });
 
@@ -124,10 +124,10 @@ namespace Peernet.Browser.Application.ViewModels
 
         public override async Task Initialize()
         {
-            var header = await blockchainService.GetSelfHeader();
+            var header = await blockchainFacade.GetSelfHeader();
             if (header.Height > 0)
             {
-                sharedFiles = await blockchainService.GetSelfList() ?? new();
+                sharedFiles = await blockchainFacade.GetSelfList() ?? new();
                 ActiveSearchResults = sharedFiles?.ToList();
             }
 
