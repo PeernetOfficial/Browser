@@ -61,7 +61,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         private void Search()
         {
-            var toAdd = new SearchTabElement(SearchInput, RemoveTab, searchService);
+            var toAdd = new SearchTabElement(SearchInput, RemoveTab, searchService.SearchAsync);
             Tabs.Add(toAdd);
             SearchInput = "";
             SelectedIndex = Tabs.Count - 1;

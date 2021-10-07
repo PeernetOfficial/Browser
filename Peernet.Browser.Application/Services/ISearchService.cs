@@ -1,4 +1,5 @@
 ﻿using Peernet.Browser.Application.Models;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.Services
 {
@@ -7,5 +8,7 @@ namespace Peernet.Browser.Application.Services
         void Terminate(string id);
 
         SearchResultModel Search(SearchFilterResultModel model);
+
+        Task<SearchResultModel> SearchAsync(SearchFilterResultModel model);
     }
 }

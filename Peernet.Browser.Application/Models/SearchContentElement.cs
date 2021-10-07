@@ -61,9 +61,9 @@ namespace Peernet.Browser.Application.Models
             navigationService.Navigate<FiltersViewModel, FiltersModel>(Filters);
         }
 
-        private void Refresh()
+        private async void Refresh()
         {
-            var data = Filters.GetData(Download);
+            var data = await Filters.GetData(Download);
             TableResult.Clear();
             data.Rows.Foreach(x => TableResult.Add(x));
             RefreshIconFilters(data.Stats, data.Filters.FilterType);

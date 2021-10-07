@@ -4,6 +4,7 @@ using Peernet.Browser.Application.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure
 {
@@ -32,6 +33,14 @@ namespace Peernet.Browser.Infrastructure
                 .Select(x => new SearchResultRowModel(x))
                 .ToArray();
             return res;
+        }
+
+        public Task<SearchResultModel> SearchAsync(SearchFilterResultModel model)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return Search(model);
+            });
         }
 
         public void Terminate(string id)

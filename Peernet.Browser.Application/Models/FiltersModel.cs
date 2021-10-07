@@ -3,18 +3,19 @@ using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Enums;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.Models
 {
     public class FiltersModel : MvxNotifyPropertyChanged
     {
         private readonly string inputText;
-        private readonly Func<SearchFilterResultModel, SearchResultModel> refreshAction;
+        private readonly Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction;
         private int max;
         private int min;
         private string uuId;
 
-        public FiltersModel(string inputText, Func<SearchFilterResultModel, SearchResultModel> refreshAction)
+        public FiltersModel(string inputText, Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction)
         {
             this.inputText = inputText;
             this.refreshAction = refreshAction;
@@ -65,9 +66,9 @@ namespace Peernet.Browser.Application.Models
             RangeFilter.CurrentMin = SearchFilterResult.SizeFrom;
         }
 
-        public SearchResultModel GetData(Action<SearchResultRowModel> downloadAction)
+        public async Task<SearchResultModel> GetData(Action<SearchResultRowModel> downloadAction)
         {
-            var res = refreshAction(SearchFilterResult);
+            var res = await refreshAction(SearchFilterResult);
             uuId = res.Id;
             SetMinMax(res.Size.Item1, res.Size.Item2);
             res.Rows.Foreach(x => x.DownloadAction = downloadAction);
