@@ -4,6 +4,7 @@ using Peernet.Browser.Models.Domain;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Peernet.Browser.Models.Domain.Search;
 
 namespace Peernet.Browser.Infrastructure.Wrappers
 {

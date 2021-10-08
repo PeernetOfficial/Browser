@@ -9,6 +9,7 @@ using Peernet.Browser.Models.Presentation;
 using System.Linq;
 using System.Threading.Tasks;
 using Peernet.Browser.Application.Facades;
+using Peernet.Browser.Models.Presentation.Footer;
 
 namespace Peernet.Browser.Application.ViewModels
 {

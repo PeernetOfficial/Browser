@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Peernet.Browser.Models.Domain.Search;
+using Peernet.Browser.Models.Presentation.Home;
 
 namespace Peernet.Browser.Infrastructure.Facades
 {

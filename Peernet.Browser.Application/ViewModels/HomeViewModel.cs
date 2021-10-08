@@ -4,6 +4,7 @@ using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Models.Presentation;
 using System.Linq;
 using Peernet.Browser.Application.Facades;
+using Peernet.Browser.Models.Presentation.Home;
 
 namespace Peernet.Browser.Application.ViewModels
 {

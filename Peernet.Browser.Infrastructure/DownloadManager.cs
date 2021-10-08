@@ -4,30 +4,45 @@ using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Infrastructure.Wrappers;
 using Peernet.Browser.Models.Domain;
 using Peernet.Browser.Models.Presentation;
-using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Peernet.Browser.Models.Domain.Common;
+using Peernet.Browser.Models.Domain.Download;
+using Peernet.Browser.Models.Presentation.Footer;
 
 namespace Peernet.Browser.Infrastructure
 {
-    public class DownloadManager : INotifyPropertyChanged, IDownloadManager, IDisposable
+    public class DownloadManager : IDownloadManager
     {
         private readonly IDownloadWrapper _downloadWrapper;
-        private readonly Timer timer;
 
         public DownloadManager(ISettingsManager settingsManager)
         {
             _downloadWrapper = new DownloadWrapper(settingsManager);
-            timer = new Timer(
-                async _ => await GlobalContext.UiThreadDispatcher.ExecuteOnMainThreadAsync(async () =>
-                    await UpdateStatuses()), new AutoResetEvent(false), 1000, Timeout.Infinite);
+
+            // Fire on the thread-pool and forget
+            Task.Run(UpdateStatuses);
         }
 
-        // TODO: It needs to be both concurrent and observable collection
         public ObservableCollection<DownloadModel> ActiveFileDownloads { get; set; } = new();
+
+        public async Task<ApiResponseDownloadStatus> CancelDownload(string id)
+        {
+            return await _downloadWrapper.GetAction(id, DownloadAction.Cancel);
+        }
+
+        public async Task DequeueDownload(string id)
+        {
+            var downloadToDequeue = ActiveFileDownloads.First(d => d.Id == id);
+            ActiveFileDownloads.Remove(downloadToDequeue);
+        }
+
+        public async Task<ApiResponseDownloadStatus> PauseDownload(string id)
+        {
+            return await _downloadWrapper.GetAction(id, DownloadAction.Pause);
+        }
 
         public async Task QueueUpDownload(ApiBlockRecordFile file)
         {
@@ -45,48 +60,29 @@ namespace Peernet.Browser.Infrastructure
             }
         }
 
-        public async Task DequeueDownload(string id)
-        {
-            var downloadToDequeue = ActiveFileDownloads.First(d => d.Id == id);
-            ActiveFileDownloads.Remove(downloadToDequeue);
-        }
-
-        public async Task<ApiResponseDownloadStatus> PauseDownload(string id)
-        {
-            return await _downloadWrapper.GetAction(id, DownloadAction.Pause);
-        }
-
         public async Task<ApiResponseDownloadStatus> ResumeDownload(string id)
         {
             return await _downloadWrapper.GetAction(id, DownloadAction.Resume);
         }
 
-        public async Task<ApiResponseDownloadStatus> CancelDownload(string id)
-        {
-            return await _downloadWrapper.GetAction(id, DownloadAction.Cancel);
-        }
-
         private async Task UpdateStatuses()
         {
-            foreach (var download in ActiveFileDownloads)
+            while (true)
             {
-                var status = await _downloadWrapper.GetStatus(download.Id);
-                download.Progress = status.Progress.Percentage;
-
-                if (status.DownloadStatus == DownloadStatus.DownloadFinished)
+                foreach (var download in ActiveFileDownloads)
                 {
-                    ActiveFileDownloads.Remove(download);
+                    var status = await _downloadWrapper.GetStatus(download.Id);
+                    download.Progress = status.Progress.Percentage;
+
+                    if (status.DownloadStatus == DownloadStatus.DownloadFinished)
+                    {
+                        // To preserve thread-affinity
+                        await GlobalContext.UiThreadDispatcher.ExecuteOnMainThreadAsync(() => ActiveFileDownloads.Remove(download));
+                    }
                 }
+
+                Thread.Sleep(1000);
             }
-
-            timer.Change(1000, Timeout.Infinite);
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void Dispose()
-        {
-            timer?.Dispose();
         }
     }
 }

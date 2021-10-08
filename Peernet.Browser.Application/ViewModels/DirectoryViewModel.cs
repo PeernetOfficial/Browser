@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Peernet.Browser.Application.Facades;
+using Peernet.Browser.Models.Domain.Common;
 
 namespace Peernet.Browser.Application.ViewModels
 {

@@ -2,6 +2,7 @@
 using Peernet.Browser.Models.Presentation;
 using System.Collections.ObjectModel;
 using System.Threading;
+using Peernet.Browser.Models.Presentation.Footer;
 
 namespace Peernet.Browser.Application
 {

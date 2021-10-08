@@ -5,6 +5,7 @@ using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.Browser.Models.Domain;
 using System.Collections.Generic;
 using System.Linq;
+using Peernet.Browser.Models.Domain.Common;
 
 namespace Peernet.Browser.Tests.Application.VirtualFileSystem
 {

@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Peernet.Browser.Application.Extensions;
 using Peernet.Browser.Models.Extensions;
+using Peernet.Browser.Models.Presentation.Home;
 
 namespace Peernet.Browser.Application.ViewModels
 {

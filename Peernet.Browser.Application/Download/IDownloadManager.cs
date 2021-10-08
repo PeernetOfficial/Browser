@@ -2,6 +2,9 @@
 using Peernet.Browser.Models.Presentation;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Peernet.Browser.Models.Domain.Common;
+using Peernet.Browser.Models.Domain.Download;
+using Peernet.Browser.Models.Presentation.Footer;
 
 namespace Peernet.Browser.Application.Download
 {

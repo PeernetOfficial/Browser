@@ -3,6 +3,7 @@ using Peernet.Browser.Infrastructure.Http;
 using Peernet.Browser.Models.Domain;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Peernet.Browser.Models.Domain.Common;
 
 namespace Peernet.Browser.Infrastructure.Wrappers
 {
