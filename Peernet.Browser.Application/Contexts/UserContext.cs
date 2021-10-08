@@ -1,13 +1,11 @@
 ﻿using MvvmCross.Navigation;
+using Peernet.Browser.Application.Extensions;
 using Peernet.Browser.Application.Facades;
 using Peernet.Browser.Application.ViewModels;
-using Peernet.Browser.Models.Extensions;
-using Peernet.Browser.Models.Presentation;
+using Peernet.Browser.Models.Presentation.Profile;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
-using Peernet.Browser.Application.Extensions;
-using Peernet.Browser.Models.Presentation.Profile;
 
 namespace Peernet.Browser.Application.Contexts
 {
@@ -42,6 +40,7 @@ namespace Peernet.Browser.Application.Contexts
             }
         }
 
+        // todo: it should be asynchronous method
         public void ReloadContext()
         {
             // Needs to be placed on the ThreadPool to avoid deadlock

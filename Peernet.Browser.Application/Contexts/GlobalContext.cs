@@ -8,7 +8,7 @@ namespace Peernet.Browser.Application.Contexts
     {
         private static bool isMainWindowActive = true;
 
-        public static bool isLogoVisible;
+        private static bool isLogoVisible;
 
         private static bool isProfileMenuVisible;
 

@@ -3,13 +3,12 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Download;
+using Peernet.Browser.Application.Facades;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Wrappers;
-using Peernet.Browser.Models.Presentation;
+using Peernet.Browser.Models.Presentation.Footer;
 using System.Linq;
 using System.Threading.Tasks;
-using Peernet.Browser.Application.Facades;
-using Peernet.Browser.Models.Presentation.Footer;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -68,25 +67,24 @@ namespace Peernet.Browser.Application.ViewModels
         public IMvxCommand UploadCommand { get; }
 
         public IMvxCommand PauseDownloadCommand => new MvxAsyncCommand<string>(
-            id =>
+            async id =>
             {
                 // Make API call and validate result
-                DownloadManager.PauseDownload(id);
-                // This call shouldn't be made(either pause or dequeue should do all the job) - wait for the specification
-                DownloadManager.DequeueDownload(id);
+                await DownloadManager.PauseDownload(id);
+            });
 
-                return Task.CompletedTask;
+        public IMvxCommand ResumeDownloadCommand => new MvxAsyncCommand<string>(
+            async id =>
+            {
+                // Make API call and validate result
+                await DownloadManager.ResumeDownload(id);
             });
 
         public IMvxAsyncCommand<string> CancelDownloadCommand => new MvxAsyncCommand<string>(
-            id =>
+            async id =>
             {
                 // Make API call and validate result
-                DownloadManager.CancelDownload(id);
-                // This call shouldn't be made(either cancel or dequeue should do all the job) - wait for the specification
-                DownloadManager.DequeueDownload(id);
-
-                return Task.CompletedTask;
+                await DownloadManager.CancelDownload(id);
             });
 
         public override async Task Initialize()
@@ -134,10 +132,12 @@ namespace Peernet.Browser.Application.ViewModels
         private void UploadFiles()
         {
             var f = applicationManager.OpenFileDialog();
-            if (!f.Any()) return;
-            GlobalContext.IsMainWindowActive = false;
-            GlobalContext.IsProfileMenuVisible = false;
-            navigationService.Navigate<ShareNewFileViewModel, string[]>(f);
+            if (f.Any())
+            {
+                GlobalContext.IsMainWindowActive = false;
+                GlobalContext.IsProfileMenuVisible = false;
+                navigationService.Navigate<ShareNewFileViewModel, string[]>(f);
+            }
         }
     }
 }
