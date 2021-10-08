@@ -80,8 +80,8 @@ namespace Peernet.Browser.Infrastructure
         {
             while (true)
             {
-                // It should enumerate copy - not actual collection so the exception is not thrown when modifying collection from other thread
-                foreach (var download in ActiveFileDownloads)
+                var copy = ActiveFileDownloads.ToList();
+                foreach (var download in copy)
                 {
                     var status = await _downloadWrapper.GetStatus(download.Id);
                     download.Progress = status.Progress.Percentage;
@@ -91,7 +91,6 @@ namespace Peernet.Browser.Infrastructure
                     {
                         download.Progress = 100;
                         // To preserve thread-affinity
-                        // This causes updating to stop. When item is removed from collection the exception is thrown (modified during enumeration) and method exits
                         await GlobalContext.UiThreadDispatcher.ExecuteOnMainThreadAsync(() => ActiveFileDownloads.Remove(download));
                     }
                 }
