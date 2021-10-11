@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Peernet.Browser.Application.Wrappers
+namespace Peernet.Browser.Application.Clients
 {
     public interface ISocketClient
     {

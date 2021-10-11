@@ -1,17 +1,16 @@
-﻿using Peernet.Browser.Application.Managers;
-using Peernet.Browser.Infrastructure.Http;
-using Peernet.Browser.Models.Domain;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Infrastructure.Http;
 using Peernet.Browser.Models.Domain.Common;
 
-namespace Peernet.Browser.Infrastructure.Wrappers
+namespace Peernet.Browser.Infrastructure.Clients
 {
-    internal class ApiWrapper : WrapperBase, IApiWrapper
+    internal class ApiClient : ClientBase, IApiClient
     {
         private readonly IHttpExecutor httpExecutor;
 
-        public ApiWrapper(ISettingsManager settingsManager)
+        public ApiClient(ISettingsManager settingsManager)
         {
             httpExecutor = new HttpExecutor(settingsManager);
         }

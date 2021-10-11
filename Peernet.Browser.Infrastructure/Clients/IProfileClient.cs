@@ -1,10 +1,9 @@
-﻿using Peernet.Browser.Models.Domain;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Peernet.Browser.Models.Domain.Blockchain;
 
-namespace Peernet.Browser.Infrastructure.Wrappers
+namespace Peernet.Browser.Infrastructure.Clients
 {
-    public interface IProfileWrapper
+    public interface IProfileClient
     {
         Task<ApiBlockchainBlockStatus> AddUserImage(byte[] content);
 

@@ -1,27 +1,25 @@
 ﻿using Peernet.Browser.Application.Extensions;
-using Peernet.Browser.Application.Facades;
 using Peernet.Browser.Application.Managers;
-using Peernet.Browser.Infrastructure.Wrappers;
-using Peernet.Browser.Models.Domain;
-using Peernet.Browser.Models.Presentation;
+using Peernet.Browser.Application.Services;
+using Peernet.Browser.Infrastructure.Clients;
+using Peernet.Browser.Models.Domain.Search;
+using Peernet.Browser.Models.Presentation.Home;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Peernet.Browser.Models.Domain.Search;
-using Peernet.Browser.Models.Presentation.Home;
 
-namespace Peernet.Browser.Infrastructure.Facades
+namespace Peernet.Browser.Infrastructure.Services
 {
-    public class SearchFacade : ISearchFacade
+    public class SearchService : ISearchService
     {
-        private readonly ISearchWrapper searchWrapper;
+        private readonly ISearchClient searchClient;
 
         private readonly IDictionary<string, SearchResult> results = new Dictionary<string, SearchResult>();
 
-        public SearchFacade(ISettingsManager settingsManager)
+        public SearchService(ISettingsManager settingsManager)
         {
-            searchWrapper = new SearchWrapper(settingsManager);
+            searchClient = new SearchClient(settingsManager);
         }
 
         public async Task<SearchResultModel> Search(SearchFilterResultModel model)
@@ -32,10 +30,10 @@ namespace Peernet.Browser.Infrastructure.Facades
             }
 
             var res = new SearchResultModel { Filters = model, Stats = GetStats(), Size = new Tuple<int, int>(0, 15) };
-            var response = await searchWrapper.SubmitSearch(Map(model));
+            var response = await searchClient.SubmitSearch(Map(model));
             if (response.Status != 0) return res;
             res.Id = response.Id;
-            var result = await searchWrapper.GetSearchResult(response.Id);
+            var result = await searchClient.GetSearchResult(response.Id);
             results.Add(response.Id, result);
             if (result.Status > 1) return res;
             res.Rows = result.Files
@@ -46,7 +44,7 @@ namespace Peernet.Browser.Infrastructure.Facades
 
         public async Task Terminate(string id)
         {
-            await searchWrapper.TerminateSearch(id);
+            await searchClient.TerminateSearch(id);
             results.Remove(id);
         }
 

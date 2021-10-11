@@ -1,19 +1,18 @@
 ﻿using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Infrastructure.Http;
-using Peernet.Browser.Models.Domain;
+using Peernet.Browser.Models.Domain.Search;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using Peernet.Browser.Models.Domain.Search;
 
-namespace Peernet.Browser.Infrastructure.Wrappers
+namespace Peernet.Browser.Infrastructure.Clients
 {
-    internal class SearchWrapper : WrapperBase, ISearchWrapper
+    internal class SearchClient : ClientBase, ISearchClient
     {
         private readonly IHttpExecutor httpExecutor;
 
-        public SearchWrapper(ISettingsManager settingsManager)
+        public SearchClient(ISettingsManager settingsManager)
         {
             httpExecutor = new HttpExecutor(settingsManager);
         }

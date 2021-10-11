@@ -2,20 +2,20 @@
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
-using Peernet.Browser.Application.Facades;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.Services;
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public class EditProfileViewModel : MvxViewModel
     {
         private readonly IMvxNavigationService mvxNavigationService;
-        private readonly IProfileFacade profileFacade;
+        private readonly IProfileService profileService;
 
-        public EditProfileViewModel(IMvxNavigationService mvxNavigationService, IUserContext userContext, IProfileFacade profileFacade)
+        public EditProfileViewModel(IMvxNavigationService mvxNavigationService, IUserContext userContext, IProfileService profileService)
         {
             this.mvxNavigationService = mvxNavigationService;
-            this.profileFacade = profileFacade;
+            this.profileService = profileService;
 
             UserContext = userContext;
         }
@@ -30,7 +30,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IMvxAsyncCommand RemovePhotoCommand => new MvxAsyncCommand(() =>
         {
-            profileFacade.DeleteUserImage();
+            profileService.DeleteUserImage();
 
             return Task.CompletedTask;
         });
@@ -39,7 +39,7 @@ namespace Peernet.Browser.Application.ViewModels
         {
             if (UserContext.HasUserChanged)
             {
-                profileFacade.UpdateUser(UserContext.User.Name, UserContext.User.Image);
+                profileService.UpdateUser(UserContext.User.Name, UserContext.User.Image);
             }
 
             UserContext.ReloadContext();

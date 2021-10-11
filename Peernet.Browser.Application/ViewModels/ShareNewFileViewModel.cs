@@ -2,11 +2,11 @@
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
-using Peernet.Browser.Application.Facades;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Models.Presentation;
 using System.Linq;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.Services;
 using Peernet.Browser.Models.Presentation.Footer;
 
 namespace Peernet.Browser.Application.ViewModels
@@ -15,14 +15,14 @@ namespace Peernet.Browser.Application.ViewModels
     {
         private readonly IApplicationManager applicationManager;
         private readonly IMvxNavigationService mvxNavigationService;
-        private readonly IBlockchainFacade blockchainFacade;
+        private readonly IBlockchainService blockchainService;
         private SharedNewFileModel selected;
 
-        public ShareNewFileViewModel(IMvxNavigationService mvxNavigationService, IApplicationManager applicationManager, IBlockchainFacade blockchainFacade)
+        public ShareNewFileViewModel(IMvxNavigationService mvxNavigationService, IApplicationManager applicationManager, IBlockchainService blockchainService)
         {
             this.mvxNavigationService = mvxNavigationService;
             this.applicationManager = applicationManager;
-            this.blockchainFacade = blockchainFacade;
+            this.blockchainService = blockchainService;
 
             ConfirmCommand = new MvxAsyncCommand(Confirm);
             HideCommand = new MvxCommand(Hide);
@@ -88,7 +88,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         private async Task Confirm()
         {
-            await blockchainFacade.AddFilesAsync(Files);
+            await blockchainService.AddFilesAsync(Files);
             Hide();
         }
 

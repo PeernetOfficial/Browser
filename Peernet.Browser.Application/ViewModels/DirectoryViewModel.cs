@@ -1,21 +1,19 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
+using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.VirtualFileSystem;
-using Peernet.Browser.Application.Wrappers;
-using Peernet.Browser.Models.Domain;
+using Peernet.Browser.Models.Domain.Common;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Peernet.Browser.Application.Facades;
-using Peernet.Browser.Models.Domain.Common;
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public class DirectoryViewModel : MvxViewModel, ISearchable
     {
-        private readonly IBlockchainFacade blockchainFacade;
+        private readonly IBlockchainService blockchainService;
         private readonly IVirtualFileSystemFactory virtualFileSystemFactory;
         private List<ApiBlockRecordFile> activeSearchResults;
         private ObservableCollection<VirtualFileSystemEntity> pathElements;
@@ -25,9 +23,9 @@ namespace Peernet.Browser.Application.ViewModels
         private bool showSearchBox;
         private VirtualFileSystem.VirtualFileSystem virtualFileSystem;
 
-        public DirectoryViewModel(IBlockchainFacade blockchainFacade, IVirtualFileSystemFactory virtualFileSystemFactory)
+        public DirectoryViewModel(IBlockchainService blockchainService, IVirtualFileSystemFactory virtualFileSystemFactory)
         {
-            this.blockchainFacade = blockchainFacade;
+            this.blockchainService = blockchainService;
             this.virtualFileSystemFactory = virtualFileSystemFactory;
         }
 
@@ -41,7 +39,7 @@ namespace Peernet.Browser.Application.ViewModels
             new MvxAsyncCommand<ApiBlockRecordFile>(
                 async apiBlockRecordFile =>
                 {
-                    await blockchainFacade.DeleteSelfFile(apiBlockRecordFile);
+                    await blockchainService.DeleteSelfFile(apiBlockRecordFile);
                     await Initialize();
                 });
 
@@ -125,10 +123,10 @@ namespace Peernet.Browser.Application.ViewModels
 
         public override async Task Initialize()
         {
-            var header = await blockchainFacade.GetSelfHeader();
+            var header = await blockchainService.GetSelfHeader();
             if (header.Height > 0)
             {
-                sharedFiles = await blockchainFacade.GetSelfList() ?? new();
+                sharedFiles = await blockchainService.GetSelfList() ?? new();
                 ActiveSearchResults = sharedFiles?.ToList();
             }
 

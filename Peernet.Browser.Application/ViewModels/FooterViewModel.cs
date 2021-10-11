@@ -3,19 +3,19 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Download;
-using Peernet.Browser.Application.Facades;
 using Peernet.Browser.Application.Managers;
-using Peernet.Browser.Application.Wrappers;
 using Peernet.Browser.Models.Presentation.Footer;
 using System.Linq;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.Clients;
+using Peernet.Browser.Application.Services;
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public class FooterViewModel : MvxViewModel
     {
         private const int reconnectDelay = 2000;
-        private readonly IApiFacade apiFacade;
+        private readonly IApiService apiService;
         private readonly IApplicationManager applicationManager;
         private readonly IMvxNavigationService navigationService;
         private readonly ISocketClient socketClient;
@@ -24,9 +24,9 @@ namespace Peernet.Browser.Application.ViewModels
         private ConnectionStatus connectionStatus = ConnectionStatus.Offline;
         private string peers;
 
-        public FooterViewModel(IApiFacade apiFacade, ISocketClient socketClient, IMvxNavigationService navigationService, IApplicationManager applicationManager, IDownloadManager downloadManager)
+        public FooterViewModel(IApiService apiService, ISocketClient socketClient, IMvxNavigationService navigationService, IApplicationManager applicationManager, IDownloadManager downloadManager)
         {
-            this.apiFacade = apiFacade;
+            this.apiService = apiService;
             this.socketClient = socketClient;
             this.navigationService = navigationService;
             this.applicationManager = applicationManager;
@@ -116,7 +116,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         private async Task<bool> GetPeernetStatus()
         {
-            var status = await apiFacade.GetStatus();
+            var status = await apiService.GetStatus();
             ConnectionStatus = status.IsConnected ? ConnectionStatus.Online : ConnectionStatus.Offline;
             Peers = status.CountPeerList.ToString();
             return status.IsConnected;

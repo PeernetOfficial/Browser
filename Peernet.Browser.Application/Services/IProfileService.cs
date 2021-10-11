@@ -1,10 +1,9 @@
-﻿using Peernet.Browser.Models.Presentation;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Peernet.Browser.Models.Presentation.Profile;
 
-namespace Peernet.Browser.Application.Facades
+namespace Peernet.Browser.Application.Services
 {
-    public interface IProfileFacade
+    public interface IProfileService
     {
         Task<User> GetUser();
 

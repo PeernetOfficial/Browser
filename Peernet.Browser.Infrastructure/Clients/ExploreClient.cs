@@ -1,18 +1,17 @@
-﻿using Peernet.Browser.Application.Managers;
-using Peernet.Browser.Infrastructure.Http;
-using Peernet.Browser.Models.Domain;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Infrastructure.Http;
 using Peernet.Browser.Models.Domain.Search;
 
-namespace Peernet.Browser.Infrastructure.Wrappers
+namespace Peernet.Browser.Infrastructure.Clients
 {
-    internal class ExploreWrapper : WrapperBase, IExploreWrapper
+    internal class ExploreClient : ClientBase, IExploreClient
     {
         private readonly IHttpExecutor httpExecutor;
 
-        public ExploreWrapper(ISettingsManager settingsManager)
+        public ExploreClient(ISettingsManager settingsManager)
         {
             httpExecutor = new HttpExecutor(settingsManager);
         }

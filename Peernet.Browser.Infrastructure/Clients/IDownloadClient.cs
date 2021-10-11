@@ -1,10 +1,9 @@
-﻿using Peernet.Browser.Models.Domain;
+﻿using Peernet.Browser.Models.Domain.Download;
 using System.Threading.Tasks;
-using Peernet.Browser.Models.Domain.Download;
 
-namespace Peernet.Browser.Infrastructure.Wrappers
+namespace Peernet.Browser.Infrastructure.Clients
 {
-    public interface IDownloadWrapper
+    public interface IDownloadClient
     {
         Task<ApiResponseDownloadStatus> Start(string path, byte[] hash, byte[] node);
 

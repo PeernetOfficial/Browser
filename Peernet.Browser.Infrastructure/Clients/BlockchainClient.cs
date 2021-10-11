@@ -1,20 +1,19 @@
-﻿using Peernet.Browser.Application.Managers;
-using Peernet.Browser.Infrastructure.Http;
-using Peernet.Browser.Models.Domain;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Infrastructure.Http;
 using Peernet.Browser.Models.Domain.Blockchain;
 using Peernet.Browser.Models.Domain.Common;
 
-namespace Peernet.Browser.Infrastructure.Wrappers
+namespace Peernet.Browser.Infrastructure.Clients
 {
-    internal class BlockchainWrapper : WrapperBase, IBlockchainWrapper
+    internal class BlockchainClient : ClientBase, IBlockchainClient
     {
         private readonly IHttpExecutor httpExecutor;
 
-        public BlockchainWrapper(ISettingsManager settingsManager)
+        public BlockchainClient(ISettingsManager settingsManager)
         {
             httpExecutor = new HttpExecutor(settingsManager);
         }

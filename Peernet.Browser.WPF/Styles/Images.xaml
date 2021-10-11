@@ -27,6 +27,9 @@
             <DataTrigger Binding="{Binding File.Type}" Value="{x:Static common:LowLevelFileType.Picture}">
                 <Setter Property="Source" Value="{DynamicResource Picture_SelectedDrawingImage}" />
             </DataTrigger>
+            <DataTrigger Binding="{Binding IsCompleted}" Value="True">
+                <Setter Property="Source" Value="{DynamicResource Tick_ActiveDrawingImage}" />
+            </DataTrigger>
         </Style.Triggers>
     </Style>
 

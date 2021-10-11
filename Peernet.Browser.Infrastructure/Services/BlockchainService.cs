@@ -1,40 +1,38 @@
-﻿using Peernet.Browser.Application.Facades;
-using Peernet.Browser.Application.Managers;
-using Peernet.Browser.Infrastructure.Wrappers;
-using Peernet.Browser.Models.Domain;
-using Peernet.Browser.Models.Presentation;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Application.Services;
+using Peernet.Browser.Infrastructure.Clients;
 using Peernet.Browser.Models.Domain.Blockchain;
 using Peernet.Browser.Models.Domain.Common;
 using Peernet.Browser.Models.Presentation.Footer;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Peernet.Browser.Infrastructure.Facades
+namespace Peernet.Browser.Infrastructure.Services
 {
-    public class BlockchainFacade : IBlockchainFacade
+    public class BlockchainService : IBlockchainService
     {
-        private readonly IBlockchainWrapper blockchainWrapper;
+        private readonly IBlockchainClient blockchainClient;
 
-        public BlockchainFacade(ISettingsManager settingsManager)
+        public BlockchainService(ISettingsManager settingsManager)
         {
-            blockchainWrapper = new BlockchainWrapper(settingsManager);
+            blockchainClient = new BlockchainClient(settingsManager);
         }
 
         // todo: it should consume some presentation model
         public async Task DeleteSelfFile(ApiBlockRecordFile apiBlockRecordFile)
         {
-            await blockchainWrapper.DeleteSelfFile(apiBlockRecordFile);
+            await blockchainClient.DeleteSelfFile(apiBlockRecordFile);
         }
 
         public async Task<ApiBlockchainHeader> GetSelfHeader()
         {
-            return await blockchainWrapper.GetSelfHeader();
+            return await blockchainClient.GetSelfHeader();
         }
 
         public async Task<List<ApiBlockRecordFile>> GetSelfList()
         {
-            return (await blockchainWrapper.GetSelfList()).Files;
+            return (await blockchainClient.GetSelfList()).Files;
         }
 
         public async Task AddFilesAsync(IEnumerable<SharedNewFileModel> files)
@@ -50,7 +48,7 @@ namespace Peernet.Browser.Infrastructure.Facades
                     })
                 .ToList();
 
-            await blockchainWrapper.AddFiles(new ApiBlockchainAddFiles { Files = data });
+            await blockchainClient.AddFiles(new ApiBlockchainAddFiles { Files = data });
         }
     }
 }

@@ -1,23 +1,23 @@
 ﻿using MvvmCross.Navigation;
 using Peernet.Browser.Application.Extensions;
-using Peernet.Browser.Application.Facades;
 using Peernet.Browser.Application.ViewModels;
 using Peernet.Browser.Models.Presentation.Profile;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.Services;
 
 namespace Peernet.Browser.Application.Contexts
 {
     public class UserContext : INotifyPropertyChanged, IUserContext
     {
         private readonly IMvxNavigationService mvxNavigationService;
-        private readonly IProfileFacade profileFacade;
+        private readonly IProfileService profileService;
         private User user;
 
-        public UserContext(IProfileFacade profileFacade, IMvxNavigationService mvxNavigationService)
+        public UserContext(IProfileService profileService, IMvxNavigationService mvxNavigationService)
         {
-            this.profileFacade = profileFacade;
+            this.profileService = profileService;
             this.mvxNavigationService = mvxNavigationService;
 
             ReloadContext();
@@ -44,7 +44,7 @@ namespace Peernet.Browser.Application.Contexts
         public void ReloadContext()
         {
             // Needs to be placed on the ThreadPool to avoid deadlock
-            User = Task.Run(async () => await profileFacade.GetUser()).GetResultBlockingWithoutContextSynchronization();
+            User = Task.Run(async () => await profileService.GetUser()).GetResultBlockingWithoutContextSynchronization();
             Items = InitializeMenuItems();
         }
 
