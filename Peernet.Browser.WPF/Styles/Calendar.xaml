@@ -4,16 +4,21 @@
                     xmlns:converters="clr-namespace:Peernet.Browser.WPF.Converters"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
-    <Style x:Key="Ccc" TargetType="{x:Type Calendar}">
+    <Style x:Key="PeernetCalendar" TargetType="{x:Type Calendar}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Foreground" Value="{StaticResource DarkGreenBrush}" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="CalendarDayButtonStyle" Value= "{DynamicResource CalendarDayButtonStyle}" />
+        <Setter Property="CalendarDayButtonStyle" Value="{DynamicResource CalendarDayButtonStyle}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Calendar}">
                     <StackPanel x:Name="PART_Root" HorizontalAlignment="Center">
-                        <CalendarItem x:Name="PART_CalendarItem" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Style="{DynamicResource CalendarItemStyle}" />
+                        <CalendarItem x:Name="PART_CalendarItem"
+                                      BorderBrush="{TemplateBinding BorderBrush}"
+                                      BorderThickness="{TemplateBinding BorderThickness}"
+                                      Background="{TemplateBinding Background}"
+                                      Style="{DynamicResource CalendarItemStyle}" />
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>
@@ -21,6 +26,155 @@
     </Style>
 
     <sys:Double x:Key="MyValue">20</sys:Double>
+
+    <Style x:Key="CalendarItemStyle" TargetType="{x:Type CalendarItem}">
+        <Setter Property="Margin"
+          Value="0,3,0,3" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CalendarItem}">
+                    <ControlTemplate.Resources>
+                        <DataTemplate x:Key="{x:Static CalendarItem.DayTitleTemplateResourceKey}">
+                            <TextBlock Foreground="#FF333333"
+                                        FontWeight="Bold"
+                                        FontSize="9.5"
+                                        FontFamily="Verdana"
+                                        Margin="0,6,0,6"
+                                        Text="{Binding}"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center" />
+                        </DataTemplate>
+                    </ControlTemplate.Resources>
+                    <Grid x:Name="PART_Root">
+                        <Grid.Resources>
+                            <SolidColorBrush x:Key="DisabledColor"
+                             Color="#A5FFFFFF" />
+                        </Grid.Resources>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0"
+                                                            To="1"
+                                                            Storyboard.TargetProperty="Opacity"
+                                                            Storyboard.TargetName="PART_DisabledVisual" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="1">
+                            <Border BorderThickness="0">
+                                <Grid>
+                                    <Grid.Resources>
+                                    </Grid.Resources>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Button x:Name="PART_PreviousButton"
+                        Content="&lt;" Style="{StaticResource PrimaryButton}"
+                        Focusable="False"
+                        Grid.Column="1"
+                        Grid.Row="0" />
+                                    <Button x:Name="PART_HeaderButton"  Style="{StaticResource PrimaryButton}"
+                        Focusable="False"
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Content="{Binding}" />
+                                    <Button x:Name="PART_NextButton"
+                        Focusable="False"
+                        Grid.Column="2"
+                        Grid.Row="0"
+                        Content="&gt;"   Style="{StaticResource PrimaryButton}" />
+                                    <Grid x:Name="PART_MonthView" Visibility="Visible" Grid.ColumnSpan="3" Grid.Row="1" Margin="6,-1,6,6" HorizontalAlignment="Center">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                    </Grid>
+                                    <Grid x:Name="PART_YearView" Visibility="Hidden" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Center" Margin="6,-3,7,6">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                        </Border>
+                        <Rectangle x:Name="PART_DisabledVisual"
+                     Fill="{StaticResource DisabledColor}"
+                     Opacity="0"
+                     RadiusY="2"
+                     RadiusX="2"
+                     Stretch="Fill"
+                     Stroke="{StaticResource DisabledColor}"
+                     StrokeThickness="1"
+                     Visibility="Collapsed" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled"
+                   Value="False">
+                            <Setter Property="Visibility"
+                    TargetName="PART_DisabledVisual"
+                    Value="Visible" />
+                        </Trigger>
+                        <DataTrigger Binding="{Binding DisplayMode,
+              RelativeSource={RelativeSource FindAncestor,
+              AncestorType={x:Type Calendar}}}"
+                       Value="Year">
+                            <Setter Property="Visibility"
+                    TargetName="PART_MonthView"
+                    Value="Hidden" />
+                            <Setter Property="Visibility"
+                    TargetName="PART_YearView"
+                    Value="Visible" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding DisplayMode,
+              RelativeSource={RelativeSource FindAncestor,
+              AncestorType={x:Type Calendar}}}"
+                       Value="Decade">
+                            <Setter Property="Visibility"
+                    TargetName="PART_MonthView"
+                    Value="Hidden" />
+                            <Setter Property="Visibility"
+                    TargetName="PART_YearView"
+                    Value="Visible" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <Style TargetType="{x:Type CalendarDayButton}"   x:Key="CalendarDayButtonStyle">
         <Setter Property="MinWidth" Value="5" />
