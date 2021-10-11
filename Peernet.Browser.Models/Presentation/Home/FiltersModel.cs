@@ -1,9 +1,8 @@
-﻿using System;
+﻿using MvvmCross.Commands;
+using MvvmCross.ViewModels;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using MvvmCross.Commands;
-using MvvmCross.ViewModels;
-using Peernet.Browser.Application.Extensions;
 
 namespace Peernet.Browser.Models.Presentation.Home
 {

@@ -1,7 +1,7 @@
-﻿using Peernet.Browser.Application.Extensions;
-using Peernet.Browser.Application.Managers;
+﻿using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Infrastructure.Clients;
+using Peernet.Browser.Models.Domain.Common;
 using Peernet.Browser.Models.Domain.Search;
 using Peernet.Browser.Models.Presentation.Home;
 using System;
@@ -26,7 +26,7 @@ namespace Peernet.Browser.Infrastructure.Services
         {
             if (!model.PrevId.IsNullOrEmpty())
             {
-                await Terminate(model.PrevId);
+                Terminate(model.PrevId);
             }
 
             var res = new SearchResultModel { Filters = model, Stats = GetStats(), Size = new Tuple<int, int>(0, 15) };
@@ -42,17 +42,9 @@ namespace Peernet.Browser.Infrastructure.Services
             return res;
         }
 
-        public Task<SearchResultModel> SearchAsync(SearchFilterResultModel model)
+        private async void Terminate(string id)
         {
-            return Task.Factory.StartNew(() =>
-            {
-                return Search(model);
-            });
-        }
-
-        public void Terminate(string id)
-        {
-            api.TerminateSearch(id);
+            await searchClient.TerminateSearch(id);
             results.Remove(id);
         }
 

@@ -1,5 +1,5 @@
-﻿using Peernet.Browser.Application.Enums;
-using Peernet.Browser.Application.Models;
+﻿using Peernet.Browser.Application.ViewModels;
+using Peernet.Browser.Models.Presentation.Home;
 using System.ComponentModel;
 using System.Windows.Controls;
 
@@ -21,7 +21,7 @@ namespace Peernet.Browser.WPF.Controls
             var column = e.Column;
             var direction = (column.SortDirection != ListSortDirection.Ascending) ? ListSortDirection.Ascending : ListSortDirection.Descending;
             column.SortDirection = direction;
-            if (DataContext is SearchContentElement model)
+            if (DataContext is SearchContentElementViewModel model)
             {
                 model.OnSorting(e.Column.SortMemberPath, direction == ListSortDirection.Ascending ? DataGridSortingTypeEnum.Asc : DataGridSortingTypeEnum.Desc);
             }

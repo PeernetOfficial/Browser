@@ -1,10 +1,9 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
-using Peernet.Browser.Models.Presentation;
-using System.Linq;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Models.Presentation.Home;
+using System.Linq;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -61,7 +60,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         private void Search()
         {
-            var toAdd = new SearchTabElement(SearchInput, RemoveTab, searchService.SearchAsync);
+            var toAdd = new SearchTabElementViewModel(SearchInput, RemoveTab, searchService.Search);
             Tabs.Add(toAdd);
             SearchInput = "";
             SelectedIndex = Tabs.Count - 1;

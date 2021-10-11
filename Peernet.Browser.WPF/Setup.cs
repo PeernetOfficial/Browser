@@ -12,7 +12,6 @@ using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.Browser.Infrastructure;
-using Peernet.Browser.Infrastructure.Services;
 using Serilog;
 using Serilog.Extensions.Logging;
 using System.Reflection;
@@ -51,7 +50,7 @@ namespace Peernet.Browser.WPF
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            var assembly = typeof(CmdClient).GetTypeInfo().Assembly;
+            var assembly = typeof(SocketClient).GetTypeInfo().Assembly;
             CreatableTypes(assembly)
                 .EndingWith("Service")
                 .AsInterfaces()

@@ -1,8 +1,7 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Linq;
 
-namespace Peernet.Browser.Models.Extensions
+namespace System
 {
     public static class EnumExtension
     {

@@ -46,7 +46,7 @@ namespace Peernet.Browser.Infrastructure.Clients
                 [nameof(id)] = id,
             };
 
-            await httpExecutor.GetResult<SearchResult>(HttpMethod.Get, GetRelativeRequestPath("terminate"), parameters);
+            await httpExecutor.GetResult<string>(HttpMethod.Get, GetRelativeRequestPath("terminate"), parameters);
         }
     }
 }

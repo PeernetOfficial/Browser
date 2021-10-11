@@ -1,5 +1,6 @@
-﻿namespace Peernet.Browser.Models.Presentation.Home
-using System;
+﻿using System;
+
+namespace Peernet.Browser.Models.Presentation.Home
 {
     public class DateFilterModel : CustomFilterModel<TimePeriods>
     {

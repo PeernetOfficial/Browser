@@ -3,15 +3,10 @@ using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
-using Peernet.Browser.Models.Domain;
-using Peernet.Browser.Models.Presentation;
+using Peernet.Browser.Models.Presentation.Home;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Peernet.Browser.Application.Extensions;
-using Peernet.Browser.Models.Extensions;
-using Peernet.Browser.Models.Presentation.Home;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -67,7 +62,6 @@ namespace Peernet.Browser.Application.ViewModels
         private async void Refresh()
         {
             var data = await Filters.GetData(Download);
-                .GetResultBlockingWithoutContextSynchronization();
             TableResult.Clear();
             data.Rows.Foreach(x => TableResult.Add(x));
             RefreshIconFilters(data.Stats, data.Filters.FilterType);
