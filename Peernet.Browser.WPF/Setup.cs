@@ -4,14 +4,15 @@ using MvvmCross.IoC;
 using MvvmCross.Navigation;
 using MvvmCross.Navigation.EventArguments;
 using MvvmCross.Platforms.Wpf.Core;
-using MvvmCross.Platforms.Wpf.Views;
 using MvvmCross.Plugin;
+using Peernet.Browser.Application.Clients;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Download;
-using Peernet.Browser.Application.Http;
+using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.Browser.Infrastructure;
+using Peernet.Browser.Infrastructure.Services;
 using Serilog;
 using Serilog.Extensions.Logging;
 
@@ -49,8 +50,7 @@ namespace Peernet.Browser.WPF
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            iocProvider.RegisterType<IRestClientFactory, RestClientFactory>();
-            iocProvider.RegisterType<ICmdClient, CmdClient>();
+            iocProvider.RegisterType<IApiService, ApiService>();
             iocProvider.RegisterType<ISocketClient, SocketClient>();
             iocProvider.RegisterType<IProfileService, ProfileService>();
             iocProvider.RegisterSingleton<IUserContext>(() => new UserContext(iocProvider.Resolve<IProfileService>(), iocProvider.Resolve<IMvxNavigationService>()));
@@ -59,8 +59,7 @@ namespace Peernet.Browser.WPF
             iocProvider.RegisterType<IFilesToCategoryBinder, FilesToCategoryBinder>();
             iocProvider.RegisterType<IExploreService, ExploreService>();
             iocProvider.RegisterType<ISearchService, SearchService>();
-            iocProvider.RegisterType<IDownloadService, DownloadService>();
-            iocProvider.RegisterSingleton<IDownloadManager>(new DownloadManager(iocProvider.Resolve<IDownloadService>()));
+            iocProvider.RegisterSingleton<IDownloadManager>(new DownloadManager(iocProvider.Resolve<ISettingsManager>()));
             GlobalContext.UiThreadDispatcher = iocProvider.Resolve<IMvxMainThreadAsyncDispatcher>();
             ObserveNavigation(iocProvider);
         }

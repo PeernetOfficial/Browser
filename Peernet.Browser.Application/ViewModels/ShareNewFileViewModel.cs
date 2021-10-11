@@ -2,9 +2,12 @@
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
-using Peernet.Browser.Application.Models;
-using Peernet.Browser.Application.Services;
+using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Models.Presentation;
 using System.Linq;
+using System.Threading.Tasks;
+using Peernet.Browser.Application.Services;
+using Peernet.Browser.Models.Presentation.Footer;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -21,7 +24,7 @@ namespace Peernet.Browser.Application.ViewModels
             this.applicationManager = applicationManager;
             this.blockchainService = blockchainService;
 
-            ConfirmCommand = new MvxCommand(Confirm);
+            ConfirmCommand = new MvxAsyncCommand(Confirm);
             HideCommand = new MvxCommand(Hide);
 
             LeftCommand = new MvxCommand(() => Manipulate(false));
@@ -41,7 +44,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IMvxCommand ChangeCommand { get; }
 
-        public IMvxCommand ConfirmCommand { get; }
+        public IMvxAsyncCommand ConfirmCommand { get; }
 
         public MvxObservableCollection<SharedNewFileModel> Files { get; } = new MvxObservableCollection<SharedNewFileModel>();
 
@@ -83,9 +86,9 @@ namespace Peernet.Browser.Application.ViewModels
             //TODO: USE service??
         }
 
-        private void Confirm()
+        private async Task Confirm()
         {
-            blockchainService.AddFiles(Files);
+            await blockchainService.AddFilesAsync(Files);
             Hide();
         }
 

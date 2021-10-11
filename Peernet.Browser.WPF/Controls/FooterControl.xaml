@@ -37,13 +37,13 @@
                 </StatusBarItem>
                 <StatusBarItem Margin="14,0,0,0" HorizontalAlignment="Left">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Peers}" Foreground="#113E48" FontFamily="Inter" FontSize="14" FontWeight="SemiBold"/>
-                        <TextBlock Text="Peers" Foreground="#113E48" FontFamily="Inter" FontSize="14" FontWeight="Regular" Margin="3, 0,0 , 0"/>
+                        <TextBlock Text="{Binding Peers}" Foreground="#113E48" FontFamily="Inter" FontSize="14" FontWeight="SemiBold" />
+                        <TextBlock Text="Peers" Foreground="#113E48" FontFamily="Inter" FontSize="14" FontWeight="Regular" Margin="3, 0,0 , 0" />
                     </StackPanel>
                 </StatusBarItem>
             </StatusBar>
         </DockPanel>
-        <Border Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" CornerRadius="3" Margin="0, 0, 0, 27" Padding="20">
+        <Border Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" CornerRadius="3" Margin="0, 0, 0, 18" Padding="20, 6 , 15, 6">
             <Border.Background>
                 <SolidColorBrush Color="White" />
             </Border.Background>
@@ -51,49 +51,78 @@
                 <DropShadowEffect Color="Black" Opacity="0.12" ShadowDepth="4" BlurRadius="24" />
             </Border.Effect>
             <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <ItemsControl ItemsSource="{Binding DownloadManager.ActiveFileDownloads}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <Image Grid.Column="0" Height="20" Width="15" Style="{StaticResource DownloadItemImageStyle}" HorizontalAlignment="Left"/>
-                                <TextBlock Grid.Column="1" Text="{Binding Name}" Style="{StaticResource Active}" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" ToolTip="{Binding Name}" Margin="5,0,0,0" />
-                                <TextBlock Grid.Column="2" Text="75%" Style="{StaticResource Active}" VerticalAlignment="Center" FontWeight="SemiBold" Margin="10,0,0,0" />
-                                <ProgressBar Grid.Column="3" Margin="12,0,0,0" Minimum="0" Maximum="100" Value="70" Width="100" Background="#F2F2F2" Foreground="{StaticResource DarkGreenBrush}" BorderThickness="0" Height="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                <StackPanel Grid.Column="4" Orientation="Horizontal">
-                                    <Button Cursor="Hand" Foreground="{StaticResource DarkGreenBrush}" Style="{StaticResource PauseButtonStyle}" Command="{Binding DataContext.PauseDownloadCommand, ElementName=Footer}" CommandParameter="{Binding}" />
-                                    <Button Cursor="Hand" Foreground="{StaticResource DarkGreenBrush}" Style="{StaticResource CloseButtonStyle}" Command="{Binding DataContext.CancelDownloadCommand, ElementName=Footer}" CommandParameter="{Binding}" />
-                                </StackPanel>
-                                <Button Grid.Column="5" Content="Hide">
-                                    <Button.Style>
-                                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource PrimaryButton}">
-                                            <Setter Property="ContentTemplate">
-                                                <Setter.Value>
-                                                    <DataTemplate>
-                                                        <TextBlock TextDecorations="Underline" Text="{TemplateBinding Content}" />
-                                                    </DataTemplate>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Style>
-                                    </Button.Style>
-                                </Button>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                <StackPanel Orientation="Horizontal">
+                    <ItemsControl x:Name="DownloadsList" ItemsSource="{Binding DownloadManager.ActiveFileDownloads}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="24"></ColumnDefinition>
+                                        <ColumnDefinition Width="190"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Height="20" Width="15" Style="{StaticResource DownloadItemImageStyle}" />
+                                    <TextBlock Grid.Column="1" Text="{Binding DisplayName}" Style="{StaticResource Active}" FontWeight="SemiBold" VerticalAlignment="Center" ToolTip="{Binding File.Name}" Margin="5,0,0,0" HorizontalAlignment="Left" />
+                                    <TextBlock x:Name="ProgressValue" Grid.Column="2" VerticalAlignment="Center" FontWeight="SemiBold" >
+                                        <TextBlock.Style>
+                                            <Style BasedOn="{StaticResource Active}" TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Text" Value="{Binding Progress, StringFormat={}{0}%}"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsCompleted}" Value="True">
+                                                        <Setter Property="Text" Value="Downloading completed!" />
+                                                        <Setter Property="Grid.ColumnSpan" Value="2" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                    <ProgressBar x:Name="ProgressBar" Grid.Column="3" Margin="12,0,0,0" Minimum="0" Maximum="100" Value="{Binding Progress}" Width="100" Background="#F2F2F2" Foreground="{StaticResource DarkGreenBrush}" BorderThickness="0" Height="1" VerticalAlignment="Center">
+                                        <ProgressBar.Style>
+                                            <Style TargetType="{x:Type ProgressBar}">
+                                                <Setter Property="Visibility" Value="Visible" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsCompleted}" Value="True">
+                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </ProgressBar.Style>
+                                    </ProgressBar>
+                                    <StackPanel Grid.Column="4" Orientation="Horizontal">
+                                        <Button Cursor="Hand" Foreground="{StaticResource DarkGreenBrush}" CommandParameter="{Binding Id}">
+                                            <Button.Style>
+                                                <Style BasedOn="{StaticResource PauseResumeButtonStyle}" TargetType="{x:Type Button}">
+                                                    <Setter Property="Visibility" Value="Visible" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsCompleted}" Value="True">
+                                                            <Setter Property="Visibility" Value="Collapsed" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
+                                        <Button Cursor="Hand" Foreground="{StaticResource DarkGreenBrush}" Style="{StaticResource CloseButtonStyle}" Command="{Binding DataContext.CancelDownloadCommand, ElementName=Footer}" CommandParameter="{Binding Id}" />
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <TextBlock x:Name="CollapsedDownloadsText" Style="{StaticResource Active}" FontSize="10" HorizontalAlignment="Left" Visibility="Collapsed">
+                        <TextBlock x:Name="FileNameText" />
+                        <TextBlock x:Name="FilesCounterText" FontWeight="Bold" />
+                        <TextBlock x:Name="DownloadingText" />
+                    </TextBlock>
+                    <Button x:Name="DownloadsToggleButton" Click="Downloads_Toggle" Margin="10, 0, 10, 0" Content="Hide" Style="{StaticResource PrimaryButton}" />
+                </StackPanel>
             </ScrollViewer>
             <Border.Style>
                 <Style TargetType="{x:Type Border}">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding DownloadManager.ActiveFileDownloads.Count}" Value="0">
-                            <Setter Property="Visibility" Value="Hidden"></Setter>
+                            <Setter Property="Visibility" Value="Hidden" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>

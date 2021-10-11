@@ -1,8 +1,8 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
-using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.VirtualFileSystem;
+using Peernet.Browser.Models.Domain.Common;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -37,12 +37,10 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IMvxAsyncCommand<ApiBlockRecordFile> DeleteCommand =>
             new MvxAsyncCommand<ApiBlockRecordFile>(
-                apiBlockRecordFile =>
+                async apiBlockRecordFile =>
                 {
-                    blockchainService.DeleteSelfFile(apiBlockRecordFile);
-                    Initialize();
-
-                    return Task.CompletedTask;
+                    await blockchainService.DeleteSelfFile(apiBlockRecordFile);
+                    await Initialize();
                 });
 
         public IMvxAsyncCommand<ApiBlockRecordFile> EditCommand =>
@@ -113,25 +111,22 @@ namespace Peernet.Browser.Application.ViewModels
 
         public VirtualFileSystem.VirtualFileSystem VirtualFileSystem
         {
-            get
-            {
-                virtualFileSystem.Sort();
-                return virtualFileSystem;
-            }
+            get => virtualFileSystem;
             set => SetProperty(ref virtualFileSystem, value);
         }
+
         public void ChangeSelectedEntity(VirtualFileSystemEntity entity)
         {
             VirtualFileSystem.ResetSelection();
             entity.IsSelected = true;
         }
 
-        public override Task Initialize()
+        public override async Task Initialize()
         {
-            var header = blockchainService.GetSelfHeader();
+            var header = await blockchainService.GetSelfHeader();
             if (header.Height > 0)
             {
-                sharedFiles = blockchainService.GetSelfList().Files ?? new();
+                sharedFiles = await blockchainService.GetSelfList() ?? new();
                 ActiveSearchResults = sharedFiles?.ToList();
             }
 
@@ -139,7 +134,7 @@ namespace Peernet.Browser.Application.ViewModels
             AddRecentTier(sharedFiles);
             AddAllFilesTier(sharedFiles);
 
-            return base.Initialize();
+            await base.Initialize();
         }
 
         private void AddAllFilesTier(IEnumerable<ApiBlockRecordFile> allFiles)

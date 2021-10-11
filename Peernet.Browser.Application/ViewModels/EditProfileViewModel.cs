@@ -2,8 +2,8 @@
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
-using Peernet.Browser.Application.Services;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.Services;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -39,8 +39,7 @@ namespace Peernet.Browser.Application.ViewModels
         {
             if (UserContext.HasUserChanged)
             {
-                profileService.AddUserName(UserContext.User.Name);
-                profileService.AddUserImage(UserContext.User.Image);
+                profileService.UpdateUser(UserContext.User.Name, UserContext.User.Image);
             }
 
             UserContext.ReloadContext();

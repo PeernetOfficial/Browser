@@ -1,15 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using Peernet.Browser.Models.Domain.Common;
+using Peernet.Browser.Models.Domain.Download;
+using Peernet.Browser.Models.Presentation.Footer;
+using System;
 using System.Collections.ObjectModel;
-using Peernet.Browser.Application.Models;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.Download
 {
     public interface IDownloadManager
     {
-        ObservableCollection<ApiBlockRecordFile> ActiveFileDownloads { get; set; }
+        event EventHandler downloadsChanged;
 
-        void QueueUpDownload(ApiBlockRecordFile file);
+        ObservableCollection<DownloadModel> ActiveFileDownloads { get; set; }
 
-        void DequeueDownload(ApiBlockRecordFile file);
+        Task QueueUpDownload(ApiBlockRecordFile file);
+
+        Task<ApiResponseDownloadStatus> PauseDownload(string id);
+
+        Task<ApiResponseDownloadStatus> ResumeDownload(string id);
+
+        Task<ApiResponseDownloadStatus> CancelDownload(string id);
     }
 }

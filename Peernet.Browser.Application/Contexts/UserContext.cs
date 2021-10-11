@@ -1,9 +1,11 @@
 ﻿using MvvmCross.Navigation;
-using Peernet.Browser.Application.Models;
-using Peernet.Browser.Application.Services;
+using Peernet.Browser.Application.Extensions;
 using Peernet.Browser.Application.ViewModels;
+using Peernet.Browser.Models.Presentation.Profile;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Threading.Tasks;
+using Peernet.Browser.Application.Services;
 
 namespace Peernet.Browser.Application.Contexts
 {
@@ -23,9 +25,9 @@ namespace Peernet.Browser.Application.Contexts
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        
+
         public bool HasUserChanged { get; private set; }
-        
+
         public List<MenuItemViewModel> Items { get; private set; }
 
         public User User
@@ -38,9 +40,11 @@ namespace Peernet.Browser.Application.Contexts
             }
         }
 
+        // todo: it should be asynchronous method
         public void ReloadContext()
         {
-            User = InitializeUser();
+            // Needs to be placed on the ThreadPool to avoid deadlock
+            User = Task.Run(async () => await profileService.GetUser()).GetResultBlockingWithoutContextSynchronization();
             Items = InitializeMenuItems();
         }
 
@@ -65,18 +69,6 @@ namespace Peernet.Browser.Application.Contexts
                         mvxNavigationService.Navigate<EditProfileViewModel>();
                     })
                 };
-        }
-
-        private User InitializeUser()
-        {
-            var image = profileService.GetUserImage();
-            var name = profileService.GetUserName();
-
-            return new User
-            {
-                Name = string.IsNullOrEmpty(name) ? null : name,
-                Image = image?.Length == 0 ? null : image
-            };
         }
     }
 }

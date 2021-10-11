@@ -1,10 +1,10 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
-using Peernet.Browser.Application.Enums;
-using Peernet.Browser.Application.Models;
-using Peernet.Browser.Application.Services;
+using Peernet.Browser.Models.Presentation;
 using System.Linq;
+using Peernet.Browser.Application.Services;
+using Peernet.Browser.Models.Presentation.Home;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -49,11 +49,11 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        public SearchContentElement Content => SelectedIndex < 0 ? null : Tabs[SelectedIndex].Content;
+        public SearchContentElementViewModel Content => SelectedIndex < 0 ? null : Tabs[SelectedIndex].Content;
 
-        public MvxObservableCollection<SearchTabElement> Tabs { get; } = new MvxObservableCollection<SearchTabElement>();
+        public MvxObservableCollection<SearchTabElementViewModel> Tabs { get; } = new MvxObservableCollection<SearchTabElementViewModel>();
 
-        private void RemoveTab(SearchTabElement e)
+        private void RemoveTab(SearchTabElementViewModel e)
         {
             Tabs.Remove(e);
             SelectedIndex = IsVisible ? 0 : -1;
@@ -61,7 +61,8 @@ namespace Peernet.Browser.Application.ViewModels
 
         private void Search()
         {
-            var toAdd = new SearchTabElement(SearchInput, RemoveTab, searchService);
+            // todo: It should be considered to make it separate view. Then this SearchTabElementViewModel should inherit from MvxViewModel and here should be just Navigation using mvxnavigationservice. SearchService should not be dependency of HomeViewModel but SearchTabElementViewModel and should be injected there.
+            var toAdd = new SearchTabElementViewModel(SearchInput, RemoveTab, searchService);
             Tabs.Add(toAdd);
             SearchInput = "";
             SelectedIndex = Tabs.Count - 1;

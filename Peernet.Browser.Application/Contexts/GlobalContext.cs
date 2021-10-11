@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using MvvmCross.Base;
+using System;
 using System.ComponentModel;
-using MvvmCross.Base;
-using Peernet.Browser.Application.Models;
 
 namespace Peernet.Browser.Application.Contexts
 {
@@ -11,7 +8,7 @@ namespace Peernet.Browser.Application.Contexts
     {
         private static bool isMainWindowActive = true;
 
-        public static bool isLogoVisible;
+        private static bool isLogoVisible;
 
         private static bool isProfileMenuVisible;
 

@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using FakeItEasy;
+﻿using FakeItEasy;
 using FizzWare.NBuilder;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Peernet.Browser.Application.Models;
 using Peernet.Browser.Application.VirtualFileSystem;
+using Peernet.Browser.Models.Domain;
+using System.Collections.Generic;
+using System.Linq;
+using Peernet.Browser.Models.Domain.Common;
 
 namespace Peernet.Browser.Tests.Application.VirtualFileSystem
 {
@@ -32,7 +33,7 @@ namespace Peernet.Browser.Tests.Application.VirtualFileSystem
             var system = new Browser.Application.VirtualFileSystem.VirtualFileSystem(files, fakeBinder);
 
             //Assert
-   
+
             // There should be only one tier
             Assert.AreEqual(1, system.VirtualFileSystemTiers.Count);
             var tier = system.VirtualFileSystemTiers.First();
