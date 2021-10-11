@@ -3,17 +3,19 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Download;
-using Peernet.Browser.Application.Models;
-using Peernet.Browser.Application.Services;
+using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Models.Presentation.Footer;
 using System.Linq;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.Clients;
+using Peernet.Browser.Application.Services;
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public class FooterViewModel : MvxViewModel
     {
         private const int reconnectDelay = 2000;
-        private readonly ICmdClient apiClient;
+        private readonly IApiService apiService;
         private readonly IApplicationManager applicationManager;
         private readonly IMvxNavigationService navigationService;
         private readonly ISocketClient socketClient;
@@ -22,9 +24,9 @@ namespace Peernet.Browser.Application.ViewModels
         private ConnectionStatus connectionStatus = ConnectionStatus.Offline;
         private string peers;
 
-        public FooterViewModel(ICmdClient apiClient, ISocketClient socketClient, IMvxNavigationService navigationService, IApplicationManager applicationManager, IDownloadManager downloadManager)
+        public FooterViewModel(IApiService apiService, ISocketClient socketClient, IMvxNavigationService navigationService, IApplicationManager applicationManager, IDownloadManager downloadManager)
         {
-            this.apiClient = apiClient;
+            this.apiService = apiService;
             this.socketClient = socketClient;
             this.navigationService = navigationService;
             this.applicationManager = applicationManager;
@@ -64,18 +66,26 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IMvxCommand UploadCommand { get; }
 
-        public IMvxCommand PauseDownloadCommand { get; }
-
-        public IMvxAsyncCommand<ApiBlockRecordFile> CancelDownloadCommand => new MvxAsyncCommand<ApiBlockRecordFile>(
-            file =>
+        public IMvxCommand PauseDownloadCommand => new MvxAsyncCommand<string>(
+            async id =>
             {
                 // Make API call and validate result
-
-                DownloadManager.DequeueDownload(file);
-
-                return Task.CompletedTask;
+                await DownloadManager.PauseDownload(id);
             });
 
+        public IMvxCommand ResumeDownloadCommand => new MvxAsyncCommand<string>(
+            async id =>
+            {
+                // Make API call and validate result
+                await DownloadManager.ResumeDownload(id);
+            });
+
+        public IMvxAsyncCommand<string> CancelDownloadCommand => new MvxAsyncCommand<string>(
+            async id =>
+            {
+                // Make API call and validate result
+                await DownloadManager.CancelDownload(id);
+            });
 
         public override async Task Initialize()
         {
@@ -89,7 +99,7 @@ namespace Peernet.Browser.Application.ViewModels
             while (!success)
             {
                 ConnectionStatus = ConnectionStatus.Connecting;
-                success = GetPeernetStatus();
+                success = await GetPeernetStatus();
 
                 if (!success)
                 {
@@ -104,9 +114,9 @@ namespace Peernet.Browser.Application.ViewModels
             CommandLineOutput = await socketClient.Receive();
         }
 
-        private bool GetPeernetStatus()
+        private async Task<bool> GetPeernetStatus()
         {
-            var status = apiClient.GetStatus();
+            var status = await apiService.GetStatus();
             ConnectionStatus = status.IsConnected ? ConnectionStatus.Online : ConnectionStatus.Offline;
             Peers = status.CountPeerList.ToString();
             return status.IsConnected;
@@ -122,10 +132,12 @@ namespace Peernet.Browser.Application.ViewModels
         private void UploadFiles()
         {
             var f = applicationManager.OpenFileDialog();
-            if (!f.Any()) return;
-            GlobalContext.IsMainWindowActive = false;
-            GlobalContext.IsProfileMenuVisible = false;
-            navigationService.Navigate<ShareNewFileViewModel, string[]>(f);
+            if (f.Any())
+            {
+                GlobalContext.IsMainWindowActive = false;
+                GlobalContext.IsProfileMenuVisible = false;
+                navigationService.Navigate<ShareNewFileViewModel, string[]>(f);
+            }
         }
     }
 }

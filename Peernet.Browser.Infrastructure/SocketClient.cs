@@ -1,4 +1,5 @@
-﻿using Peernet.Browser.Application.Services;
+﻿using Peernet.Browser.Application.Clients;
+using Peernet.Browser.Application.Managers;
 using System;
 using System.Collections.Generic;
 using System.Net.WebSockets;

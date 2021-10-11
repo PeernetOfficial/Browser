@@ -1,37 +1,115 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
+﻿using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Download;
-using Peernet.Browser.Application.Models;
-using Peernet.Browser.Application.Services;
+using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Infrastructure.Clients;
+using Peernet.Browser.Models.Domain.Common;
+using Peernet.Browser.Models.Domain.Download;
+using Peernet.Browser.Models.Presentation.Footer;
+using System;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure
 {
-    public class DownloadManager : INotifyPropertyChanged, IDownloadManager
+    public class DownloadManager : IDownloadManager
     {
-        private readonly IDownloadService downloadService;
+        private readonly IDownloadClient downloadClient;
 
-        public DownloadManager(IDownloadService downloadService)
+        public event EventHandler downloadsChanged;
+
+        public DownloadManager(ISettingsManager settingsManager)
         {
-            this.downloadService = downloadService;
+            downloadClient = new DownloadClient(settingsManager);
+
+            // Fire on the thread-pool and forget
+            Task.Run(UpdateStatuses);
         }
 
-        public ObservableCollection<ApiBlockRecordFile> ActiveFileDownloads { get; set; } = new();
+        public ObservableCollection<DownloadModel> ActiveFileDownloads { get; set; } = new();
 
-        public void QueueUpDownload(ApiBlockRecordFile file)
+        public async Task<ApiResponseDownloadStatus> CancelDownload(string id)
         {
-            var status = downloadService.Start(@"C:/Temp", file.Hash, file.NodeId);
-
-            if (status.Status == DownloadStatus.Success)
+            var download = ActiveFileDownloads.First(d => d.Id == id);
+            var responseStatus = await downloadClient.GetAction(id, DownloadAction.Cancel);
+            if (responseStatus.DownloadStatus is DownloadStatus.DownloadCanceled or DownloadStatus.DownloadFinished)
             {
-                ActiveFileDownloads.Add(file);
+                ActiveFileDownloads.Remove(download);
+                NotifyChange(download, $"{download.File.Name} downloading canceled!");
+            }
+
+            return responseStatus;
+        }
+
+        public async Task<ApiResponseDownloadStatus> PauseDownload(string id)
+        {
+            var responseStatus = await downloadClient.GetAction(id, DownloadAction.Pause);
+            ActiveFileDownloads.First(d => d.Id == id).Status = responseStatus.DownloadStatus;
+            downloadsChanged?.Invoke(this, EventArgs.Empty);
+
+            return responseStatus;
+        }
+
+        public async Task QueueUpDownload(ApiBlockRecordFile file)
+        {
+            var status = await downloadClient.Start($"C:/Temp/Peernet/{file.Name}", file.Hash, file.NodeId);
+            var downloadModel = new DownloadModel(status.Id, file)
+            {
+                Status = status.DownloadStatus
+            };
+
+            if (status.APIStatus == APIStatus.DownloadResponseSuccess)
+            {
+                ActiveFileDownloads.Add(downloadModel);
+            }
+
+            if (status.APIStatus == APIStatus.DownloadResponseFileInvalid)
+            {
+                // This is just for testing, whole condition should be handled in proper way once clear how.
+                ActiveFileDownloads.Add(downloadModel);
+            }
+
+            downloadsChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        public async Task<ApiResponseDownloadStatus> ResumeDownload(string id)
+        {
+            var responseStatus = await downloadClient.GetAction(id, DownloadAction.Resume);
+            ActiveFileDownloads.First(d => d.Id == id).Status = responseStatus.DownloadStatus;
+            downloadsChanged?.Invoke(this, EventArgs.Empty);
+
+            return responseStatus;
+        }
+
+        private void NotifyChange(DownloadModel download, string message)
+        {
+            downloadsChanged?.Invoke(this, EventArgs.Empty);
+            GlobalContext.Notifications.Add(new Notification { Text = message });
+        }
+
+        private async Task UpdateStatuses()
+        {
+            while (true)
+            {
+                var copy = ActiveFileDownloads.ToList();
+                foreach (var download in copy.Where(download => !download.IsCompleted))
+                {
+                    var status = await downloadClient.GetStatus(download.Id);
+                    download.Progress = status.Progress.Percentage;
+                    download.Status = status.DownloadStatus;
+
+                    if (status.DownloadStatus == DownloadStatus.DownloadFinished)
+                    {
+                        download.IsCompleted = true;
+                        download.Progress = 100;
+                        await GlobalContext.UiThreadDispatcher.ExecuteOnMainThreadAsync(() =>
+                            NotifyChange(download, $"{download.File.Name} downloading completed!"));
+                    }
+                }
+
+                Thread.Sleep(1000);
             }
         }
-
-        public void DequeueDownload(ApiBlockRecordFile file)
-        {
-            ActiveFileDownloads.Remove(file);
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

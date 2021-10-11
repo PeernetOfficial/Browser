@@ -1,18 +1,14 @@
-﻿using Peernet.Browser.Application.Models;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Peernet.Browser.Models.Presentation.Profile;
 
 namespace Peernet.Browser.Application.Services
 {
     public interface IProfileService
     {
-        string GetUserName();
+        Task<User> GetUser();
 
-        byte[] GetUserImage();
+        Task UpdateUser(string name, byte[] image);
 
-        ApiBlockchainBlockStatus AddUserName(string userName);
-
-        ApiBlockchainBlockStatus AddUserImage(byte[] content);
-
-        ApiBlockchainBlockStatus DeleteUserImage();
+        Task DeleteUserImage();
     }
 }

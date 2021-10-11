@@ -1,16 +1,16 @@
-﻿using Peernet.Browser.Application.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Peernet.Browser.Models.Domain.Blockchain;
+using Peernet.Browser.Models.Domain.Common;
+using Peernet.Browser.Models.Presentation.Footer;
 
 namespace Peernet.Browser.Application.Services
 {
     public interface IBlockchainService
     {
-        ApiBlockchainHeader GetSelfHeader();
-
-        ApiBlockchainAddFiles GetSelfList();
-
-        void AddFiles(IEnumerable<SharedNewFileModel> files);
-
-        void DeleteSelfFile(ApiBlockRecordFile apiBlockRecordFile);
+        Task AddFilesAsync(IEnumerable<SharedNewFileModel> files);
+        Task DeleteSelfFile(ApiBlockRecordFile apiBlockRecordFile);
+        Task<ApiBlockchainHeader> GetSelfHeader();
+        Task<List<ApiBlockRecordFile>> GetSelfList();
     }
 }

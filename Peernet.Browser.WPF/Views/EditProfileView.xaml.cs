@@ -21,7 +21,7 @@ namespace Peernet.Browser.WPF.Views
             var dialog = new OpenFileDialog();
             dialog.Filter = "Image Files (*.png;*.jpg)|*.png;*.jpg";
 
-            if ( dialog.ShowDialog() == true)
+            if (dialog.ShowDialog() == true)
             {
                 var file = dialog.FileName;
                 var content = File.ReadAllBytes(file);

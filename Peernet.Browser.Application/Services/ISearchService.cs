@@ -1,13 +1,13 @@
-﻿using Peernet.Browser.Application.Models;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Peernet.Browser.Models.Presentation.Home;
 
 namespace Peernet.Browser.Application.Services
 {
     public interface ISearchService
     {
-        void Terminate(string id);
+        Task Terminate(string id);
 
-        SearchResultModel Search(SearchFilterResultModel model);
+        Task<SearchResultModel> Search(SearchFilterResultModel model);
 
         Task<SearchResultModel> SearchAsync(SearchFilterResultModel model);
     }

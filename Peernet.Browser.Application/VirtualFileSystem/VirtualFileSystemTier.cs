@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
-using Peernet.Browser.Application.Models;
+﻿using Peernet.Browser.Application.Extensions;
+using Peernet.Browser.Models.Domain;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using Peernet.Browser.Models.Domain.Common;
 
 namespace Peernet.Browser.Application.VirtualFileSystem
 {
@@ -13,11 +16,11 @@ namespace Peernet.Browser.Application.VirtualFileSystem
 
         public int Depth { get; }
 
-        public List<VirtualFileSystemTier> VirtualFileSystemTiers { get; set; } = new();
+        public ObservableCollection<VirtualFileSystemTier> VirtualFileSystemTiers { get; set; } = new();
 
         public override void ResetSelection()
         {
-            VirtualFileSystemTiers.ForEach(t => t.ResetSelection());
+            VirtualFileSystemTiers.Foreach(t => t.ResetSelection());
 
             base.ResetSelection();
         }

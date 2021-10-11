@@ -5,12 +5,14 @@ using MvvmCross.Navigation;
 using MvvmCross.Navigation.EventArguments;
 using MvvmCross.Platforms.Wpf.Core;
 using MvvmCross.Plugin;
+using Peernet.Browser.Application.Clients;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Download;
-using Peernet.Browser.Application.Http;
+using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.Browser.Infrastructure;
+using Peernet.Browser.Infrastructure.Services;
 using Serilog;
 using Serilog.Extensions.Logging;
 using System.Reflection;
@@ -55,14 +57,12 @@ namespace Peernet.Browser.WPF
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            iocProvider.RegisterType<IRestClientFactory, RestClientFactory>();
-            iocProvider.RegisterType<ICmdClient, CmdClient>();
             iocProvider.RegisterType<ISocketClient, SocketClient>();
             iocProvider.RegisterSingleton<IUserContext>(() => new UserContext(iocProvider.Resolve<IProfileService>(), iocProvider.Resolve<IMvxNavigationService>()));
             iocProvider.RegisterType<IVirtualFileSystemFactory, VirtualFileSystemFactory>();
             iocProvider.RegisterType<IFilesToCategoryBinder, FilesToCategoryBinder>();
 
-            iocProvider.RegisterSingleton<IDownloadManager>(new DownloadManager(iocProvider.Resolve<IDownloadService>()));
+            iocProvider.RegisterSingleton<IDownloadManager>(new DownloadManager(iocProvider.Resolve<ISettingsManager>()));
             GlobalContext.UiThreadDispatcher = iocProvider.Resolve<IMvxMainThreadAsyncDispatcher>();
             ObserveNavigation(iocProvider);
         }
