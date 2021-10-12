@@ -15,11 +15,13 @@ namespace Peernet.Browser.Infrastructure
     public class DownloadManager : IDownloadManager
     {
         private readonly IDownloadClient downloadClient;
+        private readonly ISettingsManager settingsManager;
 
         public event EventHandler downloadsChanged;
 
         public DownloadManager(ISettingsManager settingsManager)
         {
+            this.settingsManager = settingsManager;
             downloadClient = new DownloadClient(settingsManager);
 
             // Fire on the thread-pool and forget
@@ -52,7 +54,7 @@ namespace Peernet.Browser.Infrastructure
 
         public async Task QueueUpDownload(DownloadModel downloadModel)
         {
-            var status = await downloadClient.Start($"C:/Temp/Peernet/{downloadModel.File.Name}", downloadModel.File.Hash, downloadModel.File.NodeId);
+            var status = await downloadClient.Start($"{settingsManager.DownloadPath}/{downloadModel.File.Name}", downloadModel.File.Hash, downloadModel.File.NodeId);
             downloadModel.Id = status.Id;
             downloadModel.Status = status.DownloadStatus;
 

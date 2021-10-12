@@ -1,6 +1,7 @@
 ﻿using MvvmCross.Core;
 using MvvmCross.Platforms.Wpf.Views;
 using Peernet.Browser.Infrastructure.Tools;
+using Peernet.Browser.WPF.Services;
 using System.Windows;
 
 namespace Peernet.Browser.WPF

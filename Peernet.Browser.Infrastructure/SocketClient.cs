@@ -12,17 +12,17 @@ namespace Peernet.Browser.Infrastructure
     public class SocketClient : ISocketClient
     {
         private ClientWebSocket socket;
-        private readonly ISettingsManager settings;
+        private readonly ISettingsManager settingsManager;
 
-        public SocketClient(ISettingsManager settings)
+        public SocketClient(ISettingsManager settingsManager)
         {
-            this.settings = settings;
+            this.settingsManager = settingsManager;
         }
 
         public async Task Connect()
         {
             this.socket = new();
-            await socket.ConnectAsync(new Uri(this.settings.SocketUrl), CancellationToken.None);
+            await socket.ConnectAsync(new Uri(this.settingsManager.SocketUrl), CancellationToken.None);
         }
 
         public async Task Send(string data)
