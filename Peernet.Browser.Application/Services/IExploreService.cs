@@ -1,10 +1,11 @@
-﻿using System.Threading.Tasks;
-using Peernet.Browser.Models.Domain.Search;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Peernet.Browser.Models.Presentation.Footer;
 
 namespace Peernet.Browser.Application.Services
 {
     public interface IExploreService
     {
-        Task<SearchResult> GetFiles(int limit, int? type = null);
+        Task<List<DownloadModel>> GetFiles(int limit, int? type = null);
     }
 }

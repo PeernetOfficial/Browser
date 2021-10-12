@@ -1,7 +1,9 @@
 ﻿using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Infrastructure.Clients;
-using Peernet.Browser.Models.Domain.Search;
+using Peernet.Browser.Models.Presentation.Footer;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure.Services
@@ -15,10 +17,11 @@ namespace Peernet.Browser.Infrastructure.Services
             exploreClient = new ExploreClient(settingsManager);
         }
 
-        // todo: it should return UI model
-        public async Task<SearchResult> GetFiles(int limit, int? type = null)
+        public async Task<List<DownloadModel>> GetFiles(int limit, int? type = null)
         {
-            return await exploreClient.GetFiles(limit, type);
+            var files = (await exploreClient.GetFiles(limit, type)).Files;
+
+            return files.Select(f => new DownloadModel(f)).ToList();
         }
     }
 }
