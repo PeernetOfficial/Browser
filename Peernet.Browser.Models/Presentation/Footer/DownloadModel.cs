@@ -1,6 +1,8 @@
 ﻿using Peernet.Browser.Models.Domain.Common;
 using Peernet.Browser.Models.Domain.Download;
 using System.ComponentModel;
+using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Peernet.Browser.Models.Presentation.Footer
 {
@@ -12,6 +14,7 @@ namespace Peernet.Browser.Models.Presentation.Footer
 
         public DownloadModel(ApiBlockRecordFile File)
         {
+            this.Id = Id;
             this.File = File;
         }
 

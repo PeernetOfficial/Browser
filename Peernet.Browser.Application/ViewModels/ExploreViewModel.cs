@@ -2,6 +2,7 @@
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.VirtualFileSystem;
+using Peernet.Browser.Models.Domain;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
