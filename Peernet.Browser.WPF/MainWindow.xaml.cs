@@ -17,8 +17,12 @@ namespace Peernet.Browser.WPF
             MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             MouseDown += Window_MouseDown;
 
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-EN"); ;
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-EN");
+            //Hack for calendar
+            CultureInfo ci = CultureInfo.CreateSpecificCulture("en-US");
+            ci.DateTimeFormat.ShortestDayNames = new string[] { "Mo", "Tu", "We", "Th", "Fr", "Sa", "Su" };
+            ci.DateTimeFormat.FirstDayOfWeek = System.DayOfWeek.Sunday;
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
