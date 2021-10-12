@@ -13,6 +13,7 @@ namespace Peernet.Browser.Infrastructure.Services
 {
     public class SearchService : ISearchService
     {
+        private const int NotUsedValue = -1;
         private readonly ISearchClient searchClient;
 
         private readonly IDictionary<string, SearchResult> results = new Dictionary<string, SearchResult>();
@@ -24,42 +25,70 @@ namespace Peernet.Browser.Infrastructure.Services
 
         public async Task<SearchResultModel> Search(SearchFilterResultModel model)
         {
-            if (!model.PrevId.IsNullOrEmpty())
-            {
-                Terminate(model.PrevId);
-            }
-
-            var res = new SearchResultModel { Filters = model, Stats = GetStats(), Size = new Tuple<int, int>(0, 15) };
+            var res = new SearchResultModel { Filters = model, Size = new Tuple<int, int>(0, 15) };
             var response = await searchClient.SubmitSearch(Map(model));
-            if (response.Status != 0) return res;
+            if (response.Status != SearchRequestResponseStatusEnum.Success)
+            {
+                return res;
+            }
             res.Id = response.Id;
             var result = await searchClient.GetSearchResult(response.Id);
             results.Add(response.Id, result);
-            if (result.Status > 1) return res;
+            res.Stats = GetStats(result.Statistic);
             res.Rows = result.Files
                 .Select(x => new SearchResultRowModel(x))
                 .ToArray();
             return res;
         }
 
-        private async void Terminate(string id)
+        public async void Terminate(string id)
         {
             await searchClient.TerminateSearch(id);
             results.Remove(id);
         }
 
-        private IDictionary<FiltersType, int> GetStats()
+        public IDictionary<FiltersType, int> GetEmptyStats() => GetStats(new SearchStatisticData());
+
+        private IDictionary<FiltersType, int> GetStats(SearchStatisticData data)
         {
-            var res = new Dictionary<FiltersType, int>();
-            res.Add(FiltersType.All, 2357);
-            res.Add(FiltersType.Audio, 217);
-            res.Add(FiltersType.Video, 844);
-            res.Add(FiltersType.Ebooks, 629);
-            res.Add(FiltersType.Documents, 632);
-            res.Add(FiltersType.Pictures, 214);
-            res.Add(FiltersType.Text, 182);
-            res.Add(FiltersType.Binary, 1);
-            return res;
+            if (data == null)
+            {
+                data = new SearchStatisticData();
+            }
+
+            return SearchResultModel
+                .GetDefaultStats()
+                .ToDictionary(x => x, y => y == FiltersType.All ? data.Total : data.GetCount(Map(y)));
+        }
+
+        private LowLevelFileType Map(FiltersType type)
+        {
+            switch (type)
+            {
+                case FiltersType.Audio:
+                    return LowLevelFileType.Audio;
+
+                case FiltersType.Video:
+                    return LowLevelFileType.Video;
+
+                case FiltersType.Ebooks:
+                    return LowLevelFileType.Ebook;
+
+                case FiltersType.Documents:
+                    return LowLevelFileType.Document;
+
+                case FiltersType.Pictures:
+                    return LowLevelFileType.Picture;
+
+                case FiltersType.Text:
+                    return LowLevelFileType.Text;
+
+                case FiltersType.Binary:
+                    return LowLevelFileType.Binary;
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         private SearchRequest Map(SearchFilterResultModel model)
@@ -71,17 +100,27 @@ namespace Peernet.Browser.Infrastructure.Services
                 MaxResults = 0,
                 FileFormat = HighLevelFileType.NotUsed,
                 FileType = LowLevelFileType.NotUsed,
-                Sort = SearchRequestSortTypeEnum.SortNone
+                Sort = SearchRequestSortTypeEnum.SortNone,
+                SizeMax = NotUsedValue,
+                SizeMin = NotUsedValue
             };
+            if (model.PrevId.IsNullOrEmpty())
+            {
+                res.Terminate = new[] { model.PrevId };
+            }
             if (model.Time.HasValue)
             {
                 var r = model.GetDateRange();
                 res.DateFrom = r.Item1.ToString();
                 res.DateTo = r.Item2.ToString();
             }
-            if (!model.Healths.IsNullOrEmpty())
+            if (model.SizeFrom.HasValue)
             {
-                //TODO: ??
+                res.SizeMin = model.SizeFrom.Value;
+            }
+            if (model.SizeTo.HasValue)
+            {
+                res.SizeMax = model.SizeTo.Value;
             }
             if (model.SortName != DataGridSortingNameEnum.None && model.SortType != DataGridSortingTypeEnum.None)
             {
@@ -96,12 +135,17 @@ namespace Peernet.Browser.Infrastructure.Services
                         break;
 
                     case DataGridSortingNameEnum.Size:
+                        res.Sort = model.SortType == DataGridSortingTypeEnum.Asc ? SearchRequestSortTypeEnum.SortSizeAsc : SearchRequestSortTypeEnum.SortSizeDesc;
                         break;
 
                     case DataGridSortingNameEnum.Share:
-                        res.Sort = model.SortType == DataGridSortingTypeEnum.Asc ? SearchRequestSortTypeEnum.SortRelevanceAsc : SearchRequestSortTypeEnum.SortRelevanceDec;
+                        res.Sort = model.SortType == DataGridSortingTypeEnum.Asc ? SearchRequestSortTypeEnum.SortSharedByCountAsc : SearchRequestSortTypeEnum.SortSharedByCountDesc;
                         break;
                 }
+            }
+            if (!model.Healths.IsNullOrEmpty())
+            {
+                //TODO: ??
             }
             if (!model.FileFormats.IsNullOrEmpty())
             {

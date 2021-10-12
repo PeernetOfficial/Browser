@@ -15,7 +15,7 @@ namespace Peernet.Browser.Models.Presentation.Home
         private int max;
         private int min;
         private bool showCalendar;
-        private string uuId;
+        public string UuId { get; private set; }
 
         public FiltersModel(string inputText, Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction)
         {
@@ -84,8 +84,8 @@ namespace Peernet.Browser.Models.Presentation.Home
 
             RangeFilter.Max = SearchFilterResult.SizeMax;
             RangeFilter.Min = SearchFilterResult.SizeMin;
-            RangeFilter.CurrentMax = SearchFilterResult.SizeTo;
-            RangeFilter.CurrentMin = SearchFilterResult.SizeFrom;
+            RangeFilter.CurrentMax = SearchFilterResult.SizeTo.GetValueOrDefault(SearchFilterResult.SizeMax);
+            RangeFilter.CurrentMin = SearchFilterResult.SizeFrom.GetValueOrDefault(SearchFilterResult.SizeMin); ;
 
             DateFrom = SearchFilterResult.TimeFrom;
             DateTo = SearchFilterResult.TimeTo;
@@ -94,7 +94,7 @@ namespace Peernet.Browser.Models.Presentation.Home
         public async Task<SearchResultModel> GetData(Action<SearchResultRowModel> downloadAction)
         {
             var res = await refreshAction(SearchFilterResult);
-            uuId = res.Id;
+            UuId = res.Id;
             SetMinMax(res.Size.Item1, res.Size.Item2);
             res.Rows.Foreach(x => x.DownloadAction = downloadAction);
             return res;
@@ -149,7 +149,7 @@ namespace Peernet.Browser.Models.Presentation.Home
 
         private void Hide() => CloseAction?.Invoke(false);
 
-        private void InitSearch() => SearchFilterResult = new SearchFilterResultModel { OnRemoveAction = RemoveAction, SizeMin = min, SizeMax = max, SizeFrom = min, SizeTo = max, InputText = inputText, PrevId = uuId };
+        private void InitSearch() => SearchFilterResult = new SearchFilterResultModel { OnRemoveAction = RemoveAction, SizeMin = min, SizeMax = max, SizeFrom = min, SizeTo = max, InputText = inputText, PrevId = UuId };
 
         private void RefreshTabs()
         {

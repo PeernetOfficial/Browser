@@ -20,6 +20,7 @@ namespace Peernet.Browser.Application.ViewModels
             ColumnsIconModel = new IconModel(FiltersType.Columns, true);
             FiltersIconModel = new IconModel(FiltersType.Filters, true, OpenFilters);
             ClearCommand = new MvxCommand(() => Filters.Reset(true));
+            InitIcons();
             Refresh();
         }
 
@@ -41,6 +42,8 @@ namespace Peernet.Browser.Application.ViewModels
         private void Download(SearchResultRowModel row)
         {
         }
+
+        private void InitIcons() => RefreshIconFilters(SearchResultModel.GetDefaultStats().ToDictionary(x => x, y => 0), FiltersType.All);
 
         private void OnFilterIconClick(IconModel i)
         {

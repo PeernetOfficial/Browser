@@ -23,6 +23,18 @@ namespace Peernet.Browser.Models.Domain.Search
         SortNameAsc,
 
         [Description("File name descending. The folder name is not used for sorting.")]
-        SortNameDesc
+        SortNameDesc,
+
+        [Description("File size ascending. Smallest files first.")]
+        SortSizeAsc,
+
+        [Description("File size descending. Largest files first.")]
+        SortSizeDesc,
+
+        [Description("Shared by count ascending. Files that are shared by the least count of peers first.")]
+        SortSharedByCountAsc,
+
+        [Description("Shared by count descending. Files that are shared by the most count of peers first.")]
+        SortSharedByCountDesc
     }
 }

@@ -54,6 +54,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         private void RemoveTab(SearchTabElementViewModel e)
         {
+            searchService.Terminate(e.Content.Filters.UuId);
             Tabs.Remove(e);
             SelectedIndex = IsVisible ? 0 : -1;
         }

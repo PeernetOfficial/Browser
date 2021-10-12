@@ -12,10 +12,10 @@ namespace Peernet.Browser.Models.Presentation.Home
         public string InputText { get; set; }
         public Action<SearchFiltersType> OnRemoveAction { get; set; }
         public string PrevId { get; set; }
-        public int SizeFrom { get; set; }
+        public int? SizeFrom { get; set; }
         public int SizeMax { get; set; }
         public int SizeMin { get; set; }
-        public int SizeTo { get; set; }
+        public int? SizeTo { get; set; }
         public TimePeriods? Time { get; set; }
 
         public DateTime? TimeFrom { get; set; }
