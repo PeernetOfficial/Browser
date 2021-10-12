@@ -147,7 +147,11 @@ namespace Peernet.Browser.Models.Presentation.Home
             CloseAction?.Invoke(true);
         }
 
-        private void Hide() => CloseAction?.Invoke(false);
+        private void Hide()
+        {
+            Reset();
+            CloseAction?.Invoke(false);
+        }
 
         private void InitSearch() => SearchFilterResult = new SearchFilterResultModel { OnRemoveAction = RemoveAction, SizeMin = min, SizeMax = max, SizeFrom = min, SizeTo = max, InputText = inputText, PrevId = UuId };
 
