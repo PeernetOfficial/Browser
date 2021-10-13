@@ -9,5 +9,10 @@ namespace Peernet.Browser.Application
         {
             RegisterAppStart<HomeViewModel>();
         }
+
+        protected override IMvxViewModelLocator CreateDefaultViewModelLocator()
+        {
+            return new SingletonViewModelLocator();
+        }
     }
 }

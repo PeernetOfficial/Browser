@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 
-namespace Peernet.Browser.Application.Extensions
+namespace System.Linq
 {
     public static class LinqExtension
     {

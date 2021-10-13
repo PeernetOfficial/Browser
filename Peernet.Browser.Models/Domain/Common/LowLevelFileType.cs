@@ -1,7 +1,11 @@
 ﻿namespace Peernet.Browser.Models.Domain.Common
 {
+    /// <summary>
+    /// core.TypeX
+    /// </summary>
     public enum LowLevelFileType
     {
+        NotUsed = -1,
         Binary = 0,
         Text = 1,
         Picture = 2,

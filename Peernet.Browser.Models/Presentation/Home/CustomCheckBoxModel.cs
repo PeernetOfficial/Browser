@@ -31,5 +31,7 @@ namespace Peernet.Browser.Models.Presentation.Home
         }
 
         public bool ShowDot { get; set; }
+
+        public bool IsRadio { get; set; }
     }
 }

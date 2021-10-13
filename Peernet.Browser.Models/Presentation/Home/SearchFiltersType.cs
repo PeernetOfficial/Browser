@@ -2,6 +2,9 @@
 {
     public enum SearchFiltersType
     {
-        HealthType, FileFormats, TimePeriods, Size, Sortorder
+        HealthType,
+        FileFormats,
+        TimePeriods,
+        Size
     }
 }

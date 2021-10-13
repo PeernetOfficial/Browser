@@ -1,7 +1,11 @@
 ﻿namespace Peernet.Browser.Models.Domain.Common
 {
+    /// <summary>
+    /// core.FormatX
+    /// </summary>
     public enum HighLevelFileType
     {
+        NotUsed = -1,
         Binary = 0,
         PDF = 1,
         Word = 2,

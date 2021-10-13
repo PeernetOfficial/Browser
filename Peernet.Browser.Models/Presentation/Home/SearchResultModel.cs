@@ -13,5 +13,20 @@ namespace Peernet.Browser.Models.Presentation.Home
         public IDictionary<FiltersType, int> Stats { get; set; }
 
         public Tuple<int, int> Size { get; set; }
+
+        public static FiltersType[] GetDefaultStats()
+        {
+            return new[]
+            {
+                FiltersType.All,
+                FiltersType.Audio,
+                FiltersType.Video,
+                FiltersType.Ebooks,
+                FiltersType.Documents,
+                FiltersType.Pictures,
+                FiltersType.Text,
+                FiltersType.Binary
+            };
+        }
     }
 }

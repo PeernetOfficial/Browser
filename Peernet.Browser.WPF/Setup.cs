@@ -12,9 +12,9 @@ using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.Browser.Infrastructure;
-using Peernet.Browser.Infrastructure.Services;
 using Serilog;
 using Serilog.Extensions.Logging;
+using System.Reflection;
 
 namespace Peernet.Browser.WPF
 {
@@ -50,15 +50,17 @@ namespace Peernet.Browser.WPF
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            iocProvider.RegisterType<IApiService, ApiService>();
+            var assembly = typeof(SocketClient).GetTypeInfo().Assembly;
+            CreatableTypes(assembly)
+                .EndingWith("Service")
+                .AsInterfaces()
+                .RegisterAsLazySingleton();
+
             iocProvider.RegisterType<ISocketClient, SocketClient>();
-            iocProvider.RegisterType<IProfileService, ProfileService>();
             iocProvider.RegisterSingleton<IUserContext>(() => new UserContext(iocProvider.Resolve<IProfileService>(), iocProvider.Resolve<IMvxNavigationService>()));
-            iocProvider.RegisterType<IBlockchainService, BlockchainService>();
             iocProvider.RegisterType<IVirtualFileSystemFactory, VirtualFileSystemFactory>();
             iocProvider.RegisterType<IFilesToCategoryBinder, FilesToCategoryBinder>();
-            iocProvider.RegisterType<IExploreService, ExploreService>();
-            iocProvider.RegisterType<ISearchService, SearchService>();
+
             iocProvider.RegisterSingleton<IDownloadManager>(new DownloadManager(iocProvider.Resolve<ISettingsManager>()));
             GlobalContext.UiThreadDispatcher = iocProvider.Resolve<IMvxMainThreadAsyncDispatcher>();
             ObserveNavigation(iocProvider);

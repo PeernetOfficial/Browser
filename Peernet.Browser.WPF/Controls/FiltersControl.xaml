@@ -4,7 +4,7 @@
              xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls">
     <Border BorderThickness="0" Padding="40" BorderBrush="Transparent" CornerRadius="{StaticResource MainRadius}">
         <Border.Background>
-            <SolidColorBrush Color="{StaticResource MainBackground}" />
+            <SolidColorBrush Color="{StaticResource ModalBackground}" />
         </Border.Background>
         <Grid>
             <Grid.RowDefinitions>
@@ -29,18 +29,26 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <controls:CustomFilterControl Grid.Column="0" Grid.RowSpan="2" Margin="0 0 15 0" DataContext="{Binding DateFilters}" />
+                <DockPanel Grid.Column="0" Grid.RowSpan="2" Margin="0 0 15 0">
+                    <controls:CustomFilterControl DataContext="{Binding DateFilters}" />
+                    <Border Visibility="{Binding ShowCalendar, Converter={StaticResource BoolToVisibility}}" Grid.RowSpan="2"  Grid.Column="1" Margin="0 37 0 12" Padding="15 10" BorderBrush="{StaticResource LightGray3Brush}"
+                            BorderThickness="0 1 1 1" CornerRadius="{StaticResource MainRadius}">
+                        <controls:CalendarRangeExtension Style="{StaticResource PeernetCalendar}" SelectedDateTo="{Binding DateTo, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                         SelectedDate="{Binding DateFrom, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                         IsTodayHighlighted="False" SelectionMode="SingleRange" />
+                        <!--http://www.nullskull.com/a/1382/styling-the-wpf-calendar-to-resemble-outlooks-month-view-calendar.aspx-->
+                    </Border>
+                </DockPanel>
                 <controls:CustomFilterControl Grid.Column="1" Grid.RowSpan="2" Margin="0 0 15 0" DataContext="{Binding FileFormatFilters}" />
-                <controls:CustomFilterControl  Grid.Row="0" Grid.Column="2" DataContext="{Binding HealthFiltes}" />
+                <controls:CustomFilterControl Grid.Row="0" Grid.Column="2" DataContext="{Binding HealthFiltes}" />
 
                 <StackPanel Grid.Row="1" Grid.Column="2">
                     <TextBlock Margin="0 15 0 8" Text="SIZE" />
-                    <Border BorderBrush="{StaticResource LightGrayBrush}" BorderThickness="0.5" CornerRadius="{StaticResource MainRadius}">
+                    <Border BorderBrush="{StaticResource LightGray3Brush}" BorderThickness="1" CornerRadius="{StaticResource MainRadius}">
                         <controls:MyRangeSlider  Maximum="{Binding RangeFilter.Max}" Minimum="{Binding RangeFilter.Min}" RangeMax="{Binding RangeFilter.CurrentMax, Mode=TwoWay}"  RangeMin="{Binding RangeFilter.CurrentMin, Mode=TwoWay}" />
                     </Border>
                 </StackPanel>
             </Grid>
-
             <DockPanel HorizontalAlignment="Right" Grid.Row="2">
                 <Button Command="{Binding CancelCommand}" Height="30" Width="110" Style="{StaticResource PrimaryButton}">Cancel</Button>
                 <Button Command="{Binding ApplyFiltersCommand}" Height="30" Width="110" Style="{StaticResource AcceptButton}">Apply filters</Button>
