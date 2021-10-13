@@ -1,8 +1,7 @@
 ﻿using Peernet.Browser.Application.Contexts;
-using Peernet.Browser.Models.Presentation;
+using Peernet.Browser.Models.Presentation.Footer;
 using System.Windows;
 using System.Windows.Controls;
-using Peernet.Browser.Models.Presentation.Footer;
 
 namespace Peernet.Browser.WPF.Controls
 {

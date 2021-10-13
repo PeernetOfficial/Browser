@@ -13,10 +13,21 @@ namespace Peernet.Browser.WPF
     {
         private readonly DownloadModel model;
 
-        public FilePreviewWindow(DownloadModel model)
+        public static readonly DependencyProperty IsEditableProperty =
+            DependencyProperty.Register("IsEditable", typeof(bool),
+                typeof(FilePreviewWindow), null);
+
+        public bool IsEditable
+        {
+            get => (bool)GetValue(IsEditableProperty);
+            set => SetValue(IsEditableProperty, value);
+        }
+
+        public FilePreviewWindow(DownloadModel model, bool isEditable)
         {
             InitializeComponent();
             this.model = model;
+            IsEditable = isEditable;
             Content = model;
         }
 

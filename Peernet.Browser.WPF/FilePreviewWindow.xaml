@@ -8,7 +8,8 @@
                   Height="900" Width="1441"
                   WindowStartupLocation="Manual"
                   Top="100"
-                  Left="100">
+                  Left="100"
+                  x:Name="PreviewWindow">
     <WindowChrome.WindowChrome>
         <WindowChrome ResizeBorderThickness="6" GlassFrameThickness="0" />
     </WindowChrome.WindowChrome>
@@ -30,12 +31,64 @@
                             <Button Style="{StaticResource CloseButtonStyle}" Click="Close_OnClick" />
                         </StackPanel>
                         <StackPanel Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="187, 180, 0, 0">
-                            <TextBlock Text="Information" Style="{StaticResource Active}" FontSize="32" FontWeight="Medium" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Information" Style="{StaticResource Active}" FontSize="32" FontWeight="Medium" />
+                                <Image Source="{StaticResource ShareDrawingImage}" Margin="380, 0, 0, 0">
+                                    <Image.Style>
+                                        <Style TargetType="{x:Type Image}">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Path=IsEditable, ElementName=PreviewWindow}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                                <Image Source="{StaticResource BinDrawingImage}" Margin="26, 0, 0, 0">
+                                    <Image.Style>
+                                        <Style TargetType="{x:Type Image}">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Path=IsEditable, ElementName=PreviewWindow}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                            </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0, 54, 0, 0">
                                 <Image Style="{StaticResource DownloadItemImageStyle}" Margin="0,0,14,0" />
                                 <TextBlock Style="{StaticResource Active}" Text="{Binding File.Name}" FontWeight="SemiBold" />
+                                <Image Source="{StaticResource EditDrawingImage}" Margin="14, 0, 0, 0">
+                                    <Image.Style>
+                                        <Style TargetType="{x:Type Image}">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Path=IsEditable, ElementName=PreviewWindow}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
                             </StackPanel>
-                            <TextBlock Style="{StaticResource Active}" Text="{Binding File.Description}" TextWrapping="Wrap" Margin="0,20,0,0" Width="525" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource Active}" Text="{Binding File.Description}" TextWrapping="Wrap" Margin="0,20,0,0" Width="525" />
+                                <Image Source="{StaticResource EditDrawingImage}" Margin="5, 0, 0, 0">
+                                    <Image.Style>
+                                        <Style TargetType="{x:Type Image}">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Path=IsEditable, ElementName=PreviewWindow}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                            </StackPanel>
                             <Separator Style="{StaticResource StandardSeparatorStyle}" Width="570" HorizontalAlignment="Left" />
                             <Grid Width="500" HorizontalAlignment="Left" Margin="0, 20, 0, 0">
                                 <Grid.ColumnDefinitions>
