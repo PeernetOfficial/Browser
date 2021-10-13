@@ -192,6 +192,17 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="ArrowsStyle" TargetType="{x:Type Image}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsSelected}" Value="False">
+                <Setter Property="Source" Value="{DynamicResource ArrowDown_ActiveDrawingImage}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                <Setter Property="Source" Value="{DynamicResource ArrowUp_ActiveDrawingImage}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
     <Style x:Key="IconsStyle" TargetType="{x:Type Image}">
         <Style.Triggers>
             <DataTrigger Binding="{Binding FilterType}" Value="{x:Static home:FiltersType.Text}">
