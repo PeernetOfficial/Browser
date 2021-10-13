@@ -4,11 +4,11 @@
     <StackPanel>
         <TextBlock Margin="0 15 0 8" Text="{Binding Title}" />
         <Border MinWidth="200" Padding="15 10" BorderBrush="{StaticResource LightGray3Brush}" BorderThickness="1" CornerRadius="{StaticResource MainRadius}">
-            <ScrollViewer MinHeight="{Binding MinHeight}" MaxHeight="241" VerticalScrollBarVisibility="Auto" Style="{StaticResource FavsScrollViewer}">
+            <ScrollViewer MinHeight="{Binding MinHeight}" MaxHeight="253" VerticalScrollBarVisibility="Auto" Style="{StaticResource FavsScrollViewer}">
                 <ItemsControl ItemsSource="{Binding Items}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <CheckBox Name="CheckBoxtemplate" Foreground="{StaticResource DarkGreenBrush}" Margin="10" Template="{DynamicResource CustomCheckBox}"
+                            <CheckBox Name="CheckBoxtemplate" Foreground="{StaticResource DarkGreenBrush}" Margin="9" Template="{DynamicResource CustomCheckBox}"
                                   VerticalContentAlignment="Center" IsChecked="{Binding IsChecked}">
                                 <DockPanel>
                                     <Image Visibility="{Binding ShowDot, Converter={StaticResource BoolToVisibility}}" Width="7" Height="7" Margin="0 0 5 0" Style="{DynamicResource DotStyle}" />

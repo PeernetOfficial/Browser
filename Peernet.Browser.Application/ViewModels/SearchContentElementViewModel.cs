@@ -39,6 +39,28 @@ namespace Peernet.Browser.Application.ViewModels
             set => SetProperty(ref showColumnsSelector, value);
         }
 
+        private bool showColumnsSize = true;
+        private bool showColumnsDate = true;
+        private bool showColumnsDownload = true;
+
+        public bool ShowColumnsSize
+        {
+            get => showColumnsSize;
+            set => SetProperty(ref showColumnsSize, value);
+        }
+
+        public bool ShowColumnsDate
+        {
+            get => showColumnsDate;
+            set => SetProperty(ref showColumnsDate, value);
+        }
+
+        public bool ShowColumnsDownload
+        {
+            get => showColumnsDownload;
+            set => SetProperty(ref showColumnsDownload, value);
+        }
+
         public MvxObservableCollection<CustomCheckBoxModel> ColumnsCheckboxes { get; } = new MvxObservableCollection<CustomCheckBoxModel>();
 
         public IMvxCommand ClearCommand { get; }
@@ -63,6 +85,20 @@ namespace Peernet.Browser.Application.ViewModels
 
         private void OnColumnCheckboxClick(CustomCheckBoxModel selection)
         {
+            switch (selection.Content)
+            {
+                case "Date":
+                    ShowColumnsDate = selection.IsChecked;
+                    break;
+
+                case "Size":
+                    ShowColumnsSize = selection.IsChecked;
+                    break;
+
+                case "Downloads":
+                    ShowColumnsDownload = selection.IsChecked;
+                    break;
+            }
         }
 
         private void OnFilterIconClick(IconModel i)
