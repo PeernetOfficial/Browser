@@ -17,7 +17,7 @@ namespace Peernet.Browser.Application.ViewModels
             Filters = model ?? throw new ArgumentNullException();
             Filters.CloseAction += (x) => { if (x) Refresh(); };
 
-            ColumnsIconModel = new IconModel(FiltersType.Columns, true);
+            ColumnsIconModel = new IconModel(FiltersType.Columns, true, ShowColumnSelection);
             FiltersIconModel = new IconModel(FiltersType.Filters, true, OpenFilters);
             ClearCommand = new MvxCommand(() => Filters.Reset(true));
             InitIcons();
@@ -31,6 +31,16 @@ namespace Peernet.Browser.Application.ViewModels
             Refresh();
         }
 
+        private bool showColumnsSelector;
+
+        public bool ShowColumnsSelector
+        {
+            get => showColumnsSelector;
+            set => SetProperty(ref showColumnsSelector, value);
+        }
+
+        public MvxObservableCollection<CustomCheckBoxModel> ColumnsCheckboxes { get; } = new MvxObservableCollection<CustomCheckBoxModel>();
+
         public IMvxCommand ClearCommand { get; }
         public IconModel ColumnsIconModel { get; }
         public MvxObservableCollection<IconModel> FilterIconModels { get; } = new MvxObservableCollection<IconModel>();
@@ -43,7 +53,17 @@ namespace Peernet.Browser.Application.ViewModels
         {
         }
 
-        private void InitIcons() => RefreshIconFilters(SearchResultModel.GetDefaultStats().ToDictionary(x => x, y => 0), FiltersType.All);
+        private void InitIcons()
+        {
+            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Date", IsChecked = true, IsCheckChanged = OnColumnCheckboxClick });
+            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Size", IsChecked = true, IsCheckChanged = OnColumnCheckboxClick });
+            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Downloads", IsChecked = true, IsCheckChanged = OnColumnCheckboxClick });
+            RefreshIconFilters(SearchResultModel.GetDefaultStats().ToDictionary(x => x, y => 0), FiltersType.All);
+        }
+
+        private void OnColumnCheckboxClick(CustomCheckBoxModel selection)
+        {
+        }
 
         private void OnFilterIconClick(IconModel i)
         {
@@ -51,6 +71,11 @@ namespace Peernet.Browser.Application.ViewModels
             i.IsSelected = true;
             Filters.SearchFilterResult.FilterType = i.FilterType;
             Refresh();
+        }
+
+        private void ShowColumnSelection(IconModel i)
+        {
+            ShowColumnsSelector = !ShowColumnsSelector;
         }
 
         private void OpenFilters(IconModel m)

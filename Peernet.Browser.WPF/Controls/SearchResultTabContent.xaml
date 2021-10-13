@@ -11,6 +11,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="55" />
         </Grid.RowDefinitions>
+
         <ItemsControl Grid.Row="0" VerticalContentAlignment="Center" ItemsSource="{Binding FilterIconModels}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -23,6 +24,22 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+
+        <Border Visibility="{Binding ShowColumnsSelector, Converter={StaticResource BoolToVisibility}}" CornerRadius="{StaticResource MainRadius}" Margin="0 0 115 -200"
+                Panel.ZIndex="1" BorderBrush="{StaticResource LightGray2Brush}"
+                BorderThickness="1" Grid.Row="0" HorizontalAlignment="Right"
+                Width="180" Height="160" Background="White">
+            <ItemsControl ItemsSource="{Binding ColumnsCheckboxes}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox Foreground="{StaticResource DarkGreenBrush}" Margin="15" Template="{DynamicResource CustomCheckBox}"
+                                  VerticalContentAlignment="Center" IsChecked="{Binding IsChecked}">
+                            <TextBlock FontSize="18" Text="{Binding Content}" />
+                        </CheckBox>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
 
         <DockPanel LastChildFill="False" Grid.Row="0"  HorizontalAlignment="Right">
             <local:FilterIconControl Padding="0 10 0 10" Height="41"  DataContext="{Binding ColumnsIconModel}" />
