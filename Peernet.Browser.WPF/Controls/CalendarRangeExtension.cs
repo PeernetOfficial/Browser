@@ -15,9 +15,18 @@ namespace Peernet.Browser.WPF.Controls
         private void CalendarRangeExtension_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
             var count = SelectedDates.Count();
-            if (count == 0) SelectedDateTo = null;
-            if (count > 1) SelectedDateTo = SelectedDates.Last();
-            if (count == 1 && SelectedDateTo.HasValue && SelectedDate.HasValue && SelectedDateTo != SelectedDate) SelectedDates.AddRange(SelectedDate.Value, SelectedDateTo.Value);
+            if (count == 0)
+            {
+                SelectedDateTo = null;
+            }
+            if (count > 1)
+            {
+                SelectedDateTo = SelectedDates.Last();
+            }
+            if (count == 1 && SelectedDateTo.HasValue && SelectedDate.HasValue && SelectedDateTo != SelectedDate)
+            {
+                SelectedDates.AddRange(SelectedDate.Value, SelectedDateTo.Value);
+            }
         }
 
         public static readonly DependencyProperty SelectedDateToProperty = DependencyProperty.Register("SelectedDateTo", typeof(DateTime?), typeof(CalendarRangeExtension));

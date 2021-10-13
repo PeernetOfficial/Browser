@@ -116,8 +116,14 @@ namespace Peernet.Browser.Models.Presentation.Home
             this.max = max;
             SearchFilterResult.SizeMax = max;
             SearchFilterResult.SizeMin = min;
-            if (SearchFilterResult.SizeTo > max || SearchFilterResult.SizeTo <= min) SearchFilterResult.SizeTo = max;
-            if (SearchFilterResult.SizeFrom < min || SearchFilterResult.SizeFrom >= max) SearchFilterResult.SizeFrom = min;
+            if (SearchFilterResult.SizeTo > max || SearchFilterResult.SizeTo <= min)
+            {
+                SearchFilterResult.SizeTo = max;
+            }
+            if (SearchFilterResult.SizeFrom < min || SearchFilterResult.SizeFrom >= max)
+            {
+                SearchFilterResult.SizeFrom = min;
+            }
         }
 
         private void Apply()

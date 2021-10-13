@@ -4,6 +4,7 @@ using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Models.Presentation.Home;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -52,9 +53,9 @@ namespace Peernet.Browser.Application.ViewModels
 
         public MvxObservableCollection<SearchTabElementViewModel> Tabs { get; } = new MvxObservableCollection<SearchTabElementViewModel>();
 
-        private void RemoveTab(SearchTabElementViewModel e)
+        private async Task RemoveTab(SearchTabElementViewModel e)
         {
-            searchService.Terminate(e.Content.Filters.UuId);
+            await searchService.Terminate(e.Content.Filters.UuId);
             Tabs.Remove(e);
             SelectedIndex = IsVisible ? 0 : -1;
         }

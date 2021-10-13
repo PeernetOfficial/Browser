@@ -45,7 +45,10 @@ namespace Peernet.Browser.Models.Presentation.Home
 
         protected virtual void IsCheckedChanged(CustomCheckBoxModel c)
         {
-            if (c.IsChecked && isRadio) Items.Where(x => x != c).Foreach(x => x.IsChecked = false);
+            if (c.IsChecked && isRadio)
+            {
+                Items.Where(x => x != c).Foreach(x => x.IsChecked = false);
+            }
         }
 
         public T GetSelected()
@@ -68,7 +71,10 @@ namespace Peernet.Browser.Models.Presentation.Home
             if (vals.IsNullOrEmpty()) return;
             foreach (var i in Items)
             {
-                if (vals.Contains((T)i.EnumerationMember)) i.IsChecked = true;
+                if (vals.Contains((T)i.EnumerationMember))
+                {
+                    i.IsChecked = true;
+                }
             }
         }
 
@@ -77,7 +83,10 @@ namespace Peernet.Browser.Models.Presentation.Home
             if (val == null) return;
             foreach (var i in Items)
             {
-                if (val.Equals(i.EnumerationMember)) i.IsChecked = true;
+                if (val.Equals(i.EnumerationMember))
+                {
+                    i.IsChecked = true;
+                }
             }
         }
 

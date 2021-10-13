@@ -28,9 +28,11 @@ namespace Peernet.Browser.Models.Domain.Search
 
         public int GetCount<T>(T type) where T : Enum
         {
-            if (Total == 0) return 0;
-
-            if (type is HighLevelFileType highLevelType)
+            if (Total == 0)
+            {
+                return 0;
+            }
+            else if (type is HighLevelFileType highLevelType)
             {
                 var res = FileFormat.FirstOrDefault(x => x.Key == highLevelType);
                 return res != null ? res.Count : 0;
@@ -42,7 +44,7 @@ namespace Peernet.Browser.Models.Domain.Search
             }
             else
             {
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException($"Only {typeof(HighLevelFileType)} and type {typeof(LowLevelFileType)} are supported");
             }
         }
     }

@@ -8,7 +8,7 @@ namespace Peernet.Browser.Application.Services
     {
         Task<SearchResultModel> Search(SearchFilterResultModel model);
 
-        void Terminate(string id);
+        Task Terminate(string id);
 
         IDictionary<FiltersType, int> GetEmptyStats();
     }

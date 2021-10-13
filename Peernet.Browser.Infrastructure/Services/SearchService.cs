@@ -13,7 +13,6 @@ namespace Peernet.Browser.Infrastructure.Services
 {
     public class SearchService : ISearchService
     {
-        private const int NotUsedValue = -1;
         private readonly ISearchClient searchClient;
 
         private readonly IDictionary<string, SearchResult> results = new Dictionary<string, SearchResult>();
@@ -41,7 +40,7 @@ namespace Peernet.Browser.Infrastructure.Services
             return res;
         }
 
-        public async void Terminate(string id)
+        public async Task Terminate(string id)
         {
             await searchClient.TerminateSearch(id);
             results.Remove(id);
@@ -101,8 +100,8 @@ namespace Peernet.Browser.Infrastructure.Services
                 FileFormat = HighLevelFileType.NotUsed,
                 FileType = LowLevelFileType.NotUsed,
                 Sort = SearchRequestSortTypeEnum.SortNone,
-                SizeMax = NotUsedValue,
-                SizeMin = NotUsedValue
+                SizeMax = -1,
+                SizeMin = -1
             };
             if (model.PrevId.IsNullOrEmpty())
             {
@@ -111,8 +110,8 @@ namespace Peernet.Browser.Infrastructure.Services
             if (model.Time.HasValue)
             {
                 var r = model.GetDateRange();
-                res.DateFrom = r.Item1.ToString();
-                res.DateTo = r.Item2.ToString();
+                res.DateFrom = r.from.ToString();
+                res.DateTo = r.to.ToString();
             }
             if (model.SizeFrom.HasValue)
             {

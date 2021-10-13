@@ -12,13 +12,13 @@ namespace Peernet.Browser.Application.ViewModels
 
         public string Title { get; }
 
-        public SearchTabElementViewModel(string title, Action<SearchTabElementViewModel> deleteAction, Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction)
+        public SearchTabElementViewModel(string title, Func<SearchTabElementViewModel, Task> deleteAction, Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction)
         {
             Title = title;
             Content = new SearchContentElementViewModel(new FiltersModel(title, refreshAction));
-            DeleteCommand = new MvxCommand(() => deleteAction(this));
+            DeleteCommand = new MvxAsyncCommand(async () => await deleteAction(this));
         }
 
-        public IMvxCommand DeleteCommand { get; }
+        public IMvxAsyncCommand DeleteCommand { get; }
     }
 }

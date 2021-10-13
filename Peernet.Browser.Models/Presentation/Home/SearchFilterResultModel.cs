@@ -36,13 +36,22 @@ namespace Peernet.Browser.Models.Presentation.Home
                     Content = Time == TimePeriods.Custom ? $"{TimeFrom.Value.ToShortDateString()} - {TimeTo.Value.ToShortDateString()}" : Time.Value.GetDescription()
                 });
             }
-            if (!Healths.IsNullOrEmpty()) Healths.Foreach(x => res.Add(new FilterResultModel(Remove) { Type = SearchFiltersType.HealthType, Content = x.GetDescription() }));
-            if (!FileFormats.IsNullOrEmpty()) FileFormats.Foreach(x => res.Add(new FilterResultModel(Remove) { Type = SearchFiltersType.FileFormats, Content = x.GetDescription() }));
-            if (!IsSizeDefault) res.Add(new FilterResultModel(Remove) { Type = SearchFiltersType.Size, Content = $"{SizeFrom}MB - {SizeTo}MB" });
+            if (!Healths.IsNullOrEmpty())
+            {
+                Healths.Foreach(x => res.Add(new FilterResultModel(Remove) { Type = SearchFiltersType.HealthType, Content = x.GetDescription() }));
+            }
+            if (!FileFormats.IsNullOrEmpty())
+            {
+                FileFormats.Foreach(x => res.Add(new FilterResultModel(Remove) { Type = SearchFiltersType.FileFormats, Content = x.GetDescription() }));
+            }
+            if (!IsSizeDefault)
+            {
+                res.Add(new FilterResultModel(Remove) { Type = SearchFiltersType.Size, Content = $"{SizeFrom}MB - {SizeTo}MB" });
+            }
             return res;
         }
 
-        public Tuple<DateTime, DateTime> GetDateRange()
+        public (DateTime from, DateTime to) GetDateRange()
         {
             var from = DateTime.Now;
             var to = DateTime.Now;
@@ -69,7 +78,7 @@ namespace Peernet.Browser.Models.Presentation.Home
                     to = TimeTo.Value;
                     break;
             }
-            return new Tuple<DateTime, DateTime>(from, to);
+            return new(from, to);
         }
 
         private void Remove(FilterResultModel o) => OnRemoveAction?.Invoke(o.Type);
