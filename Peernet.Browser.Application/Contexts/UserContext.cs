@@ -57,7 +57,7 @@ namespace Peernet.Browser.Application.Contexts
         {
             return new List<MenuItemViewModel>
             {
-                new("About"),
+                new("About", () => mvxNavigationService.Navigate<AboutViewModel>()),
                 new("FAQ (Help)"),
                 new("Backup to a file"),
                 new(
@@ -68,7 +68,7 @@ namespace Peernet.Browser.Application.Contexts
                         GlobalContext.IsProfileMenuVisible = false;
                         mvxNavigationService.Navigate<EditProfileViewModel>();
                     })
-                };
+            };
         }
     }
 }
