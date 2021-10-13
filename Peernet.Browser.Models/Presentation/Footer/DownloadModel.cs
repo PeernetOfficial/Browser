@@ -1,8 +1,6 @@
 ﻿using Peernet.Browser.Models.Domain.Common;
 using Peernet.Browser.Models.Domain.Download;
 using System.ComponentModel;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
 
 namespace Peernet.Browser.Models.Presentation.Footer
 {
@@ -12,10 +10,9 @@ namespace Peernet.Browser.Models.Presentation.Footer
         private double progress;
         private bool isCompleted;
 
-        public DownloadModel(string Id, ApiBlockRecordFile File)
+        public DownloadModel(ApiBlockRecordFile file)
         {
-            this.Id = Id;
-            this.File = File;
+            File = file;
         }
 
         public double Progress
@@ -40,7 +37,7 @@ namespace Peernet.Browser.Models.Presentation.Footer
 
         public string DisplayName => File.Name.Length > 26 ? $"{File.Name.Substring(0, 26)}..." : File.Name;
 
-        public string Id { get; init; }
+        public string Id { get; set; }
 
         public ApiBlockRecordFile File { get; init; }
 

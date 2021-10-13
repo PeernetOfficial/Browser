@@ -2,7 +2,6 @@
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Infrastructure.Clients;
-using Peernet.Browser.Models.Domain.Common;
 using Peernet.Browser.Models.Domain.Download;
 using Peernet.Browser.Models.Presentation.Footer;
 using System;
@@ -16,11 +15,13 @@ namespace Peernet.Browser.Infrastructure
     public class DownloadManager : IDownloadManager
     {
         private readonly IDownloadClient downloadClient;
+        private readonly ISettingsManager settingsManager;
 
         public event EventHandler downloadsChanged;
 
         public DownloadManager(ISettingsManager settingsManager)
         {
+            this.settingsManager = settingsManager;
             downloadClient = new DownloadClient(settingsManager);
 
             // Fire on the thread-pool and forget
@@ -36,7 +37,7 @@ namespace Peernet.Browser.Infrastructure
             if (responseStatus.DownloadStatus is DownloadStatus.DownloadCanceled or DownloadStatus.DownloadFinished)
             {
                 ActiveFileDownloads.Remove(download);
-                NotifyChange(download, $"{download.File.Name} downloading canceled!");
+                NotifyChange($"{download.File.Name} downloading canceled!");
             }
 
             return responseStatus;
@@ -51,13 +52,11 @@ namespace Peernet.Browser.Infrastructure
             return responseStatus;
         }
 
-        public async Task QueueUpDownload(ApiBlockRecordFile file)
+        public async Task QueueUpDownload(DownloadModel downloadModel)
         {
-            var status = await downloadClient.Start($"C:/Temp/Peernet/{file.Name}", file.Hash, file.NodeId);
-            var downloadModel = new DownloadModel(status.Id, file)
-            {
-                Status = status.DownloadStatus
-            };
+            var status = await downloadClient.Start($"{settingsManager.DownloadPath}/{downloadModel.File.Name}", downloadModel.File.Hash, downloadModel.File.NodeId);
+            downloadModel.Id = status.Id;
+            downloadModel.Status = status.DownloadStatus;
 
             if (status.APIStatus == APIStatus.DownloadResponseSuccess)
             {
@@ -82,7 +81,7 @@ namespace Peernet.Browser.Infrastructure
             return responseStatus;
         }
 
-        private void NotifyChange(DownloadModel download, string message)
+        private void NotifyChange(string message)
         {
             downloadsChanged?.Invoke(this, EventArgs.Empty);
             GlobalContext.Notifications.Add(new Notification { Text = message });
@@ -104,7 +103,7 @@ namespace Peernet.Browser.Infrastructure
                         download.IsCompleted = true;
                         download.Progress = 100;
                         await GlobalContext.UiThreadDispatcher.ExecuteOnMainThreadAsync(() =>
-                            NotifyChange(download, $"{download.File.Name} downloading completed!"));
+                            NotifyChange($"{download.File.Name} downloading completed!"));
                     }
                 }
 

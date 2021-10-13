@@ -1,5 +1,4 @@
-﻿using Peernet.Browser.Models.Domain.Common;
-using Peernet.Browser.Models.Domain.Download;
+﻿using Peernet.Browser.Models.Domain.Download;
 using Peernet.Browser.Models.Presentation.Footer;
 using System;
 using System.Collections.ObjectModel;
@@ -13,7 +12,7 @@ namespace Peernet.Browser.Application.Download
 
         ObservableCollection<DownloadModel> ActiveFileDownloads { get; set; }
 
-        Task QueueUpDownload(ApiBlockRecordFile file);
+        Task QueueUpDownload(DownloadModel downloadModel);
 
         Task<ApiResponseDownloadStatus> PauseDownload(string id);
 

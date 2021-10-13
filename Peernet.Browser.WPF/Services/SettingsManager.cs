@@ -1,6 +1,6 @@
 ﻿using Peernet.Browser.Application.Managers;
 
-namespace Peernet.Browser.WPF
+namespace Peernet.Browser.WPF.Services
 {
     public class SettingsManager : ISettingsManager
     {
@@ -30,6 +30,16 @@ namespace Peernet.Browser.WPF
             set
             {
                 Properties.Settings.Default.CmdPath = value;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        public string DownloadPath
+        {
+            get => Properties.Settings.Default.DownloadPath;
+            set
+            {
+                Properties.Settings.Default.DownloadPath = value;
                 Properties.Settings.Default.Save();
             }
         }
