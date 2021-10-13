@@ -19,11 +19,12 @@ namespace Peernet.Browser.Infrastructure.Clients
 
         public override string CoreSegment => "search";
 
-        public async Task<SearchResult> GetSearchResult(string id, int? limit = null)
+        public async Task<SearchResult> GetSearchResult(string id, int stats = 1, int? limit = null)
         {
             var parameters = new Dictionary<string, string>
             {
-                [nameof(id)] = id
+                [nameof(id)] = id,
+                [nameof(stats)] = stats.ToString()
             };
 
             if (limit != null)
@@ -32,6 +33,15 @@ namespace Peernet.Browser.Infrastructure.Clients
             }
 
             return await httpExecutor.GetResult<SearchResult>(HttpMethod.Get, GetRelativeRequestPath("result"), parameters);
+        }
+
+        public async Task<SearchStatistic> SearchResultStatistics(string id)
+        {
+            var parameters = new Dictionary<string, string>
+            {
+                [nameof(id)] = id
+            };
+            return await httpExecutor.GetResult<SearchStatistic>(HttpMethod.Get, GetRelativeRequestPath("statistic"), parameters);
         }
 
         public async Task<SearchRequestResponse> SubmitSearch(SearchRequest searchRequest)
@@ -46,7 +56,7 @@ namespace Peernet.Browser.Infrastructure.Clients
                 [nameof(id)] = id,
             };
 
-            await httpExecutor.GetResult<SearchResult>(HttpMethod.Get, GetRelativeRequestPath("terminate"), parameters);
+            await httpExecutor.GetResult<string>(HttpMethod.Get, GetRelativeRequestPath("terminate"), parameters);
         }
     }
 }

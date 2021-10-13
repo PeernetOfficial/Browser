@@ -1,4 +1,6 @@
-﻿namespace Peernet.Browser.Models.Domain.Search
+﻿using Peernet.Browser.Models.Domain.Common;
+
+namespace Peernet.Browser.Models.Domain.Search
 {
     public class SearchRequest
     {
@@ -30,37 +32,35 @@
         public string DateTo { get; set; }
 
         /// <summary>
-        ///  Sort order:
-        ///  0 = No sorting,
-        ///  1 = Relevance ASC,
-        ///  2 = Relevance DESC (this should be default),
-        ///  3 = Date ASC,
-        ///  4 = Date DESC
+        ///  Sort order
         /// </summary>
-        public int Sort { get; set; }
+        public SearchRequestSortTypeEnum Sort { get; set; }
 
         /// <summary>
         /// Optional: Previous search IDs to terminate.
         /// This is if the user makes a new search from the same tab.
         /// Same as first calling /search/terminate.
         /// </summary>
-        public int[] Terminate { get; set; }
-
-        /// <summary>
-        /// 0 = No filters used,
-        /// 1 = Use file type filter,
-        /// 2 = Use file format filter.
-        /// </summary>
-        public int TypeFilter { get; set; }
+        public string[] Terminate { get; set; }
 
         /// <summary>
         /// File type such as binary, text document etc. See core.TypeX.
         /// </summary>
-        public int FileType { get; set; }
+        public LowLevelFileType FileType { get; set; }
 
         /// <summary>
         /// File format such as PDF, Word, Ebook, etc. See core.FormatX.
         /// </summary>
-        public int FileFormat { get; set; }
+        public HighLevelFileType FileFormat { get; set; }
+
+        /// <summary>
+        /// Min file size in bytes. -1 = not used.
+        /// </summary>
+        public int SizeMin { get; set; }
+
+        /// <summary>
+        /// Max file size in bytes. -1 = not used.
+        /// </summary>
+        public int SizeMax { get; set; }
     }
 }

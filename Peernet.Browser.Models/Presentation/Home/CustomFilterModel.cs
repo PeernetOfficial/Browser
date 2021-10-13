@@ -1,18 +1,27 @@
-﻿using System;
+﻿using MvvmCross.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using MvvmCross.ViewModels;
-using Peernet.Browser.Application.Extensions;
-using Peernet.Browser.Models.Extensions;
 
 namespace Peernet.Browser.Models.Presentation.Home
 {
     public abstract class CustomFilterModel<T> : MvxNotifyPropertyChanged where T : Enum
     {
-        protected CustomFilterModel(string title, bool firstReset = true, bool showDot = false)
+        private readonly bool isRadio;
+
+        protected CustomFilterModel(string title, bool showDot = false, bool isRadio = false)
         {
+            this.isRadio = isRadio;
             Title = title.ToUpper();
-            Items.AddRange(GetElements().Select(x => new CustomCheckBoxModel { EnumerationMember = x.Key, Content = x.Value, IsCheckChanged = IsCheckedChanged, ShowDot = showDot }));
+            Items.AddRange(GetElements()
+                .Select(x => new CustomCheckBoxModel
+                {
+                    EnumerationMember = x.Key,
+                    Content = x.Value,
+                    IsCheckChanged = IsCheckedChanged,
+                    ShowDot = showDot,
+                    IsRadio = isRadio
+                }));
         }
 
         protected virtual IEnumerable<KeyValuePair<Enum, string>> GetElements()
@@ -28,18 +37,31 @@ namespace Peernet.Browser.Models.Presentation.Home
             }
         }
 
+        public double MinHeight { get; set; }
+
         public string Title { get; }
 
         public MvxObservableCollection<CustomCheckBoxModel> Items { get; } = new MvxObservableCollection<CustomCheckBoxModel>();
 
-        private void IsCheckedChanged(CustomCheckBoxModel c)
+        protected virtual void IsCheckedChanged(CustomCheckBoxModel c)
         {
-            if (c.IsChecked) Items.Where(x => x != c).Foreach(x => x.IsChecked = false);
+            if (c.IsChecked && isRadio)
+            {
+                Items.Where(x => x != c).Foreach(x => x.IsChecked = false);
+            }
         }
 
         public T GetSelected()
         {
             return (T)Items.First(x => x.IsChecked).EnumerationMember;
+        }
+
+        public T[] GetAllSelected()
+        {
+            return Items
+                .Where(x => x.IsChecked)
+                .Select(x => (T)x.EnumerationMember)
+                .ToArray();
         }
 
         public bool IsSelected => Items.Any(x => x.IsChecked);
@@ -49,7 +71,10 @@ namespace Peernet.Browser.Models.Presentation.Home
             if (vals.IsNullOrEmpty()) return;
             foreach (var i in Items)
             {
-                if (vals.Contains((T)i.EnumerationMember)) i.IsChecked = true;
+                if (vals.Contains((T)i.EnumerationMember))
+                {
+                    i.IsChecked = true;
+                }
             }
         }
 
@@ -58,7 +83,10 @@ namespace Peernet.Browser.Models.Presentation.Home
             if (val == null) return;
             foreach (var i in Items)
             {
-                if (val.Equals(i.EnumerationMember)) i.IsChecked = true;
+                if (val.Equals(i.EnumerationMember))
+                {
+                    i.IsChecked = true;
+                }
             }
         }
 

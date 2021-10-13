@@ -14,7 +14,7 @@ namespace Peernet.Browser.Models.Presentation.Home
             Date = source.Date.ToString();
             Size = $"{source.Size} MB";
             SharedBy = source.SharedByCount;
-            FlameIsVisible = source.Size > 15;
+            FlameIsVisible = source.SharedByCount > 15;
         }
 
         public HealthType EnumerationMember { get; }
@@ -27,5 +27,26 @@ namespace Peernet.Browser.Models.Presentation.Home
         public IMvxCommand DownloadCommand { get; }
 
         public Action<SearchResultRowModel> DownloadAction { get; set; }
+
+        public static DataGridSortingNameEnum Parse(string name)
+        {
+            switch (name)
+            {
+                case nameof(Name):
+                    return DataGridSortingNameEnum.Name;
+
+                case nameof(Date):
+                    return DataGridSortingNameEnum.Date;
+
+                case nameof(Size):
+                    return DataGridSortingNameEnum.Size;
+
+                case nameof(SharedBy):
+                    return DataGridSortingNameEnum.Share;
+
+                default:
+                    return DataGridSortingNameEnum.None;
+            }
+        }
     }
 }

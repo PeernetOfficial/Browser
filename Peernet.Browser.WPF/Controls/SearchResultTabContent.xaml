@@ -3,6 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Peernet.Browser.WPF.Controls"
              Padding="30 10 30 10">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <FrameworkElement x:Key="ProxyElement" DataContext="{Binding}" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="55" />
@@ -11,6 +17,8 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="55" />
         </Grid.RowDefinitions>
+        <ContentControl Content="{StaticResource ProxyElement}" Visibility="Collapsed" />
+
         <ItemsControl Grid.Row="0" VerticalContentAlignment="Center" ItemsSource="{Binding FilterIconModels}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -23,6 +31,22 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+
+        <Border Visibility="{Binding ShowColumnsSelector, Converter={StaticResource BoolToVisibility}}" CornerRadius="{StaticResource MainRadius}" Margin="0 0 115 -200"
+                Panel.ZIndex="1" BorderBrush="{StaticResource LightGray2Brush}"
+                BorderThickness="1" Grid.Row="0" HorizontalAlignment="Right"
+                Width="180" Height="160" Background="White">
+            <ItemsControl ItemsSource="{Binding ColumnsCheckboxes}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox Foreground="{StaticResource DarkGreenBrush}" Margin="15" Template="{DynamicResource CustomCheckBox}"
+                                  VerticalContentAlignment="Center" IsChecked="{Binding IsChecked}">
+                            <TextBlock FontSize="14" Text="{Binding Content}" />
+                        </CheckBox>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
 
         <DockPanel LastChildFill="False" Grid.Row="0"  HorizontalAlignment="Right">
             <local:FilterIconControl Padding="0 10 0 10" Height="41"  DataContext="{Binding ColumnsIconModel}" />
@@ -52,7 +76,7 @@
             <Button Command="{Binding ClearCommand}" FontSize="14" HorizontalAlignment="Right" Style="{StaticResource LinkButton}">Clear all filters</Button>
         </DockPanel>
 
-        <DataGrid Padding="0 10 0 0" HorizontalAlignment="Stretch" Grid.Row="3"
+        <DataGrid  Sorting="DataGrid_Sorting" Padding="0 10 0 0" HorizontalAlignment="Stretch" Grid.Row="3"
                   Style="{DynamicResource DataGridStyle}" ItemsSource="{Binding TableResult}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="" SortMemberPath="First">
@@ -76,14 +100,14 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn  TextBlock.TextAlignment="Left" Width="200" Header="DATE" Binding="{Binding Date}">
+                <DataGridTextColumn  Visibility="{Binding DataContext.ShowColumnsDate, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}"  TextBlock.TextAlignment="Left" Width="200" Header="DATE" Binding="{Binding Date}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="VerticalAlignment" Value="Center" />
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Width="120" Header="SIZE" Binding="{Binding Size}">
+                <DataGridTextColumn  Visibility="{Binding DataContext.ShowColumnsSize, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}" Width="120" Header="SIZE" Binding="{Binding Size}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="VerticalAlignment" Value="Center" />
@@ -104,7 +128,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn>
+                <DataGridTemplateColumn  Visibility="{Binding DataContext.ShowColumnsDownload, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}"  Width="60">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Width="12" Height="17"  Style="{StaticResource DataGridActionButton}" Command="{Binding DownloadCommand}">

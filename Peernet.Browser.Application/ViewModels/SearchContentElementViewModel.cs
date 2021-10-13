@@ -3,15 +3,10 @@ using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
-using Peernet.Browser.Models.Domain;
-using Peernet.Browser.Models.Presentation;
+using Peernet.Browser.Models.Presentation.Home;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Peernet.Browser.Application.Extensions;
-using Peernet.Browser.Models.Extensions;
-using Peernet.Browser.Models.Presentation.Home;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -22,12 +17,51 @@ namespace Peernet.Browser.Application.ViewModels
             Filters = model ?? throw new ArgumentNullException();
             Filters.CloseAction += (x) => { if (x) Refresh(); };
 
-            ColumnsIconModel = new IconModel(FiltersType.Columns, true);
+            ColumnsIconModel = new IconModel(FiltersType.Columns, true, ShowColumnSelection);
             FiltersIconModel = new IconModel(FiltersType.Filters, true, OpenFilters);
             ClearCommand = new MvxCommand(() => Filters.Reset(true));
-
+            InitIcons();
             Refresh();
         }
+
+        public void OnSorting(string columnName, DataGridSortingTypeEnum type)
+        {
+            Filters.SearchFilterResult.SortName = SearchResultRowModel.Parse(columnName);
+            Filters.SearchFilterResult.SortType = type;
+            Refresh();
+        }
+
+        private bool showColumnsSelector;
+
+        public bool ShowColumnsSelector
+        {
+            get => showColumnsSelector;
+            set => SetProperty(ref showColumnsSelector, value);
+        }
+
+        private bool showColumnsSize = true;
+        private bool showColumnsDate = true;
+        private bool showColumnsDownload = true;
+
+        public bool ShowColumnsSize
+        {
+            get => showColumnsSize;
+            set => SetProperty(ref showColumnsSize, value);
+        }
+
+        public bool ShowColumnsDate
+        {
+            get => showColumnsDate;
+            set => SetProperty(ref showColumnsDate, value);
+        }
+
+        public bool ShowColumnsDownload
+        {
+            get => showColumnsDownload;
+            set => SetProperty(ref showColumnsDownload, value);
+        }
+
+        public MvxObservableCollection<CustomCheckBoxModel> ColumnsCheckboxes { get; } = new MvxObservableCollection<CustomCheckBoxModel>();
 
         public IMvxCommand ClearCommand { get; }
         public IconModel ColumnsIconModel { get; }
@@ -41,12 +75,43 @@ namespace Peernet.Browser.Application.ViewModels
         {
         }
 
+        private void InitIcons()
+        {
+            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Date", IsChecked = true, IsCheckChanged = OnColumnCheckboxClick });
+            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Size", IsChecked = true, IsCheckChanged = OnColumnCheckboxClick });
+            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Downloads", IsChecked = true, IsCheckChanged = OnColumnCheckboxClick });
+            RefreshIconFilters(SearchResultModel.GetDefaultStats().ToDictionary(x => x, y => 0), FiltersType.All);
+        }
+
+        private void OnColumnCheckboxClick(CustomCheckBoxModel selection)
+        {
+            switch (selection.Content)
+            {
+                case "Date":
+                    ShowColumnsDate = selection.IsChecked;
+                    break;
+
+                case "Size":
+                    ShowColumnsSize = selection.IsChecked;
+                    break;
+
+                case "Downloads":
+                    ShowColumnsDownload = selection.IsChecked;
+                    break;
+            }
+        }
+
         private void OnFilterIconClick(IconModel i)
         {
             FilterIconModels.Where(x => x != i).Foreach(x => x.IsSelected = false);
             i.IsSelected = true;
             Filters.SearchFilterResult.FilterType = i.FilterType;
             Refresh();
+        }
+
+        private void ShowColumnSelection(IconModel i)
+        {
+            ShowColumnsSelector = !ShowColumnsSelector;
         }
 
         private void OpenFilters(IconModel m)
@@ -58,11 +123,9 @@ namespace Peernet.Browser.Application.ViewModels
             navigationService.Navigate<FiltersViewModel, FiltersModel>(Filters);
         }
 
-        // todo: it is executed synchronously in constructor -> it should be fixed. As suggested earlier, if that was real viewmodel it could override asynchronous OnInitialize
-        private void Refresh()
+        private async void Refresh()
         {
-            var data = Task.Run(async () => await Filters.GetData(Download))
-                .GetResultBlockingWithoutContextSynchronization();
+            var data = await Filters.GetData(Download);
             TableResult.Clear();
             data.Rows.Foreach(x => TableResult.Add(x));
             RefreshIconFilters(data.Stats, data.Filters.FilterType);
