@@ -1,0 +1,147 @@
+﻿<UserControl x:Class="Peernet.Browser.WPF.Controls.SearchResultTabContent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Peernet.Browser.WPF.Controls"
+             Padding="30 10 30 10">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <FrameworkElement x:Key="ProxyElement" DataContext="{Binding}" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55" />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="55" />
+        </Grid.RowDefinitions>
+        <ContentControl Content="{StaticResource ProxyElement}" Visibility="Collapsed" />
+
+        <ItemsControl Grid.Row="0" VerticalContentAlignment="Center" ItemsSource="{Binding FilterIconModels}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <local:FilterIconControl Padding="10" Height="41" DataContext="{Binding}" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <Border Visibility="{Binding ShowColumnsSelector, Converter={StaticResource BoolToVisibility}}" CornerRadius="{StaticResource MainRadius}" Margin="0 0 115 -200"
+                Panel.ZIndex="1" BorderBrush="{StaticResource LightGray2Brush}"
+                BorderThickness="1" Grid.Row="0" HorizontalAlignment="Right"
+                Width="180" Height="160" Background="White">
+            <ItemsControl ItemsSource="{Binding ColumnsCheckboxes}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox Foreground="{StaticResource DarkGreenBrush}" Margin="15" Template="{DynamicResource CustomCheckBox}"
+                                  VerticalContentAlignment="Center" IsChecked="{Binding IsChecked}">
+                            <TextBlock FontSize="14" Text="{Binding Content}" />
+                        </CheckBox>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <DockPanel LastChildFill="False" Grid.Row="0"  HorizontalAlignment="Right">
+            <local:FilterIconControl Padding="0 10 0 10" Height="41"  DataContext="{Binding ColumnsIconModel}" />
+            <local:FilterIconControl Padding="0 10 0 10" Height="41"  DataContext="{Binding FiltersIconModel}" />
+        </DockPanel>
+
+        <Border Margin="-30 3 -30 0" Grid.Row="1" BorderThickness="0 1 0 0" BorderBrush="{StaticResource LightGray2Brush}" />
+
+        <DockPanel Visibility="{Binding Filters.IsVisible, Converter={StaticResource BoolToVisibility}}" Margin="14" Grid.Row="2">
+            <TextBlock Margin="10" FontSize="14" Foreground="{StaticResource DarkGreenBrush}">Your filters:</TextBlock>
+
+            <ItemsControl ItemsSource="{Binding Filters.Results}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel Margin="10 0 0 0" VerticalAlignment="Center" Background="{StaticResource LightGray2Brush}">
+                            <TextBlock Padding="5" Text="{Binding Content}" />
+                            <Button Command="{Binding ClickCommand}" Margin="10 0 10 0" Style="{StaticResource PrimaryButton}">X</Button>
+                        </DockPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <Button Command="{Binding ClearCommand}" FontSize="14" HorizontalAlignment="Right" Style="{StaticResource LinkButton}">Clear all filters</Button>
+        </DockPanel>
+
+        <DataGrid  Sorting="DataGrid_Sorting" Padding="0 10 0 0" HorizontalAlignment="Stretch" Grid.Row="3"
+                  Style="{DynamicResource DataGridStyle}" ItemsSource="{Binding TableResult}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="" SortMemberPath="First">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Width="10" Style="{StaticResource DotStyle}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*" Header="NAME" SortMemberPath="Name">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image Width="13.71" Height="20" Grid.Column="0" Source="{DynamicResource FileImageDrawingImage}" />
+                                <TextBlock Grid.Column="1" Text="{Binding Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn  Visibility="{Binding DataContext.ShowColumnsDate, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}"  TextBlock.TextAlignment="Left" Width="200" Header="DATE" Binding="{Binding Date}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn  Visibility="{Binding DataContext.ShowColumnsSize, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}" Width="120" Header="SIZE" Binding="{Binding Size}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTemplateColumn Width="100" Header="SHARED BY" SortMemberPath="SharedBy">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding SharedBy, StringFormat={}{0} Peers}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                <Image Visibility="{Binding FlameIsVisible, Converter={StaticResource BoolToVisibility}}" Height="20" Grid.Column="1" Source="{DynamicResource FlameDrawingImage}" />
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn  Visibility="{Binding DataContext.ShowColumnsDownload, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}"  Width="60">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Width="12" Height="17"  Style="{StaticResource DataGridActionButton}" Command="{Binding DownloadCommand}">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="{DynamicResource DownloadDrawingImage}" />
+                                </Button.Background>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Border Margin="-30 3 -30 0" Grid.Row="4" BorderThickness="0 1 0 0" BorderBrush="{StaticResource LightGray2Brush}" />
+    </Grid>
+</UserControl>
