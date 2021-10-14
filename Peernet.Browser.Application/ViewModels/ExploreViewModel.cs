@@ -8,16 +8,17 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Models.Domain.Common;
+using Peernet.Browser.Models.Presentation.Footer;
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public class ExploreViewModel : MvxViewModel
     {
-        public ObservableCollection<ApiBlockRecordFile> activeSearchResults;
+        public ObservableCollection<DownloadModel> activeSearchResults;
         private readonly IExploreService exploreService;
         private readonly IDownloadManager downloadManager;
         private static readonly List<VirtualFileSystemCategory> categoryTypes = GetCategoryTypes();
-        private IReadOnlyCollection<ApiBlockRecordFile> sharedFiles;
+        private IReadOnlyCollection<DownloadModel> sharedFiles;
 
         public ExploreViewModel(IExploreService exploreService, IDownloadManager downloadManager)
         {
@@ -25,7 +26,7 @@ namespace Peernet.Browser.Application.ViewModels
             this.downloadManager = downloadManager;
         }
 
-        public ObservableCollection<ApiBlockRecordFile> ActiveSearchResults
+        public ObservableCollection<DownloadModel> ActiveSearchResults
         {
             get => activeSearchResults;
             set => SetProperty(ref activeSearchResults, value);
@@ -33,11 +34,18 @@ namespace Peernet.Browser.Application.ViewModels
 
         public ObservableCollection<VirtualFileSystemCategory> CategoryTypes => new(categoryTypes);
 
-        public IMvxAsyncCommand<ApiBlockRecordFile> DownloadCommand =>
-            new MvxAsyncCommand<ApiBlockRecordFile>(
-                async apiBlockRecordFile =>
+        public IMvxAsyncCommand<DownloadModel> DownloadCommand =>
+            new MvxAsyncCommand<DownloadModel>(
+                async downloadModel =>
                 {
-                    await downloadManager.QueueUpDownload(apiBlockRecordFile);
+                    await downloadManager.QueueUpDownload(downloadModel);
+                });
+
+        public IMvxAsyncCommand<DownloadModel> ResumeCommand =>
+            new MvxAsyncCommand<DownloadModel>(
+                async downloadModel =>
+                {
+                    await downloadManager.ResumeDownload(downloadModel.Id);
                 });
 
         public IMvxAsyncCommand<VirtualFileSystemCategory> SelectCategoryCommand =>
@@ -55,20 +63,20 @@ namespace Peernet.Browser.Application.ViewModels
                     if (category.Type == VirtualFileSystemEntityType.Binary)
                     {
                         ActiveSearchResults =
-                            new ObservableCollection<ApiBlockRecordFile>((await exploreService.GetFiles(20, -2)).Files);
+                            new ObservableCollection<DownloadModel>((await exploreService.GetFiles(20, -2)));
                     }
                     else
                     {
-                        ActiveSearchResults = new ObservableCollection<ApiBlockRecordFile>((await exploreService
-                            .GetFiles(20, (int)category.Type)).Files);
+                        ActiveSearchResults = new ObservableCollection<DownloadModel>(await exploreService
+                            .GetFiles(20, (int)category.Type));
                     }
                 });
 
         public override async Task Initialize()
         {
             var exploreResult = await exploreService.GetFiles(20);
-            sharedFiles = new ReadOnlyCollection<ApiBlockRecordFile>(exploreResult.Files);
-            ActiveSearchResults = new ObservableCollection<ApiBlockRecordFile>(sharedFiles);
+            sharedFiles = new ReadOnlyCollection<DownloadModel>(exploreResult);
+            ActiveSearchResults = new ObservableCollection<DownloadModel>(sharedFiles);
 
             await base.Initialize();
         }

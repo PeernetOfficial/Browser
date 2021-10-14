@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:download="clr-namespace:Peernet.Browser.Models.Domain.Download;assembly=Peernet.Browser.Models"
              mc:Ignorable="d"
              x:Name="ExploreFilesDataGrid">
     <Grid>
@@ -17,7 +18,7 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Image Width="13.71" Height="20" Grid.Column="0" Source="{DynamicResource FileImageDrawingImage}" />
-                                <TextBlock Grid.Column="1" Text="{Binding Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                <TextBlock Grid.Column="1" Text="{Binding File.Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Cursor="Hand" PreviewMouseLeftButtonDown="OpenPreview_OnClick" Style="{StaticResource Underlined}" />
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -25,21 +26,21 @@
                 <DataGridTemplateColumn Header="DATE" SortMemberPath="Date" Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Date, StringFormat=d}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            <TextBlock Text="{Binding File.Date, StringFormat=d}" VerticalAlignment="Center" HorizontalAlignment="Left" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="SIZE" SortMemberPath="Size" Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Size}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            <TextBlock Text="{Binding File.Size}" VerticalAlignment="Center" HorizontalAlignment="Left" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="SHARED BY" SortMemberPath="SharedByCount" Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding SharedByCount, StringFormat={}{0} Peers}" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Medium" />
+                            <TextBlock Text="{Binding File.SharedByCount, StringFormat={}{0} Peers}" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Medium" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -47,10 +48,43 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid>
-                                <Button Width="12" Height="17" Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.DownloadCommand, ElementName=ExploreFilesDataGrid}" CommandParameter="{Binding}">
-                                    <Button.Background>
-                                        <ImageBrush ImageSource="{DynamicResource DownloadDrawingImage}" />
-                                    </Button.Background>
+                                <Button Width="19" Height="18" CommandParameter="{Binding}">
+                                    <Button.Style>
+                                        <Style BasedOn="{StaticResource DataGridActionButton}" TargetType="{x:Type Button}">
+                                            <Setter Property="Background">
+                                                <Setter.Value>
+                                                    <ImageBrush ImageSource="{DynamicResource DownloadDrawingImage}" />
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Setter Property="Command" Value="{Binding DataContext.DownloadCommand, ElementName=ExploreFilesDataGrid}"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Status}" Value="{x:Static download:DownloadStatus.DownloadFinished}">
+                                                    <Setter Property="Background">
+                                                        <Setter.Value>
+                                                            <ImageBrush ImageSource="{DynamicResource Tick_ActiveDrawingImage}" />
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Setter Property="IsEnabled" Value="False" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Status}" Value="{x:Static download:DownloadStatus.DownloadActive}">
+                                                    <Setter Property="Background">
+                                                        <Setter.Value>
+                                                            <ImageBrush ImageSource="{DynamicResource LoadingDrawingImage}" />
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Setter Property="IsEnabled" Value="False" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Status}" Value="{x:Static download:DownloadStatus.DownloadPause}">
+                                                    <Setter Property="Background">
+                                                        <Setter.Value>
+                                                            <ImageBrush ImageSource="{DynamicResource PlayDrawingImage}" />
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Setter Property="Command" Value="{Binding DataContext.ResumeCommand, ElementName=ExploreFilesDataGrid}"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
                                 </Button>
                             </Grid>
                         </DataTemplate>
