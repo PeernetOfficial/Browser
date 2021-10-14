@@ -12,10 +12,11 @@ namespace Peernet.Browser.Tests.Infrastructure
         public void CtorTest()
         {
             //Prepare
-            var s1 = new Mock<ISettingsManager>();
+            var fakeSettingsManager = new Mock<ISettingsManager>();
+            fakeSettingsManager.Setup(s => s.ApiUrl).Returns("http://localhost:50000/");
 
             //Act
-            var o = new ApiClient(s1.Object);
+            var o = new ApiClient(fakeSettingsManager.Object);
 
             //Assert
             Assert.IsNotNull(o);

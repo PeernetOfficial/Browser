@@ -57,7 +57,7 @@ namespace Peernet.Browser.WPF
                 .RegisterAsLazySingleton();
 
             iocProvider.RegisterType<ISocketClient, SocketClient>();
-            iocProvider.RegisterSingleton<IUserContext>(() => new UserContext(iocProvider.Resolve<IProfileService>(), iocProvider.Resolve<IMvxNavigationService>()));
+            iocProvider.RegisterSingleton<IUserContext>(() => new UserContext(iocProvider.Resolve<IProfileService>()));
             iocProvider.RegisterType<IVirtualFileSystemFactory, VirtualFileSystemFactory>();
             iocProvider.RegisterType<IFilesToCategoryBinder, FilesToCategoryBinder>();
 

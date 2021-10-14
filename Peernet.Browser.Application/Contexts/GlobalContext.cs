@@ -1,4 +1,5 @@
 ﻿using MvvmCross.Base;
+using Peernet.Browser.Models.Presentation;
 using System;
 using System.ComponentModel;
 
@@ -11,6 +12,8 @@ namespace Peernet.Browser.Application.Contexts
         private static bool isLogoVisible;
 
         private static bool isProfileMenuVisible;
+
+        private static VisualMode visualMode;
 
         private static NotificationCollection notifications;
 
@@ -39,6 +42,16 @@ namespace Peernet.Browser.Application.Contexts
             {
                 isLogoVisible = value;
                 NotifyStaticPropertyChanged(nameof(isLogoVisible));
+            }
+        }
+
+        public static VisualMode VisualMode
+        {
+            get => visualMode;
+            set
+            {
+                visualMode = value;
+                NotifyStaticPropertyChanged(nameof(VisualMode));
             }
         }
 
