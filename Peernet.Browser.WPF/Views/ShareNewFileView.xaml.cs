@@ -10,7 +10,7 @@ namespace Peernet.Browser.WPF.Views
     /// </summary>
     [MvxContentPresentation]
     [MvxViewFor(typeof(ShareNewFileViewModel))]
-    public partial class ShareNewFileView : MvxWpfView
+    public partial class ShareNewFileView : MvxWpfView, IModal
     {
         public ShareNewFileView() => InitializeComponent();
     }

@@ -27,6 +27,11 @@ namespace Peernet.Browser.Application.ViewModels
             };
         }
 
+        public override void ViewAppeared()
+        {
+            GlobalContext.IsLogoVisible = IsVisible;
+        }
+
         public Alignments Alignment => IsVisible ? Alignments.Stretch : Alignments.Center;
 
         public bool IsNotVisible => !IsVisible;
