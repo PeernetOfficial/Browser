@@ -8,11 +8,9 @@ namespace Peernet.Browser.Infrastructure.Clients
         /// <summary>
         /// This function returns search results. The default limit is 100.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="stats"></param>
-        /// <param name="limit"></param>
+        /// <param name="searchGetRequest"></param>
         /// <returns></returns>
-        Task<SearchResult> GetSearchResult(string id, int stats = 1, int? limit = null);
+        Task<SearchResult> GetSearchResult(SearchGetRequest searchGetRequest);
 
         /// <summary>
         /// This starts a search request and returns an ID that can be used to collect the results asynchronously. Note that some of the filters described below (such as filetype) must be set to -1 if they are not used.
@@ -26,7 +24,7 @@ namespace Peernet.Browser.Infrastructure.Clients
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task TerminateSearch(string id);
+        Task<string> TerminateSearch(string id);
 
         /// <summary>
         /// This returns search result statistics. Statistics are always calculated over all results, regardless of any applied runtime filters.

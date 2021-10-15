@@ -16,7 +16,10 @@ namespace Peernet.Browser.Application.ViewModels
         {
             Title = title;
             Content = new SearchContentElementViewModel(new FiltersModel(title, refreshAction));
-            DeleteCommand = new MvxAsyncCommand(async () => await deleteAction(this));
+            DeleteCommand = new MvxAsyncCommand(async () =>
+            {
+                await deleteAction(this);
+            });
         }
 
         public IMvxAsyncCommand DeleteCommand { get; }
