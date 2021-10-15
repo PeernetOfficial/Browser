@@ -29,7 +29,7 @@ namespace Peernet.Browser.WPF.Styles
             }
         }
 
-        private void UpdateSource()
+        public void UpdateSource()
         {
             var mode = GlobalContext.VisualMode == VisualMode.LightMode ? LightModeSource : DarkModeSource;
             if (mode != null && Source != mode)

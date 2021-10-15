@@ -8,7 +8,7 @@
     <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource BaseTextBlockStyle}" />
 
     <Style TargetType="{x:Type TextBlock}" x:Key="Active">
-        <Setter Property="Foreground" Value="{StaticResource DarkGreenBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource MainContentBrush}" />
         <Setter Property="Padding" Value="0 2" />
     </Style>
 
@@ -31,7 +31,7 @@
         <Setter Property="Padding" Value="0 2" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                <Setter Property="Foreground" Value="{StaticResource DarkGreenBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource MainContentBrush}" />
             </DataTrigger>
         </Style.Triggers>
     </Style>

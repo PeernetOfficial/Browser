@@ -90,7 +90,7 @@
     </Style>
 
     <Style x:Key="LinkButton" TargetType="Button">
-        <Setter Property="Foreground" Value="{StaticResource DarkGreenBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource MainContentBrush}" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
             <Setter.Value>
@@ -107,7 +107,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <TextBlock Height="Auto" TextAlignment="Center" VerticalAlignment="Center" Cursor="Hand" Foreground="{StaticResource DarkGreenBrush}">
+                    <TextBlock Height="Auto" TextAlignment="Center" VerticalAlignment="Center" Cursor="Hand" Foreground="{StaticResource MainContentBrush}">
                         <ContentPresenter />
                     </TextBlock>
                 </ControlTemplate>
@@ -121,9 +121,9 @@
                 <ControlTemplate TargetType="Button">
                     <Border Height="Auto" Cursor="Hand" Grid.Row="1" Grid.Column="1" BorderThickness="0" BorderBrush="Transparent" CornerRadius="{StaticResource MainRadius}">
                         <Border.Background>
-                            <SolidColorBrush Color="{StaticResource DarkGreen}" />
+                            <SolidColorBrush Color="{StaticResource MainContentColor}" />
                         </Border.Background>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource MainContentSecondaryBrush}">
                         <ContentPresenter />
                         </TextBlock>
                     </Border>

@@ -5,7 +5,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls"
       x:Name="ExplorePage">
-    <Border Background="White" BorderThickness="0" CornerRadius="8,8,8,8" VerticalAlignment="Stretch" Margin="0, 65, 0, 0">
+    <Border Background="{DynamicResource ViewBackgroundBrush}" BorderThickness="0" CornerRadius="8,8,8,8" VerticalAlignment="Stretch" Margin="0, 65, 0, 0">
         <Grid Margin="0,40, 0, 0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -24,10 +24,7 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border BorderThickness="1" CornerRadius="4" Margin="0, 0, 48, 0" Cursor="Hand">
-                                <Border.BorderBrush>
-                                    <SolidColorBrush Color="Black" Opacity="0.08" />
-                                </Border.BorderBrush>
+                            <Border BorderThickness="1" CornerRadius="4" Margin="0, 0, 48, 0" Cursor="Hand" BorderBrush="{DynamicResource BorderBrush}">
                                 <Border.Effect>
                                     <DropShadowEffect ShadowDepth="7" BlurRadius="16" Color="Black" Opacity="0.14" />
                                 </Border.Effect>
@@ -38,10 +35,10 @@
                                     <Border CornerRadius="4, 4, 0, 0" Height="44" Width="142">
                                         <Border.Style>
                                             <Style TargetType="{x:Type Border}">
-                                                <Setter Property="Background" Value="{StaticResource GrayedOutBackgroundBrush}" />
+                                                <Setter Property="Background" Value="{DynamicResource GrayedOutBackgroundBrush}" />
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                                                        <Setter Property="Background" Value="{StaticResource DarkGreenBrush}" />
+                                                        <Setter Property="Background" Value="{DynamicResource SelectedTabBrush}" />
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
@@ -49,9 +46,6 @@
                                         <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{StaticResource ExploreCategoriesImageStyle}" />
                                     </Border>
                                     <Border CornerRadius="0, 0, 4, 4" Width="142" Height="73" VerticalAlignment="Bottom">
-                                        <Border.Background>
-                                            <SolidColorBrush Color="White"></SolidColorBrush>
-                                        </Border.Background>
                                         <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center">
                                             <TextBlock.Style>
                                                 <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource ActiveSelectable}">
@@ -64,6 +58,16 @@
                                                 </Style>
                                             </TextBlock.Style>
                                         </TextBlock>
+                                        <Border.Style>
+                                            <Style TargetType="{x:Type Border}">
+                                                <Setter Property="Background" Value="{DynamicResource ViewBackgroundBrush}" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                        <Setter Property="Background" Value="{DynamicResource SelectedTabSecondaryBrush}" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Border.Style>
                                     </Border>
                                 </StackPanel>
                             </Border>

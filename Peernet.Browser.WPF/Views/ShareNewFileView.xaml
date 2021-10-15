@@ -31,8 +31,8 @@
             </Border>
 
             <DockPanel Grid.Row="0" Grid.Column="2">
-                <TextBlock Text="{Binding Selected.FullPath}" Foreground="{StaticResource DarkGreenBrush}" FontSize="16" />
-                <TextBlock Text="{Binding Selected.FileType}" Foreground="{StaticResource DarkGreenBrush}" FontWeight="Bold" FontSize="16" />
+                <TextBlock Text="{Binding Selected.FullPath}" Foreground="{StaticResource MainContentBrush}" FontSize="16" />
+                <TextBlock Text="{Binding Selected.FileType}" Foreground="{StaticResource MainContentBrush}" FontWeight="Bold" FontSize="16" />
             </DockPanel>
 
             <StackPanel Grid.Row="1" Grid.Column="2">
@@ -49,13 +49,13 @@
                 <Image Margin="0 0 7 0" Width="11" Source="{DynamicResource DirectorySmallDrawingImage}" />
                 <TextBlock Foreground="{StaticResource LightGrayBrush}">Your files /</TextBlock>
                 <Image Margin="5 0 7 0" Width="11" Source="{DynamicResource DirectorySmallActiveDrawingImage}" />
-                <TextBlock Foreground="{StaticResource DarkGreenBrush}" Text="{Binding Selected.Directory}" />
+                <TextBlock Foreground="{StaticResource MainContentBrush}" Text="{Binding Selected.Directory}" />
                 <Button DockPanel.Dock="Right" Style="{StaticResource LinkButton}">Change</Button>
             </DockPanel>
 
             <StackPanel Grid.Row="3"  Grid.Column="2">
                 <TextBlock Style="{StaticResource Title}">File name</TextBlock>
-                <TextBox  Text="{Binding Selected.FileName}" Foreground="{StaticResource DarkGreenBrush}"
+                <TextBox  Text="{Binding Selected.FileName}" Foreground="{StaticResource MainContentBrush}"
                           Template="{StaticResource RoundedTextBox}" Margin="0 5" Height="30" Padding="7" />
                 <Border BorderThickness="0" Padding="9" BorderBrush="Transparent" CornerRadius="{StaticResource MainRadius}">
                     <Border.Background>
@@ -70,7 +70,7 @@
                                 </MultiBinding>
                             </TextBlock.Visibility>
                         </TextBlock>
-                        <TextBox Text="{Binding Selected.Desc}" Foreground="{StaticResource DarkGreenBrush}"
+                        <TextBox Text="{Binding Selected.Desc}" Foreground="{StaticResource MainContentBrush}"
                                  Background="Transparent" Name="txtUserEntry2"
                                                  Template="{StaticResource RoundedTextBox}" Height="132"
                                                  AcceptsReturn="True" TextWrapping="Wrap" AcceptsTab="True" />
@@ -99,7 +99,7 @@
 
             <DockPanel Grid.ColumnSpan="2" Grid.Row="5" LastChildFill="False" HorizontalAlignment="Stretch">
                 <Button Grid.Row="5" Grid.Column="0" Command="{Binding AddCommand}" HorizontalAlignment="Left" Style="{StaticResource PrimaryButton}"
-                    Foreground="{StaticResource DarkGreenBrush}"
+                    Foreground="{StaticResource MainContentBrush}"
                     FontWeight="Bold" >+ SHARE ANTOHER FILE</Button>
                 <Button DockPanel.Dock="Right" Height="30"  Width="110" Style="{StaticResource AcceptButton}"  Command="{Binding ConfirmCommand}">Confirm</Button>
                 <Button DockPanel.Dock="Right" Height="30" Width="110" Style="{StaticResource PrimaryButton}"  Command="{Binding HideCommand}">Hide</Button>
@@ -112,9 +112,9 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Button Command="{Binding LeftCommand}" Foreground="{StaticResource DarkGreenBrush}" HorizontalAlignment="Right" Grid.Column="0" Width="20" Style="{StaticResource PrimaryButton}" Content="&lt;" />
-                <TextBox Text="{Binding FilesLength, Mode=OneWay}" IsReadOnly="True" Width="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="{StaticResource DarkGreenBrush}" Template="{StaticResource RoundedTextBox}" Grid.Column="1" />
-                <Button Command="{Binding RightCommand}" Foreground="{StaticResource DarkGreenBrush}" HorizontalAlignment="Left" Grid.Column="2" Width="20" Style="{StaticResource PrimaryButton}" Content="&gt;" />
+                <Button Command="{Binding LeftCommand}" Foreground="{StaticResource MainContentBrush}" HorizontalAlignment="Right" Grid.Column="0" Width="20" Style="{StaticResource PrimaryButton}" Content="&lt;" />
+                <TextBox Text="{Binding FilesLength, Mode=OneWay}" IsReadOnly="True" Width="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="{StaticResource MainContentBrush}" Template="{StaticResource RoundedTextBox}" Grid.Column="1" />
+                <Button Command="{Binding RightCommand}" Foreground="{StaticResource MainContentBrush}" HorizontalAlignment="Left" Grid.Column="2" Width="20" Style="{StaticResource PrimaryButton}" Content="&gt;" />
             </Grid>
         </Grid>
     </Border>

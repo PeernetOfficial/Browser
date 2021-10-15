@@ -5,10 +5,10 @@
     xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf">
     <Grid VerticalAlignment="{Binding Alignment, Converter={StaticResource VerticalAlignmentConverter}}">
         <StackPanel Width="600">
-            <Image Source="{StaticResource LogoDrawingImage}" Height="65" Visibility="{Binding IsNotVisible, Converter={StaticResource BoolToVisibility}}" />
+            <Image Source="{DynamicResource LogoDrawingImage}" Height="65" Visibility="{Binding IsNotVisible, Converter={StaticResource BoolToVisibility}}" />
             <Border Padding="13" BorderBrush="{StaticResource LightGray2Brush}" BorderThickness="1" Margin="0 90 0 0" CornerRadius="{StaticResource MainRadius}">
                 <Border.Background>
-                    <SolidColorBrush Color="White"></SolidColorBrush>
+                    <SolidColorBrush Color="{DynamicResource ViewBackgroundColor}" />
                 </Border.Background>
                 <Grid>
                     <TextBlock FontSize="14"
@@ -28,7 +28,7 @@
                     <TextBox Text="{Binding SearchInput, UpdateSourceTrigger=PropertyChanged}"
                                      VerticalAlignment="Center"
                                      TextBlock.FontSize="14"
-                                     Foreground="Black"
+                                     Foreground="{DynamicResource MainTextBrush}"
                                      Background="Transparent"
                                      BorderThickness="0" Name="txtSearch">
                         <TextBox.InputBindings>
@@ -36,7 +36,7 @@
                         </TextBox.InputBindings>
                     </TextBox>
 
-                    <Image HorizontalAlignment="Right" Source="{StaticResource SearchDrawingImage}" Height="14.22" Width="14.22">
+                    <Image HorizontalAlignment="Right" Source="{DynamicResource SearchDrawingImage}" Height="14.22" Width="14.22">
                         <Image.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding SearchCommand}" />
                         </Image.InputBindings>
@@ -46,6 +46,6 @@
         </StackPanel>
 
         <TabControl Visibility="{Binding IsVisible, Converter={StaticResource BoolToVisibility}}" SelectedIndex="{Binding SelectedIndex}"
-                    Foreground="{StaticResource DarkGreenBrush}" Margin="0 180 0 0" ItemsSource="{Binding Tabs}" />
+                    Foreground="{StaticResource MainContentBrush}" Margin="0 180 0 0" ItemsSource="{Binding Tabs}" />
     </Grid>
 </views:MvxWpfView>
