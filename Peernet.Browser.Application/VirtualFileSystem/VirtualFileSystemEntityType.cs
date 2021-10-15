@@ -2,15 +2,15 @@
 {
     public enum VirtualFileSystemEntityType
     {
-        Recent,
-        All,
-        Directory,
-        Binary,
-        Picture,
-        Video,
-        Audio,
-        Document,
-        Text,
-        Ebook
+        Recent = -5,
+        All = -4,
+        Directory = -3,
+        Binary = -2,
+        Picture = 2,
+        Video = 3,
+        Audio = 4,
+        Document = 5,
+        Text = 1,
+        Ebook = 10
     }
 }

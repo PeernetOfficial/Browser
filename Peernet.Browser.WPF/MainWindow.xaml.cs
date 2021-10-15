@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
+using Peernet.Browser.Application.Contexts;
 
 namespace Peernet.Browser.WPF
 {
@@ -28,6 +29,11 @@ namespace Peernet.Browser.WPF
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left) DragMove();
+        }
+
+        private void DismissModals_OnClick(object sender, MouseButtonEventArgs e)
+        {
+            GlobalContext.IsProfileMenuVisible = false;
         }
     }
 }
