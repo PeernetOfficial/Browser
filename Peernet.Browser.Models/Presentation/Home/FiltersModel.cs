@@ -159,7 +159,7 @@ namespace Peernet.Browser.Models.Presentation.Home
             CloseAction?.Invoke(false);
         }
 
-        private void InitSearch() => SearchFilterResult = new SearchFilterResultModel { OnRemoveAction = RemoveAction, SizeMin = min, SizeMax = max, SizeFrom = min, SizeTo = max, InputText = inputText, Uuid = UuId };
+        private void InitSearch() => SearchFilterResult = new SearchFilterResultModel { OnRemoveAction = RemoveAction, InputText = inputText, Uuid = UuId };
 
         private void RefreshTabs()
         {

@@ -1,6 +1,6 @@
-﻿using System;
-using MvvmCross.Commands;
+﻿using MvvmCross.Commands;
 using Peernet.Browser.Models.Domain.Common;
+using System;
 
 namespace Peernet.Browser.Models.Presentation.Home
 {
@@ -9,12 +9,12 @@ namespace Peernet.Browser.Models.Presentation.Home
         public SearchResultRowModel(ApiBlockRecordFile source)
         {
             DownloadCommand = new MvxCommand(() => DownloadAction?.Invoke(this));
-            EnumerationMember = (HealthType)(DateTime.Now.Ticks % 4);
+            EnumerationMember = (HealthType)3;
             Name = source.Name;
             Date = source.Date.ToString();
             Size = $"{source.Size} MB";
             SharedBy = source.SharedByCount;
-            FlameIsVisible = source.SharedByCount > 15;
+            //FlameIsVisible = source.SharedByCount > 15;
         }
 
         public HealthType EnumerationMember { get; }

@@ -141,11 +141,11 @@ namespace Peernet.Browser.Infrastructure.Services
             }
             if (model.SizeFrom.HasValue)
             {
-                res.SizeMin = model.SizeFrom.Value;
+                //res.SizeMin = model.SizeFrom.Value;
             }
             if (model.SizeTo.HasValue)
             {
-                res.SizeMax = model.SizeTo.Value;
+                //res.SizeMax = model.SizeTo.Value;
             }
             if (model.SortName != DataGridSortingNameEnum.None && model.SortType != DataGridSortingTypeEnum.None)
             {
@@ -167,6 +167,10 @@ namespace Peernet.Browser.Infrastructure.Services
                         res.Sort = model.SortType == DataGridSortingTypeEnum.Asc ? SearchRequestSortTypeEnum.SortSharedByCountAsc : SearchRequestSortTypeEnum.SortSharedByCountDesc;
                         break;
                 }
+            }
+            if (model.FilterType != FiltersType.All)
+            {
+                res.FileType = Map(model.FilterType);
             }
             if (!model.Healths.IsNullOrEmpty())
             {
