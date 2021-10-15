@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <CornerRadius x:Key="MainRadius">4,4,4,4</CornerRadius>
+    <CornerRadius x:Key="Main2Radius">0</CornerRadius>
 
     <ControlTemplate x:Key="RoundedTextBox" TargetType="{x:Type TextBoxBase}">
         <Border Background="{TemplateBinding Background}"
@@ -27,7 +28,7 @@
         <StackPanel Orientation="Horizontal">
             <Border Padding="3" Margin="0 0 10 0" x:Name="checkboxBorder" Background="Transparent" BorderThickness="1" CornerRadius="{StaticResource MainRadius}"
                 BorderBrush="{DynamicResource DarkGreenBrush}">
-                <Image x:Name="checkboxImage" Height="10"  Width="10"/>
+                <Image x:Name="checkboxImage" Height="10"  Width="10" />
             </Border>
             <Canvas Visibility="Collapsed" x:Name="checkBoxCanvas" Background="Transparent" Width="17" Height="17" Margin="0 -3 10 0">
                 <Ellipse x:Name="Circle"
