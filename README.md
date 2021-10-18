@@ -1,3 +1,5 @@
+[![Deploy Browser](https://github.com/PeernetOfficial/Browser/actions/workflows/deploy-Browser.yml/badge.svg)](https://github.com/PeernetOfficial/Browser/actions/workflows/deploy-Browser.yml)
+
 # Official Peernet Browser UI (WPF)
 This is official GUI for [Cmd line Client](https://github.com/PeernetOfficial/Cmd). 
 This GUI is written in .NET 5.0 Framework with use of WPF env [WPF documentation](https://docs.microsoft.com/en-us/dotnet/desktop/wpf/?view=netdesktop-5.0). 
