@@ -21,6 +21,8 @@ jobs:
       - run: dotnet restore ${{ env.PROJECT_PATH }}
 
       - run: dotnet build ${{ env.PROJECT_PATH }} -c Release --no-restore
+        
+      - run: dotnet test
 
       - uses: actions/create-release@v1
         id: create_release
@@ -30,6 +32,7 @@ jobs:
           tag_name: ${{ github.ref }}
           release_name: ${{ github.ref }}
 
+
       - name: Archive Release
         uses: thedoctor0/zip-release@master
         with:
@@ -37,6 +40,7 @@ jobs:
          filename: 'release.zip'
          path: 'Peernet.Browser.WPF/bin/Release/net5.0-windows/win-x64/'
          exclusions: '*.git* /*node_modules/* .editorconfig'
+
 
       - uses: csexton/release-asset-action@v2
         with:

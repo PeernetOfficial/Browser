@@ -6,12 +6,13 @@ namespace Peernet.Browser.Models.Presentation.Home
 {
     public class SearchFilterResultModel
     {
+        public bool IsNewSearch => Uuid.IsNullOrEmpty();
         public FileFormats[] FileFormats { get; set; }
         public FiltersType FilterType { get; set; }
         public HealthType[] Healths { get; set; }
         public string InputText { get; set; }
         public Action<SearchFiltersType> OnRemoveAction { get; set; }
-        public string PrevId { get; set; }
+        public string Uuid { get; set; }
         public int? SizeFrom { get; set; }
         public int SizeMax { get; set; }
         public int SizeMin { get; set; }

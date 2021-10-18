@@ -12,7 +12,7 @@ namespace Peernet.Browser.WPF.Views
     /// </summary>
     [MvxContentPresentation(WindowIdentifier = nameof(EditProfileView), StackNavigation = true)]
     [MvxViewFor(typeof(EditProfileViewModel))]
-    public partial class EditProfileView : MvxWpfView
+    public partial class EditProfileView : MvxWpfView, IModal
     {
         public EditProfileView() => InitializeComponent();
 

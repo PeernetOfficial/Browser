@@ -4,14 +4,14 @@ namespace Peernet.Browser.Models.Presentation.Home
 {
     public enum FileFormats
     {
+        [Description("Binary File")]
+        Binary,
+
         [Description("PDF File")]
         Pdf,
 
         [Description("Word File")]
         Word,
-
-        [Description("Website")]
-        WebSite,
 
         [Description("Excel File")]
         Excel,
@@ -19,13 +19,40 @@ namespace Peernet.Browser.Models.Presentation.Home
         [Description("Powerpoint File")]
         Powerpoint,
 
-        [Description("EPUB File")]
-        Epub,
-
-        [Description("Images")]
+        [Description("Pictures")]
         Images,
 
+        [Description("Audio file")]
+        Audio,
+
         [Description("Movies")]
-        Movies
+        Movies,
+
+        [Description("Containers")]
+        Container,
+
+        [Description("Website")]
+        WebSite,
+
+        [Description("Text file")]
+        Text,
+
+        [Description("Ebooks file")]
+        Ebook,
+
+        [Description("Compressed file")]
+        Compressed,
+
+        [Description("Database file")]
+        Database,
+
+        [Description("Email file")]
+        Email,
+
+        [Description("CSV files")]
+        CSV,
+
+        [Description("Folders")]
+        Folder
     }
 }

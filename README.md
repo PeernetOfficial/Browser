@@ -10,5 +10,5 @@ This GUI is written in .NET 5.0 Framework with use of WPF env [WPF documentation
 
 ## Use
 Download last release of CMD and BROWSER and run both.
-It is windows descktop application run from .exe file. 
+It is windows desktop application run from .exe file. 
 After download soruce please execute 'Peernet.Browser.WPF.exe' file.
