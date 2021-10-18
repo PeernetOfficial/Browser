@@ -123,12 +123,13 @@
         </Setter>
     </Style>
 
+
     <Style x:Key="NavbarMenuButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="FontFamily" Value="Inter" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="Height" Value="17" />
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Foreground" Value="{DynamicResource MainTextBrush}" />
         <Setter Property="Margin" Value="20,10,0,10" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
@@ -147,7 +148,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="DataGridActionButton"  TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonBaseStyle}">
+    <Style x:Key="DataGridActionButton" TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonBaseStyle}">
         <Setter Property="Width" Value="16" />
         <Setter Property="Height" Value="16" />
         <Setter Property="Margin" Value="20,0,20,0" />
@@ -158,7 +159,7 @@
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="Foreground">
             <Setter.Value>
-                <SolidColorBrush Color="Black" Opacity="0.89" />
+                <SolidColorBrush Color="{DynamicResource MainTextColor}" Opacity="0.89" />
             </Setter.Value>
         </Setter>
         <Setter Property="HorizontalContentAlignment" Value="Center" />

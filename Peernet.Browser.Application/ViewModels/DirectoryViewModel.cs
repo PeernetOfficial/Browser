@@ -43,15 +43,6 @@ namespace Peernet.Browser.Application.ViewModels
                     await Initialize();
                 });
 
-        public IMvxAsyncCommand<ApiBlockRecordFile> EditCommand =>
-            new MvxAsyncCommand<ApiBlockRecordFile>(
-                apiBlockRecordFile =>
-                {
-                    // Logic to be implemented
-
-                    return Task.CompletedTask;
-                });
-
         public ObservableCollection<VirtualFileSystemEntity> PathElements
         {
             get => pathElements;

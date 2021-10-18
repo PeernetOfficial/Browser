@@ -27,14 +27,14 @@
     <ControlTemplate x:Key="CustomCheckBox" TargetType="{x:Type CheckBox}">
         <StackPanel Orientation="Horizontal">
             <Border Padding="3" Margin="0 0 10 0" x:Name="checkboxBorder" Background="Transparent" BorderThickness="1" CornerRadius="{StaticResource MainRadius}"
-                BorderBrush="{DynamicResource DarkGreenBrush}">
-                <Image x:Name="checkboxImage" Height="10"  Width="10" />
+                BorderBrush="{DynamicResource MainContentBrush}">
+                <Image x:Name="checkboxImage" Height="10"  Width="10"/>
             </Border>
             <Canvas Visibility="Collapsed" x:Name="checkBoxCanvas" Background="Transparent" Width="17" Height="17" Margin="0 -3 10 0">
                 <Ellipse x:Name="Circle"
                     Width="17"
                     Height="17"
-                    Stroke="{DynamicResource DarkGreenBrush}"
+                    Stroke="{DynamicResource MainContentBrush}"
                     StrokeThickness="1" />
             </Canvas>
             <ContentPresenter />
@@ -42,7 +42,7 @@
         <ControlTemplate.Triggers>
             <Trigger Property="IsChecked" Value="True">
                 <Setter TargetName="checkboxImage" Property="Source" Value="{DynamicResource TickDrawingImage}" />
-                <Setter TargetName="checkboxBorder" Property="Background" Value="{DynamicResource DarkGreenBrush}" />
+                <Setter TargetName="checkboxBorder" Property="Background" Value="{DynamicResource MainContentBrush}" />
                 <Setter TargetName="Circle" Property="StrokeThickness" Value="3" />
             </Trigger>
             <DataTrigger Binding="{Binding IsRadio}" Value="True">

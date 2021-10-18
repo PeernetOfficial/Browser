@@ -31,10 +31,10 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="Edit your profile" FontWeight="SemiBold" Foreground="{StaticResource DarkGreenBrush}" FontSize="16" Margin="35,27,0,0" />
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Edit your profile" FontWeight="SemiBold" Foreground="{StaticResource MainContentBrush}" FontSize="16" Margin="35,27,0,0" />
             <Button Grid.Column="1" Style="{StaticResource CloseButtonStyle}" Command="{Binding CloseCommand}" Margin="0,11,15,0" HorizontalAlignment="Right" VerticalAlignment="Top" />
             <StackPanel Grid.Row="1" Grid.Column="0" Margin="35,35,27,0">
-                <TextBlock Text="Profile photo" Foreground="{StaticResource DarkGreenBrush}" />
+                <TextBlock Text="Profile photo" Foreground="{StaticResource MainContentBrush}" />
                 <Border Background="{StaticResource LightGray2Brush}" Width="200" Height="200" Margin="0,8,0,0">
                     <Border>
                         <Border.Style>
@@ -55,17 +55,17 @@
                 <Button Content="Remove photo" Command="{Binding RemovePhotoCommand}" Style="{StaticResource PrimaryButton}" Margin="0,12,0,0" />
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="1">
-                <TextBlock Text="Nickname" Foreground="{StaticResource DarkGreenBrush}" Margin="0,32,0,0" />
+                <TextBlock Text="Nickname" Foreground="{StaticResource MainContentBrush}" Margin="0,32,0,0" />
                 <TextBox Text="{Binding UserContext.User.Name, TargetNullValue='Set nickname'}" Width="346" Height="36" Margin="0,11,35,0" FontSize="14" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="11.58, 0, 0, 0">
                     <TextBox.Style>
                         <Style TargetType="{x:Type TextBox}">
-                            <Setter Property="Foreground" Value="{StaticResource DarkGreenBrush}" />
+                            <Setter Property="Foreground" Value="{StaticResource MainContentBrush}" />
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding UserContext.User.Image}" Value="{x:Null}">
                                     <Setter Property="Foreground" Value="{StaticResource GrayedOutBackgroundBrush}" />
                                 </DataTrigger>
                                 <Trigger Property="IsFocused" Value="True">
-                                    <Setter Property="Foreground" Value="{StaticResource DarkGreenBrush}" />
+                                    <Setter Property="Foreground" Value="{StaticResource MainContentBrush}" />
                                 </Trigger>
                             </Style.Triggers>
                         </Style>

@@ -4,13 +4,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls"
     mc:Ignorable="d"
     d:DesignHeight="40"
     d:DesignWidth="1441">
 
     <Border BorderBrush="White" BorderThickness="0" CornerRadius="4,4,4,4" Width="212">
         <Border.Background>
-            <SolidColorBrush Color="White"></SolidColorBrush>
+            <SolidColorBrush Color="{DynamicResource ModalBackground}" />
         </Border.Background>
         <Border.Effect>
             <DropShadowEffect ShadowDepth="3" BlurRadius="16" Color="Black" Opacity="0.14" />
@@ -22,24 +23,24 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Image Grid.Column="0" Source="{Binding UserContext.User.Image}" Width="47" Height="47" />
-                <StackPanel Grid.Column="1" Margin="8,0,0,0">
-                    <TextBlock Foreground="#113E48" FontFamily="Inter" FontSize="14" FontWeight="Medium" Text="{Binding UserContext.User.Name}" />
-                    <Button HorizontalAlignment="Left" Foreground="#113E48" FontSize="12" Margin="0,13,0,0" Style="{StaticResource NavbarMenuButtonStyle}" Content="Go to your files" Command="{Binding GoToYourFilesCommand}" />
+                <StackPanel Grid.Column="1" Margin="8,0,0,0" Orientation="Horizontal">
+                    <TextBlock Foreground="{DynamicResource MainContentBrush}" FontFamily="Inter" FontSize="14" FontWeight="Medium" Text="{Binding UserContext.User.Name}" />
+                    <Button Style="{StaticResource ButtonBaseStyle}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="16" Height="16" Margin="31,0,0,0" Command="{Binding EditProfileCommand}">
+                        <Button.Background>
+                            <ImageBrush ImageSource="{DynamicResource EditDrawingImage}" />
+                        </Button.Background>
+                    </Button>
                 </StackPanel>
             </Grid>
             <Separator Style="{StaticResource StandardSeparatorStyle}" Width="179" />
-            <ItemsControl
-            ItemsSource="{Binding UserContext.Items}"
-            Background="Transparent"
-            Foreground="White">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Button Command="{Binding Command}" Content="{Binding Text}" Style="{StaticResource NavbarMenuButtonStyle}" />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            <Button Command="{Binding NavigateAboutCommand}" Content="About" Style="{StaticResource NavbarMenuButtonStyle}" />
+            <Button Content="Settings" Style="{StaticResource NavbarMenuButtonStyle}" />
             <Separator Style="{StaticResource StandardSeparatorStyle}" Width="179" />
-            <Button Style="{StaticResource NavbarMenuButtonStyle}" Foreground="#8F8F8F" Content="Delete node" />
+            <StackPanel Orientation="Horizontal" Margin="17, 26, 0, 21">
+                <TextBlock Text="Light" Foreground="{DynamicResource MainTextBrush}" />
+                <controls:ToggleSwitch Margin="13, 0, 13, 0" />
+                <TextBlock Text="Dark" Foreground="{DynamicResource MainTextBrush}" />
+            </StackPanel>
         </StackPanel>
     </Border>
 </UserControl>

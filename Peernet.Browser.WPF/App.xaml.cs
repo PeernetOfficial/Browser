@@ -2,6 +2,7 @@
 using MvvmCross.Platforms.Wpf.Views;
 using Peernet.Browser.Infrastructure.Tools;
 using Peernet.Browser.WPF.Services;
+using Peernet.Browser.WPF.Styles;
 using System.Windows;
 
 namespace Peernet.Browser.WPF
@@ -27,6 +28,21 @@ namespace Peernet.Browser.WPF
             cmdRunner.Run();
 
             base.ApplicationInitialized();
+        }
+
+        public void UpdateAllResources()
+        {
+            foreach (ResourceDictionary dict in Resources.MergedDictionaries)
+            {
+                if (dict is ModeResourceDictionary skinDict)
+                {
+                    skinDict.UpdateSource();
+                }
+                else
+                {
+                    dict.Source = dict.Source;
+                }
+            }
         }
     }
 }

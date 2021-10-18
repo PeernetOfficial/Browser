@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
+using Peernet.Browser.Application.Contexts;
 
 namespace Peernet.Browser.WPF
 {
@@ -41,6 +42,11 @@ namespace Peernet.Browser.WPF
                 return;
             }
             base.OnContentChanged(oldContent, newContent);
+        }
+
+        private void DismissModals_OnClick(object sender, MouseButtonEventArgs e)
+        {
+            GlobalContext.IsProfileMenuVisible = false;
         }
     }
 }

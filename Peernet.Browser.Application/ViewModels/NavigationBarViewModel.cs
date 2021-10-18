@@ -13,16 +13,33 @@ namespace Peernet.Browser.Application.ViewModels
         public NavigationBarViewModel(IMvxNavigationService navigationService, IUserContext userContext)
         {
             this.navigationService = navigationService;
+            UserContext = userContext;
+
             NavigateExploreCommand = new MvxCommand(() => Navigate<ExploreViewModel>());
             NavigateHomeCommand = new MvxCommand(() => Navigate<HomeViewModel>(false));
             NavigateDirectoryCommand = new MvxCommand(() => Navigate<DirectoryViewModel>());
-            GoToYourFilesCommand = new MvxAsyncCommand(() => Task.CompletedTask);
             OpenCloseProfileMenuCommand = new MvxAsyncCommand(() =>
             {
                 GlobalContext.IsProfileMenuVisible ^= true;
                 return Task.CompletedTask;
             });
-            UserContext = userContext;
+
+            EditProfileCommand = new MvxAsyncCommand(() =>
+            {
+                GlobalContext.IsMainWindowActive = false;
+                GlobalContext.IsProfileMenuVisible = false;
+                navigationService.Navigate<EditProfileViewModel>();
+
+                return Task.CompletedTask;
+            });
+
+            NavigateAboutCommand = new MvxAsyncCommand(() =>
+            {
+                GlobalContext.IsProfileMenuVisible = false;
+                navigationService.Navigate<AboutViewModel>();
+
+                return Task.CompletedTask;
+            });
         }
 
         private void Navigate<T>(bool showLogo = true) where T : IMvxViewModel
@@ -31,8 +48,6 @@ namespace Peernet.Browser.Application.ViewModels
             GlobalContext.IsLogoVisible = showLogo;
         }
 
-        public IMvxAsyncCommand GoToYourFilesCommand { get; }
-
         public IMvxCommand NavigateDirectoryCommand { get; }
 
         public IMvxCommand NavigateExploreCommand { get; }
@@ -40,6 +55,10 @@ namespace Peernet.Browser.Application.ViewModels
         public IMvxCommand NavigateHomeCommand { get; }
 
         public IMvxAsyncCommand OpenCloseProfileMenuCommand { get; }
+
+        public IMvxAsyncCommand EditProfileCommand { get; }
+
+        public IMvxAsyncCommand NavigateAboutCommand { get; }
 
         public IUserContext UserContext { get; set; }
     }

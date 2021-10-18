@@ -8,7 +8,7 @@
     xmlns:extensions="clr-namespace:Peernet.Browser.WPF.Extensions"
     x:Name="DirectoryPage">
 
-    <Border Background="White" BorderThickness="0" CornerRadius="8,8,8,8"  VerticalAlignment="Stretch" Margin="0, 65, 0, 0">
+    <Border Background="{DynamicResource ViewBackgroundBrush}" BorderThickness="0" CornerRadius="8,8,8,8"  VerticalAlignment="Stretch" Margin="0, 65, 0, 0">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -43,14 +43,14 @@
                         </StackPanel>
                     </HierarchicalDataTemplate>
                 </StackPanel.Resources>
-                <TreeView BorderThickness="0" HorizontalAlignment="Center">
+                <TreeView BorderThickness="0" HorizontalAlignment="Center" Background="Transparent">
                     <TreeView.ItemContainerStyle>
                         <Style TargetType="{x:Type TreeViewItem}">
                             <EventSetter Event="MouseDoubleClick" Handler="TreeViewItem_OnSelected" />
                         </Style>
                     </TreeView.ItemContainerStyle>
-                    <TreeViewItem Template="{DynamicResource TreeViewItemTemplate}" ItemsSource="{Binding VirtualFileSystem.VirtualFileSystemTiers}" Header="Your Files" Foreground="{StaticResource DarkGreenBrush}" IsExpanded="True" />
-                    <TreeViewItem Template="{DynamicResource TreeViewItemTemplate}" ItemsSource="{Binding VirtualFileSystem.VirtualFileSystemCategories}" Header="Libraries" Foreground="{StaticResource DarkGreenBrush}" IsExpanded="True" />
+                    <TreeViewItem Template="{DynamicResource TreeViewItemTemplate}" ItemsSource="{Binding VirtualFileSystem.VirtualFileSystemTiers}" Header="Your Files" Foreground="{DynamicResource MainContentBrush}" IsExpanded="True" />
+                    <TreeViewItem Template="{DynamicResource TreeViewItemTemplate}" ItemsSource="{Binding VirtualFileSystem.VirtualFileSystemCategories}" Header="Libraries" Foreground="{DynamicResource MainContentBrush}" IsExpanded="True" />
                 </TreeView>
             </StackPanel>
             <Border Grid.Column="1" Width="1" Margin="0,28,0,66" BorderThickness="0">
@@ -79,7 +79,7 @@
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
                                 <TextBlock x:Name="separator" Text=">" VerticalAlignment="Center">
                                     <TextBlock.Foreground>
-                                        <SolidColorBrush Opacity="0.6" Color="Black" />
+                                        <SolidColorBrush Opacity="0.89" Color="{DynamicResource MainTextColor}" />
                                     </TextBlock.Foreground>
                                 </TextBlock>
                                 <Button x:Name="segment" Height="20" Content="{Binding Path=Name}" Click="PathSegment_OnSelected" Style="{StaticResource TreeViewNavigationPathButtonStyle}" VerticalAlignment="Center" Command="{Binding DataContext.UpdateActiveSearchResults, ElementName=DirectoryPage}" CommandParameter="{Binding}" />
@@ -95,10 +95,7 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                <Border Grid.Row="0" Grid.Column="1" Width="229" Height="40" HorizontalAlignment="Right" Margin="0,28, 85, 27" BorderThickness="1" CornerRadius="3,3,3,3">
-                    <Border.BorderBrush>
-                        <SolidColorBrush Opacity="0.06" Color="Black" />
-                    </Border.BorderBrush>
+                <Border Grid.Row="0" Grid.Column="1" Width="229" Height="40" HorizontalAlignment="Right" Margin="0,28, 85, 27" BorderThickness="1" CornerRadius="3,3,3,3" BorderBrush="{DynamicResource BorderBrush}">
                     <Grid>
                         <TextBlock Width="80" Padding="15" FontSize="14" Visibility="{Binding ShowHint, Converter={StaticResource BoolToVisibility}}"
                                    TextAlignment="Center"
@@ -118,8 +115,9 @@
                                      Text="{Binding SearchInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                      VerticalAlignment="Center"
                                      TextBlock.FontSize="14"
-                                     Foreground="Black"
+                                     Foreground="{DynamicResource MainTextBrush}"
                                      Background="Transparent"
+                                     CaretBrush="{DynamicResource MainTextBrush}"
                                      BorderThickness="0"
                                      extensions:FocusExtension.IsFocused="{Binding ShowSearchBox}">
                                 <TextBox.InputBindings>

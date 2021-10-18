@@ -39,7 +39,7 @@
             <ItemsControl ItemsSource="{Binding ColumnsCheckboxes}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <CheckBox Foreground="{StaticResource DarkGreenBrush}" Margin="15" Template="{DynamicResource CustomCheckBox}"
+                        <CheckBox Foreground="{StaticResource MainContentBrush}" Margin="15" Template="{DynamicResource CustomCheckBox}"
                                   VerticalContentAlignment="Center" IsChecked="{Binding IsChecked}">
                             <TextBlock FontSize="14" Text="{Binding Content}" />
                         </CheckBox>
@@ -56,7 +56,7 @@
         <Border Margin="-30 3 -30 0" Grid.Row="1" BorderThickness="0 1 0 0" BorderBrush="{StaticResource LightGray2Brush}" />
 
         <DockPanel Visibility="{Binding Filters.IsVisible, Converter={StaticResource BoolToVisibility}}" Margin="14" Grid.Row="2">
-            <TextBlock Margin="10" FontSize="14" Foreground="{StaticResource DarkGreenBrush}">Your filters:</TextBlock>
+            <TextBlock Margin="10" FontSize="14" Foreground="{StaticResource MainContentBrush}">Your filters:</TextBlock>
 
             <ItemsControl ItemsSource="{Binding Filters.Results}">
                 <ItemsControl.ItemsPanel>
