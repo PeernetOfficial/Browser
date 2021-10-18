@@ -10,7 +10,7 @@ namespace Peernet.Browser.WPF.Views
     /// </summary>
     [MvxContentPresentation]
     [MvxViewFor(typeof(FiltersViewModel))]
-    public partial class FiltersView : MvxWpfView
+    public partial class FiltersView : MvxWpfView, IModal
     {
         public FiltersView()
         {

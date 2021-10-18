@@ -1,0 +1,49 @@
+name: "Deploy Browser"
+
+on:
+  push:
+    tags:
+      - "Browser/v*"
+
+env:
+  PROJECT_PATH: Peernet.Browser.WPF/Peernet.Browser.WPF.csproj
+
+jobs:
+  deploy:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.x
+
+      - run: dotnet restore ${{ env.PROJECT_PATH }}
+
+      - run: dotnet build ${{ env.PROJECT_PATH }} -c Release --no-restore
+        
+      - run: dotnet test
+
+      - uses: actions/create-release@v1
+        id: create_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+
+
+      - name: Archive Release
+        uses: thedoctor0/zip-release@master
+        with:
+         type: 'zip'
+         filename: 'release.zip'
+         path: 'Peernet.Browser.WPF/bin/Release/net5.0-windows/win-x64/'
+         exclusions: '*.git* /*node_modules/* .editorconfig'
+
+
+      - uses: csexton/release-asset-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          pattern: release.zip
+          release-url: ${{ steps.create_release.outputs.upload_url }}

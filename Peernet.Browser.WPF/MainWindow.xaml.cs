@@ -1,4 +1,6 @@
 ﻿using MvvmCross.Platforms.Wpf.Views;
+using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.WPF.Views;
 using System.Globalization;
 using System.Threading;
 using System.Windows;
@@ -29,6 +31,17 @@ namespace Peernet.Browser.WPF
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left) DragMove();
+        }
+
+        protected override void OnContentChanged(object oldContent, object newContent)
+        {
+            if (newContent is IModal)
+            {
+                GlobalContext.Modal = newContent;
+                Content = oldContent;
+                return;
+            }
+            base.OnContentChanged(oldContent, newContent);
         }
 
         private void DismissModals_OnClick(object sender, MouseButtonEventArgs e)

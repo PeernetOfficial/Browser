@@ -24,15 +24,27 @@ namespace Peernet.Browser.Infrastructure.Services
 
         public async Task<SearchResultModel> Search(SearchFilterResultModel model)
         {
-            var res = new SearchResultModel { Filters = model, Size = new Tuple<int, int>(0, 15) };
-            var response = await searchClient.SubmitSearch(Map(model));
-            if (response.Status != SearchRequestResponseStatusEnum.Success)
+            var res = new SearchResultModel
             {
-                return res;
+                Filters = model,
+                Size = new Tuple<int, int>(0, 15)
+            };
+            //Initialize search - POST
+            if (model.IsNewSearch)
+            {
+                var response = await searchClient.SubmitSearch(Map<SearchRequest>(model));
+                if (response.Status != SearchRequestResponseStatusEnum.Success)
+                {
+                    return res;
+                }
+                model.Uuid = response.Id;
+                results.Add(response.Id, null);
             }
-            res.Id = response.Id;
-            var result = await searchClient.GetSearchResult(response.Id);
-            results.Add(response.Id, result);
+            //Make GET of result
+            var result = await searchClient.GetSearchResult(Map<SearchGetRequest>(model));
+            results[model.Uuid] = result;
+            res.Id = model.Uuid;
+            //Fill res (return) object
             res.Stats = GetStats(result.Statistic);
             res.Rows = result.Files
                 .Select(x => new SearchResultRowModel(x))
@@ -40,10 +52,10 @@ namespace Peernet.Browser.Infrastructure.Services
             return res;
         }
 
-        public async Task Terminate(string id)
+        public async Task<string> Terminate(string id)
         {
-            await searchClient.TerminateSearch(id);
             results.Remove(id);
+            return await searchClient.TerminateSearch(id);
         }
 
         public IDictionary<FiltersType, int> GetEmptyStats() => GetStats(new SearchStatisticData());
@@ -90,36 +102,50 @@ namespace Peernet.Browser.Infrastructure.Services
             }
         }
 
-        private SearchRequest Map(SearchFilterResultModel model)
+        /// <summary>
+        /// Tempolary map function - in futher good to change with AutoMapper
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        private T Map<T>(SearchFilterResultModel model) where T : SearchRequestBase, new()
         {
-            var res = new SearchRequest
+            var res = new T();
+            var searchRequest = res as SearchRequest;
+            var searchGetRequest = res as SearchGetRequest;
+            if (searchRequest != null)
             {
-                Term = model.InputText,
-                Timeout = 0,
-                MaxResults = 0,
-                FileFormat = HighLevelFileType.NotUsed,
-                FileType = LowLevelFileType.NotUsed,
-                Sort = SearchRequestSortTypeEnum.SortNone,
-                SizeMax = -1,
-                SizeMin = -1
-            };
-            if (model.PrevId.IsNullOrEmpty())
+                searchRequest.Term = model.InputText;
+            }
+            if (model.Uuid.IsNullOrEmpty() && searchRequest != null)
             {
-                res.Terminate = new[] { model.PrevId };
+                searchRequest.Terminate = new[] { model.Uuid };
+            }
+            if (!model.Uuid.IsNullOrEmpty() && searchGetRequest != null)
+            {
+                searchGetRequest.Id = model.Uuid;
             }
             if (model.Time.HasValue)
             {
-                var r = model.GetDateRange();
-                res.DateFrom = r.from.ToString();
-                res.DateTo = r.to.ToString();
+                var range = model.GetDateRange();
+                if (searchRequest != null)
+                {
+                    searchRequest.DateFrom = range.from.ToString();
+                    searchRequest.DateTo = range.to.ToString();
+                }
+                if (searchGetRequest != null)
+                {
+                    searchGetRequest.From = range.from.ToString();
+                    searchGetRequest.To = range.to.ToString();
+                }
             }
             if (model.SizeFrom.HasValue)
             {
-                res.SizeMin = model.SizeFrom.Value;
+                //res.SizeMin = model.SizeFrom.Value;
             }
             if (model.SizeTo.HasValue)
             {
-                res.SizeMax = model.SizeTo.Value;
+                //res.SizeMax = model.SizeTo.Value;
             }
             if (model.SortName != DataGridSortingNameEnum.None && model.SortType != DataGridSortingTypeEnum.None)
             {
@@ -142,13 +168,17 @@ namespace Peernet.Browser.Infrastructure.Services
                         break;
                 }
             }
+            if (model.FilterType != FiltersType.All)
+            {
+                res.FileType = Map(model.FilterType);
+            }
             if (!model.Healths.IsNullOrEmpty())
             {
                 //TODO: ??
             }
             if (!model.FileFormats.IsNullOrEmpty())
             {
-                //TODO: res.FileFormat = model.FileFormat.Value;
+                res.FileFormat = (HighLevelFileType)(int)model.FileFormats.First();
             }
             return res;
         }

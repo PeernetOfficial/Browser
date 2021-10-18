@@ -65,6 +65,18 @@ namespace Peernet.Browser.Application.Contexts
             }
         }
 
+        private static object modal;
+
+        public static object Modal
+        {
+            get => modal;
+            set
+            {
+                modal = value;
+                NotifyStaticPropertyChanged(nameof(modal));
+            }
+        }
+
         public static string CurrentViewModel
         {
             get => currentViewModel;
