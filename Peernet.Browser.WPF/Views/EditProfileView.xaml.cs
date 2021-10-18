@@ -4,6 +4,7 @@ using MvvmCross.Platforms.Wpf.Views;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.ViewModels;
 using System.IO;
+using System.Windows.Input;
 
 namespace Peernet.Browser.WPF.Views
 {
@@ -28,6 +29,11 @@ namespace Peernet.Browser.WPF.Views
 
                 ((EditProfileViewModel)ViewModel).UserContext.User.Image = content;
             }
+        }
+
+        private void DeleteAccount_OnClick(object sender, MouseButtonEventArgs e)
+        {
+            ((EditProfileViewModel)ViewModel).RemovePhotoCommand.ExecuteAsync().Wait();
         }
     }
 }
