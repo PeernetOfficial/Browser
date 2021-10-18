@@ -1,14 +1,11 @@
-﻿using Peernet.Browser.Models.Domain.Common;
-
-namespace Peernet.Browser.Models.Domain.Search
+﻿namespace Peernet.Browser.Models.Domain.Search
 {
     public class SearchRequestBase
     {
         public SearchRequestBase()
         {
-            FileFormat = HighLevelFileType.NotUsed;
-            FileType = LowLevelFileType.NotUsed;
-            Sort = SearchRequestSortTypeEnum.SortNone;
+            FileFormat = -1;
+            FileType = -1;
             SizeMax = -1;
             SizeMin = -1;
         }
@@ -16,17 +13,17 @@ namespace Peernet.Browser.Models.Domain.Search
         /// <summary>
         ///  Sort order
         /// </summary>
-        public SearchRequestSortTypeEnum Sort { get; set; }
+        public int Sort { get; set; }
 
         /// <summary>
         /// File type such as binary, text document etc. See core.TypeX.
         /// </summary>
-        public LowLevelFileType FileType { get; set; }
+        public int FileType { get; set; }
 
         /// <summary>
         /// File format such as PDF, Word, Ebook, etc. See core.FormatX.
         /// </summary>
-        public HighLevelFileType FileFormat { get; set; }
+        public int FileFormat { get; set; }
 
         /// <summary>
         /// Min file size in bytes. -1 = not used.
