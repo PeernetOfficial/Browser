@@ -30,7 +30,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IMvxAsyncCommand RemovePhotoCommand => new MvxAsyncCommand(() =>
         {
-            profileService.DeleteUserImage();
+            mvxNavigationService.Navigate<DeleteAccountViewModel>();
 
             return Task.CompletedTask;
         });
