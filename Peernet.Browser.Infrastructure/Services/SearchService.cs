@@ -146,7 +146,7 @@ namespace Peernet.Browser.Infrastructure.Services
             {
                 searchGetRequest.Id = model.Uuid;
             }
-            if (model.Time.HasValue)
+            if (model.Time.HasValue && model.IsCustomTimeFill)
             {
                 var range = model.GetDateRange();
                 if (searchRequest != null)

@@ -58,6 +58,8 @@ namespace Peernet.Browser.Models.Presentation.Home
             set => SetProperty(ref dateTo, value);
         }
 
+        public DateTime? SetDateTo => DateTo;
+
         public FileFormatFilterModel FileFormatFilters { get; }
 
         public HealthFilterModel HealthFiltes { get; }
@@ -87,8 +89,9 @@ namespace Peernet.Browser.Models.Presentation.Home
             RangeFilter.CurrentMax = SearchFilterResult.SizeTo.GetValueOrDefault(SearchFilterResult.SizeMax);
             RangeFilter.CurrentMin = SearchFilterResult.SizeFrom.GetValueOrDefault(SearchFilterResult.SizeMin); ;
 
-            DateFrom = SearchFilterResult.TimeFrom;
             DateTo = SearchFilterResult.TimeTo;
+            RaisePropertyChanged(nameof(SetDateTo));
+            DateFrom = SearchFilterResult.TimeFrom;
         }
 
         public async Task<SearchResultModel> GetData(Action<SearchResultRowModel> downloadAction)
@@ -136,6 +139,7 @@ namespace Peernet.Browser.Models.Presentation.Home
             SearchFilterResult.TimeFrom = DateFrom;
             SearchFilterResult.TimeTo = DateTo;
 
+            RaisePropertyChanged(nameof(SetDateTo));
             DateTo = null;
             DateFrom = null;
 

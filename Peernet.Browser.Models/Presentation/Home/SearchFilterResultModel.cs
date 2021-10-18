@@ -29,7 +29,7 @@ namespace Peernet.Browser.Models.Presentation.Home
         public IEnumerable<FilterResultModel> Get()
         {
             var res = new List<FilterResultModel>();
-            if (Time.HasValue)
+            if (IsCustomTimeFill)
             {
                 res.Add(new FilterResultModel(Remove)
                 {
@@ -51,6 +51,8 @@ namespace Peernet.Browser.Models.Presentation.Home
             }
             return res;
         }
+
+        public bool IsCustomTimeFill => Time.HasValue && TimeFrom.HasValue && TimeTo.HasValue;
 
         public (DateTime from, DateTime to) GetDateRange()
         {
