@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Peernet.Browser.Models.Presentation.Home;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,36 +13,30 @@ namespace Peernet.Browser.WPF.Controls
                 .OrderBy(x => x)
                 .ToArray();
 
-            SelectedDate = selectedDates.FirstOrDefault();
-            SelectedDateTo = selectedDates.LastOrDefault();
+            CustomDates.Set(selectedDates.FirstOrDefault(), selectedDates.LastOrDefault());
+        }
 
-            if (selectedDates.Length == 1 && SelectedDateTo.HasValue && SelectedDate.HasValue && SelectedDateTo != SelectedDate)
+        public static readonly DependencyProperty CustomDatesProperty = DependencyProperty.Register("CustomDates", typeof(CalendarModel), typeof(CalendarRangeExtension), new PropertyMetadata(null, OnChangeDates));
+
+        public CalendarModel CustomDates
+        {
+            get => (CalendarModel)GetValue(CustomDatesProperty);
+            set => SetValue(CustomDatesProperty, value);
+        }
+
+        private void OnUpdate()
+        {
+            if (CustomDates.IsFill)
             {
-                SelectedDates.AddRange(SelectedDate.Value, SelectedDateTo.Value);
+                SelectedDate = CustomDates.DateFrom.Value;
+                SelectedDates.AddRange(CustomDates.DateFrom.Value, CustomDates.DateTo.Value);
             }
         }
 
-        public static readonly DependencyProperty SelectedDateToProperty = DependencyProperty.Register("SelectedDateTo", typeof(DateTime?), typeof(CalendarRangeExtension));
-        public static readonly DependencyProperty SelectedDateToOnlySetProperty = DependencyProperty.Register("SelectedDateToOnlySet", typeof(DateTime?), typeof(CalendarRangeExtension), new PropertyMetadata(null, OnChange));
-
-        public DateTime? SelectedDateTo
-        {
-            get => (DateTime?)GetValue(SelectedDateToProperty);
-            set => SetValue(SelectedDateToProperty, value);
-        }
-
-        public DateTime? SelectedDateToOnlySet
-        {
-            get => (DateTime?)GetValue(SelectedDateToOnlySetProperty);
-            set => SetValue(SelectedDateToOnlySetProperty, value);
-        }
-
-        private static void OnChange(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnChangeDates(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var o = (CalendarRangeExtension)d;
-            if (e.NewValue == null || e.OldValue == null) return;
-            var newValue = (DateTime)e.NewValue;
-            o.SelectedDates.AddRange(o.SelectedDate.Value, o.SelectedDateTo.Value);
+            o.CustomDates.OnSet = o.OnUpdate;
         }
     }
 }

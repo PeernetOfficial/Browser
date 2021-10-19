@@ -10,8 +10,6 @@ namespace Peernet.Browser.Models.Presentation.Home
     {
         private readonly string inputText;
         private readonly Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction;
-        private DateTime? dateFrom;
-        private DateTime? dateTo;
         private int max;
         private int min;
         private bool showCalendar;
@@ -30,6 +28,7 @@ namespace Peernet.Browser.Models.Presentation.Home
             FileFormatFilters = new FileFormatFilterModel();
             HealthFiltes = new HealthFilterModel();
             RangeFilter = new RangeSliderModel();
+            Dates = new CalendarModel();
 
             Results.CollectionChanged += (o, s) => RaisePropertyChanged(nameof(IsVisible));
 
@@ -46,19 +45,7 @@ namespace Peernet.Browser.Models.Presentation.Home
 
         public DateFilterModel DateFilters { get; }
 
-        public DateTime? DateFrom
-        {
-            get => dateFrom;
-            set => SetProperty(ref dateFrom, value);
-        }
-
-        public DateTime? DateTo
-        {
-            get => dateTo;
-            set => SetProperty(ref dateTo, value);
-        }
-
-        public DateTime? SetDateTo => DateTo;
+        public CalendarModel Dates { get; }
 
         public FileFormatFilterModel FileFormatFilters { get; }
 
@@ -89,9 +76,7 @@ namespace Peernet.Browser.Models.Presentation.Home
             RangeFilter.CurrentMax = SearchFilterResult.SizeTo.GetValueOrDefault(SearchFilterResult.SizeMax);
             RangeFilter.CurrentMin = SearchFilterResult.SizeFrom.GetValueOrDefault(SearchFilterResult.SizeMin); ;
 
-            DateTo = SearchFilterResult.TimeTo;
-            RaisePropertyChanged(nameof(SetDateTo));
-            DateFrom = SearchFilterResult.TimeFrom;
+            Dates.Set(SearchFilterResult.TimeFrom, SearchFilterResult.TimeTo);
         }
 
         public async Task<SearchResultModel> GetData(Action<SearchResultRowModel> downloadAction)
@@ -136,12 +121,9 @@ namespace Peernet.Browser.Models.Presentation.Home
             SearchFilterResult.Time = DateFilters.IsSelected ? DateFilters.GetSelected() : null;
             SearchFilterResult.Healths = HealthFiltes.IsSelected ? HealthFiltes.GetAllSelected() : null;
 
-            SearchFilterResult.TimeFrom = DateFrom;
-            SearchFilterResult.TimeTo = DateTo;
-
-            RaisePropertyChanged(nameof(SetDateTo));
-            DateTo = null;
-            DateFrom = null;
+            SearchFilterResult.TimeFrom = Dates.DateFrom;
+            SearchFilterResult.TimeTo = Dates.DateTo;
+            Dates.Rest();
 
             SearchFilterResult.SizeFrom = RangeFilter.CurrentMin;
             SearchFilterResult.SizeTo = RangeFilter.CurrentMax;

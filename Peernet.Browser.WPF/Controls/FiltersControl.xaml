@@ -33,9 +33,9 @@
                     <controls:CustomFilterControl DataContext="{Binding DateFilters}" />
                     <Border Visibility="{Binding ShowCalendar, Converter={StaticResource BoolToVisibility}}" Grid.RowSpan="2"  Grid.Column="1" Margin="0 37 0 12" Padding="15 10" BorderBrush="{DynamicResource LightGray3Brush}"
                             BorderThickness="0 1 1 1" CornerRadius="{DynamicResource MainRadius}">
-                        <controls:CalendarRangeExtension Style="{DynamicResource PeernetCalendar}" SelectedDateTo="{Binding DateTo, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                         SelectedDate="{Binding DateFrom, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                                         IsTodayHighlighted="False" SelectionMode="SingleRange" SelectedDateToOnlySet="{Binding SetDateTo}" />
+                        <controls:CalendarRangeExtension Style="{DynamicResource PeernetCalendar}"
+                                                         CustomDates="{Binding Dates}"
+                                                         IsTodayHighlighted="False" SelectionMode="SingleRange" />
                         <!--http://www.nullskull.com/a/1382/styling-the-wpf-calendar-to-resemble-outlooks-month-view-calendar.aspx-->
                     </Border>
                 </DockPanel>
