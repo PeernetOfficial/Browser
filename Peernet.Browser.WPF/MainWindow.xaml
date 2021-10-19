@@ -4,13 +4,14 @@
                   xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
                   xmlns:contexts="clr-namespace:Peernet.Browser.Application.Contexts;assembly=Peernet.Browser.Application"
                   xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls"
-                  Height="900" Width="1441" WindowStartupLocation="CenterScreen" Background="{StaticResource MainBackgroundBrush}">
+                  Height="900" Width="1441" WindowStartupLocation="CenterScreen"
+                  MouseDown="DismissModals_OnClick">
     <WindowChrome.WindowChrome>
         <WindowChrome ResizeBorderThickness="5" GlassFrameThickness="0" CaptionHeight="0" CornerRadius="{StaticResource Main2Radius}" />
     </WindowChrome.WindowChrome>
     <views:MvxWindow.ContentTemplate>
         <DataTemplate>
-            <Grid>
+            <Grid Background="{DynamicResource MainBackgroundBrush}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40" />
                     <RowDefinition Height="*" />
@@ -34,7 +35,7 @@
                     <ContentControl Content="{Binding Path=(contexts:GlobalContext.Modal)}" />
                 </Border>
 
-                <Image Visibility="{Binding Path=(contexts:GlobalContext.IsLogoVisible), Converter={StaticResource BoolToVisibility}}"  Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="70 0" Source="{StaticResource LogoAbbreviationDrawingImage}" Height="50" />
+                <Image Visibility="{Binding Path=(contexts:GlobalContext.IsLogoVisible), Converter={StaticResource BoolToVisibility}}"  Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="70 0" Source="{DynamicResource LogoAbbreviationDrawingImage}" Height="50" />
                 <controls:ButtonsControl Grid.Row="0" InitializeOnLoad="true" />
                 <controls:NavigationBarControl Panel.ZIndex="1" Margin="0 12 0 0" HorizontalAlignment="Right" Grid.Row="1" InitializeOnLoad="true" />
                 <controls:FooterControl Grid.Row="2" InitializeOnLoad="true" DockPanel.Dock="Bottom" Panel.ZIndex="2" />

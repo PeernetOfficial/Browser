@@ -7,7 +7,7 @@
     <Style x:Key="PeernetCalendar" TargetType="{x:Type Calendar}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="Transparent" />
-        <Setter Property="Foreground" Value="{StaticResource DarkGreenBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource MainContentBrush}" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="CalendarDayButtonStyle" Value="{DynamicResource CalendarDayButtonStyle}" />
         <Setter Property="Template">
@@ -33,7 +33,7 @@
                 <ControlTemplate TargetType="{x:Type CalendarItem}">
                     <ControlTemplate.Resources>
                         <DataTemplate x:Key="{x:Static CalendarItem.DayTitleTemplateResourceKey}">
-                            <TextBlock Foreground="{StaticResource DarkGreenBrush}"
+                            <TextBlock Foreground="{StaticResource MainContentBrush}"
                                         Text="{Binding}" FontSize="9.5" FontWeight="DemiBold"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center" />
@@ -136,7 +136,7 @@
         <Setter Property="MinWidth" Value="5" />
         <Setter Property="MinHeight" Value="5" />
         <Setter Property="FontSize" Value="10" />
-        <Setter Property="Foreground" Value="{StaticResource DarkGreenBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource MainContentBrush}" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Template">
@@ -145,7 +145,7 @@
                     <Grid>
                         <Border Margin="0 4 -1 2" Background="{TemplateBinding Background}" BorderThickness="0" BorderBrush="Transparent" />
                         <Canvas Name="backGroundDot" Visibility="Collapsed" Width="{DynamicResource MyValue}" Height="{DynamicResource MyValue}"  VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <Ellipse Width="{DynamicResource MyValue}" Height="{DynamicResource MyValue}" StrokeThickness="1" Fill="{StaticResource DarkGreenBrush}"></Ellipse>
+                            <Ellipse Width="{DynamicResource MyValue}" Height="{DynamicResource MyValue}" StrokeThickness="1" Fill="{StaticResource MainContentBrush}"></Ellipse>
                         </Canvas>
                         <ContentPresenter Name="NormalText"
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"

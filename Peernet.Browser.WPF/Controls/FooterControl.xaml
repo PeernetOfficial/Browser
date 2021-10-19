@@ -37,8 +37,8 @@
                 </StatusBarItem>
                 <StatusBarItem Margin="14,0,0,0" HorizontalAlignment="Left">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Peers}" Foreground="#113E48" FontFamily="Inter" FontSize="14" FontWeight="SemiBold" />
-                        <TextBlock Text="Peers" Foreground="#113E48" FontFamily="Inter" FontSize="14" FontWeight="Regular" Margin="3, 0,0 , 0" />
+                        <TextBlock Text="{Binding Peers}" Foreground="{DynamicResource MainContentBrush}" FontFamily="Inter" FontSize="14" FontWeight="SemiBold" />
+                        <TextBlock Text="Peers" Foreground="{DynamicResource MainContentBrush}" FontFamily="Inter" FontSize="14" FontWeight="Regular" Margin="3, 0,0 , 0" />
                     </StackPanel>
                 </StatusBarItem>
             </StatusBar>
@@ -79,7 +79,7 @@
                                             </Style>
                                         </TextBlock.Style>
                                     </TextBlock>
-                                    <ProgressBar x:Name="ProgressBar" Grid.Column="3" Margin="12,0,0,0" Minimum="0" Maximum="100" Value="{Binding Progress}" Width="100" Background="#F2F2F2" Foreground="{StaticResource DarkGreenBrush}" BorderThickness="0" Height="1" VerticalAlignment="Center">
+                                    <ProgressBar x:Name="ProgressBar" Grid.Column="3" Margin="12,0,0,0" Minimum="0" Maximum="100" Value="{Binding Progress}" Width="100" Background="#F2F2F2" Foreground="{StaticResource MainContentBrush}" BorderThickness="0" Height="1" VerticalAlignment="Center">
                                         <ProgressBar.Style>
                                             <Style TargetType="{x:Type ProgressBar}">
                                                 <Setter Property="Visibility" Value="Visible" />
@@ -92,7 +92,7 @@
                                         </ProgressBar.Style>
                                     </ProgressBar>
                                     <StackPanel Grid.Column="4" Orientation="Horizontal">
-                                        <Button Cursor="Hand" Foreground="{StaticResource DarkGreenBrush}" CommandParameter="{Binding Id}">
+                                        <Button Cursor="Hand" Foreground="{StaticResource MainContentBrush}" CommandParameter="{Binding Id}">
                                             <Button.Style>
                                                 <Style BasedOn="{StaticResource PauseResumeButtonStyle}" TargetType="{x:Type Button}">
                                                     <Setter Property="Visibility" Value="Visible" />
@@ -104,7 +104,7 @@
                                                 </Style>
                                             </Button.Style>
                                         </Button>
-                                        <Button Cursor="Hand" Foreground="{StaticResource DarkGreenBrush}" Style="{StaticResource CloseButtonStyle}" Command="{Binding DataContext.CancelDownloadCommand, ElementName=Footer}" CommandParameter="{Binding Id}" />
+                                        <Button Cursor="Hand" Foreground="{StaticResource MainContentBrush}" Style="{StaticResource CloseButtonStyle}" Command="{Binding DataContext.CancelDownloadCommand, ElementName=Footer}" CommandParameter="{Binding Id}" />
                                     </StackPanel>
                                 </Grid>
                             </DataTemplate>

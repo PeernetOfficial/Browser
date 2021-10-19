@@ -1,23 +1,22 @@
-﻿using FakeItEasy;
-using FizzWare.NBuilder;
+﻿using FizzWare.NBuilder;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using Peernet.Browser.Application.VirtualFileSystem;
-using Peernet.Browser.Models.Domain;
+using Peernet.Browser.Models.Domain.Common;
 using System.Collections.Generic;
 using System.Linq;
-using Peernet.Browser.Models.Domain.Common;
 
 namespace Peernet.Browser.Tests.Application.VirtualFileSystem
 {
     [TestClass]
     public class VirtualFilesSystemTests
     {
-        private IFilesToCategoryBinder fakeBinder;
+        private Mock<IFilesToCategoryBinder> fakeBinder;
 
         [TestInitialize]
         public void SetUp()
         {
-            fakeBinder = A.Fake<IFilesToCategoryBinder>();
+            fakeBinder = new Mock<IFilesToCategoryBinder>();
         }
 
         [DataTestMethod]
@@ -28,9 +27,10 @@ namespace Peernet.Browser.Tests.Application.VirtualFileSystem
             // Arrange
             IList<ApiBlockRecordFile> files = Builder<ApiBlockRecordFile>.CreateListOfSize(size).All()
                 .With(x => x.Folder = $"{rootName}/{subName}").Build();
+            fakeBinder.Setup(s => s.Bind(It.IsAny<IEnumerable<ApiBlockRecordFile>>())).Returns(new List<VirtualFileSystemCategory>());
 
             // Act
-            var system = new Browser.Application.VirtualFileSystem.VirtualFileSystem(files, fakeBinder);
+            var system = new Browser.Application.VirtualFileSystem.VirtualFileSystem(files, fakeBinder.Object);
 
             //Assert
 
@@ -56,16 +56,15 @@ namespace Peernet.Browser.Tests.Application.VirtualFileSystem
                 new("cat", VirtualFileSystemEntityType.Audio, files)
             };
 
-            A.CallTo(() => fakeBinder.Bind(A<List<ApiBlockRecordFile>>.Ignored)).Returns(expectedCategories);
+            fakeBinder.Setup(s => s.Bind(It.IsAny<IEnumerable<ApiBlockRecordFile>>())).Returns(expectedCategories);
 
             // Act
-            var system = new Browser.Application.VirtualFileSystem.VirtualFileSystem(files, fakeBinder);
+            var system = new Browser.Application.VirtualFileSystem.VirtualFileSystem(files, fakeBinder.Object);
 
             // Assert
             var categories = system.VirtualFileSystemCategories;
             Assert.IsNotNull(categories);
             CollectionAssert.AreEqual(expectedCategories, categories);
-            Assert.AreSame(expectedCategories, categories);
         }
     }
 }

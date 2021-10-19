@@ -8,7 +8,7 @@
     <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource BaseTextBlockStyle}" />
 
     <Style TargetType="{x:Type TextBlock}" x:Key="Active">
-        <Setter Property="Foreground" Value="{StaticResource DarkGreenBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource MainContentBrush}" />
         <Setter Property="Padding" Value="0 2" />
     </Style>
 
@@ -20,12 +20,18 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="StandardDescription" TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="{StaticResource MainContentBrush}" />
+        <Setter Property="Margin" Value="12, 0, 0, 0" />
+        <Setter Property="FontSize" Value="12" />
+    </Style>
+
     <Style TargetType="{x:Type TextBlock}" x:Key="ActiveSelectable">
         <Setter Property="Foreground" Value="#8F8F8F" />
         <Setter Property="Padding" Value="0 2" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                <Setter Property="Foreground" Value="{StaticResource DarkGreenBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource MainContentBrush}" />
             </DataTrigger>
         </Style.Triggers>
     </Style>

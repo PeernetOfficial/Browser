@@ -2,12 +2,10 @@
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.VirtualFileSystem;
-using Peernet.Browser.Models.Domain;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Peernet.Browser.Application.Services;
-using Peernet.Browser.Models.Domain.Common;
 using Peernet.Browser.Models.Presentation.Footer;
 
 namespace Peernet.Browser.Application.ViewModels
@@ -60,16 +58,8 @@ namespace Peernet.Browser.Application.ViewModels
                     categoryTypes.ForEach(c => c.ResetSelection());
 
                     category.IsSelected = true;
-                    if (category.Type == VirtualFileSystemEntityType.Binary)
-                    {
-                        ActiveSearchResults =
-                            new ObservableCollection<DownloadModel>((await exploreService.GetFiles(20, -2)));
-                    }
-                    else
-                    {
-                        ActiveSearchResults = new ObservableCollection<DownloadModel>(await exploreService
+                    ActiveSearchResults = new ObservableCollection<DownloadModel>(await exploreService
                             .GetFiles(20, (int)category.Type));
-                    }
                 });
 
         public override async Task Initialize()
