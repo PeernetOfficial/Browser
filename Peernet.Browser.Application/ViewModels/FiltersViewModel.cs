@@ -5,7 +5,7 @@ using Peernet.Browser.Models.Presentation.Home;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class FiltersViewModel : MvxViewModel<FiltersModel>
+    public class FiltersViewModel : MvxViewModel<FiltersModel>, IModal
     {
         private readonly IMvxNavigationService mvxNavigationService;
         private FiltersModel filters;

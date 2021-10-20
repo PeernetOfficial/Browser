@@ -9,19 +9,15 @@ namespace Peernet.Browser.Models.Presentation.Home
         public bool IsNewSearch => Uuid.IsNullOrEmpty();
         public FileFormats[] FileFormats { get; set; }
         public FiltersType FilterType { get; set; }
-        public HealthType[] Healths { get; set; }
         public string InputText { get; set; }
         public Action<SearchFiltersType> OnRemoveAction { get; set; }
         public string Uuid { get; set; }
         public int? SizeFrom { get; set; }
-        public int SizeMax { get; set; }
-        public int SizeMin { get; set; }
         public int? SizeTo { get; set; }
         public TimePeriods? Time { get; set; }
 
         public DateTime? TimeFrom { get; set; }
         public DateTime? TimeTo { get; set; }
-        private bool IsSizeDefault => SizeTo == SizeMax && SizeMin == SizeFrom;
 
         public DataGridSortingNameEnum SortName { get; set; }
         public DataGridSortingTypeEnum SortType { get; set; }
@@ -37,15 +33,11 @@ namespace Peernet.Browser.Models.Presentation.Home
                     Content = Time == TimePeriods.Custom ? $"{TimeFrom.Value.ToShortDateString()} - {TimeTo.Value.ToShortDateString()}" : Time.Value.GetDescription()
                 });
             }
-            if (!Healths.IsNullOrEmpty())
-            {
-                Healths.Foreach(x => res.Add(new FilterResultModel(Remove) { Type = SearchFiltersType.HealthType, Content = x.GetDescription() }));
-            }
             if (!FileFormats.IsNullOrEmpty())
             {
                 FileFormats.Foreach(x => res.Add(new FilterResultModel(Remove) { Type = SearchFiltersType.FileFormats, Content = x.GetDescription() }));
             }
-            if (!IsSizeDefault)
+            if (SizeFrom.HasValue && SizeTo.HasValue)
             {
                 res.Add(new FilterResultModel(Remove) { Type = SearchFiltersType.Size, Content = $"{SizeFrom}MB - {SizeTo}MB" });
             }

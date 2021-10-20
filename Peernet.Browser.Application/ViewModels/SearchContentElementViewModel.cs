@@ -109,7 +109,7 @@ namespace Peernet.Browser.Application.ViewModels
                     break;
 
                 case "Shared by":
-                    ShowColumnsDownload = selection.IsChecked;
+                    ShowColumnsShared = selection.IsChecked;
                     break;
             }
         }

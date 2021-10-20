@@ -148,25 +148,26 @@ namespace Peernet.Browser.Infrastructure.Services
             }
             if (model.Time.HasValue && model.IsCustomTimeFill)
             {
+                var format = "yyyy-MM-dd HH:mm:ss";
                 var range = model.GetDateRange();
                 if (searchRequest != null)
                 {
-                    searchRequest.DateFrom = range.from.ToString();
-                    searchRequest.DateTo = range.to.ToString();
+                    searchRequest.DateFrom = range.from.ToString(format);
+                    searchRequest.DateTo = range.to.ToString(format);
                 }
                 if (searchGetRequest != null)
                 {
-                    searchGetRequest.From = range.from.ToString();
-                    searchGetRequest.To = range.to.ToString();
+                    searchGetRequest.From = range.from.ToString(format);
+                    searchGetRequest.To = range.to.ToString(format);
                 }
             }
             if (model.SizeFrom.HasValue)
             {
-                //res.SizeMin = model.SizeFrom.Value;
+                res.SizeMin = model.SizeFrom.Value;
             }
             if (model.SizeTo.HasValue)
             {
-                //res.SizeMax = model.SizeTo.Value;
+                res.SizeMax = model.SizeTo.Value;
             }
             if (model.SortName != DataGridSortingNameEnum.None && model.SortType != DataGridSortingTypeEnum.None)
             {
@@ -175,10 +176,6 @@ namespace Peernet.Browser.Infrastructure.Services
             if (model.FilterType != FiltersType.All)
             {
                 res.FileType = (int)Map(model.FilterType);
-            }
-            if (!model.Healths.IsNullOrEmpty())
-            {
-                //TODO: ??
             }
             if (!model.FileFormats.IsNullOrEmpty())
             {

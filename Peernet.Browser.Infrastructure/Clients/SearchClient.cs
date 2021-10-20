@@ -57,7 +57,7 @@ namespace Peernet.Browser.Infrastructure.Clients
                 var val = pi.GetValue(obj, null);
                 if (val != null)
                 {
-                    res.Add(pi.Name.ToLower(), val.ToString());
+                    res.Add(pi.Name.ToLower(), val.ToString().Replace(" ", $"%20"));
                 }
             }
             return res;

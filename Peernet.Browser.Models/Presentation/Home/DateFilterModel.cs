@@ -6,10 +6,9 @@ namespace Peernet.Browser.Models.Presentation.Home
     {
         private readonly Action<bool> onIsCustomSelectionChange;
 
-        public DateFilterModel(Action<bool> onIsCustomSelectionChange) : base("Date", isRadio: true)
+        public DateFilterModel(Action<bool> onIsCustomSelectionChange) : base("Date")
         {
             this.onIsCustomSelectionChange = onIsCustomSelectionChange;
-            MinHeight = 253;
         }
 
         protected override void IsCheckedChanged(CustomCheckBoxModel customCheckBoxModel)

@@ -5,6 +5,7 @@ using MvvmCross.Navigation;
 using MvvmCross.Navigation.EventArguments;
 using MvvmCross.Platforms.Wpf.Core;
 using MvvmCross.Plugin;
+using Peernet.Browser.Application;
 using Peernet.Browser.Application.Clients;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Download;
@@ -71,6 +72,7 @@ namespace Peernet.Browser.WPF
             iocProvider.Resolve<IMvxNavigationService>().DidNavigate +=
                 delegate (object sender, IMvxNavigateEventArgs args)
                 {
+                    if (args.ViewModel is IModal) return;
                     GlobalContext.CurrentViewModel = args.ViewModel.GetType().Name;
                 };
         }
