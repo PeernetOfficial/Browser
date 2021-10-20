@@ -7,12 +7,13 @@ using Peernet.Browser.Models.Presentation.Home;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public class SearchContentElementViewModel : MvxNotifyPropertyChanged
     {
-        public SearchContentElementViewModel(FiltersModel model)
+        public SearchContentElementViewModel(FiltersModel model, Func<SearchResultRowModel, Task> downloadAction)
         {
             Filters = model ?? throw new ArgumentNullException();
             Filters.CloseAction += (x) => { if (x) Refresh(); };
@@ -20,9 +21,13 @@ namespace Peernet.Browser.Application.ViewModels
             ColumnsIconModel = new IconModel(FiltersType.Columns, true, ShowColumnSelection);
             FiltersIconModel = new IconModel(FiltersType.Filters, true, OpenFilters);
             ClearCommand = new MvxCommand(() => Filters.Reset(true));
+
+            DownloadCommand = new MvxAsyncCommand<SearchResultRowModel>(async (row) => await downloadAction(row));
             InitIcons();
             Refresh();
         }
+
+        public IMvxAsyncCommand<SearchResultRowModel> DownloadCommand { get; }
 
         public void OnSorting(string columnName, DataGridSortingTypeEnum type)
         {
@@ -42,6 +47,7 @@ namespace Peernet.Browser.Application.ViewModels
         private bool showColumnsSize = true;
         private bool showColumnsDate = true;
         private bool showColumnsDownload = true;
+        private bool showColumnsShared = true;
 
         public bool ShowColumnsSize
         {
@@ -61,6 +67,12 @@ namespace Peernet.Browser.Application.ViewModels
             set => SetProperty(ref showColumnsDownload, value);
         }
 
+        public bool ShowColumnsShared
+        {
+            get => showColumnsShared;
+            set => SetProperty(ref showColumnsShared, value);
+        }
+
         public MvxObservableCollection<CustomCheckBoxModel> ColumnsCheckboxes { get; } = new MvxObservableCollection<CustomCheckBoxModel>();
 
         public IMvxCommand ClearCommand { get; }
@@ -71,15 +83,12 @@ namespace Peernet.Browser.Application.ViewModels
         public IconModel FiltersIconModel { get; }
         public MvxObservableCollection<SearchResultRowModel> TableResult { get; } = new MvxObservableCollection<SearchResultRowModel>();
 
-        private void Download(SearchResultRowModel row)
-        {
-        }
-
         private void InitIcons()
         {
             ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Date", IsChecked = true, IsCheckChanged = OnColumnCheckboxClick });
             ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Size", IsChecked = true, IsCheckChanged = OnColumnCheckboxClick });
             ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Downloads", IsChecked = true, IsCheckChanged = OnColumnCheckboxClick });
+            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Shared by", IsChecked = true, IsCheckChanged = OnColumnCheckboxClick });
             RefreshIconFilters(SearchResultModel.GetDefaultStats().ToDictionary(x => x, y => 0), FiltersType.All);
         }
 
@@ -96,6 +105,10 @@ namespace Peernet.Browser.Application.ViewModels
                     break;
 
                 case "Downloads":
+                    ShowColumnsDownload = selection.IsChecked;
+                    break;
+
+                case "Shared by":
                     ShowColumnsDownload = selection.IsChecked;
                     break;
             }
@@ -125,7 +138,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         private async void Refresh()
         {
-            var data = await Filters.GetData(Download);
+            var data = await Filters.GetData();
             TableResult.Clear();
             data.Rows.Foreach(x => TableResult.Add(x));
             RefreshIconFilters(data.Stats, data.Filters.FilterType);

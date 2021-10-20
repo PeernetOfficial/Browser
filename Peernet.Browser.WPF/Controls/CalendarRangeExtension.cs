@@ -12,7 +12,7 @@ namespace Peernet.Browser.WPF.Controls
             var selectedDates = SelectedDates
                 .OrderBy(x => x)
                 .ToArray();
-
+            SelectedDate = selectedDates.FirstOrDefault();
             CustomDates.Set(selectedDates.FirstOrDefault(), selectedDates.LastOrDefault());
         }
 

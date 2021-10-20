@@ -10,8 +10,8 @@ namespace Peernet.Browser.Models.Presentation.Home
     {
         private readonly string inputText;
         private readonly Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction;
-        private int max;
         private int min;
+        private int max;
         private bool showCalendar;
         public string UuId { get; private set; }
 
@@ -74,17 +74,16 @@ namespace Peernet.Browser.Models.Presentation.Home
             RangeFilter.Max = SearchFilterResult.SizeMax;
             RangeFilter.Min = SearchFilterResult.SizeMin;
             RangeFilter.CurrentMax = SearchFilterResult.SizeTo.GetValueOrDefault(SearchFilterResult.SizeMax);
-            RangeFilter.CurrentMin = SearchFilterResult.SizeFrom.GetValueOrDefault(SearchFilterResult.SizeMin); ;
+            RangeFilter.CurrentMin = SearchFilterResult.SizeFrom.GetValueOrDefault(SearchFilterResult.SizeMin);
 
             Dates.Set(SearchFilterResult.TimeFrom, SearchFilterResult.TimeTo);
         }
 
-        public async Task<SearchResultModel> GetData(Action<SearchResultRowModel> downloadAction)
+        public async Task<SearchResultModel> GetData()
         {
             var res = await refreshAction(SearchFilterResult);
             UuId = res.Id;
             SetMinMax(res.Size.Item1, res.Size.Item2);
-            res.Rows.Foreach(x => x.DownloadAction = downloadAction);
             return res;
         }
 
@@ -94,6 +93,7 @@ namespace Peernet.Browser.Models.Presentation.Home
             Reset(SearchFiltersType.TimePeriods);
             Reset(SearchFiltersType.Size);
             Reset(SearchFiltersType.HealthType);
+            Dates.Reset();
 
             if (withApply) Apply();
         }
@@ -123,7 +123,6 @@ namespace Peernet.Browser.Models.Presentation.Home
 
             SearchFilterResult.TimeFrom = Dates.DateFrom;
             SearchFilterResult.TimeTo = Dates.DateTo;
-            Dates.Rest();
 
             SearchFilterResult.SizeFrom = RangeFilter.CurrentMin;
             SearchFilterResult.SizeTo = RangeFilter.CurrentMax;

@@ -1,7 +1,9 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Services;
+using Peernet.Browser.Models.Presentation.Footer;
 using Peernet.Browser.Models.Presentation.Home;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,12 +13,14 @@ namespace Peernet.Browser.Application.ViewModels
     public class HomeViewModel : MvxViewModel
     {
         private readonly ISearchService searchService;
+        private readonly IDownloadManager downloadManager;
         private string searchInput;
         private int selectedIndex = -1;
 
-        public HomeViewModel(ISearchService searchService)
+        public HomeViewModel(ISearchService searchService, IDownloadManager downloadManager)
         {
             this.searchService = searchService;
+            this.downloadManager = downloadManager;
             SearchCommand = new MvxCommand(Search);
             Tabs.CollectionChanged += (o, s) =>
             {
@@ -65,9 +69,14 @@ namespace Peernet.Browser.Application.ViewModels
             SelectedIndex = IsVisible ? 0 : -1;
         }
 
+        private async Task DownloadFile(SearchResultRowModel row)
+        {
+            await downloadManager.QueueUpDownload(new DownloadModel(row.Source));
+        }
+
         private void Search()
         {
-            var toAdd = new SearchTabElementViewModel(SearchInput, RemoveTab, searchService.Search);
+            var toAdd = new SearchTabElementViewModel(SearchInput, RemoveTab, searchService.Search, DownloadFile);
             Tabs.Add(toAdd);
             SearchInput = "";
             SelectedIndex = Tabs.Count - 1;

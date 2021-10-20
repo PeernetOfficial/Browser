@@ -20,7 +20,7 @@ namespace Peernet.Browser.Models.Presentation.Home
             set => SetProperty(ref dateTo, value);
         }
 
-        public void Rest() => Set(null, null);
+        public void Reset() => Set(null, null);
 
         public void Set(DateTime? from, DateTime? to)
         {

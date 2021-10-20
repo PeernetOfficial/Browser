@@ -1,6 +1,4 @@
-﻿using MvvmCross.Commands;
-using Peernet.Browser.Models.Domain.Common;
-using System;
+﻿using Peernet.Browser.Models.Domain.Common;
 
 namespace Peernet.Browser.Models.Presentation.Home
 {
@@ -8,7 +6,7 @@ namespace Peernet.Browser.Models.Presentation.Home
     {
         public SearchResultRowModel(ApiBlockRecordFile source)
         {
-            DownloadCommand = new MvxCommand(() => DownloadAction?.Invoke(this));
+            Source = source;
             EnumerationMember = (HealthType)3;
             Name = source.Name;
             Date = source.Date.ToString();
@@ -24,9 +22,8 @@ namespace Peernet.Browser.Models.Presentation.Home
         public string Size { get; }
         public int SharedBy { get; }
         public bool FlameIsVisible { get; }
-        public IMvxCommand DownloadCommand { get; }
 
-        public Action<SearchResultRowModel> DownloadAction { get; set; }
+        public ApiBlockRecordFile Source { get; }
 
         public static DataGridSortingNameEnum Parse(string name)
         {
