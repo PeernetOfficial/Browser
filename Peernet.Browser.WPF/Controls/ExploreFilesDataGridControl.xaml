@@ -9,10 +9,10 @@
     <Grid>
         <DataGrid Style="{DynamicResource DataGridStyle}" ItemsSource="{Binding ActiveSearchResults}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTemplateColumn Header="NAME" SortMemberPath="Name" Width="*">
+                <DataGridTemplateColumn Header="NAME" SortMemberPath="File.Name" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Grid>
+                            <Grid Margin="20, 0, 0, 0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />

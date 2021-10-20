@@ -16,13 +16,15 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IApplicationManager applicationManager;
         private readonly IMvxNavigationService mvxNavigationService;
         private readonly IBlockchainService blockchainService;
+        private readonly IWarehouseService warehouseService;
         private SharedNewFileModel selected;
 
-        public ShareNewFileViewModel(IMvxNavigationService mvxNavigationService, IApplicationManager applicationManager, IBlockchainService blockchainService)
+        public ShareNewFileViewModel(IMvxNavigationService mvxNavigationService, IApplicationManager applicationManager, IBlockchainService blockchainService, IWarehouseService warehouseService)
         {
             this.mvxNavigationService = mvxNavigationService;
             this.applicationManager = applicationManager;
             this.blockchainService = blockchainService;
+            this.warehouseService = warehouseService;
 
             ConfirmCommand = new MvxAsyncCommand(Confirm);
             HideCommand = new MvxCommand(Hide);
@@ -88,6 +90,8 @@ namespace Peernet.Browser.Application.ViewModels
 
         private async Task Confirm()
         {
+            //var createTasks = Files.Select(f => warehouseService.Create(f));
+            //await Task.WhenAll(createTasks);
             await blockchainService.AddFilesAsync(Files);
             Hide();
         }
