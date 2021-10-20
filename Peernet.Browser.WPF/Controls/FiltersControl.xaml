@@ -23,7 +23,7 @@
                 </Grid.ColumnDefinitions>
 
                 <DockPanel LastChildFill="True" Grid.Column="0" Grid.Row="0" Margin="0 0 15 0">
-                    <Border DockPanel.Dock="Right" Visibility="{Binding ShowCalendar, Converter={StaticResource BoolToVisibility}}" Grid.RowSpan="2"  Grid.Column="1" Margin="0 37 0 12" Padding="15 10" BorderBrush="{DynamicResource LightGray3Brush}"
+                    <Border DockPanel.Dock="Right" Visibility="{Binding ShowCalendar, Converter={StaticResource BoolToVisibility}}" Grid.RowSpan="2"  Grid.Column="1" Margin="0 41 0 12" Padding="15 10" BorderBrush="{DynamicResource LightGray2Brush}"
                             BorderThickness="0 1 1 1" CornerRadius="{DynamicResource MainRadius}">
                         <controls:CalendarRangeExtension Style="{DynamicResource PeernetCalendar}"
                                                          CustomDates="{Binding Dates}"
@@ -34,7 +34,7 @@
 
                 <controls:CustomFilterControl Grid.Column="1" Grid.RowSpan="2" Margin="0 0 15 0" DataContext="{Binding FileFormatFilters}" />
 
-                <StackPanel Grid.Row="1" Grid.Column="0" Margin="0 0 10 0">
+                <StackPanel VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="0" Margin="0 0 10 0">
                     <TextBlock FontSize="15" Text="SIZE" />
                     <DockPanel LastChildFill="False">
                         <StackPanel>
