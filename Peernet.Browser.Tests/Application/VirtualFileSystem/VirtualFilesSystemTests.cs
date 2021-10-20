@@ -25,9 +25,9 @@ namespace Peernet.Browser.Tests.Application.VirtualFileSystem
         public void Should_StructureTiers(int size, string rootName, string subName)
         {
             // Arrange
-            IList<ApiBlockRecordFile> files = Builder<ApiBlockRecordFile>.CreateListOfSize(size).All()
+            IList<ApiFile> files = Builder<ApiFile>.CreateListOfSize(size).All()
                 .With(x => x.Folder = $"{rootName}/{subName}").Build();
-            fakeBinder.Setup(s => s.Bind(It.IsAny<IEnumerable<ApiBlockRecordFile>>())).Returns(new List<VirtualFileSystemCategory>());
+            fakeBinder.Setup(s => s.Bind(It.IsAny<IEnumerable<ApiFile>>())).Returns(new List<VirtualFileSystemCategory>());
 
             // Act
             var system = new Browser.Application.VirtualFileSystem.VirtualFileSystem(files, fakeBinder.Object);
@@ -49,14 +49,14 @@ namespace Peernet.Browser.Tests.Application.VirtualFileSystem
         public void Should_Binder_CategorizeFiles()
         {
             // Arrange
-            var files = new List<ApiBlockRecordFile>();
+            var files = new List<ApiFile>();
 
             var expectedCategories = new List<VirtualFileSystemCategory>
             {
                 new("cat", VirtualFileSystemEntityType.Audio, files)
             };
 
-            fakeBinder.Setup(s => s.Bind(It.IsAny<IEnumerable<ApiBlockRecordFile>>())).Returns(expectedCategories);
+            fakeBinder.Setup(s => s.Bind(It.IsAny<IEnumerable<ApiFile>>())).Returns(expectedCategories);
 
             // Act
             var system = new Browser.Application.VirtualFileSystem.VirtualFileSystem(files, fakeBinder.Object);

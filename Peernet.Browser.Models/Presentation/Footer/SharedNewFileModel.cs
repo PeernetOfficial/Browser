@@ -1,33 +1,27 @@
-﻿using System;
+﻿using MvvmCross.ViewModels;
+using System;
 using System.IO;
-using MvvmCross.ViewModels;
 
 namespace Peernet.Browser.Models.Presentation.Footer
 {
     public class SharedNewFileModel : MvxNotifyPropertyChanged
     {
         private string author;
-
         private string createDate;
-
         private string desc;
-
         private string directory;
-
         private string fileName;
-
         private string fileType;
-
         private string fullPath;
-
         private string size;
+        private byte[] hash;
 
         public SharedNewFileModel(string path)
         {
             var f = new FileInfo(path);
             FileType = f.Extension;
-            FullPath = f.Name.Replace(FileType, "");
-            FileName = FullPath;
+            FullPath = f.FullName;
+            FileName = f.Name;
             Size = GetSizeString(f.Length);
             Author = "Current user";
             CreateDate = DateTime.Now.ToString();
@@ -80,6 +74,12 @@ namespace Peernet.Browser.Models.Presentation.Footer
         {
             get => size;
             set => SetProperty(ref size, value);
+        }
+
+        public byte[] Hash
+        {
+            get => hash;
+            set => SetProperty(ref hash, value);
         }
 
         private string GetSizeString(long o)

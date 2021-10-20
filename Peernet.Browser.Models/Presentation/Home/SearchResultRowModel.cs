@@ -6,7 +6,7 @@ namespace Peernet.Browser.Models.Presentation.Home
 {
     public class SearchResultRowModel
     {
-        public SearchResultRowModel(ApiBlockRecordFile source)
+        public SearchResultRowModel(ApiFile source)
         {
             DownloadCommand = new MvxCommand(() => DownloadAction?.Invoke(this));
             EnumerationMember = (HealthType)3;

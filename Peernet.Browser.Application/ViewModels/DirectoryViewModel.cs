@@ -15,10 +15,10 @@ namespace Peernet.Browser.Application.ViewModels
     {
         private readonly IBlockchainService blockchainService;
         private readonly IVirtualFileSystemFactory virtualFileSystemFactory;
-        private List<ApiBlockRecordFile> activeSearchResults;
+        private List<ApiFile> activeSearchResults;
         private ObservableCollection<VirtualFileSystemEntity> pathElements;
         private string searchInput;
-        private IReadOnlyCollection<ApiBlockRecordFile> sharedFiles;
+        private IReadOnlyCollection<ApiFile> sharedFiles;
         private bool showHint = true;
         private bool showSearchBox;
         private VirtualFileSystem.VirtualFileSystem virtualFileSystem;
@@ -29,14 +29,14 @@ namespace Peernet.Browser.Application.ViewModels
             this.virtualFileSystemFactory = virtualFileSystemFactory;
         }
 
-        public List<ApiBlockRecordFile> ActiveSearchResults
+        public List<ApiFile> ActiveSearchResults
         {
             get => activeSearchResults;
             set => SetProperty(ref activeSearchResults, value);
         }
 
-        public IMvxAsyncCommand<ApiBlockRecordFile> DeleteCommand =>
-            new MvxAsyncCommand<ApiBlockRecordFile>(
+        public IMvxAsyncCommand<ApiFile> DeleteCommand =>
+            new MvxAsyncCommand<ApiFile>(
                 async apiBlockRecordFile =>
                 {
                     await blockchainService.DeleteSelfFile(apiBlockRecordFile);
@@ -128,18 +128,18 @@ namespace Peernet.Browser.Application.ViewModels
             await base.Initialize();
         }
 
-        private void AddAllFilesTier(IEnumerable<ApiBlockRecordFile> allFiles)
+        private void AddAllFilesTier(IEnumerable<ApiFile> allFiles)
         {
             AddTier("All files", VirtualFileSystemEntityType.All, 0, allFiles);
         }
 
-        private void AddRecentTier(IEnumerable<ApiBlockRecordFile> allFiles)
+        private void AddRecentTier(IEnumerable<ApiFile> allFiles)
         {
             var filtered = allFiles.OrderByDescending(f => f.Date).Take(10);
             AddTier("Recent", VirtualFileSystemEntityType.Recent, 0, filtered);
         }
 
-        private void AddTier(string name, VirtualFileSystemEntityType type, int depth, IEnumerable<ApiBlockRecordFile> files)
+        private void AddTier(string name, VirtualFileSystemEntityType type, int depth, IEnumerable<ApiFile> files)
         {
             var tier = new VirtualFileSystemTier(name, type, depth);
             tier.Files.AddRange(files);
@@ -147,7 +147,7 @@ namespace Peernet.Browser.Application.ViewModels
             VirtualFileSystem.VirtualFileSystemTiers.Add(tier);
         }
 
-        private List<ApiBlockRecordFile> ApplySearchResultsFiltering(IEnumerable<ApiBlockRecordFile> results)
+        private List<ApiFile> ApplySearchResultsFiltering(IEnumerable<ApiFile> results)
         {
             return !string.IsNullOrEmpty(SearchInput)
                 ? results.Where(f => f.Name.Contains(SearchInput, StringComparison.OrdinalIgnoreCase)).ToList()

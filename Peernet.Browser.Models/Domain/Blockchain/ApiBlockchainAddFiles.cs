@@ -5,6 +5,6 @@ namespace Peernet.Browser.Models.Domain.Blockchain
 {
     public class ApiBlockchainAddFiles
     {
-        public List<ApiBlockRecordFile> Files { get; set; }
+        public List<ApiFile> Files { get; set; }
     }
 }

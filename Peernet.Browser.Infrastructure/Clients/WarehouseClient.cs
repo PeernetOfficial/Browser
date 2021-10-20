@@ -19,9 +19,9 @@ namespace Peernet.Browser.Infrastructure.Clients
 
         public override string CoreSegment => "warehouse";
 
-        public async Task<WarehouseResult> Create(ApiBlockRecordFile file)
+        public async Task<WarehouseResult> Create(byte[] fileContent)
         {
-            var content = JsonContent.Create(file);
+            var content = new ByteArrayContent(fileContent);
 
             return await httpExecutor.GetResult<WarehouseResult>(HttpMethod.Post, GetRelativeRequestPath("create"),
                 content: content);

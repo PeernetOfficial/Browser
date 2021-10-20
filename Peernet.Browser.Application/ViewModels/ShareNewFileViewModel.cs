@@ -3,11 +3,10 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Managers;
-using Peernet.Browser.Models.Presentation;
-using System.Linq;
-using System.Threading.Tasks;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Models.Presentation.Footer;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -90,9 +89,17 @@ namespace Peernet.Browser.Application.ViewModels
 
         private async Task Confirm()
         {
-            //var createTasks = Files.Select(f => warehouseService.Create(f));
-            //await Task.WhenAll(createTasks);
-            await blockchainService.AddFilesAsync(Files);
+            // There should be validation added all the way within this method
+            foreach (var file in Files)
+            {
+                var warehouseEntry = await warehouseService.Create(file);
+                if (warehouseEntry.Status == 0)
+                {
+                    file.Hash = warehouseEntry.Hash;
+                }
+            }
+
+            await blockchainService.AddFiles(Files.Where(f => f.Hash != null));
             Hide();
         }
 

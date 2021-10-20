@@ -6,6 +6,6 @@ namespace Peernet.Browser.Infrastructure.Clients
 {
     internal interface IWarehouseClient
     {
-        Task<WarehouseResult> Create(ApiBlockRecordFile file);
+        Task<WarehouseResult> Create(byte[] fileContent);
     }
 }

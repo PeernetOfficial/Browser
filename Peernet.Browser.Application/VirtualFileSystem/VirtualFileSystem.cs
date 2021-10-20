@@ -1,10 +1,8 @@
-﻿using Peernet.Browser.Application.Extensions;
-using Peernet.Browser.Models.Domain;
+﻿using Peernet.Browser.Models.Domain.Common;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Peernet.Browser.Models.Domain.Common;
 
 namespace Peernet.Browser.Application.VirtualFileSystem
 {
@@ -12,7 +10,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
     {
         private readonly IFilesToCategoryBinder binder;
 
-        public VirtualFileSystem(IEnumerable<ApiBlockRecordFile> sharedFiles, IFilesToCategoryBinder binder)
+        public VirtualFileSystem(IEnumerable<ApiFile> sharedFiles, IFilesToCategoryBinder binder)
         {
             this.binder = binder;
 
@@ -58,7 +56,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
         }
 
         // Organize Files into the structured system
-        private void CreateFileSystemStructure(IEnumerable<ApiBlockRecordFile> sharedFiles)
+        private void CreateFileSystemStructure(IEnumerable<ApiFile> sharedFiles)
         {
             // materialize
             var sharedFilesList = sharedFiles.ToList();
@@ -71,7 +69,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             VirtualFileSystemCategories = new ObservableCollection<VirtualFileSystemCategory>(binder.Bind(sharedFilesList));
         }
 
-        private VirtualFileSystemTier StructureTheFile(ApiBlockRecordFile file)
+        private VirtualFileSystemTier StructureTheFile(ApiFile file)
         {
             var directories = file.Folder.Split('/');
             var totalDepth = directories.Length;
