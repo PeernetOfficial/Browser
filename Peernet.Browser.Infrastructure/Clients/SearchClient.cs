@@ -1,6 +1,7 @@
 ﻿using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Infrastructure.Http;
 using Peernet.Browser.Models.Domain.Search;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -57,7 +58,7 @@ namespace Peernet.Browser.Infrastructure.Clients
                 var val = pi.GetValue(obj, null);
                 if (val != null)
                 {
-                    res.Add(pi.Name.ToLower(), val.ToString().Replace(" ", $"%20"));
+                    res.Add(pi.Name.ToLower(), Uri.EscapeUriString(val.ToString()));
                 }
             }
             return res;
