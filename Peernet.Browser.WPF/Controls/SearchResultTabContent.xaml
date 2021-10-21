@@ -19,6 +19,12 @@
         </Grid.RowDefinitions>
         <ContentControl Content="{StaticResource ProxyElement}" Visibility="Collapsed" />
 
+        <Border Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibility}}"
+                VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Panel.ZIndex="5"
+                Grid.RowSpan="5" Background="{DynamicResource MainTextBrush}" Opacity="0.2">
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ViewBackgroundBrush}">loading....</TextBlock>
+        </Border>
+
         <ItemsControl Margin="50 0 0 0" Grid.Row="0" VerticalContentAlignment="Center" ItemsSource="{Binding FilterIconModels}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -68,7 +74,7 @@
                     <DataTemplate>
                         <DockPanel Margin="10 0 0 0" VerticalAlignment="Center" Background="{DynamicResource LightGray2Brush}">
                             <TextBlock Padding="5" Text="{Binding Content}" />
-                            <Button Command="{Binding ClickCommand}" Margin="10 0 10 0" Style="{DynamicResource PrimaryButton}">X</Button>
+                            <Button Command="{Binding DataContext.DownloadCommand, ElementName=SharedResultTab}" CommandParameter="{Binding}" Margin="10 0 10 0" Style="{DynamicResource PrimaryButton}">X</Button>
                         </DockPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

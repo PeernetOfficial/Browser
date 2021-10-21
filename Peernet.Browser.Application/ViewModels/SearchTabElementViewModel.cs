@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class SearchTabElementViewModel : MvxNotifyPropertyChanged
+    public class SearchTabElementViewModel : MvxViewModel
     {
         private readonly Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction;
         private bool showColumnsDate = true;
@@ -20,7 +20,7 @@ namespace Peernet.Browser.Application.ViewModels
         private bool showColumnsShared = true;
         private bool showColumnsSize = true;
 
-        public SearchTabElementViewModel(string title, Func<SearchTabElementViewModel, Task> deleteAction, Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction, Func<SearchResultRowModel, Task> downloadAction)
+        public SearchTabElementViewModel(string title, Func<SearchTabElementViewModel, Task> deleteAction, Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction, Func<SearchResultRowModel, Task> downloadAction) : base()
         {
             this.refreshAction = refreshAction;
             Title = title;
@@ -42,16 +42,29 @@ namespace Peernet.Browser.Application.ViewModels
             });
             DownloadCommand = new MvxAsyncCommand<SearchResultRowModel>(async (row) => await downloadAction(row));
             DeleteCommand = new MvxAsyncCommand(async () => { await deleteAction(this); });
+            RemoveFilterCommand = new MvxAsyncCommand<SearchFiltersType>(async (type) =>
+            {
+                Filters.RemoveAction(type);
+                await Refresh();
+            });
 
             ColumnsIconModel = new IconModel(FiltersType.Columns, true, ShowColumnSelection);
             FiltersIconModel = new IconModel(FiltersType.Filters, true, OpenFilters);
             InitIcons();
+            Task.Run(Refresh);
+        }
+
+        public async override Task Initialize()
+        {
+            await Refresh();
+            await base.Initialize();
         }
 
         public IMvxAsyncCommand ClearCommand { get; }
         public MvxObservableCollection<CustomCheckBoxModel> ColumnsCheckboxes { get; } = new MvxObservableCollection<CustomCheckBoxModel>();
         public IconModel ColumnsIconModel { get; }
         public IMvxAsyncCommand DeleteCommand { get; }
+        public IMvxAsyncCommand<SearchFiltersType> RemoveFilterCommand { get; }
         public IMvxAsyncCommand<SearchResultRowModel> DownloadCommand { get; }
         public MvxObservableCollection<IconModel> FilterIconModels { get; } = new MvxObservableCollection<IconModel>();
         public FiltersModel Filters { get; }
@@ -61,6 +74,14 @@ namespace Peernet.Browser.Application.ViewModels
         {
             get => showColumnsDate;
             set => SetProperty(ref showColumnsDate, value);
+        }
+
+        private bool isLoading;
+
+        public bool IsLoading
+        {
+            get => isLoading;
+            set => SetProperty(ref isLoading, value);
         }
 
         public bool ShowColumnsDownload
@@ -99,11 +120,16 @@ namespace Peernet.Browser.Application.ViewModels
 
         public async Task Refresh()
         {
+            IsLoading = true;
             SearchResultModel data = await refreshAction(Filters.SearchFilterResult);
-            Filters.UuId = data.Id;
-            TableResult.Clear();
-            data.Rows.Foreach(x => TableResult.Add(x));
-            RefreshIconFilters(data.Stats, data.Filters.FilterType);
+            await GlobalContext.UiThreadDispatcher.ExecuteOnMainThreadAsync(() =>
+            {
+                Filters.UuId = data.Id;
+                TableResult.Clear();
+                data.Rows.Foreach(x => TableResult.Add(x));
+                RefreshIconFilters(data.Stats, data.Filters.FilterType);
+                IsLoading = false;
+            });
         }
 
         private void InitIcons()
