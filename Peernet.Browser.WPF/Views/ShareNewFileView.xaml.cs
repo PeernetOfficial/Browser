@@ -1,4 +1,6 @@
-﻿using MvvmCross.Platforms.Wpf.Presenters.Attributes;
+﻿using System.Windows;
+using System.Windows.Input;
+using MvvmCross.Platforms.Wpf.Presenters.Attributes;
 using MvvmCross.Platforms.Wpf.Views;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.ViewModels;
@@ -13,5 +15,22 @@ namespace Peernet.Browser.WPF.Views
     public partial class ShareNewFileView : MvxWpfView, IModal
     {
         public ShareNewFileView() => InitializeComponent();
+
+        private void ChangeVirtualDirectory_OnClick(object sender, RoutedEventArgs e)
+        {
+            virtualDirectoryPath.IsReadOnly = false;
+            virtualDirectoryPath.IsEnabled = true;
+            virtualDirectoryPath.Focus();
+            virtualDirectoryPath.CaretIndex = virtualDirectoryPath.Text.Length;
+        }
+
+        private void ConfirmChange_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                virtualDirectoryPath.IsReadOnly = true;
+                virtualDirectoryPath.IsEnabled = false;
+            }
+        }
     }
 }
