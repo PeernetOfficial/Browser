@@ -33,9 +33,9 @@
         </ItemsControl>
 
         <Border Visibility="{Binding ShowColumnsSelector, Converter={StaticResource BoolToVisibility}}" CornerRadius="{DynamicResource MainRadius}" Margin="0 0 115 -240"
-                Panel.ZIndex="1" BorderBrush="{StaticResource LightGray2Brush}"
+                Panel.ZIndex="1" BorderBrush="{DynamicResource LightGray2Brush}"
                 BorderThickness="1" Grid.Row="0" HorizontalAlignment="Right"
-                Width="180" Height="200" Background="White">
+                Width="180" Height="200" Background="{DynamicResource ViewBackgroundBrush}">
             <ItemsControl ItemsSource="{Binding ColumnsCheckboxes}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>

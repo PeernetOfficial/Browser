@@ -2,13 +2,10 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls">
-    <Border BorderThickness="0" Padding="35 35 25 30" BorderBrush="Transparent" CornerRadius="{DynamicResource MainRadius}">
-        <Border.Background>
-            <SolidColorBrush Color="{DynamicResource ModalBackground}" />
-        </Border.Background>
+    <Border BorderThickness="0" Padding="35 35 25 30" BorderBrush="Transparent" CornerRadius="{DynamicResource MainRadius}" Background="{DynamicResource ModalBackgroundBrush}">
         <StackPanel>
             <DockPanel LastChildFill="False">
-                <TextBlock FontWeight="DemiBold" FontSize="18">Your filters</TextBlock>
+                <TextBlock  Foreground="{DynamicResource MainContentBrush}"  FontWeight="DemiBold" FontSize="18">Your filters</TextBlock>
                 <Button FontSize="14" Command="{Binding ClearCommand}" Margin="15 0" VerticalAlignment="Center" Style="{DynamicResource LinkButton}">Clear all</Button>
             </DockPanel>
 
@@ -35,12 +32,12 @@
                 <controls:CustomFilterControl Grid.Column="1" Grid.RowSpan="2" Margin="0 0 15 0" DataContext="{Binding FileFormatFilters}" />
 
                 <StackPanel VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="0" Margin="0 0 10 0">
-                    <TextBlock FontSize="15" Text="SIZE" />
+                    <TextBlock  Foreground="{DynamicResource MainContentBrush}"  FontSize="15" Text="SIZE" />
                     <DockPanel LastChildFill="False">
                         <StackPanel>
                             <TextBlock Text="From:"  FontSize="10" Margin="0 5" Foreground="{DynamicResource LightGray2Brush}" />
                             <Border Padding="10 0"  Width="120" Height="30" CornerRadius="{DynamicResource MainRadius}" BorderThickness="1" BorderBrush="{DynamicResource LightGray2Brush}">
-                                <TextBox Foreground="{DynamicResource SelectedTabBrush}" VerticalAlignment="Center" Background="Transparent"
+                                <TextBox Foreground="{DynamicResource MainContentBrush}" VerticalAlignment="Center" Background="Transparent"
                                          BorderThickness="0" Text="{Binding SizeFrom, TargetNullValue='', Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                          FontSize="14" MaxLength="10" />
                             </Border>
@@ -49,7 +46,7 @@
                         <StackPanel>
                             <TextBlock Text="To:"  FontSize="10" Margin="0 5" Foreground="{DynamicResource LightGray2Brush}" />
                             <Border Padding="10 0"  Width="120" Height="30" CornerRadius="{DynamicResource MainRadius}" BorderThickness="1" BorderBrush="{DynamicResource LightGray2Brush}">
-                                <TextBox Foreground="{DynamicResource SelectedTabBrush}" VerticalAlignment="Center" Background="Transparent"
+                                <TextBox Foreground="{DynamicResource MainContentBrush}" VerticalAlignment="Center" Background="Transparent"
                                          BorderThickness="0" Text="{Binding SizeTo, TargetNullValue='', Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                          FontSize="14" MaxLength="10" />
                             </Border>
