@@ -3,15 +3,14 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Managers;
-using Peernet.Browser.Models.Presentation;
-using System.Linq;
-using System.Threading.Tasks;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Models.Presentation.Footer;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class ShareNewFileViewModel : MvxViewModel<string[]>
+    public class ShareNewFileViewModel : MvxViewModel<string[]>, IModal
     {
         private readonly IApplicationManager applicationManager;
         private readonly IMvxNavigationService mvxNavigationService;

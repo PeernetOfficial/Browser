@@ -30,10 +30,10 @@
                 BorderBrush="{DynamicResource MainContentBrush}">
                 <Image x:Name="checkboxImage" Height="10"  Width="10"/>
             </Border>
-            <Canvas Visibility="Collapsed" x:Name="checkBoxCanvas" Background="Transparent" Width="17" Height="17" Margin="0 -3 10 0">
+            <Canvas Visibility="Collapsed" x:Name="checkBoxCanvas" Background="Transparent" Width="20" Height="20" Margin="0 -3 10 0">
                 <Ellipse x:Name="Circle"
-                    Width="17"
-                    Height="17"
+                    Width="20"
+                    Height="20"
                     Stroke="{DynamicResource MainContentBrush}"
                     StrokeThickness="1" />
             </Canvas>
@@ -43,7 +43,7 @@
             <Trigger Property="IsChecked" Value="True">
                 <Setter TargetName="checkboxImage" Property="Source" Value="{DynamicResource TickDrawingImage}" />
                 <Setter TargetName="checkboxBorder" Property="Background" Value="{DynamicResource MainContentBrush}" />
-                <Setter TargetName="Circle" Property="StrokeThickness" Value="3" />
+                <Setter TargetName="Circle" Property="StrokeThickness" Value="4" />
             </Trigger>
             <DataTrigger Binding="{Binding IsRadio}" Value="True">
                 <Setter TargetName="checkBoxCanvas" Property="Visibility" Value="Visible" />
