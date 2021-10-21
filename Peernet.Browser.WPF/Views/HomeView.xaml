@@ -6,7 +6,7 @@
     <Grid VerticalAlignment="{Binding Alignment, Converter={StaticResource VerticalAlignmentConverter}}">
         <StackPanel Width="600">
             <Image Source="{DynamicResource LogoDrawingImage}" Height="65" Visibility="{Binding IsNotVisible, Converter={StaticResource BoolToVisibility}}" />
-            <Border Padding="13" BorderBrush="{StaticResource LightGray2Brush}" BorderThickness="1" Margin="0 90 0 155" CornerRadius="{StaticResource MainRadius}">
+            <Border Padding="13" BorderBrush="{DynamicResource LightGray2Brush}" BorderThickness="1" Margin="0 90 0 155" CornerRadius="{DynamicResource MainRadius}">
                 <Border.Background>
                     <SolidColorBrush Color="{DynamicResource ViewBackgroundColor}" />
                 </Border.Background>
@@ -16,7 +16,7 @@
                                      VerticalAlignment="Center"
                                      FontFamily="Inter"
                                      Background="Transparent"
-                                     Foreground="{StaticResource LightGray2Brush}" Text="Search files">
+                                     Foreground="{DynamicResource LightGray2Brush}" Text="Search files">
                         <TextBlock.Visibility>
                             <MultiBinding Converter="{StaticResource TextInputToVisibilityConverter}">
                                 <Binding ElementName="txtSearch" Path="Text.IsEmpty" />
@@ -46,6 +46,6 @@
         </StackPanel>
 
         <TabControl Visibility="{Binding IsVisible, Converter={StaticResource BoolToVisibility}}" SelectedIndex="{Binding SelectedIndex}"
-                    Foreground="{StaticResource MainContentBrush}" Margin="0 180 0 0" ItemsSource="{Binding Tabs}" />
+                    Foreground="{DynamicResource MainContentBrush}" Margin="0 180 0 0" ItemsSource="{Binding Tabs}" />
     </Grid>
 </views:MvxWpfView>

@@ -9,18 +9,16 @@ namespace Peernet.Browser.Models.Presentation.Home
     public class FiltersModel : MvxNotifyPropertyChanged
     {
         private readonly string inputText;
-        private readonly Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction;
         private bool showCalendar;
-        public string UuId { get; private set; }
+        public string UuId { get; set; }
 
-        public FiltersModel(string inputText, Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction)
+        public FiltersModel(string inputText)
         {
             this.inputText = inputText;
-            this.refreshAction = refreshAction;
 
             ClearCommand = new MvxCommand(() => Reset());
-            CancelCommand = new MvxCommand(Hide);
-            ApplyFiltersCommand = new MvxCommand(ApplyFilters);
+            CancelCommand = new MvxAsyncCommand(Hide);
+            ApplyFiltersCommand = new MvxAsyncCommand(ApplyFilters);
 
             DateFilters = new DateFilterModel((x) => ShowCalendar = x);
             FileFormatFilters = new FileFormatFilterModel();
@@ -37,7 +35,7 @@ namespace Peernet.Browser.Models.Presentation.Home
 
         public IMvxCommand ClearCommand { get; }
 
-        public Action<bool> CloseAction { get; set; }
+        public Func<bool, Task> CloseAction { get; set; }
 
         public DateFilterModel DateFilters { get; }
 
@@ -84,13 +82,6 @@ namespace Peernet.Browser.Models.Presentation.Home
             Dates.Set(SearchFilterResult.TimeFrom, SearchFilterResult.TimeTo);
         }
 
-        public async Task<SearchResultModel> GetData()
-        {
-            var res = await refreshAction(SearchFilterResult);
-            UuId = res.Id;
-            return res;
-        }
-
         public void Reset(bool withApply = false)
         {
             Reset(SearchFiltersType.FileFormats);
@@ -116,16 +107,16 @@ namespace Peernet.Browser.Models.Presentation.Home
             RefreshTabs();
         }
 
-        private void ApplyFilters()
+        private async Task ApplyFilters()
         {
             Apply();
-            CloseAction?.Invoke(true);
+            await CloseAction?.Invoke(true);
         }
 
-        private void Hide()
+        private async Task Hide()
         {
             Reset();
-            CloseAction?.Invoke(false);
+            await CloseAction?.Invoke(false);
         }
 
         private void InitSearch() => SearchFilterResult = new SearchFilterResultModel { OnRemoveAction = RemoveAction, InputText = inputText, Uuid = UuId };

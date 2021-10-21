@@ -2,6 +2,7 @@
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Models.Presentation.Home;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -27,11 +28,11 @@ namespace Peernet.Browser.Application.ViewModels
             p.CloseAction += Hide;
         }
 
-        private void Hide(bool withApply)
+        private async Task Hide(bool withApply)
         {
             Filters.CloseAction -= Hide;
             GlobalContext.IsMainWindowActive = true;
-            mvxNavigationService.Close(this);
+            await mvxNavigationService.Close(this);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Peernet.Browser.Models.Presentation.Home
             Source = source;
             EnumerationMember = (HealthType)3;
             Name = source.Name;
-            Date = source.Date.ToString();
+            Date = source.Date.ToString("dd.MM.yyyy");
             Size = $"{source.Size} MB";
             SharedBy = source.SharedByCount;
             //FlameIsVisible = source.SharedByCount > 15;

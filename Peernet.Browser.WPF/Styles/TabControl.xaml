@@ -7,17 +7,18 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabItem}">
-                    <Border Margin="40 0 0 0" x:Name="PART_Border" Background="Transparent" BorderThickness="1" BorderBrush="Transparent" CornerRadius="4 4 0 0" Padding="10">
+                    <Border Margin="0 0 0 0" x:Name="PART_Border" Background="Transparent" BorderThickness="1" BorderBrush="Transparent" CornerRadius="4 4 0 0" Padding="10">
                         <DockPanel>
-                            <TextBlock FontSize="15" FontFamily="{StaticResource InterThin}" x:Name="PART_title" Text="{Binding Title}" />
-                            <Button Command="{Binding DeleteCommand}" Visibility="Hidden" x:Name="PART_Btm" Margin="10 0 0 0" Style="{DynamicResource PrimaryButton}">x</Button>
+                            <TextBlock Foreground="{DynamicResource SelectedTabDisabledBrush}" FontSize="14" FontFamily="{StaticResource InterThin}" x:Name="PART_title" Text="{Binding Title}" />
+                            <Button Margin="5 0 0 0" Width="20" Foreground="{DynamicResource SelectedTabDisabledBrush}" Command="{Binding DeleteCommand}" x:Name="PART_Btm" Style="{DynamicResource PrimaryButton}">X</Button>
                         </DockPanel>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter TargetName="PART_Border" Property="Background" Value="White" />
-                            <Setter TargetName="PART_Btm" Property="Visibility" Value="Visible" />
-                            <Setter TargetName="PART_title" Property="FontWeight" Value="DemiBold" />
+                            <Setter TargetName="PART_Border" Property="Background" Value="{DynamicResource SelectedTabSecondaryBrush}" />
+                            <Setter TargetName="PART_Btm" Property="Foreground" Value="{DynamicResource SelectedTabBrush}" />
+                            <Setter TargetName="PART_title" Property="Foreground" Value="{DynamicResource SelectedTabBrush}" />
+                            <Setter TargetName="PART_title" Property="FontWeight" Value="SemiBold" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -35,7 +36,7 @@
                             <RowDefinition Height="4" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <TabPanel IsItemsHost="True"
+                        <TabPanel Margin="50 0 0 0" IsItemsHost="True"
                               Grid.Row="0"
                               Grid.RowSpan="2"
                               Panel.ZIndex="1" />

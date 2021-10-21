@@ -15,15 +15,15 @@ namespace Peernet.Browser.WPF.Controls
             InitializeComponent();
         }
 
-        private void DataGrid_Sorting(object sender, DataGridSortingEventArgs e)
+        private async void DataGrid_Sorting(object sender, DataGridSortingEventArgs e)
         {
             e.Handled = true;
             var column = e.Column;
             var direction = (column.SortDirection != ListSortDirection.Ascending) ? ListSortDirection.Ascending : ListSortDirection.Descending;
             column.SortDirection = direction;
-            if (DataContext is SearchContentElementViewModel model)
+            if (DataContext is SearchTabElementViewModel model)
             {
-                model.OnSorting(e.Column.SortMemberPath, direction == ListSortDirection.Ascending ? DataGridSortingTypeEnum.Asc : DataGridSortingTypeEnum.Desc);
+                await model.OnSorting(e.Column.SortMemberPath, direction == ListSortDirection.Ascending ? DataGridSortingTypeEnum.Asc : DataGridSortingTypeEnum.Desc);
             }
         }
     }

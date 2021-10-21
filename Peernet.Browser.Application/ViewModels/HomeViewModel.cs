@@ -21,7 +21,7 @@ namespace Peernet.Browser.Application.ViewModels
         {
             this.searchService = searchService;
             this.downloadManager = downloadManager;
-            SearchCommand = new MvxCommand(Search);
+            SearchCommand = new MvxAsyncCommand(Search);
             Tabs.CollectionChanged += (o, s) =>
             {
                 RaisePropertyChanged(nameof(IsVisible));
@@ -40,7 +40,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         public bool IsNotVisible => !IsVisible;
         public bool IsVisible => Tabs.Any();
-        public IMvxCommand SearchCommand { get; }
+        public IMvxAsyncCommand SearchCommand { get; }
 
         public string SearchInput
         {
@@ -58,13 +58,13 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        public SearchContentElementViewModel Content => SelectedIndex < 0 ? null : Tabs[SelectedIndex].Content;
+        public SearchTabElementViewModel Content => SelectedIndex < 0 ? null : Tabs[SelectedIndex];
 
         public MvxObservableCollection<SearchTabElementViewModel> Tabs { get; } = new MvxObservableCollection<SearchTabElementViewModel>();
 
         private async Task RemoveTab(SearchTabElementViewModel e)
         {
-            await searchService.Terminate(e.Content.Filters.UuId);
+            await searchService.Terminate(e.Filters.UuId);
             Tabs.Remove(e);
             SelectedIndex = IsVisible ? 0 : -1;
         }
@@ -74,9 +74,10 @@ namespace Peernet.Browser.Application.ViewModels
             await downloadManager.QueueUpDownload(new DownloadModel(row.Source));
         }
 
-        private void Search()
+        private async Task Search()
         {
             var toAdd = new SearchTabElementViewModel(SearchInput, RemoveTab, searchService.Search, DownloadFile);
+            await toAdd.Refresh();
             Tabs.Add(toAdd);
             SearchInput = "";
             SelectedIndex = Tabs.Count - 1;

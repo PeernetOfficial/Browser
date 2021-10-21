@@ -1,6 +1,7 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using System;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Models.Presentation.Home
 {
@@ -9,17 +10,17 @@ namespace Peernet.Browser.Models.Presentation.Home
         private readonly bool showCount;
         public FiltersType FilterType { get; }
 
-        public IconModel(FiltersType filterType, bool showArrow = false, Action<IconModel> onClick = null, int? count = null)
+        public IconModel(FiltersType filterType, bool showArrow = false, Func<IconModel, Task> onClick = null, int? count = null)
         {
             showCount = count.HasValue;
             FilterType = filterType;
             Count = count.GetValueOrDefault();
             RefreshName();
             ShowArrow = showArrow;
-            SelectCommand = new MvxCommand(() =>
+            SelectCommand = new MvxAsyncCommand(async () =>
             {
                 IsSelected = !IsSelected;
-                onClick?.Invoke(this);
+                await onClick?.Invoke(this);
             });
         }
 
@@ -44,6 +45,6 @@ namespace Peernet.Browser.Models.Presentation.Home
 
         public string Name { get; private set; }
 
-        public IMvxCommand SelectCommand { get; }
+        public IMvxAsyncCommand SelectCommand { get; }
     }
 }
