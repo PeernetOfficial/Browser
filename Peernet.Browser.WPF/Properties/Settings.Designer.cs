@@ -49,7 +49,7 @@ namespace Peernet.Browser.WPF.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Sources\\Peernet\\Cmd\\")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\cShark\\repos\\Cmd\\")]
         public string CmdPath {
             get {
                 return ((string)(this["CmdPath"]));

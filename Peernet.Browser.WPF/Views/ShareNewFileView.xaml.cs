@@ -1,6 +1,7 @@
 ﻿using MvvmCross.Platforms.Wpf.Presenters.Attributes;
 using MvvmCross.Platforms.Wpf.Views;
 using MvvmCross.ViewModels;
+using Peernet.Browser.Application;
 using Peernet.Browser.Application.ViewModels;
 using System.Windows;
 using System.Windows.Input;

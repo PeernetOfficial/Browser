@@ -18,7 +18,7 @@
                                    Opacity="0.8956"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
-                                   Foreground="{DynamicResource MainTextBrush}"/>
+                                   Foreground="{DynamicResource MainTextBrush}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -29,7 +29,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-
 
     <Style x:Key="PauseResumeButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource CaptionButtonStyle}">
         <Setter Property="Content" Value="&#xE769;" />
@@ -81,7 +80,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="{StaticResource UploadHover}" />
+                            <Setter Property="Background" TargetName="border" Value="{DynamicResource UploadHover}" />
                             <Setter Property="Width" Value="138" />
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -91,7 +90,7 @@
     </Style>
 
     <Style x:Key="LinkButton" TargetType="Button">
-        <Setter Property="Foreground" Value="{StaticResource MainContentBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource MainContentBrush}" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Template">
             <Setter.Value>
@@ -108,7 +107,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <TextBlock Height="Auto" TextAlignment="Center" VerticalAlignment="Center" Cursor="Hand" Foreground="{StaticResource MainContentBrush}">
+                    <TextBlock Height="Auto" TextAlignment="Center" VerticalAlignment="Center" Cursor="Hand" Foreground="{DynamicResource MainContentBrush}">
                         <ContentPresenter />
                     </TextBlock>
                 </ControlTemplate>
@@ -120,11 +119,11 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Height="Auto" Cursor="Hand" Grid.Row="1" Grid.Column="1" BorderThickness="0" BorderBrush="Transparent" CornerRadius="{StaticResource MainRadius}">
+                    <Border Height="Auto" Cursor="Hand" Grid.Row="1" Grid.Column="1" BorderThickness="0" BorderBrush="Transparent" CornerRadius="{DynamicResource MainRadius}">
                         <Border.Background>
-                            <SolidColorBrush Color="{StaticResource MainContentColor}" />
+                            <SolidColorBrush Color="{DynamicResource MainContentColor}" />
                         </Border.Background>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource MainContentSecondaryBrush}">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource MainContentSecondaryBrush}">
                         <ContentPresenter />
                         </TextBlock>
                     </Border>

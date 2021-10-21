@@ -6,7 +6,7 @@
 
     <Border BorderThickness="0" Padding="40" BorderBrush="Transparent">
         <Border.Background>
-            <SolidColorBrush Color="{StaticResource ModalBackground}" />
+            <SolidColorBrush Color="{DynamicResource ModalBackground}" />
         </Border.Background>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -23,7 +23,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <Border Margin="0 0 30 0" Visibility="Collapsed" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" CornerRadius="{StaticResource MainRadius}"
+            <Border Margin="0 0 30 0" Visibility="Collapsed" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" CornerRadius="{DynamicResource MainRadius}"
                     Width="500" Height="300">
                 <Border.Background>
                     <ImageBrush Stretch="Fill" ImageSource="/Assets/temp1.png" />
@@ -75,7 +75,7 @@
                         <SolidColorBrush Color="{DynamicResource TextAreaBackground}" />
                     </Border.Background>
                     <Grid>
-                        <TextBlock Text="Add description with #tags to make your file searchable!" Foreground="{StaticResource LightGrayBrush}">
+                        <TextBlock Text="Add description with #tags to make your file searchable!" Foreground="{DynamicResource LightGrayBrush}">
                             <TextBlock.Visibility>
                                 <MultiBinding Converter="{StaticResource TextInputToVisibilityConverter}">
                                     <Binding ElementName="txtUserEntry2" Path="Text.IsEmpty" />
@@ -102,11 +102,11 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource Title}">Author:</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="0" Style="{DynamicResource Title}">Author:</TextBlock>
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Selected.Author}" Style="{StaticResource Active}" />
-                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource Title}">Created:</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="1" Style="{DynamicResource Title}">Created:</TextBlock>
                 <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Selected.CreateDate}" Style="{StaticResource Active}" />
-                <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource Title}">Size:</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="2" Style="{DynamicResource Title}">Size:</TextBlock>
                 <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Selected.Size}" Style="{StaticResource Active}" />
             </Grid>
 

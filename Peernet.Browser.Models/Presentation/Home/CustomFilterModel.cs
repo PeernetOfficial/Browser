@@ -9,7 +9,7 @@ namespace Peernet.Browser.Models.Presentation.Home
     {
         private readonly bool isRadio;
 
-        protected CustomFilterModel(string title, bool showDot = false, bool isRadio = false)
+        protected CustomFilterModel(string title, bool showDot = false, bool isRadio = true)
         {
             this.isRadio = isRadio;
             Title = title.ToUpper();

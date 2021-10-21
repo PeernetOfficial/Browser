@@ -72,6 +72,27 @@ namespace Peernet.Browser.Infrastructure.Services
                 .ToDictionary(x => x, y => y == FiltersType.All ? data.Total : data.GetCount(Map(y)));
         }
 
+        private SearchRequestSortTypeEnum Map(DataGridSortingNameEnum sortName, DataGridSortingTypeEnum sortType)
+        {
+            switch (sortName)
+            {
+                case DataGridSortingNameEnum.Name:
+                    return sortType == DataGridSortingTypeEnum.Asc ? SearchRequestSortTypeEnum.SortNameAsc : SearchRequestSortTypeEnum.SortNameDesc;
+
+                case DataGridSortingNameEnum.Date:
+                    return sortType == DataGridSortingTypeEnum.Asc ? SearchRequestSortTypeEnum.SortDateAsc : SearchRequestSortTypeEnum.SortDateDesc;
+
+                case DataGridSortingNameEnum.Size:
+                    return sortType == DataGridSortingTypeEnum.Asc ? SearchRequestSortTypeEnum.SortSizeAsc : SearchRequestSortTypeEnum.SortSizeDesc;
+
+                case DataGridSortingNameEnum.Share:
+                    return sortType == DataGridSortingTypeEnum.Asc ? SearchRequestSortTypeEnum.SortSharedByCountAsc : SearchRequestSortTypeEnum.SortSharedByCountDesc;
+
+                default:
+                    return SearchRequestSortTypeEnum.SortNone;
+            }
+        }
+
         private LowLevelFileType Map(FiltersType type)
         {
             switch (type)
@@ -125,60 +146,40 @@ namespace Peernet.Browser.Infrastructure.Services
             {
                 searchGetRequest.Id = model.Uuid;
             }
-            if (model.Time.HasValue)
+            if (model.Time.HasValue && model.IsCustomTimeFill)
             {
+                var format = "yyyy-MM-dd HH:mm:ss";
                 var range = model.GetDateRange();
                 if (searchRequest != null)
                 {
-                    searchRequest.DateFrom = range.from.ToString();
-                    searchRequest.DateTo = range.to.ToString();
+                    searchRequest.DateFrom = range.from.ToString(format);
+                    searchRequest.DateTo = range.to.ToString(format);
                 }
                 if (searchGetRequest != null)
                 {
-                    searchGetRequest.From = range.from.ToString();
-                    searchGetRequest.To = range.to.ToString();
+                    searchGetRequest.From = range.from.ToString(format);
+                    searchGetRequest.To = range.to.ToString(format);
                 }
             }
             if (model.SizeFrom.HasValue)
             {
-                //res.SizeMin = model.SizeFrom.Value;
+                res.SizeMin = model.SizeFrom.Value;
             }
             if (model.SizeTo.HasValue)
             {
-                //res.SizeMax = model.SizeTo.Value;
+                res.SizeMax = model.SizeTo.Value;
             }
             if (model.SortName != DataGridSortingNameEnum.None && model.SortType != DataGridSortingTypeEnum.None)
             {
-                switch (model.SortName)
-                {
-                    case DataGridSortingNameEnum.Name:
-                        res.Sort = model.SortType == DataGridSortingTypeEnum.Asc ? SearchRequestSortTypeEnum.SortNameAsc : SearchRequestSortTypeEnum.SortNameDesc;
-                        break;
-
-                    case DataGridSortingNameEnum.Date:
-                        res.Sort = model.SortType == DataGridSortingTypeEnum.Asc ? SearchRequestSortTypeEnum.SortDateAsc : SearchRequestSortTypeEnum.SortDateDesc;
-                        break;
-
-                    case DataGridSortingNameEnum.Size:
-                        res.Sort = model.SortType == DataGridSortingTypeEnum.Asc ? SearchRequestSortTypeEnum.SortSizeAsc : SearchRequestSortTypeEnum.SortSizeDesc;
-                        break;
-
-                    case DataGridSortingNameEnum.Share:
-                        res.Sort = model.SortType == DataGridSortingTypeEnum.Asc ? SearchRequestSortTypeEnum.SortSharedByCountAsc : SearchRequestSortTypeEnum.SortSharedByCountDesc;
-                        break;
-                }
+                res.Sort = (int)Map(model.SortName, model.SortType);
             }
             if (model.FilterType != FiltersType.All)
             {
-                res.FileType = Map(model.FilterType);
-            }
-            if (!model.Healths.IsNullOrEmpty())
-            {
-                //TODO: ??
+                res.FileType = (int)Map(model.FilterType);
             }
             if (!model.FileFormats.IsNullOrEmpty())
             {
-                res.FileFormat = (HighLevelFileType)(int)model.FileFormats.First();
+                res.FileFormat = (int)model.FileFormats.First();
             }
             return res;
         }

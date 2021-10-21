@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class ShareNewFileViewModel : MvxViewModel<string[]>
+    public class ShareNewFileViewModel : MvxViewModel<string[]>, IModal
     {
         private readonly IApplicationManager applicationManager;
         private readonly IMvxNavigationService mvxNavigationService;
