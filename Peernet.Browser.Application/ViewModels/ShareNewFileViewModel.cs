@@ -34,6 +34,7 @@ namespace Peernet.Browser.Application.ViewModels
             RightCommand = new MvxCommand(() => Manipulate(true));
 
             AddCommand = new MvxCommand(Add);
+            DeleteFileCommand = new MvxCommand(DeleteFile);
 
             Files.CollectionChanged += (s, o) =>
             {
@@ -57,6 +58,8 @@ namespace Peernet.Browser.Application.ViewModels
         public IMvxCommand LeftCommand { get; }
 
         public IMvxCommand RightCommand { get; }
+
+        public IMvxCommand DeleteFileCommand { get; }
 
         public SharedNewFileModel Selected
         {
@@ -117,6 +120,30 @@ namespace Peernet.Browser.Application.ViewModels
             if (index >= 0 && index <= Files.Count - 1)
             {
                 Selected = Files[index];
+                RaisePropertyChanged(nameof(FilesLength));
+            }
+        }
+
+        private void DeleteFile()
+        {
+            var removedIndex = Files.IndexOf(Selected);
+            Files.Remove(Selected);
+            var filesCount = Files.Count;
+            if (filesCount == 0)
+            {
+                Cancel();
+            }
+            else
+            {
+                if (removedIndex == 0)
+                {
+                    Selected = Files[0];
+                }
+                else if (removedIndex > 0)
+                {
+                    Selected = Files.ElementAt(filesCount - 1);
+                }
+
                 RaisePropertyChanged(nameof(FilesLength));
             }
         }

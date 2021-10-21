@@ -30,22 +30,25 @@
                 </Border.Background>
             </Border>
 
-            <DockPanel Grid.Row="0" Grid.Column="2">
+            <DockPanel Grid.Row="0" Grid.Column="0">
                 <TextBlock Text="{Binding Selected.BaseName}" Foreground="{StaticResource MainContentBrush}" FontSize="16" />
                 <TextBlock Text="{Binding Selected.FileExtension}" Foreground="{StaticResource MainContentBrush}" FontWeight="Bold" FontSize="16" />
             </DockPanel>
 
-            <StackPanel Grid.Row="1" Grid.Column="2">
-                <DockPanel TextBlock.Foreground="{StaticResource LightGrayBrush}">
-                    <TextBlock Padding="0 5" FontSize="12">Document</TextBlock>
-                    <Canvas Height="12" Width="20">
-                        <Ellipse Canvas.Left="8" Canvas.Top="4" Height="4" Width="4" Fill="{StaticResource LightGrayBrush}" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                    </Canvas>
-                    <TextBlock Text="{Binding Selected.FileExtension}" Padding="0 5" FontSize="12" />
-                </DockPanel>
-            </StackPanel>
+            <DockPanel Grid.Row="1" Grid.Column="0" TextBlock.Foreground="{StaticResource LightGrayBrush}">
+                <TextBlock Padding="0 5" FontSize="12">Document</TextBlock>
+                <Canvas Height="12" Width="20">
+                    <Ellipse Canvas.Left="8" Canvas.Top="4" Height="4" Width="4" Fill="{StaticResource LightGrayBrush}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                </Canvas>
+                <TextBlock Text="{Binding Selected.FileExtension}" Padding="0 5" FontSize="12" />
+                <Button Width="13" Height="13" Margin="0" Style="{DynamicResource ButtonBaseStyle}" HorizontalAlignment="Right" Command="{Binding DeleteFileCommand}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="{DynamicResource BinDrawingImage}" />
+                    </Button.Background>
+                </Button>
+            </DockPanel>
 
-            <DockPanel Grid.Row="2"  Grid.Column="2" LastChildFill="False" Margin="0 15">
+            <DockPanel Grid.Row="2" Grid.Column="0" LastChildFill="False" Margin="0 15">
                 <Image Margin="0 0 7 0" Width="11" Source="{DynamicResource DirectorySmallDrawingImage}" />
                 <TextBlock Foreground="{StaticResource LightGrayBrush}" VerticalAlignment="Center">Your files /</TextBlock>
                 <Image Margin="5 0 7 0" Width="11" Source="{DynamicResource DirectorySmallActiveDrawingImage}" />
@@ -57,7 +60,7 @@
                 <Button x:Name="changeButton" DockPanel.Dock="Right" Content="Change" Style="{StaticResource LinkButton}" Click="ChangeVirtualDirectory_OnClick" />
             </DockPanel>
 
-            <StackPanel Grid.Row="3" Grid.Column="2">
+            <StackPanel Grid.Row="3" Grid.Column="0">
                 <TextBlock Style="{StaticResource Title}">File name</TextBlock>
                 <Border Margin="0 5" Height="30" BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}">
                     <TextBox Text="{Binding Selected.FileName}" Foreground="{DynamicResource MainContentBrush}"
@@ -88,7 +91,7 @@
                 </Border>
             </StackPanel>
 
-            <Grid Margin="0 15 0 60" Grid.Row="4" Grid.Column="2">
+            <Grid Margin="0 15 0 60" Grid.Row="4" Grid.Column="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="150" />
                     <ColumnDefinition Width="150" />
@@ -108,7 +111,7 @@
             </Grid>
 
             <DockPanel Grid.ColumnSpan="2" Grid.Row="5" LastChildFill="False" HorizontalAlignment="Stretch">
-                <Button Grid.Row="5" Grid.Column="0" Command="{Binding AddCommand}" HorizontalAlignment="Left" Style="{StaticResource PrimaryButton}"
+                <Button Command="{Binding AddCommand}" HorizontalAlignment="Left" Style="{StaticResource PrimaryButton}"
                     Foreground="{StaticResource MainContentBrush}"
                     FontWeight="Bold">+ SHARE ANTOHER FILE</Button>
                 <Button DockPanel.Dock="Right" Height="30"  Width="110" Style="{StaticResource AcceptButton}"  Command="{Binding ConfirmCommand}">Confirm</Button>
