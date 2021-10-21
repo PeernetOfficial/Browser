@@ -141,7 +141,7 @@ namespace Peernet.Browser.Application.ViewModels
                 }
                 else if (removedIndex > 0)
                 {
-                    Selected = Files.ElementAt(filesCount - 1);
+                    Selected = Files[filesCount - 1];
                 }
 
                 RaisePropertyChanged(nameof(FilesLength));

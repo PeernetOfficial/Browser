@@ -1,9 +1,9 @@
-﻿using System.Windows;
-using System.Windows.Input;
-using MvvmCross.Platforms.Wpf.Presenters.Attributes;
+﻿using MvvmCross.Platforms.Wpf.Presenters.Attributes;
 using MvvmCross.Platforms.Wpf.Views;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.ViewModels;
+using System.Windows;
+using System.Windows.Input;
 
 namespace Peernet.Browser.WPF.Views
 {
