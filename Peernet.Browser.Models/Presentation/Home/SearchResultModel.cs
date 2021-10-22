@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Peernet.Browser.Models.Presentation.Home
 {
@@ -11,8 +10,6 @@ namespace Peernet.Browser.Models.Presentation.Home
         public SearchFilterResultModel Filters { get; set; }
 
         public IDictionary<FiltersType, int> Stats { get; set; }
-
-        public Tuple<int, int> Size { get; set; }
 
         public static FiltersType[] GetDefaultStats()
         {
