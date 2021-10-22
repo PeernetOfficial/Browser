@@ -4,7 +4,7 @@ namespace Peernet.Browser.Models.Presentation.Home
 {
     public class SearchResultRowModel
     {
-        public SearchResultRowModel(ApiBlockRecordFile source)
+        public SearchResultRowModel(ApiFile source)
         {
             Source = source;
             EnumerationMember = (HealthType)3;
@@ -23,7 +23,7 @@ namespace Peernet.Browser.Models.Presentation.Home
         public int SharedBy { get; }
         public bool FlameIsVisible { get; }
 
-        public ApiBlockRecordFile Source { get; }
+        public ApiFile Source { get; }
 
         public static DataGridSortingNameEnum Parse(string name)
         {

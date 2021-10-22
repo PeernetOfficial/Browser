@@ -1,7 +1,6 @@
 ﻿using MvvmCross.ViewModels;
-using Peernet.Browser.Models.Domain;
-using System.Collections.Generic;
 using Peernet.Browser.Models.Domain.Common;
+using System.Collections.Generic;
 
 namespace Peernet.Browser.Application.VirtualFileSystem
 {
@@ -10,7 +9,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
         private bool isVisualTreeVertex;
         private bool isSelected;
 
-        protected VirtualFileSystemEntity(string name, VirtualFileSystemEntityType type, List<ApiBlockRecordFile> files)
+        protected VirtualFileSystemEntity(string name, VirtualFileSystemEntityType type, List<ApiFile> files)
         {
             Name = name;
             Type = type;
@@ -21,7 +20,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
 
         public VirtualFileSystemEntityType Type { get; }
 
-        public List<ApiBlockRecordFile> Files { get; }
+        public List<ApiFile> Files { get; }
 
         public bool IsSelected
         {
@@ -40,6 +39,6 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             IsSelected = false;
         }
 
-        public virtual List<ApiBlockRecordFile> GetAllFiles() => Files;
+        public virtual List<ApiFile> GetAllFiles() => Files;
     }
 }

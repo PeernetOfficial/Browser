@@ -31,6 +31,7 @@ namespace Peernet.Browser.WPF.Controls
                 DownloadsList.Visibility = Visibility.Visible;
                 DownloadsToggleButton.FontSize = 12;
                 DownloadsToggleButton.Content = "Hide";
+                DownloadsToggleButton.Margin = new Thickness(10, 0, 10, 10);
                 CollapsedDownloadsText.Visibility = Visibility.Collapsed;
             }
             else
@@ -38,6 +39,7 @@ namespace Peernet.Browser.WPF.Controls
                 DownloadsList.Visibility = Visibility.Collapsed;
                 DownloadsToggleButton.Content = "Show";
                 DownloadsToggleButton.FontSize = 10;
+                DownloadsToggleButton.Margin = new Thickness(10, 0, 10, 2);
                 CollapsedDownloadsText.Visibility = Visibility.Visible;
             }
         }

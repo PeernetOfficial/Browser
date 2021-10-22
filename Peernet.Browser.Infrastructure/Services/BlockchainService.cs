@@ -20,9 +20,9 @@ namespace Peernet.Browser.Infrastructure.Services
         }
 
         // todo: it should consume some presentation model
-        public async Task DeleteSelfFile(ApiBlockRecordFile apiBlockRecordFile)
+        public async Task DeleteSelfFile(ApiFile apiFile)
         {
-            await blockchainClient.DeleteSelfFile(apiBlockRecordFile);
+            await blockchainClient.DeleteSelfFile(apiFile);
         }
 
         public async Task<ApiBlockchainHeader> GetSelfHeader()
@@ -30,21 +30,23 @@ namespace Peernet.Browser.Infrastructure.Services
             return await blockchainClient.GetSelfHeader();
         }
 
-        public async Task<List<ApiBlockRecordFile>> GetSelfList()
+        public async Task<List<ApiFile>> GetSelfList()
         {
             return (await blockchainClient.GetSelfList()).Files;
         }
 
-        public async Task AddFilesAsync(IEnumerable<SharedNewFileModel> files)
+        public async Task AddFiles(IEnumerable<SharedNewFileModel> files)
         {
             var data = files
                 .Select(x =>
-                    new ApiBlockRecordFile
+                    new ApiFile
                     {
-                        Description = x.Desc,
+                        Description = x.Desc ?? string.Empty,
                         Name = x.FileName,
                         Folder = x.Directory,
-                        Date = System.DateTime.Now
+                        Date = System.DateTime.Now,
+                        Hash = x.Hash,
+                        MetaData = new List<ApiFileMetadata>()
                     })
                 .ToList();
 

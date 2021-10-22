@@ -1,5 +1,4 @@
-﻿
-using MvvmCross.Platforms.Wpf.Presenters.Attributes;
+﻿using MvvmCross.Platforms.Wpf.Presenters.Attributes;
 using MvvmCross.Platforms.Wpf.Views;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application;
@@ -8,13 +7,13 @@ using Peernet.Browser.Application.ViewModels;
 namespace Peernet.Browser.WPF.Views
 {
     /// <summary>
-    /// Interaction logic for FiltersView.xaml
+    /// Interaction logic for DeleteAccountView.xaml
     /// </summary>
     [MvxContentPresentation]
-    [MvxViewFor(typeof(FiltersViewModel))]
-    public partial class FiltersView : MvxWpfView, IModal
+    [MvxViewFor(typeof(DeleteAccountViewModel))]
+    public partial class DeleteAccountView : MvxWpfView, IModal
     {
-        public FiltersView()
+        public DeleteAccountView()
         {
             InitializeComponent();
         }

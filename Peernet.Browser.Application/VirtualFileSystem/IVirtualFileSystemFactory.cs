@@ -6,6 +6,6 @@ namespace Peernet.Browser.Application.VirtualFileSystem
 {
     public interface IVirtualFileSystemFactory
     {
-        VirtualFileSystem CreateVirtualFileSystem(IEnumerable<ApiBlockRecordFile> sharedFiles);
+        VirtualFileSystem CreateVirtualFileSystem(IEnumerable<ApiFile> sharedFiles);
     }
 }

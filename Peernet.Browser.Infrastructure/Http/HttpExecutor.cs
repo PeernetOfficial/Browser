@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure.Http
@@ -22,7 +21,7 @@ namespace Peernet.Browser.Infrastructure.Http
             HttpMethod method,
             string relativePath,
             Dictionary<string, string> queryParameters = null,
-            JsonContent content = null)
+            HttpContent content = null)
         {
             var requestPath = relativePath;
 

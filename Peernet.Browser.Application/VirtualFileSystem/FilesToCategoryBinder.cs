@@ -1,15 +1,13 @@
-﻿using Peernet.Browser.Application.Extensions;
-using Peernet.Browser.Models.Domain;
+﻿using Peernet.Browser.Models.Domain.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Peernet.Browser.Models.Domain.Common;
 
 namespace Peernet.Browser.Application.VirtualFileSystem
 {
     public class FilesToCategoryBinder : IFilesToCategoryBinder
     {
-        public List<VirtualFileSystemCategory> Bind(IEnumerable<ApiBlockRecordFile> files)
+        public List<VirtualFileSystemCategory> Bind(IEnumerable<ApiFile> files)
         {
             var remainingFiles = files.ToList();
             List<VirtualFileSystemCategory> categories = new();
@@ -52,7 +50,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
 
                 void AddCategory(
                     string categoryName,
-                    Func<ApiBlockRecordFile, bool> selector)
+                    Func<ApiFile, bool> selector)
                 {
                     var selectedFiles = files.Where(selector).ToList();
                     categories.Add(new VirtualFileSystemCategory(categoryName, type, selectedFiles));

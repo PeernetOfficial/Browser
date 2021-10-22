@@ -1,6 +1,5 @@
-﻿using Peernet.Browser.Models.Domain;
+﻿using Peernet.Browser.Models.Domain.Common;
 using System.Collections.Generic;
-using Peernet.Browser.Models.Domain.Common;
 
 namespace Peernet.Browser.Application.VirtualFileSystem
 {
@@ -13,7 +12,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             this.binder = binder;
         }
 
-        public VirtualFileSystem CreateVirtualFileSystem(IEnumerable<ApiBlockRecordFile> sharedFiles)
+        public VirtualFileSystem CreateVirtualFileSystem(IEnumerable<ApiFile> sharedFiles)
         {
             return new VirtualFileSystem(sharedFiles, binder);
         }

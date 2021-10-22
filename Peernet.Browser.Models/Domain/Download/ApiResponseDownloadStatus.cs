@@ -10,7 +10,7 @@ namespace Peernet.Browser.Models.Domain.Download
 
         public DownloadStatus DownloadStatus { get; set; }
 
-        public ApiBlockRecordFile File { get; set; }
+        public ApiFile File { get; set; }
 
         public Progress Progress { get; set; }
 

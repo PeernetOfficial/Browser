@@ -10,7 +10,7 @@ namespace Peernet.Browser.Models.Presentation.Footer
         private double progress;
         private bool isCompleted;
 
-        public DownloadModel(ApiBlockRecordFile file)
+        public DownloadModel(ApiFile file)
         {
             File = file;
         }
@@ -39,7 +39,7 @@ namespace Peernet.Browser.Models.Presentation.Footer
 
         public string Id { get; set; }
 
-        public ApiBlockRecordFile File { get; init; }
+        public ApiFile File { get; init; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

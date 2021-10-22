@@ -34,10 +34,16 @@ namespace Peernet.Browser.Infrastructure
         {
             var download = ActiveFileDownloads.First(d => d.Id == id);
             var responseStatus = await downloadClient.GetAction(id, DownloadAction.Cancel);
-            if (responseStatus.DownloadStatus is DownloadStatus.DownloadCanceled or DownloadStatus.DownloadFinished)
+            
+            switch (responseStatus.DownloadStatus)
             {
-                ActiveFileDownloads.Remove(download);
-                NotifyChange($"{download.File.Name} downloading canceled!");
+                case DownloadStatus.DownloadCanceled:
+                    ActiveFileDownloads.Remove(download);
+                    NotifyChange($"{download.File.Name} downloading canceled!");
+                    break;
+                case DownloadStatus.DownloadFinished:
+                    ActiveFileDownloads.Remove(download);
+                    break;
             }
 
             return responseStatus;
@@ -60,12 +66,6 @@ namespace Peernet.Browser.Infrastructure
 
             if (status.APIStatus == APIStatus.DownloadResponseSuccess)
             {
-                ActiveFileDownloads.Add(downloadModel);
-            }
-
-            if (status.APIStatus == APIStatus.DownloadResponseFileInvalid)
-            {
-                // This is just for testing, whole condition should be handled in proper way once clear how.
                 ActiveFileDownloads.Add(downloadModel);
             }
 

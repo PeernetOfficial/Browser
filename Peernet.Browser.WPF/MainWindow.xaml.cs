@@ -1,6 +1,7 @@
 ﻿using MvvmCross.Platforms.Wpf.Views;
 using Peernet.Browser.Application;
 using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.WPF.Controls;
 using System.Globalization;
 using System.Threading;
 using System.Windows;
@@ -45,7 +46,12 @@ namespace Peernet.Browser.WPF
 
         private void DismissModals_OnClick(object sender, MouseButtonEventArgs e)
         {
-            GlobalContext.IsProfileMenuVisible = false;
+            var mouseClickTarget = Mouse.DirectlyOver as FrameworkElement;
+            var clickedElement = mouseClickTarget?.Parent as FrameworkElement;
+            if (clickedElement is not ProfileMenuControl)
+            {
+                GlobalContext.IsProfileMenuVisible = false;
+            }
         }
     }
 }

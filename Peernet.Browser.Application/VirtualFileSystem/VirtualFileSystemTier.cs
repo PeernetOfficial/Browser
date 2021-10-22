@@ -8,7 +8,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
     public class VirtualFileSystemTier : VirtualFileSystemEntity
     {
         public VirtualFileSystemTier(string name, VirtualFileSystemEntityType type, int depth)
-            : base(name, type, new List<ApiBlockRecordFile>())
+            : base(name, type, new List<ApiFile>())
         {
             Depth = depth;
         }

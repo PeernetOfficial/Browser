@@ -18,17 +18,18 @@ namespace Peernet.Browser.Infrastructure.Clients
             httpExecutor = new HttpExecutor(settingsManager);
         }
 
-        public override string CoreSegment => "blockchain/self";
+        public override string CoreSegment => "blockchain";
 
         public async Task<ApiBlockchainBlockStatus> AddFiles(ApiBlockchainAddFiles files)
         {
-            return await httpExecutor.GetResult<ApiBlockchainBlockStatus>(HttpMethod.Post, GetRelativeRequestPath("add/file"));
+            var content = JsonContent.Create(files);
+            return await httpExecutor.GetResult<ApiBlockchainBlockStatus>(HttpMethod.Post, GetRelativeRequestPath("file/add"), content: content);
         }
 
-        public async Task DeleteSelfFile(ApiBlockRecordFile apiBlockRecordFile)
+        public async Task DeleteSelfFile(ApiFile apiFile)
         {
-            var content = JsonContent.Create(new ApiBlockchainAddFiles { Files = new List<ApiBlockRecordFile> { apiBlockRecordFile } });
-            await httpExecutor.GetResult<ApiBlockchainBlockStatus>(HttpMethod.Post, GetRelativeRequestPath("delete/file"), content: content);
+            var content = JsonContent.Create(new ApiBlockchainAddFiles { Files = new List<ApiFile> { apiFile } });
+            await httpExecutor.GetResult<ApiBlockchainBlockStatus>(HttpMethod.Post, GetRelativeRequestPath("file/delete"), content: content);
         }
 
         public async Task<ApiBlockchainHeader> GetSelfHeader()
@@ -38,7 +39,7 @@ namespace Peernet.Browser.Infrastructure.Clients
 
         public async Task<ApiBlockchainAddFiles> GetSelfList()
         {
-            return await httpExecutor.GetResult<ApiBlockchainAddFiles>(HttpMethod.Get, GetRelativeRequestPath("list/file"));
+            return await httpExecutor.GetResult<ApiBlockchainAddFiles>(HttpMethod.Get, GetRelativeRequestPath("file/list"));
         }
 
         public async Task<ApiBlockchainBlock> ReadBlock(int block)

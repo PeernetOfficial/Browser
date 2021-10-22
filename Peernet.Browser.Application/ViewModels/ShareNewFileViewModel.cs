@@ -15,22 +15,26 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IApplicationManager applicationManager;
         private readonly IMvxNavigationService mvxNavigationService;
         private readonly IBlockchainService blockchainService;
+        private readonly IWarehouseService warehouseService;
+        private readonly IUserContext userContext;
         private SharedNewFileModel selected;
 
-        public ShareNewFileViewModel(IMvxNavigationService mvxNavigationService, IApplicationManager applicationManager, IBlockchainService blockchainService)
+        public ShareNewFileViewModel(IMvxNavigationService mvxNavigationService, IApplicationManager applicationManager, IBlockchainService blockchainService, IWarehouseService warehouseService, IUserContext userContext)
         {
             this.mvxNavigationService = mvxNavigationService;
             this.applicationManager = applicationManager;
             this.blockchainService = blockchainService;
+            this.warehouseService = warehouseService;
+            this.userContext = userContext;
 
             ConfirmCommand = new MvxAsyncCommand(Confirm);
-            HideCommand = new MvxCommand(Hide);
+            CancelCommand = new MvxCommand(Cancel);
 
             LeftCommand = new MvxCommand(() => Manipulate(false));
             RightCommand = new MvxCommand(() => Manipulate(true));
 
-            ChangeCommand = new MvxCommand(Change);
             AddCommand = new MvxCommand(Add);
+            DeleteFileCommand = new MvxCommand(DeleteFile);
 
             Files.CollectionChanged += (s, o) =>
             {
@@ -41,21 +45,21 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IMvxCommand AddCommand { get; }
 
-        public IMvxCommand ChangeCommand { get; }
-
         public IMvxAsyncCommand ConfirmCommand { get; }
 
         public MvxObservableCollection<SharedNewFileModel> Files { get; } = new MvxObservableCollection<SharedNewFileModel>();
 
         public string FilesLength => $"{Files.IndexOf(Selected) + 1}/{Files.Count}";
 
-        public IMvxCommand HideCommand { get; }
+        public IMvxCommand CancelCommand { get; }
 
         public bool IsCountVisible => Files.Count > 1;
 
         public IMvxCommand LeftCommand { get; }
 
         public IMvxCommand RightCommand { get; }
+
+        public IMvxCommand DeleteFileCommand { get; }
 
         public SharedNewFileModel Selected
         {
@@ -67,8 +71,12 @@ namespace Peernet.Browser.Application.ViewModels
         {
             foreach (var f in files)
             {
-                var toAdd = new SharedNewFileModel(f);
-                if (Files.Any(x => x.FullPath == toAdd.FullPath)) continue;
+                var toAdd = new SharedNewFileModel(f, userContext.User.Name);
+                if (Files.Any(x => x.FullPath == toAdd.FullPath))
+                {
+                    continue;
+                }
+
                 Files.Add(toAdd);
             }
             Selected = Files.First();
@@ -77,21 +85,29 @@ namespace Peernet.Browser.Application.ViewModels
         private void Add()
         {
             var files = applicationManager.OpenFileDialog();
-            if (files.Any()) Prepare(files);
-        }
-
-        private void Change()
-        {
-            //TODO: USE service??
+            if (files.Length != 0)
+            {
+                Prepare(files);
+            }
         }
 
         private async Task Confirm()
         {
-            await blockchainService.AddFilesAsync(Files);
-            Hide();
+            // There should be validation added all the way within this method
+            foreach (var file in Files)
+            {
+                var warehouseEntry = await warehouseService.Create(file);
+                if (warehouseEntry.Status == 0)
+                {
+                    file.Hash = warehouseEntry.Hash;
+                }
+            }
+
+            await blockchainService.AddFiles(Files.Where(f => f.Hash != null));
+            Cancel();
         }
 
-        private void Hide()
+        private void Cancel()
         {
             GlobalContext.IsMainWindowActive = true;
             mvxNavigationService.Close(this);
@@ -101,9 +117,35 @@ namespace Peernet.Browser.Application.ViewModels
         {
             var i = isPlus ? 1 : -1;
             var index = Files.IndexOf(Selected) + i;
-            if (index < 0 || index > Files.Count - 1) return;
-            Selected = Files[index];
-            RaisePropertyChanged(nameof(FilesLength));
+            if (index >= 0 && index <= Files.Count - 1)
+            {
+                Selected = Files[index];
+                RaisePropertyChanged(nameof(FilesLength));
+            }
+        }
+
+        private void DeleteFile()
+        {
+            var removedIndex = Files.IndexOf(Selected);
+            Files.Remove(Selected);
+            var filesCount = Files.Count;
+            if (filesCount == 0)
+            {
+                Cancel();
+            }
+            else
+            {
+                if (removedIndex == 0)
+                {
+                    Selected = Files[0];
+                }
+                else if (removedIndex > 0)
+                {
+                    Selected = Files[filesCount - 1];
+                }
+
+                RaisePropertyChanged(nameof(FilesLength));
+            }
         }
     }
 }

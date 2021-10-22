@@ -43,9 +43,9 @@
                 </StatusBarItem>
             </StatusBar>
         </DockPanel>
-        <Border Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" CornerRadius="3" Margin="0, 0, 0, 18" Padding="20, 6 , 15, 6">
+        <Border Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" CornerRadius="3" Margin="0, 0, 0, 18" Padding="20, 6 , 15, 6" BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}">
             <Border.Background>
-                <SolidColorBrush Color="White" />
+                <SolidColorBrush Color="{DynamicResource ViewBackgroundColor}" />
             </Border.Background>
             <Border.Effect>
                 <DropShadowEffect Color="Black" Opacity="0.12" ShadowDepth="4" BlurRadius="24" />
@@ -79,7 +79,7 @@
                                             </Style>
                                         </TextBlock.Style>
                                     </TextBlock>
-                                    <ProgressBar x:Name="ProgressBar" Grid.Column="3" Margin="12,0,0,0" Minimum="0" Maximum="100" Value="{Binding Progress}" Width="100" Background="#F2F2F2" Foreground="{StaticResource MainContentBrush}" BorderThickness="0" Height="1" VerticalAlignment="Center">
+                                    <ProgressBar x:Name="ProgressBar" Grid.Column="3" Margin="12,0,0,0" Minimum="0" Maximum="100" Value="{Binding Progress}" Width="100" Background="#F2F2F2" Foreground="{DynamicResource MainContentBrush}" BorderThickness="0" Height="1" VerticalAlignment="Center">
                                         <ProgressBar.Style>
                                             <Style TargetType="{x:Type ProgressBar}">
                                                 <Setter Property="Visibility" Value="Visible" />
@@ -110,12 +110,12 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                    <TextBlock x:Name="CollapsedDownloadsText" Style="{StaticResource Active}" FontSize="10" HorizontalAlignment="Left" Visibility="Collapsed">
+                    <TextBlock x:Name="CollapsedDownloadsText" Style="{StaticResource Active}" FontSize="10" HorizontalAlignment="Left" Visibility="Collapsed" PreviewMouseLeftButtonDown="Downloads_Toggle" Cursor="Hand">
                         <TextBlock x:Name="FileNameText" />
                         <TextBlock x:Name="FilesCounterText" FontWeight="Bold" />
                         <TextBlock x:Name="DownloadingText" />
                     </TextBlock>
-                    <Button x:Name="DownloadsToggleButton" Click="Downloads_Toggle" Margin="10, 0, 10, 0" Content="Hide" Style="{StaticResource PrimaryButton}" />
+                    <Button x:Name="DownloadsToggleButton" Click="Downloads_Toggle" Margin="10, 0, 10, 10" Content="Hide" Style="{DynamicResource PrimaryButton}" VerticalAlignment="Bottom" />
                 </StackPanel>
             </ScrollViewer>
             <Border.Style>

@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
 
 namespace Peernet.Browser.Models.Domain.Common
 {
-    public class ApiBlockRecordFile
+    public class ApiFile
     {
         public string Id { get; set; }
 

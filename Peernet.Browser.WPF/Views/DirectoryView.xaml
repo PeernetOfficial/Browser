@@ -8,7 +8,7 @@
     xmlns:extensions="clr-namespace:Peernet.Browser.WPF.Extensions"
     x:Name="DirectoryPage">
 
-    <Border Background="{DynamicResource ViewBackgroundBrush}" BorderThickness="0" CornerRadius="8,8,8,8"  VerticalAlignment="Stretch" Margin="0, 65, 0, 0">
+    <Border Background="{DynamicResource ViewBackgroundBrush}" BorderThickness="0" VerticalAlignment="Stretch" Margin="0, 65, 0, 0">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -49,8 +49,8 @@
                             <EventSetter Event="MouseDoubleClick" Handler="TreeViewItem_OnSelected" />
                         </Style>
                     </TreeView.ItemContainerStyle>
-                    <TreeViewItem Template="{DynamicResource TreeViewItemTemplate}" ItemsSource="{Binding VirtualFileSystem.VirtualFileSystemTiers}" Header="Your Files" Foreground="{DynamicResource MainContentBrush}" IsExpanded="True" />
-                    <TreeViewItem Template="{DynamicResource TreeViewItemTemplate}" ItemsSource="{Binding VirtualFileSystem.VirtualFileSystemCategories}" Header="Libraries" Foreground="{DynamicResource MainContentBrush}" IsExpanded="True" />
+                    <TreeViewItem Template="{DynamicResource TreeViewItemTemplate}" ItemsSource="{Binding VirtualFileSystem.VirtualFileSystemTiers}" Header="Your Files" Foreground="{DynamicResource MainContentBrush}" IsExpanded="True" FontWeight="Medium" />
+                    <TreeViewItem Template="{DynamicResource TreeViewItemTemplate}" ItemsSource="{Binding VirtualFileSystem.VirtualFileSystemCategories}" Header="Libraries" Foreground="{DynamicResource MainContentBrush}" IsExpanded="True" FontWeight="Medium" Margin="0, 15, 0, 0" />
                 </TreeView>
             </StackPanel>
             <Border Grid.Column="1" Width="1" Margin="0,28,0,66" BorderThickness="0">

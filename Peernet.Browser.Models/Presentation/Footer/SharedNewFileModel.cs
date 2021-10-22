@@ -1,37 +1,33 @@
-﻿using System;
+﻿using MvvmCross.ViewModels;
+using System;
 using System.IO;
-using MvvmCross.ViewModels;
 
 namespace Peernet.Browser.Models.Presentation.Footer
 {
     public class SharedNewFileModel : MvxNotifyPropertyChanged
     {
         private string author;
-
         private string createDate;
-
         private string desc;
-
         private string directory;
-
         private string fileName;
-
-        private string fileType;
-
+        private string fileExtension;
         private string fullPath;
-
         private string size;
+        private byte[] hash;
+        private string baseName;
 
-        public SharedNewFileModel(string path)
+        public SharedNewFileModel(string path, string userName)
         {
             var f = new FileInfo(path);
-            FileType = f.Extension;
-            FullPath = f.Name.Replace(FileType, "");
-            FileName = FullPath;
+            FileExtension = f.Extension;
+            FullPath = f.FullName;
+            BaseName = f.FullName.Replace(f.Extension, string.Empty);
+            FileName = f.Name;
             Size = GetSizeString(f.Length);
-            Author = "Current user";
+            Author = userName;
             CreateDate = DateTime.Now.ToString();
-            Directory = "Default";
+            Directory = "Root";
         }
 
         public string Author
@@ -64,10 +60,16 @@ namespace Peernet.Browser.Models.Presentation.Footer
             set => SetProperty(ref fileName, value);
         }
 
-        public string FileType
+        public string BaseName
         {
-            get => fileType;
-            set => SetProperty(ref fileType, value);
+            get => baseName;
+            set => SetProperty(ref baseName, value);
+        }
+
+        public string FileExtension
+        {
+            get => fileExtension;
+            set => SetProperty(ref fileExtension, value);
         }
 
         public string FullPath
@@ -80,6 +82,12 @@ namespace Peernet.Browser.Models.Presentation.Footer
         {
             get => size;
             set => SetProperty(ref size, value);
+        }
+
+        public byte[] Hash
+        {
+            get => hash;
+            set => SetProperty(ref hash, value);
         }
 
         private string GetSizeString(long o)
