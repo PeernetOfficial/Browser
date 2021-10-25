@@ -11,7 +11,7 @@ namespace Peernet.Browser.WPF.Converters
         {
             if (values[0] is bool hasNoText && values[1] is bool hasFocus)
             {
-                if (hasFocus || !hasNoText) return Visibility.Collapsed;
+                if (!hasNoText) return Visibility.Collapsed;
             }
             return Visibility.Visible;
         }
