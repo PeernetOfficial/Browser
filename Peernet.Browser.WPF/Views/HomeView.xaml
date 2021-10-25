@@ -6,7 +6,7 @@
     <Grid VerticalAlignment="{Binding Alignment, Converter={StaticResource VerticalAlignmentConverter}}">
         <StackPanel Width="600">
             <Image Source="{DynamicResource LogoDrawingImage}" Height="65" Visibility="{Binding IsNotVisible, Converter={StaticResource BoolToVisibility}}" />
-            <Border Padding="13" BorderBrush="{DynamicResource LightGray2Brush}" BorderThickness="1" Margin="0 90 0 155" CornerRadius="{DynamicResource MainRadius}">
+            <Border BorderBrush="{DynamicResource LightGray2Brush}" BorderThickness="1" Margin="0 90 0 155" CornerRadius="{DynamicResource MainRadius}">
                 <Border.Background>
                     <SolidColorBrush Color="{DynamicResource ViewBackgroundColor}" />
                 </Border.Background>
@@ -25,7 +25,7 @@
                         </TextBlock.Visibility>
                     </TextBlock>
 
-                    <TextBox Text="{Binding SearchInput, UpdateSourceTrigger=PropertyChanged}"
+                    <TextBox  Padding="13"  Text="{Binding SearchInput, UpdateSourceTrigger=PropertyChanged}"
                                      VerticalAlignment="Center"
                                      TextBlock.FontSize="16"
                                      Foreground="{DynamicResource MainTextBrush}"
@@ -36,7 +36,7 @@
                         </TextBox.InputBindings>
                     </TextBox>
 
-                    <Image HorizontalAlignment="Right" Source="{DynamicResource SearchDrawingImage}" Height="14.22" Width="14.22">
+                    <Image Margin="0 0 13 0" HorizontalAlignment="Right" Source="{DynamicResource SearchDrawingImage}" Height="14.22" Width="14.22">
                         <Image.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding SearchCommand}" />
                         </Image.InputBindings>
