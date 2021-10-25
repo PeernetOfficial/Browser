@@ -83,7 +83,7 @@
                                 </MultiBinding>
                             </TextBlock.Visibility>
                         </TextBlock>
-                        <TextBox Text="{Binding Selected.Desc}" Foreground="{StaticResource MainContentBrush}" CaretBrush="{DynamicResource MainTextBrush}"
+                        <TextBox Text="{Binding Selected.Description}" Foreground="{StaticResource MainContentBrush}" CaretBrush="{DynamicResource MainTextBrush}"
                                  Background="Transparent" Name="txtUserEntry2"
                                                  Template="{StaticResource RoundedTextBox}" Height="132"
                                                  AcceptsReturn="True" TextWrapping="Wrap" AcceptsTab="True" />
@@ -107,7 +107,7 @@
                 <TextBlock Grid.Row="0" Grid.Column="1" Style="{DynamicResource Title}">Created:</TextBlock>
                 <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Selected.CreateDate}" Style="{StaticResource Active}" />
                 <TextBlock Grid.Row="0" Grid.Column="2" Style="{DynamicResource Title}">Size:</TextBlock>
-                <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Selected.Size}" Style="{StaticResource Active}" />
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Selected.FormattedSize}" Style="{StaticResource Active}" />
             </Grid>
 
             <DockPanel Grid.ColumnSpan="2" Grid.Row="5" LastChildFill="False" HorizontalAlignment="Stretch">

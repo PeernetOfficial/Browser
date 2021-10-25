@@ -9,7 +9,7 @@
     <Grid>
         <DataGrid Style="{DynamicResource DataGridStyle}" ItemsSource="{Binding ActiveSearchResults}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTemplateColumn Header="NAME" SortMemberPath="Name" Width="*">
+                <DataGridTemplateColumn Header="NAME" SortMemberPath="Name" Width="*" HeaderStyle="{StaticResource ShiftedDataGridColumnHeaderStyle}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid Margin="20, 0, 0, 0">
@@ -46,8 +46,7 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <!--Reference with ElementName is not a good approach - think of something better, although we don't want any logic in models -->
-                                <Button Grid.Column="0" Style="{StaticResource DataGridActionButton}" Click="OpenEditableFilePreview_OnClick">
+                                <Button Grid.Column="0" Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.EditCommand, ElementName=SharedFilesDataGrid}" CommandParameter="{Binding}">
                                     <Button.Background>
                                         <ImageBrush ImageSource="{DynamicResource EditDrawingImage}" />
                                     </Button.Background>

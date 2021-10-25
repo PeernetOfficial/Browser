@@ -7,7 +7,40 @@
         <Setter Property="Foreground" Value="{StaticResource HeaderForeground}" />
         <Setter Property="FontSize" Value="12" />
         <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Background" Value="{DynamicResource ViewBackgroundBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                    <Grid>
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" Padding="{TemplateBinding Padding}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                            <Grid Margin="{TemplateBinding Margin}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalAlignment}" />
+                                <Image Grid.Column="1" x:Name="SortElement" Height="5" Width="5" HorizontalAlignment="Left" Margin="8,0,30,0" Visibility="Hidden" Source="{DynamicResource ArrowDownDrawingImage}" />
+                            </Grid>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="SortDirection" Value="Ascending">
+                            <Setter TargetName="SortElement" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="SortDirection" Value="Descending">
+                            <Setter TargetName="SortElement" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="SortElement" Property="LayoutTransform" Value="{StaticResource ReflectImage}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ShiftedDataGridColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="Foreground" Value="{StaticResource HeaderForeground}" />
+        <Setter Property="FontSize" Value="12" />
         <Setter Property="Padding" Value="20, 0, 0, 0"></Setter>
+        <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Background" Value="{DynamicResource ViewBackgroundBrush}" />
         <Setter Property="Template">
             <Setter.Value>

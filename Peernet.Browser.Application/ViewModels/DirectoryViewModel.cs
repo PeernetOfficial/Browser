@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using MvvmCross.Navigation;
+using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.Models.Presentation.Footer;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -15,6 +18,7 @@ namespace Peernet.Browser.Application.ViewModels
     {
         private readonly IBlockchainService blockchainService;
         private readonly IVirtualFileSystemFactory virtualFileSystemFactory;
+        private readonly IMvxNavigationService mvxNavigationService;
         private List<ApiFile> activeSearchResults;
         private ObservableCollection<VirtualFileSystemEntity> pathElements;
         private string searchInput;
@@ -23,10 +27,11 @@ namespace Peernet.Browser.Application.ViewModels
         private bool showSearchBox;
         private VirtualFileSystem.VirtualFileSystem virtualFileSystem;
 
-        public DirectoryViewModel(IBlockchainService blockchainService, IVirtualFileSystemFactory virtualFileSystemFactory)
+        public DirectoryViewModel(IBlockchainService blockchainService, IVirtualFileSystemFactory virtualFileSystemFactory, IMvxNavigationService mvxNavigationService)
         {
             this.blockchainService = blockchainService;
             this.virtualFileSystemFactory = virtualFileSystemFactory;
+            this.mvxNavigationService = mvxNavigationService;
         }
 
         public List<ApiFile> ActiveSearchResults
@@ -35,11 +40,27 @@ namespace Peernet.Browser.Application.ViewModels
             set => SetProperty(ref activeSearchResults, value);
         }
 
+        public IMvxAsyncCommand<ApiFile> EditCommand =>
+            new MvxAsyncCommand<ApiFile>(
+                 async apiFile =>
+                {
+                    var parameter = new EditFileViewModelParameter(blockchainService)
+                    {
+                        FileModels = new FileModel[]
+                        {
+                            new(apiFile)
+                        }
+                    };
+
+                    GlobalContext.IsMainWindowActive = false;
+                    await mvxNavigationService.Navigate<ShareNewFileViewModel, EditFileViewModelParameter>(parameter);
+                });
+        
         public IMvxAsyncCommand<ApiFile> DeleteCommand =>
             new MvxAsyncCommand<ApiFile>(
-                async apiBlockRecordFile =>
+                async apiFile =>
                 {
-                    await blockchainService.DeleteSelfFile(apiBlockRecordFile);
+                    await blockchainService.DeleteFile(apiFile);
                     await Initialize();
                 });
 
@@ -78,6 +99,12 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
+        public override async void ViewAppearing()
+        {
+            base.ViewAppearing();
+            await Initialize();
+        }
+
         public string SearchInput
         {
             get => searchInput;
@@ -114,10 +141,10 @@ namespace Peernet.Browser.Application.ViewModels
 
         public override async Task Initialize()
         {
-            var header = await blockchainService.GetSelfHeader();
+            var header = await blockchainService.GetHeader();
             if (header.Height > 0)
             {
-                sharedFiles = await blockchainService.GetSelfList() ?? new();
+                sharedFiles = await blockchainService.GetList() ?? new();
                 ActiveSearchResults = sharedFiles?.ToList();
             }
 

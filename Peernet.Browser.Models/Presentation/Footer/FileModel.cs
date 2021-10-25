@@ -1,33 +1,51 @@
 ﻿using MvvmCross.ViewModels;
+using Peernet.Browser.Models.Domain.Common;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Peernet.Browser.Models.Presentation.Footer
 {
-    public class SharedNewFileModel : MvxNotifyPropertyChanged
+    public class FileModel : MvxNotifyPropertyChanged
     {
         private string author;
-        private string createDate;
-        private string desc;
+        private DateTime createDate;
+        private string description;
         private string directory;
         private string fileName;
         private string fileExtension;
         private string fullPath;
-        private string size;
+        private long size;
         private byte[] hash;
         private string baseName;
 
-        public SharedNewFileModel(string path, string userName)
+        public FileModel(string path, string userName)
         {
             var f = new FileInfo(path);
             FileExtension = f.Extension;
             FullPath = f.FullName;
             BaseName = f.FullName.Replace(f.Extension, string.Empty);
             FileName = f.Name;
-            Size = GetSizeString(f.Length);
+            Size = f.Length;
             Author = userName;
-            CreateDate = DateTime.Now.ToString();
+            CreateDate = DateTime.Now;
             Directory = "Root";
+        }
+
+        public FileModel(ApiFile apiFile)
+        {
+            Id = apiFile.Id;
+            NodeId = apiFile.NodeId;
+            Author = Convert.ToHexString(NodeId);
+            Size = apiFile.Size;
+            FileName = apiFile.Name;
+            Hash = apiFile.Hash;
+            Metadata = apiFile.MetaData;
+            Directory = apiFile.Folder;
+            Format = apiFile.Format;
+            Type = apiFile.Type;
+            Description = apiFile.Description;
+            CreateDate = DateTime.Now;
         }
 
         public string Author
@@ -36,16 +54,16 @@ namespace Peernet.Browser.Models.Presentation.Footer
             set => SetProperty(ref author, value);
         }
 
-        public string CreateDate
+        public DateTime CreateDate
         {
             get => createDate;
             set => SetProperty(ref createDate, value);
         }
 
-        public string Desc
+        public string Description
         {
-            get => desc;
-            set => SetProperty(ref desc, value);
+            get => description;
+            set => SetProperty(ref description, value);
         }
 
         public string Directory
@@ -78,17 +96,29 @@ namespace Peernet.Browser.Models.Presentation.Footer
             set => SetProperty(ref fullPath, value);
         }
 
-        public string Size
-        {
-            get => size;
-            set => SetProperty(ref size, value);
-        }
+        public string FormattedSize => GetSizeString(Size);
+
+        public string Id { get; set; }
 
         public byte[] Hash
         {
             get => hash;
             set => SetProperty(ref hash, value);
         }
+
+        public List<ApiFileMetadata> Metadata { get; set; }
+
+        public byte[] NodeId { get; set; }
+
+        public long Size
+        {
+            get => size;
+            set => SetProperty(ref size, value);
+        }
+
+        public LowLevelFileType Type { get; set; }
+
+        public HighLevelFileType Format { get; set; }
 
         private string GetSizeString(long o)
         {
