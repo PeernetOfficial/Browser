@@ -17,6 +17,8 @@ namespace Peernet.Browser.Application.ViewModels
             this.blockchainService = blockchainService;
         }
 
+        public override string ModalTitle => "Share file";
+
         public override async Task Confirm(FileModel[] files)
         {
             // There should be validation added all the way within this method

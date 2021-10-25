@@ -46,6 +46,8 @@ namespace Peernet.Browser.Models.Presentation.Footer
             Type = apiFile.Type;
             Description = apiFile.Description;
             CreateDate = DateTime.Now;
+            BaseName = Path.GetFileNameWithoutExtension(FileName);
+            FileExtension = Path.GetExtension(FileName);
         }
 
         public string Author

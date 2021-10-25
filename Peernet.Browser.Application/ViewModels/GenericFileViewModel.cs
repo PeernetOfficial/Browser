@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class ShareNewFileViewModel : MvxViewModel<FileParameterModel>, IModal
+    public class GenericFileViewModel : MvxViewModel<FileParameterModel>, IModal
     {
         private readonly IApplicationManager applicationManager;
         private readonly IMvxNavigationService mvxNavigationService;
@@ -18,9 +18,9 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IWarehouseService warehouseService;
         private readonly IUserContext userContext;
         private FileModel selected;
-        private FileParameterModel shareFileViewModelParameter;
+        private FileParameterModel viewModelParameter;
 
-        public ShareNewFileViewModel(IMvxNavigationService mvxNavigationService, IApplicationManager applicationManager, IBlockchainService blockchainService, IWarehouseService warehouseService, IUserContext userContext)
+        public GenericFileViewModel(IMvxNavigationService mvxNavigationService, IApplicationManager applicationManager, IBlockchainService blockchainService, IWarehouseService warehouseService, IUserContext userContext)
         {
             this.mvxNavigationService = mvxNavigationService;
             this.applicationManager = applicationManager;
@@ -68,9 +68,11 @@ namespace Peernet.Browser.Application.ViewModels
             private set => SetProperty(ref selected, value);
         }
 
+        public string Title => viewModelParameter.ModalTitle;
+
         public override void Prepare(FileParameterModel parameter)
         {
-            shareFileViewModelParameter = parameter;
+            viewModelParameter = parameter;
             foreach (var f in parameter.FileModels)
             {
                 if (Files.Any(x => x.FullPath == f.FullPath))
@@ -99,7 +101,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         private async Task Confirm()
         {
-            await shareFileViewModelParameter.Confirm(Files.ToArray());
+            await viewModelParameter.Confirm(Files.ToArray());
             Cancel();
         }
 

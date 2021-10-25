@@ -9,13 +9,13 @@ using System.Windows.Input;
 namespace Peernet.Browser.WPF.Views
 {
     /// <summary>
-    /// Interaction logic for ShareNewFileView.xaml
+    /// Interaction logic for GenericFileView.xaml
     /// </summary>
     [MvxContentPresentation]
-    [MvxViewFor(typeof(ShareNewFileViewModel))]
-    public partial class ShareNewFileView : MvxWpfView, IModal
+    [MvxViewFor(typeof(GenericFileViewModel))]
+    public partial class GenericFileView : MvxWpfView, IModal
     {
-        public ShareNewFileView() => InitializeComponent();
+        public GenericFileView() => InitializeComponent();
 
         private void ChangeVirtualDirectory_OnClick(object sender, RoutedEventArgs e)
         {

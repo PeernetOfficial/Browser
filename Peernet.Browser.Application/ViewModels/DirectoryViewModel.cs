@@ -44,7 +44,7 @@ namespace Peernet.Browser.Application.ViewModels
             new MvxAsyncCommand<ApiFile>(
                  async apiFile =>
                 {
-                    var parameter = new EditFileViewModelParameter(blockchainService)
+                    var parameter = new EditFileViewModelParameter(blockchainService, mvxNavigationService)
                     {
                         FileModels = new FileModel[]
                         {
@@ -53,7 +53,7 @@ namespace Peernet.Browser.Application.ViewModels
                     };
 
                     GlobalContext.IsMainWindowActive = false;
-                    await mvxNavigationService.Navigate<ShareNewFileViewModel, EditFileViewModelParameter>(parameter);
+                    await mvxNavigationService.Navigate<GenericFileViewModel, EditFileViewModelParameter>(parameter);
                 });
         
         public IMvxAsyncCommand<ApiFile> DeleteCommand =>
@@ -61,7 +61,7 @@ namespace Peernet.Browser.Application.ViewModels
                 async apiFile =>
                 {
                     await blockchainService.DeleteFile(apiFile);
-                    await Initialize();
+                    await ReloadVirtualFileSystem();
                 });
 
         public ObservableCollection<VirtualFileSystemEntity> PathElements
@@ -101,8 +101,8 @@ namespace Peernet.Browser.Application.ViewModels
 
         public override async void ViewAppearing()
         {
+            await ReloadVirtualFileSystem();
             base.ViewAppearing();
-            await Initialize();
         }
 
         public string SearchInput
@@ -141,17 +141,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         public override async Task Initialize()
         {
-            var header = await blockchainService.GetHeader();
-            if (header.Height > 0)
-            {
-                sharedFiles = await blockchainService.GetList() ?? new();
-                ActiveSearchResults = sharedFiles?.ToList();
-            }
-
-            VirtualFileSystem = virtualFileSystemFactory.CreateVirtualFileSystem(sharedFiles);
-            AddRecentTier(sharedFiles);
-            AddAllFilesTier(sharedFiles);
-
+            await ReloadVirtualFileSystem();
             await base.Initialize();
         }
 
@@ -179,6 +169,20 @@ namespace Peernet.Browser.Application.ViewModels
             return !string.IsNullOrEmpty(SearchInput)
                 ? results.Where(f => f.Name.Contains(SearchInput, StringComparison.OrdinalIgnoreCase)).ToList()
                 : results.ToList();
+        }
+
+        private async Task ReloadVirtualFileSystem()
+        {
+            var header = await blockchainService.GetHeader();
+            if (header.Height > 0)
+            {
+                sharedFiles = await blockchainService.GetList() ?? new();
+                ActiveSearchResults = sharedFiles?.ToList();
+            }
+
+            VirtualFileSystem = virtualFileSystemFactory.CreateVirtualFileSystem(sharedFiles);
+            AddRecentTier(sharedFiles);
+            AddAllFilesTier(sharedFiles);
         }
     }
 }

@@ -154,7 +154,7 @@ namespace Peernet.Browser.Application.ViewModels
                 };
 
                 GlobalContext.IsMainWindowActive = false;
-                navigationService.Navigate<ShareNewFileViewModel, ShareFileViewModelParameter>(parameter);
+                navigationService.Navigate<GenericFileViewModel, ShareFileViewModelParameter>(parameter);
             }
         }
     }

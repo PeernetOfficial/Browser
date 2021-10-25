@@ -7,6 +7,8 @@ namespace Peernet.Browser.Application.ViewModels
     {
         public FileModel[] FileModels { get; set; }
 
+        public abstract string ModalTitle { get; }
+
         public abstract Task Confirm(FileModel[] files);
     }
 }
