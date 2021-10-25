@@ -20,6 +20,6 @@ namespace Peernet.Browser.Models.Domain.Search
         /// </summary>
         public SearchStatisticData Statistic { get; set; }
 
-        public bool IsNotDone => Status == SearchStatusEnum.KeepTrying || Status == SearchStatusEnum.IdNotFound;
+        public bool IsTerminated => Status == SearchStatusEnum.NoMoreResults || Status == SearchStatusEnum.IdNotFound;
     }
 }
