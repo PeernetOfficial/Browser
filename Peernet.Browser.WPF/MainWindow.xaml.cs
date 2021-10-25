@@ -48,7 +48,7 @@ namespace Peernet.Browser.WPF
         {
             var mouseClickTarget = Mouse.DirectlyOver as FrameworkElement;
             var clickedElement = mouseClickTarget?.Parent as FrameworkElement;
-            if (clickedElement is not ProfileMenuControl)
+            if (clickedElement is not ProfileMenuControl && clickedElement?.Parent is not ToggleSwitch && (clickedElement?.Parent as FrameworkElement)?.Parent is not ToggleSwitch)
             {
                 GlobalContext.IsProfileMenuVisible = false;
             }

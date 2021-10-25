@@ -11,8 +11,6 @@ namespace Peernet.Browser.WPF.Controls
     /// </summary>
     public partial class ToggleSwitch : UserControl
     {
-        private static Action EmptyDelegate = delegate () { };
-
         public ToggleSwitch()
         {
             InitializeComponent();
@@ -29,6 +27,18 @@ namespace Peernet.Browser.WPF.Controls
                 GlobalContext.VisualMode = VisualMode.LightMode;
             }
 
+            (App.Current as App).UpdateAllResources();
+        }
+
+        private void ToggleLight_OnClick(object sender, MouseButtonEventArgs e)
+        {
+            GlobalContext.VisualMode = VisualMode.LightMode;
+            (App.Current as App).UpdateAllResources();
+        }
+
+        private void ToggleDark_OnClick(object sender, MouseButtonEventArgs e)
+        {
+            GlobalContext.VisualMode = VisualMode.DarkMode;
             (App.Current as App).UpdateAllResources();
         }
     }

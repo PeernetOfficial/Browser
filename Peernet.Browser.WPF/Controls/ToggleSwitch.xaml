@@ -6,9 +6,10 @@
              xmlns:contexts="clr-namespace:Peernet.Browser.Application.Contexts;assembly=Peernet.Browser.Application"
              xmlns:models="clr-namespace:Peernet.Browser.Models.Presentation;assembly=Peernet.Browser.Models"
              mc:Ignorable="d">
-    <Grid>
-        <Border BorderThickness="1" Height="18" Width="38" CornerRadius="8" BorderBrush="{DynamicResource ToggleSwitchBorderBrush}">
-            <Ellipse Cursor="Hand" MouseLeftButtonDown="Toggle_OnClick" Margin="3" Height="12" VerticalAlignment="Center" Width="12">
+    <StackPanel Orientation="Horizontal">
+        <TextBlock Text="Light" Foreground="{DynamicResource MainTextBrush}" Cursor="Hand" MouseLeftButtonDown="ToggleLight_OnClick" />
+        <Border BorderThickness="1" Height="18" Width="38" CornerRadius="8" BorderBrush="{DynamicResource ToggleSwitchBorderBrush}" Background="Transparent" Cursor="Hand" MouseLeftButtonDown="Toggle_OnClick" Margin="13, 0, 13, 0">
+            <Ellipse Margin="3" Height="12" VerticalAlignment="Center" Width="12">
                 <Ellipse.Fill>
                     <SolidColorBrush Color="{DynamicResource NavbarMenuButtonColor}" Opacity="0.60" />
                 </Ellipse.Fill>
@@ -26,5 +27,6 @@
                 </Ellipse.Style>
             </Ellipse>
         </Border>
-    </Grid>
+        <TextBlock Text="Dark" Foreground="{DynamicResource MainTextBrush}" Cursor="Hand" MouseLeftButtonDown="ToggleDark_OnClick" />
+    </StackPanel>
 </UserControl>
