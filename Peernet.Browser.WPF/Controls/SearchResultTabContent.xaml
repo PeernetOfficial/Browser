@@ -106,21 +106,21 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn  Visibility="{Binding DataContext.ShowColumnsDate, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}"  TextBlock.TextAlignment="Left" Width="150" Header="DATE" Binding="{Binding Date}">
-                    <DataGridTextColumn.ElementStyle>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="VerticalAlignment" Value="Center" />
-                        </Style>
-                    </DataGridTextColumn.ElementStyle>
-                </DataGridTextColumn>
-                <DataGridTextColumn  Visibility="{Binding DataContext.ShowColumnsSize, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}" Width="160" Header="SIZE" Binding="{Binding Size}">
-                    <DataGridTextColumn.ElementStyle>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="VerticalAlignment" Value="Center" />
-                        </Style>
-                    </DataGridTextColumn.ElementStyle>
-                </DataGridTextColumn>
-                <DataGridTemplateColumn Visibility="{Binding DataContext.ShowColumnsShared, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}"  Width="80" Header="SHARED BY" SortMemberPath="SharedBy">
+                <DataGridTemplateColumn Visibility="{Binding DataContext.ShowColumnsDate, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}"  Width="150" Header="DATE" SortMemberPath="Date">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Date}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Visibility="{Binding DataContext.ShowColumnsSize, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}"  Width="160" Header="SIZE" SortMemberPath="Size">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Size}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Visibility="{Binding DataContext.ShowColumnsShared, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}"  Width="100" Header="SHARED BY" SortMemberPath="SharedBy">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid>
