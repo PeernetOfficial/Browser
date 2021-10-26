@@ -120,7 +120,6 @@ namespace Peernet.Browser.Application.ViewModels
 
         public async Task Refresh()
         {
-            IsLoading = true;
             SearchResultModel data = await refreshAction(Filters.SearchFilterResult);
             await GlobalContext.UiThreadDispatcher.ExecuteOnMainThreadAsync(() =>
             {
@@ -128,7 +127,6 @@ namespace Peernet.Browser.Application.ViewModels
                 TableResult.Clear();
                 data.Rows.Foreach(x => TableResult.Add(x));
                 RefreshIconFilters(data.Stats, data.Filters.FilterType);
-                IsLoading = false;
             });
         }
 
