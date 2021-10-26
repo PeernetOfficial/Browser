@@ -6,42 +6,30 @@ namespace Peernet.Browser.WPF.Services
     {
         public string ApiUrl
         {
-            get => Properties.Settings.Default.ApiUrl;
-            set
-            {
-                Properties.Settings.Default.ApiUrl = value;
-                Properties.Settings.Default.Save();
-            }
+            get => Get(nameof(ApiUrl));
+            set => Set(nameof(ApiUrl), value);
         }
 
         public string SocketUrl
         {
-            get => Properties.Settings.Default.SocketUrl;
-            set
-            {
-                Properties.Settings.Default.SocketUrl = value;
-                Properties.Settings.Default.Save();
-            }
+            get => Get(nameof(SocketUrl));
+            set => Set(nameof(SocketUrl), value);
         }
 
         public string CmdPath
         {
-            get => Properties.Settings.Default.CmdPath;
-            set
-            {
-                Properties.Settings.Default.CmdPath = value;
-                Properties.Settings.Default.Save();
-            }
+            get => Get(nameof(CmdPath));
+            set => Set(nameof(CmdPath), value);
         }
 
         public string DownloadPath
         {
-            get => Properties.Settings.Default.DownloadPath;
-            set
-            {
-                Properties.Settings.Default.DownloadPath = value;
-                Properties.Settings.Default.Save();
-            }
+            get => Get(nameof(DownloadPath));
+            set => Set(nameof(DownloadPath), value);
         }
+
+        private static string Get(string key) => System.Configuration.ConfigurationManager.AppSettings[key];
+
+        private static void Set(string key, string value) => System.Configuration.ConfigurationManager.AppSettings[key] = value;
     }
 }

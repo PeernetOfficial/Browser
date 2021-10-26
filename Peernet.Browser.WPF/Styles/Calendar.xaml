@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:V="clr-namespace:Peernet.Browser.WPF.Controls"
                     xmlns:converters="clr-namespace:Peernet.Browser.WPF.Converters"
+                    xmlns:V="clr-namespace:Peernet.Browser.WPF.Views"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <Style x:Key="PeernetCalendar" TargetType="{x:Type Calendar}">
@@ -136,7 +136,7 @@
         <Setter Property="MinWidth" Value="5" />
         <Setter Property="MinHeight" Value="5" />
         <Setter Property="FontSize" Value="12" />
-        <Setter Property="Foreground" Value="{StaticResource MainContentBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource MainContentBrush}" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Template">
@@ -167,8 +167,8 @@
                             <DataTrigger.Binding>
                                 <MultiBinding Converter="{StaticResource LookupConverter}">
                                     <Binding />
-                                    <Binding Path="DataContext.Dates.DateFrom" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type V:FiltersControl}}" />
-                                    <Binding Path="DataContext.Dates.DateTo" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type V:FiltersControl}}" />
+                                    <Binding Path="DataContext.Dates.DateFrom" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type V:FiltersView}}" />
+                                    <Binding Path="DataContext.Dates.DateTo" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type V:FiltersView}}" />
                                 </MultiBinding>
                             </DataTrigger.Binding>
                             <Setter TargetName="backGroundDot" Property="Visibility" Value="Visible" />

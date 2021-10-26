@@ -8,7 +8,6 @@ using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure
@@ -109,7 +108,7 @@ namespace Peernet.Browser.Infrastructure
                     }
                 }
 
-                Thread.Sleep(1000);
+                await Task.Delay(1000);
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -119,22 +120,45 @@ namespace Peernet.Browser.Models.Presentation.Home
             await CloseAction?.Invoke(false);
         }
 
-        private void InitSearch() => SearchFilterResult = new SearchFilterResultModel { OnRemoveAction = RemoveAction, InputText = inputText, Uuid = UuId };
+        private void InitSearch() => SearchFilterResult = new SearchFilterResultModel { InputText = inputText, Uuid = UuId };
 
         private void RefreshTabs()
         {
-            var toAdd = SearchFilterResult.Get();
+            var toAdd = GetTabs();
             Results.Clear();
             toAdd.Foreach(x => Results.Add(x));
         }
 
-        private void RemoveAction(SearchFiltersType type)
+        public void RemoveAction(SearchFiltersType type)
         {
             Reset(type);
             Apply();
+            RefreshTabs();
         }
 
-        private void Reset(SearchFiltersType type)
+        private IEnumerable<FilterResultModel> GetTabs()
+        {
+            var res = new List<FilterResultModel>();
+            if (SearchFilterResult.IsCustomTimeFill)
+            {
+                res.Add(new FilterResultModel
+                {
+                    Type = SearchFiltersType.TimePeriods,
+                    Content = SearchFilterResult.Time == TimePeriods.Custom ? $"{SearchFilterResult.TimeFrom.Value.ToShortDateString()} - {SearchFilterResult.TimeTo.Value.ToShortDateString()}" : SearchFilterResult.Time.Value.GetDescription()
+                });
+            }
+            if (!SearchFilterResult.FileFormats.IsNullOrEmpty())
+            {
+                SearchFilterResult.FileFormats.Foreach(x => res.Add(new FilterResultModel { Type = SearchFiltersType.FileFormats, Content = x.GetDescription() }));
+            }
+            if (SizeFrom.HasValue && SizeTo.HasValue)
+            {
+                res.Add(new FilterResultModel { Type = SearchFiltersType.Size, Content = $"{SizeFrom}MB - {SizeTo}MB" });
+            }
+            return res;
+        }
+
+        public void Reset(SearchFiltersType type)
         {
             switch (type)
             {

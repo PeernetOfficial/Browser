@@ -19,5 +19,7 @@ namespace Peernet.Browser.Models.Domain.Search
         /// Statistics of all results (independent from applied filters), if requested. Only set if files are returned (= if statistics changed). See SearchStatisticData.
         /// </summary>
         public SearchStatisticData Statistic { get; set; }
+
+        public bool IsTerminated => Status == SearchStatusEnum.NoMoreResults || Status == SearchStatusEnum.IdNotFound;
     }
 }

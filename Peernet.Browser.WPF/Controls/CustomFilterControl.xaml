@@ -8,12 +8,12 @@
                 <ItemsControl ItemsSource="{Binding Items}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <CheckBox Name="CheckBoxtemplate" Foreground="{DynamicResource MainContentBrush}" Margin="12" Template="{DynamicResource CustomCheckBox}"
+                            <CheckBox  Name="CheckBoxtemplate" Foreground="{DynamicResource MainContentBrush}" Template="{DynamicResource CustomCheckBox}"
                                   VerticalContentAlignment="Center" IsChecked="{Binding IsChecked}">
-                                <DockPanel>
-                                    <Image Visibility="{Binding ShowDot, Converter={StaticResource BoolToVisibility}}" Width="7" Height="7" Margin="0 0 7 0" Style="{DynamicResource DotStyle}" />
-                                    <TextBlock FontSize="16" Text="{Binding Content}" />
-                                </DockPanel>
+                                <StackPanel Orientation="Horizontal"  Background="Transparent">
+                                    <Image Visibility="{Binding ShowDot, Converter={StaticResource BoolToVisibility}}" Width="7" Height="7" Style="{DynamicResource DotStyle}" />
+                                    <TextBlock Margin="-30 0 0 0" Padding="40 15 20 15" FontSize="16" Text="{Binding Content}" />
+                                </StackPanel>
                             </CheckBox>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
