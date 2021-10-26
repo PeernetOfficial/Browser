@@ -15,7 +15,7 @@ namespace Peernet.Browser.Models.Domain.Common
 
         public HighLevelFileType Format { get; set; }
 
-        public int Size { get; set; }
+        public long Size { get; set; }
 
         public string Folder { get; set; }
 

@@ -5,6 +5,7 @@ using Peernet.Browser.Application.Contexts;
 using System.Threading.Tasks;
 using Peernet.Browser.Application.Services;
 
+
 namespace Peernet.Browser.Application.ViewModels
 {
     public class EditProfileViewModel : MvxViewModel
@@ -20,32 +21,31 @@ namespace Peernet.Browser.Application.ViewModels
             UserContext = userContext;
         }
 
-        public IMvxAsyncCommand CloseCommand => new MvxAsyncCommand(() =>
+        public IMvxAsyncCommand CloseCommand => new MvxAsyncCommand(async () =>
         {
             UserContext.ReloadContext();
 
             GlobalContext.IsMainWindowActive = true;
-            return mvxNavigationService.Close(this);
+            await mvxNavigationService.Close(this);
         });
 
-        public IMvxAsyncCommand RemovePhotoCommand => new MvxAsyncCommand(() =>
+        public IMvxAsyncCommand RemovePhotoCommand => new MvxAsyncCommand(async () =>
         {
-            mvxNavigationService.Navigate<DeleteAccountViewModel>();
-
-            return Task.CompletedTask;
+            await mvxNavigationService.Navigate<DeleteAccountViewModel>();
         });
 
-        public IMvxAsyncCommand SaveChangesCommand => new MvxAsyncCommand(() =>
+        public IMvxAsyncCommand SaveChangesCommand => new MvxAsyncCommand(async () =>
         {
             if (UserContext.HasUserChanged)
             {
-                profileService.UpdateUser(UserContext.User.Name, UserContext.User.Image);
+                await profileService.UpdateUser(UserContext.User.Name, UserContext.User.Image);
             }
 
             UserContext.ReloadContext();
 
             GlobalContext.IsMainWindowActive = true;
-            return mvxNavigationService.Close(this);
+            
+            await mvxNavigationService.Close(this);
         });
 
         public IUserContext UserContext { get; set; }

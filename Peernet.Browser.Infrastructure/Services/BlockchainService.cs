@@ -1,4 +1,5 @@
-﻿using Peernet.Browser.Application.Managers;
+﻿using System;
+using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Infrastructure.Clients;
 using Peernet.Browser.Models.Domain.Blockchain;
@@ -20,31 +21,50 @@ namespace Peernet.Browser.Infrastructure.Services
         }
 
         // todo: it should consume some presentation model
-        public async Task DeleteSelfFile(ApiFile apiFile)
+        public async Task DeleteFile(ApiFile apiFile)
         {
-            await blockchainClient.DeleteSelfFile(apiFile);
+            await blockchainClient.DeleteFile(apiFile);
         }
 
-        public async Task<ApiBlockchainHeader> GetSelfHeader()
+        public async Task UpdateFile(FileModel fileModel)
         {
-            return await blockchainClient.GetSelfHeader();
+            var apiFile = new ApiFile
+            {
+                Id = fileModel.Id,
+                Hash = fileModel.Hash,
+                MetaData = fileModel.Metadata,
+                NodeId = fileModel.NodeId,
+                Name = fileModel.FileName,
+                Description = fileModel.Description,
+                Folder = fileModel.Directory,
+                Date = fileModel.CreateDate,
+                Type = fileModel.Type,
+                Format = fileModel.Format
+            };
+
+            await blockchainClient.UpdateFile(apiFile);
         }
 
-        public async Task<List<ApiFile>> GetSelfList()
+        public async Task<ApiBlockchainHeader> GetHeader()
         {
-            return (await blockchainClient.GetSelfList()).Files;
+            return await blockchainClient.GetHeader();
         }
 
-        public async Task AddFiles(IEnumerable<SharedNewFileModel> files)
+        public async Task<List<ApiFile>> GetList()
+        {
+            return (await blockchainClient.GetList()).Files;
+        }
+
+        public async Task AddFiles(IEnumerable<FileModel> files)
         {
             var data = files
                 .Select(x =>
                     new ApiFile
                     {
-                        Description = x.Desc ?? string.Empty,
+                        Description = x.Description ?? string.Empty,
                         Name = x.FileName,
                         Folder = x.Directory,
-                        Date = System.DateTime.Now,
+                        Date = DateTime.Now,
                         Hash = x.Hash,
                         MetaData = new List<ApiFileMetadata>()
                     })

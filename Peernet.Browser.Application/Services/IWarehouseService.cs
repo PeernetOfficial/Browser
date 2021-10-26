@@ -6,6 +6,6 @@ namespace Peernet.Browser.Application.Services
 {
     public interface IWarehouseService
     {
-        Task<WarehouseResult> Create(SharedNewFileModel file);
+        Task<WarehouseResult> Create(FileModel file);
     }
 }

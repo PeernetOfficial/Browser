@@ -10,16 +10,17 @@ using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class ShareNewFileViewModel : MvxViewModel<string[]>, IModal
+    public class GenericFileViewModel : MvxViewModel<FileParameterModel>, IModal
     {
         private readonly IApplicationManager applicationManager;
         private readonly IMvxNavigationService mvxNavigationService;
         private readonly IBlockchainService blockchainService;
         private readonly IWarehouseService warehouseService;
         private readonly IUserContext userContext;
-        private SharedNewFileModel selected;
+        private FileModel selected;
+        private FileParameterModel viewModelParameter;
 
-        public ShareNewFileViewModel(IMvxNavigationService mvxNavigationService, IApplicationManager applicationManager, IBlockchainService blockchainService, IWarehouseService warehouseService, IUserContext userContext)
+        public GenericFileViewModel(IMvxNavigationService mvxNavigationService, IApplicationManager applicationManager, IBlockchainService blockchainService, IWarehouseService warehouseService, IUserContext userContext)
         {
             this.mvxNavigationService = mvxNavigationService;
             this.applicationManager = applicationManager;
@@ -47,7 +48,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IMvxAsyncCommand ConfirmCommand { get; }
 
-        public MvxObservableCollection<SharedNewFileModel> Files { get; } = new MvxObservableCollection<SharedNewFileModel>();
+        public MvxObservableCollection<FileModel> Files { get; } = new MvxObservableCollection<FileModel>();
 
         public string FilesLength => $"{Files.IndexOf(Selected) + 1}/{Files.Count}";
 
@@ -61,23 +62,25 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IMvxCommand DeleteFileCommand { get; }
 
-        public SharedNewFileModel Selected
+        public FileModel Selected
         {
             get => selected;
             private set => SetProperty(ref selected, value);
         }
 
-        public override void Prepare(string[] files)
+        public string Title => viewModelParameter.ModalTitle;
+
+        public override void Prepare(FileParameterModel parameter)
         {
-            foreach (var f in files)
+            viewModelParameter = parameter;
+            foreach (var f in parameter.FileModels)
             {
-                var toAdd = new SharedNewFileModel(f, userContext.User.Name);
-                if (Files.Any(x => x.FullPath == toAdd.FullPath))
+                if (Files.Any(x => x.FullPath == f.FullPath))
                 {
                     continue;
                 }
 
-                Files.Add(toAdd);
+                Files.Add(f);
             }
             Selected = Files.First();
         }
@@ -87,23 +90,18 @@ namespace Peernet.Browser.Application.ViewModels
             var files = applicationManager.OpenFileDialog();
             if (files.Length != 0)
             {
-                Prepare(files);
+                var parameter = new ShareFileViewModelParameter(warehouseService, blockchainService)
+                {
+                    FileModels = files.Select(f => new FileModel(f, userContext.User.Name)).ToArray()
+                };
+
+                Prepare(parameter);
             }
         }
 
         private async Task Confirm()
         {
-            // There should be validation added all the way within this method
-            foreach (var file in Files)
-            {
-                var warehouseEntry = await warehouseService.Create(file);
-                if (warehouseEntry.Status == 0)
-                {
-                    file.Hash = warehouseEntry.Hash;
-                }
-            }
-
-            await blockchainService.AddFiles(Files.Where(f => f.Hash != null));
+            await viewModelParameter.Confirm(Files.ToArray());
             Cancel();
         }
 

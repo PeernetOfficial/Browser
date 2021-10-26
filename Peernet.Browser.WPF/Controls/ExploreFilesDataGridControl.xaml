@@ -7,9 +7,9 @@
              mc:Ignorable="d"
              x:Name="ExploreFilesDataGrid">
     <Grid>
-        <DataGrid Style="{DynamicResource DataGridStyle}" ItemsSource="{Binding ActiveSearchResults}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False">
+        <DataGrid Style="{DynamicResource DataGridStyle}" ItemsSource="{Binding ActiveSearchResults, IsAsync=True}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTemplateColumn Header="NAME" SortMemberPath="File.Name" Width="*">
+                <DataGridTemplateColumn Header="NAME" SortMemberPath="File.Name" Width="*" HeaderStyle="{StaticResource ShiftedDataGridColumnHeaderStyle}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid Margin="20, 0, 0, 0">

@@ -8,12 +8,14 @@ namespace Peernet.Browser.Application.Services
 {
     public interface IBlockchainService
     {
-        Task AddFiles(IEnumerable<SharedNewFileModel> files);
+        Task AddFiles(IEnumerable<FileModel> files);
 
-        Task DeleteSelfFile(ApiFile apiFile);
+        Task DeleteFile(ApiFile apiFile);
 
-        Task<ApiBlockchainHeader> GetSelfHeader();
+        Task<ApiBlockchainHeader> GetHeader();
 
-        Task<List<ApiFile>> GetSelfList();
+        Task<List<ApiFile>> GetList();
+
+        Task UpdateFile(FileModel fileModel);
     }
 }

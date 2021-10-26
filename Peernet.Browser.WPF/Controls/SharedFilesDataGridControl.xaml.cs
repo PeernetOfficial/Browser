@@ -26,11 +26,6 @@ namespace Peernet.Browser.WPF.Controls
             GlobalContext.Notifications.Add(new Notification { Text = "Copied to clipboard!" });
         }
 
-        private void OpenEditableFilePreview_OnClick(object sender, RoutedEventArgs e)
-        {
-            ShowFilePreview(e, true);
-        }
-
         private void OpenFilePreview_OnClick(object sender, MouseButtonEventArgs e)
         {
             ShowFilePreview(e, false);

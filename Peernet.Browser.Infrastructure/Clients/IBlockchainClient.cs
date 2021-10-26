@@ -6,14 +6,16 @@ namespace Peernet.Browser.Infrastructure.Clients
 {
     internal interface IBlockchainClient
     {
-        Task<ApiBlockchainHeader> GetSelfHeader();
+        Task<ApiBlockchainHeader> GetHeader();
 
-        Task<ApiBlockchainAddFiles> GetSelfList();
+        Task<ApiBlockchainAddFiles> GetList();
 
-        Task DeleteSelfFile(ApiFile apiFile);
+        Task DeleteFile(ApiFile apiFile);
 
         Task<ApiBlockchainBlockStatus> AddFiles(ApiBlockchainAddFiles files);
 
         Task<ApiBlockchainBlock> ReadBlock(int block);
+
+        Task UpdateFile(ApiFile apiFile);
     }
 }
