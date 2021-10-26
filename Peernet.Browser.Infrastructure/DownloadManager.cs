@@ -6,6 +6,7 @@ using Peernet.Browser.Models.Domain.Download;
 using Peernet.Browser.Models.Presentation.Footer;
 using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace Peernet.Browser.Infrastructure
         public DownloadManager(ISettingsManager settingsManager)
         {
             this.settingsManager = settingsManager;
+            Directory.CreateDirectory(settingsManager.DownloadPath);
             downloadClient = new DownloadClient(settingsManager);
 
             // Fire on the thread-pool and forget
