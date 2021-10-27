@@ -16,8 +16,8 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="55" />
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Column="0" Width="233" HorizontalAlignment="Center" Margin="0,28,0,0">
@@ -111,7 +111,7 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <TextBox Margin="20,0,30,0"
+                            <TextBox Padding="20,0,30,0"
                                      Text="{Binding SearchInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                      VerticalAlignment="Center"
                                      TextBlock.FontSize="14"
@@ -136,7 +136,7 @@
                 </Border>
                 <controls:SharedFilesDataGridControl Height="648" Grid.Row="1" Grid.ColumnSpan="2" Margin="37,0,0,0" />
             </Grid>
-            <Separator Style="{StaticResource StandardSeparatorStyle}" Grid.Row="1" Grid.ColumnSpan="3" />
+            <Separator Style="{StaticResource StandardSeparatorStyle}" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Top" />
         </Grid>
     </Border>
 </views:MvxWpfView>

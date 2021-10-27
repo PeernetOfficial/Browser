@@ -16,7 +16,8 @@
         <StackPanel Background="{DynamicResource ModalBackgroundBrush}">
             <TextBlock Foreground="{DynamicResource MainTextBrush}" HorizontalAlignment="Center" FontWeight="Medium" FontSize="18" Margin="0, 60, 0, 0">Do you want to delete your account?</TextBlock>
             <TextBlock Foreground="{DynamicResource MainTextBrush}" HorizontalAlignment="Center" Margin="0, 28, 0, 0">This action is permanent and irreversible.</TextBlock>
-            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0, 47, 0, 0">
+            <CheckBox Content="Yes, I understand that this action is permanent and irreversible and I would like to proceed" IsChecked="{Binding IsPolicyAccepted}" HorizontalAlignment="Center" Foreground="{DynamicResource MainTextBrush}" Margin="0, 28, 0, 0" />
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0, 27, 0, 0">
                 <Button HorizontalAlignment="Center" FontSize="14" Margin="0, 28, 40, 0" Style="{DynamicResource PrimaryButton}" Content="Cancel" Command="{Binding CloseCommand}" />
                 <Button HorizontalAlignment="Center" FontSize="14" Margin="0, 28, 0, 0" Style="{DynamicResource AcceptButton}" Content="Delete account" Command="{Binding DeleteAccountCommand}" Width="181" Height="43"/>
             </StackPanel>

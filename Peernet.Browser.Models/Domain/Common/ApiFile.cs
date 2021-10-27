@@ -17,7 +17,7 @@ namespace Peernet.Browser.Models.Domain.Common
 
         public long Size { get; set; }
 
-        public string Folder { get; set; }
+        public string Folder { get; set; } = "";
 
         public string Name { get; set; }
 

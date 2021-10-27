@@ -10,9 +10,9 @@
             <Button Style="{DynamicResource HomeNavBarButtonStyle}" Command="{Binding NavigateHomeCommand}" ToolTip="Home" />
             <Button Style="{DynamicResource ExploreNavBarButtonStyle}" Command="{Binding NavigateExploreCommand}" ToolTip="Explore" />
             <Button Style="{DynamicResource DirectoryNavBarButtonStyle}" Command="{Binding NavigateDirectoryCommand}" ToolTip="Directory" />
-            <Button x:Name="ProfileButton" Style="{DynamicResource UserNavBarButtonStyle}" Command="{Binding OpenCloseProfileMenuCommand}" ToolTip="User" MouseEnter="ProfileButton_OnMouseEnter" MouseLeave="ProfileButton_OnMouseLeave" />
+            <Button x:Name="ProfileButton" Style="{DynamicResource UserNavBarButtonStyle}" ToolTip="User" MouseEnter="ProfileButton_OnMouseEnter" MouseLeave="ProfileButton_OnMouseLeave" />
         </StackPanel>
-        <Popup x:Name="ProfileMenu" StaysOpen="True" Placement="MousePoint" VerticalOffset="-5" HorizontalOffset="-5" MouseLeave="ProfileMenu_OnMouseLeave" HorizontalAlignment="Right">
+        <Popup x:Name="ProfileMenu" StaysOpen="True" Placement="Right" VerticalOffset="89" HorizontalOffset="-215" MouseLeave="ProfileMenu_OnMouseLeave" HorizontalAlignment="Right" PlacementTarget="{Binding ElementName=Main}">
             <Border x:Name="PopupBorder" BorderBrush="White" BorderThickness="0" Width="212">
                 <Border.Background>
                     <SolidColorBrush Color="{DynamicResource ModalBackground}" />
