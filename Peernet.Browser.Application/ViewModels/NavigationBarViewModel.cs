@@ -18,11 +18,6 @@ namespace Peernet.Browser.Application.ViewModels
             NavigateExploreCommand = new MvxCommand(() => Navigate<ExploreViewModel>());
             NavigateHomeCommand = new MvxCommand(() => Navigate<HomeViewModel>(false));
             NavigateDirectoryCommand = new MvxCommand(() => Navigate<DirectoryViewModel>());
-            OpenCloseProfileMenuCommand = new MvxAsyncCommand(() =>
-            {
-                GlobalContext.IsProfileMenuVisible ^= true;
-                return Task.CompletedTask;
-            });
 
             EditProfileCommand = new MvxAsyncCommand(() =>
             {
@@ -53,8 +48,6 @@ namespace Peernet.Browser.Application.ViewModels
         public IMvxCommand NavigateExploreCommand { get; }
 
         public IMvxCommand NavigateHomeCommand { get; }
-
-        public IMvxAsyncCommand OpenCloseProfileMenuCommand { get; }
 
         public IMvxAsyncCommand EditProfileCommand { get; }
 
