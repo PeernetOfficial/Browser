@@ -25,6 +25,14 @@
             <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ViewBackgroundBrush}">loading....</TextBlock>
         </Border>
 
+        <Border Visibility="Collapsed" Margin="0 120 230 0" Name="MapPanel" Grid.RowSpan="5"
+                HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent"
+                BorderThickness="1" CornerRadius="4" Panel.ZIndex="6"
+                BorderBrush="{DynamicResource LightGray3Brush}">
+            <Canvas Width="318" Height="231" Style="{DynamicResource MapCanvas}" />
+            <!--https://stackoverflow.com/questions/22324359/add-n-rectangles-to-canvas-with-mvvm-in-wpf-->
+        </Border>
+
         <ItemsControl Margin="50 0 0 0" Grid.Row="0" VerticalContentAlignment="Center" ItemsSource="{Binding FilterIconModels}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -82,7 +90,7 @@
             <Button Command="{Binding ClearCommand}" FontSize="14" HorizontalAlignment="Right" Style="{DynamicResource LinkButton}">Clear all filters</Button>
         </DockPanel>
 
-        <DataGrid  Sorting="DataGrid_Sorting" Padding="15 10 15 0" HorizontalAlignment="Stretch" Grid.Row="3"
+        <DataGrid Name="FileGrid" Sorting="DataGrid_Sorting" Padding="15 10 15 0" HorizontalAlignment="Stretch" Grid.Row="3"
                   Style="{DynamicResource DataGridStyle}" SelectionMode="Single" ItemsSource="{Binding TableResult}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="" SortMemberPath="First">
@@ -123,12 +131,12 @@
                 <DataGridTemplateColumn Visibility="{Binding DataContext.ShowColumnsShared, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}"  Width="100" Header="SHARED BY" SortMemberPath="SharedBy">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Grid>
+                            <Grid Background="Transparent" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="{Binding SharedBy, StringFormat={}{0} Peers}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                <TextBlock  Grid.Column="0" Text="{Binding SharedBy, StringFormat={}{0} Peers}" VerticalAlignment="Center" HorizontalAlignment="Left" />
                                 <Image Visibility="{Binding FlameIsVisible, Converter={StaticResource BoolToVisibility}}" Height="20" Grid.Column="1" Source="{DynamicResource FlameDrawingImage}" />
                             </Grid>
                         </DataTemplate>
