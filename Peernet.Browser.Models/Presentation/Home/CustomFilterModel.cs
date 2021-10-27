@@ -12,7 +12,7 @@ namespace Peernet.Browser.Models.Presentation.Home
         protected CustomFilterModel(string title, bool showDot = false, bool isRadio = true)
         {
             this.isRadio = isRadio;
-            Title = title.ToUpper();
+            Title = title;
             Items.AddRange(GetElements()
                 .Select(x => new CustomCheckBoxModel
                 {

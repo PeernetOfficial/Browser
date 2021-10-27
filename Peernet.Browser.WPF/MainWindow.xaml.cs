@@ -43,15 +43,5 @@ namespace Peernet.Browser.WPF
             }
             base.OnContentChanged(oldContent, newContent);
         }
-
-        private void DismissModals_OnClick(object sender, MouseButtonEventArgs e)
-        {
-            var mouseClickTarget = Mouse.DirectlyOver as FrameworkElement;
-            var clickedElement = mouseClickTarget?.Parent as FrameworkElement;
-            if (clickedElement is not ProfileMenuControl)
-            {
-                GlobalContext.IsProfileMenuVisible = false;
-            }
-        }
     }
 }

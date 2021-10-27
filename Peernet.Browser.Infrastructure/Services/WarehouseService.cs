@@ -17,7 +17,7 @@ namespace Peernet.Browser.Infrastructure.Services
             warehouseClient = new WarehouseClient(settingsManager);
         }
 
-        public async Task<WarehouseResult> Create(SharedNewFileModel file)
+        public async Task<WarehouseResult> Create(FileModel file)
         {
             var content = await File.ReadAllBytesAsync(file.FullPath, default);
             

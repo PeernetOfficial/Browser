@@ -11,8 +11,8 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="55" />
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Style="{StaticResource Active}" FontWeight="Medium" FontSize="32" Text="Explore" Margin="80, 0, 10, 0" />
             <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="80, 24, 10, 31">
@@ -46,7 +46,7 @@
                                         <Image HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{StaticResource ExploreCategoriesImageStyle}" />
                                     </Border>
                                     <Border CornerRadius="0, 0, 4, 4" Width="142" Height="73" VerticalAlignment="Bottom">
-                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18">
                                             <TextBlock.Style>
                                                 <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource ActiveSelectable}">
                                                     <Setter Property="FontWeight" Value="Medium" />
@@ -76,8 +76,8 @@
                 </ItemsControl>
             </StackPanel>
             <Separator Style="{StaticResource StandardSeparatorStyle}" Grid.Row="2" />
-            <controls:ExploreFilesDataGridControl Height="457" Grid.Row="3" VerticalAlignment="Bottom" Margin="80, 20, 10, 0" />
-            <Separator Style="{StaticResource StandardSeparatorStyle}" Grid.Row="4" />
+            <controls:ExploreFilesDataGridControl Grid.Row="3" Padding="20" />
+            <Separator Style="{StaticResource StandardSeparatorStyle}" Grid.Row="4" VerticalAlignment="Top"/>
         </Grid>
     </Border>
 </views:MvxWpfView>

@@ -39,7 +39,7 @@ namespace Peernet.Browser.Infrastructure.Services
             //Make GET of result
             var reqMod = Map<SearchGetRequest>(model);
             var result = await searchClient.GetSearchResult(reqMod);
-            while (result.IsNotDone)
+            while (!result.IsTerminated)
             {
                 await Task.Delay(500);
                 result = await searchClient.GetSearchResult(reqMod);

@@ -6,9 +6,9 @@
                   xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls"
                   Height="900" Width="1441" WindowStartupLocation="CenterScreen"
                   Background="{DynamicResource MainBackgroundBrush}"
-                  MouseDown="DismissModals_OnClick">
+                  x:Name="Main">
     <WindowChrome.WindowChrome>
-        <WindowChrome ResizeBorderThickness="5" GlassFrameThickness="0" CaptionHeight="0" CornerRadius="0"/>
+        <WindowChrome ResizeBorderThickness="5" GlassFrameThickness="0" CaptionHeight="0" CornerRadius="0" />
     </WindowChrome.WindowChrome>
     <views:MvxWindow.ContentTemplate>
         <DataTemplate>
@@ -18,7 +18,8 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <Border Panel.ZIndex="3" Grid.RowSpan="2" BorderThickness="0" BorderBrush="Transparent" CornerRadius="{StaticResource Main2Radius}">
+                <Border Panel.ZIndex="3" Grid.RowSpan="2" BorderThickness="0" BorderBrush="Transparent"
+                        CornerRadius="{StaticResource Main2Radius}">
                     <Border.Style>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="Background">

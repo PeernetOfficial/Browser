@@ -19,17 +19,28 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IApplicationManager applicationManager;
         private readonly IMvxNavigationService navigationService;
         private readonly ISocketClient socketClient;
+        private readonly IWarehouseService warehouseService;
+        private readonly IBlockchainService blockchainService;
         private string commandLineInput;
         private string commandLineOutput;
         private ConnectionStatus connectionStatus = ConnectionStatus.Offline;
         private string peers;
 
-        public FooterViewModel(IApiService apiService, ISocketClient socketClient, IMvxNavigationService navigationService, IApplicationManager applicationManager, IDownloadManager downloadManager)
+        public FooterViewModel(
+            IApiService apiService,
+            ISocketClient socketClient,
+            IMvxNavigationService navigationService,
+            IApplicationManager applicationManager,
+            IDownloadManager downloadManager,
+            IWarehouseService warehouseService,
+            IBlockchainService blockchainService)
         {
             this.apiService = apiService;
             this.socketClient = socketClient;
             this.navigationService = navigationService;
             this.applicationManager = applicationManager;
+            this.warehouseService = warehouseService;
+            this.blockchainService = blockchainService;
             DownloadManager = downloadManager;
 
             UploadCommand = new MvxCommand(UploadFiles);
@@ -131,12 +142,16 @@ namespace Peernet.Browser.Application.ViewModels
 
         private void UploadFiles()
         {
-            var f = applicationManager.OpenFileDialog();
-            if (f.Any())
+            var f = applicationManager.OpenFileDialog().Select(f => new FileModel(f)).ToArray();
+            if (f.Length != 0)
             {
+                var parameter = new ShareFileViewModelParameter(warehouseService, blockchainService)
+                {
+                    FileModels = f
+                };
+
                 GlobalContext.IsMainWindowActive = false;
-                GlobalContext.IsProfileMenuVisible = false;
-                navigationService.Navigate<ShareNewFileViewModel, string[]>(f);
+                navigationService.Navigate<GenericFileViewModel, ShareFileViewModelParameter>(parameter);
             }
         }
     }

@@ -10,8 +10,47 @@
             <Button Style="{DynamicResource HomeNavBarButtonStyle}" Command="{Binding NavigateHomeCommand}" ToolTip="Home" />
             <Button Style="{DynamicResource ExploreNavBarButtonStyle}" Command="{Binding NavigateExploreCommand}" ToolTip="Explore" />
             <Button Style="{DynamicResource DirectoryNavBarButtonStyle}" Command="{Binding NavigateDirectoryCommand}" ToolTip="Directory" />
-            <Button Style="{DynamicResource UserNavBarButtonStyle}" Command="{Binding OpenCloseProfileMenuCommand}" ToolTip="User" />
+            <Button x:Name="ProfileButton" Style="{DynamicResource UserNavBarButtonStyle}" ToolTip="User" MouseEnter="ProfileButton_OnMouseEnter" MouseLeave="ProfileButton_OnMouseLeave" />
         </StackPanel>
-        <domaincontrols:ProfileMenuControl HorizontalAlignment="Right" Visibility="{Binding Path=(contexts:GlobalContext.IsProfileMenuVisible), Converter={StaticResource BoolToVisibility}}" />
+        <Popup x:Name="ProfileMenu" StaysOpen="True" Placement="Right" VerticalOffset="89" HorizontalOffset="-215" MouseLeave="ProfileMenu_OnMouseLeave" HorizontalAlignment="Right" PlacementTarget="{Binding ElementName=Main}">
+            <Border x:Name="PopupBorder" BorderBrush="White" BorderThickness="0" Width="212">
+                <Border.Background>
+                    <SolidColorBrush Color="{DynamicResource ModalBackground}" />
+                </Border.Background>
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="3" BlurRadius="16" Color="Black" Opacity="0.14" />
+                </Border.Effect>
+                <StackPanel>
+                    <Grid Margin="17,18,0,17">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Width="47" Height="47" Command="{Binding EditProfileCommand}" Style="{DynamicResource ButtonBaseStyle}" Margin="0" Padding="0">
+                            <Button.Background>
+                                <ImageBrush ImageSource="{Binding UserContext.User.Image}" />
+                            </Button.Background>
+                        </Button>
+                        <StackPanel Grid.Column="1" Margin="8,0,0,0" Orientation="Horizontal">
+                            <TextBlock Foreground="{DynamicResource MainContentBrush}" FontFamily="Inter" FontSize="14" FontWeight="Medium" Text="{Binding UserContext.User.Name}" Cursor="Hand">
+                                <TextBlock.InputBindings>
+                                    <MouseBinding MouseAction="LeftClick" Command="{Binding EditProfileCommand}" />
+                                </TextBlock.InputBindings>
+                            </TextBlock>
+                            <Button Style="{StaticResource ButtonBaseStyle}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="16" Height="16" Margin="31,0,0,0" Command="{Binding EditProfileCommand}">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="{DynamicResource EditDrawingImage}" />
+                                </Button.Background>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                    <Separator Style="{StaticResource StandardSeparatorStyle}" Width="179" />
+                    <Button Command="{Binding NavigateAboutCommand}" Content="About" Style="{StaticResource NavbarMenuButtonStyle}" />
+                    <Button Content="Settings" Style="{StaticResource NavbarMenuButtonStyle}" />
+                    <Separator Style="{StaticResource StandardSeparatorStyle}" Width="179" />
+                    <domaincontrols:ToggleSwitch Margin="17, 26, 0, 21" />
+                </StackPanel>
+            </Border>
+        </Popup>
     </StackPanel>
 </controls:MvxWpfControl>
