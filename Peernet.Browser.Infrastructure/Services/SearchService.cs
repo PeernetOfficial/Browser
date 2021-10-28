@@ -25,7 +25,6 @@ namespace Peernet.Browser.Infrastructure.Services
         public async Task<SearchResultModel> Search(SearchFilterResultModel model)
         {
             var res = new SearchResultModel { Filters = model };
-            //Initialize search - POST
             if (model.IsNewSearch)
             {
                 var response = await searchClient.SubmitSearch(Map<SearchRequest>(model));
@@ -36,7 +35,6 @@ namespace Peernet.Browser.Infrastructure.Services
                 model.Uuid = response.Id;
                 results.Add(response.Id, null);
             }
-            //Make GET of result
             var reqMod = Map<SearchGetRequest>(model);
             var result = await searchClient.GetSearchResult(reqMod);
             while (!result.IsTerminated)
@@ -47,12 +45,13 @@ namespace Peernet.Browser.Infrastructure.Services
 
             results[model.Uuid] = result;
             res.Id = model.Uuid;
-            //Fill res (return) object
             res.Stats = GetStats(result.Statistic);
-            res.Rows = result.Files
-                .Where(x => x != null)
-                .Select(x => new SearchResultRowModel(x))
-                .ToArray();
+            if (!result.Files.IsNullOrEmpty())
+            {
+                res.Rows = result.Files
+                    .Select(x => new SearchResultRowModel(x))
+                    .ToArray();
+            }
             return res;
         }
 
