@@ -17,6 +17,8 @@ namespace Peernet.Browser.Models.Presentation.Home
 
         public HealthType EnumerationMember { get; }
 
+        public bool IsCompleted { get; }
+
         public string Name { get; }
         public string Date { get; }
         public string Size { get; }

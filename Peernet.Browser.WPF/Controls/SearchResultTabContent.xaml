@@ -63,8 +63,8 @@
         </Border>
 
         <DockPanel Margin="0 0 50 0" LastChildFill="False" Grid.Row="0"  HorizontalAlignment="Right">
-            <local:FilterIconControl Padding="0 10 0 10" Height="41"  DataContext="{Binding ColumnsIconModel}" />
-            <local:FilterIconControl Padding="0 10 0 10" Height="41"  DataContext="{Binding FiltersIconModel}" />
+            <local:FilterIconControl Padding="10" Height="41"  DataContext="{Binding ColumnsIconModel}" />
+            <local:FilterIconControl Padding="10" Height="41"  DataContext="{Binding FiltersIconModel}" />
         </DockPanel>
 
         <Border Margin="-30 3 -30 0" Grid.Row="1" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource LightGray2Brush}" />
@@ -131,12 +131,12 @@
                 <DataGridTemplateColumn Visibility="{Binding DataContext.ShowColumnsShared, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}"  Width="100" Header="SHARED BY" SortMemberPath="SharedBy">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Grid Background="Transparent" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave">
+                            <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock  Grid.Column="0" Text="{Binding SharedBy, StringFormat={}{0} Peers}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                <TextBlock Padding="0 5 20 5" Background="Transparent" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave" Grid.Column="0" Text="{Binding SharedBy, StringFormat={}{0} Peers}" VerticalAlignment="Center" HorizontalAlignment="Left" />
                                 <Image Visibility="{Binding FlameIsVisible, Converter={StaticResource BoolToVisibility}}" Height="20" Grid.Column="1" Source="{DynamicResource FlameDrawingImage}" />
                             </Grid>
                         </DataTemplate>
