@@ -50,6 +50,7 @@ namespace Peernet.Browser.Infrastructure.Services
             //Fill res (return) object
             res.Stats = GetStats(result.Statistic);
             res.Rows = result.Files
+                .Where(x => x != null)
                 .Select(x => new SearchResultRowModel(x))
                 .ToArray();
             return res;
