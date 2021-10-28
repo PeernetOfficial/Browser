@@ -6,7 +6,7 @@ namespace Peernet.Browser.Models.Presentation.Home
     {
         public SearchResultRowModel(ApiFile source)
         {
-            Source = source;
+            File = source;
             EnumerationMember = (HealthType)3;
             Name = source.Name;
             Date = source.Date.ToString("dd.MM.yyyy");
@@ -23,7 +23,7 @@ namespace Peernet.Browser.Models.Presentation.Home
         public int SharedBy { get; }
         public bool FlameIsVisible { get; }
 
-        public ApiFile Source { get; }
+        public ApiFile File { get; }
 
         public static DataGridSortingNameEnum Parse(string name)
         {
