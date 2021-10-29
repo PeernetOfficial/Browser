@@ -50,6 +50,8 @@ namespace Peernet.Browser.Application.ViewModels
 
             ColumnsIconModel = new IconModel(FiltersType.Columns, true, ShowColumnSelection);
             FiltersIconModel = new IconModel(FiltersType.Filters, true, OpenFilters);
+
+            Map.Fill(new[] { new GeoPoint { Lng = 19, Lat = 49 } });
             InitIcons();
             Task.Run(Refresh);
         }
@@ -67,6 +69,7 @@ namespace Peernet.Browser.Application.ViewModels
         public IMvxAsyncCommand<SearchFiltersType> RemoveFilterCommand { get; }
         public IMvxAsyncCommand<SearchResultRowModel> DownloadCommand { get; }
         public MvxObservableCollection<IconModel> FilterIconModels { get; } = new MvxObservableCollection<IconModel>();
+        public MapModel Map { get; } = new MapModel { Width = 318, Height = 231 };
         public FiltersModel Filters { get; }
         public IconModel FiltersIconModel { get; }
 

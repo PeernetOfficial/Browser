@@ -29,8 +29,25 @@
                 HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent"
                 BorderThickness="1" CornerRadius="4" Panel.ZIndex="6"
                 BorderBrush="{DynamicResource LightGray3Brush}">
-            <Canvas Width="318" Height="231" Style="{DynamicResource MapCanvas}" />
             <!--https://stackoverflow.com/questions/22324359/add-n-rectangles-to-canvas-with-mvvm-in-wpf-->
+            <ItemsControl ItemsSource="{Binding Map.Points}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas Width="{Binding Map.Width}" Height="{Binding Map.Height}" Style="{DynamicResource MapCanvas}" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemContainerStyle>
+                    <Style TargetType="ContentPresenter">
+                        <Setter Property="Canvas.Left" Value="{Binding X}" />
+                        <Setter Property="Canvas.Bottom" Value="{Binding Y}" />
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Ellipse Width="{Binding Width}" Height="{Binding Height}" Fill="#FFF629" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </Border>
 
         <ItemsControl Margin="50 0 0 0" Grid.Row="0" VerticalContentAlignment="Center" ItemsSource="{Binding FilterIconModels, IsAsync=True}">
