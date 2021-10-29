@@ -8,6 +8,7 @@ namespace Peernet.Browser.WPF.Controls
     /// </summary>
     public partial class NavigationBarControl : MvxWpfControl
     {
+        private bool GotClicked;
 
         public NavigationBarControl() => InitializeComponent();
 
@@ -18,7 +19,7 @@ namespace Peernet.Browser.WPF.Controls
 
         private void ProfileButton_OnMouseLeave(object sender, MouseEventArgs e)
         {
-            if (!ProfileMenu.IsMouseOver)
+            if (!ProfileMenu.IsMouseOver && Mouse.DirectlyOver != null)
             {
                 ProfileMenu.IsOpen = false;
             }
@@ -26,11 +27,23 @@ namespace Peernet.Browser.WPF.Controls
 
         private void ProfileMenu_OnMouseLeave(object sender, MouseEventArgs e)
         {
-            var x = Mouse.DirectlyOver;
-            if (!ProfileButton.IsMouseOver && Mouse.DirectlyOver != null)
+            if (GotClicked && Mouse.DirectlyOver == null)
+            {
+                GotClicked = false;
+                return;
+            }
+
+            if (!ProfileButton.IsMouseOver)
             {
                 ProfileMenu.IsOpen = false;
             }
+
+            GotClicked = false;
+        }
+
+        private void ProfileMenu_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            GotClicked = true;
         }
     }
 }

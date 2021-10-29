@@ -28,12 +28,10 @@ namespace Peernet.Browser.Application.ViewModels
                 return Task.CompletedTask;
             });
 
-            NavigateAboutCommand = new MvxAsyncCommand(() =>
+            NavigateAboutCommand = new MvxAsyncCommand(async () =>
             {
                 GlobalContext.IsProfileMenuVisible = false;
-                navigationService.Navigate<AboutViewModel>();
-
-                return Task.CompletedTask;
+                await navigationService.Navigate<AboutViewModel>();
             });
         }
 

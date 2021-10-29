@@ -104,10 +104,11 @@
     </Style>
 
     <Style x:Key="PrimaryButton" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"></Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <TextBlock Height="Auto" TextAlignment="Center" VerticalAlignment="Center" Cursor="Hand" Foreground="{DynamicResource MainContentBrush}">
+                    <TextBlock Height="Auto" TextAlignment="Center" VerticalAlignment="Center" Cursor="Hand" Foreground="{DynamicResource MainContentBrush}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
                         <ContentPresenter />
                     </TextBlock>
                 </ControlTemplate>

@@ -6,7 +6,12 @@
              mc:Ignorable="d"
              x:Name="SharedFilesDataGrid">
     <Grid>
-        <DataGrid Style="{DynamicResource DataGridStyle}" ItemsSource="{Binding ActiveSearchResults, IsAsync=True}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False" RowHeight="35">
+        <DataGrid Style="{DynamicResource DataGridStyle}" ItemsSource="{Binding ActiveSearchResults, IsAsync=True}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False">
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell" BasedOn="{StaticResource BaseDataGridCellStyle}">
+                    <Setter Property="Height" Value="35" />
+                </Style>
+            </DataGrid.CellStyle>
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="NAME" SortMemberPath="Name" Width="*" HeaderStyle="{StaticResource ShiftedDataGridColumnHeaderStyle}">
                     <DataGridTemplateColumn.CellTemplate>
@@ -16,7 +21,7 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Image Width="13.71" Height="20" Grid.Column="0" Source="{DynamicResource FileImageDrawingImage}" />
+                                <Image Width="13.71" Height="20" Grid.Column="0" Style="{StaticResource DownloadItemImageStyle}" />
                                 <TextBlock Grid.Column="1" Text="{Binding Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" PreviewMouseLeftButtonDown="OpenFilePreview_OnClick" Style="{StaticResource Underlined}" />
                             </Grid>
                         </DataTemplate>
@@ -45,17 +50,17 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Button Grid.Column="0" Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.EditCommand, ElementName=SharedFilesDataGrid}" CommandParameter="{Binding}">
+                                <Button Grid.Column="0" Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.EditCommand, ElementName=SharedFilesDataGrid}" CommandParameter="{Binding}" ToolTip="Edit">
                                     <Button.Background>
                                         <ImageBrush ImageSource="{DynamicResource EditDrawingImage}" />
                                     </Button.Background>
                                 </Button>
-                                <Button Grid.Column="1" Style="{StaticResource DataGridActionButton}" Click="CopyLinkToClipboard_OnClick">
+                                <Button Grid.Column="1" Style="{StaticResource DataGridActionButton}" Click="CopyLinkToClipboard_OnClick" ToolTip="Share">
                                     <Button.Background>
                                         <ImageBrush ImageSource="{DynamicResource ShareDrawingImage}" />
                                     </Button.Background>
                                 </Button>
-                                <Button Grid.Column="2" Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.DeleteCommand, ElementName=SharedFilesDataGrid}" CommandParameter="{Binding}">
+                                <Button Grid.Column="2" Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.DeleteCommand, ElementName=SharedFilesDataGrid}" CommandParameter="{Binding}" ToolTip="Delete">
                                     <Button.Background>
                                         <ImageBrush ImageSource="{DynamicResource BinDrawingImage}" />
                                     </Button.Background>
