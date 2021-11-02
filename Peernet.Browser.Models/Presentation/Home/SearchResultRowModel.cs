@@ -13,6 +13,7 @@ namespace Peernet.Browser.Models.Presentation.Home
             Size = $"{source.Size} MB";
             SharedBy = source.SharedByCount;
             //FlameIsVisible = source.SharedByCount > 15;
+            Points = new GeoPoint[0];
         }
 
         public HealthType EnumerationMember { get; }
@@ -24,6 +25,8 @@ namespace Peernet.Browser.Models.Presentation.Home
         public string Size { get; }
         public int SharedBy { get; }
         public bool FlameIsVisible { get; }
+
+        public GeoPoint[] Points { get; }
 
         public ApiFile File { get; }
 

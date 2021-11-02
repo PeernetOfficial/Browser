@@ -20,8 +20,8 @@ namespace Peernet.Browser.Models.Presentation.Home
 
         private MapPoint Map(GeoPoint point)
         {
-            var x = (point.Lng + 180) * (Width / 360);
-            var y = (point.Lat + 180) * (Height / 360);
+            var x = (point.Lng + 180) * ((Width - 30) / 360);
+            var y = (point.Lat + 180) * ((Height - 30) / 360);
             return new MapPoint
             {
                 Height = 10,
