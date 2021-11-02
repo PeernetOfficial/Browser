@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Peernet.Browser.Application.Clients;
 using Peernet.Browser.Application.Services;
+using Peernet.Browser.Models.Domain.Download;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -46,6 +47,7 @@ namespace Peernet.Browser.Application.ViewModels
 
             UploadCommand = new MvxCommand(UploadFiles);
             SendToPeernetConsole = new MvxAsyncCommand(SendToPeernetMethod);
+            Task.Run(UpdateStatuses);
         }
 
         public string CommandLineInput
@@ -159,6 +161,16 @@ namespace Peernet.Browser.Application.ViewModels
 
                 GlobalContext.IsMainWindowActive = false;
                 navigationService.Navigate<GenericFileViewModel, ShareFileViewModelParameter>(parameter);
+            }
+        }
+
+        private async Task UpdateStatuses()
+        {
+            while (true)
+            {
+                var status = await apiService.GetStatus();
+                Peers = status.CountPeerList.ToString();
+                await Task.Delay(3000);
             }
         }
     }
