@@ -2,7 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Peernet.Browser.WPF.Controls"
-             x:Name="SharedResultTab">
+             Name="SharedResultTab">
     <UserControl.Resources>
         <ResourceDictionary>
             <FrameworkElement x:Key="ProxyElement" DataContext="{Binding}" />
@@ -19,13 +19,32 @@
         </Grid.RowDefinitions>
         <ContentControl Content="{StaticResource ProxyElement}" Visibility="Collapsed" />
 
-        <Border Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibility}}"
-                VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Panel.ZIndex="5"
-                Grid.RowSpan="5" Background="{DynamicResource MainTextBrush}" Opacity="0.2">
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ViewBackgroundBrush}">loading....</TextBlock>
+        <Border Visibility="Collapsed" Margin="0 120 230 0" Name="MapPanel" Grid.RowSpan="5"
+                HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent"
+                BorderThickness="1" CornerRadius="4" Panel.ZIndex="6"
+                BorderBrush="{DynamicResource LightGray3Brush}">
+            <!--https://stackoverflow.com/questions/22324359/add-n-rectangles-to-canvas-with-mvvm-in-wpf-->
+            <ItemsControl ItemsSource="{Binding Map.Points}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas Width="{Binding Map.Width}" Height="{Binding Map.Height}" Style="{DynamicResource MapCanvas}" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemContainerStyle>
+                    <Style TargetType="ContentPresenter">
+                        <Setter Property="Canvas.Left" Value="{Binding X}" />
+                        <Setter Property="Canvas.Bottom" Value="{Binding Y}" />
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Ellipse Width="{Binding Width}" Height="{Binding Height}" Fill="#FFF629" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </Border>
 
-        <ItemsControl Margin="50 0 0 0" Grid.Row="0" VerticalContentAlignment="Center" ItemsSource="{Binding FilterIconModels}">
+        <ItemsControl Margin="50 0 0 0" Grid.Row="0" VerticalContentAlignment="Center" ItemsSource="{Binding FilterIconModels, IsAsync=True}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal" />
@@ -33,7 +52,7 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <local:FilterIconControl Padding="10" Height="41" DataContext="{Binding}" />
+                    <local:FilterIconControl Padding="10" Margin="0 0 15 0" Height="41" DataContext="{Binding}" />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
@@ -55,8 +74,8 @@
         </Border>
 
         <DockPanel Margin="0 0 50 0" LastChildFill="False" Grid.Row="0"  HorizontalAlignment="Right">
-            <local:FilterIconControl Padding="0 10 0 10" Height="41"  DataContext="{Binding ColumnsIconModel}" />
-            <local:FilterIconControl Padding="0 10 0 10" Height="41"  DataContext="{Binding FiltersIconModel}" />
+            <local:FilterIconControl Padding="10" Height="41"  DataContext="{Binding ColumnsIconModel}" />
+            <local:FilterIconControl Padding="10" Height="41"  DataContext="{Binding FiltersIconModel}" />
         </DockPanel>
 
         <Border Margin="-30 3 -30 0" Grid.Row="1" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource LightGray2Brush}" />
@@ -82,8 +101,9 @@
             <Button Command="{Binding ClearCommand}" FontSize="14" HorizontalAlignment="Right" Style="{DynamicResource LinkButton}">Clear all filters</Button>
         </DockPanel>
 
-        <DataGrid  Sorting="DataGrid_Sorting" Padding="15 10 15 0" Grid.Row="3"
-                  Style="{DynamicResource DataGridStyle}" ItemsSource="{Binding TableResult, IsAsync=True}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False">
+        <DataGrid Name="FileGrid" Sorting="DataGrid_Sorting" Padding="55 10 15 0" HorizontalAlignment="Stretch" Grid.Row="3"
+                  Style="{DynamicResource DataGridStyle}" SelectionMode="Single" ScrollViewer.ScrollChanged="FileGrid_ScrollChanged"
+                  ItemsSource="{Binding TableResult, IsAsync=True}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="" SortMemberPath="First">
                     <DataGridTemplateColumn.CellTemplate>
@@ -95,12 +115,12 @@
                 <DataGridTemplateColumn Width="*" Header="NAME" SortMemberPath="Name">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Grid>
+                            <Grid Margin="-40 0 0 0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Image Width="13.71" Height="20" Grid.Column="0" Source="{DynamicResource FileImageDrawingImage}" />
+                                <Image Width="13.71" Height="20" Grid.Column="0" Style="{DynamicResource DownloadItemImageStyle}" />
                                 <TextBlock Grid.Column="1" Text="{Binding Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" />
                             </Grid>
                         </DataTemplate>
@@ -128,7 +148,7 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="{Binding SharedBy, StringFormat={}{0} Peers}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                <TextBlock Padding="0 5 20 5" Background="Transparent" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave" Grid.Column="0" Text="{Binding SharedBy, StringFormat={}{0} Peers}" VerticalAlignment="Center" HorizontalAlignment="Left" />
                                 <Image Visibility="{Binding FlameIsVisible, Converter={StaticResource BoolToVisibility}}" Height="20" Grid.Column="1" Source="{DynamicResource FlameDrawingImage}" />
                             </Grid>
                         </DataTemplate>
@@ -147,7 +167,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-
+        <TextBlock Foreground="{DynamicResource MainContentBrush}"  Visibility="{Binding Loader.IsLoading, Converter={StaticResource BoolToVisibility}}" Margin="60 40" Grid.Row="3" Text="{Binding Loader.Text}" />
         <Border Margin="-30 3 -30 0" Grid.Row="4" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource LightGray2Brush}" />
     </Grid>
 </UserControl>

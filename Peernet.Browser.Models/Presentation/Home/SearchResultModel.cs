@@ -5,6 +5,7 @@ namespace Peernet.Browser.Models.Presentation.Home
     public class SearchResultModel
     {
         public string Id { get; set; }
+        public string StatusText { get; set; }
         public SearchResultRowModel[] Rows { get; set; } = new SearchResultRowModel[0];
 
         public SearchFilterResultModel Filters { get; set; }
