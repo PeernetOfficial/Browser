@@ -18,19 +18,30 @@ namespace Peernet.Browser.WPF
             DependencyProperty.Register("IsEditable", typeof(bool),
                 typeof(FilePreviewWindow), null);
 
+        public static readonly DependencyProperty DownloadEnabledProperty =
+            DependencyProperty.Register("DownloadEnabled", typeof(bool),
+                typeof(FilePreviewWindow), null);
+
         public bool IsEditable
         {
             get => (bool)GetValue(IsEditableProperty);
             set => SetValue(IsEditableProperty, value);
         }
 
-        public FilePreviewWindow(DownloadModel model, bool isEditable)
+        public bool DownloadEnabled
+        {
+            get => (bool)GetValue(DownloadEnabledProperty);
+            set => SetValue(DownloadEnabledProperty, value);
+        }
+
+        public FilePreviewWindow(DownloadModel model, bool isEditable, bool downloadEnabled)
         {
             InitializeComponent();
             MouseDown += Window_MouseDown;
             this.model = model;
             IsEditable = isEditable;
             Content = model;
+            DownloadEnabled = downloadEnabled;
         }
 
         private void Minimize_OnClick(object sender, RoutedEventArgs e)

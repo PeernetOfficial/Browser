@@ -135,7 +135,18 @@
                                 <TextBlock Style="{StaticResource Active}" Text="{Binding File.SharedByCount, StringFormat={}{0} Peers}" FontWeight="Medium" Margin="0, 28, 0, 0" />
                             </StackPanel>
                         </Grid>
-                        <Button Style="{StaticResource AcceptButton}" Width="174" Height="44" Margin="0, 50, 70, 0" Click="Download_OnClick" HorizontalAlignment="Right">
+                        <Button Width="174" Height="44" Margin="0, 50, 70, 0" Click="Download_OnClick" HorizontalAlignment="Right">
+                            <Button.Style>
+                                <Style BasedOn="{StaticResource AcceptButton}" TargetType="{x:Type Button}">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=DownloadEnabled, ElementName=PreviewWindow}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            
                             <Button.ContentTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">

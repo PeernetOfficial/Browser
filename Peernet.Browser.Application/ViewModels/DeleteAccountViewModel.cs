@@ -20,6 +20,12 @@ namespace Peernet.Browser.Application.ViewModels
             this.userContext = userContext;
         }
 
+        public override void ViewDisappeared()
+        {
+            IsPolicyAccepted = false;
+            base.ViewDisappeared();
+        }
+
         public bool IsPolicyAccepted
         {
             get => isPolicyAccepted;

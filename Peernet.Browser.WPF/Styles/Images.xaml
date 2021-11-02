@@ -34,6 +34,33 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="GridFileImageStyle" TargetType="{x:Type Image}">
+        <Setter Property="Source" Value="{DynamicResource Document_SelectedDrawingImage}" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static common:LowLevelFileType.Text}">
+                <Setter Property="Source" Value="{DynamicResource Text_SelectedDrawingImage}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static common:LowLevelFileType.Audio}">
+                <Setter Property="Source" Value="{DynamicResource Audio_SelectedDrawingImage}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static common:LowLevelFileType.Video}">
+                <Setter Property="Source" Value="{DynamicResource Video_SelectedDrawingImage}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static common:LowLevelFileType.Binary}">
+                <Setter Property="Source" Value="{DynamicResource Binary_SelectedDrawingImage}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static common:LowLevelFileType.Ebook}">
+                <Setter Property="Source" Value="{DynamicResource Ebook_SelectedDrawingImage}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static common:LowLevelFileType.Document}">
+                <Setter Property="Source" Value="{DynamicResource Document_SelectedDrawingImage}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static common:LowLevelFileType.Picture}">
+                <Setter Property="Source" Value="{DynamicResource Picture_SelectedDrawingImage}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
     <Style x:Key="ExploreCategoriesImageStyle" TargetType="{x:Type Image}">
         <Style.Triggers>
             <DataTrigger Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.Text}">
