@@ -51,7 +51,7 @@ namespace Peernet.Browser.Application.ViewModels
             ColumnsIconModel = new IconModel(FiltersType.Columns, true, ShowColumnSelection);
             FiltersIconModel = new IconModel(FiltersType.Filters, true, OpenFilters);
 
-            Map.Fill(new[] { new GeoPoint { Lng = 19, Lat = 49 }, new GeoPoint { Lng = 0, Lat = 0 } });
+            Map.Fill(new[] { new GeoPoint { Longitude = 19, Latitude = 49 }, new GeoPoint { Longitude = 0, Latitude = 0 } });
 
             InitIcons();
             Loader.Set("Searching...");

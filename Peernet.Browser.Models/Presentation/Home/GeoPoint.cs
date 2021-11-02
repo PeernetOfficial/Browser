@@ -5,11 +5,11 @@
         /// <summary>
         /// Y
         /// </summary>
-        public double Lat { get; set; }
+        public double Latitude { get; set; }
 
         /// <summary>
         /// X
         /// </summary>
-        public double Lng { get; set; }
+        public double Longitude { get; set; }
     }
 }
