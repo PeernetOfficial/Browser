@@ -17,7 +17,7 @@ namespace Peernet.Browser.Application.ViewModels
             this.blockchainService = blockchainService;
         }
 
-        public override string ModalTitle => "Share file";
+        public override string ModalTitle => "Share File";
 
         public override async Task Confirm(FileModel[] files)
         {

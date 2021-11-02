@@ -16,17 +16,15 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IMvxNavigationService mvxNavigationService;
         private readonly IBlockchainService blockchainService;
         private readonly IWarehouseService warehouseService;
-        private readonly IUserContext userContext;
         private FileModel selected;
         private FileParameterModel viewModelParameter;
 
-        public GenericFileViewModel(IMvxNavigationService mvxNavigationService, IApplicationManager applicationManager, IBlockchainService blockchainService, IWarehouseService warehouseService, IUserContext userContext)
+        public GenericFileViewModel(IMvxNavigationService mvxNavigationService, IApplicationManager applicationManager, IBlockchainService blockchainService, IWarehouseService warehouseService)
         {
             this.mvxNavigationService = mvxNavigationService;
             this.applicationManager = applicationManager;
             this.blockchainService = blockchainService;
             this.warehouseService = warehouseService;
-            this.userContext = userContext;
 
             ConfirmCommand = new MvxAsyncCommand(Confirm);
             CancelCommand = new MvxCommand(Cancel);
@@ -92,7 +90,7 @@ namespace Peernet.Browser.Application.ViewModels
             {
                 var parameter = new ShareFileViewModelParameter(warehouseService, blockchainService)
                 {
-                    FileModels = files.Select(f => new FileModel(f, userContext.User.Name)).ToArray()
+                    FileModels = files.Select(f => new FileModel(f)).ToArray()
                 };
 
                 Prepare(parameter);

@@ -8,7 +8,6 @@ namespace Peernet.Browser.Models.Presentation.Footer
 {
     public class FileModel : MvxNotifyPropertyChanged
     {
-        private string author;
         private DateTime createDate;
         private string description;
         private string directory;
@@ -19,15 +18,12 @@ namespace Peernet.Browser.Models.Presentation.Footer
         private byte[] hash;
         private string baseName;
 
-        public FileModel(string path, string userName)
+        public FileModel(string path)
         {
             var f = new FileInfo(path);
-            FileExtension = f.Extension;
             FullPath = f.FullName;
-            BaseName = f.FullName.Replace(f.Extension, string.Empty);
             FileName = f.Name;
             Size = f.Length;
-            Author = userName;
             CreateDate = DateTime.Now;
             Directory = "Root";
         }
@@ -36,7 +32,6 @@ namespace Peernet.Browser.Models.Presentation.Footer
         {
             Id = apiFile.Id;
             NodeId = apiFile.NodeId;
-            Author = Convert.ToHexString(NodeId);
             Size = apiFile.Size;
             FileName = apiFile.Name;
             Hash = apiFile.Hash;
@@ -46,14 +41,6 @@ namespace Peernet.Browser.Models.Presentation.Footer
             Type = apiFile.Type;
             Description = apiFile.Description;
             CreateDate = DateTime.Now;
-            BaseName = Path.GetFileNameWithoutExtension(FileName);
-            FileExtension = Path.GetExtension(FileName);
-        }
-
-        public string Author
-        {
-            get => author;
-            set => SetProperty(ref author, value);
         }
 
         public DateTime CreateDate
@@ -78,18 +65,6 @@ namespace Peernet.Browser.Models.Presentation.Footer
         {
             get => fileName;
             set => SetProperty(ref fileName, value);
-        }
-
-        public string BaseName
-        {
-            get => baseName;
-            set => SetProperty(ref baseName, value);
-        }
-
-        public string FileExtension
-        {
-            get => fileExtension;
-            set => SetProperty(ref fileExtension, value);
         }
 
         public string FullPath

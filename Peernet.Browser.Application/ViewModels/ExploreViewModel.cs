@@ -52,6 +52,8 @@ namespace Peernet.Browser.Application.ViewModels
                 {
                     if (category.IsSelected)
                     {
+                        await ReloadResults();
+                        category.IsSelected = false;
                         return;
                     }
 
@@ -64,10 +66,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         public override async Task Initialize()
         {
-            var exploreResult = await exploreService.GetFiles(20);
-            sharedFiles = new ReadOnlyCollection<DownloadModel>(exploreResult);
-            ActiveSearchResults = new ObservableCollection<DownloadModel>(sharedFiles);
-
+            await ReloadResults();
             await base.Initialize();
         }
 
@@ -88,6 +87,13 @@ namespace Peernet.Browser.Application.ViewModels
                 GetCategory(VirtualFileSystemEntityType.Text),
                 GetCategory(VirtualFileSystemEntityType.Binary)
             };
+        }
+
+        private async Task ReloadResults()
+        {
+            var exploreResult = await exploreService.GetFiles(20);
+            sharedFiles = new ReadOnlyCollection<DownloadModel>(exploreResult);
+            ActiveSearchResults = new ObservableCollection<DownloadModel>(sharedFiles);
         }
     }
 }

@@ -6,6 +6,7 @@ using Peernet.Browser.Models.Domain.Download;
 using Peernet.Browser.Models.Presentation.Footer;
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -48,6 +49,15 @@ namespace Peernet.Browser.Infrastructure
             }
 
             return responseStatus;
+        }
+
+        public void OpenFileLocation(string name)
+        {
+            var filePath = $"{settingsManager.DownloadPath}\\{name}";
+            if (File.Exists(filePath))
+            {
+                Process.Start("explorer.exe", "/select, " + filePath);
+            }
         }
 
         public async Task<ApiResponseDownloadStatus> PauseDownload(string id)

@@ -4,7 +4,7 @@
                   xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
                   HorizontalAlignment="Center" VerticalAlignment="Center">
 
-    <Border BorderThickness="0" Padding="40" BorderBrush="Transparent">
+    <Border BorderThickness="0" Padding="40, 20, 20, 20" BorderBrush="Transparent">
         <Border.Background>
             <SolidColorBrush Color="{DynamicResource ModalBackground}" />
         </Border.Background>
@@ -23,37 +23,22 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <Border Margin="0 0 30 0" Visibility="Collapsed" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" CornerRadius="{DynamicResource MainRadius}"
-                    Width="500" Height="300">
-                <Border.Background>
-                    <ImageBrush Stretch="Fill" ImageSource="/Assets/temp1.png" />
-                </Border.Background>
-            </Border>
-
-            <DockPanel Grid.Row="0" Grid.Column="0">
+            <DockPanel Grid.Row="0" Grid.Column="0" Margin="0, 20, 0, 0">
                 <TextBlock DockPanel.Dock="Top" Text="{Binding Title}" Foreground="{DynamicResource MainContentBrush}" FontSize="16" FontWeight="SemiBold" Margin="0, 0, 0, 16" />
-                <TextBlock Text="{Binding Selected.BaseName}" Foreground="{DynamicResource MainTextBrush}" FontSize="16" />
-                <TextBlock Text="{Binding Selected.FileExtension}" Foreground="{DynamicResource MainTextBrush}" FontWeight="Bold" FontSize="16" />
+                <TextBlock Text="{Binding Selected.FileName}" Foreground="{DynamicResource MainTextBrush}" FontSize="16" />
             </DockPanel>
 
-            <DockPanel Grid.Row="1" Grid.Column="0" TextBlock.Foreground="{StaticResource LightGrayBrush}">
-                <TextBlock Padding="0 5" FontSize="12">Document</TextBlock>
-                <Canvas Height="12" Width="20">
-                    <Ellipse Canvas.Left="8" Canvas.Top="4" Height="4" Width="4" Fill="{StaticResource LightGrayBrush}" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                </Canvas>
-                <TextBlock Text="{Binding Selected.FileExtension}" Padding="0 5" FontSize="12" />
-                <Button Width="13" Height="13" Margin="0" Style="{DynamicResource ButtonBaseStyle}" HorizontalAlignment="Right" Command="{Binding DeleteFileCommand}">
-                    <Button.Background>
-                        <ImageBrush ImageSource="{DynamicResource BinDrawingImage}" />
-                    </Button.Background>
-                </Button>
-            </DockPanel>
+            <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource CloseButtonStyle}" Command="{Binding CancelCommand}" HorizontalAlignment="Right" VerticalAlignment="Top" />
+            <Button Grid.Row="1" Grid.Column="0" Width="13" Height="13" Margin="0" Style="{DynamicResource ButtonBaseStyle}" HorizontalAlignment="Right" Command="{Binding DeleteFileCommand}">
+                <Button.Background>
+                    <ImageBrush ImageSource="{DynamicResource BinDrawingImage}" />
+                </Button.Background>
+            </Button>
 
             <DockPanel Grid.Row="2" Grid.Column="0" LastChildFill="False" Margin="0 15">
                 <Image Margin="0 0 7 0" Width="11" Source="{DynamicResource DirectorySmallDrawingImage}" />
-                <TextBlock Foreground="{StaticResource LightGrayBrush}" VerticalAlignment="Center">Your files /</TextBlock>
-                <Image Margin="5 0 7 0" Width="11" Source="{DynamicResource DirectorySmallActiveDrawingImage}" />
-                <TextBox x:Name="virtualDirectoryPath" Foreground="{DynamicResource MainContentBrush}" Text="{Binding Selected.Directory, Mode=TwoWay}" IsEnabled="False" IsReadOnly="True" KeyDown="ConfirmChange_OnKeyDown" CaretBrush="{DynamicResource MainTextBrush}">
+                <TextBlock Foreground="{StaticResource LightGrayBrush}" VerticalAlignment="Center">Folder:</TextBlock>
+                <TextBox x:Name="virtualDirectoryPath" Foreground="{DynamicResource MainContentBrush}" Text="{Binding Selected.Directory, Mode=TwoWay}" IsEnabled="False" IsReadOnly="True" KeyDown="ConfirmChange_OnKeyDown" CaretBrush="{DynamicResource MainTextBrush}" Margin="5, 0, 0, 0">
                     <TextBox.Background>
                         <SolidColorBrush Color="{DynamicResource MainTextColor}" Opacity="0.06" />
                     </TextBox.Background>
@@ -65,7 +50,7 @@
                 <TextBlock Style="{StaticResource Title}">File name</TextBlock>
                 <Border Margin="0 5" Height="30" BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}">
                     <TextBox Text="{Binding Selected.FileName}" Foreground="{DynamicResource MainContentBrush}"
-                             Template="{StaticResource RoundedTextBox}" Padding="7">
+                             Template="{StaticResource RoundedTextBox}" Padding="7, 0, 0, 0" VerticalContentAlignment="Center">
                         <TextBox.Background>
                             <SolidColorBrush Color="{DynamicResource TextAreaBackground}" />
                         </TextBox.Background>
@@ -101,14 +86,20 @@
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Grid.Column="0" Style="{DynamicResource Title}">Author:</TextBlock>
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Selected.Author}" Style="{StaticResource Active}" />
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="You" Style="{StaticResource Active}" />
                 <TextBlock Grid.Row="0" Grid.Column="1" Style="{DynamicResource Title}">Created:</TextBlock>
                 <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Selected.CreateDate}" Style="{StaticResource Active}" />
                 <TextBlock Grid.Row="0" Grid.Column="2" Style="{DynamicResource Title}">Size:</TextBlock>
                 <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Selected.FormattedSize}" Style="{StaticResource Active}" />
+                <TextBlock Grid.Row="2" Grid.Column="0" Style="{DynamicResource Title}">Format:</TextBlock>
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="{Binding Selected.Format}" Style="{StaticResource Active}" />
+                <TextBlock Grid.Row="2" Grid.Column="1" Style="{DynamicResource Title}">Type:</TextBlock>
+                <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Selected.Type}" Style="{StaticResource Active}" />
             </Grid>
 
             <DockPanel Grid.ColumnSpan="2" Grid.Row="5" LastChildFill="False" HorizontalAlignment="Stretch">

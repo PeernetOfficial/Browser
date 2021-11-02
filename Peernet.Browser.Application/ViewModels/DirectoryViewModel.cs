@@ -174,7 +174,7 @@ namespace Peernet.Browser.Application.ViewModels
         private async Task ReloadVirtualFileSystem()
         {
             var header = await blockchainService.GetHeader();
-            if (header.Height > 0)
+            if (header.Height > 0 || header.Height != ActiveSearchResults?.Count)
             {
                 sharedFiles = await blockchainService.GetList() ?? new();
                 ActiveSearchResults = sharedFiles?.ToList();

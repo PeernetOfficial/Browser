@@ -19,5 +19,7 @@ namespace Peernet.Browser.Application.Download
         Task<ApiResponseDownloadStatus> ResumeDownload(string id);
 
         Task<ApiResponseDownloadStatus> CancelDownload(string id);
+
+        void OpenFileLocation(string name);
     }
 }

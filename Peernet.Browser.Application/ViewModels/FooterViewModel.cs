@@ -1,4 +1,5 @@
-﻿using MvvmCross.Commands;
+﻿using System.IO;
+using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
@@ -19,7 +20,6 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IApplicationManager applicationManager;
         private readonly IMvxNavigationService navigationService;
         private readonly ISocketClient socketClient;
-        private readonly IUserContext userContext;
         private readonly IWarehouseService warehouseService;
         private readonly IBlockchainService blockchainService;
         private string commandLineInput;
@@ -33,7 +33,6 @@ namespace Peernet.Browser.Application.ViewModels
             IMvxNavigationService navigationService,
             IApplicationManager applicationManager,
             IDownloadManager downloadManager,
-            IUserContext userContext,
             IWarehouseService warehouseService,
             IBlockchainService blockchainService)
         {
@@ -41,7 +40,6 @@ namespace Peernet.Browser.Application.ViewModels
             this.socketClient = socketClient;
             this.navigationService = navigationService;
             this.applicationManager = applicationManager;
-            this.userContext = userContext;
             this.warehouseService = warehouseService;
             this.blockchainService = blockchainService;
             DownloadManager = downloadManager;
@@ -85,6 +83,12 @@ namespace Peernet.Browser.Application.ViewModels
             {
                 // Make API call and validate result
                 await DownloadManager.PauseDownload(id);
+            });
+        
+        public IMvxCommand OpenFileLocationCommand => new MvxCommand<string>(
+            name =>
+            {
+                DownloadManager.OpenFileLocation(name);
             });
 
         public IMvxCommand ResumeDownloadCommand => new MvxAsyncCommand<string>(
@@ -145,7 +149,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         private void UploadFiles()
         {
-            var f = applicationManager.OpenFileDialog().Select(f => new FileModel(f, userContext.User.Name)).ToArray();
+            var f = applicationManager.OpenFileDialog().Select(f => new FileModel(f)).ToArray();
             if (f.Length != 0)
             {
                 var parameter = new ShareFileViewModelParameter(warehouseService, blockchainService)

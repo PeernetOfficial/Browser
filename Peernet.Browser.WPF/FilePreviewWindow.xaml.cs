@@ -3,6 +3,7 @@ using MvvmCross.Platforms.Wpf.Views;
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Models.Presentation.Footer;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Peernet.Browser.WPF
 {
@@ -26,6 +27,7 @@ namespace Peernet.Browser.WPF
         public FilePreviewWindow(DownloadModel model, bool isEditable)
         {
             InitializeComponent();
+            MouseDown += Window_MouseDown;
             this.model = model;
             IsEditable = isEditable;
             Content = model;
@@ -38,7 +40,15 @@ namespace Peernet.Browser.WPF
 
         private void Maximize_OnClick(object sender, RoutedEventArgs e)
         {
-            WindowState = WindowState.Maximized;
+            if (WindowState == WindowState.Maximized)
+            {
+                WindowState = WindowState.Normal;
+            }
+            else
+            {
+                WindowState = WindowState.Maximized;
+            }
+
         }
 
         private void Close_OnClick(object sender, RoutedEventArgs e)
@@ -49,6 +59,14 @@ namespace Peernet.Browser.WPF
         private void Download_OnClick(object sender, RoutedEventArgs e)
         {
             Mvx.IoCProvider.Resolve<IDownloadManager>().QueueUpDownload(model);
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                DragMove();
+            }
         }
     }
 }

@@ -1,7 +1,7 @@
-﻿using MvvmCross.Platforms.Wpf.Views;
+﻿using System;
+using MvvmCross.Platforms.Wpf.Views;
 using Peernet.Browser.Application;
 using Peernet.Browser.Application.Contexts;
-using Peernet.Browser.WPF.Controls;
 using System.Globalization;
 using System.Threading;
 using System.Windows;
