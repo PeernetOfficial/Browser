@@ -6,16 +6,19 @@ namespace Peernet.Browser.Models.Presentation.Home
     {
         public SearchResultRowModel(ApiFile source)
         {
-            Source = source;
+            File = source;
             EnumerationMember = (HealthType)3;
             Name = source.Name;
             Date = source.Date.ToString("dd.MM.yyyy");
             Size = $"{source.Size} MB";
             SharedBy = source.SharedByCount;
             //FlameIsVisible = source.SharedByCount > 15;
+            Points = new GeoPoint[0];
         }
 
         public HealthType EnumerationMember { get; }
+
+        public bool IsCompleted { get; }
 
         public string Name { get; }
         public string Date { get; }
@@ -23,7 +26,9 @@ namespace Peernet.Browser.Models.Presentation.Home
         public int SharedBy { get; }
         public bool FlameIsVisible { get; }
 
-        public ApiFile Source { get; }
+        public GeoPoint[] Points { get; }
+
+        public ApiFile File { get; }
 
         public static DataGridSortingNameEnum Parse(string name)
         {

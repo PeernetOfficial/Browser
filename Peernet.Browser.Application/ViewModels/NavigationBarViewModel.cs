@@ -2,6 +2,7 @@
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
+using System;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
@@ -28,17 +29,19 @@ namespace Peernet.Browser.Application.ViewModels
                 return Task.CompletedTask;
             });
 
-            NavigateAboutCommand = new MvxAsyncCommand(() =>
+            NavigateAboutCommand = new MvxAsyncCommand(async () =>
             {
                 GlobalContext.IsProfileMenuVisible = false;
-                navigationService.Navigate<AboutViewModel>();
-
-                return Task.CompletedTask;
+                await navigationService.Navigate<AboutViewModel>();
             });
         }
 
+        private Type actualActiveViewModel = typeof(HomeViewModel);
+
         private void Navigate<T>(bool showLogo = true) where T : IMvxViewModel
         {
+            if (typeof(T) == actualActiveViewModel) return;
+            actualActiveViewModel = typeof(T);
             navigationService.Navigate<T>();
             GlobalContext.IsLogoVisible = showLogo;
         }

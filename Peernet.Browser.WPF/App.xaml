@@ -6,8 +6,12 @@
                       xmlns:converters="clr-namespace:Peernet.Browser.WPF.Converters"
                       StartupUri="MainWindow.xaml">
     <Application.Resources>
-
         <ResourceDictionary>
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibility" />
+            <converters:TextInputToVisibilityConverter x:Key="TextInputToVisibilityConverter" />
+            <converters:VerticalAlignmentConverter x:Key="VerticalAlignmentConverter" />
+            <converters:NullImageConverter x:Key="NullImageConverter" />
+
             <ResourceDictionary.MergedDictionaries>
                 <local:ModeResourceDictionary DarkModeSource="Styles/DarkMode/Colors.xaml" LightModeSource="Styles/LightMode/Colors.xaml" />
                 <ResourceDictionary Source="Styles/Windows.xaml" />
@@ -24,10 +28,6 @@
                 <ResourceDictionary Source="Styles/Images.xaml" />
                 <ResourceDictionary Source="Styles/Calendar.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
-            <converters:BoolToVisibilityConverter x:Key="BoolToVisibility" />
-            <converters:TextInputToVisibilityConverter x:Key="TextInputToVisibilityConverter" />
-            <converters:VerticalAlignmentConverter x:Key="VerticalAlignmentConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </views:MvxApplication>

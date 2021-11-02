@@ -19,6 +19,7 @@ namespace Peernet.Browser.Application.ViewModels
         private bool showColumnsSelector;
         private bool showColumnsShared = true;
         private bool showColumnsSize = true;
+        private int limit = increase;
 
         public SearchTabElementViewModel(string title, Func<SearchTabElementViewModel, Task> deleteAction, Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction, Func<SearchResultRowModel, Task> downloadAction) : base()
         {
@@ -50,8 +51,12 @@ namespace Peernet.Browser.Application.ViewModels
 
             ColumnsIconModel = new IconModel(FiltersType.Columns, true, ShowColumnSelection);
             FiltersIconModel = new IconModel(FiltersType.Filters, true, OpenFilters);
+
+            Map.Fill(new[] { new GeoPoint { Longitude = 19, Latitude = 49 }, new GeoPoint { Longitude = 0, Latitude = 0 } });
+
             InitIcons();
-            Task.Run(Refresh);
+            Loader.Set("Searching...");
+            _ = Task.Run(async () => await Refresh(false));
         }
 
         public async override Task Initialize()
@@ -62,11 +67,14 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IMvxAsyncCommand ClearCommand { get; }
         public MvxObservableCollection<CustomCheckBoxModel> ColumnsCheckboxes { get; } = new MvxObservableCollection<CustomCheckBoxModel>();
+
+        public LoadingModel Loader { get; } = new LoadingModel();
         public IconModel ColumnsIconModel { get; }
         public IMvxAsyncCommand DeleteCommand { get; }
         public IMvxAsyncCommand<SearchFiltersType> RemoveFilterCommand { get; }
         public IMvxAsyncCommand<SearchResultRowModel> DownloadCommand { get; }
         public MvxObservableCollection<IconModel> FilterIconModels { get; } = new MvxObservableCollection<IconModel>();
+        public MapModel Map { get; } = new MapModel { Width = 318, Height = 231 };
         public FiltersModel Filters { get; }
         public IconModel FiltersIconModel { get; }
 
@@ -74,14 +82,6 @@ namespace Peernet.Browser.Application.ViewModels
         {
             get => showColumnsDate;
             set => SetProperty(ref showColumnsDate, value);
-        }
-
-        private bool isLoading;
-
-        public bool IsLoading
-        {
-            get => isLoading;
-            set => SetProperty(ref isLoading, value);
         }
 
         public bool ShowColumnsDownload
@@ -115,19 +115,48 @@ namespace Peernet.Browser.Application.ViewModels
         {
             Filters.SearchFilterResult.SortName = SearchResultRowModel.Parse(columnName);
             Filters.SearchFilterResult.SortType = type;
-            await Refresh();
+            await Refresh(true);
         }
 
-        public async Task Refresh()
+        private const int increase = 20;
+
+        public async Task IsScrollEnd()
         {
-            SearchResultModel data = await refreshAction(Filters.SearchFilterResult);
+            if (isClearing) return;
+            var allCount = GetMax();
+            if (allCount == 0 || limit > allCount) return;
+
+            limit += increase;
+            await Refresh(false);
+        }
+
+        private int GetMax() => (FilterIconModels.FirstOrDefault(x => x.IsSelected)?.Count).GetValueOrDefault();
+
+        private bool isClearing;
+
+        private async Task Refresh(bool withClear = true)
+        {
+            if (withClear)
+            {
+                isClearing = true;
+                await GlobalContext.UiThreadDispatcher.ExecuteOnMainThreadAsync(() => TableResult.Clear());
+            }
+            Filters.SearchFilterResult.LimitOfResult = limit;
+            var data = await refreshAction(Filters.SearchFilterResult);
+
+            Filters.UuId = data.Id;
             await GlobalContext.UiThreadDispatcher.ExecuteOnMainThreadAsync(() =>
             {
-                Filters.UuId = data.Id;
-                TableResult.Clear();
-                data.Rows.Foreach(x => TableResult.Add(x));
-                RefreshIconFilters(data.Stats, data.Filters.FilterType);
+                for (var i = TableResult.Count; i < data.Rows.Length; i++)
+                {
+                    TableResult.Add(data.Rows[i]);
+                }
             });
+
+            RefreshIconFilters(data.Stats, data.Filters.FilterType);
+            if (TableResult.IsNullOrEmpty()) Loader.Set(data.StatusText);
+            else Loader.Reset();
+            isClearing = false;
         }
 
         private void InitIcons()

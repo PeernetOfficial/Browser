@@ -1,4 +1,5 @@
-﻿using MvvmCross.Commands;
+﻿using System.IO;
+using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
@@ -82,6 +83,12 @@ namespace Peernet.Browser.Application.ViewModels
             {
                 // Make API call and validate result
                 await DownloadManager.PauseDownload(id);
+            });
+        
+        public IMvxCommand OpenFileLocationCommand => new MvxCommand<string>(
+            name =>
+            {
+                DownloadManager.OpenFileLocation(name);
             });
 
         public IMvxCommand ResumeDownloadCommand => new MvxAsyncCommand<string>(

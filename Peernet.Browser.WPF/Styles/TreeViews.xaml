@@ -7,10 +7,10 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Border x:Name="Bd" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+            <Border x:Name="Bd" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true" Margin="40, 0, 0, 0">
                 <ContentPresenter x:Name="PART_Header" ContentSource="Header" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
             </Border>
-            <ItemsPresenter x:Name="ItemsHost" Grid.Row="1" />
+            <ItemsPresenter x:Name="ItemsHost" Grid.Row="1" Margin="-30, 0, 0, 0"/>
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsExpanded" Value="false">
@@ -32,7 +32,7 @@
 
     <Style x:Key="{x:Type TreeViewItem}" TargetType="{x:Type TreeViewItem}">
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Padding" Value="1,0,0,0" />
+        <Setter Property="Padding" Value="10,0,0,0" />
         <Setter Property="Foreground" Value="{StaticResource GrayedOutItemBrush}" />
         <Setter Property="IsExpanded" Value="True" />
         <Setter Property="Focusable" Value="True" />
@@ -90,6 +90,9 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="HasItems" Value="false">
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{DynamicResource Button.MouseOver.Background}" />
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>

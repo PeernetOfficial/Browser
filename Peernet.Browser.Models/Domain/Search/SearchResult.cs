@@ -1,5 +1,6 @@
 ﻿using Peernet.Browser.Models.Domain.Common;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Peernet.Browser.Models.Domain.Search
 {
@@ -21,5 +22,7 @@ namespace Peernet.Browser.Models.Domain.Search
         public SearchStatisticData Statistic { get; set; }
 
         public bool IsTerminated => Status == SearchStatusEnum.NoMoreResults || Status == SearchStatusEnum.IdNotFound;
+
+        public bool IsEmpty => Files.IsNullOrEmpty();
     }
 }
