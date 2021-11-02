@@ -6,14 +6,12 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TabItem}">
-                    <Border Margin="0 0 0 0" x:Name="PART_Border" Background="Transparent" BorderThickness="1" BorderBrush="Transparent" Padding="10">
+                    <Border Margin="0 0 0 0" x:Name="PART_Border" Background="Transparent" BorderThickness="1" BorderBrush="Transparent" Padding="0">
                         <DockPanel>
-                            <TextBlock Foreground="{DynamicResource MainContentBrush}" FontSize="14" FontFamily="{StaticResource InterThin}" x:Name="PART_title" Text="{Binding Title}" />
-                            <Image Cursor="Hand" Source="{DynamicResource CloseBtnDrawingImage}" Margin="10 1 0 0" Width="9">
-                                <Image.InputBindings>
-                                    <MouseBinding MouseAction="LeftClick" Command="{Binding DeleteCommand}" />
-                                </Image.InputBindings>
-                            </Image>
+                            <TextBlock Margin="10 10 2 10" Foreground="{DynamicResource MainContentBrush}" FontSize="14" FontFamily="{StaticResource InterThin}" x:Name="PART_title" Text="{Binding Title}" />
+                            <Button Style="{DynamicResource PrimaryButton}" Margin="7" Command="{Binding DeleteCommand}" >
+                                <Image Margin="6"  Source="{DynamicResource CloseBtnDrawingImage}" />
+                            </Button>
                         </DockPanel>
                     </Border>
                     <ControlTemplate.Triggers>

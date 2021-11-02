@@ -17,6 +17,8 @@ namespace Peernet.Browser.Models.Presentation.Home
         public DateTime? TimeFrom { get; set; }
         public DateTime? TimeTo { get; set; }
 
+        public int LimitOfResult { get; set; }
+
         public DataGridSortingNameEnum SortName { get; set; }
         public DataGridSortingTypeEnum SortType { get; set; }
 

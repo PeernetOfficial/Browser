@@ -71,7 +71,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         private async Task DownloadFile(SearchResultRowModel row)
         {
-            await downloadManager.QueueUpDownload(new DownloadModel(row.Source));
+            await downloadManager.QueueUpDownload(new DownloadModel(row.File));
         }
 
         private void Search()

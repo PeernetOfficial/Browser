@@ -47,6 +47,6 @@
         </StackPanel>
 
         <TabControl Visibility="{Binding IsVisible, Converter={StaticResource BoolToVisibility}}" SelectedIndex="{Binding SelectedIndex}"
-                    Foreground="{DynamicResource MainContentBrush}" Margin="0 180 0 0" ItemsSource="{Binding Tabs}" />
+                    Foreground="{DynamicResource MainContentBrush}" Margin="0 180 0 0" ItemsSource="{Binding Tabs, IsAsync=True}" />
     </Grid>
 </views:MvxWpfView>
