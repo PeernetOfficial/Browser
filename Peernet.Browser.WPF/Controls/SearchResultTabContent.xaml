@@ -82,8 +82,8 @@
             <Button Command="{Binding ClearCommand}" FontSize="14" HorizontalAlignment="Right" Style="{DynamicResource LinkButton}">Clear all filters</Button>
         </DockPanel>
 
-        <DataGrid  Sorting="DataGrid_Sorting" Padding="15 10 15 0" HorizontalAlignment="Stretch" Grid.Row="3"
-                  Style="{DynamicResource DataGridStyle}" SelectionMode="Single" ItemsSource="{Binding TableResult}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False">
+        <DataGrid  Sorting="DataGrid_Sorting" Padding="15 10 15 0" Grid.Row="3"
+                  Style="{DynamicResource DataGridStyle}" ItemsSource="{Binding TableResult, IsAsync=True}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="" SortMemberPath="First">
                     <DataGridTemplateColumn.CellTemplate>

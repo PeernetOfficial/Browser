@@ -5,6 +5,7 @@
                     xmlns:home="clr-namespace:Peernet.Browser.Models.Presentation.Home;assembly=Peernet.Browser.Models">
 
     <Style x:Key="DownloadItemImageStyle" TargetType="{x:Type Image}">
+        <Setter Property="Source" Value="{DynamicResource Document_SelectedDrawingImage}" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding File.Type}" Value="{x:Static common:LowLevelFileType.Text}">
                 <Setter Property="Source" Value="{DynamicResource Text_SelectedDrawingImage}" />

@@ -21,9 +21,7 @@ namespace Peernet.Browser.Models.Presentation.Footer
         public FileModel(string path)
         {
             var f = new FileInfo(path);
-            FileExtension = f.Extension;
             FullPath = f.FullName;
-            BaseName = f.FullName.Replace(f.Extension, string.Empty);
             FileName = f.Name;
             Size = f.Length;
             CreateDate = DateTime.Now;
@@ -43,8 +41,6 @@ namespace Peernet.Browser.Models.Presentation.Footer
             Type = apiFile.Type;
             Description = apiFile.Description;
             CreateDate = DateTime.Now;
-            BaseName = Path.GetFileNameWithoutExtension(FileName);
-            FileExtension = Path.GetExtension(FileName);
         }
 
         public DateTime CreateDate
@@ -69,18 +65,6 @@ namespace Peernet.Browser.Models.Presentation.Footer
         {
             get => fileName;
             set => SetProperty(ref fileName, value);
-        }
-
-        public string BaseName
-        {
-            get => baseName;
-            set => SetProperty(ref baseName, value);
-        }
-
-        public string FileExtension
-        {
-            get => fileExtension;
-            set => SetProperty(ref fileExtension, value);
         }
 
         public string FullPath

@@ -10,7 +10,7 @@
     <views:MvxWpfView.Resources>
         <ResourceDictionary>
             <ImageBrush x:Key="DefaultProfileImage" ImageSource="{DynamicResource DefaultProfileImageDrawingImage}" />
-            <ImageBrush x:Key="SourcedProfileImage" ImageSource="{Binding UserContext.User.Image}" Stretch="Uniform" />
+            <ImageBrush x:Key="SourcedProfileImage" ImageSource="{Binding UserContext.User.Image, Converter={StaticResource NullImageConverter}}" Stretch="Uniform" />
         </ResourceDictionary>
     </views:MvxWpfView.Resources>
     <Border BorderThickness="1">
@@ -33,7 +33,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="Edit your profile" FontWeight="SemiBold" Foreground="{StaticResource MainContentBrush}" FontSize="16" Margin="35,27,0,0" />
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Edit Your Profile" FontWeight="SemiBold" Foreground="{StaticResource MainContentBrush}" FontSize="16" Margin="35,27,0,0" />
             <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource CloseButtonStyle}" Command="{Binding CloseCommand}" Margin="0,11,15,0" HorizontalAlignment="Right" VerticalAlignment="Top" />
             <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="35,35,27,0">
                 <Border Background="{StaticResource LightGray2Brush}" Width="200" Height="200" Margin="0,8,0,0">
@@ -81,53 +81,25 @@
                 <Border Width="282" Background="Transparent" BorderThickness="0" Margin="0,32,0,0" HorizontalAlignment="Center">
                     <TextBlock Text="Username" Foreground="{DynamicResource MainContentBrush}" FontWeight="Medium" />
                 </Border>
-                <Border Height="36" Width="282" CornerRadius="3" Background="Transparent" BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}" Margin="0,11,0,0" HorizontalAlignment="Center">
-                    <TextBox Text="{Binding UserContext.User.Name, TargetNullValue='Set username'}" FontSize="14" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="11.58, 0, 0, 0" BorderThickness="0">
-                        <TextBox.Style>
-                            <Style TargetType="{x:Type TextBox}">
-                                <Setter Property="Foreground" Value="{DynamicResource MainTextBrush}" />
-                                <Setter Property="CaretBrush" Value="{DynamicResource MainTextBrush}" />
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Path=(contexts:GlobalContext.VisualMode)}" Value="{x:Static models:VisualMode.DarkMode}">
-                                        <Setter Property="Background" Value="Transparent" />
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding UserContext.User.Image}" Value="{x:Null}">
-                                        <Setter Property="Foreground" Value="{DynamicResource GrayedOutBackgroundBrush}" />
-                                    </DataTrigger>
-                                    <Trigger Property="IsFocused" Value="True">
-                                        <Setter Property="Foreground" Value="{DynamicResource MainContentBrush}" />
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBox.Style>
-                    </TextBox>
-                </Border>
-                <Border Width="282" Height="36" CornerRadius="3,3,0,0" Background="Transparent" BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}" Margin="0,28,0,0" HorizontalAlignment="Center">
-                    <Border.Style>
-                        <Style TargetType="{x:Type Border}">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Path=(contexts:GlobalContext.VisualMode)}" Value="{x:Static models:VisualMode.DarkMode}">
-                                    <Setter Property="Background" Value="Transparent" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Border.Style>
-                    <Grid Background="Transparent">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <TextBox Grid.Column="0" Text="Export of Private Key" FontSize="14" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="11.58, 0, 0, 0" BorderThickness="0" Background="Transparent">
-                            <TextBox.Style>
-                                <Style TargetType="{x:Type TextBox}">
-                                    <Setter Property="Foreground" Value="{DynamicResource MainContentBrush}" />
-                                </Style>
-                            </TextBox.Style>
-                        </TextBox>
-                        <TextBlock Grid.Column="1" Text="Export" PreviewMouseLeftButtonDown="DeleteAccount_OnClick" Style="{DynamicResource Underlined}" Foreground="{DynamicResource MainContentBrush}" Margin="0,0,16,0" VerticalAlignment="Center" />
+
+                <Border Height="36" Width="282" CornerRadius="3" Background="Transparent" BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}" Margin="0,11,0,0" HorizontalAlignment="Center" Padding="9">
+                    <Grid>
+                        <TextBlock Text="Set username" VerticalAlignment="Center" Foreground="{DynamicResource LightGrayBrush}">
+                            <TextBlock.Visibility>
+                                <MultiBinding Converter="{StaticResource TextInputToVisibilityConverter}">
+                                    <Binding ElementName="usernameInput" Path="Text.IsEmpty" />
+                                    <Binding ElementName="usernameInput" Path="IsFocused" />
+                                </MultiBinding>
+                            </TextBlock.Visibility>
+                        </TextBlock>
+                        <TextBox Text="{Binding UserContext.User.Name}" Foreground="{DynamicResource MainContentBrush}" CaretBrush="{DynamicResource MainTextBrush}"
+                                 Background="Transparent" Name="usernameInput"
+                                 Template="{StaticResource RoundedTextBox}" Height="132"
+                                 AcceptsReturn="True" TextWrapping="Wrap" AcceptsTab="True" />
                     </Grid>
                 </Border>
-                <Border Width="282" Height="36" CornerRadius="0,0,3,3" BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}" HorizontalAlignment="Center">
+
+                <Border Width="282" Height="36" CornerRadius="0,0,3,3" Margin="0,28,0,0" BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}" HorizontalAlignment="Center">
                     <Border.Style>
                         <Style TargetType="{x:Type Border}">
                             <Style.Triggers>

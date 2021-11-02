@@ -16,7 +16,7 @@ namespace Peernet.Browser.Application.ViewModels
             this.navigationService = navigationService;
         }
 
-        public override string ModalTitle => "Edit file";
+        public override string ModalTitle => "Edit File";
 
         public override async Task Confirm(FileModel[] files)
         {

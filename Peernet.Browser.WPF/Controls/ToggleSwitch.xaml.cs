@@ -31,14 +31,20 @@ namespace Peernet.Browser.WPF.Controls
 
         private void ToggleLight_OnClick(object sender, MouseButtonEventArgs e)
         {
-            GlobalContext.VisualMode = VisualMode.LightMode;
-            (App.Current as App).UpdateAllResources();
+            if (GlobalContext.VisualMode != VisualMode.LightMode)
+            {
+                GlobalContext.VisualMode = VisualMode.LightMode;
+                (App.Current as App).UpdateAllResources();
+            }
         }
 
         private void ToggleDark_OnClick(object sender, MouseButtonEventArgs e)
         {
-            GlobalContext.VisualMode = VisualMode.DarkMode;
-            (App.Current as App).UpdateAllResources();
+            if (GlobalContext.VisualMode != VisualMode.DarkMode)
+            {
+                GlobalContext.VisualMode = VisualMode.DarkMode;
+                (App.Current as App).UpdateAllResources();
+            }
         }
     }
 }

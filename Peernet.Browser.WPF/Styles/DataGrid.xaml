@@ -94,12 +94,29 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type DataGridCell}">
-        <Setter Property="Height" Value="48" />
-        <Setter Property="Margin" Value="0, 0, 5, 0" />
+    <Style x:Key="BaseDataGridCellStyle" TargetType="{x:Type DataGridCell}">
+        <Setter Property="Padding" Value="0, 0, 5, 0" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Background" Value="{DynamicResource ViewBackgroundBrush}" />
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{DynamicResource SelectedItemBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource MainContentBrush}" />
+                <Setter Property="BorderThickness" Value="0" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type DataGridCell}">
+        <Setter Property="Height" Value="48" />
+        <Setter Property="Padding" Value="0, 0, 5, 0" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
         <Setter Property="Background" Value="{DynamicResource ViewBackgroundBrush}" />
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
@@ -111,6 +128,7 @@
     </Style>
 
     <Style x:Key="DataGridStyle" TargetType="{x:Type DataGrid}">
+        <Setter Property="SelectionMode" Value="Single" />
         <Setter Property="CanUserReorderColumns" Value="True" />
         <Setter Property="Foreground" Value="{DynamicResource MainContentBrush}" />
         <Setter Property="FontFamily" Value="Inter" />
