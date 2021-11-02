@@ -1,4 +1,5 @@
-﻿using Peernet.Browser.Models.Domain.Common;
+﻿using System;
+using Peernet.Browser.Models.Domain.Common;
 
 namespace Peernet.Browser.Models.Presentation.Home
 {
@@ -9,7 +10,7 @@ namespace Peernet.Browser.Models.Presentation.Home
             Source = source;
             EnumerationMember = (HealthType)3;
             Name = source.Name;
-            Date = source.Date.ToString("dd.MM.yyyy");
+            Date = source.Date;
             Size = $"{source.Size} MB";
             SharedBy = source.SharedByCount;
             //FlameIsVisible = source.SharedByCount > 15;
@@ -18,7 +19,7 @@ namespace Peernet.Browser.Models.Presentation.Home
         public HealthType EnumerationMember { get; }
 
         public string Name { get; }
-        public string Date { get; }
+        public DateTime Date { get; }
         public string Size { get; }
         public int SharedBy { get; }
         public bool FlameIsVisible { get; }

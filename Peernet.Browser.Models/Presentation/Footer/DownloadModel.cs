@@ -1,6 +1,7 @@
 ﻿using Peernet.Browser.Models.Domain.Common;
 using Peernet.Browser.Models.Domain.Download;
 using System.ComponentModel;
+using System.Globalization;
 
 namespace Peernet.Browser.Models.Presentation.Footer
 {

@@ -3,7 +3,9 @@ using MvvmCross.Platforms.Wpf.Views;
 using Peernet.Browser.Infrastructure.Tools;
 using Peernet.Browser.WPF.Services;
 using Peernet.Browser.WPF.Styles;
+using System.Globalization;
 using System.Windows;
+using System.Windows.Markup;
 
 namespace Peernet.Browser.WPF
 {
@@ -15,6 +17,17 @@ namespace Peernet.Browser.WPF
         private CmdRunner cmdRunner;
 
         protected override void RegisterSetup() => this.RegisterSetupType<Setup>();
+
+        static App()
+        {
+            FrameworkElement.LanguageProperty.OverrideMetadata(
+
+                typeof(FrameworkElement),
+
+                new FrameworkPropertyMetadata(
+
+                    XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
+        }
 
         protected override void OnExit(ExitEventArgs e)
         {
