@@ -19,6 +19,7 @@ namespace Peernet.Browser.Application.ViewModels
         private bool showColumnsSelector;
         private bool showColumnsShared = true;
         private bool showColumnsSize = true;
+        private int limit = increase;
 
         public SearchTabElementViewModel(string title, Func<SearchTabElementViewModel, Task> deleteAction, Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction, Func<SearchResultRowModel, Task> downloadAction) : base()
         {
@@ -55,7 +56,7 @@ namespace Peernet.Browser.Application.ViewModels
 
             InitIcons();
             Loader.Set("Searching...");
-            Task.Run(Refresh);
+            _ = Task.Run(async () => await Refresh(false));
         }
 
         public async override Task Initialize()
@@ -114,20 +115,48 @@ namespace Peernet.Browser.Application.ViewModels
         {
             Filters.SearchFilterResult.SortName = SearchResultRowModel.Parse(columnName);
             Filters.SearchFilterResult.SortType = type;
-            await Refresh();
+            await Refresh(true);
         }
 
-        public async Task Refresh()
+        private const int increase = 20;
+
+        public async Task IsScrollEnd()
         {
-            SearchResultModel data = await refreshAction(Filters.SearchFilterResult);
+            if (isClearing) return;
+            var allCount = GetMax();
+            if (allCount == 0 || limit > allCount) return;
+
+            limit += increase;
+            await Refresh(false);
+        }
+
+        private int GetMax() => (FilterIconModels.FirstOrDefault(x => x.IsSelected)?.Count).GetValueOrDefault();
+
+        private bool isClearing;
+
+        private async Task Refresh(bool withClear = true)
+        {
+            if (withClear)
+            {
+                isClearing = true;
+                await GlobalContext.UiThreadDispatcher.ExecuteOnMainThreadAsync(() => TableResult.Clear());
+            }
+            Filters.SearchFilterResult.LimitOfResult = limit;
+            var data = await refreshAction(Filters.SearchFilterResult);
+
+            Filters.UuId = data.Id;
             await GlobalContext.UiThreadDispatcher.ExecuteOnMainThreadAsync(() =>
             {
-                Filters.UuId = data.Id;
-                TableResult.Clear();
-                data.Rows.Foreach(x => TableResult.Add(x));
-                RefreshIconFilters(data.Stats, data.Filters.FilterType);
-                Loader.Reset();
+                for (var i = TableResult.Count; i < data.Rows.Length; i++)
+                {
+                    TableResult.Add(data.Rows[i]);
+                }
             });
+
+            RefreshIconFilters(data.Stats, data.Filters.FilterType);
+            if (TableResult.IsNullOrEmpty()) Loader.Set(data.StatusText);
+            else Loader.Reset();
+            isClearing = false;
         }
 
         private void InitIcons()

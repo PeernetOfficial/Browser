@@ -15,8 +15,6 @@ namespace Peernet.Browser.Infrastructure.Services
     {
         private readonly ISearchClient searchClient;
 
-        private readonly IDictionary<string, SearchResult> results = new Dictionary<string, SearchResult>();
-
         public SearchService(ISettingsManager settingsManager)
         {
             searchClient = new SearchClient(settingsManager);
@@ -25,7 +23,8 @@ namespace Peernet.Browser.Infrastructure.Services
         public async Task<SearchResultModel> Search(SearchFilterResultModel model)
         {
             var res = new SearchResultModel { Filters = model };
-            if (model.IsNewSearch)
+            var isNew = model.IsNewSearch;
+            if (isNew)
             {
                 var response = await searchClient.SubmitSearch(Map<SearchRequest>(model));
                 if (response.Status != SearchRequestResponseStatusEnum.Success)
@@ -33,20 +32,19 @@ namespace Peernet.Browser.Infrastructure.Services
                     return res;
                 }
                 model.Uuid = response.Id;
-                results.Add(response.Id, null);
             }
             var reqMod = Map<SearchGetRequest>(model);
             var result = await searchClient.GetSearchResult(reqMod);
-            var interwals = 0;
-            while (result.IsEmpty && interwals < 20)
+            var intervals = 0;
+            while (isNew && result.IsEmpty && intervals < 20)
             {
                 await Task.Delay(500);
                 result = await searchClient.GetSearchResult(reqMod);
-                interwals++;
+                intervals++;
             }
 
-            results[model.Uuid] = result;
             res.Id = model.Uuid;
+            res.StatusText = GetStatusText(result.Status);
             res.Stats = GetStats(result.Statistic);
             if (!result.Files.IsNullOrEmpty())
             {
@@ -57,13 +55,27 @@ namespace Peernet.Browser.Infrastructure.Services
             return res;
         }
 
-        public async Task<string> Terminate(string id)
-        {
-            results.Remove(id);
-            return await searchClient.TerminateSearch(id);
-        }
+        public async Task<string> Terminate(string id) => await searchClient.TerminateSearch(id);
 
         public IDictionary<FiltersType, int> GetEmptyStats() => GetStats(new SearchStatisticData());
+
+        private string GetStatusText(SearchStatusEnum status)
+        {
+            switch (status)
+            {
+                case SearchStatusEnum.IdNotFound:
+                    return "Search was terminated.";
+
+                case SearchStatusEnum.KeepTrying:
+                    return "Searching...";
+
+                case SearchStatusEnum.NoMoreResults:
+                    return "No results.";
+
+                default:
+                    return "";
+            }
+        }
 
         private IDictionary<FiltersType, int> GetStats(SearchStatisticData data)
         {
@@ -142,6 +154,10 @@ namespace Peernet.Browser.Infrastructure.Services
             if (searchRequest != null)
             {
                 searchRequest.Term = model.InputText;
+            }
+            if (searchGetRequest != null)
+            {
+                searchGetRequest.Limit = model.LimitOfResult;
             }
             if (model.Uuid.IsNullOrEmpty() && searchRequest != null)
             {

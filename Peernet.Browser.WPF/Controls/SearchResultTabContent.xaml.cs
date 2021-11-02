@@ -3,6 +3,7 @@ using Peernet.Browser.Models.Presentation.Home;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Peernet.Browser.WPF.Controls
 {
@@ -43,6 +44,37 @@ namespace Peernet.Browser.WPF.Controls
         private void TextBlock_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
             MapPanel.Visibility = Visibility.Collapsed;
+        }
+
+        private async void FileGrid_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            var viewer = GetScrollViewer((DataGrid)sender);
+            if (viewer.VerticalOffset + viewer.ViewportHeight == viewer.ExtentHeight)
+            {
+                if (DataContext is SearchTabElementViewModel viewModel)
+                {
+                    await viewModel.IsScrollEnd();
+                }
+            }
+        }
+
+        private ScrollViewer GetScrollViewer(UIElement element)
+        {
+            if (element == null) return null;
+
+            ScrollViewer retour = null;
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(element) && retour == null; i++)
+            {
+                if (VisualTreeHelper.GetChild(element, i) is ScrollViewer)
+                {
+                    retour = (ScrollViewer)(VisualTreeHelper.GetChild(element, i));
+                }
+                else
+                {
+                    retour = GetScrollViewer(VisualTreeHelper.GetChild(element, i) as UIElement);
+                }
+            }
+            return retour;
         }
     }
 }
