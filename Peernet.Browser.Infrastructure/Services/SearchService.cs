@@ -37,10 +37,12 @@ namespace Peernet.Browser.Infrastructure.Services
             }
             var reqMod = Map<SearchGetRequest>(model);
             var result = await searchClient.GetSearchResult(reqMod);
-            while (!result.IsTerminated)
+            var interwals = 0;
+            while (result.IsEmpty && interwals < 20)
             {
                 await Task.Delay(500);
                 result = await searchClient.GetSearchResult(reqMod);
+                interwals++;
             }
 
             results[model.Uuid] = result;

@@ -51,8 +51,10 @@ namespace Peernet.Browser.Application.ViewModels
             ColumnsIconModel = new IconModel(FiltersType.Columns, true, ShowColumnSelection);
             FiltersIconModel = new IconModel(FiltersType.Filters, true, OpenFilters);
 
-            Map.Fill(new[] { new GeoPoint { Lng = 19, Lat = 49 } });
+            Map.Fill(new[] { new GeoPoint { Lng = 19, Lat = 49 }, new GeoPoint { Lng = 0, Lat = 0 } });
+
             InitIcons();
+            Loader.Set("Searching...");
             Task.Run(Refresh);
         }
 
@@ -64,6 +66,8 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IMvxAsyncCommand ClearCommand { get; }
         public MvxObservableCollection<CustomCheckBoxModel> ColumnsCheckboxes { get; } = new MvxObservableCollection<CustomCheckBoxModel>();
+
+        public LoadingModel Loader { get; } = new LoadingModel();
         public IconModel ColumnsIconModel { get; }
         public IMvxAsyncCommand DeleteCommand { get; }
         public IMvxAsyncCommand<SearchFiltersType> RemoveFilterCommand { get; }
@@ -77,14 +81,6 @@ namespace Peernet.Browser.Application.ViewModels
         {
             get => showColumnsDate;
             set => SetProperty(ref showColumnsDate, value);
-        }
-
-        private bool isLoading;
-
-        public bool IsLoading
-        {
-            get => isLoading;
-            set => SetProperty(ref isLoading, value);
         }
 
         public bool ShowColumnsDownload
@@ -130,6 +126,7 @@ namespace Peernet.Browser.Application.ViewModels
                 TableResult.Clear();
                 data.Rows.Foreach(x => TableResult.Add(x));
                 RefreshIconFilters(data.Stats, data.Filters.FilterType);
+                Loader.Reset();
             });
         }
 
