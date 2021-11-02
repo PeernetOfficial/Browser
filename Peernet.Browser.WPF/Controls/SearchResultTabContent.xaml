@@ -19,12 +19,6 @@
         </Grid.RowDefinitions>
         <ContentControl Content="{StaticResource ProxyElement}" Visibility="Collapsed" />
 
-        <Border Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibility}}"
-                VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Panel.ZIndex="5"
-                Grid.RowSpan="5" Background="{DynamicResource MainTextBrush}" Opacity="0.2">
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource ViewBackgroundBrush}">loading....</TextBlock>
-        </Border>
-
         <Border Visibility="Collapsed" Margin="0 120 230 0" Name="MapPanel" Grid.RowSpan="5"
                 HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent"
                 BorderThickness="1" CornerRadius="4" Panel.ZIndex="6"
@@ -107,7 +101,7 @@
             <Button Command="{Binding ClearCommand}" FontSize="14" HorizontalAlignment="Right" Style="{DynamicResource LinkButton}">Clear all filters</Button>
         </DockPanel>
 
-        <DataGrid Name="FileGrid" Sorting="DataGrid_Sorting" Padding="15 10 15 0" HorizontalAlignment="Stretch" Grid.Row="3"
+        <DataGrid Name="FileGrid" Sorting="DataGrid_Sorting" Padding="55 10 15 0" HorizontalAlignment="Stretch" Grid.Row="3"
                   Style="{DynamicResource DataGridStyle}" SelectionMode="Single"
                   ItemsSource="{Binding TableResult, IsAsync=True}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False">
             <DataGrid.Columns>
@@ -121,7 +115,7 @@
                 <DataGridTemplateColumn Width="*" Header="NAME" SortMemberPath="Name">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Grid>
+                            <Grid Margin="-40 0 0 0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
@@ -173,7 +167,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-
+        <TextBlock Visibility="{Binding Loader.IsLoading, Converter={StaticResource BoolToVisibility}}" Margin="60 40" Grid.Row="3" Text="{Binding Loader.Text}" />
         <Border Margin="-30 3 -30 0" Grid.Row="4" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource LightGray2Brush}" />
     </Grid>
 </UserControl>
