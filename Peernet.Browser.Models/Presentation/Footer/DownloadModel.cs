@@ -42,6 +42,8 @@ namespace Peernet.Browser.Models.Presentation.Footer
 
         public ApiFile File { get; init; }
 
+        public string FileSize => $"{File.Size} MB";
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public bool IsCompleted

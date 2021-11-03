@@ -20,13 +20,11 @@ namespace Peernet.Browser.Application.ViewModels
             NavigateHomeCommand = new MvxAsyncCommand(async () => await Navigate<HomeViewModel>(false));
             NavigateDirectoryCommand = new MvxAsyncCommand(async () => await Navigate<DirectoryViewModel>());
 
-            EditProfileCommand = new MvxAsyncCommand(() =>
+            EditProfileCommand = new MvxAsyncCommand(async () =>
             {
                 GlobalContext.IsMainWindowActive = false;
                 GlobalContext.IsProfileMenuVisible = false;
-                navigationService.Navigate<EditProfileViewModel>();
-
-                return Task.CompletedTask;
+                await navigationService.Navigate<EditProfileViewModel>();
             });
 
             NavigateAboutCommand = new MvxAsyncCommand(async () =>

@@ -5,7 +5,7 @@
     xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
     xmlns:models="clr-namespace:Peernet.Browser.Models.Presentation;assembly=Peernet.Browser.Models"
     xmlns:contexts="clr-namespace:Peernet.Browser.Application.Contexts;assembly=Peernet.Browser.Application"
-    HorizontalAlignment="Center" VerticalAlignment="Center">
+    HorizontalAlignment="Center" VerticalAlignment="Center" UseLayoutRounding="True" SnapsToDevicePixels="True">
 
     <views:MvxWpfView.Resources>
         <ResourceDictionary>
@@ -82,7 +82,10 @@
                     <TextBlock Text="Username" Foreground="{DynamicResource MainContentBrush}" FontWeight="Medium" />
                 </Border>
 
-                <Border Height="36" Width="282" CornerRadius="3" Background="Transparent" BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}" Margin="0,11,0,0" HorizontalAlignment="Center" Padding="9">
+                <Border Height="36" Width="282" CornerRadius="3" BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}" Margin="0,11,0,0" HorizontalAlignment="Center" Padding="9">
+                    <Border.Background>
+                        <SolidColorBrush Color="{DynamicResource PopupMenuBackground}" />
+                    </Border.Background>
                     <Grid>
                         <TextBlock Text="Set username" VerticalAlignment="Center" Foreground="{DynamicResource LightGrayBrush}">
                             <TextBlock.Visibility>
@@ -114,13 +117,13 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBox Grid.Column="0" Text="Delete account" FontSize="14" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Padding="11.58, 0, 0, 0" BorderThickness="0" Background="Transparent">
-                            <TextBox.Style>
-                                <Style TargetType="{x:Type TextBox}">
+                        <TextBlock Grid.Column="0" Text="Delete account" VerticalAlignment="Center" FontSize="14" Padding="11.58, 0, 0, 0" Background="Transparent">
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
                                     <Setter Property="Foreground" Value="{DynamicResource MainContentBrush}" />
                                 </Style>
-                            </TextBox.Style>
-                        </TextBox>
+                            </TextBlock.Style>
+                        </TextBlock>
                         <TextBlock Grid.Column="1" Text="Delete" PreviewMouseLeftButtonDown="DeleteAccount_OnClick" Style="{DynamicResource Underlined}" Foreground="#E10D0D" Margin="0,0,16,0" VerticalAlignment="Center" />
                     </Grid>
                 </Border>

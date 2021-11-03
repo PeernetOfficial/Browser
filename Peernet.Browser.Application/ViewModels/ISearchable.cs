@@ -4,7 +4,7 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public interface ISearchable
     {
-        IMvxCommand Search { get; }
+        IMvxCommand SearchCommand { get; }
 
         IMvxCommand RemoveHint { get; }
 

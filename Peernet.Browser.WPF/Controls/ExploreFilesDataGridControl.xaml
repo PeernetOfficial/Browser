@@ -24,28 +24,28 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="DATE" SortMemberPath="Date" Width="Auto">
+                <DataGridTemplateColumn Header="DATE" SortMemberPath="Date" Width="150">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding File.Date, StringFormat=d}" VerticalAlignment="Center" HorizontalAlignment="Left" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="SIZE" SortMemberPath="Size" Width="Auto">
+                <DataGridTemplateColumn Header="SIZE" SortMemberPath="Size" Width="160">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding File.Size}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            <TextBlock Text="{Binding FileSize}" VerticalAlignment="Center" HorizontalAlignment="Left" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="SHARED BY" SortMemberPath="SharedByCount" Width="Auto">
+                <DataGridTemplateColumn Header="SHARED BY" SortMemberPath="SharedByCount" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding File.SharedByCount, StringFormat={}{0} Peers}" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Medium" />
+                            <TextBlock Text="{Binding File.SharedByCount, StringFormat={}{0} Peers}" VerticalAlignment="Center" HorizontalAlignment="Left" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="Auto">
+                <DataGridTemplateColumn Width="90">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid>

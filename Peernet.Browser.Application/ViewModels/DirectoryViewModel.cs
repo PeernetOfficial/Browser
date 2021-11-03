@@ -85,7 +85,7 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        public IMvxCommand Search
+        public IMvxCommand SearchCommand
         {
             get
             {
