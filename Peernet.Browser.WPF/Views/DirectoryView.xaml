@@ -94,38 +94,44 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                <Border Grid.Row="0" Grid.Column="1" Width="229" Height="40" HorizontalAlignment="Right" Margin="0,28, 85, 27" BorderThickness="1" CornerRadius="3,3,3,3" BorderBrush="{DynamicResource BorderBrush}">
+                <Border Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Margin="0,28, 85, 27" BorderThickness="1" CornerRadius="3,3,3,3" BorderBrush="{DynamicResource BorderBrush}">
                     <Border.Background>
                         <SolidColorBrush Color="{DynamicResource ViewBackgroundColor}" />
                     </Border.Background>
                     <Grid>
-                        <TextBlock FontSize="12"
-                                   Padding="12, 0, 0, 0"
-                                     TextAlignment="Left"
-                                     VerticalAlignment="Center"
-                                     FontFamily="Inter"
-                                     Background="Transparent"
-                                     Foreground="{DynamicResource LightGray2Brush}" Text="Search">
-                            <TextBlock.Visibility>
-                                <MultiBinding Converter="{StaticResource TextInputToVisibilityConverter}">
-                                    <Binding ElementName="txtSearch" Path="Text.IsEmpty" />
-                                    <Binding ElementName="txtSearch" Path="IsFocused" />
-                                </MultiBinding>
-                            </TextBlock.Visibility>
-                        </TextBlock>
-
-                        <TextBox Padding="9" Text="{Binding SearchInput, UpdateSourceTrigger=PropertyChanged}"
-                                     VerticalAlignment="Center"
-                                     TextBlock.FontSize="12"
-                                     Foreground="{DynamicResource MainTextBrush}"
-                                     Background="Transparent"
-                                     BorderThickness="0" Name="txtSearch"
-                                     CaretBrush="{DynamicResource MainTextBrush}">
+                        <TextBox Width="229" Height="40" Text="{Binding SearchInput, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalContentAlignment="Center"
+                                 HorizontalContentAlignment="Left"
+                                 Foreground="{DynamicResource MainTextBrush}"
+                                 BorderThickness="0"
+                                 CaretBrush="{DynamicResource MainTextBrush}"
+                                 Padding="20, 0, 0, 0" Cursor="IBeam">
+                            <TextBox.Style>
+                                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                                    <Style.Resources>
+                                        <VisualBrush x:Key="BannerBrush" AlignmentY="Center" Stretch="None">
+                                            <VisualBrush.Visual>
+                                                <Label Content="Search" Foreground="{DynamicResource LightGray2Brush}" />
+                                            </VisualBrush.Visual>
+                                        </VisualBrush>
+                                    </Style.Resources>
+                                    <Style.Triggers>
+                                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                            <Setter Property="Background" Value="{StaticResource BannerBrush}" />
+                                        </Trigger>
+                                        <Trigger Property="Text" Value="{x:Null}">
+                                            <Setter Property="Background" Value="{StaticResource BannerBrush}" />
+                                        </Trigger>
+                                        <Trigger Property="IsKeyboardFocused" Value="True">
+                                            <Setter Property="Background" Value="Transparent" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
                             <TextBox.InputBindings>
                                 <KeyBinding Command="{Binding SearchCommand}" Key="Enter" />
                             </TextBox.InputBindings>
                         </TextBox>
-
                         <Image Cursor="Hand" Margin="0 0 13 0" HorizontalAlignment="Right" Source="{DynamicResource SearchDrawingImage}" Height="14.22" Width="14.22">
                             <Image.InputBindings>
                                 <MouseBinding MouseAction="LeftClick" Command="{Binding SearchCommand}" />
