@@ -167,7 +167,7 @@ namespace Peernet.Browser.Infrastructure.Services
             {
                 searchGetRequest.Id = model.Uuid;
             }
-            if (model.Time.HasValue && model.IsCustomTimeFill)
+            if (model.Time.HasValue)
             {
                 var format = "yyyy-MM-dd HH:mm:ss";
                 var range = model.GetDateRange();
