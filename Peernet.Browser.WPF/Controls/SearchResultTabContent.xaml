@@ -101,7 +101,8 @@
             <Button Command="{Binding ClearCommand}" FontSize="14" HorizontalAlignment="Right" Style="{DynamicResource LinkButton}">Clear all filters</Button>
         </DockPanel>
 
-        <DataGrid Name="FileGrid" Sorting="DataGrid_Sorting" Padding="55 10 15 0" HorizontalAlignment="Stretch" Grid.Row="3"
+        <DataGrid Visibility="{Binding Loader.IsNotLoading, Converter={StaticResource BoolToVisibility}}"
+                  Name="FileGrid" Sorting="DataGrid_Sorting" Padding="55 10 15 0" HorizontalAlignment="Stretch" Grid.Row="3"
                   Style="{DynamicResource DataGridStyle}" SelectionMode="Single" ScrollViewer.ScrollChanged="FileGrid_ScrollChanged"
                   ItemsSource="{Binding TableResult, IsAsync=True}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False">
             <DataGrid.Columns>
@@ -167,7 +168,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBlock Foreground="{DynamicResource MainContentBrush}"  Visibility="{Binding Loader.IsLoading, Converter={StaticResource BoolToVisibility}}" Margin="60 40" Grid.Row="3" Text="{Binding Loader.Text}" />
+        <TextBlock FontSize="14" Foreground="{DynamicResource MainContentBrush}"  Visibility="{Binding Loader.IsLoading, Converter={StaticResource BoolToVisibility}}" Margin="60 40" Grid.Row="3" Text="{Binding Loader.Text}" />
         <Border Margin="-30 3 -30 0" Grid.Row="4" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource LightGray2Brush}" />
     </Grid>
 </UserControl>
