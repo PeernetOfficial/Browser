@@ -18,8 +18,12 @@ namespace Peernet.Browser.WPF
             DependencyProperty.Register("IsEditable", typeof(bool),
                 typeof(FilePreviewWindow), null);
 
-        public static readonly DependencyProperty DownloadEnabledProperty =
-            DependencyProperty.Register("DownloadEnabled", typeof(bool),
+        public static readonly DependencyProperty ActionButtonEnabledProperty =
+            DependencyProperty.Register("ActionButtonEnabled", typeof(bool),
+                typeof(FilePreviewWindow), null);
+
+        public static readonly DependencyProperty ActionButtonContentProperty =
+            DependencyProperty.Register("ActionButtonContent", typeof(string),
                 typeof(FilePreviewWindow), null);
 
         public bool IsEditable
@@ -28,38 +32,28 @@ namespace Peernet.Browser.WPF
             set => SetValue(IsEditableProperty, value);
         }
 
-        public bool DownloadEnabled
+        public bool ActionButtonEnabled
         {
-            get => (bool)GetValue(DownloadEnabledProperty);
-            set => SetValue(DownloadEnabledProperty, value);
+            get => (bool)GetValue(ActionButtonEnabledProperty);
+            set => SetValue(ActionButtonEnabledProperty, value);
         }
 
-        public FilePreviewWindow(DownloadModel model, bool isEditable, bool downloadEnabled)
+        public string ActionButtonContent
+        {
+            get => (string)GetValue(ActionButtonContentProperty);
+            set => SetValue(ActionButtonContentProperty, value);
+        }
+
+
+        public FilePreviewWindow(DownloadModel model, bool isEditable, bool actionButtonEnabled, string actionButtonContent)
         {
             InitializeComponent();
             MouseDown += Window_MouseDown;
             this.model = model;
             IsEditable = isEditable;
             Content = model;
-            DownloadEnabled = downloadEnabled;
-        }
-
-        private void Minimize_OnClick(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
-
-        private void Maximize_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (WindowState == WindowState.Maximized)
-            {
-                WindowState = WindowState.Normal;
-            }
-            else
-            {
-                WindowState = WindowState.Maximized;
-            }
-
+            ActionButtonEnabled = actionButtonEnabled;
+            ActionButtonContent = actionButtonContent;
         }
 
         private void Close_OnClick(object sender, RoutedEventArgs e)

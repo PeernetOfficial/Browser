@@ -53,7 +53,7 @@
                             </Border.Style>
                         </Border>
                         <Border CornerRadius="4, 0, 4, 0" Height="32" Width="32" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="{DynamicResource MainContentBrush}">
-                                <Button Width="20" Height="20" Click="OpenFileDialog">
+                                <Button Width="32" Height="32" Padding="6" Click="OpenFileDialog">
                                     <Button.Style>
                                         <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonBaseStyle}">
                                             <Setter Property="Background">
@@ -82,24 +82,41 @@
                     <TextBlock Text="Username" Foreground="{DynamicResource MainContentBrush}" FontWeight="Medium" />
                 </Border>
 
-                <Border Height="36" Width="282" CornerRadius="3" BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}" Margin="0,11,0,0" HorizontalAlignment="Center" Padding="9">
+                <Border Height="36" Width="282" CornerRadius="3" BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}" Margin="0,11,0,0" HorizontalAlignment="Center">
                     <Border.Background>
                         <SolidColorBrush Color="{DynamicResource PopupMenuBackground}" />
                     </Border.Background>
-                    <Grid>
-                        <TextBlock Text="Set username" VerticalAlignment="Center" Foreground="{DynamicResource LightGrayBrush}">
-                            <TextBlock.Visibility>
-                                <MultiBinding Converter="{StaticResource TextInputToVisibilityConverter}">
-                                    <Binding ElementName="usernameInput" Path="Text.IsEmpty" />
-                                    <Binding ElementName="usernameInput" Path="IsFocused" />
-                                </MultiBinding>
-                            </TextBlock.Visibility>
-                        </TextBlock>
-                        <TextBox Text="{Binding UserContext.User.Name}" Foreground="{DynamicResource MainContentBrush}" CaretBrush="{DynamicResource MainTextBrush}"
-                                 Background="Transparent" Name="usernameInput"
-                                 Template="{StaticResource RoundedTextBox}" Height="132"
-                                 AcceptsReturn="True" TextWrapping="Wrap" AcceptsTab="True" />
-                    </Grid>
+                        <TextBox Text="{Binding UserContext.User.Name}"
+                                 VerticalContentAlignment="Center"
+                                 HorizontalContentAlignment="Left"
+                                 Foreground="{DynamicResource MainContentBrush}" 
+                                 BorderThickness="0"
+                                 CaretBrush="{DynamicResource MainTextBrush}"
+                                 Cursor="IBeam"
+                                 Padding="9, 0, 0, 0">
+                            <TextBox.Style>
+                                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                                    <Style.Resources>
+                                        <VisualBrush x:Key="BannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                            <VisualBrush.Visual>
+                                            <Label Content="Set username" Padding="9, 0, 0, 0" Foreground="{DynamicResource LightGray2Brush}" />
+                                            </VisualBrush.Visual>
+                                        </VisualBrush>
+                                    </Style.Resources>
+                                    <Style.Triggers>
+                                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                            <Setter Property="Background" Value="{StaticResource BannerBrush}" />
+                                        </Trigger>
+                                        <Trigger Property="Text" Value="{x:Null}">
+                                            <Setter Property="Background" Value="{StaticResource BannerBrush}" />
+                                        </Trigger>
+                                        <Trigger Property="IsKeyboardFocused" Value="True">
+                                            <Setter Property="Background" Value="Transparent" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
                 </Border>
 
                 <Border Width="282" Height="36" CornerRadius="0,0,3,3" Margin="0,28,0,0" BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}" HorizontalAlignment="Center">

@@ -10,7 +10,7 @@
                   Topmost="True"
                   Background="{DynamicResource PreviewBackground}">
     <WindowChrome.WindowChrome>
-        <WindowChrome ResizeBorderThickness="5" GlassFrameThickness="0" CaptionHeight="0" CornerRadius="0"/>
+        <WindowChrome ResizeBorderThickness="0" GlassFrameThickness="0" CaptionHeight="0" CornerRadius="0"/>
     </WindowChrome.WindowChrome>
     <views:MvxWindow.ContentTemplate>
         <DataTemplate>
@@ -24,8 +24,6 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Button Style="{StaticResource MinimizeButtonStyle}" Click="Minimize_OnClick" />
-                        <Button Style="{StaticResource MaximizeButtonStyle}" Click="Maximize_OnClick" />
                         <Button Style="{StaticResource CloseButtonStyle}" Click="Close_OnClick" />
                     </StackPanel>
                     <StackPanel Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="80, 10, 0, 0">
@@ -108,7 +106,6 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0">
                                 <TextBlock Style="{StaticResource Active}" Text="FileType" />
@@ -126,21 +123,19 @@
                                 <TextBlock Style="{StaticResource Active}" Text="Category" />
                                 <TextBlock Style="{StaticResource Active}" Text="{Binding File.Type}" FontWeight="Medium" Margin="0, 28, 0, 0" />
                             </StackPanel>
-                            <StackPanel Grid.Column="4">
-                                <TextBlock Style="{StaticResource Active}" Text="Health" />
-                                <Image Source="{StaticResource GreenDotDrawingImage}" Width="10" Height="10" HorizontalAlignment="Left" Margin="0, 33, 0, 0" />
-                            </StackPanel>
                             <StackPanel Grid.Column="5">
                                 <TextBlock Style="{StaticResource Active}" Text="Shared by" />
                                 <TextBlock Style="{StaticResource Active}" Text="{Binding File.SharedByCount, StringFormat={}{0} Peers}" FontWeight="Medium" Margin="0, 28, 0, 0" />
                             </StackPanel>
                         </Grid>
+
+                        <!--It should be save to disk for your files-->
                         <Button Width="174" Height="44" Margin="0, 50, 70, 0" Click="Download_OnClick" HorizontalAlignment="Right">
                             <Button.Style>
                                 <Style BasedOn="{StaticResource AcceptButton}" TargetType="{x:Type Button}">
                                     <Setter Property="Visibility" Value="Collapsed" />
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Path=DownloadEnabled, ElementName=PreviewWindow}" Value="True">
+                                        <DataTrigger Binding="{Binding Path=ActionButtonEnabled, ElementName=PreviewWindow}" Value="True">
                                             <Setter Property="Visibility" Value="Visible" />
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -151,7 +146,7 @@
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="{StaticResource Download_LightDrawingImage}" Width="20" Height="20" />
-                                        <ContentPresenter Content="Download" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15, 0, 0, 0" />
+                                        <ContentPresenter Content="{Binding Path=ActionButtonContent, ElementName=PreviewWindow}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15, 0, 0, 0" />
                                     </StackPanel>
                                 </DataTemplate>
                             </Button.ContentTemplate>

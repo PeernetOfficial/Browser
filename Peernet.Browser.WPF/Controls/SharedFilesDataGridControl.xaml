@@ -17,32 +17,28 @@
                 <DataGridTemplateColumn Header="NAME" SortMemberPath="Name" Width="*" HeaderStyle="{StaticResource ShiftedDataGridColumnHeaderStyle}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Grid Margin="20, 0, 0, 0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Image Width="13.71" Height="20" Grid.Column="0" Style="{StaticResource GridFileImageStyle}" />
-                                <TextBlock Grid.Column="1" Text="{Binding Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" PreviewMouseLeftButtonDown="OpenFilePreview_OnClick" Style="{StaticResource Underlined}" />
-                            </Grid>
+                            <StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
+                                <Image Width="13.71" Height="20" Style="{StaticResource GridFileImageStyle}" />
+                                <TextBlock Text="{Binding Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" PreviewMouseLeftButtonDown="OpenFilePreview_OnClick" Style="{StaticResource Underlined}" />
+                            </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="TYPE" SortMemberPath="Format" Width="Auto">
+                <DataGridTemplateColumn Header="TYPE" SortMemberPath="Format" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Format}" VerticalAlignment="Center" HorizontalAlignment="Left" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="DATE" SortMemberPath="Date" Width="Auto">
+                <DataGridTemplateColumn Header="DATE" SortMemberPath="Date" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Date, StringFormat=d}" VerticalAlignment="Center" HorizontalAlignment="Left" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="Auto">
+                <DataGridTemplateColumn Width="130">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid>

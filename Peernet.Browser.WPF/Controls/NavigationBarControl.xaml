@@ -18,7 +18,16 @@
             <Button Style="{DynamicResource DirectoryNavBarButtonStyle}" Command="{Binding NavigateDirectoryCommand}" ToolTip="Directory" />
             <Button x:Name="ProfileButton" Style="{DynamicResource UserNavBarButtonStyle}" MouseEnter="ProfileButton_OnMouseEnter" MouseLeave="ProfileButton_OnMouseLeave" />
         </StackPanel>
-        <Popup x:Name="ProfileMenu" StaysOpen="True" Placement="Right" VerticalOffset="88" HorizontalOffset="-255" MouseLeave="ProfileMenu_OnMouseLeave" HorizontalAlignment="Right" PlacementTarget="{Binding ElementName=Main}" AllowsTransparency="True" MouseDown="ProfileMenu_OnMouseDown">
+        <Popup x:Name="ProfileMenu"
+               StaysOpen="True"
+               Placement="Right"
+               VerticalOffset="88"
+               HorizontalOffset="-255"
+               MouseLeave="ProfileMenu_OnMouseLeave"
+               HorizontalAlignment="Right"
+               PlacementTarget="{Binding ElementName=Main}"
+               AllowsTransparency="True"
+               MouseDown="ProfileMenu_OnMouseDown">
             <Border x:Name="PopupBorder" Width="212" BorderThickness="1" Margin="20">
                 <Border.Background>
                     <SolidColorBrush Color="{DynamicResource PopupMenuBackground}" />

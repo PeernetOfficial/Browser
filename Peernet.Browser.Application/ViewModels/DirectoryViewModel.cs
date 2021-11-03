@@ -99,12 +99,6 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        public override async void ViewAppearing()
-        {
-            await ReloadVirtualFileSystem();
-            base.ViewAppearing();
-        }
-
         public string SearchInput
         {
             get => searchInput;

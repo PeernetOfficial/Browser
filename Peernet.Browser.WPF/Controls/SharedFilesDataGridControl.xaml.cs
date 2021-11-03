@@ -35,7 +35,7 @@ namespace Peernet.Browser.WPF.Controls
         {
             var file = (ApiFile)((FrameworkElement)e.OriginalSource).DataContext;
             var model = new DownloadModel(file);
-            var preview = new FilePreviewWindow(model, isEditable, false);
+            var preview = new FilePreviewWindow(model, isEditable, true, "Save To Disk");
             preview.Show();
         }
     }

@@ -101,8 +101,8 @@
             <Button Command="{Binding ClearCommand}" FontSize="14" HorizontalAlignment="Right" Style="{DynamicResource LinkButton}">Clear all filters</Button>
         </DockPanel>
 
-        <DataGrid Name="FileGrid" Sorting="DataGrid_Sorting" Padding="55 10 15 0" HorizontalAlignment="Stretch" Grid.Row="3"
-                  Style="{DynamicResource DataGridStyle}" SelectionMode="Single" ScrollViewer.ScrollChanged="FileGrid_ScrollChanged"
+        <DataGrid Name="FileGrid" Sorting="DataGrid_Sorting" Padding="55 10 15 0" Grid.Row="3"
+                  Style="{DynamicResource DataGridStyle}" ScrollViewer.ScrollChanged="FileGrid_ScrollChanged"
                   ItemsSource="{Binding TableResult, IsAsync=True}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="" SortMemberPath="First">
@@ -157,7 +157,7 @@
                 <DataGridTemplateColumn  Visibility="{Binding DataContext.ShowColumnsDownload, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}"  Width="150">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.DownloadCommand, ElementName=SharedResultTab}" CommandParameter="{Binding}">
+                            <Button Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.DownloadCommand, ElementName=SharedResultTab}" CommandParameter="{Binding}" Width="45" Height="44">
                                 <Button.Background>
                                     <ImageBrush ImageSource="{DynamicResource DownloadDrawingImage}" />
                                 </Button.Background>
