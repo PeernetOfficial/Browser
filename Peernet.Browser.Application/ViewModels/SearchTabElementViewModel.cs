@@ -53,8 +53,6 @@ namespace Peernet.Browser.Application.ViewModels
             ColumnsIconModel = new IconModel(FiltersType.Columns, true, ShowColumnSelection);
             FiltersIconModel = new IconModel(FiltersType.Filters, true, OpenFilters);
 
-            Map.Fill(new[] { new GeoPoint { Longitude = 19, Latitude = 49 }, new GeoPoint { Longitude = 0, Latitude = 0 } });
-
             InitIcons();
             Loader.Set("Searching...");
             _ = Task.Run(async () => await Refresh(false));
@@ -157,6 +155,7 @@ namespace Peernet.Browser.Application.ViewModels
             {
                 for (var i = TableResult.Count; i < data.Rows.Length; i++)
                 {
+                    data.Rows[i].OnHover = Map.Fill;
                     TableResult.Add(data.Rows[i]);
                 }
             });
