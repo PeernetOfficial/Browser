@@ -4,79 +4,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:MvvmCross.Plugin.Control.Platforms.Wpf;assembly=MvvmCross.Plugin.Control.Platforms.Wpf"
     xmlns:domaincontrols="clr-namespace:Peernet.Browser.WPF.Controls"
-    x:Name="NavBar">
-    <controls:MvxWpfControl.Resources>
-        <ResourceDictionary>
-            <ImageBrush x:Key="DefaultProfileImage" ImageSource="{DynamicResource DefaultProfileImageDrawingImage}" />
-            <ImageBrush x:Key="SourcedProfileImage" ImageSource="{Binding UserContext.User.Image, Converter={StaticResource NullImageConverter}}" Stretch="Uniform" />
-        </ResourceDictionary>
-    </controls:MvxWpfControl.Resources>
+    xmlns:contexts="clr-namespace:Peernet.Browser.Application.Contexts;assembly=Peernet.Browser.Application">
 
     <StackPanel Orientation="Vertical">
         <StackPanel Orientation="Horizontal">
             <Button Style="{DynamicResource HomeNavBarButtonStyle}" Command="{Binding NavigateHomeCommand}" ToolTip="Home" />
             <Button Style="{DynamicResource ExploreNavBarButtonStyle}" Command="{Binding NavigateExploreCommand}" ToolTip="Explore" />
             <Button Style="{DynamicResource DirectoryNavBarButtonStyle}" Command="{Binding NavigateDirectoryCommand}" ToolTip="Directory" />
-            <Button x:Name="ProfileButton" Style="{DynamicResource UserNavBarButtonStyle}" MouseEnter="ProfileButton_OnMouseEnter" MouseLeave="ProfileButton_OnMouseLeave" />
+            <Button Style="{DynamicResource UserNavBarButtonStyle}" Command="{Binding OpenCloseProfileMenuCommand}" ToolTip="User" />
         </StackPanel>
-        <Popup x:Name="ProfileMenu"
-               StaysOpen="True"
-               Placement="Right"
-               VerticalOffset="88"
-               HorizontalOffset="-255"
-               MouseLeave="ProfileMenu_OnMouseLeave"
-               HorizontalAlignment="Right"
-               PlacementTarget="{Binding ElementName=Main}"
-               AllowsTransparency="True"
-               MouseDown="ProfileMenu_OnMouseDown">
-            <Border x:Name="PopupBorder" Width="212" BorderThickness="1" Margin="20">
-                <Border.Background>
-                    <SolidColorBrush Color="{DynamicResource PopupMenuBackground}" />
-                </Border.Background>
-                <Border.Effect>
-                    <DropShadowEffect Color="Black" Opacity="0.14" ShadowDepth="8" BlurRadius="26" />
-                </Border.Effect>
-                <StackPanel>
-                    <Grid Margin="17,18,0,17">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Border Grid.Column="0" Width="47" Height="47" Background="{StaticResource LightGray2Brush}">
-                            <Button Command="{Binding EditProfileCommand}" Margin="0" Padding="0">
-                                <Button.Style>
-                                    <Style BasedOn="{StaticResource ButtonBaseStyle}" TargetType="{x:Type Button}">
-                                        <Setter Property="Background" Value="{StaticResource SourcedProfileImage}" />
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding UserContext.User.Image}" Value="{x:Null}">
-                                                <Setter Property="Background" Value="{StaticResource DefaultProfileImage}" />
-                                                <Setter Property="Width" Value="20" />
-                                                <Setter Property="Height" Value="20" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Button.Style>
-                            </Button>
-                        </Border>
-                        <StackPanel Grid.Column="1" Margin="8,0,0,0" Orientation="Horizontal">
-                            <TextBlock Foreground="{DynamicResource MainContentBrush}" FontFamily="Inter" FontSize="14" FontWeight="Medium" Text="{Binding UserContext.User.Name}" Cursor="Hand">
-                                <TextBlock.InputBindings>
-                                    <MouseBinding MouseAction="LeftClick" Command="{Binding EditProfileCommand}" />
-                                </TextBlock.InputBindings>
-                            </TextBlock>
-                            <Button Style="{StaticResource ButtonBaseStyle}" Padding="7" VerticalAlignment="Top" HorizontalAlignment="Left" Width="30" Height="30" Margin="31,-7,0,0" Command="{Binding EditProfileCommand}">
-                                <Button.Background>
-                                    <ImageBrush ImageSource="{DynamicResource EditDrawingImage}" />
-                                </Button.Background>
-                            </Button>
-                        </StackPanel>
-                    </Grid>
-                    <Separator Style="{StaticResource StandardSeparatorStyle}" Width="179" />
-                    <Button Command="{Binding NavigateAboutCommand}" Content="About" Style="{StaticResource NavbarMenuButtonStyle}" />
-                    <Separator Style="{StaticResource StandardSeparatorStyle}" Width="179" />
-                    <domaincontrols:ToggleSwitch CheckedText="Dark" UncheckedText="Light" Margin="20, 10, 0, 10" HorizontalAlignment="Left" VerticalAlignment="Top" SwitchContentPlacement="Right" HeaderContentPlacement="Left" IsChecked="{Binding IsDarkModeToggled, ElementName=NavBar, Mode=TwoWay}" />
-                </StackPanel>
-            </Border>
-        </Popup>
+        <domaincontrols:ProfileMenuControl HorizontalAlignment="Right" Visibility="{Binding Path=(contexts:GlobalContext.IsProfileMenuVisible), Converter={StaticResource BoolToVisibility}}" />
     </StackPanel>
 </controls:MvxWpfControl>

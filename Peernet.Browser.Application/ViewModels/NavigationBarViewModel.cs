@@ -32,6 +32,12 @@ namespace Peernet.Browser.Application.ViewModels
                 GlobalContext.IsProfileMenuVisible = false;
                 await Navigate<AboutViewModel>();
             });
+
+            OpenCloseProfileMenuCommand = new MvxAsyncCommand(() =>
+            {
+                GlobalContext.IsProfileMenuVisible ^= true;
+                return Task.CompletedTask;
+            });
         }
 
         private Type actualActiveViewModel = typeof(HomeViewModel);
@@ -57,6 +63,8 @@ namespace Peernet.Browser.Application.ViewModels
         public IMvxAsyncCommand EditProfileCommand { get; }
 
         public IMvxAsyncCommand NavigateAboutCommand { get; }
+
+        public IMvxAsyncCommand OpenCloseProfileMenuCommand { get; }
 
         public IUserContext UserContext { get; set; }
     }
