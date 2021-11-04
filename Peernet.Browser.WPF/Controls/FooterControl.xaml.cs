@@ -29,15 +29,11 @@ namespace Peernet.Browser.WPF.Controls
             if (DownloadsList.Visibility == Visibility.Collapsed)
             {
                 DownloadsList.Visibility = Visibility.Visible;
-                DownloadsToggleButton.FontSize = 12;
-                DownloadsToggleButton.Content = "Hide";
                 CollapsedDownloadsText.Visibility = Visibility.Collapsed;
             }
             else
             {
                 DownloadsList.Visibility = Visibility.Collapsed;
-                DownloadsToggleButton.Content = "Show";
-                DownloadsToggleButton.FontSize = 10;
                 CollapsedDownloadsText.Visibility = Visibility.Visible;
             }
         }

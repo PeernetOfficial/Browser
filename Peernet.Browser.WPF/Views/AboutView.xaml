@@ -14,7 +14,6 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <StackPanel Grid.Column="1" VerticalAlignment="Top" Grid.Row="0">
                 <TextBlock Style="{StaticResource Active}" Text="About" FontSize="32" FontWeight="Medium" />
@@ -85,68 +84,6 @@
                 </BulletDecorator>
             </StackPanel>
             <Separator Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource StandardSeparatorStyle}" Margin="0, 0, 0, 55" VerticalAlignment="Bottom" />
-            <DataGrid Grid.Row="2" Grid.Column="1" Style="{DynamicResource DataGridStyle}" ItemsSource="{Binding Files, IsAsync=True}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False" VirtualizingStackPanel.VirtualizationMode="Recycling" VirtualizingStackPanel.IsVirtualizing="True">
-                <DataGrid.CellStyle>
-                    <Style TargetType="DataGridCell" BasedOn="{StaticResource BaseDataGridCellStyle}">
-                        <Setter Property="Height" Value="35" />
-                    </Style>
-                </DataGrid.CellStyle>
-                <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="NAME" SortMemberPath="Name" Width="*" HeaderStyle="{StaticResource ShiftedDataGridColumnHeaderStyle}">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
-                                    <Image Width="13.71" Height="20" Style="{StaticResource GridFileImageStyle}" />
-                                    <TextBlock Text="{Binding Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource Underlined}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="TYPE" SortMemberPath="Format" Width="100">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Format}" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="DATE" SortMemberPath="Date" Width="100">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Date, StringFormat=d}" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Width="130">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Button Grid.Column="0" Style="{StaticResource DataGridActionButton}" CommandParameter="{Binding}" ToolTip="Edit">
-                                        <Button.Background>
-                                            <ImageBrush ImageSource="{DynamicResource EditDrawingImage}" />
-                                        </Button.Background>
-                                    </Button>
-                                    <Button Grid.Column="1" Style="{StaticResource DataGridActionButton}" ToolTip="Share">
-                                        <Button.Background>
-                                            <ImageBrush ImageSource="{DynamicResource ShareDrawingImage}" />
-                                        </Button.Background>
-                                    </Button>
-                                    <Button Grid.Column="2" Style="{StaticResource DataGridActionButton}" CommandParameter="{Binding}" ToolTip="Delete">
-                                        <Button.Background>
-                                            <ImageBrush ImageSource="{DynamicResource BinDrawingImage}" />
-                                        </Button.Background>
-                                    </Button>
-                                </Grid>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-
         </Grid>
     </Border>
 </views:MvxWpfView>
