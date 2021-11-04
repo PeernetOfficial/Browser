@@ -1,24 +1,24 @@
 ﻿using MvvmCross.Commands;
+using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.Browser.Models.Domain.Common;
+using Peernet.Browser.Models.Presentation.Footer;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using MvvmCross.Navigation;
-using Peernet.Browser.Application.Contexts;
-using Peernet.Browser.Models.Presentation.Footer;
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public class DirectoryViewModel : MvxViewModel, ISearchable
     {
         private readonly IBlockchainService blockchainService;
-        private readonly IVirtualFileSystemFactory virtualFileSystemFactory;
         private readonly IMvxNavigationService mvxNavigationService;
+        private readonly IVirtualFileSystemFactory virtualFileSystemFactory;
         private List<ApiFile> activeSearchResults;
         private ObservableCollection<VirtualFileSystemEntity> pathElements;
         private string searchInput;
@@ -40,8 +40,16 @@ namespace Peernet.Browser.Application.ViewModels
             set => SetProperty(ref activeSearchResults, value);
         }
 
-        public IMvxAsyncCommand<ApiFile> EditCommand =>
+        public IMvxAsyncCommand<ApiFile> DeleteCommand =>
             new MvxAsyncCommand<ApiFile>(
+                async apiFile =>
+                {
+                    await blockchainService.DeleteFile(apiFile);
+                    await ReloadVirtualFileSystem();
+                });
+
+        public IMvxAsyncCommand<ApiFile> EditCommand =>
+                    new MvxAsyncCommand<ApiFile>(
                  async apiFile =>
                 {
                     var parameter = new EditFileViewModelParameter(blockchainService, mvxNavigationService)
@@ -54,14 +62,6 @@ namespace Peernet.Browser.Application.ViewModels
 
                     GlobalContext.IsMainWindowActive = false;
                     await mvxNavigationService.Navigate<GenericFileViewModel, EditFileViewModelParameter>(parameter);
-                });
-        
-        public IMvxAsyncCommand<ApiFile> DeleteCommand =>
-            new MvxAsyncCommand<ApiFile>(
-                async apiFile =>
-                {
-                    await blockchainService.DeleteFile(apiFile);
-                    await ReloadVirtualFileSystem();
                 });
 
         public ObservableCollection<VirtualFileSystemEntity> PathElements
@@ -133,10 +133,10 @@ namespace Peernet.Browser.Application.ViewModels
             entity.IsSelected = true;
         }
 
-        public override async Task Initialize()
+        public override async void ViewAppearing()
         {
             await ReloadVirtualFileSystem();
-            await base.Initialize();
+            base.ViewAppearing();
         }
 
         private void AddAllFilesTier(IEnumerable<ApiFile> allFiles)

@@ -4,13 +4,13 @@
                   xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
                   xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls"
                   HorizontalAlignment="Center" VerticalAlignment="Center">
-    <Border BorderThickness="0" Padding="35 35 25 30" BorderBrush="Transparent" CornerRadius="{DynamicResource MainRadius}" Background="{DynamicResource ModalBackgroundBrush}">
+    <Border BorderThickness="0" Padding="35 11 0 30" BorderBrush="Transparent" CornerRadius="{DynamicResource MainRadius}" Background="{DynamicResource ModalBackgroundBrush}">
         <StackPanel>
-            <DockPanel LastChildFill="False">
-                <TextBlock  Foreground="{DynamicResource MainContentBrush}"  FontWeight="DemiBold" FontSize="18">Your filters</TextBlock>
-                <Button FontSize="14" Command="{Binding Filters.ClearCommand}" Margin="15 0" Style="{DynamicResource LinkButton}">Clear all</Button>
+            <DockPanel>
+                <TextBlock Foreground="{DynamicResource MainContentBrush}" FontWeight="DemiBold" FontSize="18" VerticalAlignment="Center">Your filters</TextBlock>
+                <Button FontSize="14" Command="{Binding Filters.ClearCommand}" Margin="15 0" VerticalAlignment="Center" Style="{DynamicResource LinkButton}">Clear all</Button>
+                <Button Style="{StaticResource CloseButtonStyle}" Command="{Binding Filters.CancelCommand}" Margin="0,0,15,0" HorizontalAlignment="Right" VerticalAlignment="Top" />
             </DockPanel>
-            <Button  Style="{StaticResource CloseButtonStyle}" Command="{Binding Filters.CancelCommand}" Margin="0,11,15,0" HorizontalAlignment="Right" VerticalAlignment="Top" />
 
             <Grid>
                 <Grid.RowDefinitions>
