@@ -3,7 +3,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:MvvmCross.Plugin.Control.Platforms.Wpf;assembly=MvvmCross.Plugin.Control.Platforms.Wpf"
-    xmlns:domaincontrols="clr-namespace:Peernet.Browser.WPF.Controls">
+    xmlns:domaincontrols="clr-namespace:Peernet.Browser.WPF.Controls"
+    x:Name="NavBar">
     <controls:MvxWpfControl.Resources>
         <ResourceDictionary>
             <ImageBrush x:Key="DefaultProfileImage" ImageSource="{DynamicResource DefaultProfileImageDrawingImage}" />
@@ -73,7 +74,7 @@
                     <Separator Style="{StaticResource StandardSeparatorStyle}" Width="179" />
                     <Button Command="{Binding NavigateAboutCommand}" Content="About" Style="{StaticResource NavbarMenuButtonStyle}" />
                     <Separator Style="{StaticResource StandardSeparatorStyle}" Width="179" />
-                    <domaincontrols:ToggleSwitch Margin="17, 26, 0, 21" />
+                    <domaincontrols:ToggleSwitch CheckedText="Dark" UncheckedText="Light" Margin="20, 10, 0, 10" HorizontalAlignment="Left" VerticalAlignment="Top" SwitchContentPlacement="Right" HeaderContentPlacement="Left" IsChecked="{Binding IsDarkModeToggled, ElementName=NavBar, Mode=TwoWay}" />
                 </StackPanel>
             </Border>
         </Popup>
