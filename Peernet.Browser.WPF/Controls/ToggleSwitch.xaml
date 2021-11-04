@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="Peernet.Browser.WPF.Controls.ToggleSwitch"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:contexts="clr-namespace:Peernet.Browser.Application.Contexts;assembly=Peernet.Browser.Application"
+             xmlns:models="clr-namespace:Peernet.Browser.Models.Presentation;assembly=Peernet.Browser.Models"
+             mc:Ignorable="d">
+    <Border MouseLeftButtonDown="Toggle_OnClick" Padding="15, 10" Background="Transparent" Cursor="Hand">
+        <StackPanel Orientation="Horizontal">
+        <TextBlock Text="Light" Foreground="{DynamicResource MainTextBrush}" VerticalAlignment="Center" />
+        <Border BorderThickness="1" Height="18" Width="38" CornerRadius="8" BorderBrush="{DynamicResource ToggleSwitchBorderBrush}" Background="Transparent" Cursor="Hand" Margin="13, 0, 13, 0">
+            <Ellipse Margin="3" Height="12" VerticalAlignment="Center" Width="12">
+                <Ellipse.Fill>
+                    <SolidColorBrush Color="{DynamicResource NavbarMenuButtonColor}" Opacity="0.60" />
+                </Ellipse.Fill>
+                <Ellipse.Style>
+                    <Style TargetType="{x:Type Ellipse}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=(contexts:GlobalContext.VisualMode)}" Value="{x:Static models:VisualMode.LightMode}">
+                                <Setter Property="HorizontalAlignment" Value="Left" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=(contexts:GlobalContext.VisualMode)}" Value="{x:Static models:VisualMode.DarkMode}">
+                                <Setter Property="HorizontalAlignment" Value="Right" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Ellipse.Style>
+            </Ellipse>
+        </Border>
+            <TextBlock Text="Dark" Foreground="{DynamicResource MainTextBrush}" VerticalAlignment="Center" />
+    </StackPanel>
+    </Border>
+</UserControl>

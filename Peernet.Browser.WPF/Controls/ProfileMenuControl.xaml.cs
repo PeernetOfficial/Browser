@@ -12,7 +12,6 @@ namespace Peernet.Browser.WPF.Controls
     {
         public ProfileMenuControl() => InitializeComponent();
 
-
         public static readonly DependencyProperty IsDarkModeToggledProperty =
             DependencyProperty.Register("IsDarkModeToggled", typeof(bool),
                 typeof(ProfileMenuControl),

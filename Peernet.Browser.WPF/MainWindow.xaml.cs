@@ -23,14 +23,15 @@ namespace Peernet.Browser.WPF
             //Hack for calendar
             CultureInfo ci = CultureInfo.CreateSpecificCulture("en-US");
             ci.DateTimeFormat.ShortestDayNames = new string[] { "Mo", "Tu", "We", "Th", "Fr", "Sa", "Su" };
-            ci.DateTimeFormat.FirstDayOfWeek = System.DayOfWeek.Sunday;
+            ci.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Sunday;
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.ChangedButton == MouseButton.Left) DragMove();
+            if (e.ChangedButton != MouseButton.Left) return;
+            DragMove();
         }
 
         protected override void OnContentChanged(object oldContent, object newContent)
@@ -44,9 +45,9 @@ namespace Peernet.Browser.WPF
             base.OnContentChanged(oldContent, newContent);
         }
 
-        private void MainWindow_OnMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            GlobalContext.IsProfileMenuVisible = false;
-        }
+        //private void MainWindow_OnMouseDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    GlobalContext.IsProfileMenuVisible = false;
+        //}
     }
 }
