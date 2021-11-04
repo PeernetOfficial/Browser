@@ -41,6 +41,7 @@ namespace Peernet.Browser.Application.ViewModels
                 Filters.Reset(true);
                 await Refresh();
             });
+            FakeHideClickCommand = new MvxCommand(FakeHideClick);
             DownloadCommand = new MvxAsyncCommand<SearchResultRowModel>(async (row) => await downloadAction(row));
             DeleteCommand = new MvxAsyncCommand(async () => { await deleteAction(this); });
             RemoveFilterCommand = new MvxAsyncCommand<SearchFiltersType>(async (type) =>
@@ -71,6 +72,7 @@ namespace Peernet.Browser.Application.ViewModels
         public LoadingModel Loader { get; } = new LoadingModel();
         public IconModel ColumnsIconModel { get; }
         public IMvxAsyncCommand DeleteCommand { get; }
+        public IMvxCommand FakeHideClickCommand { get; }
         public IMvxAsyncCommand<SearchFiltersType> RemoveFilterCommand { get; }
         public IMvxAsyncCommand<SearchResultRowModel> DownloadCommand { get; }
         public MvxObservableCollection<IconModel> FilterIconModels { get; } = new MvxObservableCollection<IconModel>();
@@ -128,6 +130,12 @@ namespace Peernet.Browser.Application.ViewModels
 
             limit += increase;
             await Refresh(false);
+        }
+
+        private void FakeHideClick()
+        {
+            ShowColumnsSelector = false;
+            ColumnsIconModel.IsSelected = false;
         }
 
         private int GetMax() => (FilterIconModels.FirstOrDefault(x => x.IsSelected)?.Count).GetValueOrDefault();
@@ -200,6 +208,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         private async Task OpenFilters(IconModel m)
         {
+            FakeHideClick();
             var navigationService = Mvx.IoCProvider.Resolve<IMvxNavigationService>();
             GlobalContext.IsMainWindowActive = false;
             GlobalContext.IsProfileMenuVisible = false;

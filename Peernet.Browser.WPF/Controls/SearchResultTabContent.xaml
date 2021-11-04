@@ -19,6 +19,13 @@
         </Grid.RowDefinitions>
         <ContentControl Content="{StaticResource ProxyElement}" Visibility="Collapsed" />
 
+        <Border Background="Transparent" Visibility="{Binding ShowColumnsSelector, Converter={StaticResource BoolToVisibility}}" Margin="0 -300 0 0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Panel.ZIndex="1"
+                        Grid.RowSpan="5" BorderThickness="0" BorderBrush="Transparent">
+            <Border.InputBindings>
+                <MouseBinding MouseAction="LeftClick" Command="{Binding FakeHideClickCommand}" />
+            </Border.InputBindings>
+        </Border>
+
         <Border Visibility="Collapsed" Margin="0 120 230 0" Name="MapPanel" Grid.RowSpan="5"
                 HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent"
                 BorderThickness="1" CornerRadius="4" Panel.ZIndex="6"
@@ -73,7 +80,7 @@
             </ItemsControl>
         </Border>
 
-        <DockPanel Margin="0 0 50 0" LastChildFill="False" Grid.Row="0"  HorizontalAlignment="Right">
+        <DockPanel Panel.ZIndex="2"  Margin="0 0 50 0" LastChildFill="False" Grid.Row="0"  HorizontalAlignment="Right">
             <local:FilterIconControl Padding="10" Height="41"  DataContext="{Binding ColumnsIconModel}" />
             <local:FilterIconControl Padding="10" Height="41"  DataContext="{Binding FiltersIconModel}" />
         </DockPanel>
