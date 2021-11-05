@@ -43,7 +43,7 @@ namespace Peernet.Browser.Infrastructure.Services
                 intervals++;
             }
 
-            res.Id = model.Uuid;
+            res.Id = result.Status == SearchStatusEnum.IdNotFound ? string.Empty : model.Uuid;
             res.StatusText = GetStatusText(result.Status);
             res.Stats = GetStats(result.Statistic);
             if (!result.Files.IsNullOrEmpty())
@@ -55,7 +55,15 @@ namespace Peernet.Browser.Infrastructure.Services
             return res;
         }
 
-        public async Task<string> Terminate(string id) => await searchClient.TerminateSearch(id);
+        public async Task Terminate(string id)
+        {
+            if (id.IsNullOrEmpty()) return;
+            try
+            {
+                await searchClient.TerminateSearch(id);
+            }
+            catch { }
+        }
 
         public IDictionary<FiltersType, int> GetEmptyStats() => GetStats(new SearchStatisticData());
 
@@ -167,7 +175,7 @@ namespace Peernet.Browser.Infrastructure.Services
             {
                 searchGetRequest.Id = model.Uuid;
             }
-            if (model.Time.HasValue && model.IsCustomTimeFill)
+            if (model.Time.HasValue)
             {
                 var format = "yyyy-MM-dd HH:mm:ss";
                 var range = model.GetDateRange();

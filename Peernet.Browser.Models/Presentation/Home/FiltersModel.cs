@@ -139,12 +139,12 @@ namespace Peernet.Browser.Models.Presentation.Home
         private IEnumerable<FilterResultModel> GetTabs()
         {
             var res = new List<FilterResultModel>();
-            if (SearchFilterResult.IsCustomTimeFill)
+            if (SearchFilterResult.Time.HasValue)
             {
                 res.Add(new FilterResultModel
                 {
                     Type = SearchFiltersType.TimePeriods,
-                    Content = SearchFilterResult.Time == TimePeriods.Custom ? $"{SearchFilterResult.TimeFrom.Value.ToShortDateString()} - {SearchFilterResult.TimeTo.Value.ToShortDateString()}" : SearchFilterResult.Time.Value.GetDescription()
+                    Content = SearchFilterResult.IsCustomTimeFill ? $"{SearchFilterResult.TimeFrom.Value.ToShortDateString()} - {SearchFilterResult.TimeTo.Value.ToShortDateString()}" : SearchFilterResult.Time.Value.GetDescription()
                 });
             }
             if (!SearchFilterResult.FileFormats.IsNullOrEmpty())
