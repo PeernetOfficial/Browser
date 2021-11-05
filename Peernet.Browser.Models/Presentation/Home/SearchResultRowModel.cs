@@ -16,7 +16,7 @@ namespace Peernet.Browser.Models.Presentation.Home
             Size = $"{source.Size} MB";
             SharedBy = source.SharedByCount;
             //FlameIsVisible = source.SharedByCount > 15;
-            Points = new[] { new GeoPoint { Longitude = 19, Latitude = 49 }, new GeoPoint { Longitude = 0, Latitude = 0 } };
+            Points = new GeoPoint[0];// { new GeoPoint { Longitude = 19, Latitude = 49 }, new GeoPoint { Longitude = 0, Latitude = 0 } };
         }
 
         public string Date { get; }
