@@ -5,7 +5,6 @@
     xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
     xmlns:virtualFileSystem="clr-namespace:Peernet.Browser.Application.VirtualFileSystem;assembly=Peernet.Browser.Application"
     xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls"
-    xmlns:extensions="clr-namespace:Peernet.Browser.WPF.Extensions"
     x:Name="DirectoryPage">
 
     <Border Background="{DynamicResource ViewBackgroundBrush}" BorderThickness="0" VerticalAlignment="Stretch" Margin="0, 65, 0, 0">
@@ -95,43 +94,49 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                <Border Grid.Row="0" Grid.Column="1" Width="229" Height="40" HorizontalAlignment="Right" Margin="0,28, 85, 27" BorderThickness="1" CornerRadius="3,3,3,3" BorderBrush="{DynamicResource BorderBrush}">
+                <Border Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Margin="0,28, 85, 27" BorderThickness="1" CornerRadius="3,3,3,3" BorderBrush="{DynamicResource BorderBrush}">
+                    <Border.Background>
+                        <SolidColorBrush Color="{DynamicResource ViewBackgroundColor}" />
+                    </Border.Background>
                     <Grid>
-                        <TextBlock Width="80" Padding="15" FontSize="14" Visibility="{Binding ShowHint, Converter={StaticResource BoolToVisibility}}"
-                                   TextAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Left"
-                                   FontFamily="Inter"
-                                   Background="Transparent"
-                                   Foreground="#B0B0B0" Text="Search">
-                        </TextBlock>
-
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <TextBox Padding="20,0,30,0"
-                                     Text="{Binding SearchInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                     VerticalAlignment="Center"
-                                     TextBlock.FontSize="14"
-                                     Foreground="{DynamicResource MainTextBrush}"
-                                     Background="Transparent"
-                                     CaretBrush="{DynamicResource MainTextBrush}"
-                                     BorderThickness="0"
-                                     extensions:FocusExtension.IsFocused="{Binding ShowSearchBox}">
-                                <TextBox.InputBindings>
-                                    <KeyBinding Command="{Binding Search}" Key="Enter" />
-                                    <MouseBinding MouseAction="LeftClick" Command="{Binding RemoveHint}" />
-                                </TextBox.InputBindings>
-                            </TextBox>
-
-                            <Image Grid.Column="1" Source="{DynamicResource Search_LightDrawingImage}" Height="14.22" Width="14.22" HorizontalAlignment="Right" Margin="0,0,20,0">
-                                <Image.InputBindings>
-                                    <MouseBinding MouseAction="LeftClick" Command="{Binding Search}" />
-                                </Image.InputBindings>
-                            </Image>
-                        </Grid>
+                        <TextBox Width="229" Height="40" Text="{Binding SearchInput, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalContentAlignment="Center"
+                                 HorizontalContentAlignment="Left"
+                                 Foreground="{DynamicResource MainTextBrush}"
+                                 BorderThickness="0"
+                                 CaretBrush="{DynamicResource MainTextBrush}"
+                                 Padding="20, 0, 0, 0" Cursor="IBeam">
+                            <TextBox.Style>
+                                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                                    <Style.Resources>
+                                        <VisualBrush x:Key="BannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                            <VisualBrush.Visual>
+                                                <Label Content="Search" Padding="20, 0, 0, 0" Foreground="{DynamicResource LightGray2Brush}" />
+                                            </VisualBrush.Visual>
+                                        </VisualBrush>
+                                    </Style.Resources>
+                                    <Style.Triggers>
+                                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                            <Setter Property="Background" Value="{StaticResource BannerBrush}" />
+                                        </Trigger>
+                                        <Trigger Property="Text" Value="{x:Null}">
+                                            <Setter Property="Background" Value="{StaticResource BannerBrush}" />
+                                        </Trigger>
+                                        <Trigger Property="IsKeyboardFocused" Value="True">
+                                            <Setter Property="Background" Value="Transparent" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                            <TextBox.InputBindings>
+                                <KeyBinding Command="{Binding SearchCommand}" Key="Enter" />
+                            </TextBox.InputBindings>
+                        </TextBox>
+                        <Image Cursor="Hand" Margin="0 0 13 0" HorizontalAlignment="Right" Source="{DynamicResource SearchDrawingImage}" Height="14.22" Width="14.22">
+                            <Image.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding SearchCommand}" />
+                            </Image.InputBindings>
+                        </Image>
                     </Grid>
                 </Border>
                 <controls:SharedFilesDataGridControl Height="648" Grid.Row="1" Grid.ColumnSpan="2" Margin="37,0,0,0" />

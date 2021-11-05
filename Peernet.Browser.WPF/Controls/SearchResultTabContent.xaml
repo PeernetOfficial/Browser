@@ -85,7 +85,7 @@
             <local:FilterIconControl Padding="10" Height="41"  DataContext="{Binding FiltersIconModel}" />
         </DockPanel>
 
-        <Border Margin="-30 3 -30 0" Grid.Row="1" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource LightGray2Brush}" />
+        <Separator Grid.Row="1" Style="{DynamicResource StandardSeparatorStyle}" />
 
         <DockPanel Visibility="{Binding Filters.IsVisible, Converter={StaticResource BoolToVisibility}}" Margin="14" Grid.Row="2">
             <TextBlock Margin="10" FontSize="14" Foreground="{DynamicResource MainContentBrush}">Your filters:</TextBlock>
@@ -113,7 +113,7 @@
 
         <DataGrid Visibility="{Binding Loader.IsNotLoading, Converter={StaticResource BoolToVisibility}}"
                   Name="FileGrid" Sorting="DataGrid_Sorting" Padding="55 10 15 0" HorizontalAlignment="Stretch" Grid.Row="3"
-                  Style="{DynamicResource DataGridStyle}" SelectionMode="Single" ScrollViewer.ScrollChanged="FileGrid_ScrollChanged"
+                  Style="{DynamicResource DataGridStyle}" ScrollViewer.ScrollChanged="FileGrid_ScrollChanged"
                   ItemsSource="{Binding TableResult, IsAsync=True}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="" SortMemberPath="First">
@@ -140,7 +140,7 @@
                 <DataGridTemplateColumn Visibility="{Binding DataContext.ShowColumnsDate, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}"  Width="150" Header="DATE" SortMemberPath="Date">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Date}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            <TextBlock Text="{Binding Date, StringFormat=d}" VerticalAlignment="Center" HorizontalAlignment="Left" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -168,7 +168,7 @@
                 <DataGridTemplateColumn  Visibility="{Binding DataContext.ShowColumnsDownload, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}"  Width="150">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.DownloadCommand, ElementName=SharedResultTab}" CommandParameter="{Binding}">
+                            <Button Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.DownloadCommand, ElementName=SharedResultTab}" CommandParameter="{Binding}" Width="45" Height="44">
                                 <Button.Background>
                                     <ImageBrush ImageSource="{DynamicResource DownloadDrawingImage}" />
                                 </Button.Background>
@@ -179,6 +179,6 @@
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock FontSize="14" Foreground="{DynamicResource MainContentBrush}"  Visibility="{Binding Loader.IsLoading, Converter={StaticResource BoolToVisibility}}" Margin="60 40" Grid.Row="3" Text="{Binding Loader.Text}" />
-        <Border Margin="-30 3 -30 0" Grid.Row="4" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource LightGray2Brush}" />
+        <Separator Grid.Row="4" Style="{DynamicResource StandardSeparatorStyle}" VerticalAlignment="Top" />
     </Grid>
 </UserControl>

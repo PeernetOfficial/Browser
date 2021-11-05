@@ -43,16 +43,23 @@
                 </StatusBarItem>
             </StatusBar>
         </DockPanel>
-        <Border Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" CornerRadius="3" Margin="0, 0, 0, 14" Padding="20, 0 , 0, 0" BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}">
+        <Border Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" CornerRadius="3" Margin="0, 0, 0, 5" Padding="20, 0 , 0, 0" BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}">
             <Border.Background>
                 <SolidColorBrush Color="{DynamicResource ViewBackgroundColor}" />
             </Border.Background>
-            <Border.Effect>
-                <DropShadowEffect Color="Black" Opacity="0.12" ShadowDepth="4" BlurRadius="24" />
-            </Border.Effect>
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel Orientation="Horizontal">
-                    <ItemsControl x:Name="DownloadsList" ItemsSource="{Binding DownloadManager.ActiveFileDownloads}">
+                    <ItemsControl x:Name="DownloadsList">
+                        <ItemsControl.Style>
+                            <Style TargetType="{x:Type ItemsControl}">
+                                <Setter Property="ItemsSource" Value="{Binding DownloadManager.ActiveFileDownloads}" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding AreDownloadsCollapsed}" Value="True">
+                                        <Setter Property="ItemsSource" Value="{Binding ListedFileDownloads}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ItemsControl.Style>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -123,21 +130,18 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                    <TextBlock x:Name="CollapsedDownloadsText" Style="{StaticResource Active}" FontSize="10" HorizontalAlignment="Left" Visibility="Collapsed" PreviewMouseLeftButtonDown="Downloads_Toggle" Cursor="Hand">
-                        <TextBlock x:Name="FileNameText" />
-                        <TextBlock x:Name="FilesCounterText" FontWeight="Bold" />
-                        <TextBlock x:Name="DownloadingText" />
-                    </TextBlock>
-                    <Button x:Name="DownloadsToggleButton" Click="Downloads_Toggle" Content="Hide" VerticalAlignment="Bottom" Margin="10, 0, 10, 0">
+                    <Button x:Name="DownloadsToggleButton" VerticalAlignment="Bottom" Margin="10, 0, 10, 0">
                         <Button.Style>
-                            <Style BasedOn="{StaticResource PrimaryButton}" TargetType="{x:Type Button}">
-                                <Setter Property="Padding" Value="3"></Setter>
+                            <Style BasedOn="{StaticResource CaptionButtonStyle}" TargetType="{x:Type Button}">
+                                <Setter Property="Padding" Value="3" />
+                                <Setter Property="Content" Value="&#xE972;" />
+                                <Setter Property="Command" Value="{Binding CollapseExpandDownloadsCommand}" />
                                 <Style.Triggers>
+                                    <DataTrigger Binding="{Binding AreDownloadsCollapsed}" Value="True">
+                                        <Setter Property="Content" Value="&#xE971;" />
+                                    </DataTrigger>
                                     <Trigger Property="IsMouseOver" Value="True">
                                         <Setter Property="Background" Value="#60FFFFFF" />
-                                    </Trigger>
-                                    <Trigger Property="Content" Value="Hide">
-                                        <Setter Property="Padding" Value="13, 13, 13, 12"></Setter>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>

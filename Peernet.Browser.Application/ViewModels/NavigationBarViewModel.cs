@@ -16,45 +16,55 @@ namespace Peernet.Browser.Application.ViewModels
             this.navigationService = navigationService;
             UserContext = userContext;
 
-            NavigateExploreCommand = new MvxCommand(() => Navigate<ExploreViewModel>());
-            NavigateHomeCommand = new MvxCommand(() => Navigate<HomeViewModel>(false));
-            NavigateDirectoryCommand = new MvxCommand(() => Navigate<DirectoryViewModel>());
+            NavigateExploreCommand = new MvxAsyncCommand(async () => await Navigate<ExploreViewModel>());
+            NavigateHomeCommand = new MvxAsyncCommand(async () => await Navigate<HomeViewModel>(false));
+            NavigateDirectoryCommand = new MvxAsyncCommand(async () => await Navigate<DirectoryViewModel>());
 
-            EditProfileCommand = new MvxAsyncCommand(() =>
+            EditProfileCommand = new MvxAsyncCommand(async () =>
             {
                 GlobalContext.IsMainWindowActive = false;
                 GlobalContext.IsProfileMenuVisible = false;
-                navigationService.Navigate<EditProfileViewModel>();
-
-                return Task.CompletedTask;
+                await navigationService.Navigate<EditProfileViewModel>();
             });
 
             NavigateAboutCommand = new MvxAsyncCommand(async () =>
             {
                 GlobalContext.IsProfileMenuVisible = false;
-                await navigationService.Navigate<AboutViewModel>();
+                await Navigate<AboutViewModel>();
+            });
+
+            OpenCloseProfileMenuCommand = new MvxAsyncCommand(() =>
+            {
+                GlobalContext.IsProfileMenuVisible ^= true;
+                return Task.CompletedTask;
             });
         }
 
         private Type actualActiveViewModel = typeof(HomeViewModel);
 
-        private void Navigate<T>(bool showLogo = true) where T : IMvxViewModel
+        private async Task Navigate<T>(bool showLogo = true) where T : IMvxViewModel
         {
-            if (typeof(T) == actualActiveViewModel) return;
+            if (typeof(T) == actualActiveViewModel)
+            {
+                return;
+            }
+
             actualActiveViewModel = typeof(T);
-            navigationService.Navigate<T>();
+            await navigationService.Navigate<T>();
             GlobalContext.IsLogoVisible = showLogo;
         }
 
-        public IMvxCommand NavigateDirectoryCommand { get; }
+        public IMvxAsyncCommand NavigateDirectoryCommand { get; }
 
-        public IMvxCommand NavigateExploreCommand { get; }
+        public IMvxAsyncCommand NavigateExploreCommand { get; }
 
-        public IMvxCommand NavigateHomeCommand { get; }
+        public IMvxAsyncCommand NavigateHomeCommand { get; }
 
         public IMvxAsyncCommand EditProfileCommand { get; }
 
         public IMvxAsyncCommand NavigateAboutCommand { get; }
+
+        public IMvxAsyncCommand OpenCloseProfileMenuCommand { get; }
 
         public IUserContext UserContext { get; set; }
     }

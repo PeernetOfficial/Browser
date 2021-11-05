@@ -1,4 +1,5 @@
-﻿using Peernet.Browser.Models.Domain.Common;
+﻿using System;
+using Peernet.Browser.Models.Domain.Common;
 using System;
 
 namespace Peernet.Browser.Models.Presentation.Home
@@ -12,14 +13,14 @@ namespace Peernet.Browser.Models.Presentation.Home
             File = source;
             EnumerationMember = (HealthType)3;
             Name = source.Name;
-            Date = source.Date.ToString("dd.MM.yyyy");
+            Date = source.Date;
             Size = $"{source.Size} MB";
             SharedBy = source.SharedByCount;
             //FlameIsVisible = source.SharedByCount > 15;
             Points = new GeoPoint[0];// { new GeoPoint { Longitude = 19, Latitude = 49 }, new GeoPoint { Longitude = 0, Latitude = 0 } };
         }
 
-        public string Date { get; }
+        public DateTime Date { get; }
         public HealthType EnumerationMember { get; }
 
         public ApiFile File { get; }

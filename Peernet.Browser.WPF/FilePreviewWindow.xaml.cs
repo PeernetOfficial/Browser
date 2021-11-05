@@ -18,37 +18,42 @@ namespace Peernet.Browser.WPF
             DependencyProperty.Register("IsEditable", typeof(bool),
                 typeof(FilePreviewWindow), null);
 
+        public static readonly DependencyProperty ActionButtonEnabledProperty =
+            DependencyProperty.Register("ActionButtonEnabled", typeof(bool),
+                typeof(FilePreviewWindow), null);
+
+        public static readonly DependencyProperty ActionButtonContentProperty =
+            DependencyProperty.Register("ActionButtonContent", typeof(string),
+                typeof(FilePreviewWindow), null);
+
         public bool IsEditable
         {
             get => (bool)GetValue(IsEditableProperty);
             set => SetValue(IsEditableProperty, value);
         }
 
-        public FilePreviewWindow(DownloadModel model, bool isEditable)
+        public bool ActionButtonEnabled
+        {
+            get => (bool)GetValue(ActionButtonEnabledProperty);
+            set => SetValue(ActionButtonEnabledProperty, value);
+        }
+
+        public string ActionButtonContent
+        {
+            get => (string)GetValue(ActionButtonContentProperty);
+            set => SetValue(ActionButtonContentProperty, value);
+        }
+
+
+        public FilePreviewWindow(DownloadModel model, bool isEditable, bool actionButtonEnabled, string actionButtonContent)
         {
             InitializeComponent();
             MouseDown += Window_MouseDown;
             this.model = model;
             IsEditable = isEditable;
             Content = model;
-        }
-
-        private void Minimize_OnClick(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
-
-        private void Maximize_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (WindowState == WindowState.Maximized)
-            {
-                WindowState = WindowState.Normal;
-            }
-            else
-            {
-                WindowState = WindowState.Maximized;
-            }
-
+            ActionButtonEnabled = actionButtonEnabled;
+            ActionButtonContent = actionButtonContent;
         }
 
         private void Close_OnClick(object sender, RoutedEventArgs e)

@@ -11,32 +11,41 @@
                     <SolidColorBrush Color="{DynamicResource ViewBackgroundColor}" />
                 </Border.Background>
                 <Grid>
-                    <TextBlock FontSize="16"
-                                     TextAlignment="Center"
-                                     VerticalAlignment="Center"
-                                     FontFamily="Inter"
-                                     Background="Transparent"
-                                     Foreground="{DynamicResource LightGray2Brush}" Text="Search files">
-                        <TextBlock.Visibility>
-                            <MultiBinding Converter="{StaticResource TextInputToVisibilityConverter}">
-                                <Binding ElementName="txtSearch" Path="Text.IsEmpty" />
-                                <Binding ElementName="txtSearch" Path="IsFocused" />
-                            </MultiBinding>
-                        </TextBlock.Visibility>
-                    </TextBlock>
-
-                    <TextBox Padding="13"  Text="{Binding SearchInput, UpdateSourceTrigger=PropertyChanged}"
-                                     VerticalAlignment="Center"
-                                     TextBlock.FontSize="16"
-                                     Foreground="{DynamicResource MainTextBrush}"
-                                     Background="Transparent"
-                                     BorderThickness="0" Name="txtSearch"
-                                     CaretBrush="{DynamicResource MainTextBrush}">
+                    <TextBox  FontSize="16"
+                              TextAlignment="Left"
+                              VerticalAlignment="Center"
+                              FontFamily="Inter"
+                              Text="{Binding SearchInput, UpdateSourceTrigger=PropertyChanged}"
+                              Foreground="{DynamicResource MainTextBrush}"
+                              BorderThickness="0"
+                              CaretBrush="{DynamicResource MainTextBrush}"
+                              Padding="13" Cursor="IBeam">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                                <Style.Resources>
+                                    <VisualBrush x:Key="BannerBrush" AlignmentX="Center" AlignmentY="Center" Stretch="None">
+                                        <VisualBrush.Visual>
+                                            <Label FontSize="14" Content="Search file..." Foreground="{DynamicResource LightGray2Brush}" />
+                                        </VisualBrush.Visual>
+                                    </VisualBrush>
+                                </Style.Resources>
+                                <Style.Triggers>
+                                    <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                        <Setter Property="Background" Value="{StaticResource BannerBrush}" />
+                                    </Trigger>
+                                    <Trigger Property="Text" Value="{x:Null}">
+                                        <Setter Property="Background" Value="{StaticResource BannerBrush}" />
+                                    </Trigger>
+                                    <Trigger Property="IsKeyboardFocused" Value="True">
+                                        <Setter Property="Background" Value="Transparent" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
                         <TextBox.InputBindings>
                             <KeyBinding Command="{Binding SearchCommand}" Key="Enter" />
                         </TextBox.InputBindings>
                     </TextBox>
-
                     <Image Cursor="Hand" Margin="0 0 13 0" HorizontalAlignment="Right" Source="{DynamicResource SearchDrawingImage}" Height="14.22" Width="14.22">
                         <Image.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding SearchCommand}" />

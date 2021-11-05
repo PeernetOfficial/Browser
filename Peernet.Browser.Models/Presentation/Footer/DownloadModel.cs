@@ -1,6 +1,7 @@
 ﻿using Peernet.Browser.Models.Domain.Common;
 using Peernet.Browser.Models.Domain.Download;
 using System.ComponentModel;
+using System.Globalization;
 
 namespace Peernet.Browser.Models.Presentation.Footer
 {
@@ -40,6 +41,8 @@ namespace Peernet.Browser.Models.Presentation.Footer
         public string Id { get; set; }
 
         public ApiFile File { get; init; }
+
+        public string FileSize => $"{File.Size} MB";
 
         public event PropertyChangedEventHandler PropertyChanged;
 
