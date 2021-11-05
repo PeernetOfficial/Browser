@@ -4,16 +4,14 @@
              Cursor="Hand" Background="Transparent">
     <UserControl.Resources>
         <Style TargetType="{x:Type TextBlock}">
-            <Setter Property="Foreground" Value="{StaticResource MainContentBrush}" />
-            <Setter Property="FontWeight" Value="DemiBold" />
+            <Setter Property="Foreground" Value="{DynamicResource MainContentBrush}" />
             <Style.Triggers>
                 <MultiDataTrigger>
                     <MultiDataTrigger.Conditions>
                         <Condition Binding="{Binding ShowArrow}" Value="False" />
                         <Condition Binding="{Binding IsSelected}" Value="False" />
                     </MultiDataTrigger.Conditions>
-                    <Setter Property="FontWeight" Value="Normal" />
-                    <Setter Property="Foreground" Value="{StaticResource LightGrayBrush}" />
+                    <Setter Property="Foreground" Value="{DynamicResource LightGrayBrush}" />
                 </MultiDataTrigger>
             </Style.Triggers>
         </Style>

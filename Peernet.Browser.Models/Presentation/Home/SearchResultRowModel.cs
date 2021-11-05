@@ -1,10 +1,13 @@
 ﻿using System;
 using Peernet.Browser.Models.Domain.Common;
+using System;
 
 namespace Peernet.Browser.Models.Presentation.Home
 {
     public class SearchResultRowModel
     {
+        private bool isHovered;
+
         public SearchResultRowModel(ApiFile source)
         {
             File = source;
@@ -14,22 +17,31 @@ namespace Peernet.Browser.Models.Presentation.Home
             Size = $"{source.Size} MB";
             SharedBy = source.SharedByCount;
             //FlameIsVisible = source.SharedByCount > 15;
-            Points = new GeoPoint[0];
+            Points = new GeoPoint[0];// { new GeoPoint { Longitude = 19, Latitude = 49 }, new GeoPoint { Longitude = 0, Latitude = 0 } };
         }
 
+        public DateTime Date { get; }
         public HealthType EnumerationMember { get; }
 
+        public ApiFile File { get; }
+        public bool FlameIsVisible { get; }
         public bool IsCompleted { get; }
 
+        public bool IsHovered
+        {
+            get => isHovered;
+            set
+            {
+                isHovered = value;
+                if (IsHovered) OnHover?.Invoke(Points);
+            }
+        }
+
         public string Name { get; }
-        public DateTime Date { get; }
-        public string Size { get; }
-        public int SharedBy { get; }
-        public bool FlameIsVisible { get; }
-
+        public Action<GeoPoint[]> OnHover { get; set; }
         public GeoPoint[] Points { get; }
-
-        public ApiFile File { get; }
+        public int SharedBy { get; }
+        public string Size { get; }
 
         public static DataGridSortingNameEnum Parse(string name)
         {

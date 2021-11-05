@@ -41,6 +41,7 @@ namespace Peernet.Browser.Application.ViewModels
                 Filters.Reset(true);
                 await Refresh();
             });
+            FakeHideClickCommand = new MvxCommand(FakeHideClick);
             DownloadCommand = new MvxAsyncCommand<SearchResultRowModel>(async (row) => await downloadAction(row));
             DeleteCommand = new MvxAsyncCommand(async () => { await deleteAction(this); });
             RemoveFilterCommand = new MvxAsyncCommand<SearchFiltersType>(async (type) =>
@@ -51,8 +52,6 @@ namespace Peernet.Browser.Application.ViewModels
 
             ColumnsIconModel = new IconModel(FiltersType.Columns, true, ShowColumnSelection);
             FiltersIconModel = new IconModel(FiltersType.Filters, true, OpenFilters);
-
-            Map.Fill(new[] { new GeoPoint { Longitude = 19, Latitude = 49 }, new GeoPoint { Longitude = 0, Latitude = 0 } });
 
             InitIcons();
             Loader.Set("Searching...");
@@ -71,6 +70,7 @@ namespace Peernet.Browser.Application.ViewModels
         public LoadingModel Loader { get; } = new LoadingModel();
         public IconModel ColumnsIconModel { get; }
         public IMvxAsyncCommand DeleteCommand { get; }
+        public IMvxCommand FakeHideClickCommand { get; }
         public IMvxAsyncCommand<SearchFiltersType> RemoveFilterCommand { get; }
         public IMvxAsyncCommand<SearchResultRowModel> DownloadCommand { get; }
         public MvxObservableCollection<IconModel> FilterIconModels { get; } = new MvxObservableCollection<IconModel>();
@@ -130,6 +130,12 @@ namespace Peernet.Browser.Application.ViewModels
             await Refresh(false);
         }
 
+        private void FakeHideClick()
+        {
+            ShowColumnsSelector = false;
+            ColumnsIconModel.IsSelected = false;
+        }
+
         private int GetMax() => (FilterIconModels.FirstOrDefault(x => x.IsSelected)?.Count).GetValueOrDefault();
 
         private bool isClearing;
@@ -149,6 +155,7 @@ namespace Peernet.Browser.Application.ViewModels
             {
                 for (var i = TableResult.Count; i < data.Rows.Length; i++)
                 {
+                    data.Rows[i].OnHover = Map.Fill;
                     TableResult.Add(data.Rows[i]);
                 }
             });
@@ -200,6 +207,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         private async Task OpenFilters(IconModel m)
         {
+            FakeHideClick();
             var navigationService = Mvx.IoCProvider.Resolve<IMvxNavigationService>();
             GlobalContext.IsMainWindowActive = false;
             GlobalContext.IsProfileMenuVisible = false;

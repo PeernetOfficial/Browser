@@ -19,6 +19,13 @@
         </Grid.RowDefinitions>
         <ContentControl Content="{StaticResource ProxyElement}" Visibility="Collapsed" />
 
+        <Border Background="Transparent" Visibility="{Binding ShowColumnsSelector, Converter={StaticResource BoolToVisibility}}" Margin="0 -300 0 0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Panel.ZIndex="1"
+                        Grid.RowSpan="5" BorderThickness="0" BorderBrush="Transparent">
+            <Border.InputBindings>
+                <MouseBinding MouseAction="LeftClick" Command="{Binding FakeHideClickCommand}" />
+            </Border.InputBindings>
+        </Border>
+
         <Border Visibility="Collapsed" Margin="0 120 230 0" Name="MapPanel" Grid.RowSpan="5"
                 HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent"
                 BorderThickness="1" CornerRadius="4" Panel.ZIndex="6"
@@ -73,7 +80,7 @@
             </ItemsControl>
         </Border>
 
-        <DockPanel Margin="0 0 50 0" LastChildFill="False" Grid.Row="0"  HorizontalAlignment="Right">
+        <DockPanel Panel.ZIndex="2"  Margin="0 0 50 0" LastChildFill="False" Grid.Row="0"  HorizontalAlignment="Right">
             <local:FilterIconControl Padding="10" Height="41"  DataContext="{Binding ColumnsIconModel}" />
             <local:FilterIconControl Padding="10" Height="41"  DataContext="{Binding FiltersIconModel}" />
         </DockPanel>
@@ -93,7 +100,10 @@
                     <DataTemplate>
                         <DockPanel Margin="10 0 0 0" VerticalAlignment="Center" Background="{DynamicResource LightGray2Brush}">
                             <TextBlock Padding="5" Text="{Binding Content}" />
-                            <Button Command="{Binding DataContext.RemoveFilterCommand, ElementName=SharedResultTab}" CommandParameter="{Binding Type}" Margin="10 0 10 0" Style="{DynamicResource PrimaryButton}">X</Button>
+                            <Button Command="{Binding DataContext.RemoveFilterCommand, ElementName=SharedResultTab}"
+                                    CommandParameter="{Binding Type}" Style="{DynamicResource PrimaryButton}">
+                                <Image  Margin="10 0 10 0" Source="{DynamicResource CloseBtnDrawingImage}" />
+                            </Button>
                         </DockPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
@@ -101,7 +111,8 @@
             <Button Command="{Binding ClearCommand}" FontSize="14" HorizontalAlignment="Right" Style="{DynamicResource LinkButton}">Clear all filters</Button>
         </DockPanel>
 
-        <DataGrid Name="FileGrid" Sorting="DataGrid_Sorting" Padding="55 10 15 0" Grid.Row="3"
+        <DataGrid Visibility="{Binding Loader.IsNotLoading, Converter={StaticResource BoolToVisibility}}"
+                  Name="FileGrid" Sorting="DataGrid_Sorting" Padding="55 10 15 0" HorizontalAlignment="Stretch" Grid.Row="3"
                   Style="{DynamicResource DataGridStyle}" ScrollViewer.ScrollChanged="FileGrid_ScrollChanged"
                   ItemsSource="{Binding TableResult, IsAsync=True}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False">
             <DataGrid.Columns>
@@ -148,7 +159,7 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Padding="0 5 20 5" Background="Transparent" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave" Grid.Column="0" Text="{Binding SharedBy, StringFormat={}{0} Peers}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                <TextBlock Tag="{Binding IsHovered, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0 5 20 5" Background="Transparent" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave" Grid.Column="0" Text="{Binding SharedBy, StringFormat={}{0} Peers}" VerticalAlignment="Center" HorizontalAlignment="Left" />
                                 <Image Visibility="{Binding FlameIsVisible, Converter={StaticResource BoolToVisibility}}" Height="20" Grid.Column="1" Source="{DynamicResource FlameDrawingImage}" />
                             </Grid>
                         </DataTemplate>
@@ -167,7 +178,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBlock Foreground="{DynamicResource MainContentBrush}"  Visibility="{Binding Loader.IsLoading, Converter={StaticResource BoolToVisibility}}" Margin="60 40" Grid.Row="3" Text="{Binding Loader.Text}" />
+        <TextBlock FontSize="14" Foreground="{DynamicResource MainContentBrush}"  Visibility="{Binding Loader.IsLoading, Converter={StaticResource BoolToVisibility}}" Margin="60 40" Grid.Row="3" Text="{Binding Loader.Text}" />
         <Separator Grid.Row="4" Style="{DynamicResource StandardSeparatorStyle}" VerticalAlignment="Top" />
     </Grid>
 </UserControl>

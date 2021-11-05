@@ -22,7 +22,7 @@ namespace Peernet.Browser.Models.Presentation.Home
         public DataGridSortingNameEnum SortName { get; set; }
         public DataGridSortingTypeEnum SortType { get; set; }
 
-        public bool IsCustomTimeFill => Time.HasValue && TimeFrom.HasValue && TimeTo.HasValue;
+        public bool IsCustomTimeFill => Time == TimePeriods.Custom;
 
         public (DateTime from, DateTime to) GetDateRange()
         {

@@ -41,7 +41,7 @@ namespace Peernet.Browser.Application.Contexts
             set
             {
                 isLogoVisible = value;
-                NotifyStaticPropertyChanged(nameof(isLogoVisible));
+                NotifyStaticPropertyChanged(nameof(IsLogoVisible));
             }
         }
 
