@@ -1,16 +1,17 @@
-﻿using System.IO;
+﻿using System;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using Peernet.Browser.Application.Clients;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Application.Services;
 using Peernet.Browser.Models.Presentation.Footer;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Peernet.Browser.Application.Clients;
-using Peernet.Browser.Application.Services;
-using Peernet.Browser.Models.Domain.Download;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -27,6 +28,7 @@ namespace Peernet.Browser.Application.ViewModels
         private string commandLineOutput;
         private ConnectionStatus connectionStatus = ConnectionStatus.Offline;
         private string peers;
+        private bool areDownloadsCollapsed;
 
         public FooterViewModel(
             IApiService apiService,
@@ -44,10 +46,17 @@ namespace Peernet.Browser.Application.ViewModels
             this.warehouseService = warehouseService;
             this.blockchainService = blockchainService;
             DownloadManager = downloadManager;
-
+            DownloadManager.downloadsChanged += GetLastDownloadItem;
             UploadCommand = new MvxCommand(UploadFiles);
             SendToPeernetConsole = new MvxAsyncCommand(SendToPeernetMethod);
             Task.Run(UpdateStatuses);
+        }
+
+        private void GetLastDownloadItem(object? sender, EventArgs e)
+        {
+            var copy = ListedFileDownloads.ToList();
+            copy.ForEach(i => ListedFileDownloads.Remove(i));
+            ListedFileDownloads.Add(DownloadManager.ActiveFileDownloads.LastOrDefault());
         }
 
         public string CommandLineInput
@@ -62,6 +71,12 @@ namespace Peernet.Browser.Application.ViewModels
             set => SetProperty(ref commandLineOutput, value);
         }
 
+        public bool AreDownloadsCollapsed
+        {
+            get => areDownloadsCollapsed;
+            set => SetProperty(ref areDownloadsCollapsed, value);
+        }
+
         public ConnectionStatus ConnectionStatus
         {
             get => connectionStatus;
@@ -69,6 +84,8 @@ namespace Peernet.Browser.Application.ViewModels
         }
 
         public IDownloadManager DownloadManager { get; }
+
+        public ObservableCollection<DownloadModel> ListedFileDownloads { get; set; } = new();
 
         public string Peers
         {
@@ -86,7 +103,7 @@ namespace Peernet.Browser.Application.ViewModels
                 // Make API call and validate result
                 await DownloadManager.PauseDownload(id);
             });
-        
+
         public IMvxCommand OpenFileLocationCommand => new MvxCommand<string>(
             name =>
             {
@@ -106,6 +123,11 @@ namespace Peernet.Browser.Application.ViewModels
                 // Make API call and validate result
                 await DownloadManager.CancelDownload(id);
             });
+
+        public IMvxCommand CollapseExpandDownloadsCommand => new MvxCommand(() =>
+        {
+            AreDownloadsCollapsed ^= true;
+        });
 
         public override async Task Initialize()
         {

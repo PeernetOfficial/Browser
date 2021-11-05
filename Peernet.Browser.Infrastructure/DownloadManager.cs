@@ -45,6 +45,7 @@ namespace Peernet.Browser.Infrastructure
                     break;
                 case DownloadStatus.DownloadFinished:
                     ActiveFileDownloads.Remove(download);
+                    downloadsChanged?.Invoke(this, EventArgs.Empty);
                     break;
             }
 
