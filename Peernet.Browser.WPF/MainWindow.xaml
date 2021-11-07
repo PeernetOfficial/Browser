@@ -41,7 +41,7 @@
                 <controls:ButtonsControl Grid.Row="0" InitializeOnLoad="true" />
                 <controls:NavigationBarControl Panel.ZIndex="1" Margin="0 12 0 0" HorizontalAlignment="Right" Grid.Row="1" InitializeOnLoad="true" />
                 <controls:FooterControl Grid.Row="2" InitializeOnLoad="true" DockPanel.Dock="Bottom" Panel.ZIndex="2" />
-                <ContentPresenter Grid.Row="1" Content="{Binding}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                <ContentPresenter Grid.Row="1" Content="{Binding Path=(contexts:GlobalContext.Main)}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                 <ItemsControl ItemsSource="{Binding Path=(contexts:GlobalContext.Notifications)}" VerticalAlignment="Bottom" Margin="0, 0, 0, 122"  Panel.ZIndex="2" Grid.RowSpan="2">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>

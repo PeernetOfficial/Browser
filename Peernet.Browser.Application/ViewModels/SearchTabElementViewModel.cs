@@ -1,8 +1,8 @@
 ﻿using MvvmCross;
 using MvvmCross.Commands;
-using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Models.Presentation.Home;
 using System;
 using System.Collections.Generic;
@@ -208,11 +208,10 @@ namespace Peernet.Browser.Application.ViewModels
         private async Task OpenFilters(IconModel m)
         {
             FakeHideClick();
-            var navigationService = Mvx.IoCProvider.Resolve<IMvxNavigationService>();
-            GlobalContext.IsMainWindowActive = false;
-            GlobalContext.IsProfileMenuVisible = false;
+            var am = Mvx.IoCProvider.Resolve<IApplicationManager>();
             Filters.BindFromSearchFilterResult();
-            await navigationService.Navigate<FiltersViewModel, FiltersModel>(Filters);
+            am.NavigateToModal(ViewType.Filter);
+            await Task.CompletedTask;
         }
 
         private void RefreshIconFilters(IDictionary<FiltersType, int> stats, FiltersType selected)

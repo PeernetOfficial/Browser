@@ -1,5 +1,16 @@
 ﻿namespace Peernet.Browser.Application.Managers
 {
+    public enum ViewType
+    {
+        None,
+        Home,
+        Directory,
+        Explorer,
+        About,
+        Filter,
+        EditProfile
+    }
+
     public interface IApplicationManager
     {
         public void Shutdown();
@@ -13,5 +24,13 @@
         public bool IsMaximized { get; }
 
         string[] OpenFileDialog(bool multiselect = true, string filter = "");
+
+        void Init();
+
+        void NavigateToModal(ViewType v);
+
+        void NavigateToMain(ViewType v, bool showLogo = true);
+
+        void CloseModal();
     }
 }

@@ -77,6 +77,18 @@ namespace Peernet.Browser.Application.Contexts
             }
         }
 
+        private static object main;
+
+        public static object Main
+        {
+            get => main;
+            set
+            {
+                main = value;
+                NotifyStaticPropertyChanged(nameof(main));
+            }
+        }
+
         public static string CurrentViewModel
         {
             get => currentViewModel;

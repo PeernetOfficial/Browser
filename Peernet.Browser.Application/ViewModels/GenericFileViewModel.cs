@@ -1,7 +1,5 @@
 ﻿using MvvmCross.Commands;
-using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
-using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Models.Presentation.Footer;
@@ -13,15 +11,13 @@ namespace Peernet.Browser.Application.ViewModels
     public class GenericFileViewModel : MvxViewModel<FileParameterModel>, IModal
     {
         private readonly IApplicationManager applicationManager;
-        private readonly IMvxNavigationService mvxNavigationService;
         private readonly IBlockchainService blockchainService;
         private readonly IWarehouseService warehouseService;
         private FileModel selected;
         private FileParameterModel viewModelParameter;
 
-        public GenericFileViewModel(IMvxNavigationService mvxNavigationService, IApplicationManager applicationManager, IBlockchainService blockchainService, IWarehouseService warehouseService)
+        public GenericFileViewModel(IApplicationManager applicationManager, IBlockchainService blockchainService, IWarehouseService warehouseService)
         {
-            this.mvxNavigationService = mvxNavigationService;
             this.applicationManager = applicationManager;
             this.blockchainService = blockchainService;
             this.warehouseService = warehouseService;
@@ -103,11 +99,7 @@ namespace Peernet.Browser.Application.ViewModels
             Cancel();
         }
 
-        private void Cancel()
-        {
-            GlobalContext.IsMainWindowActive = true;
-            mvxNavigationService.Close(this);
-        }
+        private void Cancel() => applicationManager.CloseModal();
 
         private void Manipulate(bool isPlus)
         {

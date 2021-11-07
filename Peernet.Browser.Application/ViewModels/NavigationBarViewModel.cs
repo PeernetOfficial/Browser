@@ -1,70 +1,35 @@
 ﻿using MvvmCross.Commands;
-using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
-using System;
-using System.Threading.Tasks;
+using Peernet.Browser.Application.Managers;
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public class NavigationBarViewModel : MvxViewModel
     {
-        private readonly IMvxNavigationService navigationService;
-
-        public NavigationBarViewModel(IMvxNavigationService navigationService, IUserContext userContext)
+        public NavigationBarViewModel(IApplicationManager applicationManager, IUserContext userContext)
         {
-            this.navigationService = navigationService;
             UserContext = userContext;
 
-            NavigateExploreCommand = new MvxAsyncCommand(async () => await Navigate<ExploreViewModel>());
-            NavigateHomeCommand = new MvxAsyncCommand(async () => await Navigate<HomeViewModel>(false));
-            NavigateDirectoryCommand = new MvxAsyncCommand(async () => await Navigate<DirectoryViewModel>());
-
-            EditProfileCommand = new MvxAsyncCommand(async () =>
-            {
-                GlobalContext.IsMainWindowActive = false;
-                GlobalContext.IsProfileMenuVisible = false;
-                await navigationService.Navigate<EditProfileViewModel>();
-            });
-
-            NavigateAboutCommand = new MvxAsyncCommand(async () =>
-            {
-                GlobalContext.IsProfileMenuVisible = false;
-                await Navigate<AboutViewModel>();
-            });
-
-            OpenCloseProfileMenuCommand = new MvxAsyncCommand(() =>
-            {
-                GlobalContext.IsProfileMenuVisible ^= true;
-                return Task.CompletedTask;
-            });
+            NavigateExploreCommand = new MvxCommand(() => applicationManager.NavigateToMain(ViewType.Explorer));
+            NavigateHomeCommand = new MvxCommand(() => applicationManager.NavigateToMain(ViewType.Home, false));
+            NavigateDirectoryCommand = new MvxCommand(() => applicationManager.NavigateToMain(ViewType.Directory));
+            EditProfileCommand = new MvxCommand(() => applicationManager.NavigateToModal(ViewType.EditProfile));
+            NavigateAboutCommand = new MvxCommand(() => applicationManager.NavigateToModal(ViewType.About));
+            OpenCloseProfileMenuCommand = new MvxCommand(() => { GlobalContext.IsProfileMenuVisible ^= true; });
         }
 
-        private Type actualActiveViewModel = typeof(HomeViewModel);
+        public IMvxCommand NavigateDirectoryCommand { get; }
 
-        private async Task Navigate<T>(bool showLogo = true) where T : IMvxViewModel
-        {
-            if (typeof(T) == actualActiveViewModel)
-            {
-                return;
-            }
+        public IMvxCommand NavigateExploreCommand { get; }
 
-            actualActiveViewModel = typeof(T);
-            await navigationService.Navigate<T>();
-            GlobalContext.IsLogoVisible = showLogo;
-        }
+        public IMvxCommand NavigateHomeCommand { get; }
 
-        public IMvxAsyncCommand NavigateDirectoryCommand { get; }
+        public IMvxCommand EditProfileCommand { get; }
 
-        public IMvxAsyncCommand NavigateExploreCommand { get; }
+        public IMvxCommand NavigateAboutCommand { get; }
 
-        public IMvxAsyncCommand NavigateHomeCommand { get; }
-
-        public IMvxAsyncCommand EditProfileCommand { get; }
-
-        public IMvxAsyncCommand NavigateAboutCommand { get; }
-
-        public IMvxAsyncCommand OpenCloseProfileMenuCommand { get; }
+        public IMvxCommand OpenCloseProfileMenuCommand { get; }
 
         public IUserContext UserContext { get; set; }
     }

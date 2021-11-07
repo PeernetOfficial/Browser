@@ -1,11 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
 using MvvmCross.Base;
 using MvvmCross.IoC;
-using MvvmCross.Navigation;
-using MvvmCross.Navigation.EventArguments;
 using MvvmCross.Platforms.Wpf.Core;
 using MvvmCross.Plugin;
-using Peernet.Browser.Application;
 using Peernet.Browser.Application.Clients;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Download;
@@ -64,17 +61,6 @@ namespace Peernet.Browser.WPF
 
             iocProvider.RegisterSingleton<IDownloadManager>(new DownloadManager(iocProvider.Resolve<ISettingsManager>()));
             GlobalContext.UiThreadDispatcher = iocProvider.Resolve<IMvxMainThreadAsyncDispatcher>();
-            ObserveNavigation(iocProvider);
-        }
-
-        private static void ObserveNavigation(IMvxIoCProvider iocProvider)
-        {
-            iocProvider.Resolve<IMvxNavigationService>().DidNavigate +=
-                delegate (object sender, IMvxNavigateEventArgs args)
-                {
-                    if (args.ViewModel is IModal) return;
-                    GlobalContext.CurrentViewModel = args.ViewModel.GetType().Name;
-                };
         }
     }
 }

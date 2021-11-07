@@ -1,7 +1,9 @@
-﻿using System;
+﻿using MvvmCross;
 using MvvmCross.Platforms.Wpf.Views;
 using Peernet.Browser.Application;
 using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.Application.Managers;
+using System;
 using System.Globalization;
 using System.Threading;
 using System.Windows;
@@ -26,6 +28,8 @@ namespace Peernet.Browser.WPF
             ci.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Sunday;
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
+
+            Mvx.IoCProvider.Resolve<IApplicationManager>().Init();
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
