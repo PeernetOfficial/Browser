@@ -1,9 +1,9 @@
-﻿using Peernet.Browser.Application.Services;
-using Peernet.Browser.Models.Presentation.Footer;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MvvmCross.Navigation;
+using Peernet.Browser.Application.Services;
+using Peernet.Browser.Models.Presentation.Footer;
 
-namespace Peernet.Browser.Application.ViewModels
+namespace Peernet.Browser.Application.ViewModels.Parameters
 {
     public class EditFileViewModelParameter : FileParameterModel
     {

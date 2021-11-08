@@ -1,9 +1,9 @@
-﻿using Peernet.Browser.Application.Services;
-using Peernet.Browser.Models.Presentation.Footer;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.Services;
+using Peernet.Browser.Models.Presentation.Footer;
 
-namespace Peernet.Browser.Application.ViewModels
+namespace Peernet.Browser.Application.ViewModels.Parameters
 {
     public class ShareFileViewModelParameter : FileParameterModel
     {

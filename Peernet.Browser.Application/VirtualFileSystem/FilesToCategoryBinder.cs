@@ -7,10 +7,10 @@ namespace Peernet.Browser.Application.VirtualFileSystem
 {
     public class FilesToCategoryBinder : IFilesToCategoryBinder
     {
-        public List<VirtualFileSystemCategory> Bind(IEnumerable<ApiFile> files)
+        public List<VirtualFileSystemCoreCategory> Bind(IEnumerable<ApiFile> files)
         {
             var remainingFiles = files.ToList();
-            List<VirtualFileSystemCategory> categories = new();
+            List<VirtualFileSystemCoreCategory> categories = new();
 
             foreach (VirtualFileSystemEntityType type in Enum.GetValues(typeof(VirtualFileSystemEntityType)))
             {
@@ -53,12 +53,12 @@ namespace Peernet.Browser.Application.VirtualFileSystem
                     Func<ApiFile, bool> selector)
                 {
                     var selectedFiles = files.Where(selector).ToList();
-                    categories.Add(new VirtualFileSystemCategory(categoryName, type, selectedFiles));
+                    categories.Add(new VirtualFileSystemCoreCategory(categoryName, type, selectedFiles));
                     remainingFiles.RemoveRange(selectedFiles);
                 }
             }
 
-            categories.Add(new VirtualFileSystemCategory("Binary", VirtualFileSystemEntityType.Binary, remainingFiles));
+            categories.Add(new VirtualFileSystemCoreCategory("Binary", VirtualFileSystemEntityType.Binary, remainingFiles));
             return categories;
         }
     }

@@ -1,44 +1,31 @@
 ﻿using MvvmCross.ViewModels;
 using Peernet.Browser.Models.Domain.Common;
-using System.Collections.Generic;
+using System;
 
 namespace Peernet.Browser.Application.VirtualFileSystem
 {
     public class VirtualFileSystemEntity : MvxNotifyPropertyChanged
     {
-        private bool isVisualTreeVertex;
-        private bool isSelected;
+        private readonly string name;
+        private readonly VirtualFileSystemEntityType? type;
 
-        protected VirtualFileSystemEntity(string name, VirtualFileSystemEntityType type, List<ApiFile> files)
+        public VirtualFileSystemEntity(ApiFile file, string name = null, VirtualFileSystemEntityType? type = null)
         {
-            Name = name;
-            Type = type;
-            Files = files;
+            File = file;
+            this.name = name;
+            this.type = type;
         }
 
-        public string Name { get; }
+        public string Name => name ?? File.Name;
 
-        public VirtualFileSystemEntityType Type { get; }
+        public DateTime? Date => File?.Date;
 
-        public List<ApiFile> Files { get; }
+        public VirtualFileSystemEntityType Type => type ?? Enum.Parse<VirtualFileSystemEntityType>(File.Type.ToString());
 
-        public bool IsSelected
-        {
-            get => isSelected;
-            set => SetProperty(ref isSelected, value);
-        }
-
-        public bool IsVisualTreeVertex
-        {
-            get => isVisualTreeVertex;
-            set => SetProperty(ref isVisualTreeVertex, value);
-        }
+        public ApiFile File { get; init; }
 
         public virtual void ResetSelection()
         {
-            IsSelected = false;
         }
-
-        public virtual List<ApiFile> GetAllFiles() => Files;
     }
 }

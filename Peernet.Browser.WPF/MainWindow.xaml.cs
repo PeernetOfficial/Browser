@@ -30,8 +30,10 @@ namespace Peernet.Browser.WPF
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.ChangedButton != MouseButton.Left) return;
-            DragMove();
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                DragMove();
+            }
         }
 
         protected override void OnContentChanged(object oldContent, object newContent)

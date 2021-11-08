@@ -4,13 +4,13 @@ using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.VirtualFileSystem;
-using Peernet.Browser.Models.Domain.Common;
 using Peernet.Browser.Models.Presentation.Footer;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.ViewModels.Parameters;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -19,10 +19,10 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IBlockchainService blockchainService;
         private readonly IMvxNavigationService mvxNavigationService;
         private readonly IVirtualFileSystemFactory virtualFileSystemFactory;
-        private List<ApiFile> activeSearchResults;
-        private ObservableCollection<VirtualFileSystemEntity> pathElements;
+        private List<VirtualFileSystemEntity> activeSearchResults;
+        private ObservableCollection<VirtualFileSystemCoreEntity> pathElements;
         private string searchInput;
-        private IReadOnlyCollection<ApiFile> sharedFiles;
+        private IReadOnlyCollection<VirtualFileSystemEntity> sharedFiles;
         private bool showHint = true;
         private bool showSearchBox;
         private VirtualFileSystem.VirtualFileSystem virtualFileSystem;
@@ -34,29 +34,44 @@ namespace Peernet.Browser.Application.ViewModels
             this.mvxNavigationService = mvxNavigationService;
         }
 
-        public List<ApiFile> ActiveSearchResults
+        public List<VirtualFileSystemEntity> ActiveSearchResults
         {
-            get => activeSearchResults;
+            get => activeSearchResults?.OrderBy(e=> (int)e.Type).ToList();
             set => SetProperty(ref activeSearchResults, value);
         }
 
-        public IMvxAsyncCommand<ApiFile> DeleteCommand =>
-            new MvxAsyncCommand<ApiFile>(
-                async apiFile =>
+        public IMvxCommand<VirtualFileSystemEntity> OpenCommand =>
+            new MvxCommand<VirtualFileSystemEntity>(
+                entity =>
                 {
-                    await blockchainService.DeleteFile(apiFile);
+                    if (entity is VirtualFileSystemCoreTier coreTier)
+                    {
+                        ActiveSearchResults = coreTier.VirtualFileSystemEntities;
+                    }
+                    else
+                    {
+                        var param = new FilePreviewViewModelParameter(entity.File, false, true, "Save To File");
+                        mvxNavigationService.Navigate<FilePreviewViewModel, FilePreviewViewModelParameter>(param);
+                    }
+                });
+
+        public IMvxAsyncCommand<VirtualFileSystemEntity> DeleteCommand =>
+            new MvxAsyncCommand<VirtualFileSystemEntity>(
+                async entity =>
+                {
+                    await blockchainService.DeleteFile(entity.File);
                     await ReloadVirtualFileSystem();
                 });
 
-        public IMvxAsyncCommand<ApiFile> EditCommand =>
-                    new MvxAsyncCommand<ApiFile>(
-                 async apiFile =>
+        public IMvxAsyncCommand<VirtualFileSystemEntity> EditCommand =>
+                    new MvxAsyncCommand<VirtualFileSystemEntity>(
+                 async entity =>
                 {
                     var parameter = new EditFileViewModelParameter(blockchainService, mvxNavigationService)
                     {
                         FileModels = new FileModel[]
                         {
-                            new(apiFile)
+                            new(entity.File)
                         }
                     };
 
@@ -64,7 +79,7 @@ namespace Peernet.Browser.Application.ViewModels
                     await mvxNavigationService.Navigate<GenericFileViewModel, EditFileViewModelParameter>(parameter);
                 });
 
-        public ObservableCollection<VirtualFileSystemEntity> PathElements
+        public ObservableCollection<VirtualFileSystemCoreEntity> PathElements
         {
             get => pathElements;
             set => SetProperty(ref pathElements, value);
@@ -93,7 +108,7 @@ namespace Peernet.Browser.Application.ViewModels
                 {
                     if (sharedFiles != null)
                     {
-                        ActiveSearchResults = ApplySearchResultsFiltering(sharedFiles);
+                        ActiveSearchResults = ApplySearchResultsFiltering(sharedFiles.ToList());
                     }
                 });
             }
@@ -117,9 +132,9 @@ namespace Peernet.Browser.Application.ViewModels
             set => SetProperty(ref showSearchBox, value);
         }
 
-        public IMvxCommand<VirtualFileSystemEntity> UpdateActiveSearchResults =>
-            new MvxCommand<VirtualFileSystemEntity>(
-                tier => { ActiveSearchResults = ApplySearchResultsFiltering(tier.GetAllFiles()); });
+        public IMvxCommand<VirtualFileSystemCoreTier> UpdateActiveSearchResults =>
+            new MvxCommand<VirtualFileSystemCoreTier>(
+                tier => { ActiveSearchResults = ApplySearchResultsFiltering(tier.VirtualFileSystemEntities); });
 
         public VirtualFileSystem.VirtualFileSystem VirtualFileSystem
         {
@@ -127,10 +142,10 @@ namespace Peernet.Browser.Application.ViewModels
             set => SetProperty(ref virtualFileSystem, value);
         }
 
-        public void ChangeSelectedEntity(VirtualFileSystemEntity entity)
+        public void ChangeSelectedEntity(VirtualFileSystemCoreEntity coreEntity)
         {
             VirtualFileSystem.ResetSelection();
-            entity.IsSelected = true;
+            coreEntity.IsSelected = true;
         }
 
         public override async void ViewAppearing()
@@ -139,26 +154,26 @@ namespace Peernet.Browser.Application.ViewModels
             base.ViewAppearing();
         }
 
-        private void AddAllFilesTier(IEnumerable<ApiFile> allFiles)
+        private void AddAllFilesTier(IEnumerable<VirtualFileSystemEntity> entities)
         {
-            AddTier("All files", VirtualFileSystemEntityType.All, 0, allFiles);
+            AddTier("All files", VirtualFileSystemEntityType.All, entities);
         }
 
-        private void AddRecentTier(IEnumerable<ApiFile> allFiles)
+        private void AddRecentTier(IEnumerable<VirtualFileSystemEntity> entities)
         {
-            var filtered = allFiles.OrderByDescending(f => f.Date).Take(10);
-            AddTier("Recent", VirtualFileSystemEntityType.Recent, 0, filtered);
+            var filtered = entities.OrderByDescending(f => f.File.Date).Take(10);
+            AddTier("Recent", VirtualFileSystemEntityType.Recent, filtered);
         }
 
-        private void AddTier(string name, VirtualFileSystemEntityType type, int depth, IEnumerable<ApiFile> files)
+        private void AddTier(string name, VirtualFileSystemEntityType type, IEnumerable<VirtualFileSystemEntity> entities)
         {
-            var tier = new VirtualFileSystemTier(name, type, depth);
-            tier.Files.AddRange(files);
+            var tier = new VirtualFileSystemCoreTier(name, type);
+            tier.VirtualFileSystemEntities.AddRange(entities);
 
             VirtualFileSystem.VirtualFileSystemTiers.Add(tier);
         }
 
-        private List<ApiFile> ApplySearchResultsFiltering(IEnumerable<ApiFile> results)
+        private List<VirtualFileSystemEntity> ApplySearchResultsFiltering(List<VirtualFileSystemEntity> results)
         {
             return !string.IsNullOrEmpty(SearchInput)
                 ? results.Where(f => f.Name.Contains(SearchInput, StringComparison.OrdinalIgnoreCase)).ToList()
@@ -168,13 +183,14 @@ namespace Peernet.Browser.Application.ViewModels
         private async Task ReloadVirtualFileSystem()
         {
             var header = await blockchainService.GetHeader();
+            var files = await blockchainService.GetList();
             if (header.Height > 0 || header.Height != ActiveSearchResults?.Count)
             {
-                sharedFiles = await blockchainService.GetList() ?? new();
+                sharedFiles = (files ?? new()).Select(f => new VirtualFileSystemEntity(f)).ToList();
                 ActiveSearchResults = sharedFiles?.ToList();
             }
 
-            VirtualFileSystem = virtualFileSystemFactory.CreateVirtualFileSystem(sharedFiles);
+            VirtualFileSystem = virtualFileSystemFactory.CreateVirtualFileSystem(files);
             AddRecentTier(sharedFiles);
             AddAllFilesTier(sharedFiles);
         }

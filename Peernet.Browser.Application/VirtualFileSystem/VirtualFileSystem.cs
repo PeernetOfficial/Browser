@@ -20,9 +20,9 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             }
         }
 
-        public ObservableCollection<VirtualFileSystemCategory> VirtualFileSystemCategories { get; set; } = new();
+        public ObservableCollection<VirtualFileSystemCoreCategory> VirtualFileSystemCategories { get; set; } = new();
 
-        public ObservableCollection<VirtualFileSystemTier> VirtualFileSystemTiers { get; set; } = new();
+        public ObservableCollection<VirtualFileSystemCoreTier> VirtualFileSystemTiers { get; set; } = new();
 
         public void ResetSelection()
         {
@@ -30,28 +30,24 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             VirtualFileSystemCategories.Foreach(e => e.ResetSelection());
         }
 
-        private void AddFileToTheSystem(VirtualFileSystemTier candidateTier, ObservableCollection<VirtualFileSystemTier> sameLevelFileSystemTiers)
+        private void AddFileToTheSystem(VirtualFileSystemCoreTier candidateCoreTier, List<VirtualFileSystemEntity> sameLevelFileSystemTiers)
         {
-            if (sameLevelFileSystemTiers.Count != 0 && sameLevelFileSystemTiers.Any(t => t.Depth != candidateTier.Depth))
-            {
-                throw new ArgumentException($"{nameof(candidateTier)} and {nameof(sameLevelFileSystemTiers)} are not on the same level");
-            }
-
-            var matchingTierThatIsAlreadyInTheFileSystem = sameLevelFileSystemTiers.FirstOrDefault(t => t.Name == candidateTier.Name);
+            var matchingTierThatIsAlreadyInTheFileSystem = sameLevelFileSystemTiers.FirstOrDefault(t => t.Name == candidateCoreTier.Name) as VirtualFileSystemCoreTier;
             if (matchingTierThatIsAlreadyInTheFileSystem == null)
             {
-                sameLevelFileSystemTiers.Add(candidateTier);
+                sameLevelFileSystemTiers.Add(candidateCoreTier);
             }
             else
             {
-                var candidateTierDescendant = candidateTier.VirtualFileSystemTiers.FirstOrDefault();
+                var candidateTierDescendant =
+                    candidateCoreTier.VirtualFileSystemEntities.FirstOrDefault(e => e is VirtualFileSystemCoreTier);
                 if (candidateTierDescendant == null)
                 {
-                    matchingTierThatIsAlreadyInTheFileSystem.Files.Add(candidateTier.Files.First());
+                    matchingTierThatIsAlreadyInTheFileSystem.VirtualFileSystemEntities.Add(candidateCoreTier.VirtualFileSystemEntities.First());
                     return;
                 }
 
-                AddFileToTheSystem(candidateTierDescendant, matchingTierThatIsAlreadyInTheFileSystem.VirtualFileSystemTiers);
+                AddFileToTheSystem(candidateTierDescendant as VirtualFileSystemCoreTier, matchingTierThatIsAlreadyInTheFileSystem.VirtualFileSystemEntities);
             }
         }
 
@@ -60,25 +56,28 @@ namespace Peernet.Browser.Application.VirtualFileSystem
         {
             // materialize
             var sharedFilesList = sharedFiles.ToList();
+            var rootTier = new VirtualFileSystemCoreTier("Root", VirtualFileSystemEntityType.Directory);
 
             foreach (var coreTier in sharedFilesList.Select(StructureTheFile))
             {
-                AddFileToTheSystem(coreTier, VirtualFileSystemTiers);
+                AddFileToTheSystem(coreTier, rootTier.VirtualFileSystemEntities);
             }
 
-            VirtualFileSystemCategories = new ObservableCollection<VirtualFileSystemCategory>(binder.Bind(sharedFilesList));
+            VirtualFileSystemTiers.Add(rootTier);
+
+            VirtualFileSystemCategories = new ObservableCollection<VirtualFileSystemCoreCategory>(binder.Bind(sharedFilesList));
         }
 
-        private VirtualFileSystemTier StructureTheFile(ApiFile file)
+        private VirtualFileSystemCoreTier StructureTheFile(ApiFile file)
         {
             var directories = file.Folder.Split('/');
             var totalDepth = directories.Length;
 
-            VirtualFileSystemTier coreTier = null;
-            VirtualFileSystemTier higherTier = null;
+            VirtualFileSystemCoreTier coreTier = null;
+            VirtualFileSystemCoreTier higherTier = null;
             for (int i = 0; i < totalDepth; i++)
             {
-                var tier = new VirtualFileSystemTier(directories[i], VirtualFileSystemEntityType.Directory, i);
+                var tier = new VirtualFileSystemCoreTier(directories[i], VirtualFileSystemEntityType.Directory);
 
                 if (coreTier == null)
                 {
@@ -87,13 +86,14 @@ namespace Peernet.Browser.Application.VirtualFileSystem
                 }
                 else
                 {
-                    higherTier.VirtualFileSystemTiers.Add(tier);
+                    higherTier.VirtualFileSystemEntities.Add(tier);
                     higherTier = tier;
                 }
 
                 if (i == totalDepth - 1)
                 {
-                    tier.Files.Add(file);
+                    var entity = new VirtualFileSystemEntity(file);
+                    tier.VirtualFileSystemEntities.Add(entity);
                 }
             }
 
