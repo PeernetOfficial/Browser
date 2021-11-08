@@ -87,6 +87,10 @@ namespace Peernet.Browser.WPF.Services
                         toAdd = GetView<GenericFileView>();
                         break;
 
+                    case ViewType.DeleteAccount:
+                        toAdd = GetView<DeleteAccountView>();
+                        break;
+
                     case ViewType.None:
                         toAdd = null;
                         break;

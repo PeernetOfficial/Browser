@@ -34,7 +34,7 @@ namespace Peernet.Browser.WPF.Views
 
         private void DeleteAccount_OnClick(object sender, MouseButtonEventArgs e)
         {
-            ((EditProfileViewModel)ViewModel).RemovePhotoCommand.ExecuteAsync().Wait();
+            ((EditProfileViewModel)ViewModel).RemovePhotoCommand.Execute();
         }
     }
 }

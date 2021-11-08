@@ -210,7 +210,7 @@ namespace Peernet.Browser.Application.ViewModels
             FakeHideClick();
             var am = Mvx.IoCProvider.Resolve<IApplicationManager>();
             Filters.BindFromSearchFilterResult();
-            am.NavigateToModal(ViewType.Filter);
+            am.NavigateToModal(ViewType.Filter, Filters);
             await Task.CompletedTask;
         }
 

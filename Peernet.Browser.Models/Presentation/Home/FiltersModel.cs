@@ -3,7 +3,6 @@ using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Peernet.Browser.Models.Presentation.Home
 {
@@ -18,8 +17,8 @@ namespace Peernet.Browser.Models.Presentation.Home
             this.inputText = inputText;
 
             ClearCommand = new MvxCommand(() => Reset());
-            CancelCommand = new MvxAsyncCommand(Hide);
-            ApplyFiltersCommand = new MvxAsyncCommand(ApplyFilters);
+            CancelCommand = new MvxCommand(Hide);
+            ApplyFiltersCommand = new MvxCommand(ApplyFilters);
 
             DateFilters = new DateFilterModel((x) => ShowCalendar = x);
             FileFormatFilters = new FileFormatFilterModel();
@@ -36,7 +35,7 @@ namespace Peernet.Browser.Models.Presentation.Home
 
         public IMvxCommand ClearCommand { get; }
 
-        public Func<bool, Task> CloseAction { get; set; }
+        public Action<bool> CloseAction { get; set; }
 
         public DateFilterModel DateFilters { get; }
 
@@ -108,16 +107,16 @@ namespace Peernet.Browser.Models.Presentation.Home
             RefreshTabs();
         }
 
-        private async Task ApplyFilters()
+        private void ApplyFilters()
         {
             Apply();
-            await CloseAction?.Invoke(true);
+            CloseAction?.Invoke(true);
         }
 
-        private async Task Hide()
+        private void Hide()
         {
             Reset();
-            await CloseAction?.Invoke(false);
+            CloseAction?.Invoke(false);
         }
 
         private void InitSearch() => SearchFilterResult = new SearchFilterResultModel { InputText = inputText, Uuid = UuId };

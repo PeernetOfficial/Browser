@@ -1,7 +1,6 @@
 ﻿using MvvmCross.Commands;
-using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
-using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.Browser.Models.Domain.Common;
@@ -17,7 +16,7 @@ namespace Peernet.Browser.Application.ViewModels
     public class DirectoryViewModel : MvxViewModel, ISearchable
     {
         private readonly IBlockchainService blockchainService;
-        private readonly IMvxNavigationService mvxNavigationService;
+        private readonly IApplicationManager applicationManager;
         private readonly IVirtualFileSystemFactory virtualFileSystemFactory;
         private List<ApiFile> activeSearchResults;
         private ObservableCollection<VirtualFileSystemEntity> pathElements;
@@ -27,11 +26,11 @@ namespace Peernet.Browser.Application.ViewModels
         private bool showSearchBox;
         private VirtualFileSystem.VirtualFileSystem virtualFileSystem;
 
-        public DirectoryViewModel(IBlockchainService blockchainService, IVirtualFileSystemFactory virtualFileSystemFactory, IMvxNavigationService mvxNavigationService)
+        public DirectoryViewModel(IBlockchainService blockchainService, IVirtualFileSystemFactory virtualFileSystemFactory, IApplicationManager applicationManager)
         {
             this.blockchainService = blockchainService;
             this.virtualFileSystemFactory = virtualFileSystemFactory;
-            this.mvxNavigationService = mvxNavigationService;
+            this.applicationManager = applicationManager;
         }
 
         public List<ApiFile> ActiveSearchResults
@@ -48,11 +47,11 @@ namespace Peernet.Browser.Application.ViewModels
                     await ReloadVirtualFileSystem();
                 });
 
-        public IMvxAsyncCommand<ApiFile> EditCommand =>
-                    new MvxAsyncCommand<ApiFile>(
-                 async apiFile =>
+        public IMvxCommand<ApiFile> EditCommand =>
+                    new MvxCommand<ApiFile>(
+                 apiFile =>
                 {
-                    var parameter = new EditFileViewModelParameter(blockchainService, mvxNavigationService)
+                    var parameter = new EditFileViewModelParameter(blockchainService, applicationManager)
                     {
                         FileModels = new FileModel[]
                         {
@@ -60,8 +59,7 @@ namespace Peernet.Browser.Application.ViewModels
                         }
                     };
 
-                    GlobalContext.IsMainWindowActive = false;
-                    await mvxNavigationService.Navigate<GenericFileViewModel, EditFileViewModelParameter>(parameter);
+                    applicationManager.NavigateToModal(ViewType.GenericFile, parameter);
                 });
 
         public ObservableCollection<VirtualFileSystemEntity> PathElements

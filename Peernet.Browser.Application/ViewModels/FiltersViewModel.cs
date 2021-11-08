@@ -1,19 +1,18 @@
-﻿using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
+﻿using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Models.Presentation.Home;
-using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public class FiltersViewModel : MvxViewModel<FiltersModel>, IModal
     {
-        private readonly IMvxNavigationService mvxNavigationService;
+        private readonly IApplicationManager applicationManager;
         private FiltersModel filters;
 
-        public FiltersViewModel(IMvxNavigationService mvxNavigationService)
+        public FiltersViewModel(IApplicationManager applicationManager)
         {
-            this.mvxNavigationService = mvxNavigationService;
+            this.applicationManager = applicationManager;
         }
 
         public FiltersModel Filters
@@ -28,11 +27,11 @@ namespace Peernet.Browser.Application.ViewModels
             p.CloseAction += Hide;
         }
 
-        private async Task Hide(bool withApply)
+        private void Hide(bool withApply)
         {
             Filters.CloseAction -= Hide;
             GlobalContext.IsMainWindowActive = true;
-            await mvxNavigationService.Close(this);
+            applicationManager.CloseModal();
         }
     }
 }

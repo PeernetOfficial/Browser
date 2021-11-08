@@ -15,7 +15,7 @@ namespace Peernet.Browser.Application.ViewModels
             NavigateHomeCommand = new MvxCommand(() => applicationManager.NavigateToMain(ViewType.Home, false));
             NavigateDirectoryCommand = new MvxCommand(() => applicationManager.NavigateToMain(ViewType.Directory));
             EditProfileCommand = new MvxCommand(() => applicationManager.NavigateToModal(ViewType.EditProfile));
-            NavigateAboutCommand = new MvxCommand(() => applicationManager.NavigateToModal(ViewType.About));
+            NavigateAboutCommand = new MvxCommand(() => applicationManager.NavigateToMain(ViewType.About));
             OpenCloseProfileMenuCommand = new MvxCommand(() => { GlobalContext.IsProfileMenuVisible ^= true; });
         }
 

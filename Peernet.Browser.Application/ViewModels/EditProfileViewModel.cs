@@ -1,37 +1,33 @@
 ﻿using MvvmCross.Commands;
-using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
-using System.Threading.Tasks;
+using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Services;
-
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public class EditProfileViewModel : MvxViewModel
     {
-        private readonly IMvxNavigationService mvxNavigationService;
+        private readonly IApplicationManager applicationManager;
         private readonly IProfileService profileService;
 
-        public EditProfileViewModel(IMvxNavigationService mvxNavigationService, IUserContext userContext, IProfileService profileService)
+        public EditProfileViewModel(IApplicationManager applicationManager, IUserContext userContext, IProfileService profileService)
         {
-            this.mvxNavigationService = mvxNavigationService;
+            this.applicationManager = applicationManager;
             this.profileService = profileService;
 
             UserContext = userContext;
         }
 
-        public IMvxAsyncCommand CloseCommand => new MvxAsyncCommand(async () =>
+        public IMvxCommand CloseCommand => new MvxCommand(() =>
         {
             UserContext.ReloadContext();
-
-            GlobalContext.IsMainWindowActive = true;
-            await mvxNavigationService.Close(this);
+            applicationManager.CloseModal();
         });
 
-        public IMvxAsyncCommand RemovePhotoCommand => new MvxAsyncCommand(async () =>
+        public IMvxCommand RemovePhotoCommand => new MvxCommand(() =>
         {
-            await mvxNavigationService.Navigate<DeleteAccountViewModel>();
+            applicationManager.NavigateToMain(ViewType.DeleteAccount);
         });
 
         public IMvxAsyncCommand SaveChangesCommand => new MvxAsyncCommand(async () =>
@@ -42,10 +38,7 @@ namespace Peernet.Browser.Application.ViewModels
             }
 
             UserContext.ReloadContext();
-
-            GlobalContext.IsMainWindowActive = true;
-            
-            await mvxNavigationService.Close(this);
+            applicationManager.CloseModal();
         });
 
         public IUserContext UserContext { get; set; }

@@ -9,7 +9,8 @@
         About,
         Filter,
         EditProfile,
-        GenericFile
+        GenericFile,
+        DeleteAccount
     }
 
     public interface IApplicationManager

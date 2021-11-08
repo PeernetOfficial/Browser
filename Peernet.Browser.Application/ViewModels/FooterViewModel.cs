@@ -1,5 +1,4 @@
 ﻿using MvvmCross.Commands;
-using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Clients;
 using Peernet.Browser.Application.Contexts;
@@ -31,7 +30,6 @@ namespace Peernet.Browser.Application.ViewModels
         public FooterViewModel(
             IApiService apiService,
             ISocketClient socketClient,
-            IMvxNavigationService navigationService,
             IApplicationManager applicationManager,
             IDownloadManager downloadManager,
             IWarehouseService warehouseService,

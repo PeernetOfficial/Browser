@@ -1,19 +1,19 @@
-﻿using Peernet.Browser.Application.Services;
+﻿using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Application.Services;
 using Peernet.Browser.Models.Presentation.Footer;
 using System.Threading.Tasks;
-using MvvmCross.Navigation;
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public class EditFileViewModelParameter : FileParameterModel
     {
         private readonly IBlockchainService blockchainService;
-        private readonly IMvxNavigationService navigationService;
+        private readonly IApplicationManager applicationManager;
 
-        public EditFileViewModelParameter(IBlockchainService blockchainService, IMvxNavigationService navigationService)
+        public EditFileViewModelParameter(IBlockchainService blockchainService, IApplicationManager applicationManager)
         {
             this.blockchainService = blockchainService;
-            this.navigationService = navigationService;
+            this.applicationManager = applicationManager;
         }
 
         public override string ModalTitle => "Edit File";
@@ -25,7 +25,7 @@ namespace Peernet.Browser.Application.ViewModels
                 await blockchainService.UpdateFile(fileModel);
             }
 
-            await navigationService.Navigate<DirectoryViewModel>();
+            applicationManager.NavigateToMain(ViewType.Directory);
         }
     }
 }
