@@ -1,7 +1,6 @@
 ﻿using MvvmCross.Platforms.Wpf.Presenters.Attributes;
 using MvvmCross.Platforms.Wpf.Views;
 using MvvmCross.ViewModels;
-using Peernet.Browser.Application.Extensions;
 using Peernet.Browser.Application.ViewModels;
 using Peernet.Browser.Application.VirtualFileSystem;
 using System.Collections.Generic;
@@ -84,28 +83,6 @@ namespace Peernet.Browser.WPF.Views
             treeViewItems.First().Key.IsVisualTreeVertex = true;
             treeViewItems = treeViewItems.Reverse().ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
             return treeViewItems;
-        }
-
-        private void PathSegment_OnSelected(object sender, RoutedEventArgs e)
-        {
-            var entity = (VirtualFileSystemCoreEntity)((FrameworkElement)e.OriginalSource).DataContext;
-            var item = pathElements[entity];
-            item.IsSelected = true;
-
-            var viewModel = (DirectoryViewModel)ViewModel;
-            viewModel.ChangeSelectedEntity(entity);
-            item.Focus();
-
-            var elements = viewModel.PathElements;
-            var index = elements.IndexOf(entity);
-            List<VirtualFileSystemCoreEntity> itemsToRemove = new();
-            for (var i = index + 1; i < elements.Count; i++)
-            {
-                itemsToRemove.Add(elements[i]);
-            }
-
-            elements.RemoveRange(itemsToRemove);
-            elements.Last().IsVisualTreeVertex = true;
         }
 
         private void TreeViewItem_OnSelected(object sender, RoutedEventArgs e)

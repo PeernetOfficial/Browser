@@ -8,6 +8,7 @@ using Peernet.Browser.Models.Presentation.Footer;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Peernet.Browser.Application.ViewModels.Parameters;
@@ -47,6 +48,8 @@ namespace Peernet.Browser.Application.ViewModels
                     if (entity is VirtualFileSystemCoreTier coreTier)
                     {
                         ActiveSearchResults = coreTier.VirtualFileSystemEntities;
+                        PathElements.Add(coreTier);
+                        ChangeSelectedEntity(coreTier);
                     }
                     else
                     {
@@ -113,6 +116,24 @@ namespace Peernet.Browser.Application.ViewModels
                 });
             }
         }
+        public IMvxCommand<VirtualFileSystemCoreEntity> OpenDirectoryCommand
+        {
+            get
+            {
+                return new MvxCommand<VirtualFileSystemCoreEntity>((entity) =>
+                {
+                    VirtualFileSystem.ResetSelection();
+                    ChangeSelectedEntity(entity);
+                    var index = PathElements.IndexOf(entity);
+                    for (int i = PathElements.Count -1; i > index; i--)
+                    {
+                        PathElements.RemoveAt(i);
+                    }
+
+                    UpdateActiveSearchResults.Execute(entity as VirtualFileSystemCoreTier);
+                });
+            }
+        }
 
         public string SearchInput
         {
@@ -146,6 +167,7 @@ namespace Peernet.Browser.Application.ViewModels
         {
             VirtualFileSystem.ResetSelection();
             coreEntity.IsSelected = true;
+            coreEntity.IsVisualTreeVertex = true;
         }
 
         public override async void ViewAppearing()

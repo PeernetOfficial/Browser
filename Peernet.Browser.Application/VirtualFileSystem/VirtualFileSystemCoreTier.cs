@@ -1,7 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.Linq;
-
-namespace Peernet.Browser.Application.VirtualFileSystem
+﻿namespace Peernet.Browser.Application.VirtualFileSystem
 {
     public class VirtualFileSystemCoreTier : VirtualFileSystemCoreEntity
     {

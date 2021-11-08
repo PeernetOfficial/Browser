@@ -49,7 +49,7 @@
                 <TreeView BorderThickness="0" HorizontalAlignment="Center" Background="Transparent">
                     <TreeView.ItemContainerStyle>
                         <Style TargetType="{x:Type TreeViewItem}">
-                            <EventSetter Event="MouseDoubleClick" Handler="TreeViewItem_OnSelected" />
+                            <EventSetter Event="PreviewMouseDown" Handler="TreeViewItem_OnSelected" />
                         </Style>
                     </TreeView.ItemContainerStyle>
                     <TreeViewItem Template="{DynamicResource TreeViewItemTemplate}" ItemsSource="{Binding VirtualFileSystem.VirtualFileSystemTiers}" Header="Your Files" Foreground="{DynamicResource MainContentBrush}" IsExpanded="True" FontWeight="Medium" FontSize="16" />
@@ -75,7 +75,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <ItemsControl Grid.Row="0" Grid.Column="0" Margin="63, 40, 0, 0" ItemsSource="{Binding PathElements}">
+                <ItemsControl Grid.Row="0" Grid.Column="0" Margin="63, 40, 0, 0" ItemsSource="{Binding PathElements, UpdateSourceTrigger=PropertyChanged}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Horizontal" />
@@ -89,13 +89,13 @@
                                         <SolidColorBrush Opacity="0.89" Color="{DynamicResource MainTextColor}" />
                                     </TextBlock.Foreground>
                                 </TextBlock>
-                                <Button x:Name="segment" Height="20" Content="{Binding Path=Name}" Click="PathSegment_OnSelected" Style="{StaticResource TreeViewNavigationPathButtonStyle}" VerticalAlignment="Center" Command="{Binding DataContext.UpdateActiveSearchResults, ElementName=DirectoryPage}" CommandParameter="{Binding}" />
+                                <Button x:Name="segment" Height="20" Content="{Binding Path=Name}" Command="{Binding DataContext.OpenDirectoryCommand, ElementName=DirectoryPage}"  Style="{StaticResource TreeViewNavigationPathButtonStyle}" VerticalAlignment="Center" CommandParameter="{Binding}" />
                             </StackPanel>
                             <DataTemplate.Triggers>
                                 <DataTrigger Binding="{Binding RelativeSource={RelativeSource PreviousData}}" Value="{x:Null}">
                                     <Setter Property="Visibility" TargetName="separator" Value="Collapsed" />
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding Path=IsVisualTreeVertex}" Value="True">
+                                <DataTrigger Binding="{Binding Path=IsSelected}" Value="True">
                                     <Setter Property="FontWeight" TargetName="segment" Value="SemiBold" />
                                 </DataTrigger>
                             </DataTemplate.Triggers>

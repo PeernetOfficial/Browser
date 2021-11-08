@@ -27,9 +27,16 @@ namespace Peernet.Browser.Application.VirtualFileSystem
 
         public List<VirtualFileSystemEntity> VirtualFileSystemEntities { get; set; } = new();
 
-        public void ResetSelection()
+        public virtual void ResetSelection()
         {
-            VirtualFileSystemEntities.Foreach(t => t.ResetSelection());
+            IsSelected = false;
+            foreach (var entity in VirtualFileSystemEntities)
+            {
+                if (entity is VirtualFileSystemCoreEntity coreEntity)
+                {
+                    coreEntity.ResetSelection();
+                }
+            }
         }
     }
 }

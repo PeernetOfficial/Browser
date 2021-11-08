@@ -23,9 +23,5 @@ namespace Peernet.Browser.Application.VirtualFileSystem
         public VirtualFileSystemEntityType Type => type ?? Enum.Parse<VirtualFileSystemEntityType>(File.Type.ToString());
 
         public ApiFile File { get; init; }
-
-        public virtual void ResetSelection()
-        {
-        }
     }
 }
