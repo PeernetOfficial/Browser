@@ -83,6 +83,10 @@ namespace Peernet.Browser.WPF.Services
                         toAdd = GetView<EditProfileView>();
                         break;
 
+                    case ViewType.GenericFile:
+                        toAdd = GetView<GenericFileView>();
+                        break;
+
                     case ViewType.None:
                         toAdd = null;
                         break;
@@ -118,11 +122,17 @@ namespace Peernet.Browser.WPF.Services
             GlobalContext.CurrentViewModel = newView;
         }
 
-        public void NavigateToModal(ViewType v)
+        public void NavigateToModal(ViewType v, object model = null)
         {
             GlobalContext.IsMainWindowActive = false;
             GlobalContext.IsProfileMenuVisible = false;
-            GlobalContext.Modal = GetView(v);
+            var view = GetView(v);
+            GlobalContext.Modal = view;
+            if (model == null) return;
+            var methodInfo = view.ViewModel.
+                GetType().
+                GetMethod("Prepare", new[] { model.GetType() });
+            methodInfo.Invoke(view.ViewModel, new[] { model });
         }
 
         public void CloseModal()

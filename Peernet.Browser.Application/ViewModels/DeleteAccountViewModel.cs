@@ -1,21 +1,21 @@
 ﻿using MvvmCross.Commands;
-using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Services;
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public class DeleteAccountViewModel : MvxViewModel
     {
-        private readonly IMvxNavigationService mvxNavigationService;
+        private readonly IApplicationManager applicationManager;
         private readonly IAccountService accountService;
         private bool isPolicyAccepted;
         private readonly IUserContext userContext;
 
-        public DeleteAccountViewModel(IMvxNavigationService mvxNavigationService, IAccountService accountService, IUserContext userContext)
+        public DeleteAccountViewModel(IApplicationManager applicationManager, IAccountService accountService, IUserContext userContext)
         {
-            this.mvxNavigationService = mvxNavigationService;
+            this.applicationManager = applicationManager;
             this.accountService = accountService;
             this.userContext = userContext;
         }
@@ -32,13 +32,13 @@ namespace Peernet.Browser.Application.ViewModels
             set => SetProperty(ref isPolicyAccepted, value);
         }
 
-        public IMvxCommand CloseCommand => new MvxCommand(() => mvxNavigationService.Close(this));
+        public IMvxCommand CloseCommand => new MvxCommand(() => applicationManager.CloseModal());
 
         public IMvxAsyncCommand DeleteAccountCommand => new MvxAsyncCommand(async () =>
         {
             await accountService.Delete(IsPolicyAccepted);
             userContext.ReloadContext();
-            await mvxNavigationService.Close(this);
+            applicationManager.CloseModal();
         });
     }
 }

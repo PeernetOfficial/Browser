@@ -8,7 +8,8 @@
         Explorer,
         About,
         Filter,
-        EditProfile
+        EditProfile,
+        GenericFile
     }
 
     public interface IApplicationManager
@@ -27,7 +28,7 @@
 
         void Init();
 
-        void NavigateToModal(ViewType v);
+        void NavigateToModal(ViewType v, object model = null);
 
         void NavigateToMain(ViewType v, bool showLogo = true);
 

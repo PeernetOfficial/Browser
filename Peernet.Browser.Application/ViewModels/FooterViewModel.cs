@@ -19,7 +19,6 @@ namespace Peernet.Browser.Application.ViewModels
         private const int reconnectDelay = 2000;
         private readonly IApiService apiService;
         private readonly IApplicationManager applicationManager;
-        private readonly IMvxNavigationService navigationService;
         private readonly ISocketClient socketClient;
         private readonly IWarehouseService warehouseService;
         private readonly IBlockchainService blockchainService;
@@ -40,7 +39,6 @@ namespace Peernet.Browser.Application.ViewModels
         {
             this.apiService = apiService;
             this.socketClient = socketClient;
-            this.navigationService = navigationService;
             this.applicationManager = applicationManager;
             this.warehouseService = warehouseService;
             this.blockchainService = blockchainService;
@@ -181,7 +179,7 @@ namespace Peernet.Browser.Application.ViewModels
                 };
 
                 GlobalContext.IsMainWindowActive = false;
-                navigationService.Navigate<GenericFileViewModel, ShareFileViewModelParameter>(parameter);
+                applicationManager.NavigateToModal(ViewType.GenericFile, parameter);
             }
         }
 
