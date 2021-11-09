@@ -22,7 +22,7 @@ namespace Peernet.Browser.WPF.Controls
             var file = ((VirtualFileSystemEntity)((FrameworkElement)e.OriginalSource).DataContext).File;
             var link = $"peer://{Convert.ToHexString(file.NodeId)}/{Convert.ToHexString(file.Hash)}/{file.Folder}/{file.Name}";
             Clipboard.SetText(link);
-            GlobalContext.Notifications.Add(new Notification { Text = "Copied to clipboard!" });
+            GlobalContext.Notifications.Add(new Notification("Copied to clipboard!"));
         }
     }
 }

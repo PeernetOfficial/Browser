@@ -3,14 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:foot="clr-namespace:Peernet.Browser.Models.Presentation.Footer;assembly=Peernet.Browser.Models"
+
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800"
              UseLayoutRounding="True" SnapsToDevicePixels="True"
              x:Name="notificationControl">
 <Border Padding="20, 2, 2, 2" HorizontalAlignment="Center" Margin="0, 0, 0, 3" BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}">
-    <Border.Background>
-        <SolidColorBrush Color="{DynamicResource ModalBackground}" />
-    </Border.Background>
     <Border.Effect>
         <DropShadowEffect Color="Black" Opacity="0.11" ShadowDepth="1" BlurRadius="21" />
     </Border.Effect>
@@ -18,5 +17,23 @@
         <TextBlock TextWrapping="Wrap" Text="{Binding Path=Notification, ElementName=notificationControl}" Style="{StaticResource Active}" HorizontalAlignment="Center" VerticalAlignment="Center" />
         <Button Style="{StaticResource CloseButtonStyle}" Click="RemoveNotification" Cursor="Hand"/>
     </StackPanel>
+    <Border.Style>
+        <Style TargetType="{x:Type Border}">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <SolidColorBrush Color="{DynamicResource ModalBackground}" />
+                    </Setter.Value>
+                </Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Severity}" Value="{x:Static foot:Severity.Warning}">
+                        <Setter Property="Background">
+                            <Setter.Value>
+                                <SolidColorBrush Color="#b30b26" Opacity="0.11" />
+                            </Setter.Value>
+                        </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Border.Style>
 </Border>
 </UserControl>

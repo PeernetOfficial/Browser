@@ -16,6 +16,6 @@ namespace Peernet.Browser.Infrastructure.Clients
 
         Task<ApiBlockchainBlock> ReadBlock(int block);
 
-        Task UpdateFile(ApiFile apiFile);
+        Task<ApiBlockchainBlockStatus> UpdateFile(ApiFile apiFile);
     }
 }

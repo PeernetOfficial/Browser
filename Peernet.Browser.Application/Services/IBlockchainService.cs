@@ -16,6 +16,6 @@ namespace Peernet.Browser.Application.Services
 
         Task<List<ApiFile>> GetList();
 
-        Task UpdateFile(FileModel fileModel);
+        Task<ApiBlockchainBlockStatus> UpdateFile(FileModel fileModel);
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
 using MvvmCross.Navigation;
+using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Services;
+using Peernet.Browser.Models.Domain.Blockchain;
 using Peernet.Browser.Models.Presentation.Footer;
 
 namespace Peernet.Browser.Application.ViewModels.Parameters
@@ -22,7 +24,11 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
         {
             foreach (var fileModel in files)
             {
-                await blockchainService.UpdateFile(fileModel);
+                var result = await blockchainService.UpdateFile(fileModel);
+                if (result.Status != BlockchainStatus.StatusOK)
+                {
+                    GlobalContext.Notifications.Add(new Notification($"Failed to update the user. Status: {result.Status}", Severity.Warning));
+                }
             }
 
             await navigationService.Navigate<DirectoryViewModel>();

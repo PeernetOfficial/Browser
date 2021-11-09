@@ -33,10 +33,11 @@ namespace Peernet.Browser.Infrastructure.Clients
                 GetRelativeRequestPath("file/delete"), content: content);
         }
 
-        public async Task UpdateFile(ApiFile apiFile)
+        public async Task<ApiBlockchainBlockStatus> UpdateFile(ApiFile apiFile)
         {
             var content = JsonContent.Create(new ApiBlockchainAddFiles { Files = new List<ApiFile> { apiFile } });
-            await httpExecutor.GetResult<ApiBlockchainBlockStatus>(HttpMethod.Post, GetRelativeRequestPath("file/update"), content: content);
+            var result = await httpExecutor.GetResult<ApiBlockchainBlockStatus>(HttpMethod.Post, GetRelativeRequestPath("file/update"), content: content);
+            return result;
         }
 
         public async Task<ApiBlockchainHeader> GetHeader()

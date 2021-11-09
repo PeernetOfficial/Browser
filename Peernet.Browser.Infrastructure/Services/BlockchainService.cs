@@ -26,7 +26,7 @@ namespace Peernet.Browser.Infrastructure.Services
             await blockchainClient.DeleteFile(apiFile);
         }
 
-        public async Task UpdateFile(FileModel fileModel)
+        public async Task<ApiBlockchainBlockStatus> UpdateFile(FileModel fileModel)
         {
             var apiFile = new ApiFile
             {
@@ -42,7 +42,7 @@ namespace Peernet.Browser.Infrastructure.Services
                 Format = fileModel.Format
             };
 
-            await blockchainClient.UpdateFile(apiFile);
+            return await blockchainClient.UpdateFile(apiFile);
         }
 
         public async Task<ApiBlockchainHeader> GetHeader()

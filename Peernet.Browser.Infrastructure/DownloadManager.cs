@@ -96,7 +96,7 @@ namespace Peernet.Browser.Infrastructure
         private void NotifyChange(string message)
         {
             downloadsChanged?.Invoke(this, EventArgs.Empty);
-            GlobalContext.Notifications.Add(new Notification { Text = message });
+            GlobalContext.Notifications.Add(new Notification(message));
         }
 
         private async Task UpdateStatuses()
