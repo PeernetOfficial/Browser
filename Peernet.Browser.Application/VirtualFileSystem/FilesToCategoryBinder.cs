@@ -9,7 +9,8 @@ namespace Peernet.Browser.Application.VirtualFileSystem
     {
         public List<VirtualFileSystemCoreCategory> Bind(IEnumerable<ApiFile> files)
         {
-            var remainingFiles = files.ToList();
+            var entities = files.Select(f => new VirtualFileSystemEntity(f));
+            var remainingFiles = entities.ToList();
             List<VirtualFileSystemCoreCategory> categories = new();
 
             foreach (VirtualFileSystemEntityType type in Enum.GetValues(typeof(VirtualFileSystemEntityType)))
@@ -18,41 +19,41 @@ namespace Peernet.Browser.Application.VirtualFileSystem
                 {
                     case VirtualFileSystemEntityType.Picture:
                         {
-                            AddCategory("Pictures", f => f.Type == LowLevelFileType.Picture);
+                            AddCategory("Pictures", f => f.File.Type == LowLevelFileType.Picture);
                             break;
                         }
                     case VirtualFileSystemEntityType.Video:
                         {
-                            AddCategory("Videos", f => f.Type == LowLevelFileType.Video);
+                            AddCategory("Videos", f => f.File.Type == LowLevelFileType.Video);
                             break;
                         }
                     case VirtualFileSystemEntityType.Document:
                         {
-                            AddCategory("Documents", f => f.Type == LowLevelFileType.Document);
+                            AddCategory("Documents", f => f.File.Type == LowLevelFileType.Document);
                             break;
                         }
                     case VirtualFileSystemEntityType.Text:
                         {
-                            AddCategory("Text", f => f.Type == LowLevelFileType.Text);
+                            AddCategory("Text", f => f.File.Type == LowLevelFileType.Text);
                             break;
                         }
                     case VirtualFileSystemEntityType.Audio:
                         {
-                            AddCategory("Audio", f => f.Type == LowLevelFileType.Audio);
+                            AddCategory("Audio", f => f.File.Type == LowLevelFileType.Audio);
                             break;
                         }
                     case VirtualFileSystemEntityType.Ebook:
                         {
-                            AddCategory("Ebook", f => f.Type == LowLevelFileType.Ebook);
+                            AddCategory("Ebook", f => f.File.Type == LowLevelFileType.Ebook);
                             break;
                         }
                 }
 
                 void AddCategory(
                     string categoryName,
-                    Func<ApiFile, bool> selector)
+                    Func<VirtualFileSystemEntity, bool> selector)
                 {
-                    var selectedFiles = files.Where(selector).ToList();
+                    var selectedFiles = entities.Where(selector).ToList();
                     categories.Add(new VirtualFileSystemCoreCategory(categoryName, type, selectedFiles));
                     remainingFiles.RemoveRange(selectedFiles);
                 }

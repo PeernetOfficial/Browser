@@ -153,9 +153,12 @@ namespace Peernet.Browser.Application.ViewModels
             set => SetProperty(ref showSearchBox, value);
         }
 
-        public IMvxCommand<VirtualFileSystemCoreTier> UpdateActiveSearchResults =>
-            new MvxCommand<VirtualFileSystemCoreTier>(
-                tier => { ActiveSearchResults = ApplySearchResultsFiltering(tier.VirtualFileSystemEntities); });
+        public IMvxCommand<VirtualFileSystemCoreEntity> UpdateActiveSearchResults =>
+            new MvxCommand<VirtualFileSystemCoreEntity>(
+                tier =>
+                {
+                    ActiveSearchResults = ApplySearchResultsFiltering(tier.VirtualFileSystemEntities);
+                });
 
         public VirtualFileSystem.VirtualFileSystem VirtualFileSystem
         {
@@ -199,7 +202,7 @@ namespace Peernet.Browser.Application.ViewModels
         {
             return !string.IsNullOrEmpty(SearchInput)
                 ? results.Where(f => f.Name.Contains(SearchInput, StringComparison.OrdinalIgnoreCase)).ToList()
-                : results.ToList();
+                : results;
         }
 
         private async Task ReloadVirtualFileSystem()

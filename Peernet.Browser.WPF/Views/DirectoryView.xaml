@@ -24,21 +24,13 @@
                     <HierarchicalDataTemplate DataType="{x:Type virtualFileSystem:VirtualFileSystemCoreTier}">
                         <StackPanel Orientation="Horizontal">
                             <Image Width="14" Height="13" Style="{StaticResource VirtualFileSystemCoreEntityImageStyle}" />
-                            <TextBlock x:Name="TreeViewItemText" Text="{Binding Path=Name}" Margin="7, 0, 0, 0">
-                                <TextBlock.InputBindings>
-                                    <MouseBinding Command="{Binding DataContext.UpdateActiveSearchResults, ElementName=DirectoryPage}" CommandParameter="{Binding}" MouseAction="LeftClick" />
-                                </TextBlock.InputBindings>
-                            </TextBlock>
+                            <TextBlock Text="{Binding Path=Name}" Margin="7, 0, 0, 0" />
                         </StackPanel>
                     </HierarchicalDataTemplate>
                     <HierarchicalDataTemplate DataType="{x:Type virtualFileSystem:VirtualFileSystemCoreCategory}">
                         <StackPanel Orientation="Horizontal">
                             <Image Width="14" Height="13" Style="{StaticResource VirtualFileSystemCoreEntityImageStyle}" />
-                            <TextBlock Text="{Binding Path=Name}" Margin="7, 0, 0, 0">
-                                <TextBlock.InputBindings>
-                                    <MouseBinding Command="{Binding DataContext.UpdateActiveSearchResults, ElementName=DirectoryPage}" CommandParameter="{Binding}" MouseAction="LeftClick" />
-                                </TextBlock.InputBindings>
-                            </TextBlock>
+                            <TextBlock Text="{Binding Path=Name}" Margin="7, 0, 0, 0" />
                         </StackPanel>
                     </HierarchicalDataTemplate>
                 </StackPanel.Resources>

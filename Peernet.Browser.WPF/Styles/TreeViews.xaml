@@ -81,6 +81,9 @@
                                 Content="{TemplateBinding Header}"
                                 Foreground="{TemplateBinding Foreground}"
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                            <Border.InputBindings>
+                                <MouseBinding Command="{Binding DataContext.UpdateActiveSearchResults, ElementName=DirectoryPage}" CommandParameter="{Binding}" MouseAction="LeftClick" />
+                            </Border.InputBindings>
                         </Border>
                         <ItemsPresenter x:Name="ItemsHost"
                           Grid.Row="1"
