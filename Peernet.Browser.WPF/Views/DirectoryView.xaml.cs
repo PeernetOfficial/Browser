@@ -19,8 +19,6 @@ namespace Peernet.Browser.WPF.Views
     [MvxViewFor(typeof(DirectoryViewModel))]
     public partial class DirectoryView : MvxWpfView
     {
-        private Dictionary<VirtualFileSystemCoreEntity, TreeViewItem> pathElements;
-
         public DirectoryView()
         {
             InitializeComponent();
@@ -94,7 +92,6 @@ namespace Peernet.Browser.WPF.Views
             viewModel.PathElements = new ObservableCollection<VirtualFileSystemCoreEntity>(entities.Keys);
 
             viewModel.ChangeSelectedEntity(entities.Last().Key);
-            pathElements = entities;
         }
     }
 }

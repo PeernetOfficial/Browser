@@ -18,6 +18,8 @@ namespace Peernet.Browser.WPF
         {
             InitializeComponent();
             MouseDown += Window_MouseDown;
+            Owner = App.Current.MainWindow;
+            WindowStartupLocation = WindowStartupLocation.CenterOwner;
         }
 
         public MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request)

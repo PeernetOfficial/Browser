@@ -181,7 +181,8 @@ namespace Peernet.Browser.Application.ViewModels
 
         private void AddAllFilesTier(IEnumerable<VirtualFileSystemEntity> entities)
         {
-            AddTier("All files", VirtualFileSystemEntityType.All, entities);
+            var tier = AddTier("All files", VirtualFileSystemEntityType.All, entities);
+            tier.IsSelected = true;
         }
 
         private void AddRecentTier(IEnumerable<VirtualFileSystemEntity> entities)
@@ -190,12 +191,13 @@ namespace Peernet.Browser.Application.ViewModels
             AddTier("Recent", VirtualFileSystemEntityType.Recent, filtered);
         }
 
-        private void AddTier(string name, VirtualFileSystemEntityType type, IEnumerable<VirtualFileSystemEntity> entities)
+        private VirtualFileSystemCoreEntity AddTier(string name, VirtualFileSystemEntityType type, IEnumerable<VirtualFileSystemEntity> entities)
         {
             var tier = new VirtualFileSystemCoreTier(name, type);
             tier.VirtualFileSystemEntities.AddRange(entities);
-
             VirtualFileSystem.VirtualFileSystemTiers.Add(tier);
+
+            return tier;
         }
 
         private List<VirtualFileSystemEntity> ApplySearchResultsFiltering(List<VirtualFileSystemEntity> results)
