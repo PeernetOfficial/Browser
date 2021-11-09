@@ -23,7 +23,7 @@ namespace Peernet.Browser.Models.Presentation.Footer
             FileName = f.Name;
             Size = f.Length;
             CreateDate = DateTime.Now;
-            Directory = "Root";
+            Directory = null;
         }
 
         public FileModel(ApiFile apiFile)
