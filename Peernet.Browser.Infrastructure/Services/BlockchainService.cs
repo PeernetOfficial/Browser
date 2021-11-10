@@ -20,10 +20,9 @@ namespace Peernet.Browser.Infrastructure.Services
             blockchainClient = new BlockchainClient(settingsManager);
         }
 
-        // todo: it should consume some presentation model
-        public async Task DeleteFile(ApiFile apiFile)
+        public async Task<ApiBlockchainBlockStatus> DeleteFile(ApiFile apiFile)
         {
-            await blockchainClient.DeleteFile(apiFile);
+            return await blockchainClient.DeleteFile(apiFile);
         }
 
         public async Task<ApiBlockchainBlockStatus> UpdateFile(FileModel fileModel)
@@ -55,7 +54,7 @@ namespace Peernet.Browser.Infrastructure.Services
             return (await blockchainClient.GetList()).Files;
         }
 
-        public async Task AddFiles(IEnumerable<FileModel> files)
+        public async Task<ApiBlockchainBlockStatus> AddFiles(IEnumerable<FileModel> files)
         {
             var data = files
                 .Select(x =>
@@ -70,7 +69,7 @@ namespace Peernet.Browser.Infrastructure.Services
                     })
                 .ToList();
 
-            await blockchainClient.AddFiles(new ApiBlockchainAddFiles { Files = data });
+            return await blockchainClient.AddFiles(new ApiBlockchainAddFiles { Files = data });
         }
     }
 }

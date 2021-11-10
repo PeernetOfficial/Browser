@@ -1,6 +1,9 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Services;
+using Peernet.Browser.Models.Domain.Blockchain;
+using Peernet.Browser.Models.Domain.Warehouse;
 using Peernet.Browser.Models.Presentation.Footer;
 
 namespace Peernet.Browser.Application.ViewModels.Parameters
@@ -25,13 +28,21 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
             foreach (var file in files)
             {
                 var warehouseEntry = await warehouseService.Create(file);
-                if (warehouseEntry.Status == 0)
+                if (warehouseEntry.Status == WarehouseStatus.StatusOK)
                 {
                     file.Hash = warehouseEntry.Hash;
                 }
+                else
+                {
+                    GlobalContext.Notifications.Add(new Notification($"Failed to create warehouse. Status: {warehouseEntry.Status}", Severity.Warning));
+                }
             }
 
-            await blockchainService.AddFiles(files.Where(f => f.Hash != null));
+            var result = await blockchainService.AddFiles(files.Where(f => f.Hash != null));
+            if (result.Status != BlockchainStatus.StatusOK)
+            {
+                GlobalContext.Notifications.Add(new Notification($"Failed to add files. Status: {result.Status}", Severity.Warning));
+            }
         }
     }
 }

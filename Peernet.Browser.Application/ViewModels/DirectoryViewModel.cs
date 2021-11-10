@@ -12,6 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Peernet.Browser.Application.ViewModels.Parameters;
+using Peernet.Browser.Models.Domain.Blockchain;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -62,7 +63,13 @@ namespace Peernet.Browser.Application.ViewModels
             new MvxAsyncCommand<VirtualFileSystemEntity>(
                 async entity =>
                 {
-                    await blockchainService.DeleteFile(entity.File);
+                    var result = await blockchainService.DeleteFile(entity.File);
+                    if (result.Status != BlockchainStatus.StatusOK)
+                    {
+                        GlobalContext.Notifications.Add(new Notification($"Failed to delete file. Status: {result.Status}", Severity.Warning));
+                        return;
+                    }
+
                     await ReloadVirtualFileSystem();
                 });
 
@@ -181,8 +188,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         private void AddAllFilesTier(IEnumerable<VirtualFileSystemEntity> entities)
         {
-            var tier = AddTier("All files", VirtualFileSystemEntityType.All, entities);
-            tier.IsSelected = true;
+            AddTier("All files", VirtualFileSystemEntityType.All, entities);
         }
 
         private void AddRecentTier(IEnumerable<VirtualFileSystemEntity> entities)
@@ -191,13 +197,11 @@ namespace Peernet.Browser.Application.ViewModels
             AddTier("Recent", VirtualFileSystemEntityType.Recent, filtered);
         }
 
-        private VirtualFileSystemCoreEntity AddTier(string name, VirtualFileSystemEntityType type, IEnumerable<VirtualFileSystemEntity> entities)
+        private void AddTier(string name, VirtualFileSystemEntityType type, IEnumerable<VirtualFileSystemEntity> entities)
         {
             var tier = new VirtualFileSystemCoreTier(name, type);
             tier.VirtualFileSystemEntities.AddRange(entities);
             VirtualFileSystem.VirtualFileSystemTiers.Add(tier);
-
-            return tier;
         }
 
         private List<VirtualFileSystemEntity> ApplySearchResultsFiltering(List<VirtualFileSystemEntity> results)
@@ -207,19 +211,43 @@ namespace Peernet.Browser.Application.ViewModels
                 : results;
         }
 
-        private async Task ReloadVirtualFileSystem()
+        public async Task ReloadVirtualFileSystem()
         {
             var header = await blockchainService.GetHeader();
             var files = await blockchainService.GetList();
             if (header.Height > 0 || header.Height != ActiveSearchResults?.Count)
             {
                 sharedFiles = (files ?? new()).Select(f => new VirtualFileSystemEntity(f)).ToList();
-                ActiveSearchResults = sharedFiles?.ToList();
             }
 
             VirtualFileSystem = virtualFileSystemFactory.CreateVirtualFileSystem(files);
+            var root = VirtualFileSystem.VirtualFileSystemTiers.First();
             AddRecentTier(sharedFiles);
             AddAllFilesTier(sharedFiles);
+            ActiveSearchResults = root.VirtualFileSystemEntities;
+            PathElements = new ObservableCollection<VirtualFileSystemCoreEntity>
+            {
+                GetArtificialYourFilesEntity(),
+                root
+            };
+        }
+
+        public VirtualFileSystemCoreTier GetArtificialYourFilesEntity()
+        {
+            return new VirtualFileSystemCoreTier("Your Files", VirtualFileSystemEntityType.All)
+            {
+                VirtualFileSystemEntities = VirtualFileSystem.VirtualFileSystemTiers
+                    .Select(t => t as VirtualFileSystemEntity).ToList()
+            };
+        }
+
+        public VirtualFileSystemCoreTier GetArtificialLibrariesEntity()
+        {
+            return new VirtualFileSystemCoreTier("Libraries", VirtualFileSystemEntityType.All)
+            {
+                VirtualFileSystemEntities = VirtualFileSystem.VirtualFileSystemCategories
+                    .Select(t => t as VirtualFileSystemEntity).ToList()
+            };
         }
     }
 }

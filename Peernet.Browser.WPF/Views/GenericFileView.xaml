@@ -59,7 +59,7 @@
             <StackPanel Grid.Row="3" Grid.Column="0">
                 <TextBlock Style="{StaticResource Title}">File name</TextBlock>
                 <Border Margin="0 5" Height="30" BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}">
-                    <TextBox Text="{Binding Selected.FileName}" Foreground="{DynamicResource MainContentBrush}"
+                    <TextBox Text="{Binding Selected.FileName, UpdateSourceTrigger=PropertyChanged}" Foreground="{DynamicResource MainContentBrush}"
                              Template="{StaticResource RoundedTextBox}" Padding="7, 0, 0, 0" VerticalContentAlignment="Center">
                         <TextBox.Background>
                             <SolidColorBrush Color="{DynamicResource TextAreaBackground}" />

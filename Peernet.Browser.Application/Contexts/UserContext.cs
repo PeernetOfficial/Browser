@@ -16,12 +16,11 @@ namespace Peernet.Browser.Application.Contexts
             this.profileService = profileService;
 
             ReloadContext();
-            User.PropertyChanged += SubscribeToUserModifications;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public bool HasUserChanged { get; private set; }
+        public bool HasUserChanged { get; set; }
 
         public User User
         {
@@ -30,6 +29,7 @@ namespace Peernet.Browser.Application.Contexts
             {
                 user = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(User)));
+                User.PropertyChanged += SubscribeToUserModifications;
             }
         }
 
@@ -38,6 +38,7 @@ namespace Peernet.Browser.Application.Contexts
         {
             // Needs to be placed on the ThreadPool to avoid deadlock
             User = Task.Run(async () => await profileService.GetUser()).GetResultBlockingWithoutContextSynchronization();
+            HasUserChanged = false;
         }
 
         public void SubscribeToUserModifications(object sender, PropertyChangedEventArgs e)

@@ -59,6 +59,7 @@ namespace Peernet.Browser.WPF.Views
 
         private Dictionary<VirtualFileSystemCoreEntity, TreeViewItem> GetAllEntitiesToTheTreeCore(DependencyObject parentObject)
         {
+            var viewModel = (DirectoryViewModel)ViewModel;
             Dictionary<VirtualFileSystemCoreEntity, TreeViewItem> treeViewItems = new();
 
             while (parentObject != null)
@@ -71,8 +72,19 @@ namespace Peernet.Browser.WPF.Views
 
                 if (parentObject is TreeViewItem { DataContext: DirectoryViewModel } treeView)
                 {
-                    treeViewItems.TryAdd(
-                        new VirtualFileSystemCoreTier(treeView.Header.ToString(), VirtualFileSystemEntityType.All), treeView);
+                    var header = treeView.Header.ToString();
+                    VirtualFileSystemCoreEntity entityToAdd = null;
+                    if (header == "Libraries")
+                    {
+                        entityToAdd = viewModel.GetArtificialLibrariesEntity();
+                    }
+
+                    if (header == "Your Files")
+                    {
+                        entityToAdd = viewModel.GetArtificialYourFilesEntity();
+                    }
+
+                    treeViewItems.TryAdd(entityToAdd, treeView);
                 }
 
                 parentObject = GetParentObject(parentObject);

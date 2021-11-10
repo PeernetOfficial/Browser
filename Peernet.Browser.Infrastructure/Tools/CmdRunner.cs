@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 
 namespace Peernet.Browser.Infrastructure.Tools
 {
@@ -23,7 +25,7 @@ namespace Peernet.Browser.Infrastructure.Tools
                     UseShellExecute = false,
                     WorkingDirectory = path
                 };
-
+                //process.StartInfo.Arguments = $"-webapi=127.0.0.1:{GetFreeTcpPort()}";
                 fileExist = true;
             };
         }
@@ -79,6 +81,15 @@ namespace Peernet.Browser.Infrastructure.Tools
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        private static int GetFreeTcpPort()
+        {
+            TcpListener l = new TcpListener(IPAddress.Loopback, 0);
+            l.Start();
+            int port = ((IPEndPoint)l.LocalEndpoint).Port;
+            l.Stop();
+            return port;
         }
     }
 }

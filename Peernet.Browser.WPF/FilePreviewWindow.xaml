@@ -9,7 +9,6 @@
                   Top="100"
                   Left="100"
                   x:Name="PreviewWindow"
-                  Topmost="True"
                   Background="{DynamicResource PreviewBackground}" Content="{Binding}">
     <WindowChrome.WindowChrome>
         <WindowChrome ResizeBorderThickness="0" GlassFrameThickness="0" CaptionHeight="0" CornerRadius="0"/>
@@ -25,6 +24,7 @@
                             <RowDefinition Height="40" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
+
                         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
                             <Button Style="{StaticResource CloseButtonStyle}" Click="Close_OnClick" />
                         </StackPanel>

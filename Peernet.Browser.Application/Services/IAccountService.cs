@@ -1,9 +1,10 @@
 ﻿using System.Threading.Tasks;
+using Peernet.Browser.Models.Domain.Blockchain;
 
 namespace Peernet.Browser.Application.Services
 {
     public interface IAccountService
     {
-        Task Delete(bool confirm);
+        Task<ApiBlockchainBlockStatus> Delete(bool confirm);
     }
 }

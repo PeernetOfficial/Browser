@@ -56,7 +56,10 @@ namespace Peernet.Browser.Application.VirtualFileSystem
         {
             // materialize
             var sharedFilesList = sharedFiles.ToList();
-            var rootTier = new VirtualFileSystemCoreTier("Root", VirtualFileSystemEntityType.Directory);
+            var rootTier = new VirtualFileSystemCoreTier("Root", VirtualFileSystemEntityType.Directory)
+            {
+                IsSelected = true
+            };
 
             foreach (var coreTier in sharedFilesList.Select(StructureTheFile))
             {

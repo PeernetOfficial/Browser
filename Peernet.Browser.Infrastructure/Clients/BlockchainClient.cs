@@ -26,10 +26,10 @@ namespace Peernet.Browser.Infrastructure.Clients
             return await httpExecutor.GetResult<ApiBlockchainBlockStatus>(HttpMethod.Post, GetRelativeRequestPath("file/add"), content: content);
         }
 
-        public async Task DeleteFile(ApiFile apiFile)
+        public async Task<ApiBlockchainBlockStatus> DeleteFile(ApiFile apiFile)
         {
             var content = JsonContent.Create(new ApiBlockchainAddFiles { Files = new List<ApiFile> { apiFile } });
-            await httpExecutor.GetResult<ApiBlockchainBlockStatus>(HttpMethod.Post,
+            return await httpExecutor.GetResult<ApiBlockchainBlockStatus>(HttpMethod.Post,
                 GetRelativeRequestPath("file/delete"), content: content);
         }
 

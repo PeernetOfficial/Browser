@@ -10,7 +10,7 @@ namespace Peernet.Browser.Infrastructure.Clients
 
         Task<ApiBlockchainAddFiles> GetList();
 
-        Task DeleteFile(ApiFile apiFile);
+        Task<ApiBlockchainBlockStatus> DeleteFile(ApiFile apiFile);
 
         Task<ApiBlockchainBlockStatus> AddFiles(ApiBlockchainAddFiles files);
 

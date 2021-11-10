@@ -4,6 +4,7 @@ using Peernet.Browser.Application.Services;
 using Peernet.Browser.Infrastructure.Clients;
 using Peernet.Browser.Models.Presentation.Profile;
 using System.Threading.Tasks;
+using Peernet.Browser.Models.Domain.Blockchain;
 using Peernet.Browser.Models.Domain.Profile;
 
 namespace Peernet.Browser.Infrastructure.Services
@@ -30,9 +31,9 @@ namespace Peernet.Browser.Infrastructure.Services
             };
         }
 
-        public async Task UpdateUser(string name, byte[] image)
+        public async Task<ApiBlockchainBlockStatus> UpdateUser(string name, byte[] image)
         {
-            await profileClient.UpdateUser(name, image);
+            return await profileClient.UpdateUser(name, image);
         }
 
         public async Task DeleteUserImage()

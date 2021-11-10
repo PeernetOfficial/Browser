@@ -18,14 +18,14 @@ namespace Peernet.Browser.Infrastructure.Clients
 
         public override string CoreSegment => "account";
 
-        public async Task Delete(bool confirm)
+        public async Task<ApiBlockchainBlockStatus> Delete(bool confirm)
         {
             var parameters = new Dictionary<string, string>
             {
                 [nameof(confirm)] = confirm ? "1" : "0"
             };
 
-            await httpExecutor.GetResult<ApiBlockchainBlockStatus>(HttpMethod.Get, GetRelativeRequestPath("delete"), parameters);
+            return await httpExecutor.GetResult<ApiBlockchainBlockStatus>(HttpMethod.Get, GetRelativeRequestPath("delete"), parameters);
         }
     }
 }

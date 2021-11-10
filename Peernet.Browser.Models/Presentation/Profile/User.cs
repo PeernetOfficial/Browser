@@ -14,8 +14,11 @@ namespace Peernet.Browser.Models.Presentation.Profile
             get => image;
             set
             {
-                image = value;
-                NotifyPropertyChanged(nameof(Image));
+                if (value != image)
+                {
+                    image = value;
+                    NotifyPropertyChanged(nameof(Image));
+                }
             }
         }
 
@@ -24,8 +27,11 @@ namespace Peernet.Browser.Models.Presentation.Profile
             get => name;
             set
             {
-                name = value;
-                NotifyPropertyChanged(nameof(Name));
+                if (value != name)
+                {
+                    name = value;
+                    NotifyPropertyChanged(nameof(Name));
+                }
             }
         }
 

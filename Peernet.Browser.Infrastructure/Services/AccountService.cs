@@ -2,6 +2,7 @@
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Infrastructure.Clients;
 using System.Threading.Tasks;
+using Peernet.Browser.Models.Domain.Blockchain;
 
 namespace Peernet.Browser.Infrastructure.Services
 {
@@ -14,9 +15,9 @@ namespace Peernet.Browser.Infrastructure.Services
             accountClient = new AccountClient(settingsManager);
         }
 
-        public async Task Delete(bool confirm)
+        public async Task<ApiBlockchainBlockStatus> Delete(bool confirm)
         {
-            await accountClient.Delete(confirm);
+            return await accountClient.Delete(confirm);
         }
     }
 }

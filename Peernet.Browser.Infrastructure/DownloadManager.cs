@@ -36,7 +36,12 @@ namespace Peernet.Browser.Infrastructure
         {
             var download = ActiveFileDownloads.First(d => d.Id == id);
             var responseStatus = await downloadClient.GetAction(id, DownloadAction.Cancel);
-            
+
+            if (responseStatus.APIStatus != APIStatus.DownloadResponseSuccess)
+            {
+                GlobalContext.Notifications.Add(new Notification($"Failed to cancel file download. Status: {responseStatus.APIStatus}", Severity.Warning));
+            }
+
             switch (responseStatus.DownloadStatus)
             {
                 case DownloadStatus.DownloadCanceled:
@@ -67,6 +72,11 @@ namespace Peernet.Browser.Infrastructure
             ActiveFileDownloads.First(d => d.Id == id).Status = responseStatus.DownloadStatus;
             downloadsChanged?.Invoke(this, EventArgs.Empty);
 
+            if (responseStatus.APIStatus != APIStatus.DownloadResponseSuccess)
+            {
+                GlobalContext.Notifications.Add(new Notification($"Failed to pause file download. Status: {responseStatus.APIStatus}", Severity.Warning));
+            }
+
             return responseStatus;
         }
 
@@ -80,6 +90,10 @@ namespace Peernet.Browser.Infrastructure
             {
                 ActiveFileDownloads.Add(downloadModel);
             }
+            else
+            {
+                GlobalContext.Notifications.Add(new Notification($"Failed to start file download. Status: {status.APIStatus}", Severity.Warning));
+            }
 
             downloadsChanged?.Invoke(this, EventArgs.Empty);
         }
@@ -89,6 +103,11 @@ namespace Peernet.Browser.Infrastructure
             var responseStatus = await downloadClient.GetAction(id, DownloadAction.Resume);
             ActiveFileDownloads.First(d => d.Id == id).Status = responseStatus.DownloadStatus;
             downloadsChanged?.Invoke(this, EventArgs.Empty);
+
+            if (responseStatus.APIStatus != APIStatus.DownloadResponseSuccess)
+            {
+                GlobalContext.Notifications.Add(new Notification($"Failed to resume file download. Status: {responseStatus.APIStatus}", Severity.Warning));
+            }
 
             return responseStatus;
         }

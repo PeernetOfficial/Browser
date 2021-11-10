@@ -53,7 +53,7 @@ namespace Peernet.Browser.Tests.Application.VirtualFileSystem
 
             var expectedCategories = new List<VirtualFileSystemCoreCategory>
             {
-                new("cat", VirtualFileSystemEntityType.Audio, files)
+                new("cat", VirtualFileSystemEntityType.Audio, new List<VirtualFileSystemEntity>())
             };
 
             fakeBinder.Setup(s => s.Bind(It.IsAny<IEnumerable<ApiFile>>())).Returns(expectedCategories);

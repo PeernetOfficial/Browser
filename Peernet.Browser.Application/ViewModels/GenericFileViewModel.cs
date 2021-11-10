@@ -7,6 +7,7 @@ using Peernet.Browser.Application.Services;
 using Peernet.Browser.Models.Presentation.Footer;
 using System.Linq;
 using System.Threading.Tasks;
+using MvvmCross;
 using Peernet.Browser.Application.ViewModels.Parameters;
 
 namespace Peernet.Browser.Application.ViewModels
@@ -102,6 +103,11 @@ namespace Peernet.Browser.Application.ViewModels
         {
             await viewModelParameter.Confirm(Files.ToArray());
             Cancel();
+
+            if (GlobalContext.CurrentViewModel == nameof(DirectoryViewModel))
+            {
+                await mvxNavigationService.Navigate<DirectoryViewModel>();
+            }
         }
 
         private void Cancel()

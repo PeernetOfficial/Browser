@@ -3,6 +3,8 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Services;
+using Peernet.Browser.Models.Domain.Blockchain;
+using Peernet.Browser.Models.Presentation.Footer;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -36,7 +38,12 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IMvxAsyncCommand DeleteAccountCommand => new MvxAsyncCommand(async () =>
         {
-            await accountService.Delete(IsPolicyAccepted);
+            var result = await accountService.Delete(IsPolicyAccepted);
+            if (result.Status != BlockchainStatus.StatusOK)
+            {
+                GlobalContext.Notifications.Add(new Notification($"Failed to delete account. Status: {result.Status}", Severity.Warning));
+            }
+
             userContext.ReloadContext();
             await mvxNavigationService.Close(this);
         });
