@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Peernet.Browser.Application.Managers;
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -15,17 +16,21 @@ namespace Peernet.Browser.Infrastructure.Tools
         private Process process;
         private bool wasRun;
 
-        public CmdRunner(string path = "")
+        public CmdRunner(ISettingsManager settingsManager)
         {
+            var path = settingsManager.CmdPath;
             if (Directory.Exists(path))
             {
                 process = new Process();
+                var apiUrl = $"127.0.0.1:{GetFreeTcpPort()}";
+                settingsManager.ApiUrl = $"http://{apiUrl}";
                 process.StartInfo = new ProcessStartInfo($"{path}\\{processName}")
                 {
                     UseShellExecute = false,
-                    WorkingDirectory = path
+                    WorkingDirectory = path,
+                    Arguments = $"-webapi={apiUrl}"
                 };
-                //process.StartInfo.Arguments = $"-webapi=127.0.0.1:{GetFreeTcpPort()}";
+
                 fileExist = true;
             };
         }

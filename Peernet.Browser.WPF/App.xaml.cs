@@ -1,4 +1,5 @@
-﻿using MvvmCross.Core;
+﻿using System;
+using MvvmCross.Core;
 using MvvmCross.Platforms.Wpf.Views;
 using Peernet.Browser.Infrastructure.Tools;
 using Peernet.Browser.WPF.Services;
@@ -31,16 +32,20 @@ namespace Peernet.Browser.WPF
 
         protected override void OnExit(ExitEventArgs e)
         {
-            cmdRunner.Dispose();
+            cmdRunner?.Dispose();
             base.OnExit(e);
         }
 
-        public override void ApplicationInitialized()
+        protected override void OnStartup(StartupEventArgs e)
         {
-            cmdRunner = new CmdRunner(new SettingsManager().CmdPath);
-            cmdRunner.Run();
+            var settingsManager = new SettingsManager();
+            if (settingsManager.ApiUrl == null)
+            {
+                cmdRunner = new CmdRunner(settingsManager);
+                cmdRunner.Run();
+            }
 
-            base.ApplicationInitialized();
+            base.OnStartup(e);
         }
 
         public void UpdateAllResources()

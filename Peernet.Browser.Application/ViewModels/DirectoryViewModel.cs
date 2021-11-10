@@ -79,7 +79,7 @@ namespace Peernet.Browser.Application.ViewModels
                 {
                     var parameter = new EditFileViewModelParameter(blockchainService, mvxNavigationService)
                     {
-                        FileModels = new FileModel[]
+                        FileModels = new List<FileModel>
                         {
                             new(entity.File)
                         }

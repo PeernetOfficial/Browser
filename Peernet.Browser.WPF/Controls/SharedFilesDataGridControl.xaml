@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:gl="clr-namespace:System.Globalization;assembly=System.Runtime"
+             xmlns:common="clr-namespace:Peernet.Browser.Application.VirtualFileSystem;assembly=Peernet.Browser.Application"
              mc:Ignorable="d"
              x:Name="SharedFilesDataGrid">
     <Grid>
@@ -66,6 +67,15 @@
                                         <ImageBrush ImageSource="{DynamicResource BinDrawingImage}" />
                                     </Button.Background>
                                 </Button>
+                                <Grid.Style>
+                                    <Style TargetType="{x:Type Grid}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Type}" Value="{x:Static common:VirtualFileSystemEntityType.Directory}">
+                                                <Setter Property="Visibility" Value="Hidden" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Grid.Style>
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

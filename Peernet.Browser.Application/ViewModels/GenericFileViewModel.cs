@@ -92,7 +92,7 @@ namespace Peernet.Browser.Application.ViewModels
             {
                 var parameter = new ShareFileViewModelParameter(warehouseService, blockchainService)
                 {
-                    FileModels = files.Select(f => new FileModel(f)).ToArray()
+                    FileModels = files.Select(f => new FileModel(f)).ToList()
                 };
 
                 Prepare(parameter);

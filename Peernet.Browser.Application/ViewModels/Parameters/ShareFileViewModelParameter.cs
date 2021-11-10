@@ -1,17 +1,16 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Peernet.Browser.Application.Contexts;
+﻿using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Models.Domain.Blockchain;
 using Peernet.Browser.Models.Domain.Warehouse;
 using Peernet.Browser.Models.Presentation.Footer;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels.Parameters
 {
     public class ShareFileViewModelParameter : FileParameterModel
     {
         private readonly IWarehouseService warehouseService;
-
         private readonly IBlockchainService blockchainService;
 
         public ShareFileViewModelParameter(IWarehouseService warehouseService, IBlockchainService blockchainService)
@@ -24,7 +23,6 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
 
         public override async Task Confirm(FileModel[] files)
         {
-            // There should be validation added all the way within this method
             foreach (var file in files)
             {
                 var warehouseEntry = await warehouseService.Create(file);
