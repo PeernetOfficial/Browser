@@ -143,6 +143,9 @@
                                     <Trigger Property="IsMouseOver" Value="True">
                                         <Setter Property="Background" Value="#60FFFFFF" />
                                     </Trigger>
+                                    <DataTrigger Binding="{Binding DownloadManager.ActiveFileDownloads.Count}" Value="1">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </Button.Style>

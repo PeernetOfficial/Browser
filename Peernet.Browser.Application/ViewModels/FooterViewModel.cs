@@ -49,10 +49,19 @@ namespace Peernet.Browser.Application.ViewModels
             DownloadManager.downloadsChanged += GetLastDownloadItem;
             UploadCommand = new MvxCommand(UploadFiles);
             SendToPeernetConsole = new MvxAsyncCommand(SendToPeernetMethod);
+            DownloadManager.downloadsChanged += CollapseWhenSingleItem;
             Task.Run(UpdateStatuses);
         }
 
-        private void GetLastDownloadItem(object? sender, EventArgs e)
+        private void CollapseWhenSingleItem(object? sender, EventArgs e)
+        {
+            if (DownloadManager.ActiveFileDownloads.Count == 1)
+            {
+                AreDownloadsCollapsed = true;
+            }
+        }
+
+        private void GetLastDownloadItem(object sender, EventArgs e)
         {
             var copy = ListedFileDownloads.ToList();
             copy.ForEach(i => ListedFileDownloads.Remove(i));
