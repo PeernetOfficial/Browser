@@ -6,7 +6,8 @@
                   xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls"
                   Height="900" Width="1441" WindowStartupLocation="CenterScreen"
                   Background="{DynamicResource MainBackgroundBrush}"
-                  x:Name="Main">
+                  x:Name="Main"
+                  MouseDown="MainWindow_OnMouseDown">
     <WindowChrome.WindowChrome>
         <WindowChrome ResizeBorderThickness="5" GlassFrameThickness="0" CaptionHeight="0" CornerRadius="0" />
     </WindowChrome.WindowChrome>
@@ -39,9 +40,21 @@
 
                 <Image Visibility="{Binding Path=(contexts:GlobalContext.IsLogoVisible), Converter={StaticResource BoolToVisibility}}" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="70 0" Source="{DynamicResource LogoAbbreviationDrawingImage}" Height="50" />
                 <controls:ButtonsControl Grid.Row="0" InitializeOnLoad="true" />
-                <controls:NavigationBarControl Panel.ZIndex="1" Margin="0 12 0 0" HorizontalAlignment="Right" Grid.Row="1" InitializeOnLoad="true" />
-                <controls:FooterControl Grid.Row="2" InitializeOnLoad="true" DockPanel.Dock="Bottom" Panel.ZIndex="2" />
-                <ContentPresenter Grid.Row="1" Content="{Binding}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                <controls:NavigationBarControl Panel.ZIndex="1" Margin="0 12 0 0" HorizontalAlignment="Right" Grid.Row="1" InitializeOnLoad="true" IsEnabled="{Binding Path=(contexts:GlobalContext.IsConnected)}" />
+                <controls:FooterControl Grid.Row="2" InitializeOnLoad="true" DockPanel.Dock="Bottom" Panel.ZIndex="2" IsEnabled="{Binding Path=(contexts:GlobalContext.IsConnected)}" />
+                <ContentPresenter Grid.Row="1" Content="{Binding}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="{Binding Path=(contexts:GlobalContext.IsConnected), Converter={StaticResource BoolToVisibility}}"/>
+                <TextBlock Text="{Binding Path=(contexts:GlobalContext.ErrorMessage), UpdateSourceTrigger=PropertyChanged}" Panel.ZIndex="2" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" TextAlignment="Center">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Visible" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=(contexts:GlobalContext.IsConnected)}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
                 <ItemsControl ItemsSource="{Binding Path=(contexts:GlobalContext.Notifications)}" VerticalAlignment="Bottom" Margin="0, 0, 0, 122"  Panel.ZIndex="2" Grid.RowSpan="2">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>

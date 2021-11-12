@@ -15,7 +15,9 @@ namespace Peernet.Browser.WPF.Converters
         protected override Visibility Convert(bool value, Type targetType, object parameter, CultureInfo culture)
         {
             if (IsVisibilityInverted(parameter))
+            {
                 value = !value;
+            }
 
             return value ? Visibility.Visible : Visibility.Collapsed;
         }

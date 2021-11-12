@@ -37,7 +37,7 @@ namespace Peernet.Browser.Infrastructure
             var download = ActiveFileDownloads.First(d => d.Id == id);
             var responseStatus = await downloadClient.GetAction(id, DownloadAction.Cancel);
 
-            if (responseStatus.APIStatus != APIStatus.DownloadResponseSuccess)
+            if (responseStatus.APIStatus != APIStatus.DownloadResponseSuccess && responseStatus.DownloadStatus != DownloadStatus.DownloadFinished)
             {
                 GlobalContext.Notifications.Add(new Notification($"Failed to cancel file download. Status: {responseStatus.APIStatus}", Severity.Warning));
             }

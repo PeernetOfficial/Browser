@@ -47,9 +47,9 @@ namespace Peernet.Browser.WPF
             base.OnContentChanged(oldContent, newContent);
         }
 
-        //private void MainWindow_OnMouseDown(object sender, MouseButtonEventArgs e)
-        //{
-        //    GlobalContext.IsProfileMenuVisible = false;
-        //}
+        private void MainWindow_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            GlobalContext.IsProfileMenuVisible = false;
+        }
     }
 }

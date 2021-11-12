@@ -24,7 +24,6 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IBlockchainService blockchainService;
         private readonly IMvxNavigationService navigationService;
         private readonly ISocketClient socketClient;
-        private readonly IFileService fileService;
         private readonly IWarehouseService warehouseService;
         private bool areDownloadsCollapsed;
         private string commandLineInput;
@@ -39,8 +38,7 @@ namespace Peernet.Browser.Application.ViewModels
             IApplicationManager applicationManager,
             IDownloadManager downloadManager,
             IWarehouseService warehouseService,
-            IBlockchainService blockchainService,
-            IFileService fileService)
+            IBlockchainService blockchainService)
         {
             this.apiService = apiService;
             this.socketClient = socketClient;
@@ -48,7 +46,6 @@ namespace Peernet.Browser.Application.ViewModels
             this.applicationManager = applicationManager;
             this.warehouseService = warehouseService;
             this.blockchainService = blockchainService;
-            this.fileService = fileService;
             DownloadManager = downloadManager;
             DownloadManager.downloadsChanged += GetLastDownloadItem;
             UploadCommand = new MvxAsyncCommand(UploadFiles);
@@ -196,14 +193,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         private async Task UploadFiles()
         {
-            var fileModels = new List<FileModel>();
-
-            foreach (var file in applicationManager.OpenFileDialog())
-            {
-                var model = new FileModel(file);
-                await UpdateFileFormat(model);
-                fileModels.Add(model);
-            }
+            var fileModels = applicationManager.OpenFileDialog().Select(f => new FileModel(f)).ToList();
 
             if (fileModels.Count != 0)
             {
@@ -215,13 +205,6 @@ namespace Peernet.Browser.Application.ViewModels
                 GlobalContext.IsMainWindowActive = false;
                 await navigationService.Navigate<GenericFileViewModel, ShareFileViewModelParameter>(parameter);
             }
-        }
-
-        private async Task UpdateFileFormat(FileModel fileModel)
-        {
-            var format = await fileService.GetFormat(fileModel.FullPath);
-            fileModel.Format = format.FileFormat;
-            fileModel.Type = format.FileType;
         }
     }
 }

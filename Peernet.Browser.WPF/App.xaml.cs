@@ -1,5 +1,4 @@
-﻿using System;
-using MvvmCross.Core;
+﻿using MvvmCross.Core;
 using MvvmCross.Platforms.Wpf.Views;
 using Peernet.Browser.Infrastructure.Tools;
 using Peernet.Browser.WPF.Services;

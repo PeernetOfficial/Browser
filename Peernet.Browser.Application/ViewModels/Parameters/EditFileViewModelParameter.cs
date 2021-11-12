@@ -20,6 +20,8 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
 
         public override string ModalTitle => "Edit File";
 
+        public override bool ShouldUpdateFormat => false;
+
         public override async Task Confirm(FileModel[] files)
         {
             foreach (var fileModel in files)

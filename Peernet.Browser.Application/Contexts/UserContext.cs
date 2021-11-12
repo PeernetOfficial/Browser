@@ -2,6 +2,7 @@
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Models.Presentation.Profile;
 using System.ComponentModel;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.Contexts
@@ -15,7 +16,15 @@ namespace Peernet.Browser.Application.Contexts
         {
             this.profileService = profileService;
 
-            ReloadContext();
+            try
+            {
+                ReloadContext();
+                GlobalContext.IsConnected = true;
+            }
+            catch (HttpRequestException e)
+            {
+                GlobalContext.ErrorMessage = $"{e.Message}. \nReview the configuration and restart the App.";
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -33,7 +42,6 @@ namespace Peernet.Browser.Application.Contexts
             }
         }
 
-        // todo: it should be asynchronous method
         public void ReloadContext()
         {
             // Needs to be placed on the ThreadPool to avoid deadlock

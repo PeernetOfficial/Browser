@@ -21,6 +21,8 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
 
         public override string ModalTitle => "Share File";
 
+        public override bool ShouldUpdateFormat => true;
+
         public override async Task Confirm(FileModel[] files)
         {
             foreach (var file in files)

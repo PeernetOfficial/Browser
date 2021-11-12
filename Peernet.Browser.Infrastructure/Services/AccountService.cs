@@ -15,9 +15,9 @@ namespace Peernet.Browser.Infrastructure.Services
             accountClient = new AccountClient(settingsManager);
         }
 
-        public async Task<ApiBlockchainBlockStatus> Delete(bool confirm)
+        public async Task Delete(bool confirm)
         {
-            return await accountClient.Delete(confirm);
+            await accountClient.Delete(confirm);
         }
     }
 }

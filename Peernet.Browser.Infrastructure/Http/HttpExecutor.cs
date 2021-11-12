@@ -37,7 +37,7 @@ namespace Peernet.Browser.Infrastructure.Http
                 httpRequestMessage.Content = content;
             }
 
-            var response = await httpClient.SendAsync(httpRequestMessage).ConfigureAwait(false);
+            var response = await httpClient.SendAsync(httpRequestMessage);
 
             if (response.StatusCode != HttpStatusCode.OK && response.StatusCode != HttpStatusCode.NoContent &&
                 response.StatusCode != HttpStatusCode.Created)

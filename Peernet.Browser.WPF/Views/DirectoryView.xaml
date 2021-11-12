@@ -69,12 +69,12 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-                                <TextBlock x:Name="separator" Text=">" VerticalAlignment="Center">
+                                <TextBlock x:Name="separator" Text=" > " FontSize="13" VerticalAlignment="Center">
                                     <TextBlock.Foreground>
                                         <SolidColorBrush Opacity="0.89" Color="{DynamicResource MainTextColor}" />
                                     </TextBlock.Foreground>
                                 </TextBlock>
-                                <Button x:Name="segment" Height="20" Content="{Binding Path=Name}" Command="{Binding DataContext.OpenDirectoryCommand, ElementName=DirectoryPage}"  Style="{StaticResource TreeViewNavigationPathButtonStyle}" VerticalAlignment="Center" CommandParameter="{Binding}" />
+                                <Button x:Name="segment" Height="20" Content="{Binding Path=Name}" Command="{Binding DataContext.OpenDirectoryCommand, ElementName=DirectoryPage}" Style="{StaticResource TreeViewNavigationPathButtonStyle}" VerticalAlignment="Center" CommandParameter="{Binding}" />
                             </StackPanel>
                             <DataTemplate.Triggers>
                                 <DataTrigger Binding="{Binding RelativeSource={RelativeSource PreviousData}}" Value="{x:Null}">

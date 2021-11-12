@@ -57,15 +57,17 @@ namespace Peernet.Browser.Infrastructure.Services
         public async Task<ApiBlockchainBlockStatus> AddFiles(IEnumerable<FileModel> files)
         {
             var data = files
-                .Select(x =>
+                .Select(file =>
                     new ApiFile
                     {
-                        Description = x.Description ?? string.Empty,
-                        Name = x.FileName,
-                        Folder = x.Directory,
+                        Description = file.Description ?? string.Empty,
+                        Name = file.FileName,
+                        Folder = file.Directory,
                         Date = DateTime.Now,
-                        Hash = x.Hash,
-                        MetaData = new List<ApiFileMetadata>()
+                        Hash = file.Hash,
+                        MetaData = new List<ApiFileMetadata>(),
+                        Format = file.Format,
+                        Type = file.Type
                     })
                 .ToList();
 

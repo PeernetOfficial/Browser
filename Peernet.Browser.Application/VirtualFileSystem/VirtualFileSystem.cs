@@ -10,13 +10,13 @@ namespace Peernet.Browser.Application.VirtualFileSystem
     {
         private readonly IFilesToCategoryBinder binder;
 
-        public VirtualFileSystem(IEnumerable<ApiFile> sharedFiles, IFilesToCategoryBinder binder)
+        public VirtualFileSystem(IEnumerable<ApiFile> sharedFiles, IFilesToCategoryBinder binder, bool isCurrentSelection = true)
         {
             this.binder = binder;
 
             if (sharedFiles != null)
             {
-                CreateFileSystemStructure(sharedFiles);
+                CreateRootCoreTier(sharedFiles, isCurrentSelection);
             }
         }
 
@@ -28,6 +28,14 @@ namespace Peernet.Browser.Application.VirtualFileSystem
         {
             VirtualFileSystemTiers.Foreach(e => e.ResetSelection());
             VirtualFileSystemCategories.Foreach(e => e.ResetSelection());
+        }
+
+        public VirtualFileSystemCoreEntity GetCurrentlySelected()
+        {
+            var selected = VirtualFileSystemTiers.FirstOrDefault(t => t.IsSelected) as VirtualFileSystemCoreEntity ??
+                           VirtualFileSystemCategories.FirstOrDefault(c => c.IsSelected);
+
+            return selected;
         }
 
         private void AddFileToTheSystem(VirtualFileSystemCoreTier candidateCoreTier, List<VirtualFileSystemEntity> sameLevelFileSystemTiers)
@@ -51,14 +59,13 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             }
         }
 
-        // Organize Files into the structured system
-        private void CreateFileSystemStructure(IEnumerable<ApiFile> sharedFiles)
+        private void CreateRootCoreTier(IEnumerable<ApiFile> sharedFiles, bool isCurrentSelection)
         {
             // materialize
             var sharedFilesList = sharedFiles.ToList();
             var rootTier = new VirtualFileSystemCoreTier("Root", VirtualFileSystemEntityType.Directory)
             {
-                IsSelected = true
+                IsSelected = isCurrentSelection
             };
 
             foreach (var coreTier in sharedFilesList.Select(StructureTheFile))
@@ -73,6 +80,11 @@ namespace Peernet.Browser.Application.VirtualFileSystem
 
         private VirtualFileSystemCoreTier StructureTheFile(ApiFile file)
         {
+            //if (file.Folder.IsNullOrEmpty())
+            //{
+            //    var tier = new VirtualFileSystemCoreTier(, VirtualFileSystemEntityType.Directory);
+            //}
+
             var directories = file.Folder.Split('/');
             var totalDepth = directories.Length;
 

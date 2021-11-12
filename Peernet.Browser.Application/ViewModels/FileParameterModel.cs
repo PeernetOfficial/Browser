@@ -10,6 +10,8 @@ namespace Peernet.Browser.Application.ViewModels
 
         public abstract string ModalTitle { get; }
 
+        public abstract bool ShouldUpdateFormat { get; }
+
         public abstract Task Confirm(FileModel[] files);
     }
 }
