@@ -82,7 +82,7 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                            <StackPanel x:Name="wrapper" Orientation="Horizontal" VerticalAlignment="Top">
                                 <TextBlock x:Name="separator" Text=" > " FontSize="13" VerticalAlignment="Center">
                                     <TextBlock.Foreground>
                                         <SolidColorBrush Opacity="0.89" Color="{DynamicResource MainTextColor}" />
@@ -96,6 +96,12 @@
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Path=IsSelected}" Value="True">
                                     <Setter Property="FontWeight" TargetName="segment" Value="SemiBold" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=Name}" Value="Libraries">
+                                    <Setter Property="IsEnabled" TargetName="wrapper" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=Name}" Value="Your Files">
+                                    <Setter Property="IsEnabled" TargetName="wrapper" Value="False" />
                                 </DataTrigger>
                             </DataTemplate.Triggers>
                         </DataTemplate>
