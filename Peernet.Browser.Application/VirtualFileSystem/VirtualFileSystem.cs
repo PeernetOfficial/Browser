@@ -14,10 +14,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
         {
             this.binder = binder;
 
-            if (sharedFiles != null)
-            {
-                CreateRootCoreTier(sharedFiles, isCurrentSelection);
-            }
+            CreateRootCoreTier(sharedFiles, isCurrentSelection);
         }
 
         public ObservableCollection<VirtualFileSystemCoreCategory> VirtualFileSystemCategories { get; set; } = new();

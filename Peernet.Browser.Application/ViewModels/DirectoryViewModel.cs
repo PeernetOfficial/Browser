@@ -41,11 +41,20 @@ namespace Peernet.Browser.Application.ViewModels
             set => SetProperty(ref activeSearchResults, value);
         }
 
+        public IMvxCommand<VirtualFileSystemEntity> OpenTreeItemCommand =>
+            new MvxCommand<VirtualFileSystemEntity>(
+                entity =>
+                {
+                    PathElements = new();
+                    OpenCommand.Execute(entity);
+                });
+
+
         public IMvxCommand<VirtualFileSystemEntity> OpenCommand =>
             new MvxCommand<VirtualFileSystemEntity>(
                 entity =>
                 {
-                    if (entity is VirtualFileSystemCoreTier coreTier)
+                    if (entity is VirtualFileSystemCoreEntity coreTier)
                     {
                         ActiveSearchResults = coreTier.VirtualFileSystemEntities;
                         PathElements.Add(coreTier);
@@ -123,24 +132,19 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        public IMvxCommand<VirtualFileSystemCoreEntity> OpenDirectoryCommand
-        {
-            get
+        public IMvxCommand<VirtualFileSystemCoreEntity> OpenDirectoryCommand =>
+            new MvxCommand<VirtualFileSystemCoreEntity>(entity =>
             {
-                return new MvxCommand<VirtualFileSystemCoreEntity>((entity) =>
+                VirtualFileSystem.ResetSelection();
+                ChangeSelectedEntity(entity);
+                var index = PathElements.IndexOf(entity);
+                for (int i = PathElements.Count - 1; i > index; i--)
                 {
-                    VirtualFileSystem.ResetSelection();
-                    ChangeSelectedEntity(entity);
-                    var index = PathElements.IndexOf(entity);
-                    for (int i = PathElements.Count - 1; i > index; i--)
-                    {
-                        PathElements.RemoveAt(i);
-                    }
+                    PathElements.RemoveAt(i);
+                }
 
-                    UpdateActiveSearchResults.Execute(entity);
-                });
-            }
-        }
+                UpdateActiveSearchResults.Execute(entity);
+            });
 
         public string SearchInput
         {
@@ -187,7 +191,6 @@ namespace Peernet.Browser.Application.ViewModels
             ActiveSearchResults = root.VirtualFileSystemEntities;
             PathElements = new ObservableCollection<VirtualFileSystemCoreEntity>
             {
-                GetArtificialYourFilesEntity(),
                 root
             };
 
@@ -253,24 +256,6 @@ namespace Peernet.Browser.Application.ViewModels
                     ActiveSearchResults = matchingEntity.VirtualFileSystemEntities;
                 }
             }
-        }
-
-        public VirtualFileSystemCoreTier GetArtificialYourFilesEntity()
-        {
-            return new VirtualFileSystemCoreTier("Your Files", VirtualFileSystemEntityType.All)
-            {
-                VirtualFileSystemEntities = VirtualFileSystem.VirtualFileSystemTiers
-                    .Select(t => t as VirtualFileSystemEntity).ToList()
-            };
-        }
-
-        public VirtualFileSystemCoreTier GetArtificialLibrariesEntity()
-        {
-            return new VirtualFileSystemCoreTier("Libraries", VirtualFileSystemEntityType.All)
-            {
-                VirtualFileSystemEntities = VirtualFileSystem.VirtualFileSystemCategories
-                    .Select(t => t as VirtualFileSystemEntity).ToList()
-            };
         }
     }
 }
