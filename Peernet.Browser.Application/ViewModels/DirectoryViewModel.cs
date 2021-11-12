@@ -137,7 +137,7 @@ namespace Peernet.Browser.Application.ViewModels
                         PathElements.RemoveAt(i);
                     }
 
-                    UpdateActiveSearchResults.Execute(entity as VirtualFileSystemCoreTier);
+                    UpdateActiveSearchResults.Execute(entity);
                 });
             }
         }

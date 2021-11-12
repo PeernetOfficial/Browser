@@ -6,6 +6,38 @@
     xmlns:virtualFileSystem="clr-namespace:Peernet.Browser.Application.VirtualFileSystem;assembly=Peernet.Browser.Application"
     xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls"
     x:Name="DirectoryPage">
+    <views:MvxWpfView.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="VirtualFileSystemTreeTemplate">
+                <Border x:Name="Border" Background="Transparent" Padding="30,4,20,4" Margin="10, 0">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="14" Height="13" Style="{StaticResource VirtualFileSystemCoreEntityImageStyle}" />
+                        <TextBlock Text="{Binding Path=Name}" Margin="7, 2, 0, 0" FontSize="15" FontWeight="Normal">
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Foreground" Value="{DynamicResource GrayedOutItemBrush}" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                            <Setter Property="Foreground" Value="{DynamicResource MainContentBrush}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </StackPanel>
+                    <Border.InputBindings>
+                        <MouseBinding Command="{Binding DataContext.OpenDirectoryCommand, ElementName=DirectoryPage}" CommandParameter="{Binding}" MouseAction="LeftClick" />
+                    </Border.InputBindings>
+                </Border>
+                <DataTemplate.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter TargetName="Border" Property="Background" Value="{DynamicResource SelectedItemBrush}" />
+                    </Trigger>
+                </DataTemplate.Triggers>
+            </DataTemplate>
+        </ResourceDictionary>
+    </views:MvxWpfView.Resources>
+
 
     <Border Background="{DynamicResource ViewBackgroundBrush}" BorderThickness="0" VerticalAlignment="Stretch" Margin="0, 65, 0, 0">
         <Grid>
@@ -20,29 +52,11 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Column="0" Width="233" HorizontalAlignment="Center" Margin="0,28,0,0">
-                <StackPanel.Resources>
-                    <HierarchicalDataTemplate DataType="{x:Type virtualFileSystem:VirtualFileSystemCoreTier}">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Width="14" Height="13" Style="{StaticResource VirtualFileSystemCoreEntityImageStyle}" />
-                            <TextBlock Text="{Binding Path=Name}" Margin="7, 2, 0, 0" />
-                        </StackPanel>
-                    </HierarchicalDataTemplate>
-                    <HierarchicalDataTemplate DataType="{x:Type virtualFileSystem:VirtualFileSystemCoreCategory}">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Width="14" Height="13" Style="{StaticResource VirtualFileSystemCoreEntityImageStyle}" />
-                            <TextBlock Text="{Binding Path=Name}" Margin="7, 2, 0, 0" />
-                        </StackPanel>
-                    </HierarchicalDataTemplate>
-                </StackPanel.Resources>
-                <TreeView x:Name="FileSystemTree" BorderThickness="0" HorizontalAlignment="Center" Background="Transparent">
-                    <TreeView.ItemContainerStyle>
-                        <Style TargetType="{x:Type TreeViewItem}">
-                            <EventSetter Event="PreviewMouseDown" Handler="TreeViewItem_OnSelected" />
-                        </Style>
-                    </TreeView.ItemContainerStyle>
-                    <TreeViewItem Template="{DynamicResource TreeViewItemTemplate}" ItemsSource="{Binding VirtualFileSystem.VirtualFileSystemTiers}" Header="Your Files" Foreground="{DynamicResource MainContentBrush}" IsExpanded="True" FontWeight="Medium" FontSize="16" />
-                    <TreeViewItem Template="{DynamicResource TreeViewItemTemplate}" ItemsSource="{Binding VirtualFileSystem.VirtualFileSystemCategories}" Header="Libraries" Foreground="{DynamicResource MainContentBrush}" IsExpanded="True" FontWeight="Medium" FontSize="16" Margin="0, 15, 0, 0" />
-                </TreeView>
+                <TextBlock Text="Your Files" HorizontalAlignment="Center" Foreground="{DynamicResource MainContentBrush}" FontWeight="Medium" FontSize="16" />
+                <ItemsControl ItemsSource="{Binding VirtualFileSystem.VirtualFileSystemTiers}" ItemTemplate="{StaticResource VirtualFileSystemTreeTemplate}" />
+
+                <TextBlock Text="Libraries" HorizontalAlignment="Center" Foreground="{DynamicResource MainContentBrush}" FontWeight="Medium" FontSize="16" Margin="0, 15, 0, 0" />
+                <ItemsControl ItemsSource="{Binding VirtualFileSystem.VirtualFileSystemCategories}" ItemTemplate="{StaticResource VirtualFileSystemTreeTemplate}" />
             </StackPanel>
 
             <Border Grid.Row="0" Grid.Column="1" Width="1" Margin="0,28,0,66" BorderThickness="0">

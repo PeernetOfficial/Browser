@@ -30,11 +30,14 @@ namespace Peernet.Browser.Application.VirtualFileSystem
         public virtual void ResetSelection()
         {
             IsSelected = false;
-            foreach (var entity in VirtualFileSystemEntities)
+            if (VirtualFileSystemEntities != null)
             {
-                if (entity is VirtualFileSystemCoreEntity coreEntity)
+                foreach (var entity in VirtualFileSystemEntities)
                 {
-                    coreEntity.ResetSelection();
+                    if (entity is VirtualFileSystemCoreEntity coreEntity)
+                    {
+                        coreEntity.ResetSelection();
+                    }
                 }
             }
         }

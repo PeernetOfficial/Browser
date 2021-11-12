@@ -84,7 +84,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         private static VirtualFileSystemCoreCategory GetCategory(VirtualFileSystemEntityType type)
         {
-            return new VirtualFileSystemCoreCategory(type.ToString(), type, null);
+            return new VirtualFileSystemCoreCategory(type.ToString(), type, new List<VirtualFileSystemEntity>());
         }
 
         private static List<VirtualFileSystemCoreCategory> GetCategoryTypes()

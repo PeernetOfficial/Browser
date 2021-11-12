@@ -38,8 +38,14 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             return selected;
         }
 
-        private void AddFileToTheSystem(VirtualFileSystemCoreTier candidateCoreTier, List<VirtualFileSystemEntity> sameLevelFileSystemTiers)
+        private void AddFileToTheSystem(VirtualFileSystemEntity candidateEntity, List<VirtualFileSystemEntity> sameLevelFileSystemTiers)
         {
+            var candidateCoreTier = candidateEntity as VirtualFileSystemCoreTier;
+            if (candidateCoreTier is null)
+            {
+                sameLevelFileSystemTiers.Add(candidateEntity);
+                return;
+            }
             var matchingTierThatIsAlreadyInTheFileSystem = sameLevelFileSystemTiers.FirstOrDefault(t => t.Name == candidateCoreTier.Name) as VirtualFileSystemCoreTier;
             if (matchingTierThatIsAlreadyInTheFileSystem == null)
             {
@@ -78,15 +84,16 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             VirtualFileSystemCategories = new ObservableCollection<VirtualFileSystemCoreCategory>(binder.Bind(sharedFilesList));
         }
 
-        private VirtualFileSystemCoreTier StructureTheFile(ApiFile file)
+        private VirtualFileSystemEntity StructureTheFile(ApiFile file)
         {
-            //if (file.Folder.IsNullOrEmpty())
-            //{
-            //    var tier = new VirtualFileSystemCoreTier(, VirtualFileSystemEntityType.Directory);
-            //}
+            if (file.Folder.IsNullOrEmpty())
+            {
+                return new VirtualFileSystemEntity(file);
+            }
 
-            var directories = file.Folder.Split('/');
-            var totalDepth = directories.Length;
+            var directories = file.Folder.Split('/').ToList();
+            directories.RemoveAll(string.IsNullOrEmpty);
+            var totalDepth = directories.Count;
 
             VirtualFileSystemCoreTier coreTier = null;
             VirtualFileSystemCoreTier higherTier = null;

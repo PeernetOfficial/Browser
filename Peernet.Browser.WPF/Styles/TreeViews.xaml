@@ -56,18 +56,6 @@
                                 <VisualState x:Name="Unselected" />
                                 <VisualState x:Name="SelectedInactive" />
                             </VisualStateGroup>
-                            <VisualStateGroup x:Name="ExpansionStates">
-                                <VisualState x:Name="Expanded">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"
-                                                 Storyboard.TargetName="ItemsHost">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                            Value="{x:Static Visibility.Visible}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Collapsed" />
-                            </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Border x:Name="Bd" HorizontalAlignment="Center"
                                 Grid.Column="1"
