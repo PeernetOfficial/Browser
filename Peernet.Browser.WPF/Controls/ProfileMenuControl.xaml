@@ -28,8 +28,8 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Border Grid.Column="0" Width="47" Height="47" Background="{StaticResource LightGray2Brush}">
-                    <Button Command="{Binding EditProfileCommand}" Margin="0" Padding="0">
+                <Border Grid.Column="0" Width="47" Height="47" Background="{StaticResource LightGray2Brush}" Cursor="Hand">
+                    <Button Margin="0" Padding="0" Command="{Binding EditProfileCommand}">
                         <Button.Style>
                             <Style BasedOn="{StaticResource ButtonBaseStyle}" TargetType="{x:Type Button}">
                                 <Setter Property="Background" Value="{StaticResource SourcedProfileImage}" />
@@ -43,6 +43,9 @@
                             </Style>
                         </Button.Style>
                     </Button>
+                    <Border.InputBindings>
+                        <MouseBinding Command="{Binding EditProfileCommand}" MouseAction="LeftClick" />
+                    </Border.InputBindings>
                 </Border>
                 <StackPanel Grid.Column="1" Margin="8,0,0,0" Orientation="Horizontal">
                     <TextBlock Foreground="{DynamicResource MainContentBrush}" FontFamily="Inter" FontSize="14" FontWeight="Medium" Text="{Binding UserContext.User.Name}" Cursor="Hand">
@@ -58,7 +61,7 @@
                 </StackPanel>
             </Grid>
             <Separator Style="{StaticResource StandardSeparatorStyle}" Width="179" />
-            <Button Command="{Binding NavigateAboutCommand}" Content="About" Style="{StaticResource NavbarMenuButtonStyle}" />
+            <Button Command="{Binding NavigateAboutCommand}" Content="About" Style="{StaticResource PrimaryButton}" Padding="20, 4, 140, 4"  HorizontalAlignment="Left" Margin="5, 2" />
             <Separator Style="{StaticResource StandardSeparatorStyle}" Width="179" />
             <controls:ToggleSwitch Margin="5" />
         </StackPanel>

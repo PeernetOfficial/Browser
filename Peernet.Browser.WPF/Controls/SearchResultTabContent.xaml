@@ -19,13 +19,6 @@
         </Grid.RowDefinitions>
         <ContentControl Content="{StaticResource ProxyElement}" Visibility="Collapsed" />
 
-        <Border Background="Transparent" Visibility="{Binding ShowColumnsSelector, Converter={StaticResource BoolToVisibility}}" Margin="0 -300 0 0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Panel.ZIndex="1"
-                        Grid.RowSpan="5" BorderThickness="0" BorderBrush="Transparent">
-            <Border.InputBindings>
-                <MouseBinding MouseAction="LeftClick" Command="{Binding FakeHideClickCommand}" />
-            </Border.InputBindings>
-        </Border>
-
         <Border Visibility="Collapsed" Margin="0 120 230 0" Name="MapPanel" Grid.RowSpan="5"
                 HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent"
                 BorderThickness="1" CornerRadius="4" Panel.ZIndex="6"
@@ -112,28 +105,24 @@
         </DockPanel>
 
         <DataGrid Visibility="{Binding Loader.IsNotLoading, Converter={StaticResource BoolToVisibility}}"
-                  Name="FileGrid" Sorting="DataGrid_Sorting" Padding="55 10 15 0" HorizontalAlignment="Stretch" Grid.Row="3"
+                  Name="FileGrid" Sorting="DataGrid_Sorting" Padding="25 10 15 0" HorizontalAlignment="Stretch" Grid.Row="3"
                   Style="{DynamicResource DataGridStyle}" ScrollViewer.ScrollChanged="FileGrid_ScrollChanged"
                   ItemsSource="{Binding TableResult, IsAsync=True}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTemplateColumn Header="" SortMemberPath="First">
+                <!--<DataGridTemplateColumn Header="" SortMemberPath="First">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Image Width="10" Style="{StaticResource DotStyle}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="*" Header="NAME" SortMemberPath="Name">
+                </DataGridTemplateColumn>-->
+                <DataGridTemplateColumn Width="*" Header="NAME" SortMemberPath="Name" HeaderStyle="{StaticResource ShiftedDataGridColumnHeaderStyle}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Grid Margin="-40 0 0 0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Image Width="13.71" Height="20" Grid.Column="0" Style="{DynamicResource DownloadItemImageStyle}" />
-                                <TextBlock Grid.Column="1" Text="{Binding Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                            </Grid>
+                            <StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
+                                <Image Width="13.71" Height="20" Style="{DynamicResource DownloadItemImageStyle}" />
+                                <TextBlock Text="{Binding Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

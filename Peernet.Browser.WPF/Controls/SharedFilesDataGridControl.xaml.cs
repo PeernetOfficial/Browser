@@ -1,7 +1,9 @@
 ﻿using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.VirtualFileSystem;
+using Peernet.Browser.Models.Domain.Common;
 using Peernet.Browser.Models.Presentation.Footer;
 using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -20,9 +22,14 @@ namespace Peernet.Browser.WPF.Controls
         private void CopyLinkToClipboard_OnClick(object sender, RoutedEventArgs e)
         {
             var file = ((VirtualFileSystemEntity)((FrameworkElement)e.OriginalSource).DataContext).File;
-            var link = $"peer://{Convert.ToHexString(file.NodeId)}/{Convert.ToHexString(file.Hash)}/{file.Folder}/{file.Name}";
-            Clipboard.SetText(link);
+
+            Clipboard.SetText(CreateLink(file));
             GlobalContext.Notifications.Add(new Notification("Copied to clipboard!"));
+        }
+
+        private string CreateLink(ApiFile file)
+        {
+            return Path.Join("peer://", Convert.ToHexString(file.NodeId), Convert.ToHexString(file.Hash), file.Folder, file.Name);
         }
     }
 }

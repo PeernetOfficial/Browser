@@ -6,6 +6,9 @@ using System.Globalization;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
+using Peernet.Browser.WPF.Controls;
+using Peernet.Browser.WPF.Extensions;
 
 namespace Peernet.Browser.WPF
 {
@@ -49,7 +52,11 @@ namespace Peernet.Browser.WPF
 
         private void MainWindow_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
-            GlobalContext.IsProfileMenuVisible = false;
+            if(((DependencyObject)e.OriginalSource).FindParent<ProfileMenuControl>() == null)
+            {
+                GlobalContext.IsProfileMenuVisible = false;
+            }
         }
+
     }
 }
