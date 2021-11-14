@@ -1,6 +1,7 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Models.Presentation.Home
@@ -19,8 +20,11 @@ namespace Peernet.Browser.Models.Presentation.Home
             ShowArrow = showArrow;
             SelectCommand = new MvxAsyncCommand(async () =>
             {
-                IsSelected = !IsSelected;
-                await onClick?.Invoke(this);
+                IsSelected ^= true;
+                if (onClick != null)
+                {
+                    await onClick.Invoke(this);
+                }
             });
         }
 
@@ -30,8 +34,8 @@ namespace Peernet.Browser.Models.Presentation.Home
 
         private void RefreshName()
         {
-            var surfix = showCount ? $" ({Count})" : "";
-            Name = $"{FilterType}{surfix}";
+            var suffix = showCount ? $" ({Count})" : "";
+            Name = $"{FilterType}{suffix}";
             RaisePropertyChanged(nameof(Name));
         }
 

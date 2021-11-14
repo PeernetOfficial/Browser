@@ -34,14 +34,14 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
                 }
                 else
                 {
-                    GlobalContext.Notifications.Add(new Notification($"Failed to create warehouse. Status: {warehouseEntry.Status}", Severity.Warning));
+                    GlobalContext.Notifications.Add(new Notification($"Failed to create warehouse. Status: {warehouseEntry.Status}", Severity.Error));
                 }
             }
 
             var result = await blockchainService.AddFiles(files.Where(f => f.Hash != null));
             if (result.Status != BlockchainStatus.StatusOK)
             {
-                GlobalContext.Notifications.Add(new Notification($"Failed to add files. Status: {result.Status}", Severity.Warning));
+                GlobalContext.Notifications.Add(new Notification($"Failed to add files. Status: {result.Status}", Severity.Error));
             }
         }
     }

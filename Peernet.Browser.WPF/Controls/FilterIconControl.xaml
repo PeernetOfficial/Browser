@@ -1,7 +1,7 @@
 ﻿<UserControl x:Class="Peernet.Browser.WPF.Controls.FilterIconControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             Cursor="Hand" Background="Transparent">
+             Background="Transparent">
     <UserControl.Resources>
         <Style TargetType="{x:Type TextBlock}">
             <Setter Property="Foreground" Value="{DynamicResource MainContentBrush}" />
@@ -16,12 +16,41 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <StackPanel Orientation="Horizontal">
-        <Image Margin="0 2 7 2" Style="{StaticResource IconsStyle}" />
-        <TextBlock FontSize="15" VerticalAlignment="Center" TextAlignment="Left" Text="{Binding Name}" />
-        <Image Visibility="{Binding ShowArrow, Converter={StaticResource BoolToVisibility}}" Margin="8 8 0 8" Style="{StaticResource ArrowsStyle}" />
-    </StackPanel>
-    <UserControl.InputBindings>
-        <MouseBinding MouseAction="LeftClick" Command="{Binding SelectCommand}" />
-    </UserControl.InputBindings>
+    <Button Command="{Binding SelectCommand}" Background="Transparent" Cursor="Hand">
+        <Button.Style>
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Name="border" 
+                                    BorderThickness="0"
+                                    Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <Border.Style>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="Padding" Value="10" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ShowArrow}" Value="False">
+                                                <Setter Property="Padding" Value="0" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsDefaulted" Value="true" />
+                                <Trigger Property="IsMouseOver" Value="true" />
+                                <Trigger Property="IsPressed" Value="true" />
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Button.Style>
+        <StackPanel Orientation="Horizontal">
+            <Image Margin="0 2 7 2" Style="{StaticResource IconsStyle}" />
+            <TextBlock FontSize="15" VerticalAlignment="Center" TextAlignment="Left" Text="{Binding Name}" />
+            <Image Visibility="{Binding ShowArrow, Converter={StaticResource BoolToVisibility}}" Margin="8 4 0 4" Style="{StaticResource ArrowsStyle}" Height="5" Width="5" />
+        </StackPanel>
+    </Button>
 </UserControl>

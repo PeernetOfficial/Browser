@@ -61,7 +61,11 @@
                 </StackPanel>
             </Grid>
             <Separator Style="{StaticResource StandardSeparatorStyle}" Width="179" />
-            <Button Command="{Binding NavigateAboutCommand}" Content="About" Style="{StaticResource PrimaryButton}" Padding="20, 4, 140, 4"  HorizontalAlignment="Left" Margin="5, 2" />
+            <TextBlock Foreground="{DynamicResource MainTextBrush}" Text="About" Padding="20, 4, 140, 4"  HorizontalAlignment="Left" Margin="5, 2" Cursor="Hand">
+                <TextBlock.InputBindings>
+                    <MouseBinding Command="{Binding NavigateAboutCommand}" MouseAction="LeftClick" />
+                </TextBlock.InputBindings>
+            </TextBlock>
             <Separator Style="{StaticResource StandardSeparatorStyle}" Width="179" />
             <controls:ToggleSwitch Margin="5" />
         </StackPanel>

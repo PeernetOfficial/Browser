@@ -39,7 +39,7 @@ namespace Peernet.Browser.Infrastructure
 
             if (responseStatus.APIStatus != APIStatus.DownloadResponseSuccess && responseStatus.DownloadStatus != DownloadStatus.DownloadFinished)
             {
-                GlobalContext.Notifications.Add(new Notification($"Failed to cancel file download. Status: {responseStatus.APIStatus}", Severity.Warning));
+                GlobalContext.Notifications.Add(new Notification($"Failed to cancel file download. Status: {responseStatus.APIStatus}", Severity.Error));
             }
 
             switch (responseStatus.DownloadStatus)
@@ -74,7 +74,7 @@ namespace Peernet.Browser.Infrastructure
 
             if (responseStatus.APIStatus != APIStatus.DownloadResponseSuccess)
             {
-                GlobalContext.Notifications.Add(new Notification($"Failed to pause file download. Status: {responseStatus.APIStatus}", Severity.Warning));
+                GlobalContext.Notifications.Add(new Notification($"Failed to pause file download. Status: {responseStatus.APIStatus}", Severity.Error));
             }
 
             return responseStatus;
@@ -92,7 +92,7 @@ namespace Peernet.Browser.Infrastructure
             }
             else
             {
-                GlobalContext.Notifications.Add(new Notification($"Failed to start file download. Status: {status.APIStatus}", Severity.Warning));
+                GlobalContext.Notifications.Add(new Notification($"Failed to start file download. Status: {status.APIStatus}", Severity.Error));
             }
 
             downloadsChanged?.Invoke(this, EventArgs.Empty);
@@ -106,7 +106,7 @@ namespace Peernet.Browser.Infrastructure
 
             if (responseStatus.APIStatus != APIStatus.DownloadResponseSuccess)
             {
-                GlobalContext.Notifications.Add(new Notification($"Failed to resume file download. Status: {responseStatus.APIStatus}", Severity.Warning));
+                GlobalContext.Notifications.Add(new Notification($"Failed to resume file download. Status: {responseStatus.APIStatus}", Severity.Error));
             }
 
             return responseStatus;
