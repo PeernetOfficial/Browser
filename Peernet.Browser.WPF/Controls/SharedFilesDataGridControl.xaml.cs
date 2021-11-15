@@ -29,7 +29,7 @@ namespace Peernet.Browser.WPF.Controls
 
         private string CreateLink(ApiFile file)
         {
-            return Path.Join(@"peer:\\", Convert.ToHexString(file.NodeId), Convert.ToHexString(file.Hash), file.Folder, file.Name);
+            return Path.Join(@"peer://", Convert.ToHexString(file.NodeId), Convert.ToHexString(file.Hash), file.Folder, file.Name).Replace(@"\", "/");
         }
     }
 }

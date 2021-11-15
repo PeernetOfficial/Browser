@@ -11,28 +11,27 @@ namespace Peernet.Browser.Infrastructure.Tools
 {
     public class CmdRunner : IRunable, IDisposable
     {
-        private const string processName = "Cmd.exe";
+        private readonly string processName;
         private readonly bool fileExist;
         private Process process;
         private bool wasRun;
 
         public CmdRunner(ISettingsManager settingsManager)
         {
-            var path = settingsManager.CmdPath;
-            if (Directory.Exists(path))
+            var backend = settingsManager.Backend;
+            string fullPath = Path.GetFullPath(backend);
+            processName = Path.GetFileName(fullPath);
+            process = new Process();
+            var apiUrl = $"127.0.0.1:{GetFreeTcpPort()}";
+            settingsManager.ApiUrl = $"http://{apiUrl}";
+            process.StartInfo = new ProcessStartInfo($"{fullPath}")
             {
-                process = new Process();
-                var apiUrl = $"127.0.0.1:{GetFreeTcpPort()}";
-                settingsManager.ApiUrl = $"http://{apiUrl}";
-                process.StartInfo = new ProcessStartInfo($"{path}\\{processName}")
-                {
-                    UseShellExecute = false,
-                    WorkingDirectory = path,
-                    Arguments = $"-webapi={apiUrl}"
-                };
-
-                fileExist = true;
+                UseShellExecute = false,
+                WorkingDirectory = Path.GetDirectoryName(fullPath),
+                Arguments = $"-webapi={apiUrl}"
             };
+
+            fileExist = true;
         }
 
         public bool IsRunning { get; private set; }
