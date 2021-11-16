@@ -25,7 +25,7 @@ namespace Peernet.Browser.Infrastructure.Clients
                 [nameof(path)] = path
             };
 
-            return await httpExecutor.GetResult<ApiResponseFileFormat>(HttpMethod.Get, GetRelativeRequestPath("format"),
+            return await httpExecutor.GetResultAsync<ApiResponseFileFormat>(HttpMethod.Get, GetRelativeRequestPath("format"),
                 parameters);
         }
     }

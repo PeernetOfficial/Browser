@@ -6,6 +6,10 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
+using Peernet.Browser.Application.Services;
+using Peernet.Browser.Infrastructure.Services;
+using Peernet.Browser.Models.Domain.Shutdown;
 
 namespace Peernet.Browser.Infrastructure.Tools
 {
@@ -15,9 +19,11 @@ namespace Peernet.Browser.Infrastructure.Tools
         private readonly bool fileExist;
         private Process process;
         private bool wasRun;
+        private readonly ISettingsManager settingsManager;
 
         public CmdRunner(ISettingsManager settingsManager)
         {
+            this.settingsManager = settingsManager;
             var backend = settingsManager.Backend;
             string fullPath = Path.GetFullPath(backend);
             processName = Path.GetFileName(fullPath);
@@ -60,7 +66,20 @@ namespace Peernet.Browser.Infrastructure.Tools
             {
                 if (wasRun)
                 {
-                    process.Kill();
+                    ApiShutdownStatus status = null;
+                    try
+                    {
+                        status = new ShutdownService(settingsManager).Shutdown();
+                    }
+                    catch (Exception e)
+                    {
+                        // handle
+                    }
+                    Thread.Sleep(5000);
+                    if (status?.Status != 0 && !process.HasExited)
+                    {
+                        process.Kill();
+                    }
                 }
 
                 process.Dispose();

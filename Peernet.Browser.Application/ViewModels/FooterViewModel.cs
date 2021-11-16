@@ -186,7 +186,7 @@ namespace Peernet.Browser.Application.ViewModels
             while (true)
             {
                 var status = await apiService.GetStatus();
-                Peers = status.CountPeerList.ToString();
+                Peers = status?.CountPeerList.ToString();
                 await Task.Delay(3000);
             }
         }
