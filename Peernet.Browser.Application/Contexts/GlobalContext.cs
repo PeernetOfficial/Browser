@@ -101,7 +101,6 @@ namespace Peernet.Browser.Application.Contexts
             }
         }
 
-
         public static string ErrorMessage
         {
             get => errorMessage;

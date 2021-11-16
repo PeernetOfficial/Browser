@@ -59,5 +59,10 @@ namespace Peernet.Browser.WPF
                 DragMove();
             }
         }
+
+        private void UIElement_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

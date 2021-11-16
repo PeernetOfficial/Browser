@@ -46,11 +46,14 @@ namespace Peernet.Browser.Application.ViewModels
             this.applicationManager = applicationManager;
             this.warehouseService = warehouseService;
             this.blockchainService = blockchainService;
+
             DownloadManager = downloadManager;
             DownloadManager.downloadsChanged += GetLastDownloadItem;
             UploadCommand = new MvxAsyncCommand(UploadFiles);
             SendToPeernetConsole = new MvxAsyncCommand(SendToPeernetMethod);
+
             DownloadManager.downloadsChanged += CollapseWhenSingleItem;
+
             Task.Run(UpdateStatuses);
         }
 

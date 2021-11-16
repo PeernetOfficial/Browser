@@ -1,14 +1,11 @@
-﻿using System;
-using MvvmCross.Platforms.Wpf.Views;
+﻿using MvvmCross.Platforms.Wpf.Views;
 using Peernet.Browser.Application;
 using Peernet.Browser.Application.Contexts;
+using System;
 using System.Globalization;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using Peernet.Browser.WPF.Controls;
-using Peernet.Browser.WPF.Extensions;
 
 namespace Peernet.Browser.WPF
 {
@@ -52,11 +49,7 @@ namespace Peernet.Browser.WPF
 
         private void MainWindow_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
-            if(((DependencyObject)e.OriginalSource).FindParent<ProfileMenuControl>() == null)
-            {
-                GlobalContext.IsProfileMenuVisible = false;
-            }
+            App.RaiseMainWindowClick(sender, e);
         }
-
     }
 }

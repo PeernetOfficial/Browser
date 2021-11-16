@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Peernet.Browser.WPF.Extensions;
 
 namespace Peernet.Browser.WPF.Controls
 {
@@ -15,6 +16,19 @@ namespace Peernet.Browser.WPF.Controls
         public SearchResultTabContent()
         {
             InitializeComponent();
+            App.MainWindowClicked += OnMainWindowClicked;
+        }
+
+        private void OnMainWindowClicked(object sender, RoutedEventArgs e)
+        {
+            var control = ((DependencyObject)e.OriginalSource).FindParent<ColumnsSelectorControl>();
+            if (control == null)
+            {
+                if (DataContext is SearchTabElementViewModel viewModel)
+                {
+                    viewModel.ShowColumnsSelector = false;
+                }
+            }
         }
 
         private async void DataGrid_Sorting(object sender, DataGridSortingEventArgs e)

@@ -14,6 +14,7 @@ namespace Peernet.Browser.WPF
     /// </summary>
     public partial class App : MvxApplication
     {
+        public static event RoutedEventHandler MainWindowClicked = delegate { };
         private CmdRunner cmdRunner;
 
         protected override void RegisterSetup() => this.RegisterSetupType<Setup>();
@@ -60,6 +61,11 @@ namespace Peernet.Browser.WPF
                     dict.Source = dict.Source;
                 }
             }
+        }
+
+        public static void RaiseMainWindowClick(object sender, RoutedEventArgs e)
+        {
+            MainWindowClicked.Invoke(sender, e);
         }
     }
 }

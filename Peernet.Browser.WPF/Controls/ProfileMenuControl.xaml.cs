@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Models.Presentation;
+using Peernet.Browser.WPF.Extensions;
 
 namespace Peernet.Browser.WPF.Controls
 {
@@ -10,7 +11,19 @@ namespace Peernet.Browser.WPF.Controls
     /// </summary>
     public partial class ProfileMenuControl : UserControl
     {
-        public ProfileMenuControl() => InitializeComponent();
+        public ProfileMenuControl()
+        {
+            InitializeComponent();
+            App.MainWindowClicked += OnMainWindowClicked;
+        }
+
+        private void OnMainWindowClicked(object sender, RoutedEventArgs e)
+        {
+            if (((DependencyObject)e.OriginalSource).FindParent<ProfileMenuControl>() == null)
+            {
+                GlobalContext.IsProfileMenuVisible = false;
+            }
+        }
 
         public static readonly DependencyProperty IsDarkModeToggledProperty =
             DependencyProperty.Register("IsDarkModeToggled", typeof(bool),
