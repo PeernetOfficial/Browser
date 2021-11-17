@@ -17,7 +17,7 @@ namespace Peernet.Browser.Infrastructure.Http
         {
             var client = new HttpClient();
             client.BaseAddress = new Uri(settingsManager.ApiUrl);
-
+            client.DefaultRequestHeaders.Add("x-api-key", settingsManager.ApiKey);
             return client;
         }
     }

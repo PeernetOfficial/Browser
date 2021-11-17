@@ -106,16 +106,12 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Style="{DynamicResource Title}">Author:</TextBlock>
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="You" Style="{StaticResource Active}" />
+                <TextBlock Grid.Row="0" Grid.Column="0" Style="{DynamicResource Title}">Format:</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Selected.Format}" Style="{StaticResource Active}" />
                 <TextBlock Grid.Row="0" Grid.Column="1" Style="{DynamicResource Title}">Created:</TextBlock>
                 <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Selected.CreateDate}" Style="{StaticResource Active}" />
                 <TextBlock Grid.Row="0" Grid.Column="2" Style="{DynamicResource Title}">Size:</TextBlock>
                 <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Selected.FormattedSize}" Style="{StaticResource Active}" />
-                <TextBlock Grid.Row="2" Grid.Column="0" Style="{DynamicResource Title}">Format:</TextBlock>
-                <TextBlock Grid.Row="3" Grid.Column="0" Text="{Binding Selected.Format}" Style="{StaticResource Active}" />
-                <TextBlock Grid.Row="2" Grid.Column="1" Style="{DynamicResource Title}">Type:</TextBlock>
-                <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Selected.Type}" Style="{StaticResource Active}" />
             </Grid>
 
             <DockPanel Grid.ColumnSpan="2" Grid.Row="5" LastChildFill="False" HorizontalAlignment="Stretch">

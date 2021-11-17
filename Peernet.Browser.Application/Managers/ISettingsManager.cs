@@ -2,6 +2,8 @@
 {
     public interface ISettingsManager
     {
+        string ApiKey { get; }
+
         string ApiUrl { get; set; }
 
         string SocketUrl { get; set; }

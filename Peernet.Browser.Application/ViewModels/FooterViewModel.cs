@@ -9,7 +9,6 @@ using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Models.Presentation.Footer;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,7 +22,6 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IApplicationManager applicationManager;
         private readonly IBlockchainService blockchainService;
         private readonly IMvxNavigationService navigationService;
-        private readonly ISocketClient socketClient;
         private readonly IWarehouseService warehouseService;
         private bool areDownloadsCollapsed;
         private string commandLineInput;
@@ -41,7 +39,6 @@ namespace Peernet.Browser.Application.ViewModels
             IBlockchainService blockchainService)
         {
             this.apiService = apiService;
-            this.socketClient = socketClient;
             this.navigationService = navigationService;
             this.applicationManager = applicationManager;
             this.warehouseService = warehouseService;
@@ -50,8 +47,6 @@ namespace Peernet.Browser.Application.ViewModels
             DownloadManager = downloadManager;
             DownloadManager.downloadsChanged += GetLastDownloadItem;
             UploadCommand = new MvxAsyncCommand(UploadFiles);
-            SendToPeernetConsole = new MvxAsyncCommand(SendToPeernetMethod);
-
             DownloadManager.downloadsChanged += CollapseWhenSingleItem;
 
             Task.Run(UpdateStatuses);
@@ -71,9 +66,9 @@ namespace Peernet.Browser.Application.ViewModels
             });
 
         public IMvxCommand CollapseExpandDownloadsCommand => new MvxCommand(() =>
-           {
-               AreDownloadsCollapsed ^= true;
-           });
+            {
+                AreDownloadsCollapsed ^= true;
+            });
 
         public string CommandLineInput
         {
@@ -123,14 +118,11 @@ namespace Peernet.Browser.Application.ViewModels
                 await DownloadManager.ResumeDownload(id);
             });
 
-        public IMvxAsyncCommand SendToPeernetConsole { get; }
-
         public IMvxAsyncCommand UploadCommand { get; }
 
         public override async Task Initialize()
         {
             await ConnectToPeernetAPI();
-            await ConnectToPeernetConsole();
         }
 
         private void CollapseWhenSingleItem(object? sender, EventArgs e)
@@ -156,12 +148,6 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        private async Task ConnectToPeernetConsole()
-        {
-            await socketClient.Connect();
-            CommandLineOutput = await socketClient.Receive();
-        }
-
         private void GetLastDownloadItem(object sender, EventArgs e)
         {
             var copy = ListedFileDownloads.ToList();
@@ -175,13 +161,6 @@ namespace Peernet.Browser.Application.ViewModels
             ConnectionStatus = status.IsConnected ? ConnectionStatus.Online : ConnectionStatus.Offline;
             Peers = status.CountPeerList.ToString();
             return status.IsConnected;
-        }
-
-        private async Task SendToPeernetMethod()
-        {
-            await socketClient.Send(CommandLineInput);
-            CommandLineInput = string.Empty;
-            CommandLineOutput = await socketClient.Receive();
         }
 
         private async Task UpdateStatuses()

@@ -34,7 +34,7 @@ namespace Peernet.Browser.Infrastructure.Tools
             {
                 UseShellExecute = false,
                 WorkingDirectory = Path.GetDirectoryName(fullPath),
-                Arguments = $"-webapi={apiUrl}"
+                Arguments = $"-webapi={apiUrl} -apikey={settingsManager.ApiKey}"
             };
 
             fileExist = true;
@@ -66,17 +66,21 @@ namespace Peernet.Browser.Infrastructure.Tools
             {
                 if (wasRun)
                 {
-                    ApiShutdownStatus status = null;
                     try
                     {
-                        status = new ShutdownService(settingsManager).Shutdown();
+                        new ShutdownService(settingsManager).Shutdown();
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         // handle
                     }
-                    Thread.Sleep(5000);
-                    if (status?.Status != 0 && !process.HasExited)
+
+                    for (var i = 0; i < 25 && !process.HasExited; i++)
+                    {
+                        Thread.Sleep(200);
+                    }
+
+                    if (!process.HasExited)
                     {
                         process.Kill();
                     }
