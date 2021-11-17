@@ -29,21 +29,6 @@
             </DockPanel>
 
             <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource CloseButtonStyle}" Command="{Binding CancelCommand}" HorizontalAlignment="Right" VerticalAlignment="Top" />
-            <Button Grid.Row="1" Grid.Column="0" Width="13" Height="13" Margin="0" HorizontalAlignment="Right" Command="{Binding DeleteFileCommand}">
-                <Button.Background>
-                    <ImageBrush ImageSource="{DynamicResource BinDrawingImage}" />
-                </Button.Background>
-                <Button.Style>
-                    <Style BasedOn="{StaticResource ButtonBaseStyle}" TargetType="{x:Type Button}">
-                        <Setter Property="Visibility" Value="Collapsed" />
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Title}" Value="Share File">
-                                <Setter Property="Visibility" Value="Visible" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
 
             <DockPanel Grid.Row="2" Grid.Column="0" LastChildFill="False" Margin="0 15">
                 <Image Margin="0 0 7 0" Width="11" Source="{DynamicResource DirectorySmallDrawingImage}" />
@@ -139,6 +124,21 @@
                     FontWeight="Bold" Content="+ SHARE ANOTHER FILE">
                     <Button.Style>
                         <Style BasedOn="{StaticResource PrimaryButton}" TargetType="{x:Type Button}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Title}" Value="Share File">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button Width="13" Height="13" Margin="10, 0, 0, 2" Command="{Binding DeleteFileCommand}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="{DynamicResource BinDrawingImage}" />
+                    </Button.Background>
+                    <Button.Style>
+                        <Style BasedOn="{StaticResource ButtonBaseStyle}" TargetType="{x:Type Button}">
                             <Setter Property="Visibility" Value="Collapsed" />
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding Title}" Value="Share File">

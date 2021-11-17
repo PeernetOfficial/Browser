@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Models.Presentation;
 using Peernet.Browser.WPF.Extensions;
@@ -19,7 +20,17 @@ namespace Peernet.Browser.WPF.Controls
 
         private void OnMainWindowClicked(object sender, RoutedEventArgs e)
         {
-            if (((DependencyObject)e.OriginalSource).FindParent<ProfileMenuControl>() == null)
+            var dependencyObject = (DependencyObject)e.OriginalSource;
+            FrameworkElement templatedParentFrameworkElement = null;
+            if (VisualTreeHelper.GetChildrenCount(dependencyObject) > 0)
+            {
+                var child = VisualTreeHelper.GetChild(dependencyObject, 0);
+                var childFrameworkElement = child as FrameworkElement;
+                templatedParentFrameworkElement = childFrameworkElement?.TemplatedParent as FrameworkElement;
+            }
+
+            if (dependencyObject.FindParent<ProfileMenuControl>() == null &&
+                templatedParentFrameworkElement?.Name != "AccountPopupToggle")
             {
                 GlobalContext.IsProfileMenuVisible = false;
             }

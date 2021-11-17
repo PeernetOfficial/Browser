@@ -21,12 +21,15 @@ namespace Peernet.Browser.WPF.Controls
 
         private void OnMainWindowClicked(object sender, RoutedEventArgs e)
         {
-            var control = ((DependencyObject)e.OriginalSource).FindParent<ColumnsSelectorControl>();
-            if (control == null)
+            var filterIconControl = ((DependencyObject)e.OriginalSource).FindParent<FilterIconControl>();
+            var filterType = (filterIconControl?.DataContext as IconModel)?.FilterType;
+            var columnsControl = ((DependencyObject)e.OriginalSource).FindParent<ColumnsSelectorControl>();
+            if (columnsControl == null && filterType == null)
             {
                 if (DataContext is SearchTabElementViewModel viewModel)
                 {
                     viewModel.ShowColumnsSelector = false;
+                    viewModel.ColumnsIconModel.IsSelected = false;
                 }
             }
         }

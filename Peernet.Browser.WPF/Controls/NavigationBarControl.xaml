@@ -11,7 +11,7 @@
             <Button Style="{DynamicResource HomeNavBarButtonStyle}" Command="{Binding NavigateHomeCommand}" ToolTip="Home" />
             <Button Style="{DynamicResource ExploreNavBarButtonStyle}" Command="{Binding NavigateExploreCommand}" ToolTip="Explore" />
             <Button Style="{DynamicResource DirectoryNavBarButtonStyle}" Command="{Binding NavigateDirectoryCommand}" ToolTip="Directory" />
-            <Button Style="{DynamicResource UserNavBarButtonStyle}" Command="{Binding OpenCloseProfileMenuCommand}" ToolTip="User" />
+            <Button x:Name="AccountPopupToggle" Style="{DynamicResource UserNavBarButtonStyle}" Command="{Binding OpenCloseProfileMenuCommand}" ToolTip="User" />
         </StackPanel>
         <domaincontrols:ProfileMenuControl HorizontalAlignment="Right" Visibility="{Binding Path=(contexts:GlobalContext.IsProfileMenuVisible), Converter={StaticResource BoolToVisibility}}" />
     </StackPanel>
