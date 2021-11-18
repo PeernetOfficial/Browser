@@ -11,6 +11,8 @@ namespace Peernet.Browser.Application.Contexts
 
         private static bool isLogoVisible;
 
+        private static bool isConnected;
+
         private static bool isProfileMenuVisible;
 
         private static VisualMode visualMode;
@@ -18,6 +20,8 @@ namespace Peernet.Browser.Application.Contexts
         private static NotificationCollection notifications;
 
         private static string currentViewModel;
+
+        private static string errorMessage;
 
         public static event EventHandler<PropertyChangedEventArgs> StaticPropertyChanged = delegate { };
 
@@ -42,6 +46,16 @@ namespace Peernet.Browser.Application.Contexts
             {
                 isLogoVisible = value;
                 NotifyStaticPropertyChanged(nameof(IsLogoVisible));
+            }
+        }
+        
+        public static bool IsConnected
+        {
+            get => isConnected;
+            set
+            {
+                isConnected = value;
+                NotifyStaticPropertyChanged(nameof(isConnected));
             }
         }
 
@@ -84,6 +98,16 @@ namespace Peernet.Browser.Application.Contexts
             {
                 currentViewModel = value;
                 NotifyStaticPropertyChanged(nameof(CurrentViewModel));
+            }
+        }
+
+        public static string ErrorMessage
+        {
+            get => errorMessage;
+            set
+            {
+                errorMessage = value;
+                NotifyStaticPropertyChanged(nameof(errorMessage));
             }
         }
 

@@ -29,16 +29,11 @@
             </DockPanel>
 
             <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource CloseButtonStyle}" Command="{Binding CancelCommand}" HorizontalAlignment="Right" VerticalAlignment="Top" />
-            <Button Grid.Row="1" Grid.Column="0" Width="13" Height="13" Margin="0" Style="{DynamicResource ButtonBaseStyle}" HorizontalAlignment="Right" Command="{Binding DeleteFileCommand}">
-                <Button.Background>
-                    <ImageBrush ImageSource="{DynamicResource BinDrawingImage}" />
-                </Button.Background>
-            </Button>
 
             <DockPanel Grid.Row="2" Grid.Column="0" LastChildFill="False" Margin="0 15">
                 <Image Margin="0 0 7 0" Width="11" Source="{DynamicResource DirectorySmallDrawingImage}" />
                 <TextBlock Foreground="{StaticResource LightGrayBrush}" VerticalAlignment="Center">Folder:</TextBlock>
-                <TextBox x:Name="virtualDirectoryPath" Foreground="{DynamicResource MainContentBrush}" Text="{Binding Selected.Directory, Mode=TwoWay}" IsEnabled="False" IsReadOnly="True" KeyDown="ConfirmChange_OnKeyDown" CaretBrush="{DynamicResource MainTextBrush}" Margin="5, 0, 0, 0">
+                <TextBox x:Name="virtualDirectoryPath" Foreground="{DynamicResource MainContentBrush}" Text="{Binding Selected.Directory, Mode=TwoWay, TargetNullValue='/'}" IsEnabled="False" IsReadOnly="True" KeyDown="ConfirmChange_OnKeyDown" CaretBrush="{DynamicResource MainTextBrush}" Margin="5, 0, 0, 0">
                     <TextBox.Background>
                         <SolidColorBrush Color="{DynamicResource MainTextColor}" Opacity="0.06" />
                     </TextBox.Background>
@@ -49,7 +44,7 @@
             <StackPanel Grid.Row="3" Grid.Column="0">
                 <TextBlock Style="{StaticResource Title}">File name</TextBlock>
                 <Border Margin="0 5" Height="30" BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}">
-                    <TextBox Text="{Binding Selected.FileName}" Foreground="{DynamicResource MainContentBrush}"
+                    <TextBox Text="{Binding Selected.FileName, UpdateSourceTrigger=PropertyChanged}" Foreground="{DynamicResource MainContentBrush}"
                              Template="{StaticResource RoundedTextBox}" Padding="7, 0, 0, 0" VerticalContentAlignment="Center">
                         <TextBox.Background>
                             <SolidColorBrush Color="{DynamicResource TextAreaBackground}" />
@@ -61,18 +56,39 @@
                         <SolidColorBrush Color="{DynamicResource TextAreaBackground}" />
                     </Border.Background>
                     <Grid>
-                        <TextBlock Text="Add description with #tags to make your file searchable!" Foreground="{DynamicResource LightGrayBrush}">
-                            <TextBlock.Visibility>
-                                <MultiBinding Converter="{StaticResource TextInputToVisibilityConverter}">
-                                    <Binding ElementName="txtUserEntry2" Path="Text.IsEmpty" />
-                                    <Binding ElementName="txtUserEntry2" Path="IsFocused" />
-                                </MultiBinding>
-                            </TextBlock.Visibility>
-                        </TextBlock>
-                        <TextBox Text="{Binding Selected.Description}" Foreground="{StaticResource MainContentBrush}" CaretBrush="{DynamicResource MainTextBrush}"
-                                 Background="Transparent" Name="txtUserEntry2"
-                                                 Template="{StaticResource RoundedTextBox}" Height="132"
-                                                 AcceptsReturn="True" TextWrapping="Wrap" AcceptsTab="True" />
+                        <TextBox Height="132" Text="{Binding Selected.Description, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalContentAlignment="Top"
+                                 HorizontalContentAlignment="Left"
+                                 Foreground="{DynamicResource MainContentBrush}"
+                                 BorderThickness="0"
+                                 CaretBrush="{DynamicResource MainTextBrush}"
+                                 Cursor="IBeam"
+                                 Template="{StaticResource RoundedTextBox}"
+                                 AcceptsReturn="True" TextWrapping="Wrap" AcceptsTab="True">
+                            <TextBox.Style>
+                                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Style.Resources>
+                                        <VisualBrush x:Key="BannerBrush" AlignmentX="Left" AlignmentY="Top" Stretch="None">
+                                            <VisualBrush.Visual>
+                                                <Label Content="Add description with #tags to make your file searchable!" Foreground="{DynamicResource LightGrayBrush}" />
+                                            </VisualBrush.Visual>
+                                        </VisualBrush>
+                                    </Style.Resources>
+                                    <Style.Triggers>
+                                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                            <Setter Property="Background" Value="{StaticResource BannerBrush}" />
+                                        </Trigger>
+                                        <Trigger Property="Text" Value="{x:Null}">
+                                            <Setter Property="Background" Value="{StaticResource BannerBrush}" />
+                                        </Trigger>
+                                        <Trigger Property="IsKeyboardFocused" Value="True">
+                                            <Setter Property="Background" Value="Transparent" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
                     </Grid>
                 </Border>
             </StackPanel>
@@ -90,22 +106,44 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Style="{DynamicResource Title}">Author:</TextBlock>
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="You" Style="{StaticResource Active}" />
+                <TextBlock Grid.Row="0" Grid.Column="0" Style="{DynamicResource Title}">Format:</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Selected.Format}" Style="{StaticResource Active}" />
                 <TextBlock Grid.Row="0" Grid.Column="1" Style="{DynamicResource Title}">Created:</TextBlock>
                 <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Selected.CreateDate}" Style="{StaticResource Active}" />
                 <TextBlock Grid.Row="0" Grid.Column="2" Style="{DynamicResource Title}">Size:</TextBlock>
                 <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Selected.FormattedSize}" Style="{StaticResource Active}" />
-                <TextBlock Grid.Row="2" Grid.Column="0" Style="{DynamicResource Title}">Format:</TextBlock>
-                <TextBlock Grid.Row="3" Grid.Column="0" Text="{Binding Selected.Format}" Style="{StaticResource Active}" />
-                <TextBlock Grid.Row="2" Grid.Column="1" Style="{DynamicResource Title}">Type:</TextBlock>
-                <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Selected.Type}" Style="{StaticResource Active}" />
             </Grid>
 
             <DockPanel Grid.ColumnSpan="2" Grid.Row="5" LastChildFill="False" HorizontalAlignment="Stretch">
-                <Button Command="{Binding AddCommand}" HorizontalAlignment="Left" Style="{StaticResource PrimaryButton}"
+                <Button Command="{Binding AddCommand}" HorizontalAlignment="Left"
                     Foreground="{DynamicResource MainContentBrush}"
-                    FontWeight="Bold">+ SHARE ANTOHER FILE</Button>
+                    FontWeight="Bold" Content="+ SHARE ANOTHER FILE">
+                    <Button.Style>
+                        <Style BasedOn="{StaticResource PrimaryButton}" TargetType="{x:Type Button}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Title}" Value="Share File">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button Width="25" Height="25" Margin="10, 0, 0, 2" Padding="6" Command="{Binding DeleteFileCommand}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="{DynamicResource BinDrawingImage}" />
+                    </Button.Background>
+                    <Button.Style>
+                        <Style BasedOn="{StaticResource ButtonBaseStyle}" TargetType="{x:Type Button}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Title}" Value="Share File">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
                 <Button DockPanel.Dock="Right" Height="30"  Width="110" Style="{StaticResource AcceptButton}"  Command="{Binding ConfirmCommand}">Confirm</Button>
                 <Button DockPanel.Dock="Right" Height="30" Width="110" Style="{StaticResource PrimaryButton}" IsCancel="True" Command="{Binding CancelCommand}">Cancel</Button>
             </DockPanel>

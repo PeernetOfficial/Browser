@@ -4,14 +4,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:MvvmCross.Plugin.Control.Platforms.Wpf;assembly=MvvmCross.Plugin.Control.Platforms.Wpf"
     xmlns:domaincontrols="clr-namespace:Peernet.Browser.WPF.Controls"
-    xmlns:contexts="clr-namespace:Peernet.Browser.Application.Contexts;assembly=Peernet.Browser.Application">
+    xmlns:contexts="clr-namespace:Peernet.Browser.Application.Contexts;assembly=Application">
 
     <StackPanel Orientation="Vertical">
         <StackPanel Orientation="Horizontal">
             <Button Style="{DynamicResource HomeNavBarButtonStyle}" Command="{Binding NavigateHomeCommand}" ToolTip="Home" />
             <Button Style="{DynamicResource ExploreNavBarButtonStyle}" Command="{Binding NavigateExploreCommand}" ToolTip="Explore" />
             <Button Style="{DynamicResource DirectoryNavBarButtonStyle}" Command="{Binding NavigateDirectoryCommand}" ToolTip="Directory" />
-            <Button Style="{DynamicResource UserNavBarButtonStyle}" Command="{Binding OpenCloseProfileMenuCommand}" ToolTip="User" />
+            <Button x:Name="AccountPopupToggle" Style="{DynamicResource UserNavBarButtonStyle}" Command="{Binding OpenCloseProfileMenuCommand}" ToolTip="User" />
         </StackPanel>
         <domaincontrols:ProfileMenuControl HorizontalAlignment="Right" Visibility="{Binding Path=(contexts:GlobalContext.IsProfileMenuVisible), Converter={StaticResource BoolToVisibility}}" />
     </StackPanel>

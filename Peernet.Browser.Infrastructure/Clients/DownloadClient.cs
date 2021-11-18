@@ -31,7 +31,7 @@ namespace Peernet.Browser.Infrastructure.Clients
                 [nameof(action)] = ((int)action).ToString()
             };
 
-            return await httpExecutor.GetResult<ApiResponseDownloadStatus>(HttpMethod.Get, GetRelativeRequestPath(ActionSegment), parameters);
+            return await httpExecutor.GetResultAsync<ApiResponseDownloadStatus>(HttpMethod.Get, GetRelativeRequestPath(ActionSegment), parameters);
         }
 
         public async Task<ApiResponseDownloadStatus> GetStatus(string id)
@@ -41,7 +41,7 @@ namespace Peernet.Browser.Infrastructure.Clients
                 [nameof(id)] = id
             };
 
-            return await httpExecutor.GetResult<ApiResponseDownloadStatus>(HttpMethod.Get, GetRelativeRequestPath(StatusSegment), parameters);
+            return await httpExecutor.GetResultAsync<ApiResponseDownloadStatus>(HttpMethod.Get, GetRelativeRequestPath(StatusSegment), parameters);
         }
 
         public async Task<ApiResponseDownloadStatus> Start(string path, byte[] hash, byte[] node)
@@ -53,7 +53,7 @@ namespace Peernet.Browser.Infrastructure.Clients
                 [nameof(node)] = Convert.ToHexString(node)
             };
 
-            return await httpExecutor.GetResult<ApiResponseDownloadStatus>(HttpMethod.Get, GetRelativeRequestPath(StartSegment), parameters);
+            return await httpExecutor.GetResultAsync<ApiResponseDownloadStatus>(HttpMethod.Get, GetRelativeRequestPath(StartSegment), parameters);
         }
     }
 }

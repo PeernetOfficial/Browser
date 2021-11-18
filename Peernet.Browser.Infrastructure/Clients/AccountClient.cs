@@ -25,7 +25,7 @@ namespace Peernet.Browser.Infrastructure.Clients
                 [nameof(confirm)] = confirm ? "1" : "0"
             };
 
-            await httpExecutor.GetResult<ApiBlockchainBlockStatus>(HttpMethod.Get, GetRelativeRequestPath("delete"), parameters);
+            await httpExecutor.GetResultAsync<ApiBlockchainBlockStatus>(HttpMethod.Get, GetRelativeRequestPath("delete"), parameters);
         }
     }
 }

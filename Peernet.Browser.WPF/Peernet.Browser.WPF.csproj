@@ -6,9 +6,13 @@
     <UseWPF>true</UseWPF>
 	<RuntimeIdentifier>win-x64</RuntimeIdentifier>
 	<ApplicationIcon>peernet.ico</ApplicationIcon>
+	<AssemblyName>Peernet Browser</AssemblyName>
   </PropertyGroup>
 
-
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	<DebugType>None</DebugType>
+	<DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Properties\**" />
     <EmbeddedResource Remove="Properties\**" />

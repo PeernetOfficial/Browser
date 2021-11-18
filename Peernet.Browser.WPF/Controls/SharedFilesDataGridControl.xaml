@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:gl="clr-namespace:System.Globalization;assembly=System.Runtime"
+             xmlns:common="clr-namespace:Peernet.Browser.Application.VirtualFileSystem;assembly=Application"
              mc:Ignorable="d"
              x:Name="SharedFilesDataGrid">
     <Grid>
@@ -18,8 +19,12 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
-                                <Image Width="13.71" Height="20" Style="{StaticResource GridFileImageStyle}" />
-                                <TextBlock Text="{Binding Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" PreviewMouseLeftButtonDown="OpenFilePreview_OnClick" Style="{StaticResource Underlined}" />
+                                <Image Width="13.71" Height="20" Style="{StaticResource VirtualFileSystemEntityImageStyle}" />
+                                <TextBlock Text="{Binding Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource Underlined}" >
+                                    <TextBlock.InputBindings>
+                                        <MouseBinding Command="{Binding DataContext.OpenCommand, ElementName=SharedFilesDataGrid}" CommandParameter="{Binding}" MouseAction="LeftClick" />
+                                    </TextBlock.InputBindings>
+                                </TextBlock>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -27,7 +32,7 @@
                 <DataGridTemplateColumn Header="TYPE" SortMemberPath="Format" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Format}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            <TextBlock Text="{Binding Type}" VerticalAlignment="Center" HorizontalAlignment="Left" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -62,6 +67,15 @@
                                         <ImageBrush ImageSource="{DynamicResource BinDrawingImage}" />
                                     </Button.Background>
                                 </Button>
+                                <Grid.Style>
+                                    <Style TargetType="{x:Type Grid}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Type}" Value="{x:Static common:VirtualFileSystemEntityType.Directory}">
+                                                <Setter Property="Visibility" Value="Hidden" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Grid.Style>
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

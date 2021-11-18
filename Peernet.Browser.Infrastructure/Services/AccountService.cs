@@ -2,6 +2,7 @@
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Infrastructure.Clients;
 using System.Threading.Tasks;
+using Peernet.Browser.Models.Domain.Blockchain;
 
 namespace Peernet.Browser.Infrastructure.Services
 {

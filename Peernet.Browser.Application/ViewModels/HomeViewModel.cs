@@ -1,4 +1,5 @@
-﻿using MvvmCross.Commands;
+﻿using System;
+using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Download;
@@ -14,13 +15,16 @@ namespace Peernet.Browser.Application.ViewModels
     {
         private readonly ISearchService searchService;
         private readonly IDownloadManager downloadManager;
+        private readonly IApiService apiService;
         private string searchInput;
         private int selectedIndex = -1;
 
-        public HomeViewModel(ISearchService searchService, IDownloadManager downloadManager)
+        public HomeViewModel(ISearchService searchService, IDownloadManager downloadManager, IApiService apiService)
         {
             this.searchService = searchService;
             this.downloadManager = downloadManager;
+            this.apiService = apiService;
+
             SearchCommand = new MvxCommand(Search);
             Tabs.CollectionChanged += (o, s) =>
             {
@@ -39,7 +43,9 @@ namespace Peernet.Browser.Application.ViewModels
         public Alignments Alignment => IsVisible ? Alignments.Stretch : Alignments.Center;
 
         public bool IsNotVisible => !IsVisible;
+
         public bool IsVisible => Tabs.Any();
+
         public IMvxCommand SearchCommand { get; }
 
         public string SearchInput

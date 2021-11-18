@@ -5,6 +5,6 @@ namespace Peernet.Browser.Application.VirtualFileSystem
 {
     public interface IFilesToCategoryBinder
     {
-        List<VirtualFileSystemCategory> Bind(IEnumerable<ApiFile> files);
+        List<VirtualFileSystemCoreCategory> Bind(IEnumerable<ApiFile> files);
     }
 }

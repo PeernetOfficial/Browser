@@ -19,7 +19,7 @@ namespace Peernet.Browser.Infrastructure.Clients
 
         public async Task<ApiResponseStatus> GetStatus()
         {
-            return await httpExecutor.GetResult<ApiResponseStatus>(HttpMethod.Get, GetRelativeRequestPath("status"));
+            return await httpExecutor.GetResultAsync<ApiResponseStatus>(HttpMethod.Get, GetRelativeRequestPath("status"));
         }
     }
 }

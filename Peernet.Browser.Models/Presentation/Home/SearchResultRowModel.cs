@@ -1,6 +1,5 @@
 ﻿using System;
 using Peernet.Browser.Models.Domain.Common;
-using System;
 
 namespace Peernet.Browser.Models.Presentation.Home
 {
@@ -14,10 +13,10 @@ namespace Peernet.Browser.Models.Presentation.Home
             EnumerationMember = (HealthType)3;
             Name = source.Name;
             Date = source.Date;
-            Size = $"{source.Size} MB";
+            Size = $"{source.Size}";
             SharedBy = source.SharedByCount;
             //FlameIsVisible = source.SharedByCount > 15;
-            Points = new GeoPoint[0];// { new GeoPoint { Longitude = 19, Latitude = 49 }, new GeoPoint { Longitude = 0, Latitude = 0 } };
+            Points = Array.Empty<GeoPoint>();// { new GeoPoint { Longitude = 19, Latitude = 49 }, new GeoPoint { Longitude = 0, Latitude = 0 } };
         }
 
         public DateTime Date { get; }
@@ -33,7 +32,10 @@ namespace Peernet.Browser.Models.Presentation.Home
             set
             {
                 isHovered = value;
-                if (IsHovered) OnHover?.Invoke(Points);
+                if (IsHovered)
+                {
+                    OnHover?.Invoke(Points);
+                }
             }
         }
 

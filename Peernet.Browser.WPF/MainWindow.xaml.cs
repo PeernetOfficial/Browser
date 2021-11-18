@@ -1,7 +1,7 @@
-﻿using System;
-using MvvmCross.Platforms.Wpf.Views;
+﻿using MvvmCross.Platforms.Wpf.Views;
 using Peernet.Browser.Application;
 using Peernet.Browser.Application.Contexts;
+using System;
 using System.Globalization;
 using System.Threading;
 using System.Windows;
@@ -30,8 +30,10 @@ namespace Peernet.Browser.WPF
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.ChangedButton != MouseButton.Left) return;
-            DragMove();
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                DragMove();
+            }
         }
 
         protected override void OnContentChanged(object oldContent, object newContent)
@@ -45,9 +47,9 @@ namespace Peernet.Browser.WPF
             base.OnContentChanged(oldContent, newContent);
         }
 
-        //private void MainWindow_OnMouseDown(object sender, MouseButtonEventArgs e)
-        //{
-        //    GlobalContext.IsProfileMenuVisible = false;
-        //}
+        private void MainWindow_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            App.RaiseMainWindowClick(sender, e);
+        }
     }
 }

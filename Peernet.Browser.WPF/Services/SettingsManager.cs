@@ -1,9 +1,14 @@
-﻿using Peernet.Browser.Application.Managers;
+﻿using System;
+using Peernet.Browser.Application.Managers;
 
 namespace Peernet.Browser.WPF.Services
 {
     public class SettingsManager : ISettingsManager
     {
+        private static readonly Guid apiKey = Guid.NewGuid();
+
+        public string ApiKey => apiKey.ToString();
+
         public string ApiUrl
         {
             get => Get(nameof(ApiUrl));
@@ -16,15 +21,15 @@ namespace Peernet.Browser.WPF.Services
             set => Set(nameof(SocketUrl), value);
         }
 
-        public string CmdPath
+        public string Backend
         {
-            get => Get(nameof(CmdPath));
-            set => Set(nameof(CmdPath), value);
+            get => Get(nameof(Backend));
+            set => Set(nameof(Backend), value);
         }
 
         public string DownloadPath
         {
-            get => Get(nameof(DownloadPath));
+            get => Environment.ExpandEnvironmentVariables(Get(nameof(DownloadPath)));
             set => Set(nameof(DownloadPath), value);
         }
 

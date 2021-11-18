@@ -4,6 +4,7 @@ using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Services;
+using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Models.Presentation.Footer;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,15 +17,17 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IMvxNavigationService mvxNavigationService;
         private readonly IBlockchainService blockchainService;
         private readonly IWarehouseService warehouseService;
+        private readonly IFileService fileService;
         private FileModel selected;
         private FileParameterModel viewModelParameter;
 
-        public GenericFileViewModel(IMvxNavigationService mvxNavigationService, IApplicationManager applicationManager, IBlockchainService blockchainService, IWarehouseService warehouseService)
+        public GenericFileViewModel(IMvxNavigationService mvxNavigationService, IApplicationManager applicationManager, IBlockchainService blockchainService, IWarehouseService warehouseService, IFileService fileService)
         {
             this.mvxNavigationService = mvxNavigationService;
             this.applicationManager = applicationManager;
             this.blockchainService = blockchainService;
             this.warehouseService = warehouseService;
+            this.fileService = fileService;
 
             ConfirmCommand = new MvxAsyncCommand(Confirm);
             CancelCommand = new MvxCommand(Cancel);
@@ -68,7 +71,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         public string Title => viewModelParameter.ModalTitle;
 
-        public override void Prepare(FileParameterModel parameter)
+        public override async void Prepare(FileParameterModel parameter)
         {
             viewModelParameter = parameter;
             foreach (var f in parameter.FileModels)
@@ -76,6 +79,11 @@ namespace Peernet.Browser.Application.ViewModels
                 if (Files.Any(x => x.FullPath == f.FullPath))
                 {
                     continue;
+                }
+
+                if (parameter.ShouldUpdateFormat)
+                {
+                    await UpdateFileFormat(f);
                 }
 
                 Files.Add(f);
@@ -90,7 +98,7 @@ namespace Peernet.Browser.Application.ViewModels
             {
                 var parameter = new ShareFileViewModelParameter(warehouseService, blockchainService)
                 {
-                    FileModels = files.Select(f => new FileModel(f)).ToArray()
+                    FileModels = files.Select(f => new FileModel(f)).ToList()
                 };
 
                 Prepare(parameter);
@@ -101,6 +109,11 @@ namespace Peernet.Browser.Application.ViewModels
         {
             await viewModelParameter.Confirm(Files.ToArray());
             Cancel();
+
+            if (GlobalContext.CurrentViewModel == nameof(DirectoryViewModel))
+            {
+                await mvxNavigationService.Navigate<DirectoryViewModel>();
+            }
         }
 
         private void Cancel()
@@ -142,6 +155,13 @@ namespace Peernet.Browser.Application.ViewModels
 
                 RaisePropertyChanged(nameof(FilesLength));
             }
+        }
+
+        private async Task UpdateFileFormat(FileModel fileModel)
+        {
+            var format = await fileService.GetFormat(fileModel.FullPath);
+            fileModel.Format = format.FileFormat;
+            fileModel.Type = format.FileType;
         }
     }
 }

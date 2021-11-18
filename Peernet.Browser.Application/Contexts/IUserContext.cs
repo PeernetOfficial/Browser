@@ -4,7 +4,7 @@ namespace Peernet.Browser.Application.Contexts
 {
     public interface IUserContext
     {
-        bool HasUserChanged { get; }
+        bool HasUserChanged { get; set;  }
 
         User User { get; set; }
 

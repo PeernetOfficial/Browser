@@ -1,44 +1,62 @@
 ﻿using MvvmCross.ViewModels;
 using Peernet.Browser.Models.Domain.Common;
-using System.Collections.Generic;
+using System;
 
 namespace Peernet.Browser.Application.VirtualFileSystem
 {
-    public class VirtualFileSystemEntity : MvxNotifyPropertyChanged
+    public class VirtualFileSystemEntity : MvxNotifyPropertyChanged, IEquatable<VirtualFileSystemEntity>
     {
-        private bool isVisualTreeVertex;
-        private bool isSelected;
+        private readonly string name;
+        private readonly VirtualFileSystemEntityType? type;
 
-        protected VirtualFileSystemEntity(string name, VirtualFileSystemEntityType type, List<ApiFile> files)
+        public VirtualFileSystemEntity(ApiFile file, string name = null, VirtualFileSystemEntityType? type = null)
         {
-            Name = name;
-            Type = type;
-            Files = files;
+            File = file;
+            this.name = name;
+            this.type = type;
         }
 
-        public string Name { get; }
+        public DateTime? Date => File?.Date;
 
-        public VirtualFileSystemEntityType Type { get; }
+        public ApiFile File { get; init; }
 
-        public List<ApiFile> Files { get; }
+        public string Name => name ?? File.Name;
 
-        public bool IsSelected
+        public VirtualFileSystemEntityType Type => type ?? Enum.Parse<VirtualFileSystemEntityType>(File.Type.ToString());
+
+        public bool Equals(VirtualFileSystemEntity other)
         {
-            get => isSelected;
-            set => SetProperty(ref isSelected, value);
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return name == other.name && type == other.type && Equals(File, other.File) && Date == other.Date;
         }
 
-        public bool IsVisualTreeVertex
+        public override bool Equals(object obj)
         {
-            get => isVisualTreeVertex;
-            set => SetProperty(ref isVisualTreeVertex, value);
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            return obj.GetType() == GetType() && Equals((VirtualFileSystemEntity)obj);
         }
 
-        public virtual void ResetSelection()
+        public override int GetHashCode()
         {
-            IsSelected = false;
+            return HashCode.Combine(name, type, File);
         }
-
-        public virtual List<ApiFile> GetAllFiles() => Files;
     }
 }

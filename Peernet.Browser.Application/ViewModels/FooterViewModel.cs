@@ -1,5 +1,4 @@
-﻿using System;
-using MvvmCross.Commands;
+﻿using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Clients;
@@ -7,8 +6,9 @@ using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Services;
+using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Models.Presentation.Footer;
-using System.Collections.Generic;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,15 +20,14 @@ namespace Peernet.Browser.Application.ViewModels
         private const int reconnectDelay = 2000;
         private readonly IApiService apiService;
         private readonly IApplicationManager applicationManager;
-        private readonly IMvxNavigationService navigationService;
-        private readonly ISocketClient socketClient;
-        private readonly IWarehouseService warehouseService;
         private readonly IBlockchainService blockchainService;
+        private readonly IMvxNavigationService navigationService;
+        private readonly IWarehouseService warehouseService;
+        private bool areDownloadsCollapsed;
         private string commandLineInput;
         private string commandLineOutput;
         private ConnectionStatus connectionStatus = ConnectionStatus.Offline;
         private string peers;
-        private bool areDownloadsCollapsed;
 
         public FooterViewModel(
             IApiService apiService,
@@ -40,24 +39,36 @@ namespace Peernet.Browser.Application.ViewModels
             IBlockchainService blockchainService)
         {
             this.apiService = apiService;
-            this.socketClient = socketClient;
             this.navigationService = navigationService;
             this.applicationManager = applicationManager;
             this.warehouseService = warehouseService;
             this.blockchainService = blockchainService;
+
             DownloadManager = downloadManager;
             DownloadManager.downloadsChanged += GetLastDownloadItem;
-            UploadCommand = new MvxCommand(UploadFiles);
-            SendToPeernetConsole = new MvxAsyncCommand(SendToPeernetMethod);
+            UploadCommand = new MvxAsyncCommand(UploadFiles);
+            DownloadManager.downloadsChanged += CollapseWhenSingleItem;
+
             Task.Run(UpdateStatuses);
         }
 
-        private void GetLastDownloadItem(object? sender, EventArgs e)
+        public bool AreDownloadsCollapsed
         {
-            var copy = ListedFileDownloads.ToList();
-            copy.ForEach(i => ListedFileDownloads.Remove(i));
-            ListedFileDownloads.Add(DownloadManager.ActiveFileDownloads.LastOrDefault());
+            get => areDownloadsCollapsed;
+            set => SetProperty(ref areDownloadsCollapsed, value);
         }
+
+        public IMvxAsyncCommand<string> CancelDownloadCommand => new MvxAsyncCommand<string>(
+            async id =>
+            {
+                // Make API call and validate result
+                await DownloadManager.CancelDownload(id);
+            });
+
+        public IMvxCommand CollapseExpandDownloadsCommand => new MvxCommand(() =>
+            {
+                AreDownloadsCollapsed ^= true;
+            });
 
         public string CommandLineInput
         {
@@ -71,12 +82,6 @@ namespace Peernet.Browser.Application.ViewModels
             set => SetProperty(ref commandLineOutput, value);
         }
 
-        public bool AreDownloadsCollapsed
-        {
-            get => areDownloadsCollapsed;
-            set => SetProperty(ref areDownloadsCollapsed, value);
-        }
-
         public ConnectionStatus ConnectionStatus
         {
             get => connectionStatus;
@@ -87,15 +92,11 @@ namespace Peernet.Browser.Application.ViewModels
 
         public ObservableCollection<DownloadModel> ListedFileDownloads { get; set; } = new();
 
-        public string Peers
-        {
-            get => peers;
-            set => SetProperty(ref peers, value);
-        }
-
-        public IMvxAsyncCommand SendToPeernetConsole { get; }
-
-        public IMvxCommand UploadCommand { get; }
+        public IMvxCommand OpenFileLocationCommand => new MvxCommand<string>(
+            name =>
+            {
+                DownloadManager.OpenFileLocation(name);
+            });
 
         public IMvxCommand PauseDownloadCommand => new MvxAsyncCommand<string>(
             async id =>
@@ -104,11 +105,11 @@ namespace Peernet.Browser.Application.ViewModels
                 await DownloadManager.PauseDownload(id);
             });
 
-        public IMvxCommand OpenFileLocationCommand => new MvxCommand<string>(
-            name =>
-            {
-                DownloadManager.OpenFileLocation(name);
-            });
+        public string Peers
+        {
+            get => peers;
+            set => SetProperty(ref peers, value);
+        }
 
         public IMvxCommand ResumeDownloadCommand => new MvxAsyncCommand<string>(
             async id =>
@@ -117,22 +118,19 @@ namespace Peernet.Browser.Application.ViewModels
                 await DownloadManager.ResumeDownload(id);
             });
 
-        public IMvxAsyncCommand<string> CancelDownloadCommand => new MvxAsyncCommand<string>(
-            async id =>
-            {
-                // Make API call and validate result
-                await DownloadManager.CancelDownload(id);
-            });
-
-        public IMvxCommand CollapseExpandDownloadsCommand => new MvxCommand(() =>
-        {
-            AreDownloadsCollapsed ^= true;
-        });
+        public IMvxAsyncCommand UploadCommand { get; }
 
         public override async Task Initialize()
         {
             await ConnectToPeernetAPI();
-            await ConnectToPeernetConsole();
+        }
+
+        private void CollapseWhenSingleItem(object? sender, EventArgs e)
+        {
+            if (DownloadManager.ActiveFileDownloads.Count == 1)
+            {
+                AreDownloadsCollapsed = true;
+            }
         }
 
         private async Task ConnectToPeernetAPI()
@@ -150,10 +148,11 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        private async Task ConnectToPeernetConsole()
+        private void GetLastDownloadItem(object sender, EventArgs e)
         {
-            await socketClient.Connect();
-            CommandLineOutput = await socketClient.Receive();
+            var copy = ListedFileDownloads.ToList();
+            copy.ForEach(i => ListedFileDownloads.Remove(i));
+            ListedFileDownloads.Add(DownloadManager.ActiveFileDownloads.LastOrDefault());
         }
 
         private async Task<bool> GetPeernetStatus()
@@ -164,35 +163,29 @@ namespace Peernet.Browser.Application.ViewModels
             return status.IsConnected;
         }
 
-        private async Task SendToPeernetMethod()
-        {
-            await socketClient.Send(CommandLineInput);
-            CommandLineInput = string.Empty;
-            CommandLineOutput = await socketClient.Receive();
-        }
-
-        private void UploadFiles()
-        {
-            var f = applicationManager.OpenFileDialog().Select(f => new FileModel(f)).ToArray();
-            if (f.Length != 0)
-            {
-                var parameter = new ShareFileViewModelParameter(warehouseService, blockchainService)
-                {
-                    FileModels = f
-                };
-
-                GlobalContext.IsMainWindowActive = false;
-                navigationService.Navigate<GenericFileViewModel, ShareFileViewModelParameter>(parameter);
-            }
-        }
-
         private async Task UpdateStatuses()
         {
             while (true)
             {
                 var status = await apiService.GetStatus();
-                Peers = status.CountPeerList.ToString();
+                Peers = status?.CountPeerList.ToString();
                 await Task.Delay(3000);
+            }
+        }
+
+        private async Task UploadFiles()
+        {
+            var fileModels = applicationManager.OpenFileDialog().Select(f => new FileModel(f)).ToList();
+
+            if (fileModels.Count != 0)
+            {
+                var parameter = new ShareFileViewModelParameter(warehouseService, blockchainService)
+                {
+                    FileModels = fileModels
+                };
+
+                GlobalContext.IsMainWindowActive = false;
+                await navigationService.Navigate<GenericFileViewModel, ShareFileViewModelParameter>(parameter);
             }
         }
     }

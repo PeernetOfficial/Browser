@@ -1,9 +1,7 @@
 ﻿using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Infrastructure.Http;
-using Peernet.Browser.Models.Domain.Common;
 using Peernet.Browser.Models.Domain.Warehouse;
 using System.Net.Http;
-using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure.Clients
@@ -23,7 +21,7 @@ namespace Peernet.Browser.Infrastructure.Clients
         {
             var content = new ByteArrayContent(fileContent);
 
-            return await httpExecutor.GetResult<WarehouseResult>(HttpMethod.Post, GetRelativeRequestPath("create"),
+            return await httpExecutor.GetResultAsync<WarehouseResult>(HttpMethod.Post, GetRelativeRequestPath("create"),
                 content: content);
         }
     }
