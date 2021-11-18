@@ -5,7 +5,7 @@ This is official GUI for [Peernet Command Line Client](https://github.com/Peerne
 It is built on to of .NET 5.0 with use of WPF UI Framework [WPF documentation](https://docs.microsoft.com/en-us/dotnet/desktop/wpf/?view=netdesktop-5.0). 
 
 ## Configuration{#configuration}
-Peernet Browser configuration entry point is via _Peernet.Browser.WPF.dll.config_ output file or _App.config_ from Solution view.
+Peernet Browser configuration entry point is via _Peernet Browser.dll.config_ output file or _App.config_ from Solution view.
 Configuration file includes following settings:
 
 | Name/Key     | Description                                                                                                                                                                                                                                                                            | Default Value                    |
@@ -82,10 +82,10 @@ Copyright (C) Microsoft Corporation. All rights reserved.
   Determining projects to restore...
   Restored D:\Sources\Peernet\Browser\Peernet.Browser.WPF\Peernet.Browser.WPF.csproj (in 290 ms).
   4 of 5 projects are up-to-date for restore.
-  Peernet.Browser.Models -> D:\Sources\Peernet\Browser\Peernet.Browser.Models\bin\Debug\net5.0\Peernet.Browser.Models.dll
-  Peernet.Browser.Application -> D:\Sources\Peernet\Browser\Peernet.Browser.Application\bin\Debug\net5.0\Peernet.Browser.Application.dll
-  Peernet.Browser.Infrastructure -> D:\Sources\Peernet\Browser\Peernet.Browser.Infrastructure\bin\Debug\net5.0\Peernet.Browser.Infrastructure.dll
-  Peernet.Browser.WPF -> D:\Sources\Peernet\Browser\Peernet.Browser.WPF\bin\Debug\net5.0-windows\win-x64\Peernet.Browser.WPF.dll
+  Peernet.Browser.Models -> D:\Sources\Peernet\Browser\Peernet.Browser.Models\bin\Debug\net5.0\Models.dll
+  Peernet.Browser.Application -> D:\Sources\Peernet\Browser\Peernet.Browser.Application\bin\Debug\net5.0\Application.dll
+  Peernet.Browser.Infrastructure -> D:\Sources\Peernet\Browser\Peernet.Browser.Infrastructure\bin\Debug\net5.0\Infrastructure.dll
+  Peernet.Browser.WPF -> D:\Sources\Peernet\Browser\Peernet.Browser.WPF\bin\Debug\net5.0-windows\win-x64\Peernet Browser.dll
   Peernet.Browser.Tests -> D:\Sources\Peernet\Browser\Peernet.Browser.Tests\bin\Debug\net5.0\Peernet.Browser.Tests.dll
 
 Build succeeded.
@@ -112,8 +112,8 @@ dotnet run
 
 You can also simply run the application from **.exe** file which you can find in build output directory (**bin** folder).
 
->Peernet.Browser.WPF.exe
+>Peernet Browser.exe
 
 ## Use
 You can either follow [first boot](#first-boot) instruction or download the latest release of Peernet Command Line Client and Peernet Browser.
-Run 'Peernet.Browser.WPF.exe' file and enjoy the features.
+Run 'Peernet Browser.exe' file and enjoy the features.
