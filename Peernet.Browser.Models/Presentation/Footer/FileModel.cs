@@ -12,11 +12,9 @@ namespace Peernet.Browser.Models.Presentation.Footer
         private string description;
         private string directory;
         private string fileName;
-        private string fileExtension;
         private string fullPath;
         private long size;
         private byte[] hash;
-        private string baseName;
 
         public FileModel(string path)
         {
@@ -25,7 +23,7 @@ namespace Peernet.Browser.Models.Presentation.Footer
             FileName = f.Name;
             Size = f.Length;
             CreateDate = DateTime.Now;
-            Directory = "Root";
+            Directory = null;
         }
 
         public FileModel(ApiFile apiFile)

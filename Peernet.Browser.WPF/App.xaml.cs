@@ -3,7 +3,9 @@ using MvvmCross.Platforms.Wpf.Views;
 using Peernet.Browser.Infrastructure.Tools;
 using Peernet.Browser.WPF.Services;
 using Peernet.Browser.WPF.Styles;
+using System.Globalization;
 using System.Windows;
+using System.Windows.Markup;
 
 namespace Peernet.Browser.WPF
 {
@@ -12,22 +14,38 @@ namespace Peernet.Browser.WPF
     /// </summary>
     public partial class App : MvxApplication
     {
+        public static event RoutedEventHandler MainWindowClicked = delegate { };
         private CmdRunner cmdRunner;
 
         protected override void RegisterSetup() => this.RegisterSetupType<Setup>();
 
+        static App()
+        {
+            FrameworkElement.LanguageProperty.OverrideMetadata(
+
+                typeof(FrameworkElement),
+
+                new FrameworkPropertyMetadata(
+
+                    XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
+        }
+
         protected override void OnExit(ExitEventArgs e)
         {
-            cmdRunner.Dispose();
+            cmdRunner?.Dispose();
             base.OnExit(e);
         }
 
-        public override void ApplicationInitialized()
+        protected override void OnStartup(StartupEventArgs e)
         {
-            cmdRunner = new CmdRunner(new SettingsManager().CmdPath);
-            cmdRunner.Run();
+            var settingsManager = new SettingsManager();
+            if (settingsManager.ApiUrl == null)
+            {
+                cmdRunner = new CmdRunner(settingsManager);
+                cmdRunner.Run();
+            }
 
-            base.ApplicationInitialized();
+            base.OnStartup(e);
         }
 
         public void UpdateAllResources()
@@ -43,6 +61,11 @@ namespace Peernet.Browser.WPF
                     dict.Source = dict.Source;
                 }
             }
+        }
+
+        public static void RaiseMainWindowClick(object sender, RoutedEventArgs e)
+        {
+            MainWindowClicked.Invoke(sender, e);
         }
     }
 }

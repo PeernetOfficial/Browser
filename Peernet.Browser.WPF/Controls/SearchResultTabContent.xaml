@@ -52,33 +52,19 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <local:FilterIconControl Padding="10" Margin="0 0 15 0" Height="41" DataContext="{Binding}" />
+                    <local:FilterIconControl Margin="0 0 15 0" Height="41" DataContext="{Binding}" />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
-        <Border Visibility="{Binding ShowColumnsSelector, Converter={StaticResource BoolToVisibility}}" CornerRadius="{DynamicResource MainRadius}" Margin="0 0 115 -240"
-                Panel.ZIndex="1" BorderBrush="{DynamicResource LightGray2Brush}"
-                BorderThickness="1" Grid.Row="0" HorizontalAlignment="Right"
-                Width="180" Height="200" Background="{DynamicResource ViewBackgroundBrush}">
-            <ItemsControl ItemsSource="{Binding ColumnsCheckboxes}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <CheckBox Foreground="{DynamicResource MainContentBrush}" Margin="15" Template="{DynamicResource CustomCheckBox}"
-                                  VerticalContentAlignment="Center" IsChecked="{Binding IsChecked}">
-                            <TextBlock FontSize="14" Margin="-30 0 0 0" Padding="40 0 20 0" Text="{Binding Content}" />
-                        </CheckBox>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </Border>
+        <local:ColumnsSelectorControl Grid.Row="0" Panel.ZIndex="1"  Margin="0 0 115 -240" HorizontalAlignment="Right" />
 
-        <DockPanel Margin="0 0 50 0" LastChildFill="False" Grid.Row="0"  HorizontalAlignment="Right">
-            <local:FilterIconControl Padding="10" Height="41"  DataContext="{Binding ColumnsIconModel}" />
-            <local:FilterIconControl Padding="10" Height="41"  DataContext="{Binding FiltersIconModel}" />
+        <DockPanel Panel.ZIndex="2"  Margin="0 0 50 0" LastChildFill="False" Grid.Row="0"  HorizontalAlignment="Right">
+            <local:FilterIconControl Height="40" DataContext="{Binding ColumnsIconModel}" />
+            <local:FilterIconControl Height="40" DataContext="{Binding FiltersIconModel}" />
         </DockPanel>
 
-        <Border Margin="-30 3 -30 0" Grid.Row="1" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource LightGray2Brush}" />
+        <Separator Grid.Row="1" Style="{DynamicResource StandardSeparatorStyle}" />
 
         <DockPanel Visibility="{Binding Filters.IsVisible, Converter={StaticResource BoolToVisibility}}" Margin="14" Grid.Row="2">
             <TextBlock Margin="10" FontSize="14" Foreground="{DynamicResource MainContentBrush}">Your filters:</TextBlock>
@@ -93,7 +79,10 @@
                     <DataTemplate>
                         <DockPanel Margin="10 0 0 0" VerticalAlignment="Center" Background="{DynamicResource LightGray2Brush}">
                             <TextBlock Padding="5" Text="{Binding Content}" />
-                            <Button Command="{Binding DataContext.RemoveFilterCommand, ElementName=SharedResultTab}" CommandParameter="{Binding Type}" Margin="10 0 10 0" Style="{DynamicResource PrimaryButton}">X</Button>
+                            <Button Command="{Binding DataContext.RemoveFilterCommand, ElementName=SharedResultTab}"
+                                    CommandParameter="{Binding Type}" Style="{DynamicResource PrimaryButton}">
+                                <Image  Margin="10 0 10 0" Source="{DynamicResource CloseBtnDrawingImage}" />
+                            </Button>
                         </DockPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
@@ -101,35 +90,32 @@
             <Button Command="{Binding ClearCommand}" FontSize="14" HorizontalAlignment="Right" Style="{DynamicResource LinkButton}">Clear all filters</Button>
         </DockPanel>
 
-        <DataGrid Name="FileGrid" Sorting="DataGrid_Sorting" Padding="55 10 15 0" HorizontalAlignment="Stretch" Grid.Row="3"
-                  Style="{DynamicResource DataGridStyle}" SelectionMode="Single" ScrollViewer.ScrollChanged="FileGrid_ScrollChanged"
+        <DataGrid Visibility="{Binding Loader.IsNotLoading, Converter={StaticResource BoolToVisibility}}"
+                  Name="FileGrid" Sorting="DataGrid_Sorting" Padding="25 10 15 0" HorizontalAlignment="Stretch" Grid.Row="3"
+                  Style="{DynamicResource DataGridStyle}" ScrollViewer.ScrollChanged="FileGrid_ScrollChanged"
                   ItemsSource="{Binding TableResult, IsAsync=True}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTemplateColumn Header="" SortMemberPath="First">
+                <!--<DataGridTemplateColumn Header="" SortMemberPath="First">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Image Width="10" Style="{StaticResource DotStyle}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="*" Header="NAME" SortMemberPath="Name">
+                </DataGridTemplateColumn>-->
+                <DataGridTemplateColumn Width="*" Header="NAME" SortMemberPath="Name" HeaderStyle="{StaticResource ShiftedDataGridColumnHeaderStyle}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Grid Margin="-40 0 0 0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Image Width="13.71" Height="20" Grid.Column="0" Style="{DynamicResource DownloadItemImageStyle}" />
-                                <TextBlock Grid.Column="1" Text="{Binding Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                            </Grid>
+                            <StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
+                                <Image Width="13.71" Height="20" Style="{DynamicResource DownloadItemImageStyle}" />
+                                <TextBlock Text="{Binding Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn Visibility="{Binding DataContext.ShowColumnsDate, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}"  Width="150" Header="DATE" SortMemberPath="Date">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Date}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            <TextBlock Text="{Binding Date, StringFormat=d}" VerticalAlignment="Center" HorizontalAlignment="Left" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -148,7 +134,7 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Padding="0 5 20 5" Background="Transparent" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave" Grid.Column="0" Text="{Binding SharedBy, StringFormat={}{0} Peers}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                <TextBlock Tag="{Binding IsHovered, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0 5 20 5" Background="Transparent" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave" Grid.Column="0" Text="{Binding SharedBy, StringFormat={}{0} Peers}" VerticalAlignment="Center" HorizontalAlignment="Left" />
                                 <Image Visibility="{Binding FlameIsVisible, Converter={StaticResource BoolToVisibility}}" Height="20" Grid.Column="1" Source="{DynamicResource FlameDrawingImage}" />
                             </Grid>
                         </DataTemplate>
@@ -157,7 +143,7 @@
                 <DataGridTemplateColumn  Visibility="{Binding DataContext.ShowColumnsDownload, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}"  Width="150">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.DownloadCommand, ElementName=SharedResultTab}" CommandParameter="{Binding}">
+                            <Button Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.DownloadCommand, ElementName=SharedResultTab}" CommandParameter="{Binding}" Width="45" Height="44">
                                 <Button.Background>
                                     <ImageBrush ImageSource="{DynamicResource DownloadDrawingImage}" />
                                 </Button.Background>
@@ -167,7 +153,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBlock Foreground="{DynamicResource MainContentBrush}"  Visibility="{Binding Loader.IsLoading, Converter={StaticResource BoolToVisibility}}" Margin="60 40" Grid.Row="3" Text="{Binding Loader.Text}" />
-        <Border Margin="-30 3 -30 0" Grid.Row="4" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource LightGray2Brush}" />
+        <TextBlock FontSize="14" Foreground="{DynamicResource MainContentBrush}"  Visibility="{Binding Loader.IsLoading, Converter={StaticResource BoolToVisibility}}" Margin="60 40" Grid.Row="3" Text="{Binding Loader.Text}" />
+        <Separator Grid.Row="4" Style="{DynamicResource StandardSeparatorStyle}" VerticalAlignment="Top" />
     </Grid>
 </UserControl>

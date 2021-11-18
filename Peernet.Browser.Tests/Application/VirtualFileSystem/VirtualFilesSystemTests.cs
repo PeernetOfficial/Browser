@@ -27,7 +27,7 @@ namespace Peernet.Browser.Tests.Application.VirtualFileSystem
             // Arrange
             IList<ApiFile> files = Builder<ApiFile>.CreateListOfSize(size).All()
                 .With(x => x.Folder = $"{rootName}/{subName}").Build();
-            fakeBinder.Setup(s => s.Bind(It.IsAny<IEnumerable<ApiFile>>())).Returns(new List<VirtualFileSystemCategory>());
+            fakeBinder.Setup(s => s.Bind(It.IsAny<IEnumerable<ApiFile>>())).Returns(new List<VirtualFileSystemCoreCategory>());
 
             // Act
             var system = new Browser.Application.VirtualFileSystem.VirtualFileSystem(files, fakeBinder.Object);
@@ -40,8 +40,8 @@ namespace Peernet.Browser.Tests.Application.VirtualFileSystem
             Assert.AreEqual(rootName, tier.Name);
 
             // There should be only one subtier
-            Assert.AreEqual(1, tier.VirtualFileSystemTiers.Count);
-            var subTier = tier.VirtualFileSystemTiers.First();
+            Assert.AreEqual(1, tier.VirtualFileSystemEntities.Count);
+            var subTier = tier.VirtualFileSystemEntities.First();
             Assert.AreEqual(subName, subTier.Name);
         }
 
@@ -51,9 +51,9 @@ namespace Peernet.Browser.Tests.Application.VirtualFileSystem
             // Arrange
             var files = new List<ApiFile>();
 
-            var expectedCategories = new List<VirtualFileSystemCategory>
+            var expectedCategories = new List<VirtualFileSystemCoreCategory>
             {
-                new("cat", VirtualFileSystemEntityType.Audio, files)
+                new("cat", VirtualFileSystemEntityType.Audio, new List<VirtualFileSystemEntity>())
             };
 
             fakeBinder.Setup(s => s.Bind(It.IsAny<IEnumerable<ApiFile>>())).Returns(expectedCategories);

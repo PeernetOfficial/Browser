@@ -3,10 +3,41 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
-    xmlns:virtualFileSystem="clr-namespace:Peernet.Browser.Application.VirtualFileSystem;assembly=Peernet.Browser.Application"
+    xmlns:virtualFileSystem="clr-namespace:Peernet.Browser.Application.VirtualFileSystem;assembly=Application"
     xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls"
-    xmlns:extensions="clr-namespace:Peernet.Browser.WPF.Extensions"
     x:Name="DirectoryPage">
+    <views:MvxWpfView.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="VirtualFileSystemTreeTemplate">
+                <Border x:Name="Border" Background="Transparent" Padding="30,4,20,4" Margin="10, 0">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="14" Height="13" Style="{StaticResource VirtualFileSystemCoreEntityImageStyle}" />
+                        <TextBlock Text="{Binding Path=Name}" Margin="7, 2, 0, 0" FontSize="15" FontWeight="Normal">
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="Foreground" Value="{DynamicResource GrayedOutItemBrush}" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                            <Setter Property="Foreground" Value="{DynamicResource MainContentBrush}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </StackPanel>
+                    <Border.InputBindings>
+                        <MouseBinding Command="{Binding DataContext.OpenTreeItemCommand, ElementName=DirectoryPage}" CommandParameter="{Binding}" MouseAction="LeftClick" />
+                    </Border.InputBindings>
+                </Border>
+                <DataTemplate.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter TargetName="Border" Property="Background" Value="{DynamicResource SelectedItemBrush}" />
+                    </Trigger>
+                </DataTemplate.Triggers>
+            </DataTemplate>
+        </ResourceDictionary>
+    </views:MvxWpfView.Resources>
+
 
     <Border Background="{DynamicResource ViewBackgroundBrush}" BorderThickness="0" VerticalAlignment="Stretch" Margin="0, 65, 0, 0">
         <Grid>
@@ -21,38 +52,13 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Column="0" Width="233" HorizontalAlignment="Center" Margin="0,28,0,0">
-                <StackPanel.Resources>
-                    <HierarchicalDataTemplate DataType="{x:Type virtualFileSystem:VirtualFileSystemTier}" ItemsSource="{Binding Path=VirtualFileSystemTiers}">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Width="14" Height="13" Style="{StaticResource VirtualFileSystemEntityImageStyle}" />
-                            <TextBlock x:Name="TreeViewItemText" Text="{Binding Path=Name}" Margin="7, 0, 0, 0">
-                                <TextBlock.InputBindings>
-                                    <MouseBinding Command="{Binding DataContext.UpdateActiveSearchResults, ElementName=DirectoryPage}" CommandParameter="{Binding}" Gesture="LeftDoubleClick" />
-                                </TextBlock.InputBindings>
-                            </TextBlock>
-                        </StackPanel>
-                    </HierarchicalDataTemplate>
-                    <HierarchicalDataTemplate DataType="{x:Type virtualFileSystem:VirtualFileSystemCategory}">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Width="14" Height="13" Style="{StaticResource VirtualFileSystemEntityImageStyle}" />
-                            <TextBlock Text="{Binding Path=Name}" Margin="7, 0, 0, 0">
-                                <TextBlock.InputBindings>
-                                    <MouseBinding Command="{Binding DataContext.UpdateActiveSearchResults, ElementName=DirectoryPage}" CommandParameter="{Binding}" Gesture="LeftDoubleClick" />
-                                </TextBlock.InputBindings>
-                            </TextBlock>
-                        </StackPanel>
-                    </HierarchicalDataTemplate>
-                </StackPanel.Resources>
-                <TreeView BorderThickness="0" HorizontalAlignment="Center" Background="Transparent">
-                    <TreeView.ItemContainerStyle>
-                        <Style TargetType="{x:Type TreeViewItem}">
-                            <EventSetter Event="MouseDoubleClick" Handler="TreeViewItem_OnSelected" />
-                        </Style>
-                    </TreeView.ItemContainerStyle>
-                    <TreeViewItem Template="{DynamicResource TreeViewItemTemplate}" ItemsSource="{Binding VirtualFileSystem.VirtualFileSystemTiers}" Header="Your Files" Foreground="{DynamicResource MainContentBrush}" IsExpanded="True" FontWeight="Medium" FontSize="16" />
-                    <TreeViewItem Template="{DynamicResource TreeViewItemTemplate}" ItemsSource="{Binding VirtualFileSystem.VirtualFileSystemCategories}" Header="Libraries" Foreground="{DynamicResource MainContentBrush}" IsExpanded="True" FontWeight="Medium" FontSize="16" Margin="0, 15, 0, 0" />
-                </TreeView>
+                <TextBlock Text="Your Files" HorizontalAlignment="Center" Foreground="{DynamicResource MainContentBrush}" FontWeight="Medium" FontSize="16" />
+                <ItemsControl ItemsSource="{Binding VirtualFileSystem.VirtualFileSystemTiers}" ItemTemplate="{StaticResource VirtualFileSystemTreeTemplate}" />
+
+                <TextBlock Text="Libraries" HorizontalAlignment="Center" Foreground="{DynamicResource MainContentBrush}" FontWeight="Medium" FontSize="16" Margin="0, 15, 0, 0" />
+                <ItemsControl ItemsSource="{Binding VirtualFileSystem.VirtualFileSystemCategories}" ItemTemplate="{StaticResource VirtualFileSystemTreeTemplate}" />
             </StackPanel>
+
             <Border Grid.Row="0" Grid.Column="1" Width="1" Margin="0,28,0,66" BorderThickness="0">
                 <Border.Background>
                     <SolidColorBrush Color="Black" Opacity="0.1" />
@@ -68,7 +74,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <ItemsControl Grid.Row="0" Grid.Column="0" Margin="63, 40, 0, 0" ItemsSource="{Binding PathElements}">
+                <ItemsControl Grid.Row="0" Grid.Column="0" Margin="63, 40, 0, 0" ItemsSource="{Binding PathElements, UpdateSourceTrigger=PropertyChanged}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Horizontal" />
@@ -76,62 +82,75 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-                                <TextBlock x:Name="separator" Text=">" VerticalAlignment="Center">
+                            <StackPanel x:Name="wrapper" Orientation="Horizontal" VerticalAlignment="Top">
+                                <TextBlock x:Name="separator" Text=" > " FontSize="13" VerticalAlignment="Center">
                                     <TextBlock.Foreground>
                                         <SolidColorBrush Opacity="0.89" Color="{DynamicResource MainTextColor}" />
                                     </TextBlock.Foreground>
                                 </TextBlock>
-                                <Button x:Name="segment" Height="20" Content="{Binding Path=Name}" Click="PathSegment_OnSelected" Style="{StaticResource TreeViewNavigationPathButtonStyle}" VerticalAlignment="Center" Command="{Binding DataContext.UpdateActiveSearchResults, ElementName=DirectoryPage}" CommandParameter="{Binding}" />
+                                <Button x:Name="segment" Height="20" Content="{Binding Path=Name}" Command="{Binding DataContext.OpenDirectoryCommand, ElementName=DirectoryPage}" Style="{StaticResource TreeViewNavigationPathButtonStyle}" VerticalAlignment="Center" CommandParameter="{Binding}" />
                             </StackPanel>
                             <DataTemplate.Triggers>
                                 <DataTrigger Binding="{Binding RelativeSource={RelativeSource PreviousData}}" Value="{x:Null}">
                                     <Setter Property="Visibility" TargetName="separator" Value="Collapsed" />
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding Path=IsVisualTreeVertex}" Value="True">
+                                <DataTrigger Binding="{Binding Path=IsSelected}" Value="True">
                                     <Setter Property="FontWeight" TargetName="segment" Value="SemiBold" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=Name}" Value="Libraries">
+                                    <Setter Property="IsEnabled" TargetName="wrapper" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=Name}" Value="Your Files">
+                                    <Setter Property="IsEnabled" TargetName="wrapper" Value="False" />
                                 </DataTrigger>
                             </DataTemplate.Triggers>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                <Border Grid.Row="0" Grid.Column="1" Width="229" Height="40" HorizontalAlignment="Right" Margin="0,28, 85, 27" BorderThickness="1" CornerRadius="3,3,3,3" BorderBrush="{DynamicResource BorderBrush}">
+                <Border Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Margin="0,28, 85, 27" BorderThickness="1" CornerRadius="3,3,3,3" BorderBrush="{DynamicResource BorderBrush}">
+                    <Border.Background>
+                        <SolidColorBrush Color="{DynamicResource ViewBackgroundColor}" />
+                    </Border.Background>
                     <Grid>
-                        <TextBlock Width="80" Padding="15" FontSize="14" Visibility="{Binding ShowHint, Converter={StaticResource BoolToVisibility}}"
-                                   TextAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Left"
-                                   FontFamily="Inter"
-                                   Background="Transparent"
-                                   Foreground="#B0B0B0" Text="Search">
-                        </TextBlock>
-
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <TextBox Padding="20,0,30,0"
-                                     Text="{Binding SearchInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                     VerticalAlignment="Center"
-                                     TextBlock.FontSize="14"
-                                     Foreground="{DynamicResource MainTextBrush}"
-                                     Background="Transparent"
-                                     CaretBrush="{DynamicResource MainTextBrush}"
-                                     BorderThickness="0"
-                                     extensions:FocusExtension.IsFocused="{Binding ShowSearchBox}">
-                                <TextBox.InputBindings>
-                                    <KeyBinding Command="{Binding Search}" Key="Enter" />
-                                    <MouseBinding MouseAction="LeftClick" Command="{Binding RemoveHint}" />
-                                </TextBox.InputBindings>
-                            </TextBox>
-
-                            <Image Grid.Column="1" Source="{DynamicResource Search_LightDrawingImage}" Height="14.22" Width="14.22" HorizontalAlignment="Right" Margin="0,0,20,0">
-                                <Image.InputBindings>
-                                    <MouseBinding MouseAction="LeftClick" Command="{Binding Search}" />
-                                </Image.InputBindings>
-                            </Image>
-                        </Grid>
+                        <TextBox Width="229" Height="40" Text="{Binding SearchInput, UpdateSourceTrigger=PropertyChanged}"
+                                 VerticalContentAlignment="Center"
+                                 HorizontalContentAlignment="Left"
+                                 Foreground="{DynamicResource MainTextBrush}"
+                                 BorderThickness="0"
+                                 CaretBrush="{DynamicResource MainTextBrush}"
+                                 Padding="20, 0, 0, 0" Cursor="IBeam">
+                            <TextBox.Style>
+                                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Style.Resources>
+                                        <VisualBrush x:Key="BannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                            <VisualBrush.Visual>
+                                                <Label Content="Search" Padding="20, 0, 0, 0" Foreground="{DynamicResource LightGray2Brush}" />
+                                            </VisualBrush.Visual>
+                                        </VisualBrush>
+                                    </Style.Resources>
+                                    <Style.Triggers>
+                                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                            <Setter Property="Background" Value="{StaticResource BannerBrush}" />
+                                        </Trigger>
+                                        <Trigger Property="Text" Value="{x:Null}">
+                                            <Setter Property="Background" Value="{StaticResource BannerBrush}" />
+                                        </Trigger>
+                                        <Trigger Property="IsKeyboardFocused" Value="True">
+                                            <Setter Property="Background" Value="Transparent" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                            <TextBox.InputBindings>
+                                <KeyBinding Command="{Binding SearchCommand}" Key="Enter" />
+                            </TextBox.InputBindings>
+                        </TextBox>
+                        <Image Cursor="Hand" Margin="0 0 13 0" HorizontalAlignment="Right" Source="{DynamicResource SearchDrawingImage}" Height="14.22" Width="14.22">
+                            <Image.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding SearchCommand}" />
+                            </Image.InputBindings>
+                        </Image>
                     </Grid>
                 </Border>
                 <controls:SharedFilesDataGridControl Height="648" Grid.Row="1" Grid.ColumnSpan="2" Margin="37,0,0,0" />

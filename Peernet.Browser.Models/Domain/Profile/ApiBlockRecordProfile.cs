@@ -2,7 +2,7 @@
 {
     public class ApiBlockRecordProfile
     {
-        public int Type { get; set; }
+        public ProfileField Type { get; set; }
 
         public string Text { get; set; }
 

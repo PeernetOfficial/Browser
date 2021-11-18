@@ -14,13 +14,10 @@ namespace Peernet.Browser.WPF.Services
 
         private void SetWindow()
         {
-            if (window == null) window = (MainWindow)System.Windows.Application.Current.MainWindow;
+            window ??= (MainWindow)System.Windows.Application.Current.MainWindow;
         }
 
-        public bool IsMaximized
-        {
-            get => window.WindowState == System.Windows.WindowState.Maximized;
-        }
+        public bool IsMaximized => window.WindowState == System.Windows.WindowState.Maximized;
 
         public void Maximize() => window.WindowState = System.Windows.WindowState.Maximized;
 

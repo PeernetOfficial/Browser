@@ -9,8 +9,14 @@ namespace Peernet.Browser.Models.Presentation.Home
         public bool IsLoading
         {
             get => isLoading;
-            set => SetProperty(ref isLoading, value);
+            set
+            {
+                SetProperty(ref isLoading, value);
+                RaisePropertyChanged(nameof(IsNotLoading));
+            }
         }
+
+        public bool IsNotLoading => !IsLoading;
 
         private string text;
 

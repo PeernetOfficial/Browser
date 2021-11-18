@@ -30,7 +30,7 @@ namespace Peernet.Browser.Infrastructure.Clients
                 parameters.Add("type", type.ToString());
             }
 
-            return await httpExecutor.GetResult<SearchResult>(HttpMethod.Get, GetRelativeRequestPath(string.Empty), parameters);
+            return await httpExecutor.GetResultAsync<SearchResult>(HttpMethod.Get, GetRelativeRequestPath(string.Empty), parameters);
         }
     }
 }

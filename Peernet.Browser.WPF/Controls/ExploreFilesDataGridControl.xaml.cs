@@ -13,12 +13,5 @@ namespace Peernet.Browser.WPF.Controls
         {
             InitializeComponent();
         }
-
-        private void OpenPreview_OnClick(object sender, RoutedEventArgs e)
-        {
-            var downloadModel = (DownloadModel)((FrameworkElement)e.OriginalSource).DataContext;
-            var previewWindow = new FilePreviewWindow(downloadModel, false);
-            previewWindow.Show();
-        }
     }
 }

@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:download="clr-namespace:Peernet.Browser.Models.Domain.Download;assembly=Peernet.Browser.Models"
+             xmlns:download="clr-namespace:Peernet.Browser.Models.Domain.Download;assembly=Models"
              mc:Ignorable="d"
              x:Name="ExploreFilesDataGrid">
     <Grid>
@@ -18,33 +18,37 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Image Width="13.71" Height="20" Grid.Column="0" Style="{StaticResource DownloadItemImageStyle}" />
-                                <TextBlock Grid.Column="1" Text="{Binding File.Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Cursor="Hand" PreviewMouseLeftButtonDown="OpenPreview_OnClick" Style="{StaticResource Underlined}" />
+                                <TextBlock Grid.Column="1" Text="{Binding File.Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Cursor="Hand" Style="{StaticResource Underlined}">
+                                    <TextBlock.InputBindings>
+                                        <MouseBinding Command="{Binding DataContext.OpenCommand, ElementName=ExploreFilesDataGrid}" CommandParameter="{Binding}" MouseAction="LeftClick" />
+                                    </TextBlock.InputBindings>
+                                </TextBlock>
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="DATE" SortMemberPath="Date" Width="Auto">
+                <DataGridTemplateColumn Header="DATE" SortMemberPath="Date" Width="150">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding File.Date, StringFormat=d}" VerticalAlignment="Center" HorizontalAlignment="Left" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="SIZE" SortMemberPath="Size" Width="Auto">
+                <DataGridTemplateColumn Header="SIZE" SortMemberPath="Size" Width="160">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding File.Size}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            <TextBlock Text="{Binding FileSize}" VerticalAlignment="Center" HorizontalAlignment="Left" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="SHARED BY" SortMemberPath="SharedByCount" Width="Auto">
+                <DataGridTemplateColumn Header="SHARED BY" SortMemberPath="SharedByCount" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding File.SharedByCount, StringFormat={}{0} Peers}" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Medium" />
+                            <TextBlock Text="{Binding File.SharedByCount, StringFormat={}{0} Peers}" VerticalAlignment="Center" HorizontalAlignment="Left" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="Auto">
+                <DataGridTemplateColumn Width="90">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid>

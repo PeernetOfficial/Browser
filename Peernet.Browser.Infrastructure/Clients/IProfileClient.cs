@@ -1,18 +1,15 @@
 ﻿using System.Threading.Tasks;
 using Peernet.Browser.Models.Domain.Blockchain;
+using Peernet.Browser.Models.Domain.Profile;
 
 namespace Peernet.Browser.Infrastructure.Clients
 {
     public interface IProfileClient
     {
-        Task<ApiBlockchainBlockStatus> AddUserImage(byte[] content);
-
-        Task<ApiBlockchainBlockStatus> AddUserName(string userName);
+        Task<ApiBlockchainBlockStatus> UpdateUser(string userName, byte[] image);
 
         Task<ApiBlockchainBlockStatus> DeleteUserImage();
 
-        Task<byte[]> GetUserImage();
-
-        Task<string> GetUserName();
+        Task<ApiProfileData> GetProfileData();
     }
 }

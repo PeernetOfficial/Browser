@@ -6,6 +6,6 @@ namespace Peernet.Browser.Application.VirtualFileSystem
 {
     public interface IVirtualFileSystemFactory
     {
-        VirtualFileSystem CreateVirtualFileSystem(IEnumerable<ApiFile> sharedFiles);
+        VirtualFileSystem CreateVirtualFileSystem(IEnumerable<ApiFile> sharedFiles, bool isCurrentSelection = true);
     }
 }

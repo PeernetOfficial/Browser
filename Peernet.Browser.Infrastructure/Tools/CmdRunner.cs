@@ -1,31 +1,42 @@
-﻿using System;
+﻿using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Infrastructure.Services;
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
+using System.Threading;
 
 namespace Peernet.Browser.Infrastructure.Tools
 {
     public class CmdRunner : IRunable, IDisposable
     {
-        private const string processName = "Cmd.exe";
+        private readonly string processName;
         private readonly bool fileExist;
         private Process process;
         private bool wasRun;
+        private readonly ISettingsManager settingsManager;
 
-        public CmdRunner(string path = "")
+        public CmdRunner(ISettingsManager settingsManager)
         {
-            if (Directory.Exists(path))
+            this.settingsManager = settingsManager;
+            var backend = settingsManager.Backend;
+            string fullPath = Path.GetFullPath(backend);
+            processName = Path.GetFileName(fullPath);
+            process = new Process();
+            var apiUrl = $"127.0.0.1:{GetFreeTcpPort()}";
+            settingsManager.ApiUrl = $"http://{apiUrl}";
+            var currentProcess = Process.GetCurrentProcess();
+            process.StartInfo = new ProcessStartInfo($"{fullPath}")
             {
-                process = new Process();
-                process.StartInfo = new ProcessStartInfo($"{path}\\{processName}")
-                {
-                    UseShellExecute = false,
-                    WorkingDirectory = path
-                };
-
-                fileExist = true;
+                UseShellExecute = false,
+                WorkingDirectory = Path.GetDirectoryName(fullPath),
+                Arguments = $"-webapi={apiUrl} -apikey={settingsManager.ApiKey} -watchpid={currentProcess.Id}"
             };
+
+            fileExist = true;
         }
 
         public bool IsRunning { get; private set; }
@@ -54,7 +65,24 @@ namespace Peernet.Browser.Infrastructure.Tools
             {
                 if (wasRun)
                 {
-                    process.Kill();
+                    try
+                    {
+                        new ShutdownService(settingsManager).Shutdown();
+                    }
+                    catch (Exception)
+                    {
+                        // handle
+                    }
+
+                    for (var i = 0; i < 25 && !process.HasExited; i++)
+                    {
+                        Thread.Sleep(200);
+                    }
+
+                    if (!process.HasExited)
+                    {
+                        process.Kill();
+                    }
                 }
 
                 process.Dispose();
@@ -79,6 +107,15 @@ namespace Peernet.Browser.Infrastructure.Tools
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        private static int GetFreeTcpPort()
+        {
+            TcpListener l = new TcpListener(IPAddress.Loopback, 0);
+            l.Start();
+            int port = ((IPEndPoint)l.LocalEndpoint).Port;
+            l.Stop();
+            return port;
         }
     }
 }

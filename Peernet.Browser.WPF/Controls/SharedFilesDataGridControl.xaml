@@ -3,6 +3,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:gl="clr-namespace:System.Globalization;assembly=System.Runtime"
+             xmlns:common="clr-namespace:Peernet.Browser.Application.VirtualFileSystem;assembly=Application"
              mc:Ignorable="d"
              x:Name="SharedFilesDataGrid">
     <Grid>
@@ -16,32 +18,32 @@
                 <DataGridTemplateColumn Header="NAME" SortMemberPath="Name" Width="*" HeaderStyle="{StaticResource ShiftedDataGridColumnHeaderStyle}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Grid Margin="20, 0, 0, 0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Image Width="13.71" Height="20" Grid.Column="0" Style="{StaticResource DownloadItemImageStyle}" />
-                                <TextBlock Grid.Column="1" Text="{Binding Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" PreviewMouseLeftButtonDown="OpenFilePreview_OnClick" Style="{StaticResource Underlined}" />
-                            </Grid>
+                            <StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
+                                <Image Width="13.71" Height="20" Style="{StaticResource VirtualFileSystemEntityImageStyle}" />
+                                <TextBlock Text="{Binding Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource Underlined}" >
+                                    <TextBlock.InputBindings>
+                                        <MouseBinding Command="{Binding DataContext.OpenCommand, ElementName=SharedFilesDataGrid}" CommandParameter="{Binding}" MouseAction="LeftClick" />
+                                    </TextBlock.InputBindings>
+                                </TextBlock>
+                            </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="TYPE" SortMemberPath="Format" Width="Auto">
+                <DataGridTemplateColumn Header="TYPE" SortMemberPath="Format" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Format}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            <TextBlock Text="{Binding Type}" VerticalAlignment="Center" HorizontalAlignment="Left" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="DATE" SortMemberPath="Date" Width="Auto">
+                <DataGridTemplateColumn Header="DATE" SortMemberPath="Date" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Date, StringFormat=d}" VerticalAlignment="Center" HorizontalAlignment="Left" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="Auto">
+                <DataGridTemplateColumn Width="130">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid>
@@ -65,6 +67,15 @@
                                         <ImageBrush ImageSource="{DynamicResource BinDrawingImage}" />
                                     </Button.Background>
                                 </Button>
+                                <Grid.Style>
+                                    <Style TargetType="{x:Type Grid}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Type}" Value="{x:Static common:VirtualFileSystemEntityType.Directory}">
+                                                <Setter Property="Visibility" Value="Hidden" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Grid.Style>
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

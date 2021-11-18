@@ -41,6 +41,7 @@ namespace Peernet.Browser.Application.ViewModels
                 Filters.Reset(true);
                 await Refresh();
             });
+            FakeHideClickCommand = new MvxCommand(FakeHideClick);
             DownloadCommand = new MvxAsyncCommand<SearchResultRowModel>(async (row) => await downloadAction(row));
             DeleteCommand = new MvxAsyncCommand(async () => { await deleteAction(this); });
             RemoveFilterCommand = new MvxAsyncCommand<SearchFiltersType>(async (type) =>
@@ -49,17 +50,15 @@ namespace Peernet.Browser.Application.ViewModels
                 await Refresh();
             });
 
-            ColumnsIconModel = new IconModel(FiltersType.Columns, true, ShowColumnSelection);
+            ColumnsIconModel = new IconModel(FiltersType.Columns, true, OpenCloseColumnsFilter);
             FiltersIconModel = new IconModel(FiltersType.Filters, true, OpenFilters);
-
-            Map.Fill(new[] { new GeoPoint { Longitude = 19, Latitude = 49 }, new GeoPoint { Longitude = 0, Latitude = 0 } });
 
             InitIcons();
             Loader.Set("Searching...");
             _ = Task.Run(async () => await Refresh(false));
         }
 
-        public async override Task Initialize()
+        public override async Task Initialize()
         {
             await Refresh();
             await base.Initialize();
@@ -71,6 +70,8 @@ namespace Peernet.Browser.Application.ViewModels
         public LoadingModel Loader { get; } = new LoadingModel();
         public IconModel ColumnsIconModel { get; }
         public IMvxAsyncCommand DeleteCommand { get; }
+        public IMvxCommand FakeHideClickCommand { get; }
+
         public IMvxAsyncCommand<SearchFiltersType> RemoveFilterCommand { get; }
         public IMvxAsyncCommand<SearchResultRowModel> DownloadCommand { get; }
         public MvxObservableCollection<IconModel> FilterIconModels { get; } = new MvxObservableCollection<IconModel>();
@@ -130,6 +131,12 @@ namespace Peernet.Browser.Application.ViewModels
             await Refresh(false);
         }
 
+        private void FakeHideClick()
+        {
+            ShowColumnsSelector = false;
+            ColumnsIconModel.IsSelected = false;
+        }
+
         private int GetMax() => (FilterIconModels.FirstOrDefault(x => x.IsSelected)?.Count).GetValueOrDefault();
 
         private bool isClearing;
@@ -149,13 +156,21 @@ namespace Peernet.Browser.Application.ViewModels
             {
                 for (var i = TableResult.Count; i < data.Rows.Length; i++)
                 {
+                    data.Rows[i].OnHover = Map.Fill;
                     TableResult.Add(data.Rows[i]);
                 }
             });
 
             RefreshIconFilters(data.Stats, data.Filters.FilterType);
-            if (TableResult.IsNullOrEmpty()) Loader.Set(data.StatusText);
-            else Loader.Reset();
+            if (TableResult.IsNullOrEmpty())
+            {
+                Loader.Set(data.StatusText);
+            }
+            else
+            {
+                Loader.Reset();
+            }
+
             isClearing = false;
         }
 
@@ -200,6 +215,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         private async Task OpenFilters(IconModel m)
         {
+            FakeHideClick();
             var navigationService = Mvx.IoCProvider.Resolve<IMvxNavigationService>();
             GlobalContext.IsMainWindowActive = false;
             GlobalContext.IsProfileMenuVisible = false;
@@ -213,10 +229,10 @@ namespace Peernet.Browser.Application.ViewModels
             stats.Foreach(x => FilterIconModels.Add(new IconModel(x.Key, onClick: OnFilterIconClick, count: x.Value) { IsSelected = x.Key == selected }));
         }
 
-        private async Task ShowColumnSelection(IconModel i)
+        private Task OpenCloseColumnsFilter(IconModel i)
         {
-            ShowColumnsSelector = !ShowColumnsSelector;
-            await Task.CompletedTask;
+            ShowColumnsSelector ^= true;
+            return Task.CompletedTask;
         }
     }
 }

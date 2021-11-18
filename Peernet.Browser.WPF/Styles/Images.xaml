@@ -1,12 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:contexts="clr-namespace:Peernet.Browser.Application.Contexts;assembly=Peernet.Browser.Application"
-                    xmlns:vfs="clr-namespace:Peernet.Browser.Application.VirtualFileSystem;assembly=Peernet.Browser.Application"
-                    xmlns:common="clr-namespace:Peernet.Browser.Models.Domain.Common;assembly=Peernet.Browser.Models"
-                    xmlns:home="clr-namespace:Peernet.Browser.Models.Presentation.Home;assembly=Peernet.Browser.Models"
-                    xmlns:models="clr-namespace:Peernet.Browser.Models.Presentation;assembly=Peernet.Browser.Models">
+                    xmlns:contexts="clr-namespace:Peernet.Browser.Application.Contexts;assembly=Application"
+                    xmlns:vfs="clr-namespace:Peernet.Browser.Application.VirtualFileSystem;assembly=Application"
+                    xmlns:common="clr-namespace:Peernet.Browser.Models.Domain.Common;assembly=Models"
+                    xmlns:home="clr-namespace:Peernet.Browser.Models.Presentation.Home;assembly=Models"
+                    xmlns:models="clr-namespace:Peernet.Browser.Models.Presentation;assembly=Models">
 
-    <Style x:Key="DownloadItemImageStyle" TargetType="{x:Type Image}">
+    <Style x:Key="ItemImageStyle" TargetType="{x:Type Image}">
         <Setter Property="Source" Value="{DynamicResource Document_SelectedDrawingImage}" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding File.Type}" Value="{x:Static common:LowLevelFileType.Text}">
@@ -30,8 +30,40 @@
             <DataTrigger Binding="{Binding File.Type}" Value="{x:Static common:LowLevelFileType.Picture}">
                 <Setter Property="Source" Value="{DynamicResource Picture_SelectedDrawingImage}" />
             </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="DownloadItemImageStyle" TargetType="{x:Type Image}" BasedOn="{StaticResource ItemImageStyle}">
+        <Style.Triggers>
             <DataTrigger Binding="{Binding IsCompleted}" Value="True">
                 <Setter Property="Source" Value="{DynamicResource Tick_ActiveDrawingImage}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="GridFileImageStyle" TargetType="{x:Type Image}">
+        <Setter Property="Source" Value="{DynamicResource Document_SelectedDrawingImage}" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static common:LowLevelFileType.Text}">
+                <Setter Property="Source" Value="{DynamicResource Text_SelectedDrawingImage}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static common:LowLevelFileType.Audio}">
+                <Setter Property="Source" Value="{DynamicResource Audio_SelectedDrawingImage}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static common:LowLevelFileType.Video}">
+                <Setter Property="Source" Value="{DynamicResource Video_SelectedDrawingImage}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static common:LowLevelFileType.Binary}">
+                <Setter Property="Source" Value="{DynamicResource Binary_SelectedDrawingImage}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static common:LowLevelFileType.Ebook}">
+                <Setter Property="Source" Value="{DynamicResource Ebook_SelectedDrawingImage}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static common:LowLevelFileType.Document}">
+                <Setter Property="Source" Value="{DynamicResource Document_SelectedDrawingImage}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static common:LowLevelFileType.Picture}">
+                <Setter Property="Source" Value="{DynamicResource Picture_SelectedDrawingImage}" />
             </DataTrigger>
         </Style.Triggers>
     </Style>
@@ -94,7 +126,42 @@
                 <Setter Property="Source" Value="{DynamicResource BinaryDrawingImage}" />
             </DataTrigger>
             <DataTrigger Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.Directory}">
-                <Setter Property="Source" Value="{DynamicResource FileDrawingImage}" />
+                <Setter Property="Source" Value="{DynamicResource DirectoryDrawingImage}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.Ebook}">
+                <Setter Property="Source" Value="{DynamicResource EbookDrawingImage}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.Document}">
+                <Setter Property="Source" Value="{DynamicResource DocumentDrawingImage}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.Recent}">
+                <Setter Property="Source" Value="{DynamicResource RecentDrawingImage}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.Picture}">
+                <Setter Property="Source" Value="{DynamicResource PictureDrawingImage}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="VirtualFileSystemCoreEntityImageStyle" TargetType="{x:Type Image}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.Text}">
+                <Setter Property="Source" Value="{DynamicResource TextDrawingImage}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.All}">
+                <Setter Property="Source" Value="{DynamicResource AllFilesDrawingImage}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.Audio}">
+                <Setter Property="Source" Value="{DynamicResource AudioDrawingImage}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.Video}">
+                <Setter Property="Source" Value="{DynamicResource VideoDrawingImage}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.Binary}">
+                <Setter Property="Source" Value="{DynamicResource BinaryDrawingImage}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.Directory}">
+                <Setter Property="Source" Value="{DynamicResource DirectoryDrawingImage}" />
             </DataTrigger>
             <DataTrigger Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.Ebook}">
                 <Setter Property="Source" Value="{DynamicResource EbookDrawingImage}" />

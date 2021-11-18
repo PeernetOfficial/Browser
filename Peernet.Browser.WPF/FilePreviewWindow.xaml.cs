@@ -1,7 +1,9 @@
-﻿using MvvmCross;
-using MvvmCross.Platforms.Wpf.Views;
-using Peernet.Browser.Application.Download;
-using Peernet.Browser.Models.Presentation.Footer;
+﻿using System;
+using MvvmCross.Platforms.Wpf.Presenters.Attributes;
+using MvvmCross.Presenters;
+using MvvmCross.Presenters.Attributes;
+using MvvmCross.ViewModels;
+using Peernet.Browser.Application.ViewModels;
 using System.Windows;
 using System.Windows.Input;
 
@@ -10,55 +12,44 @@ namespace Peernet.Browser.WPF
     /// <summary>
     /// Interaction logic for FilePreviewWindow.xaml
     /// </summary>
-    public partial class FilePreviewWindow : MvxWindow
+    [MvxWindowPresentation]
+    public partial class FilePreviewWindow : IMvxOverridePresentationAttribute
     {
-        private readonly DownloadModel model;
-
-        public static readonly DependencyProperty IsEditableProperty =
-            DependencyProperty.Register("IsEditable", typeof(bool),
-                typeof(FilePreviewWindow), null);
-
-        public bool IsEditable
+        public FilePreviewWindow()
         {
-            get => (bool)GetValue(IsEditableProperty);
-            set => SetValue(IsEditableProperty, value);
-        }
-
-        public FilePreviewWindow(DownloadModel model, bool isEditable)
-        {
+            ContentRendered += Window_ContentRendered;
+            Initialized += Window_Initialized;
             InitializeComponent();
             MouseDown += Window_MouseDown;
-            this.model = model;
-            IsEditable = isEditable;
-            Content = model;
+
+            WindowStartupLocation = App.Current.MainWindow.WindowStartupLocation;
+            //Owner = App.Current.MainWindow;
         }
 
-        private void Minimize_OnClick(object sender, RoutedEventArgs e)
+
+        private void Window_ContentRendered(object sender, EventArgs e)
         {
-            WindowState = WindowState.Minimized;
+            this.Topmost = false;
         }
 
-        private void Maximize_OnClick(object sender, RoutedEventArgs e)
+        private void Window_Initialized(object sender, EventArgs e)
         {
-            if (WindowState == WindowState.Maximized)
-            {
-                WindowState = WindowState.Normal;
-            }
-            else
-            {
-                WindowState = WindowState.Maximized;
-            }
+            this.Topmost = true;
+        }
+        public MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request)
+        {
+            var instanceRequest = request as MvxViewModelInstanceRequest;
+            var viewModel = instanceRequest?.ViewModelInstance as FilePreviewViewModel;
 
+            return new MvxWindowPresentationAttribute
+            {
+                Identifier = $"{nameof(FilePreviewWindow)}.{viewModel?.File.Name}"
+            };
         }
 
         private void Close_OnClick(object sender, RoutedEventArgs e)
         {
             Close();
-        }
-
-        private void Download_OnClick(object sender, RoutedEventArgs e)
-        {
-            Mvx.IoCProvider.Resolve<IDownloadManager>().QueueUpDownload(model);
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -67,6 +58,11 @@ namespace Peernet.Browser.WPF
             {
                 DragMove();
             }
+        }
+
+        private void UIElement_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

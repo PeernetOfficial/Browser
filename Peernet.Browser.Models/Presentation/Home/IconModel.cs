@@ -8,7 +8,8 @@ namespace Peernet.Browser.Models.Presentation.Home
     public class IconModel : MvxNotifyPropertyChanged
     {
         private readonly bool showCount;
-        public FiltersType FilterType { get; }
+
+        private bool isSelected;
 
         public IconModel(FiltersType filterType, bool showArrow = false, Func<IconModel, Task> onClick = null, int? count = null)
         {
@@ -19,23 +20,17 @@ namespace Peernet.Browser.Models.Presentation.Home
             ShowArrow = showArrow;
             SelectCommand = new MvxAsyncCommand(async () =>
             {
-                IsSelected = !IsSelected;
-                await onClick?.Invoke(this);
+                IsSelected ^= true;
+                if (onClick != null)
+                {
+                    await onClick.Invoke(this);
+                }
             });
         }
 
         public int Count { get; }
 
-        public bool ShowArrow { get; }
-
-        private void RefreshName()
-        {
-            var surfix = showCount ? $" ({Count})" : "";
-            Name = $"{FilterType}{surfix}";
-            RaisePropertyChanged(nameof(Name));
-        }
-
-        private bool isSelected;
+        public FiltersType FilterType { get; }
 
         public bool IsSelected
         {
@@ -46,5 +41,14 @@ namespace Peernet.Browser.Models.Presentation.Home
         public string Name { get; private set; }
 
         public IMvxAsyncCommand SelectCommand { get; }
+
+        public bool ShowArrow { get; }
+
+        private void RefreshName()
+        {
+            var suffix = showCount ? $" ({Count})" : "";
+            Name = $"{FilterType}{suffix}";
+            RaisePropertyChanged(nameof(Name));
+        }
     }
 }

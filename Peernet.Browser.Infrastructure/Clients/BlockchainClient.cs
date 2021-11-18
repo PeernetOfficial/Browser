@@ -23,30 +23,31 @@ namespace Peernet.Browser.Infrastructure.Clients
         public async Task<ApiBlockchainBlockStatus> AddFiles(ApiBlockchainAddFiles files)
         {
             var content = JsonContent.Create(files);
-            return await httpExecutor.GetResult<ApiBlockchainBlockStatus>(HttpMethod.Post, GetRelativeRequestPath("file/add"), content: content);
+            return await httpExecutor.GetResultAsync<ApiBlockchainBlockStatus>(HttpMethod.Post, GetRelativeRequestPath("file/add"), content: content);
         }
 
-        public async Task DeleteFile(ApiFile apiFile)
+        public async Task<ApiBlockchainBlockStatus> DeleteFile(ApiFile apiFile)
         {
             var content = JsonContent.Create(new ApiBlockchainAddFiles { Files = new List<ApiFile> { apiFile } });
-            await httpExecutor.GetResult<ApiBlockchainBlockStatus>(HttpMethod.Post,
+            return await httpExecutor.GetResultAsync<ApiBlockchainBlockStatus>(HttpMethod.Post,
                 GetRelativeRequestPath("file/delete"), content: content);
         }
 
-        public async Task UpdateFile(ApiFile apiFile)
+        public async Task<ApiBlockchainBlockStatus> UpdateFile(ApiFile apiFile)
         {
             var content = JsonContent.Create(new ApiBlockchainAddFiles { Files = new List<ApiFile> { apiFile } });
-            await httpExecutor.GetResult<ApiBlockchainBlockStatus>(HttpMethod.Post, GetRelativeRequestPath("file/update"), content: content);
+            var result = await httpExecutor.GetResultAsync<ApiBlockchainBlockStatus>(HttpMethod.Post, GetRelativeRequestPath("file/update"), content: content);
+            return result;
         }
 
         public async Task<ApiBlockchainHeader> GetHeader()
         {
-            return await httpExecutor.GetResult<ApiBlockchainHeader>(HttpMethod.Get, GetRelativeRequestPath("header"));
+            return await httpExecutor.GetResultAsync<ApiBlockchainHeader>(HttpMethod.Get, GetRelativeRequestPath("header"));
         }
 
         public async Task<ApiBlockchainAddFiles> GetList()
         {
-            return await httpExecutor.GetResult<ApiBlockchainAddFiles>(HttpMethod.Get, GetRelativeRequestPath("file/list"));
+            return await httpExecutor.GetResultAsync<ApiBlockchainAddFiles>(HttpMethod.Get, GetRelativeRequestPath("file/list"));
         }
 
         public async Task<ApiBlockchainBlock> ReadBlock(int block)
@@ -56,7 +57,7 @@ namespace Peernet.Browser.Infrastructure.Clients
                 [nameof(block)] = block.ToString()
             };
 
-            return await httpExecutor.GetResult<ApiBlockchainBlock>(HttpMethod.Get,
+            return await httpExecutor.GetResultAsync<ApiBlockchainBlock>(HttpMethod.Get,
                 GetRelativeRequestPath("read"),
                 parameters);
         }

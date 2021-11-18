@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Peernet.Browser.WPF.Extensions;
 
 namespace Peernet.Browser.WPF.Controls
 {
@@ -15,6 +16,22 @@ namespace Peernet.Browser.WPF.Controls
         public SearchResultTabContent()
         {
             InitializeComponent();
+            App.MainWindowClicked += OnMainWindowClicked;
+        }
+
+        private void OnMainWindowClicked(object sender, RoutedEventArgs e)
+        {
+            var filterIconControl = ((DependencyObject)e.OriginalSource).FindParent<FilterIconControl>();
+            var filterType = (filterIconControl?.DataContext as IconModel)?.FilterType;
+            var columnsControl = ((DependencyObject)e.OriginalSource).FindParent<ColumnsSelectorControl>();
+            if (columnsControl == null && filterType == null)
+            {
+                if (DataContext is SearchTabElementViewModel viewModel)
+                {
+                    viewModel.ShowColumnsSelector = false;
+                    viewModel.ColumnsIconModel.IsSelected = false;
+                }
+            }
         }
 
         private async void DataGrid_Sorting(object sender, DataGridSortingEventArgs e)
@@ -34,6 +51,7 @@ namespace Peernet.Browser.WPF.Controls
             var h = 48;
             var top = 140;
             var t = sender as FrameworkElement;
+            t.Tag = true;
             var position = t.TransformToAncestor(FileGrid).Transform(new Point(0d, 0d));
             var transformation = position.Y - h;
             MapPanel.Visibility = Visibility.Visible;
@@ -44,6 +62,8 @@ namespace Peernet.Browser.WPF.Controls
         private void TextBlock_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
             MapPanel.Visibility = Visibility.Collapsed;
+            var t = sender as FrameworkElement;
+            t.Tag = false;
         }
 
         private async void FileGrid_ScrollChanged(object sender, ScrollChangedEventArgs e)

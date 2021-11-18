@@ -12,9 +12,9 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             this.binder = binder;
         }
 
-        public VirtualFileSystem CreateVirtualFileSystem(IEnumerable<ApiFile> sharedFiles)
+        public VirtualFileSystem CreateVirtualFileSystem(IEnumerable<ApiFile> sharedFiles, bool isCurrentSelection = true)
         {
-            return new VirtualFileSystem(sharedFiles, binder);
+            return new VirtualFileSystem(sharedFiles, binder, isCurrentSelection);
         }
     }
 }

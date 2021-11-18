@@ -5,7 +5,9 @@ using Peernet.Browser.Application.VirtualFileSystem;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using MvvmCross.Navigation;
 using Peernet.Browser.Application.Services;
+using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Models.Presentation.Footer;
 
 namespace Peernet.Browser.Application.ViewModels
@@ -15,13 +17,15 @@ namespace Peernet.Browser.Application.ViewModels
         public ObservableCollection<DownloadModel> activeSearchResults;
         private readonly IExploreService exploreService;
         private readonly IDownloadManager downloadManager;
-        private static readonly List<VirtualFileSystemCategory> categoryTypes = GetCategoryTypes();
+        private readonly IMvxNavigationService navigationService;
+        private static readonly List<VirtualFileSystemCoreCategory> categoryTypes = GetCategoryTypes();
         private IReadOnlyCollection<DownloadModel> sharedFiles;
 
-        public ExploreViewModel(IExploreService exploreService, IDownloadManager downloadManager)
+        public ExploreViewModel(IExploreService exploreService, IDownloadManager downloadManager, IMvxNavigationService navigationService)
         {
             this.exploreService = exploreService;
             this.downloadManager = downloadManager;
+            this.navigationService = navigationService;
         }
 
         public ObservableCollection<DownloadModel> ActiveSearchResults
@@ -30,7 +34,7 @@ namespace Peernet.Browser.Application.ViewModels
             set => SetProperty(ref activeSearchResults, value);
         }
 
-        public ObservableCollection<VirtualFileSystemCategory> CategoryTypes => new(categoryTypes);
+        public ObservableCollection<VirtualFileSystemCoreCategory> CategoryTypes => new(categoryTypes);
 
         public IMvxAsyncCommand<DownloadModel> DownloadCommand =>
             new MvxAsyncCommand<DownloadModel>(
@@ -46,8 +50,16 @@ namespace Peernet.Browser.Application.ViewModels
                     await downloadManager.ResumeDownload(downloadModel.Id);
                 });
 
-        public IMvxAsyncCommand<VirtualFileSystemCategory> SelectCategoryCommand =>
-            new MvxAsyncCommand<VirtualFileSystemCategory>(
+        public IMvxCommand<DownloadModel> OpenCommand =>
+            new MvxCommand<DownloadModel>(
+                model =>
+                {
+                    var param = new FilePreviewViewModelParameter(model.File, false, true, "Download");
+                    navigationService.Navigate<FilePreviewViewModel, FilePreviewViewModelParameter>(param);
+                });
+
+        public IMvxAsyncCommand<VirtualFileSystemCoreCategory> SelectCategoryCommand =>
+            new MvxAsyncCommand<VirtualFileSystemCoreCategory>(
                 async category =>
                 {
                     if (category.IsSelected)
@@ -70,14 +82,14 @@ namespace Peernet.Browser.Application.ViewModels
             await base.Initialize();
         }
 
-        private static VirtualFileSystemCategory GetCategory(VirtualFileSystemEntityType type)
+        private static VirtualFileSystemCoreCategory GetCategory(VirtualFileSystemEntityType type)
         {
-            return new VirtualFileSystemCategory(type.ToString(), type, null);
+            return new VirtualFileSystemCoreCategory(type.ToString(), type, new List<VirtualFileSystemEntity>());
         }
 
-        private static List<VirtualFileSystemCategory> GetCategoryTypes()
+        private static List<VirtualFileSystemCoreCategory> GetCategoryTypes()
         {
-            return new List<VirtualFileSystemCategory>
+            return new List<VirtualFileSystemCoreCategory>
             {
                 GetCategory(VirtualFileSystemEntityType.Document),
                 GetCategory(VirtualFileSystemEntityType.Video),

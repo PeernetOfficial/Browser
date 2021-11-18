@@ -20,13 +20,12 @@ namespace Peernet.Browser.Infrastructure.Services
             blockchainClient = new BlockchainClient(settingsManager);
         }
 
-        // todo: it should consume some presentation model
-        public async Task DeleteFile(ApiFile apiFile)
+        public async Task<ApiBlockchainBlockStatus> DeleteFile(ApiFile apiFile)
         {
-            await blockchainClient.DeleteFile(apiFile);
+            return await blockchainClient.DeleteFile(apiFile);
         }
 
-        public async Task UpdateFile(FileModel fileModel)
+        public async Task<ApiBlockchainBlockStatus> UpdateFile(FileModel fileModel)
         {
             var apiFile = new ApiFile
             {
@@ -42,7 +41,7 @@ namespace Peernet.Browser.Infrastructure.Services
                 Format = fileModel.Format
             };
 
-            await blockchainClient.UpdateFile(apiFile);
+            return await blockchainClient.UpdateFile(apiFile);
         }
 
         public async Task<ApiBlockchainHeader> GetHeader()
@@ -52,25 +51,27 @@ namespace Peernet.Browser.Infrastructure.Services
 
         public async Task<List<ApiFile>> GetList()
         {
-            return (await blockchainClient.GetList()).Files;
+            return (await blockchainClient.GetList())?.Files ?? new List<ApiFile>();
         }
 
-        public async Task AddFiles(IEnumerable<FileModel> files)
+        public async Task<ApiBlockchainBlockStatus> AddFiles(IEnumerable<FileModel> files)
         {
             var data = files
-                .Select(x =>
+                .Select(file =>
                     new ApiFile
                     {
-                        Description = x.Description ?? string.Empty,
-                        Name = x.FileName,
-                        Folder = x.Directory,
+                        Description = file.Description ?? string.Empty,
+                        Name = file.FileName,
+                        Folder = file.Directory,
                         Date = DateTime.Now,
-                        Hash = x.Hash,
-                        MetaData = new List<ApiFileMetadata>()
+                        Hash = file.Hash,
+                        MetaData = new List<ApiFileMetadata>(),
+                        Format = file.Format,
+                        Type = file.Type
                     })
                 .ToList();
 
-            await blockchainClient.AddFiles(new ApiBlockchainAddFiles { Files = data });
+            return await blockchainClient.AddFiles(new ApiBlockchainAddFiles { Files = data });
         }
     }
 }

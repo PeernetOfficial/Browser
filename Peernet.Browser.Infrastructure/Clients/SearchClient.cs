@@ -23,7 +23,7 @@ namespace Peernet.Browser.Infrastructure.Clients
 
         public async Task<SearchResult> GetSearchResult(SearchGetRequest searchGetRequest)
         {
-            return await httpExecutor.GetResult<SearchResult>(HttpMethod.Get, GetRelativeRequestPath("result"), GetParams(searchGetRequest));
+            return await httpExecutor.GetResultAsync<SearchResult>(HttpMethod.Get, GetRelativeRequestPath("result"), GetParams(searchGetRequest));
         }
 
         public async Task<SearchStatistic> SearchResultStatistics(string id)
@@ -32,12 +32,12 @@ namespace Peernet.Browser.Infrastructure.Clients
             {
                 [nameof(id)] = id
             };
-            return await httpExecutor.GetResult<SearchStatistic>(HttpMethod.Get, GetRelativeRequestPath("statistic"), parameters);
+            return await httpExecutor.GetResultAsync<SearchStatistic>(HttpMethod.Get, GetRelativeRequestPath("statistic"), parameters);
         }
 
         public async Task<SearchRequestResponse> SubmitSearch(SearchRequest searchRequest)
         {
-            return await httpExecutor.GetResult<SearchRequestResponse>(HttpMethod.Post, GetRelativeRequestPath(string.Empty), content: JsonContent.Create(searchRequest));
+            return await httpExecutor.GetResultAsync<SearchRequestResponse>(HttpMethod.Post, GetRelativeRequestPath(string.Empty), content: JsonContent.Create(searchRequest));
         }
 
         public async Task<string> TerminateSearch(string id)
@@ -47,7 +47,7 @@ namespace Peernet.Browser.Infrastructure.Clients
                 [nameof(id)] = id,
             };
 
-            return await httpExecutor.GetResult<string>(HttpMethod.Get, GetRelativeRequestPath("terminate"), parameters);
+            return await httpExecutor.GetResultAsync<string>(HttpMethod.Get, GetRelativeRequestPath("terminate"), parameters);
         }
 
         private Dictionary<string, string> GetParams(object obj)
