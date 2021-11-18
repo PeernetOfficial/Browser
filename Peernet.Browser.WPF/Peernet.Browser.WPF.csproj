@@ -8,7 +8,10 @@
 	<ApplicationIcon>peernet.ico</ApplicationIcon>
   </PropertyGroup>
 
-
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	<DebugType>None</DebugType>
+	<DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Properties\**" />
     <EmbeddedResource Remove="Properties\**" />

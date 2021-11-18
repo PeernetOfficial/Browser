@@ -1,4 +1,5 @@
 ﻿using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Infrastructure.Services;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -7,9 +8,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-using Peernet.Browser.Application.Services;
-using Peernet.Browser.Infrastructure.Services;
-using Peernet.Browser.Models.Domain.Shutdown;
 
 namespace Peernet.Browser.Infrastructure.Tools
 {
@@ -30,11 +28,12 @@ namespace Peernet.Browser.Infrastructure.Tools
             process = new Process();
             var apiUrl = $"127.0.0.1:{GetFreeTcpPort()}";
             settingsManager.ApiUrl = $"http://{apiUrl}";
+            var currentProcess = Process.GetCurrentProcess();
             process.StartInfo = new ProcessStartInfo($"{fullPath}")
             {
                 UseShellExecute = false,
                 WorkingDirectory = Path.GetDirectoryName(fullPath),
-                Arguments = $"-webapi={apiUrl} -apikey={settingsManager.ApiKey}"
+                Arguments = $"-webapi={apiUrl} -apikey={settingsManager.ApiKey} -watchpid={currentProcess.Id}"
             };
 
             fileExist = true;

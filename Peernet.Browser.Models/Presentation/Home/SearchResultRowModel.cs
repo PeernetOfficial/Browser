@@ -32,7 +32,10 @@ namespace Peernet.Browser.Models.Presentation.Home
             set
             {
                 isHovered = value;
-                if (IsHovered) OnHover?.Invoke(Points);
+                if (IsHovered)
+                {
+                    OnHover?.Invoke(Points);
+                }
             }
         }
 
