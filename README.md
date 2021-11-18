@@ -38,7 +38,7 @@ Although Browser makes sure backend terminated and kills the process if it didn'
 Aplication can be setup in several ways.
 
 ### Automatic setup
-Automatic setup involves Windows Installer setup from __MSI__ file. For more details see [Peernet Browser Installer Project](https://github.com/PeernetOfficial/BrowserSetup/Readme.md)
+Automatic setup involves Windows Installer setup from __MSI__ file. For more details see [Peernet Browser Installer Project](https://github.com/PeernetOfficial/BrowserSetup)
 
 ### Manual setup
 Prior to first manual boot following steps are required:
