@@ -6,6 +6,9 @@ using System.Globalization;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
+using MvvmCross;
+using MvvmCross.Navigation;
+using Peernet.Browser.Application.ViewModels;
 
 namespace Peernet.Browser.WPF
 {
@@ -28,14 +31,6 @@ namespace Peernet.Browser.WPF
             Thread.CurrentThread.CurrentUICulture = ci;
         }
 
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                DragMove();
-            }
-        }
-
         protected override void OnContentChanged(object oldContent, object newContent)
         {
             if (newContent is IModal)
@@ -50,6 +45,20 @@ namespace Peernet.Browser.WPF
         private void MainWindow_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             App.RaiseMainWindowClick(sender, e);
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                DragMove();
+            }
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            Mvx.IoCProvider.Resolve<IMvxNavigationService>().Navigate<HomeViewModel>();
+            GlobalContext.CurrentViewModel = nameof(HomeViewModel);
         }
     }
 }

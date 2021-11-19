@@ -38,8 +38,22 @@
                     <ContentControl Content="{Binding Path=(contexts:GlobalContext.Modal)}" />
                 </Border>
 
-                <Image Visibility="{Binding Path=(contexts:GlobalContext.IsLogoVisible), Converter={StaticResource BoolToVisibility}}" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="70 0" Source="{DynamicResource LogoAbbreviationDrawingImage}" Height="50" />
                 <controls:ButtonsControl Grid.Row="0" InitializeOnLoad="true" />
+                <Button Panel.ZIndex="1"
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Visibility="{Binding Path=(contexts:GlobalContext.IsLogoVisible), Converter={StaticResource BoolToVisibility}}"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Margin="49, 10, 0, 0"
+                        Height="92" Width="70"
+                        Padding="20"
+                        Style="{DynamicResource ButtonBaseStyle}"
+                        Click="ButtonBase_OnClick">
+                    <Button.Background>
+                        <ImageBrush ImageSource="{DynamicResource LogoAbbreviationDrawingImage}" />
+                    </Button.Background>
+                </Button>
                 <controls:NavigationBarControl Panel.ZIndex="1" Margin="0 12 0 0" HorizontalAlignment="Right" Grid.Row="1" InitializeOnLoad="true" IsEnabled="{Binding Path=(contexts:GlobalContext.IsConnected)}" />
                 <controls:FooterControl Grid.Row="2" InitializeOnLoad="true" DockPanel.Dock="Bottom" Panel.ZIndex="2" IsEnabled="{Binding Path=(contexts:GlobalContext.IsConnected)}" />
                 <ContentPresenter Grid.Row="1" Content="{Binding}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="{Binding Path=(contexts:GlobalContext.IsConnected), Converter={StaticResource BoolToVisibility}}"/>
