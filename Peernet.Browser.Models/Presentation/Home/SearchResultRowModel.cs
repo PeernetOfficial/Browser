@@ -1,5 +1,6 @@
-﻿using System;
-using Peernet.Browser.Models.Domain.Common;
+﻿using Peernet.Browser.Models.Domain.Common;
+using System;
+using System.Collections.Generic;
 
 namespace Peernet.Browser.Models.Presentation.Home
 {
@@ -16,7 +17,7 @@ namespace Peernet.Browser.Models.Presentation.Home
             Size = $"{source.Size}";
             SharedBy = source.SharedByCount;
             //FlameIsVisible = source.SharedByCount > 15;
-            Points = Array.Empty<GeoPoint>();// { new GeoPoint { Longitude = 19, Latitude = 49 }, new GeoPoint { Longitude = 0, Latitude = 0 } };
+            Points = ParseGeoIPs(source.SharedByGeoIP);
         }
 
         public DateTime Date { get; }
@@ -40,8 +41,8 @@ namespace Peernet.Browser.Models.Presentation.Home
         }
 
         public string Name { get; }
-        public Action<GeoPoint[]> OnHover { get; set; }
-        public GeoPoint[] Points { get; }
+        public Action<List<GeoPoint>> OnHover { get; set; }
+        public List<GeoPoint> Points { get; }
         public int SharedBy { get; }
         public string Size { get; }
 
@@ -64,6 +65,25 @@ namespace Peernet.Browser.Models.Presentation.Home
                 default:
                     return DataGridSortingNameEnum.None;
             }
+        }
+
+        private List<GeoPoint> ParseGeoIPs(string geoIPs)
+        {
+            var geoPoints = new List<GeoPoint>();
+            if (geoIPs == null)
+            {
+                return geoPoints;
+            }
+
+            var points = geoIPs.Split("\n");
+
+            foreach (var point in points)
+            {
+                var latitudeLongitude = point.Split(",");
+                geoPoints.Add(new GeoPoint(double.Parse(latitudeLongitude[0]), double.Parse(latitudeLongitude[1])));
+            }
+
+            return geoPoints;
         }
     }
 }
