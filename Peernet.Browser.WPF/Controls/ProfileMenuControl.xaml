@@ -5,10 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls"
-    mc:Ignorable="d"
-    d:DesignHeight="40"
-    d:DesignWidth="1441"
-    x:Name="ProfileMenu">
+    mc:Ignorable="d">
     <UserControl.Resources>
         <ResourceDictionary>
             <ImageBrush x:Key="DefaultProfileImage" ImageSource="{DynamicResource DefaultProfileImageDrawingImage}" />
@@ -48,12 +45,12 @@
                     </Border.InputBindings>
                 </Border>
                 <StackPanel Grid.Column="1" Margin="8,0,0,0" Orientation="Horizontal">
-                    <TextBlock Foreground="{DynamicResource MainContentBrush}" FontFamily="Inter" FontSize="14" FontWeight="Medium" Text="{Binding UserContext.User.Name}" Cursor="Hand">
+                    <TextBlock Foreground="{DynamicResource MainContentBrush}" FontFamily="Inter" FontSize="14" FontWeight="Medium" Text="{Binding UserContext.User.Name}" Cursor="Hand" TextTrimming="CharacterEllipsis" Width="90">
                         <TextBlock.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding EditProfileCommand}" />
                         </TextBlock.InputBindings>
                     </TextBlock>
-                    <Button Style="{StaticResource ButtonBaseStyle}" Padding="7" VerticalAlignment="Top" HorizontalAlignment="Left" Width="30" Height="30" Margin="31,-7,0,0" Command="{Binding EditProfileCommand}">
+                    <Button Padding="7" VerticalAlignment="Top" HorizontalAlignment="Right" Width="30" Height="30" Margin="0,-7,0,0" Command="{Binding EditProfileCommand}" Style="{StaticResource ButtonBaseStyle}">
                         <Button.Background>
                             <ImageBrush ImageSource="{DynamicResource EditDrawingImage}" />
                         </Button.Background>

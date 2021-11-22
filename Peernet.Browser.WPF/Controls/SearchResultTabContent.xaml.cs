@@ -46,25 +46,25 @@ namespace Peernet.Browser.WPF.Controls
             }
         }
 
-        private void TextBlock_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            var h = 48;
-            var top = 140;
-            var t = sender as FrameworkElement;
-            t.Tag = true;
-            var position = t.TransformToAncestor(FileGrid).Transform(new Point(0d, 0d));
-            var transformation = position.Y - h;
-            MapPanel.Visibility = Visibility.Visible;
-            var m = new Thickness(MapPanel.Margin.Left, top + transformation, MapPanel.Margin.Right, MapPanel.Margin.Bottom);
-            MapPanel.Margin = m;
-        }
+        //private void TextBlock_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        //{
+        //    var h = 48;
+        //    var top = 140;
+        //    var t = sender as FrameworkElement;
+        //    t.Tag = true;
+        //    var position = t.TransformToAncestor(FileGrid).Transform(new Point(0d, 0d));
+        //    var transformation = position.Y - h;
+        //    MapPanel.Visibility = Visibility.Visible;
+        //    var m = new Thickness(MapPanel.Margin.Left, top + transformation, MapPanel.Margin.Right, MapPanel.Margin.Bottom);
+        //    MapPanel.Margin = m;
+        //}
 
-        private void TextBlock_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            MapPanel.Visibility = Visibility.Collapsed;
-            var t = sender as FrameworkElement;
-            t.Tag = false;
-        }
+        //private void TextBlock_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        //{
+        //    MapPanel.Visibility = Visibility.Collapsed;
+        //    var t = sender as FrameworkElement;
+        //    t.Tag = false;
+        //}
 
         private async void FileGrid_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {

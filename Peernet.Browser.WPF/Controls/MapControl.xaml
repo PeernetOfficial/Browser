@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="Peernet.Browser.WPF.Controls.MapControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d">
+    <Border Background="White"
+            BorderBrush="{DynamicResource LightGray3Brush}">
+        <!--https://stackoverflow.com/questions/22324359/add-n-rectangles-to-canvas-with-mvvm-in-wpf-->
+        <ItemsControl ItemsSource="{Binding Points}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas Width="{Binding Map.Width}" Height="{Binding Map.Height}" Style="{DynamicResource MapCanvas}" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemContainerStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="Canvas.Left" Value="{Binding Longitude}" />
+                    <Setter Property="Canvas.Bottom" Value="{Binding Latitude}" />
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Ellipse Width="10" Height="10" Fill="#FFF629" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Border>
+</UserControl>

@@ -75,7 +75,6 @@ namespace Peernet.Browser.Application.ViewModels
         public IMvxAsyncCommand<SearchFiltersType> RemoveFilterCommand { get; }
         public IMvxAsyncCommand<SearchResultRowModel> DownloadCommand { get; }
         public MvxObservableCollection<IconModel> FilterIconModels { get; } = new MvxObservableCollection<IconModel>();
-        public MapModel Map { get; } = new MapModel { Width = 318, Height = 231 };
         public FiltersModel Filters { get; }
         public IconModel FiltersIconModel { get; }
 
@@ -156,7 +155,6 @@ namespace Peernet.Browser.Application.ViewModels
             {
                 for (var i = TableResult.Count; i < data.Rows.Length; i++)
                 {
-                    data.Rows[i].OnHover = Map.Fill;
                     TableResult.Add(data.Rows[i]);
                 }
             });

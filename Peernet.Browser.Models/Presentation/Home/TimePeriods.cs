@@ -11,7 +11,7 @@ namespace Peernet.Browser.Models.Presentation.Home
         LastWeek,
 
         [Description("Last Month")]
-        LastMounth,
+        LastMonth,
 
         [Description("Last Year")]
         LastYear,

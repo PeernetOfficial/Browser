@@ -38,7 +38,7 @@ namespace Peernet.Browser.Models.Presentation.Home
                     from = from.AddDays(-7);
                     break;
 
-                case TimePeriods.LastMounth:
+                case TimePeriods.LastMonth:
                     from = from.AddDays(-30);
                     break;
 

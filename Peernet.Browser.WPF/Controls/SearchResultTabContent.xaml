@@ -19,30 +19,7 @@
         </Grid.RowDefinitions>
         <ContentControl Content="{StaticResource ProxyElement}" Visibility="Collapsed" />
 
-        <Border Visibility="Collapsed" Margin="0 120 230 0" Name="MapPanel" Grid.RowSpan="5"
-                HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent"
-                BorderThickness="1" Panel.ZIndex="6"
-                BorderBrush="{DynamicResource LightGray3Brush}">
-            <!--https://stackoverflow.com/questions/22324359/add-n-rectangles-to-canvas-with-mvvm-in-wpf-->
-            <ItemsControl ItemsSource="{Binding Map.Points}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <Canvas Width="{Binding Map.Width}" Height="{Binding Map.Height}" Style="{DynamicResource MapCanvas}" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemContainerStyle>
-                    <Style TargetType="ContentPresenter">
-                        <Setter Property="Canvas.Left" Value="{Binding X}" />
-                        <Setter Property="Canvas.Bottom" Value="{Binding Y}" />
-                    </Style>
-                </ItemsControl.ItemContainerStyle>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Ellipse Width="{Binding Width}" Height="{Binding Height}" Fill="#FFF629" />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </Border>
+
 
         <ItemsControl Margin="50 0 0 0" Grid.Row="0" VerticalContentAlignment="Center" ItemsSource="{Binding FilterIconModels, IsAsync=True}">
             <ItemsControl.ItemsPanel>
@@ -134,7 +111,23 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Tag="{Binding IsHovered, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0 5 20 5" Background="Transparent" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave" Grid.Column="0" Text="{Binding SharedBy, StringFormat={}{0} Peers}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                <TextBlock Padding="0 5 20 5" Background="Transparent" Grid.Column="0" Text="{Binding SharedBy, StringFormat={}{0} Peers}" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                    <TextBlock.ToolTip>
+                                        <ToolTip>
+                                            <ToolTip.Style>
+                                                <Style TargetType="{x:Type ToolTip}">
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type ToolTip}">
+                                                                <local:MapControl Panel.ZIndex="6" />
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </ToolTip.Style>
+                                        </ToolTip>
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
                                 <Image Visibility="{Binding FlameIsVisible, Converter={StaticResource BoolToVisibility}}" Height="20" Grid.Column="1" Source="{DynamicResource FlameDrawingImage}" />
                             </Grid>
                         </DataTemplate>
