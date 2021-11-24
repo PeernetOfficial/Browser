@@ -32,7 +32,10 @@ namespace Peernet.Browser.Application.ViewModels
             });
             DownloadCommand = new MvxAsyncCommand<SearchResultRowModel>(async (row) => await downloadAction(row));
             DeleteCommand = new MvxAsyncCommand(async () => { await deleteAction(this); });
-            CancelCommand = new MvxCommand(() => FiltersIconModel.IsSelected = false);
+            CancelCommand = new MvxCommand(() =>
+            {
+                FiltersIconModel.IsSelected = false;
+            });
             ApplyFiltersCommand = new MvxCommand(() =>
             {
                 Filters.Apply();

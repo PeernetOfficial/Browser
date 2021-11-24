@@ -5,7 +5,7 @@
         <TextBlock Foreground="{DynamicResource MainContentBrush}" Margin="0 15 0 8" FontSize="15" Text="{Binding Title}" />
         <ScrollViewer MinHeight="150" MaxHeight="200" VerticalScrollBarVisibility="Auto" Style="{DynamicResource FavsScrollViewer}">
             <Border BorderBrush="{DynamicResource LightGray2Brush}" BorderThickness="1" CornerRadius="{DynamicResource MainRadius}">
-                <ListView ItemsSource="{Binding Items}" BorderThickness="0" Background="Transparent" SelectedIndex="{Binding SelectedItemIndex, Mode=TwoWay}">
+                <ListView ItemsSource="{Binding Items}" BorderThickness="0" Background="Transparent" SelectedIndex="{Binding SelectedItemIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <ListView.Resources>
                         <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
                             <TextBlock FontSize="16" Text="{Binding Content}" Background="{DynamicResource LightGray2Brush}" />

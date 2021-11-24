@@ -16,18 +16,8 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <DockPanel LastChildFill="True" Grid.Column="0" Grid.Row="0" Margin="0 0 15 0">
-                    <Border DockPanel.Dock="Right" Visibility="{Binding Filters.ShowCalendar, Converter={StaticResource BoolToVisibility}}" Margin="0 41 0 12" Padding="15 10" BorderBrush="{DynamicResource LightGray2Brush}"
-                            BorderThickness="0 1 1 1" CornerRadius="{DynamicResource MainRadius}">
-                        <controls:CalendarRangeExtension Style="{DynamicResource PeernetCalendar}"
-                                                         CustomDates="{Binding Filters.Dates}"
-                                                         IsTodayHighlighted="False" SelectionMode="SingleRange" />
-                    </Border>
-                    <controls:CustomFilterControl VerticalAlignment="Stretch" DataContext="{Binding Filters.DateFilters}" />
-                </DockPanel>
-
+                <controls:CustomFilterControl Grid.Column="0" Grid.Row="0" Margin="0 0 15 0" VerticalAlignment="Stretch" DataContext="{Binding Filters.DateFilters}" />
                 <controls:CustomFilterControl Grid.Column="1" DataContext="{Binding Filters.FileFormatFilters}" />
-
             </Grid>
 
             <DockPanel Margin="0 30 15 0" LastChildFill="False" HorizontalAlignment="Right">

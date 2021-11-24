@@ -30,8 +30,6 @@ namespace Peernet.Browser.Models.Presentation.Home
             set => SetProperty(ref content, value);
         }
 
-        public bool ShowDot { get; set; }
-
         public bool IsRadio { get; set; }
     }
 }

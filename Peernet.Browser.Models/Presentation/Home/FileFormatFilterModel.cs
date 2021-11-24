@@ -10,9 +10,9 @@ namespace Peernet.Browser.Models.Presentation.Home
 
         public override void UnselectAll()
         {
-            base.UnselectAll();
             Set(FileFormat.None);
             SelectedItemIndex = 0;
+            base.UnselectAll();
         }
     }
 }

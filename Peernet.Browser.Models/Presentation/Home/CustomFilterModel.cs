@@ -11,7 +11,7 @@ namespace Peernet.Browser.Models.Presentation.Home
 
         private int selectedItemIndex = 0;
 
-        protected CustomFilterModel(string title, bool showDot = false, bool isRadio = true)
+        protected CustomFilterModel(string title, bool isRadio = true)
         {
             this.isRadio = isRadio;
             Title = title;
@@ -21,27 +21,13 @@ namespace Peernet.Browser.Models.Presentation.Home
                     EnumerationMember = x.Key,
                     Content = x.Value,
                     IsCheckChanged = IsCheckedChanged,
-                    ShowDot = showDot,
                     IsRadio = isRadio
                 }));
         }
 
-        protected virtual IEnumerable<KeyValuePair<Enum, string>> GetElements()
-        {
-            var type = typeof(T);
-            foreach (T val in Enum.GetValues(type))
-            {
-                var d = val.GetDescription();
-                if (d != null)
-                {
-                    yield return new KeyValuePair<Enum, string>(val, d);
-                }
-            }
-        }
+        public bool IsSelected => Items.Any(x => x.IsChecked);
 
-        public double MinHeight { get; set; }
-
-        public string Title { get; }
+        public MvxObservableCollection<CustomCheckBoxModel> Items { get; } = new();
 
         public int SelectedItemIndex
         {
@@ -50,36 +36,15 @@ namespace Peernet.Browser.Models.Presentation.Home
             {
                 selectedItemIndex = value;
                 SetProperty(ref selectedItemIndex, value);
+                RaisePropertyChanged(nameof(SelectedItemIndex));
             }
         }
 
-        public MvxObservableCollection<CustomCheckBoxModel> Items { get; } = new MvxObservableCollection<CustomCheckBoxModel>();
-
-        protected virtual void IsCheckedChanged(CustomCheckBoxModel c)
-        {
-            if (c.IsChecked && isRadio)
-            {
-                Items.Where(x => x != c).Foreach(x => x.IsChecked = false);
-            }
-        }
+        public string Title { get; }
 
         public T GetSelected()
         {
             return (T)Items.ElementAt(SelectedItemIndex).EnumerationMember;
-        }
-
-        public bool IsSelected => Items.Any(x => x.IsChecked);
-
-        public void Set(T[] vals)
-        {
-            if (vals.IsNullOrEmpty()) return;
-            foreach (var i in Items)
-            {
-                if (vals.Contains((T)i.EnumerationMember))
-                {
-                    i.IsChecked = true;
-                }
-            }
         }
 
         public void Set(Enum val)
@@ -95,5 +60,26 @@ namespace Peernet.Browser.Models.Presentation.Home
         }
 
         public virtual void UnselectAll() => Items.Foreach(x => x.IsChecked = false);
+
+        protected virtual IEnumerable<KeyValuePair<Enum, string>> GetElements()
+        {
+            var type = typeof(T);
+            foreach (T val in Enum.GetValues(type))
+            {
+                var d = val.GetDescription();
+                if (d != null)
+                {
+                    yield return new KeyValuePair<Enum, string>(val, d);
+                }
+            }
+        }
+
+        protected virtual void IsCheckedChanged(CustomCheckBoxModel c)
+        {
+            if (c.IsChecked && isRadio)
+            {
+                Items.Where(x => x != c).Foreach(x => x.IsChecked = false);
+            }
+        }
     }
 }
