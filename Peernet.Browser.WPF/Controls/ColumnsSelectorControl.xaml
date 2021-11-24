@@ -7,13 +7,13 @@
     <Border Visibility="{Binding ColumnsIconModel.IsSelected, Converter={StaticResource BoolToVisibility}}" CornerRadius="{DynamicResource MainRadius}"
             BorderBrush="{DynamicResource LightGray2Brush}"
             BorderThickness="1"
-            Width="180" Height="200" Background="{DynamicResource ViewBackgroundBrush}">
+            Width="180" Height="155" Background="{DynamicResource ViewBackgroundBrush}">
         <ItemsControl ItemsSource="{Binding ColumnsCheckboxes}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <CheckBox Foreground="{DynamicResource MainContentBrush}" Margin="15" Template="{DynamicResource CustomCheckBox}"
+                    <CheckBox Foreground="{DynamicResource MainContentBrush}" Margin="10" Template="{DynamicResource CustomCheckBox}"
                               VerticalContentAlignment="Center" IsChecked="{Binding IsChecked}">
-                        <TextBlock FontSize="14" Margin="-30 0 0 0" Padding="40 0 20 0" Text="{Binding Content}" />
+                        <TextBlock FontSize="14" Margin="-30 0 0 0" Padding="30 0 20 0" Text="{Binding Content}" />
                     </CheckBox>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

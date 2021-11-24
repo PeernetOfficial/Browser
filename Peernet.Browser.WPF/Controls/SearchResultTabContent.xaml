@@ -34,7 +34,7 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
-        <local:ColumnsSelectorControl Grid.Row="0" Panel.ZIndex="1" Margin="0 0 115 -240" HorizontalAlignment="Right" />
+        <local:ColumnsSelectorControl Grid.Row="0" Panel.ZIndex="1" Margin="0 0 115 -195" HorizontalAlignment="Right" />
         <local:FiltersControl Grid.Row="0" Panel.ZIndex="1" Margin="0 0 30 -340" HorizontalAlignment="Right" />
 
         <DockPanel Panel.ZIndex="2"  Margin="0 0 50 0" LastChildFill="False" Grid.Row="0"  HorizontalAlignment="Right">
@@ -56,7 +56,7 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <DockPanel Margin="10 0 0 0" VerticalAlignment="Center" Background="{DynamicResource LightGray2Brush}">
-                            <TextBlock Padding="5" Text="{Binding Content}" />
+                            <TextBlock Padding="5" Text="{Binding Content}" Foreground="{DynamicResource SelectedTabBrush}" />
                             <Button Command="{Binding DataContext.RemoveFilterCommand, ElementName=SharedResultTab}"
                                     CommandParameter="{Binding Type}" Style="{DynamicResource PrimaryButton}">
                                 <Image  Margin="10 0 10 0" Source="{DynamicResource CloseBtnDrawingImage}" />

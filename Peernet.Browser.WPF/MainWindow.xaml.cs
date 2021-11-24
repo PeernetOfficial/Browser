@@ -57,8 +57,11 @@ namespace Peernet.Browser.WPF
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            Mvx.IoCProvider.Resolve<IMvxNavigationService>().Navigate<HomeViewModel>();
-            GlobalContext.CurrentViewModel = nameof(HomeViewModel);
+            if (GlobalContext.CurrentViewModel != nameof(HomeViewModel))
+            {
+                Mvx.IoCProvider.Resolve<IMvxNavigationService>().Navigate<HomeViewModel>();
+                GlobalContext.CurrentViewModel = nameof(HomeViewModel);
+            }
         }
     }
 }

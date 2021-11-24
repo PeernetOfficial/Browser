@@ -23,7 +23,7 @@ namespace Peernet.Browser.WPF.Services
 
         public void Minimize() => window.WindowState = System.Windows.WindowState.Minimized;
 
-        public void Shutdown() => window.Close();
+        public void Shutdown() => App.Current.Shutdown();
 
         public void Restore() => window.WindowState = System.Windows.WindowState.Normal;
 
