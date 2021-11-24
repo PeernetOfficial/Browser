@@ -3,7 +3,6 @@ using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Peernet.Browser.Models.Presentation.Home
 {
@@ -18,8 +17,6 @@ namespace Peernet.Browser.Models.Presentation.Home
             this.inputText = inputText;
 
             ClearCommand = new MvxCommand(() => Reset());
-            CancelCommand = new MvxAsyncCommand(Hide);
-            ApplyFiltersCommand = new MvxAsyncCommand(ApplyFilters);
 
             DateFilters = new DateFilterModel((x) => ShowCalendar = x);
             FileFormatFilters = new FileFormatFilterModel();
@@ -30,13 +27,7 @@ namespace Peernet.Browser.Models.Presentation.Home
             InitSearch();
         }
 
-        public IMvxCommand ApplyFiltersCommand { get; }
-
-        public IMvxCommand CancelCommand { get; }
-
         public IMvxCommand ClearCommand { get; }
-
-        public Func<bool, Task> CloseAction { get; set; }
 
         public DateFilterModel DateFilters { get; }
 
@@ -75,7 +66,7 @@ namespace Peernet.Browser.Models.Presentation.Home
         public void BindFromSearchFilterResult()
         {
             DateFilters.Set(SearchFilterResult.Time);
-            FileFormatFilters.Set(SearchFilterResult.FileFormats);
+            FileFormatFilters.Set(SearchFilterResult.FileFormat);
 
             SizeTo = SearchFilterResult.SizeTo;
             SizeFrom = SearchFilterResult.SizeFrom;
@@ -87,37 +78,31 @@ namespace Peernet.Browser.Models.Presentation.Home
         {
             Reset(SearchFiltersType.FileFormats);
             Reset(SearchFiltersType.TimePeriods);
-            Reset(SearchFiltersType.Size);
-            Dates.Reset();
 
-            if (withApply) Apply();
+            if (withApply)
+            {
+                Apply();
+            }
         }
 
-        private void Apply()
+        public void Apply()
         {
             InitSearch();
-            SearchFilterResult.FileFormats = FileFormatFilters.IsSelected ? FileFormatFilters.GetAllSelected() : null;
-            SearchFilterResult.Time = DateFilters.IsSelected ? DateFilters.GetSelected() : null;
+            SearchFilterResult.FileFormat = FileFormatFilters.GetSelected();
+            SearchFilterResult.Time = DateFilters.GetSelected();
 
-            SearchFilterResult.TimeFrom = Dates.DateFrom;
-            SearchFilterResult.TimeTo = Dates.DateTo;
+            //SearchFilterResult.TimeFrom = Dates.DateFrom;
+            //SearchFilterResult.TimeTo = Dates.DateTo;
 
-            SearchFilterResult.SizeFrom = SizeFrom;
-            SearchFilterResult.SizeTo = SizeTo;
+            //SearchFilterResult.SizeFrom = SizeFrom;
+            //SearchFilterResult.SizeTo = SizeTo;
 
             RefreshTabs();
         }
 
-        private async Task ApplyFilters()
-        {
-            Apply();
-            await CloseAction?.Invoke(true);
-        }
-
-        private async Task Hide()
+        public void Hide()
         {
             Reset();
-            await CloseAction?.Invoke(false);
         }
 
         private void InitSearch() => SearchFilterResult = new SearchFilterResultModel { InputText = inputText, Uuid = UuId };
@@ -139,17 +124,18 @@ namespace Peernet.Browser.Models.Presentation.Home
         private IEnumerable<FilterResultModel> GetTabs()
         {
             var res = new List<FilterResultModel>();
-            if (SearchFilterResult.Time.HasValue)
+            if (SearchFilterResult.Time.HasValue && SearchFilterResult.Time != TimePeriods.None)
             {
                 res.Add(new FilterResultModel
                 {
                     Type = SearchFiltersType.TimePeriods,
-                    Content = SearchFilterResult.IsCustomTimeFill ? $"{SearchFilterResult.TimeFrom.Value.ToShortDateString()} - {SearchFilterResult.TimeTo.Value.ToShortDateString()}" : SearchFilterResult.Time.Value.GetDescription()
+                    Content = /*SearchFilterResult.IsCustomTimeFill ? $"{SearchFilterResult.TimeFrom.Value.ToShortDateString()} - {SearchFilterResult.TimeTo.Value.ToShortDateString()}" :*/ SearchFilterResult.Time.Value.GetDescription()
                 });
             }
-            if (!SearchFilterResult.FileFormats.IsNullOrEmpty())
+            if (SearchFilterResult.FileFormat != FileFormat.None)
             {
-                SearchFilterResult.FileFormats.Foreach(x => res.Add(new FilterResultModel { Type = SearchFiltersType.FileFormats, Content = x.GetDescription() }));
+                res.Add(new FilterResultModel
+                    { Type = SearchFiltersType.FileFormats, Content = SearchFilterResult.FileFormat.GetDescription() });
             }
             if (SizeFrom.HasValue && SizeTo.HasValue)
             {
@@ -168,11 +154,11 @@ namespace Peernet.Browser.Models.Presentation.Home
                     break;
 
                 case SearchFiltersType.FileFormats:
-                    FileFormatFilters.DeselctAll();
+                    FileFormatFilters.UnselectAll();
                     break;
 
                 case SearchFiltersType.TimePeriods:
-                    DateFilters.DeselctAll();
+                    DateFilters.UnselectAll();
                     break;
             }
         }

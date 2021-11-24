@@ -6,8 +6,8 @@ namespace Peernet.Browser.Models.Presentation.Home
     public class SearchFilterResultModel
     {
         public bool IsNewSearch => Uuid.IsNullOrEmpty();
-        public FileFormats[] FileFormats { get; set; }
-        public FiltersType FilterType { get; set; }
+        public FileFormat FileFormat { get; set; }
+        public FilterType FilterType { get; set; }
         public string InputText { get; set; }
         public string Uuid { get; set; }
         public int? SizeFrom { get; set; }
@@ -21,8 +21,6 @@ namespace Peernet.Browser.Models.Presentation.Home
 
         public DataGridSortingNameEnum SortName { get; set; }
         public DataGridSortingTypeEnum SortType { get; set; }
-
-        public bool IsCustomTimeFill => Time == TimePeriods.Custom;
 
         public (DateTime from, DateTime to) GetDateRange()
         {
@@ -46,10 +44,6 @@ namespace Peernet.Browser.Models.Presentation.Home
                     from = from.AddDays(-365);
                     break;
 
-                case TimePeriods.Custom:
-                    from = TimeFrom.Value;
-                    to = TimeTo.Value;
-                    break;
             }
             return new(from, to);
         }

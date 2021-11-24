@@ -57,7 +57,7 @@
                 <controls:NavigationBarControl Panel.ZIndex="1" Margin="0 12 0 0" HorizontalAlignment="Right" Grid.Row="1" InitializeOnLoad="true" IsEnabled="{Binding Path=(contexts:GlobalContext.IsConnected)}" />
                 <controls:FooterControl Grid.Row="2" InitializeOnLoad="true" DockPanel.Dock="Bottom" Panel.ZIndex="2" IsEnabled="{Binding Path=(contexts:GlobalContext.IsConnected)}" />
                 <ContentPresenter Grid.Row="1" Content="{Binding}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="{Binding Path=(contexts:GlobalContext.IsConnected), Converter={StaticResource BoolToVisibility}}"/>
-                <TextBlock Text="{Binding Path=(contexts:GlobalContext.ErrorMessage), UpdateSourceTrigger=PropertyChanged}" Panel.ZIndex="2" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" TextAlignment="Center">
+                <TextBlock Text="{Binding Path=(contexts:GlobalContext.ErrorMessage), UpdateSourceTrigger=PropertyChanged}" Foreground="{DynamicResource MainTextBrush}" Panel.ZIndex="2" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" TextAlignment="Center">
                     <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}">
                             <Setter Property="Visibility" Value="Visible" />

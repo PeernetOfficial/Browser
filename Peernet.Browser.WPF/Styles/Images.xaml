@@ -247,102 +247,102 @@
 
     <Style x:Key="IconsStyle" TargetType="{x:Type Image}">
         <Style.Triggers>
-            <DataTrigger Binding="{Binding FilterType}" Value="{x:Static home:FiltersType.Text}">
+            <DataTrigger Binding="{Binding FilterType}" Value="{x:Static home:FilterType.Text}">
                 <Setter Property="Source" Value="{DynamicResource TextDrawingImage}" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding FilterType}" Value="{x:Static home:FiltersType.All}">
+            <DataTrigger Binding="{Binding FilterType}" Value="{x:Static home:FilterType.All}">
                 <Setter Property="Source" Value="{DynamicResource AllFilesDrawingImage}" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding FilterType}" Value="{x:Static home:FiltersType.Audio}">
+            <DataTrigger Binding="{Binding FilterType}" Value="{x:Static home:FilterType.Audio}">
                 <Setter Property="Source" Value="{DynamicResource AudioDrawingImage}" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding FilterType}" Value="{x:Static home:FiltersType.Video}">
+            <DataTrigger Binding="{Binding FilterType}" Value="{x:Static home:FilterType.Video}">
                 <Setter Property="Source" Value="{DynamicResource VideoDrawingImage}" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding FilterType}" Value="{x:Static home:FiltersType.Binary}">
+            <DataTrigger Binding="{Binding FilterType}" Value="{x:Static home:FilterType.Binary}">
                 <Setter Property="Source" Value="{DynamicResource BinaryDrawingImage}" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding FilterType}" Value="{x:Static home:FiltersType.Ebooks}">
+            <DataTrigger Binding="{Binding FilterType}" Value="{x:Static home:FilterType.Ebooks}">
                 <Setter Property="Source" Value="{DynamicResource EbookDrawingImage}" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding FilterType}" Value="{x:Static home:FiltersType.Documents}">
+            <DataTrigger Binding="{Binding FilterType}" Value="{x:Static home:FilterType.Documents}">
                 <Setter Property="Source" Value="{DynamicResource DocumentDrawingImage}" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding FilterType}" Value="{x:Static home:FiltersType.Pictures}">
+            <DataTrigger Binding="{Binding FilterType}" Value="{x:Static home:FilterType.Pictures}">
                 <Setter Property="Source" Value="{DynamicResource PictureDrawingImage}" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding FilterType}" Value="{x:Static home:FiltersType.Filters}">
+            <DataTrigger Binding="{Binding FilterType}" Value="{x:Static home:FilterType.Filters}">
                 <Setter Property="Source" Value="{DynamicResource Filters_DrawingImage}" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding FilterType}" Value="{x:Static home:FiltersType.Columns}">
+            <DataTrigger Binding="{Binding FilterType}" Value="{x:Static home:FilterType.Columns}">
                 <Setter Property="Source" Value="{DynamicResource Columns_DrawingImage}" />
             </DataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding FilterType}" Value="{x:Static home:FiltersType.Pictures}" />
+                    <Condition Binding="{Binding FilterType}" Value="{x:Static home:FilterType.Pictures}" />
                     <Condition Binding="{Binding IsSelected}" Value="True" />
                 </MultiDataTrigger.Conditions>
                 <Setter Property="Source" Value="{DynamicResource Picture_SelectedDrawingImage}" />
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding FilterType}" Value="{x:Static home:FiltersType.Text}" />
+                    <Condition Binding="{Binding FilterType}" Value="{x:Static home:FilterType.Text}" />
                     <Condition Binding="{Binding IsSelected}" Value="True" />
                 </MultiDataTrigger.Conditions>
                 <Setter Property="Source" Value="{DynamicResource Text_SelectedDrawingImage}" />
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding FilterType}" Value="{x:Static home:FiltersType.All}" />
+                    <Condition Binding="{Binding FilterType}" Value="{x:Static home:FilterType.All}" />
                     <Condition Binding="{Binding IsSelected}" Value="True" />
                 </MultiDataTrigger.Conditions>
                 <Setter Property="Source" Value="{DynamicResource AllFiles_SelectedDrawingImage}" />
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding FilterType}" Value="{x:Static home:FiltersType.Audio}" />
+                    <Condition Binding="{Binding FilterType}" Value="{x:Static home:FilterType.Audio}" />
                     <Condition Binding="{Binding IsSelected}" Value="True" />
                 </MultiDataTrigger.Conditions>
                 <Setter Property="Source" Value="{DynamicResource Audio_SelectedDrawingImage}" />
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding FilterType}" Value="{x:Static home:FiltersType.Binary}" />
+                    <Condition Binding="{Binding FilterType}" Value="{x:Static home:FilterType.Binary}" />
                     <Condition Binding="{Binding IsSelected}" Value="True" />
                 </MultiDataTrigger.Conditions>
                 <Setter Property="Source" Value="{DynamicResource Binary_SelectedDrawingImage}" />
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding FilterType}" Value="{x:Static home:FiltersType.Documents}" />
+                    <Condition Binding="{Binding FilterType}" Value="{x:Static home:FilterType.Documents}" />
                     <Condition Binding="{Binding IsSelected}" Value="True" />
                 </MultiDataTrigger.Conditions>
                 <Setter Property="Source" Value="{DynamicResource Document_SelectedDrawingImage}" />
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding FilterType}" Value="{x:Static home:FiltersType.Ebooks}" />
+                    <Condition Binding="{Binding FilterType}" Value="{x:Static home:FilterType.Ebooks}" />
                     <Condition Binding="{Binding IsSelected}" Value="True" />
                 </MultiDataTrigger.Conditions>
                 <Setter Property="Source" Value="{DynamicResource Ebook_SelectedDrawingImage}" />
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding FilterType}" Value="{x:Static home:FiltersType.Video}" />
+                    <Condition Binding="{Binding FilterType}" Value="{x:Static home:FilterType.Video}" />
                     <Condition Binding="{Binding IsSelected}" Value="True" />
                 </MultiDataTrigger.Conditions>
                 <Setter Property="Source" Value="{DynamicResource Video_SelectedDrawingImage}" />
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding FilterType}" Value="{x:Static home:FiltersType.Filters}" />
+                    <Condition Binding="{Binding FilterType}" Value="{x:Static home:FilterType.Filters}" />
                     <Condition Binding="{Binding IsSelected}" Value="True" />
                 </MultiDataTrigger.Conditions>
                 <Setter Property="Source" Value="{DynamicResource Filters_activeDrawingImage}" />
             </MultiDataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding FilterType}" Value="{x:Static home:FiltersType.Columns}" />
+                    <Condition Binding="{Binding FilterType}" Value="{x:Static home:FilterType.Columns}" />
                     <Condition Binding="{Binding IsSelected}" Value="True" />
                 </MultiDataTrigger.Conditions>
                 <Setter Property="Source" Value="{DynamicResource Columns_activeDrawingImage}" />

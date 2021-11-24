@@ -9,6 +9,8 @@ namespace Peernet.Browser.Models.Presentation.Home
     {
         private readonly bool isRadio;
 
+        private int selectedItemIndex = 0;
+
         protected CustomFilterModel(string title, bool showDot = false, bool isRadio = true)
         {
             this.isRadio = isRadio;
@@ -41,6 +43,16 @@ namespace Peernet.Browser.Models.Presentation.Home
 
         public string Title { get; }
 
+        public int SelectedItemIndex
+        {
+            get => selectedItemIndex;
+            set
+            {
+                selectedItemIndex = value;
+                SetProperty(ref selectedItemIndex, value);
+            }
+        }
+
         public MvxObservableCollection<CustomCheckBoxModel> Items { get; } = new MvxObservableCollection<CustomCheckBoxModel>();
 
         protected virtual void IsCheckedChanged(CustomCheckBoxModel c)
@@ -53,15 +65,7 @@ namespace Peernet.Browser.Models.Presentation.Home
 
         public T GetSelected()
         {
-            return (T)Items.First(x => x.IsChecked).EnumerationMember;
-        }
-
-        public T[] GetAllSelected()
-        {
-            return Items
-                .Where(x => x.IsChecked)
-                .Select(x => (T)x.EnumerationMember)
-                .ToArray();
+            return (T)Items.ElementAt(SelectedItemIndex).EnumerationMember;
         }
 
         public bool IsSelected => Items.Any(x => x.IsChecked);
@@ -90,6 +94,6 @@ namespace Peernet.Browser.Models.Presentation.Home
             }
         }
 
-        public void DeselctAll() => Items.Foreach(x => x.IsChecked = false);
+        public virtual void UnselectAll() => Items.Foreach(x => x.IsChecked = false);
     }
 }

@@ -34,19 +34,11 @@
                                     <TextBlock FontSize="15" VerticalAlignment="Center" TextAlignment="Left">
                                         <TextBlock.Style>
                                             <Style TargetType="{x:Type TextBlock}">
-                                                <Setter Property="Text">
-                                                    <Setter.Value>
-                                                        <MultiBinding StringFormat="{}{0} ({1})">
-                                                            <Binding Path="Name" />
-                                                            <Binding Path="DataContext.ActiveSearchResults.Count" ElementName="ExplorePage" />
-                                                        </MultiBinding>
-                                                    </Setter.Value>
-                                                </Setter>
+                                                <Setter Property="Text" Value="{Binding Name}" />
                                                 <Setter Property="Foreground" Value="{DynamicResource MainContentBrush}" />
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding IsSelected}" Value="False" >
                                                         <Setter Property="Foreground" Value="{DynamicResource LightGrayBrush}" />
-                                                        <Setter Property="Text" Value="{Binding Name}" />
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>

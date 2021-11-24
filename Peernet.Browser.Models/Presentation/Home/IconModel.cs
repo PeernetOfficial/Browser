@@ -11,7 +11,7 @@ namespace Peernet.Browser.Models.Presentation.Home
 
         private bool isSelected;
 
-        public IconModel(FiltersType filterType, bool showArrow = false, Func<IconModel, Task> onClick = null, int? count = null)
+        public IconModel(FilterType filterType, bool showArrow = false, Func<IconModel, Task> onClick = null, int? count = null)
         {
             showCount = count.HasValue;
             FilterType = filterType;
@@ -30,7 +30,7 @@ namespace Peernet.Browser.Models.Presentation.Home
 
         public int Count { get; }
 
-        public FiltersType FilterType { get; }
+        public FilterType FilterType { get; }
 
         public bool IsSelected
         {

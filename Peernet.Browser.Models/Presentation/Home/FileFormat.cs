@@ -2,8 +2,11 @@
 
 namespace Peernet.Browser.Models.Presentation.Home
 {
-    public enum FileFormats
+    public enum FileFormat
     {
+        [Description("None")]
+        None,
+
         [Description("Binary File")]
         Binary,
 

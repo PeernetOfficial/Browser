@@ -14,7 +14,14 @@ namespace Peernet.Browser.Models.Presentation.Home
         protected override void IsCheckedChanged(CustomCheckBoxModel customCheckBoxModel)
         {
             base.IsCheckedChanged(customCheckBoxModel);
-            onIsCustomSelectionChange?.Invoke((TimePeriods)customCheckBoxModel.EnumerationMember == TimePeriods.Custom && customCheckBoxModel.IsChecked);
+            // onIsCustomSelectionChange?.Invoke((TimePeriods)customCheckBoxModel.EnumerationMember == TimePeriods.Custom && customCheckBoxModel.IsChecked);
+        }
+
+        public override void UnselectAll()
+        {
+            base.UnselectAll();
+            Set(TimePeriods.None);
+            SelectedItemIndex = 0;
         }
     }
 }
