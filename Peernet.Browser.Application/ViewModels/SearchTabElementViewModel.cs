@@ -24,6 +24,10 @@ namespace Peernet.Browser.Application.ViewModels
             Title = title;
 
             Filters = new FiltersModel(title);
+            Filters.PropertyChanged += async (sender, args) =>
+            {
+                await Refresh();
+            };
 
             ClearCommand = new MvxAsyncCommand(async () =>
             {
@@ -32,15 +36,7 @@ namespace Peernet.Browser.Application.ViewModels
             });
             DownloadCommand = new MvxAsyncCommand<SearchResultRowModel>(async (row) => await downloadAction(row));
             DeleteCommand = new MvxAsyncCommand(async () => { await deleteAction(this); });
-            CancelCommand = new MvxCommand(() =>
-            {
-                FiltersIconModel.IsSelected = false;
-            });
-            ApplyFiltersCommand = new MvxCommand(() =>
-            {
-                Filters.Apply();
-                FiltersIconModel.IsSelected = false;
-            });
+
 
             RemoveFilterCommand = new MvxAsyncCommand<SearchFiltersType>(async (type) =>
             {
@@ -68,10 +64,6 @@ namespace Peernet.Browser.Application.ViewModels
         public LoadingModel Loader { get; } = new LoadingModel();
         public IconModel ColumnsIconModel { get; }
         public IMvxAsyncCommand DeleteCommand { get; }
-
-        public IMvxCommand ApplyFiltersCommand { get; }
-
-        public IMvxCommand CancelCommand { get; }
         public IMvxAsyncCommand<SearchFiltersType> RemoveFilterCommand { get; }
         public IMvxAsyncCommand<SearchResultRowModel> DownloadCommand { get; }
         public MvxObservableCollection<IconModel> FilterIconModels { get; } = new MvxObservableCollection<IconModel>();

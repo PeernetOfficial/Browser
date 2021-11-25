@@ -8,12 +8,13 @@ namespace Peernet.Browser.Models.Presentation.Home
     public abstract class CustomFilterModel<T> : MvxNotifyPropertyChanged where T : Enum
     {
         private readonly bool isRadio;
-
+        private readonly Action onSelectionChanged;
         private int selectedItemIndex = 0;
 
-        protected CustomFilterModel(string title, bool isRadio = true)
+        protected CustomFilterModel(string title, Action onSelectionChanged, bool isRadio = true)
         {
             this.isRadio = isRadio;
+            this.onSelectionChanged = onSelectionChanged;
             Title = title;
             Items.AddRange(GetElements()
                 .Select(x => new CustomCheckBoxModel
@@ -37,6 +38,7 @@ namespace Peernet.Browser.Models.Presentation.Home
                 selectedItemIndex = value;
                 SetProperty(ref selectedItemIndex, value);
                 RaisePropertyChanged(nameof(SelectedItemIndex));
+                onSelectionChanged?.Invoke();
             }
         }
 

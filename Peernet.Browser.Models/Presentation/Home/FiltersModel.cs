@@ -17,8 +17,8 @@ namespace Peernet.Browser.Models.Presentation.Home
 
             ClearCommand = new MvxCommand(() => Reset());
 
-            DateFilters = new DateFilterModel();
-            FileFormatFilters = new FileFormatFilterModel();
+            DateFilters = new DateFilterModel(Apply);
+            FileFormatFilters = new FileFormatFilterModel(Apply);
 
             Results.CollectionChanged += (o, s) => RaisePropertyChanged(nameof(IsVisible));
 

@@ -1,10 +1,11 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
 
 namespace Peernet.Browser.Models.Presentation.Home
 {
     public class FileFormatFilterModel : CustomFilterModel<FileFormat>
     {
-        public FileFormatFilterModel() : base("File format")
+        public FileFormatFilterModel(Action onSelectionChanged)
+            : base("File format", onSelectionChanged)
         {
         }
 

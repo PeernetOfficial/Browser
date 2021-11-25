@@ -9,7 +9,6 @@
             BorderBrush="{DynamicResource LightGray2Brush}"
             BorderThickness="1"
             Background="{DynamicResource ViewBackgroundBrush}">
-        <StackPanel>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -19,11 +18,5 @@
                 <controls:CustomFilterControl Grid.Column="0" Grid.Row="0" Margin="0 0 15 0" VerticalAlignment="Stretch" DataContext="{Binding Filters.DateFilters}" />
                 <controls:CustomFilterControl Grid.Column="1" DataContext="{Binding Filters.FileFormatFilters}" />
             </Grid>
-
-            <DockPanel Margin="0 30 15 0" LastChildFill="False" HorizontalAlignment="Right">
-                <Button IsCancel="True" Command="{Binding CancelCommand}" Height="30" Width="110" Style="{DynamicResource PrimaryButton}">Cancel</Button>
-                <Button Command="{Binding ApplyFiltersCommand}" Height="45" Width="140" Style="{DynamicResource AcceptButton}">Apply</Button>
-            </DockPanel>
-        </StackPanel>
     </Border>
 </UserControl>
