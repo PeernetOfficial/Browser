@@ -2,13 +2,21 @@
 using Peernet.Browser.Application;
 using Peernet.Browser.Application.Contexts;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Input;
 using MvvmCross;
 using MvvmCross.Navigation;
+using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels;
+using Peernet.Browser.Application.ViewModels.Parameters;
+using Peernet.Browser.Infrastructure.Services;
+using Peernet.Browser.Models.Presentation.Footer;
 
 namespace Peernet.Browser.WPF
 {
@@ -61,6 +69,24 @@ namespace Peernet.Browser.WPF
             {
                 Mvx.IoCProvider.Resolve<IMvxNavigationService>().Navigate<HomeViewModel>();
                 GlobalContext.CurrentViewModel = nameof(HomeViewModel);
+            }
+        }
+
+        private void FileUpload_OnDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                var paths = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+                var fileModels = (from path in paths where File.Exists(path) select new FileModel(path)).ToList();
+
+                var parameter = new ShareFileViewModelParameter(Mvx.IoCProvider.Resolve<IWarehouseService>(), Mvx.IoCProvider.Resolve<IBlockchainService>())
+                {
+                    FileModels = fileModels
+                };
+
+                GlobalContext.IsMainWindowActive = false;
+                Mvx.IoCProvider.Resolve<IMvxNavigationService>().Navigate<GenericFileViewModel, ShareFileViewModelParameter>(parameter);
             }
         }
     }
