@@ -3,12 +3,14 @@ using Peernet.Browser.Models.Domain.Download;
 using Peernet.Browser.Models.Presentation.Home;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 
 namespace Peernet.Browser.Models.Presentation.Footer
 {
     public class DownloadModel : INotifyPropertyChanged
     {
         private bool isCompleted;
+        private bool isMapEnabled;
         private double progress;
         private DownloadStatus status;
 
@@ -16,6 +18,7 @@ namespace Peernet.Browser.Models.Presentation.Footer
         {
             File = file;
             Points = Map.ConvertGeoPointsToMapScale(file.SharedByGeoIP);
+            IsMapEnabled = !Points.IsNullOrEmpty();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -33,6 +36,16 @@ namespace Peernet.Browser.Models.Presentation.Footer
             {
                 isCompleted = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsCompleted)));
+            }
+        }
+
+        public bool IsMapEnabled
+        {
+            get => isMapEnabled;
+            set
+            {
+                isMapEnabled = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsMapEnabled)));
             }
         }
 

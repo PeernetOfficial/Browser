@@ -19,8 +19,6 @@
         </Grid.RowDefinitions>
         <ContentControl Content="{StaticResource ProxyElement}" Visibility="Collapsed" />
 
-
-
         <ItemsControl Margin="50 0 0 0" Grid.Row="0" VerticalContentAlignment="Center" ItemsSource="{Binding FilterIconModels, IsAsync=True}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -112,7 +110,17 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Padding="0 5 20 5" Background="Transparent" Grid.Column="0" Text="{Binding SharedBy, StringFormat={}{0} Peers}" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <TextBlock Padding="0 5 20 5"
+                                           Background="Transparent"
+                                           Grid.Column="0"
+                                           Text="{Binding SharedBy, StringFormat={}{0} Peers}"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left"
+                                           ToolTipService.IsEnabled="{Binding IsMapEnabled}"
+                                           ToolTipService.InitialShowDelay="0"
+                                           ToolTipService.BetweenShowDelay="0"
+                                           ToolTipService.VerticalOffset="127"
+                                           ToolTipService.Placement="Center">
                                     <TextBlock.ToolTip>
                                         <ToolTip>
                                             <ToolTip.Style>
@@ -124,6 +132,7 @@
                                                             </ControlTemplate>
                                                         </Setter.Value>
                                                     </Setter>
+
                                                 </Style>
                                             </ToolTip.Style>
                                         </ToolTip>

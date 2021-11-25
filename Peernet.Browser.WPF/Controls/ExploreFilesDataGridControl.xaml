@@ -45,7 +45,17 @@
                 <DataGridTemplateColumn Header="SHARED BY" SortMemberPath="SharedByCount" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Padding="0 5 20 5" Background="Transparent" Text="{Binding File.SharedByCount, StringFormat={}{0} Peers}" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <TextBlock Padding="0 5 20 5"
+                                       Background="Transparent"
+                                       Text="{Binding File.SharedByCount, StringFormat={}{0} Peers}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       ToolTipService.ShowOnDisabled="False"
+                                       ToolTipService.IsEnabled="{Binding IsMapEnabled}"
+                                       ToolTipService.InitialShowDelay="0"
+                                       ToolTipService.BetweenShowDelay="0"
+                                       ToolTipService.VerticalOffset="127"
+                                       ToolTipService.Placement="Center">
                                 <TextBlock.ToolTip>
                                     <ToolTip>
                                         <ToolTip.Style>
