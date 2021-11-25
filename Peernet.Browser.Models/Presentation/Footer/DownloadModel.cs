@@ -20,7 +20,7 @@ namespace Peernet.Browser.Models.Presentation.Footer
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public static MapModel Map { get; } = new() { Width = 318, Height = 231 };
+        public static MapModel Map { get; } = new() { Width = 471, Height = 231 };
         public string DisplayName => File.Name.Length > 26 ? $"{File.Name.Substring(0, 26)}..." : File.Name;
         public ApiFile File { get; init; }
         public string FileSize => $"{File.Size}";

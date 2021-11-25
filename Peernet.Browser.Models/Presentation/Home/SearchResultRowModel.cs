@@ -18,7 +18,7 @@ namespace Peernet.Browser.Models.Presentation.Home
             Points = Map.ConvertGeoPointsToMapScale(source.SharedByGeoIP);
         }
 
-        public static MapModel Map { get; } = new() { Width = 318, Height = 231 };
+        public static MapModel Map { get; } = new() { Width = 471, Height = 231 };
         public DateTime Date { get; }
         public HealthType EnumerationMember { get; }
 
