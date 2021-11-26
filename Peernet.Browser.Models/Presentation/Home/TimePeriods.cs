@@ -7,7 +7,7 @@ namespace Peernet.Browser.Models.Presentation.Home
         [Description("None")]
         None,
 
-        [Description("Last 24 hours")]
+        [Description("Last 24 Hours")]
         Last24,
 
         [Description("Last Week")]

@@ -1,6 +1,12 @@
-﻿using MvvmCross.Platforms.Wpf.Views;
+﻿using MvvmCross;
+using MvvmCross.Navigation;
+using MvvmCross.Platforms.Wpf.Views;
 using Peernet.Browser.Application;
 using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.Application.Services;
+using Peernet.Browser.Application.ViewModels;
+using Peernet.Browser.Application.ViewModels.Parameters;
+using Peernet.Browser.Models.Presentation.Footer;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -8,15 +14,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows;
-using System.Windows.Documents;
 using System.Windows.Input;
-using MvvmCross;
-using MvvmCross.Navigation;
-using Peernet.Browser.Application.Services;
-using Peernet.Browser.Application.ViewModels;
-using Peernet.Browser.Application.ViewModels.Parameters;
-using Peernet.Browser.Infrastructure.Services;
-using Peernet.Browser.Models.Presentation.Footer;
 
 namespace Peernet.Browser.WPF
 {
@@ -50,19 +48,6 @@ namespace Peernet.Browser.WPF
             base.OnContentChanged(oldContent, newContent);
         }
 
-        private void MainWindow_OnMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            App.RaiseMainWindowClick(sender, e);
-        }
-
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                DragMove();
-            }
-        }
-
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             if (GlobalContext.CurrentViewModel != nameof(HomeViewModel))
@@ -78,9 +63,21 @@ namespace Peernet.Browser.WPF
             {
                 var paths = (string[])e.Data.GetData(DataFormats.FileDrop);
 
-                var fileModels = (from path in paths where File.Exists(path) select new FileModel(path)).ToList();
+                var fileModels = new List<FileModel>();
+                foreach (var path in paths)
+                {
+                    if (File.Exists(path))
+                    {
+                        fileModels.Add(new FileModel(path));
+                    }
+                    else if (Directory.Exists(path))
+                    {
+                        fileModels.AddRange(GetAllDescendantFiles(path));
+                    }
+                }
 
-                var parameter = new ShareFileViewModelParameter(Mvx.IoCProvider.Resolve<IWarehouseService>(), Mvx.IoCProvider.Resolve<IBlockchainService>())
+                var parameter = new ShareFileViewModelParameter(Mvx.IoCProvider.Resolve<IWarehouseService>(),
+                    Mvx.IoCProvider.Resolve<IBlockchainService>())
                 {
                     FileModels = fileModels
                 };
@@ -88,6 +85,35 @@ namespace Peernet.Browser.WPF
                 GlobalContext.IsMainWindowActive = false;
                 Mvx.IoCProvider.Resolve<IMvxNavigationService>().Navigate<GenericFileViewModel, ShareFileViewModelParameter>(parameter);
             }
+        }
+
+        private void MainWindow_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            App.RaiseMainWindowClick(sender, e);
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                DragMove();
+            }
+        }
+
+        private List<FileModel> GetAllDescendantFiles(string path, string rootFolder = null)
+        {
+            var fileModels = new List<FileModel>();
+            var files = Directory.GetFiles(path);
+            var currentFolder = path.Split("\\").Last();
+            var folderTree = rootFolder == null ? currentFolder : Path.Combine(rootFolder, currentFolder);
+            files.Foreach(f => fileModels.Add(new FileModel(f, folderTree)));
+            var directories = Directory.GetDirectories(path);
+            foreach (var directoryPath in directories)
+            {
+                fileModels.AddRange(GetAllDescendantFiles(directoryPath, folderTree));
+            }
+
+            return fileModels;
         }
     }
 }

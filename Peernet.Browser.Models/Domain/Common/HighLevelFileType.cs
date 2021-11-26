@@ -21,6 +21,10 @@
         Database = 13,
         Email = 14,
         CSV = 15,
-        Folder = 16
+        Folder = 16,
+        Executable = 17,
+        Installer = 18,
+        APK = 19,
+        ISO = 20
     }
 }

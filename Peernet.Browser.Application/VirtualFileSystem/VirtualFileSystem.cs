@@ -88,7 +88,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
                 return new VirtualFileSystemEntity(file);
             }
 
-            var directories = file.Folder.Split('/').ToList();
+            var directories = file.Folder.Split('/', '\\').ToList();
             directories.RemoveAll(string.IsNullOrEmpty);
             var totalDepth = directories.Count;
 

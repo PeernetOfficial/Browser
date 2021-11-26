@@ -7,55 +7,55 @@ namespace Peernet.Browser.Models.Presentation.Home
         [Description("None")]
         None,
 
-        [Description("Binary File")]
+        [Description("Binary")]
         Binary,
 
-        [Description("PDF File")]
+        [Description("PDF")]
         Pdf,
 
-        [Description("Word File")]
+        [Description("Word")]
         Word,
 
-        [Description("Excel File")]
+        [Description("Excel")]
         Excel,
 
-        [Description("Powerpoint File")]
+        [Description("PowerPoint")]
         Powerpoint,
 
-        [Description("Pictures")]
+        [Description("Picture")]
         Images,
 
-        [Description("Audio file")]
+        [Description("Audio")]
         Audio,
 
-        [Description("Movies")]
+        [Description("Video")]
         Movies,
 
-        [Description("Containers")]
+        [Description("Container")]
         Container,
 
         [Description("Website")]
         WebSite,
 
-        [Description("Text file")]
+        [Description("Text")]
         Text,
 
-        [Description("Ebooks file")]
+        [Description("Ebook")]
         Ebook,
 
-        [Description("Compressed file")]
+        [Description("Compressed")]
         Compressed,
 
-        [Description("Database file")]
+        [Description("Database")]
         Database,
 
-        [Description("Email file")]
+        [Description("Email")]
         Email,
 
-        [Description("CSV files")]
+        [Description("CSV")]
         CSV,
 
-        [Description("Folders")]
+        [Description("Folder")]
         Folder
     }
 }

@@ -20,6 +20,7 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IBlockchainService blockchainService;
         private readonly IMvxNavigationService mvxNavigationService;
         private readonly IVirtualFileSystemFactory virtualFileSystemFactory;
+        private readonly IWarehouseService warehouseService;
         private List<VirtualFileSystemEntity> activeSearchResults;
         private ObservableCollection<VirtualFileSystemCoreEntity> pathElements;
         private string searchInput;
@@ -28,11 +29,16 @@ namespace Peernet.Browser.Application.ViewModels
         private bool showSearchBox;
         private VirtualFileSystem.VirtualFileSystem virtualFileSystem;
 
-        public DirectoryViewModel(IBlockchainService blockchainService, IVirtualFileSystemFactory virtualFileSystemFactory, IMvxNavigationService mvxNavigationService)
+        public DirectoryViewModel(
+            IBlockchainService blockchainService,
+            IVirtualFileSystemFactory virtualFileSystemFactory,
+            IMvxNavigationService mvxNavigationService,
+            IWarehouseService warehouseService)
         {
             this.blockchainService = blockchainService;
             this.virtualFileSystemFactory = virtualFileSystemFactory;
             this.mvxNavigationService = mvxNavigationService;
+            this.warehouseService = warehouseService;
         }
 
         public List<VirtualFileSystemEntity> ActiveSearchResults
@@ -83,7 +89,7 @@ namespace Peernet.Browser.Application.ViewModels
                     }
                     else
                     {
-                        var param = new FilePreviewViewModelParameter(entity.File, false, true, "Save To File");
+                        var param = new FilePreviewViewModelParameter(entity.File, false, () => warehouseService.ReadPath(entity.File), "Save To File");
                         mvxNavigationService.Navigate<FilePreviewViewModel, FilePreviewViewModelParameter>(param);
                     }
                 });

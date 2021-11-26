@@ -54,7 +54,7 @@ namespace Peernet.Browser.Application.ViewModels
             new MvxCommand<DownloadModel>(
                 model =>
                 {
-                    var param = new FilePreviewViewModelParameter(model.File, false, true, "Download");
+                    var param = new FilePreviewViewModelParameter(model.File, false, async () => await downloadManager.QueueUpDownload(model), "Download");
                     navigationService.Navigate<FilePreviewViewModel, FilePreviewViewModelParameter>(param);
                 });
 

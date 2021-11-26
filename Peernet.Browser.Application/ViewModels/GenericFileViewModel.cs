@@ -65,7 +65,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         public FileModel Selected
         {
-            get => selected;
+            get => selected ?? Files.FirstOrDefault();
             private set => SetProperty(ref selected, value);
         }
 
