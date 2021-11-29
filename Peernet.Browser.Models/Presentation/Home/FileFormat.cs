@@ -5,57 +5,69 @@ namespace Peernet.Browser.Models.Presentation.Home
     public enum FileFormat
     {
         [Description("None")]
-        None,
+        None = -1,
 
         [Description("Binary")]
-        Binary,
+        Binary = 0,
 
         [Description("PDF")]
-        Pdf,
+        Pdf = 1,
 
         [Description("Word")]
-        Word,
+        Word = 2,
 
         [Description("Excel")]
-        Excel,
+        Excel = 3,
 
         [Description("PowerPoint")]
-        Powerpoint,
+        Powerpoint = 4,
 
         [Description("Picture")]
-        Images,
+        Images = 5,
 
         [Description("Audio")]
-        Audio,
+        Audio = 6,
 
         [Description("Video")]
-        Movies,
+        Movies = 7,
 
         [Description("Container")]
-        Container,
+        Container = 8,
 
         [Description("Website")]
-        WebSite,
+        WebSite = 9,
 
         [Description("Text")]
-        Text,
+        Text = 10,
 
         [Description("Ebook")]
-        Ebook,
+        Ebook = 11,
 
         [Description("Compressed")]
-        Compressed,
+        Compressed = 12,
 
         [Description("Database")]
-        Database,
+        Database = 13,
 
         [Description("Email")]
-        Email,
+        Email = 14,
 
         [Description("CSV")]
-        CSV,
+        CSV = 15,
 
         [Description("Folder")]
-        Folder
+        Folder = 16,
+
+        [Description("Executable")]
+        Executable = 17,
+
+        [Description("Installer")]
+        Installer = 18,
+
+        [Description("APK")]
+        APK = 19,
+
+        [Description("ISO")]
+        ISO = 20
     }
 }

@@ -16,7 +16,7 @@ namespace Peernet.Browser.Models.Presentation.Home
             this.isRadio = isRadio;
             this.onSelectionChanged = onSelectionChanged;
             Title = title;
-            Items.AddRange(GetElements()
+            Items.AddRange(GetElements().OrderBy(e=> e.Key)
                 .Select(x => new CustomCheckBoxModel
                 {
                     EnumerationMember = x.Key,
