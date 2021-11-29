@@ -4,7 +4,7 @@
 This is official GUI for [Peernet Command Line Client](https://github.com/PeernetOfficial/Cmd). It has been designed to deliver client's capabilities in user friendly manner. 
 It is built on to of .NET 5.0 with use of WPF UI Framework [WPF documentation](https://docs.microsoft.com/en-us/dotnet/desktop/wpf/?view=netdesktop-5.0). 
 
-## Configuration{#configuration}
+## Configuration
 Peernet Browser configuration entry point is via _Peernet Browser.dll.config_ output file or _App.config_ from Solution view.
 Configuration file includes following settings:
 
@@ -34,35 +34,50 @@ Backend process started by the Browser needs to be later disposed.
 When Peernet Browser application exits it sends ```/shutdown?action=0``` request to the backend. Backend is supposed to exit on such request. 
 Although Browser makes sure backend terminated and kills the process if it didn't happen in 5 seconds since the __shutdown__ request.
 
-## First boot {#first-boot}
-Aplication can be setup in several ways.
+## Deployment
 
-### Automatic setup
-Automatic setup involves Windows Installer setup from __MSI__ file. For more details see [Peernet Browser Installer Project](https://github.com/PeernetOfficial/BrowserSetup)
+### Requirements
 
-### Manual setup
-Prior to first manual boot following steps are required:
-#### Step 1 (.NET SDK)
+These components are required:
+1. Latest [.NET Desktop Runtime for Windows x64](https://dotnet.microsoft.com/download/dotnet/5.0). The installer version is recommended.
+2. The backend executable. You can compile the [Cmd project](https://github.com/PeernetOfficial/Cmd) and use that resulting executable.
+3. For improved connectivity add a Windows Firewall rule to allow all connections for the backend executable (the linked Cmd project has the netsh command documented).
+
+### Automated Setup
+
+An automated setup is provided via a Windows installer through a MSI file. For more details see the [Peernet Browser Installer Project](https://github.com/PeernetOfficial/BrowserSetup).
+
+This installation bundle contains the Browser and installs the required .NET framework, includes the backend, and also configures the Windows Firewall for admin users.
+
+## Use
+
+Run 'Peernet Browser.exe' file and enjoy the features.
+
+## Compile
+
+The following steps provide a guide how to compile the Peernet Browser. Note that the backend executable is not part of this guide.
+
+### Step 1 .NET SDK
 In order to use generic driver for .NET CLI, .NET SDK needs to be installed.
 .NET SDK installer can be downloaded from [Official Website](https://dotnet.microsoft.com/download/dotnet/5.0)
 
-#### Step 2 (Clone the repository)
+### Step 2 Clone the repository
 Use GIT CLI to clone the repository
 
 ```
 git clone https://github.com/PeernetOfficial/Browser.git
 ```
 
-#### Step 3 (Install VisualStudio) [Optional]{#step3}
+### Step 3 Install VisualStudio (optional)
 This step is optional. It is not required to be able to **build** and **run** solution although VisualStudio as IDE provides numerous features besides obvious ability to edit, build and run the solution.
 
 Peernet Browser is written with the latest as of now .NET 5.0. It requires [VisualStudio 2019](https://visualstudio.microsoft.com/pl/vs/) version or newer to be able to load.
 There is **Community** version that is free of charge for non-commercial use.
 
-#### Step 4 (Modify application settings)
+### Step 4 Modify application settings
 You should modify configuration accordingly to your needs. See [Configuration](#configuration).
 
-#### Step 5 (Build solution)
+### Step 5 Build solution
 Solution can be built in few ways.  
 One way is to use Visual Studio (See [Step 3](#step3)).
 The other way is to use [**dotnet CLI**](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet).
@@ -95,11 +110,11 @@ Build succeeded.
 Time Elapsed 00:00:07.34
 ```
 
-#### Step 6 (Install runtime)
+### Step 6 Install runtime
 Last step before being able to run the application is to install the .NET runtime.
 .NET runtime installer can be downloaded from [Official Website](https://dotnet.microsoft.com/download/dotnet/5.0)
 
-#### Step 7 (Run the app)
+### Step 7 Run the app
 Having already built solution and installed runtime you are able to run the application. It can be achieved in few ways similar to building the solution.  
 One way is to use Visual Studio (See [Step 3](#step3)).
 The other way is to use [**dotnet CLI**](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet).
@@ -114,6 +129,30 @@ You can also simply run the application from **.exe** file which you can find in
 
 >Peernet Browser.exe
 
-## Use
-You can either follow [first boot](#first-boot) instruction or download the latest release of Peernet Command Line Client and Peernet Browser.
-Run 'Peernet Browser.exe' file and enjoy the features.
+## Development
+
+### Debugging Backend API
+
+By default the backend API uses a randomized port and a randomized API key. For debugging purposes it can make sense to set the listening port of the API to a hardcoded value and disable the use of API key. This will make it easy to use 3rd party HTTP clients for debugging requests.
+
+First, change the backend configuration file `Config.yaml` to include a hardcoded IP:Port to listen and disable the use of API key by setting it to the zero UUID:
+
+```yaml
+APIListen: ["127.0.0.1:112"]
+APIKey:    "00000000-0000-0000-0000-000000000000"
+```
+
+In the file `Peernet Browser.dll.config` set the tag `ApiUrl` to the same IP:Port:
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <appSettings>
+    <add key="Backend" value="Backend.exe" />
+    <add key="ApiUrl" value="http://127.0.0.1:112" />
+    <add key="DownloadPath" value="%userprofile%\Downloads\" />
+  </appSettings>
+</configuration>
+```
+
+Note: In this case you will have to start the backend executable manually before starting the Peernet Browser. You will also have to close the process yourself when done.
