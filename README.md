@@ -45,19 +45,21 @@ These components are required:
 
 ### Automated Setup
 
-An automated setup is provided via a Windows installer through a MSI file. For more details see the [Peernet Browser Installer Project](https://github.com/PeernetOfficial/BrowserSetup).
+An automated setup for end-users is provided via a Windows installer through a MSI file. For more details see the [Peernet Browser Installer Project](https://github.com/PeernetOfficial/BrowserSetup).
 
 This installation bundle contains the Browser and installs the required .NET framework, includes the backend, and also configures the Windows Firewall for admin users.
 
 ## Use
 
-Run 'Peernet Browser.exe' file and enjoy the features.
+Run the `Peernet Browser.exe` file from the release folder and enjoy the features.
+
+Change the configuration file `Peernet Browser.dll.config` as needed.
 
 ## Compile
 
 The following steps provide a guide how to compile the Peernet Browser. Note that the backend executable is not part of this guide.
 
-### Step 1 .NET SDK
+### Step 1 Install .NET SDK
 In order to use generic driver for .NET CLI, .NET SDK needs to be installed.
 .NET SDK installer can be downloaded from [Official Website](https://dotnet.microsoft.com/download/dotnet/5.0)
 
@@ -69,21 +71,18 @@ git clone https://github.com/PeernetOfficial/Browser.git
 ```
 
 ### Step 3 Install VisualStudio (optional)
+
 This step is optional. It is not required to be able to **build** and **run** solution although VisualStudio as IDE provides numerous features besides obvious ability to edit, build and run the solution.
 
-Peernet Browser is written with the latest as of now .NET 5.0. It requires [VisualStudio 2019](https://visualstudio.microsoft.com/pl/vs/) version or newer to be able to load.
-There is **Community** version that is free of charge for non-commercial use.
+Peernet Browser is written with the latest as of now .NET 5.0. It requires [Visual Studio 2019](https://visualstudio.microsoft.com/pl/vs/) version or newer to be able to load.
+There is a Community version that is free of charge for non-commercial use.
 
-### Step 4 Modify application settings
-You should modify configuration accordingly to your needs. See [Configuration](#configuration).
+### Step 4 Build Solution
 
-### Step 5 Build solution
-Solution can be built in few ways.  
-One way is to use Visual Studio (See [Step 3](#step3)).
-The other way is to use [**dotnet CLI**](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet).
+The solution can be built either by using Visual Studio, or using the command line tool [dotnet](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet).
 
-Open command prompt (cmd.exe on Windows) and navigate to solution location (file with *.sln extension).  
-Run following command:
+Open command prompt (cmd.exe on Windows) and navigate to solution location (file with *.sln extension). Run following command. This will build the debug version.
+
 ```
 dotnet build
 ```
@@ -110,22 +109,23 @@ Build succeeded.
 Time Elapsed 00:00:07.34
 ```
 
-### Step 6 Install runtime
-Last step before being able to run the application is to install the .NET runtime.
-.NET runtime installer can be downloaded from [Official Website](https://dotnet.microsoft.com/download/dotnet/5.0)
+To compile the release version without the .NET dlls, use the following command. The compiled files will be in the `\Peernet.Browser.WPF\bin\Release\net5.0-windows\win-x64\publish` folder.
 
-### Step 7 Run the app
+```
+dotnet publish -c Release --no-self-contained
+```
+
+### Step 5 Run the app
 Having already built solution and installed runtime you are able to run the application. It can be achieved in few ways similar to building the solution.  
-One way is to use Visual Studio (See [Step 3](#step3)).
-The other way is to use [**dotnet CLI**](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet).
 
-Open command prompt (cmd.exe on Windows) and navigate to **Peernet.Browser.WPF** project location (file with *.csproj extension).  
-Run following command:
+One way is to use Visual Studio. The other way is to use dotnet tool.
+
+Open command prompt (cmd.exe on Windows) and navigate to Peernet.Browser.WPF project location (file with *.csproj extension). Run following command:
 ```
 dotnet run
 ```
 
-You can also simply run the application from **.exe** file which you can find in build output directory (**bin** folder).
+You can also simply run the application from .exe file which you can find in build output directory (bin folder).
 
 >Peernet Browser.exe
 
