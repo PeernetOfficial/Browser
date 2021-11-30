@@ -44,7 +44,11 @@ namespace Peernet.Browser.Application.ViewModels
         public List<VirtualFileSystemEntity> ActiveSearchResults
         {
             get => activeSearchResults?.OrderBy(e => (int)e.Type).ToList();
-            set => SetProperty(ref activeSearchResults, value);
+            set
+            {
+                SetProperty(ref activeSearchResults, value);
+                RaisePropertyChanged(nameof(ActiveSearchResults));
+            }
         }
 
         public IMvxAsyncCommand<VirtualFileSystemEntity> DeleteCommand =>
@@ -204,27 +208,28 @@ namespace Peernet.Browser.Application.ViewModels
 
             var selected = restoreState ? VirtualFileSystem?.GetCurrentlySelected() : null;
 
-            VirtualFileSystem = virtualFileSystemFactory.CreateVirtualFileSystem(files, selected == null);
+            VirtualFileSystem = virtualFileSystemFactory.CreateVirtualFileSystem(files, selected?.Name == "Root");
             AddRecentTier(sharedFiles);
             AddAllFilesTier(sharedFiles);
 
             if (selected != null)
             {
                 VirtualFileSystemCoreEntity matchingEntity = null;
-                if (VirtualFileSystem.VirtualFileSystemTiers != null)
+                if (VirtualFileSystem.VirtualFileSystemTiers != null && VirtualFileSystem.VirtualFileSystemCategories != null)
                 {
-                    matchingEntity = VirtualFileSystem.VirtualFileSystemTiers.FirstOrDefault(t => t.Name == selected.Name);
-                }
-
-                if (matchingEntity == null && VirtualFileSystem.VirtualFileSystemCategories != null)
-                {
-                    matchingEntity = VirtualFileSystem.VirtualFileSystemCategories.FirstOrDefault(t => t.Name == selected.Name);
+                    matchingEntity =
+                        VirtualFileSystem.FindByName(selected.Name, VirtualFileSystem.VirtualFileSystemTiers) ?? VirtualFileSystem.FindByName(selected.Name, VirtualFileSystem.VirtualFileSystemCategories);
                 }
 
                 if (matchingEntity != null)
                 {
                     ChangeSelectedEntity(matchingEntity);
                     ActiveSearchResults = matchingEntity.VirtualFileSystemEntities;
+                }
+                else
+                {
+                    var root = VirtualFileSystem.VirtualFileSystemTiers.First(t => t.Name == "Root");
+                    OpenDirectoryCommand.Execute(root);
                 }
             }
         }

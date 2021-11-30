@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace Peernet.Browser.Application.VirtualFileSystem
 {
@@ -26,6 +25,25 @@ namespace Peernet.Browser.Application.VirtualFileSystem
         }
 
         public List<VirtualFileSystemEntity> VirtualFileSystemEntities { get; set; } = new();
+
+        public VirtualFileSystemCoreEntity GetSelected()
+        {
+            if (IsSelected)
+            {
+                return this;
+            }
+
+            foreach (var virtualFileSystemEntity in VirtualFileSystemEntities)
+            {
+                if (virtualFileSystemEntity is VirtualFileSystemCoreEntity coreEntity)
+                {
+                    var selected = coreEntity.GetSelected();
+                    return selected;
+                }
+            }
+
+            return null;
+        }
 
         public virtual void ResetSelection()
         {

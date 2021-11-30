@@ -29,8 +29,17 @@ namespace Peernet.Browser.Application.VirtualFileSystem
 
         public VirtualFileSystemCoreEntity GetCurrentlySelected()
         {
-            var selected = VirtualFileSystemTiers.FirstOrDefault(t => t.IsSelected) as VirtualFileSystemCoreEntity ??
-                           VirtualFileSystemCategories.FirstOrDefault(c => c.IsSelected);
+            IEnumerable<VirtualFileSystemCoreEntity> allEntities =
+                new List<VirtualFileSystemCoreEntity>(VirtualFileSystemTiers).Concat(VirtualFileSystemCategories);
+            VirtualFileSystemCoreEntity selected = null;
+            foreach (var tier in allEntities)
+            {
+                selected = tier.GetSelected();
+                if (selected != null)
+                {
+                    return selected;
+                }
+            }
 
             return selected;
         }
@@ -117,6 +126,37 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             }
 
             return coreTier;
+        }
+
+        // It should also include depth
+        public VirtualFileSystemCoreEntity FindByName(string name, IEnumerable<VirtualFileSystemEntity> entities)
+        {
+            VirtualFileSystemCoreEntity matchingEntity = null;
+            foreach (var tier in entities)
+            {
+                var coreEntity = tier as VirtualFileSystemCoreEntity;
+                if (coreEntity == null)
+                {
+                    continue;
+                }
+
+                if (coreEntity.Name == name)
+                {
+                    matchingEntity = coreEntity;
+                    break;
+                }
+
+                if (!coreEntity.VirtualFileSystemEntities.IsNullOrEmpty())
+                {
+                    matchingEntity = FindByName(name, coreEntity.VirtualFileSystemEntities);
+                    if (matchingEntity != null)
+                    {
+                        return matchingEntity;
+                    }
+                }
+            }
+
+            return matchingEntity;
         }
     }
 }

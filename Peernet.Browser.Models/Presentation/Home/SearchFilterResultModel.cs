@@ -6,7 +6,7 @@ namespace Peernet.Browser.Models.Presentation.Home
     public class SearchFilterResultModel
     {
         public bool IsNewSearch => Uuid.IsNullOrEmpty();
-        public FileFormat FileFormat { get; set; }
+        public FileFormat FileFormat { get; set; } = FileFormat.None;
         public FilterType FilterType { get; set; }
         public string InputText { get; set; }
         public string Uuid { get; set; }

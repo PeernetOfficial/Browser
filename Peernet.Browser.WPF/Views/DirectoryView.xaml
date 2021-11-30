@@ -88,7 +88,33 @@
                                         <SolidColorBrush Opacity="0.89" Color="{DynamicResource MainContentColor}" />
                                     </TextBlock.Foreground>
                                 </TextBlock>
-                                <Button x:Name="segment" Height="20" Content="{Binding Path=Name}" Command="{Binding DataContext.OpenDirectoryCommand, ElementName=DirectoryPage}" Style="{StaticResource TreeViewNavigationPathButtonStyle}" VerticalAlignment="Center" CommandParameter="{Binding}" />
+                                <Border Padding="5">
+                                    <TextBlock x:Name="segment" FontSize="15" Text="{Binding Path=Name}" VerticalAlignment="Center">
+                                        <TextBlock.Style>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Foreground" Value="{DynamicResource GrayedOutItemBrush}" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                        <Setter Property="Foreground" Value="{DynamicResource MainContentBrush}" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                        <TextBlock.InputBindings>
+                                            <MouseBinding Command="{Binding DataContext.OpenDirectoryCommand, ElementName=DirectoryPage}" CommandParameter="{Binding}" MouseAction="LeftClick" />
+                                        </TextBlock.InputBindings>
+                                    </TextBlock>
+
+                                    <Border.Style>
+                                        <Style TargetType="{x:Type Border}">
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="{DynamicResource SelectedItemBrush}" />
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                </Border>
                             </StackPanel>
                             <DataTemplate.Triggers>
                                 <DataTrigger Binding="{Binding RelativeSource={RelativeSource PreviousData}}" Value="{x:Null}">
