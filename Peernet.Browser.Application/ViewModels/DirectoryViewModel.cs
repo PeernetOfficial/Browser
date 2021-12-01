@@ -88,7 +88,7 @@ namespace Peernet.Browser.Application.ViewModels
                     if (entity is VirtualFileSystemCoreEntity coreTier)
                     {
                         ActiveSearchResults = coreTier.VirtualFileSystemEntities;
-                        PathElements.Add(coreTier);
+                        SetPath(coreTier);
                         ChangeSelectedEntity(coreTier);
                     }
                     else
@@ -102,27 +102,11 @@ namespace Peernet.Browser.Application.ViewModels
             new MvxCommand<VirtualFileSystemCoreEntity>(entity =>
             {
                 ChangeSelectedEntity(entity);
-                var index = PathElements.IndexOf(entity);
-                for (int i = PathElements.Count - 1; i > index; i--)
-                {
-                    PathElements.RemoveAt(i);
-                }
-
-                PathElements.Last().IsSelected = true;
+                SetPath(entity);
                 UpdateActiveSearchResults.Execute(entity);
             });
 
-        public IMvxCommand<VirtualFileSystemEntity> OpenTreeItemCommand => new MvxCommand<VirtualFileSystemEntity>(
-            entity =>
-            {
-                var name = entity is VirtualFileSystemCoreCategory ? "Libraries" : "Your Files";
-
-                PathElements = new ObservableCollection<VirtualFileSystemCoreEntity>(
-                    new List<VirtualFileSystemCoreEntity>
-                        { new(name, VirtualFileSystemEntityType.Directory) });
-
-                OpenCommand.Execute(entity);
-            });
+        public IMvxCommand<VirtualFileSystemCoreEntity> OpenTreeItemCommand => new MvxCommand<VirtualFileSystemCoreEntity>(InitializePath);
 
         public ObservableCollection<VirtualFileSystemCoreEntity> PathElements
         {
@@ -190,12 +174,6 @@ namespace Peernet.Browser.Application.ViewModels
             set => SetProperty(ref virtualFileSystem, value);
         }
 
-        public void ChangeSelectedEntity(VirtualFileSystemCoreEntity coreEntity)
-        {
-            VirtualFileSystem.ResetSelection();
-            coreEntity.IsSelected = true;
-        }
-
         public async Task ReloadVirtualFileSystem(bool restoreState = true)
         {
             var header = await blockchainService.GetHeader();
@@ -235,14 +213,7 @@ namespace Peernet.Browser.Application.ViewModels
         public override async void ViewAppearing()
         {
             await ReloadVirtualFileSystem(false);
-            var root = VirtualFileSystem.VirtualFileSystemTiers.First();
-            root.IsSelected = true;
-            ActiveSearchResults = root.VirtualFileSystemEntities;
-            PathElements = new ObservableCollection<VirtualFileSystemCoreEntity>
-            {
-                new("Your Files", VirtualFileSystemEntityType.Directory),
-                root
-            };
+            InitializePath(VirtualFileSystem.Root);
 
             base.ViewAppearing();
         }
@@ -272,11 +243,17 @@ namespace Peernet.Browser.Application.ViewModels
                 : results;
         }
 
+        private void ChangeSelectedEntity(VirtualFileSystemCoreEntity coreEntity)
+        {
+            VirtualFileSystem.ResetSelection();
+            coreEntity.IsSelected = true;
+        }
+
         private VirtualFileSystemCoreEntity DetermineHigherTier()
         {
             for (int i = 1; i < PathElements.Count; i++)
             {
-                var higherTier = PathElements.ElementAt(PathElements.Count -1 -i);
+                var higherTier = PathElements.ElementAt(PathElements.Count - 1 - i);
                 var matchingTier = VirtualFileSystem.FindByName(higherTier.Name, VirtualFileSystem.VirtualFileSystemTiers);
                 if (matchingTier != null && !matchingTier.VirtualFileSystemEntities.IsNullOrEmpty())
                 {
@@ -285,6 +262,35 @@ namespace Peernet.Browser.Application.ViewModels
             }
 
             return null;
+        }
+
+        private void InitializePath(VirtualFileSystemEntity entity)
+        {
+            var name = entity is VirtualFileSystemCoreCategory ? "Libraries" : "Your Files";
+
+            PathElements = new ObservableCollection<VirtualFileSystemCoreEntity>(
+                new List<VirtualFileSystemCoreEntity>
+                    { new(name, VirtualFileSystemEntityType.Directory) });
+
+            OpenCommand.Execute(entity);
+        }
+
+        private void SetPath(VirtualFileSystemCoreEntity entity)
+        {
+            var index = PathElements.IndexOf(entity);
+            if (index == -1)
+            {
+                PathElements.Add(entity);
+            }
+            else
+            {
+                for (int i = PathElements.Count - 1; i > index; i--)
+                {
+                    PathElements.RemoveAt(i);
+                }
+            }
+
+            PathElements.Last().IsSelected = true;
         }
     }
 }
