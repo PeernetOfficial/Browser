@@ -115,6 +115,12 @@ To compile the release version without the .NET dlls, use the following command.
 dotnet publish -c Release --no-self-contained
 ```
 
+To sign the executable use the `signtool` from the Windows SDK. Note that all other related executables including dlls should also be signed. It makes sense signing all executables before creating the setup file.
+
+```
+signtool sign /a /fd SHA256 "Peernet Browser.exe"
+```
+
 ### Step 5 Run the app
 Having already built solution and installed runtime you are able to run the application. It can be achieved in few ways similar to building the solution.  
 
