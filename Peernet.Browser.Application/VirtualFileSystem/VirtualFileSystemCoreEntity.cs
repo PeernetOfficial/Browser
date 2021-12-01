@@ -4,7 +4,6 @@ namespace Peernet.Browser.Application.VirtualFileSystem
 {
     public class VirtualFileSystemCoreEntity : VirtualFileSystemEntity
     {
-        private bool isVisualTreeVertex;
         private bool isSelected;
 
         public VirtualFileSystemCoreEntity(string name, VirtualFileSystemEntityType type)
@@ -15,13 +14,10 @@ namespace Peernet.Browser.Application.VirtualFileSystem
         public bool IsSelected
         {
             get => isSelected;
-            set => SetProperty(ref isSelected, value);
-        }
-
-        public bool IsVisualTreeVertex
-        {
-            get => isVisualTreeVertex;
-            set => SetProperty(ref isVisualTreeVertex, value);
+            set
+            {
+                SetProperty(ref isSelected, value);
+            }
         }
 
         public List<VirtualFileSystemEntity> VirtualFileSystemEntities { get; set; } = new();

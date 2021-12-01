@@ -101,7 +101,6 @@ namespace Peernet.Browser.Application.ViewModels
         public IMvxCommand<VirtualFileSystemCoreEntity> OpenDirectoryCommand =>
             new MvxCommand<VirtualFileSystemCoreEntity>(entity =>
             {
-                VirtualFileSystem.ResetSelection();
                 ChangeSelectedEntity(entity);
                 var index = PathElements.IndexOf(entity);
                 for (int i = PathElements.Count - 1; i > index; i--)
@@ -109,6 +108,7 @@ namespace Peernet.Browser.Application.ViewModels
                     PathElements.RemoveAt(i);
                 }
 
+                PathElements.Last().IsSelected = true;
                 UpdateActiveSearchResults.Execute(entity);
             });
 
@@ -194,7 +194,6 @@ namespace Peernet.Browser.Application.ViewModels
         {
             VirtualFileSystem.ResetSelection();
             coreEntity.IsSelected = true;
-            coreEntity.IsVisualTreeVertex = true;
         }
 
         public async Task ReloadVirtualFileSystem(bool restoreState = true)
@@ -228,8 +227,7 @@ namespace Peernet.Browser.Application.ViewModels
                 }
                 else
                 {
-                    var root = VirtualFileSystem.VirtualFileSystemTiers.First(t => t.Name == "Root");
-                    OpenDirectoryCommand.Execute(root);
+                    OpenDirectoryCommand.Execute(DetermineHigherTier() ?? VirtualFileSystem.Root);
                 }
             }
         }
@@ -238,9 +236,11 @@ namespace Peernet.Browser.Application.ViewModels
         {
             await ReloadVirtualFileSystem(false);
             var root = VirtualFileSystem.VirtualFileSystemTiers.First();
+            root.IsSelected = true;
             ActiveSearchResults = root.VirtualFileSystemEntities;
             PathElements = new ObservableCollection<VirtualFileSystemCoreEntity>
             {
+                new("Your Files", VirtualFileSystemEntityType.Directory),
                 root
             };
 
@@ -270,6 +270,21 @@ namespace Peernet.Browser.Application.ViewModels
             return !string.IsNullOrEmpty(SearchInput)
                 ? results.Where(f => f.Name.Contains(SearchInput, StringComparison.OrdinalIgnoreCase)).ToList()
                 : results;
+        }
+
+        private VirtualFileSystemCoreEntity DetermineHigherTier()
+        {
+            for (int i = 1; i < PathElements.Count; i++)
+            {
+                var higherTier = PathElements.ElementAt(PathElements.Count -1 -i);
+                var matchingTier = VirtualFileSystem.FindByName(higherTier.Name, VirtualFileSystem.VirtualFileSystemTiers);
+                if (matchingTier != null && !matchingTier.VirtualFileSystemEntities.IsNullOrEmpty())
+                {
+                    return matchingTier;
+                }
+            }
+
+            return null;
         }
     }
 }

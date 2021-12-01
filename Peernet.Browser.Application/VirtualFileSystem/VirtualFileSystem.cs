@@ -1,5 +1,4 @@
 ﻿using Peernet.Browser.Models.Domain.Common;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -16,6 +15,8 @@ namespace Peernet.Browser.Application.VirtualFileSystem
 
             CreateRootCoreTier(sharedFiles, isCurrentSelection);
         }
+
+        public VirtualFileSystemCoreTier Root => VirtualFileSystemTiers.First(t => t.Name == "Root");
 
         public ObservableCollection<VirtualFileSystemCoreCategory> VirtualFileSystemCategories { get; set; } = new();
 
