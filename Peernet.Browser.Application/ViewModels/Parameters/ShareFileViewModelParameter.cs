@@ -5,6 +5,8 @@ using Peernet.Browser.Models.Domain.Warehouse;
 using Peernet.Browser.Models.Presentation.Footer;
 using System.Linq;
 using System.Threading.Tasks;
+using MvvmCross;
+using MvvmCross.Navigation;
 
 namespace Peernet.Browser.Application.ViewModels.Parameters
 {
@@ -43,6 +45,8 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
             {
                 GlobalContext.Notifications.Add(new Notification($"Failed to add files. Status: {result.Status}", Severity.Error));
             }
+
+            await Mvx.IoCProvider.Resolve<IMvxNavigationService>().Navigate<DirectoryViewModel>();
         }
     }
 }

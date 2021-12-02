@@ -1,6 +1,4 @@
-﻿using MvvmCross;
-using MvvmCross.Commands;
-using MvvmCross.Navigation;
+﻿using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Models.Presentation.Home;
@@ -16,7 +14,6 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction;
         private bool showColumnsDate = true;
         private bool showColumnsDownload = true;
-        private bool showColumnsSelector;
         private bool showColumnsShared = true;
         private bool showColumnsSize = true;
         private int limit = increase;
@@ -27,13 +24,9 @@ namespace Peernet.Browser.Application.ViewModels
             Title = title;
 
             Filters = new FiltersModel(title);
-            Filters.CloseAction += async (x) =>
+            Filters.PropertyChanged += async (sender, args) =>
             {
-                if (x)
-                {
-                    await Refresh();
-                }
-                FiltersIconModel.IsSelected = false;
+                await Refresh();
             };
 
             ClearCommand = new MvxAsyncCommand(async () =>
@@ -41,17 +34,18 @@ namespace Peernet.Browser.Application.ViewModels
                 Filters.Reset(true);
                 await Refresh();
             });
-            FakeHideClickCommand = new MvxCommand(FakeHideClick);
             DownloadCommand = new MvxAsyncCommand<SearchResultRowModel>(async (row) => await downloadAction(row));
             DeleteCommand = new MvxAsyncCommand(async () => { await deleteAction(this); });
+
+
             RemoveFilterCommand = new MvxAsyncCommand<SearchFiltersType>(async (type) =>
             {
                 Filters.RemoveAction(type);
                 await Refresh();
             });
 
-            ColumnsIconModel = new IconModel(FiltersType.Columns, true, OpenCloseColumnsFilter);
-            FiltersIconModel = new IconModel(FiltersType.Filters, true, OpenFilters);
+            ColumnsIconModel = new IconModel(FilterType.Columns, true, OpenCloseColumnsFilter);
+            FiltersIconModel = new IconModel(FilterType.Filters, true, OpenCloseFilters);
 
             InitIcons();
             Loader.Set("Searching...");
@@ -70,12 +64,9 @@ namespace Peernet.Browser.Application.ViewModels
         public LoadingModel Loader { get; } = new LoadingModel();
         public IconModel ColumnsIconModel { get; }
         public IMvxAsyncCommand DeleteCommand { get; }
-        public IMvxCommand FakeHideClickCommand { get; }
-
         public IMvxAsyncCommand<SearchFiltersType> RemoveFilterCommand { get; }
         public IMvxAsyncCommand<SearchResultRowModel> DownloadCommand { get; }
         public MvxObservableCollection<IconModel> FilterIconModels { get; } = new MvxObservableCollection<IconModel>();
-        public MapModel Map { get; } = new MapModel { Width = 318, Height = 231 };
         public FiltersModel Filters { get; }
         public IconModel FiltersIconModel { get; }
 
@@ -90,13 +81,6 @@ namespace Peernet.Browser.Application.ViewModels
             get => showColumnsDownload;
             set => SetProperty(ref showColumnsDownload, value);
         }
-
-        public bool ShowColumnsSelector
-        {
-            get => showColumnsSelector;
-            set => SetProperty(ref showColumnsSelector, value);
-        }
-
         public bool ShowColumnsShared
         {
             get => showColumnsShared;
@@ -131,12 +115,6 @@ namespace Peernet.Browser.Application.ViewModels
             await Refresh(false);
         }
 
-        private void FakeHideClick()
-        {
-            ShowColumnsSelector = false;
-            ColumnsIconModel.IsSelected = false;
-        }
-
         private int GetMax() => (FilterIconModels.FirstOrDefault(x => x.IsSelected)?.Count).GetValueOrDefault();
 
         private bool isClearing;
@@ -156,7 +134,6 @@ namespace Peernet.Browser.Application.ViewModels
             {
                 for (var i = TableResult.Count; i < data.Rows.Length; i++)
                 {
-                    data.Rows[i].OnHover = Map.Fill;
                     TableResult.Add(data.Rows[i]);
                 }
             });
@@ -180,7 +157,7 @@ namespace Peernet.Browser.Application.ViewModels
             ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Size", IsChecked = true, IsCheckChanged = OnColumnCheckboxClick });
             ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Downloads", IsChecked = true, IsCheckChanged = OnColumnCheckboxClick });
             ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Shared by", IsChecked = true, IsCheckChanged = OnColumnCheckboxClick });
-            RefreshIconFilters(SearchResultModel.GetDefaultStats().ToDictionary(x => x, y => 0), FiltersType.All);
+            RefreshIconFilters(SearchResultModel.GetDefaultStats().ToDictionary(x => x, y => 0), FilterType.All);
         }
 
         private void OnColumnCheckboxClick(CustomCheckBoxModel selection)
@@ -213,17 +190,14 @@ namespace Peernet.Browser.Application.ViewModels
             await Refresh();
         }
 
-        private async Task OpenFilters(IconModel m)
+        private Task OpenCloseFilters(IconModel m)
         {
-            FakeHideClick();
-            var navigationService = Mvx.IoCProvider.Resolve<IMvxNavigationService>();
-            GlobalContext.IsMainWindowActive = false;
-            GlobalContext.IsProfileMenuVisible = false;
             Filters.BindFromSearchFilterResult();
-            await navigationService.Navigate<FiltersViewModel, FiltersModel>(Filters);
+            ColumnsIconModel.IsSelected = false;
+            return Task.CompletedTask;
         }
 
-        private void RefreshIconFilters(IDictionary<FiltersType, int> stats, FiltersType selected)
+        private void RefreshIconFilters(IDictionary<FilterType, int> stats, FilterType selected)
         {
             FilterIconModels.Clear();
             stats.Foreach(x => FilterIconModels.Add(new IconModel(x.Key, onClick: OnFilterIconClick, count: x.Value) { IsSelected = x.Key == selected }));
@@ -231,7 +205,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         private Task OpenCloseColumnsFilter(IconModel i)
         {
-            ShowColumnsSelector ^= true;
+            FiltersIconModel.IsSelected = false;
             return Task.CompletedTask;
         }
     }

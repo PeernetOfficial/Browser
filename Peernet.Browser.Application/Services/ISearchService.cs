@@ -10,6 +10,6 @@ namespace Peernet.Browser.Application.Services
 
         Task Terminate(string id);
 
-        IDictionary<FiltersType, int> GetEmptyStats();
+        IDictionary<FilterType, int> GetEmptyStats();
     }
 }

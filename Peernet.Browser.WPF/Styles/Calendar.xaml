@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:Peernet.Browser.WPF.Converters"
                     xmlns:V="clr-namespace:Peernet.Browser.WPF.Views"
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls">
 
     <Style x:Key="PeernetCalendar" TargetType="{x:Type Calendar}">
         <Setter Property="Background" Value="Transparent" />
@@ -167,8 +168,8 @@
                             <DataTrigger.Binding>
                                 <MultiBinding Converter="{StaticResource LookupConverter}">
                                     <Binding />
-                                    <Binding Path="DataContext.Filters.Dates.DateFrom" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type V:FiltersView}}" />
-                                    <Binding Path="DataContext.Filters.Dates.DateTo" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type V:FiltersView}}" />
+                                    <Binding Path="DataContext.Filters.Dates.DateFrom" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type controls:FiltersControl}}" />
+                                    <Binding Path="DataContext.Filters.Dates.DateTo" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type controls:FiltersControl}}" />
                                 </MultiBinding>
                             </DataTrigger.Binding>
                             <Setter TargetName="backGroundDot" Property="Visibility" Value="Visible" />

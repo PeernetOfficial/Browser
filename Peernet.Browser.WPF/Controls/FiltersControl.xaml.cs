@@ -3,11 +3,11 @@
 namespace Peernet.Browser.WPF.Controls
 {
     /// <summary>
-    /// Interaction logic for ColumnsSelectorControl.xaml
+    /// Interaction logic for FiltersControl.xaml
     /// </summary>
-    public partial class ColumnsSelectorControl : UserControl
+    public partial class FiltersControl : UserControl
     {
-        public ColumnsSelectorControl()
+        public FiltersControl()
         {
             InitializeComponent();
         }

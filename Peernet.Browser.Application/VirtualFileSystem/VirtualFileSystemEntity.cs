@@ -22,7 +22,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
 
         public string Name => name ?? File.Name;
 
-        public VirtualFileSystemEntityType Type => type ?? Enum.Parse<VirtualFileSystemEntityType>(File.Type.ToString());
+        public VirtualFileSystemEntityType Type => GetEntityType();
 
         public bool Equals(VirtualFileSystemEntity other)
         {
@@ -57,6 +57,16 @@ namespace Peernet.Browser.Application.VirtualFileSystem
         public override int GetHashCode()
         {
             return HashCode.Combine(name, type, File);
+        }
+
+        private VirtualFileSystemEntityType GetEntityType()
+        {
+            if (type != null)
+            {
+                return type.Value;
+            }
+
+            return Enum.TryParse(File.Type.ToString(), true, out VirtualFileSystemEntityType entityType) ? entityType : VirtualFileSystemEntityType.Binary;
         }
     }
 }

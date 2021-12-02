@@ -16,14 +16,14 @@ namespace Peernet.Browser.Models.Presentation.Footer
         private long size;
         private byte[] hash;
 
-        public FileModel(string path)
+        public FileModel(string path, string directory = null)
         {
             var f = new FileInfo(path);
             FullPath = f.FullName;
             FileName = f.Name;
             Size = f.Length;
             CreateDate = DateTime.Now;
-            Directory = null;
+            Directory = directory;
         }
 
         public FileModel(ApiFile apiFile)

@@ -1,11 +1,14 @@
-﻿using System;
+﻿using MvvmCross.ViewModels;
 using Peernet.Browser.Models.Domain.Common;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Peernet.Browser.Models.Presentation.Home
 {
-    public class SearchResultRowModel
+    public class SearchResultRowModel : MvxNotifyPropertyChanged
     {
-        private bool isHovered;
+        private bool isMapEnabled;
 
         public SearchResultRowModel(ApiFile source)
         {
@@ -16,9 +19,11 @@ namespace Peernet.Browser.Models.Presentation.Home
             Size = $"{source.Size}";
             SharedBy = source.SharedByCount;
             //FlameIsVisible = source.SharedByCount > 15;
-            Points = Array.Empty<GeoPoint>();// { new GeoPoint { Longitude = 19, Latitude = 49 }, new GeoPoint { Longitude = 0, Latitude = 0 } };
+            Points = Map.ConvertGeoPointsToMapScale(source.SharedByGeoIP);
+            IsMapEnabled = !Points.IsNullOrEmpty();
         }
 
+        public static MapModel Map { get; } = new() { Width = 471, Height = 231 };
         public DateTime Date { get; }
         public HealthType EnumerationMember { get; }
 
@@ -26,22 +31,18 @@ namespace Peernet.Browser.Models.Presentation.Home
         public bool FlameIsVisible { get; }
         public bool IsCompleted { get; }
 
-        public bool IsHovered
+        public bool IsMapEnabled
         {
-            get => isHovered;
+            get => isMapEnabled;
             set
             {
-                isHovered = value;
-                if (IsHovered)
-                {
-                    OnHover?.Invoke(Points);
-                }
+                isMapEnabled = value;
+                SetProperty(ref isMapEnabled, value);
             }
         }
 
         public string Name { get; }
-        public Action<GeoPoint[]> OnHover { get; set; }
-        public GeoPoint[] Points { get; }
+        public List<GeoPoint> Points { get; }
         public int SharedBy { get; }
         public string Size { get; }
 
