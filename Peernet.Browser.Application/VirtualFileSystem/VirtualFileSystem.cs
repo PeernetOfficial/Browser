@@ -1,6 +1,7 @@
 ﻿using Peernet.Browser.Models.Domain.Common;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 
 namespace Peernet.Browser.Application.VirtualFileSystem
@@ -76,7 +77,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
         {
             // materialize
             var sharedFilesList = sharedFiles.ToList();
-            var rootTier = new VirtualFileSystemCoreTier("Root", VirtualFileSystemEntityType.Directory)
+            var rootTier = new VirtualFileSystemCoreTier(nameof(Root), VirtualFileSystemEntityType.Directory, nameof(Root))
             {
                 IsSelected = isCurrentSelection
             };
@@ -106,7 +107,8 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             VirtualFileSystemCoreTier higherTier = null;
             for (int i = 0; i < totalDepth; i++)
             {
-                var tier = new VirtualFileSystemCoreTier(directories[i], VirtualFileSystemEntityType.Directory);
+                var absolutePath = Path.Combine(directories.Take(i + 1).ToArray());
+                var tier = new VirtualFileSystemCoreTier(directories[i], VirtualFileSystemEntityType.Directory, absolutePath);
 
                 if (coreTier == null)
                 {
@@ -129,30 +131,32 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             return coreTier;
         }
 
-        // It should also include depth
-        public VirtualFileSystemCoreEntity FindByName(string name, IEnumerable<VirtualFileSystemEntity> entities)
+        public VirtualFileSystemCoreEntity Find(VirtualFileSystemCoreEntity selected, IEnumerable<VirtualFileSystemEntity> entities)
         {
             VirtualFileSystemCoreEntity matchingEntity = null;
-            foreach (var tier in entities)
+            if (selected != null)
             {
-                var coreEntity = tier as VirtualFileSystemCoreEntity;
-                if (coreEntity == null)
+                foreach (var tier in entities)
                 {
-                    continue;
-                }
-
-                if (coreEntity.Name == name)
-                {
-                    matchingEntity = coreEntity;
-                    break;
-                }
-
-                if (!coreEntity.VirtualFileSystemEntities.IsNullOrEmpty())
-                {
-                    matchingEntity = FindByName(name, coreEntity.VirtualFileSystemEntities);
-                    if (matchingEntity != null)
+                    var coreEntity = tier as VirtualFileSystemCoreEntity;
+                    if (coreEntity == null)
                     {
-                        return matchingEntity;
+                        continue;
+                    }
+
+                    if (coreEntity.AbsolutePath == selected.AbsolutePath)
+                    {
+                        matchingEntity = coreEntity;
+                        break;
+                    }
+
+                    if (!coreEntity.VirtualFileSystemEntities.IsNullOrEmpty())
+                    {
+                        matchingEntity = Find(selected, coreEntity.VirtualFileSystemEntities);
+                        if (matchingEntity != null)
+                        {
+                            return matchingEntity;
+                        }
                     }
                 }
             }

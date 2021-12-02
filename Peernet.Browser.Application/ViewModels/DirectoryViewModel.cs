@@ -10,6 +10,7 @@ using Peernet.Browser.Models.Presentation.Footer;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -87,7 +88,7 @@ namespace Peernet.Browser.Application.ViewModels
                 {
                     if (entity is VirtualFileSystemCoreEntity coreTier)
                     {
-                        ActiveSearchResults = coreTier.VirtualFileSystemEntities;
+                        UpdateActiveSearchResults.Execute(coreTier);
                         SetPath(coreTier);
                         ChangeSelectedEntity(coreTier);
                     }
@@ -129,19 +130,11 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        public IMvxCommand SearchCommand
-        {
-            get
+        public IMvxCommand SearchCommand =>
+            new MvxCommand(() =>
             {
-                return new MvxCommand(() =>
-                {
-                    if (sharedFiles != null)
-                    {
-                        ActiveSearchResults = ApplySearchResultsFiltering(sharedFiles.ToList());
-                    }
-                });
-            }
-        }
+                UpdateActiveSearchResults.Execute(PathElements.Last());
+            });
 
         public string SearchInput
         {
@@ -163,9 +156,10 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IMvxCommand<VirtualFileSystemCoreEntity> UpdateActiveSearchResults =>
             new MvxCommand<VirtualFileSystemCoreEntity>(
-                tier =>
+                entity =>
                 {
-                    ActiveSearchResults = ApplySearchResultsFiltering(tier.VirtualFileSystemEntities);
+                    var refreshedEntity = VirtualFileSystem.Find(entity, VirtualFileSystem.VirtualFileSystemTiers) ?? VirtualFileSystem.Find(entity, VirtualFileSystem.VirtualFileSystemCategories);
+                    ActiveSearchResults = ApplySearchResultsFiltering(refreshedEntity?.VirtualFileSystemEntities);
                 });
 
         public VirtualFileSystem.VirtualFileSystem VirtualFileSystem
@@ -188,20 +182,20 @@ namespace Peernet.Browser.Application.ViewModels
             VirtualFileSystem = virtualFileSystemFactory.CreateVirtualFileSystem(files, selected?.Name == "Root");
             AddRecentTier(sharedFiles);
             AddAllFilesTier(sharedFiles);
-
+            RefreshPathObjects();
             if (selected != null)
             {
                 VirtualFileSystemCoreEntity matchingEntity = null;
                 if (VirtualFileSystem.VirtualFileSystemTiers != null && VirtualFileSystem.VirtualFileSystemCategories != null)
                 {
                     matchingEntity =
-                        VirtualFileSystem.FindByName(selected.Name, VirtualFileSystem.VirtualFileSystemTiers) ?? VirtualFileSystem.FindByName(selected.Name, VirtualFileSystem.VirtualFileSystemCategories);
+                        VirtualFileSystem.Find(selected, VirtualFileSystem.VirtualFileSystemTiers) ?? VirtualFileSystem.Find(selected, VirtualFileSystem.VirtualFileSystemCategories);
                 }
 
                 if (matchingEntity != null)
                 {
                     ChangeSelectedEntity(matchingEntity);
-                    ActiveSearchResults = matchingEntity.VirtualFileSystemEntities;
+                    UpdateActiveSearchResults.Execute(matchingEntity);
                 }
                 else
                 {
@@ -231,13 +225,18 @@ namespace Peernet.Browser.Application.ViewModels
 
         private void AddTier(string name, VirtualFileSystemEntityType type, IEnumerable<VirtualFileSystemEntity> entities)
         {
-            var tier = new VirtualFileSystemCoreTier(name, type);
+            var tier = new VirtualFileSystemCoreTier(name, type, name);
             tier.VirtualFileSystemEntities.AddRange(entities);
             VirtualFileSystem.VirtualFileSystemTiers.Add(tier);
         }
 
         private List<VirtualFileSystemEntity> ApplySearchResultsFiltering(List<VirtualFileSystemEntity> results)
         {
+            if (results.IsNullOrEmpty())
+            {
+                return new List<VirtualFileSystemEntity>();
+            }
+
             return !string.IsNullOrEmpty(SearchInput)
                 ? results.Where(f => f.Name.Contains(SearchInput, StringComparison.OrdinalIgnoreCase)).ToList()
                 : results;
@@ -254,7 +253,7 @@ namespace Peernet.Browser.Application.ViewModels
             for (int i = 1; i < PathElements.Count; i++)
             {
                 var higherTier = PathElements.ElementAt(PathElements.Count - 1 - i);
-                var matchingTier = VirtualFileSystem.FindByName(higherTier.Name, VirtualFileSystem.VirtualFileSystemTiers);
+                var matchingTier = VirtualFileSystem.Find(higherTier, VirtualFileSystem.VirtualFileSystemTiers);
                 if (matchingTier != null && !matchingTier.VirtualFileSystemEntities.IsNullOrEmpty())
                 {
                     return matchingTier;
@@ -270,7 +269,7 @@ namespace Peernet.Browser.Application.ViewModels
 
             PathElements = new ObservableCollection<VirtualFileSystemCoreEntity>(
                 new List<VirtualFileSystemCoreEntity>
-                    { new(name, VirtualFileSystemEntityType.Directory) });
+                    { new(name, VirtualFileSystemEntityType.Directory, name) });
 
             OpenCommand.Execute(entity);
         }
@@ -291,6 +290,27 @@ namespace Peernet.Browser.Application.ViewModels
             }
 
             PathElements.Last().IsSelected = true;
+        }
+
+        private void RefreshPathObjects()
+        {
+            List<VirtualFileSystemCoreEntity> refreshedPath = new();
+            if (PathElements != null)
+            {
+                foreach (var element in PathElements)
+                {
+                    if (element.Name is "Your Files" or "Libraries")
+                    {
+                        refreshedPath.Add(element);
+                        continue;
+                    }
+
+                    refreshedPath.Add(VirtualFileSystem.Find(element, VirtualFileSystem.VirtualFileSystemTiers) ??
+                                                 VirtualFileSystem.Find(element, VirtualFileSystem.VirtualFileSystemCategories));
+                }
+            }
+
+            PathElements = new ObservableCollection<VirtualFileSystemCoreEntity>(refreshedPath);
         }
     }
 }

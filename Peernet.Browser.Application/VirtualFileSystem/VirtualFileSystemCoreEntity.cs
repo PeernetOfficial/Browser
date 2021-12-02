@@ -6,18 +6,18 @@ namespace Peernet.Browser.Application.VirtualFileSystem
     {
         private bool isSelected;
 
-        public VirtualFileSystemCoreEntity(string name, VirtualFileSystemEntityType type)
+        public VirtualFileSystemCoreEntity(string name, VirtualFileSystemEntityType type, string absolutePath)
         : base(null, name, type)
         {
+            AbsolutePath = absolutePath;
         }
+
+        public string AbsolutePath { get; }
 
         public bool IsSelected
         {
             get => isSelected;
-            set
-            {
-                SetProperty(ref isSelected, value);
-            }
+            set => SetProperty(ref isSelected, value);
         }
 
         public List<VirtualFileSystemEntity> VirtualFileSystemEntities { get; set; } = new();
@@ -29,16 +29,20 @@ namespace Peernet.Browser.Application.VirtualFileSystem
                 return this;
             }
 
+            VirtualFileSystemCoreEntity selected = null;
             foreach (var virtualFileSystemEntity in VirtualFileSystemEntities)
             {
                 if (virtualFileSystemEntity is VirtualFileSystemCoreEntity coreEntity)
                 {
-                    var selected = coreEntity.GetSelected();
-                    return selected;
+                    selected = coreEntity.GetSelected();
+                    if (selected != null)
+                    {
+                        break;
+                    }
                 }
             }
 
-            return null;
+            return selected;
         }
 
         public virtual void ResetSelection()
