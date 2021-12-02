@@ -1,5 +1,7 @@
-﻿using Peernet.Browser.Application.Managers;
+﻿using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Infrastructure.Services;
+using Peernet.Browser.Models.Domain.Common;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -8,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure.Tools
 {
@@ -36,7 +39,15 @@ namespace Peernet.Browser.Infrastructure.Tools
                 Arguments = $"-webapi={apiUrl} -apikey={settingsManager.ApiKey} -watchpid={currentProcess.Id}"
             };
 
+            process.EnableRaisingEvents = true;
+            process.Exited += OnBackendExit;
             fileExist = true;
+        }
+
+        private void OnBackendExit(object sender, EventArgs e)
+        {
+            GlobalContext.IsConnected = false;
+            GlobalContext.ErrorMessage = $"Backend terminated with exit code: {process.ExitCode}";
         }
 
         public bool IsRunning { get; private set; }
@@ -56,6 +67,7 @@ namespace Peernet.Browser.Infrastructure.Tools
             if (fileExist)
             {
                 RunProcess();
+                WaitForBackendApiToStart();
             }
         }
 
@@ -116,6 +128,29 @@ namespace Peernet.Browser.Infrastructure.Tools
             int port = ((IPEndPoint)l.LocalEndpoint).Port;
             l.Stop();
             return port;
+        }
+
+        private void WaitForBackendApiToStart()
+        {
+            var service = new ApiService(settingsManager);
+
+            for (var i = 0; i < 25; i++)
+            {
+                try
+                {
+                    ApiResponseStatus status = Task.Run(async () => await service.GetStatus()).Result;
+                    if (status.IsConnected)
+                    {
+                        break;
+                    }
+
+                    Thread.Sleep(200);
+                }
+                catch (Exception)
+                {
+                    // Handle
+                }
+            }
         }
     }
 }

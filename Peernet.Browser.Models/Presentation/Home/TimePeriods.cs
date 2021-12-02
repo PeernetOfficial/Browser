@@ -4,19 +4,19 @@ namespace Peernet.Browser.Models.Presentation.Home
 {
     public enum TimePeriods
     {
-        [Description("Last 24 hours")]
+        [Description("None")]
+        None,
+
+        [Description("Last 24 Hours")]
         Last24,
 
         [Description("Last Week")]
         LastWeek,
 
         [Description("Last Month")]
-        LastMounth,
+        LastMonth,
 
         [Description("Last Year")]
-        LastYear,
-
-        [Description("Custom")]
-        Custom
+        LastYear
     }
 }

@@ -1,4 +1,6 @@
-﻿using MvvmCross.Commands;
+﻿using System;
+using System.Threading.Tasks;
+using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.ViewModels.Parameters;
@@ -11,7 +13,7 @@ namespace Peernet.Browser.Application.ViewModels
     {
         private readonly IDownloadManager downloadManager;
         private string actionButtonContent;
-        private bool actionButtonEnabled;
+        private Func<Task> ButtonAction;
         private bool isEditable;
 
         public FilePreviewViewModel(IDownloadManager downloadManager)
@@ -25,16 +27,10 @@ namespace Peernet.Browser.Application.ViewModels
             set => SetProperty(ref actionButtonContent, value);
         }
 
-        public bool ActionButtonEnabled
-        {
-            get => actionButtonEnabled;
-            set => SetProperty(ref actionButtonEnabled, value);
-        }
-
-        public IMvxAsyncCommand<ApiFile> DownloadCommand => new MvxAsyncCommand<ApiFile>(
-            async file =>
+        public IMvxAsyncCommand DownloadCommand => new MvxAsyncCommand(
+            async () =>
             {
-                await downloadManager.QueueUpDownload(new DownloadModel(file));
+                await ButtonAction();
             });
 
         public ApiFile File { get; set; }
@@ -49,8 +45,8 @@ namespace Peernet.Browser.Application.ViewModels
         {
             File = parameter.File;
             IsEditable = parameter.IsEditable;
+            ButtonAction = parameter.Action;
             ActionButtonContent = parameter.ActionButtonContent;
-            ActionButtonEnabled = parameter.ActionButtonEnabled;
         }
     }
 }

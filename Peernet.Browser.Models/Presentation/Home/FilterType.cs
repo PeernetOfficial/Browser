@@ -1,6 +1,6 @@
 ﻿namespace Peernet.Browser.Models.Presentation.Home
 {
-    public enum FiltersType
+    public enum FilterType
     {
         All,
         Audio,

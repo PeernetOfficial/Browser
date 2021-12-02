@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="Peernet.Browser.WPF.Controls.FiltersControl"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls">
+    <Border Margin="0, 48, 0, 0"
+            Padding="10"
+            Visibility="{Binding FiltersIconModel.IsSelected, Converter={StaticResource BoolToVisibility}}"
+            CornerRadius="{DynamicResource MainRadius}"
+            BorderBrush="{DynamicResource LightGray2Brush}"
+            BorderThickness="1"
+            Background="{DynamicResource ViewBackgroundBrush}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <controls:CustomFilterControl Grid.Column="0" Grid.Row="0" Margin="0 0 15 0" VerticalAlignment="Stretch" DataContext="{Binding Filters.DateFilters}" />
+                <controls:CustomFilterControl Grid.Column="1" DataContext="{Binding Filters.FileFormatFilters}" />
+            </Grid>
+    </Border>
+</UserControl>

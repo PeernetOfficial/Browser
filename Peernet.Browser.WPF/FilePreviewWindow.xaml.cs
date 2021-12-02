@@ -26,7 +26,6 @@ namespace Peernet.Browser.WPF
             //Owner = App.Current.MainWindow;
         }
 
-
         private void Window_ContentRendered(object sender, EventArgs e)
         {
             this.Topmost = false;
@@ -58,11 +57,6 @@ namespace Peernet.Browser.WPF
             {
                 DragMove();
             }
-        }
-
-        private void UIElement_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            throw new NotImplementedException();
         }
     }
 }

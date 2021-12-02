@@ -1,7 +1,7 @@
 ﻿using Peernet.Browser.Models.Domain.Common;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 
 namespace Peernet.Browser.Application.VirtualFileSystem
@@ -17,6 +17,8 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             CreateRootCoreTier(sharedFiles, isCurrentSelection);
         }
 
+        public VirtualFileSystemCoreTier Root => VirtualFileSystemTiers.First(t => t.Name == "Root");
+
         public ObservableCollection<VirtualFileSystemCoreCategory> VirtualFileSystemCategories { get; set; } = new();
 
         public ObservableCollection<VirtualFileSystemCoreTier> VirtualFileSystemTiers { get; set; } = new();
@@ -29,8 +31,17 @@ namespace Peernet.Browser.Application.VirtualFileSystem
 
         public VirtualFileSystemCoreEntity GetCurrentlySelected()
         {
-            var selected = VirtualFileSystemTiers.FirstOrDefault(t => t.IsSelected) as VirtualFileSystemCoreEntity ??
-                           VirtualFileSystemCategories.FirstOrDefault(c => c.IsSelected);
+            IEnumerable<VirtualFileSystemCoreEntity> allEntities =
+                new List<VirtualFileSystemCoreEntity>(VirtualFileSystemTiers).Concat(VirtualFileSystemCategories);
+            VirtualFileSystemCoreEntity selected = null;
+            foreach (var tier in allEntities)
+            {
+                selected = tier.GetSelected();
+                if (selected != null)
+                {
+                    return selected;
+                }
+            }
 
             return selected;
         }
@@ -66,7 +77,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
         {
             // materialize
             var sharedFilesList = sharedFiles.ToList();
-            var rootTier = new VirtualFileSystemCoreTier("Root", VirtualFileSystemEntityType.Directory)
+            var rootTier = new VirtualFileSystemCoreTier(nameof(Root), VirtualFileSystemEntityType.Directory, nameof(Root))
             {
                 IsSelected = isCurrentSelection
             };
@@ -88,7 +99,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
                 return new VirtualFileSystemEntity(file);
             }
 
-            var directories = file.Folder.Split('/').ToList();
+            var directories = file.Folder.Split('/', '\\').ToList();
             directories.RemoveAll(string.IsNullOrEmpty);
             var totalDepth = directories.Count;
 
@@ -96,7 +107,8 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             VirtualFileSystemCoreTier higherTier = null;
             for (int i = 0; i < totalDepth; i++)
             {
-                var tier = new VirtualFileSystemCoreTier(directories[i], VirtualFileSystemEntityType.Directory);
+                var absolutePath = Path.Combine("Your Files", Path.Combine(directories.Take(i + 1).ToArray()));
+                var tier = new VirtualFileSystemCoreTier(directories[i], VirtualFileSystemEntityType.Directory, absolutePath);
 
                 if (coreTier == null)
                 {
@@ -117,6 +129,39 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             }
 
             return coreTier;
+        }
+
+        public VirtualFileSystemCoreEntity Find(VirtualFileSystemCoreEntity selected, IEnumerable<VirtualFileSystemEntity> entities)
+        {
+            VirtualFileSystemCoreEntity matchingEntity = null;
+            if (selected != null)
+            {
+                foreach (var tier in entities)
+                {
+                    var coreEntity = tier as VirtualFileSystemCoreEntity;
+                    if (coreEntity == null)
+                    {
+                        continue;
+                    }
+
+                    if (coreEntity.AbsolutePath == selected.AbsolutePath)
+                    {
+                        matchingEntity = coreEntity;
+                        break;
+                    }
+
+                    if (!coreEntity.VirtualFileSystemEntities.IsNullOrEmpty())
+                    {
+                        matchingEntity = Find(selected, coreEntity.VirtualFileSystemEntities);
+                        if (matchingEntity != null)
+                        {
+                            return matchingEntity;
+                        }
+                    }
+                }
+            }
+
+            return matchingEntity;
         }
     }
 }

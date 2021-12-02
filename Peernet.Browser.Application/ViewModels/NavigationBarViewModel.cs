@@ -2,7 +2,6 @@
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
-using System;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
@@ -17,7 +16,13 @@ namespace Peernet.Browser.Application.ViewModels
             UserContext = userContext;
 
             NavigateExploreCommand = new MvxAsyncCommand(async () => await Navigate<ExploreViewModel>());
-            NavigateHomeCommand = new MvxAsyncCommand(async () => await Navigate<HomeViewModel>(false));
+            NavigateHomeCommand = new MvxAsyncCommand(async () =>
+            {
+                if (GlobalContext.CurrentViewModel != nameof(HomeViewModel))
+                {
+                    await Navigate<HomeViewModel>(false);
+                }
+            });
             NavigateDirectoryCommand = new MvxAsyncCommand(async () => await Navigate<DirectoryViewModel>());
 
             EditProfileCommand = new MvxAsyncCommand(async () =>
@@ -40,19 +45,9 @@ namespace Peernet.Browser.Application.ViewModels
             });
         }
 
-        private Type actualActiveViewModel = typeof(HomeViewModel);
+        public IMvxAsyncCommand EditProfileCommand { get; }
 
-        private async Task Navigate<T>(bool showLogo = true) where T : IMvxViewModel
-        {
-            if (typeof(T) == actualActiveViewModel)
-            {
-                return;
-            }
-
-            actualActiveViewModel = typeof(T);
-            await navigationService.Navigate<T>();
-            GlobalContext.IsLogoVisible = showLogo;
-        }
+        public IMvxAsyncCommand NavigateAboutCommand { get; }
 
         public IMvxAsyncCommand NavigateDirectoryCommand { get; }
 
@@ -60,12 +55,20 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IMvxAsyncCommand NavigateHomeCommand { get; }
 
-        public IMvxAsyncCommand EditProfileCommand { get; }
-
-        public IMvxAsyncCommand NavigateAboutCommand { get; }
-
         public IMvxAsyncCommand OpenCloseProfileMenuCommand { get; }
 
         public IUserContext UserContext { get; set; }
+
+        private async Task Navigate<T>(bool showLogo = true) where T : IMvxViewModel
+        {
+            if (typeof(T).Name == GlobalContext.CurrentViewModel)
+            {
+                return;
+            }
+
+            GlobalContext.CurrentViewModel = nameof(T);
+            await navigationService.Navigate<T>();
+            GlobalContext.IsLogoVisible = showLogo;
+        }
     }
 }

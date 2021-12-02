@@ -1,21 +1,23 @@
-﻿using Peernet.Browser.Models.Domain.Common;
+﻿using System;
+using System.Threading.Tasks;
+using Peernet.Browser.Models.Domain.Common;
 
 namespace Peernet.Browser.Application.ViewModels.Parameters
 {
     public class FilePreviewViewModelParameter
     {
         public FilePreviewViewModelParameter(ApiFile file, bool isEditable,
-            bool actionButtonEnabled, string actionButtonContent)
+            Func<Task> action, string actionButtonContent)
         {
             ActionButtonContent = actionButtonContent;
-            ActionButtonEnabled = actionButtonEnabled;
+            Action = action;
             IsEditable = isEditable;
             File = file;
         }
 
         public string ActionButtonContent { get; set; }
 
-        public bool ActionButtonEnabled { get; set; }
+        public Func<Task> Action { get; set; }
 
         public bool IsEditable { get; set; }
 

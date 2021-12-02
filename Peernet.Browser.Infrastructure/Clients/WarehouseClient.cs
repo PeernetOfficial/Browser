@@ -1,4 +1,6 @@
-﻿using Peernet.Browser.Application.Managers;
+﻿using System;
+using System.Collections.Generic;
+using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Infrastructure.Http;
 using Peernet.Browser.Models.Domain.Warehouse;
 using System.Net.Http;
@@ -23,6 +25,18 @@ namespace Peernet.Browser.Infrastructure.Clients
 
             return await httpExecutor.GetResultAsync<WarehouseResult>(HttpMethod.Post, GetRelativeRequestPath("create"),
                 content: content);
+        }
+
+        public async Task<WarehouseResult> ReadPath(byte[] hash, string path)
+        {
+            var parameters = new Dictionary<string, string>
+            {
+                [nameof(hash)] = Convert.ToHexString(hash),
+                [nameof(path)] = path
+            };
+
+            return await httpExecutor.GetResultAsync<WarehouseResult>(HttpMethod.Get, GetRelativeRequestPath("read/path"),
+                parameters);
         }
     }
 }

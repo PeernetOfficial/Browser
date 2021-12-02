@@ -1,20 +1,20 @@
-﻿using System;
+﻿
+using System;
 
 namespace Peernet.Browser.Models.Presentation.Home
 {
     public class DateFilterModel : CustomFilterModel<TimePeriods>
     {
-        private readonly Action<bool> onIsCustomSelectionChange;
-
-        public DateFilterModel(Action<bool> onIsCustomSelectionChange) : base("Date")
+        public DateFilterModel(Action onSelectionChanged) 
+            : base("Date", onSelectionChanged)
         {
-            this.onIsCustomSelectionChange = onIsCustomSelectionChange;
         }
 
-        protected override void IsCheckedChanged(CustomCheckBoxModel customCheckBoxModel)
+        public override void UnselectAll()
         {
-            base.IsCheckedChanged(customCheckBoxModel);
-            onIsCustomSelectionChange?.Invoke((TimePeriods)customCheckBoxModel.EnumerationMember == TimePeriods.Custom && customCheckBoxModel.IsChecked);
+            base.UnselectAll();
+            Set(TimePeriods.None);
+            SelectedItemIndex = 0;
         }
     }
 }

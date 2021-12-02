@@ -7,5 +7,7 @@ namespace Peernet.Browser.Infrastructure.Clients
     internal interface IWarehouseClient
     {
         Task<WarehouseResult> Create(byte[] fileContent);
+
+        Task<WarehouseResult> ReadPath(byte[] hash, string path);
     }
 }

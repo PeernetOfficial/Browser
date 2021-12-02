@@ -10,20 +10,20 @@ namespace Peernet.Browser.Models.Presentation.Home
 
         public SearchFilterResultModel Filters { get; set; }
 
-        public IDictionary<FiltersType, int> Stats { get; set; }
+        public IDictionary<FilterType, int> Stats { get; set; }
 
-        public static FiltersType[] GetDefaultStats()
+        public static FilterType[] GetDefaultStats()
         {
             return new[]
             {
-                FiltersType.All,
-                FiltersType.Audio,
-                FiltersType.Video,
-                FiltersType.Ebooks,
-                FiltersType.Documents,
-                FiltersType.Pictures,
-                FiltersType.Text,
-                FiltersType.Binary
+                FilterType.All,
+                FilterType.Audio,
+                FilterType.Video,
+                FilterType.Ebooks,
+                FilterType.Documents,
+                FilterType.Pictures,
+                FilterType.Text,
+                FilterType.Binary
             };
         }
     }

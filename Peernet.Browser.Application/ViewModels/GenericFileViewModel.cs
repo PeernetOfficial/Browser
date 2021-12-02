@@ -65,7 +65,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         public FileModel Selected
         {
-            get => selected;
+            get => selected ?? Files.FirstOrDefault();
             private set => SetProperty(ref selected, value);
         }
 
@@ -109,11 +109,6 @@ namespace Peernet.Browser.Application.ViewModels
         {
             await viewModelParameter.Confirm(Files.ToArray());
             Cancel();
-
-            if (GlobalContext.CurrentViewModel == nameof(DirectoryViewModel))
-            {
-                await mvxNavigationService.Navigate<DirectoryViewModel>();
-            }
         }
 
         private void Cancel()

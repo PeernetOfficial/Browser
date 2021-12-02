@@ -1,34 +1,45 @@
-﻿using MvvmCross.ViewModels;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace Peernet.Browser.Models.Presentation.Home
 {
     public class MapModel
     {
-        public double Width { get; set; }
         public double Height { get; set; }
-        public MvxObservableCollection<MapPoint> Points { get; } = new MvxObservableCollection<MapPoint>();
 
-        public void Fill(IEnumerable<GeoPoint> points)
+        public double Width { get; set; }
+
+        public List<GeoPoint> ConvertGeoPointsToMapScale(string geoIPs)
         {
-            Points.Clear();
-            points.Foreach(Add);
+            var geoPoints = ParseGeoIPs(geoIPs);
+            return geoPoints.Select(Convert).ToList();
         }
 
-        private void Add(GeoPoint point) => Points.Add(Map(point));
-
-        private MapPoint Map(GeoPoint point)
+        private GeoPoint Convert(GeoPoint point)
         {
-            var x = (point.Longitude + 180) * ((Width - 30) / 360);
-            var y = (point.Latitude + 180) * ((Height - 30) / 360);
-            return new MapPoint
+            var x = (point.Longitude + 180) * (Width / 360);
+            var y = (point.Latitude + 90) * (Height / 180);
+
+            return new GeoPoint(y, x);
+        }
+
+        private List<GeoPoint> ParseGeoIPs(string geoIPs)
+        {
+            var geoPoints = new List<GeoPoint>();
+            if (geoIPs == null)
             {
-                Height = 10,
-                Width = 10,
-                X = x,
-                Y = y
-            };
+                return geoPoints;
+            }
+
+            var points = geoIPs.Split("\n");
+
+            foreach (var point in points)
+            {
+                var latitudeLongitude = point.Split(",");
+                geoPoints.Add(new GeoPoint(double.Parse(latitudeLongitude[0]), double.Parse(latitudeLongitude[1])));
+            }
+
+            return geoPoints;
         }
     }
 }

@@ -136,18 +136,7 @@
                             </StackPanel>
                         </Grid>
 
-                        <Button Width="174" Height="44" Margin="0, 50, 50, 30" Command="{Binding DownloadCommand}" CommandParameter="{Binding File}" HorizontalAlignment="Right" Content="{Binding ActionButtonContent, UpdateSourceTrigger=PropertyChanged}">
-                            <Button.Style>
-                                <Style BasedOn="{StaticResource AcceptButton}" TargetType="{x:Type Button}">
-                                    <Setter Property="Visibility" Value="Collapsed" />
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Path=ActionButtonEnabled}" Value="True">
-                                            <Setter Property="Visibility" Value="Visible" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
-                            
+                        <Button Width="174" Height="44" Margin="0, 50, 50, 30" Command="{Binding DownloadCommand}" HorizontalAlignment="Right" Content="{Binding ActionButtonContent, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource AcceptButton}">
                             <Button.ContentTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">

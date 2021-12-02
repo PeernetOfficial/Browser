@@ -4,6 +4,5 @@
     {
         FileFormats,
         TimePeriods,
-        Size
     }
 }

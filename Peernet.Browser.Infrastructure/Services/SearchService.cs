@@ -65,7 +65,7 @@ namespace Peernet.Browser.Infrastructure.Services
             catch { }
         }
 
-        public IDictionary<FiltersType, int> GetEmptyStats() => GetStats(new SearchStatisticData());
+        public IDictionary<FilterType, int> GetEmptyStats() => GetStats(new SearchStatisticData());
 
         private string GetStatusText(SearchStatusEnum status)
         {
@@ -85,7 +85,7 @@ namespace Peernet.Browser.Infrastructure.Services
             }
         }
 
-        private IDictionary<FiltersType, int> GetStats(SearchStatisticData data)
+        private IDictionary<FilterType, int> GetStats(SearchStatisticData data)
         {
             if (data == null)
             {
@@ -94,7 +94,7 @@ namespace Peernet.Browser.Infrastructure.Services
 
             return SearchResultModel
                 .GetDefaultStats()
-                .ToDictionary(x => x, y => y == FiltersType.All ? data.Total : data.GetCount(Map(y)));
+                .ToDictionary(x => x, y => y == FilterType.All ? data.Total : data.GetCount(Map(y)));
         }
 
         private SearchRequestSortTypeEnum Map(DataGridSortingNameEnum sortName, DataGridSortingTypeEnum sortType)
@@ -118,29 +118,29 @@ namespace Peernet.Browser.Infrastructure.Services
             }
         }
 
-        private LowLevelFileType Map(FiltersType type)
+        private LowLevelFileType Map(FilterType type)
         {
             switch (type)
             {
-                case FiltersType.Audio:
+                case FilterType.Audio:
                     return LowLevelFileType.Audio;
 
-                case FiltersType.Video:
+                case FilterType.Video:
                     return LowLevelFileType.Video;
 
-                case FiltersType.Ebooks:
+                case FilterType.Ebooks:
                     return LowLevelFileType.Ebook;
 
-                case FiltersType.Documents:
+                case FilterType.Documents:
                     return LowLevelFileType.Document;
 
-                case FiltersType.Pictures:
+                case FilterType.Pictures:
                     return LowLevelFileType.Picture;
 
-                case FiltersType.Text:
+                case FilterType.Text:
                     return LowLevelFileType.Text;
 
-                case FiltersType.Binary:
+                case FilterType.Binary:
                     return LowLevelFileType.Binary;
 
                 default:
@@ -202,13 +202,13 @@ namespace Peernet.Browser.Infrastructure.Services
             {
                 res.Sort = (int)Map(model.SortName, model.SortType);
             }
-            if (model.FilterType != FiltersType.All)
+            if (model.FilterType != FilterType.All)
             {
                 res.FileType = (int)Map(model.FilterType);
             }
-            if (!model.FileFormats.IsNullOrEmpty())
+            if (model.FileFormat != FileFormat.None)
             {
-                res.FileFormat = (int)model.FileFormats.First();
+                res.FileFormat = (int)model.FileFormat;
             }
             return res;
         }
