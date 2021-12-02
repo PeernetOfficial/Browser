@@ -107,7 +107,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             VirtualFileSystemCoreTier higherTier = null;
             for (int i = 0; i < totalDepth; i++)
             {
-                var absolutePath = Path.Combine(directories.Take(i + 1).ToArray());
+                var absolutePath = Path.Combine("Your Files", Path.Combine(directories.Take(i + 1).ToArray()));
                 var tier = new VirtualFileSystemCoreTier(directories[i], VirtualFileSystemEntityType.Directory, absolutePath);
 
                 if (coreTier == null)
