@@ -38,7 +38,7 @@
                 <DataGridTemplateColumn Header="SIZE" SortMemberPath="Size" Width="160">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding FileSize}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            <TextBlock Text="{Binding FileSize, Converter={StaticResource BytesToSuffixConverter}}" VerticalAlignment="Center" HorizontalAlignment="Left" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

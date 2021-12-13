@@ -1,21 +1,21 @@
-﻿using System.Threading.Tasks;
-using MvvmCross.Navigation;
-using Peernet.Browser.Application.Contexts;
+﻿using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Models.Domain.Blockchain;
 using Peernet.Browser.Models.Presentation.Footer;
+using System;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels.Parameters
 {
     public class EditFileViewModelParameter : FileParameterModel
     {
         private readonly IBlockchainService blockchainService;
-        private readonly IMvxNavigationService navigationService;
+        private readonly Func<Task> postAction;
 
-        public EditFileViewModelParameter(IBlockchainService blockchainService, IMvxNavigationService navigationService)
+        public EditFileViewModelParameter(IBlockchainService blockchainService, Func<Task> postAction)
         {
             this.blockchainService = blockchainService;
-            this.navigationService = navigationService;
+            this.postAction = postAction;
         }
 
         public override string ModalTitle => "Edit File";
@@ -33,7 +33,10 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
                 }
             }
 
-            await navigationService.Navigate<DirectoryViewModel>();
+            if (postAction != null)
+            {
+                await postAction.Invoke();
+            }
         }
     }
 }
