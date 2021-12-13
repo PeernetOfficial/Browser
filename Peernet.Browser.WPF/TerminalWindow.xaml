@@ -6,7 +6,7 @@
                   xmlns:viewModels="clr-namespace:Peernet.Browser.Application.ViewModels;assembly=Application"
                   Top="100"
                   Left="100"
-                  Width="700" Height="700"
+                  Width="1100" Height="700"
                   Background="{DynamicResource PreviewBackground}">
     <Grid Background="Black">
         <Grid.ColumnDefinitions>
@@ -21,7 +21,8 @@
                 Background="Black"
                 Foreground="#e0e0e0"
                 Text="{Binding CommandLineOutput, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                FontFamily="{StaticResource InterRegular}"  ScrollViewer.CanContentScroll="True">
+                FontFamily="Courier New"
+                ScrollViewer.CanContentScroll="True">
             </TextBlock>
         </ScrollViewer>
         <TextBox Grid.Row="1"
@@ -31,6 +32,7 @@
                  HorizontalAlignment="Stretch"
                  VerticalAlignment="Center"
                  TextWrapping="Wrap"
+                 FontFamily="Courier New"
                  PreviewKeyDown="UIElement_OnPreviewKeyDown">
             <TextBox.InputBindings>
                 <KeyBinding Command="{Binding SendToPeernetConsole}" Key="Enter" />
