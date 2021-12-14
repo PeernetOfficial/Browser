@@ -1,11 +1,9 @@
-﻿using System;
-using System.ComponentModel;
-using System.Windows.Input;
-using MvvmCross.Platforms.Wpf.Presenters.Attributes;
+﻿using MvvmCross.Platforms.Wpf.Presenters.Attributes;
 using MvvmCross.Presenters;
 using MvvmCross.Presenters.Attributes;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.ViewModels;
+using System.ComponentModel;
 
 namespace Peernet.Browser.WPF
 {
@@ -18,22 +16,27 @@ namespace Peernet.Browser.WPF
         public TerminalWindow()
         {
             InitializeComponent();
-            OutputPane.ScrollToEnd();
             OutputPane.ScrollToBottom();
         }
 
         public MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request)
         {
+            var instanceRequest = request as MvxViewModelInstanceRequest;
+            var viewModel = instanceRequest?.ViewModelInstance as TerminalViewModel;
+            viewModel.PropertyChanged += ViewModelOnPropertyChanged;
+
             return new MvxWindowPresentationAttribute
             {
                 Identifier = $"{nameof(TerminalWindow)}.{nameof(TerminalViewModel)}"
             };
         }
 
-        private void UIElement_OnPreviewKeyDown(object sender, KeyEventArgs e)
+        private void ViewModelOnPropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
-            OutputPane.ScrollToEnd();
-            OutputPane.ScrollToBottom();
+            if(e.PropertyName == nameof(TerminalViewModel.CommandLineOutput))
+            {
+                OutputPane.ScrollToBottom();
+            }
         }
     }
 }
