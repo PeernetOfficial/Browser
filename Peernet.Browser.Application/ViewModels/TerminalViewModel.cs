@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using MvvmCross.Commands;
@@ -26,8 +27,8 @@ namespace Peernet.Browser.Application.ViewModels
             set
             {
                 commandLineOutput = value;
-                RaisePropertyChanged(nameof(CommandLineOutput));
                 SetProperty(ref commandLineOutput, value);
+                RaisePropertyChanged(nameof(CommandLineOutput));
             }
         }
 
@@ -45,11 +46,19 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IMvxAsyncCommand SendToPeernetConsole => new MvxAsyncCommand(async () =>
         {
-            await socketClient.Send(CommandLineInput);
+            if (CommandLineInput.Equals("cls", StringComparison.CurrentCultureIgnoreCase))
+            {
+                CommandLineOutput = string.Empty;
+            }
+            else
+            {
+                await socketClient.Send(CommandLineInput);
+                var response = await socketClient.Receive();
+                SetOutput(response);
+                CommandLineOutput += response;
+            }
+
             CommandLineInput = string.Empty;
-            var response = await socketClient.Receive();
-            SetOutput(response);
-            CommandLineOutput += response;
         });
 
         public override async void Start()

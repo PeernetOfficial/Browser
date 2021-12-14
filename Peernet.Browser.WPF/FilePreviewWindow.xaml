@@ -17,7 +17,6 @@
         <ResourceDictionary>
             <Style x:Key="ReadonlySelectableTextBox" TargetType="{x:Type TextBox}">
                 <Setter Property="Foreground" Value="{DynamicResource MainContentBrush}" />
-                <Setter Property="Padding" Value="0 2" />
                 <Setter Property="FontFamily" Value="{StaticResource InterThin}" />
                 <Setter Property="IsReadOnly" Value="True" />
                 <Setter Property="BorderThickness" Value="0" />
@@ -146,7 +145,7 @@
                             </StackPanel>
                             <StackPanel Grid.Column="4">
                                 <TextBlock Style="{StaticResource Active}" Text="Shared By" />
-                                <TextBlock Style="{StaticResource Active}" Text="{Binding File.SharedByCount, StringFormat={}{0} Peers}" FontWeight="Medium" Margin="0, 28, 0, 0" />
+                                <TextBox Style="{StaticResource ReadonlySelectableTextBox}" Text="{Binding File.SharedByCount, StringFormat={}{0} Peers, Mode=OneWay}" FontWeight="Medium" Margin="0, 28, 0, 0" />
                             </StackPanel>
                             <StackPanel Grid.Column="5">
                                 <TextBlock Style="{StaticResource Active}" Text="Folder" />
