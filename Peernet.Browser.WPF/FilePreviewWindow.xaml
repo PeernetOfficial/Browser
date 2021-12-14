@@ -113,6 +113,7 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0">
                                 <TextBlock Style="{StaticResource Active}" Text="FileType" />
@@ -130,9 +131,13 @@
                                 <TextBlock Style="{StaticResource Active}" Text="Category" />
                                 <TextBlock Style="{StaticResource Active}" Text="{Binding File.Type}" FontWeight="Medium" Margin="0, 28, 0, 0" />
                             </StackPanel>
-                            <StackPanel Grid.Column="5">
+                            <StackPanel Grid.Column="4">
                                 <TextBlock Style="{StaticResource Active}" Text="Shared by" />
                                 <TextBlock Style="{StaticResource Active}" Text="{Binding File.SharedByCount, StringFormat={}{0} Peers}" FontWeight="Medium" Margin="0, 28, 0, 0" />
+                            </StackPanel>
+                            <StackPanel Grid.Column="5">
+                                <TextBlock Style="{StaticResource Active}" Text="Folder" />
+                                <TextBlock Style="{StaticResource Active}" Text="{Binding File.Folder}" FontWeight="Medium" Margin="0, 28, 0, 0" />
                             </StackPanel>
                         </Grid>
 

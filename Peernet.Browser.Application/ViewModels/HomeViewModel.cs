@@ -94,12 +94,15 @@ namespace Peernet.Browser.Application.ViewModels
             if (SearchInput.Equals("debug", StringComparison.InvariantCultureIgnoreCase))
             {
                 mvxNavigationService.Navigate<TerminalViewModel>();
-                return;
             }
-            var toAdd = new SearchTabElementViewModel(SearchInput, RemoveTab, searchService.Search, DownloadFile, OpenFile);
-            Tabs.Add(toAdd);
-            SearchInput = "";
-            SelectedIndex = Tabs.Count - 1;
+            else
+            {
+                var toAdd = new SearchTabElementViewModel(SearchInput, RemoveTab, searchService.Search, DownloadFile, OpenFile);
+                Tabs.Add(toAdd);
+                SelectedIndex = Tabs.Count - 1;
+            }
+
+            SearchInput = string.Empty;
         }
     }
 }
