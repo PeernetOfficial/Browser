@@ -103,7 +103,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         private async Task ReloadResults()
         {
-            var exploreResult = await exploreService.GetFiles(20);
+            var exploreResult = await exploreService.GetFiles(200);
             sharedFiles = new ReadOnlyCollection<DownloadModel>(exploreResult);
             ActiveSearchResults = new ObservableCollection<DownloadModel>(sharedFiles);
         }
