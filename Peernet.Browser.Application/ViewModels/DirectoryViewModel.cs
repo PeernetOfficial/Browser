@@ -71,7 +71,7 @@ namespace Peernet.Browser.Application.ViewModels
                     new MvxAsyncCommand<VirtualFileSystemEntity>(
                  async entity =>
                 {
-                    var parameter = new EditFileViewModelParameter(blockchainService, mvxNavigationService)
+                    var parameter = new EditFileViewModelParameter(blockchainService, async () => await ReloadVirtualFileSystem())
                     {
                         FileModels = new List<FileModel>
                         {

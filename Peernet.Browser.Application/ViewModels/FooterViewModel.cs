@@ -1,7 +1,6 @@
 ﻿using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
-using Peernet.Browser.Application.Clients;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Managers;
@@ -10,8 +9,11 @@ using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Models.Presentation.Footer;
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Peernet.Browser.Models.Domain.Download;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -22,6 +24,7 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IApplicationManager applicationManager;
         private readonly IBlockchainService blockchainService;
         private readonly IMvxNavigationService navigationService;
+        private readonly ISettingsManager settingsManager;
         private readonly IWarehouseService warehouseService;
         private bool areDownloadsCollapsed;
         private string commandLineInput;
@@ -31,18 +34,19 @@ namespace Peernet.Browser.Application.ViewModels
 
         public FooterViewModel(
             IApiService apiService,
-            ISocketClient socketClient,
             IMvxNavigationService navigationService,
             IApplicationManager applicationManager,
             IDownloadManager downloadManager,
             IWarehouseService warehouseService,
-            IBlockchainService blockchainService)
+            IBlockchainService blockchainService,
+            ISettingsManager settingsManager)
         {
             this.apiService = apiService;
             this.navigationService = navigationService;
             this.applicationManager = applicationManager;
             this.warehouseService = warehouseService;
             this.blockchainService = blockchainService;
+            this.settingsManager = settingsManager;
 
             DownloadManager = downloadManager;
             DownloadManager.downloadsChanged += GetLastDownloadItem;
@@ -66,9 +70,9 @@ namespace Peernet.Browser.Application.ViewModels
             });
 
         public IMvxCommand CollapseExpandDownloadsCommand => new MvxCommand(() =>
-            {
-                AreDownloadsCollapsed ^= true;
-            });
+                {
+                    AreDownloadsCollapsed ^= true;
+                });
 
         public string CommandLineInput
         {
@@ -91,6 +95,16 @@ namespace Peernet.Browser.Application.ViewModels
         public IDownloadManager DownloadManager { get; }
 
         public ObservableCollection<DownloadModel> ListedFileDownloads { get; set; } = new();
+
+        public IMvxCommand<DownloadModel> OpenFileCommand => new MvxCommand<DownloadModel>(
+            model =>
+            {
+                if (model.Status == DownloadStatus.DownloadFinished)
+                {
+                    var path = Path.Combine(settingsManager.DownloadPath, model.File.Name);
+                    OpenWithDefaultProgram(path);
+                }
+            });
 
         public IMvxCommand OpenFileLocationCommand => new MvxCommand<string>(
             name =>
@@ -123,6 +137,15 @@ namespace Peernet.Browser.Application.ViewModels
         public override async Task Initialize()
         {
             await ConnectToPeernetAPI();
+        }
+
+        private static void OpenWithDefaultProgram(string path)
+        {
+            using var process = new Process();
+
+            process.StartInfo.FileName = "explorer";
+            process.StartInfo.Arguments = "\"" + path + "\"";
+            process.Start();
         }
 
         private void CollapseWhenSingleItem(object? sender, EventArgs e)

@@ -83,7 +83,11 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
                                 <Image Width="13.71" Height="20" Style="{DynamicResource DownloadItemImageStyle}" />
-                                <TextBlock Text="{Binding Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                <TextBlock Text="{Binding Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource Underlined}" Cursor="Hand">
+                                    <TextBlock.InputBindings>
+                                        <MouseBinding Command="{Binding DataContext.OpenCommand, ElementName=SharedResultTab}" CommandParameter="{Binding}" MouseAction="LeftClick" />
+                                    </TextBlock.InputBindings>
+                                </TextBlock>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -98,7 +102,7 @@
                 <DataGridTemplateColumn Visibility="{Binding DataContext.ShowColumnsSize, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}"  Width="160" Header="SIZE" SortMemberPath="Size">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Size}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            <TextBlock Text="{Binding Size, Converter={StaticResource BytesToSuffixConverter}}" VerticalAlignment="Center" HorizontalAlignment="Left" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

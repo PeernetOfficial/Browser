@@ -47,11 +47,14 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="70" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="55" />
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.Column="0" Width="233" HorizontalAlignment="Center" Margin="0,28,0,0">
+            <TextBlock Grid.Row="0" Style="{StaticResource Active}" FontWeight="Medium" FontSize="21" Text="Files that you share globally" Margin="68, 0, 0, 0" VerticalAlignment="Center" />
+
+            <StackPanel Grid.Row="1" Grid.Column="0" Width="233" HorizontalAlignment="Center" Margin="0,28,0,0">
                 <TextBlock Text="Your Files" HorizontalAlignment="Center" Foreground="{DynamicResource MainContentBrush}" FontWeight="Medium" FontSize="16" />
                 <ItemsControl ItemsSource="{Binding VirtualFileSystem.VirtualFileSystemTiers}" ItemTemplate="{StaticResource VirtualFileSystemTreeTemplate}" />
 
@@ -59,12 +62,12 @@
                 <ItemsControl ItemsSource="{Binding VirtualFileSystem.VirtualFileSystemCategories}" ItemTemplate="{StaticResource VirtualFileSystemTreeTemplate}" />
             </StackPanel>
 
-            <Border Grid.Row="0" Grid.Column="1" Width="1" Margin="0,28,0,66" BorderThickness="0">
+            <Border Grid.Row="1" Grid.Column="1" Width="1" Margin="0,28,0,66" BorderThickness="0">
                 <Border.Background>
                     <SolidColorBrush Color="Black" Opacity="0.1" />
                 </Border.Background>
             </Border>
-            <Grid Grid.Column="2">
+            <Grid Grid.Row="1" Grid.Column="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -179,9 +182,9 @@
                         </Image>
                     </Grid>
                 </Border>
-                <controls:SharedFilesDataGridControl Height="648" Grid.Row="1" Grid.ColumnSpan="2" Margin="37,0,0,0" />
+                <controls:SharedFilesDataGridControl Height="540" Grid.Row="1" Grid.ColumnSpan="2" Padding="20, 0"/>
             </Grid>
-            <Separator Style="{StaticResource StandardSeparatorStyle}" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Top" />
+            <Separator Style="{StaticResource StandardSeparatorStyle}" Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Top" />
         </Grid>
     </Border>
 </views:MvxWpfView>

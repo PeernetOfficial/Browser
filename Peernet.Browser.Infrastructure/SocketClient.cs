@@ -22,7 +22,7 @@ namespace Peernet.Browser.Infrastructure
         public async Task Connect()
         {
             this.socket = new();
-            await socket.ConnectAsync(new Uri(this.settingsManager.SocketUrl), CancellationToken.None);
+            await socket.ConnectAsync(settingsManager.SocketUrl, CancellationToken.None);
         }
 
         public async Task Send(string data)

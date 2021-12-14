@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Peernet.Browser.Application.Managers;
 
 namespace Peernet.Browser.WPF.Services
@@ -15,11 +16,7 @@ namespace Peernet.Browser.WPF.Services
             set => Set(nameof(ApiUrl), value);
         }
 
-        public string SocketUrl
-        {
-            get => Get(nameof(SocketUrl));
-            set => Set(nameof(SocketUrl), value);
-        }
+        public Uri SocketUrl => GetSocket();
 
         public string Backend
         {
@@ -36,5 +33,11 @@ namespace Peernet.Browser.WPF.Services
         private static string Get(string key) => System.Configuration.ConfigurationManager.AppSettings[key];
 
         private static void Set(string key, string value) => System.Configuration.ConfigurationManager.AppSettings[key] = value;
+
+        private Uri GetSocket()
+        {
+            var socketAddress = ApiUrl.StartsWith("https:") ? ApiUrl.Replace("https:", "wss:") : ApiUrl.Replace("http:", "ws:");
+            return new Uri(new Uri(socketAddress), $"console?k={ApiKey}");
+        }
     }
 }
