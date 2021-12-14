@@ -13,7 +13,19 @@
     <WindowChrome.WindowChrome>
         <WindowChrome ResizeBorderThickness="0" GlassFrameThickness="0" CaptionHeight="0" CornerRadius="0"/>
     </WindowChrome.WindowChrome>
-    <views:MvxWindow.ContentTemplate>
+    <views:MvxWindow.Resources>
+        <ResourceDictionary>
+            <Style x:Key="ReadonlySelectableTextBox" TargetType="{x:Type TextBox}">
+                <Setter Property="Foreground" Value="{DynamicResource MainContentBrush}" />
+                <Setter Property="Padding" Value="0 2" />
+                <Setter Property="FontFamily" Value="{StaticResource InterThin}" />
+                <Setter Property="IsReadOnly" Value="True" />
+                <Setter Property="BorderThickness" Value="0" />
+            </Style>
+        </ResourceDictionary>
+    </views:MvxWindow.Resources>
+
+        <views:MvxWindow.ContentTemplate>
         <DataTemplate>
                 <Border BorderThickness="1">
                 <Border.BorderBrush>
@@ -58,7 +70,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0, 24, 0, 0">
                             <Image Style="{StaticResource ItemImageStyle}" Margin="0,0,14,0" />
-                            <TextBlock Style="{StaticResource Active}" Text="{Binding File.Name}" FontWeight="SemiBold" />
+                            <TextBox Style="{StaticResource ReadonlySelectableTextBox}" Text="{Binding File.Name}" FontWeight="SemiBold" />
                             <Image Source="{StaticResource EditDrawingImage}" Margin="14, 0, 0, 0">
                                 <Image.Style>
                                     <Style TargetType="{x:Type Image}">
@@ -74,9 +86,9 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <ScrollViewer Height="100" Margin="0,20,0,0">
-                                <TextBlock TextWrapping="Wrap" Width="525">
-                                    <TextBlock.Style>
-                                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource Active}">
+                                <TextBox TextWrapping="Wrap" Width="525">
+                                    <TextBox.Style>
+                                        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource ReadonlySelectableTextBox}">
                                             <Setter Property="Text" Value="{Binding File.Description}" />
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding File.Description}" Value="{x:Null}">
@@ -89,8 +101,8 @@
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
-                                    </TextBlock.Style>
-                                </TextBlock>
+                                    </TextBox.Style>
+                                </TextBox>
                             </ScrollViewer>
                             <Image Source="{StaticResource EditDrawingImage}" Margin="5, 0, 0, 0">
                                 <Image.Style>
@@ -117,27 +129,27 @@
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0">
                                 <TextBlock Style="{StaticResource Active}" Text="FileType" />
-                                <TextBlock Style="{StaticResource Active}" Text="{Binding File.Format}" FontWeight="Medium" Margin="0, 28, 0, 0" />
+                                <TextBox Style="{StaticResource ReadonlySelectableTextBox}" Text="{Binding File.Format}" FontWeight="Medium" Margin="0, 28, 0, 0" />
                             </StackPanel>
                             <StackPanel Grid.Column="1">
                                 <TextBlock Style="{StaticResource Active}" Text="Date added" />
-                                <TextBlock Style="{StaticResource Active}" Text="{Binding File.Date, StringFormat=d}" FontWeight="Medium" Margin="0, 28, 0, 0" />
+                                <TextBox Style="{StaticResource ReadonlySelectableTextBox}" Text="{Binding File.Date, StringFormat=d}" FontWeight="Medium" Margin="0, 28, 0, 0" />
                             </StackPanel>
                             <StackPanel Grid.Column="2">
                                 <TextBlock Style="{StaticResource Active}" Text="Size" />
-                                <TextBlock Style="{StaticResource Active}" Text="{Binding File.Size, Converter={StaticResource BytesToSuffixConverter}}" FontWeight="Medium" Margin="0, 28, 0, 0" />
+                                <TextBox Style="{StaticResource ReadonlySelectableTextBox}" Text="{Binding File.Size, Converter={StaticResource BytesToSuffixConverter}}" FontWeight="Medium" Margin="0, 28, 0, 0" />
                             </StackPanel>
                             <StackPanel Grid.Column="3">
                                 <TextBlock Style="{StaticResource Active}" Text="Category" />
-                                <TextBlock Style="{StaticResource Active}" Text="{Binding File.Type}" FontWeight="Medium" Margin="0, 28, 0, 0" />
+                                <TextBox Style="{StaticResource ReadonlySelectableTextBox}" Text="{Binding File.Type}" FontWeight="Medium" Margin="0, 28, 0, 0" />
                             </StackPanel>
                             <StackPanel Grid.Column="4">
-                                <TextBlock Style="{StaticResource Active}" Text="Shared by" />
+                                <TextBlock Style="{StaticResource Active}" Text="Shared By" />
                                 <TextBlock Style="{StaticResource Active}" Text="{Binding File.SharedByCount, StringFormat={}{0} Peers}" FontWeight="Medium" Margin="0, 28, 0, 0" />
                             </StackPanel>
                             <StackPanel Grid.Column="5">
                                 <TextBlock Style="{StaticResource Active}" Text="Folder" />
-                                <TextBlock Style="{StaticResource Active}" Text="{Binding File.Folder}" FontWeight="Medium" Margin="0, 28, 0, 0" />
+                                <TextBox Style="{StaticResource ReadonlySelectableTextBox}" Text="{Binding File.Folder}" FontWeight="Medium" Margin="0, 28, 0, 0" />
                             </StackPanel>
                         </Grid>
 
