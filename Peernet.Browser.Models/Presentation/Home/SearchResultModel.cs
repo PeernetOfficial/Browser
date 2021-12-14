@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Peernet.Browser.Models.Presentation.Home
 {
@@ -6,7 +7,7 @@ namespace Peernet.Browser.Models.Presentation.Home
     {
         public string Id { get; set; }
         public string StatusText { get; set; }
-        public SearchResultRowModel[] Rows { get; set; } = new SearchResultRowModel[0];
+        public List<SearchResultRowModel> Rows { get; set; } = new();
 
         public SearchFilterResultModel Filters { get; set; }
 

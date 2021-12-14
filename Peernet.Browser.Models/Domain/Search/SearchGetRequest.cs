@@ -2,7 +2,8 @@
 {
     public class SearchGetRequest : SearchRequestBase
     {
-        public SearchGetRequest() : base()
+        public SearchGetRequest()
+            : base()
         {
             Limit = 100;
             Stats = 1;
