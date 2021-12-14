@@ -34,29 +34,37 @@ namespace Peernet.Browser.Infrastructure.Services
                 model.Uuid = response.Id;
             }
             var reqMod = Map<SearchGetRequest>(model);
-            SearchResult result = null;
             var intervals = 0;
-            while (isNew && intervals < 20)
+            while (intervals < 20)
             {
-                await Task.Delay(500);
-                result = await searchClient.GetSearchResult(reqMod);
+                if (intervals > 0)
+                {
+                    reqMod.Reset = 0;
+                }
+                else if (model.ShouldReset)
+                {
+                    reqMod.Reset = 1;
+                }
+
+                var result = await searchClient.GetSearchResult(reqMod);
+
+                res.Id = result.Status == SearchStatusEnum.IdNotFound ? string.Empty : model.Uuid;
+                res.StatusText = GetStatusText(result.Status);
+                res.Stats = GetStats(result.Statistic);
+                if (!result.Files.IsNullOrEmpty())
+                {
+                    res.Rows.AddRange(result.Files.Select(x => new SearchResultRowModel(x)));
+                }
+                
                 if (result.Status is SearchStatusEnum.NoMoreResults or SearchStatusEnum.IdNotFound)
                 {
                     break;
                 }
 
                 intervals++;
+                await Task.Delay(500);
             }
 
-            res.Id = result.Status == SearchStatusEnum.IdNotFound ? string.Empty : model.Uuid;
-            res.StatusText = GetStatusText(result.Status);
-            res.Stats = GetStats(result.Statistic);
-            if (!result.Files.IsNullOrEmpty())
-            {
-                res.Rows = result.Files
-                    .Select(x => new SearchResultRowModel(x))
-                    .ToArray();
-            }
             return res;
         }
 
@@ -215,6 +223,7 @@ namespace Peernet.Browser.Infrastructure.Services
             {
                 res.FileFormat = (int)model.FileFormat;
             }
+
             return res;
         }
     }

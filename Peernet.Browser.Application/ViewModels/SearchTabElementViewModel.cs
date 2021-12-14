@@ -11,7 +11,7 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public class SearchTabElementViewModel : MvxViewModel
     {
-        private const int increase = 20;
+        private const int increase = 100;
         private readonly Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction;
         private bool isClearing;
         private int limit = increase;
@@ -172,6 +172,7 @@ namespace Peernet.Browser.Application.ViewModels
             FilterIconModels.Where(x => x != i).Foreach(x => x.IsSelected = false);
             i.IsSelected = true;
             Filters.SearchFilterResult.FilterType = i.FilterType;
+            Filters.SearchFilterResult.ShouldReset = true;
             await Refresh();
         }
 
@@ -201,7 +202,7 @@ namespace Peernet.Browser.Application.ViewModels
             Filters.UuId = data.Id;
             await GlobalContext.UiThreadDispatcher.ExecuteOnMainThreadAsync(() =>
             {
-                for (var i = TableResult.Count; i < data.Rows.Length; i++)
+                for (var i = TableResult.Count; i < data.Rows.Count; i++)
                 {
                     TableResult.Add(data.Rows[i]);
                 }

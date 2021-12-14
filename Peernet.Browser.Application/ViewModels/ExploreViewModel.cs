@@ -73,7 +73,7 @@ namespace Peernet.Browser.Application.ViewModels
 
                     category.IsSelected = true;
                     ActiveSearchResults = new ObservableCollection<DownloadModel>(await exploreService
-                            .GetFiles(20, (int)category.Type));
+                            .GetFiles(200, (int)category.Type));
                 });
 
         public override async Task Initialize()
