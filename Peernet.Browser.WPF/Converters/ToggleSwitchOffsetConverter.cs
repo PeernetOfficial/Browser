@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace CSharpControls.Wpf.Converters
+namespace Peernet.Browser.WPF.Converters
 {
     public class ToggleSwitchOffsetConverter : IValueConverter
     {

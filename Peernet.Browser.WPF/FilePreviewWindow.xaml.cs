@@ -35,6 +35,7 @@ namespace Peernet.Browser.WPF
         {
             this.Topmost = true;
         }
+
         public MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request)
         {
             var instanceRequest = request as MvxViewModelInstanceRequest;

@@ -8,6 +8,8 @@ using Peernet.Browser.Models.Presentation.Footer;
 using Peernet.Browser.Models.Presentation.Home;
 using System.Linq;
 using System.Threading.Tasks;
+using MvvmCross.Navigation;
+using Peernet.Browser.Application.ViewModels.Parameters;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -15,15 +17,15 @@ namespace Peernet.Browser.Application.ViewModels
     {
         private readonly ISearchService searchService;
         private readonly IDownloadManager downloadManager;
-        private readonly IApiService apiService;
+        private readonly IMvxNavigationService mvxNavigationService;
         private string searchInput;
         private int selectedIndex = -1;
 
-        public HomeViewModel(ISearchService searchService, IDownloadManager downloadManager, IApiService apiService)
+        public HomeViewModel(ISearchService searchService, IDownloadManager downloadManager, IMvxNavigationService mvxNavigationService)
         {
             this.searchService = searchService;
             this.downloadManager = downloadManager;
-            this.apiService = apiService;
+            this.mvxNavigationService = mvxNavigationService;
 
             SearchCommand = new MvxCommand(Search);
             Tabs.CollectionChanged += (o, s) =>
@@ -80,12 +82,27 @@ namespace Peernet.Browser.Application.ViewModels
             await downloadManager.QueueUpDownload(new DownloadModel(row.File));
         }
 
+        private async Task OpenFile(SearchResultRowModel row)
+        {
+            var param = new FilePreviewViewModelParameter(row.File, false,
+                async () => await downloadManager.QueueUpDownload(new DownloadModel(row.File)), "Download");
+            await mvxNavigationService.Navigate<FilePreviewViewModel, FilePreviewViewModelParameter>(param);
+        }
+
         private void Search()
         {
-            var toAdd = new SearchTabElementViewModel(SearchInput, RemoveTab, searchService.Search, DownloadFile);
-            Tabs.Add(toAdd);
-            SearchInput = "";
-            SelectedIndex = Tabs.Count - 1;
+            if (SearchInput.Equals("debug", StringComparison.InvariantCultureIgnoreCase))
+            {
+                mvxNavigationService.Navigate<TerminalViewModel>();
+            }
+            else
+            {
+                var toAdd = new SearchTabElementViewModel(SearchInput, RemoveTab, searchService.Search, DownloadFile, OpenFile);
+                Tabs.Add(toAdd);
+                SelectedIndex = Tabs.Count - 1;
+            }
+
+            SearchInput = string.Empty;
         }
     }
 }

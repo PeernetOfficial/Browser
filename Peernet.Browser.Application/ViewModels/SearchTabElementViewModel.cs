@@ -11,14 +11,16 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public class SearchTabElementViewModel : MvxViewModel
     {
+        private const int increase = 20;
         private readonly Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction;
+        private bool isClearing;
+        private int limit = increase;
         private bool showColumnsDate = true;
         private bool showColumnsDownload = true;
         private bool showColumnsShared = true;
         private bool showColumnsSize = true;
-        private int limit = increase;
 
-        public SearchTabElementViewModel(string title, Func<SearchTabElementViewModel, Task> deleteAction, Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction, Func<SearchResultRowModel, Task> downloadAction) : base()
+        public SearchTabElementViewModel(string title, Func<SearchTabElementViewModel, Task> deleteAction, Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction, Func<SearchResultRowModel, Task> downloadAction, Func<SearchResultRowModel, Task> openAction)
         {
             this.refreshAction = refreshAction;
             Title = title;
@@ -36,7 +38,14 @@ namespace Peernet.Browser.Application.ViewModels
             });
             DownloadCommand = new MvxAsyncCommand<SearchResultRowModel>(async (row) => await downloadAction(row));
             DeleteCommand = new MvxAsyncCommand(async () => { await deleteAction(this); });
-
+            OpenCommand = new MvxAsyncCommand<SearchResultRowModel>(
+                    async model =>
+                    {
+                        if (openAction != null)
+                        {
+                            await openAction?.Invoke(model);
+                        }
+                    });
 
             RemoveFilterCommand = new MvxAsyncCommand<SearchFiltersType>(async (type) =>
             {
@@ -52,23 +61,27 @@ namespace Peernet.Browser.Application.ViewModels
             _ = Task.Run(async () => await Refresh(false));
         }
 
-        public override async Task Initialize()
-        {
-            await Refresh();
-            await base.Initialize();
-        }
-
         public IMvxAsyncCommand ClearCommand { get; }
+
         public MvxObservableCollection<CustomCheckBoxModel> ColumnsCheckboxes { get; } = new MvxObservableCollection<CustomCheckBoxModel>();
 
-        public LoadingModel Loader { get; } = new LoadingModel();
         public IconModel ColumnsIconModel { get; }
+
         public IMvxAsyncCommand DeleteCommand { get; }
-        public IMvxAsyncCommand<SearchFiltersType> RemoveFilterCommand { get; }
+
         public IMvxAsyncCommand<SearchResultRowModel> DownloadCommand { get; }
+
         public MvxObservableCollection<IconModel> FilterIconModels { get; } = new MvxObservableCollection<IconModel>();
+
         public FiltersModel Filters { get; }
+
         public IconModel FiltersIconModel { get; }
+
+        public LoadingModel Loader { get; } = new LoadingModel();
+
+        public IMvxAsyncCommand<SearchResultRowModel> OpenCommand { get; }
+
+        public IMvxAsyncCommand<SearchFiltersType> RemoveFilterCommand { get; }
 
         public bool ShowColumnsDate
         {
@@ -81,6 +94,7 @@ namespace Peernet.Browser.Application.ViewModels
             get => showColumnsDownload;
             set => SetProperty(ref showColumnsDownload, value);
         }
+
         public bool ShowColumnsShared
         {
             get => showColumnsShared;
@@ -94,16 +108,14 @@ namespace Peernet.Browser.Application.ViewModels
         }
 
         public MvxObservableCollection<SearchResultRowModel> TableResult { get; } = new MvxObservableCollection<SearchResultRowModel>();
+
         public string Title { get; }
 
-        public async Task OnSorting(string columnName, DataGridSortingTypeEnum type)
+        public override async Task Initialize()
         {
-            Filters.SearchFilterResult.SortName = SearchResultRowModel.Parse(columnName);
-            Filters.SearchFilterResult.SortType = type;
-            await Refresh(true);
+            await Refresh();
+            await base.Initialize();
         }
-
-        private const int increase = 20;
 
         public async Task IsScrollEnd()
         {
@@ -115,41 +127,14 @@ namespace Peernet.Browser.Application.ViewModels
             await Refresh(false);
         }
 
-        private int GetMax() => (FilterIconModels.FirstOrDefault(x => x.IsSelected)?.Count).GetValueOrDefault();
-
-        private bool isClearing;
-
-        private async Task Refresh(bool withClear = true)
+        public async Task OnSorting(string columnName, DataGridSortingTypeEnum type)
         {
-            if (withClear)
-            {
-                isClearing = true;
-                await GlobalContext.UiThreadDispatcher.ExecuteOnMainThreadAsync(() => TableResult.Clear());
-            }
-            Filters.SearchFilterResult.LimitOfResult = limit;
-            var data = await refreshAction(Filters.SearchFilterResult);
-
-            Filters.UuId = data.Id;
-            await GlobalContext.UiThreadDispatcher.ExecuteOnMainThreadAsync(() =>
-            {
-                for (var i = TableResult.Count; i < data.Rows.Length; i++)
-                {
-                    TableResult.Add(data.Rows[i]);
-                }
-            });
-
-            RefreshIconFilters(data.Stats, data.Filters.FilterType);
-            if (TableResult.IsNullOrEmpty())
-            {
-                Loader.Set(data.StatusText);
-            }
-            else
-            {
-                Loader.Reset();
-            }
-
-            isClearing = false;
+            Filters.SearchFilterResult.SortName = SearchResultRowModel.Parse(columnName);
+            Filters.SearchFilterResult.SortType = type;
+            await Refresh(true);
         }
+
+        private int GetMax() => (FilterIconModels.FirstOrDefault(x => x.IsSelected)?.Count).GetValueOrDefault();
 
         private void InitIcons()
         {
@@ -190,6 +175,12 @@ namespace Peernet.Browser.Application.ViewModels
             await Refresh();
         }
 
+        private Task OpenCloseColumnsFilter(IconModel i)
+        {
+            FiltersIconModel.IsSelected = false;
+            return Task.CompletedTask;
+        }
+
         private Task OpenCloseFilters(IconModel m)
         {
             Filters.BindFromSearchFilterResult();
@@ -197,16 +188,42 @@ namespace Peernet.Browser.Application.ViewModels
             return Task.CompletedTask;
         }
 
+        private async Task Refresh(bool withClear = true)
+        {
+            if (withClear)
+            {
+                isClearing = true;
+                await GlobalContext.UiThreadDispatcher.ExecuteOnMainThreadAsync(() => TableResult.Clear());
+            }
+            Filters.SearchFilterResult.LimitOfResult = limit;
+            var data = await refreshAction(Filters.SearchFilterResult);
+
+            Filters.UuId = data.Id;
+            await GlobalContext.UiThreadDispatcher.ExecuteOnMainThreadAsync(() =>
+            {
+                for (var i = TableResult.Count; i < data.Rows.Length; i++)
+                {
+                    TableResult.Add(data.Rows[i]);
+                }
+            });
+
+            RefreshIconFilters(data.Stats, data.Filters.FilterType);
+            if (TableResult.IsNullOrEmpty())
+            {
+                Loader.Set(data.StatusText);
+            }
+            else
+            {
+                Loader.Reset();
+            }
+
+            isClearing = false;
+        }
+
         private void RefreshIconFilters(IDictionary<FilterType, int> stats, FilterType selected)
         {
             FilterIconModels.Clear();
             stats.Foreach(x => FilterIconModels.Add(new IconModel(x.Key, onClick: OnFilterIconClick, count: x.Value) { IsSelected = x.Key == selected }));
-        }
-
-        private Task OpenCloseColumnsFilter(IconModel i)
-        {
-            FiltersIconModel.IsSelected = false;
-            return Task.CompletedTask;
         }
     }
 }

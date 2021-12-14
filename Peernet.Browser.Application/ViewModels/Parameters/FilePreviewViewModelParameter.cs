@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Peernet.Browser.Models.Domain.Common;
+using System;
 using System.Threading.Tasks;
-using Peernet.Browser.Models.Domain.Common;
 
 namespace Peernet.Browser.Application.ViewModels.Parameters
 {
@@ -15,12 +15,9 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
             File = file;
         }
 
-        public string ActionButtonContent { get; set; }
-
         public Func<Task> Action { get; set; }
-
-        public bool IsEditable { get; set; }
-
+        public string ActionButtonContent { get; set; }
         public ApiFile File { get; set; }
+        public bool IsEditable { get; set; }
     }
 }
