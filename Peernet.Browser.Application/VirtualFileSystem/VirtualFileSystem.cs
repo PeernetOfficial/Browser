@@ -14,10 +14,10 @@ namespace Peernet.Browser.Application.VirtualFileSystem
         {
             this.binder = binder;
 
-            CreateRootCoreTier(sharedFiles, isCurrentSelection);
+            CreateHomeCoreTier(sharedFiles, isCurrentSelection);
         }
 
-        public VirtualFileSystemCoreTier Root => VirtualFileSystemTiers.First(t => t.Name == "Root");
+        public VirtualFileSystemCoreTier Home => VirtualFileSystemTiers.First(t => t.Name == "Home");
 
         public ObservableCollection<VirtualFileSystemCoreCategory> VirtualFileSystemCategories { get; set; } = new();
 
@@ -73,21 +73,21 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             }
         }
 
-        private void CreateRootCoreTier(IEnumerable<ApiFile> sharedFiles, bool isCurrentSelection)
+        private void CreateHomeCoreTier(IEnumerable<ApiFile> sharedFiles, bool isCurrentSelection)
         {
             // materialize
             var sharedFilesList = sharedFiles.ToList();
-            var rootTier = new VirtualFileSystemCoreTier(nameof(Root), VirtualFileSystemEntityType.Directory, nameof(Root))
+            var homeTier = new VirtualFileSystemCoreTier(nameof(Home), VirtualFileSystemEntityType.Directory, nameof(Home))
             {
                 IsSelected = isCurrentSelection
             };
 
             foreach (var coreTier in sharedFilesList.Select(StructureTheFile))
             {
-                AddFileToTheSystem(coreTier, rootTier.VirtualFileSystemEntities);
+                AddFileToTheSystem(coreTier, homeTier.VirtualFileSystemEntities);
             }
 
-            VirtualFileSystemTiers.Add(rootTier);
+            VirtualFileSystemTiers.Add(homeTier);
 
             VirtualFileSystemCategories = new ObservableCollection<VirtualFileSystemCoreCategory>(binder.Bind(sharedFilesList));
         }

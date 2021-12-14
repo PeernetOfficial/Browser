@@ -176,7 +176,7 @@ namespace Peernet.Browser.Application.ViewModels
 
             var selected = restoreState ? VirtualFileSystem?.GetCurrentlySelected() : null;
 
-            VirtualFileSystem = virtualFileSystemFactory.CreateVirtualFileSystem(files, selected?.Name == "Root");
+            VirtualFileSystem = virtualFileSystemFactory.CreateVirtualFileSystem(files, selected?.Name == nameof(VirtualFileSystem.Home));
             AddRecentTier(sharedFiles);
             AddAllFilesTier(sharedFiles);
             RefreshPathObjects();
@@ -196,7 +196,7 @@ namespace Peernet.Browser.Application.ViewModels
                 }
                 else
                 {
-                    OpenCommand.Execute(DetermineHigherTier() ?? VirtualFileSystem.Root);
+                    OpenCommand.Execute(DetermineHigherTier() ?? VirtualFileSystem.Home);
                 }
             }
         }
@@ -204,8 +204,8 @@ namespace Peernet.Browser.Application.ViewModels
         public override async void ViewAppearing()
         {
             await ReloadVirtualFileSystem(false);
-            InitializePath(VirtualFileSystem.Root);
-            OpenCommand.Execute(VirtualFileSystem.Root);
+            InitializePath(VirtualFileSystem.Home);
+            OpenCommand.Execute(VirtualFileSystem.Home);
             base.ViewAppearing();
         }
 
