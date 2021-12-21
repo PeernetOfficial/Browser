@@ -162,3 +162,26 @@ In the file `Peernet Browser.dll.config` set the tag `ApiUrl` to the same IP:Por
 ```
 
 Note: In this case you will have to start the backend executable manually before starting the Peernet Browser. You will also have to close the process yourself when done.
+
+## Peernet Browser Insights
+
+### Connection with the backend
+Peernet Browser connects to the backend based on the _ApiUrl_ setting. The connection is being established 
+on the application startup, before the UI controls are generated. 
+The connection is represented by following statuses:
+```
+public enum ConnectionStatus
+{
+    Online,
+    Offline,
+    Connecting
+}
+```
+
+Where each status has its connection indicator in the left corner of the footer.
+Respectively Green Globe, Red Globe, Yellow Globe.
+Peernet Browser requests the API Status from the backed every 3 seconds (the backend returns _Peers Count_ at the same time).
+Before each Status Poll, the application changes the API Status to _Connecting_.
+When the backend returns success HTTP Status Code, Peernet Browser sets the returned API status. 
+If it is not a Success HTTP Status Code, the Poller will go idle for next 3 seconds without changing the API status (it will remain in _Connecting_ status).
+Status Poller runs during whole application lifetime and is disposed when Peernet Browser exits.
