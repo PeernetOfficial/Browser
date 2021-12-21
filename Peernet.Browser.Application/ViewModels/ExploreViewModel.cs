@@ -19,7 +19,6 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IDownloadManager downloadManager;
         private readonly IMvxNavigationService navigationService;
         private static readonly List<VirtualFileSystemCoreCategory> categoryTypes = GetCategoryTypes();
-        private IReadOnlyCollection<DownloadModel> sharedFiles;
 
         public ExploreViewModel(IExploreService exploreService, IDownloadManager downloadManager, IMvxNavigationService navigationService)
         {
@@ -104,8 +103,7 @@ namespace Peernet.Browser.Application.ViewModels
         private async Task ReloadResults()
         {
             var exploreResult = await exploreService.GetFiles(200);
-            sharedFiles = new ReadOnlyCollection<DownloadModel>(exploreResult);
-            ActiveSearchResults = new ObservableCollection<DownloadModel>(sharedFiles);
+            ActiveSearchResults = new ObservableCollection<DownloadModel>(exploreResult);
         }
     }
 }

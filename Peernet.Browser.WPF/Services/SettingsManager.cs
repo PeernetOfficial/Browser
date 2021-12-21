@@ -8,7 +8,7 @@ namespace Peernet.Browser.WPF.Services
     {
         private static readonly Guid apiKey = Guid.NewGuid();
 
-        public string ApiKey => apiKey.ToString();
+        public string ApiKey => Guid.NewGuid().ToString();
 
         public string ApiUrl
         {

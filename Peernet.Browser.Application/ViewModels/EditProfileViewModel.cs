@@ -39,9 +39,9 @@ namespace Peernet.Browser.Application.ViewModels
              if (UserContext.HasUserChanged)
              {
                  var result = await profileService.UpdateUser(UserContext.User.Name, UserContext.User.Image);
-                 if (result.Status != BlockchainStatus.StatusOK)
+                 if (result is not { Status: BlockchainStatus.StatusOK })
                  {
-                     GlobalContext.Notifications.Add(new Notification($"Failed to update User. Status: {result.Status}", Severity.Error));
+                     GlobalContext.Notifications.Add(new Notification($"Failed to update User. Status: {result?.Status.ToString() ?? "[Unknown]"}", Severity.Error));
                  }
              }
 

@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
+using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Models.Presentation.Footer;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -11,31 +13,11 @@ namespace Peernet.Browser.Infrastructure.Http
     internal class HttpExecutor : IHttpExecutor
     {
         private readonly HttpClient httpClient;
+        private readonly object lockObject = new();
 
         public HttpExecutor(ISettingsManager settingsManager)
         {
             httpClient = new HttpClientFactory(settingsManager).CreateHttpClient();
-        }
-
-        public async Task<T> GetResultAsync<T>(
-            HttpMethod method,
-            string relativePath,
-            Dictionary<string, string> queryParameters = null,
-            HttpContent content = null)
-        {
-            var httpRequestMessage = PrepareMessage(relativePath, method, queryParameters, content);
-            var response = await httpClient.SendAsync(httpRequestMessage);
-
-            if (response.StatusCode != HttpStatusCode.OK && response.StatusCode != HttpStatusCode.NoContent &&
-                response.StatusCode != HttpStatusCode.Created)
-            {
-                throw new HttpRequestException($"Unexpected response status code: {response.StatusCode}");
-            }
-
-            await using var stream = await response.Content.ReadAsStreamAsync();
-            using var textReader = new StreamReader(stream);
-            using var reader = new JsonTextReader(textReader);
-            return new JsonSerializer().Deserialize<T>(reader);
         }
 
         public T GetResult<T>(HttpMethod method, string relativePath, Dictionary<string, string> queryParameters = null, HttpContent content = null)
@@ -43,10 +25,41 @@ namespace Peernet.Browser.Infrastructure.Http
             var httpRequestMessage = PrepareMessage(relativePath, method, queryParameters, content);
             var response = httpClient.Send(httpRequestMessage);
 
-            if (response.StatusCode != HttpStatusCode.OK && response.StatusCode != HttpStatusCode.NoContent &&
-                response.StatusCode != HttpStatusCode.Created)
+            return GetFromResponseMessage<T>(response);
+        }
+
+        public async Task<T> GetResultAsync<T>(
+                    HttpMethod method,
+            string relativePath,
+            Dictionary<string, string> queryParameters = null,
+            HttpContent content = null)
+        {
+            var httpRequestMessage = PrepareMessage(relativePath, method, queryParameters, content);
+            var response = await httpClient.SendAsync(httpRequestMessage);
+
+            return GetFromResponseMessage<T>(response);
+        }
+
+        private static T Deserialize<T>(Stream stream)
+        {
+            using var textReader = new StreamReader(stream);
+            using var reader = new JsonTextReader(textReader);
+            return new JsonSerializer().Deserialize<T>(reader);
+        }
+
+        private T GetFromResponseMessage<T>(HttpResponseMessage response)
+        {
+            lock (lockObject)
             {
-                throw new HttpRequestException($"Unexpected response status code: {response.StatusCode}");
+                if (response.StatusCode != HttpStatusCode.OK && response.StatusCode != HttpStatusCode.NoContent &&
+                    response.StatusCode != HttpStatusCode.Created)
+                {
+
+                    GlobalContext.Notifications.Add(new(
+                        $"Unexpected response status code: {response.StatusCode}",
+                        Severity.Error));
+                    return default;
+                }
             }
 
             using var stream = response.Content.ReadAsStreamAsync().Result;
@@ -67,13 +80,6 @@ namespace Peernet.Browser.Infrastructure.Http
             }
 
             return queryString;
-        }
-
-        private static T Deserialize<T>(Stream stream)
-        {
-            using var textReader = new StreamReader(stream);
-            using var reader = new JsonTextReader(textReader);
-            return new JsonSerializer().Deserialize<T>(reader);
         }
 
         private static HttpRequestMessage PrepareMessage(string relativePath, HttpMethod method, Dictionary<string, string> queryParameters, HttpContent content)

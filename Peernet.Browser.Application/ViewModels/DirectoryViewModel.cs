@@ -87,6 +87,11 @@ namespace Peernet.Browser.Application.ViewModels
             new MvxCommand<VirtualFileSystemEntity>(
                 entity =>
                 {
+                    if (entity == null)
+                    {
+                        return;
+                    }
+
                     if (entity is VirtualFileSystemCoreEntity coreTier)
                     {
                         UpdateActiveSearchResults.Execute(coreTier);
@@ -130,7 +135,7 @@ namespace Peernet.Browser.Application.ViewModels
         public IMvxCommand SearchCommand =>
             new MvxCommand(() =>
             {
-                UpdateActiveSearchResults.Execute(PathElements.Last());
+                UpdateActiveSearchResults.Execute(PathElements?.Last());
             });
 
         public string SearchInput
@@ -155,6 +160,11 @@ namespace Peernet.Browser.Application.ViewModels
             new MvxCommand<VirtualFileSystemCoreEntity>(
                 entity =>
                 {
+                    if (entity == null)
+                    {
+                        return;
+                    }
+
                     var refreshedEntity = VirtualFileSystem.Find(entity, VirtualFileSystem.VirtualFileSystemTiers) ?? VirtualFileSystem.Find(entity, VirtualFileSystem.VirtualFileSystemCategories);
                     ActiveSearchResults = ApplySearchResultsFiltering(refreshedEntity?.VirtualFileSystemEntities);
                 });
@@ -168,6 +178,11 @@ namespace Peernet.Browser.Application.ViewModels
         public async Task ReloadVirtualFileSystem(bool restoreState = true)
         {
             var header = await blockchainService.GetHeader();
+            if (header == null)
+            {
+                return;
+            }
+
             var files = await blockchainService.GetList();
             if (header.Height > 0 || header.Height != ActiveSearchResults?.Count)
             {
@@ -204,8 +219,8 @@ namespace Peernet.Browser.Application.ViewModels
         public override async void ViewAppearing()
         {
             await ReloadVirtualFileSystem(false);
-            InitializePath(VirtualFileSystem.Home);
-            OpenCommand.Execute(VirtualFileSystem.Home);
+            InitializePath(VirtualFileSystem?.Home);
+            OpenCommand.Execute(VirtualFileSystem?.Home);
             base.ViewAppearing();
         }
 
@@ -262,6 +277,11 @@ namespace Peernet.Browser.Application.ViewModels
 
         private void InitializePath(VirtualFileSystemEntity entity)
         {
+            if (entity == null)
+            {
+                return;
+            }
+
             var name = entity is VirtualFileSystemCoreCategory ? LibrariesSegment : YourFilesSegment;
 
             PathElements = new ObservableCollection<VirtualFileSystemCoreEntity>(
