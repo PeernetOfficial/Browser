@@ -44,7 +44,7 @@ namespace Peernet.Browser.Application.ViewModels
              }
              catch (HttpRequestException ex)
              {
-                 GlobalContext.Notifications.Add(new Notification($"Failed to delete account. Status: {ex.Message}", Severity.Error));
+                 GlobalContext.Notifications.Add(new Notification($"Failed to delete account. Status: {ex.Message}", severity: Severity.Error));
              }
 
              userContext.ReloadContext();

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Models.Presentation.Footer;
@@ -47,25 +48,6 @@ namespace Peernet.Browser.Infrastructure.Http
             return new JsonSerializer().Deserialize<T>(reader);
         }
 
-        private T GetFromResponseMessage<T>(HttpResponseMessage response)
-        {
-            lock (lockObject)
-            {
-                if (response.StatusCode != HttpStatusCode.OK && response.StatusCode != HttpStatusCode.NoContent &&
-                    response.StatusCode != HttpStatusCode.Created)
-                {
-
-                    GlobalContext.Notifications.Add(new(
-                        $"Unexpected response status code: {response.StatusCode}",
-                        Severity.Error));
-                    return default;
-                }
-            }
-
-            using var stream = response.Content.ReadAsStreamAsync().Result;
-            return Deserialize<T>(stream);
-        }
-
         private static string GetQueryString(Dictionary<string, string> queryParameters)
         {
             string queryString = null;
@@ -99,6 +81,32 @@ namespace Peernet.Browser.Infrastructure.Http
             }
 
             return httpRequestMessage;
+        }
+
+        private T GetFromResponseMessage<T>(HttpResponseMessage response)
+        {
+            lock (lockObject)
+            {
+                if (response.StatusCode != HttpStatusCode.OK && response.StatusCode != HttpStatusCode.NoContent &&
+                    response.StatusCode != HttpStatusCode.Created && !response.RequestMessage.RequestUri.ToString().EndsWith("status"))
+                {
+                    var content = response.Content.ReadAsStringAsync().ConfigureAwait(false).GetAwaiter().GetResult();
+                    var responseBody = string.IsNullOrEmpty(content) ? "(empty response)" : content;
+                    var details =
+                        $"{response.RequestMessage.Method} {response.RequestMessage.RequestUri} \n" +
+                        $"{response.RequestMessage.Content} \n" +
+                        $"Result: HTTP {response.StatusCode} \n" +
+                        $"{responseBody}";
+                    GlobalContext.Notifications.Add(new(
+                        $"Unexpected response status code: {response.StatusCode}",
+                        details,
+                        Severity.Error));
+                    return default;
+                }
+            }
+
+            using var stream = response.Content.ReadAsStreamAsync().Result;
+            return Deserialize<T>(stream);
         }
     }
 }

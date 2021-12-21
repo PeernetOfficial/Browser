@@ -29,7 +29,7 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
                 var result = await blockchainService.UpdateFile(fileModel);
                 if (result.Status != BlockchainStatus.StatusOK)
                 {
-                    GlobalContext.Notifications.Add(new Notification($"Failed to update the file. Status: {result.Status}", Severity.Error));
+                    GlobalContext.Notifications.Add(new Notification($"Failed to update the file. Status: {result.Status}", severity: Severity.Error));
                 }
             }
 

@@ -12,10 +12,25 @@
     <Border.Effect>
         <DropShadowEffect Color="Black" Opacity="0.11" ShadowDepth="1" BlurRadius="21" />
     </Border.Effect>
-    <StackPanel Orientation="Horizontal">
-        <TextBlock TextWrapping="Wrap" Text="{Binding Path=Notification, ElementName=notificationControl}" Style="{StaticResource Active}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Button Style="{StaticResource CloseButtonStyle}" Click="RemoveNotification" Cursor="Hand"/>
-    </StackPanel>
+        <Expander Padding="2" Width="330">
+            <Expander.Header>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock TextWrapping="Wrap" Text="{Binding Path=Notification.Message, ElementName=notificationControl}" Style="{StaticResource Active}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <Button Style="{StaticResource CloseButtonStyle}" Click="RemoveNotification" Cursor="Hand"/>
+                </StackPanel>
+            </Expander.Header>
+            <Expander.Content>
+                <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" Margin="-24, -10, -6, -6" Background="{DynamicResource LightGrayBrush}">
+                    <TextBlock FontFamily="Courier New"
+                               Padding="10"
+                               TextWrapping="Wrap"
+                               Text="{Binding Path=Notification.Details, ElementName=notificationControl}"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Foreground="{DynamicResource MainTextBrush}"/>    
+                </Border>
+            </Expander.Content>
+        </Expander>
     <Border.Style>
         <Style TargetType="{x:Type Border}">
                 <Setter Property="Background">

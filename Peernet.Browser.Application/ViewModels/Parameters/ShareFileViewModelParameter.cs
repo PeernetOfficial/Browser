@@ -36,14 +36,14 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
                 }
                 else
                 {
-                    GlobalContext.Notifications.Add(new Notification($"Failed to create warehouse. Status: {warehouseEntry.Status}", Severity.Error));
+                    GlobalContext.Notifications.Add(new Notification($"Failed to create warehouse. Status: {warehouseEntry.Status}", severity: Severity.Error));
                 }
             }
 
             var result = await blockchainService.AddFiles(files.Where(f => f.Hash != null));
             if (result.Status != BlockchainStatus.StatusOK)
             {
-                GlobalContext.Notifications.Add(new Notification($"Failed to add files. Status: {result.Status}", Severity.Error));
+                GlobalContext.Notifications.Add(new Notification($"Failed to add files. Status: {result.Status}", severity: Severity.Error));
             }
 
             await Mvx.IoCProvider.Resolve<IMvxNavigationService>().Navigate<DirectoryViewModel>();
