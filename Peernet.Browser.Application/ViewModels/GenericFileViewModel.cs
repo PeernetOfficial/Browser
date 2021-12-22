@@ -155,8 +155,11 @@ namespace Peernet.Browser.Application.ViewModels
         private async Task UpdateFileFormat(FileModel fileModel)
         {
             var format = await fileService.GetFormat(fileModel.FullPath);
-            fileModel.Format = format.FileFormat;
-            fileModel.Type = format.FileType;
+            if (format != null)
+            {
+                fileModel.Format = format.FileFormat;
+                fileModel.Type = format.FileType;
+            }
         }
     }
 }

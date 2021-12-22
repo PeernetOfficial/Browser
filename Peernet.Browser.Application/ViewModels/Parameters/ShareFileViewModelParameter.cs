@@ -30,13 +30,14 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
             foreach (var file in files)
             {
                 var warehouseEntry = await warehouseService.Create(file);
-                if (warehouseEntry.Status == WarehouseStatus.StatusOK)
+                if (warehouseEntry?.Status == WarehouseStatus.StatusOK)
                 {
                     file.Hash = warehouseEntry.Hash;
                 }
                 else
                 {
-                    GlobalContext.Notifications.Add(new Notification($"Failed to create warehouse. Status: {warehouseEntry.Status}", severity: Severity.Error));
+                    GlobalContext.Notifications.Add(new Notification($"Failed to create warehouse. Status: {warehouseEntry?.Status.ToString() ?? "[Unknown]"}", severity: Severity.Error));
+                    return;
                 }
             }
 
