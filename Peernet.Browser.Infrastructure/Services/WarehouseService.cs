@@ -24,9 +24,8 @@ namespace Peernet.Browser.Infrastructure.Services
 
         public async Task<WarehouseResult> Create(FileModel file)
         {
-            var content = await File.ReadAllBytesAsync(file.FullPath, default);
-            
-            return await warehouseClient.Create(content);
+            var stream = File.OpenRead(file.FullPath);
+            return await warehouseClient.Create(stream);
         }
 
         public async Task<WarehouseResult> ReadPath(ApiFile file)
