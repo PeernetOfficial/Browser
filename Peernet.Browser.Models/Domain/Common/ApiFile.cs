@@ -36,7 +36,5 @@ namespace Peernet.Browser.Models.Domain.Common
         [JsonIgnore]
         public string SharedByGeoIP =>
             MetaData?.FirstOrDefault(md => md.Type == MetadataType.TagSharedByGeoIP)?.Text;
-
-
     }
 }
