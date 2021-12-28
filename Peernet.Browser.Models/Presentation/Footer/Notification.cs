@@ -4,13 +4,16 @@ namespace Peernet.Browser.Models.Presentation.Footer
 {
     public class Notification
     {
-        public Notification(string text, Severity severity = Severity.Normal)
+        public Notification(string message, string details = null, Severity severity = Severity.Normal)
         {
-            Text = text;
+            Message = message;
+            Details = details ?? string.Empty;
             Severity = severity;
         }
 
-        public string Text { get; init; }
+        public string Message { get; init; }
+
+        public string Details { get; set; }
 
         public Severity Severity { get; init; }
 

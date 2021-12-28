@@ -14,6 +14,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace Peernet.Browser.WPF
@@ -23,6 +24,8 @@ namespace Peernet.Browser.WPF
     /// </summary>
     public partial class MainWindow : MvxWindow
     {
+        private readonly object lockObject = new();
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -35,6 +38,9 @@ namespace Peernet.Browser.WPF
             ci.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Sunday;
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
+
+            // TODO: It should have better place. MainWindow's code behind is not the one. It should be called once UI(UI Thread Dispatcher) is created/initialized. Perhaps there is an even to handle.
+            BindingOperations.EnableCollectionSynchronization(GlobalContext.Notifications, lockObject);
         }
 
         protected override void OnContentChanged(object oldContent, object newContent)

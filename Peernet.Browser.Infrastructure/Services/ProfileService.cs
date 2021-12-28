@@ -20,9 +20,9 @@ namespace Peernet.Browser.Infrastructure.Services
 
         public async Task<User> GetUser()
         {
-            var data = await profileClient.GetProfileData();
-            var name = data.Fields?.FirstOrDefault(f => f.Type == ProfileField.ProfileFieldName)?.Text;
-            var image = data.Fields?.FirstOrDefault(f => f.Type == ProfileField.ProfilePicture)?.Blob;
+            var profileData = await profileClient.GetProfileData();
+            var name = profileData?.Fields?.FirstOrDefault(f => f.Type == ProfileField.ProfileFieldName)?.Text;
+            var image = profileData?.Fields?.FirstOrDefault(f => f.Type == ProfileField.ProfilePicture)?.Blob;
 
             return new User
             {

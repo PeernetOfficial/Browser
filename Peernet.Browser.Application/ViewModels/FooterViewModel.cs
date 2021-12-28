@@ -181,6 +181,12 @@ namespace Peernet.Browser.Application.ViewModels
         private async Task<bool> GetPeernetStatus()
         {
             var status = await apiService.GetStatus();
+
+            if (status == null)
+            {
+                return false;
+            }
+
             ConnectionStatus = status.IsConnected ? ConnectionStatus.Online : ConnectionStatus.Offline;
             Peers = status.CountPeerList.ToString();
             return status.IsConnected;

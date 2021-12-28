@@ -33,7 +33,7 @@ namespace Peernet.Browser.Infrastructure.Services
                 Hash = fileModel.Hash,
                 MetaData = fileModel.Metadata,
                 NodeId = fileModel.NodeId,
-                Name = fileModel.FileName,
+                Name = $"{fileModel.FileNameWithoutExtension}{fileModel.Extension}",
                 Description = fileModel.Description,
                 Folder = fileModel.Directory,
                 Date = fileModel.CreateDate,
@@ -61,7 +61,7 @@ namespace Peernet.Browser.Infrastructure.Services
                     new ApiFile
                     {
                         Description = file.Description ?? string.Empty,
-                        Name = file.FileName,
+                        Name = $"{file.FileNameWithoutExtension}{file.Extension}",
                         Folder = file.Directory,
                         Date = DateTime.Now,
                         Hash = file.Hash,

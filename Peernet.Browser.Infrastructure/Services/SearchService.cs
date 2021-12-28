@@ -27,7 +27,7 @@ namespace Peernet.Browser.Infrastructure.Services
             if (isNew)
             {
                 var response = await searchClient.SubmitSearch(Map<SearchRequest>(model));
-                if (response.Status != SearchRequestResponseStatusEnum.Success)
+                if (response is not { Status: SearchRequestResponseStatusEnum.Success })
                 {
                     return res;
                 }

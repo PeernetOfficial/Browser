@@ -1,8 +1,7 @@
 ﻿using Peernet.Browser.Application.Contexts;
-using Peernet.Browser.Models.Presentation;
+using Peernet.Browser.Models.Presentation.Footer;
 using System.Collections.ObjectModel;
 using System.Threading;
-using Peernet.Browser.Models.Presentation.Footer;
 
 namespace Peernet.Browser.Application
 {
@@ -19,11 +18,9 @@ namespace Peernet.Browser.Application
         {
             var autoEvent = new AutoResetEvent(false);
 
-            item.Timer = new Timer(state =>
-                {
-                    GlobalContext.UiThreadDispatcher.ExecuteOnMainThreadAsync(() => Remove(item));
-                },
-            autoEvent, timeout, 3000);
+            item.Timer = new Timer(
+                state => { GlobalContext.UiThreadDispatcher?.ExecuteOnMainThreadAsync(() => Remove(item)); },
+                autoEvent, timeout, 3000);
 
             base.InsertItem(index, item);
         }

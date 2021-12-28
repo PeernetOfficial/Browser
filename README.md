@@ -8,12 +8,23 @@ It is built on to of .NET 5.0 with use of WPF UI Framework [WPF documentation](h
 Peernet Browser configuration entry point is via _Peernet Browser.dll.config_ output file or _App.config_ from Solution view.
 Configuration file includes following settings:
 
-| Name/Key     | Description                                                                                                                                                                                                                                                                            | Default Value                    |
-|--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------|
-| Backend      | A path to the Peernet Command Line Client executable file. It supports both full path and just a file name. In case it is a file name it will look for it in the current working directory.                                                                                            | ``` Backend.exe ```              |
-| ApiUrl       | Url address on which backend is hosted. This setting is optional.   If it is not provided, Browser will run Backend by itself using Backend setting.  If provided, the Backend process will not be started by Browser and the ApiUrl setting value will be used for the backend calls. | None                             |
+| Name/Key     | Description                                                                                                                                                                                                                                                                            | Default Value                       |
+|--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------ |
+| Backend      | A path to the Peernet Command Line Client executable file. It supports both full path and just a file name. In case it is a file name it will look for it in the current working directory.                                                                                            | ``` Backend.exe ```               |
+| ApiUrl       | Url address on which backend is hosted. This setting is optional.   If it is not provided, Browser will run Backend by itself using Backend setting.  If provided, the Backend process will not be started by Browser and the ApiUrl setting value will be used for the backend calls. | None                                |
 | DownloadPath | A path to the directory to which all downloaded files will be written. By default it is written to User's Downloads folder.  The %userprofile% is an environmental variable which is expanded during the runtime.                                                                      | ``` %userprofile%\Downloads\ ``` |
+| DefaultTheme | A default application color scheme. The application supports two themes: _LightMode_ and _DarkMode_. The setting by default is not present in the configuration file.                                                                                                                  | None                                |
 
+Each time the application starts it reads the configuration from the file. The configuration is mapped to application' in-memory object. 
+Settings within the object may change at runtime. E.g.: If _ApiUrl_  is not set, it is being auto-generated based on random free TCP Port; 
+User may change application theme accordingly to his preference.   
+To ensure application state is preserved between separate runs, the application writes all the in-memory settings to the configuration file when it exits. 
+At every consequtive startup, the application reads the configuration from the file. With that being said, the _DefaultTheme_ is being added to the 
+configuration file when the application exits for the first time (it is not present in the configuration file by default) and when the application is ran again, 
+the theme is being recovered.
+
+There is one exception. Since _ApiUrl_ has specific behaviour, the application does not maintain the _ApiUrl_ setting. It will be omitted from saving 
+to the configuration file and only user can manually modify it.
 
 ## Peernet Browser - Peernet Command Line Client Integration
 Peernet Browser requirement is backend (Peernet Command Line Client) to be running. Every application view is generated with some data supplied by backend.
@@ -162,3 +173,26 @@ In the file `Peernet Browser.dll.config` set the tag `ApiUrl` to the same IP:Por
 ```
 
 Note: In this case you will have to start the backend executable manually before starting the Peernet Browser. You will also have to close the process yourself when done.
+
+## Peernet Browser Insights
+
+### Connection with the backend
+Peernet Browser connects to the backend based on the _ApiUrl_ setting. The connection is being established 
+on the application startup, before the UI controls are generated. 
+The connection is represented by following statuses:
+```
+public enum ConnectionStatus
+{
+    Online,
+    Offline,
+    Connecting
+}
+```
+
+Where each status has its connection indicator in the left corner of the footer.
+Respectively Green Globe, Red Globe, Yellow Globe.
+Peernet Browser requests the API Status from the backed every 3 seconds (the backend returns _Peers Count_ at the same time).
+Before each Status Poll, the application changes the API Status to _Connecting_.
+When the backend returns success HTTP Status Code, Peernet Browser sets the returned API status. 
+If it is not a Success HTTP Status Code, the Poller will go idle for next 3 seconds without changing the API status (it will remain in _Connecting_ status).
+Status Poller runs during whole application lifetime and is disposed when Peernet Browser exits.
