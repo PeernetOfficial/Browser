@@ -6,6 +6,7 @@ using Peernet.Browser.WPF.Styles;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Markup;
+using Peernet.Browser.Application.Contexts;
 
 namespace Peernet.Browser.WPF
 {
@@ -21,6 +22,8 @@ namespace Peernet.Browser.WPF
 
         static App()
         {
+            GlobalContext.VisualMode = new SettingsManager().DefaultTheme;
+
             FrameworkElement.LanguageProperty.OverrideMetadata(
 
                 typeof(FrameworkElement),
@@ -32,7 +35,16 @@ namespace Peernet.Browser.WPF
 
         protected override void OnExit(ExitEventArgs e)
         {
+            var settings = new SettingsManager();
+            if (cmdRunner != null)
+            {
+                settings.ApiUrl = null;
+            }
+            settings.DefaultTheme = GlobalContext.VisualMode;
+
+            SettingsManager.Save();
             cmdRunner?.Dispose();
+            
             base.OnExit(e);
         }
 

@@ -5,6 +5,7 @@ using Peernet.Browser.Models.Presentation.Footer;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Peernet.Browser.Models.Domain.Common;
 
 namespace Peernet.Browser.Infrastructure.Services
 {
@@ -19,7 +20,7 @@ namespace Peernet.Browser.Infrastructure.Services
 
         public async Task<List<DownloadModel>> GetFiles(int limit, int? type = null)
         {
-            var files = (await exploreClient.GetFiles(limit, type)).Files;
+            var files = (await exploreClient.GetFiles(limit, type))?.Files ?? Enumerable.Empty<ApiFile>();
 
             return files.Select(f => new DownloadModel(f)).ToList();
         }

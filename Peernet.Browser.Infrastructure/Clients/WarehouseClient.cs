@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Infrastructure.Http;
 using Peernet.Browser.Models.Domain.Warehouse;
@@ -19,9 +20,10 @@ namespace Peernet.Browser.Infrastructure.Clients
 
         public override string CoreSegment => "warehouse";
 
-        public async Task<WarehouseResult> Create(byte[] fileContent)
+        public async Task<WarehouseResult> Create(Stream stream)
         {
-            var content = new ByteArrayContent(fileContent);
+
+            using var content = new StreamContent(stream);
 
             return await httpExecutor.GetResultAsync<WarehouseResult>(HttpMethod.Post, GetRelativeRequestPath("create"),
                 content: content);

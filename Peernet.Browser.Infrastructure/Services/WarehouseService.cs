@@ -24,9 +24,8 @@ namespace Peernet.Browser.Infrastructure.Services
 
         public async Task<WarehouseResult> Create(FileModel file)
         {
-            var content = await File.ReadAllBytesAsync(file.FullPath, default);
-            
-            return await warehouseClient.Create(content);
+            var stream = File.OpenRead(file.FullPath);
+            return await warehouseClient.Create(stream);
         }
 
         public async Task<WarehouseResult> ReadPath(ApiFile file)
@@ -35,7 +34,7 @@ namespace Peernet.Browser.Infrastructure.Services
                 file.Name);
             var result = await warehouseClient.ReadPath(file.Hash, fullPath);
             GlobalContext.Notifications.Add(result.Status != WarehouseStatus.StatusOK
-                ? new Notification($"Failed to save file to {fullPath}. Status: {result.Status}", Severity.Error)
+                ? new Notification($"Failed to save file to {fullPath}. Status: {result.Status}", severity: Severity.Error)
                 : new Notification($"File saved to {fullPath}"));
 
             return result;

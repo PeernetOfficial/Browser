@@ -30,20 +30,21 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
             foreach (var file in files)
             {
                 var warehouseEntry = await warehouseService.Create(file);
-                if (warehouseEntry.Status == WarehouseStatus.StatusOK)
+                if (warehouseEntry?.Status == WarehouseStatus.StatusOK)
                 {
                     file.Hash = warehouseEntry.Hash;
                 }
                 else
                 {
-                    GlobalContext.Notifications.Add(new Notification($"Failed to create warehouse. Status: {warehouseEntry.Status}", Severity.Error));
+                    GlobalContext.Notifications.Add(new Notification($"Failed to create warehouse. Status: {warehouseEntry?.Status.ToString() ?? "[Unknown]"}", severity: Severity.Error));
+                    return;
                 }
             }
 
             var result = await blockchainService.AddFiles(files.Where(f => f.Hash != null));
             if (result.Status != BlockchainStatus.StatusOK)
             {
-                GlobalContext.Notifications.Add(new Notification($"Failed to add files. Status: {result.Status}", Severity.Error));
+                GlobalContext.Notifications.Add(new Notification($"Failed to add files. Status: {result.Status}", severity: Severity.Error));
             }
 
             await Mvx.IoCProvider.Resolve<IMvxNavigationService>().Navigate<DirectoryViewModel>();

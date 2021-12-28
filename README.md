@@ -4,16 +4,27 @@
 This is official GUI for [Peernet Command Line Client](https://github.com/PeernetOfficial/Cmd). It has been designed to deliver client's capabilities in user friendly manner. 
 It is built on to of .NET 5.0 with use of WPF UI Framework [WPF documentation](https://docs.microsoft.com/en-us/dotnet/desktop/wpf/?view=netdesktop-5.0). 
 
-## Configuration{#configuration}
+## Configuration
 Peernet Browser configuration entry point is via _Peernet Browser.dll.config_ output file or _App.config_ from Solution view.
 Configuration file includes following settings:
 
-| Name/Key     | Description                                                                                                                                                                                                                                                                            | Default Value                    |
-|--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------|
-| Backend      | A path to the Peernet Command Line Client executable file. It supports both full path and just a file name. In case it is a file name it will look for it in the current working directory.                                                                                            | ``` Backend.exe ```              |
-| ApiUrl       | Url address on which backend is hosted. This setting is optional.   If it is not provided, Browser will run Backend by itself using Backend setting.  If provided, the Backend process will not be started by Browser and the ApiUrl setting value will be used for the backend calls. | None                             |
+| Name/Key     | Description                                                                                                                                                                                                                                                                            | Default Value                       |
+|--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------ |
+| Backend      | A path to the Peernet Command Line Client executable file. It supports both full path and just a file name. In case it is a file name it will look for it in the current working directory.                                                                                            | ``` Backend.exe ```               |
+| ApiUrl       | Url address on which backend is hosted. This setting is optional.   If it is not provided, Browser will run Backend by itself using Backend setting.  If provided, the Backend process will not be started by Browser and the ApiUrl setting value will be used for the backend calls. | None                                |
 | DownloadPath | A path to the directory to which all downloaded files will be written. By default it is written to User's Downloads folder.  The %userprofile% is an environmental variable which is expanded during the runtime.                                                                      | ``` %userprofile%\Downloads\ ``` |
+| DefaultTheme | A default application color scheme. The application supports two themes: _LightMode_ and _DarkMode_. The setting by default is not present in the configuration file.                                                                                                                  | None                                |
 
+Each time the application starts it reads the configuration from the file. The configuration is mapped to application' in-memory object. 
+Settings within the object may change at runtime. E.g.: If _ApiUrl_  is not set, it is being auto-generated based on random free TCP Port; 
+User may change application theme accordingly to his preference.   
+To ensure application state is preserved between separate runs, the application writes all the in-memory settings to the configuration file when it exits. 
+At every consequtive startup, the application reads the configuration from the file. With that being said, the _DefaultTheme_ is being added to the 
+configuration file when the application exits for the first time (it is not present in the configuration file by default) and when the application is ran again, 
+the theme is being recovered.
+
+There is one exception. Since _ApiUrl_ has specific behaviour, the application does not maintain the _ApiUrl_ setting. It will be omitted from saving 
+to the configuration file and only user can manually modify it.
 
 ## Peernet Browser - Peernet Command Line Client Integration
 Peernet Browser requirement is backend (Peernet Command Line Client) to be running. Every application view is generated with some data supplied by backend.
@@ -34,41 +45,55 @@ Backend process started by the Browser needs to be later disposed.
 When Peernet Browser application exits it sends ```/shutdown?action=0``` request to the backend. Backend is supposed to exit on such request. 
 Although Browser makes sure backend terminated and kills the process if it didn't happen in 5 seconds since the __shutdown__ request.
 
-## First boot {#first-boot}
-Aplication can be setup in several ways.
+## Deployment
 
-### Automatic setup
-Automatic setup involves Windows Installer setup from __MSI__ file. For more details see [Peernet Browser Installer Project](https://github.com/PeernetOfficial/BrowserSetup)
+### Requirements
 
-### Manual setup
-Prior to first manual boot following steps are required:
-#### Step 1 (.NET SDK)
+These components are required:
+1. Latest [.NET Desktop Runtime for Windows x64](https://dotnet.microsoft.com/download/dotnet/5.0). The installer version is recommended.
+2. The backend executable. You can compile the [Cmd project](https://github.com/PeernetOfficial/Cmd) and use that resulting executable.
+3. For improved connectivity add a Windows Firewall rule to allow all connections for the backend executable (the linked Cmd project has the netsh command documented).
+
+### Automated Setup
+
+An automated setup for end-users is provided via a Windows installer through a MSI file. For more details see the [Peernet Browser Installer Project](https://github.com/PeernetOfficial/BrowserSetup).
+
+This installation bundle contains the Browser and installs the required .NET framework, includes the backend, and also configures the Windows Firewall for admin users.
+
+## Use
+
+Run the `Peernet Browser.exe` file from the release folder and enjoy the features.
+
+Change the configuration file `Peernet Browser.dll.config` as needed.
+
+## Compile
+
+The following steps provide a guide how to compile the Peernet Browser. Note that the backend executable is not part of this guide.
+
+### Step 1 Install .NET SDK
 In order to use generic driver for .NET CLI, .NET SDK needs to be installed.
 .NET SDK installer can be downloaded from [Official Website](https://dotnet.microsoft.com/download/dotnet/5.0)
 
-#### Step 2 (Clone the repository)
+### Step 2 Clone the repository
 Use GIT CLI to clone the repository
 
 ```
 git clone https://github.com/PeernetOfficial/Browser.git
 ```
 
-#### Step 3 (Install VisualStudio) [Optional]{#step3}
+### Step 3 Install VisualStudio (optional)
+
 This step is optional. It is not required to be able to **build** and **run** solution although VisualStudio as IDE provides numerous features besides obvious ability to edit, build and run the solution.
 
-Peernet Browser is written with the latest as of now .NET 5.0. It requires [VisualStudio 2019](https://visualstudio.microsoft.com/pl/vs/) version or newer to be able to load.
-There is **Community** version that is free of charge for non-commercial use.
+Peernet Browser is written with the latest as of now .NET 5.0. It requires [Visual Studio 2019](https://visualstudio.microsoft.com/pl/vs/) version or newer to be able to load.
+There is a Community version that is free of charge for non-commercial use.
 
-#### Step 4 (Modify application settings)
-You should modify configuration accordingly to your needs. See [Configuration](#configuration).
+### Step 4 Build Solution
 
-#### Step 5 (Build solution)
-Solution can be built in few ways.  
-One way is to use Visual Studio (See [Step 3](#step3)).
-The other way is to use [**dotnet CLI**](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet).
+The solution can be built either by using Visual Studio, or using the command line tool [dotnet](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet).
 
-Open command prompt (cmd.exe on Windows) and navigate to solution location (file with *.sln extension).  
-Run following command:
+Open command prompt (cmd.exe on Windows) and navigate to solution location (file with *.sln extension). Run following command. This will build the debug version.
+
 ```
 dotnet build
 ```
@@ -95,25 +120,79 @@ Build succeeded.
 Time Elapsed 00:00:07.34
 ```
 
-#### Step 6 (Install runtime)
-Last step before being able to run the application is to install the .NET runtime.
-.NET runtime installer can be downloaded from [Official Website](https://dotnet.microsoft.com/download/dotnet/5.0)
+To compile the release version without the .NET dlls, use the following command. The compiled files will be in the `\Peernet.Browser.WPF\bin\Release\net5.0-windows\win-x64\publish` folder.
 
-#### Step 7 (Run the app)
+```
+dotnet publish -c Release --no-self-contained
+```
+
+To sign the executable use the `signtool` from the Windows SDK. Note that all other related executables including dlls should also be signed. It makes sense signing all executables before creating the setup file.
+
+```
+signtool sign /a /fd SHA256 "Peernet Browser.exe"
+```
+
+### Step 5 Run the app
 Having already built solution and installed runtime you are able to run the application. It can be achieved in few ways similar to building the solution.  
-One way is to use Visual Studio (See [Step 3](#step3)).
-The other way is to use [**dotnet CLI**](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet).
 
-Open command prompt (cmd.exe on Windows) and navigate to **Peernet.Browser.WPF** project location (file with *.csproj extension).  
-Run following command:
+One way is to use Visual Studio. The other way is to use dotnet tool.
+
+Open command prompt (cmd.exe on Windows) and navigate to Peernet.Browser.WPF project location (file with *.csproj extension). Run following command:
 ```
 dotnet run
 ```
 
-You can also simply run the application from **.exe** file which you can find in build output directory (**bin** folder).
+You can also simply run the application from .exe file which you can find in build output directory (bin folder).
 
 >Peernet Browser.exe
 
-## Use
-You can either follow [first boot](#first-boot) instruction or download the latest release of Peernet Command Line Client and Peernet Browser.
-Run 'Peernet Browser.exe' file and enjoy the features.
+## Development
+
+### Debugging Backend API
+
+By default the backend API uses a randomized port and a randomized API key. For debugging purposes it can make sense to set the listening port of the API to a hardcoded value and disable the use of API key. This will make it easy to use 3rd party HTTP clients for debugging requests.
+
+First, change the backend configuration file `Config.yaml` to include a hardcoded IP:Port to listen and disable the use of API key by setting it to the zero UUID:
+
+```yaml
+APIListen: ["127.0.0.1:112"]
+APIKey:    "00000000-0000-0000-0000-000000000000"
+```
+
+In the file `Peernet Browser.dll.config` set the tag `ApiUrl` to the same IP:Port:
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <appSettings>
+    <add key="Backend" value="Backend.exe" />
+    <add key="ApiUrl" value="http://127.0.0.1:112" />
+    <add key="DownloadPath" value="%userprofile%\Downloads\" />
+  </appSettings>
+</configuration>
+```
+
+Note: In this case you will have to start the backend executable manually before starting the Peernet Browser. You will also have to close the process yourself when done.
+
+## Peernet Browser Insights
+
+### Connection with the backend
+Peernet Browser connects to the backend based on the _ApiUrl_ setting. The connection is being established 
+on the application startup, before the UI controls are generated. 
+The connection is represented by following statuses:
+```
+public enum ConnectionStatus
+{
+    Online,
+    Offline,
+    Connecting
+}
+```
+
+Where each status has its connection indicator in the left corner of the footer.
+Respectively Green Globe, Red Globe, Yellow Globe.
+Peernet Browser requests the API Status from the backed every 3 seconds (the backend returns _Peers Count_ at the same time).
+Before each Status Poll, the application changes the API Status to _Connecting_.
+When the backend returns success HTTP Status Code, Peernet Browser sets the returned API status. 
+If it is not a Success HTTP Status Code, the Poller will go idle for next 3 seconds without changing the API status (it will remain in _Connecting_ status).
+Status Poller runs during whole application lifetime and is disposed when Peernet Browser exits.

@@ -11,7 +11,7 @@ namespace Peernet.Browser.WPF.Controls
     public partial class NotificationControl : UserControl
     {
         public static readonly DependencyProperty NotificationProperty =
-            DependencyProperty.Register("Notification", typeof(string),
+            DependencyProperty.Register("Notification", typeof(Notification),
                 typeof(NotificationControl), null);
 
         public NotificationControl()
@@ -19,9 +19,9 @@ namespace Peernet.Browser.WPF.Controls
             InitializeComponent();
         }
 
-        public string Notification
+        public Notification Notification
         {
-            get => (string)GetValue(NotificationProperty);
+            get => (Notification)GetValue(NotificationProperty);
             set => SetValue(NotificationProperty, value);
         }
 

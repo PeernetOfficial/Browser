@@ -11,16 +11,18 @@ namespace Peernet.Browser.Models.Presentation.Footer
         private DateTime createDate;
         private string description;
         private string directory;
-        private string fileName;
+        private string fileNameWithoutExtension;
         private string fullPath;
         private long size;
         private byte[] hash;
+        private string extension;
 
         public FileModel(string path, string directory = null)
         {
             var f = new FileInfo(path);
             FullPath = f.FullName;
-            FileName = f.Name;
+            FileNameWithoutExtension = Path.GetFileNameWithoutExtension(f.Name);
+            Extension = Path.GetExtension(f.Name);
             Size = f.Length;
             CreateDate = DateTime.Now;
             Directory = directory;
@@ -31,7 +33,8 @@ namespace Peernet.Browser.Models.Presentation.Footer
             Id = apiFile.Id;
             NodeId = apiFile.NodeId;
             Size = apiFile.Size;
-            FileName = apiFile.Name;
+            FileNameWithoutExtension = Path.GetFileNameWithoutExtension(apiFile.Name);
+            Extension = Path.GetExtension(apiFile.Name);
             Hash = apiFile.Hash;
             Metadata = apiFile.MetaData;
             Directory = apiFile.Folder;
@@ -59,10 +62,16 @@ namespace Peernet.Browser.Models.Presentation.Footer
             set => SetProperty(ref directory, value);
         }
 
-        public string FileName
+        public string FileNameWithoutExtension
         {
-            get => fileName;
-            set => SetProperty(ref fileName, value);
+            get => fileNameWithoutExtension;
+            set => SetProperty(ref fileNameWithoutExtension, value);
+        }
+        
+        public string Extension
+        {
+            get => extension;
+            set => SetProperty(ref extension, value);
         }
 
         public string FullPath

@@ -139,7 +139,7 @@ namespace Peernet.Browser.Infrastructure.Tools
                 try
                 {
                     ApiResponseStatus status = Task.Run(async () => await service.GetStatus()).Result;
-                    if (status.IsConnected)
+                    if (status is { IsConnected: true })
                     {
                         break;
                     }
