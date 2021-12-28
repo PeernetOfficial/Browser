@@ -33,7 +33,7 @@ namespace Peernet.Browser.Infrastructure.Services
                 Hash = fileModel.Hash,
                 MetaData = fileModel.Metadata,
                 NodeId = fileModel.NodeId,
-                Name = fileModel.FileNameWithoutExtension,
+                Name = $"{fileModel.FileNameWithoutExtension}{fileModel.Extension}",
                 Description = fileModel.Description,
                 Folder = fileModel.Directory,
                 Date = fileModel.CreateDate,
