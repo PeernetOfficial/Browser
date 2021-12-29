@@ -35,14 +35,7 @@ namespace Peernet.Browser.WPF
 
         protected override void OnExit(ExitEventArgs e)
         {
-            var settings = new SettingsManager();
-            if (cmdRunner != null)
-            {
-                settings.ApiUrl = null;
-            }
-            settings.DefaultTheme = GlobalContext.VisualMode;
-
-            SettingsManager.Save();
+            new SettingsManager().DefaultTheme = GlobalContext.VisualMode;
             cmdRunner?.Dispose();
             
             base.OnExit(e);

@@ -85,6 +85,11 @@ namespace Peernet.Browser.Infrastructure.Tools
                     {
                         // handle
                     }
+                    finally
+                    {
+                        settingsManager.ApiUrl = null;
+                        settingsManager.Save();
+                    }
 
                     for (var i = 0; i < 25 && !process.HasExited; i++)
                     {

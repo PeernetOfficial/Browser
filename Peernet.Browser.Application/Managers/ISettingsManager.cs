@@ -13,5 +13,7 @@ namespace Peernet.Browser.Application.Managers
         string Backend { get; set; }
 
         string DownloadPath { get; set; }
+
+        void Save();
     }
 }

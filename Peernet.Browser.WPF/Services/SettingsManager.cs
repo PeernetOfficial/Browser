@@ -67,7 +67,7 @@ namespace Peernet.Browser.WPF.Services
             return new Uri(new Uri(socketAddress), $"console?k={ApiKey}");
         }
 
-        public static void Save()
+        public void Save()
         {
             config.Save();
         }
