@@ -4,6 +4,7 @@ using Peernet.Browser.Models.Domain.Blockchain;
 using Peernet.Browser.Models.Presentation.Footer;
 using System;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.Utilities;
 
 namespace Peernet.Browser.Application.ViewModels.Parameters
 {
@@ -29,7 +30,7 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
                 var result = await blockchainService.UpdateFile(fileModel);
                 if (result.Status != BlockchainStatus.StatusOK)
                 {
-                    GlobalContext.Notifications.Add(new Notification($"Failed to update the file. Status: {result.Status}", severity: Severity.Error));
+                    GlobalContext.Notifications.Add(new Notification($"Failed to update the file. Status: {result.Status}", MessagingHelper.GetInOutSummary(files, result), Severity.Error));
                 }
             }
 
@@ -38,5 +39,6 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
                 await postAction.Invoke();
             }
         }
+
     }
 }

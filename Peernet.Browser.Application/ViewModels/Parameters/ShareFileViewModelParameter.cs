@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MvvmCross;
 using MvvmCross.Navigation;
+using Peernet.Browser.Application.Utilities;
 
 namespace Peernet.Browser.Application.ViewModels.Parameters
 {
@@ -29,14 +30,16 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
         {
             foreach (var file in files)
             {
-                var warehouseEntry = await warehouseService.Create(file);
-                if (warehouseEntry?.Status == WarehouseStatus.StatusOK)
+                var warehouseResult = await warehouseService.Create(file);
+                if (warehouseResult?.Status == WarehouseStatus.StatusOK)
                 {
-                    file.Hash = warehouseEntry.Hash;
+                    file.Hash = warehouseResult.Hash;
                 }
                 else
                 {
-                    GlobalContext.Notifications.Add(new Notification($"Failed to create warehouse. Status: {warehouseEntry?.Status.ToString() ?? "[Unknown]"}", severity: Severity.Error));
+                    GlobalContext.Notifications.Add(new Notification(
+                        $"Failed to create warehouse. Status: {warehouseResult?.Status.ToString() ?? "[Unknown]"}",
+                        MessagingHelper.GetInOutSummary(files, warehouseResult), Severity.Error));
                     return;
                 }
             }
@@ -44,7 +47,7 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
             var result = await blockchainService.AddFiles(files.Where(f => f.Hash != null));
             if (result.Status != BlockchainStatus.StatusOK)
             {
-                GlobalContext.Notifications.Add(new Notification($"Failed to add files. Status: {result.Status}", severity: Severity.Error));
+                GlobalContext.Notifications.Add(new Notification($"Failed to add files. Status: {result.Status}", MessagingHelper.GetInOutSummary(files, result), Severity.Error));
             }
 
             await Mvx.IoCProvider.Resolve<IMvxNavigationService>().Navigate<DirectoryViewModel>();
