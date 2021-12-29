@@ -2,6 +2,7 @@
 using Peernet.Browser.Models.Presentation.Footer;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Peernet.Browser.WPF.Controls
 {
@@ -29,6 +30,18 @@ namespace Peernet.Browser.WPF.Controls
         {
             var notification = (Notification)((FrameworkElement)e.OriginalSource).DataContext;
             GlobalContext.Notifications.Remove(notification);
+        }
+
+        private void Header_Clicked(object sender, MouseButtonEventArgs e)
+        {
+            if (Content.Visibility == Visibility.Visible)
+            {
+                Content.Visibility = Visibility.Collapsed;
+            }
+            else if (Content.Visibility == Visibility.Collapsed)
+            {
+                Content.Visibility = Visibility.Visible;
+            }
         }
     }
 }
