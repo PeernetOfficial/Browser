@@ -40,8 +40,12 @@ namespace Peernet.Browser.WPF
             var settings = new SettingsManager();
             var backendPath = Path.GetFullPath(settings.Backend);
             var backendWorkingDirectory = Path.GetDirectoryName(backendPath);
-            var logPath = Path.Combine(backendWorkingDirectory, settings.LogFile);
-            Directory.CreateDirectory(Path.GetDirectoryName(logPath));
+            string logPath = string.Empty;
+            if(!string.IsNullOrEmpty(settings.LogFile))
+            {
+                logPath = Path.Combine(backendWorkingDirectory, settings.LogFile);
+                Directory.CreateDirectory(Path.GetDirectoryName(logPath));
+            }
 
             var logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
