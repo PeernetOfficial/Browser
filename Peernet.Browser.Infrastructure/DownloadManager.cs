@@ -14,16 +14,16 @@ using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure
 {
-    public class DownloadManager : IDownloadManager
+    internal class DownloadManager : IDownloadManager
     {
         private readonly IDownloadClient downloadClient;
         private readonly ISettingsManager settingsManager;
 
-        public DownloadManager(ISettingsManager settingsManager)
+        public DownloadManager(IDownloadClient downloadClient, ISettingsManager settingsManager)
         {
             this.settingsManager = settingsManager;
             Directory.CreateDirectory(settingsManager.DownloadPath);
-            downloadClient = new DownloadClient(settingsManager);
+            this.downloadClient = downloadClient;
 
             // Fire on the thread-pool and forget
             Task.Run(UpdateStatuses);

@@ -12,6 +12,8 @@ namespace Peernet.Browser.Application.Managers
 
         string Backend { get; set; }
 
+        string LogFile { get; }
+
         string DownloadPath { get; set; }
 
         void Save();

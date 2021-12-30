@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Infrastructure.Http;
 using Peernet.Browser.Models.Domain.Blockchain;
@@ -13,9 +14,9 @@ namespace Peernet.Browser.Infrastructure.Clients
     {
         private readonly IHttpExecutor httpExecutor;
 
-        public BlockchainClient(ISettingsManager settingsManager)
+        public BlockchainClient(IHttpExecutor httpExecutor)
         {
-            httpExecutor = new HttpExecutor(settingsManager);
+            this.httpExecutor = httpExecutor;
         }
 
         public override string CoreSegment => "blockchain";

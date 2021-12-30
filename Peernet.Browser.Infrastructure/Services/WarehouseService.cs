@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Threading.Tasks;
-using Peernet.Browser.Application.Contexts;
+﻿using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.Utilities;
@@ -9,18 +6,21 @@ using Peernet.Browser.Infrastructure.Clients;
 using Peernet.Browser.Models.Domain.Common;
 using Peernet.Browser.Models.Domain.Warehouse;
 using Peernet.Browser.Models.Presentation.Footer;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure.Services
 {
-    public class WarehouseService : IWarehouseService
+    internal class WarehouseService : IWarehouseService
     {
-        private readonly IWarehouseClient warehouseClient;
         private readonly ISettingsManager settingsManager;
+        private readonly IWarehouseClient warehouseClient;
 
-        public WarehouseService(ISettingsManager settingsManager)
+        public WarehouseService(IWarehouseClient warehouseClient, ISettingsManager settingsManager)
         {
             this.settingsManager = settingsManager;
-            warehouseClient = new WarehouseClient(settingsManager);
+            this.warehouseClient = warehouseClient;
         }
 
         public async Task<WarehouseResult> Create(FileModel file)

@@ -1,5 +1,4 @@
-﻿using Peernet.Browser.Application.Managers;
-using Peernet.Browser.Application.Services;
+﻿using Peernet.Browser.Application.Services;
 using Peernet.Browser.Infrastructure.Clients;
 using Peernet.Browser.Models.Domain.Common;
 using Peernet.Browser.Models.Domain.Search;
@@ -11,14 +10,16 @@ using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure.Services
 {
-    public class SearchService : ISearchService
+    internal class SearchService : ISearchService
     {
         private readonly ISearchClient searchClient;
 
-        public SearchService(ISettingsManager settingsManager)
+        public SearchService(ISearchClient searchClient)
         {
-            searchClient = new SearchClient(settingsManager);
+            this.searchClient = searchClient;
         }
+
+        public IDictionary<FilterType, int> GetEmptyStats() => GetStats(new SearchStatisticData());
 
         public async Task<SearchResultModel> Search(SearchFilterResultModel model)
         {
@@ -55,7 +56,7 @@ namespace Peernet.Browser.Infrastructure.Services
                 {
                     res.Rows.AddRange(result.Files.Select(x => new SearchResultRowModel(x)));
                 }
-                
+
                 if (result.Status is SearchStatusEnum.NoMoreResults or SearchStatusEnum.IdNotFound)
                 {
                     break;
@@ -78,7 +79,17 @@ namespace Peernet.Browser.Infrastructure.Services
             catch { }
         }
 
-        public IDictionary<FilterType, int> GetEmptyStats() => GetStats(new SearchStatisticData());
+        private IDictionary<FilterType, int> GetStats(SearchStatisticData data)
+        {
+            if (data == null)
+            {
+                data = new SearchStatisticData();
+            }
+
+            return SearchResultModel
+                .GetDefaultStats()
+                .ToDictionary(x => x, y => y == FilterType.All ? data.Total : data.GetCount(Map(y)));
+        }
 
         private string GetStatusText(SearchStatusEnum status)
         {
@@ -96,18 +107,6 @@ namespace Peernet.Browser.Infrastructure.Services
                 default:
                     return "";
             }
-        }
-
-        private IDictionary<FilterType, int> GetStats(SearchStatisticData data)
-        {
-            if (data == null)
-            {
-                data = new SearchStatisticData();
-            }
-
-            return SearchResultModel
-                .GetDefaultStats()
-                .ToDictionary(x => x, y => y == FilterType.All ? data.Total : data.GetCount(Map(y)));
         }
 
         private SearchRequestSortTypeEnum Map(DataGridSortingNameEnum sortName, DataGridSortingTypeEnum sortType)

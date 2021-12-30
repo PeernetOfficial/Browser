@@ -3,7 +3,7 @@ using Peernet.Browser.Models.Domain.File;
 
 namespace Peernet.Browser.Infrastructure.Clients
 {
-    public interface IFileClient
+    internal interface IFileClient
     {
         Task<ApiResponseFileFormat> GetFormat(string path);
     }

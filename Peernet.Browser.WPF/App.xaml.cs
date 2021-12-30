@@ -1,12 +1,17 @@
-﻿using MvvmCross.Core;
+﻿using Microsoft.Extensions.Logging;
+using MvvmCross;
+using MvvmCross.Core;
 using MvvmCross.Platforms.Wpf.Views;
-using Peernet.Browser.Infrastructure.Tools;
+using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.WPF.Services;
 using Peernet.Browser.WPF.Styles;
+using System;
 using System.Globalization;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Markup;
-using Peernet.Browser.Application.Contexts;
+using System.Windows.Threading;
+using Peernet.Browser.Models.Presentation.Footer;
 
 namespace Peernet.Browser.WPF
 {
@@ -16,9 +21,15 @@ namespace Peernet.Browser.WPF
     public partial class App : MvxApplication
     {
         public static event RoutedEventHandler MainWindowClicked = delegate { };
-        private CmdRunner cmdRunner;
 
         protected override void RegisterSetup() => this.RegisterSetupType<Setup>();
+
+        public App()
+        {
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            DispatcherUnhandledException += App_DispatcherUnhandledException;
+            TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
+        }
 
         static App()
         {
@@ -36,21 +47,7 @@ namespace Peernet.Browser.WPF
         protected override void OnExit(ExitEventArgs e)
         {
             new SettingsManager().DefaultTheme = GlobalContext.VisualMode;
-            cmdRunner?.Dispose();
-            
             base.OnExit(e);
-        }
-
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            var settingsManager = new SettingsManager();
-            if (settingsManager.ApiUrl == null)
-            {
-                cmdRunner = new CmdRunner(settingsManager);
-                cmdRunner.Run();
-            }
-
-            base.OnStartup(e);
         }
 
         public void UpdateAllResources()
@@ -71,6 +68,27 @@ namespace Peernet.Browser.WPF
         public static void RaiseMainWindowClick(object sender, RoutedEventArgs e)
         {
             MainWindowClicked.Invoke(sender, e);
+        }
+
+        private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        {
+            GlobalContext.Notifications.Add(new("Unhandled Dispatcher exception occurred!", e.Exception.Message, Severity.Error));
+            Mvx.IoCProvider.Resolve<ILogger<App>>().LogError(e.Exception, e.Exception.Message);
+            e.Handled = true;
+        }
+
+        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            var exception = e.ExceptionObject as Exception;
+            GlobalContext.Notifications.Add(new("Unhandled Domain exception occurred!", exception.Message, Severity.Error));
+            Mvx.IoCProvider.Resolve<ILogger<App>>().LogError(exception, exception.Message);
+        }
+
+        private void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
+        {
+            GlobalContext.Notifications.Add(new("Unhandled TaskScheduler exception occurred!", e.Exception.Message, Severity.Error));
+            Mvx.IoCProvider.Resolve<ILogger<App>>().LogError(e.Exception, e.Exception.Message);
+            e.SetObserved();
         }
     }
 }

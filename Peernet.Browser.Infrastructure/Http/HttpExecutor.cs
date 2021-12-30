@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Peernet.Browser.Application.Contexts;
-using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Models.Presentation.Footer;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -13,30 +13,32 @@ namespace Peernet.Browser.Infrastructure.Http
 {
     internal class HttpExecutor : IHttpExecutor
     {
-        private readonly HttpClient httpClient;
+        private readonly Lazy<HttpClient> httpClientLazy;
         private readonly object lockObject = new();
+        private readonly ILogger<HttpExecutor> logger;
 
-        public HttpExecutor(ISettingsManager settingsManager)
+        public HttpExecutor(IHttpClientFactory httpClientFactory, ILogger<HttpExecutor> logger)
         {
-            httpClient = new HttpClientFactory(settingsManager).CreateHttpClient();
+            this.logger = logger;
+            httpClientLazy = new Lazy<HttpClient>(httpClientFactory.CreateHttpClient);
         }
 
         public T GetResult<T>(HttpMethod method, string relativePath, Dictionary<string, string> queryParameters = null, HttpContent content = null)
         {
             var httpRequestMessage = PrepareMessage(relativePath, method, queryParameters, content);
-            var response = httpClient.Send(httpRequestMessage);
+            var response = httpClientLazy.Value.Send(httpRequestMessage);
 
             return GetFromResponseMessage<T>(response);
         }
 
         public async Task<T> GetResultAsync<T>(
-                    HttpMethod method,
+            HttpMethod method,
             string relativePath,
             Dictionary<string, string> queryParameters = null,
             HttpContent content = null)
         {
             var httpRequestMessage = PrepareMessage(relativePath, method, queryParameters, content);
-            var response = await httpClient.SendAsync(httpRequestMessage);
+            var response = await httpClientLazy.Value.SendAsync(httpRequestMessage);
 
             return GetFromResponseMessage<T>(response);
         }
@@ -97,6 +99,10 @@ namespace Peernet.Browser.Infrastructure.Http
                         $"{response.RequestMessage.Content} \n" +
                         $"Result: HTTP {response.StatusCode} \n" +
                         $"{responseBody}";
+
+                    logger.LogError(
+                        $"Unexpected response status code: {response.StatusCode}" +
+                        $"\n{details}");
                     GlobalContext.Notifications.Add(new(
                         $"Unexpected response status code: {response.StatusCode}",
                         details,

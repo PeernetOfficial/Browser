@@ -1,21 +1,25 @@
-﻿using System.Linq;
-using Peernet.Browser.Application.Managers;
-using Peernet.Browser.Application.Services;
+﻿using Peernet.Browser.Application.Services;
 using Peernet.Browser.Infrastructure.Clients;
-using Peernet.Browser.Models.Presentation.Profile;
-using System.Threading.Tasks;
 using Peernet.Browser.Models.Domain.Blockchain;
 using Peernet.Browser.Models.Domain.Profile;
+using Peernet.Browser.Models.Presentation.Profile;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure.Services
 {
-    public class ProfileService : IProfileService
+    internal class ProfileService : IProfileService
     {
         private readonly IProfileClient profileClient;
 
-        public ProfileService(ISettingsManager settingsManager)
+        public ProfileService(IProfileClient profileClient)
         {
-            profileClient = new ProfileClient(settingsManager);
+            this.profileClient = profileClient;
+        }
+
+        public async Task DeleteUserImage()
+        {
+            await profileClient.DeleteUserImage();
         }
 
         public async Task<User> GetUser()
@@ -34,11 +38,6 @@ namespace Peernet.Browser.Infrastructure.Services
         public async Task<ApiBlockchainBlockStatus> UpdateUser(string name, byte[] image)
         {
             return await profileClient.UpdateUser(name, image);
-        }
-
-        public async Task DeleteUserImage()
-        {
-            await profileClient.DeleteUserImage();
         }
     }
 }

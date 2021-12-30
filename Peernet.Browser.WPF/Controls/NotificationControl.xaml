@@ -15,7 +15,7 @@
         <Border.Effect>
             <DropShadowEffect Color="Black" Opacity="0.11" ShadowDepth="1" BlurRadius="21" />
         </Border.Effect>
-        <StackPanel Width="400">
+        <StackPanel Width="600">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -48,7 +48,7 @@
                             </Style>
                         </Grid.Style>
                     </Grid>
-                    <TextBlock TextWrapping="Wrap" Text="{Binding Path=Notification.Message, ElementName=notificationControl}" Style="{StaticResource Active}" VerticalAlignment="Center" Width="320" />
+                    <TextBlock TextWrapping="Wrap" Text="{Binding Path=Notification.Message, ElementName=notificationControl}" Style="{StaticResource Active}" VerticalAlignment="Center" Width="520" />
                     <StackPanel.Style>
                         <Style TargetType="{x:Type StackPanel}">
                             <Style.Triggers>
@@ -63,16 +63,18 @@
             </Grid>
 
             <Border x:Name="Content" BorderBrush="{DynamicResource BorderBrush}" Margin="-1" BorderThickness="1" Background="{DynamicResource LightGrayBrush}" Visibility="Collapsed">
-                <TextBox FontFamily="Courier New"
-                         IsReadOnly="True"
-                         Padding="10"
-                         TextWrapping="Wrap"
-                         Text="{Binding Path=Notification.Details, ElementName=notificationControl}"
-                         HorizontalAlignment="Left"
-                         VerticalAlignment="Center"
-                         Foreground="{DynamicResource MainTextBrush}"
-                         Background="Transparent"
-                         BorderThickness="0" />
+                <ScrollViewer MaxHeight="170" Margin="0, 0, 10, 0">
+                    <TextBox FontFamily="Courier New"
+                             IsReadOnly="True"
+                             Padding="10"
+                             TextWrapping="Wrap"
+                             Text="{Binding Path=Notification.Details, ElementName=notificationControl}"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Center"
+                             Foreground="{DynamicResource MainTextBrush}"
+                             Background="Transparent"
+                             BorderThickness="0" />
+                </ScrollViewer>
             </Border>
         </StackPanel>
         <Border.Style>

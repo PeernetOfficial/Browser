@@ -11,6 +11,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.Services;
 
 namespace Peernet.Browser.Infrastructure.Tools
 {
@@ -21,10 +22,15 @@ namespace Peernet.Browser.Infrastructure.Tools
         private Process process;
         private bool wasRun;
         private readonly ISettingsManager settingsManager;
+        private readonly IShutdownService shutdownService;
+        private readonly IApiService apiService;
 
-        public CmdRunner(ISettingsManager settingsManager)
+        public CmdRunner(ISettingsManager settingsManager, IShutdownService shutdownService, IApiService apiService)
         {
             this.settingsManager = settingsManager;
+            this.shutdownService = shutdownService;
+            this.apiService = apiService;
+
             var backend = settingsManager.Backend;
             string fullPath = Path.GetFullPath(backend);
             processName = Path.GetFileName(fullPath);
@@ -79,7 +85,7 @@ namespace Peernet.Browser.Infrastructure.Tools
                 {
                     try
                     {
-                        new ShutdownService(settingsManager).Shutdown();
+                        shutdownService.Shutdown();
                     }
                     catch (Exception)
                     {
@@ -137,13 +143,11 @@ namespace Peernet.Browser.Infrastructure.Tools
 
         private void WaitForBackendApiToStart()
         {
-            var service = new ApiService(settingsManager);
-
             for (var i = 0; i < 25; i++)
             {
                 try
                 {
-                    ApiResponseStatus status = Task.Run(async () => await service.GetStatus()).Result;
+                    ApiResponseStatus status = Task.Run(async () => await apiService.GetStatus()).Result;
                     if (status is { IsConnected: true })
                     {
                         break;

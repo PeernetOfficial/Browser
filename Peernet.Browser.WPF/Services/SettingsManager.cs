@@ -27,6 +27,8 @@ namespace Peernet.Browser.WPF.Services
             set => Set(nameof(Backend), value);
         }
 
+        public string LogFile => Get(nameof(LogFile));
+
         public string DownloadPath
         {
             get => Environment.ExpandEnvironmentVariables(Get(nameof(DownloadPath)));

@@ -4,7 +4,7 @@ using System.Net.Http;
 
 namespace Peernet.Browser.Infrastructure.Http
 {
-    internal class HttpClientFactory
+    internal class HttpClientFactory : IHttpClientFactory
     {
         private readonly ISettingsManager settingsManager;
 

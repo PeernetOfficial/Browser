@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Peernet.Browser.Infrastructure.Http;
+using Peernet.Browser.Models.Domain.Search;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Peernet.Browser.Application.Managers;
-using Peernet.Browser.Infrastructure.Http;
-using Peernet.Browser.Models.Domain.Search;
 
 namespace Peernet.Browser.Infrastructure.Clients
 {
@@ -11,9 +10,9 @@ namespace Peernet.Browser.Infrastructure.Clients
     {
         private readonly IHttpExecutor httpExecutor;
 
-        public ExploreClient(ISettingsManager settingsManager)
+        public ExploreClient(IHttpExecutor httpExecutor)
         {
-            httpExecutor = new HttpExecutor(settingsManager);
+            this.httpExecutor = httpExecutor;
         }
 
         public override string CoreSegment => "explore";

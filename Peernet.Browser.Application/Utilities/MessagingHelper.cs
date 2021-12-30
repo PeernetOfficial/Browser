@@ -6,7 +6,7 @@ namespace Peernet.Browser.Application.Utilities
     {
         public static string GetInOutSummary(object input, object output)
         {
-            return $"Input: {JsonConvert.SerializeObject(input)}\nOutput: {JsonConvert.SerializeObject(output)}";
+            return $"Input: {JsonConvert.SerializeObject(input)}\n\nOutput: {JsonConvert.SerializeObject(output)}";
         }
     }
 }

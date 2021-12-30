@@ -50,7 +50,7 @@
 
             <StackPanel Grid.Row="3" Grid.Column="0">
                 <TextBlock Style="{StaticResource Title}">File name</TextBlock>
-                <Border Margin="0 5" Height="30" BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}">
+                <Border Margin="0 5" Height="30" BorderThickness="1" BorderBrush="{DynamicResource ContrastBorderBrush}">
                     <TextBox Text="{Binding Selected.FileNameWithoutExtension, UpdateSourceTrigger=PropertyChanged}" Foreground="{DynamicResource MainContentBrush}"
                              Template="{StaticResource RoundedTextBox}" Padding="7, 0, 0, 0" VerticalContentAlignment="Center">
                         <TextBox.Background>
@@ -58,7 +58,7 @@
                         </TextBox.Background>
                     </TextBox>
                 </Border>
-                <Border BorderThickness="1" Padding="9" BorderBrush="{DynamicResource BorderBrush}" CornerRadius="{StaticResource MainRadius}" Margin="0, 21, 0, 0">
+                <Border BorderThickness="1" Padding="9" BorderBrush="{DynamicResource ContrastBorderBrush}" CornerRadius="{StaticResource MainRadius}" Margin="0, 21, 0, 0">
                     <Border.Background>
                         <SolidColorBrush Color="{DynamicResource TextAreaBackground}" />
                     </Border.Background>
@@ -117,7 +117,16 @@
                 <TextBlock Grid.Row="0" Grid.Column="0" Style="{DynamicResource Title}">Format:</TextBlock>
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Selected.Format}" Style="{StaticResource Active}" />
                 <TextBlock Grid.Row="0" Grid.Column="1" Style="{DynamicResource Title}">Extension:</TextBlock>
-                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Selected.Extension, UpdateSourceTrigger=PropertyChanged}" Padding="0 2" Foreground="{DynamicResource MainContentBrush}" Width="70" HorizontalAlignment="Left" Background="Transparent" CaretBrush="{DynamicResource MainTextBrush}" />
+                <TextBox Grid.Row="1"
+                         Grid.Column="1"
+                         Text="{Binding Selected.Extension, UpdateSourceTrigger=PropertyChanged}"
+                         Padding="0 2"
+                         Foreground="{DynamicResource MainContentBrush}"
+                         Width="70"
+                         HorizontalAlignment="Left"
+                         Background="Transparent"
+                         CaretBrush="{DynamicResource MainTextBrush}"
+                         BorderBrush="{DynamicResource BorderBrush}" />
                 <TextBlock Grid.Row="0" Grid.Column="2" Style="{DynamicResource Title}">Created:</TextBlock>
                 <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Selected.CreateDate}" Style="{StaticResource Active}" />
                 <TextBlock Grid.Row="0" Grid.Column="3" Style="{DynamicResource Title}">Size:</TextBlock>

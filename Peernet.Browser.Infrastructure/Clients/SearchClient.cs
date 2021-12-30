@@ -1,5 +1,4 @@
-﻿using Peernet.Browser.Application.Managers;
-using Peernet.Browser.Infrastructure.Http;
+﻿using Peernet.Browser.Infrastructure.Http;
 using Peernet.Browser.Models.Domain.Search;
 using System;
 using System.Collections.Generic;
@@ -14,9 +13,9 @@ namespace Peernet.Browser.Infrastructure.Clients
     {
         private readonly IHttpExecutor httpExecutor;
 
-        public SearchClient(ISettingsManager settingsManager)
+        public SearchClient(IHttpExecutor httpExecutor)
         {
-            httpExecutor = new HttpExecutor(settingsManager);
+            this.httpExecutor = httpExecutor;
         }
 
         public override string CoreSegment => "search";
