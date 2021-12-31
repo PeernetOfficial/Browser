@@ -8,5 +8,10 @@ namespace Peernet.Browser.Application.Utilities
         {
             return $"Input: {JsonConvert.SerializeObject(input)}\n\nOutput: {JsonConvert.SerializeObject(output)}";
         }
+
+        public static string GetApiSummary(string name)
+        {
+            return $"API: {name}\n\n";
+        }
     }
 }

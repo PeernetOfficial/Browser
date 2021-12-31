@@ -61,9 +61,11 @@ namespace Peernet.Browser.Application.ViewModels
                     var result = await blockchainService.DeleteFile(entity.File);
                     if (result.Status != BlockchainStatus.StatusOK)
                     {
-                        GlobalContext.Notifications.Add(new Notification(
-                            $"Failed to delete file. Status: {result.Status}",
-                            MessagingHelper.GetInOutSummary(entity.File, result), Severity.Error));
+                        var logMessage = $"Failed to delete file. Status: {result.Status}";
+                        var details =
+                            MessagingHelper.GetApiSummary($"{nameof(blockchainService)}.{nameof(blockchainService.DeleteFile)}") +
+                            MessagingHelper.GetInOutSummary(entity.File, result);
+                        GlobalContext.Notifications.Add(new Notification(logMessage, details, Severity.Error));
                         return;
                     }
 

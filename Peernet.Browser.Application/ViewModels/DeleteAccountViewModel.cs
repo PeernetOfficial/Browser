@@ -5,6 +5,8 @@ using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Models.Presentation.Footer;
 using System.Net.Http;
+using Microsoft.Extensions.Logging;
+using Peernet.Browser.Application.Utilities;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -44,7 +46,10 @@ namespace Peernet.Browser.Application.ViewModels
              }
              catch (HttpRequestException ex)
              {
-                 GlobalContext.Notifications.Add(new Notification($"Failed to delete account. Status: {ex.Message}", severity: Severity.Error));
+                 var message = $"Failed to delete account. Status: {ex.Message}";
+                 GlobalContext.Notifications.Add(new Notification(message,
+                     MessagingHelper.GetApiSummary($"{nameof(accountService)}.{nameof(accountService.Delete)}"),
+                     Severity.Error));
              }
 
              userContext.ReloadContext();

@@ -35,7 +35,9 @@ namespace Peernet.Browser.Infrastructure.Services
                 file.Name);
             var result = await warehouseClient.ReadPath(file.Hash, fullPath);
             GlobalContext.Notifications.Add(result.Status != WarehouseStatus.StatusOK
-                ? new Notification($"Failed to save file to {fullPath}. Status: {result.Status}", MessagingHelper.GetInOutSummary(file, result), Severity.Error)
+                ? new Notification($"Failed to save file to {fullPath}. Status: {result.Status}",
+                    MessagingHelper.GetApiSummary($"{nameof(warehouseClient)}.{nameof(warehouseClient.ReadPath)}") +
+                    MessagingHelper.GetInOutSummary(file, result), Severity.Error)
                 : new Notification($"File saved to {fullPath}"));
 
             return result;

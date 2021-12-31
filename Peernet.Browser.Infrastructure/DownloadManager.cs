@@ -81,9 +81,11 @@ namespace Peernet.Browser.Infrastructure
             }
             else
             {
+                var details =
+                    MessagingHelper.GetApiSummary($"{nameof(downloadClient)}.{nameof(downloadClient.Start)}") +
+                    MessagingHelper.GetInOutSummary(downloadModel.File, status);
                 GlobalContext.Notifications.Add(new Notification(
-                    $"Failed to start file download. Status: {status.APIStatus}",
-                    MessagingHelper.GetInOutSummary(downloadModel.File, status), Severity.Error));
+                    $"Failed to start file download. Status: {status.APIStatus}", details, Severity.Error));
             }
 
             downloadsChanged?.Invoke(this, EventArgs.Empty);
@@ -103,9 +105,11 @@ namespace Peernet.Browser.Infrastructure
 
             if (responseStatus.APIStatus != APIStatus.DownloadResponseSuccess)
             {
+                var details =
+                    MessagingHelper.GetApiSummary($"{nameof(downloadClient)}.{nameof(downloadClient.GetAction)}") +
+                    MessagingHelper.GetInOutSummary(download.Id, responseStatus);
                 GlobalContext.Notifications.Add(new Notification(
-                    $"Failed to {action} file download. Status: {responseStatus.APIStatus}",
-                    MessagingHelper.GetInOutSummary(download.Id, responseStatus), Severity.Error));
+                    $"Failed to {action} file download. Status: {responseStatus.APIStatus}", details, Severity.Error));
             }
 
             return responseStatus;

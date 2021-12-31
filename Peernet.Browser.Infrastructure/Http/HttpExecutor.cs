@@ -100,9 +100,6 @@ namespace Peernet.Browser.Infrastructure.Http
                         $"Result: HTTP {response.StatusCode} \n" +
                         $"{responseBody}";
 
-                    logger.LogError(
-                        $"Unexpected response status code: {response.StatusCode}" +
-                        $"\n{details}");
                     GlobalContext.Notifications.Add(new(
                         $"Unexpected response status code: {response.StatusCode}",
                         details,

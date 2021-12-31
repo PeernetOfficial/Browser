@@ -1,4 +1,5 @@
-﻿using MvvmCross.Commands;
+﻿using Microsoft.Extensions.Logging;
+using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Contexts;
@@ -13,6 +14,7 @@ namespace Peernet.Browser.Application.ViewModels
     {
         private readonly IMvxNavigationService mvxNavigationService;
         private readonly IProfileService profileService;
+
 
         public EditProfileViewModel(IMvxNavigationService mvxNavigationService, IUserContext userContext, IProfileService profileService)
         {
@@ -42,9 +44,12 @@ namespace Peernet.Browser.Application.ViewModels
                  var result = await profileService.UpdateUser(UserContext.User.Name, UserContext.User.Image);
                  if (result is not { Status: BlockchainStatus.StatusOK })
                  {
-                     GlobalContext.Notifications.Add(new Notification(
-                         $"Failed to update User. Status: {result?.Status.ToString() ?? "[Unknown]"}",
-                         MessagingHelper.GetInOutSummary(UserContext.User, result), Severity.Error));
+                     var message = $"Failed to update User. Status: {result?.Status.ToString() ?? "[Unknown]"}";
+                     var details =
+                         MessagingHelper.GetApiSummary(
+                             $"{nameof(profileService)}.{nameof(profileService.UpdateUser)}") +
+                         MessagingHelper.GetInOutSummary(UserContext.User, result);
+                     GlobalContext.Notifications.Add(new Notification(message, details, Severity.Error));
                  }
              }
 
