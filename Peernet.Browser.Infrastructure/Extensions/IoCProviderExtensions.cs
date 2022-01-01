@@ -1,5 +1,6 @@
 ﻿using MvvmCross.IoC;
 using Peernet.Browser.Application.Download;
+using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Infrastructure.Clients;
 using Peernet.Browser.Infrastructure.Http;
@@ -24,8 +25,8 @@ namespace Peernet.Browser.Infrastructure.Extensions
             provider.RegisterType<ISearchClient, SearchClient>();
             provider.RegisterType<IShutdownClient, ShutdownClient>();
             provider.RegisterType<IApiClient, ApiClient>();
-   
-            provider.RegisterType<IDownloadManager, DownloadManager>();
+
+            provider.RegisterSingleton<IDownloadManager>(new DownloadManager(provider.Resolve<IDownloadClient>(), provider.Resolve<ISettingsManager>()));
             provider.RegisterType<IFileService, FileService>();
             provider.RegisterType<IAccountService, AccountService>();
             provider.RegisterType<IBlockchainService, BlockchainService>();
