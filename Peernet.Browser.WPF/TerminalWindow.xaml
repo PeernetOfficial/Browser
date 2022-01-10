@@ -8,6 +8,33 @@
                   Left="100"
                   Width="1100" Height="700"
                   Background="{DynamicResource PreviewBackground}">
+    <views:MvxWindow.Resources>
+        <ResourceDictionary>
+            <Style TargetType="{x:Type ScrollViewer}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <ScrollContentPresenter Grid.Column="0" />
+                                <ScrollBar x:Name="PART_VerticalScrollBar" Grid.Row="0" Grid.Column="1" Value="{TemplateBinding VerticalOffset}" Maximum="{TemplateBinding ScrollableHeight}" ViewportSize="{TemplateBinding ViewportHeight}" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" />
+                                <ScrollBar x:Name="PART_HorizontalScrollBar" Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Value="{TemplateBinding HorizontalOffset}" Maximum="{TemplateBinding ScrollableWidth}" ViewportSize="{TemplateBinding ViewportWidth}" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" />
+                                <!--<Rectangle Grid.Row="1" Grid.Column="1" Fill="Red" />-->
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </views:MvxWindow.Resources>
+
     <Grid Background="Black">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -16,19 +43,21 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
         </Grid.RowDefinitions>
-        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" x:Name="OutputPane" Margin="0, 0, 12, 0">
+        <ScrollViewer x:Name="Scroll" Grid.Row="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="0, 0, 12, 0" IsManipulationEnabled="True" CanContentScroll="True">
             <TextBox
                 BorderThickness="0"
+                AcceptsReturn="True"
+                x:Name="OutputPane"
                 IsReadOnly="True"
                 Background="Black"
                 Foreground="#e0e0e0"
                 Text="{Binding CommandLineOutput, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                 FontFamily="Courier New"
-                TextWrapping="Wrap"
-                ScrollViewer.CanContentScroll="True">
+                TextWrapping="Wrap">
             </TextBox>
         </ScrollViewer>
         <TextBox Grid.Row="1"
+                 x:Name="InputField"
                  Background="Black"
                  Foreground="#e0e0e0"
                  Text="{Binding CommandLineInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"

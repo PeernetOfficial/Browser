@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using MvvmCross.Commands;
 using MvvmCross.ViewModels;
@@ -13,6 +11,7 @@ namespace Peernet.Browser.Application.ViewModels
     {
         private string commandLineInput;
         private string commandLineOutput;
+        public event EventHandler OnOutputChanged;
 
         private readonly ISocketClient socketClient;
 
@@ -53,9 +52,7 @@ namespace Peernet.Browser.Application.ViewModels
             else
             {
                 await socketClient.Send(CommandLineInput);
-                var response = await socketClient.Receive();
-                SetOutput(response);
-                CommandLineOutput += response;
+                SetOutput($"\n>> {CommandLineInput}\n");
             }
 
             CommandLineInput = string.Empty;
@@ -63,21 +60,26 @@ namespace Peernet.Browser.Application.ViewModels
 
         public override async void Start()
         {
-            base.Start();
-            
             await ConnectToPeernetConsole();
+            socketClient.MessageArrived += SocketClientOnMessageArrived;
+            await socketClient.StartReceiving();
+            base.Start();
+        }
+
+        private void SocketClientOnMessageArrived(object? sender, string e)
+        {
+            SetOutput(e);
+            OnOutputChanged?.Invoke(null, EventArgs.Empty);
         }
 
         private async Task ConnectToPeernetConsole()
         {
             await socketClient.Connect();
-
-            CommandLineOutput = await socketClient.Receive();
         }
 
         private void SetOutput(string output)
         {
-            var mbSize = ((decimal)Encoding.Unicode.GetByteCount(output) / 1048576);
+            var mbSize = (decimal)Encoding.Unicode.GetByteCount(output) / 1048576;
             if (mbSize > 1)
             {
                 CommandLineOutput = output;

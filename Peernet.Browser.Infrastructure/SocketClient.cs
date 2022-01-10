@@ -1,7 +1,8 @@
-﻿using Peernet.Browser.Application.Clients;
+﻿using Microsoft.Extensions.Logging;
+using Peernet.Browser.Application.Clients;
 using Peernet.Browser.Application.Managers;
 using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
@@ -11,44 +12,68 @@ namespace Peernet.Browser.Infrastructure
 {
     public class SocketClient : ISocketClient
     {
+        private const int ReceiveBufferSize = 8192;
         private ClientWebSocket socket;
         private readonly ISettingsManager settingsManager;
+        private readonly ILogger<SocketClient> logger;
+        public event EventHandler<string> MessageArrived;
 
-        public SocketClient(ISettingsManager settingsManager)
+        public SocketClient(ISettingsManager settingsManager, ILogger<SocketClient> logger)
         {
             this.settingsManager = settingsManager;
+            this.logger = logger;
         }
 
         public async Task Connect()
         {
-            this.socket = new();
+            socket = new();
             await socket.ConnectAsync(settingsManager.SocketUrl, CancellationToken.None);
         }
 
         public async Task Send(string data)
         {
-            await this.socket.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes(data)), WebSocketMessageType.Text, true, CancellationToken.None);
+            await socket.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes(data)), WebSocketMessageType.Text, true, CancellationToken.None);
         }
 
-        public async Task<string> Receive()
+        public async Task StartReceiving()
         {
-            // Read the bytes from the web socket and accumulate all into a list.
-            var buffer = new ArraySegment<byte>(new byte[1024]);
-            WebSocketReceiveResult result = null;
-            var allBytes = new List<byte>();
-
-            do
+            var loopToken = new CancellationToken();
+            MemoryStream outputStream = null;
+            var buffer = WebSocket.CreateClientBuffer(ReceiveBufferSize, ReceiveBufferSize);
+            try
             {
-                result = await this.socket.ReceiveAsync(buffer, CancellationToken.None);
-                for (int i = 0; i < result.Count; i++)
+                while (!loopToken.IsCancellationRequested)
                 {
-                    allBytes.Add(buffer.Array[i]);
-                }
-            }
-            while (!result.EndOfMessage);
+                    outputStream = new MemoryStream(ReceiveBufferSize);
+                    WebSocketReceiveResult receiveResult;
+                    do
+                    {
+                        receiveResult = await socket.ReceiveAsync(buffer, CancellationToken.None);
+                        if (receiveResult.MessageType != WebSocketMessageType.Close)
+                        {
+                            outputStream.Write(buffer.Array, 0, receiveResult.Count);
+                        }
+                    }
+                    while (!receiveResult.EndOfMessage);
+                    if (receiveResult.MessageType == WebSocketMessageType.Close)
+                    {
+                        break;
+                    }
 
-            // Optional step to convert to a string (UTF-8 encoding).
-            return Encoding.UTF8.GetString(allBytes.ToArray(), 0, allBytes.Count);
+                    var message = Encoding.UTF8.GetString(outputStream.ToArray(), 0, (int)outputStream.Length);
+                    MessageArrived?.Invoke(null, message);
+                    outputStream.Position = 0;
+                }
+
+            }
+            catch (TaskCanceledException e)
+            {
+                logger.LogDebug(e, "Socket connection aborted!");
+            }
+            finally
+            {
+                outputStream?.Dispose();
+            }
         }
     }
 }

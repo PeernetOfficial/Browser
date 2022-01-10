@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using Peernet.Browser.Infrastructure.Http;
+﻿using Peernet.Browser.Infrastructure.Http;
 using Peernet.Browser.Models.Domain.Blockchain;
 using System.Collections.Generic;
 using System.Net.Http;

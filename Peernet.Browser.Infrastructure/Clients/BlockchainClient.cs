@@ -2,8 +2,6 @@
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Infrastructure.Http;
 using Peernet.Browser.Models.Domain.Blockchain;
 using Peernet.Browser.Models.Domain.Common;

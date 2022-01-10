@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.Clients
 {
@@ -8,6 +9,8 @@ namespace Peernet.Browser.Application.Clients
 
         Task Send(string data);
 
-        Task<string> Receive();
+        Task StartReceiving();
+
+        event EventHandler<string> MessageArrived;
     }
 }

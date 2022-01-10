@@ -68,11 +68,11 @@ namespace Peernet.Browser.WPF
                 .RegisterAsLazySingleton();
 
             iocProvider.RegisterPeernetServices();
-            iocProvider.RegisterType<ISocketClient, SocketClient>();
+            iocProvider.RegisterType(typeof(ILogger<>), typeof(Logger<>));
+            iocProvider.RegisterSingleton<ISocketClient>(new SocketClient(iocProvider.Resolve<ISettingsManager>(), iocProvider.Resolve<ILogger<SocketClient>>()));
             iocProvider.RegisterSingleton<IUserContext>(() => new UserContext(iocProvider.Resolve<IProfileService>()));
             iocProvider.RegisterType<IVirtualFileSystemFactory, VirtualFileSystemFactory>();
             iocProvider.RegisterType<IFilesToCategoryBinder, FilesToCategoryBinder>();
-            iocProvider.RegisterType(typeof(ILogger<>), typeof(Logger<>));
 
             GlobalContext.UiThreadDispatcher = iocProvider.Resolve<IMvxMainThreadAsyncDispatcher>();
             ObserveNavigation(iocProvider);
