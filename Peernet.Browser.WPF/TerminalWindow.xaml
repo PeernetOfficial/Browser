@@ -23,7 +23,7 @@
                                     <RowDefinition />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <ScrollContentPresenter Grid.Column="0" />
+                                <ScrollContentPresenter Grid.Column="0" CanContentScroll="{TemplateBinding CanContentScroll}" />
                                 <ScrollBar x:Name="PART_VerticalScrollBar" Grid.Row="0" Grid.Column="1" Value="{TemplateBinding VerticalOffset}" Maximum="{TemplateBinding ScrollableHeight}" ViewportSize="{TemplateBinding ViewportHeight}" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" />
                                 <ScrollBar x:Name="PART_HorizontalScrollBar" Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Value="{TemplateBinding HorizontalOffset}" Maximum="{TemplateBinding ScrollableWidth}" ViewportSize="{TemplateBinding ViewportWidth}" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" />
                                 <!--<Rectangle Grid.Row="1" Grid.Column="1" Fill="Red" />-->
@@ -43,19 +43,22 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
         </Grid.RowDefinitions>
-        <ScrollViewer x:Name="Scroll" Grid.Row="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="0, 0, 12, 0" IsManipulationEnabled="True" CanContentScroll="True">
-            <TextBox
-                BorderThickness="0"
-                AcceptsReturn="True"
-                x:Name="OutputPane"
-                IsReadOnly="True"
-                Background="Black"
-                Foreground="#e0e0e0"
-                Text="{Binding CommandLineOutput, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                FontFamily="Courier New"
-                TextWrapping="Wrap">
-            </TextBox>
-        </ScrollViewer>
+        <TextBox
+            BorderThickness="0"
+            Grid.Row="0"
+            Margin="0, 0, 12, 0"
+            ScrollViewer.HorizontalScrollBarVisibility="Auto"
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+            ScrollViewer.CanContentScroll="True"
+            AcceptsReturn="True"
+            x:Name="OutputPane"
+            IsReadOnly="True"
+            Background="Black"
+            Foreground="#e0e0e0"
+            Text="{Binding CommandLineOutput, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            FontFamily="Courier New"
+            ScrollViewer.ScrollChanged="OutputPane_ScrollChanged">
+        </TextBox>
         <TextBox Grid.Row="1"
                  x:Name="InputField"
                  Background="Black"
