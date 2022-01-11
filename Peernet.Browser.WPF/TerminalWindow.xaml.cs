@@ -52,15 +52,6 @@ namespace Peernet.Browser.WPF
             {
                 Dispatcher.BeginInvoke(() => textBox.ScrollToEnd(), DispatcherPriority.Loaded);
             }
-
-            //if (max != 0 && (max == offset))
-            //{
-            //    Dispatcher.BeginInvoke(() =>
-            //    {
-            //        textBox.ScrollToEnd();
-            //    },
-            //    DispatcherPriority.Loaded);
-            //}
         }
 
         private void OutputPane_ScrollChanged(object sender, ScrollChangedEventArgs e)

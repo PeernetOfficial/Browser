@@ -11,7 +11,7 @@ namespace Peernet.Browser.WPF.Services
 
         private static readonly Guid apiKey = Guid.NewGuid();
 
-        public string ApiKey => apiKey.ToString();
+        public string ApiKey => Get(nameof(ApiKey)) ?? apiKey.ToString();
 
         public string ApiUrl
         {
