@@ -46,7 +46,7 @@ namespace Peernet.Browser.Infrastructure.Clients
                 [nameof(id)] = id,
             };
 
-            return await httpExecutor.GetResultAsync<string>(HttpMethod.Get, GetRelativeRequestPath("terminate"), parameters);
+            return await httpExecutor.GetResultAsync<string>(HttpMethod.Get, GetRelativeRequestPath("terminate"), parameters, suppressErrorNotification: true);
         }
 
         private Dictionary<string, string> GetParams(object obj)
