@@ -55,7 +55,7 @@
             IsReadOnly="True"
             Background="Black"
             Foreground="#e0e0e0"
-            Text="{Binding CommandLineOutput, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            Text="{Binding Parameter.CommandLineOutput, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
             FontFamily="Courier New"
             ScrollViewer.ScrollChanged="OutputPane_ScrollChanged">
         </TextBox>
@@ -63,7 +63,7 @@
                  x:Name="InputField"
                  Background="Black"
                  Foreground="#e0e0e0"
-                 Text="{Binding CommandLineInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 Text="{Binding Parameter.CommandLineInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  HorizontalAlignment="Stretch"
                  VerticalAlignment="Center"
                  TextWrapping="Wrap"

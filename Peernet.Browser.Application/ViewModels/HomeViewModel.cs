@@ -93,7 +93,7 @@ namespace Peernet.Browser.Application.ViewModels
         {
             if (SearchInput.Equals("debug", StringComparison.InvariantCultureIgnoreCase))
             {
-                mvxNavigationService.Navigate<TerminalViewModel>();
+                mvxNavigationService.Navigate<TerminalViewModel, TerminalInstanceParameter>(new());
             }
             else
             {

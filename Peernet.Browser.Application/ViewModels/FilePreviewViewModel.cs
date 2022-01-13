@@ -2,23 +2,19 @@
 using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.ViewModels;
-using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Models.Domain.Common;
-using Peernet.Browser.Models.Presentation.Footer;
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public class FilePreviewViewModel : MvxViewModel<FilePreviewViewModelParameter>
     {
-        private readonly IDownloadManager downloadManager;
         private string actionButtonContent;
         private Func<Task> ButtonAction;
         private bool isEditable;
 
-        public FilePreviewViewModel(IDownloadManager downloadManager)
+        public FilePreviewViewModel()
         {
-            this.downloadManager = downloadManager;
         }
 
         public string ActionButtonContent

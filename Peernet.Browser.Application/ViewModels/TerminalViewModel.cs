@@ -4,13 +4,13 @@ using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using Peernet.Browser.Application.Clients;
 using System.Threading.Tasks;
+using Peernet.Browser.Application.ViewModels.Parameters;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class TerminalViewModel : MvxViewModel
+    public class TerminalViewModel : MvxViewModel<TerminalInstanceParameter>
     {
-        private string commandLineInput;
-        private string commandLineOutput;
+        private TerminalInstanceParameter parameter;
         public event EventHandler OnOutputChanged;
 
         private readonly ISocketClient socketClient;
@@ -20,50 +20,44 @@ namespace Peernet.Browser.Application.ViewModels
             this.socketClient = socketClient;
         }
 
-        public string CommandLineOutput
+        public TerminalInstanceParameter Parameter
         {
-            get => commandLineOutput;
-            set
+            get => parameter;
+            private set
             {
-                commandLineOutput = value;
-                SetProperty(ref commandLineOutput, value);
-                RaisePropertyChanged(nameof(CommandLineOutput));
-            }
-        }
-
-
-        public string CommandLineInput
-        {
-            get => commandLineInput;
-            set
-            {
-                commandLineInput = value;
-                RaisePropertyChanged(nameof(CommandLineInput));
-                SetProperty(ref commandLineInput, value);
+                parameter = value;
+                RaisePropertyChanged(nameof(Parameter));
             }
         }
 
         public IMvxAsyncCommand SendToPeernetConsole => new MvxAsyncCommand(async () =>
         {
-            if (CommandLineInput.Equals("cls", StringComparison.CurrentCultureIgnoreCase))
+            if (Parameter.CommandLineInput.Equals("cls", StringComparison.CurrentCultureIgnoreCase))
             {
-                CommandLineOutput = string.Empty;
+                Parameter.CommandLineOutput = string.Empty;
             }
             else
             {
-                await socketClient.Send(CommandLineInput);
-                SetOutput($"\n>> {CommandLineInput}\n");
+                await socketClient.Send(Parameter.CommandLineInput);
+                SetOutput($"\n>> {Parameter.CommandLineInput}\n");
             }
 
-            CommandLineInput = string.Empty;
+            Parameter.CommandLineInput = string.Empty;
         });
 
-        public override async void Start()
+        public override void Prepare(TerminalInstanceParameter parameter)
+        {
+            Parameter = parameter;
+            base.Prepare();
+        }
+
+        public override async Task Initialize()
         {
             await ConnectToPeernetConsole();
             socketClient.MessageArrived += SocketClientOnMessageArrived;
             await socketClient.StartReceiving();
-            base.Start();
+            
+            await base.Initialize();
         }
 
         private void SocketClientOnMessageArrived(object? sender, string e)
@@ -82,12 +76,12 @@ namespace Peernet.Browser.Application.ViewModels
             var mbSize = (decimal)Encoding.Unicode.GetByteCount(output) / 1048576;
             if (mbSize > 1)
             {
-                CommandLineOutput = output;
+                Parameter.CommandLineOutput = output;
             }
 
             else
             {
-                CommandLineOutput += output;
+                Parameter.CommandLineOutput += output;
             }
         }
     }
