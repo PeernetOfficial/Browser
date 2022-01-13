@@ -17,6 +17,7 @@ namespace Peernet.Browser.Infrastructure
         private readonly ISettingsManager settingsManager;
         private readonly ILogger<SocketClient> logger;
         public event EventHandler<string> MessageArrived;
+        private CancellationTokenSource source;
 
         public SocketClient(ISettingsManager settingsManager, ILogger<SocketClient> logger)
         {
@@ -37,18 +38,19 @@ namespace Peernet.Browser.Infrastructure
 
         public async Task StartReceiving()
         {
-            var loopToken = new CancellationToken();
+            source = new CancellationTokenSource();
+            var socketReceiverToken = source.Token;
             MemoryStream outputStream = null;
             var buffer = WebSocket.CreateClientBuffer(ReceiveBufferSize, ReceiveBufferSize);
             try
             {
-                while (!loopToken.IsCancellationRequested)
+                while (!socketReceiverToken.IsCancellationRequested)
                 {
                     outputStream = new MemoryStream(ReceiveBufferSize);
                     WebSocketReceiveResult receiveResult;
                     do
                     {
-                        receiveResult = await socket.ReceiveAsync(buffer, CancellationToken.None);
+                        receiveResult = await socket.ReceiveAsync(buffer, socketReceiverToken);
                         if (receiveResult.MessageType != WebSocketMessageType.Close)
                         {
                             outputStream.Write(buffer.Array, 0, receiveResult.Count);
@@ -68,7 +70,7 @@ namespace Peernet.Browser.Infrastructure
             }
             catch (TaskCanceledException e)
             {
-                logger.LogDebug(e, "Socket connection aborted!");
+                logger.LogDebug(e, "Socket receiver aborted!");
             }
             finally
             {
@@ -78,6 +80,8 @@ namespace Peernet.Browser.Infrastructure
 
         public void Disconnect()
         {
+            source.Cancel();
+            source.Token.WaitHandle.WaitOne();
             socket.Dispose();
         }
     }
