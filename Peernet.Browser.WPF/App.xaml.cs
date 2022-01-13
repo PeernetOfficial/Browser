@@ -33,6 +33,7 @@ namespace Peernet.Browser.WPF
 
         public App()
         {
+            Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             DispatcherUnhandledException += App_DispatcherUnhandledException;
             TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
