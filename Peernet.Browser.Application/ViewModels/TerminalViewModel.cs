@@ -84,5 +84,11 @@ namespace Peernet.Browser.Application.ViewModels
                 Parameter.CommandLineOutput += output;
             }
         }
+
+        public override void ViewDestroy(bool viewFinishing = true)
+        {
+            socketClient.Disconnect();
+            base.ViewDestroy(viewFinishing);
+        }
     }
 }

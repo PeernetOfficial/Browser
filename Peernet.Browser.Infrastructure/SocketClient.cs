@@ -75,5 +75,10 @@ namespace Peernet.Browser.Infrastructure
                 outputStream?.Dispose();
             }
         }
+
+        public void Disconnect()
+        {
+            socket.Dispose();
+        }
     }
 }

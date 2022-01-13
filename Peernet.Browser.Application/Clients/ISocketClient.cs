@@ -7,6 +7,8 @@ namespace Peernet.Browser.Application.Clients
     {
         Task Connect();
 
+        void Disconnect();
+
         Task Send(string data);
 
         Task StartReceiving();
