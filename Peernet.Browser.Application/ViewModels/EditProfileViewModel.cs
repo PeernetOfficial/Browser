@@ -10,7 +10,7 @@ using Peernet.Browser.Models.Presentation.Footer;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class EditProfileViewModel : MvxViewModel
+    public class EditProfileViewModel : ViewModelBase
     {
         private readonly IMvxNavigationService mvxNavigationService;
         private readonly IProfileService profileService;

@@ -13,7 +13,7 @@ using Peernet.Browser.Application.ViewModels.Parameters;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class HomeViewModel : MvxViewModel
+    public class HomeViewModel : ViewModelBase
     {
         private readonly ISearchService searchService;
         private readonly IDownloadManager downloadManager;

@@ -17,7 +17,7 @@ using Peernet.Browser.Models.Domain.Download;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class FooterViewModel : MvxViewModel
+    public class FooterViewModel : ViewModelBase
     {
         private const int reconnectDelay = 2000;
         private readonly IApiService apiService;

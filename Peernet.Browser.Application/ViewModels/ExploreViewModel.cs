@@ -12,7 +12,7 @@ using Peernet.Browser.Models.Presentation.Footer;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class ExploreViewModel : MvxViewModel
+    public class ExploreViewModel : ViewModelBase
     {
         public ObservableCollection<DownloadModel> activeSearchResults;
         private readonly IExploreService exploreService;

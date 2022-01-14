@@ -10,7 +10,7 @@ namespace Peernet.Browser.WPF.Views
     /// </summary>
     [MvxContentPresentation]
     [MvxViewFor(typeof(AboutViewModel))]
-    public partial class AboutView : MvxWpfView
+    public partial class AboutView : UserControl
     {
         public AboutView()
         {

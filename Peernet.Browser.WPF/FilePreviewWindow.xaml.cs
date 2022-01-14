@@ -1,8 +1,4 @@
 ﻿using System;
-using MvvmCross.Platforms.Wpf.Presenters.Attributes;
-using MvvmCross.Presenters;
-using MvvmCross.Presenters.Attributes;
-using MvvmCross.ViewModels;
 using Peernet.Browser.Application.ViewModels;
 using System.Windows;
 using System.Windows.Input;
@@ -12,8 +8,7 @@ namespace Peernet.Browser.WPF
     /// <summary>
     /// Interaction logic for FilePreviewWindow.xaml
     /// </summary>
-    [MvxWindowPresentation]
-    public partial class FilePreviewWindow : IMvxOverridePresentationAttribute
+    public partial class FilePreviewWindow : Window
     {
         public FilePreviewWindow()
         {
@@ -36,9 +31,9 @@ namespace Peernet.Browser.WPF
             this.Topmost = true;
         }
 
-        public MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request)
+        public MvxBasePresentationAttribute PresentationAttribute(ViewModelBaseRequest request)
         {
-            var instanceRequest = request as MvxViewModelInstanceRequest;
+            var instanceRequest = request as ViewModelBaseInstanceRequest;
             var viewModel = instanceRequest?.ViewModelInstance as FilePreviewViewModel;
 
             return new MvxWindowPresentationAttribute

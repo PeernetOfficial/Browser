@@ -1,10 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using MvvmCross.Base;
-using MvvmCross.IoC;
-using MvvmCross.Navigation;
-using MvvmCross.Navigation.EventArguments;
-using MvvmCross.Platforms.Wpf.Core;
-using MvvmCross.Plugin;
 using Peernet.Browser.Application;
 using Peernet.Browser.Application.Clients;
 using Peernet.Browser.Application.Contexts;

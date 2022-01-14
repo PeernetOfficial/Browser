@@ -16,7 +16,7 @@ using Peernet.Browser.Application.Utilities;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class DirectoryViewModel : MvxViewModel, ISearchable
+    public class DirectoryViewModel : ViewModelBase, ISearchable
     {
         private const string LibrariesSegment = "Libraries";
         private const string YourFilesSegment = "Your Files";

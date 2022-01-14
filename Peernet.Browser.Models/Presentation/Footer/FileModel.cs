@@ -1,12 +1,12 @@
-﻿using MvvmCross.ViewModels;
-using Peernet.Browser.Models.Domain.Common;
+﻿using Peernet.Browser.Models.Domain.Common;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 
 namespace Peernet.Browser.Models.Presentation.Footer
 {
-    public class FileModel : MvxNotifyPropertyChanged
+    public class FileModel : INotifyPropertyChanged
     {
         private DateTime createDate;
         private string description;
@@ -16,6 +16,8 @@ namespace Peernet.Browser.Models.Presentation.Footer
         private long size;
         private byte[] hash;
         private string extension;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public FileModel(string path, string directory = null)
         {
@@ -47,37 +49,61 @@ namespace Peernet.Browser.Models.Presentation.Footer
         public DateTime CreateDate
         {
             get => createDate;
-            set => SetProperty(ref createDate, value);
+            set
+            {
+                createDate = value;
+                PropertyChanged?.Invoke(this, new(nameof(CreateDate)));
+            }
         }
 
         public string Description
         {
             get => description;
-            set => SetProperty(ref description, value);
+            set
+            {
+                description = value;
+                PropertyChanged?.Invoke(this, new(nameof(Description)));
+            }
         }
 
         public string Directory
         {
             get => directory;
-            set => SetProperty(ref directory, value);
+            set
+            {
+                directory = value;
+                PropertyChanged?.Invoke(this, new(nameof(Directory)));
+            }
         }
 
         public string FileNameWithoutExtension
         {
             get => fileNameWithoutExtension;
-            set => SetProperty(ref fileNameWithoutExtension, value);
+            set
+            {
+                fileNameWithoutExtension = value;
+                PropertyChanged?.Invoke(this, new(nameof(FileNameWithoutExtension)));
+            }
         }
         
         public string Extension
         {
             get => extension;
-            set => SetProperty(ref extension, value);
+            set
+            {
+                extension = value;
+                PropertyChanged?.Invoke(this, new(nameof(Extension)));
+            }
         }
 
         public string FullPath
         {
             get => fullPath;
-            set => SetProperty(ref fullPath, value);
+            set
+            {
+                fullPath = value;
+                PropertyChanged?.Invoke(this, new(nameof(FullPath)));
+            }
         }
 
         public string FormattedSize => GetSizeString(Size);
@@ -87,7 +113,11 @@ namespace Peernet.Browser.Models.Presentation.Footer
         public byte[] Hash
         {
             get => hash;
-            set => SetProperty(ref hash, value);
+            set
+            {
+                hash = value;
+                PropertyChanged?.Invoke(this, new(nameof(Hash)));
+            }
         }
 
         public List<ApiFileMetadata> Metadata { get; set; }
@@ -97,7 +127,11 @@ namespace Peernet.Browser.Models.Presentation.Footer
         public long Size
         {
             get => size;
-            set => SetProperty(ref size, value);
+            set
+            {
+                hash = size;
+                PropertyChanged?.Invoke(this, new(nameof(Size)));
+            }
         }
 
         public LowLevelFileType Type { get; set; }

@@ -17,7 +17,7 @@ namespace Peernet.Browser.WPF.Views
     /// </summary>
     [MvxContentPresentation]
     [MvxViewFor(typeof(DirectoryViewModel))]
-    public partial class DirectoryView : MvxWpfView
+    public partial class DirectoryView : UserControl
     {
         public DirectoryView()
         {

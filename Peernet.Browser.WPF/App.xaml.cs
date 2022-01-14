@@ -1,6 +1,8 @@
-﻿using MvvmCross.Core;
-using MvvmCross.Platforms.Wpf.Views;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.Application.Navigation;
+using Peernet.Browser.Application.ViewModels;
+using Peernet.Browser.Infrastructure.Extensions;
 using Peernet.Browser.Models.Presentation.Footer;
 using Peernet.Browser.WPF.Services;
 using Peernet.Browser.WPF.Styles;
@@ -16,8 +18,12 @@ namespace Peernet.Browser.WPF
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : MvxApplication
+    private static CmdRunner cmdRunner;
+
+    public partial class App : System.Windows.Application
     {
+        private readonly ServiceProvider serviceProvider;
+
         static App()
         {
             GlobalContext.VisualMode = new SettingsManager().DefaultTheme;
@@ -37,6 +43,10 @@ namespace Peernet.Browser.WPF
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             DispatcherUnhandledException += App_DispatcherUnhandledException;
             TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
+
+            ServiceCollection services = new ServiceCollection();
+            ConfigureServices(services);
+            serviceProvider = services.BuildServiceProvider();
         }
 
         public static event RoutedEventHandler MainWindowClicked = delegate { };
@@ -68,8 +78,41 @@ namespace Peernet.Browser.WPF
             base.OnExit(e);
         }
 
-        protected override void RegisterSetup() => this.RegisterSetupType<Setup>();
+        private void ConfigureServices(ServiceCollection services)
+        {
+            services.AddSingleton<INavigationService, NavigationService>();
+            services.AddSingleton<IModalNavigationService, ModalNavigationService>();
+            services.AddSingleton<MainViewModel>();
+            services.AddSingleton(s => new MainWindow(s.GetRequiredService<MainViewModel>()));
+            services.RegisterPeernetServices();
+            services.AddTransient(typeof(ILogger<>), typeof(Logger<>));
+            services.AddTransient<ISocketClient, SocketClient>();
+            services.AddSingleton<IUserContext>(() => new UserContext(iocProvider.Resolve<IProfileService>()));
+            services.AddTransient<IVirtualFileSystemFactory, VirtualFileSystemFactory>();
+            services.AddTransient<IFilesToCategoryBinder, FilesToCategoryBinder>();
 
+            //GlobalContext.UiThreadDispatcher = services.Resolve<IMvxMainThreadAsyncDispatcher>();
+            InitializeBackend(services);
+        }
+        public void InitializeBackend(ServiceCollection services)
+        {
+            var settingsManager = services.Resolve<ISettingsManager>();
+            if (settingsManager.ApiUrl == null)
+            {
+                cmdRunner = new CmdRunner(settingsManager, services.Resolve<IShutdownService>(), services.Resolve<IApiService>());
+                cmdRunner.Run();
+            }
+
+            base.InitializeSecondary();
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            var mainWindow = serviceProvider.GetRequiredService<MainWindow>();
+            mainWindow.Show();
+
+            base.OnStartup(e);
+        }
         private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
             GlobalContext.Notifications.Add(new("Unhandled Dispatcher exception occurred!", e.Exception.Message, Severity.Error, e.Exception));

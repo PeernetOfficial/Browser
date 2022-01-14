@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class NavigationBarViewModel : MvxViewModel
+    public class NavigationBarViewModel : ViewModelBase
     {
         private readonly IMvxNavigationService navigationService;
 
@@ -59,7 +59,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IUserContext UserContext { get; set; }
 
-        private async Task Navigate<T>(bool showLogo = true) where T : IMvxViewModel
+        private async Task Navigate<T>(bool showLogo = true) where T : IViewModelBase
         {
             if (typeof(T).Name == GlobalContext.CurrentViewModel)
             {

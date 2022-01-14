@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using MvvmCross;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Models.Presentation.Footer;
 using System.Collections.ObjectModel;

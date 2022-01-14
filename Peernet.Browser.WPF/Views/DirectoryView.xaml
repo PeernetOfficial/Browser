@@ -1,4 +1,4 @@
-﻿<views:MvxWpfView
+﻿<Page
     x:Class="Peernet.Browser.WPF.Views.DirectoryView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -6,7 +6,7 @@
     xmlns:virtualFileSystem="clr-namespace:Peernet.Browser.Application.VirtualFileSystem;assembly=Application"
     xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls"
     x:Name="DirectoryPage">
-    <views:MvxWpfView.Resources>
+    <Page.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="VirtualFileSystemTreeTemplate">
                 <Border x:Name="Border" Background="Transparent" Padding="30,4,20,4" Margin="10, 0">
@@ -36,7 +36,7 @@
                 </DataTemplate.Triggers>
             </DataTemplate>
         </ResourceDictionary>
-    </views:MvxWpfView.Resources>
+    </Page.Resources>
 
 
     <Border Background="{DynamicResource ViewBackgroundBrush}" BorderThickness="0" VerticalAlignment="Stretch" Margin="0, 65, 0, 0">
@@ -187,4 +187,4 @@
             <Separator Style="{StaticResource StandardSeparatorStyle}" Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Top" />
         </Grid>
     </Border>
-</views:MvxWpfView>
+</Page>

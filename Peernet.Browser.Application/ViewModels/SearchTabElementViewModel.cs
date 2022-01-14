@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class SearchTabElementViewModel : MvxViewModel
+    public class SearchTabElementViewModel : ViewModelBase
     {
         private const int increase = 100;
         private readonly Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction;

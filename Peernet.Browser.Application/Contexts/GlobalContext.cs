@@ -1,5 +1,4 @@
-﻿using MvvmCross.Base;
-using Peernet.Browser.Models.Presentation;
+﻿using Peernet.Browser.Models.Presentation;
 using System;
 using System.ComponentModel;
 

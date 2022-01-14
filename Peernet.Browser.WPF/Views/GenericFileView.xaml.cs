@@ -1,9 +1,6 @@
-﻿using MvvmCross.Platforms.Wpf.Presenters.Attributes;
-using MvvmCross.Platforms.Wpf.Views;
-using MvvmCross.ViewModels;
-using Peernet.Browser.Application;
-using Peernet.Browser.Application.ViewModels;
+﻿using Peernet.Browser.Application;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Peernet.Browser.WPF.Views
@@ -11,9 +8,7 @@ namespace Peernet.Browser.WPF.Views
     /// <summary>
     /// Interaction logic for GenericFileView.xaml
     /// </summary>
-    [MvxContentPresentation]
-    [MvxViewFor(typeof(GenericFileViewModel))]
-    public partial class GenericFileView : MvxWpfView, IModal
+    public partial class GenericFileView : UserControl, IModal
     {
         public GenericFileView() => InitializeComponent();
 

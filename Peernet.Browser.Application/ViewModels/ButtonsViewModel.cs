@@ -1,11 +1,9 @@
-﻿using MvvmCross.Commands;
-using MvvmCross.ViewModels;
-using Peernet.Browser.Application.Managers;
+﻿using Peernet.Browser.Application.Managers;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class ButtonsViewModel : MvxViewModel
+    public class ButtonsViewModel : ViewModelBase
     {
         private readonly IApplicationManager applicationManager;
 
@@ -14,11 +12,11 @@ namespace Peernet.Browser.Application.ViewModels
             this.applicationManager = applicationManager;
         }
 
-        public IMvxAsyncCommand CloseAppCommand
+        public IAsyncCommand CloseAppCommand
         {
             get
             {
-                return new MvxAsyncCommand(() =>
+                return new AsyncCommand(() =>
                 {
                     CloseApp();
 
@@ -27,11 +25,11 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        public IMvxAsyncCommand MaximizeCommand
+        public IAsyncCommand MaximizeCommand
         {
             get
             {
-                return new MvxAsyncCommand(() =>
+                return new AsyncCommand(() =>
                 {
                     Maximize();
 
@@ -40,11 +38,11 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        public IMvxAsyncCommand MinimizeCommand
+        public IAsyncCommand MinimizeCommand
         {
             get
             {
-                return new MvxAsyncCommand(() =>
+                return new AsyncCommand(() =>
                 {
                     Minimize();
 

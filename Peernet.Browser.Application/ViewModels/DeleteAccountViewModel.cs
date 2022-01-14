@@ -1,16 +1,12 @@
-﻿using MvvmCross.Commands;
-using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
-using Peernet.Browser.Application.Contexts;
+﻿using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Models.Presentation.Footer;
 using System.Net.Http;
-using Microsoft.Extensions.Logging;
 using Peernet.Browser.Application.Utilities;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class DeleteAccountViewModel : MvxViewModel
+    public class DeleteAccountViewModel : ViewModelBase
     {
         private readonly IMvxNavigationService mvxNavigationService;
         private readonly IAccountService accountService;
@@ -38,7 +34,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IMvxCommand CloseCommand => new MvxCommand(() => mvxNavigationService.Close(this));
 
-        public IMvxAsyncCommand DeleteAccountCommand => new MvxAsyncCommand(async () =>
+        public IAsyncCommand DeleteAccountCommand => new MvxAsyncCommand(async () =>
          {
              try
              {

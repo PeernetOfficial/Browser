@@ -8,7 +8,7 @@ using Peernet.Browser.Application.ViewModels.Parameters;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class TerminalViewModel : MvxViewModel<TerminalInstanceParameter>
+    public class TerminalViewModel : ViewModelBase<TerminalInstanceParameter>
     {
         private TerminalInstanceParameter parameter;
         public event EventHandler OnOutputChanged;

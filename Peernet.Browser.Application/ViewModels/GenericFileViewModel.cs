@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class GenericFileViewModel : MvxViewModel<FileParameterModel>, IModal
+    public class GenericFileViewModel : ViewModelBase<FileParameterModel>, IModal
     {
         private readonly IApplicationManager applicationManager;
         private readonly IMvxNavigationService mvxNavigationService;

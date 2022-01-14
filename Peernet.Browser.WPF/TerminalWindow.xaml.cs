@@ -23,9 +23,9 @@ namespace Peernet.Browser.WPF
             InputField.Focus();
         }
 
-        public MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request)
+        public MvxBasePresentationAttribute PresentationAttribute(ViewModelBaseRequest request)
         {
-            var instanceRequest = request as MvxViewModelInstanceRequest;
+            var instanceRequest = request as ViewModelBaseInstanceRequest;
             var viewModel = instanceRequest?.ViewModelInstance as TerminalViewModel;
 
             return new MvxWindowPresentationAttribute

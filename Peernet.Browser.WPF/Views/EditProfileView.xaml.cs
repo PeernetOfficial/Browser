@@ -1,10 +1,8 @@
 ﻿using Microsoft.Win32;
-using MvvmCross.Platforms.Wpf.Presenters.Attributes;
-using MvvmCross.Platforms.Wpf.Views;
-using MvvmCross.ViewModels;
 using Peernet.Browser.Application;
 using Peernet.Browser.Application.ViewModels;
 using System.IO;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Peernet.Browser.WPF.Views
@@ -12,9 +10,7 @@ namespace Peernet.Browser.WPF.Views
     /// <summary>
     /// Interaction logic for EditProfileView.xaml
     /// </summary>
-    [MvxContentPresentation(WindowIdentifier = nameof(EditProfileView), StackNavigation = true)]
-    [MvxViewFor(typeof(EditProfileViewModel))]
-    public partial class EditProfileView : MvxWpfView, IModal
+    public partial class EditProfileView : UserControl, IModal
     {
         public EditProfileView() => InitializeComponent();
 

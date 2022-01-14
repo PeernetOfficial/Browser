@@ -7,7 +7,7 @@ using Peernet.Browser.Models.Domain.Common;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class FilePreviewViewModel : MvxViewModel<FilePreviewViewModelParameter>
+    public class FilePreviewViewModel : ViewModelBase<FilePreviewViewModelParameter>
     {
         private string actionButtonContent;
         private Func<Task> ButtonAction;

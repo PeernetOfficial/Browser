@@ -1,16 +1,11 @@
-﻿using MvvmCross.Platforms.Wpf.Presenters.Attributes;
-using MvvmCross.Platforms.Wpf.Views;
-using MvvmCross.ViewModels;
-using Peernet.Browser.Application.ViewModels;
+﻿using System.Windows.Controls;
 
 namespace Peernet.Browser.WPF.Views
 {
     /// <summary>
     /// Interaction logic for ExploreView.xaml
     /// </summary>
-    [MvxContentPresentation]
-    [MvxViewFor(typeof(ExploreViewModel))]
-    public partial class ExploreView : MvxWpfView
+    public partial class ExploreView : UserControl
     {
         public ExploreView() => InitializeComponent();
     }
