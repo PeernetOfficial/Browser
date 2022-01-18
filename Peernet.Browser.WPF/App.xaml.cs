@@ -1,13 +1,20 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.Application.Dispatchers;
+using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Navigation;
+using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels;
+using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.Browser.Infrastructure.Extensions;
+using Peernet.Browser.Infrastructure.Tools;
 using Peernet.Browser.Models.Presentation.Footer;
 using Peernet.Browser.WPF.Services;
 using Peernet.Browser.WPF.Styles;
 using System;
 using System.Globalization;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Markup;
@@ -18,11 +25,12 @@ namespace Peernet.Browser.WPF
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    private static CmdRunner cmdRunner;
 
     public partial class App : System.Windows.Application
     {
-        private readonly ServiceProvider serviceProvider;
+        private INotificationsManager notificationsManager;
+        private static CmdRunner cmdRunner;
+        public static IServiceProvider ServiceProvider;
 
         static App()
         {
@@ -40,13 +48,16 @@ namespace Peernet.Browser.WPF
         public App()
         {
             Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
-            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-            DispatcherUnhandledException += App_DispatcherUnhandledException;
-            TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
 
             ServiceCollection services = new ServiceCollection();
             ConfigureServices(services);
-            serviceProvider = services.BuildServiceProvider();
+            ServiceProvider = services.BuildServiceProvider();
+
+            notificationsManager = ServiceProvider.GetRequiredService<INotificationsManager>();
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            DispatcherUnhandledException += App_DispatcherUnhandledException;
+            TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
+            InitializeBackend();
         }
 
         public static event RoutedEventHandler MainWindowClicked = delegate { };
@@ -74,7 +85,7 @@ namespace Peernet.Browser.WPF
         protected override void OnExit(ExitEventArgs e)
         {
             new SettingsManager().DefaultTheme = GlobalContext.VisualMode;
-            Setup.GetBackendRunner()?.Dispose();
+            cmdRunner?.Dispose();
             base.OnExit(e);
         }
 
@@ -84,50 +95,49 @@ namespace Peernet.Browser.WPF
             services.AddSingleton<IModalNavigationService, ModalNavigationService>();
             services.AddSingleton<MainViewModel>();
             services.AddSingleton(s => new MainWindow(s.GetRequiredService<MainViewModel>()));
+            services.AddTransient<TerminalViewModel>();
+            services.AddSingleton(s => new TerminalWindow(s.GetRequiredService<TerminalViewModel>()));
             services.RegisterPeernetServices();
             services.AddTransient(typeof(ILogger<>), typeof(Logger<>));
-            services.AddTransient<ISocketClient, SocketClient>();
-            services.AddSingleton<IUserContext>(() => new UserContext(iocProvider.Resolve<IProfileService>()));
+            services.AddSingleton<IUserContext, UserContext>();
             services.AddTransient<IVirtualFileSystemFactory, VirtualFileSystemFactory>();
             services.AddTransient<IFilesToCategoryBinder, FilesToCategoryBinder>();
-
-            //GlobalContext.UiThreadDispatcher = services.Resolve<IMvxMainThreadAsyncDispatcher>();
-            InitializeBackend(services);
+            services.AddSingleton<IUIThreadDispatcher, UIThreadDispatcher>(s => new(SynchronizationContext.Current));
+            services.AddSingleton<INotificationsManager, NotificationsManager>();
         }
-        public void InitializeBackend(ServiceCollection services)
+        public void InitializeBackend()
         {
-            var settingsManager = services.Resolve<ISettingsManager>();
+            var settingsManager = ServiceProvider.GetRequiredService<ISettingsManager>();
             if (settingsManager.ApiUrl == null)
             {
-                cmdRunner = new CmdRunner(settingsManager, services.Resolve<IShutdownService>(), services.Resolve<IApiService>());
+                cmdRunner = new CmdRunner(settingsManager, ServiceProvider.GetRequiredService<IShutdownService>(), ServiceProvider.GetRequiredService<IApiService>());
                 cmdRunner.Run();
             }
-
-            base.InitializeSecondary();
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            var mainWindow = serviceProvider.GetRequiredService<MainWindow>();
+
+            var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
             mainWindow.Show();
 
             base.OnStartup(e);
         }
         private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
-            GlobalContext.Notifications.Add(new("Unhandled Dispatcher exception occurred!", e.Exception.Message, Severity.Error, e.Exception));
+            notificationsManager.Notifications.Add(new("Unhandled Dispatcher exception occurred!", e.Exception.Message, Severity.Error, e.Exception));
             e.Handled = true;
         }
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             var exception = e.ExceptionObject as Exception;
-            GlobalContext.Notifications.Add(new("Unhandled Domain exception occurred!", exception.Message, Severity.Error, exception));
+            notificationsManager.Notifications.Add(new("Unhandled Domain exception occurred!", exception.Message, Severity.Error, exception));
         }
 
         private void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
         {
-            GlobalContext.Notifications.Add(new("Unhandled TaskScheduler exception occurred!", e.Exception.Message, Severity.Error, e.Exception));
+            notificationsManager.Notifications.Add(new("Unhandled TaskScheduler exception occurred!", e.Exception.Message, Severity.Error, e.Exception));
             e.SetObserved();
         }
     }

@@ -24,13 +24,13 @@ namespace Peernet.Browser.WPF.Views
                 var file = dialog.FileName;
                 var content = File.ReadAllBytes(file);
 
-                ((EditProfileViewModel)ViewModel).UserContext.User.Image = content;
+                ((EditProfileViewModel)DataContext).UserContext.User.Image = content;
             }
         }
 
         private void DeleteAccount_OnClick(object sender, MouseButtonEventArgs e)
         {
-            ((EditProfileViewModel)ViewModel).RemovePhotoCommand.ExecuteAsync().Wait();
+            ((EditProfileViewModel)DataContext).RemovePhotoCommand.ExecuteAsync().Wait();
         }
     }
 }

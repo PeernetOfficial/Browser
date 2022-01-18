@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Models.Presentation.Footer;
 using System;
 using System.Collections.Generic;
@@ -16,10 +16,12 @@ namespace Peernet.Browser.Infrastructure.Http
         private readonly Lazy<HttpClient> httpClientLazy;
         private readonly object lockObject = new();
         private readonly ILogger<HttpExecutor> logger;
+        private readonly INotificationsManager notificationsManager;
 
-        public HttpExecutor(IHttpClientFactory httpClientFactory, ILogger<HttpExecutor> logger)
+        public HttpExecutor(IHttpClientFactory httpClientFactory, ILogger<HttpExecutor> logger, INotificationsManager notificationsManager)
         {
             this.logger = logger;
+            this.notificationsManager = notificationsManager;
             httpClientLazy = new Lazy<HttpClient>(httpClientFactory.CreateHttpClient);
         }
 
@@ -107,7 +109,7 @@ namespace Peernet.Browser.Infrastructure.Http
 
                     if (!suppressErrorNotification)
                     {
-                        GlobalContext.Notifications.Add(new(
+                        notificationsManager.Notifications.Add(new(
                         $"Unexpected response status code: {response.StatusCode}",
                         details,
                         Severity.Error));

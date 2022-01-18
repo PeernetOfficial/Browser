@@ -9,6 +9,8 @@ namespace Peernet.Browser.Application.Navigation
 
         void Navigate<TViewModel>() where TViewModel : ViewModelBase;
 
+        void Navigate<TViewModel, TParameter>(TParameter parameter) where TViewModel : GenericViewModelBase<TParameter> where TParameter : class;
+
         event Action StateChanged;
     }
 }

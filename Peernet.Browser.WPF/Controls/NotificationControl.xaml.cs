@@ -28,8 +28,9 @@ namespace Peernet.Browser.WPF.Controls
 
         private void RemoveNotification(object sender, RoutedEventArgs e)
         {
-            var notification = (Notification)((FrameworkElement)e.OriginalSource).DataContext;
-            GlobalContext.Notifications.Remove(notification);
+            // ToDo: DataContext should be supplied with NotificationsManager (from ViewModel I suppose)
+            //var notification = (Notification)((FrameworkElement)e.OriginalSource).DataContext;
+            //GlobalContext.Notifications.Remove(Notification);
         }
 
         private void Header_Clicked(object sender, MouseButtonEventArgs e)

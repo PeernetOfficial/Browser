@@ -1,4 +1,5 @@
-﻿using Peernet.Browser.Application.Contexts;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.Browser.Models.Domain.Common;
 using Peernet.Browser.Models.Presentation.Footer;
@@ -24,7 +25,7 @@ namespace Peernet.Browser.WPF.Controls
             var file = ((VirtualFileSystemEntity)((FrameworkElement)e.OriginalSource).DataContext).File;
 
             Clipboard.SetText(CreateLink(file));
-            GlobalContext.Notifications.Add(new Notification("Copied to clipboard!"));
+            App.ServiceProvider.GetRequiredService<INotificationsManager>().Notifications.Add(new Notification("Copied to clipboard!"));
         }
 
         private string CreateLink(ApiFile file)

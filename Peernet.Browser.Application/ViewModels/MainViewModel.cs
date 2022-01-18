@@ -1,4 +1,5 @@
-﻿using Peernet.Browser.Application.Navigation;
+﻿using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Application.Navigation;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -6,11 +7,13 @@ namespace Peernet.Browser.Application.ViewModels
     {
         private readonly INavigationService navigationService;
         private readonly IModalNavigationService modalNavigationService;
+        private readonly INotificationsManager notificationsManager;
 
-        public MainViewModel(INavigationService navigationService, IModalNavigationService modalNavigationService)
+        public MainViewModel(INavigationService navigationService, IModalNavigationService modalNavigationService, INotificationsManager notificationsManager)
         {
             this.navigationService = navigationService;
             this.modalNavigationService = modalNavigationService;
+            this.notificationsManager = notificationsManager;
             navigationService.StateChanged += Navigated;
             modalNavigationService.StateChanged += ModalNavigated;
 
@@ -20,6 +23,8 @@ namespace Peernet.Browser.Application.ViewModels
         public ViewModelBase CurrentViewModel => navigationService.CurrentViewModel;
 
         public ViewModelBase CurrentModalViewModel => modalNavigationService.CurrentViewModel;
+
+        public NotificationCollection Notifications => notificationsManager.Notifications;
 
         public override void Dispose()
         {

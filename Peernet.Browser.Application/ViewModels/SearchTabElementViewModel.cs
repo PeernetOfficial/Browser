@@ -1,9 +1,9 @@
-﻿using MvvmCross.Commands;
-using MvvmCross.ViewModels;
-using Peernet.Browser.Application.Contexts;
+﻿using AsyncAwaitBestPractices.MVVM;
+using Peernet.Browser.Application.Dispatchers;
 using Peernet.Browser.Models.Presentation.Home;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,6 +11,8 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public class SearchTabElementViewModel : ViewModelBase
     {
+        private readonly IUIThreadDispatcher uiThreadDispatcher;
+
         private const int increase = 100;
         private readonly Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction;
         private bool isClearing;
@@ -20,9 +22,11 @@ namespace Peernet.Browser.Application.ViewModels
         private bool showColumnsShared = true;
         private bool showColumnsSize = true;
 
-        public SearchTabElementViewModel(string title, Func<SearchTabElementViewModel, Task> deleteAction, Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction, Func<SearchResultRowModel, Task> downloadAction, Func<SearchResultRowModel, Task> openAction)
+        public SearchTabElementViewModel(IUIThreadDispatcher uiThreadDispatcher, string title, Func<SearchTabElementViewModel, Task> deleteAction, Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction, Func<SearchResultRowModel, Task> downloadAction, Action<SearchResultRowModel> openAction)
         {
+            this.uiThreadDispatcher = uiThreadDispatcher;
             this.refreshAction = refreshAction;
+
             Title = title;
 
             Filters = new FiltersModel(title);
@@ -31,23 +35,25 @@ namespace Peernet.Browser.Application.ViewModels
                 await Refresh();
             };
 
-            ClearCommand = new MvxAsyncCommand(async () =>
+            ClearCommand = new AsyncCommand(async () =>
             {
                 Filters.Reset(true);
                 await Refresh();
             });
-            DownloadCommand = new MvxAsyncCommand<SearchResultRowModel>(async (row) => await downloadAction(row));
-            DeleteCommand = new MvxAsyncCommand(async () => { await deleteAction(this); });
-            OpenCommand = new MvxAsyncCommand<SearchResultRowModel>(
-                    async model =>
+            DownloadCommand = new AsyncCommand<SearchResultRowModel>(async (row) => await downloadAction(row));
+            DeleteCommand = new AsyncCommand(async () => { await deleteAction(this); });
+            OpenCommand = new AsyncCommand<SearchResultRowModel>(
+                    model =>
                     {
                         if (openAction != null)
                         {
-                            await openAction?.Invoke(model);
+                            openAction?.Invoke(model);
                         }
+
+                        return Task.CompletedTask;
                     });
 
-            RemoveFilterCommand = new MvxAsyncCommand<SearchFiltersType>(async (type) =>
+            RemoveFilterCommand = new AsyncCommand<SearchFiltersType>(async (type) =>
             {
                 Filters.RemoveAction(type);
                 await Refresh();
@@ -61,17 +67,17 @@ namespace Peernet.Browser.Application.ViewModels
             _ = Task.Run(async () => await Refresh(false));
         }
 
-        public IMvxAsyncCommand ClearCommand { get; }
+        public IAsyncCommand ClearCommand { get; }
 
-        public MvxObservableCollection<CustomCheckBoxModel> ColumnsCheckboxes { get; } = new MvxObservableCollection<CustomCheckBoxModel>();
+        public ObservableCollection<CustomCheckBoxModel> ColumnsCheckboxes { get; } = new ObservableCollection<CustomCheckBoxModel>();
 
         public IconModel ColumnsIconModel { get; }
 
-        public IMvxAsyncCommand DeleteCommand { get; }
+        public IAsyncCommand DeleteCommand { get; }
 
-        public IMvxAsyncCommand<SearchResultRowModel> DownloadCommand { get; }
+        public IAsyncCommand<SearchResultRowModel> DownloadCommand { get; }
 
-        public MvxObservableCollection<IconModel> FilterIconModels { get; } = new MvxObservableCollection<IconModel>();
+        public ObservableCollection<IconModel> FilterIconModels { get; } = new ObservableCollection<IconModel>();
 
         public FiltersModel Filters { get; }
 
@@ -79,42 +85,57 @@ namespace Peernet.Browser.Application.ViewModels
 
         public LoadingModel Loader { get; } = new LoadingModel();
 
-        public IMvxAsyncCommand<SearchResultRowModel> OpenCommand { get; }
+        public IAsyncCommand<SearchResultRowModel> OpenCommand { get; }
 
-        public IMvxAsyncCommand<SearchFiltersType> RemoveFilterCommand { get; }
+        public IAsyncCommand<SearchFiltersType> RemoveFilterCommand { get; }
 
         public bool ShowColumnsDate
         {
             get => showColumnsDate;
-            set => SetProperty(ref showColumnsDate, value);
+            set
+            {
+                showColumnsDate = value;
+                OnPropertyChanged(nameof(ShowColumnsDate));
+            }
         }
 
         public bool ShowColumnsDownload
         {
             get => showColumnsDownload;
-            set => SetProperty(ref showColumnsDownload, value);
+            set
+            {
+                showColumnsDownload = value;
+                OnPropertyChanged(nameof(ShowColumnsDownload));
+            }
         }
 
         public bool ShowColumnsShared
         {
             get => showColumnsShared;
-            set => SetProperty(ref showColumnsShared, value);
+            set
+            {
+                showColumnsShared = value;
+                OnPropertyChanged(nameof(ShowColumnsShared));
+            }
         }
 
         public bool ShowColumnsSize
         {
             get => showColumnsSize;
-            set => SetProperty(ref showColumnsSize, value);
+            set
+            {
+                showColumnsSize = value;
+                OnPropertyChanged(nameof(ShowColumnsSize));
+            }
         }
 
-        public MvxObservableCollection<SearchResultRowModel> TableResult { get; } = new MvxObservableCollection<SearchResultRowModel>();
+        public ObservableCollection<SearchResultRowModel> TableResult { get; } = new ObservableCollection<SearchResultRowModel>();
 
         public string Title { get; }
 
-        public override async Task Initialize()
+        public async Task Initialize()
         {
             await Refresh();
-            await base.Initialize();
         }
 
         public async Task IsScrollEnd()
@@ -194,13 +215,13 @@ namespace Peernet.Browser.Application.ViewModels
             if (withClear)
             {
                 isClearing = true;
-                await GlobalContext.UiThreadDispatcher.ExecuteOnMainThreadAsync(() => TableResult.Clear());
+                uiThreadDispatcher.ExecuteOnMainThread(() => TableResult.Clear());
             }
             Filters.SearchFilterResult.LimitOfResult = limit;
             var data = await refreshAction(Filters.SearchFilterResult);
 
             Filters.UuId = data.Id;
-            await GlobalContext.UiThreadDispatcher.ExecuteOnMainThreadAsync(() =>
+            uiThreadDispatcher.ExecuteOnMainThread(() =>
             {
                 for (var i = TableResult.Count; i < data.Rows.Count; i++)
                 {

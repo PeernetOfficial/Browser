@@ -1,12 +1,12 @@
-﻿using MvvmCross.Commands;
+﻿using AsyncAwaitBestPractices.MVVM;
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public interface ISearchable
     {
-        IMvxCommand SearchCommand { get; }
+        IAsyncCommand SearchCommand { get; }
 
-        IMvxCommand RemoveHint { get; }
+        IAsyncCommand RemoveHint { get; }
 
         public string SearchInput { get; set; }
 

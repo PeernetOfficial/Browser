@@ -3,5 +3,7 @@
     public interface IModalNavigationService : INavigationService
     {
         bool IsOpen { get; }
+
+        void Close();
     }
 }

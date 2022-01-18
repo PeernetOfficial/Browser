@@ -1,8 +1,8 @@
-﻿using MvvmCross;
-using MvvmCross.Navigation;
-using MvvmCross.Platforms.Wpf.Views;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Peernet.Browser.Application;
 using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels;
 using Peernet.Browser.Application.ViewModels.Parameters;
@@ -41,7 +41,7 @@ namespace Peernet.Browser.WPF
             Thread.CurrentThread.CurrentUICulture = ci;
 
             // TODO: It should have better place. MainWindow's code behind is not the one. It should be called once UI(UI Thread Dispatcher) is created/initialized. Perhaps there is an even to handle.
-            BindingOperations.EnableCollectionSynchronization(GlobalContext.Notifications, lockObject);
+            BindingOperations.EnableCollectionSynchronization(App.ServiceProvider.GetRequiredService<INotificationsManager>().Notifications, lockObject);
         }
 
         protected override void OnContentChanged(object oldContent, object newContent)
@@ -59,7 +59,7 @@ namespace Peernet.Browser.WPF
         {
             if (GlobalContext.CurrentViewModel != nameof(HomeViewModel))
             {
-                Mvx.IoCProvider.Resolve<IMvxNavigationService>().Navigate<HomeViewModel>();
+                App.ServiceProvider.GetRequiredService<INavigationService>().Navigate<HomeViewModel>();
                 GlobalContext.CurrentViewModel = nameof(HomeViewModel);
             }
         }
@@ -83,14 +83,18 @@ namespace Peernet.Browser.WPF
                     }
                 }
 
-                var parameter = new ShareFileViewModelParameter(Mvx.IoCProvider.Resolve<IWarehouseService>(),
-                    Mvx.IoCProvider.Resolve<IBlockchainService>())
+                var navigationService = App.ServiceProvider.GetRequiredService<INavigationService>();
+                var parameter = new ShareFileViewModelParameter(
+                    App.ServiceProvider.GetRequiredService<IWarehouseService>(),
+                    App.ServiceProvider.GetRequiredService<IBlockchainService>(),
+                    navigationService,
+                    App.ServiceProvider.GetRequiredService<INotificationsManager>())
                 {
                     FileModels = fileModels
                 };
 
                 GlobalContext.IsMainWindowActive = false;
-                Mvx.IoCProvider.Resolve<IMvxNavigationService>().Navigate<GenericFileViewModel, ShareFileViewModelParameter>(parameter);
+                navigationService.Navigate<GenericFileViewModel<ShareFileViewModelParameter>, ShareFileViewModelParameter>(parameter);
             }
         }
 

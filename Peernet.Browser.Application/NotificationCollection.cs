@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using Peernet.Browser.Application.Contexts;
+﻿using Peernet.Browser.Application.Dispatchers;
 using Peernet.Browser.Models.Presentation.Footer;
 using System.Collections.ObjectModel;
 using System.Threading;
@@ -9,10 +8,12 @@ namespace Peernet.Browser.Application
     public class NotificationCollection : ObservableCollection<Notification>
     {
         private readonly int timeout;
-        private readonly ILogger<NotificationCollection> logger = Mvx.IoCProvider.Resolve<ILogger<NotificationCollection>>();
+        private readonly IUIThreadDispatcher dispatcher;
+        //private readonly ILogger<NotificationCollection> logger = Mvx.IoCProvider.Resolve<ILogger<NotificationCollection>>();
 
-        public NotificationCollection(int timeout)
+        public NotificationCollection(IUIThreadDispatcher dispatcher, int timeout)
         {
+            this.dispatcher = dispatcher;
             this.timeout = timeout;
         }
 
@@ -21,7 +22,7 @@ namespace Peernet.Browser.Application
             var autoEvent = new AutoResetEvent(false);
 
             item.Timer = new Timer(
-                state => { GlobalContext.UiThreadDispatcher?.ExecuteOnMainThreadAsync(() => Remove(item)); },
+                state => { dispatcher?.ExecuteOnMainThread(() => Remove(item)); },
                 autoEvent, timeout, 3000);
 
             AddLog(item);
@@ -43,19 +44,19 @@ namespace Peernet.Browser.Application
                 case Severity.Error:
                     if (notification.Exception != null)
                     {
-                        logger.LogError(notification.Exception, notification.Message);
+                        //logger.LogError(notification.Exception, notification.Message);
                     }
                     else
                     {
-                        logger.LogError(standardLogMessage);
+                        //logger.LogError(standardLogMessage);
                     }
 
                     break;
                 case Severity.Normal:
-                    logger.LogInformation(standardLogMessage);
+                    //logger.LogInformation(standardLogMessage);
                     break;
                 default:
-                    logger.LogDebug(standardLogMessage);
+                    //logger.LogDebug(standardLogMessage);
                     break;
             }
         }

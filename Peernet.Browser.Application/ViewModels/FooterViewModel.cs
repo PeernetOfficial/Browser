@@ -1,7 +1,4 @@
-﻿using MvvmCross.Commands;
-using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
-using Peernet.Browser.Application.Contexts;
+﻿using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Services;
@@ -14,6 +11,8 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Peernet.Browser.Models.Domain.Download;
+using AsyncAwaitBestPractices.MVVM;
+using Peernet.Browser.Application.Navigation;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -23,9 +22,10 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IApiService apiService;
         private readonly IApplicationManager applicationManager;
         private readonly IBlockchainService blockchainService;
-        private readonly IMvxNavigationService navigationService;
+        private readonly INavigationService navigationService;
         private readonly ISettingsManager settingsManager;
         private readonly IWarehouseService warehouseService;
+        private readonly INotificationsManager notificationsManager;
         private bool areDownloadsCollapsed;
         private string commandLineInput;
         private string commandLineOutput;
@@ -34,12 +34,13 @@ namespace Peernet.Browser.Application.ViewModels
 
         public FooterViewModel(
             IApiService apiService,
-            IMvxNavigationService navigationService,
+            INavigationService navigationService,
             IApplicationManager applicationManager,
             IDownloadManager downloadManager,
             IWarehouseService warehouseService,
             IBlockchainService blockchainService,
-            ISettingsManager settingsManager)
+            ISettingsManager settingsManager,
+            INotificationsManager notificationsManager)
         {
             this.apiService = apiService;
             this.navigationService = navigationService;
@@ -47,11 +48,14 @@ namespace Peernet.Browser.Application.ViewModels
             this.warehouseService = warehouseService;
             this.blockchainService = blockchainService;
             this.settingsManager = settingsManager;
+            this.notificationsManager = notificationsManager;
 
             DownloadManager = downloadManager;
             DownloadManager.downloadsChanged += GetLastDownloadItem;
-            UploadCommand = new MvxAsyncCommand(UploadFiles);
+            UploadCommand = new AsyncCommand(UploadFiles);
             DownloadManager.downloadsChanged += CollapseWhenSingleItem;
+
+            ConnectToPeernetAPI().ConfigureAwait(false).GetAwaiter().GetResult();
 
             Task.Run(UpdateStatuses);
         }
@@ -59,44 +63,61 @@ namespace Peernet.Browser.Application.ViewModels
         public bool AreDownloadsCollapsed
         {
             get => areDownloadsCollapsed;
-            set => SetProperty(ref areDownloadsCollapsed, value);
+            set
+            {
+                areDownloadsCollapsed = value;
+                OnPropertyChanged(nameof(AreDownloadsCollapsed));
+            }
         }
 
-        public IMvxAsyncCommand<string> CancelDownloadCommand => new MvxAsyncCommand<string>(
+        public IAsyncCommand<string> CancelDownloadCommand => new AsyncCommand<string>(
             async id =>
             {
                 // Make API call and validate result
                 await DownloadManager.CancelDownload(id);
             });
 
-        public IMvxCommand CollapseExpandDownloadsCommand => new MvxCommand(() =>
+        public IAsyncCommand CollapseExpandDownloadsCommand => new AsyncCommand(() =>
                 {
                     AreDownloadsCollapsed ^= true;
+                    return Task.CompletedTask;
                 });
 
         public string CommandLineInput
         {
             get => commandLineInput;
-            set => SetProperty(ref commandLineInput, value);
+            set
+            {
+                commandLineInput = value;
+                OnPropertyChanged(nameof(CommandLineInput));
+            }
         }
 
         public string CommandLineOutput
         {
             get => commandLineOutput;
-            set => SetProperty(ref commandLineOutput, value);
+            set
+            {
+                commandLineOutput = value;
+                OnPropertyChanged(nameof(CommandLineOutput));
+            }
         }
 
         public ConnectionStatus ConnectionStatus
         {
             get => connectionStatus;
-            set => SetProperty(ref connectionStatus, value);
+            set
+            {
+                connectionStatus = value;
+                OnPropertyChanged(nameof(ConnectionStatus));
+            }
         }
 
         public IDownloadManager DownloadManager { get; }
 
         public ObservableCollection<DownloadModel> ListedFileDownloads { get; set; } = new();
 
-        public IMvxCommand<DownloadModel> OpenFileCommand => new MvxCommand<DownloadModel>(
+        public IAsyncCommand<DownloadModel> OpenFileCommand => new AsyncCommand<DownloadModel>(
             model =>
             {
                 if (model.Status == DownloadStatus.DownloadFinished)
@@ -104,15 +125,19 @@ namespace Peernet.Browser.Application.ViewModels
                     var path = Path.Combine(settingsManager.DownloadPath, model.File.Name);
                     OpenWithDefaultProgram(path);
                 }
+
+                return Task.CompletedTask;
             });
 
-        public IMvxCommand OpenFileLocationCommand => new MvxCommand<string>(
+        public IAsyncCommand<string> OpenFileLocationCommand => new AsyncCommand<string>(
             name =>
             {
                 DownloadManager.OpenFileLocation(name);
+
+                return Task.CompletedTask;
             });
 
-        public IMvxCommand PauseDownloadCommand => new MvxAsyncCommand<string>(
+        public IAsyncCommand<string> PauseDownloadCommand => new AsyncCommand<string>(
             async id =>
             {
                 // Make API call and validate result
@@ -122,22 +147,21 @@ namespace Peernet.Browser.Application.ViewModels
         public string Peers
         {
             get => peers;
-            set => SetProperty(ref peers, value);
+            set
+            {
+                peers = value;
+                OnPropertyChanged(nameof(Peers));
+            }
         }
 
-        public IMvxCommand ResumeDownloadCommand => new MvxAsyncCommand<string>(
+        public IAsyncCommand<string> ResumeDownloadCommand => new AsyncCommand<string>(
             async id =>
             {
                 // Make API call and validate result
                 await DownloadManager.ResumeDownload(id);
             });
 
-        public IMvxAsyncCommand UploadCommand { get; }
-
-        public override async Task Initialize()
-        {
-            await ConnectToPeernetAPI();
-        }
+        public IAsyncCommand UploadCommand { get; }
 
         private static void OpenWithDefaultProgram(string path)
         {
@@ -208,13 +232,13 @@ namespace Peernet.Browser.Application.ViewModels
 
             if (fileModels.Count != 0)
             {
-                var parameter = new ShareFileViewModelParameter(warehouseService, blockchainService)
+                var parameter = new ShareFileViewModelParameter(warehouseService, blockchainService, navigationService, notificationsManager)
                 {
                     FileModels = fileModels
                 };
 
                 GlobalContext.IsMainWindowActive = false;
-                await navigationService.Navigate<GenericFileViewModel, ShareFileViewModelParameter>(parameter);
+                navigationService.Navigate<GenericFileViewModel<ShareFileViewModelParameter>, ShareFileViewModelParameter>(parameter);
             }
         }
     }

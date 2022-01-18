@@ -35,6 +35,18 @@ namespace Peernet.Browser.Application.Navigation
             CurrentViewModel = viewModel;
         }
 
+        public void Close()
+        {
+            CurrentViewModel = null;
+        }
+
+        public void Navigate<TViewModel, TParameter>(TParameter parameter) where TViewModel : GenericViewModelBase<TParameter> where TParameter : class
+        {
+            var viewModel = serviceProvider.GetRequiredService<TViewModel>();
+            viewModel.Parameter = parameter;
+            CurrentViewModel = viewModel;
+        }
+
         public bool IsOpen => CurrentViewModel != null;
     }
 }

@@ -1,8 +1,4 @@
-﻿using MvvmCross.Platforms.Wpf.Presenters.Attributes;
-using MvvmCross.Presenters;
-using MvvmCross.Presenters.Attributes;
-using MvvmCross.ViewModels;
-using Peernet.Browser.Application.ViewModels;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 
@@ -11,27 +7,16 @@ namespace Peernet.Browser.WPF
     /// <summary>
     /// Interaction logic for TerminalWindow.xaml
     /// </summary>
-    [MvxWindowPresentation]
-    public partial class TerminalWindow : IMvxOverridePresentationAttribute
+    public partial class TerminalWindow : Window
     {
         private bool anchorScrollToBottom = true;
 
-        public TerminalWindow()
+        public TerminalWindow(object dataContext)
         {
             InitializeComponent();
+            DataContext = dataContext;
             OutputPane.TextChanged += Output_TextChanged;
             InputField.Focus();
-        }
-
-        public MvxBasePresentationAttribute PresentationAttribute(ViewModelBaseRequest request)
-        {
-            var instanceRequest = request as ViewModelBaseInstanceRequest;
-            var viewModel = instanceRequest?.ViewModelInstance as TerminalViewModel;
-
-            return new MvxWindowPresentationAttribute
-            {
-                Identifier = $"{nameof(TerminalWindow)}.{nameof(TerminalViewModel)}"
-            };
         }
 
         private void Output_TextChanged(object sender, TextChangedEventArgs e)

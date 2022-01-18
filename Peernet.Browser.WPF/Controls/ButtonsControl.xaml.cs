@@ -1,5 +1,4 @@
-﻿using MvvmCross.Plugin.Control.Platforms.Wpf;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace Peernet.Browser.WPF.Controls
 {

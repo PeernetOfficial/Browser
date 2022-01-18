@@ -129,7 +129,7 @@ namespace Peernet.Browser.Models.Presentation.Footer
             get => size;
             set
             {
-                hash = size;
+                size = value;
                 PropertyChanged?.Invoke(this, new(nameof(Size)));
             }
         }

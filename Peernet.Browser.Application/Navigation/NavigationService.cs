@@ -34,5 +34,12 @@ namespace Peernet.Browser.Application.Navigation
             var viewModel = serviceProvider.GetRequiredService<TViewModel>();
             CurrentViewModel = viewModel;
         }
+
+        public void Navigate<TViewModel, TParameter>(TParameter parameter) where TViewModel : GenericViewModelBase<TParameter> where TParameter : class
+        {
+            var viewModel = serviceProvider.GetRequiredService<TViewModel>();
+            viewModel.Parameter = parameter;
+            CurrentViewModel = viewModel;
+        }
     }
 }

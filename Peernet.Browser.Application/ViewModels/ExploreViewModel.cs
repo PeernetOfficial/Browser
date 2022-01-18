@@ -1,14 +1,13 @@
-﻿using MvvmCross.Commands;
-using MvvmCross.ViewModels;
-using Peernet.Browser.Application.Download;
+﻿using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.VirtualFileSystem;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using MvvmCross.Navigation;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Models.Presentation.Footer;
+using AsyncAwaitBestPractices.MVVM;
+using Peernet.Browser.Application.Navigation;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -17,48 +16,56 @@ namespace Peernet.Browser.Application.ViewModels
         public ObservableCollection<DownloadModel> activeSearchResults;
         private readonly IExploreService exploreService;
         private readonly IDownloadManager downloadManager;
-        private readonly IMvxNavigationService navigationService;
+        private readonly INavigationService navigationService;
         private static readonly List<VirtualFileSystemCoreCategory> categoryTypes = GetCategoryTypes();
 
-        public ExploreViewModel(IExploreService exploreService, IDownloadManager downloadManager, IMvxNavigationService navigationService)
+        public ExploreViewModel(IExploreService exploreService, IDownloadManager downloadManager, INavigationService navigationService)
         {
             this.exploreService = exploreService;
             this.downloadManager = downloadManager;
             this.navigationService = navigationService;
+
+            ReloadResults().ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public ObservableCollection<DownloadModel> ActiveSearchResults
         {
             get => activeSearchResults;
-            set => SetProperty(ref activeSearchResults, value);
+            set
+            {
+                activeSearchResults = value;
+                OnPropertyChanged(nameof(ActiveSearchResults));
+            }
         }
 
         public ObservableCollection<VirtualFileSystemCoreCategory> CategoryTypes => new(categoryTypes);
 
-        public IMvxAsyncCommand<DownloadModel> DownloadCommand =>
-            new MvxAsyncCommand<DownloadModel>(
+        public IAsyncCommand<DownloadModel> DownloadCommand =>
+            new AsyncCommand<DownloadModel>(
                 async downloadModel =>
                 {
                     await downloadManager.QueueUpDownload(downloadModel);
                 });
 
-        public IMvxAsyncCommand<DownloadModel> ResumeCommand =>
-            new MvxAsyncCommand<DownloadModel>(
+        public IAsyncCommand<DownloadModel> ResumeCommand =>
+            new AsyncCommand<DownloadModel>(
                 async downloadModel =>
                 {
                     await downloadManager.ResumeDownload(downloadModel.Id);
                 });
 
-        public IMvxCommand<DownloadModel> OpenCommand =>
-            new MvxCommand<DownloadModel>(
+        public IAsyncCommand<DownloadModel> OpenCommand =>
+            new AsyncCommand<DownloadModel>(
                 model =>
                 {
                     var param = new FilePreviewViewModelParameter(model.File, false, async () => await downloadManager.QueueUpDownload(model), "Download");
                     navigationService.Navigate<FilePreviewViewModel, FilePreviewViewModelParameter>(param);
+
+                    return Task.CompletedTask;
                 });
 
-        public IMvxAsyncCommand<VirtualFileSystemCoreCategory> SelectCategoryCommand =>
-            new MvxAsyncCommand<VirtualFileSystemCoreCategory>(
+        public IAsyncCommand<VirtualFileSystemCoreCategory> SelectCategoryCommand =>
+            new AsyncCommand<VirtualFileSystemCoreCategory>(
                 async category =>
                 {
                     if (category.IsSelected)
@@ -74,13 +81,6 @@ namespace Peernet.Browser.Application.ViewModels
                     ActiveSearchResults = new ObservableCollection<DownloadModel>(await exploreService
                             .GetFiles(200, (int)category.Type));
                 });
-
-        public override async Task Initialize()
-        {
-            await ReloadResults();
-            await base.Initialize();
-        }
-
         private static VirtualFileSystemCoreCategory GetCategory(VirtualFileSystemEntityType type)
         {
             return new VirtualFileSystemCoreCategory(type.ToString(), type, new List<VirtualFileSystemEntity>());

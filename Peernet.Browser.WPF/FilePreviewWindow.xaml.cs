@@ -31,17 +31,6 @@ namespace Peernet.Browser.WPF
             this.Topmost = true;
         }
 
-        public MvxBasePresentationAttribute PresentationAttribute(ViewModelBaseRequest request)
-        {
-            var instanceRequest = request as ViewModelBaseInstanceRequest;
-            var viewModel = instanceRequest?.ViewModelInstance as FilePreviewViewModel;
-
-            return new MvxWindowPresentationAttribute
-            {
-                Identifier = $"{nameof(FilePreviewWindow)}.{viewModel?.File.Name}"
-            };
-        }
-
         private void Close_OnClick(object sender, RoutedEventArgs e)
         {
             Close();

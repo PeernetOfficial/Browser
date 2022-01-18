@@ -1,6 +1,7 @@
 ﻿using Peernet.Browser.Models.Presentation;
 using System;
 using System.ComponentModel;
+using System.Threading;
 
 namespace Peernet.Browser.Application.Contexts
 {
@@ -16,8 +17,6 @@ namespace Peernet.Browser.Application.Contexts
 
         private static VisualMode visualMode;
 
-        private static NotificationCollection notifications;
-
         private static string currentViewModel;
 
         private static string errorMessage;
@@ -25,8 +24,6 @@ namespace Peernet.Browser.Application.Contexts
         public static event EventHandler<PropertyChangedEventArgs> StaticPropertyChanged = delegate { };
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public static IMvxMainThreadAsyncDispatcher UiThreadDispatcher { get; set; }
 
         public static bool IsMainWindowActive
         {
@@ -107,16 +104,6 @@ namespace Peernet.Browser.Application.Contexts
             {
                 errorMessage = value;
                 NotifyStaticPropertyChanged(nameof(errorMessage));
-            }
-        }
-
-        public static NotificationCollection Notifications
-        {
-            get => notifications ??= new NotificationCollection(11000);
-            set
-            {
-                notifications = value;
-                NotifyStaticPropertyChanged(nameof(Notifications));
             }
         }
 

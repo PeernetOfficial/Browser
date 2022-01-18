@@ -1,31 +1,40 @@
-﻿using MvvmCross.Commands;
-using MvvmCross.ViewModels;
+﻿using AsyncAwaitBestPractices.MVVM;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Models.Presentation.Home
 {
-    public class FiltersModel : MvxNotifyPropertyChanged
+    public class FiltersModel : INotifyPropertyChanged
     {
         private readonly string inputText;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public string UuId { get; set; }
 
         public FiltersModel(string inputText)
         {
             this.inputText = inputText;
 
-            ClearCommand = new MvxCommand(() => Reset());
+            ClearCommand = new AsyncCommand(() =>
+            {
+                Reset();
+                return Task.CompletedTask;
+            });
 
             DateFilters = new DateFilterModel(Apply);
             FileFormatFilters = new FileFormatFilterModel(Apply);
 
-            Results.CollectionChanged += (o, s) => RaisePropertyChanged(nameof(IsVisible));
+            Results.CollectionChanged += (o, s) => PropertyChanged?.Invoke(this, new(nameof(IsVisible)));
 
             InitSearch();
         }
 
-        public IMvxCommand ClearCommand { get; }
+        public IAsyncCommand ClearCommand { get; }
 
         public DateFilterModel DateFilters { get; }
 
@@ -33,7 +42,7 @@ namespace Peernet.Browser.Models.Presentation.Home
 
         public bool IsVisible => Results.Any();
 
-        public MvxObservableCollection<FilterResultModel> Results { get; } = new MvxObservableCollection<FilterResultModel>();
+        public ObservableCollection<FilterResultModel> Results { get; } = new ObservableCollection<FilterResultModel>();
 
         public SearchFilterResultModel SearchFilterResult { get; private set; }
 

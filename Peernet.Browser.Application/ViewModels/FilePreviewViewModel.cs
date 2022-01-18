@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
-using MvvmCross.Commands;
-using MvvmCross.ViewModels;
+using AsyncAwaitBestPractices.MVVM;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Models.Domain.Common;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class FilePreviewViewModel : ViewModelBase<FilePreviewViewModelParameter>
+    public class FilePreviewViewModel : GenericViewModelBase<FilePreviewViewModelParameter>
     {
         private string actionButtonContent;
         private Func<Task> ButtonAction;
@@ -15,15 +14,23 @@ namespace Peernet.Browser.Application.ViewModels
 
         public FilePreviewViewModel()
         {
+            File = Parameter.File;
+            IsEditable = Parameter.IsEditable;
+            ButtonAction = Parameter.Action;
+            ActionButtonContent = Parameter.ActionButtonContent;
         }
 
         public string ActionButtonContent
         {
             get => actionButtonContent;
-            set => SetProperty(ref actionButtonContent, value);
+            set
+            {
+                actionButtonContent = value;
+                OnPropertyChanged(nameof(ActionButtonContent));
+            }
         }
 
-        public IMvxAsyncCommand DownloadCommand => new MvxAsyncCommand(
+        public IAsyncCommand DownloadCommand => new AsyncCommand(
             async () =>
             {
                 await ButtonAction();
@@ -34,15 +41,11 @@ namespace Peernet.Browser.Application.ViewModels
         public bool IsEditable
         {
             get => isEditable;
-            set => SetProperty(ref isEditable, value);
-        }
-
-        public override void Prepare(FilePreviewViewModelParameter parameter)
-        {
-            File = parameter.File;
-            IsEditable = parameter.IsEditable;
-            ButtonAction = parameter.Action;
-            ActionButtonContent = parameter.ActionButtonContent;
+            set
+            {
+                isEditable = value;
+                OnPropertyChanged(nameof(IsEditable));
+            }
         }
     }
 }

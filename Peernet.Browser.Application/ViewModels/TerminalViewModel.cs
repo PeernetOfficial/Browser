@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Text;
-using MvvmCross.Commands;
-using MvvmCross.ViewModels;
-using Peernet.Browser.Application.Clients;
 using System.Threading.Tasks;
 using Peernet.Browser.Application.ViewModels.Parameters;
+using AsyncAwaitBestPractices.MVVM;
+using Peernet.Browser.Application.Clients;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class TerminalViewModel : ViewModelBase<TerminalInstanceParameter>
+    public class TerminalViewModel : GenericViewModelBase<TerminalInstanceParameter>, IDisposable
     {
         private TerminalInstanceParameter parameter;
         public event EventHandler OnOutputChanged;
@@ -18,19 +17,12 @@ namespace Peernet.Browser.Application.ViewModels
         public TerminalViewModel(ISocketClient socketClient)
         {
             this.socketClient = socketClient;
+            Parameter = parameter;
+
+            Initialize().ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public TerminalInstanceParameter Parameter
-        {
-            get => parameter;
-            private set
-            {
-                parameter = value;
-                RaisePropertyChanged(nameof(Parameter));
-            }
-        }
-
-        public IMvxAsyncCommand SendToPeernetConsole => new MvxAsyncCommand(async () =>
+        public IAsyncCommand SendToPeernetConsole => new AsyncCommand(async () =>
         {
             if (Parameter.CommandLineInput.Equals("cls", StringComparison.CurrentCultureIgnoreCase))
             {
@@ -45,19 +37,11 @@ namespace Peernet.Browser.Application.ViewModels
             Parameter.CommandLineInput = string.Empty;
         });
 
-        public override void Prepare(TerminalInstanceParameter parameter)
-        {
-            Parameter = parameter;
-            base.Prepare();
-        }
-
-        public override async Task Initialize()
+        public async Task Initialize()
         {
             await ConnectToPeernetConsole();
             socketClient.MessageArrived += SocketClientOnMessageArrived;
             await socketClient.StartReceiving();
-            
-            await base.Initialize();
         }
 
         private void SocketClientOnMessageArrived(object? sender, string e)
@@ -85,10 +69,11 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        public override void ViewDestroy(bool viewFinishing = true)
+        public override void Dispose()
         {
             socketClient.Disconnect();
-            base.ViewDestroy(viewFinishing);
+
+            base.Dispose();
         }
     }
 }

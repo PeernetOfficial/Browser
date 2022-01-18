@@ -1,65 +1,80 @@
-﻿using MvvmCross.Commands;
-using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
+﻿using AsyncAwaitBestPractices.MVVM;
 using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.Application.Navigation;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public class NavigationBarViewModel : ViewModelBase
     {
-        private readonly IMvxNavigationService navigationService;
+        private readonly INavigationService navigationService;
 
-        public NavigationBarViewModel(IMvxNavigationService navigationService, IUserContext userContext)
+        public NavigationBarViewModel(INavigationService navigationService, IUserContext userContext)
         {
             this.navigationService = navigationService;
             UserContext = userContext;
 
-            NavigateExploreCommand = new MvxAsyncCommand(async () => await Navigate<ExploreViewModel>());
-            NavigateHomeCommand = new MvxAsyncCommand(async () =>
+            NavigateExploreCommand = new AsyncCommand(() =>
+            {
+                Navigate<ExploreViewModel>();
+
+                return Task.CompletedTask;
+            });
+
+            NavigateHomeCommand = new AsyncCommand(() =>
             {
                 if (GlobalContext.CurrentViewModel != nameof(HomeViewModel))
                 {
-                    await Navigate<HomeViewModel>(false);
+                    Navigate<HomeViewModel>(false);
                 }
-            });
-            NavigateDirectoryCommand = new MvxAsyncCommand(async () => await Navigate<DirectoryViewModel>());
 
-            EditProfileCommand = new MvxAsyncCommand(async () =>
+                return Task.CompletedTask;
+            });
+
+            NavigateDirectoryCommand = new AsyncCommand(() =>
+            {
+                Navigate<DirectoryViewModel>();
+                return Task.CompletedTask;
+            });
+
+            EditProfileCommand = new AsyncCommand(() =>
             {
                 GlobalContext.IsMainWindowActive = false;
                 GlobalContext.IsProfileMenuVisible = false;
-                await navigationService.Navigate<EditProfileViewModel>();
+                navigationService.Navigate<EditProfileViewModel>();
+
+                return Task.CompletedTask;
             });
 
-            NavigateAboutCommand = new MvxAsyncCommand(async () =>
+            NavigateAboutCommand = new AsyncCommand(() =>
             {
                 GlobalContext.IsProfileMenuVisible = false;
-                await Navigate<AboutViewModel>();
+                Navigate<AboutViewModel>();
+                return Task.CompletedTask;
             });
 
-            OpenCloseProfileMenuCommand = new MvxAsyncCommand(() =>
+            OpenCloseProfileMenuCommand = new AsyncCommand(() =>
             {
                 GlobalContext.IsProfileMenuVisible ^= true;
                 return Task.CompletedTask;
             });
         }
 
-        public IMvxAsyncCommand EditProfileCommand { get; }
+        public IAsyncCommand EditProfileCommand { get; }
 
-        public IMvxAsyncCommand NavigateAboutCommand { get; }
+        public IAsyncCommand NavigateAboutCommand { get; }
 
-        public IMvxAsyncCommand NavigateDirectoryCommand { get; }
+        public IAsyncCommand NavigateDirectoryCommand { get; }
 
-        public IMvxAsyncCommand NavigateExploreCommand { get; }
+        public IAsyncCommand NavigateExploreCommand { get; }
 
-        public IMvxAsyncCommand NavigateHomeCommand { get; }
+        public IAsyncCommand NavigateHomeCommand { get; }
 
-        public IMvxAsyncCommand OpenCloseProfileMenuCommand { get; }
+        public IAsyncCommand OpenCloseProfileMenuCommand { get; }
 
         public IUserContext UserContext { get; set; }
 
-        private async Task Navigate<T>(bool showLogo = true) where T : IViewModelBase
+        private void Navigate<T>(bool showLogo = true) where T : ViewModelBase
         {
             if (typeof(T).Name == GlobalContext.CurrentViewModel)
             {
@@ -67,7 +82,7 @@ namespace Peernet.Browser.Application.ViewModels
             }
 
             GlobalContext.CurrentViewModel = nameof(T);
-            await navigationService.Navigate<T>();
+            navigationService.Navigate<T>();
             GlobalContext.IsLogoVisible = showLogo;
         }
     }

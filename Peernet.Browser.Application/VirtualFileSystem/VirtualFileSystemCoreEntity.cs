@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Peernet.Browser.Application.VirtualFileSystem
 {
-    public class VirtualFileSystemCoreEntity : VirtualFileSystemEntity
+    public class VirtualFileSystemCoreEntity : VirtualFileSystemEntity, INotifyPropertyChanged
     {
         private bool isSelected;
 
@@ -17,10 +18,16 @@ namespace Peernet.Browser.Application.VirtualFileSystem
         public bool IsSelected
         {
             get => isSelected;
-            set => SetProperty(ref isSelected, value);
+            set
+            {
+                isSelected =  value;
+                PropertyChanged?.Invoke(this, new(nameof(IsSelected)));
+            }
         }
 
         public List<VirtualFileSystemEntity> VirtualFileSystemEntities { get; set; } = new();
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public VirtualFileSystemCoreEntity GetSelected()
         {

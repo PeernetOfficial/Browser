@@ -1,7 +1,4 @@
-﻿using MvvmCross.Commands;
-using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
-using Peernet.Browser.Application.Contexts;
+﻿using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Application.VirtualFileSystem;
@@ -13,6 +10,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Peernet.Browser.Application.Utilities;
+using Peernet.Browser.Application.Navigation;
+using AsyncAwaitBestPractices.MVVM;
+using Peernet.Browser.Application.Managers;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -21,9 +21,10 @@ namespace Peernet.Browser.Application.ViewModels
         private const string LibrariesSegment = "Libraries";
         private const string YourFilesSegment = "Your Files";
         private readonly IBlockchainService blockchainService;
-        private readonly IMvxNavigationService mvxNavigationService;
+        private readonly INavigationService navigationService;
         private readonly IVirtualFileSystemFactory virtualFileSystemFactory;
         private readonly IWarehouseService warehouseService;
+        private readonly INotificationsManager notificationsManager;
         private List<VirtualFileSystemEntity> activeSearchResults;
         private ObservableCollection<VirtualFileSystemCoreEntity> pathElements;
         private string searchInput;
@@ -35,13 +36,15 @@ namespace Peernet.Browser.Application.ViewModels
         public DirectoryViewModel(
             IBlockchainService blockchainService,
             IVirtualFileSystemFactory virtualFileSystemFactory,
-            IMvxNavigationService mvxNavigationService,
-            IWarehouseService warehouseService)
+            INavigationService navigationService,
+            IWarehouseService warehouseService,
+            INotificationsManager notificationsManager)
         {
             this.blockchainService = blockchainService;
             this.virtualFileSystemFactory = virtualFileSystemFactory;
-            this.mvxNavigationService = mvxNavigationService;
+            this.navigationService = navigationService;
             this.warehouseService = warehouseService;
+            this.notificationsManager = notificationsManager;
         }
 
         public List<VirtualFileSystemEntity> ActiveSearchResults
@@ -49,13 +52,12 @@ namespace Peernet.Browser.Application.ViewModels
             get => activeSearchResults?.OrderBy(e => (int)e.Type).ToList();
             set
             {
-                SetProperty(ref activeSearchResults, value);
-                RaisePropertyChanged(nameof(ActiveSearchResults));
+                OnPropertyChanged(nameof(ActiveSearchResults));
             }
         }
 
-        public IMvxAsyncCommand<VirtualFileSystemEntity> DeleteCommand =>
-            new MvxAsyncCommand<VirtualFileSystemEntity>(
+        public IAsyncCommand<VirtualFileSystemEntity> DeleteCommand =>
+            new AsyncCommand<VirtualFileSystemEntity>(
                 async entity =>
                 {
                     var result = await blockchainService.DeleteFile(entity.File);
@@ -65,18 +67,18 @@ namespace Peernet.Browser.Application.ViewModels
                         var details =
                             MessagingHelper.GetApiSummary($"{nameof(blockchainService)}.{nameof(blockchainService.DeleteFile)}") +
                             MessagingHelper.GetInOutSummary(entity.File, result);
-                        GlobalContext.Notifications.Add(new Notification(logMessage, details, Severity.Error));
+                        notificationsManager.Notifications.Add(new Notification(logMessage, details, Severity.Error));
                         return;
                     }
 
                     await ReloadVirtualFileSystem();
                 });
 
-        public IMvxAsyncCommand<VirtualFileSystemEntity> EditCommand =>
-                    new MvxAsyncCommand<VirtualFileSystemEntity>(
+        public IAsyncCommand<VirtualFileSystemEntity> EditCommand =>
+                    new AsyncCommand<VirtualFileSystemEntity>(
                  async entity =>
                 {
-                    var parameter = new EditFileViewModelParameter(blockchainService, async () => await ReloadVirtualFileSystem())
+                    var parameter = new EditFileViewModelParameter(blockchainService, notificationsManager, async () => await ReloadVirtualFileSystem())
                     {
                         FileModels = new List<FileModel>
                         {
@@ -85,16 +87,16 @@ namespace Peernet.Browser.Application.ViewModels
                     };
 
                     GlobalContext.IsMainWindowActive = false;
-                    await mvxNavigationService.Navigate<GenericFileViewModel, EditFileViewModelParameter>(parameter);
+                    navigationService.Navigate<GenericFileViewModel<EditFileViewModelParameter>, EditFileViewModelParameter>(parameter);
                 });
 
-        public IMvxCommand<VirtualFileSystemEntity> OpenCommand =>
-            new MvxCommand<VirtualFileSystemEntity>(
+        public IAsyncCommand<VirtualFileSystemEntity> OpenCommand =>
+            new AsyncCommand<VirtualFileSystemEntity>(
                 entity =>
                 {
                     if (entity == null)
                     {
-                        return;
+                        return Task.CompletedTask;
                     }
 
                     if (entity is VirtualFileSystemCoreEntity coreTier)
@@ -106,78 +108,98 @@ namespace Peernet.Browser.Application.ViewModels
                     else
                     {
                         var param = new FilePreviewViewModelParameter(entity.File, false, () => warehouseService.ReadPath(entity.File), "Save To File");
-                        mvxNavigationService.Navigate<FilePreviewViewModel, FilePreviewViewModelParameter>(param);
+                        navigationService.Navigate<FilePreviewViewModel, FilePreviewViewModelParameter>(param);
                     }
+
+                    return Task.CompletedTask;
                 });
 
-        public IMvxCommand<VirtualFileSystemCoreEntity> OpenTreeItemCommand => new MvxCommand<VirtualFileSystemCoreEntity>(entity =>
+        public IAsyncCommand<VirtualFileSystemCoreEntity> OpenTreeItemCommand => new AsyncCommand<VirtualFileSystemCoreEntity>(entity =>
         {
             InitializePath(entity);
             OpenCommand.Execute(entity);
+
+            return Task.CompletedTask;
         });
 
         public ObservableCollection<VirtualFileSystemCoreEntity> PathElements
         {
             get => pathElements;
-            set => SetProperty(ref pathElements, value);
+            set
+            {
+                pathElements = value;
+                OnPropertyChanged(nameof(PathElements));
+            }
         }
 
-        public IMvxCommand RemoveHint
-        {
-            get
-            {
-                return new MvxCommand(() =>
+        public IAsyncCommand RemoveHint => new AsyncCommand(() =>
                 {
                     if (ShowHint)
                     {
                         ShowHint = false;
                         ShowSearchBox = true;
                     }
-                });
-            }
-        }
 
-        public IMvxCommand SearchCommand =>
-            new MvxCommand(() =>
+                    return Task.CompletedTask;
+                });
+
+        public IAsyncCommand SearchCommand =>
+            new AsyncCommand(async () =>
             {
-                UpdateActiveSearchResults.Execute(PathElements?.Last());
+                await UpdateActiveSearchResults.ExecuteAsync(PathElements?.Last());
             });
 
         public string SearchInput
         {
             get => searchInput;
-            set => SetProperty(ref searchInput, value);
+            set
+            {
+                searchInput = value;
+                OnPropertyChanged(nameof(SearchInput));
+            }
         }
 
         public bool ShowHint
         {
             get => showHint;
-            set => SetProperty(ref showHint, value);
+            set
+            {
+                showHint = value;
+                OnPropertyChanged(nameof(ShowHint));
+            }
         }
 
         public bool ShowSearchBox
         {
             get => showSearchBox;
-            set => SetProperty(ref showSearchBox, value);
+            set
+            {
+                showSearchBox = value;
+                OnPropertyChanged(nameof(ShowSearchBox));
+            }
         }
 
-        public IMvxCommand<VirtualFileSystemCoreEntity> UpdateActiveSearchResults =>
-            new MvxCommand<VirtualFileSystemCoreEntity>(
+        public IAsyncCommand<VirtualFileSystemCoreEntity> UpdateActiveSearchResults =>
+            new AsyncCommand<VirtualFileSystemCoreEntity>(
                 entity =>
                 {
-                    if (entity == null)
+                    if (entity != null)
                     {
-                        return;
+                        var refreshedEntity = VirtualFileSystem.Find(entity, VirtualFileSystem.VirtualFileSystemTiers) ?? VirtualFileSystem.Find(entity, VirtualFileSystem.VirtualFileSystemCategories);
+                        ActiveSearchResults = ApplySearchResultsFiltering(refreshedEntity?.VirtualFileSystemEntities);
                     }
 
-                    var refreshedEntity = VirtualFileSystem.Find(entity, VirtualFileSystem.VirtualFileSystemTiers) ?? VirtualFileSystem.Find(entity, VirtualFileSystem.VirtualFileSystemCategories);
-                    ActiveSearchResults = ApplySearchResultsFiltering(refreshedEntity?.VirtualFileSystemEntities);
+                    return Task.CompletedTask;
                 });
 
         public VirtualFileSystem.VirtualFileSystem VirtualFileSystem
         {
             get => virtualFileSystem;
-            set => SetProperty(ref virtualFileSystem, value);
+            set
+            {
+                virtualFileSystem = value;
+                OnPropertyChanged(nameof(VirtualFileSystem));
+            }
         }
 
         public async Task ReloadVirtualFileSystem(bool restoreState = true)
@@ -221,13 +243,13 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        public override async void ViewAppearing()
-        {
-            await ReloadVirtualFileSystem(false);
-            InitializePath(VirtualFileSystem?.Home);
-            OpenCommand.Execute(VirtualFileSystem?.Home);
-            base.ViewAppearing();
-        }
+        //public override async void ViewAppearing()
+        //{
+        //    await ReloadVirtualFileSystem(false);
+        //    InitializePath(VirtualFileSystem?.Home);
+        //    OpenCommand.Execute(VirtualFileSystem?.Home);
+        //    base.ViewAppearing();
+        //}
 
         private void AddAllFilesTier(IEnumerable<VirtualFileSystemEntity> entities)
         {

@@ -1,77 +1,117 @@
-﻿using MvvmCross.Commands;
-using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
+﻿using AsyncAwaitBestPractices.MVVM;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Models.Presentation.Footer;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class GenericFileViewModel : ViewModelBase<FileParameterModel>, IModal
+    public class GenericFileViewModel<TParameter> : GenericViewModelBase<TParameter>, IModal
+        where TParameter : FileParameterModel
     {
         private readonly IApplicationManager applicationManager;
-        private readonly IMvxNavigationService mvxNavigationService;
+        private readonly IModalNavigationService modalNavigationService;
+        private readonly INavigationService navigationService;
         private readonly IBlockchainService blockchainService;
         private readonly IWarehouseService warehouseService;
         private readonly IFileService fileService;
+        private readonly INotificationsManager notificationsManager;
         private FileModel selected;
-        private FileParameterModel viewModelParameter;
+        private TParameter viewModelParameter;
 
-        public GenericFileViewModel(IMvxNavigationService mvxNavigationService, IApplicationManager applicationManager, IBlockchainService blockchainService, IWarehouseService warehouseService, IFileService fileService)
+        public GenericFileViewModel(
+            INavigationService navigationService,
+            IModalNavigationService modalNavigationService,
+            IApplicationManager applicationManager,
+            IBlockchainService blockchainService,
+            IWarehouseService warehouseService,
+            IFileService fileService,
+            INotificationsManager notificationsManager)
         {
-            this.mvxNavigationService = mvxNavigationService;
+            this.modalNavigationService = modalNavigationService;
+            this.navigationService = navigationService;
             this.applicationManager = applicationManager;
             this.blockchainService = blockchainService;
             this.warehouseService = warehouseService;
             this.fileService = fileService;
+            this.notificationsManager = notificationsManager;
 
-            ConfirmCommand = new MvxAsyncCommand(Confirm);
-            CancelCommand = new MvxCommand(Cancel);
+            ConfirmCommand = new AsyncCommand(Confirm);
+            CancelCommand = new AsyncCommand(() =>
+            {
+                Cancel();
 
-            LeftCommand = new MvxCommand(() => Manipulate(false));
-            RightCommand = new MvxCommand(() => Manipulate(true));
+                return Task.CompletedTask;
+            });
 
-            AddCommand = new MvxCommand(Add);
-            DeleteFileCommand = new MvxCommand(DeleteFile);
+            LeftCommand = new AsyncCommand(() =>
+            {
+                Manipulate(false);
+
+                return Task.CompletedTask;
+            });
+
+            RightCommand = new AsyncCommand(() =>
+            {
+                Manipulate(true);
+
+                return Task.CompletedTask;
+            });
+
+            AddCommand = new AsyncCommand(async () => await Add());
+
+            DeleteFileCommand = new AsyncCommand(() =>
+            {
+                DeleteFile();
+
+                return Task.CompletedTask;
+            });
 
             Files.CollectionChanged += (s, o) =>
             {
-                RaisePropertyChanged(nameof(FilesLength));
-                RaisePropertyChanged(nameof(IsCountVisible));
+                OnPropertyChanged(nameof(FilesLength));
+                OnPropertyChanged(nameof(IsCountVisible));
             };
+
+            Prepare(Parameter).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public IMvxCommand AddCommand { get; }
+        public IAsyncCommand AddCommand { get; }
 
-        public IMvxAsyncCommand ConfirmCommand { get; }
+        public IAsyncCommand ConfirmCommand { get; }
 
-        public MvxObservableCollection<FileModel> Files { get; } = new MvxObservableCollection<FileModel>();
+        public ObservableCollection<FileModel> Files { get; } = new ObservableCollection<FileModel>();
 
         public string FilesLength => $"{Files.IndexOf(Selected) + 1}/{Files.Count}";
 
-        public IMvxCommand CancelCommand { get; }
+        public IAsyncCommand CancelCommand { get; }
 
         public bool IsCountVisible => Files.Count > 1;
 
-        public IMvxCommand LeftCommand { get; }
+        public IAsyncCommand LeftCommand { get; }
 
-        public IMvxCommand RightCommand { get; }
+        public IAsyncCommand RightCommand { get; }
 
-        public IMvxCommand DeleteFileCommand { get; }
+        public IAsyncCommand DeleteFileCommand { get; }
 
         public FileModel Selected
         {
             get => selected ?? Files.FirstOrDefault();
-            private set => SetProperty(ref selected, value);
+            private set
+            {
+                selected = value;
+                OnPropertyChanged(nameof(Selected));
+            }
         }
 
         public string Title => viewModelParameter.ModalTitle;
 
-        public override async void Prepare(FileParameterModel parameter)
+        private async Task Prepare(TParameter parameter)
         {
             viewModelParameter = parameter;
             foreach (var f in parameter.FileModels)
@@ -91,17 +131,17 @@ namespace Peernet.Browser.Application.ViewModels
             Selected = Files.First();
         }
 
-        private void Add()
+        private async Task Add()
         {
             var files = applicationManager.OpenFileDialog();
             if (files.Length != 0)
             {
-                var parameter = new ShareFileViewModelParameter(warehouseService, blockchainService)
+                var parameter = new ShareFileViewModelParameter(warehouseService, blockchainService, navigationService, notificationsManager)
                 {
                     FileModels = files.Select(f => new FileModel(f)).ToList()
                 };
 
-                Prepare(parameter);
+                await Prepare(parameter as TParameter);
             }
         }
 
@@ -114,7 +154,7 @@ namespace Peernet.Browser.Application.ViewModels
         private void Cancel()
         {
             GlobalContext.IsMainWindowActive = true;
-            mvxNavigationService.Close(this);
+            modalNavigationService.Close();
         }
 
         private void Manipulate(bool isPlus)
@@ -124,7 +164,7 @@ namespace Peernet.Browser.Application.ViewModels
             if (index >= 0 && index <= Files.Count - 1)
             {
                 Selected = Files[index];
-                RaisePropertyChanged(nameof(FilesLength));
+                OnPropertyChanged(nameof(FilesLength));
             }
         }
 
@@ -148,7 +188,7 @@ namespace Peernet.Browser.Application.ViewModels
                     Selected = Files[filesCount - 1];
                 }
 
-                RaisePropertyChanged(nameof(FilesLength));
+                OnPropertyChanged(nameof(FilesLength));
             }
         }
 
