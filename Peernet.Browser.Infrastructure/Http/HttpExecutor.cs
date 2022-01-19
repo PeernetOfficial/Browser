@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Models.Presentation.Footer;
 using System;
@@ -15,12 +14,10 @@ namespace Peernet.Browser.Infrastructure.Http
     {
         private readonly Lazy<HttpClient> httpClientLazy;
         private readonly object lockObject = new();
-        private readonly ILogger<HttpExecutor> logger;
         private readonly INotificationsManager notificationsManager;
 
-        public HttpExecutor(IHttpClientFactory httpClientFactory, ILogger<HttpExecutor> logger, INotificationsManager notificationsManager)
+        public HttpExecutor(IHttpClientFactory httpClientFactory, INotificationsManager notificationsManager)
         {
-            this.logger = logger;
             this.notificationsManager = notificationsManager;
             httpClientLazy = new Lazy<HttpClient>(httpClientFactory.CreateHttpClient);
         }

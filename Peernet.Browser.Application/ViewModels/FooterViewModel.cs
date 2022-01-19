@@ -55,7 +55,7 @@ namespace Peernet.Browser.Application.ViewModels
             UploadCommand = new AsyncCommand(UploadFiles);
             DownloadManager.downloadsChanged += CollapseWhenSingleItem;
 
-            ConnectToPeernetAPI().ConfigureAwait(false).GetAwaiter().GetResult();
+            Task.Run(ConnectToPeernetAPI).ConfigureAwait(false).GetAwaiter().GetResult();
 
             Task.Run(UpdateStatuses);
         }

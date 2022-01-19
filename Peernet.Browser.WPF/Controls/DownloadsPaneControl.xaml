@@ -16,9 +16,9 @@
                 <ItemsControl x:Name="DownloadsList">
                     <ItemsControl.Style>
                         <Style TargetType="{x:Type ItemsControl}">
-                            <Setter Property="ItemsSource" Value="{Binding DownloadManager.ActiveFileDownloads}" />
+                            <Setter Property="ItemsSource" Value="{Binding Footer.DownloadManager.ActiveFileDownloads}" />
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding AreDownloadsCollapsed}" Value="True">
+                                <DataTrigger Binding="{Binding Footer.AreDownloadsCollapsed}" Value="True">
                                     <Setter Property="ItemsSource" Value="{Binding ListedFileDownloads}" />
                                 </DataTrigger>
                             </Style.Triggers>
@@ -112,15 +112,15 @@
                         <Style BasedOn="{StaticResource CaptionButtonStyle}" TargetType="{x:Type Button}">
                             <Setter Property="Padding" Value="3" />
                             <Setter Property="Content" Value="&#xE972;" />
-                            <Setter Property="Command" Value="{Binding CollapseExpandDownloadsCommand}" />
+                            <Setter Property="Command" Value="{Binding Footer.CollapseExpandDownloadsCommand}" />
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding AreDownloadsCollapsed}" Value="True">
+                                <DataTrigger Binding="{Binding Footer.AreDownloadsCollapsed}" Value="True">
                                     <Setter Property="Content" Value="&#xE971;" />
                                 </DataTrigger>
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Background" Value="#60FFFFFF" />
                                 </Trigger>
-                                <DataTrigger Binding="{Binding DownloadManager.ActiveFileDownloads.Count}" Value="1">
+                                <DataTrigger Binding="{Binding Footer.DownloadManager.ActiveFileDownloads.Count}" Value="1">
                                     <Setter Property="Visibility" Value="Hidden" />
                                 </DataTrigger>
                             </Style.Triggers>
@@ -132,7 +132,7 @@
         <Border.Style>
             <Style TargetType="{x:Type Border}">
                 <Style.Triggers>
-                    <DataTrigger Binding="{Binding DownloadManager.ActiveFileDownloads.Count}" Value="0">
+                    <DataTrigger Binding="{Binding Footer.DownloadManager.ActiveFileDownloads.Count}" Value="0">
                         <Setter Property="Visibility" Value="Hidden" />
                     </DataTrigger>
                 </Style.Triggers>

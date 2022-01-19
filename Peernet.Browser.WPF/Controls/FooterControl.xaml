@@ -17,15 +17,15 @@
                         <Image.Style>
                             <Style TargetType="{x:Type Image}">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ConnectionStatus}" Value="Offline">
+                                    <DataTrigger Binding="{Binding Footer.ConnectionStatus}" Value="Offline">
                                         <Setter Property="Source" Value="{DynamicResource OfflineDrawingImage}" />
                                         <Setter Property="ToolTip" Value="Offline" />
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding ConnectionStatus}" Value="Online">
+                                    <DataTrigger Binding="{Binding Footer.ConnectionStatus}" Value="Online">
                                         <Setter Property="Source" Value="{DynamicResource OnlineDrawingImage}" />
                                         <Setter Property="ToolTip" Value="Connected" />
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding ConnectionStatus}" Value="Connecting">
+                                    <DataTrigger Binding="{Binding Footer.ConnectionStatus}" Value="Connecting">
                                         <Setter Property="Source" Value="{DynamicResource ConnectingDrawingImage}" />
                                         <Setter Property="ToolTip" Value="Connecting" />
                                     </DataTrigger>
@@ -36,7 +36,7 @@
                 </StatusBarItem>
                 <StatusBarItem Margin="14,0,0,0" HorizontalAlignment="Left">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Peers}" Foreground="{DynamicResource MainContentBrush}" FontFamily="Inter" FontSize="14" FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding Footer.Peers}" Foreground="{DynamicResource MainContentBrush}" FontFamily="Inter" FontSize="14" FontWeight="SemiBold" />
                         <TextBlock Text="Peers" Foreground="{DynamicResource MainContentBrush}" FontFamily="Inter" FontSize="14" FontWeight="Regular" Margin="3, 0,0 , 0" />
                     </StackPanel>
                 </StatusBarItem>
@@ -47,7 +47,7 @@
                 VerticalAlignment="Bottom"
                 HorizontalAlignment="Right"
                 Style="{DynamicResource UploadButtonStyle}"
-                Command="{Binding UploadCommand}"
+                Command="{Binding Footer.UploadCommand}"
                 Margin="0,0,80,25">
             <Button.Background>
                 <ImageBrush ImageSource="{DynamicResource UploadDrawingImage}" />

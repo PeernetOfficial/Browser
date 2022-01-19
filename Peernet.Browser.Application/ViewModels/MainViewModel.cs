@@ -1,5 +1,7 @@
-﻿using Peernet.Browser.Application.Managers;
+﻿using AsyncAwaitBestPractices.MVVM;
+using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Navigation;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -8,12 +10,25 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly INavigationService navigationService;
         private readonly IModalNavigationService modalNavigationService;
         private readonly INotificationsManager notificationsManager;
+        private readonly IApplicationManager applicationManager;
+        private readonly FooterViewModel footerViewModel;
+        private readonly NavigationBarViewModel navigationBarViewModel;
 
-        public MainViewModel(INavigationService navigationService, IModalNavigationService modalNavigationService, INotificationsManager notificationsManager)
+        public MainViewModel(
+            FooterViewModel footerViewModel,
+            NavigationBarViewModel navigationBarViewModel,
+            INavigationService navigationService,
+            IModalNavigationService modalNavigationService,
+            INotificationsManager notificationsManager,
+            IApplicationManager applicationManager)
         {
+            this.footerViewModel = footerViewModel;
+            this.navigationBarViewModel = navigationBarViewModel;
             this.navigationService = navigationService;
             this.modalNavigationService = modalNavigationService;
             this.notificationsManager = notificationsManager;
+            this.applicationManager = applicationManager;
+
             navigationService.StateChanged += Navigated;
             modalNavigationService.StateChanged += ModalNavigated;
 
@@ -25,6 +40,10 @@ namespace Peernet.Browser.Application.ViewModels
         public ViewModelBase CurrentModalViewModel => modalNavigationService.CurrentViewModel;
 
         public NotificationCollection Notifications => notificationsManager.Notifications;
+
+        public FooterViewModel Footer => footerViewModel;
+
+        public NavigationBarViewModel NavBar => navigationBarViewModel;
 
         public override void Dispose()
         {
@@ -42,6 +61,67 @@ namespace Peernet.Browser.Application.ViewModels
         private void ModalNavigated()
         {
             OnPropertyChanged(nameof(CurrentModalViewModel));
+        }
+
+        public IAsyncCommand CloseAppCommand
+        {
+            get
+            {
+                return new AsyncCommand(() =>
+                {
+                    CloseApp();
+
+                    return Task.CompletedTask;
+                });
+            }
+        }
+
+        public IAsyncCommand MaximizeCommand
+        {
+            get
+            {
+                return new AsyncCommand(() =>
+                {
+                    Maximize();
+
+                    return Task.CompletedTask;
+                });
+            }
+        }
+
+        public IAsyncCommand MinimizeCommand
+        {
+            get
+            {
+                return new AsyncCommand(() =>
+                {
+                    Minimize();
+
+                    return Task.CompletedTask;
+                });
+            }
+        }
+
+        private void CloseApp()
+        {
+            applicationManager.Shutdown();
+        }
+
+        private void Maximize()
+        {
+            if (applicationManager.IsMaximized)
+            {
+                applicationManager.Restore();
+            }
+            else
+            {
+                applicationManager.Maximize();
+            }
+        }
+
+        private void Minimize()
+        {
+            applicationManager.Minimize();
         }
     }
 }

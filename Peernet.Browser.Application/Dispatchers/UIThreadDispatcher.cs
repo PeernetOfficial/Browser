@@ -14,7 +14,7 @@ namespace Peernet.Browser.Application.Dispatchers
 
         public void ExecuteOnMainThread(Action callback)
         {
-            context.Post(new SendOrPostCallback(o => callback?.Invoke()), null);
+            context?.Post(new SendOrPostCallback(o => callback?.Invoke()), null);
         }
     }
 }

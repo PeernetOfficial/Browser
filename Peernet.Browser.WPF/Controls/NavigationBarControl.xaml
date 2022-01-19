@@ -7,10 +7,10 @@
 
     <StackPanel Orientation="Vertical">
         <StackPanel Orientation="Horizontal">
-            <Button Style="{DynamicResource HomeNavBarButtonStyle}" Command="{Binding NavigateHomeCommand}" ToolTip="Home" />
-            <Button Style="{DynamicResource ExploreNavBarButtonStyle}" Command="{Binding NavigateExploreCommand}" ToolTip="Explore" />
-            <Button Style="{DynamicResource DirectoryNavBarButtonStyle}" Command="{Binding NavigateDirectoryCommand}" ToolTip="Directory" />
-            <Button x:Name="AccountPopupToggle" Style="{DynamicResource UserNavBarButtonStyle}" Command="{Binding OpenCloseProfileMenuCommand}" ToolTip="User" />
+            <Button Style="{DynamicResource HomeNavBarButtonStyle}" Command="{Binding NavBar.NavigateHomeCommand}" ToolTip="Home" />
+            <Button Style="{DynamicResource ExploreNavBarButtonStyle}" Command="{Binding NavBar.NavigateExploreCommand}" ToolTip="Explore" />
+            <Button Style="{DynamicResource DirectoryNavBarButtonStyle}" Command="{Binding NavBar.NavigateDirectoryCommand}" ToolTip="Directory" />
+            <Button x:Name="AccountPopupToggle" Style="{DynamicResource UserNavBarButtonStyle}" Command="{Binding NavBar.OpenCloseProfileMenuCommand}" ToolTip="User" />
         </StackPanel>
         <domaincontrols:ProfileMenuControl HorizontalAlignment="Right" Visibility="{Binding Path=(contexts:GlobalContext.IsProfileMenuVisible), Converter={StaticResource BoolToVisibility}}" />
     </StackPanel>

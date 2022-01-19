@@ -10,6 +10,7 @@ using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.Browser.Infrastructure.Extensions;
 using Peernet.Browser.Infrastructure.Tools;
 using Peernet.Browser.Models.Presentation.Footer;
+using Peernet.Browser.WPF.Controls;
 using Peernet.Browser.WPF.Services;
 using Peernet.Browser.WPF.Styles;
 using System;
@@ -91,18 +92,26 @@ namespace Peernet.Browser.WPF
 
         private void ConfigureServices(ServiceCollection services)
         {
+            services.AddSingleton<IUIThreadDispatcher, UIThreadDispatcher>(s => new(SynchronizationContext.Current));
+            services.AddSingleton<ISettingsManager, SettingsManager>();
+            services.AddSingleton<IApplicationManager, ApplicationManager>();
             services.AddSingleton<INavigationService, NavigationService>();
             services.AddSingleton<IModalNavigationService, ModalNavigationService>();
+            services.AddSingleton<HomeViewModel>();
+            services.AddSingleton<FooterViewModel>();
+            services.AddSingleton<NavigationBarViewModel>();
+            services.AddSingleton<ExploreViewModel>();
+            services.AddSingleton<DirectoryViewModel>();
+            services.AddSingleton<AboutViewModel>();
             services.AddSingleton<MainViewModel>();
             services.AddSingleton(s => new MainWindow(s.GetRequiredService<MainViewModel>()));
             services.AddTransient<TerminalViewModel>();
             services.AddSingleton(s => new TerminalWindow(s.GetRequiredService<TerminalViewModel>()));
             services.RegisterPeernetServices();
-            services.AddTransient(typeof(ILogger<>), typeof(Logger<>));
+            // services.AddTransient(typeof(ILogger<>), typeof(Logger<>));
             services.AddSingleton<IUserContext, UserContext>();
             services.AddTransient<IVirtualFileSystemFactory, VirtualFileSystemFactory>();
             services.AddTransient<IFilesToCategoryBinder, FilesToCategoryBinder>();
-            services.AddSingleton<IUIThreadDispatcher, UIThreadDispatcher>(s => new(SynchronizationContext.Current));
             services.AddSingleton<INotificationsManager, NotificationsManager>();
         }
         public void InitializeBackend()

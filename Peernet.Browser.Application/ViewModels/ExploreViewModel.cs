@@ -25,7 +25,7 @@ namespace Peernet.Browser.Application.ViewModels
             this.downloadManager = downloadManager;
             this.navigationService = navigationService;
 
-            ReloadResults().ConfigureAwait(false).GetAwaiter().GetResult();
+            Task.Run(ReloadResults).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public ObservableCollection<DownloadModel> ActiveSearchResults
