@@ -39,6 +39,8 @@ namespace Peernet.Browser.Application.ViewModels
 
         public ViewModelBase CurrentModalViewModel => modalNavigationService.CurrentViewModel;
 
+        public bool IsModalOpened => modalNavigationService.IsOpen;
+
         public NotificationCollection Notifications => notificationsManager.Notifications;
 
         public FooterViewModel Footer => footerViewModel;
@@ -61,6 +63,7 @@ namespace Peernet.Browser.Application.ViewModels
         private void ModalNavigated()
         {
             OnPropertyChanged(nameof(CurrentModalViewModel));
+            OnPropertyChanged(nameof(IsModalOpened));
         }
 
         public IAsyncCommand CloseAppCommand

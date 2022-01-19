@@ -55,6 +55,9 @@
         </Button>
         <controls:NavigationBarControl Panel.ZIndex="1" Margin="0 12 0 0" HorizontalAlignment="Right" Grid.Row="1" IsEnabled="{Binding Path=(contexts:GlobalContext.IsConnected)}" />
         <controls:FooterControl Grid.Row="2" DockPanel.Dock="Bottom" Panel.ZIndex="2" IsEnabled="{Binding Path=(contexts:GlobalContext.IsConnected)}" />
+        <Border Panel.ZIndex="3" Visibility="{Binding IsModalOpened, Converter={StaticResource BoolToVisibility}}" Grid.Row="1" Grid.RowSpan="3">
+            <ContentControl Content="{Binding CurrentModalViewModel}" />
+        </Border>
         <ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="{Binding Path=(contexts:GlobalContext.IsConnected), Converter={StaticResource BoolToVisibility}}" />
         <TextBlock Text="{Binding Path=(contexts:GlobalContext.ErrorMessage), UpdateSourceTrigger=PropertyChanged}" Foreground="{DynamicResource MainTextBrush}" Panel.ZIndex="2" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" TextAlignment="Center">
             <TextBlock.Style>

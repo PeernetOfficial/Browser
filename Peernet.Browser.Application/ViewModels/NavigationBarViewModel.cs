@@ -7,9 +7,9 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public class NavigationBarViewModel : ViewModelBase
     {
-        private readonly INavigationService navigationService;
+        private readonly IModalNavigationService navigationService;
 
-        public NavigationBarViewModel(INavigationService navigationService, IUserContext userContext)
+        public NavigationBarViewModel(IModalNavigationService navigationService, IUserContext userContext)
         {
             this.navigationService = navigationService;
             UserContext = userContext;

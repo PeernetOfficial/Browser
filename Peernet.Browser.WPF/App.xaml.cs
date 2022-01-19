@@ -92,23 +92,15 @@ namespace Peernet.Browser.WPF
 
         private void ConfigureServices(ServiceCollection services)
         {
+            RegisterViewModels(services);
+            RegisterWindows(services);
+            services.RegisterPeernetServices();
+            
             services.AddSingleton<IUIThreadDispatcher, UIThreadDispatcher>(s => new(SynchronizationContext.Current));
             services.AddSingleton<ISettingsManager, SettingsManager>();
             services.AddSingleton<IApplicationManager, ApplicationManager>();
             services.AddSingleton<INavigationService, NavigationService>();
             services.AddSingleton<IModalNavigationService, ModalNavigationService>();
-            services.AddSingleton<HomeViewModel>();
-            services.AddSingleton<FooterViewModel>();
-            services.AddSingleton<NavigationBarViewModel>();
-            services.AddSingleton<ExploreViewModel>();
-            services.AddSingleton<DirectoryViewModel>();
-            services.AddSingleton<AboutViewModel>();
-            services.AddSingleton<MainViewModel>();
-            services.AddSingleton(s => new MainWindow(s.GetRequiredService<MainViewModel>()));
-            services.AddTransient<TerminalViewModel>();
-            services.AddSingleton(s => new TerminalWindow(s.GetRequiredService<TerminalViewModel>()));
-            services.RegisterPeernetServices();
-            // services.AddTransient(typeof(ILogger<>), typeof(Logger<>));
             services.AddSingleton<IUserContext, UserContext>();
             services.AddTransient<IVirtualFileSystemFactory, VirtualFileSystemFactory>();
             services.AddTransient<IFilesToCategoryBinder, FilesToCategoryBinder>();
@@ -148,6 +140,25 @@ namespace Peernet.Browser.WPF
         {
             notificationsManager.Notifications.Add(new("Unhandled TaskScheduler exception occurred!", e.Exception.Message, Severity.Error, e.Exception));
             e.SetObserved();
+        }
+
+        private void RegisterViewModels(ServiceCollection services)
+        {
+            services.AddTransient<TerminalViewModel>();
+            services.AddSingleton<HomeViewModel>();
+            services.AddSingleton<FooterViewModel>();
+            services.AddSingleton<NavigationBarViewModel>();
+            services.AddSingleton<ExploreViewModel>();
+            services.AddSingleton<DirectoryViewModel>();
+            services.AddSingleton<AboutViewModel>();
+            services.AddSingleton<MainViewModel>();
+            services.AddSingleton<EditProfileViewModel>();
+        }
+
+        private void RegisterWindows(ServiceCollection services)
+        {
+            services.AddSingleton(s => new MainWindow(s.GetRequiredService<MainViewModel>()));
+            services.AddSingleton(s => new TerminalWindow(s.GetRequiredService<TerminalViewModel>()));
         }
     }
 }
