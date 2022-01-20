@@ -1,8 +1,8 @@
-﻿using System.ComponentModel;
+﻿using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class GenericViewModelBase<TParameter> : ViewModelBase
+    public abstract class GenericViewModelBase<TParameter> : ViewModelBase
         where TParameter : class
     {
         private TParameter parameter;
@@ -16,5 +16,7 @@ namespace Peernet.Browser.Application.ViewModels
                 OnPropertyChanged(nameof(Parameter));
             }
         }
+
+        public abstract Task Prepare(TParameter parameter);
     }
 }

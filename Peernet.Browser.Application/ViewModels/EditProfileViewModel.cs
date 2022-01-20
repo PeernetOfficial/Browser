@@ -12,13 +12,13 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public class EditProfileViewModel : ViewModelBase
     {
-        private readonly IModalNavigationService mvxNavigationService;
+        private readonly IModalNavigationService modalNavigationService;
         private readonly IProfileService profileService;
         private readonly INotificationsManager notificationsManager;
 
         public EditProfileViewModel(IModalNavigationService mvxNavigationService, IUserContext userContext, IProfileService profileService, INotificationsManager notificationsManager)
         {
-            this.mvxNavigationService = mvxNavigationService;
+            this.modalNavigationService = mvxNavigationService;
             this.profileService = profileService;
             this.notificationsManager = notificationsManager;
 
@@ -29,14 +29,13 @@ namespace Peernet.Browser.Application.ViewModels
          {
              UserContext.ReloadContext();
 
-             GlobalContext.IsMainWindowActive = true;
-             mvxNavigationService.Close();
+             modalNavigationService.Close();
              return Task.CompletedTask;
          });
 
         public IAsyncCommand RemovePhotoCommand => new AsyncCommand(() =>
          {
-             mvxNavigationService.Navigate<DeleteAccountViewModel>();
+             modalNavigationService.Navigate<DeleteAccountViewModel>();
              return Task.CompletedTask;
          });
 
@@ -57,10 +56,7 @@ namespace Peernet.Browser.Application.ViewModels
              }
 
              UserContext.ReloadContext();
-
-             GlobalContext.IsMainWindowActive = true;
-
-             mvxNavigationService.Close();
+             modalNavigationService.Close();
          });
 
         public IUserContext UserContext { get; set; }

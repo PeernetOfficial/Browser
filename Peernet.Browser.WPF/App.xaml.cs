@@ -6,6 +6,7 @@ using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels;
+using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.Browser.Infrastructure.Extensions;
 using Peernet.Browser.Infrastructure.Tools;
@@ -118,7 +119,6 @@ namespace Peernet.Browser.WPF
 
         protected override void OnStartup(StartupEventArgs e)
         {
-
             var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
             mainWindow.Show();
 
@@ -153,12 +153,14 @@ namespace Peernet.Browser.WPF
             services.AddSingleton<AboutViewModel>();
             services.AddSingleton<MainViewModel>();
             services.AddSingleton<EditProfileViewModel>();
+            services.AddSingleton<DeleteAccountViewModel>();
+            services.AddSingleton<ShareFileViewModel>();
+            services.AddSingleton<EditFileViewModel>();
         }
 
         private void RegisterWindows(ServiceCollection services)
         {
             services.AddSingleton(s => new MainWindow(s.GetRequiredService<MainViewModel>()));
-            services.AddSingleton(s => new TerminalWindow(s.GetRequiredService<TerminalViewModel>()));
         }
     }
 }

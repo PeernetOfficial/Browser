@@ -8,7 +8,7 @@ namespace Peernet.Browser.Application.Navigation
     {
         private readonly IServiceProvider serviceProvider;
 
-        private ViewModelBase _currentViewModel;
+        private ViewModelBase currentViewModel;
 
         public ModalNavigationService(IServiceProvider serviceProvider)
         {
@@ -19,12 +19,12 @@ namespace Peernet.Browser.Application.Navigation
 
         public ViewModelBase CurrentViewModel
         {
-            get => _currentViewModel;
+            get => currentViewModel;
             set
             {
-                _currentViewModel?.Dispose();
+                currentViewModel?.Dispose();
 
-                _currentViewModel = value;
+                currentViewModel = value;
                 StateChanged?.Invoke();
             }
         }
@@ -43,7 +43,7 @@ namespace Peernet.Browser.Application.Navigation
         public void Navigate<TViewModel, TParameter>(TParameter parameter) where TViewModel : GenericViewModelBase<TParameter> where TParameter : class
         {
             var viewModel = serviceProvider.GetRequiredService<TViewModel>();
-            viewModel.Parameter = parameter;
+            viewModel.Prepare(parameter);
             CurrentViewModel = viewModel;
         }
 

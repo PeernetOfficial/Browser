@@ -7,11 +7,13 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public class NavigationBarViewModel : ViewModelBase
     {
-        private readonly IModalNavigationService navigationService;
+        private readonly INavigationService navigationService;
+        private readonly IModalNavigationService modalNavigationService;
 
-        public NavigationBarViewModel(IModalNavigationService navigationService, IUserContext userContext)
+        public NavigationBarViewModel(INavigationService navigationService, IModalNavigationService modalNavigationService, IUserContext userContext)
         {
             this.navigationService = navigationService;
+            this.modalNavigationService = modalNavigationService;
             UserContext = userContext;
 
             NavigateExploreCommand = new AsyncCommand(() =>
@@ -39,16 +41,13 @@ namespace Peernet.Browser.Application.ViewModels
 
             EditProfileCommand = new AsyncCommand(() =>
             {
-                GlobalContext.IsMainWindowActive = false;
-                GlobalContext.IsProfileMenuVisible = false;
-                navigationService.Navigate<EditProfileViewModel>();
+                modalNavigationService.Navigate<EditProfileViewModel>();
 
                 return Task.CompletedTask;
             });
 
             NavigateAboutCommand = new AsyncCommand(() =>
             {
-                GlobalContext.IsProfileMenuVisible = false;
                 Navigate<AboutViewModel>();
                 return Task.CompletedTask;
             });

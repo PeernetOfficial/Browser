@@ -22,6 +22,7 @@ namespace Peernet.Browser.Application.ViewModels
         private const string YourFilesSegment = "Your Files";
         private readonly IBlockchainService blockchainService;
         private readonly INavigationService navigationService;
+        private readonly IModalNavigationService modalNavigationService;
         private readonly IVirtualFileSystemFactory virtualFileSystemFactory;
         private readonly IWarehouseService warehouseService;
         private readonly INotificationsManager notificationsManager;
@@ -37,12 +38,14 @@ namespace Peernet.Browser.Application.ViewModels
             IBlockchainService blockchainService,
             IVirtualFileSystemFactory virtualFileSystemFactory,
             INavigationService navigationService,
+            IModalNavigationService modalNavigationService,
             IWarehouseService warehouseService,
             INotificationsManager notificationsManager)
         {
             this.blockchainService = blockchainService;
             this.virtualFileSystemFactory = virtualFileSystemFactory;
             this.navigationService = navigationService;
+            this.modalNavigationService = modalNavigationService;
             this.warehouseService = warehouseService;
             this.notificationsManager = notificationsManager;
         }
@@ -75,19 +78,20 @@ namespace Peernet.Browser.Application.ViewModels
                 });
 
         public IAsyncCommand<VirtualFileSystemEntity> EditCommand =>
-                    new AsyncCommand<VirtualFileSystemEntity>(
-                 async entity =>
+            new AsyncCommand<VirtualFileSystemEntity>(
+                entity =>
                 {
                     var parameter = new EditFileViewModelParameter(blockchainService, notificationsManager, async () => await ReloadVirtualFileSystem())
                     {
                         FileModels = new List<FileModel>
-                        {
-                            new(entity.File)
-                        }
+                                        {
+                                            new(entity.File)
+                                        }
                     };
 
-                    GlobalContext.IsMainWindowActive = false;
-                    navigationService.Navigate<GenericFileViewModel<EditFileViewModelParameter>, EditFileViewModelParameter>(parameter);
+                    modalNavigationService.Navigate<EditFileViewModel, EditFileViewModelParameter>(parameter);
+
+                    return Task.CompletedTask;
                 });
 
         public IAsyncCommand<VirtualFileSystemEntity> OpenCommand =>

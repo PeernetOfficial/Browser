@@ -14,10 +14,6 @@ namespace Peernet.Browser.Application.ViewModels
 
         public FilePreviewViewModel()
         {
-            File = Parameter.File;
-            IsEditable = Parameter.IsEditable;
-            ButtonAction = Parameter.Action;
-            ActionButtonContent = Parameter.ActionButtonContent;
         }
 
         public string ActionButtonContent
@@ -46,6 +42,17 @@ namespace Peernet.Browser.Application.ViewModels
                 isEditable = value;
                 OnPropertyChanged(nameof(IsEditable));
             }
+        }
+
+        public override Task Prepare(FilePreviewViewModelParameter parameter)
+        {
+            Parameter = parameter;
+            File = Parameter.File;
+            IsEditable = Parameter.IsEditable;
+            ButtonAction = Parameter.Action;
+            ActionButtonContent = Parameter.ActionButtonContent;
+
+            return Task.CompletedTask;
         }
     }
 }

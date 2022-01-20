@@ -96,17 +96,9 @@ namespace Peernet.Browser.Application.ViewModels
 
         private Task Search()
         {
-            if (SearchInput.Equals("debug", StringComparison.InvariantCultureIgnoreCase))
-            {
-                navigationService.Navigate<TerminalViewModel, TerminalInstanceParameter>(new());
-            }
-            else
-            {
-                var toAdd = new SearchTabElementViewModel(uiThreadDispatcher, SearchInput, RemoveTab, searchService.Search, DownloadFile, OpenFile);
-                Tabs.Add(toAdd);
-                SelectedIndex = Tabs.Count - 1;
-            }
-
+            var toAdd = new SearchTabElementViewModel(uiThreadDispatcher, SearchInput, RemoveTab, searchService.Search, DownloadFile, OpenFile);
+            Tabs.Add(toAdd);
+            SelectedIndex = Tabs.Count - 1;
             SearchInput = string.Empty;
 
             return Task.CompletedTask;

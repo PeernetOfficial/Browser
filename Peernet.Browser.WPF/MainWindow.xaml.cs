@@ -83,18 +83,17 @@ namespace Peernet.Browser.WPF
                     }
                 }
 
-                var navigationService = App.ServiceProvider.GetRequiredService<INavigationService>();
+                var modalNavigationService = App.ServiceProvider.GetRequiredService<IModalNavigationService>();
                 var parameter = new ShareFileViewModelParameter(
                     App.ServiceProvider.GetRequiredService<IWarehouseService>(),
                     App.ServiceProvider.GetRequiredService<IBlockchainService>(),
-                    navigationService,
+                    modalNavigationService,
                     App.ServiceProvider.GetRequiredService<INotificationsManager>())
                 {
                     FileModels = fileModels
                 };
 
-                GlobalContext.IsMainWindowActive = false;
-                navigationService.Navigate<GenericFileViewModel<ShareFileViewModelParameter>, ShareFileViewModelParameter>(parameter);
+                modalNavigationService.Navigate<ShareFileViewModel, ShareFileViewModelParameter>(parameter);
             }
         }
 

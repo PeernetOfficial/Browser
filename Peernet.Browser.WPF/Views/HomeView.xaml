@@ -10,15 +10,16 @@
                     <SolidColorBrush Color="{DynamicResource ViewBackgroundColor}" />
                 </Border.Background>
                 <Grid>
-                    <TextBox  FontSize="16"
-                              TextAlignment="Left"
-                              VerticalAlignment="Center"
-                              FontFamily="Inter"
-                              Text="{Binding SearchInput, UpdateSourceTrigger=PropertyChanged}"
-                              Foreground="{DynamicResource MainTextBrush}"
-                              BorderThickness="0"
-                              CaretBrush="{DynamicResource MainTextBrush}"
-                              Padding="13" Cursor="IBeam">
+                    <TextBox FontSize="16"
+                             TextAlignment="Left"
+                             VerticalAlignment="Center"
+                             FontFamily="Inter"
+                             Text="{Binding SearchInput, UpdateSourceTrigger=PropertyChanged}"
+                             Foreground="{DynamicResource MainTextBrush}"
+                             BorderThickness="0"
+                             CaretBrush="{DynamicResource MainTextBrush}"
+                             Padding="13" Cursor="IBeam"
+                             PreviewKeyDown="SearchText_Entered">
                         <TextBox.Style>
                             <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
                                 <Setter Property="Background" Value="Transparent" />
@@ -42,9 +43,9 @@
                                 </Style.Triggers>
                             </Style>
                         </TextBox.Style>
-                        <TextBox.InputBindings>
+                        <!--<TextBox.InputBindings>
                             <KeyBinding Command="{Binding SearchCommand}" Key="Enter" />
-                        </TextBox.InputBindings>
+                        </TextBox.InputBindings>-->
                     </TextBox>
                     <Image Cursor="Hand" Margin="0 0 13 0" HorizontalAlignment="Right" Source="{DynamicResource SearchDrawingImage}" Height="14.22" Width="14.22">
                         <Image.InputBindings>

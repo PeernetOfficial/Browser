@@ -23,6 +23,7 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IApplicationManager applicationManager;
         private readonly IBlockchainService blockchainService;
         private readonly INavigationService navigationService;
+        private readonly IModalNavigationService modalNavigationService;
         private readonly ISettingsManager settingsManager;
         private readonly IWarehouseService warehouseService;
         private readonly INotificationsManager notificationsManager;
@@ -35,6 +36,7 @@ namespace Peernet.Browser.Application.ViewModels
         public FooterViewModel(
             IApiService apiService,
             INavigationService navigationService,
+            IModalNavigationService modalNavigationService,
             IApplicationManager applicationManager,
             IDownloadManager downloadManager,
             IWarehouseService warehouseService,
@@ -44,6 +46,7 @@ namespace Peernet.Browser.Application.ViewModels
         {
             this.apiService = apiService;
             this.navigationService = navigationService;
+            this.modalNavigationService = modalNavigationService;
             this.applicationManager = applicationManager;
             this.warehouseService = warehouseService;
             this.blockchainService = blockchainService;
@@ -237,8 +240,7 @@ namespace Peernet.Browser.Application.ViewModels
                     FileModels = fileModels
                 };
 
-                GlobalContext.IsMainWindowActive = false;
-                navigationService.Navigate<GenericFileViewModel<ShareFileViewModelParameter>, ShareFileViewModelParameter>(parameter);
+                modalNavigationService.Navigate<ShareFileViewModel, ShareFileViewModelParameter>(parameter);
             }
         }
     }

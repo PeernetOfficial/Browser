@@ -7,8 +7,6 @@ namespace Peernet.Browser.Application.Contexts
 {
     public class GlobalContext : INotifyPropertyChanged
     {
-        private static bool isMainWindowActive = true;
-
         private static bool isLogoVisible;
 
         private static bool isConnected;
@@ -24,16 +22,6 @@ namespace Peernet.Browser.Application.Contexts
         public static event EventHandler<PropertyChangedEventArgs> StaticPropertyChanged = delegate { };
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public static bool IsMainWindowActive
-        {
-            get => isMainWindowActive;
-            set
-            {
-                isMainWindowActive = value;
-                NotifyStaticPropertyChanged(nameof(IsMainWindowActive));
-            }
-        }
 
         public static bool IsLogoVisible
         {

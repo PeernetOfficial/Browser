@@ -28,7 +28,7 @@
                         </Setter.Value>
                     </Setter>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding Path=(contexts:GlobalContext.IsMainWindowActive)}" Value="True">
+                        <DataTrigger Binding="{Binding CurrentModalViewModel}" Value="{x:Null}">
                             <Setter Property="Visibility" Value="Hidden" />
                         </DataTrigger>
                     </Style.Triggers>
@@ -53,9 +53,9 @@
                 <ImageBrush ImageSource="{DynamicResource LogoAbbreviationDrawingImage}" />
             </Button.Background>
         </Button>
-        <controls:NavigationBarControl Panel.ZIndex="1" Margin="0 12 0 0" HorizontalAlignment="Right" Grid.Row="1" IsEnabled="{Binding Path=(contexts:GlobalContext.IsConnected)}" />
+        <controls:NavigationBarControl Panel.ZIndex="1" Margin="0 12 0 0" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="1" Grid.RowSpan="3" IsEnabled="{Binding Path=(contexts:GlobalContext.IsConnected)}" />
         <controls:FooterControl Grid.Row="2" DockPanel.Dock="Bottom" Panel.ZIndex="2" IsEnabled="{Binding Path=(contexts:GlobalContext.IsConnected)}" />
-        <Border Panel.ZIndex="3" Visibility="{Binding IsModalOpened, Converter={StaticResource BoolToVisibility}}" Grid.Row="1" Grid.RowSpan="3">
+        <Border Panel.ZIndex="3" Visibility="{Binding IsModalOpened, Converter={StaticResource BoolToVisibility}}" Grid.Row="1" Grid.RowSpan="2">
             <ContentControl Content="{Binding CurrentModalViewModel}" />
         </Border>
         <ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="{Binding Path=(contexts:GlobalContext.IsConnected), Converter={StaticResource BoolToVisibility}}" />

@@ -9,7 +9,6 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public class TerminalViewModel : GenericViewModelBase<TerminalInstanceParameter>, IDisposable
     {
-        private TerminalInstanceParameter parameter;
         public event EventHandler OnOutputChanged;
 
         private readonly ISocketClient socketClient;
@@ -17,9 +16,6 @@ namespace Peernet.Browser.Application.ViewModels
         public TerminalViewModel(ISocketClient socketClient)
         {
             this.socketClient = socketClient;
-            Parameter = parameter;
-
-            Initialize().ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public IAsyncCommand SendToPeernetConsole => new AsyncCommand(async () =>
@@ -37,7 +33,7 @@ namespace Peernet.Browser.Application.ViewModels
             Parameter.CommandLineInput = string.Empty;
         });
 
-        public async Task Initialize()
+        private async Task Initialize()
         {
             await ConnectToPeernetConsole();
             socketClient.MessageArrived += SocketClientOnMessageArrived;
@@ -74,6 +70,12 @@ namespace Peernet.Browser.Application.ViewModels
             socketClient.Disconnect();
 
             base.Dispose();
+        }
+
+        public override async Task Prepare(TerminalInstanceParameter parameter)
+        {
+            Parameter = parameter;
+            await Initialize();
         }
     }
 }

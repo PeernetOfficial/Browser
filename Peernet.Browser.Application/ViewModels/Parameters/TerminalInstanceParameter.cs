@@ -4,8 +4,8 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
 {
     public class TerminalInstanceParameter : INotifyPropertyChanged
     {
-        private string commandLineInput;
-        private string commandLineOutput;
+        private string commandLineInput = string.Empty;
+        private string commandLineOutput = string.Empty;
 
         public event PropertyChangedEventHandler PropertyChanged;
 

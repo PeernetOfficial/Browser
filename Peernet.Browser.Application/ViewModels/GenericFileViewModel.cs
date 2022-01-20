@@ -1,5 +1,4 @@
 ﻿using AsyncAwaitBestPractices.MVVM;
-using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
@@ -22,7 +21,6 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IFileService fileService;
         private readonly INotificationsManager notificationsManager;
         private FileModel selected;
-        private TParameter viewModelParameter;
 
         public GenericFileViewModel(
             INavigationService navigationService,
@@ -77,8 +75,6 @@ namespace Peernet.Browser.Application.ViewModels
                 OnPropertyChanged(nameof(FilesLength));
                 OnPropertyChanged(nameof(IsCountVisible));
             };
-
-            Prepare(Parameter).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
         public IAsyncCommand AddCommand { get; }
@@ -109,11 +105,11 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        public string Title => viewModelParameter.ModalTitle;
+        public string Title => Parameter.ModalTitle;
 
-        private async Task Prepare(TParameter parameter)
+        public override async Task Prepare(TParameter parameter)
         {
-            viewModelParameter = parameter;
+            Parameter = parameter;
             foreach (var f in parameter.FileModels)
             {
                 if (Files.Any(x => x.FullPath == f.FullPath))
@@ -147,13 +143,12 @@ namespace Peernet.Browser.Application.ViewModels
 
         private async Task Confirm()
         {
-            await viewModelParameter.Confirm(Files.ToArray());
+            await Parameter.Confirm(Files.ToArray());
             Cancel();
         }
 
         private void Cancel()
         {
-            GlobalContext.IsMainWindowActive = true;
             modalNavigationService.Close();
         }
 
