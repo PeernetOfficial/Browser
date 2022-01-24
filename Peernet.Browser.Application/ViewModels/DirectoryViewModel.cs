@@ -1,5 +1,4 @@
-﻿using Peernet.Browser.Application.Contexts;
-using Peernet.Browser.Application.Services;
+﻿using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.Browser.Models.Domain.Blockchain;
@@ -26,7 +25,7 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IVirtualFileSystemFactory virtualFileSystemFactory;
         private readonly IWarehouseService warehouseService;
         private readonly INotificationsManager notificationsManager;
-        private List<VirtualFileSystemEntity> activeSearchResults;
+        private ObservableCollection<VirtualFileSystemEntity> activeSearchResults;
         private ObservableCollection<VirtualFileSystemCoreEntity> pathElements;
         private string searchInput;
         private IReadOnlyCollection<VirtualFileSystemEntity> sharedFiles;
@@ -48,13 +47,18 @@ namespace Peernet.Browser.Application.ViewModels
             this.modalNavigationService = modalNavigationService;
             this.warehouseService = warehouseService;
             this.notificationsManager = notificationsManager;
+
+            Task.Run(async () => await ReloadVirtualFileSystem(false)).ConfigureAwait(false).GetAwaiter().GetResult();
+            InitializePath(VirtualFileSystem?.Home);
+            OpenCommand.Execute(VirtualFileSystem?.Home);
         }
 
-        public List<VirtualFileSystemEntity> ActiveSearchResults
+        public ObservableCollection<VirtualFileSystemEntity> ActiveSearchResults
         {
-            get => activeSearchResults?.OrderBy(e => (int)e.Type).ToList();
+            get => new(activeSearchResults.OrderBy(e => (int)e.Type).ToList());
             set
             {
+                activeSearchResults = value;
                 OnPropertyChanged(nameof(ActiveSearchResults));
             }
         }
@@ -84,9 +88,9 @@ namespace Peernet.Browser.Application.ViewModels
                     var parameter = new EditFileViewModelParameter(blockchainService, notificationsManager, async () => await ReloadVirtualFileSystem())
                     {
                         FileModels = new List<FileModel>
-                                        {
-                                            new(entity.File)
-                                        }
+                        {
+                            new(entity.File)
+                        }
                     };
 
                     modalNavigationService.Navigate<EditFileViewModel, EditFileViewModelParameter>(parameter);
@@ -96,26 +100,19 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IAsyncCommand<VirtualFileSystemEntity> OpenCommand =>
             new AsyncCommand<VirtualFileSystemEntity>(
-                entity =>
+                async entity =>
                 {
                     if (entity == null)
                     {
-                        return Task.CompletedTask;
+                        return;
                     }
 
                     if (entity is VirtualFileSystemCoreEntity coreTier)
                     {
-                        UpdateActiveSearchResults.Execute(coreTier);
+                        await UpdateActiveSearchResults.ExecuteAsync(coreTier);
                         SetPath(coreTier);
                         ChangeSelectedEntity(coreTier);
                     }
-                    else
-                    {
-                        var param = new FilePreviewViewModelParameter(entity.File, false, () => warehouseService.ReadPath(entity.File), "Save To File");
-                        navigationService.Navigate<FilePreviewViewModel, FilePreviewViewModelParameter>(param);
-                    }
-
-                    return Task.CompletedTask;
                 });
 
         public IAsyncCommand<VirtualFileSystemCoreEntity> OpenTreeItemCommand => new AsyncCommand<VirtualFileSystemCoreEntity>(entity =>
@@ -247,14 +244,6 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        //public override async void ViewAppearing()
-        //{
-        //    await ReloadVirtualFileSystem(false);
-        //    InitializePath(VirtualFileSystem?.Home);
-        //    OpenCommand.Execute(VirtualFileSystem?.Home);
-        //    base.ViewAppearing();
-        //}
-
         private void AddAllFilesTier(IEnumerable<VirtualFileSystemEntity> entities)
         {
             AddTier("All files", VirtualFileSystemEntityType.All, entities);
@@ -273,16 +262,16 @@ namespace Peernet.Browser.Application.ViewModels
             VirtualFileSystem.VirtualFileSystemTiers.Add(tier);
         }
 
-        private List<VirtualFileSystemEntity> ApplySearchResultsFiltering(List<VirtualFileSystemEntity> results)
+        private ObservableCollection<VirtualFileSystemEntity> ApplySearchResultsFiltering(List<VirtualFileSystemEntity> results)
         {
             if (results.IsNullOrEmpty())
             {
-                return new List<VirtualFileSystemEntity>();
+                return new ObservableCollection<VirtualFileSystemEntity>();
             }
 
             return !string.IsNullOrEmpty(SearchInput)
-                ? results.Where(f => f.Name.Contains(SearchInput, StringComparison.OrdinalIgnoreCase)).ToList()
-                : results;
+                ? new(results.Where(f => f.Name.Contains(SearchInput, StringComparison.OrdinalIgnoreCase)).ToList())
+                : new(results);
         }
 
         private void ChangeSelectedEntity(VirtualFileSystemCoreEntity coreEntity)

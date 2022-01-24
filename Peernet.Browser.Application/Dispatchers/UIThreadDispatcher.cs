@@ -3,18 +3,18 @@ using System.Threading;
 
 namespace Peernet.Browser.Application.Dispatchers
 {
-    public class UIThreadDispatcher : IUIThreadDispatcher
+    public static class UIThreadDispatcher
     {
-        private readonly SynchronizationContext context;
+        private static SynchronizationContext Context;
 
-        public UIThreadDispatcher(SynchronizationContext synchronizationContext)
+        public static void SetUIContext(SynchronizationContext context)
         {
-            context = synchronizationContext;
+            Context = context;
         }
 
-        public void ExecuteOnMainThread(Action callback)
+        public static void ExecuteOnMainThread(Action callback)
         {
-            context?.Post(new SendOrPostCallback(o => callback?.Invoke()), null);
+            Context?.Send(new SendOrPostCallback(o => callback?.Invoke()), null);
         }
     }
 }

@@ -32,12 +32,12 @@
 
     <Style x:Key="PauseResumeButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource CaptionButtonStyle}">
         <Setter Property="Content" Value="&#xE769;" />
-        <Setter Property="Command" Value="{Binding DataContext.PauseDownloadCommand, ElementName=Footer}" />
+        <Setter Property="Command" Value="{Binding DataContext.Footer.PauseDownloadCommand, ElementName=Footer}" />
         <Setter Property="BorderThickness" Value="5" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Status}" Value="{x:Static download:DownloadStatus.DownloadPause}">
                 <Setter Property="Content" Value="&#xE768;" />
-                <Setter Property="Command" Value="{Binding DataContext.ResumeDownloadCommand, ElementName=Footer}" />
+                <Setter Property="Command" Value="{Binding DataContext.Footer.ResumeDownloadCommand, ElementName=Footer}" />
             </DataTrigger>
         </Style.Triggers>
     </Style>

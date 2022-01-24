@@ -8,12 +8,10 @@ namespace Peernet.Browser.Application
     public class NotificationCollection : ObservableCollection<Notification>
     {
         private readonly int timeout;
-        private readonly IUIThreadDispatcher dispatcher;
         //private readonly ILogger<NotificationCollection> logger = Mvx.IoCProvider.Resolve<ILogger<NotificationCollection>>();
 
-        public NotificationCollection(IUIThreadDispatcher dispatcher, int timeout)
+        public NotificationCollection(int timeout)
         {
-            this.dispatcher = dispatcher;
             this.timeout = timeout;
         }
 
@@ -22,7 +20,7 @@ namespace Peernet.Browser.Application
             var autoEvent = new AutoResetEvent(false);
 
             item.Timer = new Timer(
-                state => { dispatcher?.ExecuteOnMainThread(() => Remove(item)); },
+                state => { UIThreadDispatcher.ExecuteOnMainThread(() => Remove(item)); },
                 autoEvent, timeout, 3000);
 
             AddLog(item);

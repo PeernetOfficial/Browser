@@ -1,5 +1,4 @@
-﻿using Peernet.Browser.Application.Dispatchers;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace Peernet.Browser.Application.Managers
 {
@@ -9,9 +8,9 @@ namespace Peernet.Browser.Application.Managers
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public NotificationsManager(IUIThreadDispatcher uiThreadDispatcher)
+        public NotificationsManager()
         {
-            notifications = new NotificationCollection(uiThreadDispatcher, 11000);
+            notifications = new NotificationCollection(11000);
         }
 
         public NotificationCollection Notifications

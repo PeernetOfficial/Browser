@@ -19,11 +19,7 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Image Width="13.71" Height="20" Grid.Column="0" Style="{StaticResource DownloadItemImageStyle}" />
-                                <TextBlock Grid.Column="1" Text="{Binding File.Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Cursor="Hand" Style="{StaticResource Underlined}">
-                                    <TextBlock.InputBindings>
-                                        <MouseBinding Command="{Binding DataContext.OpenCommand, ElementName=ExploreFilesDataGrid}" CommandParameter="{Binding}" MouseAction="LeftClick" />
-                                    </TextBlock.InputBindings>
-                                </TextBlock>
+                                <TextBlock Grid.Column="1" Text="{Binding File.Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Cursor="Hand" Style="{StaticResource Underlined}" PreviewMouseLeftButtonDown="Open_OnClick" />
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

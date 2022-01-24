@@ -96,8 +96,6 @@ namespace Peernet.Browser.WPF
             RegisterViewModels(services);
             RegisterWindows(services);
             services.RegisterPeernetServices();
-            
-            services.AddSingleton<IUIThreadDispatcher, UIThreadDispatcher>(s => new(SynchronizationContext.Current));
             services.AddSingleton<ISettingsManager, SettingsManager>();
             services.AddSingleton<IApplicationManager, ApplicationManager>();
             services.AddSingleton<INavigationService, NavigationService>();
@@ -156,6 +154,7 @@ namespace Peernet.Browser.WPF
             services.AddSingleton<DeleteAccountViewModel>();
             services.AddSingleton<ShareFileViewModel>();
             services.AddSingleton<EditFileViewModel>();
+            services.AddSingleton<FilePreviewViewModel>();
         }
 
         private void RegisterWindows(ServiceCollection services)

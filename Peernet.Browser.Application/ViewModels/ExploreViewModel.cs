@@ -81,6 +81,7 @@ namespace Peernet.Browser.Application.ViewModels
                     ActiveSearchResults = new ObservableCollection<DownloadModel>(await exploreService
                             .GetFiles(200, (int)category.Type));
                 });
+
         private static VirtualFileSystemCoreCategory GetCategory(VirtualFileSystemEntityType type)
         {
             return new VirtualFileSystemCoreCategory(type.ToString(), type, new List<VirtualFileSystemEntity>());

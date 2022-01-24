@@ -10,7 +10,6 @@ using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Application.Navigation;
 using AsyncAwaitBestPractices.MVVM;
 using System.Collections.ObjectModel;
-using Peernet.Browser.Application.Dispatchers;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -19,16 +18,14 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly ISearchService searchService;
         private readonly IDownloadManager downloadManager;
         private readonly INavigationService navigationService;
-        private readonly IUIThreadDispatcher uiThreadDispatcher;
         private string searchInput;
         private int selectedIndex = -1;
 
-        public HomeViewModel(ISearchService searchService, IDownloadManager downloadManager, INavigationService navigationService, IUIThreadDispatcher uiThreadDispatcher)
+        public HomeViewModel(ISearchService searchService, IDownloadManager downloadManager, INavigationService navigationService)
         {
             this.searchService = searchService;
             this.downloadManager = downloadManager;
             this.navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
-            this.uiThreadDispatcher = uiThreadDispatcher;
 
             SearchCommand = new AsyncCommand(Search);
             Tabs.CollectionChanged += (o, s) =>
@@ -96,7 +93,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         private Task Search()
         {
-            var toAdd = new SearchTabElementViewModel(uiThreadDispatcher, SearchInput, RemoveTab, searchService.Search, DownloadFile, OpenFile);
+            var toAdd = new SearchTabElementViewModel(SearchInput, RemoveTab, searchService.Search, DownloadFile, OpenFile);
             Tabs.Add(toAdd);
             SelectedIndex = Tabs.Count - 1;
             SearchInput = string.Empty;

@@ -11,8 +11,6 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public class SearchTabElementViewModel : ViewModelBase
     {
-        private readonly IUIThreadDispatcher uiThreadDispatcher;
-
         private const int increase = 100;
         private readonly Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction;
         private bool isClearing;
@@ -22,9 +20,8 @@ namespace Peernet.Browser.Application.ViewModels
         private bool showColumnsShared = true;
         private bool showColumnsSize = true;
 
-        public SearchTabElementViewModel(IUIThreadDispatcher uiThreadDispatcher, string title, Func<SearchTabElementViewModel, Task> deleteAction, Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction, Func<SearchResultRowModel, Task> downloadAction, Action<SearchResultRowModel> openAction)
+        public SearchTabElementViewModel(string title, Func<SearchTabElementViewModel, Task> deleteAction, Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction, Func<SearchResultRowModel, Task> downloadAction, Action<SearchResultRowModel> openAction)
         {
-            this.uiThreadDispatcher = uiThreadDispatcher;
             this.refreshAction = refreshAction;
 
             Title = title;
@@ -215,13 +212,13 @@ namespace Peernet.Browser.Application.ViewModels
             if (withClear)
             {
                 isClearing = true;
-                uiThreadDispatcher.ExecuteOnMainThread(() => TableResult.Clear());
+                UIThreadDispatcher.ExecuteOnMainThread(() => TableResult.Clear());
             }
             Filters.SearchFilterResult.LimitOfResult = limit;
             var data = await refreshAction(Filters.SearchFilterResult);
 
             Filters.UuId = data.Id;
-            uiThreadDispatcher.ExecuteOnMainThread(() =>
+            UIThreadDispatcher.ExecuteOnMainThread(() =>
             {
                 for (var i = TableResult.Count; i < data.Rows.Count; i++)
                 {

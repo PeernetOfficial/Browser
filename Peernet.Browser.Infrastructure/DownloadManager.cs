@@ -19,16 +19,14 @@ namespace Peernet.Browser.Infrastructure
         private readonly IDownloadClient downloadClient;
         private readonly ISettingsManager settingsManager;
         private readonly INotificationsManager notificationsManager;
-        private readonly IUIThreadDispatcher uiThreadDispatcher;
 
-        public DownloadManager(IDownloadClient downloadClient, ISettingsManager settingsManager, INotificationsManager notificationsManager, IUIThreadDispatcher uIThreadDispatcher)
+        public DownloadManager(IDownloadClient downloadClient, ISettingsManager settingsManager, INotificationsManager notificationsManager)
 
         {
             this.settingsManager = settingsManager;
             Directory.CreateDirectory(settingsManager.DownloadPath);
             this.downloadClient = downloadClient;
             this.notificationsManager = notificationsManager;
-            this.uiThreadDispatcher = uIThreadDispatcher;
 
             // Fire on the thread-pool and forget
             Task.Run(UpdateStatuses);
@@ -146,7 +144,7 @@ namespace Peernet.Browser.Infrastructure
                     {
                         download.IsCompleted = true;
                         download.Progress = 100;
-                        uiThreadDispatcher.ExecuteOnMainThread(() =>
+                        UIThreadDispatcher.ExecuteOnMainThread(() =>
                             NotifyChange($"{download.File.Name} downloading completed!"));
                     }
                 }

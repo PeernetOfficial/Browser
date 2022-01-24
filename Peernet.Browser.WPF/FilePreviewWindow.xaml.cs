@@ -10,11 +10,12 @@ namespace Peernet.Browser.WPF
     /// </summary>
     public partial class FilePreviewWindow : Window
     {
-        public FilePreviewWindow()
+        public FilePreviewWindow(FilePreviewViewModel dataContext)
         {
             ContentRendered += Window_ContentRendered;
             Initialized += Window_Initialized;
             InitializeComponent();
+            DataContext = dataContext;
             MouseDown += Window_MouseDown;
 
             WindowStartupLocation = App.Current.MainWindow.WindowStartupLocation;

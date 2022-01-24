@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Peernet.Browser.Application;
 using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.Application.Dispatchers;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
@@ -29,6 +30,7 @@ namespace Peernet.Browser.WPF
         public MainWindow(object dataContext)
         {
             InitializeComponent();
+            Loaded += MainWindow_Loaded;
             DataContext = dataContext;
             MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             MouseDown += Window_MouseDown;
@@ -42,6 +44,11 @@ namespace Peernet.Browser.WPF
 
             // TODO: It should have better place. MainWindow's code behind is not the one. It should be called once UI(UI Thread Dispatcher) is created/initialized. Perhaps there is an even to handle.
             BindingOperations.EnableCollectionSynchronization(App.ServiceProvider.GetRequiredService<INotificationsManager>().Notifications, lockObject);
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            UIThreadDispatcher.SetUIContext(SynchronizationContext.Current);
         }
 
         protected override void OnContentChanged(object oldContent, object newContent)
