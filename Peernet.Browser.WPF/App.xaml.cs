@@ -1,22 +1,23 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Peernet.Browser.Application;
 using Peernet.Browser.Application.Contexts;
-using Peernet.Browser.Application.Dispatchers;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels;
-using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.Browser.Infrastructure.Extensions;
 using Peernet.Browser.Infrastructure.Tools;
 using Peernet.Browser.Models.Presentation.Footer;
-using Peernet.Browser.WPF.Controls;
 using Peernet.Browser.WPF.Services;
 using Peernet.Browser.WPF.Styles;
+using Serilog;
+using Serilog.Events;
+using Serilog.Extensions.Logging;
 using System;
 using System.Globalization;
-using System.Threading;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Markup;
@@ -86,23 +87,27 @@ namespace Peernet.Browser.WPF
 
         protected override void OnExit(ExitEventArgs e)
         {
-            new SettingsManager().DefaultTheme = GlobalContext.VisualMode;
+            ServiceProvider.GetRequiredService<ISettingsManager>().DefaultTheme = GlobalContext.VisualMode;
             cmdRunner?.Dispose();
             base.OnExit(e);
         }
 
         private void ConfigureServices(ServiceCollection services)
         {
+            var settings = new SettingsManager();
+            RegisterLogger(services, settings);
             RegisterViewModels(services);
             RegisterWindows(services);
+         
+            services.AddSingleton<ISettingsManager>(settings);
             services.RegisterPeernetServices();
-            services.AddSingleton<ISettingsManager, SettingsManager>();
             services.AddSingleton<IApplicationManager, ApplicationManager>();
             services.AddSingleton<INavigationService, NavigationService>();
             services.AddSingleton<IModalNavigationService, ModalNavigationService>();
             services.AddSingleton<IUserContext, UserContext>();
             services.AddTransient<IVirtualFileSystemFactory, VirtualFileSystemFactory>();
             services.AddTransient<IFilesToCategoryBinder, FilesToCategoryBinder>();
+            services.AddSingleton<NotificationCollection>();
             services.AddSingleton<INotificationsManager, NotificationsManager>();
         }
         public void InitializeBackend()
@@ -122,6 +127,7 @@ namespace Peernet.Browser.WPF
 
             base.OnStartup(e);
         }
+
         private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
             notificationsManager.Notifications.Add(new("Unhandled Dispatcher exception occurred!", e.Exception.Message, Severity.Error, e.Exception));
@@ -160,6 +166,25 @@ namespace Peernet.Browser.WPF
         private void RegisterWindows(ServiceCollection services)
         {
             services.AddSingleton(s => new MainWindow(s.GetRequiredService<MainViewModel>()));
+        }
+
+        private void RegisterLogger(ServiceCollection services, ISettingsManager settings)
+        {
+            var backendPath = Path.GetFullPath(settings.Backend);
+            var backendWorkingDirectory = Path.GetDirectoryName(backendPath);
+            string logPath = string.Empty;
+            if (!string.IsNullOrEmpty(settings.LogFile))
+            {
+                logPath = Path.Combine(backendWorkingDirectory, settings.LogFile);
+                Directory.CreateDirectory(Path.GetDirectoryName(logPath));
+            }
+
+            services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(
+                new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.Trace()
+                .WriteTo.File(logPath, LogEventLevel.Error)
+                .CreateLogger(), dispose: true));
         }
     }
 }

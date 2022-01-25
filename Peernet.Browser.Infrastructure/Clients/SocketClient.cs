@@ -1,4 +1,5 @@
-﻿using Peernet.Browser.Application.Clients;
+﻿using Microsoft.Extensions.Logging;
+using Peernet.Browser.Application.Clients;
 using Peernet.Browser.Application.Managers;
 using System;
 using System.IO;
@@ -14,14 +15,14 @@ namespace Peernet.Browser.Infrastructure.Clients
         private const int ReceiveBufferSize = 8192;
         private ClientWebSocket socket;
         private readonly ISettingsManager settingsManager;
-        //private readonly ILogger<SocketClient> logger;
+        private readonly ILogger<SocketClient> logger;
         public event EventHandler<string> MessageArrived;
         private CancellationTokenSource source;
 
-        public SocketClient(ISettingsManager settingsManager)
+        public SocketClient(ISettingsManager settingsManager, ILogger<SocketClient> logger)
         {
             this.settingsManager = settingsManager;
-            //this.logger = logger;
+            this.logger = logger;
         }
 
         public async Task Connect()
@@ -69,7 +70,7 @@ namespace Peernet.Browser.Infrastructure.Clients
             }
             catch (TaskCanceledException e)
             {
-                //logger.LogDebug(e, "Socket receiver aborted!");
+                logger.LogDebug(e, "Socket receiver aborted!");
             }
             finally
             {

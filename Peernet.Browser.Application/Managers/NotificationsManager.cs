@@ -8,9 +8,9 @@ namespace Peernet.Browser.Application.Managers
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public NotificationsManager()
+        public NotificationsManager(NotificationCollection notifications)
         {
-            notifications = new NotificationCollection(11000);
+            this.notifications = notifications;
         }
 
         public NotificationCollection Notifications
