@@ -25,16 +25,14 @@ namespace Peernet.Browser.Application.ViewModels
             this.notificationsManager = notificationsManager;
         }
 
-        //public override void ViewDisappeared()
-        //{
-        //    IsPolicyAccepted = false;
-        //    base.ViewDisappeared();
-        //}
-
         public bool IsPolicyAccepted
         {
             get => isPolicyAccepted;
-            set => OnPropertyChanged(nameof(IsPolicyAccepted));
+            set
+            {
+                isPolicyAccepted = value;
+                OnPropertyChanged(nameof(IsPolicyAccepted));
+            }
         }
 
         public IAsyncCommand CloseCommand => new AsyncCommand(() =>

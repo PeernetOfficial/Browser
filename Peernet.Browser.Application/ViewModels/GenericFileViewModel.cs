@@ -20,6 +20,7 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IWarehouseService warehouseService;
         private readonly IFileService fileService;
         private readonly INotificationsManager notificationsManager;
+        private readonly DirectoryViewModel directoryViewModel;
         private FileModel selected;
 
         public GenericFileViewModel(
@@ -29,7 +30,8 @@ namespace Peernet.Browser.Application.ViewModels
             IBlockchainService blockchainService,
             IWarehouseService warehouseService,
             IFileService fileService,
-            INotificationsManager notificationsManager)
+            INotificationsManager notificationsManager,
+            DirectoryViewModel directoryViewModel)
         {
             this.modalNavigationService = modalNavigationService;
             this.navigationService = navigationService;
@@ -38,6 +40,7 @@ namespace Peernet.Browser.Application.ViewModels
             this.warehouseService = warehouseService;
             this.fileService = fileService;
             this.notificationsManager = notificationsManager;
+            this.directoryViewModel = directoryViewModel;
 
             ConfirmCommand = new AsyncCommand(Confirm);
             CancelCommand = new AsyncCommand(() =>
@@ -132,7 +135,7 @@ namespace Peernet.Browser.Application.ViewModels
             var files = applicationManager.OpenFileDialog();
             if (files.Length != 0)
             {
-                var parameter = new ShareFileViewModelParameter(warehouseService, blockchainService, navigationService, notificationsManager)
+                var parameter = new ShareFileViewModelParameter(warehouseService, blockchainService, navigationService, notificationsManager, directoryViewModel)
                 {
                     FileModels = files.Select(f => new FileModel(f)).ToList()
                 };

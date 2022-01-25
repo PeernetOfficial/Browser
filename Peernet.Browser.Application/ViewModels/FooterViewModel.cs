@@ -27,6 +27,7 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly ISettingsManager settingsManager;
         private readonly IWarehouseService warehouseService;
         private readonly INotificationsManager notificationsManager;
+        private readonly DirectoryViewModel directoryViewModel;
         private bool areDownloadsCollapsed;
         private string commandLineInput;
         private string commandLineOutput;
@@ -42,7 +43,8 @@ namespace Peernet.Browser.Application.ViewModels
             IWarehouseService warehouseService,
             IBlockchainService blockchainService,
             ISettingsManager settingsManager,
-            INotificationsManager notificationsManager)
+            INotificationsManager notificationsManager,
+            DirectoryViewModel directoryViewModel)
         {
             this.apiService = apiService;
             this.navigationService = navigationService;
@@ -52,6 +54,7 @@ namespace Peernet.Browser.Application.ViewModels
             this.blockchainService = blockchainService;
             this.settingsManager = settingsManager;
             this.notificationsManager = notificationsManager;
+            this.directoryViewModel = directoryViewModel;
 
             DownloadManager = downloadManager;
             DownloadManager.downloadsChanged += GetLastDownloadItem;
@@ -235,7 +238,7 @@ namespace Peernet.Browser.Application.ViewModels
 
             if (fileModels.Count != 0)
             {
-                var parameter = new ShareFileViewModelParameter(warehouseService, blockchainService, navigationService, notificationsManager)
+                var parameter = new ShareFileViewModelParameter(warehouseService, blockchainService, navigationService, notificationsManager, directoryViewModel)
                 {
                     FileModels = fileModels
                 };

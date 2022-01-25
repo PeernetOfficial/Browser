@@ -14,7 +14,8 @@ namespace Peernet.Browser.Application.ViewModels
             IBlockchainService blockchainService,
             IWarehouseService warehouseService,
             IFileService fileService,
-            INotificationsManager notificationsManager)
+            INotificationsManager notificationsManager,
+            DirectoryViewModel directoryViewModel)
             : base(
                   navigationService,
                   modalNavigationService,
@@ -22,7 +23,8 @@ namespace Peernet.Browser.Application.ViewModels
                   blockchainService,
                   warehouseService,
                   fileService,
-                  notificationsManager)
+                  notificationsManager,
+                  directoryViewModel)
         {
         }
     }

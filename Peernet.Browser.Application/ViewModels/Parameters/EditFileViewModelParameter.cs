@@ -1,5 +1,4 @@
-﻿using Peernet.Browser.Application.Contexts;
-using Peernet.Browser.Application.Services;
+﻿using Peernet.Browser.Application.Services;
 using Peernet.Browser.Models.Domain.Blockchain;
 using Peernet.Browser.Models.Presentation.Footer;
 using System;

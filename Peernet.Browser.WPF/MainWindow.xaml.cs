@@ -95,7 +95,8 @@ namespace Peernet.Browser.WPF
                     App.ServiceProvider.GetRequiredService<IWarehouseService>(),
                     App.ServiceProvider.GetRequiredService<IBlockchainService>(),
                     modalNavigationService,
-                    App.ServiceProvider.GetRequiredService<INotificationsManager>())
+                    App.ServiceProvider.GetRequiredService<INotificationsManager>(),
+                    App.ServiceProvider.GetRequiredService<DirectoryViewModel>())
                 {
                     FileModels = fileModels
                 };

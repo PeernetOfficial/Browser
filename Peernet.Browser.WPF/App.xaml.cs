@@ -151,9 +151,9 @@ namespace Peernet.Browser.WPF
             services.AddSingleton<AboutViewModel>();
             services.AddSingleton<MainViewModel>();
             services.AddSingleton<EditProfileViewModel>();
-            services.AddSingleton<DeleteAccountViewModel>();
-            services.AddSingleton<ShareFileViewModel>();
-            services.AddSingleton<EditFileViewModel>();
+            services.AddTransient<DeleteAccountViewModel>();
+            services.AddTransient<ShareFileViewModel>();
+            services.AddTransient<EditFileViewModel>();
             services.AddSingleton<FilePreviewViewModel>();
         }
 

@@ -16,13 +16,15 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
         private readonly IWarehouseService warehouseService;
         private readonly INavigationService navigationService;
         private readonly INotificationsManager notificationsManager;
+        private readonly DirectoryViewModel directoryViewModel;
 
-        public ShareFileViewModelParameter(IWarehouseService warehouseService, IBlockchainService blockchainService, INavigationService navigationService, INotificationsManager notificationsManager)
+        public ShareFileViewModelParameter(IWarehouseService warehouseService, IBlockchainService blockchainService, INavigationService navigationService, INotificationsManager notificationsManager, DirectoryViewModel directoryViewModel)
         {
             this.warehouseService = warehouseService;
             this.blockchainService = blockchainService;
             this.navigationService = navigationService;
             this.notificationsManager = notificationsManager;
+            this.directoryViewModel = directoryViewModel;
         }
 
         public override string ModalTitle => "Share File";
@@ -61,7 +63,7 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
                 notificationsManager.Notifications.Add(new Notification($"Failed to add files. Status: {result.Status}", details, Severity.Error));
             }
 
-            navigationService.Navigate<DirectoryViewModel>();
+            await directoryViewModel.ReloadVirtualFileSystem();
         }
     }
 }

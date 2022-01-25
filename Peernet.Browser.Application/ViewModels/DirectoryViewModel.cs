@@ -28,7 +28,6 @@ namespace Peernet.Browser.Application.ViewModels
         private ObservableCollection<VirtualFileSystemEntity> activeSearchResults;
         private ObservableCollection<VirtualFileSystemCoreEntity> pathElements;
         private string searchInput;
-        private IReadOnlyCollection<VirtualFileSystemEntity> sharedFiles;
         private bool showHint = true;
         private bool showSearchBox;
         private VirtualFileSystem.VirtualFileSystem virtualFileSystem;
@@ -55,7 +54,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         public ObservableCollection<VirtualFileSystemEntity> ActiveSearchResults
         {
-            get => new(activeSearchResults.OrderBy(e => (int)e.Type).ToList());
+            get => new(activeSearchResults?.OrderBy(e => (int)e.Type)?.ToList() ?? Enumerable.Empty<VirtualFileSystemEntity>());
             set
             {
                 activeSearchResults = value;
@@ -212,11 +211,8 @@ namespace Peernet.Browser.Application.ViewModels
             }
 
             var files = await blockchainService.GetList();
-            if (header.Height > 0 || header.Height != ActiveSearchResults?.Count)
-            {
-                sharedFiles = (files ?? new()).Select(f => new VirtualFileSystemEntity(f)).ToList();
-            }
 
+            var sharedFiles = (files ?? new()).Select(f => new VirtualFileSystemEntity(f)).ToList();
             var selected = restoreState ? VirtualFileSystem?.GetCurrentlySelected() : null;
 
             VirtualFileSystem = virtualFileSystemFactory.CreateVirtualFileSystem(files, selected?.Name == nameof(VirtualFileSystem.Home));
