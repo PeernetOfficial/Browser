@@ -19,11 +19,10 @@ namespace Peernet.Browser.WPF.Views
             if (e.Key == Key.Enter)
             {
                 var viewModel = (HomeViewModel)DataContext;
-                var terminalViewModel = App.ServiceProvider.GetRequiredService<TerminalViewModel>();
-                Task.Run(() => terminalViewModel.Prepare(new()).ConfigureAwait(false).GetAwaiter().GetResult());
-
                 if (viewModel.SearchInput.Equals("debug", StringComparison.InvariantCultureIgnoreCase))
                 {
+                    var terminalViewModel = App.ServiceProvider.GetRequiredService<TerminalViewModel>();
+                    Task.Run(() => terminalViewModel.Prepare(new()).ConfigureAwait(false).GetAwaiter().GetResult());
                     var terminal = new TerminalWindow(terminalViewModel);
                     terminal.Show();
                     viewModel.SearchInput = string.Empty;

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Peernet.Browser.Application.ViewModels;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 
@@ -47,6 +48,12 @@ namespace Peernet.Browser.WPF
             {
                 anchorScrollToBottom = false;
             }
+        }
+
+        protected override void OnClosed(System.EventArgs e)
+        {
+            ((TerminalViewModel)DataContext).Dispose();
+            base.OnClosed(e);
         }
     }
 }
