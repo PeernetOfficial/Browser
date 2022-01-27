@@ -51,17 +51,6 @@ namespace Peernet.Browser.WPF
             UIThreadDispatcher.SetUIContext(SynchronizationContext.Current);
         }
 
-        protected override void OnContentChanged(object oldContent, object newContent)
-        {
-            if (newContent is IModal)
-            {
-                GlobalContext.Modal = newContent;
-                Content = oldContent;
-                return;
-            }
-            base.OnContentChanged(oldContent, newContent);
-        }
-
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             if (GlobalContext.CurrentViewModel != nameof(HomeViewModel))

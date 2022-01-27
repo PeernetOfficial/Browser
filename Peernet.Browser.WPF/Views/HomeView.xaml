@@ -57,6 +57,6 @@
         </StackPanel>
 
         <TabControl Visibility="{Binding IsVisible, Converter={StaticResource BoolToVisibility}}" SelectedIndex="{Binding SelectedIndex}"
-                    Foreground="{DynamicResource MainContentBrush}" Margin="0 180 0 0" ItemsSource="{Binding Tabs, IsAsync=True}" />
+                    Foreground="{DynamicResource MainContentBrush}" Margin="0 180 0 0" ItemsSource="{Binding Tabs, IsAsync=True}" Style="{StaticResource SearchResultTabs}" ItemContainerStyle="{StaticResource SearchResultTabItem}" />
     </Grid>
 </UserControl>

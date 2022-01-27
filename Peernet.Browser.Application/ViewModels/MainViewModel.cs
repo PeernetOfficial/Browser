@@ -1,6 +1,8 @@
 ﻿using AsyncAwaitBestPractices.MVVM;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Navigation;
+using Peernet.Browser.Models.Presentation.Main;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
@@ -16,6 +18,10 @@ namespace Peernet.Browser.Application.ViewModels
 
         public MainViewModel(
             FooterViewModel footerViewModel,
+            HomeViewModel homeViewModel,
+            AboutViewModel aboutViewModel,
+            DirectoryViewModel directoryViewModel,
+            ExploreViewModel exploreViewModel,
             NavigationBarViewModel navigationBarViewModel,
             INavigationService navigationService,
             IModalNavigationService modalNavigationService,
@@ -23,6 +29,10 @@ namespace Peernet.Browser.Application.ViewModels
             IApplicationManager applicationManager)
         {
             this.footerViewModel = footerViewModel;
+            AboutViewModel = aboutViewModel;
+            DirectoryViewModel = directoryViewModel;
+            HomeViewModel = homeViewModel;
+            ExploreViewModel = exploreViewModel;
             this.navigationBarViewModel = navigationBarViewModel;
             this.navigationService = navigationService;
             this.modalNavigationService = modalNavigationService;
@@ -46,6 +56,14 @@ namespace Peernet.Browser.Application.ViewModels
         public FooterViewModel Footer => footerViewModel;
 
         public NavigationBarViewModel NavBar => navigationBarViewModel;
+
+        public AboutViewModel AboutViewModel { get; private set; }
+
+        public DirectoryViewModel DirectoryViewModel { get; private set; }
+
+        public HomeViewModel HomeViewModel { get; private set; }
+
+        public ExploreViewModel ExploreViewModel { get; private set; }
 
         public override void Dispose()
         {
