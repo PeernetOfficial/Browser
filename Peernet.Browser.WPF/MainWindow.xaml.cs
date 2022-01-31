@@ -26,7 +26,7 @@ namespace Peernet.Browser.WPF
     public partial class MainWindow : Window
     {
         private readonly object lockObject = new();
-        
+
         public MainWindow(object dataContext)
         {
             InitializeComponent();
@@ -34,6 +34,11 @@ namespace Peernet.Browser.WPF
             DataContext = dataContext;
             MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             MouseDown += Window_MouseDown;
+
+            if (DataContext is MainViewModel main)
+            {
+                main.OpenAboutTab = () => AboutTab.IsSelected = true;
+            }
 
             //Hack for calendar
             CultureInfo ci = CultureInfo.CreateSpecificCulture("en-US");

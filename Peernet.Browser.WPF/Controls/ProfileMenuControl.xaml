@@ -58,10 +58,7 @@
                 </StackPanel>
             </Grid>
             <Separator Style="{StaticResource StandardSeparatorStyle}" Width="179" />
-            <TextBlock Foreground="{DynamicResource MainTextBrush}" Text="About" Padding="20, 4, 140, 4"  HorizontalAlignment="Left" Margin="5, 2" Cursor="Hand">
-                <TextBlock.InputBindings>
-                    <MouseBinding Command="{Binding NavBar.NavigateAboutCommand}" MouseAction="LeftClick" />
-                </TextBlock.InputBindings>
+            <TextBlock Foreground="{DynamicResource MainTextBrush}" Text="About" Padding="20, 4, 140, 4"  HorizontalAlignment="Left" Margin="5, 2" Cursor="Hand" PreviewMouseLeftButtonDown="TextBlock_PreviewMouseLeftButtonDown">
             </TextBlock>
             <Separator Style="{StaticResource StandardSeparatorStyle}" Width="179" />
             <controls:ToggleSwitch Margin="5" />
