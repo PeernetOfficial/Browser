@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Peernet.Browser.Application;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Managers;
@@ -14,12 +13,12 @@ using Peernet.Browser.WPF.Services;
 using Peernet.Browser.WPF.Styles;
 using Serilog;
 using Serilog.Events;
-using Serilog.Extensions.Logging;
 using System;
 using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows.Threading;
 
@@ -34,18 +33,12 @@ namespace Peernet.Browser.WPF
         private INotificationsManager notificationsManager;
         private static CmdRunner cmdRunner;
         public static IServiceProvider ServiceProvider;
+        private readonly object lockObject = new();
 
         static App()
         {
             GlobalContext.VisualMode = new SettingsManager().DefaultTheme;
-
-            FrameworkElement.LanguageProperty.OverrideMetadata(
-
-                typeof(FrameworkElement),
-
-                new FrameworkPropertyMetadata(
-
-                    XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
+            ActivateCultureTracking();
         }
 
         public App()
@@ -125,6 +118,8 @@ namespace Peernet.Browser.WPF
             var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
             mainWindow.Show();
 
+            BindingOperations.EnableCollectionSynchronization(ServiceProvider.GetRequiredService<INotificationsManager>().Notifications, lockObject);
+            
             base.OnStartup(e);
         }
 
@@ -185,6 +180,13 @@ namespace Peernet.Browser.WPF
                 .WriteTo.Trace()
                 .WriteTo.File(logPath, LogEventLevel.Error)
                 .CreateLogger(), dispose: true));
+        }
+
+        private static void ActivateCultureTracking()
+        {
+            FrameworkElement.LanguageProperty.OverrideMetadata(
+                typeof(FrameworkElement),
+                new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
         }
     }
 }
