@@ -241,8 +241,11 @@ namespace Peernet.Browser.Application.ViewModels
 
         private void RefreshIconFilters(IDictionary<FilterType, int> stats, FilterType selected)
         {
-            FilterIconModels.Clear();
-            stats.Foreach(x => FilterIconModels.Add(new IconModel(x.Key, onClick: OnFilterIconClick, count: x.Value) { IsSelected = x.Key == selected }));
+            UIThreadDispatcher.ExecuteOnMainThread(() =>
+            {
+                FilterIconModels.Clear();
+                stats.Foreach(x => FilterIconModels.Add(new IconModel(x.Key, onClick: OnFilterIconClick, count: x.Value) { IsSelected = x.Key == selected }));
+            });
         }
     }
 }
