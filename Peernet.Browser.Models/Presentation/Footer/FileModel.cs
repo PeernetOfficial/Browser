@@ -85,7 +85,7 @@ namespace Peernet.Browser.Models.Presentation.Footer
                 PropertyChanged?.Invoke(this, new(nameof(FileNameWithoutExtension)));
             }
         }
-        
+
         public string Extension
         {
             get => extension;

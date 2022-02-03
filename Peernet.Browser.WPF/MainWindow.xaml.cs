@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Dispatchers;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Navigation;

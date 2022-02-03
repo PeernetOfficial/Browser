@@ -25,7 +25,7 @@ namespace Peernet.Browser.WPF
             var textBox = sender as TextBox;
             var max = textBox.ExtentHeight - textBox.ViewportHeight;
             var offset = textBox.VerticalOffset;
-            
+
             if (offset == 0 && anchorScrollToBottom)
             {
             }

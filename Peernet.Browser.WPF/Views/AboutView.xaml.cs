@@ -1,5 +1,4 @@
-﻿using Peernet.Browser.Application.ViewModels;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace Peernet.Browser.WPF.Views
 {

@@ -1,8 +1,10 @@
-﻿using Peernet.Browser.Application.Contexts;
+﻿using AsyncAwaitBestPractices.MVVM;
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels.Parameters;
+using Peernet.Browser.Models.Domain.Download;
 using Peernet.Browser.Models.Presentation.Footer;
 using System;
 using System.Collections.ObjectModel;
@@ -10,9 +12,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Peernet.Browser.Models.Domain.Download;
-using AsyncAwaitBestPractices.MVVM;
-using Peernet.Browser.Application.Navigation;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -84,10 +83,10 @@ namespace Peernet.Browser.Application.ViewModels
             });
 
         public IAsyncCommand CollapseExpandDownloadsCommand => new AsyncCommand(() =>
-                {
-                    AreDownloadsCollapsed ^= true;
-                    return Task.CompletedTask;
-                });
+                 {
+                     AreDownloadsCollapsed ^= true;
+                     return Task.CompletedTask;
+                 });
 
         public string CommandLineInput
         {

@@ -1,5 +1,4 @@
-﻿using Peernet.Browser.Application.Contexts;
-using Peernet.Browser.Application.Managers;
+﻿using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.Utilities;
 using Peernet.Browser.Infrastructure.Clients;

@@ -1,7 +1,6 @@
 ﻿using Peernet.Browser.Models.Presentation;
 using System;
 using System.ComponentModel;
-using System.Threading;
 
 namespace Peernet.Browser.Application.Contexts
 {
@@ -32,7 +31,7 @@ namespace Peernet.Browser.Application.Contexts
                 NotifyStaticPropertyChanged(nameof(IsLogoVisible));
             }
         }
-        
+
         public static bool IsConnected
         {
             get => isConnected;

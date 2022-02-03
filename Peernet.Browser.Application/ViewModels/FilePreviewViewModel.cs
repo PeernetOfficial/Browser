@@ -1,8 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using AsyncAwaitBestPractices.MVVM;
+﻿using AsyncAwaitBestPractices.MVVM;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Models.Domain.Common;
+using System;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {

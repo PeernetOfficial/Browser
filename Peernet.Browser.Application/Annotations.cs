@@ -50,7 +50,8 @@ namespace Peernet.Browser.Application.Annotations
       AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
       AttributeTargets.Delegate | AttributeTargets.Field | AttributeTargets.Event |
       AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.GenericParameter)]
-    public sealed class CanBeNullAttribute : Attribute { }
+    public sealed class CanBeNullAttribute : Attribute
+    { }
 
     /// <summary>
     /// Indicates that the value of the marked element can never be <c>null</c>.
@@ -64,7 +65,8 @@ namespace Peernet.Browser.Application.Annotations
       AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
       AttributeTargets.Delegate | AttributeTargets.Field | AttributeTargets.Event |
       AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.GenericParameter)]
-    public sealed class NotNullAttribute : Attribute { }
+    public sealed class NotNullAttribute : Attribute
+    { }
 
     /// <summary>
     /// Can be applied to symbols of types derived from IEnumerable as well as to symbols of Task
@@ -83,7 +85,8 @@ namespace Peernet.Browser.Application.Annotations
     [AttributeUsage(
       AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
       AttributeTargets.Delegate | AttributeTargets.Field)]
-    public sealed class ItemNotNullAttribute : Attribute { }
+    public sealed class ItemNotNullAttribute : Attribute
+    { }
 
     /// <summary>
     /// Can be applied to symbols of types derived from IEnumerable as well as to symbols of Task
@@ -103,7 +106,8 @@ namespace Peernet.Browser.Application.Annotations
     [AttributeUsage(
       AttributeTargets.Method | AttributeTargets.Parameter | AttributeTargets.Property |
       AttributeTargets.Delegate | AttributeTargets.Field)]
-    public sealed class ItemCanBeNullAttribute : Attribute { }
+    public sealed class ItemCanBeNullAttribute : Attribute
+    { }
 
     /// <summary>
     /// Indicates that the marked method builds string by the format pattern and (optional) arguments.
@@ -146,7 +150,8 @@ namespace Peernet.Browser.Application.Annotations
     /// }
     /// </code></example>
     [AttributeUsage(AttributeTargets.Parameter)]
-    public sealed class StructuredMessageTemplateAttribute : Attribute { }
+    public sealed class StructuredMessageTemplateAttribute : Attribute
+    { }
 
     /// <summary>
     /// Use this annotation to specify a type that contains static or const fields
@@ -245,7 +250,8 @@ namespace Peernet.Browser.Application.Annotations
     [AttributeUsage(
       AttributeTargets.Parameter | AttributeTargets.Field | AttributeTargets.Property |
       AttributeTargets.Method | AttributeTargets.Delegate)]
-    public sealed class NonNegativeValueAttribute : Attribute { }
+    public sealed class NonNegativeValueAttribute : Attribute
+    { }
 
     /// <summary>
     /// Indicates that the function argument should be a string literal and match one
@@ -259,7 +265,8 @@ namespace Peernet.Browser.Application.Annotations
     /// }
     /// </code></example>
     [AttributeUsage(AttributeTargets.Parameter)]
-    public sealed class InvokerParameterNameAttribute : Attribute { }
+    public sealed class InvokerParameterNameAttribute : Attribute
+    { }
 
     /// <summary>
     /// Indicates that the method is contained in a type that implements
@@ -420,7 +427,8 @@ namespace Peernet.Browser.Application.Annotations
     /// }
     /// </code></example>
     [AttributeUsage(AttributeTargets.Interface | AttributeTargets.Class | AttributeTargets.Struct)]
-    public sealed class CannotApplyEqualityOperatorAttribute : Attribute { }
+    public sealed class CannotApplyEqualityOperatorAttribute : Attribute
+    { }
 
     /// <summary>
     /// When applied to a target attribute, specifies a requirement for any type marked
@@ -587,7 +595,8 @@ namespace Peernet.Browser.Application.Annotations
     /// If the parameter is an enumerable, indicates that it is enumerated while the method is executed.
     /// </summary>
     [AttributeUsage(AttributeTargets.Parameter)]
-    public sealed class InstantHandleAttribute : Attribute { }
+    public sealed class InstantHandleAttribute : Attribute
+    { }
 
     /// <summary>
     /// Indicates that a method does not make any observable state changes.
@@ -601,7 +610,8 @@ namespace Peernet.Browser.Application.Annotations
     /// }
     /// </code></example>
     [AttributeUsage(AttributeTargets.Method)]
-    public sealed class PureAttribute : Attribute { }
+    public sealed class PureAttribute : Attribute
+    { }
 
     /// <summary>
     /// Indicates that the return value of the method invocation must be used.
@@ -666,7 +676,8 @@ namespace Peernet.Browser.Application.Annotations
     [AttributeUsage(
       AttributeTargets.Field | AttributeTargets.Property | AttributeTargets.Parameter | AttributeTargets.Method |
       AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.Struct | AttributeTargets.GenericParameter)]
-    public sealed class ProvidesContextAttribute : Attribute { }
+    public sealed class ProvidesContextAttribute : Attribute
+    { }
 
     /// <summary>
     /// Indicates that a parameter is a path to a file or a folder within a web project.
@@ -711,7 +722,8 @@ namespace Peernet.Browser.Application.Annotations
     /// </code>
     /// </example>
     [AttributeUsage(AttributeTargets.Method)]
-    public sealed class SourceTemplateAttribute : Attribute { }
+    public sealed class SourceTemplateAttribute : Attribute
+    { }
 
     /// <summary>
     /// Allows specifying a macro for a parameter of a <see cref="SourceTemplateAttribute">source template</see>.
@@ -900,14 +912,16 @@ namespace Peernet.Browser.Application.Annotations
     /// for custom wrappers similar to <c>System.Web.Mvc.Controller.View(String, String)</c>.
     /// </summary>
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Field | AttributeTargets.Property)]
-    public sealed class AspMvcMasterAttribute : Attribute { }
+    public sealed class AspMvcMasterAttribute : Attribute
+    { }
 
     /// <summary>
     /// ASP.NET MVC attribute. Indicates that the marked parameter is an MVC model type. Use this attribute
     /// for custom wrappers similar to <c>System.Web.Mvc.Controller.View(String, Object)</c>.
     /// </summary>
     [AttributeUsage(AttributeTargets.Parameter)]
-    public sealed class AspMvcModelTypeAttribute : Attribute { }
+    public sealed class AspMvcModelTypeAttribute : Attribute
+    { }
 
     /// <summary>
     /// ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter is an MVC
@@ -916,13 +930,15 @@ namespace Peernet.Browser.Application.Annotations
     /// <c>System.Web.Mvc.Html.RenderPartialExtensions.RenderPartial(HtmlHelper, String)</c>.
     /// </summary>
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Method | AttributeTargets.Field | AttributeTargets.Property)]
-    public sealed class AspMvcPartialViewAttribute : Attribute { }
+    public sealed class AspMvcPartialViewAttribute : Attribute
+    { }
 
     /// <summary>
     /// ASP.NET MVC attribute. Allows disabling inspections for MVC views within a class or a method.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-    public sealed class AspMvcSuppressViewErrorAttribute : Attribute { }
+    public sealed class AspMvcSuppressViewErrorAttribute : Attribute
+    { }
 
     /// <summary>
     /// ASP.NET MVC attribute. Indicates that a parameter is an MVC display template.
@@ -930,7 +946,8 @@ namespace Peernet.Browser.Application.Annotations
     /// <c>System.Web.Mvc.Html.DisplayExtensions.DisplayForModel(HtmlHelper, String)</c>.
     /// </summary>
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Field | AttributeTargets.Property)]
-    public sealed class AspMvcDisplayTemplateAttribute : Attribute { }
+    public sealed class AspMvcDisplayTemplateAttribute : Attribute
+    { }
 
     /// <summary>
     /// ASP.NET MVC attribute. Indicates that the marked parameter is an MVC editor template.
@@ -938,7 +955,8 @@ namespace Peernet.Browser.Application.Annotations
     /// <c>System.Web.Mvc.Html.EditorExtensions.EditorForModel(HtmlHelper, String)</c>.
     /// </summary>
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Field | AttributeTargets.Property)]
-    public sealed class AspMvcEditorTemplateAttribute : Attribute { }
+    public sealed class AspMvcEditorTemplateAttribute : Attribute
+    { }
 
     /// <summary>
     /// ASP.NET MVC attribute. Indicates that the marked parameter is an MVC template.
@@ -946,7 +964,8 @@ namespace Peernet.Browser.Application.Annotations
     /// <c>System.ComponentModel.DataAnnotations.UIHintAttribute(System.String)</c>.
     /// </summary>
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Field | AttributeTargets.Property)]
-    public sealed class AspMvcTemplateAttribute : Attribute { }
+    public sealed class AspMvcTemplateAttribute : Attribute
+    { }
 
     /// <summary>
     /// ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter
@@ -955,21 +974,24 @@ namespace Peernet.Browser.Application.Annotations
     /// <c>System.Web.Mvc.Controller.View(Object)</c>.
     /// </summary>
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Method | AttributeTargets.Field | AttributeTargets.Property)]
-    public sealed class AspMvcViewAttribute : Attribute { }
+    public sealed class AspMvcViewAttribute : Attribute
+    { }
 
     /// <summary>
     /// ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter
     /// is an MVC view component name.
     /// </summary>
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Field | AttributeTargets.Property)]
-    public sealed class AspMvcViewComponentAttribute : Attribute { }
+    public sealed class AspMvcViewComponentAttribute : Attribute
+    { }
 
     /// <summary>
     /// ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter
     /// is an MVC view component view. If applied to a method, the MVC view component view name is default.
     /// </summary>
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Method | AttributeTargets.Field | AttributeTargets.Property)]
-    public sealed class AspMvcViewComponentViewAttribute : Attribute { }
+    public sealed class AspMvcViewComponentViewAttribute : Attribute
+    { }
 
     /// <summary>
     /// ASP.NET MVC attribute. When applied to a parameter of an attribute,
@@ -983,7 +1005,8 @@ namespace Peernet.Browser.Application.Annotations
     /// }
     /// </code></example>
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Property)]
-    public sealed class AspMvcActionSelectorAttribute : Attribute { }
+    public sealed class AspMvcActionSelectorAttribute : Attribute
+    { }
 
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Property | AttributeTargets.Field)]
     public sealed class HtmlElementAttributesAttribute : Attribute
@@ -1017,7 +1040,8 @@ namespace Peernet.Browser.Application.Annotations
     /// <c>System.Web.WebPages.WebPageBase.RenderSection(String)</c>.
     /// </summary>
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Method)]
-    public sealed class RazorSectionAttribute : Attribute { }
+    public sealed class RazorSectionAttribute : Attribute
+    { }
 
     /// <summary>
     /// Indicates how method, constructor invocation, or property access
@@ -1083,7 +1107,8 @@ namespace Peernet.Browser.Application.Annotations
     /// <see cref="AssertionConditionAttribute"/> attribute.
     /// </summary>
     [AttributeUsage(AttributeTargets.Method)]
-    public sealed class AssertionMethodAttribute : Attribute { }
+    public sealed class AssertionMethodAttribute : Attribute
+    { }
 
     /// <summary>
     /// Indicates the condition parameter of the assertion method. The method itself should be
@@ -1126,7 +1151,8 @@ namespace Peernet.Browser.Application.Annotations
     /// </summary>
     [Obsolete("Use [ContractAnnotation('=> halt')] instead")]
     [AttributeUsage(AttributeTargets.Method)]
-    public sealed class TerminatesProgramAttribute : Attribute { }
+    public sealed class TerminatesProgramAttribute : Attribute
+    { }
 
     /// <summary>
     /// Indicates that the method is a pure LINQ method, with postponed enumeration (like Enumerable.Select,
@@ -1134,7 +1160,8 @@ namespace Peernet.Browser.Application.Annotations
     /// of delegate type by analyzing LINQ method chains.
     /// </summary>
     [AttributeUsage(AttributeTargets.Method)]
-    public sealed class LinqTunnelAttribute : Attribute { }
+    public sealed class LinqTunnelAttribute : Attribute
+    { }
 
     /// <summary>
     /// Indicates that IEnumerable passed as a parameter is not enumerated.
@@ -1153,13 +1180,15 @@ namespace Peernet.Browser.Application.Annotations
     /// }
     /// </code></example>
     [AttributeUsage(AttributeTargets.Parameter)]
-    public sealed class NoEnumerationAttribute : Attribute { }
+    public sealed class NoEnumerationAttribute : Attribute
+    { }
 
     /// <summary>
     /// Indicates that the marked parameter, field, or property is a regular expression pattern.
     /// </summary>
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Field | AttributeTargets.Property)]
-    public sealed class RegexPatternAttribute : Attribute { }
+    public sealed class RegexPatternAttribute : Attribute
+    { }
 
     /// <summary>
     /// Prevents the Member Reordering feature from tossing members of the marked class.
@@ -1169,14 +1198,16 @@ namespace Peernet.Browser.Application.Annotations
     /// </remarks>
     [AttributeUsage(
       AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.Struct | AttributeTargets.Enum)]
-    public sealed class NoReorderAttribute : Attribute { }
+    public sealed class NoReorderAttribute : Attribute
+    { }
 
     /// <summary>
     /// XAML attribute. Indicates the type that has <c>ItemsSource</c> property and should be treated
     /// as <c>ItemsControl</c>-derived type, to enable inner items <c>DataContext</c> type resolve.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public sealed class XamlItemsControlAttribute : Attribute { }
+    public sealed class XamlItemsControlAttribute : Attribute
+    { }
 
     /// <summary>
     /// XAML attribute. Indicates the property of some <c>BindingBase</c>-derived type, that
@@ -1188,7 +1219,8 @@ namespace Peernet.Browser.Application.Annotations
     /// marked with the <see cref="XamlItemsControlAttribute"/> attribute.
     /// </remarks>
     [AttributeUsage(AttributeTargets.Property)]
-    public sealed class XamlItemBindingOfItemsControlAttribute : Attribute { }
+    public sealed class XamlItemBindingOfItemsControlAttribute : Attribute
+    { }
 
     /// <summary>
     /// XAML attribute. Indicates the property of some <c>Style</c>-derived type, that
@@ -1200,7 +1232,8 @@ namespace Peernet.Browser.Application.Annotations
     /// marked with the <see cref="XamlItemsControlAttribute"/> attribute.
     /// </remarks>
     [AttributeUsage(AttributeTargets.Property)]
-    public sealed class XamlItemStyleOfItemsControlAttribute : Attribute { }
+    public sealed class XamlItemStyleOfItemsControlAttribute : Attribute
+    { }
 
     /// <summary>
     /// XAML attribute. Indicates that DependencyProperty has <c>OneWay</c> binding mode by default.
@@ -1209,7 +1242,8 @@ namespace Peernet.Browser.Application.Annotations
     /// This attribute must be applied to DependencyProperty's CLR accessor property if it is present, to DependencyProperty descriptor field otherwise.
     /// </remarks>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
-    public sealed class XamlOneWayBindingModeByDefaultAttribute : Attribute { }
+    public sealed class XamlOneWayBindingModeByDefaultAttribute : Attribute
+    { }
 
     /// <summary>
     /// XAML attribute. Indicates that DependencyProperty has <c>TwoWay</c> binding mode by default.
@@ -1218,7 +1252,8 @@ namespace Peernet.Browser.Application.Annotations
     /// This attribute must be applied to DependencyProperty's CLR accessor property if it is present, to DependencyProperty descriptor field otherwise.
     /// </remarks>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
-    public sealed class XamlTwoWayBindingModeByDefaultAttribute : Attribute { }
+    public sealed class XamlTwoWayBindingModeByDefaultAttribute : Attribute
+    { }
 
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public sealed class AspChildControlTypeAttribute : Attribute
@@ -1235,13 +1270,16 @@ namespace Peernet.Browser.Application.Annotations
     }
 
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Method)]
-    public sealed class AspDataFieldAttribute : Attribute { }
+    public sealed class AspDataFieldAttribute : Attribute
+    { }
 
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Method)]
-    public sealed class AspDataFieldsAttribute : Attribute { }
+    public sealed class AspDataFieldsAttribute : Attribute
+    { }
 
     [AttributeUsage(AttributeTargets.Property)]
-    public sealed class AspMethodPropertyAttribute : Attribute { }
+    public sealed class AspMethodPropertyAttribute : Attribute
+    { }
 
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public sealed class AspRequiredAttributeAttribute : Attribute
@@ -1320,19 +1358,24 @@ namespace Peernet.Browser.Application.Annotations
     }
 
     [AttributeUsage(AttributeTargets.Method)]
-    public sealed class RazorHelperCommonAttribute : Attribute { }
+    public sealed class RazorHelperCommonAttribute : Attribute
+    { }
 
     [AttributeUsage(AttributeTargets.Property)]
-    public sealed class RazorLayoutAttribute : Attribute { }
+    public sealed class RazorLayoutAttribute : Attribute
+    { }
 
     [AttributeUsage(AttributeTargets.Method)]
-    public sealed class RazorWriteLiteralMethodAttribute : Attribute { }
+    public sealed class RazorWriteLiteralMethodAttribute : Attribute
+    { }
 
     [AttributeUsage(AttributeTargets.Method)]
-    public sealed class RazorWriteMethodAttribute : Attribute { }
+    public sealed class RazorWriteMethodAttribute : Attribute
+    { }
 
     [AttributeUsage(AttributeTargets.Parameter)]
-    public sealed class RazorWriteMethodParameterAttribute : Attribute { }
+    public sealed class RazorWriteMethodParameterAttribute : Attribute
+    { }
 
     /// <summary>
     /// Indicates that the marked parameter, field, or property is a route template.
@@ -1342,7 +1385,8 @@ namespace Peernet.Browser.Application.Annotations
     /// to enable syntax highlighting, code completion, navigation, rename and other features in string literals.
     /// </remarks>
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Field | AttributeTargets.Property)]
-    public sealed class RouteTemplateAttribute : Attribute { }
+    public sealed class RouteTemplateAttribute : Attribute
+    { }
 
     /// <summary>
     /// Indicates that the marked type is custom route parameter constraint,

@@ -45,7 +45,6 @@ namespace Peernet.Browser.Models.Presentation.Home
                 case TimePeriods.LastYear:
                     from = from.AddDays(-365);
                     break;
-
             }
             return new(from, to);
         }

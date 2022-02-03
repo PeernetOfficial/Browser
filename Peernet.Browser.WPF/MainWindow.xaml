@@ -85,7 +85,6 @@
                     <Setter Property="ToolTipService.BetweenShowDelay" Value="0" />
                     <Setter Property="ToolTipService.InitialShowDelay" Value="0" />
                 </Style>
-                
             </controls:TabControlEx.Resources>
             <TabItem Name="HomeTab" DataContext="{Binding HomeViewModel}" Style="{StaticResource NavBarTabItem}">
                 <views:HomeView />
@@ -127,31 +126,31 @@
                     <Border ToolTip="Explore" Style="{StaticResource OuterBorder}">
                         <Border>
                             <Border.Style>
-                            <Style TargetType="{x:Type Border}" BasedOn="{StaticResource HeaderStyle}">
-                                <Setter Property="Background">
-                                    <Setter.Value>
-                                        <ImageBrush ImageSource="{StaticResource ExploreDrawingImage}" />
-                                    </Setter.Value>
-                                </Setter>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Path=IsSelected, ElementName=ExploreTab}" Value="True">
-                                        <Setter Property="Background">
-                                            <Setter.Value>
-                                                <ImageBrush ImageSource="{StaticResource Explore_FocusedDrawingImage}" />
-                                            </Setter.Value>
-                                        </Setter>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Path=IsMouseOver, ElementName=ExploreTab}" Value="True">
-                                        <Setter Property="Background">
-                                            <Setter.Value>
-                                                <ImageBrush ImageSource="{StaticResource Explore_FocusedDrawingImage}" />
-                                            </Setter.Value>
-                                        </Setter>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Border.Style>
-                    </Border>
+                                <Style TargetType="{x:Type Border}" BasedOn="{StaticResource HeaderStyle}">
+                                    <Setter Property="Background">
+                                        <Setter.Value>
+                                            <ImageBrush ImageSource="{StaticResource ExploreDrawingImage}" />
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=IsSelected, ElementName=ExploreTab}" Value="True">
+                                            <Setter Property="Background">
+                                                <Setter.Value>
+                                                    <ImageBrush ImageSource="{StaticResource Explore_FocusedDrawingImage}" />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=IsMouseOver, ElementName=ExploreTab}" Value="True">
+                                            <Setter Property="Background">
+                                                <Setter.Value>
+                                                    <ImageBrush ImageSource="{StaticResource Explore_FocusedDrawingImage}" />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                        </Border>
                     </Border>
                 </TabItem.Header>
             </TabItem>

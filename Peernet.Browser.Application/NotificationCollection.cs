@@ -50,9 +50,11 @@ namespace Peernet.Browser.Application
                         logger.LogError(standardLogMessage);
                     }
                     break;
+
                 case Severity.Normal:
                     logger.LogInformation(standardLogMessage);
                     break;
+
                 default:
                     logger.LogDebug(standardLogMessage);
                     break;

@@ -89,7 +89,7 @@ namespace Peernet.Browser.WPF
         {
             var settings = new SettingsManager();
             RegisterLogger(services, settings);
-         
+
             services.AddSingleton<ISettingsManager>(settings);
             services.RegisterPeernetServices();
             services.AddSingleton<IApplicationManager, ApplicationManager>();
@@ -104,6 +104,7 @@ namespace Peernet.Browser.WPF
             RegisterViewModels(services);
             RegisterWindows(services);
         }
+
         public void InitializeBackend()
         {
             var settingsManager = ServiceProvider.GetRequiredService<ISettingsManager>();
@@ -120,7 +121,7 @@ namespace Peernet.Browser.WPF
             mainWindow.Show();
 
             BindingOperations.EnableCollectionSynchronization(ServiceProvider.GetRequiredService<INotificationsManager>().Notifications, lockObject);
-            
+
             base.OnStartup(e);
         }
 

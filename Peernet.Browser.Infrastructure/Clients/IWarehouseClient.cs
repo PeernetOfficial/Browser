@@ -1,5 +1,5 @@
-﻿using System.IO;
-using Peernet.Browser.Models.Domain.Warehouse;
+﻿using Peernet.Browser.Models.Domain.Warehouse;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure.Clients

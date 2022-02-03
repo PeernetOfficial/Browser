@@ -1,4 +1,8 @@
-﻿using Peernet.Browser.Application.Services;
+﻿using AsyncAwaitBestPractices.MVVM;
+using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Application.Navigation;
+using Peernet.Browser.Application.Services;
+using Peernet.Browser.Application.Utilities;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.Browser.Models.Domain.Blockchain;
@@ -8,10 +12,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Peernet.Browser.Application.Utilities;
-using Peernet.Browser.Application.Navigation;
-using AsyncAwaitBestPractices.MVVM;
-using Peernet.Browser.Application.Managers;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -115,12 +115,12 @@ namespace Peernet.Browser.Application.ViewModels
                 });
 
         public IAsyncCommand<VirtualFileSystemCoreEntity> OpenTreeItemCommand => new AsyncCommand<VirtualFileSystemCoreEntity>(entity =>
-        {
-            InitializePath(entity);
-            OpenCommand.Execute(entity);
+         {
+             InitializePath(entity);
+             OpenCommand.Execute(entity);
 
-            return Task.CompletedTask;
-        });
+             return Task.CompletedTask;
+         });
 
         public ObservableCollection<VirtualFileSystemCoreEntity> PathElements
         {
@@ -133,15 +133,15 @@ namespace Peernet.Browser.Application.ViewModels
         }
 
         public IAsyncCommand RemoveHint => new AsyncCommand(() =>
-                {
-                    if (ShowHint)
-                    {
-                        ShowHint = false;
-                        ShowSearchBox = true;
-                    }
+                 {
+                     if (ShowHint)
+                     {
+                         ShowHint = false;
+                         ShowSearchBox = true;
+                     }
 
-                    return Task.CompletedTask;
-                });
+                     return Task.CompletedTask;
+                 });
 
         public IAsyncCommand SearchCommand =>
             new AsyncCommand(async () =>

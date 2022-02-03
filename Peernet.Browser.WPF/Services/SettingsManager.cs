@@ -1,7 +1,7 @@
-﻿using System;
-using System.Configuration;
-using Peernet.Browser.Application.Managers;
+﻿using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Models.Presentation;
+using System;
+using System.Configuration;
 
 namespace Peernet.Browser.WPF.Services
 {

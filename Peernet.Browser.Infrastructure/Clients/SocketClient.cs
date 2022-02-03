@@ -16,7 +16,9 @@ namespace Peernet.Browser.Infrastructure.Clients
         private ClientWebSocket socket;
         private readonly ISettingsManager settingsManager;
         private readonly ILogger<SocketClient> logger;
+
         public event EventHandler<string> MessageArrived;
+
         private CancellationTokenSource source;
 
         public SocketClient(ISettingsManager settingsManager, ILogger<SocketClient> logger)
@@ -66,7 +68,6 @@ namespace Peernet.Browser.Infrastructure.Clients
                     MessageArrived?.Invoke(null, message);
                     outputStream.Position = 0;
                 }
-
             }
             catch (TaskCanceledException e)
             {

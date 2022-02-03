@@ -1,5 +1,5 @@
-﻿using System;
-using Peernet.Browser.Application.ViewModels;
+﻿using Peernet.Browser.Application.ViewModels;
+using System;
 using System.Windows;
 using System.Windows.Input;
 

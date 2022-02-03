@@ -1,6 +1,5 @@
 ﻿using Peernet.Browser.Models.Domain.Common;
 using System;
-using System.ComponentModel;
 
 namespace Peernet.Browser.Application.VirtualFileSystem
 {

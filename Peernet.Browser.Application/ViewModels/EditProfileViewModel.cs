@@ -26,38 +26,38 @@ namespace Peernet.Browser.Application.ViewModels
         }
 
         public IAsyncCommand CloseCommand => new AsyncCommand(() =>
-         {
-             UserContext.ReloadContext();
+          {
+              UserContext.ReloadContext();
 
-             modalNavigationService.Close();
-             return Task.CompletedTask;
-         });
+              modalNavigationService.Close();
+              return Task.CompletedTask;
+          });
 
         public IAsyncCommand RemovePhotoCommand => new AsyncCommand(() =>
-         {
-             modalNavigationService.Navigate<DeleteAccountViewModel>();
-             return Task.CompletedTask;
-         });
+          {
+              modalNavigationService.Navigate<DeleteAccountViewModel>();
+              return Task.CompletedTask;
+          });
 
         public IAsyncCommand SaveChangesCommand => new AsyncCommand(async () =>
-         {
-             if (UserContext.HasUserChanged)
-             {
-                 var result = await profileService.UpdateUser(UserContext.User.Name, UserContext.User.Image);
-                 if (result is not { Status: BlockchainStatus.StatusOK })
-                 {
-                     var message = $"Failed to update User. Status: {result?.Status.ToString() ?? "[Unknown]"}";
-                     var details =
-                         MessagingHelper.GetApiSummary(
-                             $"{nameof(profileService)}.{nameof(profileService.UpdateUser)}") +
-                         MessagingHelper.GetInOutSummary(UserContext.User, result);
-                     notificationsManager.Notifications.Add(new Notification(message, details, Severity.Error));
-                 }
-             }
+          {
+              if (UserContext.HasUserChanged)
+              {
+                  var result = await profileService.UpdateUser(UserContext.User.Name, UserContext.User.Image);
+                  if (result is not { Status: BlockchainStatus.StatusOK })
+                  {
+                      var message = $"Failed to update User. Status: {result?.Status.ToString() ?? "[Unknown]"}";
+                      var details =
+                          MessagingHelper.GetApiSummary(
+                              $"{nameof(profileService)}.{nameof(profileService.UpdateUser)}") +
+                          MessagingHelper.GetInOutSummary(UserContext.User, result);
+                      notificationsManager.Notifications.Add(new Notification(message, details, Severity.Error));
+                  }
+              }
 
-             UserContext.ReloadContext();
-             modalNavigationService.Close();
-         });
+              UserContext.ReloadContext();
+              modalNavigationService.Close();
+          });
 
         public IUserContext UserContext { get; set; }
     }

@@ -1,15 +1,15 @@
-﻿using Peernet.Browser.Application.Download;
-using Peernet.Browser.Application.VirtualFileSystem;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
+﻿using AsyncAwaitBestPractices.MVVM;
+using Peernet.Browser.Application.Download;
+using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels.Parameters;
+using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.Browser.Models.Presentation.Footer;
-using AsyncAwaitBestPractices.MVVM;
-using Peernet.Browser.Application.Navigation;
-using System.Threading;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {

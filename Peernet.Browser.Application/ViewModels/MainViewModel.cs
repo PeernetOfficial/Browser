@@ -1,9 +1,7 @@
 ﻿using AsyncAwaitBestPractices.MVVM;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Navigation;
-using Peernet.Browser.Models.Presentation.Main;
 using System;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels

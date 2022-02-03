@@ -19,6 +19,7 @@ namespace Peernet.Browser.WPF.Styles
                 UpdateSource();
             }
         }
+
         public Uri DarkModeSource
         {
             get { return darkModeSource; }

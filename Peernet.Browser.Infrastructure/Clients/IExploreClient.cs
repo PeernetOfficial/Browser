@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using Peernet.Browser.Models.Domain.Search;
+﻿using Peernet.Browser.Models.Domain.Search;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure.Clients
 {

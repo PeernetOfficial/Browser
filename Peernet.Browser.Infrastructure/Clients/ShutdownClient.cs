@@ -15,6 +15,7 @@ namespace Peernet.Browser.Infrastructure.Clients
         }
 
         public override string CoreSegment => "shutdown";
+
         public ApiShutdownStatus GetAction(ShutdownAction action)
         {
             var parameters = new Dictionary<string, string>

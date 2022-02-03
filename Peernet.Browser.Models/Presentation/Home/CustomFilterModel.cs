@@ -17,7 +17,7 @@ namespace Peernet.Browser.Models.Presentation.Home
             this.isRadio = isRadio;
             this.onSelectionChanged = onSelectionChanged;
             Title = title;
-            foreach(var element in GetElements().OrderBy(e => e.Key))
+            foreach (var element in GetElements().OrderBy(e => e.Key))
             {
                 var model = new CustomCheckBoxModel
                 {

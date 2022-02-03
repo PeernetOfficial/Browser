@@ -1,14 +1,14 @@
 ﻿<Window  x:Class="Peernet.Browser.WPF.FilePreviewWindow"
-                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                  Width="700"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         Width="700"
                   Height="500"
                   Top="100"
                   Left="100"
                   x:Name="PreviewWindow"
                   Background="{DynamicResource PreviewBackground}" Content="{Binding}">
     <WindowChrome.WindowChrome>
-        <WindowChrome ResizeBorderThickness="0" GlassFrameThickness="0" CaptionHeight="0" CornerRadius="0"/>
+        <WindowChrome ResizeBorderThickness="0" GlassFrameThickness="0" CaptionHeight="0" CornerRadius="0" />
     </WindowChrome.WindowChrome>
     <Window.Resources>
         <ResourceDictionary>
@@ -22,21 +22,21 @@
         </ResourceDictionary>
     </Window.Resources>
 
-        <Window.ContentTemplate>
+    <Window.ContentTemplate>
         <DataTemplate>
-                <Border BorderThickness="1">
+            <Border BorderThickness="1">
                 <Border.BorderBrush>
                     <SolidColorBrush Opacity="0.2" Color="Black" />
                 </Border.BorderBrush>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="40" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-                        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Button Style="{StaticResource CloseButtonStyle}" Click="Close_OnClick" />
-                        </StackPanel>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Style="{StaticResource CloseButtonStyle}" Click="Close_OnClick" />
+                    </StackPanel>
                     <StackPanel Grid.Row="1" Margin="40, 0, 0, 0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Information" Style="{StaticResource Active}" FontSize="32" FontWeight="Medium" />

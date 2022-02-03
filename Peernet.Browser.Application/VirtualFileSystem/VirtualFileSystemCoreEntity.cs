@@ -20,7 +20,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             get => isSelected;
             set
             {
-                isSelected =  value;
+                isSelected = value;
                 PropertyChanged?.Invoke(this, new(nameof(IsSelected)));
             }
         }
