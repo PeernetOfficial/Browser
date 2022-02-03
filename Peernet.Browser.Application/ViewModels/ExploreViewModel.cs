@@ -16,6 +16,7 @@ namespace Peernet.Browser.Application.ViewModels
     public class ExploreViewModel : ViewModelBase
     {
         public ObservableCollection<DownloadModel> activeSearchResults;
+        public bool isLoaded;
         private readonly IExploreService exploreService;
         private readonly IDownloadManager downloadManager;
         private readonly INavigationService navigationService;
@@ -37,6 +38,16 @@ namespace Peernet.Browser.Application.ViewModels
             {
                 activeSearchResults = value;
                 OnPropertyChanged(nameof(ActiveSearchResults));
+            }
+        }
+
+        public bool IsLoaded
+        {
+            get => isLoaded;
+            set
+            {
+                isLoaded = value;
+                OnPropertyChanged(nameof(IsLoaded));
             }
         }
 
@@ -116,9 +127,10 @@ namespace Peernet.Browser.Application.ViewModels
             for (int i = 0; i < 7 && results.IsNullOrEmpty(); i++)
             {
                 results = await exploreService.GetFiles(200);
-                Thread.Sleep(1000);
+                Thread.Sleep(7000);
             }
 
+            IsLoaded = true;
             ActiveSearchResults = new ObservableCollection<DownloadModel>(results);
         }
     }

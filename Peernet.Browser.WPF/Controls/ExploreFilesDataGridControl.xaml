@@ -8,7 +8,7 @@
              mc:Ignorable="d"
              x:Name="ExploreFilesDataGrid">
     <Grid>
-        <DataGrid Style="{DynamicResource DataGridStyle}" ItemsSource="{Binding ActiveSearchResults, IsAsync=True, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False">
+        <DataGrid Style="{DynamicResource DataGridStyle}" ItemsSource="{Binding ActiveSearchResults, IsAsync=True, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False" Visibility="{Binding IsLoaded, Converter={StaticResource BoolToVisibility}}">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="NAME" SortMemberPath="File.Name" Width="*" HeaderStyle="{StaticResource ShiftedDataGridColumnHeaderStyle}">
                     <DataGridTemplateColumn.CellTemplate>
@@ -125,5 +125,17 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <TextBlock FontSize="14" Foreground="{DynamicResource MainContentBrush}" Text="Loading..." Background="Transparent" Margin="60 40" >
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Hidden" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsLoaded}" Value="False">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
     </Grid>
 </UserControl>
