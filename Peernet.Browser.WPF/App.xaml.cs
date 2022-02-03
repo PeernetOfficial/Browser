@@ -89,8 +89,6 @@ namespace Peernet.Browser.WPF
         {
             var settings = new SettingsManager();
             RegisterLogger(services, settings);
-            RegisterViewModels(services);
-            RegisterWindows(services);
          
             services.AddSingleton<ISettingsManager>(settings);
             services.RegisterPeernetServices();
@@ -102,6 +100,9 @@ namespace Peernet.Browser.WPF
             services.AddTransient<IFilesToCategoryBinder, FilesToCategoryBinder>();
             services.AddSingleton<NotificationCollection>();
             services.AddSingleton<INotificationsManager, NotificationsManager>();
+
+            RegisterViewModels(services);
+            RegisterWindows(services);
         }
         public void InitializeBackend()
         {

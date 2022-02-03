@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Peernet.Browser.Application.ViewModels;
 using System;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.Navigation
 {
@@ -29,7 +30,7 @@ namespace Peernet.Browser.Application.Navigation
             }
         }
 
-        public void Navigate<TViewModel>() where TViewModel : ViewModelBase
+        public async Task Navigate<TViewModel>() where TViewModel : ViewModelBase
         {
             var viewModel = serviceProvider.GetRequiredService<TViewModel>();
             CurrentViewModel = viewModel;
@@ -40,10 +41,10 @@ namespace Peernet.Browser.Application.Navigation
             CurrentViewModel = null;
         }
 
-        public void Navigate<TViewModel, TParameter>(TParameter parameter) where TViewModel : GenericViewModelBase<TParameter> where TParameter : class
+        public async Task Navigate<TViewModel, TParameter>(TParameter parameter) where TViewModel : GenericViewModelBase<TParameter> where TParameter : class
         {
             var viewModel = serviceProvider.GetRequiredService<TViewModel>();
-            viewModel.Prepare(parameter);
+            await viewModel.Prepare(parameter);
             CurrentViewModel = viewModel;
         }
 

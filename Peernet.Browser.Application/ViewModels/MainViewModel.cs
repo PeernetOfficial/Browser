@@ -30,15 +30,16 @@ namespace Peernet.Browser.Application.ViewModels
             IApplicationManager applicationManager)
         {
             this.footerViewModel = footerViewModel;
-            AboutViewModel = aboutViewModel;
-            DirectoryViewModel = directoryViewModel;
-            HomeViewModel = homeViewModel;
-            ExploreViewModel = exploreViewModel;
             this.navigationBarViewModel = navigationBarViewModel;
             this.navigationService = navigationService;
             this.modalNavigationService = modalNavigationService;
             this.notificationsManager = notificationsManager;
             this.applicationManager = applicationManager;
+
+            AboutViewModel = aboutViewModel;
+            DirectoryViewModel = directoryViewModel;
+            HomeViewModel = homeViewModel;
+            ExploreViewModel = exploreViewModel;
 
             navigationService.StateChanged += Navigated;
             modalNavigationService.StateChanged += ModalNavigated;

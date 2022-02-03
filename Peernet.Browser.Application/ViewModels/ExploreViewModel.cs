@@ -8,6 +8,8 @@ using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Models.Presentation.Footer;
 using AsyncAwaitBestPractices.MVVM;
 using Peernet.Browser.Application.Navigation;
+using System.Threading;
+using System.Linq;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -25,7 +27,7 @@ namespace Peernet.Browser.Application.ViewModels
             this.downloadManager = downloadManager;
             this.navigationService = navigationService;
 
-            Task.Run(ReloadResults).ConfigureAwait(false).GetAwaiter().GetResult();
+            Task.Run(() => LoadResults().ConfigureAwait(false).GetAwaiter().GetResult());
         }
 
         public ObservableCollection<DownloadModel> ActiveSearchResults
@@ -105,6 +107,19 @@ namespace Peernet.Browser.Application.ViewModels
         {
             var exploreResult = await exploreService.GetFiles(200);
             ActiveSearchResults = new ObservableCollection<DownloadModel>(exploreResult);
+        }
+
+        private async Task LoadResults()
+        {
+            var results = new List<DownloadModel>();
+
+            for (int i = 0; i < 7 && results.IsNullOrEmpty(); i++)
+            {
+                results = await exploreService.GetFiles(200);
+                Thread.Sleep(1000);
+            }
+
+            ActiveSearchResults = new ObservableCollection<DownloadModel>(results);
         }
     }
 }
