@@ -25,7 +25,7 @@ namespace Peernet.Browser.Application.ViewModels
 
             NavigateHomeCommand = new AsyncCommand(() =>
             {
-                if (GlobalContext.CurrentViewModel != nameof(HomeViewModel))
+                if (navigationService.CurrentViewModel is HomeViewModel)
                 {
                     Navigate<HomeViewModel>(false);
                 }
@@ -75,12 +75,11 @@ namespace Peernet.Browser.Application.ViewModels
 
         private void Navigate<T>(bool showLogo = true) where T : ViewModelBase
         {
-            if (typeof(T).Name == GlobalContext.CurrentViewModel)
+            if (navigationService.CurrentViewModel is T)
             {
                 return;
             }
 
-            GlobalContext.CurrentViewModel = nameof(T);
             navigationService.Navigate<T>();
             GlobalContext.IsLogoVisible = showLogo;
         }

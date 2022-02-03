@@ -1,9 +1,9 @@
-﻿using System;
+﻿using AsyncAwaitBestPractices.MVVM;
+using Peernet.Browser.Application.Clients;
+using Peernet.Browser.Application.ViewModels.Parameters;
+using System;
 using System.Text;
 using System.Threading.Tasks;
-using Peernet.Browser.Application.ViewModels.Parameters;
-using AsyncAwaitBestPractices.MVVM;
-using Peernet.Browser.Application.Clients;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -19,19 +19,19 @@ namespace Peernet.Browser.Application.ViewModels
         }
 
         public IAsyncCommand SendToPeernetConsole => new AsyncCommand(async () =>
-        {
-            if (Parameter.CommandLineInput.Equals("cls", StringComparison.CurrentCultureIgnoreCase))
-            {
-                Parameter.CommandLineOutput = string.Empty;
-            }
-            else
-            {
-                await socketClient.Send(Parameter.CommandLineInput);
-                SetOutput($"\n>> {Parameter.CommandLineInput}\n");
-            }
+         {
+             if (Parameter.CommandLineInput.Equals("cls", StringComparison.CurrentCultureIgnoreCase))
+             {
+                 Parameter.CommandLineOutput = string.Empty;
+             }
+             else
+             {
+                 await socketClient.Send(Parameter.CommandLineInput);
+                 SetOutput($"\n>> {Parameter.CommandLineInput}\n");
+             }
 
-            Parameter.CommandLineInput = string.Empty;
-        });
+             Parameter.CommandLineInput = string.Empty;
+         });
 
         private async Task Initialize()
         {
@@ -58,7 +58,6 @@ namespace Peernet.Browser.Application.ViewModels
             {
                 Parameter.CommandLineOutput = output;
             }
-
             else
             {
                 Parameter.CommandLineOutput += output;

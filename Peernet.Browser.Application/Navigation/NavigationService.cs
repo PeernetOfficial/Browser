@@ -30,10 +30,15 @@ namespace Peernet.Browser.Application.Navigation
             }
         }
 
-        public async Task Navigate<TViewModel>() where TViewModel : ViewModelBase
+        public Task Navigate<TViewModel>() where TViewModel : ViewModelBase
         {
-            var viewModel = serviceProvider.GetRequiredService<TViewModel>();
-            CurrentViewModel = viewModel;
+            if (CurrentViewModel is not TViewModel)
+            {
+                var viewModel = serviceProvider.GetRequiredService<TViewModel>();
+                CurrentViewModel = viewModel;
+            }
+
+            return Task.CompletedTask;
         }
 
         public async Task Navigate<TViewModel, TParameter>(TParameter parameter) where TViewModel : GenericViewModelBase<TParameter> where TParameter : class

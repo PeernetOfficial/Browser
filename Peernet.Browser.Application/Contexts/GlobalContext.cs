@@ -63,16 +63,6 @@ namespace Peernet.Browser.Application.Contexts
             }
         }
 
-        public static string CurrentViewModel
-        {
-            get => currentViewModel;
-            set
-            {
-                currentViewModel = value;
-                NotifyStaticPropertyChanged(nameof(CurrentViewModel));
-            }
-        }
-
         public static string ErrorMessage
         {
             get => errorMessage;

@@ -42,11 +42,7 @@ namespace Peernet.Browser.WPF
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            if (GlobalContext.CurrentViewModel != nameof(HomeViewModel))
-            {
-                App.ServiceProvider.GetRequiredService<INavigationService>().Navigate<HomeViewModel>();
-                GlobalContext.CurrentViewModel = nameof(HomeViewModel);
-            }
+            App.ServiceProvider.GetRequiredService<INavigationService>().Navigate<HomeViewModel>();
         }
 
         private void FileUpload_OnDrop(object sender, DragEventArgs e)
