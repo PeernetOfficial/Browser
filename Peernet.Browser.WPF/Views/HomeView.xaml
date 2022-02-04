@@ -5,7 +5,7 @@
     <Grid VerticalAlignment="{Binding Alignment, Converter={StaticResource VerticalAlignmentConverter}}">
         <StackPanel Width="600">
             <Image Source="{DynamicResource LogoDrawingImage}" Height="65" Visibility="{Binding IsNotVisible, Converter={StaticResource BoolToVisibility}}" />
-            <Border BorderBrush="{DynamicResource LightGray2Brush}" BorderThickness="1" Margin="0 90 0 155" CornerRadius="{DynamicResource MainRadius}">
+            <Border BorderBrush="{DynamicResource LightGray2Brush}" BorderThickness="1" Margin="0 90 0 230" CornerRadius="{DynamicResource MainRadius}">
                 <Border.Background>
                     <SolidColorBrush Color="{DynamicResource ViewBackgroundColor}" />
                 </Border.Background>
@@ -43,9 +43,6 @@
                                 </Style.Triggers>
                             </Style>
                         </TextBox.Style>
-                        <!--<TextBox.InputBindings>
-                            <KeyBinding Command="{Binding SearchCommand}" Key="Enter" />
-                        </TextBox.InputBindings>-->
                     </TextBox>
                     <Image Cursor="Hand" Margin="0 0 13 0" HorizontalAlignment="Right" Source="{DynamicResource SearchDrawingImage}" Height="14.22" Width="14.22">
                         <Image.InputBindings>
@@ -57,6 +54,6 @@
         </StackPanel>
 
         <TabControl Visibility="{Binding IsVisible, Converter={StaticResource BoolToVisibility}}" SelectedIndex="{Binding SelectedIndex}"
-                    Foreground="{DynamicResource MainContentBrush}" Margin="0 180 0 0" ItemsSource="{Binding Tabs, IsAsync=True}" Style="{StaticResource SearchResultTabs}" ItemContainerStyle="{StaticResource SearchResultTabItem}" />
+                    Foreground="{DynamicResource MainContentBrush}" Margin="0 105 0 0" ItemsSource="{Binding Tabs, IsAsync=True}" Style="{StaticResource SearchResultTabs}" ItemContainerStyle="{StaticResource SearchResultTabItem}" />
     </Grid>
 </UserControl>
