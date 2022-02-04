@@ -52,25 +52,24 @@
 
         <controls:ButtonsControl Grid.Row="0" />
         <Button Panel.ZIndex="1"
-                        Grid.Row="0"
-                        Grid.RowSpan="2"
-                        Visibility="{Binding Path=(contexts:GlobalContext.IsLogoVisible), Converter={StaticResource BoolToVisibility}}"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        Margin="49, 10, 0, 0"
-                        Height="92" Width="70"
-                        Padding="20"
-                        Style="{DynamicResource ButtonBaseStyle}"
-                        Click="ButtonBase_OnClick">
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Visibility="{Binding Path=(contexts:GlobalContext.IsLogoVisible), Converter={StaticResource BoolToVisibility}}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="49, 10, 0, 0"
+                Height="92" Width="70"
+                Padding="20"
+                Style="{DynamicResource ButtonBaseStyle}"
+                Click="ButtonBase_OnClick">
             <Button.Background>
                 <ImageBrush ImageSource="{DynamicResource LogoAbbreviationDrawingImage}" />
             </Button.Background>
         </Button>
-        <controls:FooterControl Grid.Row="2" DockPanel.Dock="Bottom" Panel.ZIndex="2" IsEnabled="{Binding Path=(contexts:GlobalContext.IsConnected)}" />
         <Border Panel.ZIndex="3" Visibility="{Binding IsModalOpened, Converter={StaticResource BoolToVisibility}}" Grid.Row="1" Grid.RowSpan="2">
             <ContentControl Content="{Binding CurrentModalViewModel}" />
         </Border>
-        <controls:TabControlEx Background="Transparent" BorderThickness="0" Margin="0 12 0 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" SelectedIndex="0" Grid.RowSpan="3" Visibility="{Binding Path=(contexts:GlobalContext.IsConnected), Converter={StaticResource BoolToVisibility}}">
+        <controls:TabControlEx Background="Transparent" BorderThickness="0" Margin="0 12 0 0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" SelectedIndex="0" Visibility="{Binding Path=(contexts:GlobalContext.IsConnected), Converter={StaticResource BoolToVisibility}}">
             <controls:TabControlEx.Resources>
                 <Style x:Key="HeaderStyle" TargetType="{x:Type Border}">
                     <Setter Property="BorderThickness" Value="1" />
@@ -81,7 +80,7 @@
                     <Setter Property="Padding" Value="17" />
                     <Setter Property="Background" Value="Transparent" />
                     <Setter Property="Cursor" Value="Hand" />
-                    <Setter Property="Margin" Value="0 0 39 0" />
+                    <Setter Property="Margin" Value="0 0 65 0" />
                     <Setter Property="ToolTipService.BetweenShowDelay" Value="0" />
                     <Setter Property="ToolTipService.InitialShowDelay" Value="0" />
                 </Style>
@@ -215,5 +214,6 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+        <controls:FooterControl Grid.Row="2" DockPanel.Dock="Bottom" Panel.ZIndex="2" IsEnabled="{Binding Path=(contexts:GlobalContext.IsConnected)}" />
     </Grid>
 </Window>
