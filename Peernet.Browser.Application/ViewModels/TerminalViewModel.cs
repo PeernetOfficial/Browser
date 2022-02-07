@@ -19,19 +19,19 @@ namespace Peernet.Browser.Application.ViewModels
         }
 
         public IAsyncCommand SendToPeernetConsole => new AsyncCommand(async () =>
-          {
-              if (Parameter.CommandLineInput.Equals("cls", StringComparison.CurrentCultureIgnoreCase))
-              {
-                  Parameter.CommandLineOutput = string.Empty;
-              }
-              else
-              {
-                  await socketClient.Send(Parameter.CommandLineInput);
-                  SetOutput($"\n>> {Parameter.CommandLineInput}\n");
-              }
+        {
+            if (Parameter.CommandLineInput.Equals("cls", StringComparison.CurrentCultureIgnoreCase))
+            {
+                Parameter.CommandLineOutput = string.Empty;
+            }
+            else
+            {
+                await socketClient.Send(Parameter.CommandLineInput);
+                SetOutput($"\n>> {Parameter.CommandLineInput}\n");
+            }
 
-              Parameter.CommandLineInput = string.Empty;
-          });
+            Parameter.CommandLineInput = string.Empty;
+        });
 
         private async Task Initialize()
         {

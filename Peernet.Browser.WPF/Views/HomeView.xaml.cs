@@ -18,19 +18,29 @@ namespace Peernet.Browser.WPF.Views
         {
             if (e.Key == Key.Enter)
             {
-                var viewModel = (HomeViewModel)DataContext;
-                if (viewModel.SearchInput.Equals("debug", StringComparison.InvariantCultureIgnoreCase))
-                {
-                    var terminalViewModel = App.ServiceProvider.GetRequiredService<TerminalViewModel>();
-                    Task.Run(() => terminalViewModel.Prepare(new()).ConfigureAwait(false).GetAwaiter().GetResult());
-                    var terminal = new TerminalWindow(terminalViewModel);
-                    terminal.Show();
-                    viewModel.SearchInput = string.Empty;
-                }
-                else
-                {
-                    await viewModel.SearchCommand?.ExecuteAsync();
-                }
+                await RunSearch();
+            }
+        }
+
+        private async void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            await RunSearch();
+        }
+
+        private async Task RunSearch()
+        {
+            var viewModel = (HomeViewModel)DataContext;
+            if (viewModel.SearchInput.Equals("debug", StringComparison.InvariantCultureIgnoreCase))
+            {
+                var terminalViewModel = App.ServiceProvider.GetRequiredService<TerminalViewModel>();
+                Task.Run(() => terminalViewModel.Prepare(new()).ConfigureAwait(false).GetAwaiter().GetResult());
+                var terminal = new TerminalWindow(terminalViewModel);
+                terminal.Show();
+                viewModel.SearchInput = string.Empty;
+            }
+            else
+            {
+                await viewModel.SearchCommand?.ExecuteAsync();
             }
         }
     }
