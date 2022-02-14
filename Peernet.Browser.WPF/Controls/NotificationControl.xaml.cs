@@ -1,7 +1,9 @@
-﻿using Peernet.Browser.Application.Contexts;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Models.Presentation.Footer;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Peernet.Browser.WPF.Controls
 {
@@ -27,8 +29,19 @@ namespace Peernet.Browser.WPF.Controls
 
         private void RemoveNotification(object sender, RoutedEventArgs e)
         {
-            var notification = (Notification)((FrameworkElement)e.OriginalSource).DataContext;
-            GlobalContext.Notifications.Remove(notification);
+            App.ServiceProvider.GetRequiredService<INotificationsManager>().Notifications.Remove(Notification);
+        }
+
+        private void Header_Clicked(object sender, MouseButtonEventArgs e)
+        {
+            if (Details.Visibility == Visibility.Visible)
+            {
+                Details.Visibility = Visibility.Collapsed;
+            }
+            else if (Details.Visibility == Visibility.Collapsed)
+            {
+                Details.Visibility = Visibility.Visible;
+            }
         }
     }
 }

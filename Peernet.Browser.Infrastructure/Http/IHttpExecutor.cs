@@ -10,12 +10,14 @@ namespace Peernet.Browser.Infrastructure.Http
             HttpMethod method,
             string relativePath,
             Dictionary<string, string> queryParameters = null,
-            HttpContent content = null);
+            HttpContent content = null,
+            bool suppressErrorNotification = false);
 
         T GetResult<T>(
             HttpMethod method,
             string relativePath,
             Dictionary<string, string> queryParameters = null,
-            HttpContent content = null);
+            HttpContent content = null,
+            bool suppressErrorNotification = false);
     }
 }

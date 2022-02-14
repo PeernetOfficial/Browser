@@ -1,39 +1,12 @@
-﻿using MvvmCross.Converters;
-using MvvmCross.Platforms.Wpf.Converters;
-using System;
+﻿using System;
 using System.Globalization;
 using System.Windows;
+using System.Windows.Data;
 
 namespace Peernet.Browser.WPF.Converters
 {
-    internal class BoolToVisibilityConverter : MvxNativeValueConverter<BoolToVisibilityValueConverter>
+    internal class BoolToVisibilityConverter : IValueConverter
     {
-    }
-
-    internal class BoolToVisibilityValueConverter : MvxValueConverter<bool, Visibility>
-    {
-        protected override Visibility Convert(bool value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (IsVisibilityInverted(parameter))
-            {
-                value = !value;
-            }
-
-            return value ? Visibility.Visible : Visibility.Collapsed;
-        }
-
-        protected override bool ConvertBack(Visibility value, Type targetType, object parameter, CultureInfo culture)
-        {
-            bool isVisible = value == Visibility.Visible;
-
-            if (IsVisibilityInverted(parameter))
-            {
-                isVisible = !isVisible;
-            }
-
-            return isVisible;
-        }
-
         private static Visibility GetVisibilityMode(object parameter)
         {
             Visibility mode = Visibility.Visible;
@@ -63,6 +36,30 @@ namespace Peernet.Browser.WPF.Converters
         private static bool IsVisibilityInverted(object parameter)
         {
             return GetVisibilityMode(parameter) == Visibility.Collapsed;
+        }
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            bool isVisible = (bool)value;
+            if (IsVisibilityInverted(parameter))
+            {
+                isVisible = !isVisible;
+            }
+
+            return isVisible ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            Visibility visibility = Enum.Parse<Visibility>(value?.ToString());
+            bool isVisible = visibility == Visibility.Visible;
+
+            if (IsVisibilityInverted(parameter))
+            {
+                isVisible = !isVisible;
+            }
+
+            return isVisible;
         }
     }
 }

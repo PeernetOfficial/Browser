@@ -1,8 +1,6 @@
-﻿using MvvmCross.ViewModels;
-
-namespace Peernet.Browser.Application.ViewModels
+﻿namespace Peernet.Browser.Application.ViewModels
 {
-    public class AboutViewModel : MvxViewModel
+    public class AboutViewModel : ViewModelBase
     {
     }
 }

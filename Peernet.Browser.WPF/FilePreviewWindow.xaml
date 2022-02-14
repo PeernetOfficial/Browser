@@ -1,19 +1,16 @@
-﻿<views:MvxWindow  x:Class="Peernet.Browser.WPF.FilePreviewWindow"
-                  x:TypeArguments="viewModels:FilePreviewViewModel"
-                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                  xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
-                  xmlns:viewModels="clr-namespace:Peernet.Browser.Application.ViewModels;assembly=Application"
-                  Width="700"
+﻿<Window  x:Class="Peernet.Browser.WPF.FilePreviewWindow"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         Width="700"
                   Height="500"
                   Top="100"
                   Left="100"
                   x:Name="PreviewWindow"
                   Background="{DynamicResource PreviewBackground}" Content="{Binding}">
     <WindowChrome.WindowChrome>
-        <WindowChrome ResizeBorderThickness="0" GlassFrameThickness="0" CaptionHeight="0" CornerRadius="0"/>
+        <WindowChrome ResizeBorderThickness="0" GlassFrameThickness="0" CaptionHeight="0" CornerRadius="0" />
     </WindowChrome.WindowChrome>
-    <views:MvxWindow.Resources>
+    <Window.Resources>
         <ResourceDictionary>
             <Style x:Key="ReadonlySelectableTextBox" TargetType="{x:Type TextBox}">
                 <Setter Property="Foreground" Value="{DynamicResource MainContentBrush}" />
@@ -23,23 +20,23 @@
                 <Setter Property="Background" Value="Transparent" />
             </Style>
         </ResourceDictionary>
-    </views:MvxWindow.Resources>
+    </Window.Resources>
 
-        <views:MvxWindow.ContentTemplate>
+    <Window.ContentTemplate>
         <DataTemplate>
-                <Border BorderThickness="1">
+            <Border BorderThickness="1">
                 <Border.BorderBrush>
                     <SolidColorBrush Opacity="0.2" Color="Black" />
                 </Border.BorderBrush>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="40" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-                        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Button Style="{StaticResource CloseButtonStyle}" Click="Close_OnClick" />
-                        </StackPanel>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Style="{StaticResource CloseButtonStyle}" Click="Close_OnClick" />
+                    </StackPanel>
                     <StackPanel Grid.Row="1" Margin="40, 0, 0, 0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Information" Style="{StaticResource Active}" FontSize="32" FontWeight="Medium" />
@@ -157,7 +154,7 @@
                             <Button.ContentTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Image Source="{StaticResource Download_LightDrawingImage}" Width="20" Height="20" />
+                                        <Image Source="{DynamicResource Download_LightDrawingImage}" Width="20" Height="20" />
                                         <ContentPresenter DataContext="{Binding}" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15, 0, 0, 0" />
                                     </StackPanel>
                                 </DataTemplate>
@@ -167,5 +164,5 @@
                 </Grid>
             </Border>
         </DataTemplate>
-    </views:MvxWindow.ContentTemplate>
-</views:MvxWindow>
+    </Window.ContentTemplate>
+</Window>

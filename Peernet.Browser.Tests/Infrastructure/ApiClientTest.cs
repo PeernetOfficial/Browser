@@ -1,7 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Infrastructure.Clients;
+using Peernet.Browser.Infrastructure.Http;
 
 namespace Peernet.Browser.Tests.Infrastructure
 {
@@ -12,11 +12,10 @@ namespace Peernet.Browser.Tests.Infrastructure
         public void CtorTest()
         {
             //Prepare
-            var fakeSettingsManager = new Mock<ISettingsManager>();
-            fakeSettingsManager.Setup(s => s.ApiUrl).Returns("http://localhost:50000/");
+            var httpExecutorMock = new Mock<IHttpExecutor>();
 
             //Act
-            var o = new ApiClient(fakeSettingsManager.Object);
+            var o = new ApiClient(httpExecutorMock.Object);
 
             //Assert
             Assert.IsNotNull(o);

@@ -1,6 +1,7 @@
-﻿using Peernet.Browser.Application.Contexts;
+﻿using Peernet.Browser.Application.Dispatchers;
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Application.Utilities;
 using Peernet.Browser.Infrastructure.Clients;
 using Peernet.Browser.Models.Domain.Download;
 using Peernet.Browser.Models.Presentation.Footer;
@@ -13,34 +14,32 @@ using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure
 {
-    public class DownloadManager : IDownloadManager
+    internal class DownloadManager : IDownloadManager
     {
         private readonly IDownloadClient downloadClient;
         private readonly ISettingsManager settingsManager;
+        private readonly INotificationsManager notificationsManager;
 
-        public event EventHandler downloadsChanged;
+        public DownloadManager(IDownloadClient downloadClient, ISettingsManager settingsManager, INotificationsManager notificationsManager)
 
-        public DownloadManager(ISettingsManager settingsManager)
         {
             this.settingsManager = settingsManager;
             Directory.CreateDirectory(settingsManager.DownloadPath);
-            downloadClient = new DownloadClient(settingsManager);
+            this.downloadClient = downloadClient;
+            this.notificationsManager = notificationsManager;
 
             // Fire on the thread-pool and forget
             Task.Run(UpdateStatuses);
         }
+
+        public event EventHandler downloadsChanged;
 
         public ObservableCollection<DownloadModel> ActiveFileDownloads { get; set; } = new();
 
         public async Task<ApiResponseDownloadStatus> CancelDownload(string id)
         {
             var download = ActiveFileDownloads.First(d => d.Id == id);
-            var responseStatus = await downloadClient.GetAction(id, DownloadAction.Cancel);
-
-            if (responseStatus.APIStatus != APIStatus.DownloadResponseSuccess && responseStatus.DownloadStatus != DownloadStatus.DownloadFinished)
-            {
-                GlobalContext.Notifications.Add(new Notification($"Failed to cancel file download. Status: {responseStatus.APIStatus}", severity: Severity.Error));
-            }
+            var responseStatus = await ExecuteDownload(download, DownloadAction.Cancel);
 
             switch (responseStatus.DownloadStatus)
             {
@@ -48,6 +47,7 @@ namespace Peernet.Browser.Infrastructure
                     ActiveFileDownloads.Remove(download);
                     NotifyChange($"{download.File.Name} downloading canceled!");
                     break;
+
                 case DownloadStatus.DownloadFinished:
                     ActiveFileDownloads.Remove(download);
                     downloadsChanged?.Invoke(this, EventArgs.Empty);
@@ -59,7 +59,6 @@ namespace Peernet.Browser.Infrastructure
 
         public void OpenFileLocation(string name)
         {
-
             var filePath = Path.Combine(settingsManager.DownloadPath, name);
             if (File.Exists(filePath))
             {
@@ -69,16 +68,8 @@ namespace Peernet.Browser.Infrastructure
 
         public async Task<ApiResponseDownloadStatus> PauseDownload(string id)
         {
-            var responseStatus = await downloadClient.GetAction(id, DownloadAction.Pause);
-            ActiveFileDownloads.First(d => d.Id == id).Status = responseStatus.DownloadStatus;
-            downloadsChanged?.Invoke(this, EventArgs.Empty);
-
-            if (responseStatus.APIStatus != APIStatus.DownloadResponseSuccess)
-            {
-                GlobalContext.Notifications.Add(new Notification($"Failed to pause file download. Status: {responseStatus.APIStatus}", severity: Severity.Error));
-            }
-
-            return responseStatus;
+            var download = ActiveFileDownloads.First(d => d.Id == id);
+            return await ExecuteDownload(download, DownloadAction.Pause);
         }
 
         public async Task QueueUpDownload(DownloadModel downloadModel)
@@ -93,7 +84,11 @@ namespace Peernet.Browser.Infrastructure
             }
             else
             {
-                GlobalContext.Notifications.Add(new Notification($"Failed to start file download. Status: {status.APIStatus}", severity: Severity.Error));
+                var details =
+                    MessagingHelper.GetApiSummary($"{nameof(downloadClient)}.{nameof(downloadClient.Start)}") +
+                    MessagingHelper.GetInOutSummary(downloadModel.File, status);
+                notificationsManager.Notifications.Add(new Notification(
+                    $"Failed to start file download. Status: {status.APIStatus}", details, Severity.Error));
             }
 
             downloadsChanged?.Invoke(this, EventArgs.Empty);
@@ -101,13 +96,23 @@ namespace Peernet.Browser.Infrastructure
 
         public async Task<ApiResponseDownloadStatus> ResumeDownload(string id)
         {
-            var responseStatus = await downloadClient.GetAction(id, DownloadAction.Resume);
-            ActiveFileDownloads.First(d => d.Id == id).Status = responseStatus.DownloadStatus;
+            var download = ActiveFileDownloads.First(d => d.Id == id);
+            return await ExecuteDownload(download, DownloadAction.Resume);
+        }
+
+        private async Task<ApiResponseDownloadStatus> ExecuteDownload(DownloadModel download, DownloadAction action)
+        {
+            var responseStatus = await downloadClient.GetAction(download.Id, action);
+            download.Status = responseStatus.DownloadStatus;
             downloadsChanged?.Invoke(this, EventArgs.Empty);
 
             if (responseStatus.APIStatus != APIStatus.DownloadResponseSuccess)
             {
-                GlobalContext.Notifications.Add(new Notification($"Failed to resume file download. Status: {responseStatus.APIStatus}", severity: Severity.Error));
+                var details =
+                    MessagingHelper.GetApiSummary($"{nameof(downloadClient)}.{nameof(downloadClient.GetAction)}") +
+                    MessagingHelper.GetInOutSummary(download.Id, responseStatus);
+                notificationsManager.Notifications.Add(new Notification(
+                    $"Failed to {action} file download. Status: {responseStatus.APIStatus}", details, Severity.Error));
             }
 
             return responseStatus;
@@ -116,7 +121,7 @@ namespace Peernet.Browser.Infrastructure
         private void NotifyChange(string message)
         {
             downloadsChanged?.Invoke(this, EventArgs.Empty);
-            GlobalContext.Notifications.Add(new Notification(message));
+            notificationsManager.Notifications.Add(new Notification(message));
         }
 
         private async Task UpdateStatuses()
@@ -127,6 +132,11 @@ namespace Peernet.Browser.Infrastructure
                 foreach (var download in copy.Where(download => !download.IsCompleted))
                 {
                     var status = await downloadClient.GetStatus(download.Id);
+                    if (status == null)
+                    {
+                        continue;
+                    }
+
                     download.Progress = status.Progress.Percentage;
                     download.Status = status.DownloadStatus;
 
@@ -134,7 +144,7 @@ namespace Peernet.Browser.Infrastructure
                     {
                         download.IsCompleted = true;
                         download.Progress = 100;
-                        await GlobalContext.UiThreadDispatcher.ExecuteOnMainThreadAsync(() =>
+                        UIThreadDispatcher.ExecuteOnMainThread(() =>
                             NotifyChange($"{download.File.Name} downloading completed!"));
                     }
                 }

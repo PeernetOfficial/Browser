@@ -1,8 +1,7 @@
-﻿using System.Net.Http;
-using System.Threading.Tasks;
-using Peernet.Browser.Application.Managers;
-using Peernet.Browser.Infrastructure.Http;
+﻿using Peernet.Browser.Infrastructure.Http;
 using Peernet.Browser.Models.Domain.Common;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure.Clients
 {
@@ -10,9 +9,9 @@ namespace Peernet.Browser.Infrastructure.Clients
     {
         private readonly IHttpExecutor httpExecutor;
 
-        public ApiClient(ISettingsManager settingsManager)
+        public ApiClient(IHttpExecutor httpExecutor)
         {
-            httpExecutor = new HttpExecutor(settingsManager);
+            this.httpExecutor = httpExecutor;
         }
 
         public override string CoreSegment => string.Empty;

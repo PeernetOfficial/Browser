@@ -1,11 +1,11 @@
-﻿using MvvmCross.Commands;
-using MvvmCross.ViewModels;
+﻿using AsyncAwaitBestPractices.MVVM;
 using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Models.Presentation.Home
 {
-    public class IconModel : MvxNotifyPropertyChanged
+    public class IconModel : INotifyPropertyChanged
     {
         private readonly bool showCount;
 
@@ -18,7 +18,7 @@ namespace Peernet.Browser.Models.Presentation.Home
             Count = count.GetValueOrDefault();
             RefreshName();
             ShowArrow = showArrow;
-            SelectCommand = new MvxAsyncCommand(async () =>
+            SelectCommand = new AsyncCommand(async () =>
             {
                 IsSelected ^= true;
                 if (onClick != null)
@@ -35,20 +35,26 @@ namespace Peernet.Browser.Models.Presentation.Home
         public bool IsSelected
         {
             get => isSelected;
-            set => SetProperty(ref isSelected, value);
+            set
+            {
+                isSelected = value;
+                PropertyChanged?.Invoke(this, new(nameof(IsSelected)));
+            }
         }
 
         public string Name { get; private set; }
 
-        public IMvxAsyncCommand SelectCommand { get; }
+        public IAsyncCommand SelectCommand { get; }
 
         public bool ShowArrow { get; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         private void RefreshName()
         {
             var suffix = showCount ? $" ({Count})" : "";
             Name = $"{FilterType}{suffix}";
-            RaisePropertyChanged(nameof(Name));
+            PropertyChanged?.Invoke(this, new(nameof(Name)));
         }
     }
 }

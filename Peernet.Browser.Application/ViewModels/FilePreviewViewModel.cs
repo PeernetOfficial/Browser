@@ -1,33 +1,32 @@
-﻿using System;
-using System.Threading.Tasks;
-using MvvmCross.Commands;
-using MvvmCross.ViewModels;
-using Peernet.Browser.Application.Download;
+﻿using AsyncAwaitBestPractices.MVVM;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Models.Domain.Common;
-using Peernet.Browser.Models.Presentation.Footer;
+using System;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class FilePreviewViewModel : MvxViewModel<FilePreviewViewModelParameter>
+    public class FilePreviewViewModel : GenericViewModelBase<FilePreviewViewModelParameter>
     {
-        private readonly IDownloadManager downloadManager;
         private string actionButtonContent;
         private Func<Task> ButtonAction;
         private bool isEditable;
 
-        public FilePreviewViewModel(IDownloadManager downloadManager)
+        public FilePreviewViewModel()
         {
-            this.downloadManager = downloadManager;
         }
 
         public string ActionButtonContent
         {
             get => actionButtonContent;
-            set => SetProperty(ref actionButtonContent, value);
+            set
+            {
+                actionButtonContent = value;
+                OnPropertyChanged(nameof(ActionButtonContent));
+            }
         }
 
-        public IMvxAsyncCommand DownloadCommand => new MvxAsyncCommand(
+        public IAsyncCommand DownloadCommand => new AsyncCommand(
             async () =>
             {
                 await ButtonAction();
@@ -38,15 +37,22 @@ namespace Peernet.Browser.Application.ViewModels
         public bool IsEditable
         {
             get => isEditable;
-            set => SetProperty(ref isEditable, value);
+            set
+            {
+                isEditable = value;
+                OnPropertyChanged(nameof(IsEditable));
+            }
         }
 
-        public override void Prepare(FilePreviewViewModelParameter parameter)
+        public override Task Prepare(FilePreviewViewModelParameter parameter)
         {
-            File = parameter.File;
-            IsEditable = parameter.IsEditable;
-            ButtonAction = parameter.Action;
-            ActionButtonContent = parameter.ActionButtonContent;
+            Parameter = parameter;
+            File = Parameter.File;
+            IsEditable = Parameter.IsEditable;
+            ButtonAction = Parameter.Action;
+            ActionButtonContent = Parameter.ActionButtonContent;
+
+            return Task.CompletedTask;
         }
     }
 }

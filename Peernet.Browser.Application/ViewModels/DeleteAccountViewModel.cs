@@ -1,54 +1,62 @@
-﻿using MvvmCross.Commands;
-using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
+﻿using AsyncAwaitBestPractices.MVVM;
 using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
+using Peernet.Browser.Application.Utilities;
 using Peernet.Browser.Models.Presentation.Footer;
 using System.Net.Http;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class DeleteAccountViewModel : MvxViewModel
+    public class DeleteAccountViewModel : ViewModelBase
     {
-        private readonly IMvxNavigationService mvxNavigationService;
+        private readonly IModalNavigationService navigationService;
         private readonly IAccountService accountService;
         private bool isPolicyAccepted;
         private readonly IUserContext userContext;
+        private readonly INotificationsManager notificationsManager;
 
-        public DeleteAccountViewModel(IMvxNavigationService mvxNavigationService, IAccountService accountService, IUserContext userContext)
+        public DeleteAccountViewModel(IModalNavigationService navigationService, IAccountService accountService, IUserContext userContext, INotificationsManager notificationsManager)
         {
-            this.mvxNavigationService = mvxNavigationService;
+            this.navigationService = navigationService;
             this.accountService = accountService;
             this.userContext = userContext;
-        }
-
-        public override void ViewDisappeared()
-        {
-            IsPolicyAccepted = false;
-            base.ViewDisappeared();
+            this.notificationsManager = notificationsManager;
         }
 
         public bool IsPolicyAccepted
         {
             get => isPolicyAccepted;
-            set => SetProperty(ref isPolicyAccepted, value);
+            set
+            {
+                isPolicyAccepted = value;
+                OnPropertyChanged(nameof(IsPolicyAccepted));
+            }
         }
 
-        public IMvxCommand CloseCommand => new MvxCommand(() => mvxNavigationService.Close(this));
-
-        public IMvxAsyncCommand DeleteAccountCommand => new MvxAsyncCommand(async () =>
+        public IAsyncCommand CloseCommand => new AsyncCommand(() =>
          {
-             try
-             {
-                 await accountService.Delete(IsPolicyAccepted);
-             }
-             catch (HttpRequestException ex)
-             {
-                 GlobalContext.Notifications.Add(new Notification($"Failed to delete account. Status: {ex.Message}", severity: Severity.Error));
-             }
-
-             userContext.ReloadContext();
-             await mvxNavigationService.Close(this);
+             navigationService.Close();
+             return System.Threading.Tasks.Task.CompletedTask;
          });
+
+        public IAsyncCommand DeleteAccountCommand => new AsyncCommand(async () =>
+          {
+              try
+              {
+                  await accountService.Delete(IsPolicyAccepted);
+              }
+              catch (HttpRequestException ex)
+              {
+                  var message = $"Failed to delete account. Status: {ex.Message}";
+                  notificationsManager.Notifications.Add(new Notification(message,
+                      MessagingHelper.GetApiSummary($"{nameof(accountService)}.{nameof(accountService.Delete)}"),
+                      Severity.Error));
+              }
+
+              userContext.ReloadContext();
+              navigationService.Close();
+          });
     }
 }

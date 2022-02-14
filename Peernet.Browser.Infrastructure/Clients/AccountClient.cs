@@ -1,5 +1,4 @@
-﻿using Peernet.Browser.Application.Managers;
-using Peernet.Browser.Infrastructure.Http;
+﻿using Peernet.Browser.Infrastructure.Http;
 using Peernet.Browser.Models.Domain.Blockchain;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -11,9 +10,9 @@ namespace Peernet.Browser.Infrastructure.Clients
     {
         private readonly IHttpExecutor httpExecutor;
 
-        public AccountClient(ISettingsManager settingsManager)
+        public AccountClient(IHttpExecutor httpExecutor)
         {
-            httpExecutor = new HttpExecutor(settingsManager);
+            this.httpExecutor = httpExecutor;
         }
 
         public override string CoreSegment => "account";

@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Peernet.Browser.Infrastructure.Http;
+using Peernet.Browser.Models.Domain.Warehouse;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using Peernet.Browser.Application.Managers;
-using Peernet.Browser.Infrastructure.Http;
-using Peernet.Browser.Models.Domain.Warehouse;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -13,16 +12,15 @@ namespace Peernet.Browser.Infrastructure.Clients
     {
         private readonly IHttpExecutor httpExecutor;
 
-        public WarehouseClient(ISettingsManager settingsManager)
+        public WarehouseClient(IHttpExecutor httpExecutor)
         {
-            httpExecutor = new HttpExecutor(settingsManager);
+            this.httpExecutor = httpExecutor;
         }
 
         public override string CoreSegment => "warehouse";
 
         public async Task<WarehouseResult> Create(Stream stream)
         {
-
             using var content = new StreamContent(stream);
 
             return await httpExecutor.GetResultAsync<WarehouseResult>(HttpMethod.Post, GetRelativeRequestPath("create"),

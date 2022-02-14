@@ -1,8 +1,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Peernet.Browser.Infrastructure.Tools;
-using System.Threading;
 using Moq;
 using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Application.Services;
+using Peernet.Browser.Infrastructure.Tools;
+using System.Threading;
 
 namespace Peernet.Browser.Tests.Infrastructure.Tools.Cmd
 {
@@ -13,8 +14,10 @@ namespace Peernet.Browser.Tests.Infrastructure.Tools.Cmd
         public void CtorTest()
         {
             //Prepare
-            var mock = new Mock<ISettingsManager>();
-            var o = new CmdRunner(mock.Object);
+            var settingsManagerMock = new Mock<ISettingsManager>();
+            var shutdownServiceMock = new Mock<IShutdownService>();
+            var apiServiceMock = new Mock<IApiService>();
+            var o = new CmdRunner(settingsManagerMock.Object, shutdownServiceMock.Object, apiServiceMock.Object);
             //Act
             o.Dispose();
             //Assert
@@ -25,8 +28,10 @@ namespace Peernet.Browser.Tests.Infrastructure.Tools.Cmd
         public void RunTest()
         {
             //Prepare
-            var mock = new Mock<ISettingsManager>();
-            var o = new CmdRunner(mock.Object);
+            var settingsManagerMock = new Mock<ISettingsManager>();
+            var shutdownServiceMock = new Mock<IShutdownService>();
+            var apiServiceMock = new Mock<IApiService>();
+            var o = new CmdRunner(settingsManagerMock.Object, shutdownServiceMock.Object, apiServiceMock.Object);
             //Act
             o.Run();
             Thread.Sleep(5000);

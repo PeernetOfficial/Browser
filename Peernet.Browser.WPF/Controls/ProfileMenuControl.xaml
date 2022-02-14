@@ -9,7 +9,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ImageBrush x:Key="DefaultProfileImage" ImageSource="{DynamicResource DefaultProfileImageDrawingImage}" />
-            <ImageBrush x:Key="SourcedProfileImage" ImageSource="{Binding UserContext.User.Image, Converter={StaticResource NullImageConverter}}" Stretch="Uniform" />
+            <ImageBrush x:Key="SourcedProfileImage" ImageSource="{Binding NavBar.UserContext.User.Image, Converter={StaticResource NullImageConverter}}" Stretch="Uniform" />
         </ResourceDictionary>
     </UserControl.Resources>
     <Border Width="212" BorderThickness="1" Margin="0, 0, 20, 0">
@@ -26,12 +26,12 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Border Grid.Column="0" Width="47" Height="47" Background="{StaticResource LightGray2Brush}" Cursor="Hand">
-                    <Button Margin="0" Padding="0" Command="{Binding EditProfileCommand}">
+                    <Button Margin="0" Padding="0" Command="{Binding NavBar.EditProfileCommand}">
                         <Button.Style>
                             <Style BasedOn="{StaticResource ButtonBaseStyle}" TargetType="{x:Type Button}">
                                 <Setter Property="Background" Value="{StaticResource SourcedProfileImage}" />
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding UserContext.User.Image}" Value="{x:Null}">
+                                    <DataTrigger Binding="{Binding NavBar.UserContext.User.Image}" Value="{x:Null}">
                                         <Setter Property="Background" Value="{StaticResource DefaultProfileImage}" />
                                         <Setter Property="Width" Value="20" />
                                         <Setter Property="Height" Value="20" />
@@ -41,16 +41,16 @@
                         </Button.Style>
                     </Button>
                     <Border.InputBindings>
-                        <MouseBinding Command="{Binding EditProfileCommand}" MouseAction="LeftClick" />
+                        <MouseBinding Command="{Binding NavBar.EditProfileCommand}" MouseAction="LeftClick" />
                     </Border.InputBindings>
                 </Border>
                 <StackPanel Grid.Column="1" Margin="8,0,0,0" Orientation="Horizontal">
-                    <TextBlock Foreground="{DynamicResource MainContentBrush}" FontFamily="Inter" FontSize="14" FontWeight="Medium" Text="{Binding UserContext.User.Name}" Cursor="Hand" TextTrimming="CharacterEllipsis" Width="90">
+                    <TextBlock Foreground="{DynamicResource MainContentBrush}" FontFamily="Inter" FontSize="14" FontWeight="Medium" Text="{Binding NavBar.UserContext.User.Name}" Cursor="Hand" TextTrimming="CharacterEllipsis" Width="90">
                         <TextBlock.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding EditProfileCommand}" />
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding NavBar.EditProfileCommand}" />
                         </TextBlock.InputBindings>
                     </TextBlock>
-                    <Button Padding="7" VerticalAlignment="Top" HorizontalAlignment="Right" Width="30" Height="30" Margin="0,-7,0,0" Command="{Binding EditProfileCommand}" Style="{StaticResource ButtonBaseStyle}">
+                    <Button Padding="7" VerticalAlignment="Top" HorizontalAlignment="Right" Width="30" Height="30" Margin="0,-7,0,0" Command="{Binding NavBar.EditProfileCommand}" Style="{StaticResource ButtonBaseStyle}">
                         <Button.Background>
                             <ImageBrush ImageSource="{DynamicResource EditDrawingImage}" />
                         </Button.Background>
@@ -58,10 +58,7 @@
                 </StackPanel>
             </Grid>
             <Separator Style="{StaticResource StandardSeparatorStyle}" Width="179" />
-            <TextBlock Foreground="{DynamicResource MainTextBrush}" Text="About" Padding="20, 4, 140, 4"  HorizontalAlignment="Left" Margin="5, 2" Cursor="Hand">
-                <TextBlock.InputBindings>
-                    <MouseBinding Command="{Binding NavigateAboutCommand}" MouseAction="LeftClick" />
-                </TextBlock.InputBindings>
+            <TextBlock Foreground="{DynamicResource MainTextBrush}" Text="About" Padding="20, 4, 140, 4"  HorizontalAlignment="Left" Margin="5, 2" Cursor="Hand" PreviewMouseLeftButtonDown="TextBlock_PreviewMouseLeftButtonDown">
             </TextBlock>
             <Separator Style="{StaticResource StandardSeparatorStyle}" Width="179" />
             <controls:ToggleSwitch Margin="5" />

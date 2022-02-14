@@ -13,6 +13,10 @@
         StatusFileNotFound = 9,
         StatusErrorDeleteFile = 10,
         StatusErrorReadFile = 11,
-        StatusErrorSeekFile = 12
+        StatusErrorSeekFile = 12,
+        StatusErrorTargetExists = 13,
+        StatusErrorCreateTarget = 14,
+        StatusErrorCreateMerkle = 15,
+        StatusErrorMerkleTreeFile = 16
     }
 }

@@ -1,18 +1,17 @@
-﻿using Peernet.Browser.Application.Managers;
-using Peernet.Browser.Application.Services;
+﻿using Peernet.Browser.Application.Services;
 using Peernet.Browser.Infrastructure.Clients;
 using Peernet.Browser.Models.Domain.Common;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure.Services
 {
-    public class ApiService : IApiService
+    internal class ApiService : IApiService
     {
         private readonly IApiClient apiClient;
 
-        public ApiService(ISettingsManager settingsManager)
+        public ApiService(IApiClient apiClient)
         {
-            apiClient = new ApiClient(settingsManager);
+            this.apiClient = apiClient;
         }
 
         public async Task<ApiResponseStatus> GetStatus()

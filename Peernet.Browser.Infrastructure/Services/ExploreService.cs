@@ -1,21 +1,20 @@
-﻿using Peernet.Browser.Application.Managers;
-using Peernet.Browser.Application.Services;
+﻿using Peernet.Browser.Application.Services;
 using Peernet.Browser.Infrastructure.Clients;
+using Peernet.Browser.Models.Domain.Common;
 using Peernet.Browser.Models.Presentation.Footer;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Peernet.Browser.Models.Domain.Common;
 
 namespace Peernet.Browser.Infrastructure.Services
 {
-    public class ExploreService : IExploreService
+    internal class ExploreService : IExploreService
     {
         private readonly IExploreClient exploreClient;
 
-        public ExploreService(ISettingsManager settingsManager)
+        public ExploreService(IExploreClient exploreClient)
         {
-            exploreClient = new ExploreClient(settingsManager);
+            this.exploreClient = exploreClient;
         }
 
         public async Task<List<DownloadModel>> GetFiles(int limit, int? type = null)

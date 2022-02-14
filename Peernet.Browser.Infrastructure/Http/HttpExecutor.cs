@@ -1,8 +1,7 @@
-﻿using System;
-using Newtonsoft.Json;
-using Peernet.Browser.Application.Contexts;
+﻿using Newtonsoft.Json;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Models.Presentation.Footer;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -13,32 +12,39 @@ namespace Peernet.Browser.Infrastructure.Http
 {
     internal class HttpExecutor : IHttpExecutor
     {
-        private readonly HttpClient httpClient;
+        private readonly Lazy<HttpClient> httpClientLazy;
         private readonly object lockObject = new();
+        private readonly INotificationsManager notificationsManager;
 
-        public HttpExecutor(ISettingsManager settingsManager)
+        public HttpExecutor(IHttpClientFactory httpClientFactory, INotificationsManager notificationsManager)
         {
-            httpClient = new HttpClientFactory(settingsManager).CreateHttpClient();
+            this.notificationsManager = notificationsManager;
+            httpClientLazy = new Lazy<HttpClient>(httpClientFactory.CreateHttpClient);
         }
 
-        public T GetResult<T>(HttpMethod method, string relativePath, Dictionary<string, string> queryParameters = null, HttpContent content = null)
+        public T GetResult<T>(HttpMethod method,
+            string relativePath,
+            Dictionary<string, string> queryParameters = null,
+            HttpContent content = null,
+            bool suppressErrorNotification = false)
         {
             var httpRequestMessage = PrepareMessage(relativePath, method, queryParameters, content);
-            var response = httpClient.Send(httpRequestMessage);
+            var response = httpClientLazy.Value.Send(httpRequestMessage);
 
-            return GetFromResponseMessage<T>(response);
+            return GetFromResponseMessage<T>(response, suppressErrorNotification);
         }
 
         public async Task<T> GetResultAsync<T>(
-                    HttpMethod method,
+            HttpMethod method,
             string relativePath,
             Dictionary<string, string> queryParameters = null,
-            HttpContent content = null)
+            HttpContent content = null,
+            bool suppressErrorNotification = false)
         {
             var httpRequestMessage = PrepareMessage(relativePath, method, queryParameters, content);
-            var response = await httpClient.SendAsync(httpRequestMessage);
+            var response = await httpClientLazy.Value.SendAsync(httpRequestMessage);
 
-            return GetFromResponseMessage<T>(response);
+            return GetFromResponseMessage<T>(response, suppressErrorNotification);
         }
 
         private static T Deserialize<T>(Stream stream)
@@ -83,7 +89,7 @@ namespace Peernet.Browser.Infrastructure.Http
             return httpRequestMessage;
         }
 
-        private T GetFromResponseMessage<T>(HttpResponseMessage response)
+        private T GetFromResponseMessage<T>(HttpResponseMessage response, bool suppressErrorNotification)
         {
             lock (lockObject)
             {
@@ -97,10 +103,15 @@ namespace Peernet.Browser.Infrastructure.Http
                         $"{response.RequestMessage.Content} \n" +
                         $"Result: HTTP {response.StatusCode} \n" +
                         $"{responseBody}";
-                    GlobalContext.Notifications.Add(new(
+
+                    if (!suppressErrorNotification)
+                    {
+                        notificationsManager.Notifications.Add(new(
                         $"Unexpected response status code: {response.StatusCode}",
                         details,
                         Severity.Error));
+                    }
+
                     return default;
                 }
             }

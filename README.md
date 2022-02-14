@@ -196,3 +196,7 @@ Before each Status Poll, the application changes the API Status to _Connecting_.
 When the backend returns success HTTP Status Code, Peernet Browser sets the returned API status. 
 If it is not a Success HTTP Status Code, the Poller will go idle for next 3 seconds without changing the API status (it will remain in _Connecting_ status).
 Status Poller runs during whole application lifetime and is disposed when Peernet Browser exits.
+
+### Icon
+
+To change the application icon replace the file `Peernet.Browser.WPF\peernet.ico`. The minimum resolution should be 48x48. If a high-resolution version is available, it should be 256x256.

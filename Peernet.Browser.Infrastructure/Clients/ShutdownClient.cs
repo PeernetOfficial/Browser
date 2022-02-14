@@ -1,22 +1,20 @@
-﻿using Peernet.Browser.Application.Managers;
-using Peernet.Browser.Infrastructure.Http;
+﻿using Peernet.Browser.Infrastructure.Http;
 using Peernet.Browser.Models.Domain.Shutdown;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure.Clients
 {
     internal class ShutdownClient : ClientBase, IShutdownClient
     {
-        private readonly HttpExecutor httpExecutor;
+        private readonly IHttpExecutor httpExecutor;
+
+        public ShutdownClient(IHttpExecutor httpExecutor)
+        {
+            this.httpExecutor = httpExecutor;
+        }
 
         public override string CoreSegment => "shutdown";
-
-        public ShutdownClient(ISettingsManager settingsManager)
-        {
-            httpExecutor = new HttpExecutor(settingsManager);
-        }
 
         public ApiShutdownStatus GetAction(ShutdownAction action)
         {

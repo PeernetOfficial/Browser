@@ -1,11 +1,12 @@
-﻿using MvvmCross.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 
 namespace Peernet.Browser.Models.Presentation.Home
 {
-    public abstract class CustomFilterModel<T> : MvxNotifyPropertyChanged where T : Enum
+    public abstract class CustomFilterModel<T> : INotifyPropertyChanged where T : Enum
     {
         private readonly bool isRadio;
         private readonly Action onSelectionChanged;
@@ -16,19 +17,23 @@ namespace Peernet.Browser.Models.Presentation.Home
             this.isRadio = isRadio;
             this.onSelectionChanged = onSelectionChanged;
             Title = title;
-            Items.AddRange(GetElements().OrderBy(e=> e.Key)
-                .Select(x => new CustomCheckBoxModel
+            foreach (var element in GetElements().OrderBy(e => e.Key))
+            {
+                var model = new CustomCheckBoxModel
                 {
-                    EnumerationMember = x.Key,
-                    Content = x.Value,
+                    EnumerationMember = element.Key,
+                    Content = element.Value,
                     IsCheckChanged = IsCheckedChanged,
                     IsRadio = isRadio
-                }));
+                };
+
+                Items.Add(model);
+            }
         }
 
         public bool IsSelected => Items.Any(x => x.IsChecked);
 
-        public MvxObservableCollection<CustomCheckBoxModel> Items { get; } = new();
+        public ObservableCollection<CustomCheckBoxModel> Items { get; } = new();
 
         public int SelectedItemIndex
         {
@@ -36,13 +41,14 @@ namespace Peernet.Browser.Models.Presentation.Home
             set
             {
                 selectedItemIndex = value;
-                SetProperty(ref selectedItemIndex, value);
-                RaisePropertyChanged(nameof(SelectedItemIndex));
+                PropertyChanged?.Invoke(this, new(nameof(SelectedItemIndex)));
                 onSelectionChanged?.Invoke();
             }
         }
 
         public string Title { get; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public T GetSelected()
         {

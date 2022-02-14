@@ -1,18 +1,15 @@
-﻿using System;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using MvvmCross.Commands;
-using MvvmCross.ViewModels;
+﻿using AsyncAwaitBestPractices.MVVM;
 using Peernet.Browser.Application.Clients;
+using Peernet.Browser.Application.ViewModels.Parameters;
+using System;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class TerminalViewModel : MvxViewModel
+    public class TerminalViewModel : GenericViewModelBase<TerminalInstanceParameter>, IDisposable
     {
-        private string commandLineInput;
-        private string commandLineOutput;
+        public event EventHandler OnOutputChanged;
 
         private readonly ISocketClient socketClient;
 
@@ -21,72 +18,63 @@ namespace Peernet.Browser.Application.ViewModels
             this.socketClient = socketClient;
         }
 
-        public string CommandLineOutput
+        public IAsyncCommand SendToPeernetConsole => new AsyncCommand(async () =>
         {
-            get => commandLineOutput;
-            set
+            if (Parameter.CommandLineInput.Equals("cls", StringComparison.CurrentCultureIgnoreCase))
             {
-                commandLineOutput = value;
-                SetProperty(ref commandLineOutput, value);
-                RaisePropertyChanged(nameof(CommandLineOutput));
-            }
-        }
-
-
-        public string CommandLineInput
-        {
-            get => commandLineInput;
-            set
-            {
-                commandLineInput = value;
-                RaisePropertyChanged(nameof(CommandLineInput));
-                SetProperty(ref commandLineInput, value);
-            }
-        }
-
-        public IMvxAsyncCommand SendToPeernetConsole => new MvxAsyncCommand(async () =>
-        {
-            if (CommandLineInput.Equals("cls", StringComparison.CurrentCultureIgnoreCase))
-            {
-                CommandLineOutput = string.Empty;
+                Parameter.CommandLineOutput = string.Empty;
             }
             else
             {
-                await socketClient.Send(CommandLineInput);
-                var response = await socketClient.Receive();
-                SetOutput(response);
-                CommandLineOutput += response;
+                await socketClient.Send(Parameter.CommandLineInput);
+                SetOutput($"\n>> {Parameter.CommandLineInput}\n");
             }
 
-            CommandLineInput = string.Empty;
+            Parameter.CommandLineInput = string.Empty;
         });
 
-        public override async void Start()
+        private async Task Initialize()
         {
-            base.Start();
-            
             await ConnectToPeernetConsole();
+            socketClient.MessageArrived += SocketClientOnMessageArrived;
+            await socketClient.StartReceiving();
+        }
+
+        private void SocketClientOnMessageArrived(object? sender, string e)
+        {
+            SetOutput(e);
+            OnOutputChanged?.Invoke(null, EventArgs.Empty);
         }
 
         private async Task ConnectToPeernetConsole()
         {
             await socketClient.Connect();
-
-            CommandLineOutput = await socketClient.Receive();
         }
 
         private void SetOutput(string output)
         {
-            var mbSize = ((decimal)Encoding.Unicode.GetByteCount(output) / 1048576);
+            var mbSize = (decimal)Encoding.Unicode.GetByteCount(output) / 1048576;
             if (mbSize > 1)
             {
-                CommandLineOutput = output;
+                Parameter.CommandLineOutput = output;
             }
-
             else
             {
-                CommandLineOutput += output;
+                Parameter.CommandLineOutput += output;
             }
+        }
+
+        public override void Dispose()
+        {
+            socketClient.Disconnect();
+
+            base.Dispose();
+        }
+
+        public override async Task Prepare(TerminalInstanceParameter parameter)
+        {
+            Parameter = parameter;
+            await Initialize();
         }
     }
 }

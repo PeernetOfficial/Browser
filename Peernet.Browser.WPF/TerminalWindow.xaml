@@ -1,13 +1,36 @@
-﻿<views:MvxWindow  x:Class="Peernet.Browser.WPF.TerminalWindow"
-                  x:TypeArguments="viewModels:TerminalViewModel"
-                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                  xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
-                  xmlns:viewModels="clr-namespace:Peernet.Browser.Application.ViewModels;assembly=Application"
-                  Top="100"
+﻿<Window x:Class="Peernet.Browser.WPF.TerminalWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Top="100"
                   Left="100"
                   Width="1100" Height="700"
                   Background="{DynamicResource PreviewBackground}">
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style TargetType="{x:Type ScrollViewer}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <ScrollContentPresenter Grid.Column="0" CanContentScroll="{TemplateBinding CanContentScroll}" />
+                                <ScrollBar x:Name="PART_VerticalScrollBar" Grid.Row="0" Grid.Column="1" Value="{TemplateBinding VerticalOffset}" Maximum="{TemplateBinding ScrollableHeight}" ViewportSize="{TemplateBinding ViewportHeight}" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" />
+                                <ScrollBar x:Name="PART_HorizontalScrollBar" Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Value="{TemplateBinding HorizontalOffset}" Maximum="{TemplateBinding ScrollableWidth}" ViewportSize="{TemplateBinding ViewportWidth}" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" />
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+
     <Grid Background="Black">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -16,22 +39,27 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
         </Grid.RowDefinitions>
-        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" x:Name="OutputPane" Margin="0, 0, 12, 0">
-            <TextBox
-                BorderThickness="0"
-                IsReadOnly="True"
-                Background="Black"
-                Foreground="#e0e0e0"
-                Text="{Binding CommandLineOutput, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                FontFamily="Courier New"
-                TextWrapping="Wrap"
-                ScrollViewer.CanContentScroll="True">
-            </TextBox>
-        </ScrollViewer>
+        <TextBox
+            BorderThickness="0"
+            Grid.Row="0"
+            Margin="0, 0, 12, 0"
+            ScrollViewer.HorizontalScrollBarVisibility="Auto"
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+            ScrollViewer.CanContentScroll="True"
+            AcceptsReturn="True"
+            x:Name="OutputPane"
+            IsReadOnly="True"
+            Background="Black"
+            Foreground="#e0e0e0"
+            Text="{Binding Parameter.CommandLineOutput, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            FontFamily="Courier New"
+            ScrollViewer.ScrollChanged="OutputPane_ScrollChanged">
+        </TextBox>
         <TextBox Grid.Row="1"
+                 x:Name="InputField"
                  Background="Black"
                  Foreground="#e0e0e0"
-                 Text="{Binding CommandLineInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 Text="{Binding Parameter.CommandLineInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  HorizontalAlignment="Stretch"
                  VerticalAlignment="Center"
                  TextWrapping="Wrap"
@@ -41,4 +69,4 @@
             </TextBox.InputBindings>
         </TextBox>
     </Grid>
-</views:MvxWindow>
+</Window>

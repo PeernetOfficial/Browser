@@ -1,42 +1,59 @@
-﻿using MvvmCross.Platforms.Wpf.Presenters.Attributes;
-using MvvmCross.Presenters;
-using MvvmCross.Presenters.Attributes;
-using MvvmCross.ViewModels;
-using Peernet.Browser.Application.ViewModels;
-using System.ComponentModel;
+﻿using Peernet.Browser.Application.ViewModels;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace Peernet.Browser.WPF
 {
     /// <summary>
     /// Interaction logic for TerminalWindow.xaml
     /// </summary>
-    [MvxWindowPresentation]
-    public partial class TerminalWindow : IMvxOverridePresentationAttribute
+    public partial class TerminalWindow : Window
     {
-        public TerminalWindow()
+        private bool anchorScrollToBottom = true;
+
+        public TerminalWindow(object dataContext)
         {
             InitializeComponent();
-            OutputPane.ScrollToBottom();
+            DataContext = dataContext;
+            OutputPane.TextChanged += Output_TextChanged;
+            InputField.Focus();
         }
 
-        public MvxBasePresentationAttribute PresentationAttribute(MvxViewModelRequest request)
+        private void Output_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var instanceRequest = request as MvxViewModelInstanceRequest;
-            var viewModel = instanceRequest?.ViewModelInstance as TerminalViewModel;
-            viewModel.PropertyChanged += ViewModelOnPropertyChanged;
+            var textBox = sender as TextBox;
+            var max = textBox.ExtentHeight - textBox.ViewportHeight;
+            var offset = textBox.VerticalOffset;
 
-            return new MvxWindowPresentationAttribute
+            if (offset == 0 && anchorScrollToBottom)
             {
-                Identifier = $"{nameof(TerminalWindow)}.{nameof(TerminalViewModel)}"
-            };
-        }
-
-        private void ViewModelOnPropertyChanged(object? sender, PropertyChangedEventArgs e)
-        {
-            if(e.PropertyName == nameof(TerminalViewModel.CommandLineOutput))
-            {
-                OutputPane.ScrollToBottom();
             }
+            else
+            {
+                anchorScrollToBottom = max == offset;
+            }
+
+            if (anchorScrollToBottom)
+            {
+                Dispatcher.BeginInvoke(() => textBox.ScrollToEnd(), DispatcherPriority.Loaded);
+            }
+        }
+
+        private void OutputPane_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            var max = OutputPane.ExtentHeight - OutputPane.ViewportHeight;
+            var offset = OutputPane.VerticalOffset;
+            if (offset != 0 && max != offset)
+            {
+                anchorScrollToBottom = false;
+            }
+        }
+
+        protected override void OnClosed(System.EventArgs e)
+        {
+            ((TerminalViewModel)DataContext).Dispose();
+            base.OnClosed(e);
         }
     }
 }

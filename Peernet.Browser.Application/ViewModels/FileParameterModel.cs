@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Peernet.Browser.Models.Presentation.Footer;
+﻿using Peernet.Browser.Models.Presentation.Footer;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels

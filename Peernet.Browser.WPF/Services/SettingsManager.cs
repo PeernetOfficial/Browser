@@ -1,7 +1,7 @@
-﻿using System;
-using System.Configuration;
-using Peernet.Browser.Application.Managers;
+﻿using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Models.Presentation;
+using System;
+using System.Configuration;
 
 namespace Peernet.Browser.WPF.Services
 {
@@ -11,7 +11,7 @@ namespace Peernet.Browser.WPF.Services
 
         private static readonly Guid apiKey = Guid.NewGuid();
 
-        public string ApiKey => apiKey.ToString();
+        public string ApiKey => Get(nameof(ApiKey)) ?? apiKey.ToString();
 
         public string ApiUrl
         {
@@ -26,6 +26,8 @@ namespace Peernet.Browser.WPF.Services
             get => Get(nameof(Backend));
             set => Set(nameof(Backend), value);
         }
+
+        public string LogFile => Get(nameof(LogFile));
 
         public string DownloadPath
         {
@@ -67,7 +69,7 @@ namespace Peernet.Browser.WPF.Services
             return new Uri(new Uri(socketAddress), $"console?k={ApiKey}");
         }
 
-        public static void Save()
+        public void Save()
         {
             config.Save();
         }

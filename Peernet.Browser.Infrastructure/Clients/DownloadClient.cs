@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Peernet.Browser.Infrastructure.Http;
+using Peernet.Browser.Models.Domain.Download;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Peernet.Browser.Application.Managers;
-using Peernet.Browser.Infrastructure.Http;
-using Peernet.Browser.Models.Domain.Download;
 
 namespace Peernet.Browser.Infrastructure.Clients
 {
@@ -16,9 +15,9 @@ namespace Peernet.Browser.Infrastructure.Clients
 
         private readonly IHttpExecutor httpExecutor;
 
-        public DownloadClient(ISettingsManager settingsManager)
+        public DownloadClient(IHttpExecutor httpExecutor)
         {
-            httpExecutor = new HttpExecutor(settingsManager);
+            this.httpExecutor = httpExecutor;
         }
 
         public override string CoreSegment => "download";

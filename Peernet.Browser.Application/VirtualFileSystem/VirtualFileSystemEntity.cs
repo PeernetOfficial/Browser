@@ -1,10 +1,9 @@
-﻿using MvvmCross.ViewModels;
-using Peernet.Browser.Models.Domain.Common;
+﻿using Peernet.Browser.Models.Domain.Common;
 using System;
 
 namespace Peernet.Browser.Application.VirtualFileSystem
 {
-    public class VirtualFileSystemEntity : MvxNotifyPropertyChanged, IEquatable<VirtualFileSystemEntity>
+    public class VirtualFileSystemEntity : IEquatable<VirtualFileSystemEntity>
     {
         private readonly string name;
         private readonly VirtualFileSystemEntityType? type;

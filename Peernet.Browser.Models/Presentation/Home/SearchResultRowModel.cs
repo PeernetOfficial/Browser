@@ -1,12 +1,12 @@
-﻿using MvvmCross.ViewModels;
-using Peernet.Browser.Models.Domain.Common;
+﻿using Peernet.Browser.Models.Domain.Common;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 
 namespace Peernet.Browser.Models.Presentation.Home
 {
-    public class SearchResultRowModel : MvxNotifyPropertyChanged
+    public class SearchResultRowModel : INotifyPropertyChanged
     {
         private bool isMapEnabled;
 
@@ -37,7 +37,7 @@ namespace Peernet.Browser.Models.Presentation.Home
             set
             {
                 isMapEnabled = value;
-                SetProperty(ref isMapEnabled, value);
+                PropertyChanged?.Invoke(this, new(nameof(IsMapEnabled)));
             }
         }
 
@@ -45,6 +45,8 @@ namespace Peernet.Browser.Models.Presentation.Home
         public List<GeoPoint> Points { get; }
         public int SharedBy { get; }
         public string Size { get; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public static DataGridSortingNameEnum Parse(string name)
         {

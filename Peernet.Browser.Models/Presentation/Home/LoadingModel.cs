@@ -1,8 +1,8 @@
-﻿using MvvmCross.ViewModels;
+﻿using System.ComponentModel;
 
 namespace Peernet.Browser.Models.Presentation.Home
 {
-    public class LoadingModel : MvxNotifyPropertyChanged
+    public class LoadingModel : INotifyPropertyChanged
     {
         private bool isLoading;
 
@@ -11,8 +11,9 @@ namespace Peernet.Browser.Models.Presentation.Home
             get => isLoading;
             set
             {
-                SetProperty(ref isLoading, value);
-                RaisePropertyChanged(nameof(IsNotLoading));
+                isLoading = value;
+                PropertyChanged?.Invoke(this, new(nameof(IsLoading)));
+                PropertyChanged?.Invoke(this, new(nameof(IsNotLoading)));
             }
         }
 
@@ -20,10 +21,16 @@ namespace Peernet.Browser.Models.Presentation.Home
 
         private string text;
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public string Text
         {
             get => text;
-            set => SetProperty(ref text, value);
+            set
+            {
+                text = value;
+                PropertyChanged?.Invoke(this, new(nameof(Text)));
+            }
         }
 
         public void Set(string text)

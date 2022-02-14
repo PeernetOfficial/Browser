@@ -1,16 +1,15 @@
-﻿using MvvmCross.Commands;
-using MvvmCross.ViewModels;
+﻿using AsyncAwaitBestPractices.MVVM;
 using System;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class MenuItemViewModel : MvxViewModel
+    public class MenuItemViewModel : ViewModelBase
     {
         public MenuItemViewModel(string text, Action action = null)
         {
             Text = text;
-            Command = new MvxAsyncCommand(() =>
+            Command = new AsyncCommand(() =>
             {
                 // navigate to some ViewModel
                 action?.Invoke();
@@ -19,7 +18,7 @@ namespace Peernet.Browser.Application.ViewModels
             });
         }
 
-        public IMvxAsyncCommand Command { get; }
+        public IAsyncCommand Command { get; }
 
         public string Text { get; }
     }

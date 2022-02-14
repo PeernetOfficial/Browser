@@ -1,5 +1,6 @@
-﻿using Peernet.Browser.Application.Contexts;
+﻿using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Services;
+using Peernet.Browser.Application.Utilities;
 using Peernet.Browser.Models.Domain.Blockchain;
 using Peernet.Browser.Models.Presentation.Footer;
 using System;
@@ -10,11 +11,13 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
     public class EditFileViewModelParameter : FileParameterModel
     {
         private readonly IBlockchainService blockchainService;
+        private readonly INotificationsManager notificationsManager;
         private readonly Func<Task> postAction;
 
-        public EditFileViewModelParameter(IBlockchainService blockchainService, Func<Task> postAction)
+        public EditFileViewModelParameter(IBlockchainService blockchainService, INotificationsManager notificationsManager, Func<Task> postAction)
         {
             this.blockchainService = blockchainService;
+            this.notificationsManager = notificationsManager;
             this.postAction = postAction;
         }
 
@@ -29,7 +32,12 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
                 var result = await blockchainService.UpdateFile(fileModel);
                 if (result.Status != BlockchainStatus.StatusOK)
                 {
-                    GlobalContext.Notifications.Add(new Notification($"Failed to update the file. Status: {result.Status}", severity: Severity.Error));
+                    var message = "Failed to update the file. Status: {result.Status}";
+                    var details =
+                        MessagingHelper.GetApiSummary(
+                            $"{nameof(blockchainService)}.{nameof(blockchainService.UpdateFile)}") +
+                        MessagingHelper.GetInOutSummary(files, result);
+                    notificationsManager.Notifications.Add(new Notification(message, details, Severity.Error));
                 }
             }
 

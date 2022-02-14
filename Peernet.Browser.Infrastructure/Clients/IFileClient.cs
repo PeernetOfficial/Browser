@@ -1,9 +1,9 @@
-﻿using System.Threading.Tasks;
-using Peernet.Browser.Models.Domain.File;
+﻿using Peernet.Browser.Models.Domain.File;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure.Clients
 {
-    public interface IFileClient
+    internal interface IFileClient
     {
         Task<ApiResponseFileFormat> GetFormat(string path);
     }

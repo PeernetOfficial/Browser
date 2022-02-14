@@ -2,5 +2,6 @@
 
 namespace Peernet.Browser.Models.Domain.Search
 {
-    public class SearchStatisticFileTypeRecord : SearchStatisticRecord<LowLevelFileType> { }
+    public class SearchStatisticFileTypeRecord : SearchStatisticRecord<LowLevelFileType>
+    { }
 }
