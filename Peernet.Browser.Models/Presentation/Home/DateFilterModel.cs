@@ -1,11 +1,10 @@
-﻿
-using System;
+﻿using System;
 
 namespace Peernet.Browser.Models.Presentation.Home
 {
     public class DateFilterModel : CustomFilterModel<TimePeriods>
     {
-        public DateFilterModel(Action onSelectionChanged) 
+        public DateFilterModel(Action onSelectionChanged)
             : base("Date", onSelectionChanged)
         {
         }

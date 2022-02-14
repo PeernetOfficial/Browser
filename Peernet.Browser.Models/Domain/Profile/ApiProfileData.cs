@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Peernet.Browser.Models.Domain.Blockchain;
+﻿using Peernet.Browser.Models.Domain.Blockchain;
+using System.Collections.Generic;
 
 namespace Peernet.Browser.Models.Domain.Profile
 {

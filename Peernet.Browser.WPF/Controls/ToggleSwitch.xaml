@@ -8,27 +8,27 @@
              mc:Ignorable="d">
     <Border MouseLeftButtonDown="Toggle_OnClick" Padding="15, 10" Background="Transparent" Cursor="Hand">
         <StackPanel Orientation="Horizontal">
-        <TextBlock Text="Light" Foreground="{DynamicResource MainTextBrush}" VerticalAlignment="Center" />
-        <Border BorderThickness="1" Height="18" Width="38" CornerRadius="8" BorderBrush="{DynamicResource ToggleSwitchBorderBrush}" Background="Transparent" Cursor="Hand" Margin="13, 0, 13, 0">
-            <Ellipse Margin="3" Height="12" VerticalAlignment="Center" Width="12">
-                <Ellipse.Fill>
-                    <SolidColorBrush Color="{DynamicResource NavbarMenuButtonColor}" Opacity="0.60" />
-                </Ellipse.Fill>
-                <Ellipse.Style>
-                    <Style TargetType="{x:Type Ellipse}">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Path=(contexts:GlobalContext.VisualMode)}" Value="{x:Static models:VisualMode.LightMode}">
-                                <Setter Property="HorizontalAlignment" Value="Left" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Path=(contexts:GlobalContext.VisualMode)}" Value="{x:Static models:VisualMode.DarkMode}">
-                                <Setter Property="HorizontalAlignment" Value="Right" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Ellipse.Style>
-            </Ellipse>
-        </Border>
+            <TextBlock Text="Light" Foreground="{DynamicResource MainTextBrush}" VerticalAlignment="Center" />
+            <Border BorderThickness="1" Height="18" Width="38" CornerRadius="8" BorderBrush="{DynamicResource ToggleSwitchBorderBrush}" Background="Transparent" Cursor="Hand" Margin="13, 0, 13, 0">
+                <Ellipse Margin="3" Height="12" VerticalAlignment="Center" Width="12">
+                    <Ellipse.Fill>
+                        <SolidColorBrush Color="{DynamicResource NavbarMenuButtonColor}" Opacity="0.60" />
+                    </Ellipse.Fill>
+                    <Ellipse.Style>
+                        <Style TargetType="{x:Type Ellipse}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=(contexts:GlobalContext.VisualMode)}" Value="{x:Static models:VisualMode.LightMode}">
+                                    <Setter Property="HorizontalAlignment" Value="Left" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=(contexts:GlobalContext.VisualMode)}" Value="{x:Static models:VisualMode.DarkMode}">
+                                    <Setter Property="HorizontalAlignment" Value="Right" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Ellipse.Style>
+                </Ellipse>
+            </Border>
             <TextBlock Text="Dark" Foreground="{DynamicResource MainTextBrush}" VerticalAlignment="Center" />
-    </StackPanel>
+        </StackPanel>
     </Border>
 </UserControl>

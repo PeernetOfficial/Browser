@@ -1,8 +1,6 @@
-﻿using MvvmCross.ViewModels;
-
-namespace Peernet.Browser.Models.Presentation.Home
+﻿namespace Peernet.Browser.Models.Presentation.Home
 {
-    public class FilterResultModel : MvxNotifyPropertyChanged
+    public class FilterResultModel
     {
         public string Content { get; set; }
 

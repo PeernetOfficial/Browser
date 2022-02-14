@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Peernet.Browser.Models.Presentation;
+using System;
 
 namespace Peernet.Browser.Application.Managers
 {
@@ -15,6 +16,8 @@ namespace Peernet.Browser.Application.Managers
         string LogFile { get; }
 
         string DownloadPath { get; set; }
+
+        VisualMode DefaultTheme { get; set; }
 
         void Save();
     }

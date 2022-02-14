@@ -1,4 +1,5 @@
 ﻿namespace Peernet.Browser.Application
 {
-    public interface IModal { }
+    public interface IModal
+    { }
 }

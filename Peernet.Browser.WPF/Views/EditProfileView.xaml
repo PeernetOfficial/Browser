@@ -1,18 +1,17 @@
-﻿<views:MvxWpfView
+﻿<UserControl
     x:Class="Peernet.Browser.WPF.Views.EditProfileView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
-    xmlns:models="clr-namespace:Peernet.Browser.Models.Presentation;assembly=Models"
     xmlns:contexts="clr-namespace:Peernet.Browser.Application.Contexts;assembly=Application"
+    xmlns:models="clr-namespace:Peernet.Browser.Models.Presentation;assembly=Models"
     HorizontalAlignment="Center" VerticalAlignment="Center" UseLayoutRounding="True" SnapsToDevicePixels="True">
 
-    <views:MvxWpfView.Resources>
+    <UserControl.Resources>
         <ResourceDictionary>
             <ImageBrush x:Key="DefaultProfileImage" ImageSource="{DynamicResource DefaultProfileImageDrawingImage}" />
             <ImageBrush x:Key="SourcedProfileImage" ImageSource="{Binding UserContext.User.Image, Converter={StaticResource NullImageConverter}}" Stretch="Uniform" />
         </ResourceDictionary>
-    </views:MvxWpfView.Resources>
+    </UserControl.Resources>
     <Border BorderThickness="1">
         <Border.Background>
             <SolidColorBrush Color="{StaticResource ModalBackground}" />
@@ -53,27 +52,27 @@
                             </Border.Style>
                         </Border>
                         <Border CornerRadius="4, 0, 4, 0" Height="32" Width="32" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="{DynamicResource MainContentBrush}">
-                                <Button Width="32" Height="32" Padding="6" Click="OpenFileDialog">
-                                    <Button.Style>
-                                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonBaseStyle}">
-                                            <Setter Property="Background">
-                                                <Setter.Value>
-                                                    <ImageBrush ImageSource="{DynamicResource Edit_LightDrawingImage}" />
-                                                </Setter.Value>
-                                            </Setter>
-                                            <Setter Property="Margin" Value="0" />
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding UserContext.User.Image}" Value="{x:Null}">
-                                                    <Setter Property="Background">
-                                                        <Setter.Value>
-                                                            <ImageBrush ImageSource="{DynamicResource PlusDrawingImage}" />
-                                                        </Setter.Value>
-                                                    </Setter>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Button.Style>
-                                </Button>
+                            <Button Width="32" Height="32" Padding="6" Click="OpenFileDialog">
+                                <Button.Style>
+                                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonBaseStyle}">
+                                        <Setter Property="Background">
+                                            <Setter.Value>
+                                                <ImageBrush ImageSource="{DynamicResource Edit_LightDrawingImage}" />
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter Property="Margin" Value="0" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding UserContext.User.Image}" Value="{x:Null}">
+                                                <Setter Property="Background">
+                                                    <Setter.Value>
+                                                        <ImageBrush ImageSource="{DynamicResource PlusDrawingImage}" />
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
                         </Border>
                     </Grid>
                 </Border>
@@ -85,38 +84,38 @@
                     <Border.Background>
                         <SolidColorBrush Color="{DynamicResource PopupMenuBackground}" />
                     </Border.Background>
-                        <TextBox Text="{Binding UserContext.User.Name}"
+                    <TextBox Text="{Binding UserContext.User.Name}"
                                  VerticalContentAlignment="Center"
                                  HorizontalContentAlignment="Left"
-                                 Foreground="{DynamicResource MainContentBrush}" 
+                                 Foreground="{DynamicResource MainContentBrush}"
                                  BorderThickness="0"
                                  CaretBrush="{DynamicResource MainTextBrush}"
                                  Cursor="IBeam"
                                  Padding="9, 0, 0, 0">
-                            <TextBox.Style>
-                                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-                                    <Setter Property="Background" Value="Transparent" />
-                                    <Style.Resources>
-                                        <VisualBrush x:Key="BannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
-                                            <VisualBrush.Visual>
+                        <TextBox.Style>
+                            <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Style.Resources>
+                                    <VisualBrush x:Key="BannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
+                                        <VisualBrush.Visual>
                                             <Label Content="Set username" Padding="9, 0, 0, 0" Foreground="{DynamicResource LightGray2Brush}" />
-                                            </VisualBrush.Visual>
-                                        </VisualBrush>
-                                    </Style.Resources>
-                                    <Style.Triggers>
-                                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
-                                            <Setter Property="Background" Value="{StaticResource BannerBrush}" />
-                                        </Trigger>
-                                        <Trigger Property="Text" Value="{x:Null}">
-                                            <Setter Property="Background" Value="{StaticResource BannerBrush}" />
-                                        </Trigger>
-                                        <Trigger Property="IsKeyboardFocused" Value="True">
-                                            <Setter Property="Background" Value="Transparent" />
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBox.Style>
-                        </TextBox>
+                                        </VisualBrush.Visual>
+                                    </VisualBrush>
+                                </Style.Resources>
+                                <Style.Triggers>
+                                    <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                        <Setter Property="Background" Value="{StaticResource BannerBrush}" />
+                                    </Trigger>
+                                    <Trigger Property="Text" Value="{x:Null}">
+                                        <Setter Property="Background" Value="{StaticResource BannerBrush}" />
+                                    </Trigger>
+                                    <Trigger Property="IsKeyboardFocused" Value="True">
+                                        <Setter Property="Background" Value="Transparent" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
                 </Border>
 
                 <Border Width="282" Height="36" CornerRadius="0,0,3,3" Margin="0,28,0,0" BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}" HorizontalAlignment="Center">
@@ -158,4 +157,4 @@
             </Grid>
         </Grid>
     </Border>
-</views:MvxWpfView>
+</UserControl>

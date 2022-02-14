@@ -1,5 +1,4 @@
-﻿using Peernet.Browser.Application.Contexts;
-using Peernet.Browser.Application.Managers;
+﻿using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.Utilities;
 using Peernet.Browser.Infrastructure.Clients;
@@ -16,11 +15,13 @@ namespace Peernet.Browser.Infrastructure.Services
     {
         private readonly ISettingsManager settingsManager;
         private readonly IWarehouseClient warehouseClient;
+        private readonly INotificationsManager notificationsManager;
 
-        public WarehouseService(IWarehouseClient warehouseClient, ISettingsManager settingsManager)
+        public WarehouseService(IWarehouseClient warehouseClient, ISettingsManager settingsManager, INotificationsManager notificationsManager)
         {
             this.settingsManager = settingsManager;
             this.warehouseClient = warehouseClient;
+            this.notificationsManager = notificationsManager;
         }
 
         public async Task<WarehouseResult> Create(FileModel file)
@@ -34,7 +35,7 @@ namespace Peernet.Browser.Infrastructure.Services
             var fullPath = Path.Combine(Environment.ExpandEnvironmentVariables(settingsManager.DownloadPath),
                 file.Name);
             var result = await warehouseClient.ReadPath(file.Hash, fullPath);
-            GlobalContext.Notifications.Add(result.Status != WarehouseStatus.StatusOK
+            notificationsManager.Notifications.Add(result.Status != WarehouseStatus.StatusOK
                 ? new Notification($"Failed to save file to {fullPath}. Status: {result.Status}",
                     MessagingHelper.GetApiSummary($"{nameof(warehouseClient)}.{nameof(warehouseClient.ReadPath)}") +
                     MessagingHelper.GetInOutSummary(file, result), Severity.Error)

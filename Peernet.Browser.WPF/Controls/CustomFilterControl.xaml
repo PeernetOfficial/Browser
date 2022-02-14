@@ -11,28 +11,28 @@
     </UserControl.Resources>
     <StackPanel>
         <TextBlock Foreground="{DynamicResource MainContentBrush}" Margin="0 15 0 8" FontSize="15" Text="{Binding Title}" />
-            <Border BorderBrush="{DynamicResource LightGray2Brush}" BorderThickness="1" CornerRadius="{DynamicResource MainRadius}">
-                <ListView MaxHeight="210" ItemsSource="{Binding Items}" BorderThickness="0" Background="Transparent" SelectedIndex="{Binding SelectedItemIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True">
-                    <ListView.Resources>
-                        <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
+        <Border BorderBrush="{DynamicResource LightGray2Brush}" BorderThickness="1" CornerRadius="{DynamicResource MainRadius}">
+            <ListView MaxHeight="210" ItemsSource="{Binding Items}" BorderThickness="0" Background="Transparent" SelectedIndex="{Binding SelectedItemIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True">
+                <ListView.Resources>
+                    <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
                         <TextBlock FontSize="16" Text="{Binding Content}" Background="{DynamicResource SelectedItemBrush}" Foreground="{DynamicResource MainTextBrush}" Padding="0, 2, 7, 2" />
-                        </ControlTemplate>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                    </ControlTemplate>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListViewItem}">
                                     <TextBlock FontSize="16" Text="{Binding Content}" Foreground="{DynamicResource MainTextBrush}" Padding="0, 2, 7, 2" />
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsSelected" Value="True">
-                                    <Setter Property="Template" Value="{StaticResource SelectedTemplate}" />
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </ListView.Resources>
-                </ListView>
-            </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Template" Value="{StaticResource SelectedTemplate}" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.Resources>
+            </ListView>
+        </Border>
     </StackPanel>
 </UserControl>

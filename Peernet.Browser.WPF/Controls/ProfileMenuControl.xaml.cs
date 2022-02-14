@@ -1,9 +1,9 @@
-﻿using System.Windows;
+﻿using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.Application.ViewModels;
+using Peernet.Browser.WPF.Extensions;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using Peernet.Browser.Application.Contexts;
-using Peernet.Browser.Models.Presentation;
-using Peernet.Browser.WPF.Extensions;
 
 namespace Peernet.Browser.WPF.Controls
 {
@@ -36,29 +36,14 @@ namespace Peernet.Browser.WPF.Controls
             }
         }
 
-        public static readonly DependencyProperty IsDarkModeToggledProperty =
-            DependencyProperty.Register("IsDarkModeToggled", typeof(bool),
-                typeof(ProfileMenuControl),
-                new FrameworkPropertyMetadata(DarkMode_OnToggle) { BindsTwoWayByDefault = true });
-
-        public bool IsDarkModeToggled
+        private void TextBlock_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            get =>(bool)GetValue(IsDarkModeToggledProperty);
-            set => SetValue(IsDarkModeToggledProperty, value);
-        }
-
-        private static void DarkMode_OnToggle(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            if (GlobalContext.VisualMode == VisualMode.LightMode)
+            if (DataContext is MainViewModel main)
             {
-                GlobalContext.VisualMode = VisualMode.DarkMode;
-            }
-            else if (GlobalContext.VisualMode == VisualMode.DarkMode)
-            {
-                GlobalContext.VisualMode = VisualMode.LightMode;
+                main.OpenAboutTab?.Invoke();
             }
 
-            (App.Current as App).UpdateAllResources();
+            GlobalContext.IsProfileMenuVisible = false;
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using MvvmCross.Base;
-using Peernet.Browser.Models.Presentation;
+﻿using Peernet.Browser.Models.Presentation;
 using System;
 using System.ComponentModel;
 
@@ -7,8 +6,6 @@ namespace Peernet.Browser.Application.Contexts
 {
     public class GlobalContext : INotifyPropertyChanged
     {
-        private static bool isMainWindowActive = true;
-
         private static bool isLogoVisible;
 
         private static bool isConnected;
@@ -17,8 +14,6 @@ namespace Peernet.Browser.Application.Contexts
 
         private static VisualMode visualMode;
 
-        private static NotificationCollection notifications;
-
         private static string currentViewModel;
 
         private static string errorMessage;
@@ -26,18 +21,6 @@ namespace Peernet.Browser.Application.Contexts
         public static event EventHandler<PropertyChangedEventArgs> StaticPropertyChanged = delegate { };
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public static IMvxMainThreadAsyncDispatcher UiThreadDispatcher { get; set; }
-
-        public static bool IsMainWindowActive
-        {
-            get => isMainWindowActive;
-            set
-            {
-                isMainWindowActive = value;
-                NotifyStaticPropertyChanged(nameof(IsMainWindowActive));
-            }
-        }
 
         public static bool IsLogoVisible
         {
@@ -48,7 +31,7 @@ namespace Peernet.Browser.Application.Contexts
                 NotifyStaticPropertyChanged(nameof(IsLogoVisible));
             }
         }
-        
+
         public static bool IsConnected
         {
             get => isConnected;
@@ -79,28 +62,6 @@ namespace Peernet.Browser.Application.Contexts
             }
         }
 
-        private static object modal;
-
-        public static object Modal
-        {
-            get => modal;
-            set
-            {
-                modal = value;
-                NotifyStaticPropertyChanged(nameof(modal));
-            }
-        }
-
-        public static string CurrentViewModel
-        {
-            get => currentViewModel;
-            set
-            {
-                currentViewModel = value;
-                NotifyStaticPropertyChanged(nameof(CurrentViewModel));
-            }
-        }
-
         public static string ErrorMessage
         {
             get => errorMessage;
@@ -108,16 +69,6 @@ namespace Peernet.Browser.Application.Contexts
             {
                 errorMessage = value;
                 NotifyStaticPropertyChanged(nameof(errorMessage));
-            }
-        }
-
-        public static NotificationCollection Notifications
-        {
-            get => notifications ??= new NotificationCollection(11000);
-            set
-            {
-                notifications = value;
-                NotifyStaticPropertyChanged(nameof(Notifications));
             }
         }
 

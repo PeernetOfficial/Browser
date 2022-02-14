@@ -8,7 +8,7 @@
              mc:Ignorable="d"
              x:Name="ExploreFilesDataGrid">
     <Grid>
-        <DataGrid Style="{DynamicResource DataGridStyle}" ItemsSource="{Binding ActiveSearchResults, IsAsync=True}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False">
+        <DataGrid Style="{DynamicResource DataGridStyle}" ItemsSource="{Binding ActiveSearchResults, IsAsync=True, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False" Visibility="{Binding IsLoaded, Converter={StaticResource BoolToVisibility}}">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="NAME" SortMemberPath="File.Name" Width="*" HeaderStyle="{StaticResource ShiftedDataGridColumnHeaderStyle}">
                     <DataGridTemplateColumn.CellTemplate>
@@ -19,11 +19,7 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Image Width="13.71" Height="20" Grid.Column="0" Style="{StaticResource DownloadItemImageStyle}" />
-                                <TextBlock Grid.Column="1" Text="{Binding File.Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Cursor="Hand" Style="{StaticResource Underlined}">
-                                    <TextBlock.InputBindings>
-                                        <MouseBinding Command="{Binding DataContext.OpenCommand, ElementName=ExploreFilesDataGrid}" CommandParameter="{Binding}" MouseAction="LeftClick" />
-                                    </TextBlock.InputBindings>
-                                </TextBlock>
+                                <TextBlock Grid.Column="1" Text="{Binding File.Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Cursor="Hand" Style="{StaticResource Underlined}" PreviewMouseLeftButtonDown="Open_OnClick" />
                             </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -89,7 +85,7 @@
                                             </Setter>
                                             <Setter Property="Width" Value="45" />
                                             <Setter Property="Height" Value="44" />
-                                            <Setter Property="Command" Value="{Binding DataContext.DownloadCommand, ElementName=ExploreFilesDataGrid}"/>
+                                            <Setter Property="Command" Value="{Binding DataContext.DownloadCommand, ElementName=ExploreFilesDataGrid}" />
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding Status}" Value="{x:Static download:DownloadStatus.DownloadFinished}">
                                                     <Setter Property="Background">
@@ -117,7 +113,7 @@
                                                     </Setter>
                                                     <Setter Property="Width" Value="42" />
                                                     <Setter Property="Height" Value="41" />
-                                                    <Setter Property="Command" Value="{Binding DataContext.ResumeCommand, ElementName=ExploreFilesDataGrid}"/>
+                                                    <Setter Property="Command" Value="{Binding DataContext.ResumeCommand, ElementName=ExploreFilesDataGrid}" />
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
@@ -129,5 +125,17 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <TextBlock FontSize="14" Foreground="{DynamicResource MainContentBrush}" Text="Loading..." Background="Transparent" Margin="60 40">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Hidden" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsLoaded}" Value="False">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
     </Grid>
 </UserControl>

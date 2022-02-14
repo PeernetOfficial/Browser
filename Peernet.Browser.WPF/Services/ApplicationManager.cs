@@ -1,31 +1,32 @@
 ﻿using Microsoft.Win32;
 using Peernet.Browser.Application.Managers;
+using System;
+using System.Windows;
 
 namespace Peernet.Browser.WPF.Services
 {
     public class ApplicationManager : IApplicationManager
     {
+        private Lazy<MainWindow> window = new Lazy<MainWindow>(GetWindow);
+
         public ApplicationManager()
         {
-            SetWindow();
         }
 
-        private MainWindow window;
-
-        private void SetWindow()
+        private static MainWindow GetWindow()
         {
-            window ??= (MainWindow)System.Windows.Application.Current.MainWindow;
+            return (MainWindow)System.Windows.Application.Current.MainWindow;
         }
 
-        public bool IsMaximized => window.WindowState == System.Windows.WindowState.Maximized;
+        public bool IsMaximized => window.Value.WindowState == WindowState.Maximized;
 
-        public void Maximize() => window.WindowState = System.Windows.WindowState.Maximized;
+        public void Maximize() => window.Value.WindowState = WindowState.Maximized;
 
-        public void Minimize() => window.WindowState = System.Windows.WindowState.Minimized;
+        public void Minimize() => window.Value.WindowState = WindowState.Minimized;
 
         public void Shutdown() => App.Current.Shutdown();
 
-        public void Restore() => window.WindowState = System.Windows.WindowState.Normal;
+        public void Restore() => window.Value.WindowState = WindowState.Normal;
 
         public string[] OpenFileDialog(bool multiselect = true, string filter = "")
         {

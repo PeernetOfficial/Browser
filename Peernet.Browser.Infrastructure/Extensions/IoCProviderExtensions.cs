@@ -1,6 +1,6 @@
-﻿using MvvmCross.IoC;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Peernet.Browser.Application.Clients;
 using Peernet.Browser.Application.Download;
-using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Infrastructure.Clients;
 using Peernet.Browser.Infrastructure.Http;
@@ -10,32 +10,33 @@ namespace Peernet.Browser.Infrastructure.Extensions
 {
     public static class IoCProviderExtensions
     {
-        public static void RegisterPeernetServices(this IMvxIoCProvider provider)
+        public static void RegisterPeernetServices(this ServiceCollection provider)
         {
-            provider.RegisterType<IHttpClientFactory, HttpClientFactory>();
-            provider.RegisterType<IHttpExecutor, HttpExecutor>();
+            provider.AddSingleton<IHttpClientFactory, HttpClientFactory>();
+            provider.AddSingleton<IHttpExecutor, HttpExecutor>();
 
-            provider.RegisterType<IDownloadClient, DownloadClient>();
-            provider.RegisterType<IFileClient, FileClient>();
-            provider.RegisterType<IAccountClient, AccountClient>();
-            provider.RegisterType<IBlockchainClient, BlockchainClient>();
-            provider.RegisterType<IWarehouseClient, WarehouseClient>();
-            provider.RegisterType<IExploreClient, ExploreClient>();
-            provider.RegisterType<IProfileClient, ProfileClient>();
-            provider.RegisterType<ISearchClient, SearchClient>();
-            provider.RegisterType<IShutdownClient, ShutdownClient>();
-            provider.RegisterType<IApiClient, ApiClient>();
+            provider.AddTransient<IDownloadClient, DownloadClient>();
+            provider.AddTransient<IFileClient, FileClient>();
+            provider.AddTransient<IAccountClient, AccountClient>();
+            provider.AddTransient<IBlockchainClient, BlockchainClient>();
+            provider.AddTransient<IWarehouseClient, WarehouseClient>();
+            provider.AddTransient<IExploreClient, ExploreClient>();
+            provider.AddTransient<IProfileClient, ProfileClient>();
+            provider.AddTransient<ISearchClient, SearchClient>();
+            provider.AddTransient<IShutdownClient, ShutdownClient>();
+            provider.AddTransient<IApiClient, ApiClient>();
 
-            provider.RegisterSingleton<IDownloadManager>(new DownloadManager(provider.Resolve<IDownloadClient>(), provider.Resolve<ISettingsManager>()));
-            provider.RegisterType<IFileService, FileService>();
-            provider.RegisterType<IAccountService, AccountService>();
-            provider.RegisterType<IBlockchainService, BlockchainService>();
-            provider.RegisterType<IWarehouseService, WarehouseService>();
-            provider.RegisterType<IExploreService, ExploreService>();
-            provider.RegisterType<IProfileService, ProfileService>();
-            provider.RegisterType<ISearchService, SearchService>();
-            provider.RegisterType<IShutdownService, ShutdownService>();
-            provider.RegisterType<IApiService, ApiService>();
+            provider.AddSingleton<IDownloadManager, DownloadManager>();
+            provider.AddTransient<IFileService, FileService>();
+            provider.AddTransient<IAccountService, AccountService>();
+            provider.AddTransient<IBlockchainService, BlockchainService>();
+            provider.AddTransient<IWarehouseService, WarehouseService>();
+            provider.AddTransient<IExploreService, ExploreService>();
+            provider.AddTransient<IProfileService, ProfileService>();
+            provider.AddTransient<ISearchService, SearchService>();
+            provider.AddTransient<IShutdownService, ShutdownService>();
+            provider.AddTransient<IApiService, ApiService>();
+            provider.AddTransient<ISocketClient, SocketClient>();
         }
     }
 }

@@ -1,14 +1,11 @@
-﻿using MvvmCross.Plugin.Control.Platforms.Wpf;
-using Peernet.Browser.Application.Contexts;
-using Peernet.Browser.Models.Presentation;
-using System.Windows;
+﻿using System.Windows.Controls;
 
 namespace Peernet.Browser.WPF.Controls
 {
     /// <summary>
     /// Interaction logic for NavigationBarControl.xaml
     /// </summary>
-    public partial class NavigationBarControl : MvxWpfControl
+    public partial class NavigationBarControl : UserControl
     {
         public NavigationBarControl() => InitializeComponent();
     }

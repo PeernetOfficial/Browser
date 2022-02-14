@@ -1,9 +1,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Peernet.Browser.Infrastructure.Tools;
-using System.Threading;
 using Moq;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Services;
+using Peernet.Browser.Infrastructure.Tools;
+using System.Threading;
 
 namespace Peernet.Browser.Tests.Infrastructure.Tools.Cmd
 {

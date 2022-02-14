@@ -1,6 +1,6 @@
 ﻿using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Managers;
-using Peernet.Browser.Infrastructure.Services;
+using Peernet.Browser.Application.Services;
 using Peernet.Browser.Models.Domain.Common;
 using System;
 using System.ComponentModel;
@@ -11,7 +11,6 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
-using Peernet.Browser.Application.Services;
 
 namespace Peernet.Browser.Infrastructure.Tools
 {

@@ -1,20 +1,16 @@
-﻿using MvvmCross;
-using MvvmCross.Navigation;
-using MvvmCross.Platforms.Wpf.Views;
-using Peernet.Browser.Application;
-using Peernet.Browser.Application.Contexts;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Peernet.Browser.Application.Dispatchers;
+using Peernet.Browser.Application.Managers;
+using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Models.Presentation.Footer;
-using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows;
-using System.Windows.Data;
 using System.Windows.Input;
 
 namespace Peernet.Browser.WPF
@@ -22,45 +18,30 @@ namespace Peernet.Browser.WPF
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : MvxWindow
+    public partial class MainWindow : Window
     {
-        private readonly object lockObject = new();
-        
-        public MainWindow()
+        public MainWindow(object dataContext)
         {
             InitializeComponent();
+            Loaded += MainWindow_Loaded;
+            DataContext = dataContext;
             MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             MouseDown += Window_MouseDown;
 
-            //Hack for calendar
-            CultureInfo ci = CultureInfo.CreateSpecificCulture("en-US");
-            ci.DateTimeFormat.ShortestDayNames = new string[] { "Mo", "Tu", "We", "Th", "Fr", "Sa", "Su" };
-            ci.DateTimeFormat.FirstDayOfWeek = DayOfWeek.Sunday;
-            Thread.CurrentThread.CurrentCulture = ci;
-            Thread.CurrentThread.CurrentUICulture = ci;
-
-            // TODO: It should have better place. MainWindow's code behind is not the one. It should be called once UI(UI Thread Dispatcher) is created/initialized. Perhaps there is an even to handle.
-            BindingOperations.EnableCollectionSynchronization(GlobalContext.Notifications, lockObject);
+            if (DataContext is MainViewModel main)
+            {
+                main.OpenAboutTab = () => AboutTab.IsSelected = true;
+            }
         }
 
-        protected override void OnContentChanged(object oldContent, object newContent)
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            if (newContent is IModal)
-            {
-                GlobalContext.Modal = newContent;
-                Content = oldContent;
-                return;
-            }
-            base.OnContentChanged(oldContent, newContent);
+            UIThreadDispatcher.SetUIContext(SynchronizationContext.Current);
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            if (GlobalContext.CurrentViewModel != nameof(HomeViewModel))
-            {
-                Mvx.IoCProvider.Resolve<IMvxNavigationService>().Navigate<HomeViewModel>();
-                GlobalContext.CurrentViewModel = nameof(HomeViewModel);
-            }
+            App.ServiceProvider.GetRequiredService<INavigationService>().Navigate<HomeViewModel>();
         }
 
         private void FileUpload_OnDrop(object sender, DragEventArgs e)
@@ -82,14 +63,18 @@ namespace Peernet.Browser.WPF
                     }
                 }
 
-                var parameter = new ShareFileViewModelParameter(Mvx.IoCProvider.Resolve<IWarehouseService>(),
-                    Mvx.IoCProvider.Resolve<IBlockchainService>())
+                var modalNavigationService = App.ServiceProvider.GetRequiredService<IModalNavigationService>();
+                var parameter = new ShareFileViewModelParameter(
+                    App.ServiceProvider.GetRequiredService<IWarehouseService>(),
+                    App.ServiceProvider.GetRequiredService<IBlockchainService>(),
+                    modalNavigationService,
+                    App.ServiceProvider.GetRequiredService<INotificationsManager>(),
+                    App.ServiceProvider.GetRequiredService<DirectoryViewModel>())
                 {
                     FileModels = fileModels
                 };
 
-                GlobalContext.IsMainWindowActive = false;
-                Mvx.IoCProvider.Resolve<IMvxNavigationService>().Navigate<GenericFileViewModel, ShareFileViewModelParameter>(parameter);
+                modalNavigationService.Navigate<ShareFileViewModel, ShareFileViewModelParameter>(parameter);
             }
         }
 

@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using MvvmCross;
-using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.Application.Dispatchers;
 using Peernet.Browser.Models.Presentation.Footer;
 using System.Collections.ObjectModel;
 using System.Threading;
@@ -9,12 +8,12 @@ namespace Peernet.Browser.Application
 {
     public class NotificationCollection : ObservableCollection<Notification>
     {
-        private readonly int timeout;
-        private readonly ILogger<NotificationCollection> logger = Mvx.IoCProvider.Resolve<ILogger<NotificationCollection>>();
+        private readonly int timeout = 11000;
+        private readonly ILogger<NotificationCollection> logger;
 
-        public NotificationCollection(int timeout)
+        public NotificationCollection(ILogger<NotificationCollection> logger)
         {
-            this.timeout = timeout;
+            this.logger = logger;
         }
 
         protected override void InsertItem(int index, Notification item)
@@ -22,7 +21,7 @@ namespace Peernet.Browser.Application
             var autoEvent = new AutoResetEvent(false);
 
             item.Timer = new Timer(
-                state => { GlobalContext.UiThreadDispatcher?.ExecuteOnMainThreadAsync(() => Remove(item)); },
+                state => { UIThreadDispatcher.ExecuteOnMainThread(() => Remove(item)); },
                 autoEvent, timeout, 3000);
 
             AddLog(item);
@@ -50,11 +49,12 @@ namespace Peernet.Browser.Application
                     {
                         logger.LogError(standardLogMessage);
                     }
-
                     break;
+
                 case Severity.Normal:
                     logger.LogInformation(standardLogMessage);
                     break;
+
                 default:
                     logger.LogDebug(standardLogMessage);
                     break;

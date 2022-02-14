@@ -1,9 +1,9 @@
 ﻿using System;
-using MvvmCross.ViewModels;
+using System.ComponentModel;
 
 namespace Peernet.Browser.Models.Presentation.Home
 {
-    public class CustomCheckBoxModel : MvxNotifyPropertyChanged
+    public class CustomCheckBoxModel : INotifyPropertyChanged
     {
         private bool isChecked;
 
@@ -17,7 +17,12 @@ namespace Peernet.Browser.Models.Presentation.Home
             get => isChecked;
             set
             {
-                if (SetProperty(ref isChecked, value)) IsCheckChanged?.Invoke(this);
+                if (isChecked != value)
+                {
+                    isChecked = value;
+                    PropertyChanged?.Invoke(this, new(nameof(IsChecked)));
+                    IsCheckChanged?.Invoke(this);
+                }
             }
         }
 
@@ -27,9 +32,15 @@ namespace Peernet.Browser.Models.Presentation.Home
 
         {
             get => content;
-            set => SetProperty(ref content, value);
+            set
+            {
+                content = value;
+                PropertyChanged?.Invoke(this, new(nameof(Content)));
+            }
         }
 
         public bool IsRadio { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

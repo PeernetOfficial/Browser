@@ -1,44 +1,41 @@
-﻿using System;
-using MvvmCross.Commands;
-using MvvmCross.ViewModels;
+﻿using AsyncAwaitBestPractices.MVVM;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Download;
+using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
+using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Models.Presentation.Footer;
 using Peernet.Browser.Models.Presentation.Home;
+using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using MvvmCross.Navigation;
-using Peernet.Browser.Application.ViewModels.Parameters;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class HomeViewModel : MvxViewModel
+    public class HomeViewModel : ViewModelBase
     {
         private readonly ISearchService searchService;
         private readonly IDownloadManager downloadManager;
-        private readonly IMvxNavigationService mvxNavigationService;
+        private readonly INavigationService navigationService;
         private string searchInput;
         private int selectedIndex = -1;
 
-        public HomeViewModel(ISearchService searchService, IDownloadManager downloadManager, IMvxNavigationService mvxNavigationService)
+        public HomeViewModel(ISearchService searchService, IDownloadManager downloadManager, INavigationService navigationService)
         {
             this.searchService = searchService;
             this.downloadManager = downloadManager;
-            this.mvxNavigationService = mvxNavigationService;
+            this.navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
 
-            SearchCommand = new MvxCommand(Search);
+            SearchCommand = new AsyncCommand(Search);
             Tabs.CollectionChanged += (o, s) =>
             {
-                RaisePropertyChanged(nameof(IsVisible));
-                RaisePropertyChanged(nameof(IsNotVisible));
-                RaisePropertyChanged(nameof(Alignment));
+                OnPropertyChanged(nameof(IsVisible));
+                OnPropertyChanged(nameof(IsNotVisible));
+                OnPropertyChanged(nameof(Alignment));
                 GlobalContext.IsLogoVisible = IsVisible;
             };
-        }
 
-        public override void ViewAppeared()
-        {
             GlobalContext.IsLogoVisible = IsVisible;
         }
 
@@ -48,12 +45,16 @@ namespace Peernet.Browser.Application.ViewModels
 
         public bool IsVisible => Tabs.Any();
 
-        public IMvxCommand SearchCommand { get; }
+        public IAsyncCommand SearchCommand { get; }
 
         public string SearchInput
         {
             get => searchInput;
-            set => SetProperty(ref searchInput, value);
+            set
+            {
+                searchInput = value;
+                OnPropertyChanged(nameof(SearchInput));
+            }
         }
 
         public int SelectedIndex
@@ -61,14 +62,15 @@ namespace Peernet.Browser.Application.ViewModels
             get => selectedIndex;
             set
             {
-                SetProperty(ref selectedIndex, value);
-                RaisePropertyChanged(nameof(Content));
+                selectedIndex = value;
+                OnPropertyChanged(nameof(SelectedIndex));
+                OnPropertyChanged(nameof(Content));
             }
         }
 
         public SearchTabElementViewModel Content => SelectedIndex < 0 ? null : Tabs[SelectedIndex];
 
-        public MvxObservableCollection<SearchTabElementViewModel> Tabs { get; } = new MvxObservableCollection<SearchTabElementViewModel>();
+        public ObservableCollection<SearchTabElementViewModel> Tabs { get; } = new ObservableCollection<SearchTabElementViewModel>();
 
         private async Task RemoveTab(SearchTabElementViewModel e)
         {
@@ -82,27 +84,21 @@ namespace Peernet.Browser.Application.ViewModels
             await downloadManager.QueueUpDownload(new DownloadModel(row.File));
         }
 
-        private async Task OpenFile(SearchResultRowModel row)
+        private void OpenFile(SearchResultRowModel row)
         {
             var param = new FilePreviewViewModelParameter(row.File, false,
                 async () => await downloadManager.QueueUpDownload(new DownloadModel(row.File)), "Download");
-            await mvxNavigationService.Navigate<FilePreviewViewModel, FilePreviewViewModelParameter>(param);
+            navigationService.Navigate<FilePreviewViewModel, FilePreviewViewModelParameter>(param);
         }
 
-        private void Search()
+        private Task Search()
         {
-            if (SearchInput.Equals("debug", StringComparison.InvariantCultureIgnoreCase))
-            {
-                mvxNavigationService.Navigate<TerminalViewModel, TerminalInstanceParameter>(new());
-            }
-            else
-            {
-                var toAdd = new SearchTabElementViewModel(SearchInput, RemoveTab, searchService.Search, DownloadFile, OpenFile);
-                Tabs.Add(toAdd);
-                SelectedIndex = Tabs.Count - 1;
-            }
-
+            var toAdd = new SearchTabElementViewModel(SearchInput, RemoveTab, searchService.Search, DownloadFile, OpenFile);
+            Tabs.Add(toAdd);
+            SelectedIndex = Tabs.Count - 1;
             SearchInput = string.Empty;
+
+            return Task.CompletedTask;
         }
     }
 }
