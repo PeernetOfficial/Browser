@@ -4,12 +4,13 @@ using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Application.VirtualFileSystem;
-using Peernet.Browser.Models.Presentation.Footer;
+using Peernet.SDK.Models.Presentation.Footer;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Peernet.SDK.Models.Extensions;
+using Peernet.SDK.Models.Plugins;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -20,13 +21,15 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IExploreService exploreService;
         private readonly IDownloadManager downloadManager;
         private readonly INavigationService navigationService;
+        private readonly IPlayButtonPlug playButtonPlug;
         private static readonly List<VirtualFileSystemCoreCategory> categoryTypes = GetCategoryTypes();
 
-        public ExploreViewModel(IExploreService exploreService, IDownloadManager downloadManager, INavigationService navigationService)
+        public ExploreViewModel(IExploreService exploreService, IDownloadManager downloadManager, INavigationService navigationService, IPlayButtonPlug playButtonPlug)
         {
             this.exploreService = exploreService;
             this.downloadManager = downloadManager;
             this.navigationService = navigationService;
+            this.playButtonPlug = playButtonPlug;
 
             Task.Run(() => LoadResults().ConfigureAwait(false).GetAwaiter().GetResult());
         }
@@ -93,6 +96,15 @@ namespace Peernet.Browser.Application.ViewModels
                     category.IsSelected = true;
                     ActiveSearchResults = new ObservableCollection<DownloadModel>(await exploreService
                             .GetFiles(200, (int)category.Type));
+                });
+
+        public IAsyncCommand<VirtualFileSystemEntity> StreamFileCommand =>
+            new AsyncCommand<VirtualFileSystemEntity>(
+                entity =>
+                {
+                    playButtonPlug?.Execute(entity.File);
+
+                    return Task.CompletedTask;
                 });
 
         private static VirtualFileSystemCoreCategory GetCategory(VirtualFileSystemEntityType type)

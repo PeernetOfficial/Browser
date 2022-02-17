@@ -1,8 +1,8 @@
 ﻿using Peernet.Browser.Application.Services;
-using Peernet.Browser.Infrastructure.Clients;
-using Peernet.Browser.Models.Domain.Blockchain;
-using Peernet.Browser.Models.Domain.Profile;
-using Peernet.Browser.Models.Presentation.Profile;
+using Peernet.SDK.Client.Clients;
+using Peernet.SDK.Models.Domain.Blockchain;
+using Peernet.SDK.Models.Domain.Profile;
+using Peernet.SDK.Models.Presentation.Profile;
 using System.Linq;
 using System.Threading.Tasks;
 

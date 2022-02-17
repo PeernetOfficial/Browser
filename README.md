@@ -1,4 +1,4 @@
-[![Deploy Browser](https://github.com/PeernetOfficial/Browser/actions/workflows/deploy-Browser.yml/badge.svg)](https://github.com/PeernetOfficial/Browser/actions/workflows/deploy-Browser.yml)
+﻿[![Deploy Browser](https://github.com/PeernetOfficial/Browser/actions/workflows/deploy-Browser.yml/badge.svg)](https://github.com/PeernetOfficial/Browser/actions/workflows/deploy-Browser.yml)
 
 # Peernet Browser
 This is official GUI for [Peernet Command Line Client](https://github.com/PeernetOfficial/Cmd). It has been designed to deliver client's capabilities in user friendly manner. 
@@ -8,12 +8,14 @@ It is built on to of .NET 5.0 with use of WPF UI Framework [WPF documentation](h
 Peernet Browser configuration entry point is via _Peernet Browser.dll.config_ output file or _App.config_ from Solution view.
 Configuration file includes following settings:
 
-| Name/Key     | Description                                                                                                                                                                                                                                                                            | Default Value                       |
-|--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------ |
-| Backend      | A path to the Peernet Command Line Client executable file. It supports both full path and just a file name. In case it is a file name it will look for it in the current working directory.                                                                                            | ``` Backend.exe ```               |
-| ApiUrl       | Url address on which backend is hosted. This setting is optional.   If it is not provided, Browser will run Backend by itself using Backend setting.  If provided, the Backend process will not be started by Browser and the ApiUrl setting value will be used for the backend calls. | None                                |
-| DownloadPath | A path to the directory to which all downloaded files will be written. By default it is written to User's Downloads folder.  The %userprofile% is an environmental variable which is expanded during the runtime.                                                                      | ``` %userprofile%\Downloads\ ``` |
-| DefaultTheme | A default application color scheme. The application supports two themes: _LightMode_ and _DarkMode_. The setting by default is not present in the configuration file.                                                                                                                  | None                                |
+| Name/Key              | Description                                                                                                                                                                                                                                                                            | Default Value                         |
+|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------- |
+| Backend               | A path to the Peernet Command Line Client executable file. It supports both full path and just a file name. In case it is a file name it will look for it in the current working directory.                                                                                            | ``` Backend.exe ```                |
+| ApiUrl                | Url address on which backend is hosted. This setting is optional.   If it is not provided, Browser will run Backend by itself using Backend setting.  If provided, the Backend process will not be started by Browser and the ApiUrl setting value will be used for the backend calls. | None                                  |
+| DownloadPath          | A path to the directory to which all downloaded files will be written. By default it is written to User's Downloads folder.  The %userprofile% is an environmental variable which is expanded during the runtime.                                                                      | ``` %userprofile%\Downloads\ ```  |
+| DefaultTheme          | A default application color scheme. The application supports two themes: _LightMode_ and _DarkMode_. The setting by default is not present in the configuration file.                                                                                                                  | None                                  |
+| PluginsLocation       | A relative to the working directory path to the location of all plugin folders                                                                                                                                                                                                         | Plugins                               |
+| PlayButtonPlugEnabled | A flag determining whether _Play_ button is visible on the data grids.                                                                                                                                                                                                                 | False                                 |
 
 Each time the application starts it reads the configuration from the file. The configuration is mapped to application' in-memory object. 
 Settings within the object may change at runtime. E.g.: If _ApiUrl_  is not set, it is being auto-generated based on random free TCP Port; 
@@ -173,6 +175,36 @@ In the file `Peernet Browser.dll.config` set the tag `ApiUrl` to the same IP:Por
 ```
 
 Note: In this case you will have to start the backend executable manually before starting the Peernet Browser. You will also have to close the process yourself when done.
+
+## Plugins System
+Peernet Browser has Plugins System implemented. It allows extending Peernet Browser functionality by loading assemblies which implement specific interfaces during the runtime.
+The interfaces are defined as part of [Peernet SDK](https://github.com/PeernetOfficial/SDK). You can also find there a documentation on how to develop a plugin.
+The most important interface is __IPlugin__ interface. This is the interface for which Peernet Browser looks for in the __PluginsLocation__ subfolders. PluginsLocation is an application
+setting which specifies the relative path to the location of all plugin folders.
+Peernet Browser scans all the DLLs from inside these folders, istantiates classes which implement __IPlugin__ interface and executes their _Load_ methods.
+
+For given _PluginsLocation_ setting
+>     <add key="PluginsLocation" value="Plugins" />
+
+
+The tree structure would be similar to:  
+```
+└───Plugins
+    └───SamplePlugin
+            Peernet.Browser.Plugins.Template.dll
+            Peernet.SDK.dll
+```
+
+Plugin folder should include all output files of your plugin project. It is recommanded to use [dotnet publish](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-publish)
+to produce the output.
+
+Peernet Browser allows customizing some parts of the UI via plugins by exposing interfaces binded to some UI elements.
+For isntance __IPlayButtonPlug__ interface is linked to _Play_ buttons on Search & Explore & Directory Tab data grid rows. Whenever the button is clicked,
+_Execute_ method of the interface is invoked. The logic of the _Execute_ method lays on the plugin side.  
+The visibility of the button in the grid is controlled by _PlayButtonPlugEnabled_ setting. If it is enabled and there is no plugin implementing the interface,
+the button will simply have no effect.
+
+Multiple plugin implementing same interface will override each other, meaning the interface from last loaded plugin will be the one that have actual effect.
 
 ## Peernet Browser Insights
 

@@ -1,4 +1,4 @@
-﻿using Peernet.Browser.Models.Presentation.Home;
+﻿using Peernet.SDK.Models.Presentation.Home;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

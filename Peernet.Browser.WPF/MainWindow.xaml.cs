@@ -5,13 +5,14 @@ using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels;
 using Peernet.Browser.Application.ViewModels.Parameters;
-using Peernet.Browser.Models.Presentation.Footer;
+using Peernet.SDK.Models.Presentation.Footer;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
+using Peernet.SDK.Models.Extensions;
 
 namespace Peernet.Browser.WPF
 {

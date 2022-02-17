@@ -1,5 +1,5 @@
-﻿using Peernet.Browser.Models.Domain.Download;
-using Peernet.Browser.Models.Presentation.Footer;
+﻿using Peernet.SDK.Models.Domain.Download;
+using Peernet.SDK.Models.Presentation.Footer;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;

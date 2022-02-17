@@ -1,10 +1,15 @@
 ﻿using Peernet.Browser.Application.ViewModels;
-using Peernet.Browser.Models.Presentation.Home;
+using Peernet.SDK.Models.Presentation.Home;
 using Peernet.Browser.WPF.Extensions;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
+using Microsoft.Extensions.DependencyInjection;
+using Peernet.Browser.Application.Download;
+using Peernet.Browser.Application.ViewModels.Parameters;
+using Peernet.SDK.Models.Presentation.Footer;
 
 namespace Peernet.Browser.WPF.Controls
 {
@@ -76,6 +81,17 @@ namespace Peernet.Browser.WPF.Controls
                     viewModel.FiltersIconModel.IsSelected = false;
                 }
             }
+        }
+
+        private void Open_OnClick(object sender, MouseButtonEventArgs e)
+        {
+            var element = (FrameworkElement)sender;
+            var model = (SearchResultRowModel)element.DataContext;
+            var downloadManager = App.ServiceProvider.GetRequiredService<IDownloadManager>();
+            var param = new FilePreviewViewModelParameter(model.File, false, async () => await downloadManager.QueueUpDownload(new DownloadModel(model.File)), "Download");
+            var filePreviewViewModel = new FilePreviewViewModel();
+            filePreviewViewModel.Prepare(param);
+            new FilePreviewWindow(filePreviewViewModel).Show();
         }
     }
 }

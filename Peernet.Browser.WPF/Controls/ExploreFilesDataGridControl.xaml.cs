@@ -2,7 +2,7 @@
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.ViewModels;
 using Peernet.Browser.Application.ViewModels.Parameters;
-using Peernet.Browser.Models.Presentation.Footer;
+using Peernet.SDK.Models.Presentation.Footer;
 using System.Windows;
 using System.Windows.Controls;
 

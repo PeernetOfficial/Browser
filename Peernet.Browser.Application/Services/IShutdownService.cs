@@ -1,4 +1,4 @@
-﻿using Peernet.Browser.Models.Domain.Shutdown;
+﻿using Peernet.SDK.Models.Domain.Shutdown;
 
 namespace Peernet.Browser.Application.Services
 {

@@ -1,5 +1,5 @@
 ﻿using AsyncAwaitBestPractices.MVVM;
-using Peernet.Browser.Application.Clients;
+using Peernet.SDK.Client.Clients;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using System;
 using System.Text;

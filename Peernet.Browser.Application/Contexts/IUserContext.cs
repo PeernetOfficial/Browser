@@ -1,4 +1,4 @@
-﻿using Peernet.Browser.Models.Presentation.Profile;
+﻿using Peernet.SDK.Models.Presentation.Profile;
 
 namespace Peernet.Browser.Application.Contexts
 {
