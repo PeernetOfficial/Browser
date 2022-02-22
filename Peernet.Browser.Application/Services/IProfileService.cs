@@ -1,5 +1,5 @@
-﻿using Peernet.Browser.Models.Domain.Blockchain;
-using Peernet.Browser.Models.Presentation.Profile;
+﻿using Peernet.SDK.Models.Domain.Blockchain;
+using Peernet.SDK.Models.Presentation.Profile;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.Services

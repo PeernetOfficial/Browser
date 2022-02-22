@@ -1,4 +1,4 @@
-﻿using Peernet.Browser.Models.Presentation;
+﻿using Peernet.SDK.Models.Presentation;
 using System;
 using System.ComponentModel;
 
@@ -6,29 +6,24 @@ namespace Peernet.Browser.Application.Contexts
 {
     public class GlobalContext : INotifyPropertyChanged
     {
-        private static bool isLogoVisible;
-
+        private static string errorMessage;
         private static bool isConnected;
-
+        private static bool isLogoVisible;
         private static bool isProfileMenuVisible;
 
         private static VisualMode visualMode;
-
-        private static string currentViewModel;
-
-        private static string errorMessage;
 
         public static event EventHandler<PropertyChangedEventArgs> StaticPropertyChanged = delegate { };
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public static bool IsLogoVisible
+        public static string ErrorMessage
         {
-            get => isLogoVisible;
+            get => errorMessage;
             set
             {
-                isLogoVisible = value;
-                NotifyStaticPropertyChanged(nameof(IsLogoVisible));
+                errorMessage = value;
+                NotifyStaticPropertyChanged(nameof(errorMessage));
             }
         }
 
@@ -42,13 +37,13 @@ namespace Peernet.Browser.Application.Contexts
             }
         }
 
-        public static VisualMode VisualMode
+        public static bool IsLogoVisible
         {
-            get => visualMode;
+            get => isLogoVisible;
             set
             {
-                visualMode = value;
-                NotifyStaticPropertyChanged(nameof(VisualMode));
+                isLogoVisible = value;
+                NotifyStaticPropertyChanged(nameof(IsLogoVisible));
             }
         }
 
@@ -62,13 +57,13 @@ namespace Peernet.Browser.Application.Contexts
             }
         }
 
-        public static string ErrorMessage
+        public static VisualMode VisualMode
         {
-            get => errorMessage;
+            get => visualMode;
             set
             {
-                errorMessage = value;
-                NotifyStaticPropertyChanged(nameof(errorMessage));
+                visualMode = value;
+                NotifyStaticPropertyChanged(nameof(VisualMode));
             }
         }
 

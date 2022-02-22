@@ -3,8 +3,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:download="clr-namespace:Peernet.Browser.Models.Domain.Download;assembly=Models"
+             xmlns:download="clr-namespace:Peernet.SDK.Models.Domain.Download;assembly=Peernet.SDK"
              xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls"
+             xmlns:contexts="clr-namespace:Peernet.Browser.Application.Contexts;assembly=Application"
              mc:Ignorable="d"
              x:Name="ExploreFilesDataGrid">
     <Grid>
@@ -74,7 +75,12 @@
                 <DataGridTemplateColumn Width="90">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Grid>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.StreamFileCommand, ElementName=ExploreFilesDataGrid}" CommandParameter="{Binding}" ToolTip="Play" Height="39" Width="37" IsEnabled="{Binding Path=(contexts:PluginsContext.PlayButtonPlugEnabled)}">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="{DynamicResource PlayDrawingImage}" />
+                                    </Button.Background>
+                                </Button>
                                 <Button CommandParameter="{Binding}">
                                     <Button.Style>
                                         <Style BasedOn="{StaticResource DataGridActionButton}" TargetType="{x:Type Button}">
@@ -119,7 +125,7 @@
                                         </Style>
                                     </Button.Style>
                                 </Button>
-                            </Grid>
+                            </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

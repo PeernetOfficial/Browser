@@ -1,4 +1,4 @@
-﻿using Peernet.Browser.Models.Presentation.Footer;
+﻿using Peernet.SDK.Models.Presentation.Footer;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

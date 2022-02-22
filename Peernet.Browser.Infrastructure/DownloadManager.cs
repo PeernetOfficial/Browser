@@ -2,15 +2,16 @@
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Utilities;
-using Peernet.Browser.Infrastructure.Clients;
-using Peernet.Browser.Models.Domain.Download;
-using Peernet.Browser.Models.Presentation.Footer;
+using Peernet.SDK.Client.Clients;
+using Peernet.SDK.Models.Domain.Download;
+using Peernet.SDK.Models.Presentation.Footer;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Peernet.SDK.Common;
 
 namespace Peernet.Browser.Infrastructure
 {

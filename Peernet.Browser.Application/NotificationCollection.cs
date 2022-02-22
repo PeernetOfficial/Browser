@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Peernet.Browser.Application.Dispatchers;
-using Peernet.Browser.Models.Presentation.Footer;
+using Peernet.SDK.Models.Presentation.Footer;
 using System.Collections.ObjectModel;
 using System.Threading;
 

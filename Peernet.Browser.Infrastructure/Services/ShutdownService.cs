@@ -1,6 +1,6 @@
 ﻿using Peernet.Browser.Application.Services;
-using Peernet.Browser.Infrastructure.Clients;
-using Peernet.Browser.Models.Domain.Shutdown;
+using Peernet.SDK.Client.Clients;
+using Peernet.SDK.Models.Domain.Shutdown;
 
 namespace Peernet.Browser.Infrastructure.Services
 {

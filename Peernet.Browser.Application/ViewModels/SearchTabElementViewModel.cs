@@ -1,6 +1,7 @@
 ﻿using AsyncAwaitBestPractices.MVVM;
 using Peernet.Browser.Application.Dispatchers;
-using Peernet.Browser.Models.Presentation.Home;
+using Peernet.SDK.Models.Extensions;
+using Peernet.SDK.Models.Presentation.Home;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,7 +21,13 @@ namespace Peernet.Browser.Application.ViewModels
         private bool showColumnsShared = true;
         private bool showColumnsSize = true;
 
-        public SearchTabElementViewModel(string title, Func<SearchTabElementViewModel, Task> deleteAction, Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction, Func<SearchResultRowModel, Task> downloadAction, Action<SearchResultRowModel> openAction)
+        public SearchTabElementViewModel(
+            string title,
+            Func<SearchTabElementViewModel, Task> deleteAction,
+            Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction,
+            Func<SearchResultRowModel, Task> downloadAction,
+            Action<SearchResultRowModel> openAction,
+            Action<SearchResultRowModel> executePlugAction)
         {
             this.refreshAction = refreshAction;
 
@@ -54,6 +61,13 @@ namespace Peernet.Browser.Application.ViewModels
             {
                 Filters.RemoveAction(type);
                 await Refresh();
+            });
+
+            StreamFileCommand = new AsyncCommand<SearchResultRowModel>(model =>
+            {
+                executePlugAction.Invoke(model);
+
+                return Task.CompletedTask;
             });
 
             ColumnsIconModel = new IconModel(FilterType.Columns, true, OpenCloseColumnsFilter);
@@ -125,6 +139,8 @@ namespace Peernet.Browser.Application.ViewModels
                 OnPropertyChanged(nameof(ShowColumnsSize));
             }
         }
+
+        public IAsyncCommand<SearchResultRowModel> StreamFileCommand { get; }
 
         public ObservableCollection<SearchResultRowModel> TableResult { get; } = new ObservableCollection<SearchResultRowModel>();
 

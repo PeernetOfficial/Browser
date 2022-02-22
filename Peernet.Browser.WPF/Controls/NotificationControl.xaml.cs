@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Peernet.Browser.Application.Managers;
-using Peernet.Browser.Models.Presentation.Footer;
+using Peernet.SDK.Models.Presentation.Footer;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;

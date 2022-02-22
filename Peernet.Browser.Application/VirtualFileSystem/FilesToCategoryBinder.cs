@@ -1,7 +1,8 @@
-﻿using Peernet.Browser.Models.Domain.Common;
+﻿using Peernet.SDK.Models.Domain.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Peernet.SDK.Models.Extensions;
 
 namespace Peernet.Browser.Application.VirtualFileSystem
 {

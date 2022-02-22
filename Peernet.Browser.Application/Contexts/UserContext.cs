@@ -1,6 +1,6 @@
 ﻿using Peernet.Browser.Application.Extensions;
 using Peernet.Browser.Application.Services;
-using Peernet.Browser.Models.Presentation.Profile;
+using Peernet.SDK.Models.Presentation.Profile;
 using System.ComponentModel;
 using System.Net.Http;
 using System.Threading.Tasks;

@@ -5,13 +5,15 @@ using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.Utilities;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Application.VirtualFileSystem;
-using Peernet.Browser.Models.Domain.Blockchain;
-using Peernet.Browser.Models.Presentation.Footer;
+using Peernet.SDK.Models.Domain.Blockchain;
+using Peernet.SDK.Models.Presentation.Footer;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Peernet.SDK.Models.Extensions;
+using Peernet.SDK.Models.Plugins;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -20,10 +22,9 @@ namespace Peernet.Browser.Application.ViewModels
         private const string LibrariesSegment = "Libraries";
         private const string YourFilesSegment = "Your Files";
         private readonly IBlockchainService blockchainService;
-        private readonly INavigationService navigationService;
         private readonly IModalNavigationService modalNavigationService;
         private readonly IVirtualFileSystemFactory virtualFileSystemFactory;
-        private readonly IWarehouseService warehouseService;
+        private readonly IPlayButtonPlug playButtonPlug;
         private readonly INotificationsManager notificationsManager;
         private ObservableCollection<VirtualFileSystemEntity> activeSearchResults;
         private ObservableCollection<VirtualFileSystemCoreEntity> pathElements;
@@ -35,17 +36,15 @@ namespace Peernet.Browser.Application.ViewModels
         public DirectoryViewModel(
             IBlockchainService blockchainService,
             IVirtualFileSystemFactory virtualFileSystemFactory,
-            INavigationService navigationService,
             IModalNavigationService modalNavigationService,
-            IWarehouseService warehouseService,
-            INotificationsManager notificationsManager)
+            INotificationsManager notificationsManager,
+            IPlayButtonPlug playButtonPlug)
         {
             this.blockchainService = blockchainService;
             this.virtualFileSystemFactory = virtualFileSystemFactory;
-            this.navigationService = navigationService;
             this.modalNavigationService = modalNavigationService;
-            this.warehouseService = warehouseService;
             this.notificationsManager = notificationsManager;
+            this.playButtonPlug = playButtonPlug;
 
             Task.Run(async () => await ReloadVirtualFileSystem(false)).ConfigureAwait(false).GetAwaiter().GetResult();
             InitializePath(VirtualFileSystem?.Home);
@@ -201,6 +200,15 @@ namespace Peernet.Browser.Application.ViewModels
                 OnPropertyChanged(nameof(VirtualFileSystem));
             }
         }
+
+        public IAsyncCommand<VirtualFileSystemEntity> StreamFileCommand =>
+            new AsyncCommand<VirtualFileSystemEntity>(
+                entity =>
+                {
+                    playButtonPlug?.Execute(entity.File);
+
+                    return Task.CompletedTask;
+                });
 
         public async Task ReloadVirtualFileSystem(bool restoreState = true)
         {

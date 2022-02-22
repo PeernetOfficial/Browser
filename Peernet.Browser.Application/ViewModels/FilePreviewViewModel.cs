@@ -1,6 +1,6 @@
 ﻿using AsyncAwaitBestPractices.MVVM;
 using Peernet.Browser.Application.ViewModels.Parameters;
-using Peernet.Browser.Models.Domain.Common;
+using Peernet.SDK.Models.Domain.Common;
 using System;
 using System.Threading.Tasks;
 

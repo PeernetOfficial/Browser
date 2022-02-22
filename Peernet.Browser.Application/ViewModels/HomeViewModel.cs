@@ -4,8 +4,9 @@ using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels.Parameters;
-using Peernet.Browser.Models.Presentation.Footer;
-using Peernet.Browser.Models.Presentation.Home;
+using Peernet.SDK.Models.Plugins;
+using Peernet.SDK.Models.Presentation.Footer;
+using Peernet.SDK.Models.Presentation.Home;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -18,14 +19,16 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly ISearchService searchService;
         private readonly IDownloadManager downloadManager;
         private readonly INavigationService navigationService;
+        private readonly IPlayButtonPlug playButtonPlug;
         private string searchInput;
         private int selectedIndex = -1;
 
-        public HomeViewModel(ISearchService searchService, IDownloadManager downloadManager, INavigationService navigationService)
+        public HomeViewModel(ISearchService searchService, IDownloadManager downloadManager, INavigationService navigationService, IPlayButtonPlug playButtonPlug)
         {
             this.searchService = searchService;
             this.downloadManager = downloadManager;
             this.navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
+            this.playButtonPlug = playButtonPlug;
 
             SearchCommand = new AsyncCommand(Search);
             Tabs.CollectionChanged += (o, s) =>
@@ -91,9 +94,11 @@ namespace Peernet.Browser.Application.ViewModels
             navigationService.Navigate<FilePreviewViewModel, FilePreviewViewModelParameter>(param);
         }
 
+        private void ExecutePlayButtonPlug(SearchResultRowModel model) => playButtonPlug?.Execute(model.File);
+
         private Task Search()
         {
-            var toAdd = new SearchTabElementViewModel(SearchInput, RemoveTab, searchService.Search, DownloadFile, OpenFile);
+            var toAdd = new SearchTabElementViewModel(SearchInput, RemoveTab, searchService.Search, DownloadFile, OpenFile, ExecutePlayButtonPlug);
             Tabs.Add(toAdd);
             SelectedIndex = Tabs.Count - 1;
             SearchInput = string.Empty;

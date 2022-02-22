@@ -1,6 +1,6 @@
-﻿using Peernet.Browser.Models.Domain.Common;
-using Peernet.Browser.Models.Domain.Warehouse;
-using Peernet.Browser.Models.Presentation.Footer;
+﻿using Peernet.SDK.Models.Domain.Common;
+using Peernet.SDK.Models.Domain.Warehouse;
+using Peernet.SDK.Models.Presentation.Footer;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.Services

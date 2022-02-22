@@ -4,8 +4,8 @@ using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.Utilities;
-using Peernet.Browser.Models.Domain.Blockchain;
-using Peernet.Browser.Models.Presentation.Footer;
+using Peernet.SDK.Models.Domain.Blockchain;
+using Peernet.SDK.Models.Presentation.Footer;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels

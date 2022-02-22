@@ -1,7 +1,5 @@
 ﻿using Peernet.Browser.Application.Contexts;
-using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Services;
-using Peernet.Browser.Models.Domain.Common;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -11,37 +9,38 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
+using Peernet.SDK.Common;
+using Peernet.SDK.Models.Domain.Common;
 
 namespace Peernet.Browser.Infrastructure.Tools
 {
     public class CmdRunner : IRunable, IDisposable
     {
-        private readonly string processName;
+        private readonly IApiService apiService;
         private readonly bool fileExist;
-        private Process process;
-        private bool wasRun;
+        private readonly string processName;
         private readonly ISettingsManager settingsManager;
         private readonly IShutdownService shutdownService;
-        private readonly IApiService apiService;
+        private Process process;
+        private bool wasRun;
+        private static string reservedAddress;
 
         public CmdRunner(ISettingsManager settingsManager, IShutdownService shutdownService, IApiService apiService)
         {
             this.settingsManager = settingsManager;
             this.shutdownService = shutdownService;
             this.apiService = apiService;
-
             var backend = settingsManager.Backend;
             string fullPath = Path.GetFullPath(backend);
             processName = Path.GetFileName(fullPath);
             process = new Process();
-            var apiUrl = $"127.0.0.1:{GetFreeTcpPort()}";
-            settingsManager.ApiUrl = $"http://{apiUrl}";
+
             var currentProcess = Process.GetCurrentProcess();
             process.StartInfo = new ProcessStartInfo($"{fullPath}")
             {
                 UseShellExecute = false,
                 WorkingDirectory = Path.GetDirectoryName(fullPath),
-                Arguments = $"-webapi={apiUrl} -apikey={settingsManager.ApiKey} -watchpid={currentProcess.Id}"
+                Arguments = $"-webapi={reservedAddress} -apikey={settingsManager.ApiKey} -watchpid={currentProcess.Id}"
             };
 
             process.EnableRaisingEvents = true;
@@ -49,18 +48,24 @@ namespace Peernet.Browser.Infrastructure.Tools
             fileExist = true;
         }
 
-        private void OnBackendExit(object sender, EventArgs e)
-        {
-            GlobalContext.IsConnected = false;
-            GlobalContext.ErrorMessage = $"Backend terminated with exit code: {process.ExitCode}";
-        }
-
         public bool IsRunning { get; private set; }
+
+        public static bool SelfHosted { get; private set; }
 
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
+        }
+
+        public static void ReserveAddress(ISettingsManager settingsManager)
+        {
+            if (settingsManager.ApiUrl == null)
+            {
+                reservedAddress = $"127.0.0.1:{GetFreeTcpPort()}";
+                settingsManager.ApiUrl = $"http://{reservedAddress}";
+                SelfHosted = true;
+            }
         }
 
         public void Run()
@@ -114,7 +119,22 @@ namespace Peernet.Browser.Infrastructure.Tools
             }
         }
 
+        private static int GetFreeTcpPort()
+        {
+            TcpListener l = new TcpListener(IPAddress.Loopback, 0);
+            l.Start();
+            int port = ((IPEndPoint)l.LocalEndpoint).Port;
+            l.Stop();
+            return port;
+        }
+
         private bool IsRunningCheck() => Process.GetProcesses().Any(x => x.ProcessName.Contains(processName));
+
+        private void OnBackendExit(object sender, EventArgs e)
+        {
+            GlobalContext.IsConnected = false;
+            GlobalContext.ErrorMessage = $"Backend terminated with exit code: {process.ExitCode}";
+        }
 
         private void RunProcess()
         {
@@ -129,15 +149,6 @@ namespace Peernet.Browser.Infrastructure.Tools
             {
                 Console.WriteLine(ex.Message);
             }
-        }
-
-        private static int GetFreeTcpPort()
-        {
-            TcpListener l = new TcpListener(IPAddress.Loopback, 0);
-            l.Start();
-            int port = ((IPEndPoint)l.LocalEndpoint).Port;
-            l.Stop();
-            return port;
         }
 
         private void WaitForBackendApiToStart()

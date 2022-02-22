@@ -1,4 +1,4 @@
-﻿using Peernet.Browser.Models.Domain.Common;
+﻿using Peernet.SDK.Models.Domain.Common;
 using System;
 
 namespace Peernet.Browser.Application.VirtualFileSystem

@@ -1,5 +1,5 @@
-﻿using Peernet.Browser.Application.Managers;
-using Peernet.Browser.Models.Presentation;
+﻿using Peernet.SDK.Common;
+using Peernet.SDK.Models.Presentation;
 using System;
 using System.Configuration;
 
@@ -7,9 +7,8 @@ namespace Peernet.Browser.WPF.Services
 {
     public class SettingsManager : ISettingsManager
     {
-        private static readonly Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-
         private static readonly Guid apiKey = Guid.NewGuid();
+        private static readonly Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
         public string ApiKey => Get(nameof(ApiKey)) ?? apiKey.ToString();
 
@@ -19,15 +18,17 @@ namespace Peernet.Browser.WPF.Services
             set => Set(nameof(ApiUrl), value);
         }
 
-        public Uri SocketUrl => GetSocket();
-
         public string Backend
         {
             get => Get(nameof(Backend));
             set => Set(nameof(Backend), value);
         }
 
-        public string LogFile => Get(nameof(LogFile));
+        public VisualMode DefaultTheme
+        {
+            get => (VisualMode)Enum.Parse(typeof(VisualMode), Get(nameof(DefaultTheme)) ?? default(VisualMode).ToString());
+            set => Set(nameof(DefaultTheme), value.ToString());
+        }
 
         public string DownloadPath
         {
@@ -35,10 +36,19 @@ namespace Peernet.Browser.WPF.Services
             set => Set(nameof(DownloadPath), value);
         }
 
-        public VisualMode DefaultTheme
+        public string LogFile => Get(nameof(LogFile));
+
+        public string PluginsLocation
         {
-            get => (VisualMode)Enum.Parse(typeof(VisualMode), Get(nameof(DefaultTheme)) ?? default(VisualMode).ToString());
-            set => Set(nameof(DefaultTheme), value.ToString());
+            get => Get(nameof(PluginsLocation));
+            set => Set(nameof(PluginsLocation), value);
+        }
+
+        public Uri SocketUrl => GetSocket();
+
+        public void Save()
+        {
+            config.Save();
         }
 
         private static string Get(string key) => config.AppSettings.Settings[key]?.Value;
@@ -67,11 +77,6 @@ namespace Peernet.Browser.WPF.Services
         {
             var socketAddress = ApiUrl.StartsWith("https:") ? ApiUrl.Replace("https:", "wss:") : ApiUrl.Replace("http:", "ws:");
             return new Uri(new Uri(socketAddress), $"console?k={ApiKey}");
-        }
-
-        public void Save()
-        {
-            config.Save();
         }
     }
 }

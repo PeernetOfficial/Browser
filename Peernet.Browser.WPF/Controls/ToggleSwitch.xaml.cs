@@ -1,5 +1,5 @@
 ﻿using Peernet.Browser.Application.Contexts;
-using Peernet.Browser.Models.Presentation;
+using Peernet.SDK.Models.Presentation;
 using System.Windows.Controls;
 using System.Windows.Input;
 
