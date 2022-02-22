@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Threading;
 
 namespace Peernet.Browser.Application.ViewModels.Parameters
 {
@@ -8,6 +9,11 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
         private string commandLineOutput = string.Empty;
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public TerminalInstanceParameter(CancellationTokenSource cancellationTokenSource)
+        {
+            CancellationTokenSource = cancellationTokenSource;
+        }
 
         public string CommandLineOutput
         {
@@ -28,5 +34,7 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
                 PropertyChanged?.Invoke(this, new(nameof(CommandLineInput)));
             }
         }
+
+        public CancellationTokenSource CancellationTokenSource { get; set; }
     }
 }

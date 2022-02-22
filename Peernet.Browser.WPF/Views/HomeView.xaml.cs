@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Peernet.Browser.Application.ViewModels;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -33,7 +34,12 @@ namespace Peernet.Browser.WPF.Views
             if (viewModel.SearchInput.Equals("debug", StringComparison.InvariantCultureIgnoreCase))
             {
                 var terminalViewModel = App.ServiceProvider.GetRequiredService<TerminalViewModel>();
-                Task.Run(() => terminalViewModel.Prepare(new()).ConfigureAwait(false).GetAwaiter().GetResult());
+                var source = new CancellationTokenSource();
+
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+                Task.Run(() => terminalViewModel.Prepare(new(source)).ConfigureAwait(false).GetAwaiter().GetResult(), source.Token);
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+
                 var terminal = new TerminalWindow(terminalViewModel);
                 terminal.Show();
                 viewModel.SearchInput = string.Empty;

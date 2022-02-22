@@ -37,7 +37,7 @@ namespace Peernet.Browser.Application.ViewModels
         {
             await ConnectToPeernetConsole();
             socketClient.MessageArrived += SocketClientOnMessageArrived;
-            await socketClient.StartReceiving();
+            await socketClient.StartReceiving(Parameter.CancellationTokenSource);
         }
 
         private void SocketClientOnMessageArrived(object? sender, string e)
