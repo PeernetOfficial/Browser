@@ -38,12 +38,6 @@ namespace Peernet.Browser.WPF.Services
 
         public string LogFile => Get(nameof(LogFile));
 
-        public bool PlayButtonPlugEnabled
-        {
-            get => bool.Parse(Get(nameof(PlayButtonPlugEnabled)));
-            set => Set(nameof(PlayButtonPlugEnabled), value.ToString());
-        }
-
         public string PluginsLocation
         {
             get => Get(nameof(PluginsLocation));

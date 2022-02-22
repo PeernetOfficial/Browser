@@ -44,7 +44,6 @@ namespace Peernet.Browser.WPF
         {
             var settings = new SettingsManager();
             GlobalContext.VisualMode = settings.DefaultTheme;
-            PluginsContext.PlayButtonPlugEnabled = settings.PlayButtonPlugEnabled;
             ActivateCultureTracking();
         }
 
@@ -64,6 +63,7 @@ namespace Peernet.Browser.WPF
             ServiceProvider = services.BuildServiceProvider();
 
             notificationsManager = ServiceProvider.GetRequiredService<INotificationsManager>();
+            PluginsContext.PlayButtonPlugEnabled = ServiceProvider.GetService<IPlayButtonPlug>() != null;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             DispatcherUnhandledException += App_DispatcherUnhandledException;
             TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;

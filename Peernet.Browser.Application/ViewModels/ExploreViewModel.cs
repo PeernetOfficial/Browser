@@ -98,11 +98,11 @@ namespace Peernet.Browser.Application.ViewModels
                             .GetFiles(200, (int)category.Type));
                 });
 
-        public IAsyncCommand<VirtualFileSystemEntity> StreamFileCommand =>
-            new AsyncCommand<VirtualFileSystemEntity>(
-                entity =>
+        public IAsyncCommand<DownloadModel> StreamFileCommand =>
+            new AsyncCommand<DownloadModel>(
+                model =>
                 {
-                    playButtonPlug?.Execute(entity.File);
+                    playButtonPlug?.Execute(model.File);
 
                     return Task.CompletedTask;
                 });

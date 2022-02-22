@@ -48,7 +48,7 @@
                                         <ImageBrush ImageSource="{DynamicResource EditDrawingImage}" />
                                     </Button.Background>
                                 </Button>
-                                <Button Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.StreamFileCommand, ElementName=SharedFilesDataGrid}" CommandParameter="{Binding}" ToolTip="Play" Height="39" Width="37" Visibility="{Binding Path=(contexts:PluginsContext.PlayButtonPlugEnabled), Converter={StaticResource BoolToVisibility}}">
+                                <Button Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.StreamFileCommand, ElementName=SharedFilesDataGrid}" CommandParameter="{Binding}" ToolTip="Play" Height="39" Width="37" IsEnabled="{Binding Path=(contexts:PluginsContext.PlayButtonPlugEnabled)}">
                                     <Button.Background>
                                         <ImageBrush ImageSource="{DynamicResource PlayDrawingImage}" />
                                     </Button.Background>
