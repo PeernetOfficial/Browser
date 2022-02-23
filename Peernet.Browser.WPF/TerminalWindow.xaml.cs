@@ -14,6 +14,9 @@ namespace Peernet.Browser.WPF
 
         public TerminalWindow(object dataContext)
         {
+            Owner = App.Current.MainWindow;
+            WindowStartupLocation = App.Current.MainWindow.WindowStartupLocation;
+
             InitializeComponent();
             DataContext = dataContext;
             OutputPane.TextChanged += Output_TextChanged;

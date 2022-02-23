@@ -36,6 +36,7 @@ namespace Peernet.Browser.WPF.Views
                 var terminalViewModel = App.ServiceProvider.GetRequiredService<TerminalViewModel>();
                 var source = new CancellationTokenSource();
 
+                // TODO: This part of the code has few issues: 1. The call is not awaited, because of that returns AggregateException and specific exception can't be really handled; 2. Cancellation of the request is not done gently.
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
                 Task.Run(() => terminalViewModel.Prepare(new(source)).ConfigureAwait(false).GetAwaiter().GetResult(), source.Token);
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
