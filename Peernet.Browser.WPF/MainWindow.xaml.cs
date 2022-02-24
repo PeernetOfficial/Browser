@@ -119,6 +119,10 @@ namespace Peernet.Browser.WPF
                 {
                     GlobalContext.IsLogoVisible = true;
                 }
+                else if (tab.Content is HomeView)
+                {
+                    GlobalContext.IsLogoVisible = App.ServiceProvider.GetService<HomeViewModel>().IsVisible;
+                }
                 else
                 {
                     GlobalContext.IsLogoVisible = false;

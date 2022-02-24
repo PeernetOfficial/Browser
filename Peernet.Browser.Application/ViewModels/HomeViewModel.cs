@@ -38,8 +38,6 @@ namespace Peernet.Browser.Application.ViewModels
                 OnPropertyChanged(nameof(Alignment));
                 GlobalContext.IsLogoVisible = IsVisible;
             };
-
-            GlobalContext.IsLogoVisible = IsVisible;
         }
 
         public Alignments Alignment => IsVisible ? Alignments.Stretch : Alignments.Center;
