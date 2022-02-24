@@ -13,6 +13,9 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using Peernet.SDK.Models.Extensions;
+using Peernet.Browser.WPF.Views;
+using Peernet.Browser.Application.Contexts;
+using System.Windows.Controls;
 
 namespace Peernet.Browser.WPF
 {
@@ -21,7 +24,7 @@ namespace Peernet.Browser.WPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow(object dataContext)
+        public MainWindow(MainViewModel dataContext)
         {
             InitializeComponent();
             Loaded += MainWindow_Loaded;
@@ -42,7 +45,7 @@ namespace Peernet.Browser.WPF
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            App.ServiceProvider.GetRequiredService<INavigationService>().Navigate<HomeViewModel>();
+            HomeTab.IsSelected = true;
         }
 
         private void FileUpload_OnDrop(object sender, DragEventArgs e)
@@ -106,6 +109,25 @@ namespace Peernet.Browser.WPF
             }
 
             return fileModels;
+        }
+
+        private void TabControlEx_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count != 0 && e.AddedItems[0] is TabItem tab)
+            {
+                if (tab.Content is DirectoryView or ExploreView or AboutView)
+                {
+                    GlobalContext.IsLogoVisible = true;
+                }
+                else if (tab.Content is HomeView)
+                {
+                    GlobalContext.IsLogoVisible = App.ServiceProvider.GetService<HomeViewModel>().IsVisible;
+                }
+                else
+                {
+                    GlobalContext.IsLogoVisible = false;
+                }
+            }
         }
     }
 }

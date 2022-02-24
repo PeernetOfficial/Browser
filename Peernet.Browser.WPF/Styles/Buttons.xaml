@@ -133,6 +133,15 @@
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Margin" Value="7,0,7,0" />
+        <Setter Property="ToolTipService.ShowOnDisabled" Value="True" />
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Trigger.Setters>
+                    <Setter Property="Opacity" Value="0.5" />
+                    <Setter Property="ToolTip" Value="No file viewer plugin is installed for this file type" />
+                </Trigger.Setters>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="TreeViewNavigationPathButtonStyle" TargetType="{x:Type Button}">

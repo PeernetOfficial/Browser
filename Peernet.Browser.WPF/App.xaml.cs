@@ -143,7 +143,7 @@ namespace Peernet.Browser.WPF
             Action<HttpResponseMessage, string> onRequestFailure =
                 (response, details) => notificationsManager?.Notifications.Add(
                     new($"Unexpected response status code: {response.StatusCode}", details, Severity.Error));
-            services.RegisterPeernetClients(() => settings.ApiUrl, settings.ApiKey, onRequestFailure);
+            services.RegisterPeernetClients(settings, onRequestFailure);
             services.RegisterPeernetServices();
             services.AddSingleton<IApplicationManager, ApplicationManager>();
             services.AddSingleton<INavigationService, NavigationService>();

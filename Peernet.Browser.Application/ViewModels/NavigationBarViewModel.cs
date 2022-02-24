@@ -7,48 +7,15 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public class NavigationBarViewModel : ViewModelBase
     {
-        private readonly INavigationService navigationService;
-        private readonly IModalNavigationService modalNavigationService;
 
-        public NavigationBarViewModel(INavigationService navigationService, IModalNavigationService modalNavigationService, IUserContext userContext)
+        public NavigationBarViewModel(IModalNavigationService modalNavigationService, IUserContext userContext)
         {
-            this.navigationService = navigationService;
-            this.modalNavigationService = modalNavigationService;
             UserContext = userContext;
-
-            NavigateExploreCommand = new AsyncCommand(() =>
-            {
-                Navigate<ExploreViewModel>();
-
-                return Task.CompletedTask;
-            });
-
-            NavigateHomeCommand = new AsyncCommand(() =>
-            {
-                if (navigationService.CurrentViewModel is HomeViewModel)
-                {
-                    Navigate<HomeViewModel>(false);
-                }
-
-                return Task.CompletedTask;
-            });
-
-            NavigateDirectoryCommand = new AsyncCommand(() =>
-            {
-                Navigate<DirectoryViewModel>();
-                return Task.CompletedTask;
-            });
 
             EditProfileCommand = new AsyncCommand(() =>
             {
                 modalNavigationService.Navigate<EditProfileViewModel>();
 
-                return Task.CompletedTask;
-            });
-
-            NavigateAboutCommand = new AsyncCommand(() =>
-            {
-                Navigate<AboutViewModel>();
                 return Task.CompletedTask;
             });
 
@@ -61,27 +28,8 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IAsyncCommand EditProfileCommand { get; }
 
-        public IAsyncCommand NavigateAboutCommand { get; }
-
-        public IAsyncCommand NavigateDirectoryCommand { get; }
-
-        public IAsyncCommand NavigateExploreCommand { get; }
-
-        public IAsyncCommand NavigateHomeCommand { get; }
-
         public IAsyncCommand OpenCloseProfileMenuCommand { get; }
 
         public IUserContext UserContext { get; set; }
-
-        private void Navigate<T>(bool showLogo = true) where T : ViewModelBase
-        {
-            if (navigationService.CurrentViewModel is T)
-            {
-                return;
-            }
-
-            navigationService.Navigate<T>();
-            GlobalContext.IsLogoVisible = showLogo;
-        }
     }
 }

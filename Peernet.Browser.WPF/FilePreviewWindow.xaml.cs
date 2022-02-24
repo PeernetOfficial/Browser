@@ -12,19 +12,21 @@ namespace Peernet.Browser.WPF
     {
         public FilePreviewWindow(FilePreviewViewModel dataContext)
         {
-            ContentRendered += Window_ContentRendered;
             Initialized += Window_Initialized;
+            ContentRendered += Window_ContentRendered;
+            Owner = App.Current.MainWindow;
+            WindowStartupLocation = App.Current.MainWindow.WindowStartupLocation;
+
             InitializeComponent();
             DataContext = dataContext;
             MouseDown += Window_MouseDown;
 
-            WindowStartupLocation = App.Current.MainWindow.WindowStartupLocation;
-            //Owner = App.Current.MainWindow;
         }
 
         private void Window_ContentRendered(object sender, EventArgs e)
         {
             this.Topmost = false;
+            Owner = null;
         }
 
         private void Window_Initialized(object sender, EventArgs e)

@@ -2,7 +2,7 @@
 
 # Peernet Browser
 This is official GUI for [Peernet Command Line Client](https://github.com/PeernetOfficial/Cmd). It has been designed to deliver client's capabilities in user friendly manner. 
-It is built on to of .NET 5.0 with use of WPF UI Framework [WPF documentation](https://docs.microsoft.com/en-us/dotnet/desktop/wpf/?view=netdesktop-5.0). 
+It is built on to of .NET 6.0 with use of WPF UI Framework [WPF documentation](https://docs.microsoft.com/en-us/dotnet/desktop/wpf/?view=netdesktop-6.0). 
 
 ## Configuration
 Peernet Browser configuration entry point is via _Peernet Browser.dll.config_ output file or _App.config_ from Solution view.
@@ -52,7 +52,7 @@ Although Browser makes sure backend terminated and kills the process if it didn'
 ### Requirements
 
 These components are required:
-1. Latest [.NET Desktop Runtime for Windows x64](https://dotnet.microsoft.com/download/dotnet/5.0). The installer version is recommended.
+1. Latest [.NET Desktop Runtime for Windows x64](https://dotnet.microsoft.com/download/dotnet/6.0). The installer version is recommended.
 2. The backend executable. You can compile the [Cmd project](https://github.com/PeernetOfficial/Cmd) and use that resulting executable.
 3. For improved connectivity add a Windows Firewall rule to allow all connections for the backend executable (the linked Cmd project has the netsh command documented).
 
@@ -74,7 +74,7 @@ The following steps provide a guide how to compile the Peernet Browser. Note tha
 
 ### Step 1 Install .NET SDK
 In order to use generic driver for .NET CLI, .NET SDK needs to be installed.
-.NET SDK installer can be downloaded from [Official Website](https://dotnet.microsoft.com/download/dotnet/5.0)
+.NET SDK installer can be downloaded from [Official Website](https://dotnet.microsoft.com/download/dotnet/6.0)
 
 ### Step 2 Clone the repository
 Use GIT CLI to clone the repository
@@ -87,7 +87,7 @@ git clone https://github.com/PeernetOfficial/Browser.git
 
 This step is optional. It is not required to be able to **build** and **run** solution although VisualStudio as IDE provides numerous features besides obvious ability to edit, build and run the solution.
 
-Peernet Browser is written with the latest as of now .NET 5.0. It requires [Visual Studio 2019](https://visualstudio.microsoft.com/pl/vs/) version or newer to be able to load.
+Peernet Browser is written with the latest as of now .NET 6.0. It requires [Visual Studio 2022](https://visualstudio.microsoft.com/pl/vs/) version or newer to be able to load.
 There is a Community version that is free of charge for non-commercial use.
 
 ### Step 4 Build Solution
@@ -102,24 +102,22 @@ dotnet build
 
 Expected output:
 ```
-D:\Sources\Peernet\Browser>dotnet build
-Microsoft (R) Build Engine version 16.10.2+857e5a733 for .NET
+D:\Sources\Peernet\Browser\Peernet.Browser.WPF>dotnet build
+Microsoft (R) Build Engine 17.1.0+ae57d105c dla platformy .NET
 Copyright (C) Microsoft Corporation. All rights reserved.
 
   Determining projects to restore...
-  Restored D:\Sources\Peernet\Browser\Peernet.Browser.WPF\Peernet.Browser.WPF.csproj (in 290 ms).
-  4 of 5 projects are up-to-date for restore.
-  Peernet.Browser.Models -> D:\Sources\Peernet\Browser\Peernet.Browser.Models\bin\Debug\net5.0\Models.dll
-  Peernet.Browser.Application -> D:\Sources\Peernet\Browser\Peernet.Browser.Application\bin\Debug\net5.0\Application.dll
-  Peernet.Browser.Infrastructure -> D:\Sources\Peernet\Browser\Peernet.Browser.Infrastructure\bin\Debug\net5.0\Infrastructure.dll
-  Peernet.Browser.WPF -> D:\Sources\Peernet\Browser\Peernet.Browser.WPF\bin\Debug\net5.0-windows\win-x64\Peernet Browser.dll
-  Peernet.Browser.Tests -> D:\Sources\Peernet\Browser\Peernet.Browser.Tests\bin\Debug\net5.0\Peernet.Browser.Tests.dll
+  Restored D:\Sources\Peernet\Browser\Peernet.Browser.WPF\Peernet.Browser.WPF.csproj (w 273 ms).
+  2 of 3 projects are up-to-date for restore.
+  Peernet.Browser.Application -> D:\Sources\Peernet\Browser\Peernet.Browser.Application\bin\Debug\net6.0\Application.dll
+  Peernet.Browser.Infrastructure -> D:\Sources\Peernet\Browser\Peernet.Browser.Infrastructure\bin\Debug\net6.0\Infrastructure.dll
+  Peernet.Browser.WPF -> D:\Sources\Peernet\Browser\Peernet.Browser.WPF\bin\Debug\net6.0-windows\win-x64\Peernet Browser.dll
 
 Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:07.34
+Time Elapsed: 00:00:05.90
 ```
 
 To compile the release version without the .NET dlls, use the following command. The compiled files will be in the `\Peernet.Browser.WPF\bin\Release\net5.0-windows\win-x64\publish` folder.
