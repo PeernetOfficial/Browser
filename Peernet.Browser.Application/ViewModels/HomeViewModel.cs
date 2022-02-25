@@ -16,10 +16,10 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public class HomeViewModel : ViewModelBase
     {
-        private readonly ISearchService searchService;
         private readonly IDownloadManager downloadManager;
         private readonly INavigationService navigationService;
         private readonly IPlayButtonPlug playButtonPlug;
+        private readonly ISearchService searchService;
         private string searchInput;
         private int selectedIndex = -1;
 
@@ -42,6 +42,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         public Alignments Alignment => IsVisible ? Alignments.Stretch : Alignments.Center;
 
+        public SearchTabElementViewModel Content => SelectedIndex < 0 ? null : Tabs[SelectedIndex];
         public bool IsNotVisible => !IsVisible;
 
         public bool IsVisible => Tabs.Any();
@@ -69,21 +70,16 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        public SearchTabElementViewModel Content => SelectedIndex < 0 ? null : Tabs[SelectedIndex];
-
         public ObservableCollection<SearchTabElementViewModel> Tabs { get; } = new ObservableCollection<SearchTabElementViewModel>();
 
-        private async Task RemoveTab(SearchTabElementViewModel e)
-        {
-            await searchService.Terminate(e.Filters.UuId);
-            Tabs.Remove(e);
-            SelectedIndex = IsVisible ? 0 : -1;
-        }
+        private bool DoesSupportPlaying(SearchResultRowModel row) => playButtonPlug.IsSupported(row.File);
 
         private async Task DownloadFile(SearchResultRowModel row)
         {
             await downloadManager.QueueUpDownload(new DownloadModel(row.File));
         }
+
+        private void ExecutePlayButtonPlug(SearchResultRowModel model) => playButtonPlug?.Execute(model.File);
 
         private void OpenFile(SearchResultRowModel row)
         {
@@ -92,11 +88,16 @@ namespace Peernet.Browser.Application.ViewModels
             navigationService.Navigate<FilePreviewViewModel, FilePreviewViewModelParameter>(param);
         }
 
-        private void ExecutePlayButtonPlug(SearchResultRowModel model) => playButtonPlug?.Execute(model.File);
+        private async Task RemoveTab(SearchTabElementViewModel e)
+        {
+            await searchService.Terminate(e.Filters.UuId);
+            Tabs.Remove(e);
+            SelectedIndex = IsVisible ? 0 : -1;
+        }
 
         private Task Search()
         {
-            var toAdd = new SearchTabElementViewModel(SearchInput, RemoveTab, searchService.Search, DownloadFile, OpenFile, ExecutePlayButtonPlug);
+            var toAdd = new SearchTabElementViewModel(SearchInput, RemoveTab, searchService.Search, DownloadFile, OpenFile, ExecutePlayButtonPlug, DoesSupportPlaying);
             Tabs.Add(toAdd);
             SelectedIndex = Tabs.Count - 1;
             SearchInput = string.Empty;

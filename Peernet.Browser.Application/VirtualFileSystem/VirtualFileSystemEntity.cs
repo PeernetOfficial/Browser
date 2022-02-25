@@ -19,6 +19,8 @@ namespace Peernet.Browser.Application.VirtualFileSystem
 
         public ApiFile File { get; init; }
 
+        public bool IsPlayerEnabled { get; set; }
+
         public string Name => name ?? File.Name;
 
         public VirtualFileSystemEntityType Type => GetEntityType();
