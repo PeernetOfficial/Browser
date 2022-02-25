@@ -72,7 +72,15 @@ namespace Peernet.Browser.Application.ViewModels
 
         public ObservableCollection<SearchTabElementViewModel> Tabs { get; } = new ObservableCollection<SearchTabElementViewModel>();
 
-        private bool DoesSupportPlaying(SearchResultRowModel row) => playButtonPlug.IsSupported(row.File);
+        private bool DoesSupportPlaying(SearchResultRowModel row)
+        {
+            if (playButtonPlug != null)
+            {
+                return playButtonPlug.IsSupported(row.File);
+            }
+
+            return false;
+        }
 
         private async Task DownloadFile(SearchResultRowModel row)
         {

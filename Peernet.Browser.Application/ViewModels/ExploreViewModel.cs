@@ -151,7 +151,13 @@ namespace Peernet.Browser.Application.ViewModels
 
         private void SetPlayerState(List<DownloadModel> results)
         {
-            results.Foreach(exploreResult => exploreResult.IsPlayerEnabled = playButtonPlug.IsSupported(exploreResult.File));
+            results.Foreach(exploreResult =>
+            {
+                if(playButtonPlug != null)
+                {
+                    exploreResult.IsPlayerEnabled = playButtonPlug.IsSupported(exploreResult.File);
+                }
+            });
         }
     }
 }
