@@ -221,9 +221,11 @@ namespace Peernet.Browser.Application.ViewModels
             var files = await blockchainService.GetList();
 
             var sharedFiles = (files ?? new()).Select(f => new VirtualFileSystemEntity(f)).ToList();
+            SetPlayerState(sharedFiles);
             var selected = restoreState ? VirtualFileSystem?.GetCurrentlySelected() : null;
 
             VirtualFileSystem = virtualFileSystemFactory.CreateVirtualFileSystem(files, selected?.Name == nameof(VirtualFileSystem.Home));
+            SetPlayerState(VirtualFileSystem.Home.VirtualFileSystemEntities);
             AddRecentTier(sharedFiles);
             AddAllFilesTier(sharedFiles);
             RefreshPathObjects();
@@ -350,6 +352,11 @@ namespace Peernet.Browser.Application.ViewModels
             }
 
             PathElements.Last().IsSelected = true;
+        }
+
+        private void SetPlayerState(List<VirtualFileSystemEntity> results)
+        {
+            results.Foreach(exploreResult => exploreResult.IsPlayerEnabled = playButtonPlug.IsSupported(exploreResult.File));
         }
     }
 }

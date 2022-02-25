@@ -14,6 +14,7 @@ namespace Peernet.Browser.Application.ViewModels
     {
         private const int increase = 100;
         private readonly Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction;
+        private readonly Func<SearchResultRowModel, bool> isPlayerSupported;
         private bool isClearing;
         private int limit = increase;
         private bool showColumnsDate = true;
@@ -27,9 +28,11 @@ namespace Peernet.Browser.Application.ViewModels
             Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction,
             Func<SearchResultRowModel, Task> downloadAction,
             Action<SearchResultRowModel> openAction,
-            Action<SearchResultRowModel> executePlugAction)
+            Action<SearchResultRowModel> executePlugAction,
+            Func<SearchResultRowModel, bool> isPlayerSupported)
         {
             this.refreshAction = refreshAction;
+            this.isPlayerSupported = isPlayerSupported ;
 
             Title = title;
 
@@ -232,6 +235,7 @@ namespace Peernet.Browser.Application.ViewModels
             }
             Filters.SearchFilterResult.LimitOfResult = limit;
             var data = await refreshAction(Filters.SearchFilterResult);
+            data.Rows.ForEach(row => row.IsPlayerEnabled = isPlayerSupported.Invoke(row));
 
             Filters.UuId = data.Id;
             UIThreadDispatcher.ExecuteOnMainThread(() =>

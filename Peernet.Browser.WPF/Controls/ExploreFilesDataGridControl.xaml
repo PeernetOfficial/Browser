@@ -76,7 +76,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <Button Command="{Binding DataContext.StreamFileCommand, ElementName=ExploreFilesDataGrid}" CommandParameter="{Binding}" Height="39" Width="37" IsEnabled="{Binding Path=(contexts:PluginsContext.PlayButtonPlugEnabled)}">
+                                <Button Command="{Binding DataContext.StreamFileCommand, ElementName=ExploreFilesDataGrid}" CommandParameter="{Binding}" Height="39" Width="37" IsEnabled="{Binding IsPlayerEnabled}">
                                     <Button.Background>
                                         <ImageBrush ImageSource="{DynamicResource PlayDrawingImage}" />
                                     </Button.Background>

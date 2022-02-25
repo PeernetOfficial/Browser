@@ -129,6 +129,7 @@ namespace Peernet.Browser.Application.ViewModels
         private async Task ReloadResults()
         {
             var exploreResult = await exploreService.GetFiles(200);
+            SetPlayerState(exploreResult);
             ActiveSearchResults = new ObservableCollection<DownloadModel>(exploreResult);
         }
 
@@ -142,8 +143,15 @@ namespace Peernet.Browser.Application.ViewModels
                 Thread.Sleep(7000);
             }
 
+            SetPlayerState(results);
+
             IsLoaded = true;
             ActiveSearchResults = new ObservableCollection<DownloadModel>(results);
+        }
+
+        private void SetPlayerState(List<DownloadModel> results)
+        {
+            results.Foreach(exploreResult => exploreResult.IsPlayerEnabled = playButtonPlug.IsSupported(exploreResult.File));
         }
     }
 }
