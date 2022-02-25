@@ -225,7 +225,8 @@ namespace Peernet.Browser.Application.ViewModels
             var selected = restoreState ? VirtualFileSystem?.GetCurrentlySelected() : null;
 
             VirtualFileSystem = virtualFileSystemFactory.CreateVirtualFileSystem(files, selected?.Name == nameof(VirtualFileSystem.Home));
-            SetPlayerState(VirtualFileSystem.Home.VirtualFileSystemEntities);
+            SetPlayerStateRecursively(VirtualFileSystem.Home.VirtualFileSystemEntities);
+            VirtualFileSystem.VirtualFileSystemCategories.Foreach(c => SetPlayerState(c.VirtualFileSystemEntities));
             AddRecentTier(sharedFiles);
             AddAllFilesTier(sharedFiles);
             RefreshPathObjects();
@@ -354,12 +355,26 @@ namespace Peernet.Browser.Application.ViewModels
             PathElements.Last().IsSelected = true;
         }
 
+
+        private void SetPlayerStateRecursively(List<VirtualFileSystemEntity> results)
+        {
+            SetPlayerState(results);
+            results.Foreach(r =>
+            {
+                if (r is VirtualFileSystemCoreEntity coreEntity)
+                {
+                    SetPlayerStateRecursively(coreEntity.VirtualFileSystemEntities);
+                }
+            });
+        }
+
         private void SetPlayerState(List<VirtualFileSystemEntity> results)
         {
-            results.Foreach(exploreResult => {
+            results.Foreach(r => 
+            {
                 if (playButtonPlug != null)
                 {
-                    exploreResult.IsPlayerEnabled = playButtonPlug.IsSupported(exploreResult.File);
+                    r.IsPlayerEnabled = playButtonPlug.IsSupported(r.File);
                 }
             });
         }

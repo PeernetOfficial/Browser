@@ -94,8 +94,10 @@ namespace Peernet.Browser.Application.ViewModels
                     categoryTypes.ForEach(c => c.ResetSelection());
 
                     category.IsSelected = true;
-                    ActiveSearchResults = new ObservableCollection<DownloadModel>(await exploreService
-                            .GetFiles(200, (int)category.Type));
+
+                    var results = await exploreService.GetFiles(200, (int)category.Type);
+                    SetPlayerState(results);
+                    ActiveSearchResults = new ObservableCollection<DownloadModel>(results);
                 });
 
         public IAsyncCommand<DownloadModel> StreamFileCommand =>
