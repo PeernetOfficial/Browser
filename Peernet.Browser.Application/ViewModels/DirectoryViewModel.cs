@@ -24,7 +24,7 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IBlockchainService blockchainService;
         private readonly IModalNavigationService modalNavigationService;
         private readonly IVirtualFileSystemFactory virtualFileSystemFactory;
-        private readonly IPlayButtonPlug playButtonPlug;
+        private readonly IEnumerable<IPlayButtonPlug> playButtonPlugs;
         private readonly INotificationsManager notificationsManager;
         private ObservableCollection<VirtualFileSystemEntity> activeSearchResults;
         private ObservableCollection<VirtualFileSystemCoreEntity> pathElements;
@@ -38,13 +38,13 @@ namespace Peernet.Browser.Application.ViewModels
             IVirtualFileSystemFactory virtualFileSystemFactory,
             IModalNavigationService modalNavigationService,
             INotificationsManager notificationsManager,
-            IPlayButtonPlug playButtonPlug)
+            IEnumerable<IPlayButtonPlug> playButtonPlugs)
         {
             this.blockchainService = blockchainService;
             this.virtualFileSystemFactory = virtualFileSystemFactory;
             this.modalNavigationService = modalNavigationService;
             this.notificationsManager = notificationsManager;
-            this.playButtonPlug = playButtonPlug;
+            this.playButtonPlugs = playButtonPlugs;
 
             Task.Run(async () => await ReloadVirtualFileSystem(false)).ConfigureAwait(false).GetAwaiter().GetResult();
             InitializePath(VirtualFileSystem?.Home);
@@ -205,7 +205,13 @@ namespace Peernet.Browser.Application.ViewModels
             new AsyncCommand<VirtualFileSystemEntity>(
                 entity =>
                 {
-                    playButtonPlug?.Execute(entity.File);
+                    playButtonPlugs.Foreach(plug =>
+                    {
+                        if (plug?.IsSupported(entity.File) == true)
+                        {
+                            plug?.Execute(entity.File);
+                        }
+                    });
 
                     return Task.CompletedTask;
                 });
@@ -370,12 +376,9 @@ namespace Peernet.Browser.Application.ViewModels
 
         private void SetPlayerState(List<VirtualFileSystemEntity> results)
         {
-            results.Foreach(r => 
+            results.Foreach(r =>
             {
-                if (playButtonPlug != null)
-                {
-                    r.IsPlayerEnabled = playButtonPlug.IsSupported(r.File);
-                }
+                r.IsPlayerEnabled = playButtonPlugs.Any(plug => plug?.IsSupported(r.File) == true);
             });
         }
     }

@@ -4,10 +4,12 @@ using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels.Parameters;
+using Peernet.SDK.Models.Extensions;
 using Peernet.SDK.Models.Plugins;
 using Peernet.SDK.Models.Presentation.Footer;
 using Peernet.SDK.Models.Presentation.Home;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,17 +20,17 @@ namespace Peernet.Browser.Application.ViewModels
     {
         private readonly IDownloadManager downloadManager;
         private readonly INavigationService navigationService;
-        private readonly IPlayButtonPlug playButtonPlug;
+        private readonly IEnumerable<IPlayButtonPlug> playButtonPlugs;
         private readonly ISearchService searchService;
         private string searchInput;
         private int selectedIndex = -1;
 
-        public HomeViewModel(ISearchService searchService, IDownloadManager downloadManager, INavigationService navigationService, IPlayButtonPlug playButtonPlug)
+        public HomeViewModel(ISearchService searchService, IDownloadManager downloadManager, INavigationService navigationService, IEnumerable<IPlayButtonPlug> playButtonPlugs)
         {
             this.searchService = searchService;
             this.downloadManager = downloadManager;
             this.navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
-            this.playButtonPlug = playButtonPlug;
+            this.playButtonPlugs = playButtonPlugs;
 
             SearchCommand = new AsyncCommand(Search);
             Tabs.CollectionChanged += (o, s) =>
@@ -74,12 +76,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         private bool DoesSupportPlaying(SearchResultRowModel row)
         {
-            if (playButtonPlug != null)
-            {
-                return playButtonPlug.IsSupported(row.File);
-            }
-
-            return false;
+            return playButtonPlugs.Any(plugin => plugin?.IsSupported(row.File) == true);
         }
 
         private async Task DownloadFile(SearchResultRowModel row)
@@ -87,7 +84,16 @@ namespace Peernet.Browser.Application.ViewModels
             await downloadManager.QueueUpDownload(new DownloadModel(row.File));
         }
 
-        private void ExecutePlayButtonPlug(SearchResultRowModel model) => playButtonPlug?.Execute(model.File);
+        private void ExecutePlayButtonPlug(SearchResultRowModel model)
+        {
+            playButtonPlugs.Foreach(plug =>
+            {
+                if (plug?.IsSupported(model.File) == true)
+                {
+                    plug?.Execute(model.File);
+                }
+            });
+        }
 
         private void OpenFile(SearchResultRowModel row)
         {

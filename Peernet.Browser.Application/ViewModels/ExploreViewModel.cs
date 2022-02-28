@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Peernet.SDK.Models.Extensions;
 using Peernet.SDK.Models.Plugins;
+using System.Linq;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -21,15 +22,15 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IExploreService exploreService;
         private readonly IDownloadManager downloadManager;
         private readonly INavigationService navigationService;
-        private readonly IPlayButtonPlug playButtonPlug;
+        private readonly IEnumerable<IPlayButtonPlug> playButtonPlugs;
         private static readonly List<VirtualFileSystemCoreCategory> categoryTypes = GetCategoryTypes();
 
-        public ExploreViewModel(IExploreService exploreService, IDownloadManager downloadManager, INavigationService navigationService, IPlayButtonPlug playButtonPlug)
+        public ExploreViewModel(IExploreService exploreService, IDownloadManager downloadManager, INavigationService navigationService, IEnumerable<IPlayButtonPlug> playButtonPlugs)
         {
             this.exploreService = exploreService;
             this.downloadManager = downloadManager;
             this.navigationService = navigationService;
-            this.playButtonPlug = playButtonPlug;
+            this.playButtonPlugs = playButtonPlugs;
 
             Task.Run(() => LoadResults().ConfigureAwait(false).GetAwaiter().GetResult());
         }
@@ -104,7 +105,13 @@ namespace Peernet.Browser.Application.ViewModels
             new AsyncCommand<DownloadModel>(
                 model =>
                 {
-                    playButtonPlug?.Execute(model.File);
+                    playButtonPlugs.Foreach(plug =>
+                    {
+                        if (plug?.IsSupported(model.File) == true)
+                        {
+                            plug?.Execute(model.File);
+                        }
+                    });
 
                     return Task.CompletedTask;
                 });
@@ -153,12 +160,9 @@ namespace Peernet.Browser.Application.ViewModels
 
         private void SetPlayerState(List<DownloadModel> results)
         {
-            results.Foreach(exploreResult =>
+            results.Foreach(r =>
             {
-                if(playButtonPlug != null)
-                {
-                    exploreResult.IsPlayerEnabled = playButtonPlug.IsSupported(exploreResult.File);
-                }
+                r.IsPlayerEnabled = playButtonPlugs.Any(plug => plug?.IsSupported(r.File) == true);
             });
         }
     }
