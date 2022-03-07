@@ -2,13 +2,26 @@
 using Peernet.SDK.Models.Presentation;
 using System;
 using System.Configuration;
+using System.Windows;
 
 namespace Peernet.Browser.WPF.Services
 {
     public class SettingsManager : ISettingsManager
     {
         private static readonly Guid apiKey = Guid.NewGuid();
-        private static readonly Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+        private static readonly Configuration config;
+
+        static SettingsManager()
+        {
+            try
+            {
+                config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error reading configuration file!", "Fatal Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
 
         public string ApiKey => Get(nameof(ApiKey)) ?? apiKey.ToString();
 
@@ -51,25 +64,43 @@ namespace Peernet.Browser.WPF.Services
             config.Save();
         }
 
-        private static string Get(string key) => config.AppSettings.Settings[key]?.Value;
+        public bool Validate()
+        {
+            if (config?.AppSettings == null)
+            {
+                return false;
+            }
+
+            if (Backend == null || ApiKey == null || DownloadPath == null || PluginsLocation == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private static string Get(string key) => config?.AppSettings.Settings[key]?.Value;
 
         private static void Set(string key, string value)
         {
-            var setting = config.AppSettings.Settings[key];
-            if (value != null)
+            if (config != null)
             {
-                if (setting == null)
+                if (value != null)
                 {
-                    config.AppSettings.Settings.Add(key, value);
+                    var setting = config.AppSettings.Settings[key];
+                    if (setting == null)
+                    {
+                        config?.AppSettings.Settings.Add(key, value);
+                    }
+                    else
+                    {
+                        setting.Value = value;
+                    }
                 }
                 else
                 {
-                    setting.Value = value;
+                    config.AppSettings.Settings.Remove(key);
                 }
-            }
-            else
-            {
-                config.AppSettings.Settings.Remove(key);
             }
         }
 

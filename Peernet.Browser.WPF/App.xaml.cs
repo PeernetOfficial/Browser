@@ -35,6 +35,7 @@ namespace Peernet.Browser.WPF
 
     public partial class App : System.Windows.Application
     {
+        public static ISettingsManager Settings;
         public static IServiceProvider ServiceProvider;
         private static CmdRunner cmdRunner;
         private readonly object lockObject = new();
@@ -42,8 +43,13 @@ namespace Peernet.Browser.WPF
 
         static App()
         {
-            var settings = new SettingsManager();
-            GlobalContext.VisualMode = settings.DefaultTheme;
+            Settings = new SettingsManager();
+            if (!Settings.Validate())
+            {
+                MessageBox.Show("Invalid or missing configuration!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            GlobalContext.VisualMode = Settings.DefaultTheme;
             ActivateCultureTracking();
         }
 
@@ -51,15 +57,14 @@ namespace Peernet.Browser.WPF
         {
             Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
 
-            var settingsManager = new SettingsManager();
-            if (settingsManager.ApiUrl == null)
+            if (Settings.ApiUrl == null)
             {
-                CmdRunner.ReserveAddress(settingsManager);
+                CmdRunner.ReserveAddress(Settings);
             }
 
             ServiceCollection services = new ServiceCollection();
             ConfigureServices(services);
-            new PeernetPluginsManager(settingsManager).LoadPlugins(services);
+            new PeernetPluginsManager(Settings).LoadPlugins(services);
             ServiceProvider = services.BuildServiceProvider();
 
             notificationsManager = ServiceProvider.GetRequiredService<INotificationsManager>();
@@ -134,16 +139,15 @@ namespace Peernet.Browser.WPF
 
         private void ConfigureServices(ServiceCollection services)
         {
-            var settings = new SettingsManager();
-            RegisterLogger(services, settings);
+            RegisterLogger(services, Settings);
 
             services.AddSingleton<NotificationCollection>();
             services.AddSingleton<INotificationsManager, NotificationsManager>();
-            services.AddSingleton<ISettingsManager>(settings);
+            services.AddSingleton(Settings);
             Action<HttpResponseMessage, string> onRequestFailure =
                 (response, details) => notificationsManager?.Notifications.Add(
                     new($"Unexpected response status code: {response.StatusCode}", details, Severity.Error));
-            services.RegisterPeernetClients(settings, onRequestFailure);
+            services.RegisterPeernetClients(Settings, onRequestFailure);
             services.RegisterPeernetServices();
             services.AddSingleton<IApplicationManager, ApplicationManager>();
             services.AddSingleton<INavigationService, NavigationService>();

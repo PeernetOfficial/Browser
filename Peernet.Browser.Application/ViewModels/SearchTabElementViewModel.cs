@@ -17,10 +17,13 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly Func<SearchResultRowModel, bool> isPlayerSupported;
         private bool isClearing;
         private int limit = increase;
-        private bool showColumnsDate = true;
-        private bool showColumnsDownload = true;
-        private bool showColumnsShared = true;
-        private bool showColumnsSize = true;
+        private bool showTypeColumn = false;
+        private bool showFolderColumn = false;
+        private bool showDataFormatColumn = false;
+        private bool showDateColumn = true;
+        private bool showActionsColumn = true;
+        private bool showSharedByColumn = true;
+        private bool showSizeColumn = true;
 
         public SearchTabElementViewModel(
             string title,
@@ -103,43 +106,73 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IAsyncCommand<SearchFiltersType> RemoveFilterCommand { get; }
 
-        public bool ShowColumnsDate
+        public bool ShowTypeColumn
         {
-            get => showColumnsDate;
+            get => showTypeColumn;
             set
             {
-                showColumnsDate = value;
-                OnPropertyChanged(nameof(ShowColumnsDate));
+                showTypeColumn = value;
+                OnPropertyChanged(nameof(ShowTypeColumn));
             }
         }
 
-        public bool ShowColumnsDownload
+        public bool ShowFolderColumn
         {
-            get => showColumnsDownload;
+            get => showFolderColumn;
             set
             {
-                showColumnsDownload = value;
-                OnPropertyChanged(nameof(ShowColumnsDownload));
+                showFolderColumn = value;
+                OnPropertyChanged(nameof(ShowFolderColumn));
             }
         }
 
-        public bool ShowColumnsShared
+        public bool ShowDataFormatColumn
         {
-            get => showColumnsShared;
+            get => showDataFormatColumn;
             set
             {
-                showColumnsShared = value;
-                OnPropertyChanged(nameof(ShowColumnsShared));
+                showDataFormatColumn = value;
+                OnPropertyChanged(nameof(ShowDataFormatColumn));
             }
         }
 
-        public bool ShowColumnsSize
+        public bool ShowDateColumn
         {
-            get => showColumnsSize;
+            get => showDateColumn;
             set
             {
-                showColumnsSize = value;
-                OnPropertyChanged(nameof(ShowColumnsSize));
+                showDateColumn = value;
+                OnPropertyChanged(nameof(ShowDateColumn));
+            }
+        }
+
+        public bool ShowActionsColumn
+        {
+            get => showActionsColumn;
+            set
+            {
+                showActionsColumn = value;
+                OnPropertyChanged(nameof(ShowActionsColumn));
+            }
+        }
+
+        public bool ShowSharedByColumn
+        {
+            get => showSharedByColumn;
+            set
+            {
+                showSharedByColumn = value;
+                OnPropertyChanged(nameof(ShowSharedByColumn));
+            }
+        }
+
+        public bool ShowSizeColumn
+        {
+            get => showSizeColumn;
+            set
+            {
+                showSizeColumn = value;
+                OnPropertyChanged(nameof(ShowSizeColumn));
             }
         }
 
@@ -175,10 +208,13 @@ namespace Peernet.Browser.Application.ViewModels
 
         private void InitIcons()
         {
-            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Date", IsChecked = true, IsCheckChanged = OnColumnCheckboxClick });
-            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Size", IsChecked = true, IsCheckChanged = OnColumnCheckboxClick });
-            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Downloads", IsChecked = true, IsCheckChanged = OnColumnCheckboxClick });
-            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Shared by", IsChecked = true, IsCheckChanged = OnColumnCheckboxClick });
+            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Folder", IsChecked = showFolderColumn, IsCheckChanged = OnColumnCheckboxClick });
+            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "DataFormat", IsChecked = showDataFormatColumn, IsCheckChanged = OnColumnCheckboxClick });
+            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Type", IsChecked = showTypeColumn, IsCheckChanged = OnColumnCheckboxClick });
+            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Date", IsChecked = showDateColumn, IsCheckChanged = OnColumnCheckboxClick });
+            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Size", IsChecked = showSizeColumn, IsCheckChanged = OnColumnCheckboxClick });
+            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Actions", IsChecked = showActionsColumn, IsCheckChanged = OnColumnCheckboxClick });
+            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Shared by", IsChecked = showSharedByColumn, IsCheckChanged = OnColumnCheckboxClick });
             RefreshIconFilters(SearchResultModel.GetDefaultStats().ToDictionary(x => x, y => 0), FilterType.All);
         }
 
@@ -186,20 +222,32 @@ namespace Peernet.Browser.Application.ViewModels
         {
             switch (selection.Content)
             {
+                case "Folder":
+                    ShowFolderColumn = selection.IsChecked;
+                    break;
+
+                case "Type":
+                    ShowTypeColumn = selection.IsChecked;
+                    break;
+
+                case "DataFormat":
+                    ShowDataFormatColumn = selection.IsChecked;
+                    break;
+
                 case "Date":
-                    ShowColumnsDate = selection.IsChecked;
+                    ShowDateColumn = selection.IsChecked;
                     break;
 
                 case "Size":
-                    ShowColumnsSize = selection.IsChecked;
+                    ShowSizeColumn = selection.IsChecked;
                     break;
 
-                case "Downloads":
-                    ShowColumnsDownload = selection.IsChecked;
+                case "Actions":
+                    ShowActionsColumn = selection.IsChecked;
                     break;
 
                 case "Shared by":
-                    ShowColumnsShared = selection.IsChecked;
+                    ShowSharedByColumn = selection.IsChecked;
                     break;
             }
         }

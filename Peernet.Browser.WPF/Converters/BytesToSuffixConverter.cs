@@ -11,6 +11,11 @@ namespace Peernet.Browser.WPF.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (string.IsNullOrEmpty(value?.ToString()))
+            {
+                return value;
+            }
+
             var size = long.Parse(value?.ToString());
             return SizeSuffix(size);
         }
