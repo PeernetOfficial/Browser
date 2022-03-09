@@ -2,6 +2,7 @@
 using Peernet.SDK.Models.Presentation;
 using System;
 using System.Configuration;
+using System.IO;
 using System.Windows;
 
 namespace Peernet.Browser.WPF.Services
@@ -45,7 +46,7 @@ namespace Peernet.Browser.WPF.Services
 
         public string DownloadPath
         {
-            get => Environment.ExpandEnvironmentVariables(Get(nameof(DownloadPath)));
+            get => StripInvalidWindowsCharacters(Environment.ExpandEnvironmentVariables(Get(nameof(DownloadPath))));
             set => Set(nameof(DownloadPath), value);
         }
 
@@ -108,6 +109,16 @@ namespace Peernet.Browser.WPF.Services
         {
             var socketAddress = ApiUrl.StartsWith("https:") ? ApiUrl.Replace("https:", "wss:") : ApiUrl.Replace("http:", "ws:");
             return new Uri(new Uri(socketAddress), $"console?k={ApiKey}");
+        }
+
+        private string StripInvalidWindowsCharacters(string s)
+        {
+            foreach (char c in Path.GetInvalidPathChars())
+            {
+                s = s.Replace(c.ToString(), "");
+            }
+
+            return s;
         }
     }
 }

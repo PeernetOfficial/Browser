@@ -75,7 +75,8 @@ namespace Peernet.Browser.Infrastructure
 
         public async Task QueueUpDownload(DownloadModel downloadModel)
         {
-            var status = await downloadClient.Start($"{settingsManager.DownloadPath}/{downloadModel.File.Name}", downloadModel.File.Hash, downloadModel.File.NodeId);
+            var strippedFileName = UtilityHelper.StripInvalidWindowsCharactersFromFileName(downloadModel.File.Name);
+            var status = await downloadClient.Start($"{settingsManager.DownloadPath}/{strippedFileName}", downloadModel.File.Hash, downloadModel.File.NodeId);
             downloadModel.Id = status.Id;
             downloadModel.Status = status.DownloadStatus;
 
