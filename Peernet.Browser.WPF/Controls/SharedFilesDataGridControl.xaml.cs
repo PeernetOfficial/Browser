@@ -31,7 +31,7 @@ namespace Peernet.Browser.WPF.Controls
             App.ServiceProvider.GetRequiredService<INotificationsManager>().Notifications.Add(new Notification("Copied to clipboard!"));
         }
 
-        private string CreateLink(ApiFile file)
+        private static string CreateLink(ApiFile file)
         {
             return Path.Join(@"peer://", Convert.ToHexString(file.NodeId), Convert.ToHexString(file.Hash), file.Folder, file.Name).Replace(@"\", "/");
         }

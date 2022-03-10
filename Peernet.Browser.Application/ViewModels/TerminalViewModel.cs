@@ -40,7 +40,7 @@ namespace Peernet.Browser.Application.ViewModels
             await socketClient.StartReceiving(Parameter.CancellationTokenSource);
         }
 
-        private void SocketClientOnMessageArrived(object? sender, string e)
+        private void SocketClientOnMessageArrived(object sender, string e)
         {
             SetOutput(e);
             OnOutputChanged?.Invoke(null, EventArgs.Empty);

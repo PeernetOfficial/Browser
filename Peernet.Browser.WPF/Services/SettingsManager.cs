@@ -18,9 +18,10 @@ namespace Peernet.Browser.WPF.Services
             {
                 config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Error reading configuration file!", "Fatal Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                var message = "Error reading configuration file!";
+                MessageBox.Show(message, "Fatal Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -105,13 +106,7 @@ namespace Peernet.Browser.WPF.Services
             }
         }
 
-        private Uri GetSocket()
-        {
-            var socketAddress = ApiUrl.StartsWith("https:") ? ApiUrl.Replace("https:", "wss:") : ApiUrl.Replace("http:", "ws:");
-            return new Uri(new Uri(socketAddress), $"console?k={ApiKey}");
-        }
-
-        private string StripInvalidWindowsCharacters(string s)
+        private static string StripInvalidWindowsCharacters(string s)
         {
             foreach (char c in Path.GetInvalidPathChars())
             {
@@ -119,6 +114,12 @@ namespace Peernet.Browser.WPF.Services
             }
 
             return s;
+        }
+
+        private Uri GetSocket()
+        {
+            var socketAddress = ApiUrl.StartsWith("https:") ? ApiUrl.Replace("https:", "wss:") : ApiUrl.Replace("http:", "ws:");
+            return new Uri(new Uri(socketAddress), $"console?k={ApiKey}");
         }
     }
 }

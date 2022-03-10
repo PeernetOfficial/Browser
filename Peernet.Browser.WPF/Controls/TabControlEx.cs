@@ -67,7 +67,9 @@ namespace Peernet.Browser.WPF.Controls
                         {
                             ContentPresenter cp = FindChildContentPresenter(item);
                             if (cp != null)
+                            {
                                 ItemsHolderPanel.Children.Remove(cp);
+                            }
                         }
                     }
 
@@ -91,12 +93,16 @@ namespace Peernet.Browser.WPF.Controls
         private void UpdateSelectedItem()
         {
             if (ItemsHolderPanel == null)
+            {
                 return;
+            }
 
             // Generate a ContentPresenter if necessary
             TabItem item = GetSelectedTabItem();
             if (item != null)
+            {
                 CreateChildContentPresenter(item);
+            }
 
             // show the right child
             foreach (ContentPresenter child in ItemsHolderPanel.Children)
@@ -111,7 +117,9 @@ namespace Peernet.Browser.WPF.Controls
             ContentPresenter cp = FindChildContentPresenter(item);
 
             if (cp != null)
+            {
                 return cp;
+            }
 
             // the actual child to be added.  cp.Tag is a reference to the TabItem
             cp = new ContentPresenter();
@@ -149,11 +157,14 @@ namespace Peernet.Browser.WPF.Controls
         {
             object selectedItem = base.SelectedItem;
             if (selectedItem == null)
+            {
                 return null;
+            }
 
-            TabItem item = selectedItem as TabItem;
-            if (item == null)
+            if (selectedItem is not TabItem item)
+            {
                 item = base.ItemContainerGenerator.ContainerFromIndex(base.SelectedIndex) as TabItem;
+            }
 
             return item;
         }

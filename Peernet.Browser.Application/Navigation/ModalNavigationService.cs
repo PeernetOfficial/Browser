@@ -30,15 +30,19 @@ namespace Peernet.Browser.Application.Navigation
             }
         }
 
-        public async Task Navigate<TViewModel>() where TViewModel : ViewModelBase
-        {
-            var viewModel = serviceProvider.GetRequiredService<TViewModel>();
-            CurrentViewModel = viewModel;
-        }
+        public bool IsOpen => CurrentViewModel != null;
 
         public void Close()
         {
             CurrentViewModel = null;
+        }
+
+        public Task Navigate<TViewModel>() where TViewModel : ViewModelBase
+        {
+            var viewModel = serviceProvider.GetRequiredService<TViewModel>();
+            CurrentViewModel = viewModel;
+
+            return Task.CompletedTask;
         }
 
         public async Task Navigate<TViewModel, TParameter>(TParameter parameter) where TViewModel : GenericViewModelBase<TParameter> where TParameter : class
@@ -47,7 +51,5 @@ namespace Peernet.Browser.Application.Navigation
             await viewModel.Prepare(parameter);
             CurrentViewModel = viewModel;
         }
-
-        public bool IsOpen => CurrentViewModel != null;
     }
 }

@@ -29,6 +29,7 @@ namespace Peernet.Browser.Application.ViewModels
         private ObservableCollection<VirtualFileSystemEntity> activeSearchResults;
         private ObservableCollection<VirtualFileSystemCoreEntity> pathElements;
         private string searchInput;
+        private bool isLoaded = false;
         private bool showHint = true;
         private bool showSearchBox;
         private VirtualFileSystem.VirtualFileSystem virtualFileSystem;
@@ -157,6 +158,16 @@ namespace Peernet.Browser.Application.ViewModels
                 OnPropertyChanged(nameof(SearchInput));
             }
         }
+        
+        public bool IsLoaded
+        {
+            get => isLoaded;
+            set
+            {
+                isLoaded = value;
+                OnPropertyChanged(nameof(IsLoaded));
+            }
+        }
 
         public bool ShowHint
         {
@@ -224,6 +235,7 @@ namespace Peernet.Browser.Application.ViewModels
                 return;
             }
 
+            IsLoaded = false;
             var files = await blockchainService.GetList();
 
             var sharedFiles = (files ?? new()).Select(f => new VirtualFileSystemEntity(f)).ToList();
@@ -255,6 +267,8 @@ namespace Peernet.Browser.Application.ViewModels
                     OpenCommand.Execute(DetermineHigherTier() ?? VirtualFileSystem.Home);
                 }
             }
+
+            IsLoaded = true;
         }
 
         private void AddAllFilesTier(IEnumerable<VirtualFileSystemEntity> entities)

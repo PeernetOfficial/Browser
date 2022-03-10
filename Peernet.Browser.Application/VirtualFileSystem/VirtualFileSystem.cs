@@ -49,14 +49,12 @@ namespace Peernet.Browser.Application.VirtualFileSystem
 
         private void AddFileToTheSystem(VirtualFileSystemEntity candidateEntity, List<VirtualFileSystemEntity> sameLevelFileSystemTiers)
         {
-            var candidateCoreTier = candidateEntity as VirtualFileSystemCoreTier;
-            if (candidateCoreTier is null)
+            if (candidateEntity is not VirtualFileSystemCoreTier candidateCoreTier)
             {
                 sameLevelFileSystemTiers.Add(candidateEntity);
                 return;
             }
-            var matchingTierThatIsAlreadyInTheFileSystem = sameLevelFileSystemTiers.FirstOrDefault(t => t.Name == candidateCoreTier.Name) as VirtualFileSystemCoreTier;
-            if (matchingTierThatIsAlreadyInTheFileSystem == null)
+            if (sameLevelFileSystemTiers.FirstOrDefault(t => t.Name == candidateCoreTier.Name) is not VirtualFileSystemCoreTier matchingTierThatIsAlreadyInTheFileSystem)
             {
                 sameLevelFileSystemTiers.Add(candidateCoreTier);
             }
@@ -139,8 +137,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             {
                 foreach (var tier in entities)
                 {
-                    var coreEntity = tier as VirtualFileSystemCoreEntity;
-                    if (coreEntity == null)
+                    if (tier is not VirtualFileSystemCoreEntity coreEntity)
                     {
                         continue;
                     }

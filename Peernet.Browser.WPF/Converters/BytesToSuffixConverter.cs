@@ -29,7 +29,7 @@ namespace Peernet.Browser.WPF.Converters
         {
             if (decimalPlaces < 0)
             {
-                throw new ArgumentOutOfRangeException("decimalPlaces");
+                throw new ArgumentOutOfRangeException(nameof(decimalPlaces));
             }
 
             if (value < 0)

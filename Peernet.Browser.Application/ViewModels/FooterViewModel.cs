@@ -178,7 +178,7 @@ namespace Peernet.Browser.Application.ViewModels
             process.Start();
         }
 
-        private void CollapseWhenSingleItem(object? sender, EventArgs e)
+        private void CollapseWhenSingleItem(object sender, EventArgs e)
         {
             if (DownloadManager.ActiveFileDownloads.Count == 1)
             {
@@ -243,7 +243,7 @@ namespace Peernet.Browser.Application.ViewModels
                     FileModels = fileModels
                 };
 
-                modalNavigationService.Navigate<ShareFileViewModel, ShareFileViewModelParameter>(parameter);
+                await modalNavigationService.Navigate<ShareFileViewModel, ShareFileViewModelParameter>(parameter);
             }
         }
     }

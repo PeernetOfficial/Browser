@@ -35,18 +35,17 @@ namespace Peernet.Browser.WPF
 
     public partial class App : System.Windows.Application
     {
-        public static ISettingsManager Settings;
-        public static IServiceProvider ServiceProvider;
         private static CmdRunner cmdRunner;
         private readonly object lockObject = new();
-        private INotificationsManager notificationsManager;
+        private readonly INotificationsManager notificationsManager;
 
         static App()
         {
             Settings = new SettingsManager();
             if (!Settings.Validate())
             {
-                MessageBox.Show("Invalid or missing configuration!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                var message = "Invalid or missing configuration!";
+                MessageBox.Show(message, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             GlobalContext.VisualMode = Settings.DefaultTheme;
@@ -62,27 +61,24 @@ namespace Peernet.Browser.WPF
                 CmdRunner.ReserveAddress(Settings);
             }
 
-            ServiceCollection services = new ServiceCollection();
+            var services = new ServiceCollection();
             ConfigureServices(services);
             new PeernetPluginsManager(Settings).LoadPlugins(services);
             ServiceProvider = services.BuildServiceProvider();
 
             notificationsManager = ServiceProvider.GetRequiredService<INotificationsManager>();
             PluginsContext.PlayButtonPlugEnabled = ServiceProvider.GetService<IPlayButtonPlug>() != null;
-            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-            DispatcherUnhandledException += App_DispatcherUnhandledException;
-            TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
+
+            AssignExceptionHandlers();
             InitializeBackend();
         }
 
         public static event RoutedEventHandler MainWindowClicked = delegate { };
 
-        public static void RaiseMainWindowClick(object sender, RoutedEventArgs e)
-        {
-            MainWindowClicked.Invoke(sender, e);
-        }
+        public static IServiceProvider ServiceProvider { get; private set; }
+        public static ISettingsManager Settings { get; private set; }
 
-        public void InitializeBackend()
+        public static void InitializeBackend()
         {
             var settingsManager = ServiceProvider.GetRequiredService<ISettingsManager>();
             if (CmdRunner.SelfHosted)
@@ -90,6 +86,11 @@ namespace Peernet.Browser.WPF
                 cmdRunner = new CmdRunner(settingsManager, ServiceProvider.GetRequiredService<IShutdownService>(), ServiceProvider.GetRequiredService<IApiService>());
                 cmdRunner.Run();
             }
+        }
+
+        public static void RaiseMainWindowClick(object sender, RoutedEventArgs e)
+        {
+            MainWindowClicked.Invoke(sender, e);
         }
 
         public void UpdateAllResources()
@@ -131,10 +132,58 @@ namespace Peernet.Browser.WPF
                 new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
         }
 
+        private static void RegisterLogger(ServiceCollection services, ISettingsManager settings)
+        {
+            var backendPath = Path.GetFullPath(settings.Backend);
+            var backendWorkingDirectory = Path.GetDirectoryName(backendPath);
+            string logPath = string.Empty;
+            if (!string.IsNullOrEmpty(settings.LogFile))
+            {
+                logPath = Path.Combine(backendWorkingDirectory, settings.LogFile);
+                Directory.CreateDirectory(Path.GetDirectoryName(logPath));
+            }
+
+            services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(
+                new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.Trace()
+                .WriteTo.File(logPath, LogEventLevel.Error)
+                .CreateLogger(), dispose: true));
+        }
+
+        private static void RegisterViewModels(ServiceCollection services)
+        {
+            services.AddTransient<TerminalViewModel>();
+            services.AddSingleton<HomeViewModel>();
+            services.AddSingleton<FooterViewModel>();
+            services.AddSingleton<NavigationBarViewModel>();
+            services.AddSingleton<ExploreViewModel>();
+            services.AddSingleton<DirectoryViewModel>();
+            services.AddSingleton<AboutViewModel>();
+            services.AddSingleton<MainViewModel>();
+            services.AddSingleton<EditProfileViewModel>();
+            services.AddTransient<DeleteAccountViewModel>();
+            services.AddTransient<ShareFileViewModel>();
+            services.AddTransient<EditFileViewModel>();
+            services.AddSingleton<FilePreviewViewModel>();
+        }
+
+        private static void RegisterWindows(ServiceCollection services)
+        {
+            services.AddSingleton(s => new MainWindow(s.GetRequiredService<MainViewModel>()));
+        }
+
         private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
             notificationsManager.Notifications.Add(new("Unhandled Dispatcher exception occurred!", e.Exception.Message, Severity.Error, e.Exception));
             e.Handled = true;
+        }
+
+        private void AssignExceptionHandlers()
+        {
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            DispatcherUnhandledException += App_DispatcherUnhandledException;
+            TaskScheduler.UnobservedTaskException += TaskScheduler_UnobservedTaskException;
         }
 
         private void ConfigureServices(ServiceCollection services)
@@ -166,47 +215,6 @@ namespace Peernet.Browser.WPF
         {
             var exception = e.ExceptionObject as Exception;
             notificationsManager.Notifications.Add(new("Unhandled Domain exception occurred!", exception.Message, Severity.Error, exception));
-        }
-
-        private void RegisterLogger(ServiceCollection services, ISettingsManager settings)
-        {
-            var backendPath = Path.GetFullPath(settings.Backend);
-            var backendWorkingDirectory = Path.GetDirectoryName(backendPath);
-            string logPath = string.Empty;
-            if (!string.IsNullOrEmpty(settings.LogFile))
-            {
-                logPath = Path.Combine(backendWorkingDirectory, settings.LogFile);
-                Directory.CreateDirectory(Path.GetDirectoryName(logPath));
-            }
-
-            services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(
-                new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .WriteTo.Trace()
-                .WriteTo.File(logPath, LogEventLevel.Error)
-                .CreateLogger(), dispose: true));
-        }
-
-        private void RegisterViewModels(ServiceCollection services)
-        {
-            services.AddTransient<TerminalViewModel>();
-            services.AddSingleton<HomeViewModel>();
-            services.AddSingleton<FooterViewModel>();
-            services.AddSingleton<NavigationBarViewModel>();
-            services.AddSingleton<ExploreViewModel>();
-            services.AddSingleton<DirectoryViewModel>();
-            services.AddSingleton<AboutViewModel>();
-            services.AddSingleton<MainViewModel>();
-            services.AddSingleton<EditProfileViewModel>();
-            services.AddTransient<DeleteAccountViewModel>();
-            services.AddTransient<ShareFileViewModel>();
-            services.AddTransient<EditFileViewModel>();
-            services.AddSingleton<FilePreviewViewModel>();
-        }
-
-        private void RegisterWindows(ServiceCollection services)
-        {
-            services.AddSingleton(s => new MainWindow(s.GetRequiredService<MainViewModel>()));
         }
 
         private void TaskScheduler_UnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
