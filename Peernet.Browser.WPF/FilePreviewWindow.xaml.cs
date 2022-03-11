@@ -20,7 +20,6 @@ namespace Peernet.Browser.WPF
             InitializeComponent();
             DataContext = dataContext;
             MouseDown += Window_MouseDown;
-
         }
 
         private void Window_ContentRendered(object sender, EventArgs e)

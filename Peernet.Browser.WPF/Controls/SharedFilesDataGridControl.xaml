@@ -4,7 +4,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:common="clr-namespace:Peernet.Browser.Application.VirtualFileSystem;assembly=Application"
-             xmlns:contexts="clr-namespace:Peernet.Browser.Application.Contexts;assembly=Application"
              mc:Ignorable="d"
              x:Name="SharedFilesDataGrid">
     <Grid>
@@ -20,7 +19,11 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
                                 <Image Width="13.71" Height="20" Style="{StaticResource VirtualFileSystemEntityImageStyle}" />
-                                <TextBlock Text="{Binding Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource Underlined}" PreviewMouseLeftButtonDown="Open_OnClick" />
+                                <TextBlock Text="{Binding Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource Underlined}">
+                                    <TextBlock.InputBindings>
+                                        <MouseBinding Command="{Binding DataContext.StreamFileCommand, ElementName=SharedFilesDataGrid}" CommandParameter="{Binding}" MouseAction="LeftClick" />
+                                    </TextBlock.InputBindings>
+                                </TextBlock>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -67,6 +70,11 @@
                                 <Button Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.EditCommand, ElementName=SharedFilesDataGrid}" CommandParameter="{Binding}" ToolTip="Edit">
                                     <Button.Background>
                                         <ImageBrush ImageSource="{DynamicResource EditDrawingImage}" />
+                                    </Button.Background>
+                                </Button>
+                                <Button Style="{StaticResource DataGridActionButton}" PreviewMouseLeftButtonDown="Open_OnClick" ToolTip="Details">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="{DynamicResource InfoDrawingImage}" />
                                     </Button.Background>
                                 </Button>
                                 <Button Command="{Binding DataContext.StreamFileCommand, ElementName=SharedFilesDataGrid}" CommandParameter="{Binding}" Height="39" Width="37" IsEnabled="{Binding IsPlayerEnabled}">

@@ -11,7 +11,7 @@
     </UserControl.Resources>
 
     <Grid>
-        <local:ColumnsSelectorControl Panel.ZIndex="1" Margin="0 -325 115 0" HorizontalAlignment="Right" />
+        <local:ColumnsSelectorControl Panel.ZIndex="1" Margin="0 -255 115 0" HorizontalAlignment="Right" />
         <local:FiltersControl Grid.Row="0" Panel.ZIndex="1" Margin="0 0 30 -280" HorizontalAlignment="Right" />
         <Grid>
             <Grid.RowDefinitions>
@@ -84,7 +84,11 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Margin="20, 0, 10, 0">
                                     <Image Width="13.71" Height="20" Style="{DynamicResource DownloadItemImageStyle}" />
-                                    <TextBlock Text="{Binding Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource Underlined}" Cursor="Hand" PreviewMouseLeftButtonDown="Open_OnClick" />
+                                    <TextBlock Text="{Binding Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource Underlined}" Cursor="Hand">
+                                        <TextBlock.InputBindings>
+                                            <MouseBinding Command="{Binding DataContext.StreamFileCommand, ElementName=SharedResultTab}" CommandParameter="{Binding}" MouseAction="LeftClick" />
+                                        </TextBlock.InputBindings>
+                                    </TextBlock>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -164,10 +168,15 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn  Visibility="{Binding DataContext.ShowActionsColumn, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}"  Width="150">
+                    <DataGridTemplateColumn Visibility="{Binding DataContext.ShowActionsColumn, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}" Width="170">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Style="{StaticResource DataGridActionButton}" PreviewMouseLeftButtonDown="Open_OnClick" ToolTip="Details">
+                                        <Button.Background>
+                                            <ImageBrush ImageSource="{DynamicResource InfoDrawingImage}" />
+                                        </Button.Background>
+                                    </Button>
                                     <Button Command="{Binding DataContext.StreamFileCommand, ElementName=SharedResultTab}" CommandParameter="{Binding}" Height="39" Width="37" IsEnabled="{Binding IsPlayerEnabled}">
                                         <Button.Background>
                                             <ImageBrush ImageSource="{DynamicResource PlayDrawingImage}" />
