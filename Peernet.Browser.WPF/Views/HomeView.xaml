@@ -50,6 +50,6 @@
         </StackPanel>
 
         <TabControl Visibility="{Binding IsVisible, Converter={StaticResource BoolToVisibility}}" SelectedIndex="{Binding SelectedIndex}"
-                    Foreground="{DynamicResource MainContentBrush}" Margin="0 105 0 0" ItemsSource="{Binding Tabs, IsAsync=True}" Style="{StaticResource SearchResultTabs}" ItemContainerStyle="{StaticResource SearchResultTabItem}" />
+                    Foreground="{DynamicResource MainContentBrush}" Margin="0 105 0 0" ItemsSource="{Binding Tabs, IsAsync=True}" Style="{StaticResource SearchResultTabs}" ItemContainerStyle="{StaticResource SearchResultTabItem}" PreviewMouseDown="TabControl_PreviewMouseDown" />
     </Grid>
 </UserControl>

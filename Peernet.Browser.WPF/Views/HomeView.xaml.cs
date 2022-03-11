@@ -3,6 +3,7 @@ using Peernet.Browser.Application.ViewModels;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -48,6 +49,17 @@ namespace Peernet.Browser.WPF.Views
             else
             {
                 await viewModel.SearchCommand?.ExecuteAsync();
+            }
+        }
+
+        private async void TabControl_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Middle && e.ButtonState == MouseButtonState.Pressed)
+            {
+                var context = (HomeViewModel)DataContext;
+                var tab = (FrameworkElement)e.OriginalSource;
+                var tabContext = (SearchTabElementViewModel)tab.DataContext;
+                await context.RemoveTab(tabContext);
             }
         }
     }

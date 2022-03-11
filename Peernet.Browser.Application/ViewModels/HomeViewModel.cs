@@ -102,7 +102,7 @@ namespace Peernet.Browser.Application.ViewModels
             navigationService.Navigate<FilePreviewViewModel, FilePreviewViewModelParameter>(param);
         }
 
-        private async Task RemoveTab(SearchTabElementViewModel e)
+        public async Task RemoveTab(SearchTabElementViewModel e)
         {
             await searchService.Terminate(e.Filters.UuId);
             Tabs.Remove(e);
