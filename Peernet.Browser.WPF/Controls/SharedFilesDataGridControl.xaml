@@ -19,11 +19,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Margin="20, 0, 0, 0">
                                 <Image Width="13.71" Height="20" Style="{StaticResource VirtualFileSystemEntityImageStyle}" />
-                                <TextBlock Text="{Binding Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource Underlined}">
-                                    <TextBlock.InputBindings>
-                                        <MouseBinding Command="{Binding DataContext.StreamFileCommand, ElementName=SharedFilesDataGrid}" CommandParameter="{Binding}" MouseAction="LeftClick" />
-                                    </TextBlock.InputBindings>
-                                </TextBlock>
+                                <TextBlock Text="{Binding Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource Underlined}" PreviewMouseDown="Open_OnClick" />
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -72,7 +68,7 @@
                                         <ImageBrush ImageSource="{DynamicResource EditDrawingImage}" />
                                     </Button.Background>
                                 </Button>
-                                <Button Style="{StaticResource DataGridActionButton}" PreviewMouseLeftButtonDown="Open_OnClick" ToolTip="Details">
+                                <Button Style="{StaticResource DataGridActionButton}" PreviewMouseLeftButtonDown="OpenInfo_OnClick" ToolTip="Details">
                                     <Button.Background>
                                         <ImageBrush ImageSource="{DynamicResource InfoDrawingImage}" />
                                     </Button.Background>

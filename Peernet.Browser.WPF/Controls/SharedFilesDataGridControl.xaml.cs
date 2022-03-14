@@ -38,22 +38,28 @@ namespace Peernet.Browser.WPF.Controls
 
         private async void Open_OnClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            var viewmodel = (DirectoryViewModel)DataContext;
             var element = (FrameworkElement)sender;
             var entity = (VirtualFileSystemEntity)element.DataContext;
             if (entity is VirtualFileSystemCoreEntity coreTier)
             {
-                var viewmodel = (DirectoryViewModel)DataContext;
                 await viewmodel.OpenCommand.ExecuteAsync(coreTier);
             }
             else
             {
-                var warehouseService = App.ServiceProvider.GetRequiredService<IWarehouseService>();
-                var param = new FilePreviewViewModelParameter(entity.File, () => warehouseService.ReadPath(entity.File), "Save To File");
-                var filePreviewViewModel = new FilePreviewViewModel();
-                await filePreviewViewModel.Prepare(param);
-                var previewWindow = new FilePreviewWindow(filePreviewViewModel);
-                previewWindow.Show();
+                await viewmodel.StreamFileCommand.ExecuteAsync(entity);
             }
+        }
+        private async void OpenInfo_OnClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var element = (FrameworkElement)sender;
+            var entity = (VirtualFileSystemEntity)element.DataContext;
+            var warehouseService = App.ServiceProvider.GetRequiredService<IWarehouseService>();
+            var param = new FilePreviewViewModelParameter(entity.File, () => warehouseService.ReadPath(entity.File), "Save To File");
+            var filePreviewViewModel = new FilePreviewViewModel();
+            await filePreviewViewModel.Prepare(param);
+            var previewWindow = new FilePreviewWindow(filePreviewViewModel);
+            previewWindow.Show();
         }
     }
 }
