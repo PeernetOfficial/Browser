@@ -48,7 +48,7 @@ namespace Peernet.Browser.WPF.Controls
             else
             {
                 var warehouseService = App.ServiceProvider.GetRequiredService<IWarehouseService>();
-                var param = new FilePreviewViewModelParameter(entity.File, false, () => warehouseService.ReadPath(entity.File), "Save To File");
+                var param = new FilePreviewViewModelParameter(entity.File, () => warehouseService.ReadPath(entity.File), "Save To File");
                 var filePreviewViewModel = new FilePreviewViewModel();
                 await filePreviewViewModel.Prepare(param);
                 var previewWindow = new FilePreviewWindow(filePreviewViewModel);

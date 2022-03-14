@@ -10,7 +10,7 @@ namespace Peernet.Browser.Application.ViewModels
     {
         private string actionButtonContent;
         private Func<Task> ButtonAction;
-        private bool isEditable;
+        private bool isExpertEnabled;
 
         public FilePreviewViewModel()
         {
@@ -32,15 +32,23 @@ namespace Peernet.Browser.Application.ViewModels
                 await ButtonAction();
             });
 
+        public IAsyncCommand CollapseExpandExpertCommand => new AsyncCommand(
+            () =>
+            {
+                IsExpertEnabled ^= true;
+
+                return Task.CompletedTask;
+            });
+
         public ApiFile File { get; set; }
 
-        public bool IsEditable
+        public bool IsExpertEnabled
         {
-            get => isEditable;
+            get => isExpertEnabled;
             set
             {
-                isEditable = value;
-                OnPropertyChanged(nameof(IsEditable));
+                isExpertEnabled = value;
+                OnPropertyChanged(nameof(IsExpertEnabled));
             }
         }
 
@@ -48,7 +56,6 @@ namespace Peernet.Browser.Application.ViewModels
         {
             Parameter = parameter;
             File = Parameter.File;
-            IsEditable = Parameter.IsEditable;
             ButtonAction = Parameter.Action;
             ActionButtonContent = Parameter.ActionButtonContent;
 

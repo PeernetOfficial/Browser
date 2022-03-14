@@ -75,7 +75,7 @@ namespace Peernet.Browser.Application.ViewModels
             new AsyncCommand<DownloadModel>(
                 model =>
                 {
-                    var param = new FilePreviewViewModelParameter(model.File, false, async () => await downloadManager.QueueUpDownload(model), "Download");
+                    var param = new FilePreviewViewModelParameter(model.File, async () => await downloadManager.QueueUpDownload(model), "Download");
                     navigationService.Navigate<FilePreviewViewModel, FilePreviewViewModelParameter>(param);
 
                     return Task.CompletedTask;

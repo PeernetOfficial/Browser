@@ -6,18 +6,16 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
 {
     public class FilePreviewViewModelParameter
     {
-        public FilePreviewViewModelParameter(ApiFile file, bool isEditable,
+        public FilePreviewViewModelParameter(ApiFile file,
             Func<Task> action, string actionButtonContent)
         {
             ActionButtonContent = actionButtonContent;
             Action = action;
-            IsEditable = isEditable;
             File = file;
         }
 
         public Func<Task> Action { get; set; }
         public string ActionButtonContent { get; set; }
         public ApiFile File { get; set; }
-        public bool IsEditable { get; set; }
     }
 }

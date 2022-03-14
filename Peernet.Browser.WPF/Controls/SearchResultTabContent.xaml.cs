@@ -88,7 +88,7 @@ namespace Peernet.Browser.WPF.Controls
             var element = (FrameworkElement)sender;
             var model = (SearchResultRowModel)element.DataContext;
             var downloadManager = App.ServiceProvider.GetRequiredService<IDownloadManager>();
-            var param = new FilePreviewViewModelParameter(model.File, false, async () => await downloadManager.QueueUpDownload(new DownloadModel(model.File)), "Download");
+            var param = new FilePreviewViewModelParameter(model.File, async () => await downloadManager.QueueUpDownload(new DownloadModel(model.File)), "Download");
             var filePreviewViewModel = new FilePreviewViewModel();
             filePreviewViewModel.Prepare(param);
             new FilePreviewWindow(filePreviewViewModel).Show();
