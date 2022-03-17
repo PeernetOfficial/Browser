@@ -4,6 +4,8 @@ using Peernet.Browser.Application.ViewModels.Parameters;
 using System;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -13,9 +15,12 @@ namespace Peernet.Browser.Application.ViewModels
 
         private readonly ISocketClient socketClient;
 
+        private List<string> inputTrace;
+
         public TerminalViewModel(ISocketClient socketClient)
         {
             this.socketClient = socketClient;
+            inputTrace = new List<string>();
         }
 
         public IAsyncCommand SendToPeernetConsole => new AsyncCommand(async () =>
@@ -29,6 +34,8 @@ namespace Peernet.Browser.Application.ViewModels
                 await socketClient.Send(Parameter.CommandLineInput);
                 SetOutput($"\n>> {Parameter.CommandLineInput}\n");
             }
+
+            RegisterInputTrace(Parameter.CommandLineInput);
 
             Parameter.CommandLineInput = string.Empty;
         });
@@ -75,6 +82,67 @@ namespace Peernet.Browser.Application.ViewModels
         {
             Parameter = parameter;
             await Initialize();
+        }
+
+        public IAsyncCommand GetPreviousInputCommand => new AsyncCommand(() =>
+        {
+            if (inputTrace.Count != 0)
+            {
+                if (!string.IsNullOrEmpty(Parameter.CommandLineInput))
+                {
+                    var currentPosition = inputTrace.IndexOf(Parameter.CommandLineInput);
+                    var previousPosition = currentPosition - 1;
+                    if (previousPosition >= 0)
+                    {
+                        Parameter.CommandLineInput = inputTrace.ElementAt(previousPosition);
+                    }
+                }
+                else
+                {
+                    Parameter.CommandLineInput = inputTrace.Last();
+                }
+            }
+
+            return Task.CompletedTask;
+        });
+
+        public IAsyncCommand GetNextInputCommand => new AsyncCommand(() =>
+        {
+            if (inputTrace.Count != 0)
+            {
+                if (!string.IsNullOrEmpty(Parameter.CommandLineInput))
+                {
+                    var currentPosition = inputTrace.IndexOf(Parameter.CommandLineInput);
+                    var nextPosition = currentPosition + 1;
+                    if (nextPosition <= inputTrace.Count - 1)
+                    {
+                        Parameter.CommandLineInput = inputTrace.ElementAt(nextPosition);
+                    }
+                }
+                else
+                {
+                    Parameter.CommandLineInput = inputTrace.First();
+                }
+            }
+
+            return Task.CompletedTask;
+        });
+
+        public IAsyncCommand ClearInputCommand => new AsyncCommand(() =>
+        {
+            Parameter.CommandLineInput = string.Empty;
+
+            return Task.CompletedTask;
+        });
+
+        private void RegisterInputTrace(string input)
+        {
+            if (inputTrace.Contains(input))
+            {
+                inputTrace.Remove(input);
+            }
+
+            inputTrace.Add(input);
         }
     }
 }

@@ -1,0 +1,25 @@
+﻿<Window x:Class="Peernet.Browser.WPF.PeernetSplashScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:styles="clr-namespace:Peernet.Browser.WPF.Styles"
+        Height="420"
+        Width="841"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource MainBackgroundBrush}"
+        Name="SplashScreen">
+    <WindowChrome.WindowChrome>
+        <WindowChrome ResizeBorderThickness="0" GlassFrameThickness="0" CaptionHeight="0" CornerRadius="0" />
+    </WindowChrome.WindowChrome>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <styles:ModeResourceDictionary DarkModeSource="Styles/DarkMode/Colors.xaml" LightModeSource="Styles/LightMode/Colors.xaml" />
+                <ResourceDictionary Source="Styles/Drawings.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <StackPanel Background="Transparent" VerticalAlignment="Center">
+        <Image Source="{DynamicResource LogoDrawingImage}" Height="65" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBlock FontSize="14" Text="{Binding CurrentState, ElementName=SplashScreen, UpdateSourceTrigger=PropertyChanged}" Foreground="{DynamicResource MainContentBrush}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 25, 0, 0" />
+    </StackPanel>
+</Window>

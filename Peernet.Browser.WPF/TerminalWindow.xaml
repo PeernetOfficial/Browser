@@ -66,6 +66,9 @@
                  FontFamily="Courier New">
             <TextBox.InputBindings>
                 <KeyBinding Command="{Binding SendToPeernetConsole}" Key="Enter" />
+                <KeyBinding Command="{Binding GetPreviousInputCommand}" Modifiers="Shift" Key="Up" />
+                <KeyBinding Command="{Binding GetNextInputCommand}" Modifiers="Shift" Key="Down" />
+                <KeyBinding Command="{Binding ClearInputCommand}" Key="Esc" />
             </TextBox.InputBindings>
         </TextBox>
     </Grid>

@@ -36,19 +36,22 @@ namespace Peernet.Browser.WPF
     public partial class App : System.Windows.Application
     {
         private static CmdRunner cmdRunner;
+        private static SplashScreenManager splashScreenManager = new SplashScreenManager();
         private readonly object lockObject = new();
         private readonly INotificationsManager notificationsManager;
 
         static App()
         {
             Settings = new SettingsManager();
+            GlobalContext.VisualMode = Settings.DefaultTheme;
+
+            splashScreenManager?.Start();
             if (!Settings.Validate())
             {
                 var message = "Invalid or missing configuration!";
                 MessageBox.Show(message, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            GlobalContext.VisualMode = Settings.DefaultTheme;
             ActivateCultureTracking();
         }
 
@@ -62,15 +65,19 @@ namespace Peernet.Browser.WPF
             }
 
             var services = new ServiceCollection();
+            splashScreenManager.SetState("Configuring services...");
             ConfigureServices(services);
             new PeernetPluginsManager(Settings).LoadPlugins(services);
             ServiceProvider = services.BuildServiceProvider();
+            splashScreenManager.SetState("Services configuration completed.");
 
             notificationsManager = ServiceProvider.GetRequiredService<INotificationsManager>();
             PluginsContext.PlayButtonPlugEnabled = ServiceProvider.GetService<IPlayButtonPlug>() != null;
 
             AssignExceptionHandlers();
+            splashScreenManager.SetState("Preparing Backend...");
             InitializeBackend();
+            splashScreenManager.SetState("Backend Started...");
         }
 
         public static event RoutedEventHandler MainWindowClicked = delegate { };
@@ -117,8 +124,12 @@ namespace Peernet.Browser.WPF
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            splashScreenManager.SetState("Application startup complete. Opening MainWindow...");
             var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
+            App.Current.MainWindow = mainWindow;
             mainWindow.Show();
+
+            splashScreenManager.Exit();
 
             BindingOperations.EnableCollectionSynchronization(ServiceProvider.GetRequiredService<INotificationsManager>().Notifications, lockObject);
 
