@@ -90,23 +90,28 @@
                             <TextBox Grid.Row="5" Grid.Column="1" Style="{StaticResource ReadonlySelectableTextBox}" Text="{Binding File.Folder}" FontWeight="Medium" Margin="20, 0, 0, 0" />
 
                             <TextBox Grid.Row="0" Grid.Column="2" Style="{StaticResource ReadonlySelectableTextBox}" Text="Description" HorizontalContentAlignment="Right" />
-                            <TextBox Grid.Row="0" Grid.Column="3" Grid.RowSpan="3" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="20, 0, 10, 0">
-                                <TextBox.Style>
-                                    <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource ReadonlySelectableTextBox}">
-                                        <Setter Property="Text" Value="{Binding File.Description}" />
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding File.Description}" Value="{x:Null}">
-                                                <Setter Property="Text" Value="The file has no description." />
-                                                <Setter Property="Foreground" Value="{DynamicResource LightGray2Brush}" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding File.Description}" Value="">
-                                                <Setter Property="Text" Value="The file has no description." />
-                                                <Setter Property="Foreground" Value="{DynamicResource LightGray2Brush}" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </TextBox.Style>
-                            </TextBox>
+                            <Border Grid.Row="0" Grid.Column="3" Grid.RowSpan="3" Margin="20, 0, 10, 0" Padding="5, 5, 10, 5">
+                                <Border.Background>
+                                    <SolidColorBrush Color="{DynamicResource MainTextColor}" Opacity="0.1" />
+                                </Border.Background>
+                                <TextBox TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                    <TextBox.Style>
+                                        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource ReadonlySelectableTextBox}">
+                                            <Setter Property="Text" Value="{Binding File.Description}" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding File.Description}" Value="{x:Null}">
+                                                    <Setter Property="Text" Value="The file has no description." />
+                                                    <Setter Property="Foreground" Value="{DynamicResource LightGray2Brush}" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding File.Description}" Value="">
+                                                    <Setter Property="Text" Value="The file has no description." />
+                                                    <Setter Property="Foreground" Value="{DynamicResource LightGray2Brush}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBox.Style>
+                                </TextBox>
+                            </Border>
                             
                             <Button Grid.Row="7" HorizontalAlignment="Left" Grid.ColumnSpan="2" Command="{Binding CollapseExpandExpertCommand}" Height="25" Margin="0, 10">
                                 <StackPanel Orientation="Horizontal" Background="Transparent">

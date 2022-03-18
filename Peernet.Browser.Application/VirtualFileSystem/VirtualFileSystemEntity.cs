@@ -25,8 +25,6 @@ namespace Peernet.Browser.Application.VirtualFileSystem
 
         public string Name => name ?? File.Name;
 
-        public string Folder => File?.Folder;
-
         public VirtualFileSystemEntityType Type => GetEntityType();
 
         public HighLevelFileType? DataFormat => File?.Format;

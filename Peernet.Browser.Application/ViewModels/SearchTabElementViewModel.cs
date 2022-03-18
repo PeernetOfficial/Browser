@@ -209,7 +209,7 @@ namespace Peernet.Browser.Application.ViewModels
         private void InitIcons()
         {
             ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Folder", IsChecked = showFolderColumn, IsCheckChanged = OnColumnCheckboxClick });
-            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "DataFormat", IsChecked = showDataFormatColumn, IsCheckChanged = OnColumnCheckboxClick });
+            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Data Format", IsChecked = showDataFormatColumn, IsCheckChanged = OnColumnCheckboxClick });
             ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Type", IsChecked = showTypeColumn, IsCheckChanged = OnColumnCheckboxClick });
             ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Date", IsChecked = showDateColumn, IsCheckChanged = OnColumnCheckboxClick });
             ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Size", IsChecked = showSizeColumn, IsCheckChanged = OnColumnCheckboxClick });
@@ -230,7 +230,7 @@ namespace Peernet.Browser.Application.ViewModels
                     ShowTypeColumn = selection.IsChecked;
                     break;
 
-                case "DataFormat":
+                case "Data Format":
                     ShowDataFormatColumn = selection.IsChecked;
                     break;
 
