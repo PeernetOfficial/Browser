@@ -7,9 +7,9 @@ namespace Peernet.Browser.WPF
     /// </summary>
     public partial class PeernetSplashScreen : Window
     {
-        public static readonly DependencyProperty CurrentStateProperty = DependencyProperty.Register("CurrentState", typeof(string), typeof(PeernetSplashScreen));
+        public static readonly DependencyProperty CurrentStateProperty = DependencyProperty.Register("CurrentState", typeof(string), typeof(PeernetSplashScreen), new PropertyMetadata("Preparing for startup..."));
 
-        public string CurrentState 
+        public string CurrentState
         {
             get => (string)GetValue(CurrentStateProperty);
             set

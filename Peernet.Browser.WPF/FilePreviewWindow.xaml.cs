@@ -25,11 +25,13 @@ namespace Peernet.Browser.WPF
         private void Window_ContentRendered(object sender, EventArgs e)
         {
             this.Topmost = false;
+            this.Focus();
             Owner = null;
         }
 
         private void Window_Initialized(object sender, EventArgs e)
         {
+            this.Activate();
             this.Topmost = true;
         }
 

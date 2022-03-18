@@ -8,6 +8,7 @@ using Peernet.SDK.Models.Domain.Common;
 using Peernet.SDK.Models.Presentation.Footer;
 using System;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -50,6 +51,7 @@ namespace Peernet.Browser.WPF.Controls
                 await viewmodel.StreamFileCommand.ExecuteAsync(entity);
             }
         }
+
         private async void OpenInfo_OnClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var element = (FrameworkElement)sender;
@@ -60,6 +62,21 @@ namespace Peernet.Browser.WPF.Controls
             await filePreviewViewModel.Prepare(param);
             var previewWindow = new FilePreviewWindow(filePreviewViewModel);
             previewWindow.Show();
+            Dispatcher.Invoke(() =>
+            {
+                previewWindow.Activate();
+                previewWindow.Focus();
+            });
         }
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern IntPtr SetForegroundWindow(IntPtr hWnd);
+
+        [DllImport("user32.dll")]
+        public static extern uint GetWindowThreadProcessId(IntPtr hWnd, IntPtr ProcessId);
+
+        [DllImport("user32.dll")]
+        public static extern bool AttachThreadInput(uint idAttach, uint idAttachTo, bool fAttach);
+
     }
 }

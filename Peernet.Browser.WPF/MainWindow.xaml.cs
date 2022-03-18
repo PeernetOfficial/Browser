@@ -31,7 +31,6 @@ namespace Peernet.Browser.WPF
             DataContext = dataContext;
             MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             MouseDown += Window_MouseDown;
-
             if (DataContext is MainViewModel main)
             {
                 main.OpenAboutTab = () => AboutTab.IsSelected = true;
