@@ -44,7 +44,7 @@ namespace Peernet.Browser.Application.ViewModels
         {
             await ConnectToPeernetConsole();
             socketClient.MessageArrived += SocketClientOnMessageArrived;
-            await socketClient.StartReceiving(Parameter.CancellationTokenSource);
+            Task.Run(async () => await socketClient.StartReceiving(Parameter.CancellationTokenSource).ConfigureAwait(false));
         }
 
         private void SocketClientOnMessageArrived(object sender, string e)

@@ -10,9 +10,9 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public TerminalInstanceParameter(CancellationTokenSource cancellationTokenSource)
+        public TerminalInstanceParameter()
         {
-            CancellationTokenSource = cancellationTokenSource;
+            CancellationTokenSource = new CancellationTokenSource();
         }
 
         public string CommandLineOutput
