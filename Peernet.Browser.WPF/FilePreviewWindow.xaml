@@ -6,7 +6,8 @@
         Top="100"
         Left="100"
         x:Name="PreviewWindow"
-        Background="{DynamicResource PreviewBackground}" Content="{Binding}">
+        Background="{DynamicResource PreviewBackground}"
+        Content="{Binding}">
     <WindowChrome.WindowChrome>
         <WindowChrome ResizeBorderThickness="5" GlassFrameThickness="0" CaptionHeight="40" CornerRadius="0"  />
     </WindowChrome.WindowChrome>
@@ -21,7 +22,6 @@
             </Style>
         </ResourceDictionary>
     </Window.Resources>
-
     <Window.ContentTemplate>
         <DataTemplate>
             <Border BorderThickness="1">
@@ -49,125 +49,122 @@
                             <Button Style="{StaticResource CloseButtonStyle}" Click="Close_OnClick" />
                         </StackPanel>
                     </Grid>
-                    <Grid Grid.Row="1" Margin="40, 0, 0, 0">
-                        <Grid Margin="20">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100" />
-                                <ColumnDefinition Width="200" />
-                                <ColumnDefinition Width="100" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="30" />
-                                <RowDefinition Height="30" />
-                                <RowDefinition Height="30" />
-                                <RowDefinition Height="30" />
-                                <RowDefinition Height="30" />
-                                <RowDefinition Height="30" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
+                    <Grid Grid.Row="1" Margin="40, 20, 20, 20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                            <TextBox Grid.Row="0" Grid.Column="0" Style="{StaticResource ReadonlySelectableTextBox}" Text="FileType" HorizontalContentAlignment="Right" />
-                            <TextBox Grid.Row="0" Grid.Column="1" Style="{StaticResource ReadonlySelectableTextBox}" Text="{Binding File.Format}" FontWeight="Medium" Margin="20, 0, 0, 0" />
+                        <TextBox Grid.Row="0" Grid.Column="0" Style="{StaticResource ReadonlySelectableTextBox}" Text="FileType" HorizontalContentAlignment="Right" />
+                        <TextBox Grid.Row="0" Grid.Column="1" Style="{StaticResource ReadonlySelectableTextBox}" Text="{Binding File.Format}" FontWeight="Medium" Margin="20, 0, 0, 0" />
 
-                            <TextBox Grid.Row="1" Grid.Column="0" Style="{StaticResource ReadonlySelectableTextBox}" Text="Date added" HorizontalContentAlignment="Right" />
-                            <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource ReadonlySelectableTextBox}" Text="{Binding File.Date, StringFormat=d}" FontWeight="Medium" Margin="20, 0, 0, 0" />
+                        <TextBox Grid.Row="1" Grid.Column="0" Style="{StaticResource ReadonlySelectableTextBox}" Text="Date added" HorizontalContentAlignment="Right" />
+                        <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource ReadonlySelectableTextBox}" Text="{Binding File.Date, StringFormat=d}" FontWeight="Medium" Margin="20, 0, 0, 0" />
 
-                            <TextBox Grid.Row="2" Grid.Column="0" Style="{StaticResource ReadonlySelectableTextBox}" Text="Size" HorizontalContentAlignment="Right" />
-                            <TextBox Grid.Row="2" Grid.Column="1" Style="{StaticResource ReadonlySelectableTextBox}" Text="{Binding File.Size, Converter={StaticResource BytesToSuffixConverter}}" FontWeight="Medium" Margin="20, 0, 0, 0" />
+                        <TextBox Grid.Row="2" Grid.Column="0" Style="{StaticResource ReadonlySelectableTextBox}" Text="Size" HorizontalContentAlignment="Right" />
+                        <TextBox Grid.Row="2" Grid.Column="1" Style="{StaticResource ReadonlySelectableTextBox}" Text="{Binding File.Size, Converter={StaticResource BytesToSuffixConverter}}" FontWeight="Medium" Margin="20, 0, 0, 0" />
 
-                            <TextBox Grid.Row="3" Grid.Column="0" Style="{StaticResource ReadonlySelectableTextBox}" Text="Category" HorizontalContentAlignment="Right" />
-                            <TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource ReadonlySelectableTextBox}" Text="{Binding File.Type}" FontWeight="Medium" Margin="20, 0, 0, 0" />
+                        <TextBox Grid.Row="3" Grid.Column="0" Style="{StaticResource ReadonlySelectableTextBox}" Text="Category" HorizontalContentAlignment="Right" />
+                        <TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource ReadonlySelectableTextBox}" Text="{Binding File.Type}" FontWeight="Medium" Margin="20, 0, 0, 0" />
 
-                            <TextBox Grid.Row="4" Grid.Column="0" Style="{StaticResource ReadonlySelectableTextBox}" Text="Shared By" HorizontalContentAlignment="Right" />
-                            <TextBox Grid.Row="4" Grid.Column="1" Style="{StaticResource ReadonlySelectableTextBox}" Text="{Binding File.SharedByCount, StringFormat={}{0} Peers, Mode=OneWay}" FontWeight="Medium" Margin="20, 0, 0, 0" />
+                        <TextBox Grid.Row="4" Grid.Column="0" Style="{StaticResource ReadonlySelectableTextBox}" Text="Shared By" HorizontalContentAlignment="Right" />
+                        <TextBox Grid.Row="4" Grid.Column="1" Style="{StaticResource ReadonlySelectableTextBox}" Text="{Binding File.SharedByCount, StringFormat={}{0} Peers, Mode=OneWay}" FontWeight="Medium" Margin="20, 0, 0, 0" />
 
-                            <TextBox Grid.Row="5" Grid.Column="0" Style="{StaticResource ReadonlySelectableTextBox}" Text="Folder" HorizontalContentAlignment="Right" />
-                            <TextBox Grid.Row="5" Grid.Column="1" Style="{StaticResource ReadonlySelectableTextBox}" Text="{Binding File.Folder}" FontWeight="Medium" Margin="20, 0, 0, 0" />
+                        <TextBox Grid.Row="5" Grid.Column="0" Style="{StaticResource ReadonlySelectableTextBox}" Text="Folder" HorizontalContentAlignment="Right" />
+                        <TextBox Grid.Row="5" Grid.Column="1" Style="{StaticResource ReadonlySelectableTextBox}" Text="{Binding File.Folder}" FontWeight="Medium" Margin="20, 0, 0, 0" />
 
-                            <TextBox Grid.Row="0" Grid.Column="2" Style="{StaticResource ReadonlySelectableTextBox}" Text="Description" HorizontalContentAlignment="Right" />
-                            <Border Grid.Row="0" Grid.Column="3" Grid.RowSpan="3" Margin="20, 0, 10, 0" Padding="5, 5, 10, 5">
-                                <Border.Background>
-                                    <SolidColorBrush Color="{DynamicResource MainTextColor}" Opacity="0.1" />
-                                </Border.Background>
-                                <TextBox TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto">
-                                    <TextBox.Style>
-                                        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource ReadonlySelectableTextBox}">
-                                            <Setter Property="Text" Value="{Binding File.Description}" />
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding File.Description}" Value="{x:Null}">
-                                                    <Setter Property="Text" Value="The file has no description." />
-                                                    <Setter Property="Foreground" Value="{DynamicResource LightGray2Brush}" />
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding File.Description}" Value="">
-                                                    <Setter Property="Text" Value="The file has no description." />
-                                                    <Setter Property="Foreground" Value="{DynamicResource LightGray2Brush}" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </TextBox.Style>
-                                </TextBox>
-                            </Border>
-                            
-                            <Button Grid.Row="7" HorizontalAlignment="Left" Grid.ColumnSpan="2" Command="{Binding CollapseExpandExpertCommand}" Height="25" Margin="0, 10">
-                                <StackPanel Orientation="Horizontal" Background="Transparent">
-                                    <TextBlock FontFamily="Segoe MDL2 Assets"
+                        <TextBox Grid.Row="6" Grid.Column="0" Style="{StaticResource ReadonlySelectableTextBox}" Text="Description" HorizontalContentAlignment="Right" />
+                        <Border Grid.Row="6" Grid.Column="1" Margin="20, 0, 10, 0" Padding="5, 5, 10, 5" VerticalAlignment="Stretch">
+                            <Border.Background>
+                                <SolidColorBrush Color="{DynamicResource MainTextColor}" Opacity="0.1" />
+                            </Border.Background>
+                            <TextBox TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                <TextBox.Style>
+                                    <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource ReadonlySelectableTextBox}">
+                                        <Setter Property="Text" Value="{Binding File.Description}" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding File.Description}" Value="{x:Null}">
+                                                <Setter Property="Text" Value="The file has no description." />
+                                                <Setter Property="Foreground" Value="{DynamicResource LightGray2Brush}" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding File.Description}" Value="">
+                                                <Setter Property="Text" Value="The file has no description." />
+                                                <Setter Property="Foreground" Value="{DynamicResource LightGray2Brush}" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                        </Border>
+
+                        <Button Grid.Row="7" HorizontalAlignment="Left" Grid.ColumnSpan="2" Command="{Binding CollapseExpandExpertCommand}" Height="25" Margin="0, 10">
+                            <StackPanel Orientation="Horizontal" Background="Transparent">
+                                <TextBlock FontFamily="Segoe MDL2 Assets"
                                                    FontSize="10"
                                                    Opacity="0.8956"
                                                    HorizontalAlignment="Center"
                                                    VerticalAlignment="Center"
                                                    Foreground="{DynamicResource MainTextBrush}">
-                                        <TextBlock.Style>
-                                            <Style TargetType="{x:Type TextBlock}">
-                                                <Setter Property="Padding" Value="3" />
-                                                <Setter Property="Text" Value="&#xE972;" />
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding IsExpertEnabled}" Value="True">
-                                                        <Setter Property="Text" Value="&#xE971;" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
-                                    <TextBlock Text="Expert" Foreground="{StaticResource MainTextBrush}" VerticalAlignment="Center" Margin="5, 0, 5, 0" />
-                                </StackPanel>
-                                <Button.Style>
-                                    <Style BasedOn="{StaticResource ButtonBaseStyle}" TargetType="{x:Type Button}">
-                                        <Setter Property="Padding" Value="5 0" />
-                                        <Setter Property="Width" Value="Auto" />
-                                        <Setter Property="Background" Value="Transparent" />
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="#60FFFFFF" />
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Button.Style>
-                            </Button>
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Padding" Value="3" />
+                                            <Setter Property="Text" Value="&#xE972;" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsExpertEnabled}" Value="True">
+                                                    <Setter Property="Text" Value="&#xE971;" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                                <TextBlock Text="Expert" Foreground="{StaticResource MainTextBrush}" VerticalAlignment="Center" Margin="5, 0, 5, 0" />
+                            </StackPanel>
+                            <Button.Style>
+                                <Style BasedOn="{StaticResource ButtonBaseStyle}" TargetType="{x:Type Button}">
+                                    <Setter Property="Padding" Value="5 0" />
+                                    <Setter Property="Width" Value="Auto" />
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#60FFFFFF" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
 
-                            <TextBox Grid.Row="8" Grid.Column="0" Style="{StaticResource ReadonlySelectableTextBox}" Text="Hash" HorizontalContentAlignment="Right" Visibility="{Binding IsExpertEnabled, Converter={StaticResource BoolToVisibility}}" Height="30" />
-                            <TextBox Grid.Row="8" Grid.Column="1" Style="{StaticResource ReadonlySelectableTextBox}" Text="{Binding File.Hash, Converter={StaticResource ByteArrayToHexStringConverter}}" FontWeight="Medium" Margin="20, 0, 0, 0" Visibility="{Binding IsExpertEnabled, Converter={StaticResource BoolToVisibility}}" Height="30" />
+                        <TextBox Grid.Row="8" Grid.Column="0" Style="{StaticResource ReadonlySelectableTextBox}" Text="Hash" HorizontalContentAlignment="Right" Visibility="{Binding IsExpertEnabled, Converter={StaticResource BoolToVisibility}}" Height="30" />
+                        <TextBox Grid.Row="8" Grid.Column="1" Style="{StaticResource ReadonlySelectableTextBox}" Text="{Binding File.Hash, Converter={StaticResource ByteArrayToHexStringConverter}}" FontWeight="Medium" Margin="20, 0, 0, 0" Visibility="{Binding IsExpertEnabled, Converter={StaticResource BoolToVisibility}}" Height="30" />
 
-                            <TextBox Grid.Row="9" Grid.Column="0" Style="{StaticResource ReadonlySelectableTextBox}" Text="Node" HorizontalContentAlignment="Right" Visibility="{Binding IsExpertEnabled, Converter={StaticResource BoolToVisibility}}" Height="30" />
-                            <TextBox Grid.Row="9" Grid.Column="1" Style="{StaticResource ReadonlySelectableTextBox}" Text="{Binding File.NodeId, Converter={StaticResource ByteArrayToHexStringConverter}}" FontWeight="Medium" Margin="20, 0, 0, 0" Visibility="{Binding IsExpertEnabled, Converter={StaticResource BoolToVisibility}}" Height="30" />
+                        <TextBox Grid.Row="9" Grid.Column="0" Style="{StaticResource ReadonlySelectableTextBox}" Text="Node" HorizontalContentAlignment="Right" Visibility="{Binding IsExpertEnabled, Converter={StaticResource BoolToVisibility}}" Height="30" />
+                        <TextBox Grid.Row="9" Grid.Column="1" Style="{StaticResource ReadonlySelectableTextBox}" Text="{Binding File.NodeId, Converter={StaticResource ByteArrayToHexStringConverter}}" FontWeight="Medium" Margin="20, 0, 0, 0" Visibility="{Binding IsExpertEnabled, Converter={StaticResource BoolToVisibility}}" Height="30" />
 
-                            <TextBox Grid.Row="10" Grid.Column="0" Style="{StaticResource ReadonlySelectableTextBox}" Text="Created" HorizontalContentAlignment="Right" Visibility="{Binding IsExpertEnabled, Converter={StaticResource BoolToVisibility}}" Height="30" />
-                            <TextBox Grid.Row="10" Grid.Column="1" Style="{StaticResource ReadonlySelectableTextBox}" Text="{Binding File.Date}" FontWeight="Medium" Margin="20, 0, 0, 0" Visibility="{Binding IsExpertEnabled, Converter={StaticResource BoolToVisibility}}" Height="30" />
-                        </Grid>
-                            <Button Margin="0, 0, 20, 20" Width="174" Height="44" HorizontalAlignment="Right" VerticalAlignment="Bottom" Command="{Binding DownloadCommand}" Content="{Binding ActionButtonContent, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource AcceptButton}">
-                                <Button.ContentTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Image Source="{DynamicResource Download_LightDrawingImage}" Width="20" Height="20" />
-                                            <ContentPresenter DataContext="{Binding}" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15, 0, 0, 0" />
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </Button.ContentTemplate>
-                            </Button>
+                        <TextBox Grid.Row="10" Grid.Column="0" Style="{StaticResource ReadonlySelectableTextBox}" Text="Created" HorizontalContentAlignment="Right" Visibility="{Binding IsExpertEnabled, Converter={StaticResource BoolToVisibility}}" Height="30" />
+                        <TextBox Grid.Row="10" Grid.Column="1" Style="{StaticResource ReadonlySelectableTextBox}" Text="{Binding File.Date}" FontWeight="Medium" Margin="20, 0, 0, 0" Visibility="{Binding IsExpertEnabled, Converter={StaticResource BoolToVisibility}}" Height="30" />
+                        <Button Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" Width="174" Height="44" HorizontalAlignment="Left" Command="{Binding DownloadCommand}" Content="{Binding ActionButtonContent, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource AcceptButton}">
+                            <Button.ContentTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{DynamicResource Download_LightDrawingImage}" Width="20" Height="20" />
+                                        <ContentPresenter DataContext="{Binding}" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15, 0, 0, 0" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </Button.ContentTemplate>
+                        </Button>
                     </Grid>
                 </Grid>
             </Border>
