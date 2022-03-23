@@ -196,7 +196,7 @@ namespace Peernet.Browser.Application.ViewModels
                     if (entity != null)
                     {
                         var refreshedEntity = VirtualFileSystem.Find(entity, VirtualFileSystem.VirtualFileSystemTiers) ?? VirtualFileSystem.Find(entity, VirtualFileSystem.VirtualFileSystemCategories);
-                        ActiveSearchResults = ApplySearchResultsFiltering(refreshedEntity?.VirtualFileSystemEntities);
+                        ActiveSearchResults = ApplySearchResultsFiltering(refreshedEntity?.VirtualFileSystemEntities.ToList());
                     }
 
                     return Task.CompletedTask;
@@ -243,8 +243,8 @@ namespace Peernet.Browser.Application.ViewModels
             var selected = restoreState ? VirtualFileSystem?.GetCurrentlySelected() : null;
 
             VirtualFileSystem = virtualFileSystemFactory.CreateVirtualFileSystem(files, selected?.Name == nameof(VirtualFileSystem.Home));
-            SetPlayerStateRecursively(VirtualFileSystem.Home.VirtualFileSystemEntities);
-            VirtualFileSystem.VirtualFileSystemCategories.Foreach(c => SetPlayerState(c.VirtualFileSystemEntities));
+            SetPlayerStateRecursively(VirtualFileSystem.Home.VirtualFileSystemEntities.ToList());
+            VirtualFileSystem.VirtualFileSystemCategories.Foreach(c => SetPlayerState(c.VirtualFileSystemEntities.ToList()));
             AddRecentTier(sharedFiles);
             AddAllFilesTier(sharedFiles);
             RefreshPathObjects();
@@ -285,7 +285,7 @@ namespace Peernet.Browser.Application.ViewModels
         private void AddTier(string name, VirtualFileSystemEntityType type, IEnumerable<VirtualFileSystemEntity> entities)
         {
             var tier = new VirtualFileSystemCoreTier(name, type, name);
-            tier.VirtualFileSystemEntities.AddRange(entities);
+            entities.Foreach(e => tier.VirtualFileSystemEntities.Add(e));
             VirtualFileSystem.VirtualFileSystemTiers.Add(tier);
         }
 
@@ -333,7 +333,7 @@ namespace Peernet.Browser.Application.ViewModels
 
             PathElements = new ObservableCollection<VirtualFileSystemCoreEntity>(
                 new List<VirtualFileSystemCoreEntity>
-                    { new(name, VirtualFileSystemEntityType.Directory, name) });
+                    { new(name, VirtualFileSystemEntityType.Directory) });
         }
 
         private void RefreshPathObjects()
@@ -343,6 +343,11 @@ namespace Peernet.Browser.Application.ViewModels
             {
                 foreach (var element in PathElements)
                 {
+                    if (element == null)
+                    {
+                        continue;
+                    }
+
                     if (element.Name is YourFilesSegment or LibrariesSegment)
                     {
                         refreshedPath.Add(element);
@@ -383,7 +388,7 @@ namespace Peernet.Browser.Application.ViewModels
             {
                 if (r is VirtualFileSystemCoreEntity coreEntity)
                 {
-                    SetPlayerStateRecursively(coreEntity.VirtualFileSystemEntities);
+                    SetPlayerStateRecursively(coreEntity.VirtualFileSystemEntities.ToList());
                 }
             });
         }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace Peernet.Browser.Application.VirtualFileSystem
@@ -7,13 +8,15 @@ namespace Peernet.Browser.Application.VirtualFileSystem
     {
         private bool isSelected;
 
-        public VirtualFileSystemCoreEntity(string name, VirtualFileSystemEntityType type, string absolutePath)
+        public VirtualFileSystemCoreEntity(string name, VirtualFileSystemEntityType type, string path = null)
         : base(null, name, type)
         {
-            AbsolutePath = absolutePath;
+            Path = path ?? string.Empty;
         }
 
-        public string AbsolutePath { get; }
+        public string Path { get; }
+
+        public string AbsolutePath => System.IO.Path.Combine(Path, Name);
 
         public bool IsSelected
         {
@@ -25,7 +28,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             }
         }
 
-        public List<VirtualFileSystemEntity> VirtualFileSystemEntities { get; set; } = new();
+        public ObservableCollection<VirtualFileSystemEntity> VirtualFileSystemEntities { get; set; } = new();
 
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -1,17 +1,18 @@
 ﻿using Peernet.SDK.Models.Domain.Common;
 using System;
+using System.ComponentModel;
 
 namespace Peernet.Browser.Application.VirtualFileSystem
 {
-    public class VirtualFileSystemEntity : IEquatable<VirtualFileSystemEntity>
+    public class VirtualFileSystemEntity : IEquatable<VirtualFileSystemEntity>, INotifyPropertyChanged
     {
-        private readonly string name;
+        private string name;
         private readonly VirtualFileSystemEntityType? type;
 
         public VirtualFileSystemEntity(ApiFile file, string name = null, VirtualFileSystemEntityType? type = null)
         {
             File = file;
-            this.name = name;
+            this.name = name ?? File.Name;
             this.type = type;
         }
 
@@ -23,11 +24,21 @@ namespace Peernet.Browser.Application.VirtualFileSystem
 
         public bool IsPlayerEnabled { get; set; }
 
-        public string Name => name ?? File.Name;
+        public string Name
+        {
+            get => name ?? File.Name;
+            set
+            {
+                name = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Name)));
+            }
+        }
 
         public VirtualFileSystemEntityType Type => GetEntityType();
 
         public HighLevelFileType? DataFormat => File?.Format;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public bool Equals(VirtualFileSystemEntity other)
         {

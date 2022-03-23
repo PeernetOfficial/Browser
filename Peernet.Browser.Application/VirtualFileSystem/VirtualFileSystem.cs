@@ -47,7 +47,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             return selected;
         }
 
-        private void AddFileToTheSystem(VirtualFileSystemEntity candidateEntity, List<VirtualFileSystemEntity> sameLevelFileSystemTiers)
+        private void AddFileToTheSystem(VirtualFileSystemEntity candidateEntity, ObservableCollection<VirtualFileSystemEntity> sameLevelFileSystemTiers)
         {
             if (candidateEntity is not VirtualFileSystemCoreTier candidateCoreTier)
             {
@@ -76,7 +76,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
         {
             // materialize
             var sharedFilesList = sharedFiles.ToList();
-            var homeTier = new VirtualFileSystemCoreTier(nameof(Home), VirtualFileSystemEntityType.Directory, nameof(Home))
+            var homeTier = new VirtualFileSystemCoreTier(nameof(Home), VirtualFileSystemEntityType.Directory)
             {
                 IsSelected = isCurrentSelection
             };
@@ -106,7 +106,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             VirtualFileSystemCoreTier higherTier = null;
             for (int i = 0; i < totalDepth; i++)
             {
-                var absolutePath = Path.Combine("Your Files", Path.Combine(directories.Take(i + 1).ToArray()));
+                var absolutePath = Path.Combine("Your Files", Path.Combine(directories.Take(i).ToArray()));
                 var tier = new VirtualFileSystemCoreTier(directories[i], VirtualFileSystemEntityType.Directory, absolutePath);
 
                 if (coreTier == null)

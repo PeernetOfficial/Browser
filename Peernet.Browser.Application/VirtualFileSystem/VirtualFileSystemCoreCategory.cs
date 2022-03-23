@@ -5,9 +5,9 @@ namespace Peernet.Browser.Application.VirtualFileSystem
     public class VirtualFileSystemCoreCategory : VirtualFileSystemCoreEntity
     {
         public VirtualFileSystemCoreCategory(string category, VirtualFileSystemEntityType type, List<VirtualFileSystemEntity> categoryFiles)
-            : base(category, type, category)
+            : base(category, type)
         {
-            VirtualFileSystemEntities = categoryFiles;
+            VirtualFileSystemEntities = new(categoryFiles);
         }
     }
 }
