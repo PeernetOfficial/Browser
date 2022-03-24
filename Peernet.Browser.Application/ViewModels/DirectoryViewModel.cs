@@ -301,7 +301,7 @@ namespace Peernet.Browser.Application.ViewModels
                 : new(results);
         }
 
-        private void ChangeSelectedEntity(VirtualFileSystemCoreEntity coreEntity)
+        public void ChangeSelectedEntity(VirtualFileSystemCoreEntity coreEntity)
         {
             VirtualFileSystem.ResetSelection();
             coreEntity.IsSelected = true;
@@ -362,7 +362,7 @@ namespace Peernet.Browser.Application.ViewModels
             PathElements = new ObservableCollection<VirtualFileSystemCoreEntity>(refreshedPath);
         }
 
-        private void SetPath(VirtualFileSystemCoreEntity entity)
+        public void SetPath(VirtualFileSystemCoreEntity entity)
         {
             var index = PathElements.IndexOf(entity);
             if (index == -1)

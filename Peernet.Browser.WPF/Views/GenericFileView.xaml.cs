@@ -26,7 +26,7 @@ namespace Peernet.Browser.WPF.Views
                 model.Directory = newPath;
             }
 
-            var changeFileLocationViewModel = new ChangeFileLocationViewModel(directoryViewModel.VirtualFileSystem, UpdateDirectory);
+            var changeFileLocationViewModel = new ChangeFileLocationViewModel(directoryViewModel, UpdateDirectory);
             new ChangleFileLocationWindow(changeFileLocationViewModel).Show();
 
             virtualDirectoryPath.IsReadOnly = false;

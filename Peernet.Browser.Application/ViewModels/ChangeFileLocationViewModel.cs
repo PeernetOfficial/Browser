@@ -15,33 +15,19 @@ namespace Peernet.Browser.Application.ViewModels
         private ObservableCollection<VirtualFileSystemCoreEntity> pathElements;
         private Action<string> updatePathAction;
 
-        public ChangeFileLocationViewModel(VirtualFileSystem.VirtualFileSystem virtualFileSystem, Action<string> updatePathAction)
+        public ChangeFileLocationViewModel(DirectoryViewModel directoryViewModel, Action<string> updatePathAction)
         {
-            VirtualFileSystem = virtualFileSystem;
+            DirectoryViewModel = directoryViewModel;
             this.updatePathAction = updatePathAction;
-            ActiveSearchResults = new(VirtualFileSystem.Home.VirtualFileSystemEntities);
-            ChangeSelection(VirtualFileSystem.Home);
-            ResetPath();
-        }
-
-        public ObservableCollection<VirtualFileSystemEntity> ActiveSearchResults
-        {
-            get => new(activeSearchResults?.OrderBy(e => (int)e.Type)?.ToList() ?? Enumerable.Empty<VirtualFileSystemEntity>());
-            set
-            {
-                activeSearchResults = value;
-                OnPropertyChanged(nameof(ActiveSearchResults));
-            }
         }
 
         public IAsyncCommand CreateNewFolderCommand =>
             new AsyncCommand(() =>
             {
                 string defaultFolderName = "New Folder";
-                var selected = VirtualFileSystem.GetCurrentlySelected();
-                VirtualFileSystem.GetCurrentlySelected().VirtualFileSystemEntities.Add(new VirtualFileSystemCoreTier(defaultFolderName, VirtualFileSystemEntityType.Directory, selected.AbsolutePath));
-
-                ActiveSearchResults = new(selected.VirtualFileSystemEntities);
+                var selected = DirectoryViewModel.VirtualFileSystem.GetCurrentlySelected();
+                DirectoryViewModel.VirtualFileSystem.GetCurrentlySelected().VirtualFileSystemEntities.Add(new VirtualFileSystemCoreTier(defaultFolderName, VirtualFileSystemEntityType.Directory, selected.AbsolutePath));
+                DirectoryViewModel.ActiveSearchResults = new(selected.VirtualFileSystemEntities);
 
                 return Task.CompletedTask;
             });
@@ -51,9 +37,9 @@ namespace Peernet.Browser.Application.ViewModels
             {
                 if (coreEntity is VirtualFileSystemCoreTier coreTier)
                 {
-                    ActiveSearchResults = new(coreTier.VirtualFileSystemEntities);
-                    ChangeSelection(coreTier);
-                    SetPath(coreTier);
+                    DirectoryViewModel.ActiveSearchResults = new(coreTier.VirtualFileSystemEntities);
+                    DirectoryViewModel.ChangeSelectedEntity(coreTier);
+                    DirectoryViewModel.SetPath(coreTier);
                 }
 
                 return Task.CompletedTask;
@@ -64,10 +50,9 @@ namespace Peernet.Browser.Application.ViewModels
             {
                 if (coreEntity is VirtualFileSystemCoreTier coreTier)
                 {
-                    ActiveSearchResults = new(coreTier.VirtualFileSystemEntities);
-                    ChangeSelection(coreTier);
-                    ResetPath();
-                    SetPath(coreTier);
+                    DirectoryViewModel.ActiveSearchResults = new(coreTier.VirtualFileSystemEntities);
+                    DirectoryViewModel.ChangeSelectedEntity(coreTier);
+                    DirectoryViewModel.SetPath(coreTier);
                 }
 
                 return Task.CompletedTask;
@@ -76,55 +61,17 @@ namespace Peernet.Browser.Application.ViewModels
         public IAsyncCommand SelectCommand =>
             new AsyncCommand(() =>
             {
-                var selected = VirtualFileSystem.GetCurrentlySelected();
-                updatePathAction(selected.AbsolutePath.Replace("Your Files\\", string.Empty));
+                var selected = DirectoryViewModel.VirtualFileSystem.GetCurrentlySelected();
+                updatePathAction(TrimUnsopportedSegments(selected.AbsolutePath));
 
                 return Task.CompletedTask;
             });
 
-        public ObservableCollection<VirtualFileSystemCoreEntity> PathElements
+        private string TrimUnsopportedSegments(string path)
         {
-            get => pathElements;
-            set
-            {
-                pathElements = value;
-                OnPropertyChanged(nameof(PathElements));
-            }
+            return path.Replace("Your Files\\", string.Empty).Replace("Home\\", string.Empty);
         }
 
-        public VirtualFileSystem.VirtualFileSystem VirtualFileSystem { get; set; }
-
-        private void ChangeSelection(VirtualFileSystemCoreTier coreTier)
-        {
-            VirtualFileSystem.ResetSelection();
-            coreTier.IsSelected = true;
-        }
-
-        private void ResetPath()
-        {
-            PathElements = new ObservableCollection<VirtualFileSystemCoreEntity>(
-                new List<VirtualFileSystemCoreEntity>
-                {
-                    new(nameof(VirtualFileSystem.Home), VirtualFileSystemEntityType.Directory, nameof(VirtualFileSystem.Home))
-                });
-        }
-
-        private void SetPath(VirtualFileSystemCoreEntity entity)
-        {
-            var index = PathElements.IndexOf(entity);
-            if (index == -1)
-            {
-                PathElements.Add(entity);
-            }
-            else
-            {
-                for (int i = PathElements.Count - 1; i > index; i--)
-                {
-                    PathElements.RemoveAt(i);
-                }
-            }
-
-            PathElements.Last().IsSelected = true;
-        }
+        public DirectoryViewModel DirectoryViewModel { get; set; }
     }
 }

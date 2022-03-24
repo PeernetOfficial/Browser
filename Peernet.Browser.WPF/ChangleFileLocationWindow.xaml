@@ -48,13 +48,19 @@
                 </DataTemplate.Triggers>
             </DataTemplate>
             <DataTemplate x:Key="VirtualFileSystemGridTemplate">
-                <Border x:Name="Border" Background="Transparent" Padding="20,4,20,4" UseLayoutRounding="True">
+                <Border x:Name="Border" Background="Transparent" Padding="20,4,20,4" UseLayoutRounding="True" Cursor="Hand">
                     <StackPanel Orientation="Horizontal">
                         <Image Width="14" Height="13" Style="{StaticResource VirtualFileSystemEntityImageStyle}" />
-                        <TextBox Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="7, 2, 0, 0" FontSize="15" FontWeight="Normal" Background="Transparent" BorderThickness="0">
+                        <TextBox Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="7, 2, 0, 0" FontSize="15" FontWeight="Normal" Background="Transparent" CaretBrush="{DynamicResource MainTextBrush}">
                             <TextBox.Style>
                                 <Style TargetType="{x:Type TextBox}">
+                                    <Setter Property="BorderThickness" Value="0" />
                                     <Setter Property="Foreground" Value="{DynamicResource GrayedOutItemBrush}" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsFocused" Value="True">
+                                            <Setter Property="BorderThickness" Value="1" />
+                                        </Trigger>
+                                    </Style.Triggers>
                                 </Style>
                             </TextBox.Style>
                         </TextBox>
@@ -110,7 +116,7 @@
                         </Grid.ColumnDefinitions>
 
                         <!--Add scrollviewer here as well-->
-                        <ItemsControl Grid.Column="0" ItemsSource="{Binding VirtualFileSystem.Home.SubTiers}" ItemTemplate="{StaticResource VirtualFileSystemTreeTemplate}" />
+                        <ItemsControl Grid.Column="0" ItemsSource="{Binding DirectoryViewModel.VirtualFileSystem.Home.SubTiers}" ItemTemplate="{StaticResource VirtualFileSystemTreeTemplate}" />
 
                         <Border Grid.Row="1" Grid.Column="1" Width="1" BorderThickness="0">
                             <Border.Background>
@@ -125,7 +131,7 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <ItemsControl Grid.Row="0" ItemsSource="{Binding PathElements, UpdateSourceTrigger=PropertyChanged}" Margin="15, 5, 0, 0">
+                            <ItemsControl Grid.Row="0" ItemsSource="{Binding DirectoryViewModel.PathElements, UpdateSourceTrigger=PropertyChanged}" Margin="15, 5, 0, 0">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <StackPanel Orientation="Horizontal" />
@@ -186,7 +192,7 @@
                             </ItemsControl>
 
                             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Height="300" Margin="0, 0, 10, 0">
-                                <ItemsControl ItemsSource="{Binding ActiveSearchResults, IsAsync=True, UpdateSourceTrigger=PropertyChanged}" ItemTemplate="{StaticResource VirtualFileSystemGridTemplate}" />
+                                <ItemsControl ItemsSource="{Binding DirectoryViewModel.ActiveSearchResults, IsAsync=True, UpdateSourceTrigger=PropertyChanged}" ItemTemplate="{StaticResource VirtualFileSystemGridTemplate}" />
                             </ScrollViewer>
 
                             <Separator Grid.Row="2" Style="{DynamicResource StandardSeparatorStyle}" />
