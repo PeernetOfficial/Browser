@@ -4,66 +4,80 @@
              HorizontalAlignment="Center" VerticalAlignment="Center"
              UseLayoutRounding="True" SnapsToDevicePixels="True">
 
-    <Border BorderThickness="0" Padding="40, 20, 20, 20" BorderBrush="Transparent">
+    <Border BorderThickness="0" Padding="0, 0, 0, 0" BorderBrush="Transparent">
         <Border.Background>
             <SolidColorBrush Color="{DynamicResource ModalBackground}" />
         </Border.Background>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="30" />
-                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <DockPanel Grid.Row="0" Grid.Column="0" Margin="0, 20, 0, 0">
-                <TextBlock DockPanel.Dock="Top" Text="{Binding Title}" Foreground="{DynamicResource MainContentBrush}" FontSize="16" FontWeight="SemiBold" Margin="0, 0, 0, 16" />
-                <TextBlock Foreground="{DynamicResource MainTextBrush}" FontSize="16">
-                    <TextBlock.Text>
-                        <MultiBinding StringFormat="{}{0}{1}">
-                            <Binding Path="Selected.FileNameWithoutExtension" />
-                            <Binding Path="Selected.Extension" />
-                        </MultiBinding>
-                    </TextBlock.Text>
-                </TextBlock>
-            </DockPanel>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <TextBlock DockPanel.Dock="Top" Text="{Binding Title}" Foreground="{DynamicResource MainContentBrush}" FontSize="16" FontWeight="SemiBold" Margin="5, 0, 0, 0" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
+                    <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource CloseButtonStyle}" Command="{Binding CancelCommand}" HorizontalAlignment="Right" VerticalAlignment="Top" />
+                </StackPanel>
+            </Grid>
 
-            <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource CloseButtonStyle}" Command="{Binding CancelCommand}" HorizontalAlignment="Right" VerticalAlignment="Top" />
+            <Grid Grid.Row="1" Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-            <DockPanel Grid.Row="2" Grid.Column="0" LastChildFill="False" Margin="0 15">
-                <Image Margin="0 0 7 0" Width="11" Source="{DynamicResource DirectorySmallDrawingImage}" />
-                <TextBlock Foreground="{StaticResource LightGrayBrush}" VerticalAlignment="Center">Folder:</TextBlock>
-                <TextBox x:Name="virtualDirectoryPath" Foreground="{DynamicResource MainContentBrush}" Text="{Binding Selected.Directory, Mode=TwoWay, TargetNullValue='/'}" IsEnabled="False" IsReadOnly="True" KeyDown="ConfirmChange_OnKeyDown" CaretBrush="{DynamicResource MainTextBrush}" Margin="5, 0, 0, 0">
-                    <TextBox.Background>
-                        <SolidColorBrush Color="{DynamicResource MainTextColor}" Opacity="0.06" />
-                    </TextBox.Background>
-                </TextBox>
-                <Button x:Name="changeButton" DockPanel.Dock="Right" Content="Change" Style="{StaticResource LinkButton}" Click="ChangeVirtualDirectory_OnClick" DataContext="{Binding Selected}" />
-            </DockPanel>
+                <DockPanel Grid.Row="0" Grid.Column="0">
+                    <TextBlock Foreground="{DynamicResource MainTextBrush}" FontSize="16">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0}{1}">
+                                <Binding Path="Selected.FileNameWithoutExtension" />
+                                <Binding Path="Selected.Extension" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DockPanel>
 
-            <StackPanel Grid.Row="3" Grid.Column="0">
-                <TextBlock Style="{StaticResource Title}">File name</TextBlock>
-                <Border Margin="0 5" Height="30" BorderThickness="1" BorderBrush="{DynamicResource ContrastBorderBrush}">
-                    <TextBox Text="{Binding Selected.FileNameWithoutExtension, UpdateSourceTrigger=PropertyChanged}" Foreground="{DynamicResource MainContentBrush}"
-                             Template="{StaticResource RoundedTextBox}" Padding="7, 0, 0, 0" VerticalContentAlignment="Center">
+
+                <DockPanel Grid.Row="1" Grid.Column="0" LastChildFill="False" Margin="0 15">
+                    <Image Margin="0 0 7 0" Width="11" Source="{DynamicResource DirectorySmallDrawingImage}" />
+                    <TextBlock Foreground="{StaticResource LightGrayBrush}" VerticalAlignment="Center">Folder:</TextBlock>
+                    <TextBox x:Name="virtualDirectoryPath" Foreground="{DynamicResource MainContentBrush}" Text="{Binding Selected.Directory, Mode=TwoWay, TargetNullValue='/'}" IsEnabled="False" IsReadOnly="True" KeyDown="ConfirmChange_OnKeyDown" CaretBrush="{DynamicResource MainTextBrush}" Margin="5, 0, 0, 0">
                         <TextBox.Background>
-                            <SolidColorBrush Color="{DynamicResource TextAreaBackground}" />
+                            <SolidColorBrush Color="{DynamicResource MainTextColor}" Opacity="0.06" />
                         </TextBox.Background>
                     </TextBox>
-                </Border>
-                <Border BorderThickness="1" Padding="9" BorderBrush="{DynamicResource ContrastBorderBrush}" CornerRadius="{StaticResource MainRadius}" Margin="0, 21, 0, 0">
-                    <Border.Background>
-                        <SolidColorBrush Color="{DynamicResource TextAreaBackground}" />
-                    </Border.Background>
-                    <Grid>
-                        <TextBox Height="132" Text="{Binding Selected.Description, UpdateSourceTrigger=PropertyChanged}"
+                    <Button x:Name="changeButton" DockPanel.Dock="Right" Content="Change" Style="{StaticResource LinkButton}" Click="ChangeVirtualDirectory_OnClick" DataContext="{Binding Selected}" />
+                </DockPanel>
+
+                <StackPanel Grid.Row="2" Grid.Column="0">
+                    <TextBlock Style="{StaticResource Title}">File name</TextBlock>
+                    <Border Margin="0 5" Height="30" BorderThickness="1" BorderBrush="{DynamicResource ContrastBorderBrush}">
+                        <TextBox Text="{Binding Selected.FileNameWithoutExtension, UpdateSourceTrigger=PropertyChanged}" Foreground="{DynamicResource MainContentBrush}"
+                             Template="{StaticResource RoundedTextBox}" Padding="7, 0, 0, 0" VerticalContentAlignment="Center">
+                            <TextBox.Background>
+                                <SolidColorBrush Color="{DynamicResource TextAreaBackground}" />
+                            </TextBox.Background>
+                        </TextBox>
+                    </Border>
+                    <Border BorderThickness="1" Padding="9" BorderBrush="{DynamicResource ContrastBorderBrush}" CornerRadius="{StaticResource MainRadius}" Margin="0, 21, 0, 0">
+                        <Border.Background>
+                            <SolidColorBrush Color="{DynamicResource TextAreaBackground}" />
+                        </Border.Background>
+                        <Grid>
+                            <TextBox Height="132" Text="{Binding Selected.Description, UpdateSourceTrigger=PropertyChanged}"
                                  VerticalContentAlignment="Top"
                                  HorizontalContentAlignment="Left"
                                  Foreground="{DynamicResource MainContentBrush}"
@@ -72,52 +86,52 @@
                                  Cursor="IBeam"
                                  Template="{StaticResource RoundedTextBox}"
                                  AcceptsReturn="True" TextWrapping="Wrap" AcceptsTab="True">
-                            <TextBox.Style>
-                                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-                                    <Setter Property="Background" Value="Transparent" />
-                                    <Style.Resources>
-                                        <VisualBrush x:Key="BannerBrush" AlignmentX="Left" AlignmentY="Top" Stretch="None">
-                                            <VisualBrush.Visual>
-                                                <Label Content="Add description with #tags to make your file searchable!" Foreground="{DynamicResource LightGrayBrush}" />
-                                            </VisualBrush.Visual>
-                                        </VisualBrush>
-                                    </Style.Resources>
-                                    <Style.Triggers>
-                                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
-                                            <Setter Property="Background" Value="{StaticResource BannerBrush}" />
-                                        </Trigger>
-                                        <Trigger Property="Text" Value="{x:Null}">
-                                            <Setter Property="Background" Value="{StaticResource BannerBrush}" />
-                                        </Trigger>
-                                        <Trigger Property="IsKeyboardFocused" Value="True">
-                                            <Setter Property="Background" Value="Transparent" />
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBox.Style>
-                        </TextBox>
-                    </Grid>
-                </Border>
-            </StackPanel>
+                                <TextBox.Style>
+                                    <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                                        <Setter Property="Background" Value="Transparent" />
+                                        <Style.Resources>
+                                            <VisualBrush x:Key="BannerBrush" AlignmentX="Left" AlignmentY="Top" Stretch="None">
+                                                <VisualBrush.Visual>
+                                                    <Label Content="Add description with #tags to make your file searchable!" Foreground="{DynamicResource LightGrayBrush}" />
+                                                </VisualBrush.Visual>
+                                            </VisualBrush>
+                                        </Style.Resources>
+                                        <Style.Triggers>
+                                            <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                                <Setter Property="Background" Value="{StaticResource BannerBrush}" />
+                                            </Trigger>
+                                            <Trigger Property="Text" Value="{x:Null}">
+                                                <Setter Property="Background" Value="{StaticResource BannerBrush}" />
+                                            </Trigger>
+                                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                                <Setter Property="Background" Value="Transparent" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                        </Grid>
+                    </Border>
+                </StackPanel>
 
-            <Grid Margin="0 15 0 60" Grid.Row="4" Grid.Column="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150" />
-                    <ColumnDefinition Width="150" />
-                    <ColumnDefinition Width="150" />
-                    <ColumnDefinition Width="150" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
+                <Grid Margin="0 15 0 40" Grid.Row="3" Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="150" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Style="{DynamicResource Title}">Format:</TextBlock>
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Selected.Format}" Style="{StaticResource Active}" />
-                <TextBlock Grid.Row="0" Grid.Column="1" Style="{DynamicResource Title}">Extension:</TextBlock>
-                <TextBox Grid.Row="1"
+                    <TextBlock Grid.Row="0" Grid.Column="0" Style="{DynamicResource Title}">Format:</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Selected.Format}" Style="{StaticResource Active}" />
+                    <TextBlock Grid.Row="0" Grid.Column="1" Style="{DynamicResource Title}">Extension:</TextBlock>
+                    <TextBox Grid.Row="1"
                          Grid.Column="1"
                          Text="{Binding Selected.Extension, UpdateSourceTrigger=PropertyChanged}"
                          Padding="0 2"
@@ -127,68 +141,69 @@
                          Background="Transparent"
                          CaretBrush="{DynamicResource MainTextBrush}"
                          BorderBrush="{DynamicResource BorderBrush}" />
-                <TextBlock Grid.Row="0" Grid.Column="2" Style="{DynamicResource Title}">Created:</TextBlock>
-                <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Selected.CreateDate}" Style="{StaticResource Active}" />
-                <TextBlock Grid.Row="0" Grid.Column="3" Style="{DynamicResource Title}">Size:</TextBlock>
-                <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding Selected.FormattedSize}" Style="{StaticResource Active}" />
-            </Grid>
+                    <TextBlock Grid.Row="0" Grid.Column="2" Style="{DynamicResource Title}">Created:</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding Selected.CreateDate}" Style="{StaticResource Active}" />
+                    <TextBlock Grid.Row="0" Grid.Column="3" Style="{DynamicResource Title}">Size:</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding Selected.FormattedSize}" Style="{StaticResource Active}" />
+                </Grid>
 
-            <DockPanel Grid.ColumnSpan="2" Grid.Row="5" LastChildFill="False" HorizontalAlignment="Stretch">
-                <Button Command="{Binding AddCommand}" HorizontalAlignment="Left"
+                <DockPanel Grid.ColumnSpan="2" Grid.Row="4" LastChildFill="False" HorizontalAlignment="Stretch">
+                    <Button Command="{Binding AddCommand}" HorizontalAlignment="Left"
                     Foreground="{DynamicResource MainContentBrush}"
                     FontWeight="Bold" Content="+ SHARE ANOTHER FILE">
-                    <Button.Style>
-                        <Style BasedOn="{StaticResource PrimaryButton}" TargetType="{x:Type Button}">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Title}" Value="Share File">
-                                    <Setter Property="Visibility" Value="Visible" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
-                <Button Width="25" Height="25" Margin="10, 0, 0, 2" Padding="6" Command="{Binding DeleteFileCommand}">
-                    <Button.Background>
-                        <ImageBrush ImageSource="{DynamicResource BinDrawingImage}" />
-                    </Button.Background>
-                    <Button.Style>
-                        <Style BasedOn="{StaticResource ButtonBaseStyle}" TargetType="{x:Type Button}">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Title}" Value="Share File">
-                                    <Setter Property="Visibility" Value="Visible" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
-                <Button DockPanel.Dock="Right" Height="30"  Width="110" Style="{StaticResource AcceptButton}"  Command="{Binding ConfirmCommand}">Confirm</Button>
-                <Button DockPanel.Dock="Right" Height="30" Width="110" Style="{StaticResource PrimaryButton}" IsCancel="True" Command="{Binding CancelCommand}">Cancel</Button>
-            </DockPanel>
+                        <Button.Style>
+                            <Style BasedOn="{StaticResource PrimaryButton}" TargetType="{x:Type Button}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Title}" Value="Share File">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button Width="25" Height="25" Margin="10, 0, 0, 2" Padding="6" Command="{Binding DeleteFileCommand}">
+                        <Button.Background>
+                            <ImageBrush ImageSource="{DynamicResource BinDrawingImage}" />
+                        </Button.Background>
+                        <Button.Style>
+                            <Style BasedOn="{StaticResource ButtonBaseStyle}" TargetType="{x:Type Button}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Title}" Value="Share File">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button DockPanel.Dock="Right" Height="30"  Width="110" Style="{StaticResource AcceptButton}"  Command="{Binding ConfirmCommand}">Confirm</Button>
+                    <Button DockPanel.Dock="Right" Height="30" Width="110" Style="{StaticResource PrimaryButton}" IsCancel="True" Command="{Binding CancelCommand}">Cancel</Button>
+                </DockPanel>
 
-            <Grid Visibility="{Binding IsCountVisible, Converter={StaticResource BoolToVisibility}}" Margin="0 10 0 0" Grid.Row="6" Grid.ColumnSpan="3">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                <Grid Visibility="{Binding IsCountVisible, Converter={StaticResource BoolToVisibility}}" Margin="0 10 0 0" Grid.Row="5" Grid.ColumnSpan="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <Button Command="{Binding LeftCommand}" Foreground="{DynamicResource MainContentBrush}" HorizontalAlignment="Right" Grid.Column="0" Width="20" Style="{StaticResource PrimaryButton}" Content="&lt;" />
-                <Border BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}" Grid.Column="1">
-                    <TextBox Text="{Binding FilesLength, Mode=OneWay}"
+                    <Button Command="{Binding LeftCommand}" Foreground="{DynamicResource MainContentBrush}" HorizontalAlignment="Right" Grid.Column="0" Width="20" Style="{StaticResource PrimaryButton}" Content="&lt;" />
+                    <Border BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}" Grid.Column="1">
+                        <TextBox Text="{Binding FilesLength, Mode=OneWay}"
                              IsReadOnly="True"
                              Width="50"
                              VerticalContentAlignment="Center"
                              HorizontalContentAlignment="Center"
                              Foreground="{DynamicResource MainContentBrush}"
                              Template="{StaticResource RoundedTextBox}">
-                        <TextBox.Background>
-                            <SolidColorBrush Color="{DynamicResource TextAreaBackground}" />
-                        </TextBox.Background>
-                    </TextBox>
-                </Border>
-                <Button Command="{Binding RightCommand}" Foreground="{DynamicResource MainContentBrush}" HorizontalAlignment="Left" Grid.Column="2" Width="20" Style="{StaticResource PrimaryButton}" Content="&gt;" />
+                            <TextBox.Background>
+                                <SolidColorBrush Color="{DynamicResource TextAreaBackground}" />
+                            </TextBox.Background>
+                        </TextBox>
+                    </Border>
+                    <Button Command="{Binding RightCommand}" Foreground="{DynamicResource MainContentBrush}" HorizontalAlignment="Left" Grid.Column="2" Width="20" Style="{StaticResource PrimaryButton}" Content="&gt;" />
+                </Grid>
             </Grid>
         </Grid>
     </Border>
