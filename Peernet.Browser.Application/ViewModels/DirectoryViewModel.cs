@@ -6,14 +6,15 @@ using Peernet.Browser.Application.Utilities;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.SDK.Models.Domain.Blockchain;
+using Peernet.SDK.Models.Extensions;
+using Peernet.SDK.Models.Plugins;
 using Peernet.SDK.Models.Presentation.Footer;
+using Peernet.SDK.Models.Presentation.Home;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Peernet.SDK.Models.Extensions;
-using Peernet.SDK.Models.Plugins;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -23,15 +24,21 @@ namespace Peernet.Browser.Application.ViewModels
         private const string YourFilesSegment = "Your Files";
         private readonly IBlockchainService blockchainService;
         private readonly IModalNavigationService modalNavigationService;
-        private readonly IVirtualFileSystemFactory virtualFileSystemFactory;
-        private readonly IEnumerable<IPlayButtonPlug> playButtonPlugs;
         private readonly INotificationsManager notificationsManager;
+        private readonly IEnumerable<IPlayButtonPlug> playButtonPlugs;
+        private readonly IVirtualFileSystemFactory virtualFileSystemFactory;
         private ObservableCollection<VirtualFileSystemEntity> activeSearchResults;
+        private bool isLoaded = false;
         private ObservableCollection<VirtualFileSystemCoreEntity> pathElements;
         private string searchInput;
-        private bool isLoaded = false;
+        private bool showActionsColumn = true;
+        private bool showDataFormatColumn = false;
+        private bool showDateColumn = true;
+        private bool showFolderColumn = false;
         private bool showHint = true;
         private bool showSearchBox;
+        private bool showSizeColumn = true;
+        private bool showTypeColumn = true;
         private VirtualFileSystem.VirtualFileSystem virtualFileSystem;
 
         public DirectoryViewModel(
@@ -47,6 +54,7 @@ namespace Peernet.Browser.Application.ViewModels
             this.notificationsManager = notificationsManager;
             this.playButtonPlugs = playButtonPlugs;
 
+            SetupColumnsFilter();
             Task.Run(async () => await ReloadVirtualFileSystem(false)).ConfigureAwait(false).GetAwaiter().GetResult();
             InitializePath(VirtualFileSystem?.Home);
             OpenCommand.Execute(VirtualFileSystem?.Home);
@@ -61,6 +69,10 @@ namespace Peernet.Browser.Application.ViewModels
                 OnPropertyChanged(nameof(ActiveSearchResults));
             }
         }
+
+        public ObservableCollection<CustomCheckBoxModel> ColumnsCheckboxes { get; } = new ObservableCollection<CustomCheckBoxModel>();
+
+        public IconModel ColumnsIconModel { get; } = new IconModel(FilterType.Columns, true);
 
         public IAsyncCommand<VirtualFileSystemEntity> DeleteCommand =>
             new AsyncCommand<VirtualFileSystemEntity>(
@@ -97,6 +109,16 @@ namespace Peernet.Browser.Application.ViewModels
                     return Task.CompletedTask;
                 });
 
+        public bool IsLoaded
+        {
+            get => isLoaded;
+            set
+            {
+                isLoaded = value;
+                OnPropertyChanged(nameof(IsLoaded));
+            }
+        }
+
         public IAsyncCommand<VirtualFileSystemEntity> OpenCommand =>
             new AsyncCommand<VirtualFileSystemEntity>(
                 async entity =>
@@ -115,12 +137,12 @@ namespace Peernet.Browser.Application.ViewModels
                 });
 
         public IAsyncCommand<VirtualFileSystemCoreEntity> OpenTreeItemCommand => new AsyncCommand<VirtualFileSystemCoreEntity>(entity =>
-         {
-             InitializePath(entity);
-             OpenCommand.Execute(entity);
+             {
+                 InitializePath(entity);
+                 OpenCommand.Execute(entity);
 
-             return Task.CompletedTask;
-         });
+                 return Task.CompletedTask;
+             });
 
         public ObservableCollection<VirtualFileSystemCoreEntity> PathElements
         {
@@ -133,15 +155,15 @@ namespace Peernet.Browser.Application.ViewModels
         }
 
         public IAsyncCommand RemoveHint => new AsyncCommand(() =>
-                 {
-                     if (ShowHint)
                      {
-                         ShowHint = false;
-                         ShowSearchBox = true;
-                     }
+                         if (ShowHint)
+                         {
+                             ShowHint = false;
+                             ShowSearchBox = true;
+                         }
 
-                     return Task.CompletedTask;
-                 });
+                         return Task.CompletedTask;
+                     });
 
         public IAsyncCommand SearchCommand =>
             new AsyncCommand(async () =>
@@ -158,14 +180,44 @@ namespace Peernet.Browser.Application.ViewModels
                 OnPropertyChanged(nameof(SearchInput));
             }
         }
-        
-        public bool IsLoaded
+
+        public bool ShowActionsColumn
         {
-            get => isLoaded;
+            get => showActionsColumn;
             set
             {
-                isLoaded = value;
-                OnPropertyChanged(nameof(IsLoaded));
+                showActionsColumn = value;
+                OnPropertyChanged(nameof(ShowActionsColumn));
+            }
+        }
+
+        public bool ShowDataFormatColumn
+        {
+            get => showDataFormatColumn;
+            set
+            {
+                showDataFormatColumn = value;
+                OnPropertyChanged(nameof(ShowDataFormatColumn));
+            }
+        }
+
+        public bool ShowDateColumn
+        {
+            get => showDateColumn;
+            set
+            {
+                showDateColumn = value;
+                OnPropertyChanged(nameof(ShowDateColumn));
+            }
+        }
+
+        public bool ShowFolderColumn
+        {
+            get => showFolderColumn;
+            set
+            {
+                showFolderColumn = value;
+                OnPropertyChanged(nameof(ShowFolderColumn));
             }
         }
 
@@ -188,6 +240,41 @@ namespace Peernet.Browser.Application.ViewModels
                 OnPropertyChanged(nameof(ShowSearchBox));
             }
         }
+
+        public bool ShowSizeColumn
+        {
+            get => showSizeColumn;
+            set
+            {
+                showSizeColumn = value;
+                OnPropertyChanged(nameof(ShowSizeColumn));
+            }
+        }
+
+        public bool ShowTypeColumn
+        {
+            get => showTypeColumn;
+            set
+            {
+                showTypeColumn = value;
+                OnPropertyChanged(nameof(ShowTypeColumn));
+            }
+        }
+
+        public IAsyncCommand<VirtualFileSystemEntity> StreamFileCommand =>
+            new AsyncCommand<VirtualFileSystemEntity>(
+                entity =>
+                {
+                    playButtonPlugs.Foreach(plug =>
+                    {
+                        if (plug?.IsSupported(entity.File) == true)
+                        {
+                            plug?.Execute(entity.File);
+                        }
+                    });
+
+                    return Task.CompletedTask;
+                });
 
         public IAsyncCommand<VirtualFileSystemCoreEntity> UpdateActiveSearchResults =>
             new AsyncCommand<VirtualFileSystemCoreEntity>(
@@ -212,20 +299,11 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        public IAsyncCommand<VirtualFileSystemEntity> StreamFileCommand =>
-            new AsyncCommand<VirtualFileSystemEntity>(
-                entity =>
-                {
-                    playButtonPlugs.Foreach(plug =>
-                    {
-                        if (plug?.IsSupported(entity.File) == true)
-                        {
-                            plug?.Execute(entity.File);
-                        }
-                    });
-
-                    return Task.CompletedTask;
-                });
+        public void ChangeSelectedEntity(VirtualFileSystemCoreEntity coreEntity)
+        {
+            VirtualFileSystem.ResetSelection();
+            coreEntity.IsSelected = true;
+        }
 
         public async Task ReloadVirtualFileSystem(bool restoreState = true)
         {
@@ -271,6 +349,24 @@ namespace Peernet.Browser.Application.ViewModels
             IsLoaded = true;
         }
 
+        public void SetPath(VirtualFileSystemCoreEntity entity)
+        {
+            var index = PathElements.IndexOf(entity);
+            if (index == -1)
+            {
+                PathElements.Add(entity);
+            }
+            else
+            {
+                for (int i = PathElements.Count - 1; i > index; i--)
+                {
+                    PathElements.RemoveAt(i);
+                }
+            }
+
+            PathElements.Last().IsSelected = true;
+        }
+
         private void AddAllFilesTier(IEnumerable<VirtualFileSystemEntity> entities)
         {
             AddTier("All files", VirtualFileSystemEntityType.All, entities);
@@ -301,12 +397,6 @@ namespace Peernet.Browser.Application.ViewModels
                 : new(results);
         }
 
-        public void ChangeSelectedEntity(VirtualFileSystemCoreEntity coreEntity)
-        {
-            VirtualFileSystem.ResetSelection();
-            coreEntity.IsSelected = true;
-        }
-
         private VirtualFileSystemCoreEntity DetermineHigherTier()
         {
             for (int i = 1; i < PathElements.Count; i++)
@@ -322,7 +412,7 @@ namespace Peernet.Browser.Application.ViewModels
             return null;
         }
 
-        private void InitializePath(VirtualFileSystemEntity entity)
+        public void InitializePath(VirtualFileSystemEntity entity)
         {
             if (entity == null)
             {
@@ -334,6 +424,36 @@ namespace Peernet.Browser.Application.ViewModels
             PathElements = new ObservableCollection<VirtualFileSystemCoreEntity>(
                 new List<VirtualFileSystemCoreEntity>
                     { new(name, VirtualFileSystemEntityType.Directory) });
+        }
+
+        private void OnColumnCheckboxClick(CustomCheckBoxModel selection)
+        {
+            switch (selection.Content)
+            {
+                case "Folder":
+                    ShowFolderColumn = selection.IsChecked;
+                    break;
+
+                case "Type":
+                    ShowTypeColumn = selection.IsChecked;
+                    break;
+
+                case "Data Format":
+                    ShowDataFormatColumn = selection.IsChecked;
+                    break;
+
+                case "Date":
+                    ShowDateColumn = selection.IsChecked;
+                    break;
+
+                case "Size":
+                    ShowSizeColumn = selection.IsChecked;
+                    break;
+
+                case "Actions":
+                    ShowActionsColumn = selection.IsChecked;
+                    break;
+            }
         }
 
         private void RefreshPathObjects()
@@ -362,24 +482,13 @@ namespace Peernet.Browser.Application.ViewModels
             PathElements = new ObservableCollection<VirtualFileSystemCoreEntity>(refreshedPath);
         }
 
-        public void SetPath(VirtualFileSystemCoreEntity entity)
+        private void SetPlayerState(List<VirtualFileSystemEntity> results)
         {
-            var index = PathElements.IndexOf(entity);
-            if (index == -1)
+            results.Foreach(r =>
             {
-                PathElements.Add(entity);
-            }
-            else
-            {
-                for (int i = PathElements.Count - 1; i > index; i--)
-                {
-                    PathElements.RemoveAt(i);
-                }
-            }
-
-            PathElements.Last().IsSelected = true;
+                r.IsPlayerEnabled = playButtonPlugs.Any(plug => plug?.IsSupported(r.File) == true);
+            });
         }
-
 
         private void SetPlayerStateRecursively(List<VirtualFileSystemEntity> results)
         {
@@ -393,12 +502,14 @@ namespace Peernet.Browser.Application.ViewModels
             });
         }
 
-        private void SetPlayerState(List<VirtualFileSystemEntity> results)
+        private void SetupColumnsFilter()
         {
-            results.Foreach(r =>
-            {
-                r.IsPlayerEnabled = playButtonPlugs.Any(plug => plug?.IsSupported(r.File) == true);
-            });
+            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Folder", IsChecked = showFolderColumn, IsCheckChanged = OnColumnCheckboxClick });
+            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Data Format", IsChecked = showDataFormatColumn, IsCheckChanged = OnColumnCheckboxClick });
+            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Type", IsChecked = showTypeColumn, IsCheckChanged = OnColumnCheckboxClick });
+            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Date", IsChecked = showDateColumn, IsCheckChanged = OnColumnCheckboxClick });
+            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Size", IsChecked = showSizeColumn, IsCheckChanged = OnColumnCheckboxClick });
+            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Actions", IsChecked = showActionsColumn, IsCheckChanged = OnColumnCheckboxClick });
         }
     }
 }

@@ -68,7 +68,8 @@
             <Grid Grid.Row="1" Grid.Column="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -134,7 +135,11 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                <Border Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Margin="0,28, 85, 27" BorderThickness="1" CornerRadius="3,3,3,3" BorderBrush="{DynamicResource BorderBrush}">
+
+                <controls:FilterIconControl Grid.Row="0" Grid.Column="1" Height="40" DataContext="{Binding ColumnsIconModel}" Margin="40, 0"/>
+                <controls:ColumnsSelectorControl Grid.RowSpan="3" Grid.Column="1" Panel.ZIndex="1" Margin="0 -310 0 0" HorizontalAlignment="Right" Height="194" />
+
+                <Border Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" Margin="0,28, 85, 27" BorderThickness="1" CornerRadius="3,3,3,3" BorderBrush="{DynamicResource BorderBrush}">
                     <Border.Background>
                         <SolidColorBrush Color="{DynamicResource ViewBackgroundColor}" />
                     </Border.Background>
@@ -180,7 +185,7 @@
                         </Image>
                     </Grid>
                 </Border>
-                <controls:SharedFilesDataGridControl Height="540" Grid.Row="1" Grid.ColumnSpan="2" Padding="20, 0" />
+                <controls:SharedFilesDataGridControl Height="540" Grid.Row="1" Grid.ColumnSpan="3" Padding="20, 0" />
             </Grid>
             <Separator Style="{StaticResource StandardSeparatorStyle}" Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Top" />
         </Grid>

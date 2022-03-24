@@ -6,7 +6,13 @@
              xmlns:common="clr-namespace:Peernet.Browser.Application.VirtualFileSystem;assembly=Application"
              mc:Ignorable="d"
              x:Name="SharedFilesDataGrid">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <FrameworkElement x:Key="ProxyElement" DataContext="{Binding}" />
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
+        <ContentControl Content="{StaticResource ProxyElement}" Visibility="Collapsed" />
         <DataGrid Style="{DynamicResource DataGridStyle}" ItemsSource="{Binding ActiveSearchResults, IsAsync=True}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False"  Visibility="{Binding IsLoaded, Converter={StaticResource BoolToVisibility}}">
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell" BasedOn="{StaticResource BaseDataGridCellStyle}">
@@ -24,28 +30,42 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="TYPE" SortMemberPath="DataFormat" Width="100">
+                <DataGridTemplateColumn Visibility="{Binding DataContext.ShowFolderColumn, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}" Header="Folder" SortMemberPath="Folder" Width="130">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Folder}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0, 0, 5, 0" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Visibility="{Binding DataContext.ShowTypeColumn, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}" Header="TYPE" SortMemberPath="DataFormat" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Type}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Visibility="{Binding DataContext.ShowDataFormatColumn, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}" Header="DATA FORMAT" SortMemberPath="DataFormat" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding DataFormat}" VerticalAlignment="Center" HorizontalAlignment="Left" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="DATE" SortMemberPath="Date" Width="100">
+                <DataGridTemplateColumn Visibility="{Binding DataContext.ShowDateColumn, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}" Header="DATE" SortMemberPath="Date" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Date, StringFormat=d}" VerticalAlignment="Center" HorizontalAlignment="Left" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="SIZE" SortMemberPath="Size" Width="130">
+                <DataGridTemplateColumn Visibility="{Binding DataContext.ShowSizeColumn, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}" Header="SIZE" SortMemberPath="Size" Width="130">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding FileSize, Converter={StaticResource BytesToSuffixConverter}}" VerticalAlignment="Center" HorizontalAlignment="Left" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn>
+                <DataGridTemplateColumn Visibility="{Binding DataContext.ShowActionsColumn, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

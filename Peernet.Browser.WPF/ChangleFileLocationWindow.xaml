@@ -21,7 +21,7 @@
                 <Setter Property="Background" Value="Transparent" />
             </Style>
             <DataTemplate x:Key="VirtualFileSystemTreeTemplate">
-                <Border x:Name="Border" Background="Transparent" Padding="30,4,20,4" UseLayoutRounding="True">
+                <Border x:Name="Border" Background="Transparent" Padding="20,4,20,4" UseLayoutRounding="True">
                     <StackPanel Orientation="Horizontal">
                         <Image Width="14" Height="13" Style="{StaticResource VirtualFileSystemCoreEntityImageStyle}" />
                         <TextBlock Text="{Binding Path=Name}" Margin="7, 2, 0, 0" FontSize="15" FontWeight="Normal">
@@ -116,7 +116,10 @@
                         </Grid.ColumnDefinitions>
 
                         <!--Add scrollviewer here as well-->
-                        <ItemsControl Grid.Column="0" ItemsSource="{Binding DirectoryViewModel.VirtualFileSystem.Home.SubTiers}" ItemTemplate="{StaticResource VirtualFileSystemTreeTemplate}" />
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Home" HorizontalAlignment="Center" Foreground="{DynamicResource MainContentBrush}" FontWeight="Medium" FontSize="16" />
+                            <ItemsControl ItemsSource="{Binding DirectoryViewModel.VirtualFileSystem.Home.SubTiers}" ItemTemplate="{StaticResource VirtualFileSystemTreeTemplate}" />
+                        </StackPanel>
 
                         <Border Grid.Row="1" Grid.Column="1" Width="1" BorderThickness="0">
                             <Border.Background>
@@ -134,7 +137,7 @@
                             <ItemsControl Grid.Row="0" ItemsSource="{Binding DirectoryViewModel.PathElements, UpdateSourceTrigger=PropertyChanged}" Margin="15, 5, 0, 0">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <StackPanel Orientation="Horizontal" />
+                                        <WrapPanel Orientation="Horizontal" />
                                     </ItemsPanelTemplate>
                                 </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate>

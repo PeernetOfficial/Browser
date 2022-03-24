@@ -6,8 +6,8 @@ namespace Peernet.Browser.Application.VirtualFileSystem
 {
     public class VirtualFileSystemEntity : IEquatable<VirtualFileSystemEntity>, INotifyPropertyChanged
     {
-        private string name;
         private readonly VirtualFileSystemEntityType? type;
+        private string name;
 
         public VirtualFileSystemEntity(ApiFile file, string name = null, VirtualFileSystemEntityType? type = null)
         {
@@ -16,12 +16,16 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             this.type = type;
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public HighLevelFileType? DataFormat => File?.Format;
         public DateTime? Date => File?.Date;
 
         public ApiFile File { get; init; }
 
         public string FileSize => $"{File?.Size}";
 
+        public string Folder => File?.Folder;
         public bool IsPlayerEnabled { get; set; }
 
         public string Name
@@ -35,10 +39,6 @@ namespace Peernet.Browser.Application.VirtualFileSystem
         }
 
         public VirtualFileSystemEntityType Type => GetEntityType();
-
-        public HighLevelFileType? DataFormat => File?.Format;
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public bool Equals(VirtualFileSystemEntity other)
         {

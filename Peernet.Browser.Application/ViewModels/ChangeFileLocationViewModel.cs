@@ -52,6 +52,8 @@ namespace Peernet.Browser.Application.ViewModels
                 {
                     DirectoryViewModel.ActiveSearchResults = new(coreTier.VirtualFileSystemEntities);
                     DirectoryViewModel.ChangeSelectedEntity(coreTier);
+                    // TODO It needs to be addressed to properly set path with Home segment
+                    DirectoryViewModel.InitializePath(DirectoryViewModel.VirtualFileSystem?.Home);
                     DirectoryViewModel.SetPath(coreTier);
                 }
 
