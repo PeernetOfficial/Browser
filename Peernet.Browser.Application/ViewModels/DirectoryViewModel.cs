@@ -132,11 +132,10 @@ namespace Peernet.Browser.Application.ViewModels
                     {
                         await UpdateActiveSearchResults.ExecuteAsync(coreTier);
                         SetPath(coreTier);
-                        ChangeSelectedEntity(coreTier);
                     }
                 });
 
-        public IAsyncCommand<VirtualFileSystemCoreEntity> OpenTreeItemCommand => 
+        public IAsyncCommand<VirtualFileSystemCoreEntity> OpenTreeItemCommand =>
             new AsyncCommand<VirtualFileSystemCoreEntity>(
                 async entity =>
                 {
@@ -155,15 +154,15 @@ namespace Peernet.Browser.Application.ViewModels
         }
 
         public IAsyncCommand RemoveHint => new AsyncCommand(() =>
-                     {
-                         if (ShowHint)
-                         {
-                             ShowHint = false;
-                             ShowSearchBox = true;
-                         }
+                       {
+                           if (ShowHint)
+                           {
+                               ShowHint = false;
+                               ShowSearchBox = true;
+                           }
 
-                         return Task.CompletedTask;
-                     });
+                           return Task.CompletedTask;
+                       });
 
         public IAsyncCommand SearchCommand =>
             new AsyncCommand(async () =>
@@ -305,6 +304,20 @@ namespace Peernet.Browser.Application.ViewModels
             coreEntity.IsSelected = true;
         }
 
+        public void InitializePath(VirtualFileSystemEntity entity)
+        {
+            if (entity == null)
+            {
+                return;
+            }
+
+            var name = entity is VirtualFileSystemCoreCategory ? LibrariesSegment : YourFilesSegment;
+
+            PathElements = new ObservableCollection<VirtualFileSystemCoreEntity>(
+                new List<VirtualFileSystemCoreEntity>
+                    { new(name, VirtualFileSystemEntityType.Directory) });
+        }
+
         public async Task ReloadVirtualFileSystem(bool restoreState = true)
         {
             var header = await blockchainService.GetHeader();
@@ -364,8 +377,7 @@ namespace Peernet.Browser.Application.ViewModels
                 }
             }
 
-            VirtualFileSystem.ResetSelection();
-            PathElements.Last().IsSelected = true;
+            ChangeSelectedEntity(PathElements.Last());
         }
 
         private void AddAllFilesTier(IEnumerable<VirtualFileSystemEntity> entities)
@@ -411,20 +423,6 @@ namespace Peernet.Browser.Application.ViewModels
             }
 
             return null;
-        }
-
-        public void InitializePath(VirtualFileSystemEntity entity)
-        {
-            if (entity == null)
-            {
-                return;
-            }
-
-            var name = entity is VirtualFileSystemCoreCategory ? LibrariesSegment : YourFilesSegment;
-
-            PathElements = new ObservableCollection<VirtualFileSystemCoreEntity>(
-                new List<VirtualFileSystemCoreEntity>
-                    { new(name, VirtualFileSystemEntityType.Directory) });
         }
 
         private void OnColumnCheckboxClick(CustomCheckBoxModel selection)

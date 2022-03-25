@@ -1,6 +1,7 @@
 ﻿using Peernet.Browser.Application.ViewModels;
 using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Peernet.Browser.WPF
@@ -69,6 +70,14 @@ namespace Peernet.Browser.WPF
         {
             ((ChangeFileLocationViewModel)DataContext).SelectCommand.ExecuteAsync();
             Close();
+        }
+
+        private void TextBox_PreviewKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Keyboard.ClearFocus();
+            }
         }
     }
 }

@@ -29,19 +29,15 @@ namespace Peernet.Browser.Application.ViewModels
         public DirectoryViewModel DirectoryViewModel { get; set; }
 
         public IAsyncCommand<VirtualFileSystemEntity> OpenTreeFolderCommand =>
-            new AsyncCommand<VirtualFileSystemEntity>(coreEntity =>
+            new AsyncCommand<VirtualFileSystemEntity>(async coreEntity =>
             {
                 if (coreEntity is VirtualFileSystemCoreTier coreTier)
                 {
-                    DirectoryViewModel.ActiveSearchResults = new(coreTier.VirtualFileSystemEntities);
-                    DirectoryViewModel.ChangeSelectedEntity(coreTier);
-
                     DirectoryViewModel.InitializePath(DirectoryViewModel.VirtualFileSystem?.Home);
                     DirectoryViewModel.SetPath(DirectoryViewModel.VirtualFileSystem?.Home);
-                    DirectoryViewModel.SetPath(coreTier);
-                }
 
-                return Task.CompletedTask;
+                    await DirectoryViewModel.OpenCommand.ExecuteAsync(coreTier);
+                }
             });
 
         public IAsyncCommand SelectCommand =>

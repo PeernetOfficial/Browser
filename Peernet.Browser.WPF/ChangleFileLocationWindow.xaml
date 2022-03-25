@@ -1,6 +1,6 @@
 ﻿<Window x:Class="Peernet.Browser.WPF.ChangleFileLocationWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Width="750"
         SizeToContent="Height"
         Top="100"
@@ -51,7 +51,7 @@
                 <Border x:Name="Border" Background="Transparent" Padding="20,4,20,4" UseLayoutRounding="True" Cursor="Hand">
                     <StackPanel Orientation="Horizontal">
                         <Image Width="14" Height="13" Style="{StaticResource VirtualFileSystemEntityImageStyle}" />
-                        <TextBox Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="7, 2, 0, 0" FontSize="15" FontWeight="Normal" Background="Transparent" CaretBrush="{DynamicResource MainTextBrush}">
+                        <TextBox Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="7, 2, 0, 0" FontSize="15" FontWeight="Normal" Background="Transparent" CaretBrush="{DynamicResource MainTextBrush}" PreviewKeyUp="TextBox_PreviewKeyUp">
                             <TextBox.Style>
                                 <Style TargetType="{x:Type TextBox}">
                                     <Setter Property="BorderThickness" Value="0" />
@@ -105,9 +105,9 @@
                             <Button Style="{StaticResource CloseButtonStyle}" Click="Close_OnClick" />
                         </StackPanel>
                     </Grid>
-                    
+
                     <Separator Grid.Row="1" Style="{DynamicResource StandardSeparatorStyle}" />
-                    
+
                     <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
