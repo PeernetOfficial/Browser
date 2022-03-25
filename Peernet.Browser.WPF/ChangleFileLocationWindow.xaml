@@ -66,7 +66,7 @@
                         </TextBox>
                     </StackPanel>
                     <Border.InputBindings>
-                        <MouseBinding Command="{Binding DataContext.OpenFolderCommand, ElementName=ChangleFileLocation}" CommandParameter="{Binding}" MouseAction="LeftClick" />
+                        <MouseBinding Command="{Binding DataContext.DirectoryViewModel.OpenCommand, ElementName=ChangleFileLocation}" CommandParameter="{Binding}" MouseAction="LeftClick" />
                     </Border.InputBindings>
                 </Border>
                 <DataTemplate.Triggers>
@@ -161,7 +161,7 @@
                                                         </Style>
                                                     </TextBlock.Style>
                                                     <TextBlock.InputBindings>
-                                                        <MouseBinding Command="{Binding DataContext.OpenFolderCommand, ElementName=ChangleFileLocation}" CommandParameter="{Binding}" MouseAction="LeftClick" />
+                                                        <MouseBinding Command="{Binding DataContext.DirectoryViewModel.OpenCommand, ElementName=ChangleFileLocation}" CommandParameter="{Binding}" MouseAction="LeftClick" />
                                                     </TextBlock.InputBindings>
                                                 </TextBlock>
 

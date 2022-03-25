@@ -1,24 +1,18 @@
 ﻿using AsyncAwaitBestPractices.MVVM;
 using Peernet.Browser.Application.VirtualFileSystem;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
+using Peernet.SDK.Models.Presentation.Footer;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public class ChangeFileLocationViewModel : ViewModelBase
     {
-        private ObservableCollection<VirtualFileSystemEntity> activeSearchResults;
-        private ObservableCollection<VirtualFileSystemCoreEntity> pathElements;
-        private Action<string> updatePathAction;
+        private FileModel model;
 
-        public ChangeFileLocationViewModel(DirectoryViewModel directoryViewModel, Action<string> updatePathAction)
+        public ChangeFileLocationViewModel(DirectoryViewModel directoryViewModel, FileModel model)
         {
             DirectoryViewModel = directoryViewModel;
-            this.updatePathAction = updatePathAction;
+            this.model = model;
         }
 
         public IAsyncCommand CreateNewFolderCommand =>
@@ -32,18 +26,7 @@ namespace Peernet.Browser.Application.ViewModels
                 return Task.CompletedTask;
             });
 
-        public IAsyncCommand<VirtualFileSystemEntity> OpenFolderCommand =>
-            new AsyncCommand<VirtualFileSystemEntity>(coreEntity =>
-            {
-                if (coreEntity is VirtualFileSystemCoreTier coreTier)
-                {
-                    DirectoryViewModel.ActiveSearchResults = new(coreTier.VirtualFileSystemEntities);
-                    DirectoryViewModel.ChangeSelectedEntity(coreTier);
-                    DirectoryViewModel.SetPath(coreTier);
-                }
-
-                return Task.CompletedTask;
-            });
+        public DirectoryViewModel DirectoryViewModel { get; set; }
 
         public IAsyncCommand<VirtualFileSystemEntity> OpenTreeFolderCommand =>
             new AsyncCommand<VirtualFileSystemEntity>(coreEntity =>
@@ -52,8 +35,9 @@ namespace Peernet.Browser.Application.ViewModels
                 {
                     DirectoryViewModel.ActiveSearchResults = new(coreTier.VirtualFileSystemEntities);
                     DirectoryViewModel.ChangeSelectedEntity(coreTier);
-                    // TODO It needs to be addressed to properly set path with Home segment
+
                     DirectoryViewModel.InitializePath(DirectoryViewModel.VirtualFileSystem?.Home);
+                    DirectoryViewModel.SetPath(DirectoryViewModel.VirtualFileSystem?.Home);
                     DirectoryViewModel.SetPath(coreTier);
                 }
 
@@ -64,7 +48,7 @@ namespace Peernet.Browser.Application.ViewModels
             new AsyncCommand(() =>
             {
                 var selected = DirectoryViewModel.VirtualFileSystem.GetCurrentlySelected();
-                updatePathAction(TrimUnsopportedSegments(selected.AbsolutePath));
+                model.Directory = TrimUnsopportedSegments(selected.AbsolutePath);
 
                 return Task.CompletedTask;
             });
@@ -73,7 +57,5 @@ namespace Peernet.Browser.Application.ViewModels
         {
             return path.Replace("Your Files\\", string.Empty).Replace("Home\\", string.Empty);
         }
-
-        public DirectoryViewModel DirectoryViewModel { get; set; }
     }
 }

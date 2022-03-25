@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Peernet.Browser.Application;
 using Peernet.Browser.Application.ViewModels;
-using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.SDK.Models.Presentation.Footer;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,13 +19,7 @@ namespace Peernet.Browser.WPF.Views
         {
             var directoryViewModel = App.ServiceProvider.GetRequiredService<DirectoryViewModel>();
             var model = (FileModel)((FrameworkElement)e.OriginalSource).DataContext;
-
-            void UpdateDirectory(string newPath)
-            {
-                model.Directory = newPath;
-            }
-
-            var changeFileLocationViewModel = new ChangeFileLocationViewModel(directoryViewModel, UpdateDirectory);
+            var changeFileLocationViewModel = new ChangeFileLocationViewModel(directoryViewModel, model);
             new ChangleFileLocationWindow(changeFileLocationViewModel).Show();
 
             virtualDirectoryPath.IsReadOnly = false;

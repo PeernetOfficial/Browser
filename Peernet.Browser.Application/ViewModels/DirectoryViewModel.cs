@@ -136,13 +136,13 @@ namespace Peernet.Browser.Application.ViewModels
                     }
                 });
 
-        public IAsyncCommand<VirtualFileSystemCoreEntity> OpenTreeItemCommand => new AsyncCommand<VirtualFileSystemCoreEntity>(entity =>
-             {
-                 InitializePath(entity);
-                 OpenCommand.Execute(entity);
-
-                 return Task.CompletedTask;
-             });
+        public IAsyncCommand<VirtualFileSystemCoreEntity> OpenTreeItemCommand => 
+            new AsyncCommand<VirtualFileSystemCoreEntity>(
+                async entity =>
+                {
+                    InitializePath(entity);
+                    await OpenCommand.ExecuteAsync(entity);
+                });
 
         public ObservableCollection<VirtualFileSystemCoreEntity> PathElements
         {
@@ -364,6 +364,7 @@ namespace Peernet.Browser.Application.ViewModels
                 }
             }
 
+            VirtualFileSystem.ResetSelection();
             PathElements.Last().IsSelected = true;
         }
 
