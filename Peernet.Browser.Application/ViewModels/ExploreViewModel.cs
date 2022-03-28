@@ -4,14 +4,14 @@ using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Application.VirtualFileSystem;
+using Peernet.SDK.Models.Extensions;
+using Peernet.SDK.Models.Plugins;
 using Peernet.SDK.Models.Presentation.Footer;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Peernet.SDK.Models.Extensions;
-using Peernet.SDK.Models.Plugins;
-using System.Linq;
 
 namespace Peernet.Browser.Application.ViewModels
 {

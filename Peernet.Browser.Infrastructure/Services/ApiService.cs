@@ -1,7 +1,7 @@
 ﻿using Peernet.Browser.Application.Services;
-using System.Threading.Tasks;
 using Peernet.SDK.Client.Clients;
 using Peernet.SDK.Models.Domain.Common;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure.Services
 {

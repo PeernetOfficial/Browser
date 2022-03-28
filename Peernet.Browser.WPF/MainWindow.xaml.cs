@@ -1,21 +1,21 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Dispatchers;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels;
 using Peernet.Browser.Application.ViewModels.Parameters;
+using Peernet.Browser.WPF.Views;
+using Peernet.SDK.Models.Extensions;
 using Peernet.SDK.Models.Presentation.Footer;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows;
-using System.Windows.Input;
-using Peernet.SDK.Models.Extensions;
-using Peernet.Browser.WPF.Views;
-using Peernet.Browser.Application.Contexts;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Peernet.Browser.WPF
 {

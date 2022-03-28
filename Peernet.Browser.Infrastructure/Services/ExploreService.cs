@@ -1,10 +1,10 @@
 ﻿using Peernet.Browser.Application.Services;
+using Peernet.SDK.Client.Clients;
 using Peernet.SDK.Models.Domain.Common;
 using Peernet.SDK.Models.Presentation.Footer;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Peernet.SDK.Client.Clients;
 
 namespace Peernet.Browser.Infrastructure.Services
 {

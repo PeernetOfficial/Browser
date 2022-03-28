@@ -1,15 +1,15 @@
-﻿using Peernet.Browser.Application.ViewModels;
-using Peernet.SDK.Models.Presentation.Home;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Peernet.Browser.Application.Download;
+using Peernet.Browser.Application.ViewModels;
+using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.WPF.Extensions;
+using Peernet.SDK.Models.Presentation.Footer;
+using Peernet.SDK.Models.Presentation.Home;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using Microsoft.Extensions.DependencyInjection;
-using Peernet.Browser.Application.Download;
-using Peernet.Browser.Application.ViewModels.Parameters;
-using Peernet.SDK.Models.Presentation.Footer;
 
 namespace Peernet.Browser.WPF.Controls
 {

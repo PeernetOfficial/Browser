@@ -154,15 +154,15 @@ namespace Peernet.Browser.Application.ViewModels
         }
 
         public IAsyncCommand RemoveHint => new AsyncCommand(() =>
-                       {
-                           if (ShowHint)
-                           {
-                               ShowHint = false;
-                               ShowSearchBox = true;
-                           }
+                        {
+                            if (ShowHint)
+                            {
+                                ShowHint = false;
+                                ShowSearchBox = true;
+                            }
 
-                           return Task.CompletedTask;
-                       });
+                            return Task.CompletedTask;
+                        });
 
         public IAsyncCommand SearchCommand =>
             new AsyncCommand(async () =>

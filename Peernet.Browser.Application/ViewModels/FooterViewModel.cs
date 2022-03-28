@@ -4,6 +4,7 @@ using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels.Parameters;
+using Peernet.SDK.Common;
 using Peernet.SDK.Models.Domain.Download;
 using Peernet.SDK.Models.Presentation.Footer;
 using System;
@@ -12,7 +13,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Peernet.SDK.Common;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -84,10 +84,10 @@ namespace Peernet.Browser.Application.ViewModels
             });
 
         public IAsyncCommand CollapseExpandDownloadsCommand => new AsyncCommand(() =>
-                 {
-                     AreDownloadsCollapsed ^= true;
-                     return Task.CompletedTask;
-                 });
+                  {
+                      AreDownloadsCollapsed ^= true;
+                      return Task.CompletedTask;
+                  });
 
         public string CommandLineInput
         {

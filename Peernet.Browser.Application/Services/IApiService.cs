@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using Peernet.SDK.Models.Domain.Common;
+﻿using Peernet.SDK.Models.Domain.Common;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.Services
 {

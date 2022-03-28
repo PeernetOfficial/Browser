@@ -7,7 +7,6 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public class NavigationBarViewModel : ViewModelBase
     {
-
         public NavigationBarViewModel(IModalNavigationService modalNavigationService, IUserContext userContext)
         {
             UserContext = userContext;

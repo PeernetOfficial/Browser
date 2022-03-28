@@ -35,7 +35,7 @@ namespace Peernet.Browser.Application.ViewModels
             Func<SearchResultRowModel, bool> isPlayerSupported)
         {
             this.refreshAction = refreshAction;
-            this.isPlayerSupported = isPlayerSupported ;
+            this.isPlayerSupported = isPlayerSupported;
 
             Title = title;
 

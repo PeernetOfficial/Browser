@@ -77,6 +77,5 @@ namespace Peernet.Browser.WPF.Controls
 
         [DllImport("user32.dll")]
         public static extern bool AttachThreadInput(uint idAttach, uint idAttachTo, bool fAttach);
-
     }
 }
