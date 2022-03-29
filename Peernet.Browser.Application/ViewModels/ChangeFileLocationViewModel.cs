@@ -49,9 +49,9 @@ namespace Peernet.Browser.Application.ViewModels
                 return Task.CompletedTask;
             });
 
-        private string TrimUnsopportedSegments(string path)
+        public static string TrimUnsopportedSegments(string path)
         {
-            return path.Replace("Your Files\\", string.Empty).Replace("Home\\", string.Empty);
+            return path.Replace("Your Files\\", string.Empty).Replace("Home", string.Empty).Replace("\\\\", "\\");
         }
     }
 }

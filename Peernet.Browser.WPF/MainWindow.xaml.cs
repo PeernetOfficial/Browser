@@ -6,6 +6,7 @@ using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels;
 using Peernet.Browser.Application.ViewModels.Parameters;
+using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.Browser.WPF.Views;
 using Peernet.SDK.Models.Extensions;
 using Peernet.SDK.Models.Presentation.Footer;
@@ -66,13 +67,23 @@ namespace Peernet.Browser.WPF
                     }
                 }
 
+                var directoryViewModel = App.ServiceProvider.GetRequiredService<DirectoryViewModel>();
+                if (DirectoryTab.IsSelected)
+                {
+                    var selected = directoryViewModel.VirtualFileSystem.GetCurrentlySelected();
+                    if (selected is not VirtualFileSystemCoreCategory && selected is not VirtualFileSystemCoreTier { Name: "Recent" } && selected is not VirtualFileSystemCoreTier { Name: "All files" })
+                    {
+                        fileModels.ForEach(fm => fm.Directory = ChangeFileLocationViewModel.TrimUnsopportedSegments(selected.AbsolutePath));
+                    }
+                }
+
                 var modalNavigationService = App.ServiceProvider.GetRequiredService<IModalNavigationService>();
                 var parameter = new ShareFileViewModelParameter(
                     App.ServiceProvider.GetRequiredService<IWarehouseService>(),
                     App.ServiceProvider.GetRequiredService<IBlockchainService>(),
                     modalNavigationService,
                     App.ServiceProvider.GetRequiredService<INotificationsManager>(),
-                    App.ServiceProvider.GetRequiredService<DirectoryViewModel>())
+                    directoryViewModel)
                 {
                     FileModels = fileModels
                 };
