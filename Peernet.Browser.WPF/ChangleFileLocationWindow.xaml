@@ -66,7 +66,7 @@
                         </TextBox>
                     </StackPanel>
                     <Border.InputBindings>
-                        <MouseBinding Command="{Binding DataContext.DirectoryViewModel.OpenCommand, ElementName=ChangleFileLocation}" CommandParameter="{Binding}" MouseAction="LeftClick" />
+                        <MouseBinding Command="{Binding DataContext.OpenCommand, ElementName=ChangleFileLocation}" CommandParameter="{Binding}" MouseAction="LeftClick" />
                     </Border.InputBindings>
                 </Border>
                 <DataTemplate.Triggers>
@@ -118,7 +118,7 @@
                         <!--Add scrollviewer here as well-->
                         <StackPanel Grid.Column="0">
                             <TextBlock Text="Home" HorizontalAlignment="Center" Foreground="{DynamicResource MainContentBrush}" FontWeight="Medium" FontSize="16" />
-                            <ItemsControl ItemsSource="{Binding DirectoryViewModel.VirtualFileSystem.Home.SubTiers}" ItemTemplate="{StaticResource VirtualFileSystemTreeTemplate}" />
+                            <ItemsControl ItemsSource="{Binding VirtualFileSystem.Home.SubTiers, UpdateSourceTrigger=PropertyChanged}" ItemTemplate="{StaticResource VirtualFileSystemTreeTemplate}" />
                         </StackPanel>
 
                         <Border Grid.Row="1" Grid.Column="1" Width="1" BorderThickness="0">
@@ -134,7 +134,7 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <ItemsControl Grid.Row="0" ItemsSource="{Binding DirectoryViewModel.PathElements, UpdateSourceTrigger=PropertyChanged}" Margin="15, 5, 0, 0">
+                            <ItemsControl Grid.Row="0" ItemsSource="{Binding PathElements, UpdateSourceTrigger=PropertyChanged}" Margin="15, 5, 0, 0">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <WrapPanel Orientation="Horizontal" />
@@ -161,7 +161,7 @@
                                                         </Style>
                                                     </TextBlock.Style>
                                                     <TextBlock.InputBindings>
-                                                        <MouseBinding Command="{Binding DataContext.DirectoryViewModel.OpenCommand, ElementName=ChangleFileLocation}" CommandParameter="{Binding}" MouseAction="LeftClick" />
+                                                        <MouseBinding Command="{Binding DataContext.OpenCommand, ElementName=ChangleFileLocation}" CommandParameter="{Binding}" MouseAction="LeftClick" />
                                                     </TextBlock.InputBindings>
                                                 </TextBlock>
 
@@ -195,7 +195,7 @@
                             </ItemsControl>
 
                             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Height="300" Margin="0, 0, 10, 0">
-                                <ItemsControl ItemsSource="{Binding DirectoryViewModel.ActiveSearchResults, IsAsync=True, UpdateSourceTrigger=PropertyChanged}" ItemTemplate="{StaticResource VirtualFileSystemGridTemplate}" />
+                                <ItemsControl ItemsSource="{Binding ActiveSearchResults, IsAsync=True, UpdateSourceTrigger=PropertyChanged}" ItemTemplate="{StaticResource VirtualFileSystemGridTemplate}" />
                             </ScrollViewer>
 
                             <Separator Grid.Row="2" Style="{DynamicResource StandardSeparatorStyle}" />

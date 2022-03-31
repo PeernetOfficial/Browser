@@ -1,5 +1,7 @@
-﻿using Peernet.SDK.Models.Domain.Common;
+﻿using Newtonsoft.Json;
+using Peernet.SDK.Models.Domain.Common;
 using Peernet.SDK.Models.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -7,9 +9,14 @@ using System.Linq;
 
 namespace Peernet.Browser.Application.VirtualFileSystem
 {
+    [Serializable]
     public class VirtualFileSystem
     {
         private readonly IFilesToCategoryBinder binder;
+
+        public VirtualFileSystem()
+        {
+        }
 
         public VirtualFileSystem(IEnumerable<ApiFile> sharedFiles, IFilesToCategoryBinder binder, bool isCurrentSelection = true)
         {
@@ -18,7 +25,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             CreateHomeCoreTier(sharedFiles, isCurrentSelection);
         }
 
-        public VirtualFileSystemCoreTier Home => VirtualFileSystemTiers.First(t => t.Name == "Home");
+        public VirtualFileSystemCoreTier Home => VirtualFileSystemTiers.FirstOrDefault(t => t.Name == "Home");
 
         public ObservableCollection<VirtualFileSystemCoreCategory> VirtualFileSystemCategories { get; set; } = new();
 
@@ -76,7 +83,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
         {
             // materialize
             var sharedFilesList = sharedFiles.ToList();
-            var homeTier = new VirtualFileSystemCoreTier(nameof(Home), VirtualFileSystemEntityType.Directory)
+            var homeTier = new VirtualFileSystemCoreTier(nameof(Home), VirtualFileSystemEntityType.Directory, Path.Combine("Your Files"))
             {
                 IsSelected = isCurrentSelection
             };
@@ -106,7 +113,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             VirtualFileSystemCoreTier higherTier = null;
             for (int i = 0; i < totalDepth; i++)
             {
-                var absolutePath = Path.Combine("Your Files", Path.Combine(directories.Take(i).ToArray()));
+                var absolutePath = Path.Combine("Your Files", nameof(Home), Path.Combine(directories.Take(i).ToArray()));
                 var tier = new VirtualFileSystemCoreTier(directories[i], VirtualFileSystemEntityType.Directory, absolutePath);
 
                 if (coreTier == null)

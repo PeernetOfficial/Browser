@@ -4,15 +4,21 @@ using System.ComponentModel;
 
 namespace Peernet.Browser.Application.VirtualFileSystem
 {
+    [Serializable]
     public class VirtualFileSystemEntity : IEquatable<VirtualFileSystemEntity>, INotifyPropertyChanged
     {
         private readonly VirtualFileSystemEntityType? type;
         private string name;
+        
+        // For serialization
+        public VirtualFileSystemEntity()
+        {
+        }
 
         public VirtualFileSystemEntity(ApiFile file, string name = null, VirtualFileSystemEntityType? type = null)
         {
             File = file;
-            this.name = name ?? File.Name;
+            this.name = name;
             this.type = type;
         }
 
@@ -21,7 +27,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
         public HighLevelFileType? DataFormat => File?.Format;
         public DateTime? Date => File?.Date;
 
-        public ApiFile File { get; init; }
+        public ApiFile File { get; set; }
 
         public string FileSize => $"{File?.Size}";
 
@@ -82,7 +88,17 @@ namespace Peernet.Browser.Application.VirtualFileSystem
                 return type.Value;
             }
 
+            if (File == null)
+            {
+                return VirtualFileSystemEntityType.Directory;
+            }
+
             return Enum.TryParse(File.Type.ToString(), true, out VirtualFileSystemEntityType entityType) ? entityType : VirtualFileSystemEntityType.Binary;
+        }
+
+        protected void RaiseEntityPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }

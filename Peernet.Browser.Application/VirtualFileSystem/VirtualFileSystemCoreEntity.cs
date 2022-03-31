@@ -1,11 +1,18 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace Peernet.Browser.Application.VirtualFileSystem
 {
+    [Serializable]
     public class VirtualFileSystemCoreEntity : VirtualFileSystemEntity, INotifyPropertyChanged
     {
         private bool isSelected;
+
+        public VirtualFileSystemCoreEntity()
+            : base()
+        {
+        }
 
         public VirtualFileSystemCoreEntity(string name, VirtualFileSystemEntityType type, string path = null)
         : base(null, name, type)
@@ -13,7 +20,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             Path = path ?? string.Empty;
         }
 
-        public string Path { get; }
+        public string Path { get; set; }
 
         public string AbsolutePath => System.IO.Path.Combine(Path, Name);
 
