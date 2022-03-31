@@ -141,7 +141,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         public static string TrimUnsopportedSegments(string path)
         {
-            return path.Replace("Your Files\\", string.Empty).Replace("Home", string.Empty).Replace("\\\\", "\\");
+            return path.Replace("Your Files\\", string.Empty).Replace("Home", string.Empty).Replace("\\\\", "\\").Trim('\\');
         }
 
         public void ChangeSelectedEntity(VirtualFileSystemCoreEntity coreEntity)

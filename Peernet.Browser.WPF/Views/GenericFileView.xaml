@@ -9,9 +9,6 @@
             <SolidColorBrush Color="{DynamicResource ModalBackground}" />
         </Border.Background>
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -61,7 +58,7 @@
                     <Button x:Name="changeButton" DockPanel.Dock="Right" Content="Change" Style="{StaticResource LinkButton}" Click="ChangeVirtualDirectory_OnClick" DataContext="{Binding Selected}" />
                 </DockPanel>
 
-                <StackPanel Grid.Row="2" Grid.Column="0">
+                <StackPanel Grid.Row="2" MaxWidth="600">
                     <TextBlock Style="{StaticResource Title}">File name</TextBlock>
                     <Border Margin="0 5" Height="30" BorderThickness="1" BorderBrush="{DynamicResource ContrastBorderBrush}">
                         <TextBox Text="{Binding Selected.FileNameWithoutExtension, UpdateSourceTrigger=PropertyChanged}" Foreground="{DynamicResource MainContentBrush}"
@@ -75,41 +72,39 @@
                         <Border.Background>
                             <SolidColorBrush Color="{DynamicResource TextAreaBackground}" />
                         </Border.Background>
-                        <Grid>
-                            <TextBox Height="132" Text="{Binding Selected.Description, UpdateSourceTrigger=PropertyChanged}"
-                                 VerticalContentAlignment="Top"
-                                 HorizontalContentAlignment="Left"
-                                 Foreground="{DynamicResource MainContentBrush}"
-                                 BorderThickness="0"
-                                 CaretBrush="{DynamicResource MainTextBrush}"
-                                 Cursor="IBeam"
-                                 Template="{StaticResource RoundedTextBox}"
-                                 AcceptsReturn="True" TextWrapping="Wrap" AcceptsTab="True">
-                                <TextBox.Style>
-                                    <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-                                        <Setter Property="Background" Value="Transparent" />
-                                        <Style.Resources>
-                                            <VisualBrush x:Key="BannerBrush" AlignmentX="Left" AlignmentY="Top" Stretch="None">
-                                                <VisualBrush.Visual>
-                                                    <Label Content="Add description with #tags to make your file searchable!" Foreground="{DynamicResource LightGrayBrush}" />
-                                                </VisualBrush.Visual>
-                                            </VisualBrush>
-                                        </Style.Resources>
-                                        <Style.Triggers>
-                                            <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
-                                                <Setter Property="Background" Value="{StaticResource BannerBrush}" />
-                                            </Trigger>
-                                            <Trigger Property="Text" Value="{x:Null}">
-                                                <Setter Property="Background" Value="{StaticResource BannerBrush}" />
-                                            </Trigger>
-                                            <Trigger Property="IsKeyboardFocused" Value="True">
-                                                <Setter Property="Background" Value="Transparent" />
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </TextBox.Style>
-                            </TextBox>
-                        </Grid>
+                        <TextBox Height="132" Text="{Binding Selected.Description, UpdateSourceTrigger=PropertyChanged}"
+                                VerticalContentAlignment="Top"
+                                HorizontalContentAlignment="Left"
+                                Foreground="{DynamicResource MainContentBrush}"
+                                BorderThickness="0"
+                                CaretBrush="{DynamicResource MainTextBrush}"
+                                Cursor="IBeam"
+                                Template="{StaticResource RoundedTextBox}"
+                                AcceptsReturn="True" TextWrapping="Wrap" AcceptsTab="True">
+                            <TextBox.Style>
+                                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Style.Resources>
+                                        <VisualBrush x:Key="BannerBrush" AlignmentX="Left" AlignmentY="Top" Stretch="None">
+                                            <VisualBrush.Visual>
+                                                <Label Content="Add description with #tags to make your file searchable!" Foreground="{DynamicResource LightGrayBrush}" />
+                                            </VisualBrush.Visual>
+                                        </VisualBrush>
+                                    </Style.Resources>
+                                    <Style.Triggers>
+                                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                            <Setter Property="Background" Value="{StaticResource BannerBrush}" />
+                                        </Trigger>
+                                        <Trigger Property="Text" Value="{x:Null}">
+                                            <Setter Property="Background" Value="{StaticResource BannerBrush}" />
+                                        </Trigger>
+                                        <Trigger Property="IsKeyboardFocused" Value="True">
+                                            <Setter Property="Background" Value="Transparent" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
                     </Border>
                 </StackPanel>
 
