@@ -116,10 +116,10 @@
                         </Grid.ColumnDefinitions>
 
                         <!--Add scrollviewer here as well-->
-                        <StackPanel Grid.Column="0">
-                            <TextBlock Text="Home" HorizontalAlignment="Center" Foreground="{DynamicResource MainContentBrush}" FontWeight="Medium" FontSize="16" />
-                            <ItemsControl ItemsSource="{Binding VirtualFileSystem.Home.SubTiers, UpdateSourceTrigger=PropertyChanged}" ItemTemplate="{StaticResource VirtualFileSystemTreeTemplate}" />
-                        </StackPanel>
+                            <TextBlock Grid.Column="0" Text="Home" HorizontalAlignment="Center" Foreground="{DynamicResource MainContentBrush}" FontWeight="Medium" FontSize="16" />
+                        <ScrollViewer Grid.Column="0"  VerticalScrollBarVisibility="Auto" Margin="0, 20, 10, 0">
+                                <ItemsControl ItemsSource="{Binding VirtualFileSystem.Home.SubTiers, UpdateSourceTrigger=PropertyChanged}" ItemTemplate="{StaticResource VirtualFileSystemTreeTemplate}" />
+                            </ScrollViewer>
 
                         <Border Grid.Row="1" Grid.Column="1" Width="1" BorderThickness="0">
                             <Border.Background>
@@ -194,7 +194,7 @@
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
 
-                            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Height="300" Margin="0, 0, 10, 0">
+                            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0, 0, 10, 0">
                                 <ItemsControl ItemsSource="{Binding ActiveSearchResults, IsAsync=True, UpdateSourceTrigger=PropertyChanged}" ItemTemplate="{StaticResource VirtualFileSystemGridTemplate}" />
                             </ScrollViewer>
 
