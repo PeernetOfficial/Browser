@@ -6,8 +6,10 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
 {
     public class FilePreviewViewModelParameter
     {
-        public FilePreviewViewModelParameter(ApiFile file,
-            Func<Task> action, string actionButtonContent)
+        public FilePreviewViewModelParameter(
+            ApiFile file,
+            Func<Task> action,
+            string actionButtonContent)
         {
             ActionButtonContent = actionButtonContent;
             Action = action;

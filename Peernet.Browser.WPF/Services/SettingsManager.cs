@@ -1,4 +1,5 @@
-﻿using Peernet.SDK.Common;
+﻿using Peernet.Browser.Application.Utilities;
+using Peernet.SDK.Common;
 using Peernet.SDK.Models.Presentation;
 using System;
 using System.Configuration;
@@ -47,7 +48,7 @@ namespace Peernet.Browser.WPF.Services
 
         public string DownloadPath
         {
-            get => StripInvalidWindowsCharacters(Environment.ExpandEnvironmentVariables(Get(nameof(DownloadPath))));
+            get => UtilityHelper.StripInvalidWindowsCharactersFromPath(Environment.ExpandEnvironmentVariables(Get(nameof(DownloadPath))));
             set => Set(nameof(DownloadPath), value);
         }
 
@@ -104,16 +105,6 @@ namespace Peernet.Browser.WPF.Services
                     config.AppSettings.Settings.Remove(key);
                 }
             }
-        }
-
-        private static string StripInvalidWindowsCharacters(string s)
-        {
-            foreach (char c in Path.GetInvalidPathChars())
-            {
-                s = s.Replace(c.ToString(), "");
-            }
-
-            return s;
         }
 
         private Uri GetSocket()

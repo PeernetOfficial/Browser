@@ -52,7 +52,9 @@ namespace Peernet.Browser.Application.Plugins
             foreach (var file in files)
             {
                 if (FileVersionInfo.GetVersionInfo(file).ProductName.StartsWith("Peernet.Browser.Plugins."))
+                {
                     return file;
+                }
             }
             return string.Empty;
         }

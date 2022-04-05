@@ -17,6 +17,6 @@ namespace Peernet.Browser.Application.VirtualFileSystem
         {
         }
 
-        public List<VirtualFileSystemCoreTier> SubTiers => VirtualFileSystemEntities.Select(e => e as VirtualFileSystemCoreTier).ToList();//.OfType<VirtualFileSystemCoreTier>().ToList();
+        public List<VirtualFileSystemCoreTier> SubTiers => VirtualFileSystemEntities.OfType<VirtualFileSystemCoreTier>().ToList();
     }
 }

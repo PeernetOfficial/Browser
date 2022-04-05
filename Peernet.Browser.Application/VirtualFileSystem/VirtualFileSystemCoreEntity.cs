@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 
 namespace Peernet.Browser.Application.VirtualFileSystem
 {
     [Serializable]
-    public class VirtualFileSystemCoreEntity : VirtualFileSystemEntity, INotifyPropertyChanged
+    public class VirtualFileSystemCoreEntity : VirtualFileSystemEntity
     {
         private bool isSelected;
 
@@ -30,13 +29,12 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             set
             {
                 isSelected = value;
-                PropertyChanged?.Invoke(this, new(nameof(IsSelected)));
+                RaiseEntityPropertyChanged(nameof(IsSelected));
             }
         }
 
         public ObservableCollection<VirtualFileSystemEntity> VirtualFileSystemEntities { get; set; } = new();
 
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public VirtualFileSystemCoreEntity GetSelected()
         {

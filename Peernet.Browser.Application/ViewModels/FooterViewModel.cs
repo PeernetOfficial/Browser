@@ -22,12 +22,12 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IApiService apiService;
         private readonly IApplicationManager applicationManager;
         private readonly IBlockchainService blockchainService;
-        private readonly INavigationService navigationService;
+        private readonly DirectoryViewModel directoryViewModel;
         private readonly IModalNavigationService modalNavigationService;
+        private readonly INavigationService navigationService;
+        private readonly INotificationsManager notificationsManager;
         private readonly ISettingsManager settingsManager;
         private readonly IWarehouseService warehouseService;
-        private readonly INotificationsManager notificationsManager;
-        private readonly DirectoryViewModel directoryViewModel;
         private bool areDownloadsCollapsed;
         private string commandLineInput;
         private string commandLineOutput;
@@ -83,11 +83,12 @@ namespace Peernet.Browser.Application.ViewModels
                 await DownloadManager.CancelDownload(id);
             });
 
-        public IAsyncCommand CollapseExpandDownloadsCommand => new AsyncCommand(() =>
-                  {
-                      AreDownloadsCollapsed ^= true;
-                      return Task.CompletedTask;
-                  });
+        public IAsyncCommand CollapseExpandDownloadsCommand => new AsyncCommand(
+            () =>
+            {
+                AreDownloadsCollapsed ^= true;
+                return Task.CompletedTask;
+            });
 
         public string CommandLineInput
         {

@@ -13,5 +13,15 @@ namespace Peernet.Browser.Application.Utilities
 
             return s;
         }
+
+        public static string StripInvalidWindowsCharactersFromPath(string s)
+        {
+            foreach (char c in Path.GetInvalidPathChars())
+            {
+                s = s.Replace(c.ToString(), "");
+            }
+
+            return s;
+        }
     }
 }
