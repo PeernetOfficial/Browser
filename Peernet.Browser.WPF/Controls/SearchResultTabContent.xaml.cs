@@ -1,11 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using DevExpress.Xpf.Grid;
+using Microsoft.Extensions.DependencyInjection;
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.ViewModels;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.WPF.Extensions;
 using Peernet.SDK.Models.Presentation.Footer;
 using Peernet.SDK.Models.Presentation.Home;
-using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -21,24 +21,19 @@ namespace Peernet.Browser.WPF.Controls
         public SearchResultTabContent()
         {
             InitializeComponent();
+            SearchResultsTable.HiddenColumnChooser += SearchResultsTable_ColumnChooserStateChanged;
+            SearchResultsTable.ShownColumnChooser += SearchResultsTable_ColumnChooserStateChanged;
             App.MainWindowClicked += OnMainWindowClicked;
         }
 
-        private async void DataGrid_Sorting(object sender, DataGridSortingEventArgs e)
+        private void SearchResultsTable_ColumnChooserStateChanged(object sender, RoutedEventArgs e)
         {
-            e.Handled = true;
-            var column = e.Column;
-            var direction = (column.SortDirection != ListSortDirection.Ascending) ? ListSortDirection.Ascending : ListSortDirection.Descending;
-            column.SortDirection = direction;
-            if (DataContext is SearchTabElementViewModel model)
-            {
-                await model.OnSorting(e.Column.SortMemberPath, direction == ListSortDirection.Ascending ? DataGridSortingTypeEnum.Asc : DataGridSortingTypeEnum.Desc);
-            }
+            ((SearchTabElementViewModel)DataContext).ColumnsIconModel.IsSelected = SearchResultsTable.IsColumnChooserVisible;
         }
 
         private async void FileGrid_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
-            var viewer = GetScrollViewer((DataGrid)sender);
+            var viewer = GetScrollViewer((GridControl)sender);
             if (viewer.VerticalOffset + viewer.ViewportHeight == viewer.ExtentHeight)
             {
                 if (DataContext is SearchTabElementViewModel viewModel)
@@ -77,7 +72,7 @@ namespace Peernet.Browser.WPF.Controls
             {
                 if (DataContext is SearchTabElementViewModel viewModel)
                 {
-                    viewModel.ColumnsIconModel.IsSelected = false;
+                    SearchResultsTable.IsColumnChooserVisible = false;
                     viewModel.FiltersIconModel.IsSelected = false;
                 }
             }
@@ -85,13 +80,18 @@ namespace Peernet.Browser.WPF.Controls
 
         private void Open_OnClick(object sender, MouseButtonEventArgs e)
         {
-            var element = (FrameworkElement)sender;
-            var model = (SearchResultRowModel)element.DataContext;
+            var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;
+            var model = (SearchResultRowModel)cellData.RowData.Row;
             var downloadManager = App.ServiceProvider.GetRequiredService<IDownloadManager>();
             var param = new FilePreviewViewModelParameter(model.File, async () => await downloadManager.QueueUpDownload(new DownloadModel(model.File)), "Download");
             var filePreviewViewModel = new FilePreviewViewModel();
             filePreviewViewModel.Prepare(param);
             new FilePreviewWindow(filePreviewViewModel).Show();
+        }
+
+        private void FilterIconControl_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            SearchResultsTable.IsColumnChooserVisible ^= true;
         }
     }
 }

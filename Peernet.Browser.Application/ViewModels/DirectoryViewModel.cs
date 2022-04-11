@@ -10,7 +10,6 @@ using Peernet.SDK.Models.Extensions;
 using Peernet.SDK.Models.Plugins;
 using Peernet.SDK.Models.Presentation.Footer;
 using Peernet.SDK.Models.Presentation.Home;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -18,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class DirectoryViewModel : ViewModelBase, ISearchable
+    public class DirectoryViewModel : ViewModelBase
     {
         private const string LibrariesSegment = "Libraries";
         private const string YourFilesSegment = "Your Files";
@@ -30,15 +29,6 @@ namespace Peernet.Browser.Application.ViewModels
         private ObservableCollection<VirtualFileSystemEntity> activeSearchResults;
         private bool isLoaded = false;
         private ObservableCollection<VirtualFileSystemCoreEntity> pathElements;
-        private string searchInput;
-        private bool showActionsColumn = true;
-        private bool showDataFormatColumn = false;
-        private bool showDateColumn = true;
-        private bool showFolderColumn = false;
-        private bool showHint = true;
-        private bool showSearchBox;
-        private bool showSizeColumn = true;
-        private bool showTypeColumn = true;
         private VirtualFileSystem.VirtualFileSystem virtualFileSystem;
 
         public DirectoryViewModel(
@@ -54,7 +44,6 @@ namespace Peernet.Browser.Application.ViewModels
             this.notificationsManager = notificationsManager;
             this.playButtonPlugs = playButtonPlugs;
 
-            SetupColumnsFilter();
             Task.Run(async () => await ReloadVirtualFileSystem(false)).ConfigureAwait(false).GetAwaiter().GetResult();
             InitializePath(VirtualFileSystem?.Home);
             OpenCommand.Execute(VirtualFileSystem?.Home);
@@ -69,10 +58,6 @@ namespace Peernet.Browser.Application.ViewModels
                 OnPropertyChanged(nameof(ActiveSearchResults));
             }
         }
-
-        public ObservableCollection<CustomCheckBoxModel> ColumnsCheckboxes { get; } = new ObservableCollection<CustomCheckBoxModel>();
-
-        public IconModel ColumnsIconModel { get; } = new IconModel(FilterType.Columns, true);
 
         public IAsyncCommand<VirtualFileSystemEntity> DeleteCommand =>
             new AsyncCommand<VirtualFileSystemEntity>(
@@ -153,112 +138,11 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        public IAsyncCommand RemoveHint => new AsyncCommand(() =>
-                        {
-                            if (ShowHint)
-                            {
-                                ShowHint = false;
-                                ShowSearchBox = true;
-                            }
-
-                            return Task.CompletedTask;
-                        });
-
         public IAsyncCommand SearchCommand =>
             new AsyncCommand(async () =>
             {
                 await UpdateActiveSearchResults.ExecuteAsync(PathElements?.Last());
             });
-
-        public string SearchInput
-        {
-            get => searchInput;
-            set
-            {
-                searchInput = value;
-                OnPropertyChanged(nameof(SearchInput));
-            }
-        }
-
-        public bool ShowActionsColumn
-        {
-            get => showActionsColumn;
-            set
-            {
-                showActionsColumn = value;
-                OnPropertyChanged(nameof(ShowActionsColumn));
-            }
-        }
-
-        public bool ShowDataFormatColumn
-        {
-            get => showDataFormatColumn;
-            set
-            {
-                showDataFormatColumn = value;
-                OnPropertyChanged(nameof(ShowDataFormatColumn));
-            }
-        }
-
-        public bool ShowDateColumn
-        {
-            get => showDateColumn;
-            set
-            {
-                showDateColumn = value;
-                OnPropertyChanged(nameof(ShowDateColumn));
-            }
-        }
-
-        public bool ShowFolderColumn
-        {
-            get => showFolderColumn;
-            set
-            {
-                showFolderColumn = value;
-                OnPropertyChanged(nameof(ShowFolderColumn));
-            }
-        }
-
-        public bool ShowHint
-        {
-            get => showHint;
-            set
-            {
-                showHint = value;
-                OnPropertyChanged(nameof(ShowHint));
-            }
-        }
-
-        public bool ShowSearchBox
-        {
-            get => showSearchBox;
-            set
-            {
-                showSearchBox = value;
-                OnPropertyChanged(nameof(ShowSearchBox));
-            }
-        }
-
-        public bool ShowSizeColumn
-        {
-            get => showSizeColumn;
-            set
-            {
-                showSizeColumn = value;
-                OnPropertyChanged(nameof(ShowSizeColumn));
-            }
-        }
-
-        public bool ShowTypeColumn
-        {
-            get => showTypeColumn;
-            set
-            {
-                showTypeColumn = value;
-                OnPropertyChanged(nameof(ShowTypeColumn));
-            }
-        }
 
         public IAsyncCommand<VirtualFileSystemEntity> StreamFileCommand =>
             new AsyncCommand<VirtualFileSystemEntity>(
@@ -282,7 +166,7 @@ namespace Peernet.Browser.Application.ViewModels
                     if (entity != null)
                     {
                         var refreshedEntity = VirtualFileSystem.Find(entity, VirtualFileSystem.VirtualFileSystemTiers) ?? VirtualFileSystem.Find(entity, VirtualFileSystem.VirtualFileSystemCategories);
-                        ActiveSearchResults = ApplySearchResultsFiltering(refreshedEntity?.VirtualFileSystemEntities.ToList());
+                        ActiveSearchResults = new(refreshedEntity?.VirtualFileSystemEntities);
                     }
 
                     return Task.CompletedTask;
@@ -398,18 +282,6 @@ namespace Peernet.Browser.Application.ViewModels
             VirtualFileSystem.VirtualFileSystemTiers.Add(tier);
         }
 
-        private ObservableCollection<VirtualFileSystemEntity> ApplySearchResultsFiltering(List<VirtualFileSystemEntity> results)
-        {
-            if (results.IsNullOrEmpty())
-            {
-                return new ObservableCollection<VirtualFileSystemEntity>();
-            }
-
-            return !string.IsNullOrEmpty(SearchInput)
-                ? new(results.Where(f => f.Name.Contains(SearchInput, StringComparison.OrdinalIgnoreCase)).ToList())
-                : new(results);
-        }
-
         private VirtualFileSystemCoreEntity DetermineHigherTier()
         {
             for (int i = 1; i < PathElements.Count; i++)
@@ -423,36 +295,6 @@ namespace Peernet.Browser.Application.ViewModels
             }
 
             return null;
-        }
-
-        private void OnColumnCheckboxClick(CustomCheckBoxModel selection)
-        {
-            switch (selection.Content)
-            {
-                case "Folder":
-                    ShowFolderColumn = selection.IsChecked;
-                    break;
-
-                case "Type":
-                    ShowTypeColumn = selection.IsChecked;
-                    break;
-
-                case "Data Format":
-                    ShowDataFormatColumn = selection.IsChecked;
-                    break;
-
-                case "Date":
-                    ShowDateColumn = selection.IsChecked;
-                    break;
-
-                case "Size":
-                    ShowSizeColumn = selection.IsChecked;
-                    break;
-
-                case "Actions":
-                    ShowActionsColumn = selection.IsChecked;
-                    break;
-            }
         }
 
         private void RefreshPathObjects()
@@ -499,16 +341,6 @@ namespace Peernet.Browser.Application.ViewModels
                     SetPlayerStateRecursively(coreEntity.VirtualFileSystemEntities.ToList());
                 }
             });
-        }
-
-        private void SetupColumnsFilter()
-        {
-            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Folder", IsChecked = showFolderColumn, IsCheckChanged = OnColumnCheckboxClick });
-            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Data Format", IsChecked = showDataFormatColumn, IsCheckChanged = OnColumnCheckboxClick });
-            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Type", IsChecked = showTypeColumn, IsCheckChanged = OnColumnCheckboxClick });
-            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Date", IsChecked = showDateColumn, IsCheckChanged = OnColumnCheckboxClick });
-            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Size", IsChecked = showSizeColumn, IsCheckChanged = OnColumnCheckboxClick });
-            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Actions", IsChecked = showActionsColumn, IsCheckChanged = OnColumnCheckboxClick });
         }
     }
 }

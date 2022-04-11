@@ -2,15 +2,9 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Peernet.Browser.WPF.Controls"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
              Name="SharedResultTab">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <FrameworkElement x:Key="ProxyElement" DataContext="{Binding}" />
-        </ResourceDictionary>
-    </UserControl.Resources>
-
     <Grid>
-        <local:ColumnsSelectorControl Grid.Row="0" Panel.ZIndex="1" Margin="0 48 115 0" HorizontalAlignment="Right" Height="270" VerticalAlignment="Top" />
         <local:FiltersControl Grid.Row="0" Panel.ZIndex="1" Margin="0 0 30 0" HorizontalAlignment="Right" VerticalAlignment="Top" />
         <Grid>
             <Grid.RowDefinitions>
@@ -20,7 +14,6 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="55" />
             </Grid.RowDefinitions>
-            <ContentControl Content="{StaticResource ProxyElement}" Visibility="Collapsed" />
 
             <ItemsControl Margin="50 0 0 0" Grid.Row="0" VerticalContentAlignment="Center" ItemsSource="{Binding FilterIconModels, IsAsync=True}">
                 <ItemsControl.ItemsPanel>
@@ -36,7 +29,7 @@
             </ItemsControl>
 
             <DockPanel Panel.ZIndex="2"  Margin="0 0 50 0" LastChildFill="False" Grid.Row="0"  HorizontalAlignment="Right">
-                <local:FilterIconControl Height="40" DataContext="{Binding ColumnsIconModel}" />
+                <local:FilterIconControl Height="40" DataContext="{Binding ColumnsIconModel}" PreviewMouseDown="FilterIconControl_PreviewMouseDown" />
                 <local:FilterIconControl Height="40" DataContext="{Binding FiltersIconModel}" />
             </DockPanel>
 
@@ -66,86 +59,93 @@
                 <Button Command="{Binding ClearCommand}" FontSize="14" HorizontalAlignment="Right" Style="{DynamicResource LinkButton}">Clear all filters</Button>
             </DockPanel>
 
-            <DataGrid Visibility="{Binding Loader.IsNotLoading, Converter={StaticResource BoolToVisibility}}"
-                  Name="FileGrid" Sorting="DataGrid_Sorting" Padding="25 10 15 0" HorizontalAlignment="Stretch" Grid.Row="3"
-                  Style="{DynamicResource DataGridStyle}" ScrollViewer.ScrollChanged="FileGrid_ScrollChanged"
-                  ItemsSource="{Binding TableResult, IsAsync=True}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False">
-                <DataGrid.Columns>
-                    <!--<DataGridTemplateColumn Header="" SortMemberPath="First">
-                    <DataGridTemplateColumn.CellTemplate>
+            <dxg:GridControl x:Name="SearchResultsGrid"
+                             Visibility="{Binding Loader.IsNotLoading, Converter={StaticResource BoolToVisibility}}"
+                             Padding="25 10 15 0"
+                             HorizontalAlignment="Stretch"
+                             Grid.Row="3"
+                             ScrollViewer.ScrollChanged="FileGrid_ScrollChanged"
+                             ItemsSource="{Binding TableResult, IsAsync=True}">
+                <dxg:GridControl.View>
+                    <dxg:TableView x:Name="SearchResultsTable"/>
+                </dxg:GridControl.View>
+                <dxg:GridControl.Columns>
+                    <!--<dxg:GridColumn Header="" SortMemberPath="First">
+                    <dxg:GridColumn.CellTemplate>
                         <DataTemplate>
                             <Image Width="10" Style="{StaticResource DotStyle}" />
                         </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>-->
-                    <DataGridTemplateColumn Width="*" Header="NAME" SortMemberPath="Name" HeaderStyle="{StaticResource ShiftedDataGridColumnHeaderStyle}">
-                        <DataGridTemplateColumn.CellTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                </dxg:GridColumn>-->
+                    <dxg:GridColumn Width="*" Header="NAME" SortFieldName="Name" FieldName="Name" HeaderStyle="{StaticResource ShiftedDataGridColumnHeaderStyle}" HorizontalHeaderContentAlignment="Left">
+                        <dxg:GridColumn.CellTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal" Margin="20, 0, 10, 0">
-                                    <Image Width="13.71" Height="20" Style="{DynamicResource DownloadItemImageStyle}" />
-                                    <TextBlock Text="{Binding Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource Underlined}" Cursor="Hand">
+                                <Grid Margin="20, 0, 0, 0" DataContext="{Binding Path=RowData.Row}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Width="13.71" Height="20" Style="{StaticResource DownloadItemImageStyle}" DataContext="{Binding}" />
+                                    <TextBlock Grid.Column="1" Text="{Binding Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource Underlined}" Cursor="Hand">
                                         <TextBlock.InputBindings>
-                                            <MouseBinding Command="{Binding DataContext.StreamFileCommand, ElementName=SharedResultTab}" CommandParameter="{Binding}" MouseAction="LeftClick" />
+                                            <MouseBinding Command="{Binding DataContext.StreamFileCommand, ElementName=SharedResultTab}" CommandParameter="{Binding }" MouseAction="LeftClick" />
                                         </TextBlock.InputBindings>
                                     </TextBlock>
-                                </StackPanel>
+                                </Grid>
                             </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Visibility="{Binding DataContext.ShowTypeColumn, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}" Header="TYPE" SortMemberPath="Type" Width="100">
-                        <DataGridTemplateColumn.CellTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="TYPE" SortFieldName="Type" FieldName="Type" Width="70">
+                        <dxg:GridColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding File.Type}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                <TextBlock Text="{Binding RowData.Row.File.Type}" VerticalAlignment="Center" HorizontalAlignment="Center" />
                             </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Visibility="{Binding DataContext.ShowDataFormatColumn, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}" Header="DATA FORMAT" SortMemberPath="Format" Width="100">
-                        <DataGridTemplateColumn.CellTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="DATA FORMAT" SortFieldName="Format" FieldName="Format" Width="100">
+                        <dxg:GridColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding File.Format}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                <TextBlock Text="{Binding RowData.Row.File.Format}" VerticalAlignment="Center" HorizontalAlignment="Center" />
                             </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Visibility="{Binding DataContext.ShowFolderColumn, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}" Header="FOLDER" SortMemberPath="Folder" Width="100">
-                        <DataGridTemplateColumn.CellTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="FOLDER" SortFieldName="Folder" FieldName="Folder" Width="100">
+                        <dxg:GridColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding File.Folder}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                <TextBlock Text="{Binding RowData.Row.File.Folder}" VerticalAlignment="Center" HorizontalAlignment="Center" />
                             </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Visibility="{Binding DataContext.ShowDateColumn, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}"  Width="150" Header="DATE" SortMemberPath="Date">
-                        <DataGridTemplateColumn.CellTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="DATE" SortFieldName="Date" FieldName="Date" Width="120">
+                        <dxg:GridColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Date, StringFormat=d}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                <TextBlock Text="{Binding RowData.Row.Date, StringFormat=d}" VerticalAlignment="Center" HorizontalAlignment="Center" />
                             </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Visibility="{Binding DataContext.ShowSizeColumn, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}"  Width="160" Header="SIZE" SortMemberPath="Size">
-                        <DataGridTemplateColumn.CellTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="SIZE" SortFieldName="File.Size" FieldName="File.Size" Width="110">
+                        <dxg:GridColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Size, Converter={StaticResource BytesToSuffixConverter}}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                <TextBlock Text="{Binding RowData.Row.Size, Converter={StaticResource BytesToSuffixConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center" />
                             </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Visibility="{Binding DataContext.ShowSharedByColumn, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}"  Width="100" Header="SHARED BY" SortMemberPath="SharedBy">
-                        <DataGridTemplateColumn.CellTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="SHARED BY" SortFieldName="SharedBy" FieldName="SharedBy" Width="100">
+                        <dxg:GridColumn.CellTemplate>
                             <DataTemplate>
-                                <Grid>
+                                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Padding="0 5 20 5"
-                                           Background="Transparent"
-                                           Grid.Column="0"
-                                           Text="{Binding SharedBy, StringFormat={}{0} Peers}"
-                                           VerticalAlignment="Center"
-                                           HorizontalAlignment="Left"
-                                           ToolTipService.IsEnabled="{Binding IsMapEnabled}"
-                                           ToolTipService.InitialShowDelay="0"
-                                           ToolTipService.BetweenShowDelay="0"
-                                           ToolTipService.VerticalOffset="127"
-                                           ToolTipService.Placement="Center">
+                                    <TextBlock Background="Transparent"
+                                               Grid.Column="0"
+                                               Text="{Binding RowData.Row.SharedBy, StringFormat={}{0} Peers}"
+                                               ToolTipService.IsEnabled="{Binding RowData.Row.IsMapEnabled}"
+                                               ToolTipService.InitialShowDelay="0"
+                                               ToolTipService.BetweenShowDelay="0"
+                                               ToolTipService.VerticalOffset="127"
+                                               ToolTipService.Placement="Center">
                                         <TextBlock.ToolTip>
                                             <ToolTip>
                                                 <ToolTip.Style>
@@ -162,13 +162,13 @@
                                             </ToolTip>
                                         </TextBlock.ToolTip>
                                     </TextBlock>
-                                    <Image Visibility="{Binding FlameIsVisible, Converter={StaticResource BoolToVisibility}}" Height="20" Grid.Column="1" Source="{DynamicResource FlameDrawingImage}" />
+                                    <Image Visibility="{Binding RowData.Row.FlameIsVisible, Converter={StaticResource BoolToVisibility}}" Height="20" Grid.Column="1" Source="{DynamicResource FlameDrawingImage}" />
                                 </Grid>
                             </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Visibility="{Binding DataContext.ShowActionsColumn, Source={StaticResource ProxyElement}, Converter={StaticResource BoolToVisibility}}" Width="170">
-                        <DataGridTemplateColumn.CellTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Width="170">
+                        <dxg:GridColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                     <Button Style="{StaticResource DataGridActionButton}" PreviewMouseLeftButtonDown="Open_OnClick" ToolTip="Details">
@@ -176,7 +176,7 @@
                                             <ImageBrush ImageSource="{DynamicResource InfoDrawingImage}" />
                                         </Button.Background>
                                     </Button>
-                                    <Button Command="{Binding DataContext.StreamFileCommand, ElementName=SharedResultTab}" CommandParameter="{Binding}" Height="39" Width="37" IsEnabled="{Binding IsPlayerEnabled}">
+                                    <Button Command="{Binding DataContext.StreamFileCommand, ElementName=SharedResultTab}" CommandParameter="{Binding RowData.Row}" Height="39" Width="37" IsEnabled="{Binding RowData.Row.IsPlayerEnabled}">
                                         <Button.Background>
                                             <ImageBrush ImageSource="{DynamicResource PlayDrawingImage}" />
                                         </Button.Background>
@@ -186,17 +186,17 @@
                                             </Style>
                                         </Button.Style>
                                     </Button>
-                                    <Button Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.DownloadCommand, ElementName=SharedResultTab}" CommandParameter="{Binding}" Width="45" Height="44">
+                                    <Button Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.DownloadCommand, ElementName=SharedResultTab}" CommandParameter="{Binding RowData.Row}" Width="45" Height="44">
                                         <Button.Background>
                                             <ImageBrush ImageSource="{DynamicResource DownloadDrawingImage}" />
                                         </Button.Background>
                                     </Button>
                                 </StackPanel>
                             </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                </dxg:GridControl.Columns>
+            </dxg:GridControl>
             <TextBlock FontSize="14" Foreground="{DynamicResource MainContentBrush}"  Visibility="{Binding Loader.IsLoading, Converter={StaticResource BoolToVisibility}}" Margin="60 40" Grid.Row="3" Text="{Binding Loader.Text}" />
             <Separator Grid.Row="4" Style="{DynamicResource StandardSeparatorStyle}" VerticalAlignment="Top" />
         </Grid>

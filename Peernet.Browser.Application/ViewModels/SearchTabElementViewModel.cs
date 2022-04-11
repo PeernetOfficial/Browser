@@ -17,13 +17,6 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly Func<SearchResultRowModel, bool> isPlayerSupported;
         private bool isClearing;
         private int limit = increase;
-        private bool showTypeColumn = false;
-        private bool showFolderColumn = false;
-        private bool showDataFormatColumn = false;
-        private bool showDateColumn = true;
-        private bool showActionsColumn = true;
-        private bool showSharedByColumn = true;
-        private bool showSizeColumn = true;
 
         public SearchTabElementViewModel(
             string title,
@@ -76,7 +69,7 @@ namespace Peernet.Browser.Application.ViewModels
                 return Task.CompletedTask;
             });
 
-            ColumnsIconModel = new IconModel(FilterType.Columns, true, OpenCloseColumnsFilter);
+            ColumnsIconModel = new IconModel(FilterType.Columns, true);
             FiltersIconModel = new IconModel(FilterType.Filters, true, OpenCloseFilters);
 
             InitIcons();
@@ -106,76 +99,6 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IAsyncCommand<SearchFiltersType> RemoveFilterCommand { get; }
 
-        public bool ShowTypeColumn
-        {
-            get => showTypeColumn;
-            set
-            {
-                showTypeColumn = value;
-                OnPropertyChanged(nameof(ShowTypeColumn));
-            }
-        }
-
-        public bool ShowFolderColumn
-        {
-            get => showFolderColumn;
-            set
-            {
-                showFolderColumn = value;
-                OnPropertyChanged(nameof(ShowFolderColumn));
-            }
-        }
-
-        public bool ShowDataFormatColumn
-        {
-            get => showDataFormatColumn;
-            set
-            {
-                showDataFormatColumn = value;
-                OnPropertyChanged(nameof(ShowDataFormatColumn));
-            }
-        }
-
-        public bool ShowDateColumn
-        {
-            get => showDateColumn;
-            set
-            {
-                showDateColumn = value;
-                OnPropertyChanged(nameof(ShowDateColumn));
-            }
-        }
-
-        public bool ShowActionsColumn
-        {
-            get => showActionsColumn;
-            set
-            {
-                showActionsColumn = value;
-                OnPropertyChanged(nameof(ShowActionsColumn));
-            }
-        }
-
-        public bool ShowSharedByColumn
-        {
-            get => showSharedByColumn;
-            set
-            {
-                showSharedByColumn = value;
-                OnPropertyChanged(nameof(ShowSharedByColumn));
-            }
-        }
-
-        public bool ShowSizeColumn
-        {
-            get => showSizeColumn;
-            set
-            {
-                showSizeColumn = value;
-                OnPropertyChanged(nameof(ShowSizeColumn));
-            }
-        }
-
         public IAsyncCommand<SearchResultRowModel> StreamFileCommand { get; }
 
         public ObservableCollection<SearchResultRowModel> TableResult { get; } = new ObservableCollection<SearchResultRowModel>();
@@ -197,59 +120,11 @@ namespace Peernet.Browser.Application.ViewModels
             await Refresh(false);
         }
 
-        public async Task OnSorting(string columnName, DataGridSortingTypeEnum type)
-        {
-            Filters.SearchFilterResult.SortName = SearchResultRowModel.Parse(columnName);
-            Filters.SearchFilterResult.SortType = type;
-            await Refresh(true);
-        }
-
         private int GetMax() => (FilterIconModels.FirstOrDefault(x => x.IsSelected)?.Count).GetValueOrDefault();
 
         private void InitIcons()
         {
-            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Folder", IsChecked = showFolderColumn, IsCheckChanged = OnColumnCheckboxClick });
-            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Data Format", IsChecked = showDataFormatColumn, IsCheckChanged = OnColumnCheckboxClick });
-            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Type", IsChecked = showTypeColumn, IsCheckChanged = OnColumnCheckboxClick });
-            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Date", IsChecked = showDateColumn, IsCheckChanged = OnColumnCheckboxClick });
-            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Size", IsChecked = showSizeColumn, IsCheckChanged = OnColumnCheckboxClick });
-            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Actions", IsChecked = showActionsColumn, IsCheckChanged = OnColumnCheckboxClick });
-            ColumnsCheckboxes.Add(new CustomCheckBoxModel { Content = "Shared by", IsChecked = showSharedByColumn, IsCheckChanged = OnColumnCheckboxClick });
             RefreshIconFilters(SearchResultModel.GetDefaultStats().ToDictionary(x => x, y => 0), FilterType.All);
-        }
-
-        private void OnColumnCheckboxClick(CustomCheckBoxModel selection)
-        {
-            switch (selection.Content)
-            {
-                case "Folder":
-                    ShowFolderColumn = selection.IsChecked;
-                    break;
-
-                case "Type":
-                    ShowTypeColumn = selection.IsChecked;
-                    break;
-
-                case "Data Format":
-                    ShowDataFormatColumn = selection.IsChecked;
-                    break;
-
-                case "Date":
-                    ShowDateColumn = selection.IsChecked;
-                    break;
-
-                case "Size":
-                    ShowSizeColumn = selection.IsChecked;
-                    break;
-
-                case "Actions":
-                    ShowActionsColumn = selection.IsChecked;
-                    break;
-
-                case "Shared by":
-                    ShowSharedByColumn = selection.IsChecked;
-                    break;
-            }
         }
 
         private async Task OnFilterIconClick(IconModel i)
@@ -261,16 +136,9 @@ namespace Peernet.Browser.Application.ViewModels
             await Refresh();
         }
 
-        private Task OpenCloseColumnsFilter(IconModel i)
-        {
-            FiltersIconModel.IsSelected = false;
-            return Task.CompletedTask;
-        }
-
         private Task OpenCloseFilters(IconModel m)
         {
             Filters.BindFromSearchFilterResult();
-            ColumnsIconModel.IsSelected = false;
             return Task.CompletedTask;
         }
 

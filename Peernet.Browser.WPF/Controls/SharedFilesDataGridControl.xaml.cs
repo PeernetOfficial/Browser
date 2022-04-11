@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using DevExpress.Xpf.Grid;
+using Microsoft.Extensions.DependencyInjection;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels;
@@ -26,7 +27,8 @@ namespace Peernet.Browser.WPF.Controls
 
         private void CopyLinkToClipboard_OnClick(object sender, RoutedEventArgs e)
         {
-            var file = ((VirtualFileSystemEntity)((FrameworkElement)e.OriginalSource).DataContext).File;
+            var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;
+            var file = ((VirtualFileSystemEntity)cellData.RowData.Row).File;
 
             Clipboard.SetText(CreateLink(file));
             App.ServiceProvider.GetRequiredService<INotificationsManager>().Notifications.Add(new Notification("Copied to clipboard!"));
@@ -40,8 +42,8 @@ namespace Peernet.Browser.WPF.Controls
         private async void Open_OnClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var viewmodel = (DirectoryViewModel)DataContext;
-            var element = (FrameworkElement)sender;
-            var entity = (VirtualFileSystemEntity)element.DataContext;
+            var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;
+            var entity = (VirtualFileSystemEntity)cellData.RowData.Row;
             if (entity is VirtualFileSystemCoreEntity coreTier)
             {
                 await viewmodel.OpenCommand.ExecuteAsync(coreTier);
@@ -54,8 +56,8 @@ namespace Peernet.Browser.WPF.Controls
 
         private async void OpenInfo_OnClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            var element = (FrameworkElement)sender;
-            var entity = (VirtualFileSystemEntity)element.DataContext;
+            var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;
+            var entity = (VirtualFileSystemEntity)cellData.RowData.Row;
             var warehouseService = App.ServiceProvider.GetRequiredService<IWarehouseService>();
             var param = new FilePreviewViewModelParameter(entity.File, () => warehouseService.ReadPath(entity.File), "Save To File");
             var filePreviewViewModel = new FilePreviewViewModel();

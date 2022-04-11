@@ -4,54 +4,57 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls"
-             xmlns:download="clr-namespace:Peernet.SDK.Models.Domain.Download;assembly=Peernet.SDK"
+             xmlns:download="clr-namespace:Peernet.SDK.Models.Domain.Download;assembly=Peernet.SDK" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
              mc:Ignorable="d"
              x:Name="ExploreFilesDataGrid">
     <Grid>
-        <DataGrid Style="{DynamicResource DataGridStyle}" ItemsSource="{Binding ActiveSearchResults, IsAsync=True, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" CanUserSortColumns="True" CanUserAddRows="False" Visibility="{Binding IsLoaded, Converter={StaticResource BoolToVisibility}}">
-            <DataGrid.Columns>
-                <DataGridTemplateColumn Header="NAME" SortMemberPath="File.Name" Width="*" HeaderStyle="{StaticResource ShiftedDataGridColumnHeaderStyle}">
-                    <DataGridTemplateColumn.CellTemplate>
+        <dxg:GridControl ItemsSource="{Binding ActiveSearchResults, IsAsync=True}" Visibility="{Binding IsLoaded, Converter={StaticResource BoolToVisibility}}">
+            <dxg:GridControl.View>
+                <dxg:TableView />
+            </dxg:GridControl.View>
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn Header="NAME" SortFieldName="File.Name" FieldName="File.Name" Width="*" HeaderStyle="{StaticResource ShiftedDataGridColumnHeaderStyle}" HorizontalHeaderContentAlignment="Left">
+                    <dxg:GridColumn.CellTemplate>
                         <DataTemplate>
                             <Grid Margin="20, 0, 0, 0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-                                <Image Width="13.71" Height="20" Grid.Column="0" Style="{StaticResource DownloadItemImageStyle}" />
-                                <TextBlock Grid.Column="1" Text="{Binding File.Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Cursor="Hand" Style="{StaticResource Underlined}">
+                                <Image Width="13.71" Height="20" Grid.Column="0" Style="{StaticResource DownloadItemImageStyle}" DataContext="{Binding RowData.Row}" />
+                                <TextBlock Grid.Column="1" Text="{Binding RowData.Row.File.Name}" Margin="25,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Left" Cursor="Hand" Style="{StaticResource Underlined}">
                                     <TextBlock.InputBindings>
-                                        <MouseBinding Command="{Binding DataContext.StreamFileCommand, ElementName=ExploreFilesDataGrid}" CommandParameter="{Binding}" MouseAction="LeftClick" />
+                                        <MouseBinding Command="{Binding DataContext.StreamFileCommand, ElementName=ExploreFilesDataGrid}" CommandParameter="{Binding RowData.Row}" MouseAction="LeftClick" />
                                     </TextBlock.InputBindings>
                                 </TextBlock>
                             </Grid>
                         </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="DATE" SortMemberPath="Date" Width="150">
-                    <DataGridTemplateColumn.CellTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                </dxg:GridColumn>
+                <dxg:GridColumn Header="DATE" SortFieldName="File.Date" FieldName="File.Date" Width="100">
+                    <dxg:GridColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding File.Date, StringFormat=d}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            <TextBlock Text="{Binding RowData.Row.File.Date, StringFormat=d}" VerticalAlignment="Center" HorizontalAlignment="Center" />
                         </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="SIZE" SortMemberPath="Size" Width="160">
-                    <DataGridTemplateColumn.CellTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                </dxg:GridColumn>
+                <dxg:GridColumn Header="SIZE" SortFieldName="File.Size" FieldName="File.Size" Width="110" >
+                    <dxg:GridColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding FileSize, Converter={StaticResource BytesToSuffixConverter}}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            <TextBlock Text="{Binding RowData.Row.FileSize, Converter={StaticResource BytesToSuffixConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center" />
                         </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="SHARED BY" SortMemberPath="SharedByCount" Width="100">
-                    <DataGridTemplateColumn.CellTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                </dxg:GridColumn>
+                <dxg:GridColumn Header="SHARED BY" SortFieldName="SharedByCount" FieldName="SharedByCount" Width="100">
+                    <dxg:GridColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Padding="0 5 20 5"
+                            <TextBlock Margin="5, 0"
                                        Background="Transparent"
-                                       Text="{Binding File.SharedByCount, StringFormat={}{0} Peers}"
+                                       Text="{Binding RowData.Row.File.SharedByCount, StringFormat={}{0} Peers}"
                                        VerticalAlignment="Center"
-                                       HorizontalAlignment="Left"
+                                       HorizontalAlignment="Center"
                                        ToolTipService.ShowOnDisabled="False"
-                                       ToolTipService.IsEnabled="{Binding IsMapEnabled}"
+                                       ToolTipService.IsEnabled="{Binding RowData.Row.IsMapEnabled}"
                                        ToolTipService.InitialShowDelay="0"
                                        ToolTipService.BetweenShowDelay="0"
                                        ToolTipService.VerticalOffset="127"
@@ -73,10 +76,10 @@
                                 </TextBlock.ToolTip>
                             </TextBlock>
                         </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="Auto">
-                    <DataGridTemplateColumn.CellTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                </dxg:GridColumn>
+                <dxg:GridColumn Width="Auto">
+                    <dxg:GridColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <Button Style="{StaticResource DataGridActionButton}" PreviewMouseLeftButtonDown="Open_OnClick" ToolTip="Details">
@@ -84,7 +87,7 @@
                                         <ImageBrush ImageSource="{DynamicResource InfoDrawingImage}" />
                                     </Button.Background>
                                 </Button>
-                                <Button Command="{Binding DataContext.StreamFileCommand, ElementName=ExploreFilesDataGrid}" CommandParameter="{Binding}" Height="39" Width="37" IsEnabled="{Binding IsPlayerEnabled}">
+                                <Button Command="{Binding DataContext.StreamFileCommand, ElementName=ExploreFilesDataGrid}" CommandParameter="{Binding RowData.Row}" Height="39" Width="37" IsEnabled="{Binding RowData.Row.IsPlayerEnabled}">
                                     <Button.Background>
                                         <ImageBrush ImageSource="{DynamicResource PlayDrawingImage}" />
                                     </Button.Background>
@@ -94,7 +97,7 @@
                                         </Style>
                                     </Button.Style>
                                 </Button>
-                                <Button CommandParameter="{Binding}">
+                                <Button CommandParameter="{Binding RowData.Row}">
                                     <Button.Style>
                                         <Style BasedOn="{StaticResource DataGridActionButton}" TargetType="{x:Type Button}">
                                             <Setter Property="Background">
@@ -106,7 +109,7 @@
                                             <Setter Property="Height" Value="44" />
                                             <Setter Property="Command" Value="{Binding DataContext.DownloadCommand, ElementName=ExploreFilesDataGrid}" />
                                             <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Status}" Value="{x:Static download:DownloadStatus.DownloadFinished}">
+                                                <DataTrigger Binding="{Binding RowData.Row.Status}" Value="{x:Static download:DownloadStatus.DownloadFinished}">
                                                     <Setter Property="Background">
                                                         <Setter.Value>
                                                             <ImageBrush ImageSource="{DynamicResource Tick_ActiveDrawingImage}" />
@@ -116,7 +119,7 @@
                                                     <Setter Property="Width" Value="42" />
                                                     <Setter Property="Height" Value="41" />
                                                 </DataTrigger>
-                                                <DataTrigger Binding="{Binding Status}" Value="{x:Static download:DownloadStatus.DownloadActive}">
+                                                <DataTrigger Binding="{Binding RowData.Row.Status}" Value="{x:Static download:DownloadStatus.DownloadActive}">
                                                     <Setter Property="Background">
                                                         <Setter.Value>
                                                             <ImageBrush ImageSource="{DynamicResource LoadingDrawingImage}" />
@@ -124,7 +127,7 @@
                                                     </Setter>
                                                     <Setter Property="IsEnabled" Value="False" />
                                                 </DataTrigger>
-                                                <DataTrigger Binding="{Binding Status}" Value="{x:Static download:DownloadStatus.DownloadPause}">
+                                                <DataTrigger Binding="{Binding RowData.Row.Status}" Value="{x:Static download:DownloadStatus.DownloadPause}">
                                                     <Setter Property="Background">
                                                         <Setter.Value>
                                                             <ImageBrush ImageSource="{DynamicResource PlayDrawingImage}" />
@@ -140,10 +143,10 @@
                                 </Button>
                             </StackPanel>
                         </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+                    </dxg:GridColumn.CellTemplate>
+                </dxg:GridColumn>
+            </dxg:GridControl.Columns>
+        </dxg:GridControl>
         <TextBlock FontSize="14" Foreground="{DynamicResource MainContentBrush}" Text="Loading..." Background="Transparent" Margin="60 40">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
