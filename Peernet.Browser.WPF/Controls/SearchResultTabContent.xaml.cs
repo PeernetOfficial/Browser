@@ -81,9 +81,9 @@ namespace Peernet.Browser.WPF.Controls
         private void Open_OnClick(object sender, MouseButtonEventArgs e)
         {
             var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;
-            var model = (SearchResultRowModel)cellData.RowData.Row;
+            var model = (DownloadModel)cellData.RowData.Row;
             var downloadManager = App.ServiceProvider.GetRequiredService<IDownloadManager>();
-            var param = new FilePreviewViewModelParameter(model.File, async () => await downloadManager.QueueUpDownload(new DownloadModel(model.File)), "Download");
+            var param = new FilePreviewViewModelParameter(model.File, async () => await downloadManager.QueueUpDownload(model), "Download");
             var filePreviewViewModel = new FilePreviewViewModel();
             filePreviewViewModel.Prepare(param);
             new FilePreviewWindow(filePreviewViewModel).Show();

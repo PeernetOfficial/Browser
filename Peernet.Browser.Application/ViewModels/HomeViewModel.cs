@@ -74,17 +74,17 @@ namespace Peernet.Browser.Application.ViewModels
 
         public ObservableCollection<SearchTabElementViewModel> Tabs { get; } = new ObservableCollection<SearchTabElementViewModel>();
 
-        private bool DoesSupportPlaying(SearchResultRowModel row)
+        private bool DoesSupportPlaying(DownloadModel model)
         {
-            return playButtonPlugs.Any(plugin => plugin?.IsSupported(row.File) == true);
+            return playButtonPlugs.Any(plugin => plugin?.IsSupported(model.File) == true);
         }
 
-        private async Task DownloadFile(SearchResultRowModel row)
+        private async Task DownloadFile(DownloadModel model)
         {
-            await downloadManager.QueueUpDownload(new DownloadModel(row.File));
+            await downloadManager.QueueUpDownload(model);
         }
 
-        private void ExecutePlayButtonPlug(SearchResultRowModel model)
+        private void ExecutePlayButtonPlug(DownloadModel model)
         {
             playButtonPlugs.Foreach(plug =>
             {
@@ -95,9 +95,9 @@ namespace Peernet.Browser.Application.ViewModels
             });
         }
 
-        private void OpenFile(SearchResultRowModel row)
+        private void OpenFile(DownloadModel model)
         {
-            var param = new FilePreviewViewModelParameter(row.File, async () => await downloadManager.QueueUpDownload(new DownloadModel(row.File)), "Download");
+            var param = new FilePreviewViewModelParameter(model.File, async () => await downloadManager.QueueUpDownload(model), "Download");
             navigationService.Navigate<FilePreviewViewModel, FilePreviewViewModelParameter>(param);
         }
 

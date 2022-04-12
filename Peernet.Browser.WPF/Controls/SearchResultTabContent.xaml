@@ -86,7 +86,7 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <Image Width="13.71" Height="20" Style="{StaticResource DownloadItemImageStyle}" DataContext="{Binding}" />
-                                    <TextBlock Grid.Column="1" Text="{Binding Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource Underlined}" Cursor="Hand">
+                                    <TextBlock Grid.Column="1" Text="{Binding File.Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource Underlined}" Cursor="Hand">
                                         <TextBlock.InputBindings>
                                             <MouseBinding Command="{Binding DataContext.StreamFileCommand, ElementName=SharedResultTab}" CommandParameter="{Binding }" MouseAction="LeftClick" />
                                         </TextBlock.InputBindings>
@@ -116,21 +116,21 @@
                             </DataTemplate>
                         </dxg:GridColumn.CellTemplate>
                     </dxg:GridColumn>
-                    <dxg:GridColumn Header="DATE" SortFieldName="Date" FieldName="Date" Width="120">
+                    <dxg:GridColumn Header="DATE" SortFieldName="File.Date" FieldName="File.Date" Width="120">
                         <dxg:GridColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding RowData.Row.Date, StringFormat=d}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                <TextBlock Text="{Binding RowData.Row.File.Date, StringFormat=d}" VerticalAlignment="Center" HorizontalAlignment="Center" />
                             </DataTemplate>
                         </dxg:GridColumn.CellTemplate>
                     </dxg:GridColumn>
                     <dxg:GridColumn Header="SIZE" SortFieldName="File.Size" FieldName="File.Size" Width="110">
                         <dxg:GridColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding RowData.Row.Size, Converter={StaticResource BytesToSuffixConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                <TextBlock Text="{Binding RowData.Row.File.Size, Converter={StaticResource BytesToSuffixConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center" />
                             </DataTemplate>
                         </dxg:GridColumn.CellTemplate>
                     </dxg:GridColumn>
-                    <dxg:GridColumn Header="SHARED BY" SortFieldName="SharedBy" FieldName="SharedBy" Width="100">
+                    <dxg:GridColumn Header="SHARED BY" SortFieldName="File.SharedByCount" FieldName="File.SharedByCount" Width="100">
                         <dxg:GridColumn.CellTemplate>
                             <DataTemplate>
                                 <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -140,7 +140,7 @@
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Background="Transparent"
                                                Grid.Column="0"
-                                               Text="{Binding RowData.Row.SharedBy, StringFormat={}{0} Peers}"
+                                               Text="{Binding RowData.Row.File.SharedByCount, StringFormat={}{0} Peers}"
                                                ToolTipService.IsEnabled="{Binding RowData.Row.IsMapEnabled}"
                                                ToolTipService.InitialShowDelay="0"
                                                ToolTipService.BetweenShowDelay="0"
@@ -162,7 +162,7 @@
                                             </ToolTip>
                                         </TextBlock.ToolTip>
                                     </TextBlock>
-                                    <Image Visibility="{Binding RowData.Row.FlameIsVisible, Converter={StaticResource BoolToVisibility}}" Height="20" Grid.Column="1" Source="{DynamicResource FlameDrawingImage}" />
+                                    <!--<Image Visibility="{Binding RowData.Row.FlameIsVisible, Converter={StaticResource BoolToVisibility}}" Height="20" Grid.Column="1" Source="{DynamicResource FlameDrawingImage}" />-->
                                 </Grid>
                             </DataTemplate>
                         </dxg:GridColumn.CellTemplate>

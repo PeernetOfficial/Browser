@@ -3,6 +3,7 @@ using Peernet.SDK.Client.Clients;
 using Peernet.SDK.Models.Domain.Common;
 using Peernet.SDK.Models.Domain.Search;
 using Peernet.SDK.Models.Extensions;
+using Peernet.SDK.Models.Presentation.Footer;
 using Peernet.SDK.Models.Presentation.Home;
 using System;
 using System.Collections.Generic;
@@ -55,7 +56,7 @@ namespace Peernet.Browser.Infrastructure.Services
                 res.Stats = GetStats(result.Statistic);
                 if (!result.Files.IsNullOrEmpty())
                 {
-                    res.Rows.AddRange(result.Files.Select(x => new SearchResultRowModel(x)));
+                    res.Rows.AddRange(result.Files.Select(x => new DownloadModel(x)));
                 }
 
                 if (result.Status is SearchStatusEnum.NoMoreResults or SearchStatusEnum.IdNotFound)

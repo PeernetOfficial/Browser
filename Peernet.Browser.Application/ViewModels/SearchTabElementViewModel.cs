@@ -1,6 +1,7 @@
 ﻿using AsyncAwaitBestPractices.MVVM;
 using Peernet.Browser.Application.Dispatchers;
 using Peernet.SDK.Models.Extensions;
+using Peernet.SDK.Models.Presentation.Footer;
 using Peernet.SDK.Models.Presentation.Home;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace Peernet.Browser.Application.ViewModels
     {
         private const int increase = 100;
         private readonly Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction;
-        private readonly Func<SearchResultRowModel, bool> isPlayerSupported;
+        private readonly Func<DownloadModel, bool> isPlayerSupported;
         private bool isClearing;
         private int limit = increase;
 
@@ -22,10 +23,10 @@ namespace Peernet.Browser.Application.ViewModels
             string title,
             Func<SearchTabElementViewModel, Task> deleteAction,
             Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction,
-            Func<SearchResultRowModel, Task> downloadAction,
-            Action<SearchResultRowModel> openAction,
-            Action<SearchResultRowModel> executePlugAction,
-            Func<SearchResultRowModel, bool> isPlayerSupported)
+            Func<DownloadModel, Task> downloadAction,
+            Action<DownloadModel> openAction,
+            Action<DownloadModel> executePlugAction,
+            Func<DownloadModel, bool> isPlayerSupported)
         {
             this.refreshAction = refreshAction;
             this.isPlayerSupported = isPlayerSupported;
@@ -43,9 +44,9 @@ namespace Peernet.Browser.Application.ViewModels
                 Filters.Reset(true);
                 await Refresh();
             });
-            DownloadCommand = new AsyncCommand<SearchResultRowModel>(async (row) => await downloadAction(row));
+            DownloadCommand = new AsyncCommand<DownloadModel>(async (row) => await downloadAction(row));
             DeleteCommand = new AsyncCommand(async () => { await deleteAction(this); });
-            OpenCommand = new AsyncCommand<SearchResultRowModel>(
+            OpenCommand = new AsyncCommand<DownloadModel>(
                     model =>
                     {
                         if (openAction != null)
@@ -62,7 +63,7 @@ namespace Peernet.Browser.Application.ViewModels
                 await Refresh();
             });
 
-            StreamFileCommand = new AsyncCommand<SearchResultRowModel>(model =>
+            StreamFileCommand = new AsyncCommand<DownloadModel>(model =>
             {
                 executePlugAction.Invoke(model);
 
@@ -85,7 +86,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IAsyncCommand DeleteCommand { get; }
 
-        public IAsyncCommand<SearchResultRowModel> DownloadCommand { get; }
+        public IAsyncCommand<DownloadModel> DownloadCommand { get; }
 
         public ObservableCollection<IconModel> FilterIconModels { get; } = new ObservableCollection<IconModel>();
 
@@ -95,13 +96,13 @@ namespace Peernet.Browser.Application.ViewModels
 
         public LoadingModel Loader { get; } = new LoadingModel();
 
-        public IAsyncCommand<SearchResultRowModel> OpenCommand { get; }
+        public IAsyncCommand<DownloadModel> OpenCommand { get; }
 
         public IAsyncCommand<SearchFiltersType> RemoveFilterCommand { get; }
 
-        public IAsyncCommand<SearchResultRowModel> StreamFileCommand { get; }
+        public IAsyncCommand<DownloadModel> StreamFileCommand { get; }
 
-        public ObservableCollection<SearchResultRowModel> TableResult { get; } = new ObservableCollection<SearchResultRowModel>();
+        public ObservableCollection<DownloadModel> TableResult { get; } = new();
 
         public string Title { get; }
 

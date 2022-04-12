@@ -60,7 +60,7 @@ namespace Peernet.Browser.Infrastructure
 
         public void OpenFileLocation(string name)
         {
-            var filePath = Path.Combine(settingsManager.DownloadPath, name);
+            var filePath = Path.Combine(settingsManager.DownloadPath, UtilityHelper.StripInvalidWindowsCharactersFromFileName(name));
             if (File.Exists(filePath))
             {
                 Process.Start("explorer.exe", "/select, " + filePath);
