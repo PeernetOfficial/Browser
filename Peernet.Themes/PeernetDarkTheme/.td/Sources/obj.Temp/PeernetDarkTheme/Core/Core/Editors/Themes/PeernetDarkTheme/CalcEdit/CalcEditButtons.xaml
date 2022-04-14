@@ -1,0 +1,69 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal" xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys" xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    <ResourceDictionary.MergedDictionaries>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.PeernetDarkTheme.v21.2;component/Core/Core/Editors/Themes/Generic/CalcEdit.xaml" />
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.PeernetDarkTheme.v21.2;component/Core/Core/Editors/Themes/Generic/CalcEditDisplay.xaml" />
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.PeernetDarkTheme.v21.2;component/Core/Core/Editors/Themes/PeernetDarkTheme/UICore.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    
+
+    <Style x:Key="ButtonStyleBase" TargetType="{x:Type Button}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Office2019Black\CalcEdit\CalcEditButtons.xaml;22;6" /><Setter Property="Background" Value="#FF444444" cs:id="Setter_0000" x:Uid="@Value=Button.Background" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="#FF686868" cs:id="Setter_0003" x:Uid="@Value=Border" />
+        <Setter Property="Padding" Value="12,3,12,3" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <dx:DXBorder x:Name="IsDefault" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Opacity="{TemplateBinding Opacity}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019Black\CalcEdit\CalcEditButtons.xaml;34;22">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019Black\CalcEdit\CalcEditButtons.xaml;39;26" />
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="MemoryStates">
+                                <VisualState x:Name="EmptyMemory" />
+                                <VisualState x:Name="MemoryAssigned">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#FFB5B5B5" cs:id="ColorAnimation_1234" x:Uid="@To=Focused" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </dx:DXBorder>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="dx:FocusHelper2.Focusable" Value="False" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="#FFDADADA" cs:id="Setter_0001" x:Uid="@Value=ControlLight.Foreground" />
+                <Setter Property="Background" Value="#FF505050" cs:id="Setter_0004" x:Uid="@Value=ControlLight.HoverBackground" />
+                <Setter Property="BorderBrush" Value="#FF686868" cs:id="Setter_0005" x:Uid="@Value=Border" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Foreground" Value="#FFDADADA" cs:id="Setter_0002" x:Uid="@Value=ControlLight.Foreground" />
+                <Setter Property="Background" Value="#FF6A6A6A" cs:id="Setter_0006" x:Uid="@Value=ControlLight.SelectionBackground" />
+                <Setter Property="BorderBrush" Value="#FF686868" cs:id="Setter_0007" x:Uid="@Value=Border" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.38" />
+            </Trigger>
+            <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
+                <Setter Property="MinHeight" Value="44" />
+                <Setter Property="MinWidth" Value="44" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="{dxet:CalculatorThemeKey ResourceKey=ButtonDigitStyle}" BasedOn="{StaticResource ButtonStyleBase}" TargetType="{x:Type Button}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Office2019Black\CalcEdit\CalcEditButtons.xaml;94;6" /><Setter Property="Foreground" Value="#FFDADADA" cs:id="Setter_0000" x:Uid="@Value=ControlLight.Foreground" />
+    </Style>
+
+    <Style x:Key="{dxet:CalculatorThemeKey ResourceKey=ButtonOperationStyle}" BasedOn="{StaticResource ButtonStyleBase}" TargetType="{x:Type Button}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Office2019Black\CalcEdit\CalcEditButtons.xaml;102;6" /><Setter Property="Foreground" Value="#FF99CCFF" cs:id="Setter_0000" x:Uid="@Value=Custom.Blue" />
+    </Style>
+
+    <Style x:Key="{dxet:CalculatorThemeKey ResourceKey=ButtonCEStyle}" BasedOn="{StaticResource ButtonStyleBase}" TargetType="{x:Type Button}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Office2019Black\CalcEdit\CalcEditButtons.xaml;110;6" /><Setter Property="Foreground" Value="#FFFF9999" cs:id="Setter_0000" x:Uid="@Value=Custom.Red" />
+    </Style>
+
+</ResourceDictionary>

@@ -1,0 +1,171 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxpg="http://schemas.devexpress.com/winfx/2008/xaml/pivotgrid" xmlns:dxpgi="http://schemas.devexpress.com/winfx/2008/xaml/pivotgrid/internal" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    <ResourceDictionary.MergedDictionaries>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.PeernetLightTheme.v21.2;component/PivotGrid/PeernetLightTheme/UICore.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    
+
+    <Style x:Key="{dxpgi:AppearanceThemeKey ResourceKey=EmptyAreaHighlighterStyle}" TargetType="{x:Type Border}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="PivotGrid\Office2019White\FieldHeaders\Area.xaml;20;6" /><Setter Property="Background" Value="#FFEFF6FC" cs:id="Setter_0000" x:Uid="@Value=HoverBackground" />
+    </Style>
+
+    
+
+    <ControlTemplate x:Key="{dxpgi:FieldHeadersThemeKey ResourceKey=DataAreaContentTemplate}" TargetType="{x:Type ContentControl}">
+        <dx:DXBorder x:Name="Root" Background="Transparent" ClipToBounds="True" Padding="2" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Office2019White\FieldHeaders\Area.xaml;29;10">
+            <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Office2019White\FieldHeaders\Area.xaml;34;14">
+                <dx:DXBorder x:Name="Separator" Background="{DynamicResource {dxpgi:AppearanceThemeKey ResourceKey=AreaSeparatorBrush}}" Height="1" VerticalAlignment="Bottom" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Office2019White\FieldHeaders\Area.xaml;35;18" />
+                <dxcore_unique_xmlns:SimplePanel dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Office2019White\FieldHeaders\Area.xaml;39;18">
+                    <dx:DXBorder x:Name="Highlighter" Opacity="0" Style="{DynamicResource {dxpgi:AppearanceThemeKey ResourceKey=EmptyAreaHighlighterStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Office2019White\FieldHeaders\Area.xaml;40;22" />
+                    <ContentPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Office2019White\FieldHeaders\Area.xaml;43;22" />
+                </dxcore_unique_xmlns:SimplePanel>
+            </Grid>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="EmptyStates">
+                    <VisualState Name="Empty" />
+                    <VisualState Name="NonEmpty">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" Storyboard.TargetName="Separator" Storyboard.TargetProperty="Opacity" To="0" />
+                            <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Visibility="Collapsed" Storyboard.TargetName="Highlighter" Storyboard.TargetProperty="Visibility" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+                <VisualStateGroup Name="DragIndicators">
+                    <VisualState Name="DragLeave">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" Storyboard.TargetName="Highlighter" Storyboard.TargetProperty="Opacity" To="0" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState Name="DragOver">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" Storyboard.TargetName="Highlighter" Storyboard.TargetProperty="Opacity" To="0.62" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </dx:DXBorder>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxpgi:FieldHeadersThemeKey ResourceKey=ColumnAreaContentTemplate}" TargetType="{x:Type ContentControl}">
+        <dx:DXBorder Background="Transparent" ClipToBounds="True" Padding="0,2,2,2" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Office2019White\FieldHeaders\Area.xaml;84;10">
+            <dxcore_unique_xmlns:SimplePanel dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Office2019White\FieldHeaders\Area.xaml;88;14">
+                <dx:DXBorder x:Name="Highlighter" Opacity="0" Style="{DynamicResource {dxpgi:AppearanceThemeKey ResourceKey=EmptyAreaHighlighterStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Office2019White\FieldHeaders\Area.xaml;89;18" />
+                <ContentPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Office2019White\FieldHeaders\Area.xaml;92;18" />
+            </dxcore_unique_xmlns:SimplePanel>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="EmptyStates">
+                    <VisualState Name="Empty" />
+                    <VisualState Name="NonEmpty">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Visibility="Collapsed" Storyboard.TargetName="Highlighter" Storyboard.TargetProperty="Visibility" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+                <VisualStateGroup Name="DragIndicators">
+                    <VisualState Name="DragLeave">
+                        <Storyboard>
+                            <DoubleAnimation Duration="00:00:00.5" Storyboard.TargetName="Highlighter" Storyboard.TargetProperty="Opacity" To="0" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState Name="DragOver">
+                        <Storyboard>
+                            <DoubleAnimation Duration="00:00:00.2" Storyboard.TargetName="Highlighter" Storyboard.TargetProperty="Opacity" To="0.62" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </dx:DXBorder>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxpgi:FieldHeadersThemeKey ResourceKey=RowAreaContentTemplate}" TargetType="{x:Type ContentControl}">
+        <dx:DXBorder Background="Transparent" ClipToBounds="True" Padding="2,2,2,3" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Office2019White\FieldHeaders\Area.xaml;128;10">
+            <dxcore_unique_xmlns:SimplePanel dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Office2019White\FieldHeaders\Area.xaml;132;14">
+                <dx:DXBorder x:Name="Highlighter" Opacity="0" Style="{DynamicResource {dxpgi:AppearanceThemeKey ResourceKey=EmptyAreaHighlighterStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Office2019White\FieldHeaders\Area.xaml;133;18" />
+                <ContentPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Office2019White\FieldHeaders\Area.xaml;136;18" />
+            </dxcore_unique_xmlns:SimplePanel>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="EmptyStates">
+                    <VisualState Name="Empty" />
+                    <VisualState Name="NonEmpty">
+                        <Storyboard>
+                            <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Visibility="Collapsed" Storyboard.TargetName="Highlighter" Storyboard.TargetProperty="Visibility" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+                <VisualStateGroup Name="DragIndicators">
+                    <VisualState Name="DragLeave">
+                        <Storyboard>
+                            <DoubleAnimation Duration="00:00:00.5" Storyboard.TargetName="Highlighter" Storyboard.TargetProperty="Opacity" To="0" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState Name="DragOver">
+                        <Storyboard>
+                            <DoubleAnimation Duration="00:00:00.2" Storyboard.TargetName="Highlighter" Storyboard.TargetProperty="Opacity" To="0.62" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </dx:DXBorder>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxpgi:FieldHeadersThemeKey ResourceKey=FilterAreaContentTemplate}" TargetType="{x:Type ContentControl}">
+        <dx:DXBorder x:Name="Root" Background="Transparent" ClipToBounds="True" Padding="2" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Office2019White\FieldHeaders\Area.xaml;172;10">
+            <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Office2019White\FieldHeaders\Area.xaml;177;14">
+                <dx:DXBorder x:Name="Separator" Background="{DynamicResource {dxpgi:AppearanceThemeKey ResourceKey=AreaSeparatorBrush}}" Height="1" VerticalAlignment="Bottom" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Office2019White\FieldHeaders\Area.xaml;178;18" />
+                <dxcore_unique_xmlns:SimplePanel dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Office2019White\FieldHeaders\Area.xaml;182;18">
+                    <dx:DXBorder x:Name="Highlighter" Opacity="0" Style="{DynamicResource {dxpgi:AppearanceThemeKey ResourceKey=EmptyAreaHighlighterStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Office2019White\FieldHeaders\Area.xaml;183;22" />
+                    <ContentPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Office2019White\FieldHeaders\Area.xaml;186;22" />
+                </dxcore_unique_xmlns:SimplePanel>
+            </Grid>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="EmptyStates">
+                    <VisualState Name="Empty" />
+                    <VisualState Name="NonEmpty">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" Storyboard.TargetName="Separator" Storyboard.TargetProperty="Opacity" To="0" />
+                            <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Visibility="Collapsed" Storyboard.TargetName="Highlighter" Storyboard.TargetProperty="Visibility" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+                <VisualStateGroup Name="DragIndicators">
+                    <VisualState Name="DragLeave">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" Storyboard.TargetName="Highlighter" Storyboard.TargetProperty="Opacity" To="0" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState Name="DragOver">
+                        <Storyboard>
+                            <DoubleAnimation Duration="0" Storyboard.TargetName="Highlighter" Storyboard.TargetProperty="Opacity" To="0.62" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </dx:DXBorder>
+    </ControlTemplate>
+
+    <Style x:Key="{dxpgi:FieldHeadersThemeKey ResourceKey=DataAreaStyle}" TargetType="dxpgi:FieldHeaders">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="PivotGrid\Office2019White\FieldHeaders\Area.xaml;226;6" /><Setter Property="EmptyTextHAlignment" Value="Center" />
+        <Setter Property="EmptyTextVAlignment" Value="Center" />
+        <Setter Property="HeadersVAlignment" Value="Top" />
+    </Style>
+
+    <Style x:Key="{dxpgi:FieldHeadersThemeKey ResourceKey=ColumnAreaStyle}" TargetType="dxpgi:FieldHeaders">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="PivotGrid\Office2019White\FieldHeaders\Area.xaml;232;6" /><Setter Property="EmptyTextHAlignment" Value="Center" />
+        <Setter Property="EmptyTextVAlignment" Value="Center" />
+        <Setter Property="HeadersVAlignment" Value="Bottom" />
+    </Style>
+
+    <Style x:Key="{dxpgi:FieldHeadersThemeKey ResourceKey=RowAreaStyle}" TargetType="dxpgi:FieldHeaders">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="PivotGrid\Office2019White\FieldHeaders\Area.xaml;238;6" /><Setter Property="EmptyTextHAlignment" Value="Center" />
+        <Setter Property="EmptyTextVAlignment" Value="Center" />
+        <Setter Property="HeadersVAlignment" Value="Bottom" />
+    </Style>
+
+    <Style x:Key="{dxpgi:FieldHeadersThemeKey ResourceKey=FilterAreaStyle}" TargetType="dxpgi:FieldHeaders">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="PivotGrid\Office2019White\FieldHeaders\Area.xaml;244;6" /><Setter Property="EmptyTextHAlignment" Value="Center" />
+        <Setter Property="EmptyTextVAlignment" Value="Center" />
+        <Setter Property="HeadersVAlignment" Value="Center" />
+    </Style>
+
+</ResourceDictionary>

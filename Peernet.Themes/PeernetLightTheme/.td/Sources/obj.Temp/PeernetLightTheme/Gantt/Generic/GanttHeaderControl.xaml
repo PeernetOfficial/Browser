@@ -1,0 +1,30 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxgn="http://schemas.devexpress.com/winfx/2008/xaml/gantt" xmlns:dxgnt="http://schemas.devexpress.com/winfx/2008/xaml/gantt/themekeys" xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gantt.GanttHeaderControl}" TargetType="{x:Type dxgn:GanttHeaderControl}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Gantt\Generic\GanttHeaderControl.xaml;12;6" /><Setter Property="Background" Value="{DynamicResource {dxgt:GridColumnHeaderThemeKey ResourceKey=Background}}" />
+        <Setter Property="Foreground" Value="{DynamicResource {dxgt:GridColumnHeaderThemeKey ResourceKey=HeaderCaptionForeground}}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource {dxgt:GridColumnHeaderThemeKey ResourceKey=BorderBrush}}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource {dxgnt:GanttControlThemeKeys ResourceKey=HeaderBorderThickness}}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type dxgn:GanttHeaderControl}">
+                    <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gantt\Generic\GanttHeaderControl.xaml;20;22">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <dxgn:TimescaleControl Background="{TemplateBinding Background}" StartDate="{Binding View.FirstVisibleDate}" TimescaleRulerStyle="{Binding Path=View.TimescaleRulerStyle}" Timescales="{Binding View.Timescales}" Width="{Binding Path=View.ChartWidth}" />
+                        <dxg:FitColumnHeader ColumnPosition="Right" Grid.Column="1" Grid.RowSpan="2" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gantt\Generic\GanttHeaderControl.xaml;34;26" />
+                        <Control Grid.Row="1" Template="{DynamicResource {dxgnt:GanttControlThemeKeys ResourceKey=HeaderBottomBorderTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gantt\Generic\GanttHeaderControl.xaml;37;26" />
+                        <dx:DXBorder BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Grid.ColumnSpan="2" Grid.RowSpan="2" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gantt\Generic\GanttHeaderControl.xaml;38;26" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

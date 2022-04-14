@@ -1,0 +1,17 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:core="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:cs="colorscheme_ignorable_uri" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:local="http://schemas.devexpress.com/winfx/2008/xaml/gauges" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gauges.StateIndicatorControl}" TargetType="local:StateIndicatorControl">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Gauges\Generic\StateIndicatorControl.xaml;10;6" /><Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:StateIndicatorControl">
+                    <dx:DXBorder Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gauges\Generic\StateIndicatorControl.xaml;14;22">
+                        <Grid x:Name="PART_BaseLayoutElement" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gauges\Generic\StateIndicatorControl.xaml;18;26">
+                            <local:ElementInfoContainer ElementInfo="{Binding Path=State.ElementInfo, RelativeSource={RelativeSource TemplatedParent} }" StretchToAvailableSize="False" />
+                        </Grid>
+                    </dx:DXBorder>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

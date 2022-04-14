@@ -1,0 +1,46 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    <ResourceDictionary.MergedDictionaries>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.PeernetDarkTheme.v21.2;component/LayoutControl/PeernetDarkTheme/UICore.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    
+
+    <Style x:Key="LayerSeparatorStyle" TargetType="dxlc:LayerSeparator">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="LayoutControl\Office2019Black\LayerSeparator.xaml;18;6" /><Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="dxlc:LayerSeparator">
+                    <dxcore_unique_xmlns:Container Background="Transparent" cs:id="Container_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="LayoutControl\Office2019Black\LayerSeparator.xaml;23;22">
+                        <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="LayoutControl\Office2019Black\LayerSeparator.xaml;24;26">
+                            <dxcore_unique_xmlns:Container x:Name="HorizontalRootElement" Cursor="SizeNS" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="LayoutControl\Office2019Black\LayerSeparator.xaml;25;30">
+                                <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="LayoutControl\Office2019Black\LayerSeparator.xaml;26;34">
+                                    <Rectangle Fill="Transparent" Margin="0,-2" cs:id="Rectangle_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="LayoutControl\Office2019Black\LayerSeparator.xaml;27;38" />
+                                    <Rectangle Fill="#FF686868" Height="{TemplateBinding Thickness}" cs:id="Rectangle_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="LayoutControl\Office2019Black\LayerSeparator.xaml;30;38" x:Uid="@Fill=Delimiter" />
+                                </Grid>
+                            </dxcore_unique_xmlns:Container>
+                            <dxcore_unique_xmlns:Container x:Name="VerticalRootElement" Cursor="SizeWE" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="LayoutControl\Office2019Black\LayerSeparator.xaml;35;30">
+                                <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="LayoutControl\Office2019Black\LayerSeparator.xaml;36;34">
+                                    <Rectangle Fill="Transparent" Margin="-2,0" cs:id="Rectangle_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="LayoutControl\Office2019Black\LayerSeparator.xaml;37;38" />
+                                    <Rectangle Fill="#FF686868" Width="{TemplateBinding Thickness}" cs:id="Rectangle_0003" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="LayoutControl\Office2019Black\LayerSeparator.xaml;40;38" x:Uid="@Fill=Delimiter" />
+                                </Grid>
+                            </dxcore_unique_xmlns:Container>
+                        </Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Opacity" To="1" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </dxcore_unique_xmlns:Container>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Thickness" Value="2" />
+    </Style>
+
+</ResourceDictionary>

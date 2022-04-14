@@ -1,0 +1,287 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxprg="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid" xmlns:dxprgt="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid/themekeys" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:propertygrid="http://schemas.devexpress.com/winfx/2008/xaml/reports/userdesigner/internal" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    <ResourceDictionary.MergedDictionaries>
+        <dxt:ResourceDictionaryEx Source="{dxprgt:DynamicPropertyGridResource RenderTemplates.xaml, ShortPaths=True}" />
+        <dxt:ResourceDictionaryEx Source="{dxprgt:DynamicPropertyGridResource DataRowControl.xaml, ShortPaths=True}" />
+        <dxt:ResourceDictionaryEx Source="{dx:DynamicThemeResource Badges.xaml, ResourcePath=Themes, ResourcePathInTheme='Core/Core/Themes', TypeInTargetAssembly={x:Type dxn:RenderTemplate}}" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <dxn:RenderTemplate x:Key="ExpressionCommandButton">
+        <dxn:RenderPanel Height="10" Margin="3,0,7,0" Width="10" ThemeInfo="ReportDesigner\Generic\PropertyGrid\RowControlRenderTemplate.xaml;21;10">
+            <dxn:RenderBorder Background="Transparent" cs:id="RenderBorder_0000" ThemeInfo="ReportDesigner\Generic\PropertyGrid\RowControlRenderTemplate.xaml;24;14">
+                <dxn:RenderPath Name="PART_Icon" Data="M10.8, 4L12, 4L13, 2L11.7, 2C10.6, 2 9.6, 2.4 8.8, 3.2C8.3, 3.7 7.9, 4.4 7.7, 5.1L7.2, 7L5, 7L4, 8L7, 8L6.2, 11.2C6.1, 11.6 5.7, 12 5.2, 12L4, 12L3, 14L4.3, 14C5.4, 14 6.4, 13.6 7.2, 12.8C7.7, 12.3 8.1, 11.6 8.3, 10.9L9, 8L11, 8L12, 7L9.3, 7L9.8, 4.8C9.9, 4.4 10.3, 4 10.8, 4z" Fill="Gray" Opacity="0.8" Stretch="Fill" cs:id="RenderPath_0000" ThemeInfo="ReportDesigner\Generic\PropertyGrid\RowControlRenderTemplate.xaml;25;18" />
+            </dxn:RenderBorder>
+        </dxn:RenderPanel>
+        <dxn:RenderTemplate.Triggers>
+            <dxn:RenderStateGroup Name="CommonStates">
+                <dxn:RenderStateTrigger Name="Normal" />
+                <dxn:RenderStateTrigger Name="MouseOver">
+                    <dxn:RenderSetter Property="Opacity" TargetName="PART_Icon" Value="1" />
+                </dxn:RenderStateTrigger>
+            </dxn:RenderStateGroup>
+            <dxn:RenderTrigger DependencyProperty="{x:Static propertygrid:BindableRowControl.HasExpressionsProperty}" Value="True">
+                <dxn:RenderSetter Property="Fill" TargetName="PART_Icon" Value="{StaticResource {dxt:BadgesThemeKey InformationBackground}}" />
+                <dxn:RenderSetter Property="Opacity" TargetName="PART_Icon" Value="1" />
+            </dxn:RenderTrigger>
+            <dxn:MultiRenderTrigger>
+                <dxn:MultiRenderTrigger.Conditions>
+                    <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.MenuButtonTemplateProperty}" Operator="Not" Value="{x:Null}" />
+                </dxn:MultiRenderTrigger.Conditions>
+                <dxn:RenderSetter Property="Visibility" TargetName="PART_ContentPresenter" Value="Visible" />
+                <dxn:RenderSetter Property="Visibility" TargetName="PART_Icon" Value="Collapsed" />
+            </dxn:MultiRenderTrigger>
+        </dxn:RenderTemplate.Triggers>
+    </dxn:RenderTemplate>
+
+    <dxn:RenderTemplate x:Key="{dxprgt:VSViewRenderTemplateThemeKey ResourceKey=RowControl, IsThemeIndependent=True}">
+        <dxn:RenderBorder Name="PART_Root" BorderBrush="{StaticResource {dxprgt:VSViewBrushThemeKey ResourceKey=BorderBrush}}" BorderThickness="0,0,0,1" ThemeInfo="ReportDesigner\Generic\PropertyGrid\RowControlRenderTemplate.xaml;67;10">
+            <dxn:RenderPanel LayoutProvider="{dxn:StackPanelLayoutProvider Orientation=Vertical}" ThemeInfo="ReportDesigner\Generic\PropertyGrid\RowControlRenderTemplate.xaml;70;14">
+                <dxprg:RenderResizingPanel Dock="Left">
+                    <dxn:RenderBorder Name="PART_HeaderBackground" Background="Transparent" cs:id="RenderBorder_0000" ThemeInfo="ReportDesigner\Generic\PropertyGrid\RowControlRenderTemplate.xaml;72;22">
+                        <dxn:RenderControl Name="PART_HeaderHost" RenderTemplate="{StaticResource {dxprgt:VSViewRenderTemplateThemeKey ResourceKey=HeaderHost}}" ThemeInfo="ReportDesigner\Generic\PropertyGrid\RowControlRenderTemplate.xaml;75;26" />
+                    </dxn:RenderBorder>
+                    <dxn:RenderBorder Name="PART_EditorBackground" Background="Transparent" cs:id="RenderBorder_0001" ThemeInfo="ReportDesigner\Generic\PropertyGrid\RowControlRenderTemplate.xaml;77;22">
+                        <dxn:RenderPanel Dock="Right" LayoutProvider="{dxn:DockPanelLayoutProvider LastChildFill=True}" ThemeInfo="ReportDesigner\Generic\PropertyGrid\RowControlRenderTemplate.xaml;80;26">
+                            <dxn:RenderBorder Name="PART_CommandsContainer" Background="Transparent" Dock="Right" Padding="0,5" VerticalAlignment="Top" cs:id="RenderBorder_0002" ThemeInfo="ReportDesigner\Generic\PropertyGrid\RowControlRenderTemplate.xaml;81;30">
+                                <dxn:RenderPanel Dock="Right" LayoutProvider="{dxn:StackPanelLayoutProvider Orientation=Horizontal}" ThemeInfo="ReportDesigner\Generic\PropertyGrid\RowControlRenderTemplate.xaml;87;34">
+                                    <dxprg:RenderCommandButton Name="PART_CommandButton" PreferRenderTemplate="False" RenderTemplate="{StaticResource {dxprgt:VSViewRenderTemplateThemeKey ResourceKey=RowCommandButton}}" RenderTemplateSelector="{x:Null}" UsePropagatedIsMouseOver="True" VerticalAlignment="Center" />
+                                    <propertygrid:RenderExpressionCommandButton Name="PART_ExpressionButton" PreferRenderTemplate="False" RenderTemplate="{StaticResource ExpressionCommandButton}" RenderTemplateSelector="{x:Null}" UsePropagatedIsMouseOver="True" VerticalAlignment="Center" />
+                                </dxn:RenderPanel>
+                            </dxn:RenderBorder>
+                            <dxprg:RenderCollectionButton Name="PART_CollectionButton" Dock="Right" RenderTemplate="{StaticResource {dxprgt:VSViewRenderTemplateThemeKey ResourceKey=RowCollectionButton}}" RenderTemplateSelector="{x:Null}" UsePropagatedIsMouseOver="True" Visibility="Collapsed" />
+                            <dxn:RenderPanel Dock="Left" LayoutProvider="{dxn:DockPanelLayoutProvider LastChildFill=True}" ThemeInfo="ReportDesigner\Generic\PropertyGrid\RowControlRenderTemplate.xaml;108;30">
+                                <dxn:RenderPanel Name="PART_OnlyExpanderModePanel" Dock="Left" LayoutProvider="{dxn:DockPanelLayoutProvider LastChildFill=True}" Visibility="Collapsed" ThemeInfo="ReportDesigner\Generic\PropertyGrid\RowControlRenderTemplate.xaml;109;34">
+                                    <dxn:RenderBorder Name="PART_Indent" Dock="Left" ThemeInfo="ReportDesigner\Generic\PropertyGrid\RowControlRenderTemplate.xaml;113;38" />
+                                    <dxprg:RenderExpander Name="PART_CheckBox" Dock="Left" HorizontalAlignment="Center" RenderTemplate="{StaticResource {dxprgt:VSViewRenderTemplateThemeKey ResourceKey=Expander}}" RenderTemplateSelector="{x:Null}" UsePropagatedIsMouseOver="True" VerticalAlignment="Center" Visibility="Collapsed" Width="{StaticResource {dxprgt:DataRowThemeKey ResourceKey=ExpanderWidth}}" />
+                                </dxn:RenderPanel>
+                                <dxn:RenderContentControl Name="PART_ContentHost" Dock="Right" HorizontalContentAlignment="Stretch" PreferRenderTemplate="False" VerticalContentAlignment="Stretch" ThemeInfo="ReportDesigner\Generic\PropertyGrid\RowControlRenderTemplate.xaml;124;34" />
+                            </dxn:RenderPanel>
+                        </dxn:RenderPanel>
+                    </dxn:RenderBorder>
+                    <dxn:RenderControl Name="PART_Separator" HorizontalAlignment="Stretch" RenderTemplate="{StaticResource {dxprgt:VSViewRenderTemplateThemeKey ResourceKey=Separator}}" VerticalAlignment="Stretch" ThemeInfo="ReportDesigner\Generic\PropertyGrid\RowControlRenderTemplate.xaml;132;22" />
+                </dxprg:RenderResizingPanel>
+                <dxn:RenderPanel Name="PART_AdditionalContentPanel" LayoutProvider="{dxn:DockPanelLayoutProvider LastChildFill=True}" ThemeInfo="ReportDesigner\Generic\PropertyGrid\RowControlRenderTemplate.xaml;137;18">
+                    <dxn:RenderBorder Name="PART_AdditionalContentIndent" Dock="Left" ThemeInfo="ReportDesigner\Generic\PropertyGrid\RowControlRenderTemplate.xaml;138;22" />
+                    <dxn:RenderButton Name="PART_AssitionalContentStub" Dock="Right" PreferRenderTemplate="False" RenderTemplate="{StaticResource {dxprgt:VSViewRenderTemplateThemeKey ResourceKey=RowCommandButton}}" RenderTemplateSelector="{x:Null}" UsePropagatedIsMouseOver="True" VerticalAlignment="Center" Visibility="Hidden" ThemeInfo="ReportDesigner\Generic\PropertyGrid\RowControlRenderTemplate.xaml;139;22" />
+                    <dxn:RenderContentControl Name="PART_AdditionalContentHost" Dock="Right" HorizontalContentAlignment="Stretch" PreferRenderTemplate="False" VerticalContentAlignment="Stretch" ThemeInfo="ReportDesigner\Generic\PropertyGrid\RowControlRenderTemplate.xaml;147;22" />
+                </dxn:RenderPanel>
+            </dxn:RenderPanel>
+        </dxn:RenderBorder>
+        <dxn:RenderTemplate.Triggers>
+            <dxn:RenderBinding DependencyProperty="{x:Static dxprg:RowControl.HeaderPaddingProperty}" TargetName="PART_HeaderBackground" TargetProperty="Padding" />
+            <dxn:RenderBinding DependencyProperty="{x:Static propertygrid:BindableRowControl.ExpressionButtonVisibilityProperty}" TargetName="PART_ExpressionButton" TargetProperty="Visibility" />
+            <dxn:RenderBinding DependencyProperty="{x:Static dxprg:RowControlBase.ActualIndentProperty}" TargetName="PART_AdditionalContentIndent" TargetProperty="Width" />
+            <dxn:RenderBinding DependencyProperty="{x:Static dxprg:RowControl.RowDataProperty}" TargetName="PART_AdditionalContentHost" TargetProperty="Content" />
+            <dxn:RenderBinding DependencyProperty="{x:Static propertygrid:BindableRowControl.AdditionalContentTemplateProperty}" TargetName="PART_AdditionalContentHost" TargetProperty="ContentTemplate" />
+            <dxn:RenderTrigger DependencyProperty="{x:Static propertygrid:BindableRowControl.IsSelectedProperty}" Value="False">
+                <dxn:RenderSetter Property="Visibility" TargetName="PART_AdditionalContentPanel" Value="Collapsed" />
+            </dxn:RenderTrigger>
+            <dxn:RenderTrigger DependencyProperty="{x:Static propertygrid:BindableRowControl.AdditionalContentTemplateProperty}" Value="{x:Null}">
+                <dxn:RenderSetter Property="Visibility" TargetName="PART_AdditionalContentPanel" Value="Collapsed" />
+            </dxn:RenderTrigger>
+            <dxn:RenderBinding DependencyProperty="{x:Static dxprg:RowControl.ContentPaddingProperty}" TargetName="PART_EditorBackground" TargetProperty="Padding" />
+            <dxn:RenderBinding DependencyProperty="{x:Static dxprg:RowControlBase.ExpandButtonWidthProperty}" TargetName="PART_CheckBox" TargetProperty="Width" />
+            <dxn:RenderTrigger DependencyProperty="{x:Static dxprg:RowControl.ShowGridLinesProperty}" Value="False">
+                <dxn:RenderSetter Property="BorderThickness" TargetName="PART_Root" Value="0" />
+                <dxn:RenderSetter Property="Visibility" TargetName="PART_Separator" Value="Collapsed" />
+            </dxn:RenderTrigger>
+            <dxn:RenderTrigger DependencyProperty="{x:Static dxprg:RowControl.HeaderShowModeProperty}" Value="OnlyHeader">
+                <dxn:RenderSetter Property="Visibility" TargetName="PART_EditorBackground" Value="Collapsed" />
+            </dxn:RenderTrigger>
+            <dxn:RenderTrigger DependencyProperty="{x:Static dxprg:RowControl.HeaderShowModeProperty}" Value="OnlyExpander">
+                <dxn:RenderSetter Property="Visibility" TargetName="PART_OnlyExpanderModePanel" Value="Visible" />
+            </dxn:RenderTrigger>
+            <dxn:RenderTrigger DependencyProperty="{x:Static dxprg:RowControl.CanExpandProperty}" Value="True">
+                <dxn:RenderSetter Property="Visibility" TargetName="PART_CheckBox" Value="Visible" />
+            </dxn:RenderTrigger>
+            <dxn:MultiRenderTrigger>
+                <dxn:MultiRenderTrigger.Conditions>
+                    <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.CanExpandProperty}" Value="False" />
+                    <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.CategoriesShowModeProperty}" Value="Tabbed" />
+                    <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.ExpandButtonVisibilityProperty}" Value="Visible" />
+                </dxn:MultiRenderTrigger.Conditions>
+                <dxn:RenderSetter Property="Visibility" TargetName="PART_CheckBox" Value="Hidden" />
+            </dxn:MultiRenderTrigger>
+            <dxn:RenderTrigger DependencyProperty="{x:Static dxprg:RowControl.ExpandButtonVisibilityProperty}" Value="Hidden">
+                <dxn:RenderSetter Property="Visibility" TargetName="PART_CheckBox" Value="Hidden" />
+            </dxn:RenderTrigger>
+            <dxn:RenderTrigger DependencyProperty="{x:Static dxprg:RowControl.ExpandButtonVisibilityProperty}" Value="Collapsed">
+                <dxn:RenderSetter Property="Visibility" TargetName="PART_CheckBox" Value="Collapsed" />
+            </dxn:RenderTrigger>
+            <dxn:RenderBinding DependencyProperty="{x:Static dxprg:RowControlBase.ActualIndentProperty}" TargetName="PART_Indent" TargetProperty="Width" />
+            <dxn:RenderBinding DependencyProperty="{x:Static dxprg:RowControl.RowDataProperty}" TargetName="PART_ContentHost" TargetProperty="Content" />
+            <dxn:RenderBinding DependencyProperty="{x:Static dxprg:RowControl.EditorHorizontalAlignmentProperty}" TargetName="PART_ContentHost" TargetProperty="HorizontalContentAlignment" />
+            <dxn:RenderBinding DependencyProperty="{x:Static dxprg:RowControl.ContentTemplateSelectorProperty}" TargetName="PART_ContentHost" TargetProperty="ContentTemplateSelector" />
+            <dxn:RenderBinding DependencyProperty="{x:Static dxprg:RowControl.MenuButtonTemplateProperty}" TargetName="PART_CommandButton" TargetProperty="ContentTemplate" />
+            <dxn:RenderTrigger DependencyProperty="{x:Static dxprg:RowControlBase.ActualShowCommandButtonProperty}" Value="False">
+                <dxn:RenderSetter Property="Visibility" TargetName="PART_CommandButton" Value="Collapsed" />
+            </dxn:RenderTrigger>
+            <dxn:RenderTrigger DependencyProperty="{x:Static dxprg:RowControlBase.ShowCollectionButtonProperty}" Value="True">
+                <dxn:RenderSetter Property="Visibility" TargetName="PART_CollectionButton" Value="Visible" />
+            </dxn:RenderTrigger>
+            <dxn:MultiRenderTrigger>
+                <dxn:MultiRenderTrigger.Conditions>
+                    <dxn:RenderConditionGroup Operator="And">
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControlBase.StateProperty}" Value="Normal" />
+                        <dxn:RenderConditionGroup Operator="Or">
+                            <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.HighlightingModeProperty}" Value="HeaderAndContent" />
+                            <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.HighlightingModeProperty}" Value="OnlyHeader" />
+                        </dxn:RenderConditionGroup>
+                    </dxn:RenderConditionGroup>
+                </dxn:MultiRenderTrigger.Conditions>
+                <dxn:RenderSetter Property="Background" TargetName="PART_HeaderBackground" Value="{StaticResource {dxprgt:VSViewBrushThemeKey ResourceKey=Background_Header_Normal}}" />
+                <dxn:RenderSetter Property="Foreground" TargetName="PART_HeaderBackground" Value="{StaticResource {dxprgt:VSViewBrushThemeKey ResourceKey=Foreground_Header_Normal}}" />
+            </dxn:MultiRenderTrigger>
+            <dxn:MultiRenderTrigger>
+                <dxn:MultiRenderTrigger.Conditions>
+                    <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControlBase.StateProperty}" Value="Normal" />
+                    <dxn:RenderConditionGroup Operator="Or">
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.HighlightingModeProperty}" Value="HeaderAndContent" />
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.HighlightingModeProperty}" Value="OnlyContent" />
+                    </dxn:RenderConditionGroup>
+                </dxn:MultiRenderTrigger.Conditions>
+                <dxn:RenderSetter Property="Background" TargetName="PART_EditorBackground" Value="{StaticResource {dxprgt:VSViewBrushThemeKey ResourceKey=Background_Editor_Normal}}" />
+                <dxn:RenderSetter Property="Foreground" TargetName="PART_EditorBackground" Value="{StaticResource {dxprgt:VSViewBrushThemeKey ResourceKey=Foreground_Editor_Normal}}" />
+            </dxn:MultiRenderTrigger>
+            <dxn:MultiRenderTrigger>
+                <dxn:MultiRenderTrigger.Conditions>
+                    <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControlBase.StateProperty}" Value="Selected" />
+                    <dxn:RenderConditionGroup Operator="Or">
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.HighlightingModeProperty}" Value="HeaderAndContent" />
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.HighlightingModeProperty}" Value="OnlyHeader" />
+                    </dxn:RenderConditionGroup>
+                </dxn:MultiRenderTrigger.Conditions>
+                <dxn:RenderSetter Property="Background" TargetName="PART_HeaderBackground" Value="{StaticResource {dxprgt:VSViewBrushThemeKey ResourceKey=Background_Header_Selected}}" />
+                <dxn:RenderSetter Property="Foreground" TargetName="PART_HeaderBackground" Value="{StaticResource {dxprgt:VSViewBrushThemeKey ResourceKey=Foreground_Header_Selected}}" />
+            </dxn:MultiRenderTrigger>
+            <dxn:MultiRenderTrigger>
+                <dxn:MultiRenderTrigger.Conditions>
+                    <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControlBase.StateProperty}" Value="Selected" />
+                    <dxn:RenderConditionGroup Operator="Or">
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.HighlightingModeProperty}" Value="HeaderAndContent" />
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.HighlightingModeProperty}" Value="OnlyContent" />
+                    </dxn:RenderConditionGroup>
+                </dxn:MultiRenderTrigger.Conditions>
+                <dxn:RenderSetter Property="Background" TargetName="PART_EditorBackground" Value="{StaticResource {dxprgt:VSViewBrushThemeKey ResourceKey=Background_Editor_Selected}}" />
+                <dxn:RenderSetter Property="Foreground" TargetName="PART_EditorBackground" Value="{StaticResource {dxprgt:VSViewBrushThemeKey ResourceKey=Foreground_Editor_Selected}}" />
+            </dxn:MultiRenderTrigger>
+            <dxn:MultiRenderTrigger>
+                <dxn:MultiRenderTrigger.Conditions>
+                    <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControlBase.StateProperty}" Value="SelectedInactive" />
+                    <dxn:RenderConditionGroup Operator="Or">
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.HighlightingModeProperty}" Value="HeaderAndContent" />
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.HighlightingModeProperty}" Value="OnlyHeader" />
+                    </dxn:RenderConditionGroup>
+                </dxn:MultiRenderTrigger.Conditions>
+                <dxn:RenderSetter Property="Background" TargetName="PART_HeaderBackground" Value="{StaticResource {dxprgt:VSViewBrushThemeKey ResourceKey=Background_Header_SelectedInactive}}" />
+                <dxn:RenderSetter Property="Foreground" TargetName="PART_HeaderBackground" Value="{StaticResource {dxprgt:VSViewBrushThemeKey ResourceKey=Foreground_Header_SelectedInactive}}" />
+            </dxn:MultiRenderTrigger>
+            <dxn:MultiRenderTrigger>
+                <dxn:MultiRenderTrigger.Conditions>
+                    <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControlBase.StateProperty}" Value="SelectedInactive" />
+                    <dxn:RenderConditionGroup Operator="Or">
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.HighlightingModeProperty}" Value="HeaderAndContent" />
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.HighlightingModeProperty}" Value="OnlyContent" />
+                    </dxn:RenderConditionGroup>
+                </dxn:MultiRenderTrigger.Conditions>
+                <dxn:RenderSetter Property="Background" TargetName="PART_EditorBackground" Value="{StaticResource {dxprgt:VSViewBrushThemeKey ResourceKey=Background_Editor_SelectedInactive}}" />
+                <dxn:RenderSetter Property="Foreground" TargetName="PART_EditorBackground" Value="{StaticResource {dxprgt:VSViewBrushThemeKey ResourceKey=Foreground_Editor_SelectedInactive}}" />
+            </dxn:MultiRenderTrigger>
+            <dxn:MultiRenderTrigger>
+                <dxn:MultiRenderTrigger.Conditions>
+                    <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControlBase.StateProperty}" Value="SelectedInactiveReadOnly" />
+                    <dxn:RenderConditionGroup Operator="Or">
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.HighlightingModeProperty}" Value="HeaderAndContent" />
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.HighlightingModeProperty}" Value="OnlyHeader" />
+                    </dxn:RenderConditionGroup>
+                </dxn:MultiRenderTrigger.Conditions>
+                <dxn:RenderSetter Property="Background" TargetName="PART_HeaderBackground" Value="{StaticResource {dxprgt:VSViewBrushThemeKey ResourceKey=Background_Header_SelectedInactiveReadOnly}}" />
+                <dxn:RenderSetter Property="Foreground" TargetName="PART_HeaderBackground" Value="{StaticResource {dxprgt:VSViewBrushThemeKey ResourceKey=Foreground_Header_SelectedInactiveReadOnly}}" />
+            </dxn:MultiRenderTrigger>
+            <dxn:MultiRenderTrigger>
+                <dxn:MultiRenderTrigger.Conditions>
+                    <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControlBase.StateProperty}" Value="SelectedInactiveReadOnly" />
+                    <dxn:RenderConditionGroup Operator="Or">
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.HighlightingModeProperty}" Value="HeaderAndContent" />
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.HighlightingModeProperty}" Value="OnlyContent" />
+                    </dxn:RenderConditionGroup>
+                </dxn:MultiRenderTrigger.Conditions>
+                <dxn:RenderSetter Property="Background" TargetName="PART_EditorBackground" Value="{StaticResource {dxprgt:VSViewBrushThemeKey ResourceKey=Background_Editor_SelectedInactiveReadOnly}}" />
+                <dxn:RenderSetter Property="Foreground" TargetName="PART_EditorBackground" Value="{StaticResource {dxprgt:VSViewBrushThemeKey ResourceKey=Foreground_Editor_SelectedInactiveReadOnly}}" />
+            </dxn:MultiRenderTrigger>
+            <dxn:MultiRenderTrigger>
+                <dxn:MultiRenderTrigger.Conditions>
+                    <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControlBase.StateProperty}" Value="SelectedReadOnly" />
+                    <dxn:RenderConditionGroup Operator="Or">
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.HighlightingModeProperty}" Value="HeaderAndContent" />
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.HighlightingModeProperty}" Value="OnlyHeader" />
+                    </dxn:RenderConditionGroup>
+                </dxn:MultiRenderTrigger.Conditions>
+                <dxn:RenderSetter Property="Background" TargetName="PART_HeaderBackground" Value="{StaticResource {dxprgt:VSViewBrushThemeKey ResourceKey=Background_Header_SelectedReadOnly}}" />
+                <dxn:RenderSetter Property="Foreground" TargetName="PART_HeaderBackground" Value="{StaticResource {dxprgt:VSViewBrushThemeKey ResourceKey=Foreground_Header_SelectedReadOnly}}" />
+            </dxn:MultiRenderTrigger>
+            <dxn:MultiRenderTrigger>
+                <dxn:MultiRenderTrigger.Conditions>
+                    <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControlBase.StateProperty}" Value="SelectedReadOnly" />
+                    <dxn:RenderConditionGroup Operator="Or">
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.HighlightingModeProperty}" Value="HeaderAndContent" />
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.HighlightingModeProperty}" Value="OnlyContent" />
+                    </dxn:RenderConditionGroup>
+                </dxn:MultiRenderTrigger.Conditions>
+                <dxn:RenderSetter Property="Background" TargetName="PART_EditorBackground" Value="{StaticResource {dxprgt:VSViewBrushThemeKey ResourceKey=Background_Editor_SelectedReadOnly}}" />
+                <dxn:RenderSetter Property="Foreground" TargetName="PART_EditorBackground" Value="{StaticResource {dxprgt:VSViewBrushThemeKey ResourceKey=Foreground_Editor_SelectedReadOnly}}" />
+            </dxn:MultiRenderTrigger>
+            <dxn:MultiRenderTrigger>
+                <dxn:MultiRenderTrigger.Conditions>
+                    <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControlBase.StateProperty}" Value="ReadOnly" />
+                    <dxn:RenderConditionGroup Operator="Or">
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.HighlightingModeProperty}" Value="HeaderAndContent" />
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.HighlightingModeProperty}" Value="OnlyHeader" />
+                    </dxn:RenderConditionGroup>
+                </dxn:MultiRenderTrigger.Conditions>
+                <dxn:RenderSetter Property="Background" TargetName="PART_HeaderBackground" Value="{StaticResource {dxprgt:VSViewBrushThemeKey ResourceKey=Background_Header_ReadOnly}}" />
+                <dxn:RenderSetter Property="Foreground" TargetName="PART_HeaderBackground" Value="{StaticResource {dxprgt:VSViewBrushThemeKey ResourceKey=Foreground_Header_ReadOnly}}" />
+            </dxn:MultiRenderTrigger>
+            <dxn:MultiRenderTrigger>
+                <dxn:MultiRenderTrigger.Conditions>
+                    <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControlBase.StateProperty}" Value="ReadOnly" />
+                    <dxn:RenderConditionGroup Operator="Or">
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.HighlightingModeProperty}" Value="HeaderAndContent" />
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.HighlightingModeProperty}" Value="OnlyContent" />
+                    </dxn:RenderConditionGroup>
+                </dxn:MultiRenderTrigger.Conditions>
+                <dxn:RenderSetter Property="Background" TargetName="PART_EditorBackground" Value="{StaticResource {dxprgt:VSViewBrushThemeKey ResourceKey=Background_Editor_ReadOnly}}" />
+                <dxn:RenderSetter Property="Foreground" TargetName="PART_EditorBackground" Value="{StaticResource {dxprgt:VSViewBrushThemeKey ResourceKey=Foreground_Editor_ReadOnly}}" />
+            </dxn:MultiRenderTrigger>
+            <dxn:MultiRenderTrigger>
+                <dxn:MultiRenderTrigger.Conditions>
+                    <dxn:RenderConditionGroup Operator="Or">
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.HighlightingModeProperty}" Value="None" />
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.HighlightingModeProperty}" Value="OnlyHeader" />
+                    </dxn:RenderConditionGroup>
+                    <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.ShowGridLinesProperty}" Value="False" />
+                    <dxn:RenderConditionGroup Operator="Or">
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControlBase.StateProperty}" Operator="Not" Value="ReadOnly" />
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControlBase.StateProperty}" Operator="Not" Value="SelectedReadOnly" />
+                    </dxn:RenderConditionGroup>
+                </dxn:MultiRenderTrigger.Conditions>
+                <dxn:RenderSetter Property="Foreground" TargetName="PART_EditorBackground" Value="{StaticResource {dxprgt:VSViewBrushThemeKey ResourceKey=Foreground_Editor_Normal}}" />
+            </dxn:MultiRenderTrigger>
+            <dxn:MultiRenderTrigger>
+                <dxn:MultiRenderTrigger.Conditions>
+                    <dxn:RenderConditionGroup Operator="Or">
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.HighlightingModeProperty}" Value="None" />
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.HighlightingModeProperty}" Value="OnlyHeader" />
+                    </dxn:RenderConditionGroup>
+                    <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControl.ShowGridLinesProperty}" Value="False" />
+                    <dxn:RenderConditionGroup Operator="Or">
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControlBase.StateProperty}" Value="ReadOnly" />
+                        <dxn:RenderCondition DependencyProperty="{x:Static dxprg:RowControlBase.StateProperty}" Value="SelectedReadOnly" />
+                    </dxn:RenderConditionGroup>
+                </dxn:MultiRenderTrigger.Conditions>
+                <dxn:RenderSetter Property="Foreground" TargetName="PART_EditorBackground" Value="{StaticResource {dxprgt:VSViewBrushThemeKey ResourceKey=Foreground_Editor_ReadOnly}}" />
+            </dxn:MultiRenderTrigger>
+        </dxn:RenderTemplate.Triggers>
+    </dxn:RenderTemplate>
+
+</ResourceDictionary>

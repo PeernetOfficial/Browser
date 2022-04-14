@@ -1,0 +1,75 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal" xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys" xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    <ResourceDictionary.MergedDictionaries>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.PeernetDarkTheme.v21.2;component/Core/Core/Editors/Themes/Generic/GradientMultiSlider.xaml" />
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.PeernetDarkTheme.v21.2;component/Core/Core/Editors/Themes/PeernetDarkTheme/UICore.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    
+
+    <Style x:Key="{dxet:GradientMultiSliderThemeKey ResourceKey=FlipThumbsButtonStyle}" TargetType="{x:Type Button}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Office2019Black\BrushEdit\GradientMultiSliderThumb.xaml;21;6" /><Setter Property="Height" Value="22" />
+        <Setter Property="Template" Value="{DynamicResource ResourceKey={dxet:GradientMultiSliderThemeKey ResourceKey=FlipThumbsButtonTemplate}}" />
+        <Setter Property="Width" Value="22" />
+        <Style.Triggers>
+            <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
+                <Setter Property="MinHeight" Value="44" />
+                <Setter Property="MinWidth" Value="44" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <ControlTemplate x:Key="{dxet:GradientMultiSliderThemeKey ResourceKey=FlipThumbsButtonTemplate}">
+        <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019Black\BrushEdit\GradientMultiSliderThumb.xaml;34;10">
+            <dx:DXBorder x:Name="IsDefault" Background="Transparent" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019Black\BrushEdit\GradientMultiSliderThumb.xaml;35;14" />
+            <Path Style="{StaticResource UIShape.Flip}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019Black\BrushEdit\GradientMultiSliderThumb.xaml;38;14" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFDADADA" cs:id="Setter_0000" x:Uid="@Value=Foreground" />
+            </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFDADADA" cs:id="Setter_0001" x:Uid="@Value=Foreground" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" TargetName="Root" Value="0.38" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    
+
+    <DataTemplate x:Key="{dxet:GradientMultiSliderThemeKey ResourceKey=SelectedThumbContentPresenterContentTemplate}">
+        <dx:DXBorder BorderBrush="#FF686868" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019Black\BrushEdit\GradientMultiSliderThumb.xaml;64;10" x:Uid="@BorderBrush=Border">
+            <dx:DXBorder.Background>
+                <SolidColorBrush Color="{Binding Path=Color}" />
+            </dx:DXBorder.Background>
+        </dx:DXBorder>
+    </DataTemplate>
+
+    <Style x:Key="{dxet:GradientMultiSliderThemeKey ResourceKey=SelectedThumbContentPresenterStyle}" TargetType="{x:Type ContentPresenter}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Office2019Black\BrushEdit\GradientMultiSliderThumb.xaml;73;6" /><Setter Property="ContentTemplate" Value="{DynamicResource ResourceKey={dxet:GradientMultiSliderThemeKey ResourceKey=SelectedThumbContentPresenterContentTemplate}}" />
+        <Setter Property="Height" Value="14" />
+        <Setter Property="Width" Value="14" />
+    </Style>
+
+    
+
+    <ControlTemplate x:Key="{dxet:GradientMultiSliderThemeKey ResourceKey=ThumbTemplate}" TargetType="{x:Type dxei:GradientMultiSliderThumb}">
+        <Grid Margin="0,1,0,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019Black\BrushEdit\GradientMultiSliderThumb.xaml;82;10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Path Grid.Row="0" Height="6" Style="{StaticResource UIShape.Up}" Width="12" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019Black\BrushEdit\GradientMultiSliderThumb.xaml;87;14" />
+            <Path Grid.Row="0" Height="6" Style="{StaticResource UIShape.Up}" Width="12" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019Black\BrushEdit\GradientMultiSliderThumb.xaml;91;14" />
+            <dx:DXBorder Background="#FFDADADA" Grid.Row="1" Height="12" Width="12" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019Black\BrushEdit\GradientMultiSliderThumb.xaml;95;14" x:Uid="@Background=Foreground" />
+            <dx:DXBorder Grid.Row="1" Margin="1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019Black\BrushEdit\GradientMultiSliderThumb.xaml;100;14">
+                <dx:DXBorder.Background>
+                    <SolidColorBrush Color="{Binding Path=Color, RelativeSource={RelativeSource TemplatedParent}}" />
+                </dx:DXBorder.Background>
+            </dx:DXBorder>
+        </Grid>
+    </ControlTemplate>
+
+</ResourceDictionary>

@@ -1,0 +1,292 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/charts/themekeys" xmlns:local="http://schemas.devexpress.com/winfx/2008/xaml/charts" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    <Style x:Key="baseTitleStyle" TargetType="{x:Type local:TitleBase}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Charts\Generic\Titles.xaml;11;6" /></Style>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.Title}" BasedOn="{StaticResource baseTitleStyle}" TargetType="{x:Type local:Title}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Charts\Generic\Titles.xaml;13;6" /><Setter Property="Margin" Value="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=TitleMarginValue}}" />
+        <Setter Property="Foreground" Value="{DynamicResource {dxt:ChartBrushesThemeKey ResourceKey=TitleForeground}}" />
+        <Setter Property="FontSize" Value="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=TitleFontSize}}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Title}">
+                    <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Titles.xaml;22;22">
+                        <dx:DXBorder Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Titles.xaml;23;26">
+                            <local:ChartContentPresenter Content="{TemplateBinding ActualContent}" ContentTemplate="{TemplateBinding ContentTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Titles.xaml;27;30" />
+                        </dx:DXBorder>
+                        <local:SelectionControl IsHighlighted="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectionInfo.IsHighlighted}" IsSelected="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectionInfo.IsSelected}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.PieTotalLabel}" TargetType="{x:Type local:PieTotalLabel}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Charts\Generic\Titles.xaml;36;6" /><Setter Property="Foreground" Value="{DynamicResource {dxt:ChartBrushesThemeKey ResourceKey=AxisTitleForeground}}" />
+        <Setter Property="FontSize" Value="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=TitleFontSize}}" />
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock x:Name="defaultTotalLabelTextBlock" Text="{Binding}" TextAlignment="Center" TextWrapping="Wrap" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Titles.xaml;42;22" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:PieTotalLabel}">
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Titles.xaml;52;22">
+                        <dx:DXBorder x:Name="totalLabelBorder" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Margin="{TemplateBinding Margin}" Padding="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Titles.xaml;53;26">
+                            <local:ChartContentPresenter Content="{TemplateBinding ActualContent}" ContentTemplate="{TemplateBinding ContentTemplate}" HorizontalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Titles.xaml;59;30" />
+                        </dx:DXBorder>
+                        <local:SelectionControl IsHighlighted="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectionInfo.IsHighlighted}" IsSelected="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectionInfo.IsSelected}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.LegendTitle}" BasedOn="{StaticResource baseTitleStyle}" TargetType="{x:Type local:LegendTitle}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Charts\Generic\Titles.xaml;70;6" /><Setter Property="Margin" Value="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=TitleMarginValue}}" />
+        <Setter Property="FontSize" Value="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=TitleFontSize}}" />
+        <Setter Property="DataContext" Value="{Binding DataContext}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:LegendTitle}">
+                    <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Titles.xaml;79;22">
+                        <dx:DXBorder Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Titles.xaml;80;26">
+                            <local:ChartContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Titles.xaml;84;30" />
+                        </dx:DXBorder>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.AxisTitle}" BasedOn="{StaticResource baseTitleStyle}" TargetType="{x:Type local:AxisTitle}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Charts\Generic\Titles.xaml;92;6" /><Setter Property="Foreground" Value="{DynamicResource {dxt:ChartBrushesThemeKey ResourceKey=AxisTitleForeground}}" />
+        <Setter Property="FontSize" Value="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=AxisTitleFontSize}}" />
+        <Setter Property="Padding" Value="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=AxisTitlePadding}}" />
+    </Style>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.ConstantLineTitle}" BasedOn="{StaticResource baseTitleStyle}" TargetType="{x:Type local:ConstantLineTitle}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Charts\Generic\Titles.xaml;100;6" /><Setter Property="Foreground" Value="{DynamicResource {dxt:ChartBrushesThemeKey ResourceKey=ConstantLineTitleForeground}}" />
+    </Style>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.PaneTitle}" BasedOn="{StaticResource baseTitleStyle}" TargetType="{x:Type local:PaneTitle}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Charts\Generic\Titles.xaml;106;6" /><Setter Property="Margin" Value="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=PaneTitleMarginValue}}" />
+        <Setter Property="FontSize" Value="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=PaneTitleFontSize}}" />
+        <Setter Property="FontWeight" Value="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=PaneTitleFontWeight}}" />
+        <Setter Property="Foreground" Value="{DynamicResource {dxt:ChartBrushesThemeKey ResourceKey=PaneTitleForeground}}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:PaneTitle}">
+                    <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Titles.xaml;116;22">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleContentPresenter_Normal" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleContentPresenter_Hot" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Normal" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Normal_Colored" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Collapsed" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Collapsed_Colored" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Normal_Collapsed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleContentPresenter_Normal" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleContentPresenter_Hot" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Normal" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Normal_Colored" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Collapsed" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Collapsed_Colored" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleContentPresenter_Normal" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleContentPresenter_Hot" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Normal" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Normal_Colored" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Collapsed" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Collapsed_Colored" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Normal_Colored" Storyboard.TargetProperty="(Shape.Fill)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{DynamicResource {dxt:ChartBrushesThemeKey ResourceKey=PaneTitleForegroundHot}}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="MouseOver_Collapsed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleContentPresenter_Normal" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleContentPresenter_Hot" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Normal" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Normal_Colored" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Collapsed" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Collapsed_Colored" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Collapsed_Colored" Storyboard.TargetProperty="(Shape.Fill)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{DynamicResource {dxt:ChartBrushesThemeKey ResourceKey=PaneTitleForegroundHot}}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleContentPresenter_Normal" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleContentPresenter_Hot" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Normal" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Normal_Colored" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Collapsed" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Collapsed_Colored" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Normal_Colored" Storyboard.TargetProperty="(Shape.Fill)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{DynamicResource {dxt:ChartBrushesThemeKey ResourceKey=PaneTitleForegroundDisabled}}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled_Collapsed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleContentPresenter_Normal" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleContentPresenter_Hot" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Normal" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Normal_Colored" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Collapsed" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Collapsed_Colored" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Collapsed_Colored" Storyboard.TargetProperty="(Shape.Fill)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{DynamicResource {dxt:ChartBrushesThemeKey ResourceKey=PaneTitleForegroundDisabled}}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Normal_NoArrow">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleContentPresenter_Normal" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleContentPresenter_Hot" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Normal" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Normal_Colored" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Collapsed" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_PaneTitleArrowShape_Collapsed_Colored" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Collapsed}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <dx:DXBorder Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Titles.xaml;287;26">
+                            <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Titles.xaml;291;30">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <local:ChartContentPresenter x:Name="PART_PaneTitleContentPresenter_Normal" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Titles.xaml;296;34" />
+                                <local:ChartContentPresenter x:Name="PART_PaneTitleContentPresenter_Hot" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" TextElement.Foreground="{DynamicResource {dxt:ChartBrushesThemeKey ResourceKey=PaneTitleForegroundHot}}" Visibility="Collapsed" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Titles.xaml;299;34" />
+                                <Path x:Name="PART_PaneTitleArrowShape_Normal" Data="F1M211,186L205,186 208,189 211,186z" Fill="{TemplateBinding Foreground}" Grid.Column="1" Height="4" Margin="10,0,10,0" Stretch="Fill" Visibility="Collapsed" Width="8" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Titles.xaml;304;34" />
+                                <Path x:Name="PART_PaneTitleArrowShape_Normal_Colored" Data="F1M211,186L205,186 208,189 211,186z" Grid.Column="1" Height="4" Margin="10,0,10,0" Stretch="Fill" Visibility="Collapsed" Width="8" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Titles.xaml;313;34" />
+                                <Path x:Name="PART_PaneTitleArrowShape_Collapsed" Data="F1M0,4L4,0 4,8 0,4z" Fill="{TemplateBinding Foreground}" Grid.Column="1" Height="8" Margin="10,0,10,0" Stretch="Fill" Visibility="Collapsed" Width="4" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Titles.xaml;321;34" />
+                                <Path x:Name="PART_PaneTitleArrowShape_Collapsed_Colored" Data="F1M0,4L4,0 4,8 0,4z" Grid.Column="1" Height="8" Margin="10,0,10,0" Stretch="Fill" Visibility="Collapsed" Width="4" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Titles.xaml;330;34" />
+                            </Grid>
+                        </dx:DXBorder>
+                        <local:SelectionControl IsHighlighted="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectionInfo.IsHighlighted}" IsSelected="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectionInfo.IsSelected}" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="axisElementTitlePresentationStyle" TargetType="{x:Type local:AxisElementTitlePresentation}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Charts\Generic\Titles.xaml;347;6" /><Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:AxisElementTitlePresentation}">
+                    <local:AxisElementTitlePanel x:Name="PART_TitlePanel" Title="{Binding Path=Title, RelativeSource={RelativeSource TemplatedParent}}">
+                        <dx:DXBorder Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Title.Background}" BorderBrush="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Title.BorderBrush}" BorderThickness="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Title.BorderThickness}" Padding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Title.Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Titles.xaml;352;26">
+                            <local:ChartContentPresenter x:Name="PART_TitlePresenter" Content="{Binding Path=Title.Content, RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{Binding Path=Title.ContentTemplate,RelativeSource={RelativeSource TemplatedParent}}" TextElement.FontFamily="{Binding Path=Title.FontFamily, RelativeSource={RelativeSource TemplatedParent}}" TextElement.FontSize="{Binding Path=Title.FontSize, RelativeSource={RelativeSource TemplatedParent}}" TextElement.FontStretch="{Binding Path=Title.FontStretch, RelativeSource={RelativeSource TemplatedParent}}" TextElement.FontStyle="{Binding Path=Title.FontStyle, RelativeSource={RelativeSource TemplatedParent}}" TextElement.FontWeight="{Binding Path=Title.FontWeight, RelativeSource={RelativeSource TemplatedParent}}" TextElement.Foreground="{Binding Path=Title.Foreground, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Titles.xaml;356;30" />
+                        </dx:DXBorder>
+                    </local:AxisElementTitlePanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.AxisTitlePresentation}" BasedOn="{StaticResource axisElementTitlePresentationStyle}" TargetType="{x:Type local:AxisTitlePresentation}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Charts\Generic\Titles.xaml;372;6" /></Style>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.ConstantLineTitlePresentation}" BasedOn="{StaticResource axisElementTitlePresentationStyle}" TargetType="{x:Type local:ConstantLineTitlePresentation}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Charts\Generic\Titles.xaml;376;6" /></Style>
+
+</ResourceDictionary>

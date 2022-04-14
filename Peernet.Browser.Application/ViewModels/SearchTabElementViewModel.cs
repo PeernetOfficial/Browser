@@ -14,8 +14,8 @@ namespace Peernet.Browser.Application.ViewModels
     public class SearchTabElementViewModel : ViewModelBase
     {
         private const int increase = 100;
-        private readonly Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction;
         private readonly Func<DownloadModel, bool> isPlayerSupported;
+        private readonly Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction;
         private bool isClearing;
         private int limit = increase;
 

@@ -1,0 +1,241 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxdot="http://schemas.devexpress.com/winfx/2008/xaml/docking/themekeys" xmlns:dxdove="http://schemas.devexpress.com/winfx/2008/xaml/docking/visualelements" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    <ResourceDictionary.MergedDictionaries>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.PeernetLightTheme.v21.2;component/Docking/PeernetLightTheme/UICore.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    
+
+    <Style x:Key="{dxdot:DocumentElementsThemeKey ResourceKey=DocumentPageButtonStyle}" TargetType="dxdove:ControlBoxButton">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Office2019White\ControlBoxElements\DocumentPageButtons.xaml;17;6" /><Setter Property="BorderStyle">
+            <Setter.Value>
+                <Style TargetType="{x:Type dxdove:ControlBoxButtonBorder}">
+                    <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Office2019White\ControlBoxElements\DocumentPageButtons.xaml;20;18" /><Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type dxdove:ControlBoxButtonBorder}">
+                                <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019White\ControlBoxElements\DocumentPageButtons.xaml;24;34">
+                                    <dx:DXBorder x:Name="IsDefault" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019White\ControlBoxElements\DocumentPageButtons.xaml;25;38" />
+                                    <ContentPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019White\ControlBoxElements\DocumentPageButtons.xaml;30;38" />
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal" />
+                                            <VisualState x:Name="MouseOver">
+                                                <Storyboard>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Background">
+                                                        <DiscreteObjectKeyFrame KeyTime="0">
+                                                            <DiscreteObjectKeyFrame.Value>
+                                                                <SolidColorBrush Color="#FFEFF6FC" cs:id="SolidColorBrush_0000" x:Uid="@Color=HoverBackground" />
+                                                            </DiscreteObjectKeyFrame.Value>
+                                                        </DiscreteObjectKeyFrame>
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="BorderBrush">
+                                                        <DiscreteObjectKeyFrame KeyTime="0">
+                                                            <DiscreteObjectKeyFrame.Value>
+                                                                <SolidColorBrush Color="#FFEFF6FC" cs:id="SolidColorBrush_0001" x:Uid="@Color=HoverBorder" />
+                                                            </DiscreteObjectKeyFrame.Value>
+                                                        </DiscreteObjectKeyFrame>
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <DoubleAnimation Duration="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Opacity" To="1" />
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="Pressed">
+                                                <Storyboard>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Background">
+                                                        <DiscreteObjectKeyFrame KeyTime="0">
+                                                            <DiscreteObjectKeyFrame.Value>
+                                                                <SolidColorBrush Color="#FFDEECF9" cs:id="SolidColorBrush_0002" x:Uid="@Color=SelectionBackground" />
+                                                            </DiscreteObjectKeyFrame.Value>
+                                                        </DiscreteObjectKeyFrame>
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="BorderBrush">
+                                                        <DiscreteObjectKeyFrame KeyTime="0">
+                                                            <DiscreteObjectKeyFrame.Value>
+                                                                <SolidColorBrush Color="#FFDEECF9" cs:id="SolidColorBrush_0003" x:Uid="@Color=SelectionBorder" />
+                                                            </DiscreteObjectKeyFrame.Value>
+                                                        </DiscreteObjectKeyFrame>
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <DoubleAnimation Duration="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Opacity" To="1" />
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="Disabled">
+                                                <Storyboard>
+                                                    <DoubleAnimation Duration="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Opacity" To="0.38" />
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                        <VisualStateGroup x:Name="ActiveStates">
+                                            <VisualState x:Name="EmptyActiveState" />
+                                            <VisualState x:Name="Inactive">
+                                                <Storyboard>
+                                                    <DoubleAnimation Duration="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Opacity" To="0.62" />
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="Active">
+                                                <Storyboard>
+                                                    <DoubleAnimation Duration="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Opacity" To="1" />
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Foreground" Value="#FF444444" cs:id="Setter_0000" x:Uid="@Value=Foreground" />
+        <Setter Property="MinHeight" Value="16" />
+        <Setter Property="MinWidth" Value="16" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="#FF106EBE" cs:id="Setter_0001" x:Uid="@Value=HoverForeground" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Foreground" Value="#FF106EBE" cs:id="Setter_0002" x:Uid="@Value=SelectionForeground" />
+            </Trigger>
+            <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
+                <Setter Property="Height" Value="42" />
+                <Setter Property="Margin" Value="1" />
+                <Setter Property="Width" Value="42" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    
+
+    <Style x:Key="DocumentPinPageButton" TargetType="{x:Type dxdove:ControlBoxGlyphPresenter}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Office2019White\ControlBoxElements\DocumentPageButtons.xaml;140;6" /><Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type dxdove:ControlBoxGlyphPresenter}">
+                    <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019White\ControlBoxElements\DocumentPageButtons.xaml;144;22">
+                        <Path x:Name="Unpinned" Fill="#FF444444" Opacity="0" Style="{StaticResource UIShape.Unpinned}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019White\ControlBoxElements\DocumentPageButtons.xaml;145;26" x:Uid="@Fill=Foreground" />
+                        <Path x:Name="Pinned" Fill="#FF444444" Opacity="0" Style="{StaticResource UIShape.Pinned}" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019White\ControlBoxElements\DocumentPageButtons.xaml;150;26" x:Uid="@Fill=Foreground" />
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Unpinned" Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <SolidColorBrush Color="#FF106EBE" cs:id="SolidColorBrush_0000" x:Uid="@Color=HoverForeground" />
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Pinned" Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <SolidColorBrush Color="#FF106EBE" cs:id="SolidColorBrush_0001" x:Uid="@Color=HoverForeground" />
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Unpinned" Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <SolidColorBrush Color="#FF106EBE" cs:id="SolidColorBrush_0002" x:Uid="@Color=HoverForeground" />
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Pinned" Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <SolidColorBrush Color="#FF106EBE" cs:id="SolidColorBrush_0003" x:Uid="@Color=SelectionForeground" />
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="ActiveStates">
+                                <VisualState x:Name="EmptyActiveState" />
+                                <VisualState x:Name="Inactive" />
+                                <VisualState x:Name="Active" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="PinnedStates">
+                                <VisualState x:Name="Unpinned">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" Storyboard.TargetName="Pinned" Storyboard.TargetProperty="Opacity" To="0" />
+                                        <DoubleAnimation Duration="0" Storyboard.TargetName="Unpinned" Storyboard.TargetProperty="Opacity" To="1" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pinned">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" Storyboard.TargetName="Pinned" Storyboard.TargetProperty="Opacity" To="1" />
+                                        <DoubleAnimation Duration="0" Storyboard.TargetName="Unpinned" Storyboard.TargetProperty="Opacity" To="0" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="DocumentClosePageButton" TargetType="{x:Type dxdove:ControlBoxGlyphPresenter}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Office2019White\ControlBoxElements\DocumentPageButtons.xaml;234;6" /><Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type dxdove:ControlBoxGlyphPresenter}">
+                    <Path x:Name="Content" Fill="#FF444444" Style="{StaticResource UIShape.Close}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019White\ControlBoxElements\DocumentPageButtons.xaml;238;22" x:Uid="@Fill=Foreground">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <SolidColorBrush Color="#FF106EBE" cs:id="SolidColorBrush_0000" x:Uid="@Color=HoverForeground" />
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <SolidColorBrush Color="#FF106EBE" cs:id="SolidColorBrush_0001" x:Uid="@Color=HoverForeground" />
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="ActiveStates">
+                                <VisualState x:Name="EmptyActiveState" />
+                                <VisualState x:Name="Inactive" />
+                                <VisualState x:Name="Active" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Path>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    
+
+    <DataTemplate x:Key="{dxdot:DocumentElementsThemeKey ResourceKey=ClosePageButton}">
+        <dxdove:ControlBoxButton x:Name="PART_Button" dxdove:DockPane.HitTestType="CloseButton" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019White\ControlBoxElements\DocumentPageButtons.xaml;284;10">
+            <dxdove:ControlBoxGlyphPresenter x:Name="PART_GlyphPresenter" Style="{StaticResource DocumentClosePageButton}" />
+        </dxdove:ControlBoxButton>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{dxdot:DocumentElementsThemeKey ResourceKey=PinPageButton}">
+        <dxdove:DockPaneControlBoxButton x:Name="PART_Button" dxdove:DockPane.HitTestType="PinButton" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019White\ControlBoxElements\DocumentPageButtons.xaml;290;10">
+            <dxdove:ControlBoxGlyphPresenter x:Name="PART_GlyphPresenter" Style="{StaticResource DocumentPinPageButton}" />
+        </dxdove:DockPaneControlBoxButton>
+    </DataTemplate>
+
+    
+
+</ResourceDictionary>

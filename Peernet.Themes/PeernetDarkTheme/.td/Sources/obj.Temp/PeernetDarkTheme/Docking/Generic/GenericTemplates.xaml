@@ -1,0 +1,366 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:dxn="clr-namespace:DevExpress.Xpf.Core.Native;assembly=DevExpress.Xpf.Core.v21.2" xmlns:dxp="http://schemas.devexpress.com/winfx/2008/xaml/docking/platform" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/docking/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ve="http://schemas.devexpress.com/winfx/2008/xaml/docking/visualelements" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    
+
+    <DataTemplate x:Key="{dxt:DocumentElementsThemeKey ResourceKey=ControlHostTemplate}">
+        <Grid ve:DockPane.HitTestType="Content" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;17;10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <ve:DockBarContainerControl x:Name="PART_BarContainerControl" LayoutItem="{Binding LayoutItem}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;22;14" />
+            <dx:DXBorder DataContext="{Binding LayoutItem.DataContext}" Grid.Row="1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;23;14">
+                <ve:UIElementPresenter UIElement="{Binding Path=Content.LayoutItem.ContentPresenter, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;24;18" />
+            </dx:DXBorder>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{dxt:DocumentElementsThemeKey ResourceKey=DataHostTemplate}">
+        <Grid DataContext="{Binding LayoutItem}" ve:DockPane.HitTestType="Content" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;30;10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <ve:DockBarContainerControl x:Name="PART_BarContainerControl" LayoutItem="{Binding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;35;14" />
+            <ve:UIElementPresenter Grid.Row="1" UIElement="{Binding Path=Content.LayoutItem.ContentPresenter, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;36;14" />
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{dxt:DocumentElementsThemeKey ResourceKey=LayoutHostTemplate}">
+        <Grid DataContext="{Binding LayoutItem.DataContext}" ve:DockPane.HitTestType="Content" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;41;10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <ve:DockBarContainerControl x:Name="PART_BarContainerControl" LayoutItem="{Binding Content.LayoutItem, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;46;14" />
+            <ScrollViewer BorderBrush="Transparent" dxn:ContentControlHelper.ContentIsNotLogical="False" Focusable="False" Grid.Row="1" HorizontalScrollBarVisibility="{Binding Content.LayoutItem.HorizontalScrollBarVisibility, RelativeSource={RelativeSource TemplatedParent}}" VerticalScrollBarVisibility="{Binding Content.LayoutItem.VerticalScrollBarVisibility, RelativeSource={RelativeSource TemplatedParent}}" cs:id="ScrollViewer_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;47;14">
+                <ve:UIElementPresenter UIElement="{Binding Path=Content.LayoutItem.ContentPresenter, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;54;18" />
+            </ScrollViewer>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{dxt:DocumentPaneElementsThemeKey ResourceKey=TabbedTemplate}">
+        <ve:DocumentTabContainer x:Name="PART_ItemsControl" Background="{Binding LayoutItem.Background}" LayoutItem="{Binding LayoutItem}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;60;10" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="{dxt:DocumentPaneElementsThemeKey ResourceKey=MDITemplate}">
+        <ve:DocumentMDIContainer x:Name="PART_ItemsControl" Background="{Binding LayoutItem.Background}" LayoutItem="{Binding LayoutItem}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;66;10" />
+    </DataTemplate>
+
+    
+
+    <ControlTemplate x:Key="{dxt:DocumentPaneElementsThemeKey ResourceKey=Template}" TargetType="ve:DocumentPane">
+        <dx:DXBorder Background="Transparent" Margin="{Binding Path=LayoutItem.ActualMargin, RelativeSource={RelativeSource TemplatedParent}}" Padding="{Binding Path=LayoutItem.ActualPadding, RelativeSource={RelativeSource TemplatedParent}}" ve:DockPane.HitTestType="Bounds" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;74;10">
+            <ve:DocumentPaneContentPresenter x:Name="PART_Content" MDIStyle="{Binding Path=LayoutItem.MDIStyle, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;79;14" />
+        </dx:DXBorder>
+    </ControlTemplate>
+
+    
+
+    
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.BaseGroupContentControl}" TargetType="{x:Type ve:BaseGroupContentControl}">
+        <Style.Setters><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Generic\GenericTemplates.xaml;87;6" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ve:BaseGroupContentControl">
+                        <ve:LayoutItemsControl DataContext="{Binding DataContext}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;92;26" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <DataTemplate x:Key="{dxt:GroupPaneElementsThemeKey ResourceKey=NoBorderTemplate}">
+        <ve:BaseGroupContentControl Content="{Binding}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="{dxt:GroupPaneElementsThemeKey ResourceKey=GroupTemplate}">
+        <ve:GroupContentControl Content="{Binding}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="{dxt:GroupPaneElementsThemeKey ResourceKey=GroupBoxTemplate}">
+        <ve:GroupBoxContentControl Content="{Binding}" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="{dxt:GroupPaneElementsThemeKey ResourceKey=TabbedTemplate}">
+        <ve:TabbedLayoutGroupPane LayoutItem="{Binding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;112;10" />
+    </DataTemplate>
+
+    
+
+    <ControlTemplate x:Key="{dxt:GroupPaneElementsThemeKey ResourceKey=Template}" TargetType="ve:GroupPane">
+        <dx:DXBorder Background="Transparent" BorderBrush="{Binding LayoutItem.BorderBrush, RelativeSource={RelativeSource TemplatedParent}}" BorderThickness="{Binding LayoutItem.BorderThickness, RelativeSource={RelativeSource TemplatedParent}}" ve:DockPane.HitTestType="Bounds" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;118;10">
+            <ve:DropBoundsControl LayoutItem="{Binding Path=LayoutItem, RelativeSource={RelativeSource TemplatedParent}}" Margin="{Binding Path=LayoutItem.ActualMargin, RelativeSource={RelativeSource TemplatedParent}}" Padding="{Binding Path=LayoutItem.ActualPadding, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;123;14">
+                <ve:GroupPaneContentPresenter x:Name="PART_Content" Content="{Binding LayoutItem, RelativeSource={RelativeSource TemplatedParent}}" GroupBorderStyle="{Binding Path=LayoutItem.GroupBorderStyle, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;126;18" />
+            </ve:DropBoundsControl>
+        </dx:DXBorder>
+    </ControlTemplate>
+
+    
+
+    
+
+    <DataTemplate x:Key="{dxt:TabbedPaneElementsThemeKey ResourceKey=TabbedTemplate}">
+        <ve:PanelTabContainer x:Name="PART_ItemsControl" DataContext="{Binding LayoutItem}" LayoutItem="{Binding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;138;10" />
+    </DataTemplate>
+
+    
+
+    <ControlTemplate x:Key="{dxt:TabbedPaneElementsThemeKey ResourceKey=Template}" TargetType="ve:TabbedPane">
+        <dx:DXBorder Background="Transparent" Margin="{Binding Path=LayoutItem.ActualMargin, RelativeSource={RelativeSource TemplatedParent}}" Padding="{Binding Path=LayoutItem.ActualPadding, RelativeSource={RelativeSource TemplatedParent}}" ve:DockPane.HitTestType="Bounds" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;146;10">
+            <ve:TabbedPaneContentPresenter x:Name="PART_Content" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;151;14" />
+        </dx:DXBorder>
+    </ControlTemplate>
+
+    
+
+    
+
+    <DataTemplate x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=DataHostTemplate}">
+        <Grid DataContext="{Binding LayoutItem}" ve:DockPane.HitTestType="Content" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;160;10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <ve:DockBarContainerControl x:Name="PART_BarContainerControl" LayoutItem="{Binding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;165;14" />
+            <ve:UIElementPresenter Grid.Row="1" UIElement="{Binding Path=Content.LayoutItem.ContentPresenter, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;166;14" />
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=ControlHostTemplate}">
+        <Grid ve:DockPane.HitTestType="Content" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;171;10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <ve:DockBarContainerControl x:Name="PART_BarContainerControl" LayoutItem="{Binding LayoutItem}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;176;14" />
+            <dx:DXBorder DataContext="{Binding LayoutItem.DataContext}" Grid.Row="1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;177;14">
+                <ve:UIElementPresenter UIElement="{Binding Path=Content.LayoutItem.ContentPresenter, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;178;18" />
+            </dx:DXBorder>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=LayoutHostTemplate}">
+        <Grid DataContext="{Binding LayoutItem.DataContext}" ve:DockPane.HitTestType="Content" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;184;10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <ve:DockBarContainerControl x:Name="PART_BarContainerControl" LayoutItem="{Binding Content.LayoutItem, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;189;14" />
+            <ScrollViewer BorderBrush="Transparent" dxn:ContentControlHelper.ContentIsNotLogical="False" Focusable="False" Grid.Row="1" HorizontalScrollBarVisibility="{Binding Content.LayoutItem.HorizontalScrollBarVisibility, RelativeSource={RelativeSource TemplatedParent}}" VerticalScrollBarVisibility="{Binding Content.LayoutItem.VerticalScrollBarVisibility, RelativeSource={RelativeSource TemplatedParent}}" cs:id="ScrollViewer_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;190;14">
+                <ve:UIElementPresenter UIElement="{Binding Path=Content.LayoutItem.ContentPresenter, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;197;18" />
+            </ScrollViewer>
+        </Grid>
+    </DataTemplate>
+
+    
+
+    
+
+    <ControlTemplate x:Key="{dxt:DockPaneElementsThemeKey ResourceKey=Template}" TargetType="ve:DockPane">
+        <Grid Background="Transparent" Margin="{Binding Path=LayoutItem.ActualMargin, RelativeSource={RelativeSource TemplatedParent}}" ve:DockPane.HitTestType="Bounds" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;207;10">
+            <dx:DXBorder Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding ActualBorderBrush}" BorderThickness="{TemplateBinding ActualBorderThickness}" CornerRadius="{TemplateBinding ActualCaptionCornerRadius}" Margin="{TemplateBinding ActualBorderMargin}" Padding="{TemplateBinding ActualBorderPadding}" SnapsToDevicePixels="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;211;14">
+                <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;218;18">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <ve:FloatingDragWidget Background="Transparent" cs:id="FloatingDragWidget_0000">
+                        <ve:DockPaneHeaderPresenter x:Name="PART_Header" Content="{TemplateBinding Header}" Margin="{DynamicResource {dxt:DockPaneElementsThemeKey ResourceKey=HeaderMargin}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;224;26" />
+                    </ve:FloatingDragWidget>
+                    <ve:DockPaneContentPresenter x:Name="PART_Content" Content="{TemplateBinding Content}" Grid.Row="1" Margin="{Binding Path=LayoutItem.ActualPadding, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;228;22" />
+                </Grid>
+            </dx:DXBorder>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="ViewStyle" Value="Light">
+                <Setter Property="Margin" TargetName="PART_Header" Value="{DynamicResource {dxt:DockPaneElementsThemeKey ResourceKey=LightViewHeaderMargin}}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    
+
+    
+
+    <ControlTemplate x:Key="{dxt:AutoHideTrayElementsThemeKey ResourceKey=Template}" TargetType="ve:AutoHideTray">
+        <dx:DXBorder x:Name="bounds" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding ActualBorderThickness}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;249;10">
+            <ItemsPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;253;14" />
+        </dx:DXBorder>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxt:AutoHideTrayElementsThemeKey ResourceKey=HeadersGroup}" TargetType="ve:AutoHideTrayHeadersGroup">
+        <ItemsPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;258;10" />
+    </ControlTemplate>
+
+    
+
+    <DataTemplate x:Key="{dxt:ControlItemElementsThemeKey ResourceKey=Caption}">
+        <dx:DXBorder Background="Transparent" DataContext="{Binding LayoutItem}" ve:DockPane.HitTestType="Header" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;264;10">
+            <ve:TemplatedCaptionControl LayoutItem="{Binding}" Padding="{Binding Path=ActualCaptionMargin}" Width="{Binding Path=ActualCaptionWidth}" />
+        </dx:DXBorder>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{dxt:ControlItemElementsThemeKey ResourceKey=Control}">
+        <dx:DXBorder x:Name="border" DataContext="{Binding LayoutItem.DataContext}" ve:DockPane.HitTestType="Content" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;275;10">
+            <ve:UIElementPresenter HorizontalAlignment="{Binding Path=Content.LayoutItem.ControlHorizontalAlignment, RelativeSource={RelativeSource TemplatedParent}}" UIElement="{Binding Path=Content.LayoutItem.ContentPresenter, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="{Binding Path=Content.LayoutItem.ControlVerticalAlignment, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;278;14" />
+        </dx:DXBorder>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{dxt:FloatPaneElementsThemeKey ResourceKey=Template}">
+        <Grid DataContext="{Binding LayoutItem}" Visibility="{Binding ActualVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;285;10">
+            <Grid.Resources>
+                <dxmvvm:ObjectToObjectConverter x:Key="FloatStateToVisibilityConverter" DefaultTarget="Collapsed">
+                    <dxmvvm:MapItem Source="Minimized" Target="Visible" />
+                </dxmvvm:ObjectToObjectConverter>
+                <dxmvvm:ObjectToObjectConverter x:Key="FloatStateToVisibilityConverterInverted" DefaultTarget="Visible">
+                    <dxmvvm:MapItem Source="Minimized" Target="Collapsed" />
+                </dxmvvm:ObjectToObjectConverter>
+            </Grid.Resources>
+            <ve:FormBorderControl x:Name="PART_FormBorderControl" FormBorderMargin="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=FormBorderMargin}}" MaximizedBorderMargin="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=MaximizedBorderMargin}}" SingleBorderMargin="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=SingleBorderMargin}}" Visibility="{Binding FloatState, Converter={StaticResource FloatStateToVisibilityConverterInverted}}" />
+            <ve:MinimizedFloatGroupsItem Content="{Binding LayoutItemData}" HorizontalAlignment="Left" MinHeight="28" VerticalAlignment="Top" Visibility="{Binding FloatState, Converter={StaticResource FloatStateToVisibilityConverter}}" />
+        </Grid>
+    </DataTemplate>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.FormBorderControl}" TargetType="ve:FormBorderControl">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Generic\GenericTemplates.xaml;307;6" /><Setter Property="EmptyBorderTemplate" Value="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=EmptyBorderTemplate}}" />
+        <Setter Property="SingleBorderTemplate" Value="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=SingleBorderTemplate}}" />
+        <Setter Property="FormBorderTemplate" Value="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=FormBorderTemplate}}" />
+    </Style>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.FormBorderContentControl}" TargetType="ve:FormBorderContentControl">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Generic\GenericTemplates.xaml;313;6" /><Setter Property="Template" Value="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=FormBorderContentTemplate}}" />
+        <Setter Property="Focusable" Value="False" />
+    </Style>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.ResizeBoundsControl}" TargetType="{x:Type ve:ResizeBoundsControl}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Generic\GenericTemplates.xaml;318;6" /><Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:ResizeBoundsControl">
+                    <Grid x:Name="PART_ResizeBorders" FlowDirection="LeftToRight" ve:DockPane.HitTestType="Border" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;323;22">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="10" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="10" />
+                        </Grid.RowDefinitions>
+                        <Path x:Name="TopLeft" Data="F1M414,287L410,287 410,281 410,277 414,277 420,277 420,281 414,281 414,287z" Fill="Transparent" Height="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=ResizingCornerLength}}" HorizontalAlignment="Left" Stretch="Fill" ve:DockPane.HitTestType="SizeNW" VerticalAlignment="Top" Width="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=ResizingCornerLength}}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;336;26">
+                            <Path.Cursor>
+                                <Binding Path="AllowSizing">
+                                    <Binding.Converter>
+                                        <ve:ConditionalCursorConverter Cursor="SizeNWSE" />
+                                    </Binding.Converter>
+                                </Binding>
+                            </Path.Cursor>
+                        </Path>
+                        <Path x:Name="TopRight" Data="F1M430,294L430,290 436,290 440,290 440,294 440,300 436,300 436,294 430,294z" Fill="Transparent" Grid.Column="2" Height="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=ResizingCornerLength}}" HorizontalAlignment="Right" Stretch="Fill" ve:DockPane.HitTestType="SizeNE" VerticalAlignment="Top" Width="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=ResizingCornerLength}}" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;354;26">
+                            <Path.Cursor>
+                                <Binding Path="AllowSizing">
+                                    <Binding.Converter>
+                                        <ve:ConditionalCursorConverter Cursor="SizeNESW" />
+                                    </Binding.Converter>
+                                </Binding>
+                            </Path.Cursor>
+                        </Path>
+                        <Path x:Name="BottomRight" Data="F1M393,279L397,279 397,285 397,289 393,289 387,289 387,285 393,285 393,279z" Fill="Transparent" Grid.Column="2" Grid.Row="2" Height="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=ResizingCornerLength}}" HorizontalAlignment="Right" Stretch="Fill" ve:DockPane.HitTestType="SizeSE" VerticalAlignment="Bottom" Width="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=ResizingCornerLength}}" cs:id="Path_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;373;26">
+                            <Path.Cursor>
+                                <Binding Path="AllowSizing">
+                                    <Binding.Converter>
+                                        <ve:ConditionalCursorConverter Cursor="SizeNWSE" />
+                                    </Binding.Converter>
+                                </Binding>
+                            </Path.Cursor>
+                        </Path>
+                        <Path x:Name="BottomLeft" Data="F1M416,312L416,316 410,316 406,316 406,312 406,306 410,306 410,312 416,312z" Fill="Transparent" Grid.Column="0" Grid.Row="2" Height="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=ResizingCornerLength}}" HorizontalAlignment="Left" Stretch="Fill" ve:DockPane.HitTestType="SizeSW" VerticalAlignment="Bottom" Width="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=ResizingCornerLength}}" cs:id="Path_0003" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;393;26">
+                            <Path.Cursor>
+                                <Binding Path="AllowSizing">
+                                    <Binding.Converter>
+                                        <ve:ConditionalCursorConverter Cursor="SizeNESW" />
+                                    </Binding.Converter>
+                                </Binding>
+                            </Path.Cursor>
+                        </Path>
+                        <Rectangle x:Name="Bottom" Fill="Transparent" Grid.Column="1" Grid.Row="2" Height="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=ResizingSideLength}}" Stretch="Fill" ve:DockPane.HitTestType="SizeS" VerticalAlignment="Bottom" cs:id="Rectangle_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;413;26">
+                            <Rectangle.Cursor>
+                                <Binding Path="AllowSizing">
+                                    <Binding.Converter>
+                                        <ve:ConditionalCursorConverter Cursor="SizeNS" />
+                                    </Binding.Converter>
+                                </Binding>
+                            </Rectangle.Cursor>
+                        </Rectangle>
+                        <Rectangle x:Name="Top" Fill="Transparent" Grid.Column="1" Grid.Row="0" Height="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=ResizingSideLength}}" Stretch="Fill" ve:DockPane.HitTestType="SizeN" VerticalAlignment="Top" cs:id="Rectangle_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;430;26">
+                            <Rectangle.Cursor>
+                                <Binding Path="AllowSizing">
+                                    <Binding.Converter>
+                                        <ve:ConditionalCursorConverter Cursor="SizeNS" />
+                                    </Binding.Converter>
+                                </Binding>
+                            </Rectangle.Cursor>
+                        </Rectangle>
+                        <Rectangle x:Name="Left" Fill="Transparent" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" Stretch="Fill" ve:DockPane.HitTestType="SizeW" Width="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=ResizingSideLength}}" cs:id="Rectangle_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;447;26">
+                            <Rectangle.Cursor>
+                                <Binding Path="AllowSizing">
+                                    <Binding.Converter>
+                                        <ve:ConditionalCursorConverter Cursor="SizeWE" />
+                                    </Binding.Converter>
+                                </Binding>
+                            </Rectangle.Cursor>
+                        </Rectangle>
+                        <Rectangle x:Name="Right" Fill="Transparent" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Right" Stretch="Fill" ve:DockPane.HitTestType="SizeE" Width="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=ResizingSideLength}}" cs:id="Rectangle_0003" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;464;26">
+                            <Rectangle.Cursor>
+                                <Binding Path="AllowSizing">
+                                    <Binding.Converter>
+                                        <ve:ConditionalCursorConverter Cursor="SizeWE" />
+                                    </Binding.Converter>
+                                </Binding>
+                            </Rectangle.Cursor>
+                        </Rectangle>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.AutoHidePanePresenter}" TargetType="ve:AutoHidePanePresenter">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Generic\GenericTemplates.xaml;487;6" /><Setter Property="Win32CompatibleTemplate">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:AutoHidePanePresenter">
+                    <dx:DXBorder Background="Transparent" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;491;22">
+                        <dxp:AutoHideWindowHost x:Name="Host" Background="{DynamicResource {dxt:BrushElementsThemeKey ResourceKey=PanelBackground}}" Margin="{DynamicResource {dxt:AutoHidePaneElementsThemeKey ResourceKey=ContentMargin}}">
+                            <AdornerDecorator dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;495;30">
+                                <ContentPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\GenericTemplates.xaml;496;34" />
+                            </AdornerDecorator>
+                        </dxp:AutoHideWindowHost>
+                    </dx:DXBorder>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=(dxdo:DockLayoutManager.DockLayoutManager).ViewStyle, RelativeSource={RelativeSource Self}}" Value="Light">
+                            <Setter Property="Margin" TargetName="Host" Value="0" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.ElementSizer}" TargetType="ve:ElementSizer">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Generic\GenericTemplates.xaml;512;6" /><Setter Property="Background" Value="Transparent" cs:id="Setter_0000" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template" Value="{DynamicResource {dxt:DockElementsThemeKey ResourceKey=ElementSizer}}" />
+    </Style>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.MinimizedFloatGroupsItem}" TargetType="{x:Type ve:MinimizedFloatGroupsItem}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Generic\GenericTemplates.xaml;520;6" /><Setter Property="Template" Value="{DynamicResource {dxt:MinimizedFloatGroupsItemElementsThemeKey ResourceKey=Template}}" />
+    </Style>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.MinimizedFloatGroupsItemsControl}" BasedOn="{StaticResource {x:Type ItemsControl}}" TargetType="{x:Type ve:MinimizedFloatGroupsItemsControl}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Generic\GenericTemplates.xaml;524;6" /><Setter Property="Focusable" Value="False" />
+    </Style>
+
+</ResourceDictionary>

@@ -1,0 +1,62 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxbt="http://schemas.devexpress.com/winfx/2008/xaml/bars/themekeys" xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon" xmlns:dxri="http://schemas.devexpress.com/winfx/2008/xaml/ribbon/internal" xmlns:dxrt="http://schemas.devexpress.com/winfx/2008/xaml/ribbon/themekeys" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    <ResourceDictionary.MergedDictionaries>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.PeernetDarkTheme.v21.2;component/Ribbon/PeernetDarkTheme/UICore.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    
+
+    <ControlTemplate x:Key="{dxrt:InRibbonGalleryThemeKey ResourceKey=GalleryItemBorderTemplate}" TargetType="{x:Type dxb:ItemBorderControl}">
+        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019Black\RibbonGallery\InRibbonGallery\InRibbonGalleryItem_Base.xaml;23;10">
+            <dx:DXBorder x:Name="IsDefault" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019Black\RibbonGallery\InRibbonGallery\InRibbonGalleryItem_Base.xaml;26;14" />
+            <ContentPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019Black\RibbonGallery\InRibbonGallery\InRibbonGalleryItem_Base.xaml;31;14" />
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="State">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Hover">
+                        <Storyboard>
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FF505050" cs:id="ColorAnimation_0000" x:Uid="@To=ControlLight.HoverBackground" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#FF505050" cs:id="ColorAnimation_0005" x:Uid="@To=ControlLight.HoverBackground" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FF6A6A6A" cs:id="ColorAnimation_0001" x:Uid="@To=ControlLight.SelectionBackground" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#FF505050" cs:id="ColorAnimation_0006" x:Uid="@To=ControlLight.HoverBackground" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Checked">
+                        <Storyboard>
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FF6A6A6A" cs:id="ColorAnimation_0002" x:Uid="@To=ControlLight.SelectionBackground" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#FF505050" cs:id="ColorAnimation_0007" x:Uid="@To=ControlLight.HoverBackground" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="HoverChecked">
+                        <Storyboard>
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FF6A6A6A" cs:id="ColorAnimation_0003" x:Uid="@To=ControlLight.SelectionBackground" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#FF505050" cs:id="ColorAnimation_0008" x:Uid="@To=ControlLight.HoverBackground" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Focused">
+                        <Storyboard>
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FF505050" cs:id="ColorAnimation_0004" x:Uid="@To=ControlLight.HoverBackground" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#FF505050" cs:id="ColorAnimation_0009" x:Uid="@To=ControlLight.HoverBackground" />
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxrt:InRibbonGalleryThemeKey ResourceKey=GalleryItemGlyphBorderTemplate}" TargetType="{x:Type dxb:ItemBorderControl}">
+        <dx:DXBorder Name="Root" BorderBrush="Transparent" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019Black\RibbonGallery\InRibbonGallery\InRibbonGalleryItem_Base.xaml;111;10">
+            <ContentPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019Black\RibbonGallery\InRibbonGallery\InRibbonGalleryItem_Base.xaml;114;14" />
+        </dx:DXBorder>
+        <ControlTemplate.Triggers>
+            <Trigger Property="State" Value="Checked">
+                <Setter Property="BorderBrush" TargetName="Root" Value="#FFDADADA" cs:id="Setter_0000" x:Uid="@Value=ControlLight.Foreground" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+</ResourceDictionary>

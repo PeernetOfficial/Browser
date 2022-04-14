@@ -1,0 +1,306 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxec="clr-namespace:DevExpress.Xpf.Editors.Controls;assembly=DevExpress.Xpf.Core.v21.2" xmlns:dxedn="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxednc="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal" xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal" xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys" xmlns:dxtEx="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:interactivity="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ui="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    <dxcore_unique_xmlns:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+
+    <dxcore_unique_xmlns:EditorStringIdConverter x:Key="EditorStringIdConverter" />
+
+    <DataTemplate x:Key="{dxet:DateNavigatorThemeKey ResourceKey=MonthCellTemplate}">
+        <TextBlock HorizontalAlignment="Center" Text="{Binding Path=Text}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;23;10" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="{dxet:DateNavigatorThemeKey ResourceKey=YearCellTemplate}">
+        <TextBlock HorizontalAlignment="Center" Text="{Binding Path=Text}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;29;10" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="{dxet:DateNavigatorThemeKey ResourceKey=YearsCellTemplate}">
+        <TextBlock HorizontalAlignment="Center" Text="{Binding Path=Text}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;35;10" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="{dxet:DateNavigatorThemeKey ResourceKey=YearsRangeCellTemplate}">
+        <TextBlock HorizontalAlignment="Center" Text="{Binding Path=Text}" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;41;10" />
+    </DataTemplate>
+
+    <dxcore_unique_xmlns:EnumToBoolConverter x:Key="EnumToBoolConverter" />
+
+    <ControlTemplate x:Key="{dxet:DateNavigatorThemeKey ResourceKey=CalendarContentControlTemplate}" TargetType="{x:Type dxednc:DateNavigatorCalendarContentControl}">
+        <dx:DXBorder Margin="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;50;10">
+            <ItemsPresenter x:Name="PART_ItemsPresenter" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;51;14" />
+        </dx:DXBorder>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxet:DateNavigatorThemeKey ResourceKey=CalendarContentControlMonthTemplate}" TargetType="{x:Type dxednc:DateNavigatorCalendarContentControl}">
+        <dx:DXBorder Margin="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;56;10">
+            <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;57;14">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <ItemsControl x:Name="PART_WeekdayAbbreviationItemsControl" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right" ItemsSource="{TemplateBinding DayNames}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;68;18">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <dxei:DateNavigatorCalendarMonthLabelsPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Style="{DynamicResource {dxet:DateNavigatorThemeKey ResourceKey=WeekdayAbbreviationStyle}}" Text="{Binding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;80;30" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <ContentControl dxcore_unique_xmlns:FocusHelper2.Focusable="False" Grid.Column="2" Grid.Row="1" Margin="0,0,0,5" Template="{DynamicResource {dxet:DateNavigatorThemeKey IsVisibleInBlend=True, ResourceKey=MonthInfoDelimeter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;84;18" />
+                <ItemsControl x:Name="PART_WeekNumbersItemsControl" Grid.Column="0" Grid.Row="2" ItemsSource="{TemplateBinding WeekNumbers}" Visibility="{Binding Path=(dxedn:DateNavigator.Navigator).ShowWeekNumbers, RelativeSource={RelativeSource Self}, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;89;18">
+                    <ui:Interaction.Behaviors>
+                        <ui:EventToCommand Command="{Binding Path=WeekNumberClickCommand, RelativeSource={RelativeSource TemplatedParent}}" Event="MouseLeftButtonDown" PassEventArgsToCommand="True" />
+                    </ui:Interaction.Behaviors>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <dxei:DateNavigatorCalendarMonthLabelsPanel Orientation="Vertical" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Style="{DynamicResource {dxet:DateNavigatorThemeKey ResourceKey=WeekNumberStyle}}" Text="{Binding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;106;30" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <ContentControl dxcore_unique_xmlns:FocusHelper2.Focusable="False" Grid.Column="1" Grid.Row="2" Template="{DynamicResource {dxet:DateNavigatorThemeKey IsVisibleInBlend=True, ResourceKey=WeekNumberDelimeter}}" Visibility="{Binding Path=(dxedn:DateNavigator.Navigator).ShowWeekNumbers, RelativeSource={RelativeSource Self}, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;110;18" />
+                <ItemsPresenter x:Name="PART_ItemsPresenter" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Right" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;115;18" />
+            </Grid>
+        </dx:DXBorder>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxet:DateNavigatorThemeKey ResourceKey=CalendarControlTemplate}" TargetType="{x:Type dxednc:DateNavigatorCalendarControl}">
+        <Grid Margin="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;124;10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <dx:DXBorder x:Name="PART_HeaderBorder" Grid.Row="0" Margin="0,0,0,4" Style="{DynamicResource {dxet:DateNavigatorThemeKey ResourceKey=OutlookHeaderStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;129;14">
+                <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;133;18">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <RepeatButton x:Name="PART_PrevButton" Command="{Binding Path=ArrowLeftCommand, RelativeSource={RelativeSource TemplatedParent}}" Grid.Column="0" Grid.Row="0" Style="{DynamicResource {dxet:DateNavigatorThemeKey ResourceKey=LeftArrowStyle}}" Visibility="Collapsed" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;139;22">
+                        &lt;
+                    </RepeatButton>
+                    <Grid x:Name="PART_Header" Grid.Column="1" Grid.Row="0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;147;22">
+                        <TextBlock x:Name="PART_HeaderText" Style="{DynamicResource {dxet:DateNavigatorThemeKey IsVisibleInBlend=True, ResourceKey=CalendarCurrentDateStyle}}" Text="{TemplateBinding CurrentDateText}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;150;26" />
+                        <Button x:Name="PART_HeaderButton" Command="{Binding Path=HeaderClickCommand, RelativeSource={RelativeSource TemplatedParent}}" Content="{TemplateBinding CurrentDateText}" dxcore_unique_xmlns:FocusHelper2.Focusable="False" Style="{DynamicResource {dxet:DateNavigatorThemeKey ResourceKey=CurrentDateButtonStyle}}" Visibility="Collapsed" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;153;26" />
+                    </Grid>
+                    <RepeatButton x:Name="PART_NextButton" Command="{Binding Path=ArrowRightCommand, RelativeSource={RelativeSource TemplatedParent}}" Grid.Column="2" Grid.Row="0" Style="{DynamicResource {dxet:DateNavigatorThemeKey ResourceKey=RightArrowStyle}}" Visibility="Collapsed" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;160;22">
+                        &gt;
+                    </RepeatButton>
+                </Grid>
+            </dx:DXBorder>
+            <dx:DXBorder Background="{TemplateBinding Background}" Grid.Row="1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;170;14">
+                <dxei:DateNavigatorCalendarContentControl x:Name="PART_CalendarContent" DateTime="{Binding Path=DateTime, RelativeSource={RelativeSource TemplatedParent}}" FirstDayOfWeek="{Binding Path=FirstDayOfWeek, RelativeSource={RelativeSource TemplatedParent}}" FirstItemOffset="{Binding Path=SkipItems, RelativeSource={RelativeSource TemplatedParent}}" ItemsSource="{Binding Path=Cells, RelativeSource={RelativeSource TemplatedParent}}" State="{Binding Path=State, RelativeSource={RelativeSource TemplatedParent}}" />
+            </dx:DXBorder>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=HeaderType, RelativeSource={RelativeSource Self}}" Value="First" />
+                    <Condition Binding="{Binding Path=(dxedn:DateNavigator.Navigator).DisplayMode, RelativeSource={RelativeSource Self}}" Value="Outlook" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Visibility" TargetName="PART_PrevButton" Value="Visible" />
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=HeaderType, RelativeSource={RelativeSource Self}}" Value="Both" />
+                    <Condition Binding="{Binding Path=(dxedn:DateNavigator.Navigator).DisplayMode, RelativeSource={RelativeSource Self}}" Value="Outlook" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Visibility" TargetName="PART_PrevButton" Value="Visible" />
+                <Setter Property="Visibility" TargetName="PART_NextButton" Value="Visible" />
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=HeaderType, RelativeSource={RelativeSource Self}}" Value="Last" />
+                    <Condition Binding="{Binding Path=(dxedn:DateNavigator.Navigator).DisplayMode, RelativeSource={RelativeSource Self}}" Value="Outlook" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Visibility" TargetName="PART_NextButton" Value="Visible" />
+            </MultiDataTrigger>
+            <DataTrigger Binding="{Binding Path=(dxedn:DateNavigator.Navigator).DisplayMode, RelativeSource={RelativeSource Self}}" Value="Outlook">
+                <Setter Property="Visibility" TargetName="PART_HeaderText" Value="Collapsed" />
+                <Setter Property="Visibility" TargetName="PART_HeaderButton" Value="Visible" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=(dxedn:DateNavigator.Navigator).DisplayMode, RelativeSource={RelativeSource Self}}" Value="Classic">
+                <Setter Property="Background" TargetName="PART_HeaderBorder" Value="Transparent" cs:id="Setter_0000" />
+            </DataTrigger>
+            <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
+                <Setter Property="Margin" TargetName="PART_Header" Value="0,5" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <dxei:DateNavigatorCellButtonStateConverter x:Key="DateNavigatorCellButtonStateConverter" />
+
+    <ControlTemplate x:Key="{dxet:DateNavigatorThemeKey ResourceKey=CalendarCellButtonTemplate}" TargetType="{x:Type dxednc:DateNavigatorCellButton}">
+        <Grid Opacity="{Binding Path=Appearance.Opacity, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;235;10">
+            <dx:DXBorder x:Name="PART_Border" Background="{Binding Path=Appearance.Background, RelativeSource={RelativeSource TemplatedParent}}" BorderBrush="{Binding Path=Appearance.BorderBrush, RelativeSource={RelativeSource TemplatedParent}}" BorderThickness="{Binding Path=Appearance.BorderThickness, RelativeSource={RelativeSource TemplatedParent}}" CornerRadius="{Binding Path=Appearance.CornerRadius, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;236;14" />
+            <ContentPresenter x:Name="PART_Content" HorizontalAlignment="Stretch" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" TextBlock.FontWeight="{Binding Path=Appearance.FontWeight, RelativeSource={RelativeSource TemplatedParent}}" TextBlock.Foreground="{Binding Path=Appearance.Foreground, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;241;14" />
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxet:DateNavigatorThemeKey ResourceKey=NewCalendarTemplate}" TargetType="{x:Type dxedn:DateNavigator}">
+        <Grid Background="{TemplateBinding Background}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;252;10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <dx:DXBorder x:Name="PART_Header" Style="{DynamicResource {dxet:DateNavigatorThemeKey ResourceKey=HeaderStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;257;14">
+                <Grid Grid.Row="0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;258;18">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <RepeatButton x:Name="PART_ArrowLeft" Content="&lt;" dxcore_unique_xmlns:FocusHelper2.Focusable="False" Grid.Column="0" HorizontalAlignment="Left" Style="{DynamicResource {dxet:DateNavigatorThemeKey ResourceKey=LeftArrowStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;264;22" />
+                    <Button x:Name="PART_CurrentDateButton" Content="{TemplateBinding CurrentDateText}" dxcore_unique_xmlns:FocusHelper2.Focusable="False" Grid.Column="1" Style="{DynamicResource {dxet:DateNavigatorThemeKey ResourceKey=CurrentDateButtonStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;270;22" />
+                    <RepeatButton x:Name="PART_ArrowRight" Content="&gt;" dxcore_unique_xmlns:FocusHelper2.Focusable="False" Grid.Column="2" HorizontalAlignment="Right" Style="{DynamicResource {dxet:DateNavigatorThemeKey ResourceKey=RightArrowStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;275;22" />
+                </Grid>
+            </dx:DXBorder>
+            <dxei:DateNavigatorPanel Grid.Row="1" Tag="NewCalendar" VerticalAlignment="Top">
+                <Grid x:Name="PART_NavigatorContent" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;286;18">
+                    
+                    <dxei:DateNavigatorContent x:Name="PART_Content" ColumnCount="{TemplateBinding ColumnCount}" IsHitTestVisible="False" RowCount="{TemplateBinding RowCount}" />
+                    
+                </Grid>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;296;18">
+                    <Button x:Name="PART_TodayButton" Style="{DynamicResource {dxet:DateNavigatorThemeKey ResourceKey=TodayButtonStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;297;22" />
+                    <Button x:Name="PART_ClearButton" Content="{Binding Path=IsTabStop, RelativeSource={RelativeSource Self}, ConverterParameter=Clear, Converter={StaticResource EditorStringIdConverter}}" Style="{DynamicResource {dxet:DateNavigatorThemeKey ResourceKey=ClearButtonStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;298;22" />
+                </StackPanel>
+            </dxei:DateNavigatorPanel>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="DisplayMode" Value="Outlook">
+                <Setter Property="Visibility" TargetName="PART_Header" Value="Collapsed" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" TargetName="PART_NavigatorContent" Value="0.38" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxet:DateNavigatorThemeKey ResourceKey=Template}" TargetType="{x:Type dxedn:DateNavigator}">
+        <Grid Background="{TemplateBinding Background}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;319;10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <dx:DXBorder x:Name="PART_Header" Style="{DynamicResource {dxet:DateNavigatorThemeKey ResourceKey=HeaderStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;324;14">
+                <Grid Grid.Row="0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;325;18">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <RepeatButton x:Name="PART_ArrowLeft" Content="&lt;" dxcore_unique_xmlns:FocusHelper2.Focusable="False" Grid.Column="0" HorizontalAlignment="Left" Style="{DynamicResource {dxet:DateNavigatorThemeKey ResourceKey=LeftArrowStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;331;22" />
+                    <Button x:Name="PART_CurrentDateButton" Content="{TemplateBinding CurrentDateText}" dxcore_unique_xmlns:FocusHelper2.Focusable="False" Grid.Column="1" Style="{DynamicResource {dxet:DateNavigatorThemeKey ResourceKey=CurrentDateButtonStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;337;22" />
+                    <RepeatButton x:Name="PART_ArrowRight" Content="&gt;" dxcore_unique_xmlns:FocusHelper2.Focusable="False" Grid.Column="2" HorizontalAlignment="Right" Style="{DynamicResource {dxet:DateNavigatorThemeKey ResourceKey=RightArrowStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;342;22" />
+                </Grid>
+            </dx:DXBorder>
+            <dxei:DateNavigatorPanel Grid.Row="1" Tag="OldCalendar" VerticalAlignment="Top">
+                <Grid x:Name="PART_NavigatorContent" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;353;18">
+                    
+                    <dxei:DateNavigatorContent x:Name="PART_ContentMonth" ColumnCount="{TemplateBinding ColumnCount}" IsHitTestVisible="False" Opacity="0" RowCount="{TemplateBinding RowCount}" State="Month" />
+                    <dxei:DateNavigatorContent x:Name="PART_ContentYear" ColumnCount="{TemplateBinding ColumnCount}" IsHitTestVisible="False" Opacity="0" RowCount="{TemplateBinding RowCount}" State="Year" />
+                    <dxei:DateNavigatorContent x:Name="PART_ContentYears" ColumnCount="{TemplateBinding ColumnCount}" IsHitTestVisible="False" Opacity="0" RowCount="{TemplateBinding RowCount}" State="Years" />
+                    <dxei:DateNavigatorContent x:Name="PART_ContentYearsRange" ColumnCount="{TemplateBinding ColumnCount}" IsHitTestVisible="False" Opacity="0" RowCount="{TemplateBinding RowCount}" State="YearsRange" />
+                </Grid>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;380;18">
+                    <Button x:Name="PART_TodayButton" Style="{DynamicResource {dxet:DateNavigatorThemeKey ResourceKey=TodayButtonStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;381;22" />
+                    <Button x:Name="PART_ClearButton" Content="{Binding Path=IsTabStop, RelativeSource={RelativeSource Self}, ConverterParameter=Clear, Converter={StaticResource EditorStringIdConverter}}" Style="{DynamicResource {dxet:DateNavigatorThemeKey ResourceKey=ClearButtonStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;382;22" />
+                </StackPanel>
+            </dxei:DateNavigatorPanel>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="DisplayMode" Value="Outlook">
+                <Setter Property="Visibility" TargetName="PART_Header" Value="Collapsed" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" TargetName="PART_NavigatorContent" Value="0.38" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxet:DateNavigatorContentThemeKey ResourceKey=Template}" TargetType="{x:Type dxednc:DateNavigatorContent}">
+        <dxei:DateNavigatorContentPanel x:Name="PART_Panel" ColumnCount="{TemplateBinding ColumnCount}" RowCount="{TemplateBinding RowCount}" />
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxet:DateNavigatorThemeKey ResourceKey=CalendarTemplate}" TargetType="{x:Type dxednc:DateNavigatorCalendar}">
+        <Grid Margin="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;409;10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <dx:DXBorder x:Name="PART_HeaderBorder" Grid.Row="0" Margin="0,0,0,4" Style="{DynamicResource {dxet:DateNavigatorThemeKey ResourceKey=OutlookHeaderStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;414;14">
+                <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;418;18">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <RepeatButton x:Name="PART_PrevButton" Command="{Binding Path=ArrowLeftCommand, RelativeSource={RelativeSource TemplatedParent}}" Grid.Column="0" Grid.Row="0" Style="{DynamicResource {dxet:DateNavigatorThemeKey ResourceKey=LeftArrowStyle}}" Visibility="Collapsed" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;424;22">
+                        &lt;
+                    </RepeatButton>
+                    <Grid x:Name="PART_Header" Grid.Column="1" Grid.Row="0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;432;22">
+                        <TextBlock x:Name="PART_HeaderText" Style="{DynamicResource {dxet:DateNavigatorThemeKey IsVisibleInBlend=True, ResourceKey=CalendarCurrentDateStyle}}" Text="{TemplateBinding CurrentDateText}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;435;26" />
+                        <Button x:Name="PART_HeaderButton" Command="{Binding Path=HeaderClickCommand, RelativeSource={RelativeSource TemplatedParent}}" Content="{TemplateBinding CurrentDateText}" dxcore_unique_xmlns:FocusHelper2.Focusable="False" Style="{DynamicResource {dxet:DateNavigatorThemeKey ResourceKey=CurrentDateButtonStyle}}" Visibility="Collapsed" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;438;26" />
+                    </Grid>
+                    <RepeatButton x:Name="PART_NextButton" Command="{Binding Path=ArrowRightCommand, RelativeSource={RelativeSource TemplatedParent}}" Grid.Column="2" Grid.Row="0" Style="{DynamicResource {dxet:DateNavigatorThemeKey ResourceKey=RightArrowStyle}}" Visibility="Collapsed" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;445;22">
+                        &gt;
+                    </RepeatButton>
+                </Grid>
+            </dx:DXBorder>
+            <dx:DXBorder Background="{TemplateBinding Background}" Grid.Row="1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;455;14">
+                <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;456;18">
+                    <Grid x:Name="PART_ContentPaddingPanel" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\DateNavigator.xaml;457;22" />
+                    <dxei:DateNavigatorCalendarContent x:Name="PART_Content" dxcore_unique_xmlns:FocusHelper2.Focusable="False" />
+                </Grid>
+            </dx:DXBorder>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=HeaderType, RelativeSource={RelativeSource Self}}" Value="First" />
+                    <Condition Binding="{Binding Path=(dxedn:DateNavigator.Navigator).DisplayMode, RelativeSource={RelativeSource Self}}" Value="Outlook" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Visibility" TargetName="PART_PrevButton" Value="Visible" />
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=HeaderType, RelativeSource={RelativeSource Self}}" Value="Both" />
+                    <Condition Binding="{Binding Path=(dxedn:DateNavigator.Navigator).DisplayMode, RelativeSource={RelativeSource Self}}" Value="Outlook" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Visibility" TargetName="PART_PrevButton" Value="Visible" />
+                <Setter Property="Visibility" TargetName="PART_NextButton" Value="Visible" />
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=HeaderType, RelativeSource={RelativeSource Self}}" Value="Last" />
+                    <Condition Binding="{Binding Path=(dxedn:DateNavigator.Navigator).DisplayMode, RelativeSource={RelativeSource Self}}" Value="Outlook" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Visibility" TargetName="PART_NextButton" Value="Visible" />
+            </MultiDataTrigger>
+            <DataTrigger Binding="{Binding Path=(dxedn:DateNavigator.Navigator).DisplayMode, RelativeSource={RelativeSource Self}}" Value="Outlook">
+                <Setter Property="Visibility" TargetName="PART_HeaderText" Value="Collapsed" />
+                <Setter Property="Visibility" TargetName="PART_HeaderButton" Value="Visible" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=(dxedn:DateNavigator.Navigator).DisplayMode, RelativeSource={RelativeSource Self}}" Value="Classic">
+                <Setter Property="Background" TargetName="PART_HeaderBorder" Value="Transparent" cs:id="Setter_0000" />
+            </DataTrigger>
+            <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
+                <Setter Property="Margin" TargetName="PART_Header" Value="0,5" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+</ResourceDictionary>

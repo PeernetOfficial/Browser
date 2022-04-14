@@ -1,0 +1,37 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:local="http://schemas.devexpress.com/winfx/2008/xaml/map" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    <DataTemplate x:Key="multiScaleTileImage">
+        <local:MultiScaleImage x:Name="PART_MapImage" CacheOptions="{Binding Path=DataProvider.CacheOptions, RelativeSource={RelativeSource AncestorType=local:ImageLayer}}" Layer="{Binding RelativeSource={RelativeSource AncestorType=local:ImageLayer}}" Source="{Binding Path=DataProvider.ImageSource, RelativeSource={RelativeSource AncestorType=local:ImageLayer}}" TileCacheNamePrefix="{Binding Path=DataProvider.TileCacheNamePrefix, RelativeSource={RelativeSource AncestorType=local:ImageLayer}}" UseSprings="False" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="multiScaleWmsImage">
+        <local:MultiScaleWmsImage x:Name="PART_MapImage" ContextProvider="{Binding Path=DataProvider,RelativeSource={RelativeSource AncestorType=local:ImageLayer}}" Image="{Binding Path=DataProvider.ImageSource.Image, RelativeSource={RelativeSource AncestorType=local:ImageLayer}}" Layer="{Binding RelativeSource={RelativeSource AncestorType=local:ImageLayer}}" Source="{Binding Path=DataProvider.ImageSource, RelativeSource={RelativeSource AncestorType=local:ImageLayer}}" UseSprings="False" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="multiScaleTileImageBase">
+        <local:MultiScaleImage x:Name="PART_MapImage" Layer="{Binding RelativeSource={RelativeSource AncestorType=local:ImageLayer}}" Source="{Binding Path=DataProvider.ImageSource, RelativeSource={RelativeSource AncestorType=local:ImageLayer}}" UseSprings="False" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="multiScaleHeatImage">
+        <local:MultiScaleHeatImage x:Name="PART_MapImage" ContextProvider="{Binding Path=DataProvider,RelativeSource={RelativeSource AncestorType=local:ImageLayer}}" Image="{Binding Path=DataProvider.ImageSource.Image, RelativeSource={RelativeSource AncestorType=local:ImageLayer}}" Layer="{Binding RelativeSource={RelativeSource AncestorType=local:ImageLayer}}" Source="{Binding Path=DataProvider.ImageSource, RelativeSource={RelativeSource AncestorType=local:ImageLayer}}" UseSprings="False" />
+    </DataTemplate>
+
+    <local:MultiScaleImageTemplateSelector x:Key="multiScaleImageTemplateSelector" HeatImage="{StaticResource multiScaleHeatImage}" TileImage="{StaticResource multiScaleTileImage}" TileImageBase="{StaticResource multiScaleTileImageBase}" WmsImage="{StaticResource multiScaleWmsImage}" />
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Map.ImageLayer}" TargetType="local:ImageLayer">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Map\Generic\ImageLayer.xaml;49;6" /><Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:ImageLayer">
+                    <Grid x:Name="PART_RootVisual" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Map\Generic\ImageLayer.xaml;53;22">
+                        <ContentControl Content="{Binding Path=DataProvider.DataType, RelativeSource={RelativeSource TemplatedParent}}" ContentTemplateSelector="{StaticResource multiScaleImageTemplateSelector}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Map\Generic\ImageLayer.xaml;54;26" />
+                        <Grid x:Name="PART_ErrorPanel" HorizontalAlignment="Center" Margin="2,2,0,0" MinHeight="29" VerticalAlignment="Center" Visibility="Collapsed" Width="400" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Map\Generic\ImageLayer.xaml;55;26">
+                            <dx:DXBorder CornerRadius="5" Opacity="0.75" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Map\Generic\ImageLayer.xaml;62;30" />
+                            <TextBlock Margin="32" Text="{Binding}" TextAlignment="Center" TextWrapping="Wrap" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Map\Generic\ImageLayer.xaml;63;30" />
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

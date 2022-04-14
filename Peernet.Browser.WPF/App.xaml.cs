@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using DevExpress.Xpf.Core;
+using Microsoft.Extensions.DependencyInjection;
 using Peernet.Browser.Application;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Managers;
@@ -35,13 +36,16 @@ namespace Peernet.Browser.WPF
 
     public partial class App : System.Windows.Application
     {
+        private const string DXVersion = "v21.2";
         private static CmdRunner cmdRunner;
-        private static SplashScreenManager splashScreenManager = new SplashScreenManager();
+        private static Services.SplashScreenManager splashScreenManager = new();
         private readonly object lockObject = new();
         private readonly INotificationsManager notificationsManager;
 
         static App()
         {
+            RegisterDXThemes();
+
             Settings = new SettingsManager();
             GlobalContext.VisualMode = Settings.DefaultTheme;
 
@@ -141,6 +145,19 @@ namespace Peernet.Browser.WPF
             FrameworkElement.LanguageProperty.OverrideMetadata(
                 typeof(FrameworkElement),
                 new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
+        }
+
+        private static void RegisterDXTheme(string name)
+        {
+            var theme = new Theme(name);
+            theme.AssemblyName = $"DevExpress.Xpf.Themes.{name}.{DXVersion}";
+            Theme.RegisterTheme(theme);
+        }
+
+        private static void RegisterDXThemes()
+        {
+            RegisterDXTheme("PeernetDarkTheme");
+            RegisterDXTheme("PeernetLightTheme");
         }
 
         private static void RegisterLogger(ServiceCollection services, ISettingsManager settings)

@@ -1,0 +1,73 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxsch="http://schemas.devexpress.com/winfx/2008/xaml/scheduler" xmlns:dxschd="http://schemas.devexpress.com/winfx/2008/xaml/scheduler/internal" xmlns:dxscht="http://schemas.devexpress.com/winfx/2008/xaml/scheduler/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    
+
+    <Style x:Key="{dxscht:WeekViewThemeKey ResourceKey=WeekViewGroupByResource}" TargetType="{x:Type dxschd:VisualWeekViewGroupByResource}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduler\Generic\WeekView\GroupByResource.xaml;15;6" /><Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type dxschd:VisualWeekViewGroupByResource}">
+                    <dxschd:SharedGroupSizeContainer>
+                        <Grid x:Name="GroupByResourceRoot" SnapsToDevicePixels="True" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\WeekView\GroupByResource.xaml;20;26">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <dxschd:SchedulerResourceHeaderItemsControl x:Name="ResourceHeadersItemsControl" HorizontalContentAlignment="Stretch" ItemContainerStyle="{Binding View.HorizontalResourceHeaderStyle, RelativeSource={RelativeSource TemplatedParent}}" ItemsSource="{TemplateBinding ResourceContainers}" ValuePath="ResourceHeader" VerticalContentAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\WeekView\GroupByResource.xaml;31;30">
+                                <dxschd:SchedulerResourceHeaderItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <dxschd:PixelSnappedUniformGrid dxschd:SchedulerItemsControl.ElementPosition="{DynamicResource {dxscht:WeekViewThemeKey ResourceKey=ResourceHeadersGroupByResourceElementPosition}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\WeekView\GroupByResource.xaml;39;42" />
+                                    </ItemsPanelTemplate>
+                                </dxschd:SchedulerResourceHeaderItemsControl.ItemsPanel>
+                            </dxschd:SchedulerResourceHeaderItemsControl>
+                            <dxschd:SharedSizePanel Grid.Column="1" IsBaseSizePanel="False" NotificationElement="{Binding ElementName=GroupByResourceRoot}" Orientation="Horizontal" SharedSizeGroup="VerticalScrollBarColumn" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\WeekView\GroupByResource.xaml;43;30">
+                                <dxcore_unique_xmlns:XPFContentControl Style="{DynamicResource {dxscht:SchedulerViewThemeKey ResourceKey=HorizontalHeadersContainerStyle}}" VerticalAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\WeekView\GroupByResource.xaml;48;34">
+                                    <dxschd:HeaderControl dxschd:SchedulerItemsControl.ElementPosition="{DynamicResource {dxscht:WeekViewThemeKey ResourceKey=TopRightHeaderCornerGroupByResourceElementPosition}}" Orientation="Horizontal" ResourceColor="{Binding ResourceContainers.Last.ResourceHeader.Brushes.ResourceHeader, RelativeSource={RelativeSource TemplatedParent}}" SnapsToDevicePixels="True" Visibility="{DynamicResource {dxscht:SchedulerViewThemeKey ResourceKey=HeaderCornerVisibility}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\WeekView\GroupByResource.xaml;49;38" />
+                                </dxcore_unique_xmlns:XPFContentControl>
+                            </dxschd:SharedSizePanel>
+                            
+                            <dxcore_unique_xmlns:XPFContentControl Grid.ColumnSpan="2" Grid.Row="1" Style="{DynamicResource {dxscht:WeekViewThemeKey ResourceKey=WeekViewGroupByResourceContentContainerStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\WeekView\GroupByResource.xaml;57;30">
+                                <Grid SnapsToDevicePixels="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\WeekView\GroupByResource.xaml;60;34">
+                                    <Grid.Resources>
+                                        <dxschd:ResourceNavigatorVisibilityToConverter x:Key="ResourceNavigatorVisibilityToConverter" />
+                                    </Grid.Resources>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <dxschd:ResourceNavigatorControl Grid.Row="1" SchedulerControl="{TemplateBinding Control}" SnapsToDevicePixels="True" Style="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Control.ResourceNavigatorHorizontalStyle}" UseLayoutRounding="True" Visibility="{Binding Control.ResourceNavigator.Visibility, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ResourceNavigatorVisibilityToConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\WeekView\GroupByResource.xaml;72;38" />
+                                    <dxschd:SchedulerItemsControl x:Name="ResourcesItemsControl" dxsch:TouchSurfaceSynchronizer.Surface="{Binding RelativeSource={RelativeSource AncestorType=dxsch:SchedulerControl}}" HorizontalContentAlignment="Stretch" ItemsSource="{TemplateBinding ResourceContainers}" ItemTemplate="{DynamicResource {dxscht:WeekViewThemeKey ResourceKey=WeekViewMonthTemplate}}" VerticalContentAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\WeekView\GroupByResource.xaml;78;38">
+                                        <dxschd:SchedulerItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <dxschd:PixelSnappedUniformGrid dxschd:SchedulerItemsControl.ElementPosition="{DynamicResource {dxscht:WeekViewThemeKey ResourceKey=GroupByResourceElementPosition}}" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\WeekView\GroupByResource.xaml;86;50" />
+                                            </ItemsPanelTemplate>
+                                        </dxschd:SchedulerItemsControl.ItemsPanel>
+                                    </dxschd:SchedulerItemsControl>
+                                    <dxschd:NavigationButtonPairControl HorizontalContentAlignment="Stretch" ItemsSource="{TemplateBinding ResourceContainers}" ItemTemplate="{DynamicResource {dxscht:SchedulerViewThemeKey ResourceKey=NavigationButtonsPair}}" ShowBorder="{Binding Control.ShowBorder, RelativeSource={RelativeSource TemplatedParent}}" Style="{DynamicResource {dxscht:WeekViewThemeKey ResourceKey=NavigationButtonPairGroupByResourceStyle}}" VerticalContentAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\WeekView\GroupByResource.xaml;90;38">
+                                        <dxschd:NavigationButtonPairControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <dxschd:PixelSnappedUniformGrid ApplyInnerContentPadding="True" dxschd:SchedulerItemsControl.ElementPosition="{DynamicResource {dxscht:WeekViewThemeKey ResourceKey=GroupByResourceElementPosition}}" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\WeekView\GroupByResource.xaml;98;50" />
+                                            </ItemsPanelTemplate>
+                                        </dxschd:NavigationButtonPairControl.ItemsPanel>
+                                    </dxschd:NavigationButtonPairControl>
+                                    <dxschd:SharedSizePanel Grid.Column="1" IsBaseSizePanel="True" Orientation="Horizontal" SharedSizeGroup="VerticalScrollBarColumn" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\WeekView\GroupByResource.xaml;104;38">
+                                        <ScrollBar x:Name="PART_WeekScrollBar" dxschd:SchedulerScrollBarManager.BindToSchedulerControl="True" Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\WeekView\GroupByResource.xaml;108;42" />
+                                    </dxschd:SharedSizePanel>
+                                    <dxcore_unique_xmlns:CornerBox x:Name="Corner" Grid.Column="1" Grid.Row="1" SnapsToDevicePixels="True" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\WeekView\GroupByResource.xaml;112;38" />
+                                </Grid>
+                            </dxcore_unique_xmlns:XPFContentControl>
+                        </Grid>
+                    </dxschd:SharedGroupSizeContainer>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

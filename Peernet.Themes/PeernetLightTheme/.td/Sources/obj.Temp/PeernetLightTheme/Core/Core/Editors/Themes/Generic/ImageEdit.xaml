@@ -1,0 +1,285 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxbt="http://schemas.devexpress.com/winfx/2008/xaml/bars/themekeys" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxef="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxeh="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal" xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal" xmlns:dxep="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys" xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:dxmvvmi="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:dxn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxtEx="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:help="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    <dxcore_unique_xmlns:BoolToVisibilityInverseConverter x:Key="inverseBoolToVisibilityConverter" />
+
+    <dxcore_unique_xmlns:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
+
+    <dxcore_unique_xmlns:EmbeddedResourceImageConverter x:Key="EmbeddedResourceImageConverter" />
+
+    <SolidColorBrush x:Key="ImageEditToolSeparatorBackground" Color="#FFDADADA" />
+
+    <sys:Double x:Key="{dxet:CameraControlThemeKey ResourceKey=SettingsMinWidth}">280</sys:Double>
+
+    <SolidColorBrush x:Key="{dxet:ImageEditThemeKey ResourceKey=InplaceMenuBackgroundBrush}" Color="#FF404040" />
+
+    <ControlTemplate x:Key="{dxet:CameraControlThemeKey ResourceKey=TakePictureControlTemplate}" TargetType="{x:Type dxei:TakePictureControl}">
+        <Grid Margin="15" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;36;10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <dxep:CameraControl x:Name="PART_Camera" Visibility="{Binding HasCapture, Converter={StaticResource inverseBoolToVisibilityConverter}}" />
+            <Image Source="{Binding Image}" Visibility="{Binding HasCapture, Converter={StaticResource boolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;42;14" />
+            <StackPanel Grid.Row="1" HorizontalAlignment="Right" Margin="0,10,0,0" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;43;14">
+                <Button Command="{Binding CaptureCommand}" Content="{Binding CaptureCaption}" Margin="0,0,10,0" Width="100" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;47;18" />
+                <Button Command="{Binding SaveCommand}" Content="{Binding SaveCaption}" IsEnabled="{Binding HasCapture}" Margin="0,0,10,0" Width="75" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;51;18" />
+                <Button Command="{Binding CancelCommand}" Content="{Binding CancelCaption}" Width="75" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;56;18" />
+            </StackPanel>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxet:CameraControlThemeKey ResourceKey=Template}" TargetType="{x:Type dxe:CameraControl}">
+        <ContentControl x:Name="contentControl" Background="{TemplateBinding Background}" dxcore_unique_xmlns:FocusHelper2.Focusable="False" Template="{TemplateBinding BorderTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;64;10">
+            <Grid Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;68;14">
+                <Image x:Name="PART_Image" Source="{Binding NativeImageSource, RelativeSource={RelativeSource TemplatedParent}}" Stretch="{TemplateBinding Stretch}" StretchDirection="{TemplateBinding StretchDirection}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;69;18" />
+                <ToggleButton x:Name="button" Opacity="0" Style="{DynamicResource {dxet:CameraControlThemeKey ResourceKey=SettingsButtonStyle}}" Visibility="{Binding PropertyProvider.IsSettingsButtonVisible, Converter={StaticResource boolToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;73;18" />
+                <dxep:FlyoutControl AllowMoveAnimation="False" HorizontalAlignment="Right" IsOpen="{Binding ElementName=button, Path=IsChecked, Mode=TwoWay}" PlacementTarget="{Binding ElementName=contentControl}" VerticalAlignment="Top">
+                    <dxep:FlyoutControl.Settings>
+                        <dxep:FlyoutSettings Placement="Right" />
+                    </dxep:FlyoutControl.Settings>
+                    <ContentPresenter Content="{Binding Path=PropertyProvider.Settings, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{DynamicResource {dxet:CameraControlThemeKey ResourceKey=CameraSettingsTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;85;22" />
+                </dxep:FlyoutControl>
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" Visibility="{Binding PropertyProvider.IsBusy, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;87;18">
+                    <Image Height="14" HorizontalAlignment="Center" Source="{dx:ImageSelector Source='pack://application:,,,/DevExpress.Xpf.Core.v21.2;component/Editors/Images/error.png'}" Stretch="Fill" Width="14" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;90;22" />
+                    <TextBlock HorizontalAlignment="Center" Text="{Binding PropertyProvider.ErrorCaption, RelativeSource={RelativeSource TemplatedParent}}" TextWrapping="Wrap" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;95;22" />
+                    <Button Command="{Binding PropertyProvider.RefreshCommand, RelativeSource={RelativeSource TemplatedParent}}" Content="{Binding PropertyProvider.RefreshButtonCaption, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Center" Margin="0,5,0,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;98;22" />
+                </StackPanel>
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" Visibility="{Binding PropertyProvider.HasDevices, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource inverseBoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;103;18">
+                    <Image Height="14" HorizontalAlignment="Center" Source="{dx:ImageSelector Source='pack://application:,,,/DevExpress.Xpf.Core.v21.2;component/Editors/Images/error.png'}" Stretch="Fill" Width="14" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;106;22" />
+                    <TextBlock HorizontalAlignment="Center" Text="{Binding PropertyProvider.NoDevicesErrorCaption, RelativeSource={RelativeSource TemplatedParent}}" TextWrapping="Wrap" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;111;22" />
+                    <Button Command="{Binding PropertyProvider.RefreshCommand, RelativeSource={RelativeSource TemplatedParent}}" Content="{Binding PropertyProvider.RefreshButtonCaption, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Center" Margin="0,5,0,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;114;22" />
+                </StackPanel>
+            </Grid>
+        </ContentControl>
+        <ControlTemplate.Triggers>
+            <Trigger Property="ShowBorder" Value="False">
+                <Setter Property="Template" TargetName="contentControl" Value="{DynamicResource {dxet:CameraControlThemeKey ResourceKey=EmptyBorderTemplate}}" />
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Duration="0:0:0.21" Storyboard.TargetName="button" Storyboard.TargetProperty="Opacity" To="1" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Duration="0:0:0.21" Storyboard.TargetName="button" Storyboard.TargetProperty="Opacity" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <DataTemplate x:Key="{dxet:CameraControlThemeKey ResourceKey=CameraSettingsTemplate}">
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;152;10">
+            <GroupBox Header="{Binding SettingsCaption}" Margin="5" MinWidth="{DynamicResource {dxet:CameraControlThemeKey ResourceKey=SettingsMinWidth}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;153;14">
+                <StackPanel Margin="10" Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;156;18">
+                    <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;157;22">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="7*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Device.Caption}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;162;26" />
+                        <dxep:ComboBoxEdit AllowNullInput="True" DisplayMember="Name" EditValue="{Binding ActualDevice, UpdateSourceTrigger=PropertyChanged}" EditValuePostMode="Immediate" Grid.Column="1" IsTextEditable="False" ItemsSource="{Binding Device.AvaliableValues}" ShowCustomItems="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;163;26" />
+                    </Grid>
+                    <StackPanel IsEnabled="{Binding EnableSettings}" Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;172;22">
+                        <Grid IsEnabled="{Binding IsResolutionEnabled}" Margin="0,10,0,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;173;26">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="7*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding Resolution.Caption}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;178;30" />
+                            <dxep:ComboBoxEdit DisplayMember="DisplayText" EditValue="{Binding ActualResolution, UpdateSourceTrigger=PropertyChanged}" EditValuePostMode="Immediate" Grid.Column="1" IsTextEditable="False" ItemsSource="{Binding Resolution.AvaliableValues}" ValidateOnTextInput="True" ValueMember="Resolution" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;179;30" />
+                        </Grid>
+                        <Grid IsEnabled="{Binding IsBrightnessEnabled}" Margin="0,10,0,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;188;26">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="7*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding Brightness.Caption}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;193;30" />
+                            <dxep:TrackBarEdit EditValue="{Binding ActualBrightness, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" LargeStep="10" Maximum="{Binding Brightness.MaxValue}" Minimum="{Binding Brightness.MinValue}" SmallStep="1" TickPlacement="None" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;194;30" />
+                        </Grid>
+                        <Grid IsEnabled="{Binding IsContastEnabled}" Margin="0,10,0,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;202;26">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="7*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding Contrast.Caption}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;207;30" />
+                            <dxep:TrackBarEdit EditValue="{Binding ActualContrast, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" LargeStep="10" Maximum="{Binding Contrast.MaxValue}" Minimum="{Binding Contrast.MinValue}" SmallStep="1" TickPlacement="None" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;208;30" />
+                        </Grid>
+                        <Grid IsEnabled="{Binding IsDesaturateEnabled}" Margin="0,10,0,10" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;216;26">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="7*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding Desaturate.Caption}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;221;30" />
+                            <dxep:CheckEdit EditValue="{Binding CanDesaturate, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" HorizontalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;222;30" />
+                        </Grid>
+                        <Button Command="{Binding ResetToDefaultCommand}" Content="{Binding Reset.Caption}" IsEnabled="{Binding IsResetEnabled}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;226;26" />
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+        </Grid>
+    </DataTemplate>
+
+    <Style x:Key="{dxet:CameraControlThemeKey ResourceKey=SettingsButtonStyle}" TargetType="{x:Type ToggleButton}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;235;6" /><Setter Property="Margin" Value="5" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Grid x:Name="grid" Background="Transparent" Opacity="0.5" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;242;22">
+                        <Image HorizontalAlignment="Center" Source="{Binding Source=DevExpress.Xpf.Core.Editors.Images.camerasettings.png, Converter={StaticResource EmbeddedResourceImageConverter}}" Stretch="None" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;246;26" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.21" Storyboard.TargetName="grid" Storyboard.TargetProperty="Opacity" To="1" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.21" Storyboard.TargetName="grid" Storyboard.TargetProperty="Opacity" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate x:Key="{dxet:ImageEditThemeKey ResourceKey=Template}" TargetType="{x:Type dxe:ImageEdit}">
+        <Grid x:Name="PART_Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;280;10">
+            <ContentControl x:Name="Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" dxcore_unique_xmlns:FocusHelper2.Focusable="False" dxn:AppearanceOptions.BorderThickness="{Binding Path=(dxn:AppearanceOptions.BorderThickness), RelativeSource={RelativeSource TemplatedParent}}" dxn:AppearanceOptions.CornerRadius="{Binding Path=(dxn:AppearanceOptions.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}" dxn:AppearanceOptions.HasBorderThickness="{Binding Path=(dxn:AppearanceOptions.HasBorderThickness), RelativeSource={RelativeSource TemplatedParent}}" dxn:AppearanceOptions.HasCornerRadius="{Binding Path=(dxn:AppearanceOptions.HasCornerRadius), RelativeSource={RelativeSource TemplatedParent}}" help:ControlHelper.IsReadOnly="{TemplateBinding IsReadOnly}" help:ControlHelper.ShowFocusedState="{Binding Path=IsKeyboardFocusWithin, RelativeSource={RelativeSource TemplatedParent}}" HorizontalContentAlignment="Stretch" Template="{TemplateBinding ActualBorderTemplate}" VerticalContentAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;281;14">
+                <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;295;18">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <dxep:ErrorControl x:Name="PART_ErrorPresenter" Grid.Column="0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;300;22" />
+                    <dxep:EditorControl x:Name="PART_Content" Foreground="{TemplateBinding Foreground}" Grid.Column="1" Padding="{TemplateBinding Padding}" Template="{TemplateBinding ActualEditorControlTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;301;22" />
+                </Grid>
+            </ContentControl>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxet:ImageEditThemeKey ResourceKey=MenuTemplate}" TargetType="{x:Type ContentControl}">
+        <StackPanel x:Name="PART_MenuContent" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;312;10">
+            
+            <dxep:ImageEditCutToolButton dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;314;14" />
+            <dxep:ImageEditCopyToolButton dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;315;14" />
+            <dxep:ImageEditPasteToolButton dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;316;14" />
+            <dxep:ImageEditClearToolButton dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;317;14" />
+            <dxep:ImageEditToolSeparator dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;318;14" />
+            <dxep:ImageEditLoadToolButton dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;319;14" />
+            <dxep:ImageEditSaveToolButton dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;320;14" />
+            <dxep:ImageEditTakePictureButton />
+            
+            
+        </StackPanel>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxet:PopupImageEditThemeKey ResourceKey=MenuTemplate}" TargetType="{x:Type ContentControl}">
+        <StackPanel x:Name="PART_MenuContent" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;331;10">
+            
+            <dxep:ImageEditCutToolButton dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;333;14" />
+            <dxep:ImageEditCopyToolButton dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;334;14" />
+            <dxep:ImageEditPasteToolButton dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;335;14" />
+            <dxep:ImageEditClearToolButton dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;336;14" />
+            <dxep:ImageEditToolSeparator dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;337;14" />
+            <dxep:ImageEditLoadToolButton dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;338;14" />
+            <dxep:ImageEditSaveToolButton dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;339;14" />
+            <dxep:ImageEditTakePictureButton />
+            
+            
+            <dxep:ImageEditToolSeparator dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;346;14" />
+            <dxep:PopupImageEditOKToolButton dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;347;14" />
+            <dxep:PopupImageEditCancelToolButton dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;348;14" />
+        </StackPanel>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxet:PopupImageEditThemeKey ResourceKey=PopupContentTemplate}" TargetType="{x:Type ContentControl}">
+        <Grid SnapsToDevicePixels="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;353;10">
+            <dxep:ImageEdit x:Name="PART_PopupContent" Effect="{Binding Path=Tag.ImageEffect, RelativeSource={RelativeSource TemplatedParent}}" Foreground="{Binding Path=Tag.Foreground, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Stretch" ShowBorder="False" Stretch="{Binding Path=Tag.Stretch, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;354;14" />
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxet:ImageEditThemeKey ResourceKey=EditTemplate}">
+        <Grid x:Name="PART_Container" Background="Transparent" Margin="{TemplateBinding Padding}" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;365;10">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Image x:Name="PART_Editor" Effect="{Binding Path=(dxe:BaseEdit.OwnerEdit).ImageEffect, RelativeSource={RelativeSource TemplatedParent}}" Source="{Binding Path=(dxe:BaseEdit.OwnerEdit).Source, RelativeSource={RelativeSource TemplatedParent}}" Stretch="{Binding Path=(dxe:BaseEdit.OwnerEdit).Stretch, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;373;14" />
+            <ContentControl dxcore_unique_xmlns:FocusHelper2.Focusable="False" Template="{Binding Path=(dxe:BaseEdit.OwnerEdit).EmptyContentTemplate, RelativeSource={RelativeSource TemplatedParent}}" Visibility="{Binding Path=(dxe:BaseEdit.OwnerEdit).HasImage, Converter={StaticResource inverseBoolToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;377;14" />
+            <dx:DXBorder x:Name="PART_InplaceMenu" Background="{DynamicResource {dxet:ImageEditThemeKey ResourceKey=InplaceMenuBackgroundBrush}}" Grid.Row="1" Padding="8,2,0,2" Visibility="{Binding Path=(dxe:BaseEdit.OwnerEdit).(dxe:ActualPropertyProvider.Properties).InplaceMenuVisibility, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;380;14">
+                <ContentControl Template="{Binding Path=(dxe:BaseEdit.OwnerEdit).MenuTemplate, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;385;18" />
+            </dx:DXBorder>
+            <dxep:FlyoutControl x:Name="PART_MenuFlyout" AnimationDuration="00:00:00.1" Background="Transparent" BorderThickness="0" HorizontalAlignment="Center" OpenOnHover="True" PlacementTarget="{Binding Path=(dxe:BaseEdit.OwnerEdit), RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Bottom" cs:id="FlyoutControl_0000">
+                <dxep:FlyoutControl.Settings>
+                    <dxep:FlyInSettings />
+                </dxep:FlyoutControl.Settings>
+                <dxmvvmi:Interaction.Behaviors>
+                    <dxmvvmi:EventToCommand Command="{Binding Path=(dxe:BaseEdit.OwnerEdit).(dxe:ActualPropertyProvider.Properties).CanShowMenuPopupCommand, RelativeSource={RelativeSource TemplatedParent}}" EventName="Opening" PassEventArgsToCommand="True" />
+                </dxmvvmi:Interaction.Behaviors>
+                <ContentControl Focusable="False" Template="{Binding Path=(dxe:BaseEdit.OwnerEdit).MenuContainerTemplate, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;404;18">
+                    <ContentControl Focusable="False" Template="{Binding Path=(dxe:BaseEdit.OwnerEdit).MenuTemplate, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;405;22" />
+                </ContentControl>
+            </dxep:FlyoutControl>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxet:ImageEditThemeKey ResourceKey=EditInplaceTemplate}">
+        <Grid x:Name="PART_Container" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;412;10">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Image Name="PART_Editor" Focusable="False" Margin="{Binding Path=(dxe:BaseEdit.OwnerEdit).Padding, RelativeSource={RelativeSource TemplatedParent}}" Source="{Binding Path=(dxe:BaseEdit.OwnerEdit).Source, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Stretch="{Binding Path=(dxe:BaseEdit.OwnerEdit).Stretch, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;419;14" />
+            <dx:DXBorder x:Name="PART_InplaceMenu" Background="{DynamicResource {dxet:ImageEditThemeKey ResourceKey=InplaceMenuBackgroundBrush}}" Grid.Row="1" Padding="8,2,0,2" Visibility="{Binding Path=(dxe:BaseEdit.OwnerEdit).(dxe:ActualPropertyProvider.Properties).InplaceMenuVisibility, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;424;14">
+                <ContentControl Template="{Binding Path=(dxe:BaseEdit.OwnerEdit).MenuTemplate, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;429;18" />
+            </dx:DXBorder>
+            <dxep:FlyoutControl x:Name="PART_MenuFlyout" AnimationDuration="00:00:00.1" Background="Transparent" BorderThickness="0" HorizontalAlignment="Center" OpenOnHover="True" PlacementTarget="{Binding Path=(dxe:BaseEdit.OwnerEdit), RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Bottom" cs:id="FlyoutControl_0000">
+                <dxep:FlyoutControl.Settings>
+                    <dxep:FlyInSettings />
+                </dxep:FlyoutControl.Settings>
+                <dxmvvmi:Interaction.Behaviors>
+                    <dxmvvmi:EventToCommand Command="{Binding Path=(dxe:BaseEdit.OwnerEdit).(dxe:ActualPropertyProvider.Properties).CanShowMenuPopupCommand, RelativeSource={RelativeSource TemplatedParent}}" EventName="Opening" PassEventArgsToCommand="True" />
+                </dxmvvmi:Interaction.Behaviors>
+                <ContentControl Focusable="False" Template="{Binding Path=(dxe:BaseEdit.OwnerEdit).MenuContainerTemplate, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;448;18">
+                    <ContentControl Focusable="False" Template="{Binding Path=(dxe:BaseEdit.OwnerEdit).MenuTemplate, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;449;22" />
+                </ContentControl>
+            </dxep:FlyoutControl>
+        </Grid>
+    </ControlTemplate>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.ImageEditToolButton}" TargetType="{x:Type dxe:ImageEditToolButton}">
+        <Style.Setters><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Generic\ImageEdit.xaml;455;6" />
+            <Setter Property="Background" Value="Transparent" cs:id="Setter_0000" />
+            <Setter Property="Padding" Value="3" />
+            <Setter Property="dx:FocusHelper2.Focusable" Value="False" />
+            <Setter Property="Template" Value="{DynamicResource {dxet:ImageEditThemeKey ResourceKey=ToolButtonTemplate}}" />
+            <Setter Property="dx:WpfSvgPalette.Palette" Value="{DynamicResource {dxet:ImageEditThemeKey ResourceKey=ToolButtonPalette}}" />
+        </Style.Setters>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="dx:SvgImageHelper.State" Value="Hover" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="dx:SvgImageHelper.State" Value="Pressed" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

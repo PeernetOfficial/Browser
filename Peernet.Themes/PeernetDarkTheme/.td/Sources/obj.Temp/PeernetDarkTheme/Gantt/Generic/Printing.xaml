@@ -1,0 +1,168 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxgn="http://schemas.devexpress.com/winfx/2008/xaml/gantt" xmlns:dxgni="http://schemas.devexpress.com/winfx/2008/xaml/gantt/internal" xmlns:dxgnt="http://schemas.devexpress.com/winfx/2008/xaml/gantt/themekeys" xmlns:dxp="http://schemas.devexpress.com/winfx/2008/xaml/printing" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    <DataTemplate x:Key="TaskNameContentTemplate">
+        <TextBlock Text="{Binding Node.Name}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gantt\Generic\Printing.xaml;14;10" />
+    </DataTemplate>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gantt.PrintGanttRowControl}" TargetType="{x:Type dxgn:PrintGanttRowControl}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Gantt\Generic\Printing.xaml;17;6" /><Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="BorderThickness" Value="{Binding Path=(dxg:GridPrintingHelper.PrintRowInfo).GanttRowBorderThickness}" />
+        <Setter Property="BorderBrush" Value="Black" cs:id="Setter_0000" />
+        <Setter Property="dxp:ExportSettings.TargetType" Value="Image" />
+        <Setter Property="dxp:ImageExportSettings.ImageRenderMode" Value="MakeVectorImage" />
+        <Setter Property="dxp:ImageExportSettings.ImageKey" Value="{Binding RowHandle}" />
+        <Setter Property="UserStyle" Value="{Binding View.PrintGanttRowStyle}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type dxgn:PrintGanttRowControl}">
+                    <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gantt\Generic\Printing.xaml;30;22">
+                        <dx:DXBorder BorderBrush="Transparent" BorderThickness="{TemplateBinding BorderThickness}" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gantt\Generic\Printing.xaml;31;26">
+                            <dxgn:GanttItemPanel ContentIndent="{Binding Path=View.TaskContentIndent}" ContentPosition="{Binding Path=View.TaskContentPosition}" FirstVisibleDate="{Binding Path=(dxg:GridPrintingHelper.PrintRowInfo).FirstVisibleDate}" HighlightGroups="{Binding Path=View.HighlightGroups}" Node="{Binding Path=Node}" ShowBaseline="{Binding Path=View.ShowBaseline}" View="{Binding View}" Width="{Binding Path=(dxg:GridPrintingHelper.PrintRowInfo).ChartWidth}">
+                                <ContentPresenter x:Name="PART_GeometryPresenter" Content="{Binding}" dxgn:GanttItemPanel.ItemKind="Geometry" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gantt\Generic\Printing.xaml;42;34">
+                                    <ContentPresenter.ContentTemplate>
+                                        <DataTemplate>
+                                            <dxgn:GanttTaskControl UserStyle="{Binding View.PrintTaskStyle}" />
+                                        </DataTemplate>
+                                    </ContentPresenter.ContentTemplate>
+                                </ContentPresenter>
+                                <ContentPresenter Name="PART_BaselineGeometryPresenter" Content="{Binding}" dxgn:GanttItemPanel.ItemKind="BaselineGeometry" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gantt\Generic\Printing.xaml;51;34">
+                                    <ContentPresenter.ContentTemplate>
+                                        <DataTemplate>
+                                            <dxgn:GanttTaskBaselineControl UserStyle="{Binding View.PrintTaskBaselineStyle}" />
+                                        </DataTemplate>
+                                    </ContentPresenter.ContentTemplate>
+                                </ContentPresenter>
+                                <ContentPresenter x:Name="PART_PrintContentPresenter" Content="{Binding}" ContentTemplate="{Binding View.ActualPrintTaskContentTemplate}" ContentTemplateSelector="{Binding View.ActualPrintTaskContentTemplateSelector}" dxgn:GanttItemPanel.ItemKind="Content" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gantt\Generic\Printing.xaml;60;34" />
+                            </dxgn:GanttItemPanel>
+                        </dx:DXBorder>
+                        <dx:DXBorder BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gantt\Generic\Printing.xaml;67;26" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding View.ActualPrintTaskContentTemplate}" Value="{x:Null}" />
+                                <Condition Binding="{Binding View.ActualPrintTaskContentTemplateSelector}" Value="{x:Null}" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="ContentTemplate" TargetName="PART_PrintContentPresenter" Value="{StaticResource ResourceKey=TaskNameContentTemplate}" />
+                        </MultiDataTrigger>
+                        <DataTrigger Binding="{Binding Path=Node.TaskKind}" Value="Summary">
+                            <Setter Property="ContentTemplate" TargetName="PART_GeometryPresenter">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <dxgn:GanttSummaryTaskControl UserStyle="{Binding View.PrintSummaryTaskStyle}" />
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="ContentTemplate" TargetName="PART_BaselineGeometryPresenter">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <dxgn:GanttSummaryTaskBaselineControl UserStyle="{Binding View.PrintSummaryTaskBaselineStyle}" />
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=Node.TaskKind}" Value="Milestone">
+                            <Setter Property="ContentTemplate" TargetName="PART_GeometryPresenter">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <dxgn:GanttMilestoneControl UserStyle="{Binding View.PrintMilestoneStyle}" />
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="ContentTemplate" TargetName="PART_BaselineGeometryPresenter">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <dxgn:GanttMilestoneBaselineControl UserStyle="{Binding View.PrintMilestoneBaselineStyle}" />
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gantt.PrintGanttHeaderControl}" TargetType="{x:Type dxgn:PrintGanttHeaderControl}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Gantt\Generic\Printing.xaml;117;6" /><Setter Property="Background" Value="Silver" cs:id="Setter_0000" />
+        <Setter Property="dxp:ExportSettings.TargetType" Value="Image" />
+        <Setter Property="dxp:ImageExportSettings.ImageRenderMode" Value="MakeVectorImage" />
+        <Setter Property="BorderThickness" Value="0,1,1,0" />
+        <Setter Property="BorderBrush" Value="Black" cs:id="Setter_0001" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type dxgn:PrintGanttHeaderControl}">
+                    <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gantt\Generic\Printing.xaml;130;22">
+                        <dx:DXBorder BorderBrush="Transparent" BorderThickness="{TemplateBinding BorderThickness}" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gantt\Generic\Printing.xaml;131;26">
+                            <dxgn:TimescaleControl Background="{TemplateBinding Background}" StartDate="{Binding Path=(dxg:GridPrintingHelper.PrintRowInfo).FirstVisibleDate}" TimescaleRulerStyle="{Binding Path=View.PrintTimescaleRulerStyle}" Timescales="{Binding View.Timescales}" Width="{Binding Path=(dxg:GridPrintingHelper.PrintRowInfo).ChartWidth}" />
+                        </dx:DXBorder>
+                        <dx:DXBorder BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gantt\Generic\Printing.xaml;140;26" />
+                    </Grid>
+                    <ControlTemplate.Resources>
+                        <SolidColorBrush x:Key="{dxgnt:TimescaleThemeKeys ResourceKey=TickBrush}" Color="Black" cs:id="SolidColorBrush_0000" />
+                    </ControlTemplate.Resources>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=(dxg:GridPrintingHelper.PrintRowInfo).ShowGridElement}" Value="False">
+                <Setter Property="BorderThickness" Value="1,1,1,0" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gantt.PrintGanttPageControl}" TargetType="{x:Type dxgn:PrintGanttPageControl}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Gantt\Generic\Printing.xaml;157;6" /><Setter Property="dxg:DataControlBase.ActiveView" Value="{Binding Content.View}" />
+        <Setter Property="BorderBrush" Value="Black" cs:id="Setter_0000" />
+        <Setter Property="BorderThickness" Value="0, 0, 1, 0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type dxgn:PrintGanttPageControl}">
+                    <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gantt\Generic\Printing.xaml;166;22">
+                        <dx:DXBorder BorderBrush="Transparent" BorderThickness="{TemplateBinding BorderThickness}" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gantt\Generic\Printing.xaml;167;26">
+                            <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gantt\Generic\Printing.xaml;170;30">
+                                <Grid x:Name="backgroundContainer" HorizontalAlignment="Right" Width="{Binding Content.ChartWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gantt\Generic\Printing.xaml;171;34">
+                                    <dxgni:RowsPrintBackgroundControl dxp:ExportSettings.TargetType="Image" dxp:ImageExportSettings.ImageKey="{Binding Path=Content, Converter={dxgni:UniqueImageKeyConverter Key=Background}}" dxp:ImageExportSettings.ImageRenderMode="MakeVectorImage" Rows="{Binding Content.Rows}" />
+                                    <dxgn:MarkedTimeControl dxp:ExportSettings.TargetType="Image" dxp:ImageExportSettings.ImageRenderMode="MakeVectorImage" MarkedTimeIntervals="{Binding Content.MarkedTimeIntervals}" Style="{Binding Content.View.PrintMarkedTimeIntervalsStyle}" />
+                                    <dxgni:StripLinesControl dxp:ExportSettings.TargetType="Image" dxp:ImageExportSettings.ImageRenderMode="MakeVectorImage" IsPrinting="True" ItemsSource="{Binding Content.StripLineIntervals}">
+                                        <dxgni:StripLinesControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <dxgni:StripLinesPanel FirstVisibleDate="{Binding Content.FirstVisibleDate}" Zoom="{Binding Content.View.Zoom}" />
+                                            </ItemsPanelTemplate>
+                                        </dxgni:StripLinesControl.ItemsPanel>
+                                    </dxgni:StripLinesControl>
+                                </Grid>
+                                <ItemsControl x:Name="rowsContainer" HorizontalAlignment="Right" ItemsSource="{Binding Path=Content.Rows}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gantt\Generic\Printing.xaml;193;34" />
+                                <Grid x:Name="foregroundContainer" HorizontalAlignment="Right" Width="{Binding Content.ChartWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gantt\Generic\Printing.xaml;196;34">
+                                    <dxgni:GanttConnectorItemsControl dxp:ExportSettings.TargetType="Image" dxp:ImageExportSettings.ImageKey="{Binding Path=Content, Converter={dxgni:UniqueImageKeyConverter Key=Connectors}}" dxp:ImageExportSettings.ImageRenderMode="MakeVectorImage" ItemContainerStyle="{Binding Path=Content.View.PrintConnectorStyle}" ItemsSource="{Binding Path=Content.Connectors}">
+                                        <dxgni:GanttConnectorItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <dxgni:GanttConnectorsPanel ClipToBounds="True" FirstVisibleDate="{Binding Path=Content.FirstVisibleDate}" />
+                                            </ItemsPanelTemplate>
+                                        </dxgni:GanttConnectorItemsControl.ItemsPanel>
+                                    </dxgni:GanttConnectorItemsControl>
+                                </Grid>
+                            </Grid>
+                        </dx:DXBorder>
+                        <dx:DXBorder BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" dxp:ExportSettings.TargetType="Image" dxp:ImageExportSettings.ImageRenderMode="MakeVectorImage" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gantt\Generic\Printing.xaml;213;26" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Content.ShowGanttArea}" Value="False">
+                            <Setter Property="Visibility" TargetName="backgroundContainer" Value="Collapsed" />
+                            <Setter Property="Visibility" TargetName="foregroundContainer" Value="Collapsed" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=Content.ShowGridElement}" Value="False">
+                <Setter Property="BorderThickness" Value="1, 0, 1, 0" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Content.ShowGanttArea}" Value="False">
+                <Setter Property="BorderThickness" Value="0, 0, 0, 0" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

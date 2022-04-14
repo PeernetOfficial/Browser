@@ -1,0 +1,62 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxschd="http://schemas.devexpress.com/winfx/2008/xaml/scheduler/internal" xmlns:dxschdui="http://schemas.devexpress.com/winfx/2008/xaml/scheduler" xmlns:dxscht="http://schemas.devexpress.com/winfx/2008/xaml/scheduler/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    
+
+    <DataTemplate x:Key="{dxscht:MonthViewThemeKey ResourceKey=MonthHorizontalTemplate}">
+        <Grid SnapsToDevicePixels="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\MonthView\MonthHorizontal.xaml;15;10">
+            <Grid SnapsToDevicePixels="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\MonthView\MonthHorizontal.xaml;16;14">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <dxschd:SchedulerItemsControl HorizontalContentAlignment="Stretch" ItemsSource="{Binding DayOfWeekHeaders}" SnapsToDevicePixels="True" VerticalContentAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\MonthView\MonthHorizontal.xaml;21;18">
+                    <dxschd:SchedulerItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <dxschd:PixelSnappedUniformGrid ApplyInnerContentPadding="True" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\MonthView\MonthHorizontal.xaml;27;30" />
+                        </ItemsPanelTemplate>
+                    </dxschd:SchedulerItemsControl.ItemsPanel>
+                </dxschd:SchedulerItemsControl>
+                <dxschd:SchedulerItemsControl x:Name="weeks" ClipToBounds="True" dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}" Grid.Row="1" HorizontalContentAlignment="Stretch" ItemsSource="{Binding SimpleIntervals}" ItemTemplate="{DynamicResource {dxscht:MonthViewThemeKey ResourceKey=MonthViewWeekTemplate}}" SnapsToDevicePixels="True" VerticalContentAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\MonthView\MonthHorizontal.xaml;31;18">
+                    <dxschd:SchedulerItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <dxschd:PixelSnappedUniformGrid dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), ElementName=weeks}" Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\MonthView\MonthHorizontal.xaml;42;30" />
+                        </ItemsPanelTemplate>
+                    </dxschd:SchedulerItemsControl.ItemsPanel>
+                </dxschd:SchedulerItemsControl>
+            </Grid>
+            
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{dxscht:MonthViewThemeKey ResourceKey=GroupByResourceMonthHorizontalTemplate}">
+        <Grid SnapsToDevicePixels="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\MonthView\MonthHorizontal.xaml;58;10">
+            <dxschd:SchedulerItemsControl x:Name="intervals" ClipToBounds="True" dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}" HorizontalContentAlignment="Stretch" ItemsSource="{Binding SimpleIntervals}" ItemTemplate="{DynamicResource {dxscht:MonthViewThemeKey ResourceKey=MonthViewWeekTemplate}}" SnapsToDevicePixels="True" VerticalContentAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\MonthView\MonthHorizontal.xaml;59;14">
+                <dxschd:SchedulerItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <dxschd:PixelSnappedUniformGrid dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), ElementName=intervals}" Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\MonthView\MonthHorizontal.xaml;69;26" />
+                    </ItemsPanelTemplate>
+                </dxschd:SchedulerItemsControl.ItemsPanel>
+            </dxschd:SchedulerItemsControl>
+            
+        </Grid>
+    </DataTemplate>
+
+    
+
+    <DataTemplate x:Key="{dxscht:MonthViewThemeKey ResourceKey=GroupByResourceHeaderTemplate}">
+        
+        <dxschd:VisualResourceHeader Content="{Binding ResourceHeader}" dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}" SnapsToDevicePixels="True" Style="{Binding View.HorizontalResourceHeaderStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\MonthView\MonthHorizontal.xaml;91;10" />
+        
+    </DataTemplate>
+
+    <DataTemplate x:Key="{dxscht:MonthViewThemeKey ResourceKey=GroupByResourceDayOfWeekHeadersTemplate}">
+        <dxschd:SchedulerDayOfWeekHeaderItemsControl x:Name="DayOfWeekHeaders" dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}" HorizontalContentAlignment="Stretch" ItemContainerStyle="{Binding View.DayOfWeekHeaderStyle}" ItemsSource="{Binding DayOfWeekHeaders}" SnapsToDevicePixels="True" VerticalContentAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\MonthView\MonthHorizontal.xaml;99;10">
+            <dxschd:SchedulerDayOfWeekHeaderItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <dxschd:PixelSnappedUniformGrid dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), ElementName=DayOfWeekHeaders}" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\MonthView\MonthHorizontal.xaml;108;22" />
+                </ItemsPanelTemplate>
+            </dxschd:SchedulerDayOfWeekHeaderItemsControl.ItemsPanel>
+        </dxschd:SchedulerDayOfWeekHeaderItemsControl>
+    </DataTemplate>
+
+</ResourceDictionary>

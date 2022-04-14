@@ -1,0 +1,112 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxp="http://schemas.devexpress.com/winfx/2008/xaml/docking/platform" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/docking/themekeys" xmlns:local="http://schemas.devexpress.com/winfx/2008/xaml/docking" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ve="http://schemas.devexpress.com/winfx/2008/xaml/docking/visualelements" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.MultiTemplateControl}" TargetType="{x:Type ve:MultiTemplateControl}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Generic\MultiTemplateControl.xaml;13;6" /><Setter Property="EmptyTemplate" Value="{x:Null}" />
+        <Setter Property="ControlItemTemplate">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:MultiTemplateControl">
+                    <ve:ControlItem Background="{Binding LayoutItem.Background, RelativeSource={RelativeSource TemplatedParent}}" Content="{Binding LayoutItem.LayoutItemData, RelativeSource={RelativeSource TemplatedParent}}" DataContext="{TemplateBinding LayoutItem}" Header="{Binding LayoutItem.LayoutItemData, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\MultiTemplateControl.xaml;18;22" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="PanelTemplate">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:MultiTemplateControl">
+                    <ve:DockPane Background="{Binding LayoutItem.Background, RelativeSource={RelativeSource TemplatedParent}}" Content="{Binding LayoutItem.LayoutItemData, RelativeSource={RelativeSource TemplatedParent}}" Header="{Binding LayoutItem.LayoutItemData, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\MultiTemplateControl.xaml;28;22" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="GroupTemplate">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:MultiTemplateControl">
+                    <ve:GroupPane Content="{Binding LayoutItem.LayoutItemData, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\MultiTemplateControl.xaml;37;22" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="FloatingWindowTemplate">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:MultiTemplateControl">
+                    <ve:FloatingWindowPresenter BorderMargin="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=BorderMargin}}" BorderStyle="{Binding Path=LayoutItem.BorderStyle, RelativeSource={RelativeSource TemplatedParent}}" ContainerTemplate="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=Template}}" Content="{Binding LayoutItem.LayoutItemData, RelativeSource={RelativeSource TemplatedParent}}" DataContext="{TemplateBinding LayoutItem}" FloatLocation="{Binding Path=LayoutItem.FloatLocation, RelativeSource={RelativeSource TemplatedParent}}" FloatSize="{Binding Path=LayoutItem.FloatSize, RelativeSource={RelativeSource TemplatedParent}}" FormBorderMargin="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=FormBorderMargin}}" IsMaximized="{Binding Path=LayoutItem.IsMaximized, RelativeSource={RelativeSource TemplatedParent}}" IsOpen="{Binding Path=LayoutItem.IsOpen, RelativeSource={RelativeSource TemplatedParent}}" MaximizedBorderMargin="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=MaximizedBorderMargin}}" ShadowMargin="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=ShadowMargin}}" SingleBorderMargin="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=SingleBorderMargin}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\MultiTemplateControl.xaml;44;22" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="FloatingAdornerTemplate">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:MultiTemplateControl">
+                    <ve:FloatingAdornerPresenter BorderMargin="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=BorderMargin}}" BorderStyle="{Binding Path=LayoutItem.BorderStyle, RelativeSource={RelativeSource TemplatedParent}}" ContainerTemplate="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=Template}}" Content="{Binding LayoutItem.LayoutItemData, RelativeSource={RelativeSource TemplatedParent}}" DataContext="{TemplateBinding LayoutItem}" FloatLocation="{Binding Path=LayoutItem.FloatLocation, RelativeSource={RelativeSource TemplatedParent}}" FloatSize="{Binding Path=LayoutItem.FloatSize, RelativeSource={RelativeSource TemplatedParent}}" FormBorderMargin="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=FormBorderMargin}}" IsMaximized="{Binding Path=LayoutItem.IsMaximized, RelativeSource={RelativeSource TemplatedParent}}" IsOpen="{Binding Path=LayoutItem.IsOpen, RelativeSource={RelativeSource TemplatedParent}}" MaximizedBorderMargin="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=MaximizedBorderMargin}}" ShadowMargin="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=ShadowMargin}}" SingleBorderMargin="{DynamicResource {dxt:FloatPaneElementsThemeKey ResourceKey=SingleBorderMargin}}" SizeToContent="{Binding Path=LayoutItem.SizeToContent, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\MultiTemplateControl.xaml;63;22" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="TabPanelTemplate">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:MultiTemplateControl">
+                    <ve:TabbedPane Content="{Binding LayoutItem.LayoutItemData, RelativeSource={RelativeSource TemplatedParent}}" DataContext="{TemplateBinding LayoutItem}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\MultiTemplateControl.xaml;83;22" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="DocumentPanelTemplate">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:MultiTemplateControl">
+                    <ve:DocumentPane Content="{Binding LayoutItem.LayoutItemData, RelativeSource={RelativeSource TemplatedParent}}" DataContext="{TemplateBinding LayoutItem}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\MultiTemplateControl.xaml;90;22" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="DocumentTemplate">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:MultiTemplateControl">
+                    <ve:Document Background="{Binding LayoutItem.Background, RelativeSource={RelativeSource TemplatedParent}}" Content="{Binding LayoutItem.LayoutItemData, RelativeSource={RelativeSource TemplatedParent}}" DataContext="{TemplateBinding LayoutItem}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\MultiTemplateControl.xaml;97;22" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="FloatDocumentTemplate">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:MultiTemplateControl">
+                    <ve:FloatDocument Background="{Binding LayoutItem.Background, RelativeSource={RelativeSource TemplatedParent}}" Content="{Binding LayoutItem.LayoutItemData, RelativeSource={RelativeSource TemplatedParent}}" DataContext="{TemplateBinding LayoutItem}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="MDIDocumentTemplate">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:MultiTemplateControl">
+                    <ve:MDIDocument Content="{Binding LayoutItem.LayoutItemData, RelativeSource={RelativeSource TemplatedParent}}" DataContext="{TemplateBinding LayoutItem}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\MultiTemplateControl.xaml;115;22" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="SplitterControlTemplate">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:MultiTemplateControl">
+                    <ve:SplitterControl IsEnabled="{Binding Path=LayoutItem.IsEnabled, RelativeSource={RelativeSource TemplatedParent}}" LayoutItem="{TemplateBinding LayoutItem}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\MultiTemplateControl.xaml;122;22" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="EmptySpaceControlTemplate">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:MultiTemplateControl">
+                    <ve:EmptySpaceControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\MultiTemplateControl.xaml;129;22" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="LabelControlTemplate">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:MultiTemplateControl">
+                    <ve:LabelControl Content="{Binding LayoutItem.LayoutItemData, RelativeSource={RelativeSource TemplatedParent}}" DataContext="{TemplateBinding LayoutItem}" Header="{Binding LayoutItem.LayoutItemData, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\MultiTemplateControl.xaml;136;22" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="SeparatorControlTemplate">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:MultiTemplateControl">
+                    <ve:SeparatorControl Content="{Binding LayoutItem.LayoutItemData, RelativeSource={RelativeSource TemplatedParent}}" DataContext="{TemplateBinding LayoutItem}" Orientation="{Binding Path=LayoutItem.Orientation, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\MultiTemplateControl.xaml;145;22" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="AutoHideGroupTemplate">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:MultiTemplateControl">
+                    <ve:AutoHideTrayHeadersGroup LayoutItem="{TemplateBinding LayoutItem}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\MultiTemplateControl.xaml;154;22" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

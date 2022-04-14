@@ -1,0 +1,83 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal" xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxgi="http://schemas.devexpress.com/winfx/2008/xaml/grid/internal" xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys" xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    <ResourceDictionary.MergedDictionaries>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.PeernetDarkTheme.v21.2;component/Grid/PeernetDarkTheme/UICore.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    
+
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.DetailIndentControl}" TargetType="{x:Type dxg:DetailIndentControl}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Office2019Black\GridTable\Row\RowDetail.xaml;23;6" /><Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019Black\GridTable\Row\RowDetail.xaml;27;22">
+                        <dxg:BackgroundBorderControl IsDetailMargin="{Binding Path=IsDetailMargin}" IsMasterRowExpanded="{Binding Path=(dx:DataObjectBase.DataObject).IsMasterRowExpanded, RelativeSource={RelativeSource TemplatedParent}}" ItemLevel="{Binding Path=Level}" LineLevel="{Binding Path=(dx:DataObjectBase.DataObject).LineLevel, RelativeSource={RelativeSource TemplatedParent}}" RowLevel="{Binding Path=(dx:DataObjectBase.DataObject).DetailLevel, RelativeSource={RelativeSource TemplatedParent}}" />
+                        <dx:DXBorder x:Name="detailLeftLine" BorderBrush="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=GridDataRowDelimiterBrush}}" BorderThickness="1,0,0,0" dxg:DetailRowsIndentControl.IsSummaryDetailLevel="{Binding Path=(dxg:DetailRowsIndentControl.IsSummaryDetailLevel), RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Right" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019Black\GridTable\Row\RowDetail.xaml;33;26" />
+                        <dx:DXBorder x:Name="detailBottomLine" BorderBrush="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=GridDataRowDelimiterBrush}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019Black\GridTable\Row\RowDetail.xaml;38;26" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsDetailMargin}" Value="True">
+                            <Setter Property="BorderBrush" TargetName="detailLeftLine" Value="{DynamicResource {dxgt:GridColumnHeaderThemeKey ResourceKey=BorderBrush}}" />
+                        </DataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=ShowLastDetailMargin, RelativeSource={RelativeSource FindAncestor, AncestorType=dxg:DetailRowsIndentControl}}" Value="False" />
+                                <Condition Binding="{Binding Path=IsLast}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Visibility" TargetName="detailLeftLine" Value="Collapsed" />
+                        </MultiDataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=ShowBottomLine, RelativeSource={RelativeSource FindAncestor, AncestorType=dxg:DetailRowsIndentControl}}" Value="True" />
+                                <Condition Binding="{Binding Path=IsLast}" Value="True" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="BorderThickness" TargetName="detailBottomLine" Value="0,0,0,1" />
+                        </MultiDataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.DetailRowsIndentControl}" TargetType="{x:Type dxg:DetailRowsIndentControl}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Office2019Black\GridTable\Row\RowDetail.xaml;70;6" /><Setter Property="dxg:DetailSummaryControlBase.SummaryDetailLevel" Value="{Binding Path=(dxg:DetailSummaryControlBase.SummaryDetailLevel), RelativeSource={RelativeSource TemplatedParent}}" />
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019Black\GridTable\Row\RowDetail.xaml;75;22" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <dxg:DetailIndentControl dxcore_unique_xmlns:DataObjectBase.DataObject="{Binding Path=(dx:DataObjectBase.DataObject), RelativeSource={RelativeSource TemplatedParent}}" dxg:DetailRowsIndentControl.IsSummaryDetailLevel="{Binding Path=(dxg:DetailRowsIndentControl.IsSummaryDetailLevel), RelativeSource={RelativeSource TemplatedParent}}" Width="{Binding Path=Width}" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <ItemsPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019Black\GridTable\Row\RowDetail.xaml;91;22" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsLeft" Value="False">
+                <Setter Property="ItemTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <dxg:DetailIndentControl dxcore_unique_xmlns:DataObjectBase.DataObject="{Binding Path=(dx:DataObjectBase.DataObject), RelativeSource={RelativeSource TemplatedParent}}" dxg:DetailRowsIndentControl.IsSummaryDetailLevel="{Binding Path=(dxg:DetailRowsIndentControl.IsSummaryDetailLevel), RelativeSource={RelativeSource TemplatedParent}}" Width="{Binding Path=WidthAtRight}" />
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="LayoutTransform">
+                    <Setter.Value>
+                        <ScaleTransform ScaleX="-1" ScaleY="1" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

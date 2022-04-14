@@ -1,0 +1,120 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxbc="http://schemas.devexpress.com/winfx/2008/xaml/bars/internal" xmlns:dxbn="http://schemas.devexpress.com/winfx/2008/xaml/bars/internal" xmlns:dxbt="http://schemas.devexpress.com/winfx/2008/xaml/bars/themekeys" xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxcn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxtEx="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    <ResourceDictionary.MergedDictionaries>
+        <dxtEx:ResourceDictionaryEx Source="{dxt:ThemePartLoader PathCore='/Bars/Themes/Generic/RenderTemplates/_Common.xaml', Path='/Core/Core/Bars/Themes/Generic/RenderTemplates/_Common.xaml'}" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <dxb:RenderBarItemBorderStateTemplateSelector x:Key="{dxbt:BarItemRenderThemeKey ResourceKey=BorderStateTemplateSelectorInRibbonToolBar}" CheckedTemplate="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=CheckedBackgroundTemplateInRibbonToolBar}}" ContentHighlight="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=ContentHighlightTemplateInRibbonToolBar}}" CustomizationTemplate="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=CustomizationBackgroundTemplateInRibbonToolBar}}" HoverTemplate="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=HoverBackgroundTemplateInRibbonToolBar}}" IndeterminateTemplate="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=IndeterminateBackgroundTemplateInRibbonToolBar}}" NormalTemplate="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=NormalBackgroundTemplateInRibbonToolBar}}" PressedTemplate="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=PressedBackgroundTemplateInRibbonToolBar}}" />
+
+    <dxcn:RenderTemplate x:Key="{dxbt:BarItemRenderThemeKey ResourceKey=BaseDefaultTemplateInRibbonToolBar}" x:Shared="False">
+        <dxcn:RenderBorder Name="PART_Root" Background="Transparent" cs:id="RenderBorder_0000" ThemeInfo="Core\Core\Bars\Themes\Generic\RenderTemplates\RibbonQuickAccessToolbar.xaml;32;10">
+            <dxcn:RenderPanel ThemeInfo="Core\Core\Bars\Themes\Generic\RenderTemplates\RibbonQuickAccessToolbar.xaml;35;14">
+                <dxb:RenderBarItemBorderControl Name="PART_Background" RenderTemplateSelector="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=BorderStateTemplateSelectorInRibbonToolBar}}" />
+                <dxcn:RenderPanel Name="PART_Container" LayoutProvider="{x:Static dxcn:LayoutProvider.DockInstance}" ThemeInfo="Core\Core\Bars\Themes\Generic\RenderTemplates\RibbonQuickAccessToolbar.xaml;37;18">
+                    <dxcn:RenderContentControl Name="PART_Glyph" Dock="Top" HorizontalAlignment="Center" HorizontalContentAlignment="Center" PreferRenderTemplate="False" RenderContentTemplate="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=GlyphTemplate}}" Visibility="Collapsed" ThemeInfo="Core\Core\Bars\Themes\Generic\RenderTemplates\RibbonQuickAccessToolbar.xaml;38;22" />
+                    <dxcn:RenderContentControl Name="PART_Content" Dock="Bottom" HorizontalAlignment="Center" HorizontalContentAlignment="Center" PreferRenderTemplate="False" ThemeInfo="Core\Core\Bars\Themes\Generic\RenderTemplates\RibbonQuickAccessToolbar.xaml;45;22" />
+                </dxcn:RenderPanel>
+            </dxcn:RenderPanel>
+        </dxcn:RenderBorder>
+        <dxcn:RenderTemplate.Triggers>
+            <dxcn:RenderTriggersCollection>
+                <dxcn:RenderTriggersCollection.MergedTriggers>
+                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=ForegroundColorStatesInRibbonToolBar}}" />
+                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=EnabledBorderStates}}" />
+                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=AppearanceTriggers}}" />
+                </dxcn:RenderTriggersCollection.MergedTriggers>
+            </dxcn:RenderTriggersCollection>
+        </dxcn:RenderTemplate.Triggers>
+    </dxcn:RenderTemplate>
+
+    <dxcn:RenderTemplate x:Key="{dxbt:BarItemRenderThemeKey ResourceKey=BaseSplitItemTemplateInRibbonToolBar}" x:Shared="False">
+        <dxcn:RenderBorder Name="PART_Root" Background="Transparent" cs:id="RenderBorder_0000" ThemeInfo="Core\Core\Bars\Themes\Generic\RenderTemplates\RibbonQuickAccessToolbar.xaml;65;10">
+            <dxcn:RenderPanel ThemeInfo="Core\Core\Bars\Themes\Generic\RenderTemplates\RibbonQuickAccessToolbar.xaml;68;14">
+                <dxb:RenderBarItemBorderControl Name="PART_Background" RenderTemplateSelector="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=BorderStateTemplateSelectorInRibbonToolBar}}" />
+                <dxcn:RenderPanel LayoutProvider="{x:Static dxcn:LayoutProvider.DockInstance}" ThemeInfo="Core\Core\Bars\Themes\Generic\RenderTemplates\RibbonQuickAccessToolbar.xaml;70;18">
+                    <dxcn:RenderPanel Name="PART_ContentContainer" ThemeInfo="Core\Core\Bars\Themes\Generic\RenderTemplates\RibbonQuickAccessToolbar.xaml;71;22">
+                        <dxb:RenderBarItemBorderControl Name="PART_ContentBackground" HideBorderSide="Right" RenderTemplateSelector="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=BorderStateTemplateSelectorInRibbonToolBar}}" />
+                        <dxcn:RenderPanel Name="PART_Container" LayoutProvider="{x:Static dxcn:LayoutProvider.DockInstance}" ThemeInfo="Core\Core\Bars\Themes\Generic\RenderTemplates\RibbonQuickAccessToolbar.xaml;75;26">
+                            <dxcn:RenderContentControl Name="PART_Glyph" PreferRenderTemplate="False" RenderContentTemplate="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=GlyphTemplate}}" ThemeInfo="Core\Core\Bars\Themes\Generic\RenderTemplates\RibbonQuickAccessToolbar.xaml;76;30" />
+                            <dxcn:RenderContentControl Name="PART_Content" HorizontalAlignment="Center" HorizontalContentAlignment="Center" PreferRenderTemplate="False" ThemeInfo="Core\Core\Bars\Themes\Generic\RenderTemplates\RibbonQuickAccessToolbar.xaml;79;30" />
+                        </dxcn:RenderPanel>
+                    </dxcn:RenderPanel>
+                    <dxcn:RenderBorder Name="PART_Separator" Width="1" ThemeInfo="Core\Core\Bars\Themes\Generic\RenderTemplates\RibbonQuickAccessToolbar.xaml;85;22" />
+                    <dxcn:RenderPanel Name="PART_ArrowContainer" ThemeInfo="Core\Core\Bars\Themes\Generic\RenderTemplates\RibbonQuickAccessToolbar.xaml;86;22">
+                        <dxcn:RenderBorder Background="Transparent" cs:id="RenderBorder_0001" ThemeInfo="Core\Core\Bars\Themes\Generic\RenderTemplates\RibbonQuickAccessToolbar.xaml;87;26" />
+                        <dxb:RenderBarItemBorderControl Name="PART_ArrowBackground" HideBorderSide="Left" RenderTemplateSelector="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=BorderStateTemplateSelectorInRibbonToolBar}}" />
+                        <dxcn:RenderPanel Name="PART_PathArrowContainer" HorizontalAlignment="Center" VerticalAlignment="Center" ThemeInfo="Core\Core\Bars\Themes\Generic\RenderTemplates\RibbonQuickAccessToolbar.xaml;91;26">
+                            <dxb:RenderArrowControl RenderTemplateSelector="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=RenderArrowControlTemplateSelector}}" />
+                        </dxcn:RenderPanel>
+                    </dxcn:RenderPanel>
+                </dxcn:RenderPanel>
+            </dxcn:RenderPanel>
+        </dxcn:RenderBorder>
+        <dxcn:RenderTemplate.Triggers>
+            <dxcn:RenderTriggersCollection>
+                <dxcn:RenderTriggersCollection.MergedTriggers>
+                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=ArrowAlignmentStates}}" />
+                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=ForegroundColorStatesInRibbonToolBar}}" />
+                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=EnabledBorderStates}}" />
+                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=SplitAppearanceTriggers}}" />
+                </dxcn:RenderTriggersCollection.MergedTriggers>
+            </dxcn:RenderTriggersCollection>
+        </dxcn:RenderTemplate.Triggers>
+    </dxcn:RenderTemplate>
+
+    <dxcn:RenderTemplate x:Key="{dxbt:BarItemRenderThemeKey ResourceKey=BaseEditTemplateInRibbonToolBar}" x:Shared="False">
+        <dxcn:RenderBorder Name="PART_Root" Background="Transparent" cs:id="RenderBorder_0000" ThemeInfo="Core\Core\Bars\Themes\Generic\RenderTemplates\RibbonQuickAccessToolbar.xaml;113;10">
+            <dxcn:RenderPanel ThemeInfo="Core\Core\Bars\Themes\Generic\RenderTemplates\RibbonQuickAccessToolbar.xaml;116;14">
+                <dxb:RenderBarItemBorderControl Name="PART_Background" />
+                <dxcn:RenderPanel Name="PART_Container" LayoutProvider="{x:Static dxcn:LayoutProvider.DockInstance}" ThemeInfo="Core\Core\Bars\Themes\Generic\RenderTemplates\RibbonQuickAccessToolbar.xaml;118;18">
+                    <dxcn:RenderContentControl Name="PART_Glyph" PreferRenderTemplate="False" RenderContentTemplate="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=GlyphTemplate}}" ThemeInfo="Core\Core\Bars\Themes\Generic\RenderTemplates\RibbonQuickAccessToolbar.xaml;119;22" />
+                    <dxcn:RenderPanel Name="PART_ContentContainer" LayoutProvider="{x:Static dxcn:LayoutProvider.DockInstance}" ThemeInfo="Core\Core\Bars\Themes\Generic\RenderTemplates\RibbonQuickAccessToolbar.xaml;122;22">
+                        <dxcn:RenderContentControl Name="PART_Content" PreferRenderTemplate="False" ThemeInfo="Core\Core\Bars\Themes\Generic\RenderTemplates\RibbonQuickAccessToolbar.xaml;123;26" />
+                        <dxcn:RenderContentControl Name="PART_Editor" ThemeInfo="Core\Core\Bars\Themes\Generic\RenderTemplates\RibbonQuickAccessToolbar.xaml;124;26" />
+                        <dxcn:RenderContentControl Name="PART_Content2" ThemeInfo="Core\Core\Bars\Themes\Generic\RenderTemplates\RibbonQuickAccessToolbar.xaml;125;26" />
+                    </dxcn:RenderPanel>
+                </dxcn:RenderPanel>
+            </dxcn:RenderPanel>
+        </dxcn:RenderBorder>
+        <dxcn:RenderTemplate.Triggers>
+            <dxcn:RenderTriggersCollection>
+                <dxcn:RenderTriggersCollection.MergedTriggers>
+                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=EditForegroundColorStatesInRibbonToolBar}}" />
+                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=EnabledBorderStates}}" />
+                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=EnabledBorderStatesEditor}}" />
+                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=AppearanceTriggers}}" />
+                </dxcn:RenderTriggersCollection.MergedTriggers>
+            </dxcn:RenderTriggersCollection>
+        </dxcn:RenderTemplate.Triggers>
+    </dxcn:RenderTemplate>
+
+    <dxcn:RenderTemplate x:Key="{dxbt:BarItemRenderThemeKey ResourceKey=BaseStaticItemTemplateInRibbonToolBar}" x:Shared="False">
+        <dxcn:RenderBorder Name="PART_Root" Background="Transparent" cs:id="RenderBorder_0000" ThemeInfo="Core\Core\Bars\Themes\Generic\RenderTemplates\RibbonQuickAccessToolbar.xaml;143;10">
+            <dxcn:RenderPanel ThemeInfo="Core\Core\Bars\Themes\Generic\RenderTemplates\RibbonQuickAccessToolbar.xaml;146;14">
+                <dxb:RenderBarItemBorderControl Name="PART_Background" />
+                <dxcn:RenderPanel Name="PART_Container" LayoutProvider="{dxcn:DockPanelLayoutProvider LastChildFill=True}" ThemeInfo="Core\Core\Bars\Themes\Generic\RenderTemplates\RibbonQuickAccessToolbar.xaml;148;18">
+                    <dxcn:RenderContentControl Name="PART_Glyph" PreferRenderTemplate="False" RenderContentTemplate="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=GlyphTemplate}}" ThemeInfo="Core\Core\Bars\Themes\Generic\RenderTemplates\RibbonQuickAccessToolbar.xaml;149;22" />
+                    <dxcn:RenderContentControl Name="PART_Content" PreferRenderTemplate="False" ThemeInfo="Core\Core\Bars\Themes\Generic\RenderTemplates\RibbonQuickAccessToolbar.xaml;152;22" />
+                </dxcn:RenderPanel>
+            </dxcn:RenderPanel>
+        </dxcn:RenderBorder>
+        <dxcn:RenderTemplate.Triggers>
+            <dxcn:RenderTriggersCollection>
+                <dxcn:RenderTriggersCollection.MergedTriggers>
+                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=ForegroundColorStatesInRibbonToolBar}}" />
+                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=EnabledBorderStates}}" />
+                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=AppearanceTriggers}}" />
+                </dxcn:RenderTriggersCollection.MergedTriggers>
+            </dxcn:RenderTriggersCollection>
+        </dxcn:RenderTemplate.Triggers>
+    </dxcn:RenderTemplate>
+
+    <dxcn:RenderTemplate x:Key="{dxbt:BarItemRenderThemeKey ResourceKey=TemplateInRibbonToolBar}" BasedOn="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=BaseDefaultTemplateInRibbonToolBar}}" Styles="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=TemplateInRibbonToolBarStyles}}" />
+
+    <dxcn:RenderTemplate x:Key="{dxbt:BarItemRenderThemeKey ResourceKey=SplitTemplateInRibbonToolBar}" BasedOn="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=BaseSplitItemTemplateInRibbonToolBar}}" Styles="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=SplitTemplateInRibbonToolBarStyles}}" />
+
+    <dxcn:RenderTemplate x:Key="{dxbt:BarItemRenderThemeKey ResourceKey=EditTemplateInRibbonToolBar}" BasedOn="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=BaseEditTemplateInRibbonToolBar}}" Styles="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=EditTemplateInRibbonToolBarStyles}}" />
+
+    <dxcn:RenderTemplate x:Key="{dxbt:BarItemRenderThemeKey ResourceKey=StaticTemplateInRibbonToolBar}" BasedOn="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=BaseStaticItemTemplateInRibbonToolBar}}" Styles="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=StaticTemplateInRibbonToolBarStyles}}" />
+
+</ResourceDictionary>

@@ -1,0 +1,32 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxp="http://schemas.devexpress.com/winfx/2008/xaml/printing" xmlns:local="http://schemas.devexpress.com/winfx/2008/xaml/map" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Map.PrintContainer}" TargetType="local:PrintContainer">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Map\Generic\PrintingTemplates.xaml;10;6" /><Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Map\Generic\PrintingTemplates.xaml;15;22">
+                        <dx:DXBorder Background="Transparent" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Map\Generic\PrintingTemplates.xaml;16;26">
+                            <ItemsControl x:Name="PART_PrintLayersContainer" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Map\Generic\PrintingTemplates.xaml;17;30">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Map\Generic\PrintingTemplates.xaml;20;42" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                        </dx:DXBorder>
+                        <local:OverlayItemsControl x:Name="PART_PrintLegendsContainer">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <local:MapOverlaysPanel />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </local:OverlayItemsControl>
+                        <local:MapOverlaysPanel x:Name="PART_MiniMap" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

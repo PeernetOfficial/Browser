@@ -1,0 +1,64 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon" xmlns:dxrt="http://schemas.devexpress.com/winfx/2008/xaml/ribbon/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    <dxcore_unique_xmlns:BooleanToVisibilityConverter x:Key="boolToVisibilityConverter" Invert="False" />
+
+    <dxcore_unique_xmlns:BoolToObjectConverter x:Key="boolToVerticalExpandConverter" FalseValue="0" TrueValue="150" />
+
+    <dxcore_unique_xmlns:BoolToObjectConverter x:Key="boolToOpacityConverter" FalseValue="0" TrueValue="1" />
+
+    <ControlTemplate x:Key="{dxrt:DXTreeViewItemThemeKey ResourceKey=ControlTemplate}" TargetType="{x:Type dxr:DXTreeViewItem}">
+        <StackPanel dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\DXTreeViewItem.xaml;22;10">
+            <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\DXTreeViewItem.xaml;23;14">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <dxr:RibbonCheckedBorderControl x:Name="PART_Expander" IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" Opacity="{Binding CanExpand, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToOpacityConverter}, Mode=TwoWay}" Style="{TemplateBinding ExpanderStyle}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\DXTreeViewItem.xaml;28;18" />
+                <dxr:RibbonCheckedBorderControl x:Name="PART_ContentAndGlyph" Grid.Column="1" IsChecked="{TemplateBinding IsSelected}" Style="{TemplateBinding BorderStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\DXTreeViewItem.xaml;33;18">
+                    <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\DXTreeViewItem.xaml;37;22">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <ContentControl x:Name="PART_Glyph" Grid.Column="0" Style="{TemplateBinding GlyphContainerStyle}" Visibility="{Binding ActualIsGlyphVisible, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\DXTreeViewItem.xaml;42;26">
+                            <dxcore_unique_xmlns:PixelSnapper dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\DXTreeViewItem.xaml;46;30">
+                                <Image Source="{TemplateBinding Glyph}" Style="{TemplateBinding GlyphStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\DXTreeViewItem.xaml;47;34" />
+                            </dxcore_unique_xmlns:PixelSnapper>
+                        </ContentControl>
+                        <ContentControl x:Name="PART_Content" Content="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{TemplateBinding ContentTemplate}" Grid.Column="1" HorizontalContentAlignment="Stretch" Style="{Binding ContentStyle, RelativeSource={RelativeSource Mode=TemplatedParent}}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\DXTreeViewItem.xaml;50;26" />
+                    </Grid>
+                </dxr:RibbonCheckedBorderControl>
+            </Grid>
+            <dxcore_unique_xmlns:DXExpander x:Name="PART_SelectedPageControlExpander" Duration="{Binding AllowAnimation, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource boolToVerticalExpandConverter}}" IsExpanded="{TemplateBinding IsExpanded}" StretchChild="True" VerticalExpand="FromBottomToTop" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\DXTreeViewItem.xaml;60;14">
+                <ItemsPresenter HorizontalAlignment="Stretch" Style="{Binding ItemsPresenterStyle, RelativeSource={RelativeSource Mode=TemplatedParent}}" Visibility="{Binding IsExpanded, Converter={StaticResource boolToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\DXTreeViewItem.xaml;65;18" />
+            </dxcore_unique_xmlns:DXExpander>
+        </StackPanel>
+    </ControlTemplate>
+
+    <ItemsPanelTemplate x:Key="{dxrt:DXTreeViewItemThemeKey ResourceKey=ItemsPanelTemplate}">
+        <dxr:DXTreeViewItemItemsPanel />
+    </ItemsPanelTemplate>
+
+    <ControlTemplate x:Key="{dxrt:DXTreeViewGroupItemThemeKey ResourceKey=ControlTemplate}" TargetType="{x:Type dxr:DXTreeViewGroupItem}">
+        <StackPanel dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\DXTreeViewItem.xaml;77;10">
+            <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\DXTreeViewItem.xaml;78;14">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <dxr:RibbonCheckedBorderControl x:Name="PART_Expander" IsChecked="True" VerticalAlignment="Center" Visibility="Collapsed" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\DXTreeViewItem.xaml;83;18" />
+                <dxr:RibbonCheckedBorderControl x:Name="PART_ContentAndGlyph" Grid.Column="1" Style="{TemplateBinding BorderStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\DXTreeViewItem.xaml;87;18">
+                    <ContentControl x:Name="PART_Content" Content="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{TemplateBinding ContentTemplate}" Grid.Column="1" HorizontalContentAlignment="Stretch" Margin="1" Style="{Binding ContentStyle, RelativeSource={RelativeSource Mode=TemplatedParent}}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\DXTreeViewItem.xaml;90;22" />
+                </dxr:RibbonCheckedBorderControl>
+            </Grid>
+            <dxcore_unique_xmlns:DXExpander x:Name="PART_SelectedPageControlExpander" Duration="150" IsExpanded="True" StretchChild="True" VerticalExpand="FromBottomToTop" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\DXTreeViewItem.xaml;100;14">
+                <ItemsPresenter HorizontalAlignment="Stretch" Style="{Binding ItemsPresenterStyle, RelativeSource={RelativeSource Mode=TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\DXTreeViewItem.xaml;105;18" />
+            </dxcore_unique_xmlns:DXExpander>
+        </StackPanel>
+    </ControlTemplate>
+
+    <ItemsPanelTemplate x:Key="{dxrt:DXTreeViewGroupItemThemeKey ResourceKey=ItemsPanelTemplate}">
+        <dxr:DXTreeViewItemItemsPanel />
+    </ItemsPanelTemplate>
+
+</ResourceDictionary>

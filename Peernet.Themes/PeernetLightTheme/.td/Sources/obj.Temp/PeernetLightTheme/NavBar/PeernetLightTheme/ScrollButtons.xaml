@@ -1,0 +1,115 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxn="http://schemas.devexpress.com/winfx/2008/xaml/navbar" xmlns:dxnav="http://schemas.devexpress.com/winfx/2008/xaml/navigation" xmlns:dxnavi="http://schemas.devexpress.com/winfx/2008/xaml/navigation/internal" xmlns:dxnt="http://schemas.devexpress.com/winfx/2008/xaml/navbar/themekeys" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    <ResourceDictionary.MergedDictionaries>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.PeernetLightTheme.v21.2;component/NavBar/PeernetLightTheme/UICore.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    
+
+    <ControlTemplate x:Key="{dxnt:CommonElementsThemeKey ResourceKey=ScrollUpButtonTemplate}" TargetType="dxn:NavBarRepeatButton">
+        <dxcore_unique_xmlns:LayoutTransformPanel x:Name="Root" Orientation="{TemplateBinding Orientation}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="NavBar\Office2019White\ScrollButtons.xaml;22;10">
+            <dx:DXBorder x:Name="IsDefault" Background="Transparent" BorderBrush="#FFC8C6C4" BorderThickness="0,0,0,1" Padding="4" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="NavBar\Office2019White\ScrollButtons.xaml;23;14" x:Uid="@BorderBrush=Border">
+                <Path x:Name="Content" Fill="#FF444444" Style="{StaticResource UIShape.Up}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="NavBar\Office2019White\ScrollButtons.xaml;29;18" x:Uid="@Fill=Foreground" />
+            </dx:DXBorder>
+        </dxcore_unique_xmlns:LayoutTransformPanel>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Fill" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0004" x:Uid="@Value=HoverForeground" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0000" x:Uid="@Value=HoverBackground" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0002" x:Uid="@Value=HoverBorder" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Fill" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0005" x:Uid="@Value=SelectionForeground" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0001" x:Uid="@Value=SelectionBackground" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0003" x:Uid="@Value=SelectionBorder" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" TargetName="Root" Value="0.38" />
+            </Trigger>
+            <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
+                <Setter Property="MinHeight" TargetName="Root" Value="44" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxnt:CommonElementsThemeKey ResourceKey=ScrollDownButtonTemplate}" TargetType="dxn:NavBarRepeatButton">
+        <dxcore_unique_xmlns:LayoutTransformPanel x:Name="Root" Orientation="{TemplateBinding Orientation}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="NavBar\Office2019White\ScrollButtons.xaml;78;10">
+            <dx:DXBorder x:Name="IsDefault" Background="Transparent" BorderBrush="#FFC8C6C4" BorderThickness="0,1,0,0" Padding="4" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="NavBar\Office2019White\ScrollButtons.xaml;79;14" x:Uid="@BorderBrush=Border">
+                <Path x:Name="Content" Fill="#FF444444" Style="{StaticResource UIShape.Down}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="NavBar\Office2019White\ScrollButtons.xaml;85;18" x:Uid="@Fill=Foreground" />
+            </dx:DXBorder>
+        </dxcore_unique_xmlns:LayoutTransformPanel>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Fill" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0004" x:Uid="@Value=HoverForeground" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0000" x:Uid="@Value=HoverBackground" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0002" x:Uid="@Value=HoverBorder" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Fill" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0005" x:Uid="@Value=SelectionForeground" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0001" x:Uid="@Value=SelectionBackground" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0003" x:Uid="@Value=SelectionBorder" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" TargetName="Root" Value="0.38" />
+            </Trigger>
+            <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
+                <Setter Property="MinHeight" TargetName="Root" Value="44" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    
+
+    <ControlTemplate x:Key="{dxnt:CommonElementsThemeKey ResourceKey=ScrollUpGroupButtonTemplate}" TargetType="dxn:NavBarRepeatButton">
+        <dxcore_unique_xmlns:LayoutTransformPanel x:Name="Root" Orientation="{TemplateBinding Orientation}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="NavBar\Office2019White\ScrollButtons.xaml;136;10">
+            <dx:DXBorder x:Name="IsDefault" Background="Transparent" BorderBrush="#FFC8C6C4" BorderThickness="0,0,0,1" Padding="4" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="NavBar\Office2019White\ScrollButtons.xaml;137;14" x:Uid="@BorderBrush=Border">
+                <Path x:Name="Content" Fill="#FF444444" Style="{StaticResource UIShape.Up}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="NavBar\Office2019White\ScrollButtons.xaml;143;18" x:Uid="@Fill=Foreground" />
+            </dx:DXBorder>
+        </dxcore_unique_xmlns:LayoutTransformPanel>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Fill" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0004" x:Uid="@Value=HoverForeground" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0000" x:Uid="@Value=HoverBackground" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0002" x:Uid="@Value=HoverBorder" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Fill" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0005" x:Uid="@Value=SelectionForeground" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0001" x:Uid="@Value=SelectionBackground" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0003" x:Uid="@Value=SelectionBorder" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" TargetName="Root" Value="0.38" />
+            </Trigger>
+            <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
+                <Setter Property="MinHeight" TargetName="Root" Value="44" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxnt:CommonElementsThemeKey ResourceKey=ScrollDownGroupButtonTemplate}" TargetType="dxn:NavBarRepeatButton">
+        <dxcore_unique_xmlns:LayoutTransformPanel x:Name="Root" Orientation="{TemplateBinding Orientation}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="NavBar\Office2019White\ScrollButtons.xaml;192;10">
+            <dx:DXBorder x:Name="IsDefault" Background="Transparent" BorderBrush="#FFC8C6C4" BorderThickness="0,1,0,0" Padding="4" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="NavBar\Office2019White\ScrollButtons.xaml;193;14" x:Uid="@BorderBrush=Border">
+                <Path x:Name="Content" Fill="#FF444444" Style="{StaticResource UIShape.Down}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="NavBar\Office2019White\ScrollButtons.xaml;199;18" x:Uid="@Fill=Foreground" />
+            </dx:DXBorder>
+        </dxcore_unique_xmlns:LayoutTransformPanel>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Fill" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0004" x:Uid="@Value=HoverForeground" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0000" x:Uid="@Value=HoverBackground" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0002" x:Uid="@Value=HoverBorder" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Fill" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0005" x:Uid="@Value=SelectionForeground" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0001" x:Uid="@Value=SelectionBackground" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0003" x:Uid="@Value=SelectionBorder" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" TargetName="Root" Value="0.38" />
+            </Trigger>
+            <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
+                <Setter Property="MinHeight" TargetName="Root" Value="44" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+</ResourceDictionary>

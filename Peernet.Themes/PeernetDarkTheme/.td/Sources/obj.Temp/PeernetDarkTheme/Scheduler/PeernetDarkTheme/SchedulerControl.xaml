@@ -1,0 +1,39 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal" xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys" xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxsch="http://schemas.devexpress.com/winfx/2008/xaml/scheduler" xmlns:dxschi="http://schemas.devexpress.com/winfx/2008/xaml/scheduler/internal" xmlns:dxscht="http://schemas.devexpress.com/winfx/2008/xaml/scheduler/themekeys" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    <ResourceDictionary.MergedDictionaries>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.PeernetDarkTheme.v21.2;component/Scheduler/PeernetDarkTheme/UICore.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    
+
+    <ControlTemplate x:Key="{dxscht:SchedulerControlThemeKey ResourceKey=BorderTemplate}" TargetType="{x:Type ContentControl}">
+        <dx:DXBorder Background="#FF262626" BorderBrush="#FF686868" BorderThickness="1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019Black\SchedulerControl.xaml;24;10" x:Uid="@Background=Window.Background;BorderBrush=Border">
+            <ContentPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019Black\SchedulerControl.xaml;28;14" />
+        </dx:DXBorder>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxscht:SchedulerControlThemeKey ResourceKey=InvisibleBorderTemplate}" TargetType="{x:Type ContentControl}">
+        <dx:DXBorder Background="#FF262626" BorderBrush="#FF686868" BorderThickness="1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019Black\SchedulerControl.xaml;33;10" x:Uid="@Background=Window.Background;BorderBrush=Border">
+            <ContentPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019Black\SchedulerControl.xaml;37;14" />
+        </dx:DXBorder>
+    </ControlTemplate>
+
+    <Style x:Key="{dxscht:SchedulerUIControlThemeKey ResourceKey=ColorMarkerStyle}" TargetType="{x:Type FrameworkElement}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduler\Office2019Black\SchedulerControl.xaml;41;6" /><Setter Property="Margin" Value="2" />
+    </Style>
+
+    <Style x:Key="{dxscht:SchedulerUIControlThemeKey ResourceKey=TextBlockStyle}" BasedOn="{StaticResource {dxet:TextEditThemeKey ResourceKey=TextBlockStyle}}" TargetType="{x:Type TextBlock}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduler\Office2019Black\SchedulerControl.xaml;45;6" /></Style>
+
+    <Style x:Key="{dxscht:SchedulerUIControlThemeKey ResourceKey=ItemTextBlockStyle}" TargetType="{x:Type TextBlock}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduler\Office2019Black\SchedulerControl.xaml;49;6" /><Setter Property="Margin" Value="4,2,4,2" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Style.Triggers>
+            <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
+                <Setter Property="Margin" Value="14,13,14,13" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="{dxscht:SchedulerControlThemeKey ResourceKey=SchedulerRoot}" TargetType="{x:Type dx:XPFContentControl}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduler\Office2019Black\SchedulerControl.xaml;59;6" /></Style>
+
+</ResourceDictionary>

@@ -1,0 +1,68 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal" xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys" xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    <ResourceDictionary.MergedDictionaries>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.PeernetLightTheme.v21.2;component/Core/Core/Editors/Themes/Generic/RangeControl.xaml" />
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.PeernetLightTheme.v21.2;component/Core/Core/Editors/Themes/PeernetLightTheme/UICore.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    
+
+    <ControlTemplate x:Key="{dxet:RangeControlThemeKey ResourceKey=BorderTemplate}" TargetType="{x:Type ContentControl}">
+        <dx:DXBorder x:Name="border" Background="#FFFFFFFF" BorderBrush="#FFC8C6C4" BorderThickness="{TemplateBinding BorderThickness}" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\RangeControl\RangeControlBar.xaml;22;10" x:Uid="@Background=Editor.Background;BorderBrush=Border">
+            <ContentPresenter Margin="1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\RangeControl\RangeControlBar.xaml;27;14" />
+        </dx:DXBorder>
+        <ControlTemplate.Triggers>
+            <Trigger Property="dxi:AppearanceOptions.HasBackground" Value="True">
+                <Setter Property="Background" TargetName="border" Value="{Binding Path=Background, RelativeSource={RelativeSource TemplatedParent}}" />
+            </Trigger>
+            <Trigger Property="dxi:AppearanceOptions.HasBorderBrush" Value="True">
+                <Setter Property="BorderBrush" TargetName="border" Value="{Binding Path=BorderBrush, RelativeSource={RelativeSource TemplatedParent}}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxet:RangeControlThemeKey ResourceKey=RangeBarRootBorderTemplate}" TargetType="{x:Type ContentControl}">
+        <dx:DXBorder BorderBrush="#FFC8C6C4" BorderThickness="0,1,0,0" Padding="0,1,0,0" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\RangeControl\RangeControlBar.xaml;44;10" x:Uid="@BorderBrush=Border">
+            <ContentPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\RangeControl\RangeControlBar.xaml;48;14" />
+        </dx:DXBorder>
+    </ControlTemplate>
+
+    
+
+    <ControlTemplate x:Key="{dxet:RangeControlThemeKey ResourceKey=RangeBarLeftResizeThumbTemplate}">
+        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\RangeControl\RangeControlBar.xaml;55;10">
+            <dx:DXBorder BorderBrush="#FFFFFFFF" BorderThickness="1,0,1,0" Margin="3" Width="3" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\RangeControl\RangeControlBar.xaml;58;14" x:Uid="@BorderBrush=Backstage.Foreground" />
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxet:RangeControlThemeKey ResourceKey=RangeBarRightResizeThumbTemplate}">
+        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\RangeControl\RangeControlBar.xaml;67;10">
+            <dx:DXBorder BorderBrush="#FFFFFFFF" BorderThickness="1,0,1,0" Margin="3" Width="3" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\RangeControl\RangeControlBar.xaml;70;14" x:Uid="@BorderBrush=Backstage.Foreground" />
+        </Grid>
+    </ControlTemplate>
+
+    
+
+    <ControlTemplate x:Key="{dxet:RangeControlThemeKey ResourceKey=LeftSelectionThumbTemplate}" TargetType="{x:Type Thumb}">
+        <Grid x:Name="Root" Background="#FFC8C6C4" HorizontalAlignment="Center" Margin="-9,0,0,0" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\RangeControl\RangeControlBar.xaml;81;10" x:Uid="@Background=Border">
+            <dx:DXBorder BorderBrush="#FFFFFFFF" BorderThickness="1,0,1,0" Height="12" Margin="3" Width="3" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\RangeControl\RangeControlBar.xaml;86;14" x:Uid="@BorderBrush=Backstage.Foreground" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
+                <Setter Property="Width" TargetName="Root" Value="30" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxet:RangeControlThemeKey ResourceKey=RightSelectionThumbTemplate}" TargetType="{x:Type Thumb}">
+        <Grid x:Name="Root" Background="#FFC8C6C4" HorizontalAlignment="Center" Margin="0,0,-9,0" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\RangeControl\RangeControlBar.xaml;103;10" x:Uid="@Background=Border">
+            <dx:DXBorder BorderBrush="#FFFFFFFF" BorderThickness="1,0,1,0" Height="12" Margin="3" Width="3" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\RangeControl\RangeControlBar.xaml;108;14" x:Uid="@BorderBrush=Backstage.Foreground" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
+                <Setter Property="Width" TargetName="Root" Value="30" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+</ResourceDictionary>

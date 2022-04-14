@@ -1,0 +1,183 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dxdot="http://schemas.devexpress.com/winfx/2008/xaml/docking/themekeys" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:local="http://schemas.devexpress.com/winfx/2008/xaml/docking" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ve="http://schemas.devexpress.com/winfx/2008/xaml/docking/visualelements" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.BaseControlBoxControl}" TargetType="{x:Type ve:BaseControlBoxControl}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Generic\ControlBoxControl.xaml;11;6" /><Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ve:BaseControlBoxControl}">
+                    <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;15;22">
+                        <ve:ControlBoxCustomContentPresenter x:Name="PART_CustomContent" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <ve:ControlBoxButtonPresenter x:Name="PART_CloseButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="Close" ContentTemplate="{TemplateBinding CloseButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;19;26" />
+                    </StackPanel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="CloseButtonTemplate" Value="{x:Null}">
+                            <Setter Property="Visibility" TargetName="PART_CloseButton" Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Foreground" Value="Black" cs:id="Setter_0000" />
+    </Style>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.DocumentTabHeaderControlBoxControl}" TargetType="{x:Type ve:DocumentTabHeaderControlBoxControl}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Generic\ControlBoxControl.xaml;44;6" /><Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ve:DocumentTabHeaderControlBoxControl}">
+                    <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;48;22">
+                        <ve:ControlBoxCustomContentPresenter x:Name="PART_CustomContent" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <ve:ControlBoxButtonPresenter x:Name="PART_PinButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="Pin" ContentTemplate="{TemplateBinding PinButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;52;26" />
+                        <ve:ControlBoxButtonPresenter x:Name="PART_CloseButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="Close" ContentTemplate="{TemplateBinding CloseButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;61;26" />
+                    </StackPanel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="CloseButtonTemplate" Value="{x:Null}">
+                            <Setter Property="Visibility" TargetName="PART_CloseButton" Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate x:Key="{dxdot:DockPaneElementsThemeKey ResourceKey=ControlBoxTemplate}" TargetType="{x:Type ve:PanelControlBoxControl}">
+        <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;84;10">
+            <ve:ControlBoxCustomContentPresenter x:Name="PART_CustomContent" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <ve:ControlBoxButtonPresenter x:Name="PART_MinimizeButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="Minimize" ContentTemplate="{TemplateBinding MinimizeButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;88;14" />
+            <ve:ControlBoxButtonPresenter x:Name="PART_MaximizeButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="Maximize" ContentTemplate="{TemplateBinding MaximizeButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;97;14" />
+            <ve:ControlBoxButtonPresenter x:Name="PART_RestoreButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="Restore" ContentTemplate="{TemplateBinding RestoreButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;106;14" />
+            <ve:ControlBoxButtonPresenter x:Name="PART_HideButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="Hide" ContentTemplate="{TemplateBinding HideButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;115;14" />
+            <ve:ControlBoxButtonPresenter x:Name="PART_CollapseButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="ExpandToggle" ContentTemplate="{TemplateBinding CollapseButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;124;14" />
+            <ve:ControlBoxButtonPresenter x:Name="PART_ExpandButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="ExpandToggle" ContentTemplate="{TemplateBinding ExpandButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;133;14" />
+            <ve:ControlBoxButtonPresenter x:Name="PART_PinButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="Pin" ContentTemplate="{TemplateBinding PinButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;142;14" />
+            <ve:ControlBoxButtonPresenter x:Name="PART_CloseButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="Close" ContentTemplate="{TemplateBinding CloseButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;151;14" />
+        </StackPanel>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxdot:DockPaneElementsThemeKey ResourceKey=DockedControlBoxTemplate}" TargetType="{x:Type ve:PanelControlBoxControl}">
+        <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;164;10">
+            <ve:ControlBoxCustomContentPresenter x:Name="PART_CustomContent" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <ve:ControlBoxButtonPresenter x:Name="PART_PinButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="Pin" ContentTemplate="{TemplateBinding PinButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;168;14" />
+            <ve:ControlBoxButtonPresenter x:Name="PART_CloseButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="Close" ContentTemplate="{TemplateBinding CloseButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;177;14" />
+        </StackPanel>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxdot:DockPaneElementsThemeKey ResourceKey=FloatingControlBoxTemplate}" TargetType="{x:Type ve:PanelControlBoxControl}">
+        <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;190;10">
+            <ve:ControlBoxCustomContentPresenter x:Name="PART_CustomContent" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <ve:ControlBoxButtonPresenter x:Name="PART_MinimizeButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="Minimize" ContentTemplate="{TemplateBinding MinimizeButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;194;14" />
+            <ve:ControlBoxButtonPresenter x:Name="PART_MaximizeButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="Maximize" ContentTemplate="{TemplateBinding MaximizeButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;203;14" />
+            <ve:ControlBoxButtonPresenter x:Name="PART_RestoreButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="Restore" ContentTemplate="{TemplateBinding RestoreButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;212;14" />
+            <ve:ControlBoxButtonPresenter x:Name="PART_CloseButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="Close" ContentTemplate="{TemplateBinding CloseButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;221;14" />
+        </StackPanel>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxdot:DockPaneElementsThemeKey ResourceKey=AutoHiddenControlBoxTemplate}" TargetType="{x:Type ve:PanelControlBoxControl}">
+        <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;234;10">
+            <ve:ControlBoxCustomContentPresenter x:Name="PART_CustomContent" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <ve:ControlBoxButtonPresenter x:Name="PART_HideButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="Hide" ContentTemplate="{TemplateBinding HideButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;238;14" />
+            <ve:ControlBoxButtonPresenter x:Name="PART_CollapseButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="ExpandToggle" ContentTemplate="{TemplateBinding CollapseButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;247;14" />
+            <ve:ControlBoxButtonPresenter x:Name="PART_ExpandButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="ExpandToggle" ContentTemplate="{TemplateBinding ExpandButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;256;14" />
+            <ve:ControlBoxButtonPresenter x:Name="PART_PinButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="Pin" ContentTemplate="{TemplateBinding PinButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;265;14" />
+            <ve:ControlBoxButtonPresenter x:Name="PART_CloseButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="Close" ContentTemplate="{TemplateBinding CloseButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;274;14" />
+        </StackPanel>
+    </ControlTemplate>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.PanelControlBoxControl}" TargetType="{x:Type ve:PanelControlBoxControl}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Generic\ControlBoxControl.xaml;286;6" /><Setter Property="Template" Value="{DynamicResource {dxdot:DockPaneElementsThemeKey ResourceKey=ControlBoxTemplate}}" />
+        <Style.Triggers>
+            <Trigger Property="ActualDockItemState" Value="Docked">
+                <Setter Property="Template" Value="{DynamicResource {dxdot:DockPaneElementsThemeKey ResourceKey=DockedControlBoxTemplate}}" />
+            </Trigger>
+            <Trigger Property="ActualDockItemState" Value="Floating">
+                <Setter Property="Template" Value="{DynamicResource {dxdot:DockPaneElementsThemeKey ResourceKey=FloatingControlBoxTemplate}}" />
+            </Trigger>
+            <Trigger Property="ActualDockItemState" Value="AutoHidden">
+                <Setter Property="Template" Value="{DynamicResource {dxdot:DockPaneElementsThemeKey ResourceKey=AutoHiddenControlBoxTemplate}}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.WindowControlBoxControl}" TargetType="{x:Type ve:WindowControlBoxControl}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Generic\ControlBoxControl.xaml;301;6" /><Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ve:WindowControlBoxControl}">
+                    <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;305;22">
+                        <ve:ControlBoxCustomContentPresenter x:Name="PART_CustomContent" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <ve:ControlBoxButtonPresenter x:Name="PART_MinimizeButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="Minimize" ContentTemplate="{TemplateBinding MinimizeButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;309;26" />
+                        <ve:ControlBoxButtonPresenter x:Name="PART_RestoreButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="Restore" ContentTemplate="{TemplateBinding RestoreButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;318;26" />
+                        <ve:ControlBoxButtonPresenter x:Name="PART_MaximizeButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="Maximize" ContentTemplate="{TemplateBinding MaximizeButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;327;26" />
+                        <ve:ControlBoxButtonPresenter x:Name="PART_CloseButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="Close" ContentTemplate="{TemplateBinding CloseButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;336;26" />
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.TabHeaderControlBoxControl}" TargetType="{x:Type ve:TabHeaderControlBoxControl}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Generic\ControlBoxControl.xaml;351;6" /><Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ve:TabHeaderControlBoxControl}">
+                    <StackPanel x:Name="PART_StackPanel" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;355;22">
+                        <ve:ControlBoxButtonPresenter x:Name="PART_ScrollPrevButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="ScrollPrev" ContentTemplate="{TemplateBinding ScrollPrevButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;356;26" />
+                        <ve:ControlBoxButtonPresenter x:Name="PART_ScrollNextButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="ScrollNext" ContentTemplate="{TemplateBinding ScrollNextButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;365;26" />
+                        <ve:ControlBoxCustomContentPresenter x:Name="PART_CustomContent" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <ve:ControlBoxButtonPresenter x:Name="PART_DropDownButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="Menu" ContentTemplate="{TemplateBinding DropDownButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;377;26" />
+                        <ve:ControlBoxButtonPresenter x:Name="PART_RestoreButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="Restore" ContentTemplate="{TemplateBinding RestoreButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;386;26" />
+                        <ve:ControlBoxButtonPresenter x:Name="PART_CloseButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="Close" ContentTemplate="{TemplateBinding CloseButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;395;26" />
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.GroupBoxControlBoxControl}" TargetType="{x:Type ve:GroupBoxControlBoxControl}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Generic\ControlBoxControl.xaml;410;6" /><Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ve:GroupBoxControlBoxControl}">
+                    <StackPanel x:Name="PART_StackPanel" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;414;22">
+                        <ve:ControlBoxCustomContentPresenter x:Name="PART_CustomContent" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <ve:ControlBoxButtonPresenter x:Name="PART_ExpandButton" Command="{Binding ContextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="ExpandToggle" ContentTemplate="{TemplateBinding ExpandButtonTemplate}" Height="{TemplateBinding ButtonHeight}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="{TemplateBinding ButtonWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;418;26" />
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ControlBoxButtonStyle" TargetType="ve:ControlBoxButton">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Generic\ControlBoxControl.xaml;432;6" /><Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ve:ControlBoxButton">
+                    <ve:ControlBoxButtonBorder Style="{TemplateBinding BorderStyle}">
+                        <ContentPresenter x:Name="presenter" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" TextElement.Foreground="{TemplateBinding Foreground}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;437;26" />
+                    </ve:ControlBoxButtonBorder>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderStyle">
+            <Setter.Value>
+                <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.ControlBoxButtonBorder}" TargetType="ve:ControlBoxButtonBorder">
+                    <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Generic\ControlBoxControl.xaml;448;18" /><Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ve:ControlBoxButtonBorder">
+                                <Grid x:Name="Button" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;452;34">
+                                    <ContentPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\ControlBoxControl.xaml;455;38" />
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.ControlBoxButton}" BasedOn="{StaticResource ControlBoxButtonStyle}" TargetType="ve:ControlBoxButton">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Generic\ControlBoxControl.xaml;465;6" /><Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+    </Style>
+
+    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.ControlBoxButton}" BasedOn="{StaticResource ControlBoxButtonStyle}" TargetType="local:ControlBoxButton">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Generic\ControlBoxControl.xaml;472;6" /><Setter Property="Padding" Value="3,1" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+
+</ResourceDictionary>

@@ -1,0 +1,264 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dasboardthemes="http://schemas.devexpress.com/winfx/2008/xaml/dashboard/themekeys" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxdash="http://schemas.devexpress.com/winfx/2008/xaml/dashboard" xmlns:dxdashi="http://schemas.devexpress.com/winfx/2008/xaml/dashboard/internal" xmlns:dxdasht="http://schemas.devexpress.com/winfx/2008/xaml/dashboard/themekeys" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxga="http://schemas.devexpress.com/winfx/2008/xaml/gauges" xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+
+    <dxdashi:EventToCommandConverter x:Key="EventToCommandConverter" />
+
+    <dxcore_unique_xmlns:BoolInverseConverter x:Key="boolInverceConverter" />
+
+    <dxmvvm:ObjectToObjectConverter x:Key="ViewTypeToLabelVisibilityConverter" DefaultTarget="Collapsed">
+        <dxmvvm:MapItem Source="CircularFull" Target="Visible" />
+    </dxmvvm:ObjectToObjectConverter>
+
+    <Thickness x:Key="DeltaValuePresenterPadding">0,0,0,0</Thickness>
+
+    <DataTemplate x:Key="{dxdasht:GaugeItemThemeKey ResourceKey=CircularGaugeControlTemplate}">
+        <dxdashi:GaugeControlDecorator ViewType="{Binding ViewType}">
+            <dxga:CircularGaugeControl Focusable="False">
+                <dxga:CircularGaugeControl.Model>
+                    <dxga:CircularThemeableModel />
+                </dxga:CircularGaugeControl.Model>
+                <dxga:CircularGaugeControl.Scales>
+                    <dxga:ArcScale EndAngle="{Binding EndAngle}" EndValue="{Binding GaugeRangeModel.MaxRangeValue}" HorizontalAlignment="Center" MajorIntervalCount="{Binding MajorIntervalCount}" StartAngle="{Binding StartAngle}" StartValue="{Binding GaugeRangeModel.MinRangeValue}">
+                        <dxga:ArcScale.Layers>
+                            <dxga:ArcScaleLayer />
+                            <dxga:ArcScaleLayer />
+                        </dxga:ArcScale.Layers>
+                        <dxga:ArcScale.Needles>
+                            <dxga:ArcScaleNeedle Value="{Binding Value}" />
+                        </dxga:ArcScale.Needles>
+                        <dxga:ArcScale.Markers>
+                            <dxga:ArcScaleMarker Value="{Binding Target}" Visible="{Binding HasTarget}" />
+                        </dxga:ArcScale.Markers>
+                        <dxga:ArcScale.LabelOptions>
+                            <dxga:ArcScaleLabelOptions FormatString="{Binding ValueLabelFormat}" Offset="-6" />
+                        </dxga:ArcScale.LabelOptions>
+                        <dxga:ArcScale.LabelPresentation>
+                            <dxga:CustomScaleLabelPresentation>
+                                <dxga:CustomScaleLabelPresentation.LabelTemplate>
+                                    <ControlTemplate>
+                                        <TextBlock FontSize="13.333" Foreground="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeScaleLabelForeground}}" HorizontalAlignment="Right" RenderTransformOrigin="0.5, 0.5" Text="{Binding Text}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;55;42" />
+                                    </ControlTemplate>
+                                </dxga:CustomScaleLabelPresentation.LabelTemplate>
+                            </dxga:CustomScaleLabelPresentation>
+                        </dxga:ArcScale.LabelPresentation>
+                        <dxga:ArcScale.CustomElements>
+                            <dxga:ScaleCustomElement>
+                                <dxdashi:DeltaValuePresenter FontSize="14" HorizontalAlignment="Center" IndicatorType="{Binding IndicatorType}" IsGood="{Binding GaugeModel.DeltaIsGood}" Margin="0,52,0,0" Padding="{StaticResource DeltaValuePresenterPadding}" Value="{Binding ValueLabel}" VerticalAlignment="Center" Visibility="{Binding ViewType, Converter={StaticResource ViewTypeToLabelVisibilityConverter}}" />
+                            </dxga:ScaleCustomElement>
+                        </dxga:ArcScale.CustomElements>
+                    </dxga:ArcScale>
+                </dxga:CircularGaugeControl.Scales>
+            </dxga:CircularGaugeControl>
+        </dxdashi:GaugeControlDecorator>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{dxdasht:GaugeItemThemeKey ResourceKey=ViewTypeCircularHalfTemplate}">
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;85;10">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <ContentPresenter Content="{Binding}" ContentTemplate="{DynamicResource {dxdasht:GaugeItemThemeKey ResourceKey=CircularGaugeControlTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;90;14" />
+            <DockPanel Grid.Row="1" LastChildFill="False" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;91;14">
+                <StackPanel DockPanel.Dock="Left" Visibility="{Binding ShowGaugeCaptions, Converter={dxmvvm:BooleanToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;92;18">
+                    <TextBlock FontSize="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeCaptionFontSize}}" Foreground="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeCaptionForeground}}" MaxWidth="90" Text="{Binding SeriesLabel}" TextAlignment="Left" TextWrapping="Wrap" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;93;22" />
+                    <TextBlock FontSize="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeSubCaptionFontSize}}" Foreground="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeSubCaptionForeground}}" MaxWidth="90" Text="{Binding SeriesSubLabel}" TextAlignment="Left" TextWrapping="Wrap" Visibility="{Binding HasSeriesSubLabel, Converter={dxmvvm:BooleanToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;99;22" />
+                </StackPanel>
+                <dxdashi:DeltaValuePresenter DockPanel.Dock="Right" FontSize="14" IndicatorType="{Binding IndicatorType}" IsGood="{Binding GaugeModel.DeltaIsGood}" Padding="{StaticResource DeltaValuePresenterPadding}" Value="{Binding ValueLabel}" VerticalAlignment="Top" />
+            </DockPanel>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{dxdasht:GaugeItemThemeKey ResourceKey=ViewTypeCircularQuarterRightTemplate}">
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;119;10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <ContentPresenter Content="{Binding}" ContentTemplate="{DynamicResource {dxdasht:GaugeItemThemeKey ResourceKey=CircularGaugeControlTemplate}}" Grid.Row="1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;125;14" />
+            <StackPanel HorizontalAlignment="Left" Visibility="{Binding ShowGaugeCaptions, Converter={dxmvvm:BooleanToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;128;14">
+                <TextBlock FontSize="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeCaptionFontSize}}" Foreground="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeCaptionForeground}}" MaxWidth="150" Text="{Binding SeriesLabel}" TextAlignment="Left" TextWrapping="Wrap" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;129;18" />
+                <TextBlock FontSize="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeSubCaptionFontSize}}" Foreground="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeSubCaptionForeground}}" MaxWidth="150" Text="{Binding SeriesSubLabel}" TextAlignment="Left" TextWrapping="Wrap" Visibility="{Binding HasSeriesSubLabel, Converter={dxmvvm:BooleanToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;135;18" />
+            </StackPanel>
+            <dxdashi:DeltaValuePresenter FontSize="14" Grid.Row="2" HorizontalAlignment="Left" IndicatorType="{Binding IndicatorType}" IsGood="{Binding GaugeModel.DeltaIsGood}" Padding="{StaticResource DeltaValuePresenterPadding}" Value="{Binding ValueLabel}" VerticalAlignment="Top" />
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{dxdasht:GaugeItemThemeKey ResourceKey=ViewTypeCircularQuarterLeftTemplate}">
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;155;10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <ContentPresenter Content="{Binding}" ContentTemplate="{DynamicResource {dxdasht:GaugeItemThemeKey ResourceKey=CircularGaugeControlTemplate}}" Grid.Row="1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;161;14" />
+            <StackPanel HorizontalAlignment="Right" Visibility="{Binding ShowGaugeCaptions, Converter={dxmvvm:BooleanToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;164;14">
+                <TextBlock FontSize="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeCaptionFontSize}}" Foreground="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeCaptionForeground}}" MaxWidth="150" Text="{Binding SeriesLabel}" TextAlignment="Right" TextWrapping="Wrap" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;165;18" />
+                <TextBlock FontSize="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeSubCaptionFontSize}}" Foreground="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeSubCaptionForeground}}" MaxWidth="150" Text="{Binding SeriesSubLabel}" TextAlignment="Right" TextWrapping="Wrap" Visibility="{Binding HasSeriesSubLabel, Converter={dxmvvm:BooleanToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;171;18" />
+            </StackPanel>
+            <dxdashi:DeltaValuePresenter FontSize="14" Grid.Row="2" HorizontalAlignment="Right" IndicatorType="{Binding IndicatorType}" IsGood="{Binding GaugeModel.DeltaIsGood}" Padding="{StaticResource DeltaValuePresenterPadding}" Value="{Binding ValueLabel}" VerticalAlignment="Top" />
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{dxdasht:GaugeItemThemeKey ResourceKey=ViewTypeCircularThreeFourthTemplate}">
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;191;10">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <ContentPresenter Content="{Binding}" ContentTemplate="{DynamicResource {dxdasht:GaugeItemThemeKey ResourceKey=CircularGaugeControlTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;196;14" />
+            <DockPanel Grid.Row="1" LastChildFill="False" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;197;14">
+                <StackPanel DockPanel.Dock="Left" Visibility="{Binding ShowGaugeCaptions, Converter={dxmvvm:BooleanToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;198;18">
+                    <TextBlock FontSize="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeCaptionFontSize}}" Foreground="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeCaptionForeground}}" MaxWidth="90" Text="{Binding SeriesLabel}" TextAlignment="Left" TextWrapping="Wrap" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;199;22" />
+                    <TextBlock FontSize="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeSubCaptionFontSize}}" Foreground="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeSubCaptionForeground}}" MaxWidth="90" Text="{Binding SeriesSubLabel}" TextAlignment="Left" TextWrapping="Wrap" Visibility="{Binding HasSeriesSubLabel, Converter={dxmvvm:BooleanToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;205;22" />
+                </StackPanel>
+                <dxdashi:DeltaValuePresenter DockPanel.Dock="Right" FontSize="14" IndicatorType="{Binding IndicatorType}" IsGood="{Binding GaugeModel.DeltaIsGood}" Padding="{StaticResource DeltaValuePresenterPadding}" Value="{Binding ValueLabel}" VerticalAlignment="Top" />
+            </DockPanel>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{dxdasht:GaugeItemThemeKey ResourceKey=ViewTypeCircularFullTemplate}">
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;225;10">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <ContentPresenter Content="{Binding}" ContentTemplate="{DynamicResource {dxdasht:GaugeItemThemeKey ResourceKey=CircularGaugeControlTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;230;14" />
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center" Visibility="{Binding ShowGaugeCaptions, Converter={dxmvvm:BooleanToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;231;14">
+                <TextBlock FontSize="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeCaptionFontSize}}" Foreground="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeCaptionForeground}}" MaxWidth="150" Text="{Binding SeriesLabel}" TextAlignment="Center" TextWrapping="Wrap" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;234;18" />
+                <TextBlock FontSize="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeSubCaptionFontSize}}" Foreground="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeSubCaptionForeground}}" MaxWidth="150" Text="{Binding SeriesSubLabel}" TextAlignment="Center" TextWrapping="Wrap" Visibility="{Binding HasSeriesSubLabel, Converter={dxmvvm:BooleanToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;240;18" />
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{dxdasht:GaugeItemThemeKey ResourceKey=LinearGaugeControlTemplate}">
+        <dxdashi:GaugeControlDecorator ViewType="{Binding ViewType}">
+            <dxga:LinearGaugeControl Focusable="False">
+                <dxga:LinearGaugeControl.Model>
+                    <dxga:LinearThemeableModel />
+                </dxga:LinearGaugeControl.Model>
+                <dxga:LinearGaugeControl.Scales>
+                    <dxga:LinearScale EndValue="{Binding GaugeRangeModel.MaxRangeValue}" HorizontalAlignment="Center" LayoutMode="{Binding LayoutMode}" MajorIntervalCount="{Binding MajorIntervalCount}" StartValue="{Binding GaugeRangeModel.MinRangeValue}">
+                        <dxga:LinearScale.Layers>
+                            <dxga:LinearScaleLayer />
+                            <dxga:LinearScaleLayer />
+                        </dxga:LinearScale.Layers>
+                        <dxga:LinearScale.LevelBars>
+                            <dxga:LinearScaleLevelBar Value="{Binding Value}" />
+                        </dxga:LinearScale.LevelBars>
+                        <dxga:LinearScale.Markers>
+                            <dxga:LinearScaleMarker Value="{Binding Target}" Visible="{Binding HasTarget}" />
+                        </dxga:LinearScale.Markers>
+                        <dxga:LinearScale.LabelOptions>
+                            <dxga:LinearScaleLabelOptions FormatString="{Binding ValueLabelFormat}" Offset="-25" />
+                        </dxga:LinearScale.LabelOptions>
+                        <dxga:LinearScale.LabelPresentation>
+                            <dxga:CustomScaleLabelPresentation>
+                                <dxga:CustomScaleLabelPresentation.LabelTemplate>
+                                    <ControlTemplate>
+                                        <TextBlock FontSize="13.333" Foreground="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeScaleLabelForeground}}" HorizontalAlignment="Right" RenderTransformOrigin="0.5, 0.5" Text="{Binding Text}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;280;42" />
+                                    </ControlTemplate>
+                                </dxga:CustomScaleLabelPresentation.LabelTemplate>
+                            </dxga:CustomScaleLabelPresentation>
+                        </dxga:LinearScale.LabelPresentation>
+                    </dxga:LinearScale>
+                </dxga:LinearGaugeControl.Scales>
+            </dxga:LinearGaugeControl>
+        </dxdashi:GaugeControlDecorator>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{dxdasht:GaugeItemThemeKey ResourceKey=ViewTypeLinearHorizontalTemplate}">
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;297;10">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <DockPanel DockPanel.Dock="Bottom" Grid.Row="1" LastChildFill="False" Margin="0,2,0,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;302;14">
+                <StackPanel DockPanel.Dock="Left" Visibility="{Binding ShowGaugeCaptions, Converter={dxmvvm:BooleanToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;306;18">
+                    <TextBlock FontSize="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeCaptionFontSize}}" Foreground="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeCaptionForeground}}" MaxWidth="90" Text="{Binding SeriesLabel}" TextAlignment="Left" TextWrapping="Wrap" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;307;22" />
+                    <TextBlock FontSize="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeSubCaptionFontSize}}" Foreground="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeSubCaptionForeground}}" MaxWidth="90" Text="{Binding SeriesSubLabel}" TextAlignment="Left" TextWrapping="Wrap" Visibility="{Binding HasSeriesSubLabel, Converter={dxmvvm:BooleanToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;313;22" />
+                </StackPanel>
+                <dxdashi:DeltaValuePresenter DockPanel.Dock="Right" FontSize="14" IndicatorType="{Binding IndicatorType}" IsGood="{Binding GaugeModel.DeltaIsGood}" Padding="{StaticResource DeltaValuePresenterPadding}" Value="{Binding ValueLabel}" VerticalAlignment="Top" />
+            </DockPanel>
+            <ContentPresenter Content="{Binding}" ContentTemplate="{DynamicResource {dxdasht:GaugeItemThemeKey ResourceKey=LinearGaugeControlTemplate}}" Margin="-20,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;329;14" />
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{dxdasht:GaugeItemThemeKey ResourceKey=ViewTypeLinearVerticalTemplate}">
+        <DockPanel dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;336;10">
+            <dxdashi:DeltaValuePresenter DockPanel.Dock="Bottom" FontSize="14" IndicatorType="{Binding IndicatorType}" IsGood="{Binding GaugeModel.DeltaIsGood}" Padding="{StaticResource DeltaValuePresenterPadding}" Panel.ZIndex="1" Value="{Binding ValueLabel}" VerticalAlignment="Top" />
+            <StackPanel DockPanel.Dock="Top" Visibility="{Binding ShowGaugeCaptions, Converter={dxmvvm:BooleanToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;345;14">
+                <TextBlock FontSize="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeCaptionFontSize}}" Foreground="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeCaptionForeground}}" MaxWidth="90" Panel.ZIndex="1" Text="{Binding SeriesLabel}" TextAlignment="Left" TextWrapping="Wrap" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;346;18" />
+                <TextBlock FontSize="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeSubCaptionFontSize}}" Foreground="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeSubCaptionForeground}}" MaxWidth="90" Panel.ZIndex="1" Text="{Binding SeriesSubLabel}" TextAlignment="Left" TextWrapping="Wrap" Visibility="{Binding HasSeriesSubLabel, Converter={dxmvvm:BooleanToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;353;18" />
+            </StackPanel>
+            <ContentPresenter Content="{Binding}" ContentTemplate="{DynamicResource {dxdasht:GaugeItemThemeKey ResourceKey=LinearGaugeControlTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;362;14" />
+        </DockPanel>
+    </DataTemplate>
+
+    <dxdasht:GaugeViewTypeTemplateSelector x:Key="{dxdasht:GaugeItemThemeKey ResourceKey=ViewTypeTemplateSelector}" />
+
+    <Style x:Key="{dxdasht:GaugeItemThemeKey ResourceKey=ItemContainerStyle}" TargetType="{x:Type dxdashi:GaugeItemContainer}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Dashboard\Generic\GaugeItem.xaml;368;6" /><Setter Property="Focusable" Value="False" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="dxdashi:GaugeItemContainer">
+                    <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;374;22">
+                        <dx:DXBorder x:Name="highlight" Background="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeHighlightedBackgroundBrush}}" BorderBrush="{DynamicResource {dasboardthemes:GaugeItemThemeKey ResourceKey=GaugeHighlightedBorderBrush}}" BorderThickness="1" CornerRadius="{DynamicResource {dxdasht:GaugeItemThemeKey ResourceKey=GaugeBackgroundCornerRadius}}" IsHitTestVisible="False" Visibility="{Binding HasHighlightedBackground, Converter={dxmvvm:BooleanToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;375;26" />
+                        <Viewbox Stretch="Uniform" StretchDirection="Both" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;382;26">
+                            <ContentPresenter Content="{Binding}" ContentTemplateSelector="{DynamicResource ResourceKey={dxdasht:GaugeItemThemeKey ResourceKey=ViewTypeTemplateSelector}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;383;30" />
+                        </Viewbox>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                            <Setter Property="Background" TargetName="highlight" Value="{DynamicResource {dxdasht:DashboardControlThemeKey ResourceKey=SelectedItemBackground}}" />
+                            <Setter Property="BorderBrush" TargetName="highlight" Value="{DynamicResource {dxdasht:DashboardControlThemeKey ResourceKey=SelectedItemBorder}}" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="dxmvvm:Interaction.BehaviorsTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ItemsControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;402;22">
+                        <dxmvvm:FocusBehavior EventName="MouseDown" />
+                        <dxmvvm:EventToCommand Command="{Binding MouseDownCommand}" EventArgsConverter="{StaticResource EventToCommandConverter}" EventName="MouseDown" MarkRoutedEventsAsHandled="True" PassEventArgsToCommand="True" />
+                        <dxmvvm:EventToCommand Command="{Binding MouseUpCommand}" EventArgsConverter="{StaticResource EventToCommandConverter}" EventName="MouseUp" PassEventArgsToCommand="True" />
+                        <dxmvvm:EventToCommand Command="{Binding MouseMoveCommand}" EventArgsConverter="{StaticResource EventToCommandConverter}" EventName="MouseMove" PassEventArgsToCommand="True" />
+                        <dxmvvm:EventToCommand Command="{Binding MouseDoubleClickCommand}" EventArgsConverter="{StaticResource EventToCommandConverter}" EventName="MouseDoubleClick" PassEventArgsToCommand="True" />
+                        <dxmvvm:EventToCommand Command="{Binding MouseLeaveCommand}" EventArgsConverter="{StaticResource EventToCommandConverter}" EventName="MouseLeave" PassEventArgsToCommand="True" />
+                    </ItemsControl>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{dxdasht:GaugeItemThemeKey ResourceKey=ViewStyle}" TargetType="{x:Type dxdashi:GaugeItemsControl}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Dashboard\Generic\GaugeItem.xaml;431;6" /><Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="ItemsSource" Value="{Binding ItemsSource}" />
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <dxdashi:GaugesPanel VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ItemsControl">
+                    <ScrollViewer CanContentScroll="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;445;22">
+                        <ItemsPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\GaugeItem.xaml;448;26" />
+                    </ScrollViewer>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ItemContainerStyle" Value="{DynamicResource {dxdasht:GaugeItemThemeKey ResourceKey=ItemContainerStyle}}" />
+    </Style>
+
+    <DataTemplate x:Key="{dxdasht:GaugeItemThemeKey ResourceKey=Template}">
+        <dxdashi:GaugeItemsControl Style="{Binding Path=(dxdash:DashboardLayoutItem.ViewStyle), RelativeSource={RelativeSource TemplatedParent}}" />
+    </DataTemplate>
+
+</ResourceDictionary>
