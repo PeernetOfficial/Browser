@@ -194,6 +194,7 @@ namespace Peernet.Browser.WPF
             services.AddTransient<ShareFileViewModel>();
             services.AddTransient<EditFileViewModel>();
             services.AddSingleton<FilePreviewViewModel>();
+            services.AddSingleton<AdvancedSearchOptionsViewModel>();
         }
 
         private static void RegisterWindows(ServiceCollection services)

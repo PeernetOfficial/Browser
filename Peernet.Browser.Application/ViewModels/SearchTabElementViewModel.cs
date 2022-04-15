@@ -20,7 +20,7 @@ namespace Peernet.Browser.Application.ViewModels
         private int limit = increase;
 
         public SearchTabElementViewModel(
-            string title,
+            SearchFilterResultModel searchFilterResultModel,
             Func<SearchTabElementViewModel, Task> deleteAction,
             Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction,
             Func<DownloadModel, Task> downloadAction,
@@ -31,9 +31,9 @@ namespace Peernet.Browser.Application.ViewModels
             this.refreshAction = refreshAction;
             this.isPlayerSupported = isPlayerSupported;
 
-            Title = title;
+            Title = searchFilterResultModel.InputText;
 
-            Filters = new FiltersModel(title);
+            Filters = new FiltersModel(searchFilterResultModel);
             Filters.PropertyChanged += async (sender, args) =>
             {
                 await Refresh();

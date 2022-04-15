@@ -116,16 +116,16 @@ namespace Peernet.Browser.Infrastructure.Services
             switch (sortName)
             {
                 case DataGridSortingNameEnum.Name:
-                    return sortType == DataGridSortingTypeEnum.Asc ? SearchRequestSortTypeEnum.SortNameAsc : SearchRequestSortTypeEnum.SortNameDesc;
+                    return sortType == DataGridSortingTypeEnum.Ascending ? SearchRequestSortTypeEnum.SortNameAsc : SearchRequestSortTypeEnum.SortNameDesc;
 
                 case DataGridSortingNameEnum.Date:
-                    return sortType == DataGridSortingTypeEnum.Asc ? SearchRequestSortTypeEnum.SortDateAsc : SearchRequestSortTypeEnum.SortDateDesc;
+                    return sortType == DataGridSortingTypeEnum.Ascending ? SearchRequestSortTypeEnum.SortDateAsc : SearchRequestSortTypeEnum.SortDateDesc;
 
                 case DataGridSortingNameEnum.Size:
-                    return sortType == DataGridSortingTypeEnum.Asc ? SearchRequestSortTypeEnum.SortSizeAsc : SearchRequestSortTypeEnum.SortSizeDesc;
+                    return sortType == DataGridSortingTypeEnum.Ascending ? SearchRequestSortTypeEnum.SortSizeAsc : SearchRequestSortTypeEnum.SortSizeDesc;
 
                 case DataGridSortingNameEnum.Share:
-                    return sortType == DataGridSortingTypeEnum.Asc ? SearchRequestSortTypeEnum.SortSharedByCountAsc : SearchRequestSortTypeEnum.SortSharedByCountDesc;
+                    return sortType == DataGridSortingTypeEnum.Ascending ? SearchRequestSortTypeEnum.SortSharedByCountAsc : SearchRequestSortTypeEnum.SortSharedByCountDesc;
 
                 default:
                     return SearchRequestSortTypeEnum.SortNone;

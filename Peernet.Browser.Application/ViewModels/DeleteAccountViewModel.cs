@@ -36,27 +36,30 @@ namespace Peernet.Browser.Application.ViewModels
         }
 
         public IAsyncCommand CloseCommand => new AsyncCommand(() =>
-          {
-              navigationService.Close();
-              return System.Threading.Tasks.Task.CompletedTask;
-          });
+        {
+            navigationService.Close();
+            return System.Threading.Tasks.Task.CompletedTask;
+        });
 
-        public IAsyncCommand DeleteAccountCommand => new AsyncCommand(async () =>
-           {
-               try
-               {
-                   await accountService.Delete(IsPolicyAccepted);
-               }
-               catch (HttpRequestException ex)
-               {
-                   var message = $"Failed to delete account. Status: {ex.Message}";
-                   notificationsManager.Notifications.Add(new Notification(message,
-                       MessagingHelper.GetApiSummary($"{nameof(accountService)}.{nameof(accountService.Delete)}"),
-                       Severity.Error));
-               }
+        public IAsyncCommand DeleteAccountCommand => new AsyncCommand(
+            async () =>
+            {
+                try
+                {
+                    await accountService.Delete(IsPolicyAccepted);
+                }
+                catch (HttpRequestException ex)
+                {
+                    var message = $"Failed to delete account. Status: {ex.Message}";
+                    notificationsManager.Notifications.Add(
+                        new Notification(
+                            message,
+                            MessagingHelper.GetApiSummary($"{nameof(accountService)}.{nameof(accountService.Delete)}"),
+                            Severity.Error));
+                }
 
-               userContext.ReloadContext();
-               navigationService.Close();
-           });
+                userContext.ReloadContext();
+                navigationService.Close();
+            });
     }
 }

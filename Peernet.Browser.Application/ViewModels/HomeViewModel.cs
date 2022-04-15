@@ -20,16 +20,19 @@ namespace Peernet.Browser.Application.ViewModels
     {
         private readonly IDownloadManager downloadManager;
         private readonly INavigationService navigationService;
+        private readonly IModalNavigationService modalNavigationService;
         private readonly IEnumerable<IPlayButtonPlug> playButtonPlugs;
         private readonly ISearchService searchService;
         private string searchInput;
         private int selectedIndex = -1;
+        private SearchFilterResultModel advancedFilter = new();
 
-        public HomeViewModel(ISearchService searchService, IDownloadManager downloadManager, INavigationService navigationService, IEnumerable<IPlayButtonPlug> playButtonPlugs)
+        public HomeViewModel(ISearchService searchService, IDownloadManager downloadManager, INavigationService navigationService, IModalNavigationService modalNavigationService, IEnumerable<IPlayButtonPlug> playButtonPlugs)
         {
             this.searchService = searchService;
             this.downloadManager = downloadManager;
             this.navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
+            this.modalNavigationService = modalNavigationService ?? throw new ArgumentNullException(nameof(modalNavigationService));
             this.playButtonPlugs = playButtonPlugs;
 
             SearchCommand = new AsyncCommand(Search);
@@ -108,9 +111,15 @@ namespace Peernet.Browser.Application.ViewModels
             SelectedIndex = IsVisible ? 0 : -1;
         }
 
+        public IAsyncCommand OpenAdvancedOptionsCommand => new AsyncCommand(async () =>
+        {
+            await modalNavigationService.Navigate<AdvancedSearchOptionsViewModel, SearchFilterResultModel>(advancedFilter);
+        });
+
         private Task Search()
         {
-            var toAdd = new SearchTabElementViewModel(SearchInput, RemoveTab, searchService.Search, DownloadFile, OpenFile, ExecutePlayButtonPlug, DoesSupportPlaying);
+            advancedFilter.InputText = SearchInput;
+            var toAdd = new SearchTabElementViewModel(advancedFilter, RemoveTab, searchService.Search, DownloadFile, OpenFile, ExecutePlayButtonPlug, DoesSupportPlaying);
             Tabs.Add(toAdd);
             SelectedIndex = Tabs.Count - 1;
             SearchInput = string.Empty;
