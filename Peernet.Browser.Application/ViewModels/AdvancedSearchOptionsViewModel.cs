@@ -30,6 +30,7 @@ namespace Peernet.Browser.Application.ViewModels
         {
             SearchFilter.SortName = SortByColumn;
             SearchFilter.SortType = SortingDirection;
+            SearchFilter.IsActive = SortByColumn != DataGridSortingNameEnum.None || SortingDirection != DataGridSortingTypeEnum.None;
 
             modalNavigationService.Close();
             return Task.CompletedTask;

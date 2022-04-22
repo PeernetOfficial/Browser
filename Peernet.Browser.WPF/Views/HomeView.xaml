@@ -48,10 +48,19 @@
                     <Image Cursor="Hand" Margin="0 0 13 0" HorizontalAlignment="Right" Source="{DynamicResource SearchDrawingImage}" Height="14.22" Width="14.22" MouseLeftButtonDown="Image_MouseLeftButtonDown" />
                 </Grid>
             </Border>
-            <TextBlock VerticalAlignment="Top" HorizontalAlignment="Right" Style="{StaticResource Underlined}" Text="Advanced" Margin="0, 0, 0, 220">
+            <TextBlock VerticalAlignment="Top" HorizontalAlignment="Right" Text="Advanced" Margin="0, 0, 0, 220">
                 <TextBlock.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding OpenAdvancedOptionsCommand}" />
                 </TextBlock.InputBindings>
+                <TextBlock.Style>
+                    <Style BasedOn="{StaticResource Underlined}" TargetType="{x:Type TextBlock}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding AdvancedFilter.IsActive}" Value="True">
+                                <Setter Property="Foreground" Value="LightGreen" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
             </TextBlock>
         </StackPanel>
 

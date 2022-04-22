@@ -124,7 +124,7 @@ namespace Peernet.Browser.Infrastructure.Services
                 case DataGridSortingNameEnum.Size:
                     return sortType == DataGridSortingTypeEnum.Ascending ? SearchRequestSortTypeEnum.SortSizeAsc : SearchRequestSortTypeEnum.SortSizeDesc;
 
-                case DataGridSortingNameEnum.Share:
+                case DataGridSortingNameEnum.SharedByCount:
                     return sortType == DataGridSortingTypeEnum.Ascending ? SearchRequestSortTypeEnum.SortSharedByCountAsc : SearchRequestSortTypeEnum.SortSharedByCountDesc;
 
                 default:
