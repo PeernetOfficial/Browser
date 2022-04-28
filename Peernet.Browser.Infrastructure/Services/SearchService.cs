@@ -212,9 +212,9 @@ namespace Peernet.Browser.Infrastructure.Services
             {
                 res.SizeMax = model.SizeTo.Value;
             }
-            if (model.SortName != DataGridSortingNameEnum.None && model.SortType != DataGridSortingTypeEnum.None)
+            if (model.AdvancedFilter.SortName != DataGridSortingNameEnum.None && model.AdvancedFilter.SortType != DataGridSortingTypeEnum.None)
             {
-                res.Sort = (int)Map(model.SortName, model.SortType);
+                res.Sort = (int)Map(model.AdvancedFilter.SortName, model.AdvancedFilter.SortType);
             }
             if (model.FilterType != FilterType.All)
             {

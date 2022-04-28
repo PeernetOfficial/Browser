@@ -45,7 +45,7 @@ namespace Peernet.Browser.Application.ViewModels
             };
         }
 
-        public SearchFilterResultModel AdvancedFilter { get; set; } = new();
+        public AdvancedFilterModel AdvancedFilter { get; set; } = new();
         public Alignments Alignment => IsVisible ? Alignments.Stretch : Alignments.Center;
 
         public SearchTabElementViewModel Content => SelectedIndex < 0 ? null : Tabs[SelectedIndex];
@@ -64,10 +64,11 @@ namespace Peernet.Browser.Application.ViewModels
 
         public bool IsVisible => Tabs.Any();
 
-        public IAsyncCommand OpenAdvancedOptionsCommand => new AsyncCommand(async () =>
-           {
-               await modalNavigationService.Navigate<AdvancedSearchOptionsViewModel, SearchFilterResultModel>(AdvancedFilter);
-           });
+        public IAsyncCommand OpenAdvancedOptionsCommand => 
+            new AsyncCommand(async () =>
+            {
+                await modalNavigationService.Navigate<AdvancedSearchOptionsViewModel, AdvancedFilterModel>(AdvancedFilter);
+            });
 
         public IAsyncCommand SearchCommand { get; }
 
@@ -130,14 +131,22 @@ namespace Peernet.Browser.Application.ViewModels
 
         private Task Search()
         {
-            AdvancedFilter.InputText = SearchInput;
-            var toAdd = new SearchTabElementViewModel(AdvancedFilter, RemoveTab, searchService.Search, DownloadFile, OpenFile, ExecutePlayButtonPlug, DoesSupportPlaying);
+            var toAdd = new SearchTabElementViewModel(CreateNewSearchFilter(), RemoveTab, searchService.Search, DownloadFile, OpenFile, ExecutePlayButtonPlug, DoesSupportPlaying);
 
             Tabs.Add(toAdd);
             SelectedIndex = Tabs.Count - 1;
             SearchInput = string.Empty;
 
             return Task.CompletedTask;
+        }
+
+        public SearchFilterResultModel CreateNewSearchFilter()
+        {
+            return new SearchFilterResultModel
+            {
+                InputText = SearchInput,
+                AdvancedFilter = AdvancedFilter
+            };
         }
     }
 }

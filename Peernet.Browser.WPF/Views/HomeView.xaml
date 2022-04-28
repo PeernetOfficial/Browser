@@ -48,20 +48,32 @@
                     <Image Cursor="Hand" Margin="0 0 13 0" HorizontalAlignment="Right" Source="{DynamicResource SearchDrawingImage}" Height="14.22" Width="14.22" MouseLeftButtonDown="Image_MouseLeftButtonDown" />
                 </Grid>
             </Border>
-            <TextBlock VerticalAlignment="Top" HorizontalAlignment="Right" Text="Advanced" Margin="0, 0, 0, 220">
-                <TextBlock.InputBindings>
+            <Border VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0, 5, 0, 220" CornerRadius="4" Padding="5">
+                <TextBlock Text="Advanced" Style="{StaticResource Underlined}" />
+                <Border.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding OpenAdvancedOptionsCommand}" />
-                </TextBlock.InputBindings>
-                <TextBlock.Style>
-                    <Style BasedOn="{StaticResource Underlined}" TargetType="{x:Type TextBlock}">
+                </Border.InputBindings>
+                <Border.Style>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="Background" Value="Transparent" />
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding AdvancedFilter.IsActive}" Value="True">
-                                <Setter Property="Foreground" Value="LightGreen" />
+                                <DataTrigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard TargetProperty="Background.(SolidColorBrush.Opacity)">
+                                            <DoubleAnimation From="0.0"
+                                                         To="0.7"
+                                                         Duration="0:0:5" 
+                                                         AutoReverse="True" RepeatBehavior="Forever" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </DataTrigger.EnterActions>
+                                <Setter Property="Background" Value="LightGreen" />
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
-                </TextBlock.Style>
-            </TextBlock>
+                </Border.Style>
+            </Border>
         </StackPanel>
 
         <TabControl Visibility="{Binding IsVisible, Converter={StaticResource BoolToVisibility}}" SelectedIndex="{Binding SelectedIndex}"

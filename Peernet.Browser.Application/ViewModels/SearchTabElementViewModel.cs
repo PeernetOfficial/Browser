@@ -113,9 +113,16 @@ namespace Peernet.Browser.Application.ViewModels
 
         public async Task IsScrollEnd()
         {
-            if (isClearing) return;
+            if (isClearing)
+            {
+                return;
+            }
+
             var allCount = GetMax();
-            if (allCount == 0 || limit > allCount) return;
+            if (allCount == 0 || limit > allCount)
+            {
+                return;
+            }
 
             limit += increase;
             await Refresh(false);
