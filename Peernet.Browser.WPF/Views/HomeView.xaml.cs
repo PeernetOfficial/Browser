@@ -31,6 +31,11 @@ namespace Peernet.Browser.WPF.Views
         private async Task RunSearch()
         {
             var viewModel = (HomeViewModel)DataContext;
+            if (string.IsNullOrEmpty(viewModel.SearchInput))
+            {
+                return;
+            }
+
             if (viewModel.SearchInput.Equals("debug", StringComparison.InvariantCultureIgnoreCase))
             {
                 var terminalViewModel = App.ServiceProvider.GetRequiredService<TerminalViewModel>();
