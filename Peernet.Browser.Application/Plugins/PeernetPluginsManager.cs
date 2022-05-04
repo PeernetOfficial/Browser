@@ -13,6 +13,8 @@ namespace Peernet.Browser.Application.Plugins
 {
     public class PeernetPluginsManager
     {
+        private const string PeernetBrowserPluginsAssemblyPattern = "Peernet.Browser.Plugins.";
+        private const string PeernetBrowserPrivatePluginsAssemblyPattern = "Peernet.Browser.PrivatePlugins.";
         private readonly ISettingsManager settingsManager;
 
         public PeernetPluginsManager(ISettingsManager settingsManager)
@@ -51,7 +53,8 @@ namespace Peernet.Browser.Application.Plugins
             var files = Directory.GetFiles(pluginPath, "*.dll");
             foreach (var file in files)
             {
-                if (FileVersionInfo.GetVersionInfo(file).ProductName.StartsWith("Peernet.Browser.Plugins."))
+                var assemblyName = FileVersionInfo.GetVersionInfo(file).ProductName;
+                if (assemblyName.StartsWith(PeernetBrowserPluginsAssemblyPattern) || assemblyName.StartsWith(PeernetBrowserPrivatePluginsAssemblyPattern))
                 {
                     return file;
                 }
