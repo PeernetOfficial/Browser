@@ -61,6 +61,7 @@ namespace Peernet.Browser.WPF
 
         public App()
         {
+            AssignExceptionHandlers();
             Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
 
             if (Settings.ApiUrl == null)
@@ -78,7 +79,6 @@ namespace Peernet.Browser.WPF
             notificationsManager = ServiceProvider.GetRequiredService<INotificationsManager>();
             PluginsContext.PlayButtonPlugEnabled = ServiceProvider.GetService<IPlayButtonPlug>() != null;
 
-            AssignExceptionHandlers();
             splashScreenManager.SetState("Preparing Backend...");
             InitializeBackend();
             splashScreenManager.SetState("Backend Started...");

@@ -148,11 +148,11 @@ namespace Peernet.Browser.Application.ViewModels
             new AsyncCommand<VirtualFileSystemEntity>(
                 entity =>
                 {
-                    playButtonPlugs.Foreach(plug =>
+                    playButtonPlugs.Foreach(async plug =>
                     {
                         if (plug?.IsSupported(entity.File) == true)
                         {
-                            plug?.Execute(entity.File);
+                            await plug?.Execute(entity.File);
                         }
                     });
 

@@ -114,11 +114,11 @@ namespace Peernet.Browser.Application.ViewModels
 
         private void ExecutePlayButtonPlug(DownloadModel model)
         {
-            playButtonPlugs.Foreach(plug =>
+            playButtonPlugs.Foreach(async plug =>
             {
                 if (plug?.IsSupported(model.File) == true)
                 {
-                    plug?.Execute(model.File);
+                    await plug?.Execute(model.File);
                 }
             });
         }
