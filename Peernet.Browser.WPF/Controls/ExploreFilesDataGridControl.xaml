@@ -11,7 +11,7 @@
     <Grid>
         <dxg:GridControl ItemsSource="{Binding ActiveSearchResults, IsAsync=True}" Visibility="{Binding IsLoaded, Converter={StaticResource BoolToVisibility}}">
             <dxg:GridControl.View>
-                <dxg:TableView />
+                <dxg:TableView ShowGroupPanel="False" />
             </dxg:GridControl.View>
             <dxg:GridControl.Columns>
                 <dxg:GridColumn Header="NAME" SortFieldName="File.Name" FieldName="File.Name" Width="*" HeaderStyle="{StaticResource ShiftedDataGridColumnHeaderStyle}" HorizontalHeaderContentAlignment="Left">
