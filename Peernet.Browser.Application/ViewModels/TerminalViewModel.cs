@@ -44,7 +44,9 @@ namespace Peernet.Browser.Application.ViewModels
         {
             await ConnectToPeernetConsole();
             socketClient.MessageArrived += SocketClientOnMessageArrived;
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             Task.Run(async () => await socketClient.StartReceiving(Parameter.CancellationTokenSource).ConfigureAwait(false));
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
         }
 
         private void SocketClientOnMessageArrived(object sender, string e)

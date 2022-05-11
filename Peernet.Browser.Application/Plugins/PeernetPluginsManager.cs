@@ -36,7 +36,6 @@ namespace Peernet.Browser.Application.Plugins
                     var dll = Assembly.LoadFrom(path);
                     var types = dll.GetTypes().ToList();
                     var type = types.Find(a => typeof(IPlugin).IsAssignableFrom(a));
-                    var viewmodel = types.Find(a => typeof(ViewModelBase).IsAssignableFrom(a));
                     if (type != null)
                     {
                         var instance = (IPlugin)Activator.CreateInstance(type);

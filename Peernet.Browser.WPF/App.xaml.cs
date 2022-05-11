@@ -61,14 +61,6 @@ namespace Peernet.Browser.WPF
 
         public App()
         {
-            AssignExceptionHandlers();
-            Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
-
-            if (Settings.ApiUrl == null)
-            {
-                CmdRunner.ReserveAddress(Settings);
-            }
-
             var services = new ServiceCollection();
             splashScreenManager.SetState("Configuring services...");
             ConfigureServices(services);
@@ -77,6 +69,16 @@ namespace Peernet.Browser.WPF
             splashScreenManager.SetState("Services configuration completed.");
 
             notificationsManager = ServiceProvider.GetRequiredService<INotificationsManager>();
+            AssignExceptionHandlers();
+
+            Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
+
+            if (Settings.ApiUrl == null)
+            {
+                CmdRunner.ReserveAddress(Settings);
+            }
+
+
             PluginsContext.PlayButtonPlugEnabled = ServiceProvider.GetService<IPlayButtonPlug>() != null;
 
             splashScreenManager.SetState("Preparing Backend...");

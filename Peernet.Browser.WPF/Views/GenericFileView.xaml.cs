@@ -23,11 +23,6 @@ namespace Peernet.Browser.WPF.Views
             var model = (FileModel)((FrameworkElement)e.OriginalSource).DataContext;
             var changeFileLocationViewModel = new ChangeFileLocationViewModel(directoryViewModel.VirtualFileSystem.DeepClone(), directoryViewModel.PathElements.Last().AbsolutePath, model);
             new ChangleFileLocationWindow(changeFileLocationViewModel).Show();
-
-            virtualDirectoryPath.IsReadOnly = false;
-            virtualDirectoryPath.IsEnabled = true;
-            virtualDirectoryPath.Focus();
-            virtualDirectoryPath.CaretIndex = virtualDirectoryPath.Text.Length;
         }
 
         private void ConfirmChange_OnKeyDown(object sender, KeyEventArgs e)

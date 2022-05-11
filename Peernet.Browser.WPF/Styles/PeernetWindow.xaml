@@ -1,0 +1,38 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:wpf="clr-namespace:Peernet.SDK.WPF;assembly=Peernet.SDK"
+                    xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework">
+    <Style x:Key="StandardPeernetWindowStyle" TargetType="{x:Type wpf:PeernetWindow}">
+        <Setter Property="Background" Value="{DynamicResource PreviewBackground}" />
+        <Setter Property="shell:WindowChrome.WindowChrome">
+            <Setter.Value>
+                <shell:WindowChrome ResizeBorderThickness="5" GlassFrameThickness="0" CaptionHeight="40" CornerRadius="0" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type wpf:PeernetWindow}">
+                    <Border BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}">
+                        <Grid Background="{DynamicResource PreviewBackground}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0" Background="Transparent">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBox Grid.Column="0" HorizontalAlignment="Left" Margin="10" Background="Transparent" Foreground="{DynamicResource MainContentBrush}" BorderThickness="0" IsReadOnly="True" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Title}" FontWeight="SemiBold" VerticalAlignment="Center" />
+                                <Button x:Name="closeButton" Grid.Column="1" HorizontalAlignment="Right" Style="{DynamicResource CloseButtonStyle}" />
+                            </Grid>
+                            <ContentPresenter Grid.Row="1" 
+                                              Content="{TemplateBinding Content}" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
