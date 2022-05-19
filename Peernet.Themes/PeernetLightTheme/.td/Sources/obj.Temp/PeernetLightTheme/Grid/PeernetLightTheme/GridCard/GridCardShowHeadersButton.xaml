@@ -8,37 +8,37 @@
 
     <ControlTemplate x:Key="{dxgt:CardViewThemeKey ResourceKey=ShowHeadersButtonTemplate}" TargetType="{x:Type ToggleButton}">
         <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardShowHeadersButton.xaml;21;10">
-            <dx:DXBorder x:Name="IsDefault" Background="Transparent" BorderBrush="Transparent" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardShowHeadersButton.xaml;22;14" />
+            <dx:DXBorder x:Name="IsDefault" Background="#1DF122E3" BorderBrush="#1D6622E4" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardShowHeadersButton.xaml;22;14" />
             <StackPanel x:Name="Group" HorizontalAlignment="Center" Margin="4,4,1,4" Orientation="Horizontal" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardShowHeadersButton.xaml;26;14">
-                <Path x:Name="Icon" Fill="#FF444444" Style="{StaticResource UIShape.CardShowHeaders}" cs:id="Path_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardShowHeadersButton.xaml;31;18" x:Uid="@Fill=Foreground" />
+                <Path x:Name="Icon" Fill="#1D5722E5" Style="{StaticResource UIShape.CardShowHeaders}" cs:id="Path_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardShowHeadersButton.xaml;31;18" />
                 <Grid x:Name="Arrow" Margin="3" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardShowHeadersButton.xaml;35;18">
-                    <Path x:Name="Expanded" Fill="#FF444444" Opacity="0" Style="{StaticResource UIShape.Up}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardShowHeadersButton.xaml;36;22" x:Uid="@Fill=Foreground" />
-                    <Path x:Name="Collapsed" Fill="#FF444444" Style="{StaticResource UIShape.Down}" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardShowHeadersButton.xaml;41;22" x:Uid="@Fill=Foreground" />
+                    <Path x:Name="Expanded" Fill="#1D0422E6" Opacity="0" Style="{StaticResource UIShape.Up}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardShowHeadersButton.xaml;36;22" />
+                    <Path x:Name="Collapsed" Fill="#1D3522E7" Style="{StaticResource UIShape.Down}" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardShowHeadersButton.xaml;41;22" />
                 </Grid>
             </StackPanel>
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Fill" TargetName="Collapsed" Value="#FF106EBE" cs:id="Setter_0007" x:Uid="@Value=HoverForeground" />
-                <Setter Property="Fill" TargetName="Expanded" Value="#FF106EBE" cs:id="Setter_0006" x:Uid="@Value=HoverForeground" />
-                <Setter Property="Fill" TargetName="Icon" Value="#FF106EBE" cs:id="Setter_0010" x:Uid="@Value=HoverForeground" />
-                <Setter Property="Background" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0000" x:Uid="@Value=HoverBackground" />
-                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFC8C6C4" cs:id="Setter_0001" x:Uid="@Value=Border" />
+                <Setter Property="Fill" TargetName="Collapsed" Value="#1D1B22E8" cs:id="Setter_0007" />
+                <Setter Property="Fill" TargetName="Expanded" Value="#1D2A22E9" cs:id="Setter_0006" />
+                <Setter Property="Fill" TargetName="Icon" Value="#1D7922EA" cs:id="Setter_0010" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#1D4822EB" cs:id="Setter_0000" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1DDF22EC" cs:id="Setter_0001" />
                 <Setter Property="BorderThickness" TargetName="IsDefault" Value="0" />
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Fill" TargetName="Collapsed" Value="#FF106EBE" cs:id="Setter_0009" x:Uid="@Value=SelectionForeground" />
-                <Setter Property="Fill" TargetName="Expanded" Value="#FF106EBE" cs:id="Setter_0008" x:Uid="@Value=SelectionForeground" />
-                <Setter Property="Fill" TargetName="Icon" Value="#FF106EBE" cs:id="Setter_0011" x:Uid="@Value=SelectionForeground" />
-                <Setter Property="Background" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0002" x:Uid="@Value=SelectionBackground" />
-                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFC8C6C4" cs:id="Setter_0003" x:Uid="@Value=Border" />
+                <Setter Property="Fill" TargetName="Collapsed" Value="#1DEE22ED" cs:id="Setter_0009" />
+                <Setter Property="Fill" TargetName="Expanded" Value="#1DBD22EE" cs:id="Setter_0008" />
+                <Setter Property="Fill" TargetName="Icon" Value="#1D8C22EF" cs:id="Setter_0011" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#1DE122F0" cs:id="Setter_0002" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1DD022F1" cs:id="Setter_0003" />
                 <Setter Property="BorderThickness" TargetName="IsDefault" Value="0" />
             </Trigger>
             <Trigger Property="IsChecked" Value="True">
                 <Setter Property="Opacity" TargetName="Collapsed" Value="0" />
                 <Setter Property="Opacity" TargetName="Expanded" Value="1" />
-                <Setter Property="Background" TargetName="IsDefault" Value="#FFFFFFFF" cs:id="Setter_0004" x:Uid="@Value=Control.Background" />
-                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFC8C6C4" cs:id="Setter_0005" x:Uid="@Value=Border" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#1D8322F2" cs:id="Setter_0004" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1DB222F3" cs:id="Setter_0005" />
                 <Setter Property="BorderThickness" TargetName="IsDefault" Value="1,1,1,0" />
             </Trigger>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">

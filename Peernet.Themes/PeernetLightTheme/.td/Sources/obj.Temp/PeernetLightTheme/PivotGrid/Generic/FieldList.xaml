@@ -46,8 +46,8 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <dx:DXBorder Background="Transparent" dxpgi:FieldHeadersBase.DropPlace="Previous" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldList.xaml;70;18" />
-                <dx:DXBorder Background="Transparent" dxpgi:FieldHeadersBase.DropPlace="Next" Grid.Row="1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldList.xaml;73;18" />
+                <dx:DXBorder Background="#1D3F24B8" dxpgi:FieldHeadersBase.DropPlace="Previous" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldList.xaml;70;18" />
+                <dx:DXBorder Background="#1D0E24B9" dxpgi:FieldHeadersBase.DropPlace="Next" Grid.Row="1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldList.xaml;73;18" />
             </Grid>
             <Button Name="PART_HeaderButton" Command="{Binding ChangeFieldSortOrder, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="{Binding Path=(dxpgi:FieldHeader.Field), RelativeSource={RelativeSource TemplatedParent}}" DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}" dxpgi:FieldHeader.Field="{Binding Path=(dxpgi:FieldHeader.Field), RelativeSource={RelativeSource TemplatedParent}}" dxpgi:FieldHeadersBase.FieldListArea="{Binding Path=(dxpgi:FieldHeadersBase.FieldListArea), RelativeSource={RelativeSource TemplatedParent}}" Focusable="False" IsTabStop="False" Margin="0,0,0,1" Style="{DynamicResource {dxpgi:FieldHeaderThemeKey ResourceKey=ButtonStyle}}" dxcore_unique_xmlns:DragManager.IsStartDragPlace="true" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldList.xaml;78;14" />
         </dxcore_unique_xmlns:SimplePanel>
@@ -532,7 +532,7 @@
     </Style>
 
     <DataTemplate x:Key="{dxpgi:FieldHeaderThemeKey ResourceKey=FieldHeaderTreeViewTemplate}">
-        <StackPanel Background="Transparent" Orientation="Horizontal" cs:id="StackPanel_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldList.xaml;875;10">
+        <StackPanel Background="#1D5D24BA" Orientation="Horizontal" cs:id="StackPanel_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldList.xaml;875;10">
             <dxe:CheckEdit IsChecked="{Binding IsChecked, Mode=TwoWay}" Margin="0,0,3,0" Padding="0" VerticalAlignment="Center" Visibility="{Binding CheckBoxVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldList.xaml;878;14" />
             <dxcore_unique_xmlns:DXImage Margin="{Binding ImageSource, Converter={StaticResource headerImageMarginConverter}}" MaxHeight="16" MaxWidth="16" Source="{Binding ImageSource}" VerticalAlignment="Center" />
             <TextBlock Foreground="{Binding Foreground}" Margin="0,0,0,0" Text="{Binding DisplayText}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldList.xaml;888;14" />

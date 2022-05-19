@@ -8,7 +8,7 @@
     
 
     <ControlTemplate x:Key="{dxet:CheckEditThemeKey ResourceKey=CheckEditBoxTemplate}" TargetType="{x:Type dxe:CheckEditBox}">
-        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\CheckEdit\CheckEditBox.xaml;22;10">
+        <Grid x:Name="Root" Background="#1D1405E4" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\CheckEdit\CheckEditBox.xaml;22;10">
             <Grid Margin="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\CheckEdit\CheckEditBox.xaml;25;14">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -16,9 +16,9 @@
                 </Grid.ColumnDefinitions>
                 <Grid x:Name="Field" Grid.Column="0" Height="14" Margin="0,3" Width="14" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\CheckEdit\CheckEditBox.xaml;30;18">
                     <dx:DXBorder x:Name="IsDefault" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding  dxi:AppearanceOptions.CornerRadius}" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\CheckEdit\CheckEditBox.xaml;35;22" />
-                    <dx:DXBorder x:Name="IsFocused" BorderBrush="#FF106EBE" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding  dxi:AppearanceOptions.CornerRadius}" Opacity="0" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\CheckEdit\CheckEditBox.xaml;41;22" x:Uid="@BorderBrush=Focused" />
-                    <dx:DXBorder x:Name="Indeterminate" Background="#FF444444" BorderThickness="3" Margin="0" Opacity="0" cs:id="Border_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\CheckEdit\CheckEditBox.xaml;47;22" x:Uid="@Background=Foreground" />
-                    <Path x:Name="Checked" Fill="#FF444444" Opacity="0" Style="{StaticResource UIShape.Checked}" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\CheckEdit\CheckEditBox.xaml;53;22" x:Uid="@Fill=Foreground" />
+                    <dx:DXBorder x:Name="IsFocused" BorderBrush="#1D2505E5" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding  dxi:AppearanceOptions.CornerRadius}" Opacity="0" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\CheckEdit\CheckEditBox.xaml;41;22" />
+                    <dx:DXBorder x:Name="Indeterminate" Background="#1D7605E6" BorderThickness="3" Margin="0" Opacity="0" cs:id="Border_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\CheckEdit\CheckEditBox.xaml;47;22" />
+                    <Path x:Name="Checked" Fill="#1D4705E7" Opacity="0" Style="{StaticResource UIShape.Checked}" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\CheckEdit\CheckEditBox.xaml;53;22" />
                 </Grid>
                 <ContentPresenter x:Name="contentPresenter" Grid.Column="1" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="4,0,0,0" RecognizesAccessKey="True" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Visibility="{Binding HasContent, Converter={StaticResource BoolToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\CheckEdit\CheckEditBox.xaml;59;18" />
             </Grid>
@@ -48,16 +48,16 @@
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Fill" TargetName="Checked" Value="#FF106EBE" cs:id="Setter_0000" x:Uid="@Value=HoverForeground" />
-                <Setter Property="Background" TargetName="Indeterminate" Value="#FF106EBE" cs:id="Setter_0001" x:Uid="@Value=HoverForeground" />
-                <Setter Property="Background" Value="#FFEFF6FC" cs:id="Setter_0002" x:Uid="@Value=HoverBackground" />
-                <Setter Property="BorderBrush" Value="#FFDEECF9" cs:id="Setter_0003" x:Uid="@Value=SelectionBorder" />
+                <Setter Property="Fill" TargetName="Checked" Value="#1D6905E8" cs:id="Setter_0000" />
+                <Setter Property="Background" TargetName="Indeterminate" Value="#1D5805E9" cs:id="Setter_0001" />
+                <Setter Property="Background" Value="#1D0B05EA" cs:id="Setter_0002" />
+                <Setter Property="BorderBrush" Value="#1D3A05EB" cs:id="Setter_0003" />
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Fill" TargetName="Checked" Value="#FF106EBE" cs:id="Setter_0004" x:Uid="@Value=SelectionForeground" />
-                <Setter Property="Background" TargetName="Indeterminate" Value="#FF106EBE" cs:id="Setter_0005" x:Uid="@Value=SelectionForeground" />
-                <Setter Property="Background" Value="#FFDEECF9" cs:id="Setter_0006" x:Uid="@Value=SelectionBackground" />
-                <Setter Property="BorderBrush" Value="#FFDEECF9" cs:id="Setter_0007" x:Uid="@Value=SelectionBorder" />
+                <Setter Property="Fill" TargetName="Checked" Value="#1DAD05EC" cs:id="Setter_0004" />
+                <Setter Property="Background" TargetName="Indeterminate" Value="#1D9C05ED" cs:id="Setter_0005" />
+                <Setter Property="Background" Value="#1DCF05EE" cs:id="Setter_0006" />
+                <Setter Property="BorderBrush" Value="#1DFE05EF" cs:id="Setter_0007" />
             </Trigger>
             <Trigger Property="dxe:EditorAppearanceProperties.HasCheckEditGlyphBrush" Value="True">
                 <Setter Property="Fill" TargetName="Checked" Value="{Binding Path=(dxe:EditorAppearanceProperties.CheckEditGlyphBrush), RelativeSource={RelativeSource TemplatedParent}}" />

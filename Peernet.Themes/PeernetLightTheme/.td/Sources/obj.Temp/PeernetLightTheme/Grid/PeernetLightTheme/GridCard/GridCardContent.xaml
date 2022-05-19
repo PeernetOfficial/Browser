@@ -7,8 +7,8 @@
     
 
     <ControlTemplate x:Key="{dxgt:GridCardThemeKey ResourceKey=ContainerTemplate}" TargetType="{x:Type ContentControl}">
-        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardContent.xaml;21;10">
-            <dx:DXBorder x:Name="IsDefault" Background="#FFFFFFFF" BorderBrush="#FFC8C6C4" BorderThickness="1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardContent.xaml;24;14" x:Uid="@Background=Control.Background;BorderBrush=Border">
+        <Grid x:Name="Root" Background="#1D4C230A" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardContent.xaml;21;10">
+            <dx:DXBorder x:Name="IsDefault" Background="#1D7D230B" BorderBrush="#1DEA230C" BorderThickness="1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardContent.xaml;24;14">
                 <ContentPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardContent.xaml;29;18" />
             </dx:DXBorder>
         </Grid>
@@ -20,10 +20,10 @@
                 </MultiTrigger.Conditions>
             </MultiTrigger>
             <DataTrigger Binding="{Binding Path=(dxg:RowData.RowData).SelectionState, RelativeSource={RelativeSource TemplatedParent}}" Value="Focused">
-                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FF106EBE" cs:id="Setter_0000" x:Uid="@Value=HoverForeground" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1DDB230D" cs:id="Setter_0000" />
             </DataTrigger>
             <DataTrigger Binding="{Binding Path=(dxg:RowData.RowData).SelectionState, RelativeSource={RelativeSource TemplatedParent}}" Value="Selected">
-                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FF106EBE" cs:id="Setter_0001" x:Uid="@Value=HoverForeground" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1D88230E" cs:id="Setter_0001" />
             </DataTrigger>
             <Trigger Property="dxg:GridViewBase.IsFocusedRow" Value="True" />
         </ControlTemplate.Triggers>
@@ -40,7 +40,7 @@
 
     <ControlTemplate x:Key="{dxgt:GridCardThemeKey ResourceKey=DataContentTemplate}" TargetType="{x:Type ContentControl}">
         <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardContent.xaml;65;10">
-            <dx:DXBorder x:Name="Root" Background="#FFFFFFFF" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardContent.xaml;66;14" x:Uid="@Background=Editor.Background">
+            <dx:DXBorder x:Name="Root" Background="#1DB9230F" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardContent.xaml;66;14">
                 <ContentPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardContent.xaml;69;18" />
             </dx:DXBorder>
         </Grid>
@@ -52,7 +52,7 @@
                 </MultiTrigger.Conditions>
             </MultiTrigger>
             <Trigger Property="dxg:GridViewBase.IsFocusedRow" Value="True">
-                <Setter Property="Background" TargetName="Root" Value="#FFFFFFFF" cs:id="Setter_0000" x:Uid="@Value=Editor.Background" />
+                <Setter Property="Background" TargetName="Root" Value="#1DD42310" cs:id="Setter_0000" />
             </Trigger>
             <DataTrigger Binding="{Binding Path=(dxg:RowData.RowData).SelectionState, RelativeSource={RelativeSource TemplatedParent}}" Value="Focused" />
             <DataTrigger Binding="{Binding Path=(dxg:RowData.RowData).SelectionState, RelativeSource={RelativeSource TemplatedParent}}" Value="Selected" />

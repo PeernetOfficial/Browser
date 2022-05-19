@@ -6,31 +6,31 @@
     </ResourceDictionary.MergedDictionaries>
 
     <ControlTemplate x:Key="{dxet:PagerControlThemeKey ResourceKey=NumericButtonTemplate}" TargetType="dxe:PagerControlNumericButton">
-        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\PagerControl\PagerControlNumericButton.xaml;20;10">
-            <dx:DXBorder Name="IsDefault" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\PagerControl\PagerControlNumericButton.xaml;23;14" />
+        <Grid x:Name="Root" Background="#1DDF05FD" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\PagerControl\PagerControlNumericButton.xaml;20;10">
+            <dx:DXBorder Name="IsDefault" Background="#1D8C05FE" BorderBrush="#1DBD05FF" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\PagerControl\PagerControlNumericButton.xaml;23;14" />
             <Grid x:Name="Content" Margin="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\PagerControl\PagerControlNumericButton.xaml;28;14">
-                <ContentPresenter x:Name="Content1" Content="{Binding Number, Converter={StaticResource pageIndexConverter}, RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{TemplateBinding ContentTemplate}" HorizontalAlignment="Center" TextElement.Foreground="#FF444444" Visibility="{Binding Path=ShowEllipsis, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisiblityConverterInverse}}" cs:id="ContentPresenter_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\PagerControl\PagerControlNumericButton.xaml;29;18" x:Uid="@TextElement.Foreground=Foreground" />
-                <ContentPresenter x:Name="Content2" Content="..." ContentTemplate="{TemplateBinding ContentTemplate}" HorizontalAlignment="Center" TextElement.Foreground="#FF444444" Visibility="{Binding Path=ShowEllipsis, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityConverter}}" cs:id="ContentPresenter_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\PagerControl\PagerControlNumericButton.xaml;36;18" x:Uid="@TextElement.Foreground=Foreground" />
+                <ContentPresenter x:Name="Content1" Content="{Binding Number, Converter={StaticResource pageIndexConverter}, RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{TemplateBinding ContentTemplate}" HorizontalAlignment="Center" TextElement.Foreground="#1D3C0600" Visibility="{Binding Path=ShowEllipsis, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisiblityConverterInverse}}" cs:id="ContentPresenter_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\PagerControl\PagerControlNumericButton.xaml;29;18" />
+                <ContentPresenter x:Name="Content2" Content="..." ContentTemplate="{TemplateBinding ContentTemplate}" HorizontalAlignment="Center" TextElement.Foreground="#1D0D0601" Visibility="{Binding Path=ShowEllipsis, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityConverter}}" cs:id="ContentPresenter_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\PagerControl\PagerControlNumericButton.xaml;36;18" />
             </Grid>
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="TextElement.Foreground" TargetName="Content1" Value="#FF106EBE" cs:id="Setter_0004" x:Uid="@Value=HoverForeground" />
-                <Setter Property="TextElement.Foreground" TargetName="Content2" Value="#FF106EBE" cs:id="Setter_0005" x:Uid="@Value=HoverForeground" />
-                <Setter Property="Background" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0000" x:Uid="@Value=HoverBackground" />
-                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0003" x:Uid="@Value=HoverBorder" />
+                <Setter Property="TextElement.Foreground" TargetName="Content1" Value="#1D5E0602" cs:id="Setter_0004" />
+                <Setter Property="TextElement.Foreground" TargetName="Content2" Value="#1D6F0603" cs:id="Setter_0005" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#1DF80604" cs:id="Setter_0000" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1DC90605" cs:id="Setter_0003" />
             </Trigger>
             <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                <Setter Property="TextElement.Foreground" TargetName="Content1" Value="#FF106EBE" cs:id="Setter_0007" x:Uid="@Value=SelectionForeground" />
-                <Setter Property="TextElement.Foreground" TargetName="Content2" Value="#FF106EBE" cs:id="Setter_0008" x:Uid="@Value=SelectionForeground" />
-                <Setter Property="Background" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0001" x:Uid="@Value=SelectionBackground" />
-                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0006" x:Uid="@Value=SelectionBorder" />
+                <Setter Property="TextElement.Foreground" TargetName="Content1" Value="#1D9A0606" cs:id="Setter_0007" />
+                <Setter Property="TextElement.Foreground" TargetName="Content2" Value="#1DAB0607" cs:id="Setter_0008" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#1D850608" cs:id="Setter_0001" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1DB40609" cs:id="Setter_0006" />
             </DataTrigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="TextElement.Foreground" TargetName="Content1" Value="#FF106EBE" cs:id="Setter_0010" x:Uid="@Value=SelectionForeground" />
-                <Setter Property="TextElement.Foreground" TargetName="Content2" Value="#FF106EBE" cs:id="Setter_0011" x:Uid="@Value=SelectionForeground" />
-                <Setter Property="Background" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0002" x:Uid="@Value=SelectionBackground" />
-                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0009" x:Uid="@Value=SelectionBorder" />
+                <Setter Property="TextElement.Foreground" TargetName="Content1" Value="#1DE7060A" cs:id="Setter_0010" />
+                <Setter Property="TextElement.Foreground" TargetName="Content2" Value="#1DD6060B" cs:id="Setter_0011" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#1D41060C" cs:id="Setter_0002" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1D70060D" cs:id="Setter_0009" />
             </Trigger>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                 <Setter Property="Margin" TargetName="Content" Value="19,14,19,14" />

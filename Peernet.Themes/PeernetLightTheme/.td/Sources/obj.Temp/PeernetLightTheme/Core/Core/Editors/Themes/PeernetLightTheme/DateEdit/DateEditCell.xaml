@@ -12,22 +12,22 @@
 
     <ControlTemplate x:Key="{dxet:DateEditThemeKey ResourceKey=CellButtonTemplate}" TargetType="{x:Type Button}">
         <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateEdit\DateEditCell.xaml;25;10">
-            <dx:DXBorder x:Name="IsDefault" Background="#FFDEECF9" BorderBrush="#FFDEECF9" BorderThickness="1" Opacity="0" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateEdit\DateEditCell.xaml;26;14" x:Uid="@Background=SelectionBackground;BorderBrush=SelectionBackground" />
-            <dx:DXBorder x:Name="IsToday" Background="#FFC8C6C4" BorderBrush="Transparent" BorderThickness="1" Opacity="0" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateEdit\DateEditCell.xaml;32;14" x:Uid="@Background=Border" />
-            <dxcore_unique_xmlns:ContentContainer x:Name="Content" Content="{TemplateBinding Content}" Foreground="#FF444444" HorizontalAlignment="Center" Margin="3" VerticalAlignment="Center" cs:id="ContentContainer_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateEdit\DateEditCell.xaml;38;14" x:Uid="@Foreground=Foreground" />
+            <dx:DXBorder x:Name="IsDefault" Background="#1DA4061A" BorderBrush="#1D95061B" BorderThickness="1" Opacity="0" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateEdit\DateEditCell.xaml;26;14" />
+            <dx:DXBorder x:Name="IsToday" Background="#1D02061C" BorderBrush="#1D33061D" BorderThickness="1" Opacity="0" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateEdit\DateEditCell.xaml;32;14" />
+            <dxcore_unique_xmlns:ContentContainer x:Name="Content" Content="{TemplateBinding Content}" Foreground="#1D60061E" HorizontalAlignment="Center" Margin="3" VerticalAlignment="Center" cs:id="ContentContainer_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateEdit\DateEditCell.xaml;38;14" />
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup>
                     <VisualState x:Name="CellNormalState" />
                     <VisualState x:Name="CellFocusedState">
                         <Storyboard>
                             <DoubleAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Opacity" To="1" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="(dx:ContentContainer.Foreground).(SolidColorBrush.Color)" To="#FF444444" cs:id="ColorAnimation_0000" x:Uid="@To=Foreground" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="(dx:ContentContainer.Foreground).(SolidColorBrush.Color)" To="#1D51061F" cs:id="ColorAnimation_0000" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="CellTodayState">
                         <Storyboard>
                             <DoubleAnimation Duration="0" Storyboard.TargetName="IsToday" Storyboard.TargetProperty="Opacity" To="1" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="(dx:ContentContainer.Foreground).(SolidColorBrush.Color)" To="#FF444444" cs:id="ColorAnimation_0001" x:Uid="@To=Foreground" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="(dx:ContentContainer.Foreground).(SolidColorBrush.Color)" To="#1DBA0620" cs:id="ColorAnimation_0001" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="CellInactiveState">

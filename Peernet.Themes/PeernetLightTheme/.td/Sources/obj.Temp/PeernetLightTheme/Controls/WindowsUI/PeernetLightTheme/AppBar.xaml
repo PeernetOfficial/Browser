@@ -12,16 +12,16 @@
                 <dxwuii:AnimatedPanelBehavior x:Name="animatedPanelBehavior" Width="{TemplateBinding Width}" />
             </dxmvvmi:Interaction.Behaviors>
             <StackPanel Margin="{TemplateBinding Padding}" VerticalAlignment="Top" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019White\AppBar.xaml;34;14">
-                <dxcore_unique_xmlns:DXBorder x:Name="IsDefaultBorder" Background="#FFFFFFFF" CornerRadius="96" EnableDPICorrection="False" Height="{TemplateBinding EllipseDiameter}" Padding="2" Width="{TemplateBinding EllipseDiameter}" cs:id="Border_0000" x:Uid="@Background=Backstage.Foreground">
-                    <dxcore_unique_xmlns:DXBorder x:Name="IsDefaultBackground" Background="#FF106EBE" CornerRadius="96" EnableDPICorrection="False" cs:id="Border_0001" x:Uid="@Background=Backstage.Window.Background">
+                <dxcore_unique_xmlns:DXBorder x:Name="IsDefaultBorder" Background="#1DC41CE8" CornerRadius="96" EnableDPICorrection="False" Height="{TemplateBinding EllipseDiameter}" Padding="2" Width="{TemplateBinding EllipseDiameter}" cs:id="Border_0000">
+                    <dxcore_unique_xmlns:DXBorder x:Name="IsDefaultBackground" Background="#1DF51CE9" CornerRadius="96" EnableDPICorrection="False" cs:id="Border_0001">
                         <Grid Height="{TemplateBinding GlyphHeight}" Width="{TemplateBinding GlyphWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019White\AppBar.xaml;48;26">
                             <dxwuii:ImagePresenter x:Name="ContentImage" AccentColor="{Binding Path=(dxb:ImageColorizer.Color), RelativeSource={RelativeSource TemplatedParent}}" AllowAccent="{TemplateBinding AllowGlyphTheming}" HorizontalAlignment="Center" Source="{TemplateBinding Glyph}" Stretch="{TemplateBinding GlyphStretch}" VerticalAlignment="Center" Visibility="{Binding IsGlyphVisible, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ResourceKey=BooleanToVisibilityConverter}}" />
-                            <dxwuii:ShapeContentPresenter x:Name="ContentShape" AccentColor="{Binding Path=(dxb:ImageColorizer.Color), RelativeSource={RelativeSource TemplatedParent}}" FontFamily="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentFontFamily}" FontSize="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentFontSize}" Foreground="#FFFFFFFF" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding IsGlyphVisible, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ResourceKey=boolToVisibilityInverseConverter}}" cs:id="ShapeContentPresenter_0000" x:Uid="@Foreground=Backstage.Foreground" />
+                            <dxwuii:ShapeContentPresenter x:Name="ContentShape" AccentColor="{Binding Path=(dxb:ImageColorizer.Color), RelativeSource={RelativeSource TemplatedParent}}" FontFamily="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentFontFamily}" FontSize="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentFontSize}" Foreground="#1DA61CEA" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding IsGlyphVisible, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ResourceKey=boolToVisibilityInverseConverter}}" cs:id="ShapeContentPresenter_0000" />
                         </Grid>
                     </dxcore_unique_xmlns:DXBorder>
                 </dxcore_unique_xmlns:DXBorder>
                 <Grid Margin="0,5,0,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019White\AppBar.xaml;69;18">
-                    <dxwuii:ShapeContentPresenter x:Name="PART_Label" AccentColor="#FFFFFFFF" Content="{TemplateBinding Label}" ContentTemplate="{TemplateBinding LabelTemplate}" ContentTemplateSelector="{TemplateBinding LabelTemplateSelector}" FontFamily="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=FontFamily}" FontSize="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=FontSize}" Foreground="#FFFFFFFF" Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsCompact, Converter={StaticResource boolToVisibilityInverseConverter}}" cs:id="ShapeContentPresenter_0002" x:Uid="@AccentColor=Backstage.Foreground;Foreground=Backstage.Foreground" />
+                    <dxwuii:ShapeContentPresenter x:Name="PART_Label" AccentColor="#1D971CEB" Content="{TemplateBinding Label}" ContentTemplate="{TemplateBinding LabelTemplate}" ContentTemplateSelector="{TemplateBinding LabelTemplateSelector}" FontFamily="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=FontFamily}" FontSize="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=FontSize}" Foreground="#1D001CEC" Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsCompact, Converter={StaticResource boolToVisibilityInverseConverter}}" cs:id="ShapeContentPresenter_0002" />
                 </Grid>
             </StackPanel>
             <VisualStateManager.VisualStateGroups>
@@ -29,19 +29,19 @@
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="MouseOver">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBorder" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFFFFFFF" cs:id="ColorAnimation_0000" x:Uid="@To=Backstage.Foreground" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBackground" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FF005A9E" cs:id="ColorAnimation_0001" x:Uid="@To=Backstage.HoverBackground" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBorder" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D311CED" cs:id="ColorAnimation_0000" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBackground" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D621CEE" cs:id="ColorAnimation_0001" />
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentImage" Storyboard.TargetProperty="AccentColor">
                                 <DiscreteObjectKeyFrame KeyTime="0">
                                     <DiscreteObjectKeyFrame.Value>
-                                        <Color cs:id="Color_0000" x:Uid="@Content_Property=Backstage.Foreground">#FFFFFFFF</Color>
+                                        <Color cs:id="Color_0000">#1DA71CDE</Color>
                                     </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
                             </ObjectAnimationUsingKeyFrames>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentShape" Storyboard.TargetProperty="AccentColor">
                                 <DiscreteObjectKeyFrame KeyTime="0">
                                     <DiscreteObjectKeyFrame.Value>
-                                        <Color cs:id="Color_0001" x:Uid="@Content_Property=Backstage.Foreground">#FFFFFFFF</Color>
+                                        <Color cs:id="Color_0001">#1D961CDF</Color>
                                     </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
                             </ObjectAnimationUsingKeyFrames>
@@ -49,19 +49,19 @@
                     </VisualState>
                     <VisualState x:Name="Pressed">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBorder" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFFFFFFF" cs:id="ColorAnimation_0002" x:Uid="@To=Backstage.Foreground" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBackground" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFFFFFFF" cs:id="ColorAnimation_0003" x:Uid="@To=Backstage.Foreground" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBorder" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D531CEF" cs:id="ColorAnimation_0002" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBackground" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D3E1CF0" cs:id="ColorAnimation_0003" />
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentShape" Storyboard.TargetProperty="AccentColor">
                                 <DiscreteObjectKeyFrame KeyTime="0">
                                     <DiscreteObjectKeyFrame.Value>
-                                        <Color cs:id="Color_0002" x:Uid="@Content_Property=Backstage.Window.Background">#FF106EBE</Color>
+                                        <Color cs:id="Color_0002">#1D7D1CE0</Color>
                                     </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
                             </ObjectAnimationUsingKeyFrames>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentImage" Storyboard.TargetProperty="AccentColor">
                                 <DiscreteObjectKeyFrame KeyTime="0">
                                     <DiscreteObjectKeyFrame.Value>
-                                        <Color cs:id="Color_0003" x:Uid="@Content_Property=Backstage.Window.Background">#FF106EBE</Color>
+                                        <Color cs:id="Color_0003">#1D4C1CE1</Color>
                                     </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
                             </ObjectAnimationUsingKeyFrames>
@@ -78,42 +78,42 @@
                     <VisualState x:Name="Checked">
                         <Storyboard>
                             <Storyboard>
-                                <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBorder" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFFFFFFF" cs:id="ColorAnimation_0004" x:Uid="@To=Backstage.Foreground" />
-                                <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBackground" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFFFFFFF" cs:id="ColorAnimation_0005" x:Uid="@To=Backstage.Foreground" />
+                                <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBorder" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D0F1CF1" cs:id="ColorAnimation_0004" />
+                                <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBackground" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D5C1CF2" cs:id="ColorAnimation_0005" />
                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentImage" Storyboard.TargetProperty="AccentColor">
                                     <DiscreteObjectKeyFrame KeyTime="0">
                                         <DiscreteObjectKeyFrame.Value>
-                                            <Color cs:id="Color_0004" x:Uid="@Content_Property=Backstage.Window.Background">#FF106EBE</Color>
+                                            <Color cs:id="Color_0004">#1D1F1CE2</Color>
                                         </DiscreteObjectKeyFrame.Value>
                                     </DiscreteObjectKeyFrame>
                                 </ObjectAnimationUsingKeyFrames>
                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentShape" Storyboard.TargetProperty="AccentColor">
                                     <DiscreteObjectKeyFrame KeyTime="0">
                                         <DiscreteObjectKeyFrame.Value>
-                                            <Color cs:id="Color_0005" x:Uid="@Content_Property=Backstage.Window.Background">#FF106EBE</Color>
+                                            <Color cs:id="Color_0005">#1D2E1CE3</Color>
                                         </DiscreteObjectKeyFrame.Value>
                                     </DiscreteObjectKeyFrame>
                                 </ObjectAnimationUsingKeyFrames>
-                                <ColorAnimation Duration="0" Storyboard.TargetName="ContentShape" Storyboard.TargetProperty="Foreground.(SolidColorBrush.Color)" To="#FF106EBE" cs:id="ColorAnimation_0010" x:Uid="@To=Backstage.Window.Background" />
+                                <ColorAnimation Duration="0" Storyboard.TargetName="ContentShape" Storyboard.TargetProperty="Foreground.(SolidColorBrush.Color)" To="#1D6D1CF3" cs:id="ColorAnimation_0010" />
                             </Storyboard>
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="CheckedMouseOver">
                         <Storyboard>
                             <Storyboard>
-                                <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBorder" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFFFFFFF" cs:id="ColorAnimation_0006" x:Uid="@To=Backstage.Foreground" />
-                                <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBackground" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFFFFFFF" cs:id="ColorAnimation_0007" x:Uid="@To=Backstage.Foreground" />
+                                <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBorder" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1DFA1CF4" cs:id="ColorAnimation_0006" />
+                                <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBackground" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1DCB1CF5" cs:id="ColorAnimation_0007" />
                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentImage" Storyboard.TargetProperty="AccentColor">
                                     <DiscreteObjectKeyFrame KeyTime="0">
                                         <DiscreteObjectKeyFrame.Value>
-                                            <Color cs:id="Color_0006" x:Uid="@Content_Property=Backstage.Window.Background">#FF106EBE</Color>
+                                            <Color cs:id="Color_0006">#1DB91CE4</Color>
                                         </DiscreteObjectKeyFrame.Value>
                                     </DiscreteObjectKeyFrame>
                                 </ObjectAnimationUsingKeyFrames>
                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentShape" Storyboard.TargetProperty="AccentColor">
                                     <DiscreteObjectKeyFrame KeyTime="0">
                                         <DiscreteObjectKeyFrame.Value>
-                                            <Color cs:id="Color_0007" x:Uid="@Content_Property=Backstage.Window.Background">#FF106EBE</Color>
+                                            <Color cs:id="Color_0007">#1D881CE5</Color>
                                         </DiscreteObjectKeyFrame.Value>
                                     </DiscreteObjectKeyFrame>
                                 </ObjectAnimationUsingKeyFrames>
@@ -123,19 +123,19 @@
                     <VisualState x:Name="CheckedPressed">
                         <Storyboard>
                             <Storyboard>
-                                <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBorder" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFFFFFFF" cs:id="ColorAnimation_0008" x:Uid="@To=Backstage.Foreground" />
-                                <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBackground" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFFFFFFF" cs:id="ColorAnimation_0009" x:Uid="@To=Backstage.Foreground" />
+                                <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBorder" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D981CF6" cs:id="ColorAnimation_0008" />
+                                <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBackground" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1DA91CF7" cs:id="ColorAnimation_0009" />
                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentImage" Storyboard.TargetProperty="AccentColor">
                                     <DiscreteObjectKeyFrame KeyTime="0">
                                         <DiscreteObjectKeyFrame.Value>
-                                            <Color cs:id="Color_0008" x:Uid="@Content_Property=Backstage.Window.Background">#FF106EBE</Color>
+                                            <Color cs:id="Color_0008">#1DDB1CE6</Color>
                                         </DiscreteObjectKeyFrame.Value>
                                     </DiscreteObjectKeyFrame>
                                 </ObjectAnimationUsingKeyFrames>
                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentShape" Storyboard.TargetProperty="AccentColor">
                                     <DiscreteObjectKeyFrame KeyTime="0">
                                         <DiscreteObjectKeyFrame.Value>
-                                            <Color cs:id="Color_0009" x:Uid="@Content_Property=Backstage.Window.Background">#FF106EBE</Color>
+                                            <Color cs:id="Color_0009">#1DEA1CE7</Color>
                                         </DiscreteObjectKeyFrame.Value>
                                     </DiscreteObjectKeyFrame>
                                 </ObjectAnimationUsingKeyFrames>
@@ -147,7 +147,7 @@
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsEllipseEnabled" Value="False">
-                <Setter Property="Background" TargetName="IsDefaultBorder" Value="Transparent" cs:id="Setter_0000" />
+                <Setter Property="Background" TargetName="IsDefaultBorder" Value="#1D871CF8" cs:id="Setter_0000" />
                 <Setter Property="Padding" TargetName="IsDefaultBorder" Value="2" />
             </Trigger>
         </ControlTemplate.Triggers>

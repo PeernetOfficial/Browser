@@ -8,7 +8,7 @@
     
 
     <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=BackgroundTemplate}" TargetType="{x:Type ContentControl}">
-        <dx:DXBorder Background="#FFFFFFFF" MinHeight="32" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\Ribbon\RibbonControl.xaml;25;10" x:Uid="@Background=Window.Background" />
+        <dx:DXBorder Background="#1D7A2672" MinHeight="32" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\Ribbon\RibbonControl.xaml;25;10" />
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=TabPartBorderTemplate}" TargetType="{x:Type ContentControl}">
@@ -18,9 +18,9 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <dx:DXBorder x:Name="CategoryBackground" Background="#FFFFFFFF" Grid.Row="0" MinHeight="{DynamicResource {dxrt:RibbonThemeKey ResourceKey=HeaderMinHeight}}" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\Ribbon\RibbonControl.xaml;37;14" x:Uid="@Background=Window.Background" />
-            <dx:DXBorder x:Name="SeparatorBackground" Background="#FFE1DFDD" Grid.Row="1" Height="1" cs:id="Border_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\Ribbon\RibbonControl.xaml;42;14" x:Uid="@Background=Delimiter" />
-            <dx:DXBorder x:Name="PageHeaderBackground" Background="#FFFFFFFF" Grid.Row="2" cs:id="Border_0003" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\Ribbon\RibbonControl.xaml;47;14" x:Uid="@Background=Control.Background" />
+            <dx:DXBorder x:Name="CategoryBackground" Background="#1D4B2673" Grid.Row="0" MinHeight="{DynamicResource {dxrt:RibbonThemeKey ResourceKey=HeaderMinHeight}}" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\Ribbon\RibbonControl.xaml;37;14" />
+            <dx:DXBorder x:Name="SeparatorBackground" Background="#1DDC2674" Grid.Row="1" Height="1" cs:id="Border_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\Ribbon\RibbonControl.xaml;42;14" />
+            <dx:DXBorder x:Name="PageHeaderBackground" Background="#1DED2675" Grid.Row="2" cs:id="Border_0003" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\Ribbon\RibbonControl.xaml;47;14" />
         </Grid>
         <ControlTemplate.Triggers>
             <DataTrigger Binding="{Binding Path=(dxr:RibbonControl.Ribbon).IsInRibbonWindow, RelativeSource={RelativeSource Self}}" Value="True">
@@ -36,11 +36,11 @@
                     <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=(dxi:DXWindowsHelper.Window).(dx:ThemedWindow.ActualWindowKind)}" Value="Ribbon" />
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
-                    <Setter Property="Background" TargetName="SeparatorBackground" Value="#FFE1DFDD" cs:id="Setter_0000" x:Uid="@Value=Delimiter" />
+                    <Setter Property="Background" TargetName="SeparatorBackground" Value="#1DBE2676" cs:id="Setter_0000" />
                 </MultiDataTrigger.Setters>
             </MultiDataTrigger>
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(dxi:DXWindowsHelper.Window).(dx:ThemedWindow.IsActive)}" Value="False">
-                <Setter Property="Background" TargetName="SeparatorBackground" Value="#FFE1DFDD" cs:id="Setter_0001" x:Uid="@Value=Delimiter" />
+                <Setter Property="Background" TargetName="SeparatorBackground" Value="#1D8F2677" cs:id="Setter_0001" />
                 <Setter Property="Visibility" TargetName="CategoryBackground" Value="Collapsed" />
             </DataTrigger>
             <DataTrigger Binding="{Binding Path=(dxr:RibbonControl.Ribbon).(dxcn:AppearanceOptions.HasBackground), RelativeSource={RelativeSource Self}}" Value="True">

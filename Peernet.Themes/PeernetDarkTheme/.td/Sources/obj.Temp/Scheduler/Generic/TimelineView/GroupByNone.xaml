@@ -1,0 +1,26 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxschd="http://schemas.devexpress.com/winfx/2008/xaml/scheduler/internal" xmlns:dxscht="http://schemas.devexpress.com/winfx/2008/xaml/scheduler/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+  
+  <Style x:Key="{dxscht:TimelineViewThemeKey ResourceKey=TimelineViewGroupByNone}" TargetType="{x:Type dxschd:VisualTimelineViewGroupByNone}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type dxschd:VisualTimelineViewGroupByNone}">
+          <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\TimelineView\GroupByNone.xaml;17;22">
+            <Grid.Resources>
+              <dxschd:AppointmentStatusDisplayTypeToVisibileConverter x:Key="StatusDisplayTypeToVisibileConverter" />
+            </Grid.Resources>
+            <dxcore_unique_xmlns:XPFContentControl Style="{DynamicResource {dxscht:TimelineViewThemeKey ResourceKey=GroupByDateContainerStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\TimelineView\GroupByNone.xaml;21;26">
+              <dxschd:TimelineViewPanelGroupByNone AdornedBorderStyle="{DynamicResource {dxscht:TimelineViewThemeKey ResourceKey=AdornedBorderStyle}}" AppointmentAutoHeight="{Binding View.AppointmentDisplayOptions.AppointmentAutoHeight, RelativeSource={RelativeSource Mode=TemplatedParent}}" CellStyle="{Binding View.CellStyle, RelativeSource={RelativeSource Mode=TemplatedParent}}" DateHeaderLevelElementPosition="{DynamicResource {dxscht:TimelineViewThemeKey ResourceKey=ScaleOtherLevelHeaderElementPosition}}" DateHeaderTopLevelElementPosition="{DynamicResource {dxscht:TimelineViewThemeKey ResourceKey=ScaleTopLevelHeaderElementPosition}}" DateTimeScrollbarVisible="{Binding View.DateTimeScrollbarVisible, RelativeSource={RelativeSource Mode=TemplatedParent}}" DefaultAppointmentHeight="{DynamicResource {dxscht:SchedulerControlThemeKey ResourceKey=DefaultAppointmentHeight}}" DraggedAppointmentStyle="{Binding View.DragDropHoverTimeCellsStyle, RelativeSource={RelativeSource Mode=TemplatedParent}}" IsAppointmentStatusVisible="{Binding View.AppointmentDisplayOptions.StatusDisplayType, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource StatusDisplayTypeToVisibileConverter}}" MoreButtonStyle="{Binding View.MoreButtonStyle, RelativeSource={RelativeSource Mode=TemplatedParent}}" NavigationNextButtonStyle="{Binding View.NavigationButtonNextStyle, RelativeSource={RelativeSource Mode=TemplatedParent}}" NavigationPrevButtonStyle="{Binding View.NavigationButtonPrevStyle, RelativeSource={RelativeSource Mode=TemplatedParent}}" ResourceScrollBarVisible="{Binding View.TimelineScrollBarVisibility, RelativeSource={RelativeSource Mode=TemplatedParent}}" SelectionBarCellStyle="{Binding View.SelectionBarCellStyle, RelativeSource={RelativeSource Mode=TemplatedParent}}" SelectionBarElementPosition="{DynamicResource {dxscht:TimelineViewThemeKey ResourceKey=SelectionBarContanerGroupByNonePosition}}" SelectionBarHeight="{Binding View.SelectionBar.Height, RelativeSource={RelativeSource Mode=TemplatedParent}}" SelectionBarVisible="{Binding View.SelectionBar.Visible, RelativeSource={RelativeSource Mode=TemplatedParent}}" SelectionTemplate="{Binding View.SelectionTemplate, RelativeSource={RelativeSource Mode=TemplatedParent}}" ShowMoreButtons="{Binding View.ShowMoreButtons, RelativeSource={RelativeSource Mode=TemplatedParent}}" SnapToCells="{Binding View.AppointmentDisplayOptions.SnapToCellsMode, RelativeSource={RelativeSource Mode=TemplatedParent}}" TimeCellElementPosition="End,End,End,End,None,None" TimeIndicatorVisibility="{Binding View.TimeIndicatorDisplayOptions.Visibility, RelativeSource={RelativeSource Mode=TemplatedParent}}" ViewInfo="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}}">
+                <dxschd:TimelineViewPanelGroupByNone.DateTimeScrollBarAreaTemplate>
+                  <ControlTemplate>
+                    <ScrollBar x:Name="PART_TimeLineScrollBar" dxschd:SchedulerScrollBarManager.BindToSchedulerControl="True" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\TimelineView\GroupByNone.xaml;47;42" />
+                  </ControlTemplate>
+                </dxschd:TimelineViewPanelGroupByNone.DateTimeScrollBarAreaTemplate>
+              </dxschd:TimelineViewPanelGroupByNone>
+            </dxcore_unique_xmlns:XPFContentControl>
+            
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+</ResourceDictionary>

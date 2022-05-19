@@ -8,14 +8,14 @@
     
 
     <ControlTemplate x:Key="{dxrt:DXTreeViewItemThemeKey ResourceKey=ExpanderTemplate}" TargetType="{x:Type dxr:RibbonCheckedBorderControl}">
-        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonTreeView\RibbonTreeViewItem.xaml;24;10">
-            <Path x:Name="Collapsed" Fill="#FF444444" Style="{StaticResource UIShape.Right}" Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverterInverted}}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonTreeView\RibbonTreeViewItem.xaml;27;14" x:Uid="@Fill=Foreground" />
-            <Path x:Name="Expanded" Fill="#FF444444" Style="{StaticResource UIShape.RightDown}" Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonTreeView\RibbonTreeViewItem.xaml;32;14" x:Uid="@Fill=Foreground" />
+        <Grid x:Name="Root" Background="#1D0126C6" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonTreeView\RibbonTreeViewItem.xaml;24;10">
+            <Path x:Name="Collapsed" Fill="#1D3026C7" Style="{StaticResource UIShape.Right}" Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverterInverted}}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonTreeView\RibbonTreeViewItem.xaml;27;14" />
+            <Path x:Name="Expanded" Fill="#1D1E26C8" Style="{StaticResource UIShape.RightDown}" Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonTreeView\RibbonTreeViewItem.xaml;32;14" />
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Fill" TargetName="Collapsed" Value="#FF106EBE" cs:id="Setter_0000" x:Uid="@Value=HoverForeground" />
-                <Setter Property="Fill" TargetName="Expanded" Value="#FF106EBE" cs:id="Setter_0001" x:Uid="@Value=HoverForeground" />
+                <Setter Property="Fill" TargetName="Collapsed" Value="#1D2F26C9" cs:id="Setter_0000" />
+                <Setter Property="Fill" TargetName="Expanded" Value="#1D7C26CA" cs:id="Setter_0001" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -35,34 +35,34 @@
     
 
     <ControlTemplate x:Key="{dxrt:DXTreeViewItemThemeKey ResourceKey=BorderTemplate}" TargetType="{x:Type dxr:RibbonCheckedBorderControl}">
-        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonTreeView\RibbonTreeViewItem.xaml;67;10">
-            <dx:DXBorder x:Name="IsDefault" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonTreeView\RibbonTreeViewItem.xaml;70;14" />
+        <Grid x:Name="Root" Background="#1D4D26CB" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonTreeView\RibbonTreeViewItem.xaml;67;10">
+            <dx:DXBorder x:Name="IsDefault" Background="#1DDA26CC" BorderBrush="#1DEB26CD" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonTreeView\RibbonTreeViewItem.xaml;70;14" />
             <ContentControl Content="{TemplateBinding Content}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonTreeView\RibbonTreeViewItem.xaml;75;14" />
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup x:Name="State">
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="Hover">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFEFF6FC" cs:id="ColorAnimation_0000" x:Uid="@To=HoverBackground" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#FFEFF6FC" cs:id="ColorAnimation_0004" x:Uid="@To=HoverBorder" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1DB826CE" cs:id="ColorAnimation_0000" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#1D8926CF" cs:id="ColorAnimation_0004" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Pressed">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFDEECF9" cs:id="ColorAnimation_0001" x:Uid="@To=SelectionBackground" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#FFDEECF9" cs:id="ColorAnimation_0005" x:Uid="@To=SelectionBorder" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1DE426D0" cs:id="ColorAnimation_0001" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#1DD526D1" cs:id="ColorAnimation_0005" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Checked">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFDEECF9" cs:id="ColorAnimation_0002" x:Uid="@To=SelectionBackground" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#FFDEECF9" cs:id="ColorAnimation_0006" x:Uid="@To=SelectionBorder" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D8626D2" cs:id="ColorAnimation_0002" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#1DB726D3" cs:id="ColorAnimation_0006" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Focused">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFEFF6FC" cs:id="ColorAnimation_0003" x:Uid="@To=HoverBackground" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#FF106EBE" cs:id="ColorAnimation_0007" x:Uid="@To=Focused" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D2026D4" cs:id="ColorAnimation_0003" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#1D1126D5" cs:id="ColorAnimation_0007" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Disabled">
@@ -98,7 +98,7 @@
     </Style>
 
     <Style x:Key="{dxrt:DXTreeViewItemThemeKey ResourceKey=ContentStyle}" TargetType="{x:Type ContentControl}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Ribbon\Office2019White\RibbonTreeView\RibbonTreeViewItem.xaml;172;6" /><Setter Property="Foreground" Value="#FF444444" cs:id="Setter_0000" x:Uid="@Value=Foreground" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Ribbon\Office2019White\RibbonTreeView\RibbonTreeViewItem.xaml;172;6" /><Setter Property="Foreground" Value="#1D4226D6" cs:id="Setter_0000" />
         <Setter Property="Margin" Value="4,3,4,3" />
         <Style.Triggers>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
@@ -113,12 +113,12 @@
 
     <Style x:Key="{dxrt:DXTreeViewGroupItemThemeKey ResourceKey=ContentStyle}" TargetType="{x:Type ContentControl}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Ribbon\Office2019White\RibbonTreeView\RibbonTreeViewItem.xaml;188;6" /><Setter Property="FontWeight" Value="Bold" />
-        <Setter Property="Foreground" Value="#FF444444" cs:id="Setter_0000" x:Uid="@Value=Foreground" />
+        <Setter Property="Foreground" Value="#1D7326D7" cs:id="Setter_0000" />
         <Setter Property="Margin" Value="0" />
     </Style>
 
     <ControlTemplate x:Key="{dxrt:DXTreeViewGroupItemThemeKey ResourceKey=BorderTemplate}" TargetType="{x:Type dxr:RibbonCheckedBorderControl}">
-        <Grid Background="#FFFFFFFF" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonTreeView\RibbonTreeViewItem.xaml;197;10" x:Uid="@Background=Window.Background">
+        <Grid Background="#1D5D26D8" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonTreeView\RibbonTreeViewItem.xaml;197;10">
             <ContentControl Content="{TemplateBinding Content}" Margin="3" cs:id="ContentControl_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonTreeView\RibbonTreeViewItem.xaml;198;14" />
         </Grid>
     </ControlTemplate>

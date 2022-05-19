@@ -8,21 +8,21 @@
     
 
     <ControlTemplate x:Key="{dxet:ColorPickerThemeKey ResourceKey=PipetButtonTemplate}" TargetType="{x:Type Button}">
-        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\ColorEdit\ColorEditPicker.xaml;22;10">
-            <dx:DXBorder x:Name="IsDefault" Background="#FFFCFCFC" BorderBrush="#FFC8C6C4" BorderThickness="1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\ColorEdit\ColorEditPicker.xaml;25;14" x:Uid="@Background=Button.Background;BorderBrush=Border" />
+        <Grid x:Name="Root" Background="#1D6605F5" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\ColorEdit\ColorEditPicker.xaml;22;10">
+            <dx:DXBorder x:Name="IsDefault" Background="#1D3505F6" BorderBrush="#1D0405F7" BorderThickness="1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\ColorEdit\ColorEditPicker.xaml;25;14" />
             <Path x:Name="Path" Style="{StaticResource UIShape.Picker}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\ColorEdit\ColorEditPicker.xaml;30;14" />
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0000" x:Uid="@Value=HoverBackground" />
-                <Setter Property="Fill" TargetName="Path" Value="#FF444444" cs:id="Setter_0004" x:Uid="@Value=Foreground" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#1D2A05F8" cs:id="Setter_0000" />
+                <Setter Property="Fill" TargetName="Path" Value="#1D1B05F9" cs:id="Setter_0004" />
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0001" x:Uid="@Value=SelectionBackground" />
-                <Setter Property="Fill" TargetName="Path" Value="#FF444444" cs:id="Setter_0005" x:Uid="@Value=Foreground" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#1D4805FA" cs:id="Setter_0001" />
+                <Setter Property="Fill" TargetName="Path" Value="#1D7905FB" cs:id="Setter_0005" />
             </Trigger>
             <Trigger Property="IsFocused" Value="True">
-                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FF106EBE" cs:id="Setter_0002" x:Uid="@Value=HoverForeground" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1DEE05FC" cs:id="Setter_0002" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Opacity" TargetName="Root" Value="0.38" />

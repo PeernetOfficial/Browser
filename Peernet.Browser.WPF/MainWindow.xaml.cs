@@ -95,6 +95,8 @@ namespace Peernet.Browser.WPF
         private void MainWindow_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             App.RaiseMainWindowClick(sender, e);
+            Keyboard.ClearFocus();
+            Main.Focus();
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

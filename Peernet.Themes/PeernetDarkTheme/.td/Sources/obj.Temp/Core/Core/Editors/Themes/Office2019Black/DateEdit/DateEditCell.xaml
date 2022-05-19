@@ -1,0 +1,51 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal" xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys" xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+  <ResourceDictionary.MergedDictionaries>
+    <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v21.2;component/Core/Core/Editors/Themes/Generic/DateEdit.xaml" />
+    <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v21.2;component/Core/Core/Editors/Themes/TransferStyles.xaml" />
+    <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v21.2;component/Core/Core/Editors/Themes/Office2019Black/PopupBaseEdit.xaml" />
+    <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v21.2;component/Core/Core/Editors/Themes/Office2019Black/DateNavigator/DateNavigatorCell.xaml" />
+    <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v21.2;component/Core/Core/Editors/Themes/Office2019Black/UICore.xaml" />
+  </ResourceDictionary.MergedDictionaries>
+  
+  <ControlTemplate x:Key="{dxet:DateEditThemeKey ResourceKey=CellButtonTemplate}" TargetType="{x:Type Button}">
+    <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019Black\DateEdit\DateEditCell.xaml;25;10">
+      <dx:DXBorder x:Name="IsDefault" Background="$ControlLight.HoverBackground" BorderBrush="$ControlLight.HoverBackground" BorderThickness="1" Opacity="0" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019Black\DateEdit\DateEditCell.xaml;26;14" />
+      <dx:DXBorder x:Name="IsToday" Background="$ControlLight.Background" BorderBrush="$Border" BorderThickness="1" Opacity="0" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019Black\DateEdit\DateEditCell.xaml;32;14" />
+      <dxcore_unique_xmlns:ContentContainer x:Name="Content" Content="{TemplateBinding Content}" Foreground="$ControlLight.Foreground" HorizontalAlignment="Center" Margin="3" VerticalAlignment="Center" cs:id="ContentContainer_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019Black\DateEdit\DateEditCell.xaml;38;14" />
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup>
+          <VisualState x:Name="CellNormalState" />
+          <VisualState x:Name="CellFocusedState">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Opacity" To="1" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="(dx:ContentContainer.Foreground).(SolidColorBrush.Color)" To="$ControlLight.SelectionForeground" cs:id="ColorAnimation_0000" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="CellTodayState">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsToday" Storyboard.TargetProperty="Opacity" To="1" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="(dx:ContentContainer.Foreground).(SolidColorBrush.Color)" To="$ControlLight.SelectionForeground" cs:id="ColorAnimation_0001" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="CellInactiveState">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Opacity" To="0.62" />
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+    </Grid>
+    <ControlTemplate.Triggers>
+      <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
+        <Setter Property="MinWidth" TargetName="Root" Value="44" />
+        <Setter Property="MinHeight" TargetName="Root" Value="44" />
+        <Setter Property="Margin" TargetName="Content" Value="14" />
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+  <Style x:Key="{dxet:DateEditThemeKey ResourceKey=CellButtonStyle}" BasedOn="{StaticResource {dxet:DateNavigatorThemeKey ResourceKey=CellButtonStyle}}" TargetType="{x:Type Button}">
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="Template" Value="{DynamicResource {dxet:DateNavigatorThemeKey ResourceKey=CellButtonTemplate}}" />
+    <Setter Property="VerticalAlignment" Value="Stretch" />
+  </Style>
+</ResourceDictionary>

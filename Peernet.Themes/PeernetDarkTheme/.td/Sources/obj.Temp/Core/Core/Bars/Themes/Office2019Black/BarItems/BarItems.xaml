@@ -1,0 +1,1294 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxbi="http://schemas.devexpress.com/winfx/2008/xaml/bars/internal" xmlns:dxbt="http://schemas.devexpress.com/winfx/2008/xaml/bars/themekeys" xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+  <ResourceDictionary.MergedDictionaries>
+    <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v21.2;component/Core/Core/Bars/Themes/Office2019Black/UICore.xaml" />
+    <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v21.2;component/Core/Core/Bars/Themes/Office2019Black/BarItems/Items/BarSubItem.xaml" />
+  </ResourceDictionary.MergedDictionaries>
+  
+  <Style x:Key="{dxbt:BarButtonItemThemeKey ResourceKey=TextSplitterStyleInRibbonPageGroup}" TargetType="{x:Type dxb:TextSplitterControl}">
+    <Setter Property="FirstStringHorizontalAlignment" Value="Center" />
+    <Setter Property="FirstStringMargin" Value="0" />
+    <Setter Property="Margin" Value="0" />
+    <Setter Property="SecondStringHorizontalAlignment" Value="Center" />
+    <Setter Property="SecondStringMargin" Value="0" />
+  </Style>
+  <Style x:Key="{dxbt:BarButtonItemThemeKey ResourceKey=NormalTextStyleInTextSplitter}" TargetType="{x:Type ContentControl}" />
+  <Style x:Key="{dxbt:BarButtonItemThemeKey ResourceKey=SelectedTextStyleInTextSplitter}" TargetType="{x:Type ContentControl}" />
+  
+  <Style x:Key="{dxbt:BarCheckItemThemeKey ResourceKey=TextSplitterStyleInRibbonPageGroup}" TargetType="{x:Type dxb:TextSplitterControl}">
+    <Setter Property="FirstStringHorizontalAlignment" Value="Center" />
+    <Setter Property="Margin" Value="0" />
+    <Setter Property="SecondStringHorizontalAlignment" Value="Center" />
+    <Setter Property="SecondStringMargin" Value="0" />
+  </Style>
+  <Style x:Key="{dxbt:BarCheckItemThemeKey ResourceKey=NormalTextStyleInTextSplitter}" TargetType="{x:Type ContentControl}">
+    <Setter Property="Foreground" Value="$Foreground" cs:id="Setter_0000" />
+  </Style>
+  <Style x:Key="{dxbt:BarCheckItemThemeKey ResourceKey=SelectedTextStyleInTextSplitter}" TargetType="{x:Type ContentControl}">
+    <Setter Property="Foreground" Value="$Foreground" cs:id="Setter_0000" />
+  </Style>
+  <ControlTemplate x:Key="{dxbt:BarCheckItemThemeKey ResourceKey=GlyphCheckBorderInMenu}" TargetType="{x:Type ContentControl}">
+    <dx:DXBorder x:Name="Root" Background="$Border" MinHeight="20" MinWidth="20" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;55;10">
+      <ContentPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;60;14" />
+    </dx:DXBorder>
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxbt:BarCheckItemThemeKey ResourceKey=GlyphTriStateBorderInMenu}" TargetType="{x:Type ContentControl}">
+    <dx:DXBorder x:Name="Root" Background="$Delimiter" MinHeight="20" MinWidth="20" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;65;10">
+      <ContentPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;70;14" />
+    </dx:DXBorder>
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxbt:BarCheckItemThemeKey ResourceKey=CheckInMenu}" TargetType="{x:Type ContentControl}">
+    <Grid x:Name="Root" Background="Transparent" MinHeight="20" MinWidth="20" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;75;10">
+      <Path Style="{StaticResource UIShape.Checked}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;80;14" />
+    </Grid>
+    <ControlTemplate.Triggers>
+      <Trigger Property="FlowDirection" Value="RightToLeft">
+        <Setter Property="RenderTransform" TargetName="Root">
+          <Setter.Value>
+            <ScaleTransform ScaleX="-1" ScaleY="1" />
+          </Setter.Value>
+        </Setter>
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxbt:BarCheckItemThemeKey ResourceKey=TriStateBorderInMenu}" TargetType="{x:Type ContentControl}">
+    <Grid x:Name="Root" Background="Transparent" MinHeight="20" MinWidth="20" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;94;10">
+      <Path Style="{StaticResource UIShape.Checked}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;99;14" />
+    </Grid>
+    <ControlTemplate.Triggers>
+      <Trigger Property="FlowDirection" Value="RightToLeft">
+        <Setter Property="RenderTransform" TargetName="Root">
+          <Setter.Value>
+            <ScaleTransform ScaleX="-1" ScaleY="1" />
+          </Setter.Value>
+        </Setter>
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+  <ControlTemplate x:Key="CheckTriStateTemplate" TargetType="{x:Type ContentControl}">
+    <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;113;10">
+      <Path Style="{StaticResource UIShape.Checked}" Visibility="{Binding Path=(dxb:BarCheckItemLinkControlStatesProvider.CheckVisibility), RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;116;14" />
+      <dx:DXBorder Background="$Foreground" Height="8" Visibility="{Binding Path=(dxb:BarCheckItemLinkControlStatesProvider.TriStateVisibility), RelativeSource={RelativeSource TemplatedParent}}" Width="8" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;117;14" />
+      <dx:DXBorder Background="$Delimiter" Visibility="{Binding Path=(dxb:BarCheckItemLinkControlStatesProvider.GlyphCheckVisibility), RelativeSource={RelativeSource TemplatedParent}}" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;122;14">
+        <ContentPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;125;18" />
+      </dx:DXBorder>
+      <dx:DXBorder Background="$Delimiter" Opacity="0.38" Visibility="{Binding Path=(dxb:BarCheckItemLinkControlStatesProvider.GlyphTriStateVisibility), RelativeSource={RelativeSource TemplatedParent}}" cs:id="Border_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;127;14">
+        <ContentPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;131;18" />
+      </dx:DXBorder>
+    </Grid>
+    <ControlTemplate.Triggers>
+      <Trigger Property="FlowDirection" Value="RightToLeft">
+        <Setter Property="RenderTransform" TargetName="Root">
+          <Setter.Value>
+            <ScaleTransform ScaleX="-1" ScaleY="1" />
+          </Setter.Value>
+        </Setter>
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+  
+  <Style x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowLayoutPanelStyle}" TargetType="{x:Type dx:Items2Panel}" />
+  <Style x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowLayoutPanelStyleInMainMenu}" BasedOn="{StaticResource {dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowLayoutPanelStyle}}" TargetType="{x:Type dx:Items2Panel}" />
+  <Style x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowLayoutPanelStyleInStatusBar}" BasedOn="{StaticResource {dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowLayoutPanelStyle}}" TargetType="{x:Type dx:Items2Panel}" />
+  <Style x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowLayoutPanelStyleInRibbonPageGroup}" BasedOn="{StaticResource {dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowLayoutPanelStyle}}" TargetType="{x:Type dx:Items2Panel}" />
+  <Style x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowLayoutPanelStyleInBarButtonGroup}" BasedOn="{StaticResource {dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowLayoutPanelStyle}}" TargetType="{x:Type dx:Items2Panel}" />
+  <Style x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowLayoutPanelStyleInRibbonStatusBarLeft}" BasedOn="{StaticResource {dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowLayoutPanelStyle}}" TargetType="{x:Type dx:Items2Panel}" />
+  <Style x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowLayoutPanelStyleInRibbonStatusBarRight}" BasedOn="{StaticResource {dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowLayoutPanelStyle}}" TargetType="{x:Type dx:Items2Panel}" />
+  <Style x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowLayoutPanelStyleInRibbonToolbar}" BasedOn="{StaticResource {dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowLayoutPanelStyle}}" TargetType="{x:Type dx:Items2Panel}" />
+  <Style x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=TextSplitterStyleInRibbonPageGroup}" TargetType="{x:Type dxb:TextSplitterControl}" />
+  <Style x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=NormalTextStyleInTextSplitter}" TargetType="{x:Type ContentControl}" />
+  <Style x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=SelectedTextStyleInTextSplitter}" TargetType="{x:Type ContentControl}" />
+  <Style x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=BottomSideArrowContainerStyleInTextSplitter}" TargetType="{x:Type ContentControl}" />
+  <Style x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=RightSideArrowContainerStyleInTextSplitter}" TargetType="{x:Type ContentControl}" />
+  
+  <ControlTemplate x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=SelectedArrowTemplateInTextSplitter}" TargetType="{x:Type ContentControl}" />
+  <ControlTemplate x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=NormalArrowTemplateInTextSplitter}" TargetType="{x:Type ContentControl}" />
+  <ControlTemplate x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowTemplate}" TargetType="{x:Type dxb:ArrowControl}" />
+  <ControlTemplate x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowTemplateInMainMenu}" TargetType="{x:Type dxb:ArrowControl}" />
+  <ControlTemplate x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowTemplateInMenu}" TargetType="{x:Type dxb:ArrowControl}" />
+  <ControlTemplate x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowTemplateInRibbonPageGroup}" TargetType="{x:Type dxb:ArrowControl}" />
+  <ControlTemplate x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowBorderTemplateInRibbonPageGroup}" TargetType="{x:Type dxb:ArrowControl}" />
+  <ControlTemplate x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowTemplateInBarButtonGroup}" TargetType="{x:Type dxb:ArrowControl}" />
+  <ControlTemplate x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=ContentBorderTemplateInRibbonPageGroup}" TargetType="{x:Type dxb:ArrowControl}" />
+  <ControlTemplate x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=LargeContentBorderTemplateInRibbonPageGroup}" TargetType="{x:Type dxb:ItemBorderControl}" />
+  <ControlTemplate x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=LargeArrowBorderTemplateInRibbonPageGroup}" TargetType="{x:Type dxb:ItemBorderControl}" />
+  <Style x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowStyle}" TargetType="{x:Type dxb:BarSplitButtonItemArrowControl}" />
+  <Style x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowStyleInMainMenu}" BasedOn="{StaticResource {dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowStyle}}" TargetType="{x:Type dxb:BarSplitButtonItemArrowControl}">
+    <Setter Property="Template" Value="{DynamicResource {dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowTemplateInMainMenu}}" />
+  </Style>
+  <Style x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowStyleInStatusBar}" BasedOn="{StaticResource {dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowStyle}}" TargetType="{x:Type dxb:BarSplitButtonItemArrowControl}">
+    <Setter Property="Template" Value="{DynamicResource {dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowTemplateInMainMenu}}" />
+  </Style>
+  <Style x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowStyleInMenu}" BasedOn="{StaticResource {dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowStyle}}" TargetType="{x:Type dxb:BarSplitButtonItemArrowControl}">
+    <Setter Property="Template" Value="{DynamicResource {dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowTemplateInMenu}}" />
+  </Style>
+  <Style x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowStyleInRibbonPageGroup}" BasedOn="{StaticResource {dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowStyle}}" TargetType="{x:Type dxb:BarSplitButtonItemArrowControl}">
+    <Setter Property="Template" Value="{DynamicResource {dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowTemplateInRibbonPageGroup}}" />
+  </Style>
+  <Style x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowStyleInBarButtonGroup}" BasedOn="{StaticResource {dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowStyle}}" TargetType="{x:Type dxb:BarSplitButtonItemArrowControl}">
+    <Setter Property="Template" Value="{DynamicResource {dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowTemplateInBarButtonGroup}}" />
+  </Style>
+  <Style x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowStyleInRibbonQuickAccessToolbar}" BasedOn="{StaticResource {dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowStyle}}" TargetType="{x:Type dxb:BarSplitButtonItemArrowControl}">
+    <Setter Property="Template" Value="{DynamicResource {dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowTemplateInRibbonPageGroup}}" />
+  </Style>
+  <Style x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowStyleInRibbonQuickAccessToolbarFooter}" BasedOn="{StaticResource {dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowStyle}}" TargetType="{x:Type dxb:BarSplitButtonItemArrowControl}">
+    <Setter Property="Template" Value="{DynamicResource {dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowTemplateInRibbonPageGroup}}" />
+  </Style>
+  <Style x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowStyleInRibbonStatusBarLeft}" BasedOn="{StaticResource {dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowStyle}}" TargetType="{x:Type dxb:BarSplitButtonItemArrowControl}">
+    <Setter Property="Template" Value="{DynamicResource {dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowTemplateInRibbonPageGroup}}" />
+  </Style>
+  <Style x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowStyleInRibbonStatusBarRight}" BasedOn="{StaticResource {dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowStyle}}" TargetType="{x:Type dxb:BarSplitButtonItemArrowControl}">
+    <Setter Property="Template" Value="{DynamicResource {dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowTemplateInRibbonPageGroup}}" />
+  </Style>
+  <Style x:Key="{dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowStyleInRibbonPageHeader}" BasedOn="{StaticResource {dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowStyle}}" TargetType="{x:Type dxb:BarSplitButtonItemArrowControl}">
+    <Setter Property="Template" Value="{DynamicResource {dxbt:BarSplitButtonItemThemeKey ResourceKey=ArrowTemplateInRibbonPageGroup}}" />
+  </Style>
+  
+  <ControlTemplate x:Key="{dxbt:BarItemSeparatorThemeKey ResourceKey=Template}" TargetType="{x:Type dxb:BarItemLinkSeparatorControl}">
+    <dx:DXBorder Background="$Editor.Delimiter" Margin="4,2,5,2" MinHeight="1" MinWidth="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;276;10" />
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxbt:BarItemSeparatorThemeKey ResourceKey=InRibbonStatusBarRightPartTemplate}" TargetType="{x:Type dxb:BarItemLinkSeparatorControl}">
+    <dx:DXBorder Background="$Border" Margin="2,2,3,2" Width="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;284;10" />
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxbt:BarItemSeparatorThemeKey ResourceKey=InRibbonStatusBarLeftPartTemplate}" TargetType="{x:Type dxb:BarItemLinkSeparatorControl}">
+    <dx:DXBorder Background="$Border" Margin="2,2,3,2" Width="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;291;10" />
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxbt:BarItemSeparatorThemeKey ResourceKey=InStatusBarTemplate}" TargetType="{x:Type dxb:BarItemLinkSeparatorControl}">
+    <dx:DXBorder Background="$Border" Margin="4,2,5,2" Width="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;298;10" />
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxbt:BarItemSeparatorThemeKey ResourceKey=InRibbonPageGroupTemplate}" TargetType="{x:Type dxb:BarItemLinkSeparatorControl}">
+    <dx:DXBorder x:Name="Border" Background="$Delimiter" Margin="4,2,5,2" Width="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;305;10" />
+    <ControlTemplate.Triggers>
+      <Trigger Property="IsInSimplifiedRibbon" Value="True">
+        <Setter Property="Margin" TargetName="Border" Value="3,4,3,5" />
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxbt:BarItemSeparatorThemeKey ResourceKey=InRibbonPageHeaderTemplate}" TargetType="{x:Type dxb:BarItemLinkSeparatorControl}">
+    <dx:DXBorder Background="$Backstage.Delimiter" Margin="2,2,3,2" Width="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;320;10" />
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxbt:BarItemSeparatorThemeKey ResourceKey=InRibbonQuickAccessToolbarCommonTemplate}" TargetType="{x:Type Control}">
+    <dx:DXBorder Background="$Backstage.Delimiter" Margin="4,2,5,2" Width="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;327;10" />
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxbt:BarItemSeparatorThemeKey ResourceKey=InRibbonQuickAccessToolbarTemplate}" TargetType="{x:Type dxb:BarItemLinkSeparatorControl}">
+    <dx:DXBorder Background="$Backstage.Delimiter" Margin="2,2,3,2" Width="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;334;10" />
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxbt:BarItemSeparatorThemeKey ResourceKey=InRibbonQuickAccessToolbarFooterTemplate}" TargetType="{x:Type dxb:BarItemLinkSeparatorControl}">
+    <dx:DXBorder Background="$Delimiter" Margin="2,2,3,2" Width="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;341;10" />
+  </ControlTemplate>
+  
+  <ControlTemplate x:Key="{dxbt:BarItemSeparatorThemeKey ResourceKey=InMenuTemplate}" TargetType="{x:Type dxb:BarItemLinkSeparatorControl}">
+    <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;350;10">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+      <dx:DXBorder Width="{Binding Path=InMenuContentOffset, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;355;14" />
+      <dx:DXBorder Background="$Editor.Delimiter" Grid.Column="1" Height="1" Margin="1,0,1,1" VerticalAlignment="Center" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;356;14" />
+    </Grid>
+  </ControlTemplate>
+  
+  <ControlTemplate x:Key="{dxbt:BarStaticItemThemeKey ResourceKey=BorderTemplate}">
+    <Grid SnapsToDevicePixels="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;368;10">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+      <dxi:DXTriggerManager.TriggersInfo>
+        <dxi:DXTriggerInfoCollection>
+          <dxi:DXTriggerInfo Binding="{Binding Path=Link.Item.ShowBorder, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=dxb:BarItemLinkControl}}" VisualState="HideBorder" VisualStateNormal="ShowBorder" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;375;22">
+            <dxi:DXTriggerInfo.TriggerValue>
+              <sys:Boolean>False</sys:Boolean>
+            </dxi:DXTriggerInfo.TriggerValue>
+          </dxi:DXTriggerInfo>
+        </dxi:DXTriggerInfoCollection>
+      </dxi:DXTriggerManager.TriggersInfo>
+      <ContentPresenter Content="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}" Grid.ColumnSpan="1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;384;14" />
+      <dx:DXBorder x:Name="Separator" Background="$Delimiter" Grid.Column="1" Margin="0,2,0,3" Opacity="0" Width="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;385;14" />
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="BorderVisibility">
+          <VisualState x:Name="ShowBorder">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="Separator" Storyboard.TargetProperty="Opacity" To="0" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="HideBorder" />
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+    </Grid>
+  </ControlTemplate>
+  
+  <ControlTemplate x:Key="{dxbt:BarItemTouchSplitterThemeKey ResourceKey=InMenuTemplate}" TargetType="{x:Type Control}">
+    <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;411;10">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+      <dx:DXBorder Width="{Binding Path=InMenuContentOffset, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;416;14" />
+      <dx:DXBorder Background="$Delimiter" Grid.Column="1" Height="1" Margin="7,0,2,0" VerticalAlignment="Center" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;417;14" />
+    </Grid>
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxbt:BarItemTouchSplitterThemeKey ResourceKey=Template}" TargetType="{x:Type Control}">
+    <dx:DXBorder Background="$Delimiter" Margin="1,5,1,5" Width="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;427;10" />
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxbt:BarItemTouchSplitterThemeKey ResourceKey=InRibbonStatusBarRightPartTemplate}" TargetType="{x:Type Control}">
+    <dx:DXBorder Background="$Delimiter" Margin="1,2,1,2" Width="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;434;10" />
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxbt:BarItemTouchSplitterThemeKey ResourceKey=InRibbonStatusBarLeftPartTemplate}" TargetType="{x:Type Control}">
+    <dx:DXBorder Background="$Delimiter" Margin="1,2,1,2" Width="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;441;10" />
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxbt:BarItemTouchSplitterThemeKey ResourceKey=InStatusBarTemplate}" TargetType="{x:Type Control}">
+    <dx:DXBorder Background="$Backstage.Delimiter" Margin="1,2,1,2" Width="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;448;10" />
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxbt:BarItemTouchSplitterThemeKey ResourceKey=InRibbonPageGroupTemplate}" TargetType="{x:Type Control}">
+    <dx:DXBorder Background="$Delimiter" Margin="2,5,2,-5" Width="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;455;10" />
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxbt:BarItemTouchSplitterThemeKey ResourceKey=InRibbonPageHeaderTemplate}" TargetType="{x:Type Control}">
+    <dx:DXBorder Background="$Delimiter" Margin="2,5,2,5" Width="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;462;10" />
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxbt:BarItemTouchSplitterThemeKey ResourceKey=InRibbonQuickAccessToolbarCommonTemplate}" TargetType="{x:Type Control}">
+    <dx:DXBorder Background="$Delimiter" Margin="2,5,2,5" Width="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;469;10" />
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxbt:BarItemTouchSplitterThemeKey ResourceKey=InRibbonQuickAccessToolbarTemplate}" TargetType="{x:Type Control}">
+    <ContentControl dxcore_unique_xmlns:FocusHelper2.Focusable="False" Template="{StaticResource {dxbt:BarItemTouchSplitterThemeKey ResourceKey=InRibbonQuickAccessToolbarCommonTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;476;10" />
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxbt:BarItemTouchSplitterThemeKey ResourceKey=InRibbonQuickAccessToolbarFooterTemplate}" TargetType="{x:Type Control}">
+    <dx:DXBorder Background="$Delimiter" Margin="2,5,2,5" Width="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;480;10" />
+  </ControlTemplate>
+  
+  <ControlTemplate x:Key="{dxbt:BarItemBorderThemeKey ResourceKey=Normal}" TargetType="{x:Type dxb:ItemBorderControl}">
+    <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;489;10">
+      <dx:DXBorder x:Name="IsDefault" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;490;14" />
+      <dx:DXBorder x:Name="IsCustomization" BorderBrush="$Focused" BorderThickness="1" Opacity="0" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;495;14" />
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="HideBorderSide">
+          <VisualState x:Name="None" />
+          <VisualState x:Name="Top">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0,0,0,1" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Right">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0,0,1,0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Left">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Bottom">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="All" />
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="ActiveState">
+          <VisualState x:Name="Active">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Opacity" To="1" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Inactive">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Opacity" To="0.62" />
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="State">
+          <VisualState x:Name="Normal">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="Transparent" cs:id="ColorAnimation_0000" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="Transparent" cs:id="ColorAnimation_0007" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Hover">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$HoverBackground" cs:id="ColorAnimation_0001" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$HoverBorder" cs:id="ColorAnimation_0008" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$SelectionBackground" cs:id="ColorAnimation_0002" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$SelectionBorder" cs:id="ColorAnimation_0009" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Disabled" />
+          <VisualState x:Name="Checked">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$SelectionBackground" cs:id="ColorAnimation_0003" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$SelectionBorder" cs:id="ColorAnimation_0010" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="HoverChecked">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$SelectionBackground" cs:id="ColorAnimation_0004" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$SelectionBorder" cs:id="ColorAnimation_0011" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Indeterminate">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$HoverBackground" cs:id="ColorAnimation_0005" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$HoverBorder" cs:id="ColorAnimation_0012" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Focused">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$HoverBackground" cs:id="ColorAnimation_0006" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Focused" cs:id="ColorAnimation_0013" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Customization">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsCustomization" Storyboard.TargetProperty="Opacity" To="1" />
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+    </Grid>
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxbt:BarItemBorderInStatusBarThemeKey ResourceKey=Normal}" TargetType="{x:Type dxb:ItemBorderControl}">
+    <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;665;10">
+      <dx:DXBorder x:Name="IsDefault" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;666;14" />
+      <dx:DXBorder x:Name="IsCustomization" BorderBrush="$Focused" BorderThickness="1" Opacity="0" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;671;14" />
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="HideBorderSide">
+          <VisualState x:Name="None" />
+          <VisualState x:Name="Top">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0,0,0,1" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Right">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0,0,1,0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Left">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Bottom">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="All" />
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="ActiveState">
+          <VisualState x:Name="Active">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Opacity" To="1" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Inactive">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Opacity" To="0.62" />
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="State">
+          <VisualState x:Name="Normal">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="Transparent" cs:id="ColorAnimation_0000" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="Transparent" cs:id="ColorAnimation_0007" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Hover">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$HoverBackground" cs:id="ColorAnimation_0001" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$HoverBorder" cs:id="ColorAnimation_0008" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$SelectionBackground" cs:id="ColorAnimation_0002" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$SelectionBorder" cs:id="ColorAnimation_0009" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Disabled" />
+          <VisualState x:Name="Checked">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$SelectionBackground" cs:id="ColorAnimation_0003" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$SelectionBorder" cs:id="ColorAnimation_0010" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="HoverChecked">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$SelectionBackground" cs:id="ColorAnimation_0004" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$SelectionBorder" cs:id="ColorAnimation_0011" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Indeterminate">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$HoverBackground" cs:id="ColorAnimation_0005" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$HoverBorder" cs:id="ColorAnimation_0012" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Focused">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$HoverBackground" cs:id="ColorAnimation_0006" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Focused" cs:id="ColorAnimation_0013" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Customization">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsCustomization" Storyboard.TargetProperty="Opacity" To="1" />
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+    </Grid>
+  </ControlTemplate>
+  
+  <ControlTemplate x:Key="{dxbt:BarItemBorderInMainMenuThemeKey ResourceKey=Normal}" TargetType="{x:Type dxb:ItemBorderControl}">
+    <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;843;10">
+      <dx:DXBorder x:Name="IsDefault" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;844;14" />
+      <dx:DXBorder x:Name="IsCustomization" BorderBrush="$Focused" BorderThickness="1" Opacity="0" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;849;14" />
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="HideBorderSide">
+          <VisualState x:Name="None" />
+          <VisualState x:Name="Top">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0,0,0,1" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Right">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0,0,1,0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Left">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Bottom">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="All" />
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="ActiveState">
+          <VisualState x:Name="Active">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Opacity" To="1" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Inactive">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Opacity" To="0.62" />
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="State">
+          <VisualState x:Name="Normal">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="Transparent" cs:id="ColorAnimation_0000" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="Transparent" cs:id="ColorAnimation_0007" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Hover">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$HoverBackground" cs:id="ColorAnimation_0001" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$HoverBorder" cs:id="ColorAnimation_0008" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$SelectionBackground" cs:id="ColorAnimation_0002" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$SelectionBorder" cs:id="ColorAnimation_0009" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Disabled" />
+          <VisualState x:Name="Checked">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$SelectionBackground" cs:id="ColorAnimation_0003" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$SelectionBorder" cs:id="ColorAnimation_0010" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="HoverChecked">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$SelectionBackground" cs:id="ColorAnimation_0004" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$SelectionBorder" cs:id="ColorAnimation_0011" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Indeterminate">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$HoverBackground" cs:id="ColorAnimation_0005" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$HoverBorder" cs:id="ColorAnimation_0012" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Focused">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$HoverBackground" cs:id="ColorAnimation_0006" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Focused" cs:id="ColorAnimation_0013" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Customization">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsCustomization" Storyboard.TargetProperty="Opacity" To="1" />
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+    </Grid>
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxbt:BarItemBorderInMenuThemeKey ResourceKey=Normal}" TargetType="{x:Type dxb:ItemBorderControl}">
+    <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;1019;10">
+      <dx:DXBorder x:Name="IsDefault" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;1020;14" />
+      <dx:DXBorder x:Name="IsCustomization" BorderBrush="$Focused" BorderThickness="0" Opacity="0" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;1025;14" />
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="HideBorderSide">
+          <VisualState x:Name="None" />
+          <VisualState x:Name="Top">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0,0,0,1" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Right">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0,0,1,0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Left">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Bottom">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="All" />
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="ActiveState">
+          <VisualState x:Name="Active">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Opacity" To="1" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Inactive">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Opacity" To="0.62" />
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="State">
+          <VisualState x:Name="Normal">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="Transparent" cs:id="ColorAnimation_0000" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="Transparent" cs:id="ColorAnimation_0007" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Hover">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$HoverBackground" cs:id="ColorAnimation_0001" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$HoverBorder" cs:id="ColorAnimation_0008" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$SelectionBackground" cs:id="ColorAnimation_0002" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$SelectionBorder" cs:id="ColorAnimation_0009" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Disabled" />
+          <VisualState x:Name="Checked">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$SelectionBackground" cs:id="ColorAnimation_0003" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$SelectionBackground" cs:id="ColorAnimation_0010" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="HoverChecked">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$HoverBackground" cs:id="ColorAnimation_0004" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$HoverBorder" cs:id="ColorAnimation_0011" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Indeterminate">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="Transparent" cs:id="ColorAnimation_0005" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="Transparent" cs:id="ColorAnimation_0012" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Focused">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$HoverBackground" cs:id="ColorAnimation_0006" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Focused" cs:id="ColorAnimation_0013" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Customization">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsCustomization" Storyboard.TargetProperty="Opacity" To="1" />
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+    </Grid>
+  </ControlTemplate>
+  
+  <ControlTemplate x:Key="{dxbt:BarItemBorderInRibbonPageGroupThemeKey ResourceKey=Normal}" TargetType="{x:Type dxb:ItemBorderControl}">
+    <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;1197;10">
+      <dx:DXBorder x:Name="IsDefault" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;1198;14" />
+      <dx:DXBorder x:Name="IsCustomization" BorderBrush="$Focused" BorderThickness="1" Opacity="0" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;1203;14" />
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="HideBorderSide">
+          <VisualState x:Name="None" />
+          <VisualState x:Name="Top">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Right">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Left">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="1,0,0,0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Bottom">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="All" />
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="ActiveState">
+          <VisualState x:Name="Active">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Opacity" To="1" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Inactive">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Opacity" To="0.62" />
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="State">
+          <VisualState x:Name="Normal">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="Transparent" cs:id="ColorAnimation_0000" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="Transparent" cs:id="ColorAnimation_0007" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Hover">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$HoverBackground" cs:id="ColorAnimation_0001" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$HoverBorder" cs:id="ColorAnimation_0008" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$SelectionBackground" cs:id="ColorAnimation_0002" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$SelectionBorder" cs:id="ColorAnimation_0009" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Disabled" />
+          <VisualState x:Name="Checked">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$SelectionBackground" cs:id="ColorAnimation_0003" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$SelectionBorder" cs:id="ColorAnimation_0010" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="HoverChecked">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$SelectionBackground" cs:id="ColorAnimation_0004" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$SelectionBorder" cs:id="ColorAnimation_0011" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Indeterminate">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$HoverBackground" cs:id="ColorAnimation_0005" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$HoverBorder" cs:id="ColorAnimation_0012" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Focused">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$HoverBackground" cs:id="ColorAnimation_0006" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Focused" cs:id="ColorAnimation_0013" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Customization">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsCustomization" Storyboard.TargetProperty="Opacity" To="1" />
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+    </Grid>
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxbt:BarItemBorderInButtonGroupThemeKey ResourceKey=Normal}" TargetType="{x:Type dxb:ItemBorderControl}">
+    <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;1373;10">
+      <dx:DXBorder x:Name="IsDefault" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;1374;14" />
+      <dx:DXBorder x:Name="IsCustomization" BorderBrush="$Focused" BorderThickness="1" Opacity="0" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;1379;14" />
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="HideBorderSide">
+          <VisualState x:Name="None" />
+          <VisualState x:Name="Top">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0,0,0,1" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Right">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Left">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="1,0,0,0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Bottom">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="All" />
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="ActiveState">
+          <VisualState x:Name="Active">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Opacity" To="1" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Inactive">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Opacity" To="0.62" />
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="State">
+          <VisualState x:Name="Normal">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="Transparent" cs:id="ColorAnimation_0000" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="Transparent" cs:id="ColorAnimation_0007" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Hover">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$HoverBackground" cs:id="ColorAnimation_0001" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$HoverBorder" cs:id="ColorAnimation_0008" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$SelectionBackground" cs:id="ColorAnimation_0002" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$SelectionBorder" cs:id="ColorAnimation_0009" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Disabled" />
+          <VisualState x:Name="Checked">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$SelectionBackground" cs:id="ColorAnimation_0003" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$SelectionBorder" cs:id="ColorAnimation_0010" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="HoverChecked">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$SelectionBackground" cs:id="ColorAnimation_0004" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$SelectionBorder" cs:id="ColorAnimation_0011" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Indeterminate">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$HoverBackground" cs:id="ColorAnimation_0005" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$HoverBorder" cs:id="ColorAnimation_0012" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Focused">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$HoverBackground" cs:id="ColorAnimation_0006" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Focused" cs:id="ColorAnimation_0013" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Customization">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsCustomization" Storyboard.TargetProperty="Opacity" To="1" />
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+    </Grid>
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxbt:BarItemBorderInQATThemeKey ResourceKey=Normal}" TargetType="{x:Type dxb:ItemBorderControl}">
+    <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;1549;10">
+      <dx:DXBorder x:Name="IsDefault" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;1550;14" />
+      <dx:DXBorder x:Name="IsCustomization" BorderBrush="$Backstage.Focused" BorderThickness="1" Opacity="0" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;1555;14" />
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="HideBorderSide">
+          <VisualState x:Name="None" />
+          <VisualState x:Name="Top">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0,0,0,1" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Right">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0,0,1,0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Left">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Bottom">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="All" />
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="ActiveState">
+          <VisualState x:Name="Active">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Opacity" To="1" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Inactive">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Opacity" To="0.62" />
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="State">
+          <VisualState x:Name="Normal">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="Transparent" cs:id="ColorAnimation_0000" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="Transparent" cs:id="ColorAnimation_0007" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Hover">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Backstage.HoverBackground" cs:id="ColorAnimation_0001" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Backstage.HoverBackground" cs:id="ColorAnimation_0008" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Backstage.SelectionBackground" cs:id="ColorAnimation_0002" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Backstage.SelectionBackground" cs:id="ColorAnimation_0009" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Disabled" />
+          <VisualState x:Name="Checked">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Backstage.SelectionBackground" cs:id="ColorAnimation_0003" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Backstage.SelectionBackground" cs:id="ColorAnimation_0010" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="HoverChecked">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Backstage.SelectionBackground" cs:id="ColorAnimation_0004" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Backstage.SelectionBackground" cs:id="ColorAnimation_0011" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Indeterminate">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Backstage.HoverBackground" cs:id="ColorAnimation_0005" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Backstage.HoverBackground" cs:id="ColorAnimation_0012" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Focused">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Backstage.HoverBackground" cs:id="ColorAnimation_0006" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Backstage.HoverBackground" cs:id="ColorAnimation_0013" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Customization">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsCustomization" Storyboard.TargetProperty="Opacity" To="1" />
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+    </Grid>
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxbt:BarItemBorderInQATFooterThemeKey ResourceKey=Normal}" TargetType="{x:Type dxb:ItemBorderControl}">
+    <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;1725;10">
+      <dx:DXBorder x:Name="IsDefault" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;1726;14" />
+      <dx:DXBorder x:Name="IsCustomization" BorderBrush="$Focused" BorderThickness="1" Opacity="0" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;1731;14" />
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="HideBorderSide">
+          <VisualState x:Name="None" />
+          <VisualState x:Name="Top">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0,0,0,1" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Right">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0,0,1,0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Left">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Bottom">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="All" />
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="ActiveState">
+          <VisualState x:Name="Active">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Opacity" To="1" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Inactive">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Opacity" To="0.62" />
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="State">
+          <VisualState x:Name="Normal">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="Transparent" cs:id="ColorAnimation_0000" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="Transparent" cs:id="ColorAnimation_0007" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Hover">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$HoverBackground" cs:id="ColorAnimation_0001" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$HoverBorder" cs:id="ColorAnimation_0008" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$SelectionBackground" cs:id="ColorAnimation_0002" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$SelectionBorder" cs:id="ColorAnimation_0009" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Disabled" />
+          <VisualState x:Name="Checked">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$SelectionBackground" cs:id="ColorAnimation_0003" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$SelectionBorder" cs:id="ColorAnimation_0010" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="HoverChecked">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$SelectionBackground" cs:id="ColorAnimation_0004" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$SelectionBorder" cs:id="ColorAnimation_0011" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Indeterminate">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$HoverBackground" cs:id="ColorAnimation_0005" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$HoverBorder" cs:id="ColorAnimation_0012" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Focused">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$HoverBackground" cs:id="ColorAnimation_0006" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Focused" cs:id="ColorAnimation_0013" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Customization">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsCustomization" Storyboard.TargetProperty="Opacity" To="1" />
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+    </Grid>
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxbt:BarItemBorderInRibbonPageHeaderThemeKey ResourceKey=Normal}" TargetType="{x:Type dxb:ItemBorderControl}">
+    <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;1901;10">
+      <dx:DXBorder x:Name="IsDefault" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;1902;14" />
+      <dx:DXBorder x:Name="IsCustomization" BorderBrush="$Backstage.Focused" BorderThickness="1" Opacity="0" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;1907;14" />
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="HideBorderSide">
+          <VisualState x:Name="None" />
+          <VisualState x:Name="Top">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0,0,0,1" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Right">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0,0,1,0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Left">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Bottom">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="All" />
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="ActiveState">
+          <VisualState x:Name="Active">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Opacity" To="1" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Inactive">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Opacity" To="0.62" />
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="State">
+          <VisualState x:Name="Normal">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="Transparent" cs:id="ColorAnimation_0000" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="Transparent" cs:id="ColorAnimation_0007" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Hover">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Backstage.HoverBackground" cs:id="ColorAnimation_0001" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Backstage.HoverBackground" cs:id="ColorAnimation_0008" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Backstage.SelectionBackground" cs:id="ColorAnimation_0002" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Backstage.SelectionBackground" cs:id="ColorAnimation_0009" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Disabled" />
+          <VisualState x:Name="Checked">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Backstage.SelectionBackground" cs:id="ColorAnimation_0003" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Backstage.SelectionBackground" cs:id="ColorAnimation_0010" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="HoverChecked">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Backstage.SelectionBackground" cs:id="ColorAnimation_0004" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Backstage.SelectionBackground" cs:id="ColorAnimation_0011" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Indeterminate">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Backstage.HoverBackground" cs:id="ColorAnimation_0005" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Backstage.HoverBackground" cs:id="ColorAnimation_0012" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Focused">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Backstage.HoverBackground" cs:id="ColorAnimation_0006" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Backstage.HoverBackground" cs:id="ColorAnimation_0013" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Customization">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsCustomization" Storyboard.TargetProperty="Opacity" To="1" />
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+    </Grid>
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxbt:BarItemBorderInRibbonStatusBarLeftThemeKey ResourceKey=Normal}" TargetType="{x:Type dxb:ItemBorderControl}">
+    <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;2077;10">
+      <dx:DXBorder x:Name="IsDefault" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;2078;14" />
+      <dx:DXBorder x:Name="IsCustomization" BorderBrush="$Backstage.Focused" BorderThickness="1" Opacity="0" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;2083;14" />
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="HideBorderSide">
+          <VisualState x:Name="None" />
+          <VisualState x:Name="Top">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0,0,0,1" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Right">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0,0,1,0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Left">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Bottom">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="All" />
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="ActiveState">
+          <VisualState x:Name="Active">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Opacity" To="1" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Inactive">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Opacity" To="0.62" />
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="State">
+          <VisualState x:Name="Normal">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="Transparent" cs:id="ColorAnimation_0000" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="Transparent" cs:id="ColorAnimation_0007" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Hover">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Backstage.HoverBackground" cs:id="ColorAnimation_0001" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Backstage.HoverBackground" cs:id="ColorAnimation_0008" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Backstage.SelectionBackground" cs:id="ColorAnimation_0002" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Backstage.SelectionBackground" cs:id="ColorAnimation_0009" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Disabled" />
+          <VisualState x:Name="Checked">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Backstage.SelectionBackground" cs:id="ColorAnimation_0003" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Backstage.SelectionBackground" cs:id="ColorAnimation_0010" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="HoverChecked">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Backstage.SelectionBackground" cs:id="ColorAnimation_0004" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Backstage.SelectionBackground" cs:id="ColorAnimation_0011" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Indeterminate">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Backstage.HoverBackground" cs:id="ColorAnimation_0005" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Backstage.HoverBackground" cs:id="ColorAnimation_0012" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Focused">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Backstage.HoverBackground" cs:id="ColorAnimation_0006" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Focused" cs:id="ColorAnimation_0013" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Customization">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsCustomization" Storyboard.TargetProperty="Opacity" To="1" />
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+    </Grid>
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxbt:BarItemBorderInRibbonStatusBarRightThemeKey ResourceKey=Normal}" TargetType="{x:Type dxb:ItemBorderControl}">
+    <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;2253;10">
+      <dx:DXBorder x:Name="IsDefault" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;2254;14" />
+      <dx:DXBorder x:Name="IsCustomization" BorderBrush="$Backstage.Focused" BorderThickness="1" Opacity="0" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019Black\BarItems\BarItems.xaml;2259;14" />
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="HideBorderSide">
+          <VisualState x:Name="None" />
+          <VisualState x:Name="Top">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0,0,0,1" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Right">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0,0,1,0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Left">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Bottom">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Thickness="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Margin" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="All" />
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="ActiveState">
+          <VisualState x:Name="Active">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Opacity" To="1" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Inactive">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Opacity" To="0.62" />
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="State">
+          <VisualState x:Name="Normal">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="Transparent" cs:id="ColorAnimation_0000" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="Transparent" cs:id="ColorAnimation_0007" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Hover">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Backstage.HoverBackground" cs:id="ColorAnimation_0001" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Backstage.HoverBackground" cs:id="ColorAnimation_0008" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Backstage.SelectionBackground" cs:id="ColorAnimation_0002" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Backstage.SelectionBackground" cs:id="ColorAnimation_0009" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Disabled" />
+          <VisualState x:Name="Checked">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Backstage.SelectionBackground" cs:id="ColorAnimation_0003" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Backstage.SelectionBackground" cs:id="ColorAnimation_0010" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="HoverChecked">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Backstage.SelectionBackground" cs:id="ColorAnimation_0004" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Backstage.SelectionBackground" cs:id="ColorAnimation_0011" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Indeterminate">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Backstage.HoverBackground" cs:id="ColorAnimation_0005" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Backstage.HoverBackground" cs:id="ColorAnimation_0012" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Focused">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Backstage.HoverBackground" cs:id="ColorAnimation_0006" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="$Focused" cs:id="ColorAnimation_0013" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Customization">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsCustomization" Storyboard.TargetProperty="Opacity" To="1" />
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+    </Grid>
+  </ControlTemplate>
+</ResourceDictionary>

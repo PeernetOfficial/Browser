@@ -1,0 +1,49 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxsch="http://schemas.devexpress.com/winfx/2008/xaml/scheduler" xmlns:dxschd="http://schemas.devexpress.com/winfx/2008/xaml/scheduler/internal" xmlns:dxschdui="http://schemas.devexpress.com/winfx/2008/xaml/scheduler" xmlns:dxscht="http://schemas.devexpress.com/winfx/2008/xaml/scheduler/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+  <DataTemplate x:Key="{dxscht:TimelineViewThemeKey ResourceKey=TimelineHeader}">
+    <dxcore_unique_xmlns:XPFContentControl Style="{DynamicResource {dxscht:SchedulerViewThemeKey ResourceKey=HorizontalHeadersContainerStyle}}" VerticalAlignment="Top" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\TimelineView\Header.xaml;15;10">
+      <dxschd:SchedulerItemsControl x:Name="ResourcesItemsControl" HorizontalContentAlignment="Stretch" ItemsSource="{Binding HeaderLevels}" ItemTemplateSelector="{DynamicResource {dxscht:TimelineViewThemeKey ResourceKey=TimelineColumnHeaderTemplateSelector}}" SnapsToDevicePixels="True" VerticalContentAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\TimelineView\Header.xaml;16;14">
+        <ItemsControl.ItemsPanel>
+          <ItemsPanelTemplate>
+            <StackPanel Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\TimelineView\Header.xaml;24;26" />
+          </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+      </dxschd:SchedulerItemsControl>
+    </dxcore_unique_xmlns:XPFContentControl>
+  </DataTemplate>
+  <DataTemplate x:Key="{dxscht:TimelineViewThemeKey ResourceKey=TimelineHeaderGroupByDate}">
+    <dxcore_unique_xmlns:XPFContentControl Grid.Row="1" Style="{DynamicResource {dxscht:SchedulerViewThemeKey ResourceKey=HorizontalHeadersContainerStyle}}" VerticalAlignment="Top" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\TimelineView\Header.xaml;32;10">
+      <dxschd:SchedulerItemsControl x:Name="ResourcesItemsControl" HorizontalContentAlignment="Stretch" ItemsSource="{Binding HeaderLevels}" ItemTemplateSelector="{DynamicResource {dxscht:TimelineViewThemeKey ResourceKey=TimelineColumnHeaderTemplateSelectorGroupByDate}}" SnapsToDevicePixels="True" VerticalContentAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\TimelineView\Header.xaml;35;14">
+        <ItemsControl.ItemsPanel>
+          <ItemsPanelTemplate>
+            <StackPanel Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\TimelineView\Header.xaml;43;26" />
+          </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+      </dxschd:SchedulerItemsControl>
+    </dxcore_unique_xmlns:XPFContentControl>
+  </DataTemplate>
+  <DataTemplate x:Key="{dxscht:TimelineViewThemeKey ResourceKey=TimelineHeaderWithScroll}">
+    <dxcore_unique_xmlns:XPFContentControl Grid.Row="1" Style="{DynamicResource {dxscht:SchedulerViewThemeKey ResourceKey=HorizontalHeadersContainerStyle}}" VerticalAlignment="Top" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\TimelineView\Header.xaml;51;10">
+      <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\TimelineView\Header.xaml;54;14">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="Auto">
+            
+            <ColumnDefinition.SharedSizeGroup>
+              <sys:String>VerticalScrollBarSizeGroup</sys:String>
+            </ColumnDefinition.SharedSizeGroup>
+            
+          </ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <dxcore_unique_xmlns:XPFContentControl Content="{Binding}" ContentTemplate="{DynamicResource {dxscht:TimelineViewThemeKey ResourceKey=TimelineHeader}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\TimelineView\Header.xaml;65;18" />
+        <Grid Grid.Column="1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\TimelineView\Header.xaml;66;18">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+          <dxcore_unique_xmlns:XPFContentControl ContentTemplate="{Binding View.DateHeaderTemplate}" Grid.Row="0" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\TimelineView\Header.xaml;71;22" />
+          <dxcore_unique_xmlns:XPFContentControl ContentTemplate="{Binding View.DateHeaderTemplate}" Grid.Row="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\TimelineView\Header.xaml;75;22" />
+        </Grid>
+      </Grid>
+    </dxcore_unique_xmlns:XPFContentControl>
+  </DataTemplate>
+</ResourceDictionary>

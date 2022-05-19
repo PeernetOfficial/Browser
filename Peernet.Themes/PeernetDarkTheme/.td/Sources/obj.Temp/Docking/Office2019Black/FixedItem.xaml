@@ -1,0 +1,112 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking" xmlns:dxdop="http://schemas.devexpress.com/winfx/2008/xaml/docking/platform" xmlns:dxdot="http://schemas.devexpress.com/winfx/2008/xaml/docking/themekeys" xmlns:dxdove="http://schemas.devexpress.com/winfx/2008/xaml/docking/visualelements" xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+  <ResourceDictionary.MergedDictionaries>
+    <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v21.2;component/Docking/Office2019Black/UICore.xaml" />
+  </ResourceDictionary.MergedDictionaries>
+  
+  <ControlTemplate x:Key="{dxdot:SplitterControlElementsThemeKey ResourceKey=Template}">
+    <dx:DXBorder x:Name="PART_Border" Background="Transparent" dxdove:DockPane.HitTestType="Bounds" Margin="{Binding Path=(dxdo:DockLayoutManager.LayoutItem).ActualMargin, RelativeSource={RelativeSource TemplatedParent}}" Padding="{Binding Path=(dxdo:DockLayoutManager.LayoutItem).ActualPadding, RelativeSource={RelativeSource TemplatedParent}}" Visibility="{Binding Path=(dxdo:DockLayoutManager.LayoutItem).Visibility, RelativeSource={RelativeSource TemplatedParent}}" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\FixedItem.xaml;22;10">
+      <dxdove:DropBoundsControl x:Name="Drop" Margin="1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\FixedItem.xaml;29;14">
+        <dxcore_unique_xmlns:Container Background="{TemplateBinding Background}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\FixedItem.xaml;30;18">
+          <dxcore_unique_xmlns:Container x:Name="PART_HorizontalRootElement" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\FixedItem.xaml;31;22">
+            <Path x:Name="PathHorizontal" Fill="$ForegroundDark" Style="{StaticResource UIShape.SizeGrip.Horizontal}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\FixedItem.xaml;32;26" />
+          </dxcore_unique_xmlns:Container>
+          <dxcore_unique_xmlns:Container x:Name="PART_VerticalRootElement" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\FixedItem.xaml;37;22">
+            <Path x:Name="PathVertical" Fill="$ForegroundDark" Style="{StaticResource UIShape.SizeGrip.Vertical}" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\FixedItem.xaml;38;26" />
+          </dxcore_unique_xmlns:Container>
+        </dxcore_unique_xmlns:Container>
+      </dxdove:DropBoundsControl>
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal" />
+          <VisualState x:Name="MouseOver">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="Background">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                  <DiscreteObjectKeyFrame.Value>
+                    <SolidColorBrush Color="Transparent" cs:id="SolidColorBrush_0001" />
+                  </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+              </ObjectAnimationUsingKeyFrames>
+              <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PathHorizontal" Storyboard.TargetProperty="Fill">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                  <DiscreteObjectKeyFrame.Value>
+                    <SolidColorBrush Color="$HoverForeground" cs:id="SolidColorBrush_0000" />
+                  </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+              </ObjectAnimationUsingKeyFrames>
+              <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PathVertical" Storyboard.TargetProperty="Fill">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                  <DiscreteObjectKeyFrame.Value>
+                    <SolidColorBrush Color="$HoverForeground" cs:id="SolidColorBrush_0003" />
+                  </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+              </ObjectAnimationUsingKeyFrames>
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Border" Storyboard.TargetProperty="Background">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                  <DiscreteObjectKeyFrame.Value>
+                    <SolidColorBrush Color="Transparent" cs:id="SolidColorBrush_0004" />
+                  </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+              </ObjectAnimationUsingKeyFrames>
+              <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PathHorizontal" Storyboard.TargetProperty="Fill">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                  <DiscreteObjectKeyFrame.Value>
+                    <SolidColorBrush Color="$SelectionForeground" cs:id="SolidColorBrush_0002" />
+                  </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+              </ObjectAnimationUsingKeyFrames>
+              <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PathVertical" Storyboard.TargetProperty="Fill">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                  <DiscreteObjectKeyFrame.Value>
+                    <SolidColorBrush Color="$SelectionForeground" cs:id="SolidColorBrush_0006" />
+                  </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+              </ObjectAnimationUsingKeyFrames>
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+    </dx:DXBorder>
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxdot:EmptySpaceControlElementsThemeKey ResourceKey=Template}">
+    <dx:DXBorder x:Name="PART_Border" Background="Transparent" dxdove:DockPane.HitTestType="Bounds" Margin="{Binding Path=(dxdo:DockLayoutManager.LayoutItem).ActualMargin, RelativeSource={RelativeSource TemplatedParent}}" Padding="{Binding Path=(dxdo:DockLayoutManager.LayoutItem).ActualPadding, RelativeSource={RelativeSource TemplatedParent}}" Visibility="{Binding Path=(dxdo:DockLayoutManager.LayoutItem).Visibility, RelativeSource={RelativeSource TemplatedParent}}" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\FixedItem.xaml;104;10">
+      <dxdove:DropBoundsControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\FixedItem.xaml;111;14">
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\FixedItem.xaml;112;18" />
+      </dxdove:DropBoundsControl>
+    </dx:DXBorder>
+  </ControlTemplate>
+  <DataTemplate x:Key="{dxdot:LabelControlElementsThemeKey ResourceKey=Caption}">
+    <dx:DXBorder Background="Transparent" DataContext="{Binding LayoutItem}" dxdove:DockPane.HitTestType="Header" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\FixedItem.xaml;118;10">
+      <dxdove:TemplatedCaptionControl LayoutItem="{Binding}" />
+    </dx:DXBorder>
+  </DataTemplate>
+  <DataTemplate x:Key="{dxdot:LabelControlElementsThemeKey ResourceKey=Content}">
+    <dx:DXBorder DataContext="{Binding LayoutItem}" dxdove:DockPane.HitTestType="Content" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\FixedItem.xaml;127;10">
+      <ContentPresenter Content="{Binding Path=Content}" ContentTemplate="{Binding DataContext.LayoutItem.ContentTemplate, RelativeSource={RelativeSource TemplatedParent}}" ContentTemplateSelector="{Binding DataContext.LayoutItem.ContentTemplateSelector, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\FixedItem.xaml;128;14" />
+    </dx:DXBorder>
+  </DataTemplate>
+  <ControlTemplate x:Key="{dxdot:LabelControlElementsThemeKey ResourceKey=Template}" TargetType="dxdove:psvHeaderedContentControl">
+    <dx:DXBorder x:Name="PART_Border" Background="Transparent" dxdove:DockPane.HitTestType="Bounds" Margin="{Binding LayoutItem.ActualMargin, RelativeSource={RelativeSource TemplatedParent}}" Padding="{Binding LayoutItem.ActualPadding, RelativeSource={RelativeSource TemplatedParent}}" Visibility="{Binding LayoutItem.Visibility, RelativeSource={RelativeSource TemplatedParent}}" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\FixedItem.xaml;135;10">
+      <dxdove:DropBoundsControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\FixedItem.xaml;142;14">
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\FixedItem.xaml;143;18">
+          <dxdove:LabelControlCaptionPresenter x:Name="PART_Caption" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" HorizontalAlignment="{Binding LayoutItem.CaptionHorizontalAlignment, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="{Binding LayoutItem.CaptionVerticalAlignment, RelativeSource={RelativeSource TemplatedParent}}" Visibility="{Binding LayoutItem.HasContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityInverseConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\FixedItem.xaml;144;22" />
+          <dxdove:LabelControlContentPresenter x:Name="PART_Content" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" HorizontalAlignment="{Binding LayoutItem.ContentHorizontalAlignment, RelativeSource={RelativeSource TemplatedParent}}" Margin="{Binding Path=(dxdo:DockLayoutManager.LayoutItem).ActualPadding, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="{Binding LayoutItem.ContentVerticalAlignment, RelativeSource={RelativeSource TemplatedParent}}" Visibility="{Binding LayoutItem.HasContent, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\FixedItem.xaml;150;22" />
+        </Grid>
+      </dxdove:DropBoundsControl>
+    </dx:DXBorder>
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxdot:SeparatorControlElementsThemeKey ResourceKey=Template}">
+    <dx:DXBorder x:Name="PART_Border" Background="Transparent" dxdove:DockPane.HitTestType="Bounds" Margin="{Binding Path=(dxdo:DockLayoutManager.LayoutItem).ActualMargin, RelativeSource={RelativeSource TemplatedParent}}" Padding="{Binding Path=(dxdo:DockLayoutManager.LayoutItem).ActualPadding, RelativeSource={RelativeSource TemplatedParent}}" Visibility="{Binding Path=(dxdo:DockLayoutManager.LayoutItem).Visibility, RelativeSource={RelativeSource TemplatedParent}}" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\FixedItem.xaml;163;10">
+      <dxdove:DropBoundsControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\FixedItem.xaml;170;14">
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\FixedItem.xaml;171;18">
+          <dx:DXBorder x:Name="PART_VerticalRootElement" Background="$Delimiter" Margin="4" Width="1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\FixedItem.xaml;172;22" />
+          <dx:DXBorder x:Name="PART_HorizontalRootElement" Background="$Delimiter" Height="1" Margin="4" cs:id="Border_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\FixedItem.xaml;177;22" />
+        </Grid>
+      </dxdove:DropBoundsControl>
+    </dx:DXBorder>
+  </ControlTemplate>
+</ResourceDictionary>

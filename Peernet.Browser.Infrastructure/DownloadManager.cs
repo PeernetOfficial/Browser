@@ -63,7 +63,7 @@ namespace Peernet.Browser.Infrastructure
             var filePath = Path.Combine(settingsManager.DownloadPath, UtilityHelper.StripInvalidWindowsCharactersFromFileName(name));
             if (File.Exists(filePath))
             {
-                Process.Start("explorer.exe", "/select, " + filePath);
+                Process.Start("explorer.exe", "/select, \"" + filePath + "\"");
             }
         }
 

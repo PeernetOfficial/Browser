@@ -7,7 +7,7 @@
     
 
     <ControlTemplate x:Key="{dxwuit:AppBarElementsThemeKey ResourceKey=AppBarSeparatorTemplate}" TargetType="dxwui:AppBarSeparator">
-        <dxcore_unique_xmlns:DXBorder x:Name="Delimiter" Background="#FFE1DFDD" EnableDPICorrection="False" Margin="30,12,30,12" Width="1" cs:id="Border_0000" x:Uid="@Background=Delimiter">
+        <dxcore_unique_xmlns:DXBorder x:Name="Delimiter" Background="#1DDA0964" EnableDPICorrection="False" Margin="30,12,30,12" Width="1" cs:id="Border_0000">
             <dxcore_unique_xmlns:DXBorder.LayoutTransform>
                 <RotateTransform Angle="0" />
             </dxcore_unique_xmlns:DXBorder.LayoutTransform>
@@ -39,14 +39,14 @@
                 <dxwuii:AnimatedPanelBehavior x:Name="animatedPanelBehavior" Width="{TemplateBinding Width}" />
             </dxmvvmi:Interaction.Behaviors>
             <StackPanel Margin="{TemplateBinding Padding}" VerticalAlignment="Top" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019White\AppBar_Base.xaml;71;14">
-                <dxcore_unique_xmlns:DXBorder x:Name="IsDefault" Background="#FF106EBE" CornerRadius="96" EnableDPICorrection="False" Height="{TemplateBinding EllipseDiameter}" Width="{TemplateBinding EllipseDiameter}" cs:id="Border_0000" x:Uid="@Background=Backstage.Button.Background">
+                <dxcore_unique_xmlns:DXBorder x:Name="IsDefault" Background="#1DEB0965" CornerRadius="96" EnableDPICorrection="False" Height="{TemplateBinding EllipseDiameter}" Width="{TemplateBinding EllipseDiameter}" cs:id="Border_0000">
                     <Grid Height="{TemplateBinding GlyphHeight}" Width="{TemplateBinding GlyphWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019White\AppBar_Base.xaml;79;22">
                         <dxwuii:ImagePresenter x:Name="Content" AccentColor="{Binding Path=(dxb:ImageColorizer.Color), RelativeSource={RelativeSource TemplatedParent}}" AllowAccent="{TemplateBinding AllowGlyphTheming}" HorizontalAlignment="Center" Opacity="0.62" Source="{TemplateBinding Glyph}" Stretch="{TemplateBinding GlyphStretch}" VerticalAlignment="Center" Visibility="{Binding IsGlyphVisible, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ResourceKey=BooleanToVisibilityConverter}}" cs:id="ImagePresenter_0000" />
-                        <dxwuii:ShapeContentPresenter AccentColor="{Binding Path=(dxb:ImageColorizer.Color), RelativeSource={RelativeSource TemplatedParent}}" FontFamily="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentFontFamily}" FontSize="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentFontSize}" Foreground="#FFFFFFFF" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding IsGlyphVisible, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ResourceKey=boolToVisibilityInverseConverter}}" cs:id="ShapeContentPresenter_0000" x:Uid="@Foreground=Backstage.Foreground" />
+                        <dxwuii:ShapeContentPresenter AccentColor="{Binding Path=(dxb:ImageColorizer.Color), RelativeSource={RelativeSource TemplatedParent}}" FontFamily="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentFontFamily}" FontSize="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentFontSize}" Foreground="#1DB80966" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding IsGlyphVisible, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ResourceKey=boolToVisibilityInverseConverter}}" cs:id="ShapeContentPresenter_0000" />
                     </Grid>
                 </dxcore_unique_xmlns:DXBorder>
                 <Grid Margin="0,5,0,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019White\AppBar_Base.xaml;100;18">
-                    <dxwuii:ShapeContentPresenter x:Name="PART_Label" AccentColor="#FFFFFFFF" Content="{TemplateBinding Label}" ContentTemplate="{TemplateBinding LabelTemplate}" ContentTemplateSelector="{TemplateBinding LabelTemplateSelector}" FontFamily="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=FontFamily}" FontSize="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=FontSize}" Foreground="#FFFFFFFF" Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsCompact, Converter={StaticResource boolToVisibilityInverseConverter}}" cs:id="ShapeContentPresenter_0002" x:Uid="@AccentColor=Backstage.Foreground;Foreground=Backstage.Foreground" />
+                    <dxwuii:ShapeContentPresenter x:Name="PART_Label" AccentColor="#1D890967" Content="{TemplateBinding Label}" ContentTemplate="{TemplateBinding LabelTemplate}" ContentTemplateSelector="{TemplateBinding LabelTemplateSelector}" FontFamily="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=FontFamily}" FontSize="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=FontSize}" Foreground="#1DA70968" Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsCompact, Converter={StaticResource boolToVisibilityInverseConverter}}" cs:id="ShapeContentPresenter_0002" />
                 </Grid>
             </StackPanel>
             <VisualStateManager.VisualStateGroups>
@@ -54,13 +54,13 @@
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="MouseOver">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FF005A9E" cs:id="ColorAnimation_0000" x:Uid="@To=Backstage.HoverBackground" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D960969" cs:id="ColorAnimation_0000" />
                             <DoubleAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="Opacity" To="1" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Pressed">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FF004578" cs:id="ColorAnimation_0001" x:Uid="@To=Backstage.SelectionBackground" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1DC5096A" cs:id="ColorAnimation_0001" />
                             <DoubleAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="Opacity" To="1" />
                         </Storyboard>
                     </VisualState>
@@ -74,19 +74,19 @@
                     <VisualState x:Name="Unchecked" />
                     <VisualState x:Name="Checked">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FF004578" cs:id="ColorAnimation_0002" x:Uid="@To=Backstage.SelectionBackground" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1DF4096B" cs:id="ColorAnimation_0002" />
                             <DoubleAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="Opacity" To="1" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="CheckedMouseOver">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FF004578" cs:id="ColorAnimation_0003" x:Uid="@To=Backstage.SelectionBackground" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D63096C" cs:id="ColorAnimation_0003" />
                             <DoubleAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="Opacity" To="1" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="CheckedPressed">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FF004578" cs:id="ColorAnimation_0004" x:Uid="@To=Backstage.SelectionBackground" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D52096D" cs:id="ColorAnimation_0004" />
                             <DoubleAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="Opacity" To="1" />
                         </Storyboard>
                     </VisualState>

@@ -1,0 +1,24 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxschd="http://schemas.devexpress.com/winfx/2008/xaml/scheduler/internal" xmlns:dxscht="http://schemas.devexpress.com/winfx/2008/xaml/scheduler/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+  <dxschd:SchedulerDayViewTimeCellAttachedPropertiesCalculator x:Key="{dxscht:SchedulerControlGenericThemeKey ResourceKey=DayViewTimeCellAttachedPropertiesCalculator}" />
+  
+  <DataTemplate x:Key="{dxscht:DayViewThemeKey ResourceKey=DayViewColumnTemplate}">
+    <dxschd:DayViewAppointmentInfoContainer x:Name="VisibleAptInfoContainer" HorizontalAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\DayView\Column.xaml;16;10">
+      <Grid Background="Transparent" dxschd:HitTestManager.IsHitTestContainer="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\DayView\Column.xaml;17;14">
+        <dxschd:SchedulerTimeCellControl x:Name="VerticalDay" dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Stretch" ItemContainerStyle="{Binding View.CellStyle}" ItemsSource="{Binding VerticalCellContainer.Cells}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\DayView\Column.xaml;22;18">
+          <dxschd:SchedulerTimeCellControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <dxschd:PixelSnappedSharedSizePanel x:Name="TimeCellPanel" AttachedPropertiesCalculator="{DynamicResource {dxscht:SchedulerControlGenericThemeKey ResourceKey=DayViewTimeCellAttachedPropertiesCalculator}}" dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), ElementName=VerticalDay}" Orientation="Vertical" SharedSizeGroup="VerticalDayViewCells" />
+            </ItemsPanelTemplate>
+          </dxschd:SchedulerTimeCellControl.ItemsPanel>
+        </dxschd:SchedulerTimeCellControl>
+        <dxschd:SelectionPresenter CellContainer="{Binding VerticalCellContainer}" Resource="{Binding VerticalCellContainer.Resource}" SchedulerTimeCellControl="{Binding ElementName=VerticalDay}" SelectedCells="{Binding VerticalCellContainer.SelectedCells}" SelectionTemplate="{Binding View.SelectionTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\DayView\Column.xaml;37;18" />
+        <dxschd:DynamicVerticalAppointmentsPanel AppointmentControls="{Binding VerticalCellContainer.AppointmentControlCollection}" CellContainer="{Binding VerticalCellContainer}" CellPadding="{Binding View.AppointmentPadding}" Padding="0,1,0,0" SchedulerTimeCellControl="{Binding ElementName=VerticalDay}" SnapToCells="{Binding View.AppointmentDisplayOptions.SnapToCellsMode}" />
+        <dxschd:DynamicVerticalAppointmentsPanel AppointmentControls="{Binding VerticalCellContainer.DraggedAppointmentControlCollection}" AppointmentStyle="{Binding View.DragDropHoverTimeCellsStyle}" CellContainer="{Binding VerticalCellContainer}" CellPadding="0,0,-1,1" IsDraggedMode="True" SchedulerTimeCellControl="{Binding ElementName=VerticalDay}" SnapToCells="{Binding View.AppointmentDisplayOptions.SnapToCellsMode}" />
+        <dxschd:DayViewMoreButtonControl ScrollViewer="{Binding ElementName=PART_DayViewScrollViewer}" View="{Binding Path=View}" Visibility="{Binding MoreButtonsVisibility }" VisibleAppointmentInfos="{Binding ElementName=VisibleAptInfoContainer, Path=AppointmentInfos}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\DayView\Column.xaml;55;18" />
+      </Grid>
+    </dxschd:DayViewAppointmentInfoContainer>
+  </DataTemplate>
+  <ControlTemplate x:Key="{dxscht:SchedulerControlGenericThemeKey ResourceKey=ElementPositionAttachedPropertySetterTemplate}" TargetType="{x:Type ContentControl}">
+    <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Generic\DayView\Column.xaml;64;10" />
+  </ControlTemplate>
+</ResourceDictionary>

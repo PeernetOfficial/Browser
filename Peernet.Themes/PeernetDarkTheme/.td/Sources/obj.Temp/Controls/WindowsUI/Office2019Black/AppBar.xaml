@@ -1,0 +1,152 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:collections="clr-namespace:System.Collections;assembly=mscorlib" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxbt="http://schemas.devexpress.com/winfx/2008/xaml/bars/themekeys" xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxmvvmi="clr-namespace:DevExpress.Mvvm.UI.Interactivity;assembly=DevExpress.Xpf.Core.v21.2" xmlns:dxnav="http://schemas.devexpress.com/winfx/2008/xaml/navigation" xmlns:dxnavi="clr-namespace:DevExpress.Xpf.Navigation.Internal;assembly=DevExpress.Xpf.Controls.v21.2" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui" xmlns:dxwuii="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/internal" xmlns:dxwuit="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+  <ResourceDictionary.MergedDictionaries>
+    <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v21.2;component/Controls/WindowsUI/Office2019Black/AppBar_Base.xaml" />
+  </ResourceDictionary.MergedDictionaries>
+  
+  <ControlTemplate x:Key="{dxwuit:AppBarElementsThemeKey ResourceKey=AppBarButtonTemplate}" TargetType="dxwui:AppBarButton">
+    <Grid x:Name="Root" Background="{TemplateBinding Background}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019Black\AppBar.xaml;27;10">
+      <dxmvvmi:Interaction.Behaviors>
+        <dxwuii:AnimatedPanelBehavior x:Name="animatedPanelBehavior" Width="{TemplateBinding Width}" />
+      </dxmvvmi:Interaction.Behaviors>
+      <StackPanel Margin="{TemplateBinding Padding}" VerticalAlignment="Top" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019Black\AppBar.xaml;34;14">
+        <dxcore_unique_xmlns:DXBorder x:Name="IsDefaultBorder" Background="$Foreground" CornerRadius="96" EnableDPICorrection="False" Height="{TemplateBinding EllipseDiameter}" Padding="2" Width="{TemplateBinding EllipseDiameter}" cs:id="Border_0000">
+          <dxcore_unique_xmlns:DXBorder x:Name="IsDefaultBackground" Background="$Backstage.Window.Background" CornerRadius="96" EnableDPICorrection="False" cs:id="Border_0001">
+            <Grid Height="{TemplateBinding GlyphHeight}" Width="{TemplateBinding GlyphWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019Black\AppBar.xaml;48;26">
+              <dxwuii:ImagePresenter x:Name="ContentImage" AccentColor="{Binding Path=(dxb:ImageColorizer.Color), RelativeSource={RelativeSource TemplatedParent}}" AllowAccent="{TemplateBinding AllowGlyphTheming}" HorizontalAlignment="Center" Source="{TemplateBinding Glyph}" Stretch="{TemplateBinding GlyphStretch}" VerticalAlignment="Center" Visibility="{Binding IsGlyphVisible, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ResourceKey=BooleanToVisibilityConverter}}" />
+              <dxwuii:ShapeContentPresenter x:Name="ContentShape" AccentColor="{Binding Path=(dxb:ImageColorizer.Color), RelativeSource={RelativeSource TemplatedParent}}" FontFamily="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentFontFamily}" FontSize="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentFontSize}" Foreground="$Foreground" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding IsGlyphVisible, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ResourceKey=boolToVisibilityInverseConverter}}" cs:id="ShapeContentPresenter_0000" />
+            </Grid>
+          </dxcore_unique_xmlns:DXBorder>
+        </dxcore_unique_xmlns:DXBorder>
+        <Grid Margin="0,5,0,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019Black\AppBar.xaml;69;18">
+          <dxwuii:ShapeContentPresenter x:Name="PART_Label" AccentColor="$Foreground" Content="{TemplateBinding Label}" ContentTemplate="{TemplateBinding LabelTemplate}" ContentTemplateSelector="{TemplateBinding LabelTemplateSelector}" FontFamily="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=FontFamily}" FontSize="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=FontSize}" Foreground="$Foreground" Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsCompact, Converter={StaticResource boolToVisibilityInverseConverter}}" cs:id="ShapeContentPresenter_0002" />
+        </Grid>
+      </StackPanel>
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal" />
+          <VisualState x:Name="MouseOver">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBorder" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Foreground" cs:id="ColorAnimation_0000" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBackground" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Backstage.HoverBackground" cs:id="ColorAnimation_0001" />
+              <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentImage" Storyboard.TargetProperty="AccentColor">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                  <DiscreteObjectKeyFrame.Value>
+                    <Color cs:id="Color_0000">$Foreground</Color>
+                  </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+              </ObjectAnimationUsingKeyFrames>
+              <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentShape" Storyboard.TargetProperty="AccentColor">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                  <DiscreteObjectKeyFrame.Value>
+                    <Color cs:id="Color_0001">$Foreground</Color>
+                  </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+              </ObjectAnimationUsingKeyFrames>
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <Storyboard>
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBorder" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Foreground" cs:id="ColorAnimation_0002" />
+              <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBackground" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Foreground" cs:id="ColorAnimation_0003" />
+              <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentShape" Storyboard.TargetProperty="AccentColor">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                  <DiscreteObjectKeyFrame.Value>
+                    <Color cs:id="Color_0002">$Backstage.Window.Background</Color>
+                  </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+              </ObjectAnimationUsingKeyFrames>
+              <ColorAnimation Duration="0" Storyboard.TargetName="ContentShape" Storyboard.TargetProperty="Foreground.(SolidColorBrush.Color)" To="$Backstage.Window.Background" cs:id="ColorAnimation_0010" />
+              <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentImage" Storyboard.TargetProperty="AccentColor">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                  <DiscreteObjectKeyFrame.Value>
+                    <Color cs:id="Color_0003">$Backstage.Window.Background</Color>
+                  </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+              </ObjectAnimationUsingKeyFrames>
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Disabled">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Opacity" To="0.38" />
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="CheckedStates">
+          <VisualState x:Name="Unchecked" />
+          <VisualState x:Name="Checked">
+            <Storyboard>
+              <Storyboard>
+                <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBorder" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Foreground" cs:id="ColorAnimation_0004" />
+                <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBackground" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Foreground" cs:id="ColorAnimation_0005" />
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentImage" Storyboard.TargetProperty="AccentColor">
+                  <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                      <Color cs:id="Color_0004">$Backstage.Window.Background</Color>
+                    </DiscreteObjectKeyFrame.Value>
+                  </DiscreteObjectKeyFrame>
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentShape" Storyboard.TargetProperty="AccentColor">
+                  <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                      <Color cs:id="Color_0005">$Backstage.Window.Background</Color>
+                    </DiscreteObjectKeyFrame.Value>
+                  </DiscreteObjectKeyFrame>
+                </ObjectAnimationUsingKeyFrames>
+              </Storyboard>
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="CheckedMouseOver">
+            <Storyboard>
+              <Storyboard>
+                <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBorder" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Foreground" cs:id="ColorAnimation_0006" />
+                <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBackground" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Foreground" cs:id="ColorAnimation_0007" />
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentImage" Storyboard.TargetProperty="AccentColor">
+                  <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                      <Color cs:id="Color_0006">$Backstage.Window.Background</Color>
+                    </DiscreteObjectKeyFrame.Value>
+                  </DiscreteObjectKeyFrame>
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentShape" Storyboard.TargetProperty="AccentColor">
+                  <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                      <Color cs:id="Color_0007">$Backstage.Window.Background</Color>
+                    </DiscreteObjectKeyFrame.Value>
+                  </DiscreteObjectKeyFrame>
+                </ObjectAnimationUsingKeyFrames>
+              </Storyboard>
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="CheckedPressed">
+            <Storyboard>
+              <Storyboard>
+                <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBorder" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Foreground" cs:id="ColorAnimation_0008" />
+                <ColorAnimation Duration="0" Storyboard.TargetName="IsDefaultBackground" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="$Foreground" cs:id="ColorAnimation_0009" />
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentImage" Storyboard.TargetProperty="AccentColor">
+                  <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                      <Color cs:id="Color_0008">$Backstage.Window.Background</Color>
+                    </DiscreteObjectKeyFrame.Value>
+                  </DiscreteObjectKeyFrame>
+                </ObjectAnimationUsingKeyFrames>
+                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentShape" Storyboard.TargetProperty="AccentColor">
+                  <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                      <Color cs:id="Color_0009">$Backstage.Window.Background</Color>
+                    </DiscreteObjectKeyFrame.Value>
+                  </DiscreteObjectKeyFrame>
+                </ObjectAnimationUsingKeyFrames>
+              </Storyboard>
+            </Storyboard>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+    </Grid>
+    <ControlTemplate.Triggers>
+      <Trigger Property="IsEllipseEnabled" Value="False">
+        <Setter Property="Background" TargetName="IsDefaultBorder" Value="Transparent" cs:id="Setter_0000" />
+        <Setter Property="Padding" TargetName="IsDefaultBorder" Value="2" />
+      </Trigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+</ResourceDictionary>

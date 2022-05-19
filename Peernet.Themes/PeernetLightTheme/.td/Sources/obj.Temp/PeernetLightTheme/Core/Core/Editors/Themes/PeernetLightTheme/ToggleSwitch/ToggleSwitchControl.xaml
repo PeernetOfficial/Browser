@@ -7,7 +7,7 @@
     
 
     <dxi:RenderTemplate x:Key="{dxet:ToggleSwitchThemeKey ResourceKey=SwitchBorderTemplate}">
-        <dxi:RenderBorder Name="IsDefault" Background="#FFE1DFDD" BorderBrush="#FFC8C6C4" BorderThickness="1" cs:id="RenderBorder_0001" ThemeInfo="Core\Core\Editors\Themes\Office2019White\ToggleSwitch\ToggleSwitchControl.xaml;21;10" x:Uid="@Background=Control.NeutralBackground;BorderBrush=Border" />
+        <dxi:RenderBorder Name="IsDefault" Background="#1D3806D0" BorderBrush="#1D0906D1" BorderThickness="1" cs:id="RenderBorder_0001" ThemeInfo="Core\Core\Editors\Themes\Office2019White\ToggleSwitch\ToggleSwitchControl.xaml;21;10" />
         <dxi:RenderTemplate.Triggers>
             <dxi:ConditionalRenderBinding DependencyProperty="{x:Static dxi:AppearanceOptions.BackgroundProperty}" TargetName="IsDefault" TargetProperty="Background" ValueSource="TemplatedParent">
                 <dxi:RenderCondition DependencyProperty="{x:Static dxi:AppearanceOptions.HasBackgroundProperty}" Value="True" ValueSource="TemplatedParent" />
@@ -27,10 +27,10 @@
             </dxi:RenderStateGroup>
             <dxi:RenderTrigger DependencyProperty="{x:Static ButtonBase.IsPressedProperty}" Value="True" ValueSource="TemplatedParent" />
             <dxi:RenderTrigger DependencyProperty="{x:Static dxe:ToggleSwitch.IsCheckedProperty}" Value="True" ValueSource="TemplatedParent">
-                <dxi:RenderSetter Property="Background" TargetName="IsDefault" Value="#FFFFFFFF" cs:id="RenderSetter_0000" x:Uid="@Value=Editor.Background" />
+                <dxi:RenderSetter Property="Background" TargetName="IsDefault" Value="#1D5A06D2" cs:id="RenderSetter_0000" />
             </dxi:RenderTrigger>
             <dxi:RenderTrigger DependencyProperty="{x:Static dxe:ToggleSwitch.IsFocusedProperty}" Value="True" ValueSource="TemplatedParent">
-                <dxi:RenderSetter Property="BorderBrush" TargetName="IsDefault" Value="#FF106EBE" cs:id="RenderSetter_0001" x:Uid="@Value=HoverForeground" />
+                <dxi:RenderSetter Property="BorderBrush" TargetName="IsDefault" Value="#1D6B06D3" cs:id="RenderSetter_0001" />
             </dxi:RenderTrigger>
             <dxi:RenderTrigger DependencyProperty="{x:Static dx:ThemeManager.IsTouchEnabledProperty}" Value="True" ValueSource="TemplatedParent">
                 <dxi:RenderSetter Property="MinWidth" TargetName="IsDefault" Value="44" />
@@ -54,16 +54,16 @@
     
 
     <dxi:RenderTemplate x:Key="{dxet:ToggleSwitchThemeKey ResourceKey=SwitchThumbTemplate}">
-        <dxi:RenderBorder Name="IsDefault" Background="#FF444444" Margin="2" Width="12" cs:id="RenderBorder_0000" ThemeInfo="Core\Core\Editors\Themes\Office2019White\ToggleSwitch\ToggleSwitchControl.xaml;131;10" x:Uid="@Background=Foreground" />
+        <dxi:RenderBorder Name="IsDefault" Background="#1DFC06D4" Margin="2" Width="12" cs:id="RenderBorder_0000" ThemeInfo="Core\Core\Editors\Themes\Office2019White\ToggleSwitch\ToggleSwitchControl.xaml;131;10" />
         <dxi:RenderTemplate.Triggers>
             <dxi:RenderStateGroup Name="VisualStates">
                 <dxi:RenderStateTrigger Name="Normal" />
                 <dxi:RenderStateTrigger Name="MouseOver">
-                    <dxi:RenderSetter Property="Background" TargetName="IsDefault" Value="#FF106EBE" cs:id="RenderSetter_0000" x:Uid="@Value=HoverForeground" />
+                    <dxi:RenderSetter Property="Background" TargetName="IsDefault" Value="#1DCD06D5" cs:id="RenderSetter_0000" />
                 </dxi:RenderStateTrigger>
             </dxi:RenderStateGroup>
             <dxi:RenderTrigger DependencyProperty="{x:Static dxe:ToggleSwitch.IsCheckedProperty}" Value="True" ValueSource="TemplatedParent">
-                <dxi:RenderSetter Property="Background" TargetName="IsDefault" Value="#FF106EBE" cs:id="RenderSetter_0001" x:Uid="@Value=HoverForeground" />
+                <dxi:RenderSetter Property="Background" TargetName="IsDefault" Value="#1D9E06D6" cs:id="RenderSetter_0001" />
             </dxi:RenderTrigger>
             <dxi:RenderTrigger DependencyProperty="{x:Static dxe:ToggleSwitch.IsCheckedProperty}" Value="{x:Null}" ValueSource="TemplatedParent" />
             <dxi:RenderTrigger DependencyProperty="{x:Static ButtonBase.IsPressedProperty}" Value="True" ValueSource="TemplatedParent" />

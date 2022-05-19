@@ -25,7 +25,7 @@
         <ContentControl x:Name="card" Style="{Binding Path=(dxg:GridControl.ActiveView).CardStyle, RelativeSource={RelativeSource TemplatedParent}}" Template="{DynamicResource {dxgt:GridCardThemeKey ResourceKey=ContainerTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardControl.xaml;39;10">
             <dxg:GridCardPanel x:Name="Panel" IsExpanded="{Binding Path=IsExpanded}">
                 <dxg:GridCardPanel.Header>
-                    <dxg:GridCardHeaderControl x:Name="Header" Foreground="#FF444444" cs:id="GridCardHeaderControl_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardControl.xaml;44;22" x:Uid="@Foreground=Foreground">
+                    <dxg:GridCardHeaderControl x:Name="Header" Foreground="#1D532304" cs:id="GridCardHeaderControl_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardControl.xaml;44;22">
                         <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardControl.xaml;47;26">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
@@ -52,10 +52,10 @@
                 <Setter Property="RotateOnCollapse" TargetName="Panel" Value="True" />
             </DataTrigger>
             <DataTrigger Binding="{Binding Path=SelectionState}" Value="Selected">
-                <Setter Property="Foreground" TargetName="Header" Value="#FF106EBE" cs:id="Setter_0000" x:Uid="@Value=HoverForeground" />
+                <Setter Property="Foreground" TargetName="Header" Value="#1D622305" cs:id="Setter_0000" />
             </DataTrigger>
             <DataTrigger Binding="{Binding Path=SelectionState}" Value="Focused">
-                <Setter Property="Foreground" TargetName="Header" Value="#FF106EBE" cs:id="Setter_0001" x:Uid="@Value=SelectionForeground" />
+                <Setter Property="Foreground" TargetName="Header" Value="#1D312306" cs:id="Setter_0001" />
             </DataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -143,12 +143,12 @@
     <ControlTemplate x:Key="{dxgt:GridCardThemeKey ResourceKey=LoadingCardTemplate}" TargetType="dxg:LoadingCardControl">
         <Grid x:Name="Root" MinHeight="216" MinWidth="216" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardControl.xaml;192;10">
             <Grid HorizontalAlignment="Center" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardControl.xaml;195;14">
-                <ProgressBar x:Name="Indicator" Foreground="#FF444444" HorizontalAlignment="Center" IsIndeterminate="{Binding ShowLoadingIndicator}" Template="{StaticResource LoadingIndicator}" VerticalAlignment="Center" Visibility="{Binding ShowLoadingIndicator, Converter={StaticResource BoolToVisibilityConverter}}" cs:id="ProgressBar_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardControl.xaml;196;18" x:Uid="@Foreground=Foreground" />
+                <ProgressBar x:Name="Indicator" Foreground="#1D002307" HorizontalAlignment="Center" IsIndeterminate="{Binding ShowLoadingIndicator}" Template="{StaticResource LoadingIndicator}" VerticalAlignment="Center" Visibility="{Binding ShowLoadingIndicator, Converter={StaticResource BoolToVisibilityConverter}}" cs:id="ProgressBar_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardControl.xaml;196;18" />
                 <dxg:LoadingRowButton Click="{DXEvent 'LoadMoreRows()'}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="{Binding AllowLoadMore, Converter={StaticResource BoolToVisibilityConverter}}">
                     <StackPanel Margin="9,0,9,1" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardControl.xaml;208;22">
                         <Label Content="{dxg:GridControlStringId LoadingRowLoadMore}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardControl.xaml;209;26" />
                         <Grid Height="16" Margin="3" Width="16" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardControl.xaml;210;26">
-                            <Path Data="F1 M 10,5L 5,10L 0,5L 3,5L 3,3L 7,3L 7,5L 10,5 Z M 3,2L 3,0L 7,0L 7,2L 3,2 Z " Fill="#FF444444" Height="10" HorizontalAlignment="Center" Margin="0,1,0,0" Stretch="Fill" VerticalAlignment="Center" Width="10" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardControl.xaml;213;30" x:Uid="@Fill=Foreground" />
+                            <Path Data="F1 M 10,5L 5,10L 0,5L 3,5L 3,3L 7,3L 7,5L 10,5 Z M 3,2L 3,0L 7,0L 7,2L 3,2 Z " Fill="#1D2E2308" Height="10" HorizontalAlignment="Center" Margin="0,1,0,0" Stretch="Fill" VerticalAlignment="Center" Width="10" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardControl.xaml;213;30" />
                         </Grid>
                     </StackPanel>
                 </dxg:LoadingRowButton>
@@ -163,7 +163,7 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Path Data="F1 M 7,0C 10.866,0 14,3.13401 14,7C 14,10.866 10.866,14 7,14C 3.13401,14 -6.35783e-007,10.866 -6.35783e-007,7C -6.35783e-007,3.13401 3.13401,0 7,0 Z M 2.75736,4.17157L 5.58579,7L 2.75736,9.82843L 4.17157,11.2426L 7,8.41422L 9.82843,11.2426L 11.2426,9.82843L 8.41421,7L 11.2426,4.17157L 9.82843,2.75736L 7,5.58579L 4.17157,2.75736L 2.75736,4.17157 Z " Fill="#FFC12600" Height="14" HorizontalAlignment="Center" Margin="4" Stretch="Fill" VerticalAlignment="Top" Width="14" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardControl.xaml;241;18" x:Uid="@Fill=Custom.Red" />
+                <Path Data="F1 M 7,0C 10.866,0 14,3.13401 14,7C 14,10.866 10.866,14 7,14C 3.13401,14 -6.35783e-007,10.866 -6.35783e-007,7C -6.35783e-007,3.13401 3.13401,0 7,0 Z M 2.75736,4.17157L 5.58579,7L 2.75736,9.82843L 4.17157,11.2426L 7,8.41422L 9.82843,11.2426L 11.2426,9.82843L 8.41421,7L 11.2426,4.17157L 9.82843,2.75736L 7,5.58579L 4.17157,2.75736L 2.75736,4.17157 Z " Fill="#1D1F2309" Height="14" HorizontalAlignment="Center" Margin="4" Stretch="Fill" VerticalAlignment="Top" Width="14" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardControl.xaml;241;18" />
                 <StackPanel Grid.Column="1" Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardControl.xaml;250;18">
                     <TextBlock HorizontalAlignment="Left" Margin="4,3,4,3" Text="{Binding ErrorText}" TextWrapping="Wrap" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardControl.xaml;251;22" />
                     <TextBlock HorizontalAlignment="Center" Visibility="{Binding IsLoadingButtonVisible, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardControl.xaml;255;22">

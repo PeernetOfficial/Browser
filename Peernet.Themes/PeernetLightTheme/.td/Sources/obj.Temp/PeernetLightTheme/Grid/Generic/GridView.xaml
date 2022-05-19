@@ -91,7 +91,7 @@
                                             <dxgcore:BandedViewHeaderItemsControl dxgcore:GridColumn.HeaderPresenterType="Headers" dxgcore:GridControl.CurrentView="{Binding Path=View}" Focusable="False" ItemsSource="{Binding Path=FixedLeftCellData}">
                                                 <dxgcore:BandedViewHeaderItemsControl.ItemsPanel>
                                                     <ControlTemplate>
-                                                        <dxgcore:BandsColumnHeadersPanel x:Name="fixedLeftBandsColumnHeadersPanel" Background="Transparent" Bands="{Binding Path=View.DataControl.BandsLayout.FixedLeftVisibleBands}" dxgcore:GridColumn.HeaderPresenterType="Headers" cs:id="BandsColumnHeadersPanel_0000">
+                                                        <dxgcore:BandsColumnHeadersPanel x:Name="fixedLeftBandsColumnHeadersPanel" Background="#1DFD2393" Bands="{Binding Path=View.DataControl.BandsLayout.FixedLeftVisibleBands}" dxgcore:GridColumn.HeaderPresenterType="Headers" cs:id="BandsColumnHeadersPanel_0000">
                                                             <dxcore_unique_xmlns:DragManager.DropTargetFactory>
                                                                 <dxgcore:BandedViewColumnHeaderDropTargetFactory FixedStyle="Left" />
                                                             </dxcore_unique_xmlns:DragManager.DropTargetFactory>
@@ -104,7 +104,7 @@
                                             <dxgcore:BandedViewHeaderItemsControl dxgcore:GridColumn.HeaderPresenterType="Headers" dxgcore:GridControl.CurrentView="{Binding Path=View}" Focusable="False" ItemsSource="{Binding Path=FixedRightCellData}">
                                                 <dxgcore:BandedViewHeaderItemsControl.ItemsPanel>
                                                     <ControlTemplate>
-                                                        <dxgcore:BandsColumnHeadersPanel x:Name="fixedRightBandsColumnHeadersPanel" Background="Transparent" Bands="{Binding Path=View.DataControl.BandsLayout.FixedRightVisibleBands}" dxgcore:GridColumn.HeaderPresenterType="Headers" cs:id="BandsColumnHeadersPanel_0001">
+                                                        <dxgcore:BandsColumnHeadersPanel x:Name="fixedRightBandsColumnHeadersPanel" Background="#1D6A2394" Bands="{Binding Path=View.DataControl.BandsLayout.FixedRightVisibleBands}" dxgcore:GridColumn.HeaderPresenterType="Headers" cs:id="BandsColumnHeadersPanel_0001">
                                                             <dxcore_unique_xmlns:DragManager.DropTargetFactory>
                                                                 <dxgcore:BandedViewColumnHeaderDropTargetFactory FixedStyle="Right" />
                                                             </dxcore_unique_xmlns:DragManager.DropTargetFactory>
@@ -117,7 +117,7 @@
                                             <dxgcore:BandedViewHeaderItemsControl dxgcore:GridColumn.HeaderPresenterType="Headers" dxgcore:GridControl.CurrentView="{Binding Path=View}" Focusable="False" ItemsSource="{Binding Path=FixedNoneCellData}">
                                                 <dxgcore:BandedViewHeaderItemsControl.ItemsPanel>
                                                     <ControlTemplate>
-                                                        <dxgcore:BandsColumnHeadersPanel x:Name="bandsColumnHeadersPanel" Background="Transparent" Bands="{Binding Path=View.DataControl.BandsLayout.FixedNoneVisibleBands}" dxgcore:GridColumn.HeaderPresenterType="Headers" cs:id="BandsColumnHeadersPanel_0002">
+                                                        <dxgcore:BandsColumnHeadersPanel x:Name="bandsColumnHeadersPanel" Background="#1D5B2395" Bands="{Binding Path=View.DataControl.BandsLayout.FixedNoneVisibleBands}" dxgcore:GridColumn.HeaderPresenterType="Headers" cs:id="BandsColumnHeadersPanel_0002">
                                                             <dxcore_unique_xmlns:DragManager.DropTargetFactory>
                                                                 <dxgcore:BandedViewColumnHeaderDropTargetFactory FixedStyle="None" />
                                                             </dxcore_unique_xmlns:DragManager.DropTargetFactory>
@@ -459,8 +459,8 @@
                     </MultiBinding>
                 </Grid.Column>
             </ContentControl>
-            <dx:DXBorder x:Name="compactPanelBorder" Background="Transparent" BorderBrush="{DynamicResource {dxgt:TableViewThemeKey ResourceKey=GroupPanelBorderBrush}}" Grid.ColumnSpan="3" Grid.Row="4" Visibility="{Binding GroupPanelShown, ElementName=PART_CompactPanel, Converter={StaticResource BooleanToVisibilityConverterInverted}}" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\GridView.xaml;679;14" />
-            <dx:DXBorder x:Name="GroupPanelBorder" Background="Transparent" BorderBrush="{DynamicResource {dxgt:TableViewThemeKey ResourceKey=GroupPanelBorderBrush}}" BorderThickness="{DynamicResource {dxgt:TableViewThemeKey ResourceKey=GroupPanelBorderThickness}}" Grid.ColumnSpan="3" Grid.Row="5" Visibility="{Binding Visibility, ElementName=PART_GroupPanel}" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\GridView.xaml;686;14" />
+            <dx:DXBorder x:Name="compactPanelBorder" Background="#1D082396" BorderBrush="{DynamicResource {dxgt:TableViewThemeKey ResourceKey=GroupPanelBorderBrush}}" Grid.ColumnSpan="3" Grid.Row="4" Visibility="{Binding GroupPanelShown, ElementName=PART_CompactPanel, Converter={StaticResource BooleanToVisibilityConverterInverted}}" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\GridView.xaml;679;14" />
+            <dx:DXBorder x:Name="GroupPanelBorder" Background="#1D392397" BorderBrush="{DynamicResource {dxgt:TableViewThemeKey ResourceKey=GroupPanelBorderBrush}}" BorderThickness="{DynamicResource {dxgt:TableViewThemeKey ResourceKey=GroupPanelBorderThickness}}" Grid.ColumnSpan="3" Grid.Row="5" Visibility="{Binding Visibility, ElementName=PART_GroupPanel}" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\GridView.xaml;686;14" />
         </Grid>
         <ControlTemplate.Triggers>
             <DataTrigger Binding="{Binding Path=(dxg:GridControl.CurrentView).ActualShowCompactPanel, RelativeSource={RelativeSource Self}}" Value="True">

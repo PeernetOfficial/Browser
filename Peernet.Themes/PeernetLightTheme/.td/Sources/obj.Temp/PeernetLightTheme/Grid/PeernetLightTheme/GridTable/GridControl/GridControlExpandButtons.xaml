@@ -11,7 +11,7 @@
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Office2019White\GridTable\GridControl\GridControlExpandButtons.xaml;24;6" /><Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type dxg:BackgroundBorderControl}">
-                    <dx:DXBorder x:Name="PART_Background" Background="#FFFFFFFF" BorderBrush="#FFFFFFFF" BorderThickness="0,0,0,1" Margin="0,0,1,0" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\GridControl\GridControlExpandButtons.xaml;28;22" x:Uid="@Background=Editor.Background;BorderBrush=Editor.Background" />
+                    <dx:DXBorder x:Name="PART_Background" Background="#1D7B23B3" BorderBrush="#1DEC23B4" BorderThickness="0,0,0,1" Margin="0,0,1,0" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\GridControl\GridControlExpandButtons.xaml;28;22" />
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding Path=(dxg:GridControl.ActiveView).DataControl.(dxi:AppearanceOptions.HasBackground), RelativeSource={RelativeSource Self}}" Value="True">
                             <Setter Property="Background" TargetName="PART_Background" Value="{Binding Path=(dxg:GridControl.ActiveView).DataControl.(dxi:AppearanceOptions.Background), RelativeSource={RelativeSource TemplatedParent}}" />
@@ -30,7 +30,7 @@
     
 
     <ControlTemplate x:Key="{dxgt:GroupRowThemeKey ResourceKey=ExpandButtonTemplate}" TargetType="{x:Type dx:ToggleStateButton}">
-        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\GridControl\GridControlExpandButtons.xaml;62;10">
+        <Grid x:Name="Root" Background="#1DDD23B5" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\GridControl\GridControlExpandButtons.xaml;62;10">
             <Grid HorizontalAlignment="Center" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\GridControl\GridControlExpandButtons.xaml;65;14">
                 <Path x:Name="Collapsed" Fill="{TemplateBinding Foreground}" Style="{StaticResource UIShape.Expand}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\GridControl\GridControlExpandButtons.xaml;66;18" />
                 <Path x:Name="Expanded" Fill="{TemplateBinding Foreground}" Opacity="0" Style="{StaticResource UIShape.Collapse}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\GridControl\GridControlExpandButtons.xaml;69;18" />
@@ -42,13 +42,13 @@
                 <Setter Property="Opacity" TargetName="Expanded" Value="1" />
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Fill" TargetName="Collapsed" Value="#FF106EBE" cs:id="Setter_0001" x:Uid="@Value=HoverForeground" />
-                <Setter Property="Fill" TargetName="Expanded" Value="#FF106EBE" cs:id="Setter_0000" x:Uid="@Value=HoverForeground" />
+                <Setter Property="Fill" TargetName="Collapsed" Value="#1D8E23B6" cs:id="Setter_0001" />
+                <Setter Property="Fill" TargetName="Expanded" Value="#1DBF23B7" cs:id="Setter_0000" />
                 <Setter Property="Opacity" TargetName="Root" Value="1" />
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Fill" TargetName="Collapsed" Value="#FF106EBE" cs:id="Setter_0003" x:Uid="@Value=HoverForeground" />
-                <Setter Property="Fill" TargetName="Expanded" Value="#FF106EBE" cs:id="Setter_0002" x:Uid="@Value=HoverForeground" />
+                <Setter Property="Fill" TargetName="Collapsed" Value="#1D9123B8" cs:id="Setter_0003" />
+                <Setter Property="Fill" TargetName="Expanded" Value="#1DA023B9" cs:id="Setter_0002" />
                 <Setter Property="Opacity" TargetName="Root" Value="1" />
             </Trigger>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
@@ -59,9 +59,9 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxgt:GroupRowThemeKey ResourceKey=ExpandDetailButtonTemplate}" TargetType="{x:Type dxg:GridToggleStateButton}">
-        <Grid x:Name="Root" Background="Transparent" dxcore_unique_xmlns:FrameworkElementHelper.IsVisible="{Binding Path=(dxg:GridDetailExpandButtonContainer.IsDetailButtonVisible), RelativeSource={RelativeSource TemplatedParent}}" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\GridControl\GridControlExpandButtons.xaml;122;10">
-            <dx:DXBorder x:Name="BottomBorder" Background="#FFE1DFDD" BorderBrush="#FFFFFFFF" BorderThickness="0,0,0,1" Margin="0,0,1,0" VerticalAlignment="Bottom" Visibility="Collapsed" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\GridControl\GridControlExpandButtons.xaml;126;14" x:Uid="@Background=Delimiter;BorderBrush=Editor.Background" />
-            <Grid Background="#FFFFFFFF" HorizontalAlignment="Center" VerticalAlignment="Center" cs:id="Grid_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\GridControl\GridControlExpandButtons.xaml;134;14" x:Uid="@Background=Editor.Background">
+        <Grid x:Name="Root" Background="#1DF323BA" dxcore_unique_xmlns:FrameworkElementHelper.IsVisible="{Binding Path=(dxg:GridDetailExpandButtonContainer.IsDetailButtonVisible), RelativeSource={RelativeSource TemplatedParent}}" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\GridControl\GridControlExpandButtons.xaml;122;10">
+            <dx:DXBorder x:Name="BottomBorder" Background="#1DC223BB" BorderBrush="#1D5523BC" BorderThickness="0,0,0,1" Margin="0,0,1,0" VerticalAlignment="Bottom" Visibility="Collapsed" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\GridControl\GridControlExpandButtons.xaml;126;14" />
+            <Grid Background="#1D6423BD" HorizontalAlignment="Center" VerticalAlignment="Center" cs:id="Grid_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\GridControl\GridControlExpandButtons.xaml;134;14">
                 <Path Style="{StaticResource UIShape.MasterDetailMinus}" Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\GridControl\GridControlExpandButtons.xaml;138;18" />
                 <Path Style="{StaticResource UIShape.MasterDetailPlus}" Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverterInverted}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\GridControl\GridControlExpandButtons.xaml;139;18" />
             </Grid>

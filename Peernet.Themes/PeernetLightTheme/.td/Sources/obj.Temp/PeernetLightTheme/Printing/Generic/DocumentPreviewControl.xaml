@@ -170,7 +170,7 @@
     </Style>
 
     <DataTemplate x:Key="{themes:NewDocumentViewerThemeKey ResourceKey=NavigationPaneDockLayoutTemplate}">
-        <dxd:DockLayoutManager Background="Transparent" DisposeOnWindowClosing="False" ViewStyle="Light" cs:id="DockLayoutManager_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;202;10">
+        <dxd:DockLayoutManager Background="#1DAB1B08" DisposeOnWindowClosing="False" ViewStyle="Light" cs:id="DockLayoutManager_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;202;10">
             <mvvm:Interaction.Behaviors>
                 <native:HideClosingItemsBehavior />
             </mvvm:Interaction.Behaviors>
@@ -206,7 +206,7 @@
                         <local:NavigationPaneControl Margin="12,12,12,0" />
                     </dxd:LayoutPanel>
                 </dxd:LayoutGroup>
-                <dxd:LayoutPanel Name="DocumentViewerPanel" AllowClose="False" AllowDrag="False" Background="Transparent" Caption="{local:PrintingStringId StringId=ToolBarCaption}" ShowBorder="False" ShowCaption="False" cs:id="LayoutPanel_0000">
+                <dxd:LayoutPanel Name="DocumentViewerPanel" AllowClose="False" AllowDrag="False" Background="#1D9A1B09" Caption="{local:PrintingStringId StringId=ToolBarCaption}" ShowBorder="False" ShowCaption="False" cs:id="LayoutPanel_0000">
                     <ContentPresenter Content="{Binding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;262;22" />
                 </dxd:LayoutPanel>
             </dxd:LayoutGroup>
@@ -214,7 +214,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="{themes:NewDocumentViewerThemeKey ResourceKey=SeparatePanelsDockLayoutTemplate}">
-        <dxd:DockLayoutManager Background="Transparent" DisposeOnWindowClosing="False" cs:id="DockLayoutManager_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;269;10">
+        <dxd:DockLayoutManager Background="#1DC91B0A" DisposeOnWindowClosing="False" cs:id="DockLayoutManager_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;269;10">
             <mvvm:Interaction.Behaviors>
                 <native:HideClosingItemsBehavior />
             </mvvm:Interaction.Behaviors>
@@ -263,7 +263,7 @@
                         <native:ThumbnailsViewerControl SelectedPageNumber="{Binding Path=(local:DocumentPreviewControl.ActualViewer).CurrentPageNumber, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Settings="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ThumbnailsSettings, RelativeSource={RelativeSource TemplatedParent}}" />
                     </dxd:LayoutPanel>
                 </dxd:LayoutGroup>
-                <dxd:LayoutPanel Name="DocumentViewerPanel" AllowDrag="False" Background="Transparent" Caption="{local:PrintingStringId StringId=ToolBarCaption}" ShowBorder="False" ShowCaption="False" cs:id="LayoutPanel_0000">
+                <dxd:LayoutPanel Name="DocumentViewerPanel" AllowDrag="False" Background="#1DF81B0B" Caption="{local:PrintingStringId StringId=ToolBarCaption}" ShowBorder="False" ShowCaption="False" cs:id="LayoutPanel_0000">
                     <ContentPresenter Content="{Binding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;344;22" />
                 </dxd:LayoutPanel>
             </dxd:LayoutGroup>
@@ -523,7 +523,7 @@
     </ControlTemplate>
 
     <DataTemplate x:Key="{themes:NewDocumentViewerThemeKey ResourceKey=SelectionCanvasContentTemplate}">
-        <dx:DXBorder Background="#45007FFF" BorderBrush="#FF007FFF" BorderThickness="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;674;10" />
+        <dx:DXBorder Background="#1D6F1B0C" BorderBrush="#1D5E1B0D" BorderThickness="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;674;10" />
     </DataTemplate>
 
     <ControlTemplate x:Key="{themes:NewDocumentViewerThemeKey ResourceKey=SelectionCanvasTemplate}" TargetType="{x:Type native:SelectionCanvas}">
@@ -566,10 +566,10 @@
                 <Grid.RowDefinitions>
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <TextBlock Background="Transparent" FontWeight="Bold" HorizontalAlignment="Center" Text="{Binding Path=(local:DocumentPreviewControl.ActualViewer).Document.DocumentStatus, UpdateSourceTrigger=PropertyChanged, Converter={dxpn:DocumentStatusToTextConverter}, RelativeSource={RelativeSource TemplatedParent}}" TextAlignment="Center" VerticalAlignment="Center" Visibility="{Binding Path=(local:DocumentPreviewControl.ActualViewer).Document.DocumentStatus, Converter={dxpn:DocumentStatusToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource TemplatedParent}}" cs:id="TextBlock_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;743;18" />
+                <TextBlock Background="#1D0D1B0E" FontWeight="Bold" HorizontalAlignment="Center" Text="{Binding Path=(local:DocumentPreviewControl.ActualViewer).Document.DocumentStatus, UpdateSourceTrigger=PropertyChanged, Converter={dxpn:DocumentStatusToTextConverter}, RelativeSource={RelativeSource TemplatedParent}}" TextAlignment="Center" VerticalAlignment="Center" Visibility="{Binding Path=(local:DocumentPreviewControl.ActualViewer).Document.DocumentStatus, Converter={dxpn:DocumentStatusToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource TemplatedParent}}" cs:id="TextBlock_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;743;18" />
                 <Grid Name="renderContainer" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;751;18">
                     <dxe:NativeImage x:Name="PART_NativeImage" Focusable="False" />
-                    <native:PageSelector x:Name="PART_ItemsControl" Background="Transparent" IsSearchControlVisible="{Binding Path=IsSearchControlVisible, RelativeSource={RelativeSource TemplatedParent}}" SearchParameter="{Binding Path=SearchParameter, RelativeSource={RelativeSource TemplatedParent}}" VirtualizingStackPanel.VirtualizationMode="Recycling" cs:id="PageSelector_0000">
+                    <native:PageSelector x:Name="PART_ItemsControl" Background="#1D3C1B0F" IsSearchControlVisible="{Binding Path=IsSearchControlVisible, RelativeSource={RelativeSource TemplatedParent}}" SearchParameter="{Binding Path=SearchParameter, RelativeSource={RelativeSource TemplatedParent}}" VirtualizingStackPanel.VirtualizationMode="Recycling" cs:id="PageSelector_0000">
                         <native:PageSelector.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <dxdv:DocumentViewerPanel Name="itemsHost" FlowDirection="LeftToRight" IsItemsHost="True" />
@@ -596,7 +596,7 @@
                     <dxg:TreeListView.FormatConditions>
                         <dxg:FormatCondition ApplyToRow="True" Expression="[IsHighlighted] = True" FieldName="IsHighlighted">
                             <dxg:FormatCondition.Format>
-                                <dxcore_unique_xmlns:Format Background="#FFFFEE80" Foreground="#FF2B579A" cs:id="Format_0001" />
+                                <dxcore_unique_xmlns:Format Background="#1D511B10" Foreground="#1D601B11" cs:id="Format_0001" />
                             </dxg:FormatCondition.Format>
                         </dxg:FormatCondition>
                     </dxg:TreeListView.FormatConditions>
@@ -765,10 +765,10 @@
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition MaxWidth="{Binding RightMargin.MaxSize, RelativeSource={RelativeSource TemplatedParent}}" MinWidth="0" Width="{Binding RightMargin.Size, RelativeSource={RelativeSource TemplatedParent}}" />
                         </Grid.ColumnDefinitions>
-                        <native:MarginThumb Background="LightGray" Grid.Column="1" Grid.RowSpan="5" Orientation="Vertical" PageMargin="{Binding LeftMargin, RelativeSource={RelativeSource TemplatedParent}}" ResizeBehavior="PreviousAndNext" SetPageMarginCommand="{Binding Page.SetPageMarginCommand, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Stretch" cs:id="MarginThumb_0000" />
-                        <native:MarginThumb Background="LightGray" Grid.ColumnSpan="5" Grid.Row="1" HorizontalAlignment="Stretch" Orientation="Horizontal" PageMargin="{Binding TopMargin, RelativeSource={RelativeSource TemplatedParent}}" ResizeBehavior="PreviousAndNext" SetPageMarginCommand="{Binding SetPageMarginCommand}" cs:id="MarginThumb_0001" />
-                        <native:MarginThumb Background="LightGray" Grid.Column="3" Grid.RowSpan="5" Orientation="Vertical" PageMargin="{Binding RightMargin, RelativeSource={RelativeSource TemplatedParent}}" ResizeBehavior="PreviousAndNext" SetPageMarginCommand="{Binding SetPageMarginCommand}" VerticalAlignment="Stretch" cs:id="MarginThumb_0002" />
-                        <native:MarginThumb Background="LightGray" Grid.ColumnSpan="5" Grid.Row="3" HorizontalAlignment="Stretch" Orientation="Horizontal" PageMargin="{Binding BottomMargin, RelativeSource={RelativeSource TemplatedParent}}" ResizeBehavior="PreviousAndNext" SetPageMarginCommand="{Binding SetPageMarginCommand}" cs:id="MarginThumb_0003" />
+                        <native:MarginThumb Background="#1D331B12" Grid.Column="1" Grid.RowSpan="5" Orientation="Vertical" PageMargin="{Binding LeftMargin, RelativeSource={RelativeSource TemplatedParent}}" ResizeBehavior="PreviousAndNext" SetPageMarginCommand="{Binding Page.SetPageMarginCommand, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Stretch" cs:id="MarginThumb_0000" />
+                        <native:MarginThumb Background="#1D021B13" Grid.ColumnSpan="5" Grid.Row="1" HorizontalAlignment="Stretch" Orientation="Horizontal" PageMargin="{Binding TopMargin, RelativeSource={RelativeSource TemplatedParent}}" ResizeBehavior="PreviousAndNext" SetPageMarginCommand="{Binding SetPageMarginCommand}" cs:id="MarginThumb_0001" />
+                        <native:MarginThumb Background="#1D951B14" Grid.Column="3" Grid.RowSpan="5" Orientation="Vertical" PageMargin="{Binding RightMargin, RelativeSource={RelativeSource TemplatedParent}}" ResizeBehavior="PreviousAndNext" SetPageMarginCommand="{Binding SetPageMarginCommand}" VerticalAlignment="Stretch" cs:id="MarginThumb_0002" />
+                        <native:MarginThumb Background="#1DA41B15" Grid.ColumnSpan="5" Grid.Row="3" HorizontalAlignment="Stretch" Orientation="Horizontal" PageMargin="{Binding BottomMargin, RelativeSource={RelativeSource TemplatedParent}}" ResizeBehavior="PreviousAndNext" SetPageMarginCommand="{Binding SetPageMarginCommand}" cs:id="MarginThumb_0003" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -779,14 +779,14 @@
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;1055;6" /><Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type native:MarginThumb}">
-                    <Grid Background="#00000000" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;1059;22">
+                    <Grid Background="#1DF71B16" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;1059;22">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal" />
                                 <VisualState x:Name="MouseOver">
                                     <Storyboard>
                                         <ColorAnimationUsingKeyFrames Storyboard.TargetName="border" Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)">
-                                            <EasingColorKeyFrame KeyTime="0" Value="Gray" cs:id="EasingColorKeyFrame_0000" />
+                                            <EasingColorKeyFrame KeyTime="0" Value="#1DC61B17" cs:id="EasingColorKeyFrame_0000" />
                                         </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -795,7 +795,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <native:NoSizeDecorator>
-                            <Line Name="border" HorizontalAlignment="Stretch" Stroke="LightGray" StrokeDashArray="1 1" StrokeThickness="5" VerticalAlignment="Stretch" X2="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}" Y2="{Binding ActualHeight, RelativeSource={RelativeSource TemplatedParent}}" cs:id="Line_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;1077;30" />
+                            <Line Name="border" HorizontalAlignment="Stretch" Stroke="#1DE81B18" StrokeDashArray="1 1" StrokeThickness="5" VerticalAlignment="Stretch" X2="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}" Y2="{Binding ActualHeight, RelativeSource={RelativeSource TemplatedParent}}" cs:id="Line_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;1077;30" />
                         </native:NoSizeDecorator>
                         <ToolTipService.ToolTip>
                             <ToolTip x:Name="PART_Tooltip" Placement="Mouse" Visibility="{Binding IsDragging, RelativeSource={RelativeSource TemplatedParent}, Converter={mvvm:BooleanToVisibilityConverter HiddenInsteadOfCollapsed=True}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;1088;30">

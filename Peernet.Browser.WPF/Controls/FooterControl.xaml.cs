@@ -11,5 +11,10 @@ namespace Peernet.Browser.WPF.Controls
         {
             InitializeComponent();
         }
+
+        private void GlobeButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            new PeersMapWindow().Show();
+        }
     }
 }

@@ -6,23 +6,23 @@
 
     
 
-    <SolidColorBrush x:Key="{dxct:ChartBrushesThemeKey ResourceKey=CrosshairPopupBackground}" Color="#FFFFFFFF" />
+    <SolidColorBrush x:Key="{dxct:ChartBrushesThemeKey ResourceKey=CrosshairPopupBackground}" Color="#1D2B025B" />
 
-    <SolidColorBrush x:Key="{dxct:ChartBrushesThemeKey ResourceKey=CrosshairBorderBrush}" Color="#7F999999" />
+    <SolidColorBrush x:Key="{dxct:ChartBrushesThemeKey ResourceKey=CrosshairBorderBrush}" Color="#1DBC025C" />
 
     <ControlTemplate x:Key="{dxct:ChartControlThemeKey ResourceKey=ToolTipPresentationTemplate}" TargetType="{x:Type dxc:ToolTipControl}">
         <dxc:ToolTipPanel x:Name="PART_ToolTipPanel" DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}" Focusable="False" IsHitTestVisible="False" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Office2019White\ToolTip.xaml;21;10">
             <Popup x:Name="PART_Popup" AllowsTransparency="True" Placement="Absolute" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Office2019White\ToolTip.xaml;25;14">
-                <dxc:AnnotationPanel x:Name="PART_ToolTipContent" AnnotationItem="{Binding}" Background="Transparent" Cursor="{Binding RelativeSource={RelativeSource AncestorType=dxc:ChartControl}, Path=Cursor}" DataContext="{Binding Path=ToolTipItem, RelativeSource={RelativeSource TemplatedParent}}" Effect="{Binding Path=Shadow}" MinWidth="40" Opacity="0" cs:id="AnnotationPanel_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Office2019White\ToolTip.xaml;28;18">
+                <dxc:AnnotationPanel x:Name="PART_ToolTipContent" AnnotationItem="{Binding}" Background="#1D8D025D" Cursor="{Binding RelativeSource={RelativeSource AncestorType=dxc:ChartControl}, Path=Cursor}" DataContext="{Binding Path=ToolTipItem, RelativeSource={RelativeSource TemplatedParent}}" Effect="{Binding Path=Shadow}" MinWidth="40" Opacity="0" cs:id="AnnotationPanel_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Office2019White\ToolTip.xaml;28;18">
                     <Grid x:Name="PART_MainContent" dxc:AnnotationPanel.ElementType="Content" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Office2019White\ToolTip.xaml;37;22">
-                        <dx:DXBorder Background="#FFC8C6C4" Margin="-1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Office2019White\ToolTip.xaml;38;26" x:Uid="@Background=Border" />
-                        <dx:DXBorder Background="#FFFFFFFF" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Office2019White\ToolTip.xaml;41;26" x:Uid="@Background=Window.Background">
+                        <dx:DXBorder Background="#1DDE025E" Margin="-1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Office2019White\ToolTip.xaml;38;26" />
+                        <dx:DXBorder Background="#1DEF025F" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Office2019White\ToolTip.xaml;41;26">
                             <ContentPresenter Content="{Binding Path=ToolTipItem.PresentationData, RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{Binding Path=ToolTipItem.ContentTemplate, RelativeSource={RelativeSource TemplatedParent}}" Focusable="False" HorizontalAlignment="Center" Margin="{Binding Path=ToolTipItem.ContentMargin, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Office2019White\ToolTip.xaml;42;30" />
                         </dx:DXBorder>
                     </Grid>
                     <Grid x:Name="PART_Beak" dxc:AnnotationPanel.ElementType="Beak" Height="32" RenderTransform="{Binding Path=Location, Converter={StaticResource AnnotationLocationConverter}}" RenderTransformOrigin="0.5,0.5" Visibility="{Binding Path=ToolTipItem.BeakVisibility, RelativeSource={RelativeSource TemplatedParent}}" Width="16" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Office2019White\ToolTip.xaml;50;22">
-                        <Path Data="F1 M 8,0L 16,0L 0,32L 8,0 Z " Fill="#FFC8C6C4" Stretch="Fill" UseLayoutRounding="False" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Office2019White\ToolTip.xaml;57;26" x:Uid="@Fill=Border" />
-                        <Path Data="F1 M 8,0L 16,0L 0,32L 8,0 Z " Fill="#FFFFFFFF" Margin="2,0,1,5" Stretch="Fill" UseLayoutRounding="False" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Office2019White\ToolTip.xaml;62;26" x:Uid="@Fill=Window.Background" />
+                        <Path Data="F1 M 8,0L 16,0L 0,32L 8,0 Z " Fill="#1D040260" Stretch="Fill" UseLayoutRounding="False" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Office2019White\ToolTip.xaml;57;26" />
+                        <Path Data="F1 M 8,0L 16,0L 0,32L 8,0 Z " Fill="#1D350261" Margin="2,0,1,5" Stretch="Fill" UseLayoutRounding="False" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Office2019White\ToolTip.xaml;62;26" />
                     </Grid>
                 </dxc:AnnotationPanel>
             </Popup>

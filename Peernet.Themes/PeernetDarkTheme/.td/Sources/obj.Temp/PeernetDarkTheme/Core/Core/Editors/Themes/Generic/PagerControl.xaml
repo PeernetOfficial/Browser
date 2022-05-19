@@ -11,7 +11,11 @@
             <ContentControl Template="{DynamicResource {dxet:PagerControlThemeKey ResourceKey=BorderTemplate}}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\PagerControl.xaml;21;14">
                 <DockPanel dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\PagerControl.xaml;22;18">
                     <TextBlock DockPanel.Dock="Left" Margin="12,0,12,0" Text="{TemplateBinding SummaryText}" VerticalAlignment="Center" Visibility="{TemplateBinding ShowSummaryText, Converter={StaticResource boolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\PagerControl.xaml;23;22" />
-                    <Grid DockPanel.Dock="Right" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="0,0,12,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\PagerControl.xaml;28;22">
+                    <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\PagerControl.xaml;28;22">
+                        <TextBlock Text="Page size:" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\PagerControl.xaml;31;26" />
+                        <TextBox Margin="5, 0" Text="{Binding PageSize, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\PagerControl.xaml;32;26" />
+                    </StackPanel>
+                    <Grid DockPanel.Dock="Right" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="0,0,12,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\PagerControl.xaml;36;22">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
@@ -22,11 +26,11 @@
                         </Grid.ColumnDefinitions>
                         <dxe:PagerControlNavigationButton Command="{Binding Path=FirstPageCommand, RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{DynamicResource {dxet:PagerControlThemeKey ResourceKey=NavigationButtonFirstPageGlyph}}" Grid.Column="0" ToolTip="{dxe:EditorStringId FirstPage}" Visibility="{TemplateBinding ActualShowFirstPageButton, Converter={StaticResource boolToVisibilityConverter}}" />
                         <dxe:PagerControlNavigationButton Command="{Binding Path=PreviousPageCommand, RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{DynamicResource {dxet:PagerControlThemeKey ResourceKey=NavigationButtonPreviousPageGlyph}}" Grid.Column="1" ToolTip="{dxe:EditorStringId PrevPage}" Visibility="{TemplateBinding ActualShowPrevPageButton, Converter={StaticResource boolToVisibilityConverter}}" />
-                        <ScrollViewer Grid.Column="2" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\PagerControl.xaml;49;26">
-                            <ItemsControl Name="PART_NumberItemsControl" ItemTemplate="{DynamicResource {dxet:PagerControlThemeKey ResourceKey=NumericItemTemplate}}" Visibility="{TemplateBinding ShowNumericButtons, Converter={StaticResource boolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\PagerControl.xaml;52;30">
+                        <ScrollViewer Grid.Column="2" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\PagerControl.xaml;57;26">
+                            <ItemsControl Name="PART_NumberItemsControl" ItemTemplate="{DynamicResource {dxet:PagerControlThemeKey ResourceKey=NumericItemTemplate}}" Visibility="{TemplateBinding ShowNumericButtons, Converter={StaticResource boolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\PagerControl.xaml;60;30">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <dxcore_unique_xmlns:StackVisibleIndexPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\PagerControl.xaml;57;42" />
+                                        <dxcore_unique_xmlns:StackVisibleIndexPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\PagerControl.xaml;65;42" />
                                     </ItemsPanelTemplate>
                                 </ItemsControl.ItemsPanel>
                             </ItemsControl>

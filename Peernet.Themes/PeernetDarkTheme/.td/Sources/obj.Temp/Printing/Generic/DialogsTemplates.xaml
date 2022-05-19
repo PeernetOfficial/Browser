@@ -1,0 +1,691 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dp="clr-namespace:DevExpress.Xpf.Editors.DataPager;assembly=DevExpress.Xpf.Core.v21.2" xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxd="http://schemas.devexpress.com/winfx/2008/xaml/docking" xmlns:dxdai="http://schemas.devexpress.com/winfx/2008/xaml/dataaccess/internal" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys" xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:dxpn="http://schemas.devexpress.com/winfx/2008/xaml/printing/native" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:lines="http://schemas.devexpress.com/winfx/2008/xaml/printing/native" xmlns:local="http://schemas.devexpress.com/winfx/2008/xaml/printing" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:native="http://schemas.devexpress.com/winfx/2008/xaml/printing/native" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:themes="http://schemas.devexpress.com/winfx/2008/xaml/printing/themekeys" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:xtraprintingdesign="clr-namespace:DevExpress.XtraPrinting.Design;assembly=DevExpress.Printing.v21.2.Core" xmlns:xtraprintingdrawing="clr-namespace:DevExpress.XtraPrinting.Drawing;assembly=DevExpress.Printing.v21.2.Core" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core">
+  <DataTemplate x:Key="{themes:NewDocumentViewerThemeKey ResourceKey=WatermarkDialogTemplate}">
+    <Grid HorizontalAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;27;10">
+      <mvvm:Interaction.Behaviors>
+        <mvvm:OpenFileDialogService />
+        <dxcore_unique_xmlns:DXMessageBoxService />
+      </mvvm:Interaction.Behaviors>
+      <dxlc:LayoutControl Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;32;14">
+        <dxlc:LayoutControl.Resources>
+          <Style x:Key="LayoutGroupWithStandardGroupBoxWithMargins" TargetType="dxlc:LayoutGroup">
+            <Setter Property="View" Value="GroupBox" />
+            <Setter Property="GroupBoxStyle">
+              <Setter.Value>
+                <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol.GroupBox}" TargetType="dxlc:GroupBox">
+                  <Setter Property="Template">
+                    <Setter.Value>
+                      <ControlTemplate TargetType="dxlc:GroupBox">
+                        <GroupBox Header="{TemplateBinding Header}" HeaderTemplate="{TemplateBinding HeaderTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;42;50">
+                          <dxcore_unique_xmlns:DXContentPresenter x:Name="ContentElement" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding CurrentContentTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;43;54" />
+                        </GroupBox>
+                      </ControlTemplate>
+                    </Setter.Value>
+                  </Setter>
+                </Style>
+              </Setter.Value>
+            </Setter>
+          </Style>
+        </dxlc:LayoutControl.Resources>
+        <dxcore_unique_xmlns:BackgroundPanel x:Name="PART_PreviewImage" Margin="0,0,6,0" Width="200">
+          <mvvm:Interaction.Behaviors>
+            <native:WatermarkPreviewAreaProvider />
+            <mvvm:EventToCommand Command="{Binding UpdatePreviewCommand}" Event="Loaded" />
+          </mvvm:Interaction.Behaviors>
+          <Grid HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;62;22">
+            <Image IsHitTestVisible="False" Source="{Binding PreviewImage, UpdateSourceTrigger=PropertyChanged}" Stretch="None" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;65;26" />
+            <dx:DXBorder Background="Transparent" BorderBrush="#FFC3C3C3" BorderThickness="1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;68;26" />
+          </Grid>
+        </dxcore_unique_xmlns:BackgroundPanel>
+        <dxlc:LayoutGroup Grid.Column="1" Orientation="Vertical" VerticalAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;74;18">
+          <dxlc:LayoutGroup View="Tabs" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;77;22">
+            <dxlc:LayoutGroup Header="{local:PrintingStringId StringId=TextWatermarkTitle}" Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;78;26">
+              <dxlc:LayoutItem Label="{local:PrintingStringId StringId=WatermarkText}" LabelPosition="Left" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;79;30">
+                <dxe:ComboBoxEdit Name="textEditor" EditValue="{Binding Text, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{x:Static xtraprintingdesign:WMTextConverter.StandardValues}" Width="352" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;80;34" />
+              </dxlc:LayoutItem>
+              <dxlc:LayoutGroup IsEnabled="{Binding Text, Converter={dxmvvm:StringToBooleanConverter}}" Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;85;30">
+                <dxlc:LayoutGroup Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;86;34">
+                  <dxlc:LayoutGroup Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;87;38">
+                    <dxlc:LayoutItem Label="{local:PrintingStringId StringId=WatermarkTextDirection}" LabelPosition="Left" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;88;42">
+                      <dxe:ComboBoxEdit EditValue="{Binding TextDirection, UpdateSourceTrigger=PropertyChanged}" IsTextEditable="False" ItemsSource="{dxe:EnumItemsSource EnumType=xtraprintingdrawing:DirectionMode, NameConverter={dxpn:DirectionModeDisplayNameConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;89;46" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="{local:PrintingStringId StringId=WatermarkFontName}" LabelPosition="Left" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;93;42">
+                      <dxe:ComboBoxEdit EditValue="{Binding TextFontFamily, UpdateSourceTrigger=PropertyChanged}" IsTextEditable="False" ItemsSource="{dxpn:FontFamiliesCollection}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;94;46">
+                        <dxe:ComboBoxEdit.ItemTemplate>
+                          <DataTemplate>
+                            <TextBlock FontFamily="{Binding}" Text="{Binding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;99;58" />
+                          </DataTemplate>
+                        </dxe:ComboBoxEdit.ItemTemplate>
+                      </dxe:ComboBoxEdit>
+                    </dxlc:LayoutItem>
+                  </dxlc:LayoutGroup>
+                  <dxlc:LayoutGroup Margin="25,0,0,0" Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;105;38">
+                    <dxlc:LayoutItem Label="{local:PrintingStringId StringId=WatermarkTextColor}" LabelPosition="Left" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;106;42">
+                      <dxe:PopupColorEdit EditValue="{Binding TextForeground, UpdateSourceTrigger=PropertyChanged}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;107;46" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="{local:PrintingStringId StringId=WatermarkFontSize}" LabelPosition="Left" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;109;42">
+                      <dxe:ComboBoxEdit EditValue="{Binding TextFontSize, UpdateSourceTrigger=PropertyChanged}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;110;46">
+                        <dxe:ComboBoxEdit.ItemsSource>
+                          <native:PredefinedFontSizeFCollection />
+                        </dxe:ComboBoxEdit.ItemsSource>
+                      </dxe:ComboBoxEdit>
+                    </dxlc:LayoutItem>
+                  </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutItem Label=" " dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;118;34">
+                  <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;119;38">
+                    <dxe:CheckEdit Content="{local:PrintingStringId StringId=WatermarkFontItalic}" EditValue="{Binding TextIsItalic, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;120;42" />
+                    <dxe:CheckEdit Content="{local:PrintingStringId StringId=WatermarkFontBold}" EditValue="{Binding TextIsBold, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="12,0,0,0" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;124;42" />
+                  </StackPanel>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="{local:PrintingStringId StringId=WatermarkTransparency}" LabelPosition="Left" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;131;34">
+                  <dxe:TrackBarEdit EditValue="{Binding Path=TextTransparency, UpdateSourceTrigger=PropertyChanged}" LargeStep="25" Maximum="255" Minimum="0" SmallStep="10" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;132;38" />
+                </dxlc:LayoutItem>
+              </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Header="{local:PrintingStringId StringId=PictureWatermarkTitle}" Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;140;26">
+              <dxlc:LayoutGroup Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;141;30">
+                <dxlc:LayoutItem Label="{local:PrintingStringId StringId=WatermarkLoadImage}" LabelPosition="Left" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;142;34">
+                  <dxe:ButtonEdit AllowDefaultButton="False" EditValue="{Binding ImageFileName, Mode=OneWay}" FontStyle="Italic" IsReadOnly="True" IsTextEditable="False" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;143;38">
+                    <dxe:ButtonEdit.Buttons>
+                      <dxe:ButtonInfo Command="{Binding OpenImageCommand}" GlyphKind="Regular" />
+                    </dxe:ButtonEdit.Buttons>
+                  </dxe:ButtonEdit>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutGroup IsEnabled="{Binding Image, Converter={dxmvvm:ObjectToBooleanConverter}}" Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;153;34">
+                  <dxlc:LayoutGroup Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;154;38">
+                    <dxlc:LayoutItem Label="{local:PrintingStringId StringId=WatermarkImageSizeMode}" LabelPosition="Left" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;155;42">
+                      <dxe:ComboBoxEdit EditValue="{Binding ImageViewMode, UpdateSourceTrigger=PropertyChanged}" IsTextEditable="False" ItemsSource="{dxe:EnumItemsSource EnumType=xtraprintingdrawing:ImageViewMode, NameConverter={dxpn:ImageViewModeDisplayNameConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;156;46" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem HorizontalAlignment="Right" HorizontalContentAlignment="Right" Margin="10,0,0,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;160;42">
+                      <dxe:CheckEdit Content="{local:PrintingStringId StringId=WatermarkImageTiling}" HorizontalAlignment="Left" IsChecked="{Binding ImageIsTiled}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;163;46" />
+                    </dxlc:LayoutItem>
+                  </dxlc:LayoutGroup>
+                  <dxlc:LayoutItem Label="{local:PrintingStringId StringId=WatermarkImageHorizontalAlignment}" LabelPosition="Left" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;169;38">
+                    <dxe:ComboBoxEdit EditValue="{Binding ImageHorizontalAlignment, UpdateSourceTrigger=PropertyChanged}" IsTextEditable="False" ItemsSource="{dxpn:WatermarkPictureHorizontalAlignment}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;170;42" />
+                  </dxlc:LayoutItem>
+                  <dxlc:LayoutItem Label="{local:PrintingStringId StringId=WatermarkImageVerticalAlignment}" LabelPosition="Left" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;174;38">
+                    <dxe:ComboBoxEdit EditValue="{Binding ImageVerticalAlignment, UpdateSourceTrigger=PropertyChanged}" IsTextEditable="False" ItemsSource="{dxpn:WatermarkPictureVerticalAlignment}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;175;42" />
+                  </dxlc:LayoutItem>
+                  <dxlc:LayoutItem Label="{local:PrintingStringId StringId=WatermarkTransparency}" LabelPosition="Left" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;179;38">
+                    <dxe:TrackBarEdit EditValue="{Binding ImageTransparency, UpdateSourceTrigger=PropertyChanged}" Maximum="255" Minimum="0" SmallStep="10" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;180;42" />
+                  </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+              </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+          </dxlc:LayoutGroup>
+          <dxlc:LayoutGroup Orientation="Horizontal" VerticalAlignment="Top" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;189;22">
+            <dxlc:LayoutGroup Header="{local:PrintingStringId StringId=WatermarkPosition}" HorizontalAlignment="Left" Orientation="Vertical" Style="{StaticResource LayoutGroupWithStandardGroupBoxWithMargins}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;190;26">
+              <dxe:ListBoxEdit EditValue="{Binding ShowBehind, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{dxpn:BooleanItemsSource}" ShowBorder="False" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;194;30">
+                <dxe:ListBoxEdit.Resources>
+                  <mvvm:BooleanToObjectConverter x:Key="booleanToTextConverter" FalseValue="{local:PrintingStringId StringId=WatermarkPositionInFront}" TrueValue="{local:PrintingStringId StringId=WatermarkPositionBehind}" />
+                </dxe:ListBoxEdit.Resources>
+                <dxe:ListBoxEdit.StyleSettings>
+                  <dxe:RadioListBoxEditStyleSettings />
+                </dxe:ListBoxEdit.StyleSettings>
+                <dxe:ListBoxEdit.ItemTemplateSelector>
+                  <native:BooleanTemplateSelector>
+                    <native:BooleanTemplateSelector.TrueValueTemplate>
+                      <DataTemplate>
+                        <TextBlock Text="{Binding Converter={StaticResource booleanToTextConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;209;50" />
+                      </DataTemplate>
+                    </native:BooleanTemplateSelector.TrueValueTemplate>
+                    <native:BooleanTemplateSelector.FalseValueTemplate>
+                      <DataTemplate>
+                        <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;214;50">
+                          <TextBlock Text="{Binding Converter={StaticResource booleanToTextConverter}}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;215;54" />
+                          <dxe:TextEdit IsEnabled="False" IsHitTestVisible="False" VerticalAlignment="Center" Visibility="Hidden" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;216;54" />
+                        </StackPanel>
+                      </DataTemplate>
+                    </native:BooleanTemplateSelector.FalseValueTemplate>
+                  </native:BooleanTemplateSelector>
+                </dxe:ListBoxEdit.ItemTemplateSelector>
+              </dxe:ListBoxEdit>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Header="{local:PrintingStringId StringId=WatermarkPageRange}" Orientation="Vertical" Style="{StaticResource LayoutGroupWithStandardGroupBoxWithMargins}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;227;26">
+              <dxlc:LayoutGroup Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;230;30">
+                <dxlc:LayoutItem dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;231;34">
+                  <dxe:ListBoxEdit EditValue="{Binding IsPageRange, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{dxpn:BooleanItemsSource}" ShowBorder="False" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;232;38">
+                    <dxe:ListBoxEdit.Resources>
+                      <mvvm:BooleanToObjectConverter x:Key="booleanToTextConverter" FalseValue="{local:PrintingStringId StringId=WatermarkPageRangeAllPages}" TrueValue="{local:PrintingStringId StringId=WatermarkPageRangePages}" />
+                    </dxe:ListBoxEdit.Resources>
+                    <dxe:ListBoxEdit.StyleSettings>
+                      <dxe:RadioListBoxEditStyleSettings />
+                    </dxe:ListBoxEdit.StyleSettings>
+                    <dxe:ListBoxEdit.ItemTemplateSelector>
+                      <native:BooleanTemplateSelector>
+                        <native:BooleanTemplateSelector.FalseValueTemplate>
+                          <DataTemplate>
+                            <TextBlock Text="{Binding Converter={StaticResource booleanToTextConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;247;58" />
+                          </DataTemplate>
+                        </native:BooleanTemplateSelector.FalseValueTemplate>
+                        <native:BooleanTemplateSelector.TrueValueTemplate>
+                          <DataTemplate>
+                            <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;252;58">
+                              <TextBlock Text="{Binding Converter={StaticResource booleanToTextConverter}}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;253;62" />
+                              <dxe:TextEdit EditValue="{Binding DataContext.PageRange, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=dxe:ListBoxEdit}}" IsEnabled="{Binding DataContext.IsPageRange, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=dxe:ListBoxEdit}}" Margin="5,0,0,0" Mask="((\d+(-\d+?)?)(\,(\d+(-\d+?)?)?)*)?" MaskType="RegEx" MaskUseAsDisplayFormat="True" NullText="{Binding DataContext.PageRangePlaceholder, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=dxe:ListBoxEdit}}" VerticalAlignment="Center" Width="100" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;254;62" />
+                              <TextBlock Margin="5,0,0,0" Text="{local:PrintingStringId StringId=WatermarkPageRangeHint}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;263;62" />
+                            </StackPanel>
+                          </DataTemplate>
+                        </native:BooleanTemplateSelector.TrueValueTemplate>
+                      </native:BooleanTemplateSelector>
+                    </dxe:ListBoxEdit.ItemTemplateSelector>
+                  </dxe:ListBoxEdit>
+                </dxlc:LayoutItem>
+              </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+          </dxlc:LayoutGroup>
+        </dxlc:LayoutGroup>
+      </dxlc:LayoutControl>
+      <dxcore_unique_xmlns:DialogFooter>
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;279;18">
+          <dxcore_unique_xmlns:DialogButton Command="{Binding ClearAllCommand}" Content="{local:PrintingStringId StringId=WatermarkClearAll}" HorizontalAlignment="Left" />
+          <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;283;22">
+            <dxcore_unique_xmlns:DialogButton DialogResult="OK" />
+            <dxcore_unique_xmlns:DialogButton DialogResult="Cancel" />
+          </StackPanel>
+        </Grid>
+      </dxcore_unique_xmlns:DialogFooter>
+    </Grid>
+  </DataTemplate>
+  <DataTemplate x:Key="{themes:NewDocumentViewerThemeKey ResourceKey=PageSetupDialogTemplate}">
+    <DataTemplate.Resources>
+      <Style x:Key="baseEditWidthStyle" TargetType="dxe:BaseEdit">
+        <Setter Property="Width" Value="120" />
+      </Style>
+      <Style x:Key="labelStyle" TargetType="TextBlock">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0,0,4,0" />
+      </Style>
+      <Style x:Key="pageSettingsEditorStyle" BasedOn="{StaticResource baseEditWidthStyle}" TargetType="dxe:TextEdit">
+        <Setter Property="Margin" Value="0,0,0,4" />
+        <Setter Property="MaskType" Value="Numeric" />
+        <Setter Property="Mask" Value="{Binding Mask}" />
+        <Setter Property="HorizontalContentAlignment" Value="Right" />
+        <Setter Property="DisplayFormatString" Value="{Binding DisplayFormat}" />
+      </Style>
+      <Style x:Key="groupStyle" TargetType="dxlc:GroupBox">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="SeparatorBrush" Value="Transparent" cs:id="Setter_0000" />
+        <Style.Triggers>
+          <DataTrigger Binding="{Binding Path=(dxc:ThemeManager.ThemeName), RelativeSource={RelativeSource AncestorType=Window}}" Value="Office2016WhiteSE">
+            <Setter Property="TitleBackground" Value="#22b0b0b0" cs:id="Setter_0001" />
+          </DataTrigger>
+        </Style.Triggers>
+      </Style>
+      <Style x:Key="marginStyle" TargetType="Line">
+        <Setter Property="StrokeDashArray" Value="2" />
+        <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="Stroke" Value="Gray" cs:id="Setter_0002" />
+      </Style>
+    </DataTemplate.Resources>
+    <dxlc:LayoutControl Grid.IsSharedSizeScope="True" Margin="24,24,24,0" Orientation="Horizontal" Padding="0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;331;10">
+      <dxlc:LayoutGroup HorizontalAlignment="Stretch" Orientation="Vertical" VerticalAlignment="Top" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;335;14">
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;338;18">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="5*" />
+          </Grid.ColumnDefinitions>
+          <dxlc:LayoutItem VerticalAlignment="Stretch" Width="250" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;343;22">
+            <dx:DXBorder Background="#22b0b0b0" Grid.Column="0" Margin="0,0,32,0" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;344;26">
+              <Grid Margin="24" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;348;30">
+                <mvvm:Interaction.Behaviors>
+                  <native:PageSettingsPreviewPainter BottomMargin="{Binding AssociatedObject.DataContext.BottomMargin, RelativeSource={RelativeSource Self}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Landscape="{Binding AssociatedObject.DataContext.Landscape, RelativeSource={RelativeSource Self}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" LeftMargin="{Binding AssociatedObject.DataContext.LeftMargin, RelativeSource={RelativeSource Self}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" PaperHeight="{Binding AssociatedObject.DataContext.PaperHeight, RelativeSource={RelativeSource Self}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" PaperKind="{Binding AssociatedObject.DataContext.PaperKind, RelativeSource={RelativeSource Self}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" PaperWidth="{Binding AssociatedObject.DataContext.PaperWidth, RelativeSource={RelativeSource Self}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" RightMargin="{Binding AssociatedObject.DataContext.RightMargin, RelativeSource={RelativeSource Self}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" TopMargin="{Binding AssociatedObject.DataContext.TopMargin, RelativeSource={RelativeSource Self}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+                </mvvm:Interaction.Behaviors>
+                <dx:DXBorder Background="White" BorderBrush="Gray" BorderThickness="1" CornerRadius="2" cs:id="Border_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;359;34" />
+                <dx:DXBorder dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;364;34">
+                  <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;365;38">
+                    <Line HorizontalAlignment="Left" Margin="1,0,0,0" Style="{StaticResource marginStyle}" VerticalAlignment="Stretch" Width="1" Y2="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Grid}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;366;42" />
+                    <Line HorizontalAlignment="Right" Style="{StaticResource marginStyle}" VerticalAlignment="Stretch" Width="1" Y2="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Grid}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;372;42" />
+                  </Grid>
+                </dx:DXBorder>
+                <dx:DXBorder dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;379;34">
+                  <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;380;38">
+                    <Line Height="1" HorizontalAlignment="Stretch" Margin="0,1,0,0" Style="{StaticResource marginStyle}" VerticalAlignment="Top" X2="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;381;42" />
+                    <Line Height="1" HorizontalAlignment="Stretch" Style="{StaticResource marginStyle}" VerticalAlignment="Bottom" X2="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;387;42" />
+                  </Grid>
+                </dx:DXBorder>
+              </Grid>
+            </dx:DXBorder>
+          </dxlc:LayoutItem>
+          <dxlc:LayoutGroup Grid.Column="1" ItemLabelsAlignment="Local" Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;397;22">
+            <dxlc:LayoutGroup GroupBoxStyle="{StaticResource groupStyle}" Header="{local:PrintingStringId StringId=PageSetupPaperCaption}" Orientation="Vertical" View="GroupBox" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;400;26">
+              <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;404;30">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition SharedSizeGroup="title" Width="auto" />
+                  <ColumnDefinition SharedSizeGroup="editor" Width="auto" />
+                  <ColumnDefinition Width="24" />
+                  <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="auto" />
+                  <RowDefinition Height="auto" />
+                  <RowDefinition Height="auto" />
+                  <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Margin="0,0,0,12" Style="{StaticResource labelStyle}" Text="{local:PrintingStringId StringId=PageSetupSize}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;417;34" />
+                <TextBlock Grid.Row="1" Margin="0,0,0,12" Style="{StaticResource labelStyle}" Text="{local:PrintingStringId StringId=PageSetupUnits}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;420;34" />
+                <TextBlock Grid.Row="2" Style="{StaticResource labelStyle}" Text="{local:PrintingStringId StringId=PageSetupWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;424;34" />
+                <TextBlock Grid.Row="3" Style="{StaticResource labelStyle}" Text="{local:PrintingStringId StringId=PageSetupHeight}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;427;34" />
+                <dxe:ComboBoxEdit DisplayMember="PaperName" EditValue="{Binding PaperKind, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.ColumnSpan="3" IsTextEditable="False" ItemsSource="{Binding PaperSizes}" Margin="0,0,0,12" ValueMember="Kind" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;430;34" />
+                <dxe:ComboBoxEdit DisplayMember="DisplayName" EditValue="{Binding Unit, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" IsTextEditable="False" ItemsSource="{Binding Units}" Margin="0,0,0,12" Style="{StaticResource baseEditWidthStyle}" ValueMember="Unit" VerticalAlignment="Top" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;438;34" />
+                <dxe:TextEdit EditValue="{Binding PaperWidth, ValidatesOnDataErrors=True}" Grid.Column="1" Grid.Row="2" IsEnabled="{Binding PaperKind, Converter={dxpn:PaperKindToSizeEditorIsEnabledConverter}}" Style="{DynamicResource pageSettingsEditorStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;448;34" />
+                <dxe:TextEdit EditValue="{Binding PaperHeight, ValidatesOnDataErrors=True}" Grid.Column="1" Grid.Row="3" IsEnabled="{Binding PaperKind, Converter={dxpn:PaperKindToSizeEditorIsEnabledConverter}}" Style="{DynamicResource pageSettingsEditorStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;453;34" />
+                <dxe:ListBoxEdit AllowItemHighlighting="True" Grid.Column="3" Grid.Row="1" Grid.RowSpan="3" HorizontalAlignment="Stretch" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ShowBorder="False" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;458;34">
+                  <dxe:ListBoxEditItem HorizontalContentAlignment="Stretch" IsSelected="{Binding DataContext.Landscape, Mode=TwoWay, Converter={dxmvvm:BooleanNegationConverter}}" Margin="0,0,6,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;466;38">
+                    <StackPanel HorizontalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;469;42">
+                      <dxcore_unique_xmlns:DXImage Height="48" Margin="12,0" Source="{dxc:SvgImageSource Uri='/DevExpress.Xpf.Printing.v21.2;component/Images/PageOrientationPortrait.svg'}" Width="48" />
+                      <TextBlock Text="{local:PrintingStringId StringId=PageSetupOrientationPortrait}" TextAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;474;46" />
+                    </StackPanel>
+                  </dxe:ListBoxEditItem>
+                  <dxe:ListBoxEditItem HorizontalContentAlignment="Stretch" IsSelected="{Binding DataContext.Landscape, Mode=OneTime}" Margin="6,0,0,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;477;38">
+                    <StackPanel HorizontalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;480;42">
+                      <dxcore_unique_xmlns:DXImage Height="48" Margin="12,0" Source="{dxc:SvgImageSource Uri='/DevExpress.Xpf.Printing.v21.2;component/Images/PageOrientationLandscape.svg'}" Width="48" />
+                      <TextBlock Text="{local:PrintingStringId StringId=PageSetupOrientationLandscape}" TextAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;485;46" />
+                    </StackPanel>
+                  </dxe:ListBoxEditItem>
+                  <dxe:ListBoxEdit.ItemsPanel>
+                    <ItemsPanelTemplate>
+                      <UniformGrid Columns="2" Rows="1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;490;46" />
+                    </ItemsPanelTemplate>
+                  </dxe:ListBoxEdit.ItemsPanel>
+                </dxe:ListBoxEdit>
+              </Grid>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup GroupBoxStyle="{StaticResource groupStyle}" Header="{local:PrintingStringId StringId=PageSetupPageMargins}" Margin="0,24,0,0" Orientation="Horizontal" View="GroupBox" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;496;26">
+              <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;501;30">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition SharedSizeGroup="title" Width="auto" />
+                  <ColumnDefinition SharedSizeGroup="editor" Width="auto" />
+                  <ColumnDefinition Width="*" />
+                  <ColumnDefinition SharedSizeGroup="title" Width="auto" />
+                  <ColumnDefinition SharedSizeGroup="editor" Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="auto" />
+                  <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Style="{StaticResource labelStyle}" Text="{local:PrintingStringId StringId=PageSetupMarginsLeft}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;513;34" />
+                <TextBlock Grid.Column="3" Style="{StaticResource labelStyle}" Text="{local:PrintingStringId StringId=PageSetupMarginsRight}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;514;34" />
+                <TextBlock Grid.Row="1" Style="{StaticResource labelStyle}" Text="{local:PrintingStringId StringId=PageSetupMarginsTop}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;517;34" />
+                <TextBlock Grid.Column="3" Grid.Row="1" Style="{StaticResource labelStyle}" Text="{local:PrintingStringId StringId=PageSetupMarginsBottom}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;520;34" />
+                <dxe:TextEdit EditValue="{Binding LeftMargin, ValidatesOnDataErrors=True}" Grid.Column="1" Style="{DynamicResource pageSettingsEditorStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;524;34" />
+                <dxe:TextEdit EditValue="{Binding RightMargin, ValidatesOnDataErrors=True}" Grid.Column="4" Style="{DynamicResource pageSettingsEditorStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;527;34" />
+                <dxe:TextEdit EditValue="{Binding TopMargin, ValidatesOnDataErrors=True}" Grid.Column="1" Grid.Row="1" Style="{DynamicResource pageSettingsEditorStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;530;34" />
+                <dxe:TextEdit EditValue="{Binding BottomMargin, ValidatesOnDataErrors=True}" Grid.Column="4" Grid.Row="1" Style="{DynamicResource pageSettingsEditorStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;534;34" />
+              </Grid>
+            </dxlc:LayoutGroup>
+          </dxlc:LayoutGroup>
+        </Grid>
+      </dxlc:LayoutGroup>
+    </dxlc:LayoutControl>
+  </DataTemplate>
+  <ControlTemplate x:Key="toogleButtonTemplate" TargetType="ToggleButton">
+    <Grid Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;547;10">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="auto" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal" />
+          <VisualState x:Name="MouseOver" />
+          <VisualState x:Name="Disabled">
+            <Storyboard>
+              <DoubleAnimation Duration="0" Storyboard.TargetName="IsUnchecked" Storyboard.TargetProperty="(UIElement.Opacity)" To="0.5" />
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Pressed" />
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="CheckStates">
+          <VisualState x:Name="Unchecked" />
+          <VisualState x:Name="Checked">
+            <Storyboard>
+              <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="IsUnchecked" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                  <DiscreteObjectKeyFrame.Value>
+                    <Visibility>Collapsed</Visibility>
+                  </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+              </ObjectAnimationUsingKeyFrames>
+              <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="IsChecked" Storyboard.TargetProperty="(UIElement.Visibility)">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                  <DiscreteObjectKeyFrame.Value>
+                    <Visibility>Visible</Visibility>
+                  </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+              </ObjectAnimationUsingKeyFrames>
+            </Storyboard>
+          </VisualState>
+          <VisualState x:Name="Indeterminate" />
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+      <Grid x:Name="Root" Background="Transparent" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center" Width="16" cs:id="Grid_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;593;14">
+        <dx:DXBorder x:Name="IsUnchecked" CornerRadius="2" Height="Auto" Width="Auto" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;600;18">
+          <Path Data="F1 M 26,22.0001L 26,14.0001L 30,18.0001L 26,22.0001 Z " Fill="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" Height="7" HorizontalAlignment="Stretch" Margin="2,0,1,0" Stretch="Fill" VerticalAlignment="Stretch" Width="6" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;604;22" />
+        </dx:DXBorder>
+        <dx:DXBorder x:Name="IsChecked" CornerRadius="2" Height="9" Visibility="Collapsed" Width="9" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;613;18">
+          <Path Data="F1 M 32.9999,14.0001L 40.9999,14.0001L 37,18.0001L 32.9999,14.0001 Z " Fill="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" Height="6" HorizontalAlignment="Center" Margin="0,1,0,0" Stretch="Fill" VerticalAlignment="Center" Width="7" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;618;22" />
+        </dx:DXBorder>
+      </Grid>
+      <TextBlock Grid.Column="1" Text="{local:PrintingStringId StringId=MoreOptions}" TextAlignment="Left" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;628;14" />
+    </Grid>
+  </ControlTemplate>
+  <DataTemplate x:Key="{themes:NewDocumentViewerThemeKey ResourceKey=ExportOptionsDialogTemplate}">
+    <Grid Width="450" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;635;10">
+      <mvvm:Interaction.BehaviorsTemplate>
+        <DataTemplate>
+          <ItemsControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;638;22">
+            <dxcore_unique_xmlns:DXMessageBoxService />
+            <mvvm:CurrentWindowService />
+          </ItemsControl>
+        </DataTemplate>
+      </mvvm:Interaction.BehaviorsTemplate>
+      <dxlc:DockLayoutControl Margin="12,12,12,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;644;14">
+        <dxlc:LayoutGroup Name="mainGroup" dxlc:DockLayoutControl.Dock="Client" ItemLabelsAlignment="Local" Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;645;18">
+          <dxlc:LayoutItem AddColonToLabel="True" Label="{local:PrintingStringId StringId=ExportFormat}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;649;22">
+            <dxe:ComboBoxEdit EditValue="{Binding ExportFormat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsTextEditable="False" ItemsSource="{Binding AvailableExportFormats}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;650;26" />
+          </dxlc:LayoutItem>
+          <dxlc:LayoutItem AddColonToLabel="True" Label="{local:PrintingStringId StringId=FilePath}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;654;22">
+            <dxe:ButtonEdit AllowDefaultButton="False" EditValue="{Binding FileName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;655;26">
+              <dxe:ButtonEdit.Buttons>
+                <dxe:ButtonInfo Command="{Binding SelectFileCommand}" GlyphKind="Regular" />
+              </dxe:ButtonEdit.Buttons>
+            </dxe:ButtonEdit>
+          </dxlc:LayoutItem>
+          <dxlc:LayoutItem dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;661;22">
+            <dxe:CheckEdit Content="{local:PrintingStringId StringId=OpenFileAfterExport}" EditValue="{Binding OpenFileAfterExport}" IsEnabled="{Binding CanUseActionAfterExport}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;662;26" />
+          </dxlc:LayoutItem>
+          <dxlc:LayoutItem Margin="0,6,0,0" Width="{Binding ActualWidth, Mode=OneWay, ElementName=mainGroup}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;666;22">
+            <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;667;26">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+              </Grid.RowDefinitions>
+              <ToggleButton Name="expanderButton" Foreground="{Binding Path=(TextElement.Foreground), RelativeSource={RelativeSource TemplatedParent}}" HorizontalContentAlignment="Left" IsChecked="False" Margin="-3,0,0,0" Template="{StaticResource toogleButtonTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;672;30" />
+              <dxcore_unique_xmlns:DXExpander Grid.Row="1" HorizontalExpand="None" IsExpanded="{Binding ElementName=expanderButton, Path=IsChecked}" Margin="0,6,0,0" VerticalExpand="FromTopToBottom" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;678;30">
+                <native:LinesContainer Lines="{Binding ExportOptionLines}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;683;34" />
+              </dxcore_unique_xmlns:DXExpander>
+            </Grid>
+          </dxlc:LayoutItem>
+        </dxlc:LayoutGroup>
+      </dxlc:DockLayoutControl>
+    </Grid>
+  </DataTemplate>
+  <DataTemplate x:Key="{themes:NewDocumentViewerThemeKey ResourceKey=PrintStatusDialogTemplate}">
+    <Grid MinWidth="300" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;693;10">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+      <Grid Margin="24,16,24,22" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;698;14">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto" />
+          <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Image x:Name="PART_MessageBoxImage" Height="32" Margin="-6,-1,12,-4" SnapsToDevicePixels="True" Source="{local:PrintingResourceImage ResourceName=Images/BarItems/Print.svg}" Stretch="UniformToFill" VerticalAlignment="Top" Width="32" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;703;18" />
+        <TextBlock Background="Transparent" Focusable="False" Grid.Column="1" MaxWidth="{x:Static SystemParameters.MaximizedPrimaryScreenWidth}" Text="{Binding ProgressStatus}" TextWrapping="Wrap" VerticalAlignment="Center" cs:id="TextBlock_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;711;18" />
+      </Grid>
+      <Grid Grid.Row="1" HorizontalAlignment="Right" Margin="12,0,12,12" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;720;14">
+        <Grid x:Name="okGrid" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;723;18">
+          <Button x:Name="PART_OkButton" Command="{Binding CancelCommand}" Content="{dxc:DXMessageBoxStringId StringId=Cancel}" IsCancel="True" IsDefault="True" Margin="6,0,0,0" MinWidth="65" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;724;22" />
+        </Grid>
+      </Grid>
+    </Grid>
+  </DataTemplate>
+  <DataTemplate x:Key="{themes:NewDocumentViewerThemeKey ResourceKey=SendOptionsDialogTemplate}">
+    <Grid Width="420" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;737;10">
+      <dxlc:DockLayoutControl AllowItemSizing="True" Margin="12,12,12,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;738;14">
+        <dxlc:LayoutGroup dxlc:DockLayoutControl.AllowHorizontalSizing="True" dxlc:DockLayoutControl.Dock="Client" ItemLabelsAlignment="Local" Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;739;18">
+          <dxlc:LayoutItem AddColonToLabel="True" Label="{local:PrintingStringId StringId=ExportFormat}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;743;22">
+            <dxe:ComboBoxEdit EditValue="{Binding ExportFormat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsTextEditable="False" ItemsSource="{Binding AvailableExportFormats}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;744;26" />
+          </dxlc:LayoutItem>
+          <dxlc:LayoutItem AddColonToLabel="True" Label="{local:PrintingStringId StringId=FilePath}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;748;22">
+            <dxe:ButtonEdit AllowDefaultButton="False" EditValue="{Binding FileName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;749;26">
+              <dxe:ButtonEdit.Buttons>
+                <dxe:ButtonInfo Command="{Binding SelectFileCommand}" GlyphKind="Regular" />
+              </dxe:ButtonEdit.Buttons>
+            </dxe:ButtonEdit>
+          </dxlc:LayoutItem>
+          <dxlc:LayoutItem Margin="0,6,0,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;755;22">
+            <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;756;26">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+              </Grid.RowDefinitions>
+              <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;761;30">
+                <ToggleButton Name="expanderButton" HorizontalContentAlignment="Left" IsChecked="False" Margin="-3,0,0,0" Template="{StaticResource toogleButtonTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;762;34" />
+              </StackPanel>
+              <dxcore_unique_xmlns:DXExpander Grid.Row="1" HorizontalExpand="None" IsExpanded="{Binding ElementName=expanderButton, Path=IsChecked}" Margin="0,6,0,0" VerticalExpand="FromTopToBottom" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;768;30">
+                <native:LinesContainer Lines="{Binding ExportOptionLines}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;773;34" />
+              </dxcore_unique_xmlns:DXExpander>
+            </Grid>
+          </dxlc:LayoutItem>
+        </dxlc:LayoutGroup>
+      </dxlc:DockLayoutControl>
+    </Grid>
+  </DataTemplate>
+  <DataTemplate x:Key="{themes:NewDocumentViewerThemeKey ResourceKey=ScaleDialogTemplate}">
+    <DataTemplate.Resources>
+      <native:ScaleModeToBooleanConverter x:Key="scaleModeToBooleanConverter" />
+      <native:ScaleModeToVisibilityConverter x:Key="scaleModeToVisibilityConverter" />
+      <native:ScaleFactorToPercentsConverter x:Key="scaleToPercentsConverter" />
+    </DataTemplate.Resources>
+    <Grid x:Name="LayoutRoot" Margin="12,12,12,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;788;10">
+      <Grid Grid.IsSharedSizeScope="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;789;14">
+        <Grid.RowDefinitions>
+          <RowDefinition />
+          <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="auto" />
+          <ColumnDefinition Width="auto" />
+          <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+        <RadioButton Name="scaleButton" Grid.Row="0" HorizontalContentAlignment="Stretch" IsChecked="True" VerticalAlignment="Center" VerticalContentAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;799;18">
+          <TextBlock Text="{local:PrintingStringId StringId=Scaling_Adjust_Start_Label}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;805;22" />
+        </RadioButton>
+        <dxe:ComboBoxEdit AllowNullInput="False" DisplayFormatString="# '%'" EditValue="{Binding Path=ScaleFactor, Converter={StaticResource scaleToPercentsConverter}, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" IsEnabled="{Binding IsChecked, ElementName=scaleButton}" ItemsSource="{Binding ScaleFactorValues}" Margin="9,0,0,0" Width="100" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;807;18">
+          <dxe:ComboBoxEdit.ItemTemplate>
+            <DataTemplate>
+              <TextBlock dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;817;30">
+                <TextBlock.Text>
+                  <Binding StringFormat="# '%'" />
+                </TextBlock.Text>
+              </TextBlock>
+            </DataTemplate>
+          </dxe:ComboBoxEdit.ItemTemplate>
+        </dxe:ComboBoxEdit>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Stretch" IsEnabled="{Binding IsChecked, ElementName=scaleButton}" Margin="9,0,0,0" Text="{local:PrintingStringId StringId=Scaling_Adjust_End_Label}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;825;18" />
+        <RadioButton Name="fitButton" Grid.Row="1" HorizontalContentAlignment="Stretch" IsChecked="{Binding ScaleMode, Mode=TwoWay, Converter={StaticResource scaleModeToBooleanConverter},ConverterParameter=FitToPageWidth}" Margin="0,9,0,0" VerticalContentAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;831;18">
+          <TextBlock Text="{local:PrintingStringId StringId=Scaling_Fit_Start_Label}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;837;22" />
+        </RadioButton>
+        <dxe:ComboBoxEdit x:Name="cmbBxPagesToFit" AllowNullInput="False" EditValue="{Binding Path=PagesToFit, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" IsEnabled="{Binding IsChecked, ElementName=fitButton}" ItemsSource="{Binding PagesToFitValues}" Margin="9,9,0,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;839;18" />
+        <TextBlock Grid.Column="2" Grid.Row="1" IsEnabled="{Binding IsChecked, ElementName=fitButton}" Margin="9,9,0,0" Text="{local:PrintingStringId StringId=Scaling_Fit_End_Label}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;847;18" />
+      </Grid>
+    </Grid>
+  </DataTemplate>
+  <DataTemplate x:Key="{themes:NewDocumentViewerThemeKey ResourceKey=PrintDialogTemplate}">
+    <Grid Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;857;10">
+      <dxlc:LayoutControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;858;14">
+        <dxlc:LayoutControl.Resources>
+          <Style x:Key="firstColumnStyle" TargetType="{x:Type dxe:BaseEdit}">
+            <Setter Property="Width" Value="170" />
+            <Style.Triggers>
+              <Trigger Property="dxc:ThemeManager.IsTouchEnabled" Value="True">
+                <Setter Property="Width" Value="294" />
+              </Trigger>
+              <Trigger Property="dxc:ThemeManager.IsTouchlineTheme" Value="True">
+                <Setter Property="Width" Value="294" />
+              </Trigger>
+            </Style.Triggers>
+          </Style>
+        </dxlc:LayoutControl.Resources>
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;872;18">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="3*" />
+          </Grid.ColumnDefinitions>
+          <dxlc:LayoutGroup x:Name="PART_DockPreviewPart" dxlc:DockLayoutControl.Dock="Left" Height="{Binding ActualHeight, ElementName=PART_DockClientPart, Mode=OneWay}" ItemLabelsAlignment="Local" Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;877;22">
+            <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;882;26">
+              <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <dxcore_unique_xmlns:BackgroundPanel Name="PART_PreviewImage" Margin="0,0,0,10">
+                <Grid HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;888;34">
+                  <Image IsHitTestVisible="False" Source="{Binding PreviewImage}" Stretch="None" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;891;38">
+                    <mvvm:Interaction.Behaviors>
+                      <native:PreviewAreaProvider />
+                      <mvvm:EventToCommand Command="{Binding UpdatePreviewCommand}" Event="Loaded" />
+                    </mvvm:Interaction.Behaviors>
+                  </Image>
+                  <dx:DXBorder Background="Transparent" BorderBrush="#FFC3C3C3" BorderThickness="1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;899;38" />
+                </Grid>
+              </dxcore_unique_xmlns:BackgroundPanel>
+              <dp:DataPager DisplayMode="FirstLastPreviousNext" Grid.Row="1" HorizontalAlignment="Center" IsTotalItemCountFixed="True" PageIndex="{Binding PagePreviewIndex, Mode=TwoWay}" PageSize="1" ShowTotalPageCount="True" Source="{Binding DataPagerSource}">
+                <dp:DataPager.Resources>
+                  <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/editors.SpinEdit}" TargetType="{x:Type dxe:SpinEdit}">
+                    <Setter Property="Width" Value="30" />
+                    <Style.Triggers>
+                      <Trigger Property="dxc:ThemeManager.IsTouchEnabled" Value="True">
+                        <Setter Property="Width" Value="60" />
+                      </Trigger>
+                      <Trigger Property="dxc:ThemeManager.IsTouchlineTheme" Value="True">
+                        <Setter Property="Width" Value="60" />
+                      </Trigger>
+                    </Style.Triggers>
+                  </Style>
+                </dp:DataPager.Resources>
+              </dp:DataPager>
+            </Grid>
+          </dxlc:LayoutGroup>
+          <dxlc:LayoutGroup x:Name="PART_DockClientPart" dxlc:DockLayoutControl.Dock="Client" Grid.Column="1" ItemLabelsAlignment="Local" Margin="12,0,0,0" Orientation="Vertical" VerticalAlignment="Top" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;929;22">
+            <dxlc:LayoutItem AddColonToLabel="True" Label="{local:PrintingStringId StringId=Printer}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;936;26">
+              <dxlc:LayoutGroup ItemLabelsAlignment="Local" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;937;30">
+                <dxlc:LayoutItem HorizontalAlignment="Left" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;938;34">
+                  <dxe:ComboBoxEdit ApplyItemTemplateToSelectedItem="True" EditValue="{Binding SelectedPrinter, UpdateSourceTrigger=PropertyChanged}" IsTextEditable="False" ItemsSource="{Binding Path=PrinterItems}" Margin="5,0,0,0" Style="{StaticResource firstColumnStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;941;38">
+                    <dxe:ComboBoxEdit.ItemTemplate>
+                      <DataTemplate>
+                        <Grid Margin="2, 0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;949;50">
+                          <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                          </Grid.ColumnDefinitions>
+                          <dxcore_unique_xmlns:DXImage Height="16" Source="{Binding Path=PrinterType, Converter={native:PrinterTypeToImageUriConverter}}" Width="16" />
+                          <TextBlock Grid.Column="1" Margin="2,0,2,0" Text="{Binding Path=DisplayName}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;957;54" />
+                        </Grid>
+                      </DataTemplate>
+                    </dxe:ComboBoxEdit.ItemTemplate>
+                  </dxe:ComboBoxEdit>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;966;34">
+                  <Button Command="{Binding Path=PreferencesCommand}" Content="{local:PrintingStringId StringId=Preferences}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;969;38" />
+                </dxlc:LayoutItem>
+              </dxlc:LayoutGroup>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem AddColonToLabel="True" Label="{local:PrintingStringId StringId=PrinterStatus}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;973;26">
+              <TextBlock Margin="5,0,0,0" Text="{Binding Path=SelectedPrinter.Status}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;974;30" />
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem AddColonToLabel="True" Label="{local:PrintingStringId StringId=PrinterLocation}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;976;26">
+              <TextBlock Margin="5,0,0,0" Text="{Binding Path=SelectedPrinter.Location}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;977;30" />
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem AddColonToLabel="True" Label="{local:PrintingStringId StringId=PrinterComment}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;979;26">
+              <TextBlock Margin="5,0,0,0" Text="{Binding Path=SelectedPrinter.Comment}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;980;30" />
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem AddColonToLabel="True" Label="{local:PrintingStringId StringId=PrinterQueue}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;982;26">
+              <TextBlock Margin="5,0,0,0" Text="{Binding Path=SelectedPrinter.PrinterDocumentsInQueue}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;983;30" />
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem AddColonToLabel="True" IsEnabled="{Binding AllowCopies}" Label="{local:PrintingStringId StringId=Copies}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;985;26">
+              <dxlc:LayoutGroup Margin="5,0,0,0" Orientation="Horizontal" View="Group" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;988;30">
+                <dxlc:LayoutItem HorizontalAlignment="Left" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;991;34">
+                  <dxe:SpinEdit Name="copiesEdit" AllowRoundOutOfRangeValue="False" EditValue="{Binding Path=Copies, UpdateSourceTrigger=PropertyChanged}" EditValueType="{x:Type sys:Int16}" IsFloatValue="False" MaxValue="{Binding MaxCopies}" MinValue="1" Style="{StaticResource firstColumnStyle}" ValidateOnTextInput="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;992;38" />
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem HorizontalAlignment="Left" Margin="0,0,18,0" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1002;34">
+                  <dxe:CheckEdit Content="{local:PrintingStringId StringId=Collate}" EditValue="{Binding Collate, Mode=TwoWay}" IsEnabled="{Binding Path=AllowCollate}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1005;38" />
+                </dxlc:LayoutItem>
+              </dxlc:LayoutGroup>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem AddColonToLabel="True" Label="{local:PrintingStringId StringId=PageRange}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1012;26">
+              <dxlc:LayoutGroup ItemLabelsAlignment="Local" Margin="5,0,0,0" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1013;30">
+                <dxlc:LayoutItem HorizontalAlignment="Left" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1016;34">
+                  <dxe:ListBoxEdit Background="{x:Null}" EditValue="{Binding Path=PrintRange, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Stretch" ShowBorder="False" Style="{StaticResource firstColumnStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1017;38">
+                    <dxe:ListBoxEdit.StyleSettings>
+                      <dxe:RadioListBoxEditStyleSettings />
+                    </dxe:ListBoxEdit.StyleSettings>
+                    <dxe:ListBoxEditItem Content="{dxpn:SystemPrintRange Range=AllPages}" Height="{Binding ActualHeight, ElementName=rangeItem}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1025;42">
+                      <dxe:ListBoxEditItem.ContentTemplate>
+                        <DataTemplate>
+                          <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1028;54">
+                            <TextBlock Margin="6,0,0,0" Text="{local:PrintingStringId StringId=AllPages}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1029;58" />
+                          </Grid>
+                        </DataTemplate>
+                      </dxe:ListBoxEditItem.ContentTemplate>
+                    </dxe:ListBoxEditItem>
+                    <dxe:ListBoxEditItem Content="{dxpn:SystemPrintRange Range=CurrentPage}" Height="{Binding ActualHeight, ElementName=rangeItem}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1036;42">
+                      <dxe:ListBoxEditItem.ContentTemplate>
+                        <DataTemplate>
+                          <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1039;54">
+                            <TextBlock Margin="6,0,0,0" Text="{local:PrintingStringId StringId=CurrentPage}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1040;58" />
+                          </Grid>
+                        </DataTemplate>
+                      </dxe:ListBoxEditItem.ContentTemplate>
+                    </dxe:ListBoxEditItem>
+                    <dxe:ListBoxEditItem x:Name="rangeItem" Content="{dxpn:SystemPrintRange Range=SomePages}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1047;42">
+                      <dxe:ListBoxEditItem.ContentTemplate>
+                        <DataTemplate>
+                          <dxlc:LayoutItem Label="{local:PrintingStringId StringId=SomePages}" Margin="6,0,0,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1050;54">
+                            <dxe:TextEdit EditValue="{Binding Path=(DataContext).CustomPageRange, RelativeSource={RelativeSource AncestorType=dxe:ListBoxEdit}, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" IsEnabled="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=dxe:ListBoxEditItem}}" Margin="5,0,-2,0" Mask="(\d+(-\d+)?)(,(\d+(-\d+)?))*" MaskShowPlaceHolders="False" MaskType="RegEx" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1051;58" />
+                          </dxlc:LayoutItem>
+                        </DataTemplate>
+                      </dxe:ListBoxEditItem.ContentTemplate>
+                    </dxe:ListBoxEditItem>
+                  </dxe:ListBoxEdit>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Height="{Binding ActualHeight, ElementName=copiesEdit}" HorizontalAlignment="Left" Margin="0,0,18,3" VerticalAlignment="Bottom" VerticalContentAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1065;34">
+                  <TextBlock IsEnabled="False" Text="{local:PrintingStringId StringId=PageRangeHint}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1070;38" />
+                </dxlc:LayoutItem>
+              </dxlc:LayoutGroup>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem HorizontalAlignment="Left" Label="{local:PrintingStringId StringId=DuplexMode}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1074;26">
+              <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1075;30">
+                <dxe:CheckEdit HorizontalAlignment="Left" Margin="5,0,0,0" Visibility="Hidden" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1076;34" />
+                <dxe:ComboBoxEdit EditValue="{Binding Duplex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding CanDuplex}" IsTextEditable="False" ItemsSource="{dxpn:DuplexDataProvider}" Margin="5,0,0,0" Style="{StaticResource firstColumnStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1079;34">
+                  <dxe:ComboBoxEdit.ItemTemplate>
+                    <DataTemplate>
+                      <StackPanel Name="root" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1087;46">
+                        <dxcore_unique_xmlns:DXImage Height="16" Source="{Binding Converter={dxpn:DuplexModeToGlyphConverter}}" VerticalAlignment="Center" Width="16" />
+                        <TextBlock Margin="2,0" Text="{Binding Converter={dxpn:DuplexModeToDisplayTextConverter}}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1092;50" />
+                      </StackPanel>
+                      <DataTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                          <Setter Property="Opacity" TargetName="root" Value="0.7" />
+                        </Trigger>
+                      </DataTemplate.Triggers>
+                    </DataTemplate>
+                  </dxe:ComboBoxEdit.ItemTemplate>
+                </dxe:ComboBoxEdit>
+              </Grid>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem AddColonToLabel="True" HorizontalAlignment="Left" HorizontalContentAlignment="Left" Label="{local:PrintingStringId StringId=PaperSource}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1108;26">
+              <dxe:ComboBoxEdit EditValue="{Binding PaperSource}" Grid.Column="0" IsTextEditable="False" ItemsSource="{Binding Path=PaperSources}" Margin="5,0,0,0" Style="{StaticResource firstColumnStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1112;30" />
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem AddColonToLabel="True" Label="{local:PrintingStringId StringId=FilePath}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1119;26">
+              <dxlc:LayoutGroup ItemLabelsAlignment="Local" Margin="5,0,0,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1120;30">
+                <dxlc:LayoutItem HorizontalAlignment="Left" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1121;34">
+                  <dxe:ButtonEdit x:Name="PART_PrintFileSelectButton" AllowDefaultButton="False" EditValue="{Binding Path=PrintFileName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsEnabled="{Binding Path=PrintToFile}" Style="{StaticResource firstColumnStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1122;38">
+                    <dxe:ButtonEdit.Buttons>
+                      <dxe:ButtonInfo Command="{Binding Path=FileSelectCommand}" GlyphKind="Regular" />
+                    </dxe:ButtonEdit.Buttons>
+                  </dxe:ButtonEdit>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem HorizontalAlignment="Left" Margin="0,0,18,0" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1132;34">
+                  <dxe:CheckEdit Content="{local:PrintingStringId StringId=PrintToFile}" EditValue="{Binding Path=PrintToFile, Mode=TwoWay}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DialogsTemplates.xaml;1135;38" />
+                </dxlc:LayoutItem>
+              </dxlc:LayoutGroup>
+            </dxlc:LayoutItem>
+          </dxlc:LayoutGroup>
+        </Grid>
+      </dxlc:LayoutControl>
+    </Grid>
+  </DataTemplate>
+</ResourceDictionary>

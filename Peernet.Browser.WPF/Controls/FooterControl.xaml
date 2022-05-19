@@ -11,36 +11,44 @@
         </Grid.ColumnDefinitions>
 
         <DockPanel Grid.Column="0">
-            <StatusBar Background="Transparent" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="83,0,0,10">
-                <StatusBarItem>
-                    <Image Height="26" Width="26">
-                        <Image.Style>
-                            <Style TargetType="{x:Type Image}">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Footer.ConnectionStatus}" Value="Offline">
-                                        <Setter Property="Source" Value="{DynamicResource OfflineDrawingImage}" />
-                                        <Setter Property="ToolTip" Value="Offline" />
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Footer.ConnectionStatus}" Value="Online">
-                                        <Setter Property="Source" Value="{DynamicResource OnlineDrawingImage}" />
-                                        <Setter Property="ToolTip" Value="Connected" />
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Footer.ConnectionStatus}" Value="Connecting">
-                                        <Setter Property="Source" Value="{DynamicResource ConnectingDrawingImage}" />
-                                        <Setter Property="ToolTip" Value="Connecting" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Image.Style>
-                    </Image>
-                </StatusBarItem>
-                <StatusBarItem Margin="14,0,0,0" HorizontalAlignment="Left">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Footer.Peers}" Foreground="{DynamicResource MainContentBrush}" FontFamily="Inter" FontSize="14" FontWeight="SemiBold" />
-                        <TextBlock Text="Peers" Foreground="{DynamicResource MainContentBrush}" FontFamily="Inter" FontSize="14" FontWeight="Regular" Margin="3, 0,0 , 0" />
-                    </StackPanel>
-                </StatusBarItem>
-            </StatusBar>
+            <Button HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom"
+                    Margin="83,0,0,5"
+                    Click="GlobeButton_Click"
+                    Style="{StaticResource ButtonBaseStyle}"
+                    Width="Auto"
+                    Background="Transparent">
+                <StatusBar Background="Transparent" >
+                    <StatusBarItem>
+                        <Image Height="26" Width="26">
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Footer.ConnectionStatus}" Value="Offline">
+                                            <Setter Property="Source" Value="{DynamicResource OfflineDrawingImage}" />
+                                            <Setter Property="ToolTip" Value="Offline" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Footer.ConnectionStatus}" Value="Online">
+                                            <Setter Property="Source" Value="{DynamicResource OnlineDrawingImage}" />
+                                            <Setter Property="ToolTip" Value="Connected" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Footer.ConnectionStatus}" Value="Connecting">
+                                            <Setter Property="Source" Value="{DynamicResource ConnectingDrawingImage}" />
+                                            <Setter Property="ToolTip" Value="Connecting" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                    </StatusBarItem>
+                    <StatusBarItem Margin="14,0,0,0" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Footer.Peers}" Foreground="{DynamicResource MainContentBrush}" FontFamily="Inter" FontSize="14" FontWeight="SemiBold" />
+                            <TextBlock Text="Peers" Foreground="{DynamicResource MainContentBrush}" FontFamily="Inter" FontSize="14" FontWeight="Regular" Margin="3, 0,0 , 0" />
+                        </StackPanel>
+                    </StatusBarItem>
+                </StatusBar>
+            </Button>
         </DockPanel>
         <controls1:DownloadsPaneControl Grid.Column="1" />
         <Button Grid.Column="2"
@@ -48,7 +56,7 @@
                 HorizontalAlignment="Right"
                 Style="{DynamicResource UploadButtonStyle}"
                 Command="{Binding Footer.UploadCommand}"
-                Margin="0,0,80,25">
+                Margin="0,0,20,5">
             <Button.Background>
                 <ImageBrush ImageSource="{DynamicResource UploadDrawingImage}" />
             </Button.Background>

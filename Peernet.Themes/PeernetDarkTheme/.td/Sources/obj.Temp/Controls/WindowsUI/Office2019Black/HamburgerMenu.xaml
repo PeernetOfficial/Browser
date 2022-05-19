@@ -1,0 +1,37 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui" xmlns:dxwuii="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/internal" xmlns:dxwuit="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+  <ResourceDictionary.MergedDictionaries>
+    <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v21.2;component/Controls/WindowsUI/Office2019Black/UICore.xaml" />
+  </ResourceDictionary.MergedDictionaries>
+  <ControlTemplate x:Key="{dxwuit:HamburgerMenuElementsThemeKey ResourceKey=MenuToggleStateButtonTemplate}" TargetType="{x:Type dxwui:HamburgerMenuToggleStateButton}">
+    <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019Black\HamburgerMenu.xaml;19;10">
+      <dx:DXBorder x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019Black\HamburgerMenu.xaml;20;14" />
+      <dx:DXBorder BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019Black\HamburgerMenu.xaml;26;14">
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019Black\HamburgerMenu.xaml;27;18">
+          <ContentPresenter x:Name="contentPresenter" Visibility="Collapsed" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019Black\HamburgerMenu.xaml;28;22" />
+          <Path Fill="{TemplateBinding Foreground}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Stretch="Uniform" Style="{StaticResource UIShape.Menu}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019Black\HamburgerMenu.xaml;29;22" />
+        </Grid>
+      </dx:DXBorder>
+    </Grid>
+    <ControlTemplate.Triggers>
+      <DataTrigger Binding="{Binding Path=(dxwui:HamburgerMenu.TemplateSettings).ShowRevealHighlightEffect, RelativeSource={RelativeSource Self}}" Value="True">
+        <Setter Property="dxwui:RevealHighlightOptions.Mode" TargetName="border" Value="BackgroundAndBorder" />
+      </DataTrigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxwuit:HamburgerMenuElementsThemeKey ResourceKey=SubMenuPaneBackButtonTemplate}" TargetType="{x:Type dxwuii:HamburgerSubMenuPaneBackButton}">
+    <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019Black\HamburgerMenu.xaml;47;10">
+      <dx:DXBorder x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019Black\HamburgerMenu.xaml;48;14" />
+      <dx:DXBorder BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019Black\HamburgerMenu.xaml;54;14">
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019Black\HamburgerMenu.xaml;57;18">
+          <ContentPresenter x:Name="contentPresenter" Visibility="Collapsed" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019Black\HamburgerMenu.xaml;58;22" />
+          <Path Fill="{TemplateBinding Foreground}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Stretch="Uniform" Style="{StaticResource UIShape.MenuBack}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019Black\HamburgerMenu.xaml;59;22" />
+        </Grid>
+      </dx:DXBorder>
+    </Grid>
+    <ControlTemplate.Triggers>
+      <DataTrigger Binding="{Binding Path=(dxwui:HamburgerMenu.TemplateSettings).ShowRevealHighlightEffect, RelativeSource={RelativeSource Self}}" Value="True">
+        <Setter Property="dxwui:RevealHighlightOptions.Mode" TargetName="border" Value="BackgroundAndBorder" />
+      </DataTrigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+</ResourceDictionary>

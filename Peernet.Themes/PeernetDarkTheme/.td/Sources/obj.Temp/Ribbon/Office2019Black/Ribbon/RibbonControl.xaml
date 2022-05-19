@@ -1,0 +1,58 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxbt="http://schemas.devexpress.com/winfx/2008/xaml/bars/themekeys" xmlns:dxcn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon" xmlns:dxri="http://schemas.devexpress.com/winfx/2008/xaml/ribbon/internal" xmlns:dxrt="http://schemas.devexpress.com/winfx/2008/xaml/ribbon/themekeys" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+  <ResourceDictionary.MergedDictionaries>
+    <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v21.2;component/Ribbon/Office2019Black/UICore.xaml" />
+    <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v21.2;component/Ribbon/Office2019Black/UIPreset.xaml" />
+  </ResourceDictionary.MergedDictionaries>
+  
+  <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=BackgroundTemplate}" TargetType="{x:Type ContentControl}">
+    <dx:DXBorder Background="$Window.Background" MinHeight="32" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019Black\Ribbon\RibbonControl.xaml;25;10" />
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=TabPartBorderTemplate}" TargetType="{x:Type ContentControl}">
+    <Grid Name="Root" MinHeight="32" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019Black\Ribbon\RibbonControl.xaml;31;10">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="*" />
+      </Grid.RowDefinitions>
+      <dx:DXBorder x:Name="CategoryBackground" Background="$Backstage.Window.Background" Grid.Row="0" MinHeight="{DynamicResource {dxrt:RibbonThemeKey ResourceKey=HeaderMinHeight}}" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019Black\Ribbon\RibbonControl.xaml;37;14" />
+      <dx:DXBorder x:Name="SeparatorBackground" Background="$ControlLight.Background" Grid.Row="1" Height="1" cs:id="Border_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019Black\Ribbon\RibbonControl.xaml;42;14" />
+      <dx:DXBorder x:Name="PageHeaderBackground" Background="$ControlLight.Background" Grid.Row="2" cs:id="Border_0003" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019Black\Ribbon\RibbonControl.xaml;47;14" />
+    </Grid>
+    <ControlTemplate.Triggers>
+      <DataTrigger Binding="{Binding Path=(dxr:RibbonControl.Ribbon).IsInRibbonWindow, RelativeSource={RelativeSource Self}}" Value="True">
+        <Setter Property="Visibility" TargetName="CategoryBackground" Value="Collapsed" />
+      </DataTrigger>
+      <DataTrigger Binding="{Binding Path=(dxr:RibbonControl.Ribbon).IsRibbonTitleBarActualVisible, RelativeSource={RelativeSource Self}}" Value="False">
+        <Setter Property="Visibility" TargetName="CategoryBackground" Value="Collapsed" />
+        <Setter Property="Visibility" TargetName="SeparatorBackground" Value="Collapsed" />
+      </DataTrigger>
+      <MultiDataTrigger>
+        <MultiDataTrigger.Conditions>
+          <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=(dxi:DXWindowsHelper.Window).(dx:ThemedWindow.IsActive)}" Value="True" />
+          <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=(dxi:DXWindowsHelper.Window).(dx:ThemedWindow.ActualWindowKind)}" Value="Ribbon" />
+        </MultiDataTrigger.Conditions>
+        <MultiDataTrigger.Setters>
+          <Setter Property="Background" TargetName="SeparatorBackground" Value="$ControlLight.Background" cs:id="Setter_0000" />
+        </MultiDataTrigger.Setters>
+      </MultiDataTrigger>
+      <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(dxi:DXWindowsHelper.Window).(dx:ThemedWindow.IsActive)}" Value="False">
+        <Setter Property="Background" TargetName="SeparatorBackground" Value="$ControlLight.Background" cs:id="Setter_0001" />
+        <Setter Property="Visibility" TargetName="CategoryBackground" Value="Collapsed" />
+      </DataTrigger>
+      <DataTrigger Binding="{Binding Path=(dxr:RibbonControl.Ribbon).(dxcn:AppearanceOptions.HasBackground), RelativeSource={RelativeSource Self}}" Value="True">
+        <Setter Property="Background" TargetName="PageHeaderBackground" Value="{Binding Path=(dxr:RibbonControl.Ribbon).(dxcn:AppearanceOptions.Background), RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Background" TargetName="SeparatorBackground" Value="{Binding Path=(dxr:RibbonControl.Ribbon).(dxcn:AppearanceOptions.Background), RelativeSource={RelativeSource Self}}" />
+      </DataTrigger>
+      <DataTrigger Binding="{Binding Path=(dxr:RibbonControl.Ribbon).(dxcn:AppearanceOptions.HasBorderThickness), RelativeSource={RelativeSource Self}}" Value="True">
+        <Setter Property="BorderThickness" TargetName="PageHeaderBackground" Value="{Binding Path=(dxr:RibbonControl.Ribbon).(dxcn:AppearanceOptions.BorderThickness), RelativeSource={RelativeSource Self}, Converter={StaticResource ThicknessConverter}, ConverterParameter=Top}" />
+      </DataTrigger>
+      <DataTrigger Binding="{Binding Path=(dxr:RibbonControl.Ribbon).(dxcn:AppearanceOptions.HasBorderBrush), RelativeSource={RelativeSource Self}}" Value="True">
+        <Setter Property="BorderBrush" TargetName="PageHeaderBackground" Value="{Binding Path=(dxr:RibbonControl.Ribbon).(dxcn:AppearanceOptions.BorderBrush), RelativeSource={RelativeSource Self}}" />
+      </DataTrigger>
+      <DataTrigger Binding="{Binding Path=(dxr:RibbonControl.Ribbon).(dxcn:AppearanceOptions.HasCornerRadius), RelativeSource={RelativeSource Self}}" Value="True">
+        <Setter Property="Margin" TargetName="SeparatorBackground" Value="{Binding Path=(dxr:RibbonControl.Ribbon).(dxcn:AppearanceOptions.CornerRadius), RelativeSource={RelativeSource Self}, Converter={StaticResource CornerRadiusToThicknessConverter}}" />
+        <Setter Property="CornerRadius" TargetName="PageHeaderBackground" Value="{Binding Path=(dxr:RibbonControl.Ribbon).(dxcn:AppearanceOptions.CornerRadius), RelativeSource={RelativeSource Self}, Converter={StaticResource CornerRadiusConverter}, ConverterParameter=Top}" />
+      </DataTrigger>
+    </ControlTemplate.Triggers>
+  </ControlTemplate>
+</ResourceDictionary>

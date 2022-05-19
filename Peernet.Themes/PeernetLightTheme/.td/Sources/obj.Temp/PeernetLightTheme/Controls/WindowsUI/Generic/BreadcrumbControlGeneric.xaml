@@ -52,7 +52,7 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <dxcoi:BreadcrumbPathEdit x:Name="PART_BreadcrumbPathEdit" AcceptValueOnPopupContentSelectionChanged="True" AllowDefaultButton="{TemplateBinding AllowFillHistory}" EditMode="Standalone" EditorLeftIndent="{Binding ActualWidth, ElementName=PART_SelectedItemImageBorder}" Grid.ColumnSpan="2" ImmediatePopup="True" InvalidValueBehavior="AllowLeaveEditor" ItemsSource="{TemplateBinding PathEditSource}" ItemTemplate="{StaticResource PathEditItemTemplate}" PopupHeight="{TemplateBinding PathEditPopupHeight}" PopupMaxHeight="{TemplateBinding PathEditPopupMaxHeight}" PopupMinHeight="{TemplateBinding PathEditPopupMinHeight}" ShowBorder="{TemplateBinding ShowBorder}" TextMember="Path" ValidateOnEnterKeyPressed="True" ValidateOnTextInput="False" />
-                        <dx:DXBorder x:Name="PART_SelectedItemImageBorder" Background="Transparent" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;110;26">
+                        <dx:DXBorder x:Name="PART_SelectedItemImageBorder" Background="#1DA0020E" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;110;26">
                             <dxcoi:BreadcrumbSelectedItemImage x:Name="PART_BreadcrumbSelectedItemImage" ImageSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path='SelectedNode.Image'}" Style="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=SelectedItemImageStyle}}" />
                         </dx:DXBorder>
                         <dxcoi:BreadcrumbItemsControl x:Name="PART_BreadcrumbItemsControl" Grid.Column="1" ItemsSource="{TemplateBinding SelectedNodes}" ItemTemplate="{StaticResource SelectedItemTemplate}" PopupHeight="{TemplateBinding PopupHeight}" PopupMaxHeight="{TemplateBinding PopupMaxHeight}" PopupMaxWidth="{TemplateBinding PopupMaxWidth}" PopupMinHeight="{TemplateBinding PopupMinHeight}" PopupMinWidth="{TemplateBinding PopupMinWidth}" PopupWidth="{TemplateBinding PopupWidth}" ShowBorder="{TemplateBinding ShowBorder}" Style="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=ItemsControlStyle}}" SubItemTemplate="{StaticResource SubItemTemplate}" />
@@ -172,7 +172,7 @@
 
     <Style x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=ArrowStyleBase}" TargetType="{x:Type dxcoi:BreadcrumbArrowControl}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;297;6" /><Setter Property="Template" Value="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=ArrowTemplate}}" />
-        <Setter Property="Background" Value="Transparent" cs:id="Setter_0000" />
+        <Setter Property="Background" Value="#1D91020F" cs:id="Setter_0000" />
         <Setter Property="Padding" Value="3" />
         <Setter Property="BorderThickness" Value="0,1,1,1" />
         <Style.Triggers>
@@ -200,7 +200,7 @@
     </ControlTemplate>
 
     <Style x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=ButtonStyleBase}" TargetType="{x:Type dxcoi:BreadcrumbButton}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;337;6" /><Setter Property="Background" Value="Transparent" cs:id="Setter_0000" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;337;6" /><Setter Property="Background" Value="#1DFC0210" cs:id="Setter_0000" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Padding" Value="3,1" />
         <Setter Property="Template" Value="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=ButtonStyleTemplate}}" />
@@ -310,7 +310,7 @@
     <Style x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=SubItemStyleBase}" TargetType="{x:Type dxcoi:BreadcrumbSubItem}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;492;6" /><Setter Property="Margin" Value="1" />
         <Setter Property="Template" Value="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=SubItemTemplate}}" />
-        <Setter Property="Background" Value="Transparent" cs:id="Setter_0000" />
+        <Setter Property="Background" Value="#1DCD0211" cs:id="Setter_0000" />
         <Setter Property="Foreground" Value="{DynamicResource {dxcot:BreadcrumbItemThemeKey ResourceKey=Foreground}}" />
     </Style>
 
@@ -371,38 +371,38 @@
 
     
 
-    <SolidColorBrush x:Key="{dxcot:BreadcrumbItemThemeKey ResourceKey=HoverBackground}" Color="Transparent" />
+    <SolidColorBrush x:Key="{dxcot:BreadcrumbItemThemeKey ResourceKey=HoverBackground}" Color="#1D9E0212" />
 
-    <SolidColorBrush x:Key="{dxcot:BreadcrumbItemThemeKey ResourceKey=PressedBackground}" Color="Transparent" />
+    <SolidColorBrush x:Key="{dxcot:BreadcrumbItemThemeKey ResourceKey=PressedBackground}" Color="#1DAF0213" />
 
-    <SolidColorBrush x:Key="{dxcot:BreadcrumbItemThemeKey ResourceKey=Foreground}" Color="Transparent" />
+    <SolidColorBrush x:Key="{dxcot:BreadcrumbItemThemeKey ResourceKey=Foreground}" Color="#1D380214" />
 
-    <SolidColorBrush x:Key="{dxcot:BreadcrumbItemThemeKey ResourceKey=HoverForeground}" Color="Transparent" />
+    <SolidColorBrush x:Key="{dxcot:BreadcrumbItemThemeKey ResourceKey=HoverForeground}" Color="#1D090215" />
 
-    <SolidColorBrush x:Key="{dxcot:BreadcrumbItemThemeKey ResourceKey=PressedForeground}" Color="Transparent" />
+    <SolidColorBrush x:Key="{dxcot:BreadcrumbItemThemeKey ResourceKey=PressedForeground}" Color="#1D5A0216" />
 
-    <SolidColorBrush x:Key="{dxcot:BreadcrumbItemThemeKey ResourceKey=HoverBorderBrush}" Color="Transparent" />
+    <SolidColorBrush x:Key="{dxcot:BreadcrumbItemThemeKey ResourceKey=HoverBorderBrush}" Color="#1D6B0217" />
 
-    <SolidColorBrush x:Key="{dxcot:BreadcrumbItemThemeKey ResourceKey=PressedBorderBrush}" Color="Transparent" />
+    <SolidColorBrush x:Key="{dxcot:BreadcrumbItemThemeKey ResourceKey=PressedBorderBrush}" Color="#1D450218" />
 
-    <SolidColorBrush x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=PopupBackground}" Color="Transparent" />
+    <SolidColorBrush x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=PopupBackground}" Color="#1D740219" />
 
-    <SolidColorBrush x:Key="{dxcot:BreadcrumbSelectedItemThemeKey ResourceKey=HoverBackground}" Color="Transparent" />
+    <SolidColorBrush x:Key="{dxcot:BreadcrumbSelectedItemThemeKey ResourceKey=HoverBackground}" Color="#1D27021A" />
 
-    <SolidColorBrush x:Key="{dxcot:BreadcrumbSelectedItemThemeKey ResourceKey=HoverForeground}" Color="Transparent" />
+    <SolidColorBrush x:Key="{dxcot:BreadcrumbSelectedItemThemeKey ResourceKey=HoverForeground}" Color="#1D16021B" />
 
-    <SolidColorBrush x:Key="{dxcot:BreadcrumbSelectedItemThemeKey ResourceKey=PressedForeground}" Color="Transparent" />
+    <SolidColorBrush x:Key="{dxcot:BreadcrumbSelectedItemThemeKey ResourceKey=PressedForeground}" Color="#1D81021C" />
 
-    <SolidColorBrush x:Key="{dxcot:BreadcrumbSelectedItemThemeKey ResourceKey=ButtonHoverBackground}" Color="Transparent" />
+    <SolidColorBrush x:Key="{dxcot:BreadcrumbSelectedItemThemeKey ResourceKey=ButtonHoverBackground}" Color="#1DB0021D" />
 
-    <SolidColorBrush x:Key="{dxcot:BreadcrumbSelectedItemThemeKey ResourceKey=ButtonPressedBackground}" Color="Transparent" />
+    <SolidColorBrush x:Key="{dxcot:BreadcrumbSelectedItemThemeKey ResourceKey=ButtonPressedBackground}" Color="#1DE3021E" />
 
-    <SolidColorBrush x:Key="{dxcot:BreadcrumbSelectedItemThemeKey ResourceKey=ArrowHoverBackground}" Color="Transparent" />
+    <SolidColorBrush x:Key="{dxcot:BreadcrumbSelectedItemThemeKey ResourceKey=ArrowHoverBackground}" Color="#1DD2021F" />
 
-    <SolidColorBrush x:Key="{dxcot:BreadcrumbSelectedItemThemeKey ResourceKey=ArrowPressedBackground}" Color="Transparent" />
+    <SolidColorBrush x:Key="{dxcot:BreadcrumbSelectedItemThemeKey ResourceKey=ArrowPressedBackground}" Color="#1D390220" />
 
-    <SolidColorBrush x:Key="{dxcot:BreadcrumbSelectedItemThemeKey ResourceKey=HoverBorderBrush}" Color="Transparent" />
+    <SolidColorBrush x:Key="{dxcot:BreadcrumbSelectedItemThemeKey ResourceKey=HoverBorderBrush}" Color="#1D080221" />
 
-    <SolidColorBrush x:Key="{dxcot:BreadcrumbSelectedItemThemeKey ResourceKey=PressedBorderBrush}" Color="Transparent" />
+    <SolidColorBrush x:Key="{dxcot:BreadcrumbSelectedItemThemeKey ResourceKey=PressedBorderBrush}" Color="#1D5B0222" />
 
 </ResourceDictionary>

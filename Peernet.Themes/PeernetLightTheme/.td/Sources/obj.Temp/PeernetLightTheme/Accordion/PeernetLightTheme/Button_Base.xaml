@@ -7,30 +7,30 @@
     
 
     <ControlTemplate x:Key="{dxat:AccordionItemThemeKeys ResourceKey=ExpanderButtonTemplate}" TargetType="dxa:AccordionExpandButton">
-        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Office2019White\Button_Base.xaml;21;10">
-            <dx:DXBorder x:Name="IsDefault" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Office2019White\Button_Base.xaml;24;14" />
+        <Grid x:Name="Root" Background="#1DAB00A1" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Office2019White\Button_Base.xaml;21;10">
+            <dx:DXBorder x:Name="IsDefault" Background="#1DF800A2" BorderBrush="#1DC900A3" BorderThickness="1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Office2019White\Button_Base.xaml;24;14" />
             <dxa:ExpandButtonContentPresenter x:Name="IsUnchecked" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" ItemType="{Binding ItemType, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                 <dxa:ExpandButtonContentPresenter.ItemContent>
-                    <Path x:Name="ItemContentCollapse" Fill="#FF444444" RenderTransformOrigin="0.5,0.5" Stretch="Fill" Style="{StaticResource UIShape.Right}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Office2019White\Button_Base.xaml;35;22" x:Uid="@Fill=Foreground">
+                    <Path x:Name="ItemContentCollapse" Fill="#1D5E00A4" RenderTransformOrigin="0.5,0.5" Stretch="Fill" Style="{StaticResource UIShape.Right}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Office2019White\Button_Base.xaml;35;22">
                         <Path.RenderTransform>
                             <ScaleTransform ScaleX="{Binding IsRightExpandButton, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource FlipHorizontalConverter}}" />
                         </Path.RenderTransform>
                     </Path>
                 </dxa:ExpandButtonContentPresenter.ItemContent>
                 <dxa:ExpandButtonContentPresenter.RootItemContent>
-                    <Path x:Name="RootItemContentCollapse" Fill="#FF444444" Stretch="Fill" Style="{StaticResource UIShape.Down}" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Office2019White\Button_Base.xaml;47;22" x:Uid="@Fill=Foreground" />
+                    <Path x:Name="RootItemContentCollapse" Fill="#1D6F00A5" Stretch="Fill" Style="{StaticResource UIShape.Down}" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Office2019White\Button_Base.xaml;47;22" />
                 </dxa:ExpandButtonContentPresenter.RootItemContent>
             </dxa:ExpandButtonContentPresenter>
             <dxa:ExpandButtonContentPresenter x:Name="IsChecked" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" ItemType="{Binding ItemType, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Visibility="Hidden">
                 <dxa:ExpandButtonContentPresenter.ItemContent>
-                    <Path x:Name="ItemContentExpand" Fill="#FF444444" RenderTransformOrigin="0.5,0.5" Stretch="Fill" Style="{StaticResource UIShape.RightDown}" cs:id="Path_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Office2019White\Button_Base.xaml;61;22" x:Uid="@Fill=Foreground">
+                    <Path x:Name="ItemContentExpand" Fill="#1D3C00A6" RenderTransformOrigin="0.5,0.5" Stretch="Fill" Style="{StaticResource UIShape.RightDown}" cs:id="Path_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Office2019White\Button_Base.xaml;61;22">
                         <Path.RenderTransform>
                             <ScaleTransform ScaleX="{Binding IsRightExpandButton, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource FlipHorizontalConverter}}" />
                         </Path.RenderTransform>
                     </Path>
                 </dxa:ExpandButtonContentPresenter.ItemContent>
                 <dxa:ExpandButtonContentPresenter.RootItemContent>
-                    <Path x:Name="RootItemContentExpand" Fill="#FF444444" Stretch="Fill" Style="{StaticResource UIShape.Up}" cs:id="Path_0003" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Office2019White\Button_Base.xaml;73;22" x:Uid="@Fill=Foreground" />
+                    <Path x:Name="RootItemContentExpand" Fill="#1D0D00A7" Stretch="Fill" Style="{StaticResource UIShape.Up}" cs:id="Path_0003" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Office2019White\Button_Base.xaml;73;22" />
                 </dxa:ExpandButtonContentPresenter.RootItemContent>
             </dxa:ExpandButtonContentPresenter>
             <VisualStateManager.VisualStateGroups>
@@ -58,32 +58,32 @@
                     <Condition Property="ItemType" Value="SubItem" />
                     <Condition Property="ItemState" Value="Hover" />
                 </MultiTrigger.Conditions>
-                <Setter Property="Fill" TargetName="ItemContentCollapse" Value="#FF444444" cs:id="Setter_0000" x:Uid="@Value=Foreground" />
-                <Setter Property="Fill" TargetName="ItemContentExpand" Value="#FF444444" cs:id="Setter_0001" x:Uid="@Value=Foreground" />
+                <Setter Property="Fill" TargetName="ItemContentCollapse" Value="#1D2300A8" cs:id="Setter_0000" />
+                <Setter Property="Fill" TargetName="ItemContentExpand" Value="#1D1200A9" cs:id="Setter_0001" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="ItemType" Value="SubItem" />
                     <Condition Property="ItemState" Value="Pressed" />
                 </MultiTrigger.Conditions>
-                <Setter Property="Fill" TargetName="ItemContentCollapse" Value="#FF444444" cs:id="Setter_0002" x:Uid="@Value=Foreground" />
-                <Setter Property="Fill" TargetName="ItemContentExpand" Value="#FF444444" cs:id="Setter_0003" x:Uid="@Value=Foreground" />
+                <Setter Property="Fill" TargetName="ItemContentCollapse" Value="#1D4100AA" cs:id="Setter_0002" />
+                <Setter Property="Fill" TargetName="ItemContentExpand" Value="#1D7000AB" cs:id="Setter_0003" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="ItemType" Value="SubItem" />
                     <Condition Property="ItemState" Value="Selected" />
                 </MultiTrigger.Conditions>
-                <Setter Property="Fill" TargetName="ItemContentCollapse" Value="#FF444444" cs:id="Setter_0004" x:Uid="@Value=Foreground" />
-                <Setter Property="Fill" TargetName="ItemContentExpand" Value="#FF444444" cs:id="Setter_0005" x:Uid="@Value=Foreground" />
+                <Setter Property="Fill" TargetName="ItemContentCollapse" Value="#1DE700AC" cs:id="Setter_0004" />
+                <Setter Property="Fill" TargetName="ItemContentExpand" Value="#1DD600AD" cs:id="Setter_0005" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="ItemType" Value="SubItem" />
                     <Condition Property="ItemState" Value="SelectedInactive" />
                 </MultiTrigger.Conditions>
-                <Setter Property="Fill" TargetName="ItemContentCollapse" Value="#FF444444" cs:id="Setter_0006" x:Uid="@Value=Foreground" />
-                <Setter Property="Fill" TargetName="ItemContentExpand" Value="#FF444444" cs:id="Setter_0007" x:Uid="@Value=Foreground" />
+                <Setter Property="Fill" TargetName="ItemContentCollapse" Value="#1D8500AE" cs:id="Setter_0006" />
+                <Setter Property="Fill" TargetName="ItemContentExpand" Value="#1DB400AF" cs:id="Setter_0007" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -102,32 +102,32 @@
                     <Condition Property="ItemType" Value="RootItem" />
                     <Condition Property="ItemState" Value="Hover" />
                 </MultiTrigger.Conditions>
-                <Setter Property="Fill" TargetName="RootItemContentCollapse" Value="#FF444444" cs:id="Setter_0008" x:Uid="@Value=Foreground" />
-                <Setter Property="Fill" TargetName="RootItemContentExpand" Value="#FF444444" cs:id="Setter_0009" x:Uid="@Value=Foreground" />
+                <Setter Property="Fill" TargetName="RootItemContentCollapse" Value="#1DD900B0" cs:id="Setter_0008" />
+                <Setter Property="Fill" TargetName="RootItemContentExpand" Value="#1DE800B1" cs:id="Setter_0009" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="ItemType" Value="RootItem" />
                     <Condition Property="ItemState" Value="Pressed" />
                 </MultiTrigger.Conditions>
-                <Setter Property="Fill" TargetName="RootItemContentCollapse" Value="#FF444444" cs:id="Setter_0010" x:Uid="@Value=Foreground" />
-                <Setter Property="Fill" TargetName="RootItemContentExpand" Value="#FF444444" cs:id="Setter_0011" x:Uid="@Value=Foreground" />
+                <Setter Property="Fill" TargetName="RootItemContentCollapse" Value="#1DBB00B2" cs:id="Setter_0010" />
+                <Setter Property="Fill" TargetName="RootItemContentExpand" Value="#1D8A00B3" cs:id="Setter_0011" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="ItemType" Value="RootItem" />
                     <Condition Property="ItemState" Value="Selected" />
                 </MultiTrigger.Conditions>
-                <Setter Property="Fill" TargetName="RootItemContentCollapse" Value="#FF444444" cs:id="Setter_0012" x:Uid="@Value=Foreground" />
-                <Setter Property="Fill" TargetName="RootItemContentExpand" Value="#FF444444" cs:id="Setter_0013" x:Uid="@Value=Foreground" />
+                <Setter Property="Fill" TargetName="RootItemContentCollapse" Value="#1D1D00B4" cs:id="Setter_0012" />
+                <Setter Property="Fill" TargetName="RootItemContentExpand" Value="#1D2C00B5" cs:id="Setter_0013" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="ItemType" Value="RootItem" />
                     <Condition Property="ItemState" Value="SelectedInactive" />
                 </MultiTrigger.Conditions>
-                <Setter Property="Fill" TargetName="RootItemContentCollapse" Value="#FF444444" cs:id="Setter_0014" x:Uid="@Value=Foreground" />
-                <Setter Property="Fill" TargetName="RootItemContentExpand" Value="#FF444444" cs:id="Setter_0015" x:Uid="@Value=Foreground" />
+                <Setter Property="Fill" TargetName="RootItemContentCollapse" Value="#1D7F00B6" cs:id="Setter_0014" />
+                <Setter Property="Fill" TargetName="RootItemContentExpand" Value="#1D4E00B7" cs:id="Setter_0015" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -140,36 +140,36 @@
                     <Condition Property="ItemType" Value="SubItem" />
                     <Condition Property="IsMouseOver" Value="True" />
                 </MultiTrigger.Conditions>
-                <Setter Property="Fill" TargetName="ItemContentCollapse" Value="#FF106EBE" cs:id="Setter_0016" x:Uid="@Value=HoverForeground" />
-                <Setter Property="Fill" TargetName="ItemContentExpand" Value="#FF106EBE" cs:id="Setter_0017" x:Uid="@Value=HoverForeground" />
+                <Setter Property="Fill" TargetName="ItemContentCollapse" Value="#1D6000B8" cs:id="Setter_0016" />
+                <Setter Property="Fill" TargetName="ItemContentExpand" Value="#1D5100B9" cs:id="Setter_0017" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="ItemType" Value="SubItem" />
                     <Condition Property="IsPressed" Value="True" />
                 </MultiTrigger.Conditions>
-                <Setter Property="Fill" TargetName="ItemContentCollapse" Value="#FF106EBE" cs:id="Setter_0018" x:Uid="@Value=SelectionForeground" />
-                <Setter Property="Fill" TargetName="ItemContentExpand" Value="#FF106EBE" cs:id="Setter_0019" x:Uid="@Value=SelectionForeground" />
+                <Setter Property="Fill" TargetName="ItemContentCollapse" Value="#1D0200BA" cs:id="Setter_0018" />
+                <Setter Property="Fill" TargetName="ItemContentExpand" Value="#1D3300BB" cs:id="Setter_0019" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="ItemType" Value="RootItem" />
                     <Condition Property="IsMouseOver" Value="True" />
                 </MultiTrigger.Conditions>
-                <Setter Property="Background" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0020" x:Uid="@Value=HoverBackground" />
-                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0021" x:Uid="@Value=HoverBorder" />
-                <Setter Property="Fill" TargetName="RootItemContentCollapse" Value="#FF106EBE" cs:id="Setter_0022" x:Uid="@Value=HoverForeground" />
-                <Setter Property="Fill" TargetName="RootItemContentExpand" Value="#FF106EBE" cs:id="Setter_0023" x:Uid="@Value=HoverForeground" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#1DA400BC" cs:id="Setter_0020" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1D9500BD" cs:id="Setter_0021" />
+                <Setter Property="Fill" TargetName="RootItemContentCollapse" Value="#1DC600BE" cs:id="Setter_0022" />
+                <Setter Property="Fill" TargetName="RootItemContentExpand" Value="#1DF700BF" cs:id="Setter_0023" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="ItemType" Value="RootItem" />
                     <Condition Property="IsPressed" Value="True" />
                 </MultiTrigger.Conditions>
-                <Setter Property="Background" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0024" x:Uid="@Value=SelectionBackground" />
-                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0025" x:Uid="@Value=SelectionBorder" />
-                <Setter Property="Fill" TargetName="RootItemContentCollapse" Value="#FF106EBE" cs:id="Setter_0026" x:Uid="@Value=SelectionForeground" />
-                <Setter Property="Fill" TargetName="RootItemContentExpand" Value="#FF106EBE" cs:id="Setter_0027" x:Uid="@Value=SelectionForeground" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#1D2100C0" cs:id="Setter_0024" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1D1000C1" cs:id="Setter_0025" />
+                <Setter Property="Fill" TargetName="RootItemContentCollapse" Value="#1D4300C2" cs:id="Setter_0026" />
+                <Setter Property="Fill" TargetName="RootItemContentExpand" Value="#1D7200C3" cs:id="Setter_0027" />
             </MultiTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -177,7 +177,7 @@
     
 
     <ControlTemplate x:Key="{dxat:AccordionThemeKeys ResourceKey=CollapseButtonTemplate}" TargetType="ToggleButton">
-        <Grid x:Name="Root" Background="Transparent" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Office2019White\Button_Base.xaml;312;10">
+        <Grid x:Name="Root" Background="#1DE500C4" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Office2019White\Button_Base.xaml;312;10">
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup x:Name="CheckStates">
                     <VisualState x:Name="Unchecked">
@@ -198,26 +198,26 @@
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="MouseOver">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFEFF6FC" cs:id="ColorAnimation_0000" x:Uid="@To=HoverBackground" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#FFEFF6FC" cs:id="ColorAnimation_0001" x:Uid="@To=HoverBorder" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="Expanded" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" To="#FF106EBE" cs:id="ColorAnimation_0002" x:Uid="@To=HoverForeground" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="Collapsed" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" To="#FF106EBE" cs:id="ColorAnimation_0003" x:Uid="@To=HoverForeground" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1DD400C5" cs:id="ColorAnimation_0000" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#1D8700C6" cs:id="ColorAnimation_0001" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="Expanded" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" To="#1DB600C7" cs:id="ColorAnimation_0002" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="Collapsed" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" To="#1D9800C8" cs:id="ColorAnimation_0003" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Pressed">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFDEECF9" cs:id="ColorAnimation_0004" x:Uid="@To=SelectionBackground" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#FFDEECF9" cs:id="ColorAnimation_0005" x:Uid="@To=SelectionBorder" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="Expanded" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" To="#FF106EBE" cs:id="ColorAnimation_0006" x:Uid="@To=SelectionForeground" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="Collapsed" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" To="#FF106EBE" cs:id="ColorAnimation_0007" x:Uid="@To=SelectionForeground" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1DA900C9" cs:id="ColorAnimation_0004" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#1DFA00CA" cs:id="ColorAnimation_0005" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="Expanded" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" To="#1DCB00CB" cs:id="ColorAnimation_0006" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="Collapsed" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" To="#1D5C00CC" cs:id="ColorAnimation_0007" />
                         </Storyboard>
                     </VisualState>
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <dx:DXBorder x:Name="IsDefault" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Office2019White\Button_Base.xaml;397;14">
+            <dx:DXBorder x:Name="IsDefault" Background="#1D6D00CD" BorderBrush="#1D3E00CE" BorderThickness="1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Office2019White\Button_Base.xaml;397;14">
                 <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Office2019White\Button_Base.xaml;402;18">
-                    <Path x:Name="Collapsed" Fill="#FF444444" Opacity="0" Style="{StaticResource UIShape.Left}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Office2019White\Button_Base.xaml;403;22" x:Uid="@Fill=Foreground" />
-                    <Path x:Name="Expanded" Fill="#FF444444" Opacity="0" Style="{StaticResource UIShape.Right}" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Office2019White\Button_Base.xaml;408;22" x:Uid="@Fill=Foreground" />
+                    <Path x:Name="Collapsed" Fill="#1D0F00CF" Opacity="0" Style="{StaticResource UIShape.Left}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Office2019White\Button_Base.xaml;403;22" />
+                    <Path x:Name="Expanded" Fill="#1D6200D0" Opacity="0" Style="{StaticResource UIShape.Right}" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Office2019White\Button_Base.xaml;408;22" />
                 </Grid>
             </dx:DXBorder>
         </Grid>

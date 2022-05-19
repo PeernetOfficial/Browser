@@ -1,0 +1,240 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxdiag="http://schemas.devexpress.com/winfx/2008/xaml/diagram" xmlns:dxdiagn="http://schemas.devexpress.com/winfx/2008/xaml/diagram/internal" xmlns:dxdiagt="http://schemas.devexpress.com/winfx/2008/xaml/diagram/themekeys" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+  <dxmvvm:ObjectToObjectConverter x:Key="IconsAndNamesToBoolConverter" DefaultTarget="False">
+    <dxmvvm:MapItem Source="IconsAndNames" Target="True" />
+  </dxmvvm:ObjectToObjectConverter>
+  <dxmvvm:ObjectToObjectConverter x:Key="NamesUnderIconsToBoolConverter" DefaultTarget="False">
+    <dxmvvm:MapItem Source="NamesUnderIcons" Target="True" />
+  </dxmvvm:ObjectToObjectConverter>
+  <dxmvvm:ObjectToObjectConverter x:Key="IconsOnlyToBoolConverter" DefaultTarget="False">
+    <dxmvvm:MapItem Source="IconsOnly" Target="True" />
+  </dxmvvm:ObjectToObjectConverter>
+  <dxmvvm:ObjectToObjectConverter x:Key="NamesOnlyToBoolConverter" DefaultTarget="False">
+    <dxmvvm:MapItem Source="NamesOnly" Target="True" />
+  </dxmvvm:ObjectToObjectConverter>
+  <dxmvvm:ObjectToObjectConverter x:Key="BoolToHeightConverter" DefaultTarget="5000">
+    <dxmvvm:MapItem Source="False" Target="0" />
+  </dxmvvm:ObjectToObjectConverter>
+  <dxmvvm:ObjectToObjectConverter x:Key="InverseBoolToHeightConverter" DefaultTarget="5000">
+    <dxmvvm:MapItem Source="True" Target="0" />
+  </dxmvvm:ObjectToObjectConverter>
+  <dxmvvm:ObjectToObjectConverter x:Key="ViewSelectorToBoolConverter" DefaultTarget="False">
+    <dxmvvm:MapItem Source="ViewSelector" Target="True" />
+    <dxmvvm:MapItem Source="ViewAndOrderSelector" Target="True" />
+  </dxmvvm:ObjectToObjectConverter>
+  <dxmvvm:ObjectToObjectConverter x:Key="ViewAndOrderSelectorToBoolConverter" DefaultTarget="False">
+    <dxmvvm:MapItem Source="ViewAndOrderSelector" Target="True" />
+  </dxmvvm:ObjectToObjectConverter>
+  <dxmvvm:ObjectToObjectConverter x:Key="StencilsCompactSelectorToBoolConverter" DefaultTarget="False">
+    <dxmvvm:MapItem Source="StencilsCompactSelector" Target="True" />
+  </dxmvvm:ObjectToObjectConverter>
+  <dxmvvm:ObjectToObjectConverter x:Key="MenuMarginConverter">
+    <dxmvvm:MapItem Source="True" Target="0,3,0,2" />
+    <dxmvvm:MapItem Source="False" Target="0,10,0,2" />
+  </dxmvvm:ObjectToObjectConverter>
+  <dxdiag:DiagramStringIdConverter x:Key="DiagramStringIdConverter" />
+  <Style x:Key="UnselectedListBoxItemStyle" TargetType="ListBoxItem">
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+          <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;66;22" />
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="ScrollButtonStyle" TargetType="{x:Type RepeatButton}">
+    <Setter Property="ContentTemplate">
+      <Setter.Value>
+        <DataTemplate>
+          <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;78;22">
+            <Path Data="{Binding}" Fill="{Binding ElementName=scrollButtonText, Path=Foreground}" Height="6" Margin="-8,0,-8,0" Width="7" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;79;26" />
+            <TextBlock x:Name="scrollButtonText" Margin="0,-2,0,-2" Text=" " dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;84;26" />
+          </Grid>
+        </DataTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <DataTemplate x:Key="StencilCompactItemTemplate">
+    <ContentControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;94;10">
+      <dxb:BarCheckItem CloseSubMenuOnClick="False" Content="{Binding Name}" IsChecked="{Binding IsChecked, Mode=TwoWay}" />
+    </ContentControl>
+  </DataTemplate>
+  <DataTemplate x:Key="SelectedStencilItemTemplate">
+    <ContentControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;102;10">
+      <dxb:BarCheckItem CloseSubMenuOnClick="False" Content="{Binding Name}" GroupIndex="1" IsChecked="{Binding IsSelected, Mode=TwoWay}" />
+    </ContentControl>
+  </DataTemplate>
+  <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.ShapeToolboxPreview}" TargetType="{x:Type dxdiag:ShapeToolboxPreview}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type dxdiag:ShapeToolboxPreview}">
+          <StackPanel x:Name="PART_LayoutElement" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;114;22">
+            <Viewbox x:Name="PART_Viewbox" Height="{DynamicResource {dxdiagt:DiagramToolboxControlThemeKey ResourceKey=ShapePresenterSize}}" HorizontalAlignment="Center" Stretch="{TemplateBinding ShapePresenterStretch}" Width="{DynamicResource {dxdiagt:DiagramToolboxControlThemeKey ResourceKey=ShapePresenterSize}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;115;26">
+              <ContentPresenter x:Name="PART_ShapePresenter" HorizontalAlignment="Center" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;120;30" />
+            </Viewbox>
+            <TextBlock x:Name="PART_TextBlock" MaxHeight="{DynamicResource {dxdiagt:DiagramToolboxControlThemeKey ResourceKey=ShapePresenterSize}}" TextTrimming="CharacterEllipsis" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" Width="{DynamicResource {dxdiagt:DiagramToolboxControlThemeKey ResourceKey=ShapeDescriptionWidth}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;124;26" />
+          </StackPanel>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <ControlTemplate x:Key="ListBoxTemplate" TargetType="ListBox">
+    <dx:DXBorder Background="Transparent" BorderBrush="Transparent" BorderThickness="0" CornerRadius="2" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;137;10">
+      <ScrollViewer x:Name="ScrollViewer" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Padding="0" cs:id="ScrollViewer_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;142;14">
+        <ItemsPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;148;18" />
+      </ScrollViewer>
+    </dx:DXBorder>
+  </ControlTemplate>
+  <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.DiagramToolboxControl}" TargetType="{x:Type dxdiag:DiagramToolboxControl}">
+    <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type dxdiag:DiagramToolboxControl}">
+          <Grid Background="{DynamicResource {dxdiagt:DiagramToolboxControlThemeKey ResourceKey=Background}}" VerticalAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;158;22">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <dxe:SearchControl FindMode="Always" Margin="3,3,3,0" NullText="{Binding ConverterParameter=Search_Shapes_Null_Text, Converter={StaticResource DiagramStringIdConverter}}" SearchText="{Binding ViewModel.SearchText, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiag:DiagramToolboxControl}}, Mode=TwoWay}" Visibility="{TemplateBinding IsCompact, Converter={dxmvvm:BooleanToVisibilityConverter Inverse=True}}" />
+            <ListBox Grid.Row="1" HorizontalContentAlignment="Stretch" ItemContainerStyle="{DynamicResource {dxdiagt:DiagramToolboxControlThemeKey ResourceKey=StencilsSelectorItemStyle}}" ItemTemplate="{DynamicResource {dxdiagt:DiagramToolboxControlThemeKey ResourceKey=StencilsSelectorItemTemplate}}" Margin="3,3,2,2" Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxdiag:DiagramToolboxControl}}}" Template="{StaticResource ListBoxTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;170;26">
+              <dxmvvm:Interaction.Behaviors>
+                <dxdiagn:ListBoxMenuBehavior IsCompact="{Binding IsCompact, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiag:DiagramToolboxControl}}}" MenuViewMode="{Binding MenuViewMode, Mode=TwoWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiag:DiagramToolboxControl}}}" PopupMenu="{Binding ElementName=popupMenu}" ViewModel="{Binding ViewModel, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiag:DiagramToolboxControl}}}" />
+              </dxmvvm:Interaction.Behaviors>
+              <dxb:BarManager.DXContextMenu>
+                <dxb:PopupMenu x:Name="popupMenu" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;184;34">
+                  <dxb:BarSubItem Content="{Binding ConverterParameter=ContextMenu_View, Converter={StaticResource DiagramStringIdConverter}}" IsVisible="{Binding Path=MenuViewMode, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ViewSelectorToBoolConverter}}">
+                    <dxb:BarCheckItem AllowUncheckInGroup="False" CloseSubMenuOnClick="False" Command="{Binding Path=ViewModel.SelectShapePreviewModeCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="IconsAndNames" Content="{Binding ConverterParameter=ContextMenu_Icons_And_Names, Converter={StaticResource DiagramStringIdConverter}}" Glyph="{dxdiag:DiagramSvgImage Size='16,16', Path=Images/Svg/IconsAndNames.svg}" GroupIndex="0" IsChecked="{Binding Path=ViewModel.ShapePreviewMode, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource IconsAndNamesToBoolConverter}}" />
+                    <dxb:BarCheckItem AllowUncheckInGroup="False" CloseSubMenuOnClick="False" Command="{Binding Path=ViewModel.SelectShapePreviewModeCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="NamesUnderIcons" Content="{Binding ConverterParameter=ContextMenu_Names_Under_Icons, Converter={StaticResource DiagramStringIdConverter}}" Glyph="{dxdiag:DiagramSvgImage Size='16,16', Path=Images/Svg/NamesUnderIcons.svg}" GroupIndex="0" IsChecked="{Binding Path=ViewModel.ShapePreviewMode, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NamesUnderIconsToBoolConverter}}" />
+                    <dxb:BarCheckItem AllowUncheckInGroup="False" CloseSubMenuOnClick="False" Command="{Binding Path=ViewModel.SelectShapePreviewModeCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="IconsOnly" Content="{Binding ConverterParameter=ContextMenu_Icons_Only, Converter={StaticResource DiagramStringIdConverter}}" Glyph="{dxdiag:DiagramSvgImage Size='16,16', Path=Images/Svg/IconsOnly.svg}" GroupIndex="0" IsChecked="{Binding Path=ViewModel.ShapePreviewMode, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource IconsOnlyToBoolConverter}}" />
+                    <dxb:BarCheckItem AllowUncheckInGroup="False" CloseSubMenuOnClick="False" Command="{Binding Path=ViewModel.SelectShapePreviewModeCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="NamesOnly" Content="{Binding ConverterParameter=ContextMenu_Names_Only, Converter={StaticResource DiagramStringIdConverter}}" Glyph="{dxdiag:DiagramSvgImage Size='16,16', Path=Images/Svg/NamesOnly.svg}" GroupIndex="0" IsChecked="{Binding Path=ViewModel.ShapePreviewMode, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NamesOnlyToBoolConverter}}" />
+                  </dxb:BarSubItem>
+                  <dxb:BarSubItem Content="{Binding ConverterParameter=ContextMenu_Order, Converter={StaticResource DiagramStringIdConverter}}" IsVisible="{Binding Path=MenuViewMode, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ViewAndOrderSelectorToBoolConverter}}">
+                    <dxb:BarButtonItem Command="{Binding Path=ViewModel.MoveUpSelectedStencilCommand, RelativeSource={RelativeSource TemplatedParent}}" Content="{Binding ConverterParameter=ContextMenu_Move_Up, Converter={StaticResource DiagramStringIdConverter}}" />
+                    <dxb:BarButtonItem Command="{Binding Path=ViewModel.MoveDownSelectedStencilCommand, RelativeSource={RelativeSource TemplatedParent}}" Content="{Binding ConverterParameter=ContextMenu_Move_Down, Converter={StaticResource DiagramStringIdConverter}}" />
+                  </dxb:BarSubItem>
+                  <dxb:BarItemSeparator IsVisible="{Binding Path=MenuViewMode, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ViewAndOrderSelectorToBoolConverter}}" />
+                  <dxb:BarButtonItem Command="{Binding Path=ViewModel.RemoveSelectedStencilCommand, RelativeSource={RelativeSource TemplatedParent}}" Content="{Binding ConverterParameter=ContextMenu_Close, Converter={StaticResource DiagramStringIdConverter}}" Glyph="{dxdiag:DiagramSvgImage Size='16,16', Path=Images/Svg/Delete.svg}" IsVisible="{Binding Path=MenuViewMode, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ViewAndOrderSelectorToBoolConverter}}" />
+                  <dxb:BarLinkContainerItem>
+                    <dxb:BarLinkContainerItem.ItemTemplate>
+                      <DataTemplate>
+                        <ContentControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;231;50">
+                          <dxb:BarCheckItem CloseSubMenuOnClick="False" Content="{Binding Name}" IsChecked="{Binding IsChecked, Mode=TwoWay}" />
+                        </ContentControl>
+                      </DataTemplate>
+                    </dxb:BarLinkContainerItem.ItemTemplate>
+                    <dxb:BarLinkContainerItem.Style>
+                      <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/bars.BarLinkContainerItem}" TargetType="{x:Type dxb:BarLinkContainerItem}">
+                        <Style.Triggers>
+                          <DataTrigger Binding="{Binding Path=MenuViewMode, RelativeSource={RelativeSource TemplatedParent}}" Value="StencilsSelector">
+                            <Setter Property="ItemLinksSource" Value="{Binding Path=ViewModel.Stencils, RelativeSource={RelativeSource TemplatedParent}}" />
+                          </DataTrigger>
+                        </Style.Triggers>
+                      </Style>
+                    </dxb:BarLinkContainerItem.Style>
+                  </dxb:BarLinkContainerItem>
+                  <dxb:BarItemLink />
+                  <dxb:BarSubItem Content="{Binding ConverterParameter=More_Shapes_Name, Converter={StaticResource DiagramStringIdConverter}}" IsVisible="{Binding Path=MenuViewMode, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource StencilsCompactSelectorToBoolConverter}}" ItemLinksSource="{Binding Path=ViewModel.Stencils, RelativeSource={RelativeSource TemplatedParent}}" ItemTemplate="{StaticResource StencilCompactItemTemplate}" />
+                  <dxb:BarLinkContainerItem ItemTemplate="{StaticResource SelectedStencilItemTemplate}">
+                    <dxb:BarLinkContainerItem.Style>
+                      <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/bars.BarLinkContainerItem}" TargetType="{x:Type dxb:BarLinkContainerItem}">
+                        <Style.Triggers>
+                          <DataTrigger Binding="{Binding Path=MenuViewMode, RelativeSource={RelativeSource TemplatedParent}}" Value="StencilsCompactSelector">
+                            <Setter Property="ItemLinksSource" Value="{Binding Path=ViewModel.CheckedStencils, RelativeSource={RelativeSource TemplatedParent}}" />
+                          </DataTrigger>
+                        </Style.Triggers>
+                      </Style>
+                    </dxb:BarLinkContainerItem.Style>
+                  </dxb:BarLinkContainerItem>
+                </dxb:PopupMenu>
+              </dxb:BarManager.DXContextMenu>
+            </ListBox>
+            <Separator Grid.Row="2" HorizontalAlignment="Stretch" Margin="0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;267;26" />
+            <dx:DXBorder Background="{DynamicResource {dxdiagt:DiagramToolboxControlThemeKey ResourceKey=ToolsAreaBackground}}" BorderThickness="0" Grid.Row="3" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;270;26">
+              <Grid Margin="0,0,0,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;273;30">
+                <TextBlock Foreground="{Binding ElementName=ShapesListBox, Path=Foreground}" Grid.Row="3" HorizontalAlignment="Center" Margin="10,0,10,0" MaxHeight="{TemplateBinding IsCompact, Converter={StaticResource InverseBoolToHeightConverter}}" Text="{Binding EmptyCollectionText, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiag:DiagramToolboxControl}}}" TextWrapping="Wrap" VerticalAlignment="Center" Visibility="{Binding ViewModel.ShapesItemCollection.Count, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiag:DiagramToolboxControl}}, Converter={dxmvvm:NumericToVisibilityConverter Inverse=True}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;274;34" />
+                <ListBox x:Name="ShapesListBox" Grid.Row="3" ItemContainerStyle="{StaticResource UnselectedListBoxItemStyle}" ItemsSource="{Binding ViewModel.ShapesItemCollection, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiag:DiagramToolboxControl}}}" ScrollViewer.PanningMode="None" Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxdiag:DiagramToolboxControl}}}" Visibility="{Binding ViewModel.ShapesItemCollection.Count, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiag:DiagramToolboxControl}}, Converter={dxmvvm:NumericToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;283;34">
+                  <ListBox.Template>
+                    <ControlTemplate TargetType="{x:Type ListBox}">
+                      <DockPanel Background="Transparent" cs:id="DockPanel_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;292;46">
+                        <RepeatButton x:Name="LineUpButton" ClickMode="Hover" Command="{x:Static ScrollBar.LineUpCommand}" CommandTarget="{Binding ElementName=scrollviewer}" Content="F1M0,3L1,3 1,2 2,2 2,1 3,1 3,0 4,0 4,1 5,1 5,2 6,2 6,3 7,3 7,6 6,6 6,5 5,5 5,4 4,4 4,3 3,3 3,4 2,4 2,5 1,5 1,6 0,6 0,3z" DockPanel.Dock="Top" FocusVisualStyle="{x:Null}" Style="{StaticResource ScrollButtonStyle}" Visibility="{Binding ElementName=scrollViewerBehavior, Path=ScrollUpButtonVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;293;50" />
+                        <RepeatButton x:Name="LineDownButton" ClickMode="Hover" Command="{x:Static ScrollBar.LineDownCommand}" CommandTarget="{Binding ElementName=scrollviewer}" Content="F1M0,0L1,0 1,1 2,1 2,2 3,2 3,3 4,3 4,2 5,2 5,1 6,1 6,0 7,0 7,3 6,3 6,4 5,4 5,5 4,5 4,6 3,6 3,5 2,5 2,4 1,4 1,3 0,3 0,0z" DockPanel.Dock="Bottom" FocusVisualStyle="{x:Null}" Style="{StaticResource ScrollButtonStyle}" Visibility="{Binding ElementName=scrollViewerBehavior, Path=ScrollDownButtonVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;302;50" />
+                        <ScrollViewer x:Name="scrollviewer" CanContentScroll="False" HorizontalScrollBarVisibility="Disabled" Margin="0" Padding="0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;311;50">
+                          <dxmvvm:Interaction.Behaviors>
+                            <dxdiagn:ScrollViewerButtonsBehavior x:Name="scrollViewerBehavior" IsCompact="{Binding ElementName=ShapesListBox, Path=Tag.IsCompact}" ViewerViewportWidth="{Binding ElementName=ShapesListBox, Path=Tag.VisualWidth, Mode=TwoWay}" />
+                          </dxmvvm:Interaction.Behaviors>
+                          <ItemsPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;321;54" />
+                        </ScrollViewer>
+                      </DockPanel>
+                    </ControlTemplate>
+                  </ListBox.Template>
+                  <ListBox.ItemTemplate>
+                    <DataTemplate>
+                      <Grid HorizontalAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;328;46">
+                        <Grid.Resources>
+                          <CollectionViewSource x:Key="ShapesCollection" Source="{Binding Tools, Converter={dxdiagn:IsQuickToolsConverter}}">
+                            <CollectionViewSource.GroupDescriptions>
+                              <PropertyGroupDescription PropertyName="IsQuick" />
+                            </CollectionViewSource.GroupDescriptions>
+                          </CollectionViewSource>
+                        </Grid.Resources>
+                        <Grid.RowDefinitions>
+                          <RowDefinition Height="Auto" />
+                          <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock FontWeight="Bold" Margin="6,0,6,0" MaxHeight="{Binding ElementName=ShapesListBox, Path=Tag.IsCompact, Converter={StaticResource InverseBoolToHeightConverter}}" MaxWidth="{Binding ElementName=ShapesListBox, Path=Tag.IsCompact, Converter={StaticResource InverseBoolToHeightConverter}}" Text="{Binding Name}" Visibility="{Binding NameIsVisible, Converter={dxmvvm:BooleanToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;340;50" />
+                        <ListBox x:Name="ShapeListBox" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Grid.Row="1" HorizontalAlignment="Stretch" ItemContainerStyle="{DynamicResource {dxdiagt:DiagramToolboxControlThemeKey ResourceKey=ShapesSelectorItemStyle}}" ItemsSource="{Binding Source={StaticResource ShapesCollection}}" KeyboardNavigation.TabNavigation="Cycle" ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.PanningMode="None" SelectedItem="{Binding SelectedTool, Mode=TwoWay}" Template="{StaticResource ListBoxTemplate}" cs:id="ListBox_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;346;50">
+                          <dxmvvm:Interaction.Behaviors>
+                            <dxdiagn:ActualWidthBehavior ActualControlWidth="{Binding ElementName=ShapesListBox, Path=Tag.ShapeContainerWidth, Mode=TwoWay}" />
+                            <dxdiagn:MouseMoveSelectionBehavior />
+                          </dxmvvm:Interaction.Behaviors>
+                          <ListBox.GroupStyle>
+                            <GroupStyle>
+                              <GroupStyle.ContainerStyle>
+                                <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=GroupItem}" TargetType="{x:Type GroupItem}">
+                                  <Setter Property="Template">
+                                    <Setter.Value>
+                                      <ControlTemplate TargetType="{x:Type GroupItem}">
+                                        <StackPanel dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;372;82">
+                                          <Grid Visibility="{Binding ElementName=ShapeListBox, Path=ItemsSource, Converter={dxdiagn:HeaderVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;373;86">
+                                            <Separator HorizontalAlignment="Stretch" Margin="3,0,3,0" Visibility="{Binding Path=Name, Converter={dxmvvm:BooleanToVisibilityConverter Inverse=True}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;374;90" />
+                                          </Grid>
+                                          <ItemsPresenter Margin="{DynamicResource {dxdiagt:DiagramToolboxControlThemeKey ResourceKey=StencilGroupMargin}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;378;86" />
+                                        </StackPanel>
+                                      </ControlTemplate>
+                                    </Setter.Value>
+                                  </Setter>
+                                </Style>
+                              </GroupStyle.ContainerStyle>
+                            </GroupStyle>
+                          </ListBox.GroupStyle>
+                          <ListBox.ItemTemplate>
+                            <DataTemplate>
+                              <ScrollViewer Focusable="False" HorizontalScrollBarVisibility="Hidden" KeyboardNavigation.TabNavigation="None" VerticalScrollBarVisibility="Disabled" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Toolbox.xaml;389;62">
+                                <dxmvvm:Interaction.Behaviors>
+                                  <dxdiagn:ScrollingLengthBehavior ScrollingLength="{Binding ElementName=ShapesListBox, Path=Tag.ScrollingLength, Mode=TwoWay}" />
+                                </dxmvvm:Interaction.Behaviors>
+                                <dxdiag:ShapeToolboxPreview Diagram="{Binding ElementName=ShapesListBox, Path=Tag.DiagramControl}" IsCompact="{Binding ElementName=ShapesListBox, Path=Tag.IsCompact}" ItemTool="{Binding}" Theme="{Binding ElementName=ShapesListBox, Path=Tag.DiagramControl.Theme}" UniformMargin="3" ViewMode="{Binding ElementName=ShapesListBox, Path=Tag.ViewModel.ShapePreviewMode}" />
+                              </ScrollViewer>
+                            </DataTemplate>
+                          </ListBox.ItemTemplate>
+                          <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                              <dxdiagn:ExtendedWrapPanel ActualItemWidth="{Binding ElementName=ShapesListBox, Path=Tag.ShapeItemWidth, Mode=TwoWay}" />
+                            </ItemsPanelTemplate>
+                          </ListBox.ItemsPanel>
+                        </ListBox>
+                      </Grid>
+                    </DataTemplate>
+                  </ListBox.ItemTemplate>
+                </ListBox>
+              </Grid>
+            </dx:DXBorder>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+</ResourceDictionary>

@@ -87,7 +87,7 @@
 
     <ControlTemplate x:Key="emptyButtonTemplate" TargetType="ToggleButton">
         <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="ReportDesigner\Generic\PropertyGrid\PropertyGridCustomizations.xaml;156;10">
-            <dx:DXBorder Name="background" Background="Gray" Opacity="0" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="ReportDesigner\Generic\PropertyGrid\PropertyGridCustomizations.xaml;157;14" />
+            <dx:DXBorder Name="background" Background="#1D54005D" Opacity="0" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="ReportDesigner\Generic\PropertyGrid\PropertyGridCustomizations.xaml;157;14" />
             <ContentPresenter Name="glyphPresenter" Content="{TemplateBinding Content}" Margin="{TemplateBinding Padding}" Opacity="0.5" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="ReportDesigner\Generic\PropertyGrid\PropertyGridCustomizations.xaml;161;14" />
         </Grid>
         <ControlTemplate.Triggers>
@@ -164,7 +164,7 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <ContentControl Content="{x:Null}" ContentTemplate="{StaticResource PropertyGridTopPanelTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="ReportDesigner\Generic\PropertyGrid\PropertyGridCustomizations.xaml;275;30" />
-                            <dx:DXBorder x:Name="PART_SelectorAndSearchSeparator" Background="Transparent" Grid.Column="1" IsHitTestVisible="False" Width="{DynamicResource {dxprgt:PropertyGridControlThemeKey ResourceKey=SelectorAndSearchSeparatorWidth}}" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="ReportDesigner\Generic\PropertyGrid\PropertyGridCustomizations.xaml;276;30" />
+                            <dx:DXBorder x:Name="PART_SelectorAndSearchSeparator" Background="#1D07005E" Grid.Column="1" IsHitTestVisible="False" Width="{DynamicResource {dxprgt:PropertyGridControlThemeKey ResourceKey=SelectorAndSearchSeparatorWidth}}" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="ReportDesigner\Generic\PropertyGrid\PropertyGridCustomizations.xaml;276;30" />
                             <dxprg:FilterColumnProvider x:Name="PART_ColumnProvider" Height="0" IsHitTestVisible="False" Opacity="0" Owner="{Binding RelativeSource={RelativeSource TemplatedParent}}" Width="0" />
                             <dxprg:PropertyGridSearchControl x:Name="PART_SearchControl" ColumnProvider="{Binding ElementName=PART_ColumnProvider}" FilterByColumnsMode="Default" FilterCondition="Contains" FindMode="Always" Focusable="False" Grid.Column="2" Grid.Row="0" ImmediateMRUPopup="False" KeyboardNavigation.ControlTabNavigation="Continue" KeyboardNavigation.DirectionalNavigation="Continue" KeyboardNavigation.TabNavigation="Continue" MRULength="10" PostMode="Delayed" SearchTextPostDelay="1000" ShowFindButton="True" ShowMRUButton="False" Style="{DynamicResource ResourceKey={dxprgt:PropertyGridControlThemeKey ResourceKey=SearchControlStyle}}" VerticalAlignment="Center" Visibility="{Binding ShowSearchBox, RelativeSource={RelativeSource TemplatedParent}, Converter={dx:BooleanToVisibilityConverter}}" />
                         </Grid>
@@ -205,7 +205,7 @@
     <Style x:Key="propertyGridStyle" TargetType="propertygrid:ReportDesignerPropertyGrid">
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=(designer:ReportDesigner.Designer).PropertyGridOptions.UseOfficeInspiredPropertyGrid, RelativeSource={RelativeSource Self}}" Value="True">
-                <Setter Property="Background" Value="Transparent" cs:id="Setter_0000" />
+                <Setter Property="Background" Value="#1D36005F" cs:id="Setter_0000" />
                 <Setter Property="ShowGridLines" Value="False" />
                 <Setter Property="BorderThickness" Value="0" />
                 <Setter Property="RowPadding" Value="3" />

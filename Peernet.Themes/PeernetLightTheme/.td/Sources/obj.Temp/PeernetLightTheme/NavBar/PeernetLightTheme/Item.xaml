@@ -8,20 +8,20 @@
 
     <ControlTemplate x:Key="{dxnt:CommonElementsThemeKey ResourceKey=ItemBorderTemplate}" TargetType="{x:Type ContentControl}">
         <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="NavBar\Office2019White\Item.xaml;22;10">
-            <dx:DXBorder x:Name="IsDefault" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="NavBar\Office2019White\Item.xaml;23;14" />
-            <dxn:ItemForegroundWrapper x:Name="wrapper" Owner="{Binding RelativeSource={RelativeSource TemplatedParent}}" OwnerForeground="#FF444444" cs:id="ItemForegroundWrapper_0000" x:Uid="@OwnerForeground=Foreground" />
+            <dx:DXBorder x:Name="IsDefault" Background="#1DFD2404" BorderBrush="#1DCC2405" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="NavBar\Office2019White\Item.xaml;23;14" />
+            <dxn:ItemForegroundWrapper x:Name="wrapper" Owner="{Binding RelativeSource={RelativeSource TemplatedParent}}" OwnerForeground="#1D9F2406" cs:id="ItemForegroundWrapper_0000" />
             <ContentPresenter x:Name="item" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="NavBar\Office2019White\Item.xaml;32;14" />
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup Name="CommonStates">
                     <VisualState Name="Normal" />
                     <VisualState Name="MouseOverState">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFEFF6FC" cs:id="ColorAnimation_0000" x:Uid="@To=HoverBackground" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#FFEFF6FC" cs:id="ColorAnimation_0003" x:Uid="@To=HoverBorder" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1DAE2407" cs:id="ColorAnimation_0000" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#1D802408" cs:id="ColorAnimation_0003" />
                             <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="wrapper" Storyboard.TargetProperty="OwnerForeground">
                                 <DiscreteObjectKeyFrame KeyTime="0">
                                     <DiscreteObjectKeyFrame.Value>
-                                        <SolidColorBrush Color="#FF444444" cs:id="SolidColorBrush_0000" x:Uid="@Color=Foreground" />
+                                        <SolidColorBrush Color="#1DB12409" cs:id="SolidColorBrush_0000" />
                                     </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
                             </ObjectAnimationUsingKeyFrames>
@@ -29,12 +29,12 @@
                     </VisualState>
                     <VisualState Name="PressedState">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFDEECF9" cs:id="ColorAnimation_0001" x:Uid="@To=SelectionBackground" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#FFDEECF9" cs:id="ColorAnimation_0004" x:Uid="@To=SelectionBorder" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1DE2240A" cs:id="ColorAnimation_0001" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#1DD3240B" cs:id="ColorAnimation_0004" />
                             <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="wrapper" Storyboard.TargetProperty="OwnerForeground">
                                 <DiscreteObjectKeyFrame KeyTime="0">
                                     <DiscreteObjectKeyFrame.Value>
-                                        <SolidColorBrush Color="#FF444444" cs:id="SolidColorBrush_0001" x:Uid="@Color=Foreground" />
+                                        <SolidColorBrush Color="#1D44240C" cs:id="SolidColorBrush_0001" />
                                     </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
                             </ObjectAnimationUsingKeyFrames>
@@ -53,12 +53,12 @@
                     <VisualState x:Name="Unselected" />
                     <VisualState x:Name="Selected">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFDEECF9" cs:id="ColorAnimation_0002" x:Uid="@To=SelectionBackground" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#FFDEECF9" cs:id="ColorAnimation_0005" x:Uid="@To=SelectionBorder" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D75240D" cs:id="ColorAnimation_0002" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#1D26240E" cs:id="ColorAnimation_0005" />
                             <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="wrapper" Storyboard.TargetProperty="OwnerForeground">
                                 <DiscreteObjectKeyFrame KeyTime="0">
                                     <DiscreteObjectKeyFrame.Value>
-                                        <SolidColorBrush Color="#FF444444" cs:id="SolidColorBrush_0002" x:Uid="@Color=Foreground" />
+                                        <SolidColorBrush Color="#1D17240F" cs:id="SolidColorBrush_0002" />
                                     </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
                             </ObjectAnimationUsingKeyFrames>

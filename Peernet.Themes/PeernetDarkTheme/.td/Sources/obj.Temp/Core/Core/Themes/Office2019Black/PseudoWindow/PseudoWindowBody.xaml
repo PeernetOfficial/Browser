@@ -1,0 +1,31 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:input="clr-namespace:System.Windows.Input;assembly=PresentationCore" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+  <ResourceDictionary.MergedDictionaries>
+    <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v21.2;component/Core/Core/Themes/Generic/PseudoWindow.xaml" />
+    <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v21.2;component/Core/Core/Themes/UICore.xaml" />
+  </ResourceDictionary.MergedDictionaries>
+  
+  <ControlTemplate x:Key="{dxt:DXWindowThemeKey ResourceKey=FloatingActiveBorder}">
+    <dx:DXBorder Background="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=FloatingContainerBorder}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019Black\PseudoWindow\PseudoWindowBody.xaml;19;10">
+      <dx:DXBorder Background="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=FloatingContainerBackground}}" Margin="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=FloatingContainerBorderPadding}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019Black\PseudoWindow\PseudoWindowBody.xaml;20;14" />
+    </dx:DXBorder>
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxt:DXWindowThemeKey ResourceKey=FloatingInactiveBorder}">
+    <dx:DXBorder Background="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=FloatingContainerInactiveBorder}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019Black\PseudoWindow\PseudoWindowBody.xaml;25;10">
+      <dx:DXBorder Background="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=FloatingContainerInactiveBackground}}" Margin="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=FloatingContainerBorderPadding}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019Black\PseudoWindow\PseudoWindowBody.xaml;26;14" />
+    </dx:DXBorder>
+  </ControlTemplate>
+  
+  <ControlTemplate x:Key="{dxt:DXWindowThemeKey ResourceKey=FloatingBackground}">
+    <dx:DXBorder Background="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=FloatingContainerBackground}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019Black\PseudoWindow\PseudoWindowBody.xaml;33;10" />
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxt:DXWindowThemeKey ResourceKey=InactiveFloatingBackground}">
+    <dx:DXBorder Background="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=FloatingContainerBackground}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019Black\PseudoWindow\PseudoWindowBody.xaml;37;10" />
+  </ControlTemplate>
+  
+  <ControlTemplate x:Key="{dxt:FloatingContainerThemeKey ResourceKey=FloatingContainerWindowTemplate}" TargetType="{x:Type dx:FloatingContainerControl}">
+    <dxcore_unique_xmlns:FloatingWindowContainer Style="{DynamicResource {dxt:FloatingContainerThemeKey ResourceKey=FloatingContainerStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019Black\PseudoWindow\PseudoWindowBody.xaml;43;10" />
+  </ControlTemplate>
+  <ControlTemplate x:Key="{dxt:FloatingContainerThemeKey ResourceKey=FloatingContainerAdornerTemplate}" TargetType="{x:Type dx:FloatingContainerControl}">
+    <dxcore_unique_xmlns:FloatingAdornerContainer Style="{DynamicResource {dxt:FloatingContainerThemeKey ResourceKey=FloatingContainerStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019Black\PseudoWindow\PseudoWindowBody.xaml;47;10" />
+  </ControlTemplate>
+</ResourceDictionary>

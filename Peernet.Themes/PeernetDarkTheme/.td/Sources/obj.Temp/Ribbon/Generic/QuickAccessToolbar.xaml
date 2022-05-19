@@ -1,0 +1,25 @@
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxbt="http://schemas.devexpress.com/winfx/2008/xaml/bars/themekeys" xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon" xmlns:dxrt="http://schemas.devexpress.com/winfx/2008/xaml/ribbon/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core">
+  <ItemsPanelTemplate x:Key="{dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarItemsPanelTemplate}">
+    <dxr:RibbonQuickAccessToolbarPanel VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\QuickAccessToolbar.xaml;15;10" />
+  </ItemsPanelTemplate>
+  <ControlTemplate x:Key="{dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarTemplate}" TargetType="{x:Type dxr:RibbonQuickAccessToolbarControl}">
+    <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\QuickAccessToolbar.xaml;19;10">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+      <ContentControl x:Name="PART_LeftContentControl" Focusable="False" Grid.Column="0" IsTabStop="False" Template="{DynamicResource {dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarLeftContentTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\QuickAccessToolbar.xaml;24;14">
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\QuickAccessToolbar.xaml;29;18">
+          <ContentControl x:Name="PART_OriginItemContainer" Focusable="False" HorizontalAlignment="Left" HorizontalContentAlignment="Left" IsHitTestVisible="False" IsTabStop="False" Opacity="0" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\QuickAccessToolbar.xaml;30;22" />
+          <ItemsPresenter Name="PART_ItemsPresenter" ClipToBounds="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\QuickAccessToolbar.xaml;40;22" />
+        </Grid>
+      </ContentControl>
+      <ContentControl x:Name="PART_RightContentControl" Focusable="False" Grid.Column="1" IsTabStop="False" Template="{DynamicResource {dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarRightContentTemplate}}" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\QuickAccessToolbar.xaml;43;14">
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\QuickAccessToolbar.xaml;50;18">
+          <dxr:RibbonCheckedBorderControl x:Name="PART_ToolbarCustomizationButton" Focusable="False" IsTabStop="False" Template="{DynamicResource {dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarCustomizationButtonTemplate}}" UseAppFocusValue="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\QuickAccessToolbar.xaml;51;22" />
+          <dxr:RibbonCheckedBorderControl x:Name="PART_ToolbarDropDownButton" Focusable="False" IsTabStop="False" Template="{DynamicResource {dxrt:QuickAccessToolbarThemeKey ResourceKey=RibbonToolbarDropDownButtonTemplate}}" UseAppFocusValue="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\QuickAccessToolbar.xaml;56;22" />
+        </Grid>
+      </ContentControl>
+    </Grid>
+  </ControlTemplate>
+</ResourceDictionary>

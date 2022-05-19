@@ -9,7 +9,7 @@
     <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=FilterControlEditorTemplate}" TargetType="{x:Type dxe:FilterControlEditor}">
         <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\FilterControl\PanelEditor.xaml;21;10">
             <dxe:FieldInOperationButtonControl x:Name="PART_Column" Node="{Binding Node, RelativeSource={RelativeSource TemplatedParent}}" OperatorPropertyName="{Binding Path=Operator, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource OperatorPropertyNameConverter}}" Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=FieldInOperationButtonTemplate}}" Visibility="{Binding Path=FieldInValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\FilterControl\PanelEditor.xaml;22;14" />
-            <dx:DXBorder x:Name="PART_Stroke_Border" Background="#FFFFFFFF" BorderBrush="#FFC8C6C4" BorderThickness="1" Margin="0,0,3,0" Visibility="{Binding Path=FieldInValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityInverseConverter}}" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\FilterControl\PanelEditor.xaml;27;14" x:Uid="@Background=Editor.Background;BorderBrush=Border">
+            <dx:DXBorder x:Name="PART_Stroke_Border" Background="#1D7B0593" BorderBrush="#1DEC0594" BorderThickness="1" Margin="0,0,3,0" Visibility="{Binding Path=FieldInValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityInverseConverter}}" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\FilterControl\PanelEditor.xaml;27;14">
                 <ContentPresenter Name="PART_EditorPresenter" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\FilterControl\PanelEditor.xaml;34;18" />
             </dx:DXBorder>
             <ToggleButton x:Name="PART_ChangeOperandTypeButton" Command="{Binding ChangeOperandTypeCommand, RelativeSource={RelativeSource TemplatedParent}}" Cursor="Hand" dxcore_unique_xmlns:FocusHelper2.Focusable="False" IsChecked="{Binding Path=FieldInValue, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" Margin="3" Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=ChangeOperandTypeButtonTemplate}}" VerticalAlignment="Center" Visibility="{Binding Path=Node.Owner.ShowOperandTypeIcon, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\FilterControl\PanelEditor.xaml;36;14">
@@ -23,15 +23,15 @@
                 <VisualStateGroup x:Name="EditModeStates">
                     <VisualState x:Name="InplaceActive">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="PART_Stroke_Border" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#FFC8C6C4" cs:id="ColorAnimation_0000" x:Uid="@To=Border" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="PART_Stroke_Border" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFFFFFFF" cs:id="ColorAnimation_0001" x:Uid="@To=Editor.Background" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="PART_Stroke_Border" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#1DDD0595" cs:id="ColorAnimation_0000" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="PART_Stroke_Border" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D8E0596" cs:id="ColorAnimation_0001" />
                             <DoubleAnimation Duration="0" Storyboard.TargetName="PART_EditorPresenter" Storyboard.TargetProperty="MinWidth" To="32" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="InplaceInactive">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="PART_Stroke_Border" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="Transparent" cs:id="ColorAnimation_0002" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="PART_Stroke_Border" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="Transparent" cs:id="ColorAnimation_0003" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="PART_Stroke_Border" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#1DBF0597" cs:id="ColorAnimation_0002" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="PART_Stroke_Border" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D910598" cs:id="ColorAnimation_0003" />
                             <DoubleAnimation Duration="0" Storyboard.TargetName="PART_EditorPresenter" Storyboard.TargetProperty="MinWidth" To="0" />
                         </Storyboard>
                     </VisualState>

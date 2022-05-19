@@ -7,16 +7,16 @@
 
     
 
-    <SolidColorBrush x:Key="{dxet:TokenEditorThemeKey ResourceKey=TokenForeground}" Color="#FF444444" x:Uid="@Color=Foreground" />
+    <SolidColorBrush x:Key="{dxet:TokenEditorThemeKey ResourceKey=TokenForeground}" Color="#1DDB052D" />
 
     <Style x:Key="{dxet:TokenEditorThemeKey ResourceKey=BorderStyle}" TargetType="{x:Type Border}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Office2019White\AutoCompleteBox\Control.xaml;23;6" /><Setter Property="Background" Value="#FFFFFFFF" cs:id="Setter_0000" x:Uid="@Value=Editor.Background" />
-        <Setter Property="BorderBrush" Value="#FFC8C6C4" cs:id="Setter_0001" x:Uid="@Value=Border" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Office2019White\AutoCompleteBox\Control.xaml;23;6" /><Setter Property="Background" Value="#1D88052E" cs:id="Setter_0000" />
+        <Setter Property="BorderBrush" Value="#1DB9052F" cs:id="Setter_0001" />
         <Setter Property="BorderThickness" Value="1" />
     </Style>
 
     <ControlTemplate x:Key="{dxet:TokenEditorThemeKey ResourceKey=CellPresenterTemplate}" TargetType="{x:Type dxei:TokenEditorPresenter}">
-        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\AutoCompleteBox\Control.xaml;34;10">
+        <Grid x:Name="Root" Background="#1DD40530" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\AutoCompleteBox\Control.xaml;34;10">
             <ContentControl Focusable="False" Template="{TemplateBinding BorderTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\AutoCompleteBox\Control.xaml;37;14" />
             <dxei:CellEditor x:Name="CellEditor" Focusable="False" TextElement.Foreground="{TemplateBinding Foreground}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\AutoCompleteBox\Control.xaml;38;14" />
         </Grid>
@@ -26,20 +26,20 @@
                     <Condition Property="IsMouseOver" Value="True" />
                     <Condition Property="IsEditorActivated" Value="False" />
                 </MultiTrigger.Conditions>
-                <Setter Property="TextElement.Foreground" TargetName="CellEditor" Value="#FF444444" cs:id="Setter_0003" x:Uid="@Value=Foreground" />
+                <Setter Property="TextElement.Foreground" TargetName="CellEditor" Value="#1DE50531" cs:id="Setter_0003" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsSelected" Value="True" />
                     <Condition Property="IsEditorActivated" Value="False" />
                 </MultiTrigger.Conditions>
-                <Setter Property="TextElement.Foreground" TargetName="CellEditor" Value="#FF444444" cs:id="Setter_0004" x:Uid="@Value=Foreground" />
+                <Setter Property="TextElement.Foreground" TargetName="CellEditor" Value="#1DB60532" cs:id="Setter_0004" />
             </MultiTrigger>
             <DataTrigger Binding="{Binding Path=(dxe:BaseEdit.OwnerEdit).EditMode, RelativeSource={RelativeSource Self}}" Value="InplaceActive">
-                <Setter Property="TextElement.Foreground" TargetName="CellEditor" Value="#FF444444" cs:id="Setter_0000" x:Uid="@Value=Foreground" />
+                <Setter Property="TextElement.Foreground" TargetName="CellEditor" Value="#1D870533" cs:id="Setter_0000" />
             </DataTrigger>
             <DataTrigger Binding="{Binding Path=(dxe:BaseEdit.OwnerEdit).EditMode, RelativeSource={RelativeSource Self}}" Value="InplaceInactive">
-                <Setter Property="TextElement.Foreground" TargetName="CellEditor" Value="#FF444444" cs:id="Setter_0001" x:Uid="@Value=Foreground" />
+                <Setter Property="TextElement.Foreground" TargetName="CellEditor" Value="#1D100534" cs:id="Setter_0001" />
             </DataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
