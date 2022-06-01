@@ -116,7 +116,7 @@
                 <dxe:TextEdit EditValue="{Binding SelectionEnd, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource RangeTextEditStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldHeaders.xaml;172;18" />
             </StackPanel>
             <dxe:RangeControl AllowImmediateRangeUpdate="True" Grid.Row="1" Margin="0,10" MinHeight="130" RangeEnd="{Binding End}" RangeStart="{Binding Start}" ResetRangesOnClientItemsSourceChanged="False" SelectionRangeEnd="{Binding SelectionEnd, Mode=TwoWay}" SelectionRangeStart="{Binding SelectionStart, Mode=TwoWay}" ShowLabels="False" ShowRangeBar="True" ShowRangeThumbs="True" VisibleRangeEnd="{Binding End}" VisibleRangeStart="{Binding Start}">
-                <dxcr:NumericChartRangeControlClient ArgumentDataMember="Step" ArgumentLabelFormatString="{Binding ArgumentLabelFormatString}" GridAlignment="{Binding RangeGridAlignment}" GridLinesBrush="#1D8624B0" GridSpacing="1" ItemsSource="{Binding ItemsSource}" SnapAlignment="{Binding RangeSnapAlignment}" ValueDataMember="Value" cs:id="NumericChartRangeControlClient_0000">
+                <dxcr:NumericChartRangeControlClient ArgumentDataMember="Step" ArgumentLabelFormatString="{Binding ArgumentLabelFormatString}" GridAlignment="{Binding RangeGridAlignment}" GridLinesBrush="#33000000" GridSpacing="1" ItemsSource="{Binding ItemsSource}" SnapAlignment="{Binding RangeSnapAlignment}" ValueDataMember="Value" cs:id="NumericChartRangeControlClient_0000">
                     <dxcr:NumericChartRangeControlClient.View>
                         <dxcr:RangeControlClientBarView />
                     </dxcr:NumericChartRangeControlClient.View>
@@ -250,7 +250,7 @@
                                 <ContentControl x:Name="SortDown" Grid.Column="1" Style="{DynamicResource {dxpgi:FieldHeaderThemeKey ResourceKey=SortArrowDownStyle}}" Template="{DynamicResource {dxpgi:FieldHeaderThemeKey ResourceKey=SortArrowDownTemplate}}" Visibility="{Binding Path=IsSortDownButtonVisible}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldHeaders.xaml;433;34" />
                             </Grid>
                         </dxpgi:FieldHeaderContentControl>
-                        <dx:DXBorder Name="PART_DTBorder" Background="#1DB724B1" Opacity="0.3" Visibility="Collapsed" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldHeaders.xaml;440;26" />
+                        <dx:DXBorder Name="PART_DTBorder" Background="Red" Opacity="0.3" Visibility="Collapsed" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldHeaders.xaml;440;26" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOverOverride" SourceName="PART_HeaderContentControl" Value="True">
@@ -285,8 +285,8 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <dx:DXBorder Name="PART_PreviousDropPlace" Background="#1DE424B2" dxpgi:FieldHeadersBase.DropPlace="Previous" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldHeaders.xaml;485;18" />
-                <dx:DXBorder Name="PART_NextDropPlace" Background="#1DD524B3" dxpgi:FieldHeadersBase.DropPlace="Next" Grid.Column="1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldHeaders.xaml;489;18" />
+                <dx:DXBorder Name="PART_PreviousDropPlace" Background="Transparent" dxpgi:FieldHeadersBase.DropPlace="Previous" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldHeaders.xaml;485;18" />
+                <dx:DXBorder Name="PART_NextDropPlace" Background="Transparent" dxpgi:FieldHeadersBase.DropPlace="Next" Grid.Column="1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldHeaders.xaml;489;18" />
             </Grid>
             <dx:DXBorder x:Name="outerBorder" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldHeaders.xaml;495;14">
                 <Button Name="PART_HeaderButton" ClickMode="Release" Command="{TemplateBinding ChangeFieldSortOrder}" CommandParameter="{Binding Path=(dxpgi:FieldHeader.Field), RelativeSource={RelativeSource TemplatedParent}}" DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}" dxpgi:FieldHeader.Field="{Binding Path=(dxpgi:FieldHeader.Field), RelativeSource={RelativeSource TemplatedParent}}" dxpgi:FieldHeadersBase.FieldListArea="{Binding Path=(dxpgi:FieldHeadersBase.FieldListArea), RelativeSource={RelativeSource TemplatedParent}}" Focusable="False" IsTabStop="False" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="True" Style="{DynamicResource {dxpgi:FieldHeaderThemeKey ResourceKey=ButtonStyle}}" dxcore_unique_xmlns:DragManager.IsStartDragPlace="true" VerticalAlignment="Top" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldHeaders.xaml;496;18" />
@@ -328,12 +328,12 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <dx:DXBorder Name="PART_PreviousDropPlace" Background="#1D4224B4" dxpgi:FieldHeadersBase.DropPlace="Previous" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldHeaders.xaml;573;18" />
-                <dx:DXBorder Name="PART_NextDropPlace" Background="#1D7324B5" dxpgi:FieldHeadersBase.DropPlace="Next" Grid.Column="1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldHeaders.xaml;577;18" />
+                <dx:DXBorder Name="PART_PreviousDropPlace" Background="Transparent" dxpgi:FieldHeadersBase.DropPlace="Previous" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldHeaders.xaml;573;18" />
+                <dx:DXBorder Name="PART_NextDropPlace" Background="Transparent" dxpgi:FieldHeadersBase.DropPlace="Next" Grid.Column="1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldHeaders.xaml;577;18" />
             </Grid>
             <dx:DXBorder x:Name="outerBorder" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldHeaders.xaml;583;14">
                 <ContentControl Name="PART_HeaderButton" DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="True" Template="{DynamicResource {dxpgi:FieldHeaderThemeKey ResourceKey=GroupContentTemplate}}" VerticalAlignment="Top" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldHeaders.xaml;584;18">
-                    <Grid x:Name="PART_Panel" Background="#1D2024B6" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldHeaders.xaml;590;22" />
+                    <Grid x:Name="PART_Panel" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldHeaders.xaml;590;22" />
                 </ContentControl>
             </dx:DXBorder>
         </dxcore_unique_xmlns:SimplePanel>
@@ -381,7 +381,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Grid Margin="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldHeaders.xaml;645;26">
-                            <dxpgi:FieldHeadersPanel x:Name="PART_Panel" Background="#1D1124B7" HorizontalAlignment="Stretch" MeasureMode="{TemplateBinding MeasureMode}" SkipWidth="{TemplateBinding LeftPixels}" dxcore_unique_xmlns:DragManager.DropTargetFactory="{dxpgi:PivotGridDropTargetFactory}" VerticalAlignment="{TemplateBinding HeadersVAlignment}" cs:id="FieldHeadersPanel_0000" />
+                            <dxpgi:FieldHeadersPanel x:Name="PART_Panel" Background="Transparent" HorizontalAlignment="Stretch" MeasureMode="{TemplateBinding MeasureMode}" SkipWidth="{TemplateBinding LeftPixels}" dxcore_unique_xmlns:DragManager.DropTargetFactory="{dxpgi:PivotGridDropTargetFactory}" VerticalAlignment="{TemplateBinding HeadersVAlignment}" cs:id="FieldHeadersPanel_0000" />
                             <dxcore_unique_xmlns:SimplePanel VerticalAlignment="Center" Visibility="{Binding Path=IsCutted, ElementName=PART_Panel, Converter={StaticResource ResourceKey=boolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldHeaders.xaml;654;30">
                                 <dxcore_unique_xmlns:XPFContentControl x:Name="CuttedContentText" HorizontalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldHeaders.xaml;655;34">
                                     <TextBlock Foreground="{DynamicResource ResourceKey={dxpgi:AppearanceThemeKey ResourceKey=DataAreaCuttedTextForeground}}" HorizontalAlignment="Center" Padding="0" Text="{dxpgi:PivotGridStringId StringId=PrintDesignerDataHeaders}" TextWrapping="NoWrap" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Generic\FieldHeaders.xaml;656;38">

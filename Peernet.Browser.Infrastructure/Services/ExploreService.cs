@@ -23,5 +23,12 @@ namespace Peernet.Browser.Infrastructure.Services
 
             return files.Select(f => new DownloadModel(f)).ToList();
         }
+
+        public async Task<List<DownloadModel>> GetPagedFiles(int offset, int limit, int? type = null)
+        {
+            var files = (await exploreClient.GetFiles(limit, type))?.Files ?? Enumerable.Empty<ApiFile>();
+
+            return files.Select(f => new DownloadModel(f)).ToList();
+        }
     }
 }

@@ -28,7 +28,7 @@
     
 
     <DataTemplate x:Key="{dxrt:RibbonPageThemeKey ResourceKey=DefaultCaptionContentTemplate}">
-        <Grid Background="#1DE21E14" TextElement.FontSize="{Binding Path=(TextElement.FontSize), RelativeSource={RelativeSource TemplatedParent}, Converter={dxbi:DoubleAdditionConverter Argument=1}}" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\Ribbon\RibbonStyles.xaml;45;10">
+        <Grid Background="Transparent" TextElement.FontSize="{Binding Path=(TextElement.FontSize), RelativeSource={RelativeSource TemplatedParent}, Converter={dxbi:DoubleAdditionConverter Argument=1}}" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\Ribbon\RibbonStyles.xaml;45;10">
             <TextBlock x:Name="normalText" HorizontalAlignment="Center" Text="{Binding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\Ribbon\RibbonStyles.xaml;48;14" />
             <TextBlock x:Name="boldText" FontWeight="SemiBold" HorizontalAlignment="Center" Text="{Binding}" Visibility="Hidden" cs:id="TextBlock_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\Ribbon\RibbonStyles.xaml;51;14" />
         </Grid>
@@ -40,28 +40,28 @@
     </DataTemplate>
 
     <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=NormalPageCaptionTextStyle}" TargetType="{x:Type ContentControl}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Ribbon\Office2019White\Ribbon\RibbonStyles.xaml;69;6" /><Setter Property="Foreground" Value="#1DD31E15" cs:id="Setter_0000" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Ribbon\Office2019White\Ribbon\RibbonStyles.xaml;69;6" /><Setter Property="Foreground" Value="#FF444444" cs:id="Setter_0000" x:Uid="@Value=Foreground" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Page.PageCategory.IsDefault}" Value="False">
-                <Setter Property="Foreground" Value="#1D801E16" cs:id="Setter_0001" />
+                <Setter Property="Foreground" Value="#FF106EBE" cs:id="Setter_0001" x:Uid="@Value=Backstage.Window.Background" />
             </DataTrigger>
         </Style.Triggers>
     </Style>
 
     <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=HoverPageCaptionTextStyle}" TargetType="{x:Type ContentControl}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Ribbon\Office2019White\Ribbon\RibbonStyles.xaml;82;6" /><Setter Property="Foreground" Value="#1DB11E17" cs:id="Setter_0000" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Ribbon\Office2019White\Ribbon\RibbonStyles.xaml;82;6" /><Setter Property="Foreground" Value="#FF106EBE" cs:id="Setter_0000" x:Uid="@Value=Backstage.Window.Background" />
         <Setter Property="FontWeight" Value="SemiBold" />
     </Style>
 
     <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=SelectedPageCaptionTextStyle}" TargetType="{x:Type ContentControl}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Ribbon\Office2019White\Ribbon\RibbonStyles.xaml;89;6" /><Setter Property="Foreground" Value="#1D9F1E18" cs:id="Setter_0000" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Ribbon\Office2019White\Ribbon\RibbonStyles.xaml;89;6" /><Setter Property="Foreground" Value="#FF444444" cs:id="Setter_0000" x:Uid="@Value=Foreground" />
         <Setter Property="FontWeight" Value="SemiBold" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Page.PageCategory.IsDefault}" Value="False">
-                <Setter Property="Foreground" Value="#1DAE1E19" cs:id="Setter_0001" />
+                <Setter Property="Foreground" Value="#FF106EBE" cs:id="Setter_0001" x:Uid="@Value=Backstage.Window.Background" />
             </DataTrigger>
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsMouseOver}" Value="True">
-                <Setter Property="Foreground" Value="#1DFD1E1A" cs:id="Setter_0002" />
+                <Setter Property="Foreground" Value="#FF106EBE" cs:id="Setter_0002" x:Uid="@Value=Backstage.Window.Background" />
             </DataTrigger>
         </Style.Triggers>
     </Style>
@@ -69,7 +69,7 @@
     
 
     <Style x:Key="{dxrt:RibbonThemeKey ResourceKey=GroupCaptionTextStyle}" TargetType="{x:Type ContentControl}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Ribbon\Office2019White\Ribbon\RibbonStyles.xaml;110;6" /><Setter Property="Foreground" Value="#1DCC1E1B" cs:id="Setter_0000" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Ribbon\Office2019White\Ribbon\RibbonStyles.xaml;110;6" /><Setter Property="Foreground" Value="#FF444444" cs:id="Setter_0000" x:Uid="@Value=Foreground" />
     </Style>
 
 </ResourceDictionary>

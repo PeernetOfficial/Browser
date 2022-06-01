@@ -61,7 +61,7 @@
 
     <ControlTemplate x:Key="MenuSeparatorTemplate" TargetType="{x:Type Separator}">
         <Grid Margin="0,6,0,4" SnapsToDevicePixels="true" UseLayoutRounding="False" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ContextMenu.xaml;89;10">
-            <Rectangle Fill="#1DD00015" Height="1" Margin="30,0,1,1" cs:id="Rectangle_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ContextMenu.xaml;92;14" />
+            <Rectangle Fill="#FFE1DFDD" Height="1" Margin="30,0,1,1" cs:id="Rectangle_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ContextMenu.xaml;92;14" x:Uid="@Fill=Delimiter" />
         </Grid>
     </ControlTemplate>
 
@@ -87,7 +87,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ContextMenu}">
-                    <theme:SystemDropShadowChrome Name="Shdw" Color="#1D830016" SnapsToDevicePixels="true" cs:id="SystemDropShadowChrome_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ContextMenu.xaml;121;22">
+                    <theme:SystemDropShadowChrome Name="Shdw" Color="Transparent" SnapsToDevicePixels="true" cs:id="SystemDropShadowChrome_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ContextMenu.xaml;121;22">
                         <dx:DXBorder Name="ContextMenuBorder" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ContextMenu.xaml;125;26">
                             <ScrollViewer Name="ContextMenuScrollViewer" Margin="0" Style="{StaticResource MenuScrollViewer}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ContextMenu.xaml;129;30">
                                 <Grid RenderOptions.ClearTypeHint="Enabled" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ContextMenu.xaml;132;34">
@@ -104,7 +104,7 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="HasDropShadow" Value="true">
                             <Setter Property="Margin" TargetName="Shdw" Value="0,0,5,5" />
-                            <Setter Property="Color" TargetName="Shdw" Value="#1DB20017" cs:id="Setter_0000" />
+                            <Setter Property="Color" TargetName="Shdw" Value="#10000000" cs:id="Setter_0000" />
                         </Trigger>
                         <Trigger Property="ScrollViewer.CanContentScroll" SourceName="ContextMenuScrollViewer" Value="false">
                             <Setter Property="Canvas.Top" TargetName="OpaqueRect" Value="{Binding ElementName=ContextMenuScrollViewer, Path=VerticalOffset}" />
@@ -149,8 +149,8 @@
             </Trigger>
             <Trigger Property="IsKeyboardFocused" Value="true">
                 <Setter Property="Foreground" Value="{StaticResource MenuItem_Foreground}" cs:id="Setter_0004" />
-                <Setter Property="BorderBrush" TargetName="Bg" Value="#1D9C0018" cs:id="Setter_0003" />
-                <Setter Property="Background" TargetName="Bg" Value="#1DAD0019" cs:id="Setter_0001" />
+                <Setter Property="BorderBrush" TargetName="Bg" Value="#FF106EBE" cs:id="Setter_0003" x:Uid="@Value=Focused" />
+                <Setter Property="Background" TargetName="Bg" Value="Transparent" cs:id="Setter_0001" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Opacity" Value="0.5" />
@@ -175,7 +175,7 @@
                 <ContentPresenter ContentSource="Header" Margin="{TemplateBinding MenuItem.Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ContextMenu.xaml;299;18" />
             </DockPanel>
             <Popup x:Name="PART_Popup" AllowsTransparency="true" Focusable="false" HorizontalOffset="1" IsOpen="{Binding Path=IsSubmenuOpen,RelativeSource={RelativeSource TemplatedParent}}" Placement="Bottom" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" VerticalOffset="-1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ContextMenu.xaml;305;14">
-                <theme:SystemDropShadowChrome Name="Shdw" Color="#1DFE001A" cs:id="SystemDropShadowChrome_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ContextMenu.xaml;313;18">
+                <theme:SystemDropShadowChrome Name="Shdw" Color="Transparent" cs:id="SystemDropShadowChrome_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ContextMenu.xaml;313;18">
                     <dx:DXBorder Name="SubMenuBorder" Background="{StaticResource ContextMenu_Background}" BorderBrush="{StaticResource ContextMenu_Border}" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ContextMenu.xaml;316;22">
                         <ScrollViewer Name="SubMenuScrollViewer" Style="{StaticResource MenuScrollViewer}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ContextMenu.xaml;321;26">
                             <Grid RenderOptions.ClearTypeHint="Enabled" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ContextMenu.xaml;322;30">
@@ -204,7 +204,7 @@
             </Trigger>
             <Trigger Property="Popup.HasDropShadow" SourceName="PART_Popup" Value="true">
                 <Setter Property="Margin" TargetName="Shdw" Value="0,0,5,5" />
-                <Setter Property="Color" TargetName="Shdw" Value="#1DCF001B" cs:id="Setter_0000" />
+                <Setter Property="Color" TargetName="Shdw" Value="#10000000" cs:id="Setter_0000" />
             </Trigger>
             <Trigger Property="IsHighlighted" Value="true">
                 <Setter Property="Foreground" Value="{StaticResource MenuItem_HoverForeground}" />
@@ -218,8 +218,8 @@
             </Trigger>
             <Trigger Property="IsKeyboardFocused" Value="true">
                 <Setter Property="Foreground" Value="{StaticResource MenuItem_Foreground}" cs:id="Setter_0012" />
-                <Setter Property="BorderBrush" TargetName="Bg" Value="#1D58001C" cs:id="Setter_0004" />
-                <Setter Property="Background" TargetName="Bg" Value="#1D69001D" cs:id="Setter_0003" />
+                <Setter Property="BorderBrush" TargetName="Bg" Value="#FF106EBE" cs:id="Setter_0004" x:Uid="@Value=Focused" />
+                <Setter Property="Background" TargetName="Bg" Value="Transparent" cs:id="Setter_0003" />
             </Trigger>
             <Trigger Property="IsSubmenuOpen" Value="true">
                 <Setter Property="Foreground" Value="{StaticResource MenuItem_PressedForeground}" />
@@ -317,7 +317,7 @@
                 <Path Fill="{TemplateBinding MenuItem.Foreground}" Grid.Column="5" Margin="4,0,0,0" Style="{StaticResource UIShape.Right}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ContextMenu.xaml;591;18" />
             </Grid>
             <Popup x:Name="PART_Popup" AllowsTransparency="true" Focusable="false" IsOpen="{Binding Path=IsSubmenuOpen,RelativeSource={RelativeSource TemplatedParent}}" Placement="Right" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" VerticalOffset="-3" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ContextMenu.xaml;597;14">
-                <theme:SystemDropShadowChrome Name="Shdw" Color="#1D3A001E" cs:id="SystemDropShadowChrome_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ContextMenu.xaml;604;18">
+                <theme:SystemDropShadowChrome Name="Shdw" Color="Transparent" cs:id="SystemDropShadowChrome_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ContextMenu.xaml;604;18">
                     <dx:DXBorder Name="SubMenuBorder" Background="{StaticResource ContextMenu_Background}" BorderBrush="{StaticResource ContextMenu_Border}" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ContextMenu.xaml;607;22">
                         <ScrollViewer Name="SubMenuScrollViewer" Style="{StaticResource MenuScrollViewer}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ContextMenu.xaml;612;26">
                             <Grid RenderOptions.ClearTypeHint="Enabled" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ContextMenu.xaml;613;30">
@@ -346,7 +346,7 @@
             </Trigger>
             <Trigger Property="Popup.HasDropShadow" SourceName="PART_Popup" Value="true">
                 <Setter Property="Margin" TargetName="Shdw" Value="0,0,5,5" />
-                <Setter Property="Color" TargetName="Shdw" Value="#1D0B001F" cs:id="Setter_0001" />
+                <Setter Property="Color" TargetName="Shdw" Value="#10000000" cs:id="Setter_0001" />
             </Trigger>
             <Trigger Property="IsHighlighted" Value="true">
                 <Setter Property="Foreground" Value="{StaticResource ContextMenuItem_HoverForeground}" />
@@ -380,7 +380,7 @@
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Office2019White\StandardControls\ContextMenu.xaml;714;6" /><Setter Property="HorizontalContentAlignment" Value="{Binding Path=HorizontalContentAlignment,RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
         <Setter Property="VerticalContentAlignment" Value="{Binding Path=VerticalContentAlignment,RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
         <Setter Property="dx:WpfSvgPalette.Palette" Value="{DynamicResource {dxbt:BarSvgPaletteThemeKey ResourceKey=SvgPaletteInMenu}}" />
-        <Setter Property="Background" Value="#1DE00020" cs:id="Setter_0000" />
+        <Setter Property="Background" Value="Transparent" cs:id="Setter_0000" />
         <Setter Property="ScrollViewer.PanningMode" Value="Both" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="Template" Value="{DynamicResource {dxt:CommonThemeKey ResourceKey=SubmenuItemTemplateKey}}" />

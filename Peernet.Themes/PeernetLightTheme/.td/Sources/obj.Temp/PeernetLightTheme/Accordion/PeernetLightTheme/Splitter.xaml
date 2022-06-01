@@ -7,12 +7,12 @@
     
 
     <ControlTemplate x:Key="{dxat:AccordionThemeKeys ResourceKey=SplitterTemplate}" TargetType="dxa:AccordionSplitter">
-        <Grid x:Name="Root" Background="#1DA600D4" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Office2019White\Splitter.xaml;21;10">
-            <Path x:Name="Content" Fill="#1D9700D5" Margin="8" Style="{StaticResource UIShape.SizeGrip.Horizontal}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Office2019White\Splitter.xaml;24;14" />
+        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Office2019White\Splitter.xaml;21;10">
+            <Path x:Name="Content" Fill="#FF444444" Margin="8" Style="{StaticResource UIShape.SizeGrip.Horizontal}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Office2019White\Splitter.xaml;24;14" x:Uid="@Fill=Foreground" />
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Fill" TargetName="Content" Value="#1DC400D6" cs:id="Setter_0000" />
+                <Setter Property="Fill" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0000" x:Uid="@Value=Focused" />
             </Trigger>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                 <Setter Property="MinHeight" TargetName="Root" Value="44" />

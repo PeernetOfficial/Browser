@@ -12,14 +12,14 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Grid x:Name="Root" Background="#1D1E215F" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\TreeViewItem.xaml;23;22">
-                        <Path x:Name="Collapsed" Fill="#1DF52160" Style="{StaticResource UIShape.Right}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\TreeViewItem.xaml;26;26" />
-                        <Path x:Name="Expanded" Fill="#1DC42161" Opacity="0" Style="{StaticResource UIShape.RightDown}" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\TreeViewItem.xaml;30;26" />
+                    <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\TreeViewItem.xaml;23;22">
+                        <Path x:Name="Collapsed" Fill="#FF444444" Style="{StaticResource UIShape.Right}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\TreeViewItem.xaml;26;26" x:Uid="@Fill=Foreground" />
+                        <Path x:Name="Expanded" Fill="#FF444444" Opacity="0" Style="{StaticResource UIShape.RightDown}" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\TreeViewItem.xaml;30;26" x:Uid="@Fill=Foreground" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Fill" TargetName="Collapsed" Value="#1D972162" cs:id="Setter_0000" />
-                            <Setter Property="Fill" TargetName="Expanded" Value="#1DA62163" cs:id="Setter_0001" />
+                            <Setter Property="Fill" TargetName="Collapsed" Value="#FF106EBE" cs:id="Setter_0000" x:Uid="@Value=HoverForeground" />
+                            <Setter Property="Fill" TargetName="Expanded" Value="#FF106EBE" cs:id="Setter_0001" x:Uid="@Value=HoverForeground" />
                         </Trigger>
                         <Trigger Property="IsChecked" Value="True">
                             <Setter Property="Opacity" TargetName="Collapsed" Value="0" />
@@ -52,9 +52,9 @@
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=System.Windows.Controls.TreeViewItem}" TargetType="{x:Type TreeViewItem}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Office2019White\StandardControls\TreeViewItem.xaml;80;6" /><Setter Property="dx:SvgImageHelper.State" Value="Normal" />
-        <Setter Property="Background" Value="#1D312164" cs:id="Setter_0000" />
+        <Setter Property="Background" Value="Transparent" cs:id="Setter_0000" />
         <Setter Property="FocusVisualStyle" Value="{StaticResource TreeViewItemFocusVisual}" />
-        <Setter Property="Foreground" Value="#1D002165" cs:id="Setter_0001" />
+        <Setter Property="Foreground" Value="#FF444444" cs:id="Setter_0001" x:Uid="@Value=Foreground" />
         <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
         <Setter Property="Padding" Value="3,3,3,3" />
         <Setter Property="dx:WpfSvgPalette.Palette" Value="{DynamicResource {dxt:BrushesThemeKey ResourceKey=ContrastSvgPalette}}" />
@@ -72,7 +72,7 @@
                             <RowDefinition />
                         </Grid.RowDefinitions>
                         <ToggleButton x:Name="Expander" ClickMode="Press" IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource ExpandCollapseToggleStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\TreeViewItem.xaml;107;26" />
-                        <dx:DXBorder x:Name="IsDefault" Background="#1D532166" BorderBrush="#1D622167" BorderThickness="1" Grid.Column="1" Grid.ColumnSpan="2" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\TreeViewItem.xaml;111;26" />
+                        <dx:DXBorder x:Name="IsDefault" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" Grid.Column="1" Grid.ColumnSpan="2" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\TreeViewItem.xaml;111;26" />
                         <dx:DXBorder x:Name="Content" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Grid.Column="1" Grid.ColumnSpan="2" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\TreeViewItem.xaml;118;26">
                             <ContentPresenter x:Name="PART_Header" ContentSource="Header" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\TreeViewItem.xaml;124;30" />
                         </dx:DXBorder>
@@ -86,33 +86,33 @@
                             <Setter Property="Visibility" TargetName="Expander" Value="Hidden" />
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Foreground" Value="#1D4C2168" cs:id="Setter_0006" />
-                            <Setter Property="Background" TargetName="IsDefault" Value="#1D7D2169" cs:id="Setter_0002" />
-                            <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1D2E216A" cs:id="Setter_0010" />
+                            <Setter Property="Foreground" Value="#FF444444" cs:id="Setter_0006" x:Uid="@Value=Foreground" />
+                            <Setter Property="Background" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0002" x:Uid="@Value=HoverBackground" />
+                            <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0010" x:Uid="@Value=HoverBackground" />
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsSelected" Value="True" />
                                 <Condition Property="IsSelectionActive" Value="False" />
                             </MultiTrigger.Conditions>
-                            <Setter Property="Foreground" Value="#1D1F216B" cs:id="Setter_0007" />
-                            <Setter Property="Background" TargetName="IsDefault" Value="#1D88216C" cs:id="Setter_0003" />
-                            <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1DB9216D" cs:id="Setter_0011" />
+                            <Setter Property="Foreground" Value="#FF444444" cs:id="Setter_0007" x:Uid="@Value=Foreground" />
+                            <Setter Property="Background" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0003" x:Uid="@Value=HoverBackground" />
+                            <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0011" x:Uid="@Value=HoverBackground" />
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsMouseOver" SourceName="Content" Value="True" />
                                 <Condition Property="IsSelected" Value="False" />
                             </MultiTrigger.Conditions>
-                            <Setter Property="Foreground" Value="#1DEA216E" cs:id="Setter_0008" />
-                            <Setter Property="Background" TargetName="IsDefault" Value="#1DDB216F" cs:id="Setter_0004" />
-                            <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1DB62170" cs:id="Setter_0012" />
+                            <Setter Property="Foreground" Value="#FF444444" cs:id="Setter_0008" x:Uid="@Value=Foreground" />
+                            <Setter Property="Background" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0004" x:Uid="@Value=HoverBackground" />
+                            <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0012" x:Uid="@Value=HoverBackground" />
                             <Setter Property="dx:SvgImageHelper.State" Value="Hover" />
                         </MultiTrigger>
                         <Trigger Property="IsFocused" Value="True">
-                            <Setter Property="Foreground" Value="#1D872171" cs:id="Setter_0009" />
-                            <Setter Property="Background" TargetName="IsDefault" Value="#1DD42172" cs:id="Setter_0005" />
-                            <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1DE52173" cs:id="Setter_0013" />
+                            <Setter Property="Foreground" Value="#FF444444" cs:id="Setter_0009" x:Uid="@Value=Foreground" />
+                            <Setter Property="Background" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0005" x:Uid="@Value=SelectionBackground" />
+                            <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0013" x:Uid="@Value=SelectionBorder" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Opacity" TargetName="Content" Value="0.38" />

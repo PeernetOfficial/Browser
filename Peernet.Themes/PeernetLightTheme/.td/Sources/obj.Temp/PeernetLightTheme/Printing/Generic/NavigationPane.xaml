@@ -11,8 +11,8 @@
                     <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/grid.OuterBorderElement}" TargetType="{x:Type dxg:OuterBorderElement}">
                         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\NavigationPane.xaml;35;22" /><Setter Property="Template" Value="{x:Null}" />
                     </Style>
-                    <SolidColorBrush x:Key="{dxgt:GridRowThemeKey ResourceKey=BorderNoneBrush, IsThemeIndependent=True}" Color="#1D6F1A3D" cs:id="SolidColorBrush_0000" />
-                    <SolidColorBrush x:Key="{dxgt:TreeListViewThemeKey ResourceKey=RowMarginBackgroundBrush, IsThemeIndependent=True}" Color="#1D3C1A3E" cs:id="SolidColorBrush_0001" />
+                    <SolidColorBrush x:Key="{dxgt:GridRowThemeKey ResourceKey=BorderNoneBrush, IsThemeIndependent=True}" Color="Transparent" cs:id="SolidColorBrush_0000" />
+                    <SolidColorBrush x:Key="{dxgt:TreeListViewThemeKey ResourceKey=RowMarginBackgroundBrush, IsThemeIndependent=True}" Color="Transparent" cs:id="SolidColorBrush_0001" />
                     <ControlTemplate x:Key="{dxgt:TableViewThemeKey ResourceKey=DataPresenterTemplate, IsThemeIndependent=True}" TargetType="{x:Type dxg:DataPresenter}">
                         <ContentPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\NavigationPane.xaml;45;26" />
                     </ControlTemplate>
@@ -39,7 +39,7 @@
             <dxe:ListBoxEdit Name="searchResultsList" DisplayMember="Name" EditValue="{Binding SelectedSearchResult, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Path=(local:DocumentPreviewControl.ActualViewer).Document.IsCreating, Converter={dxmvvm:BooleanNegationConverter}, RelativeSource={RelativeSource Self}, FallbackValue=False}" ItemsSource="{Binding SearchResults}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ShowBorder="False" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\NavigationPane.xaml;69;14">
                 <dxe:ListBoxEdit.ItemTemplate>
                     <DataTemplate>
-                        <dx:DXBorder BorderBrush="#1D0D1A3F" BorderThickness="0,0,0,1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\NavigationPane.xaml;78;26">
+                        <dx:DXBorder BorderBrush="#1A727272" BorderThickness="0,0,0,1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\NavigationPane.xaml;78;26">
                             <TextBlock MaxHeight="48" MinHeight="24" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\NavigationPane.xaml;81;30">
                                 <dxmvvm:Interaction.Behaviors>
                                     <native:TextBlockBindableInlinesBehavior>
@@ -92,21 +92,21 @@
     <native:NavigationPaneTabTemplateSelector x:Key="tabTemplateSelector" DocumentMapTemplate="{StaticResource documentMapTemplate }" PagesTemplate="{StaticResource pagesTemplate}" SearchResultTemplate="{StaticResource searchResultTemplate}" />
 
     <DataTemplate x:Key="TabItemNormalBackground">
-        <dxi:TabBorder BorderBackground="#1DDB1A40" BorderBrush="#1DEA1A41" BorderMargin="0,1" BorderThickness="0" HoldBorderMargin="0" HoldBorderThickness="0" ViewInfo="{Binding}" cs:id="TabBorder_0001" />
+        <dxi:TabBorder BorderBackground="Transparent" BorderBrush="Transparent" BorderMargin="0,1" BorderThickness="0" HoldBorderMargin="0" HoldBorderThickness="0" ViewInfo="{Binding}" cs:id="TabBorder_0001" />
     </DataTemplate>
 
     <DataTemplate x:Key="TabItemHoverBackground">
-        <dxi:TabBorder BorderBackground="#1DB91A42" BorderBrush="#1D881A43" BorderMargin="0,1" BorderThickness="0" HoldBorderMargin="0" HoldBorderThickness="0" ViewInfo="{Binding}" cs:id="TabBorder_0001" />
+        <dxi:TabBorder BorderBackground="Transparent" BorderBrush="Transparent" BorderMargin="0,1" BorderThickness="0" HoldBorderMargin="0" HoldBorderThickness="0" ViewInfo="{Binding}" cs:id="TabBorder_0001" />
     </DataTemplate>
 
     <DataTemplate x:Key="TabItemSelectedBackground">
-        <dxi:TabBorder BorderBackground="#1D1F1A44" BorderBrush="{Binding Path=(TextElement.Foreground), RelativeSource={RelativeSource Self}}" BorderMargin="0,1" BorderThickness="0,0,0,0" HoldBorderMargin="0" HoldBorderThickness="0" ViewInfo="{Binding}" cs:id="TabBorder_0000" />
+        <dxi:TabBorder BorderBackground="Transparent" BorderBrush="{Binding Path=(TextElement.Foreground), RelativeSource={RelativeSource Self}}" BorderMargin="0,1" BorderThickness="0,0,0,0" HoldBorderMargin="0" HoldBorderThickness="0" ViewInfo="{Binding}" cs:id="TabBorder_0000" />
     </DataTemplate>
 
     <DataTemplate x:Key="TabItemFocusedBackground" />
 
     <DataTemplate x:Key="TabControlBackground">
-        <dxi:TabBorder BorderBackground="#1D2E1A45" BorderBrush="#1D7D1A46" BorderThickness="0" ViewInfo="{Binding}" cs:id="TabBorder_0001" />
+        <dxi:TabBorder BorderBackground="Transparent" BorderBrush="Transparent" BorderThickness="0" ViewInfo="{Binding}" cs:id="TabBorder_0001" />
     </DataTemplate>
 
     <ControlTemplate x:Key="{themes:NavigationPaneThemeKey ResourceKey=Template}" TargetType="{x:Type local:NavigationPaneControl}">

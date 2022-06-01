@@ -7,7 +7,7 @@
     
 
     <Style x:Key="{dxpgt:PropertyGridControlThemeKey ResourceKey=SearchEditStyle}" TargetType="{x:Type dxe:TextEdit}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="PropertyGrid\Office2019White\SearchControl.xaml;22;6" /><Setter Property="Background" Value="#1D452509" cs:id="Setter_0000" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="PropertyGrid\Office2019White\SearchControl.xaml;22;6" /><Setter Property="Background" Value="#FFFFFFFF" cs:id="Setter_0000" x:Uid="@Value=Editor.Background" />
         <Setter Property="ShowBorder" Value="True" />
     </Style>
 
@@ -19,7 +19,7 @@
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="PropertyGrid\Office2019White\SearchControl.xaml;33;6" /><Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ContentControl}">
-                    <dx:DXBorder x:Name="Root" Background="#1D16250A" BorderBrush="#1D27250B" BorderThickness="0,0,0,1" Padding="3" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PropertyGrid\Office2019White\SearchControl.xaml;37;22">
+                    <dx:DXBorder x:Name="Root" Background="#FFFFFFFF" BorderBrush="#FFC8C6C4" BorderThickness="0,0,0,1" Padding="3" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PropertyGrid\Office2019White\SearchControl.xaml;37;22" x:Uid="@Background=Window.Background;BorderBrush=Border">
                         <ContentPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PropertyGrid\Office2019White\SearchControl.xaml;43;26" />
                     </dx:DXBorder>
                     <ControlTemplate.Triggers>
@@ -39,7 +39,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RadioButton}">
                     <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PropertyGrid\Office2019White\SearchControl.xaml;63;22">
-                        <dx:DXBorder x:Name="IsDefault" Background="#1DB0250C" BorderBrush="#1D81250D" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PropertyGrid\Office2019White\SearchControl.xaml;64;26" />
+                        <dx:DXBorder x:Name="IsDefault" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PropertyGrid\Office2019White\SearchControl.xaml;64;26" />
                         <Grid Margin="5" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PropertyGrid\Office2019White\SearchControl.xaml;69;26">
                             <Path x:Name="ListView" Style="{StaticResource UIShape.ListView}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PropertyGrid\Office2019White\SearchControl.xaml;70;30" />
                             <Path x:Name="GroupView" Style="{StaticResource UIShape.GroupView}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PropertyGrid\Office2019White\SearchControl.xaml;71;30" />
@@ -55,28 +55,28 @@
                             <Setter Property="Visibility" TargetName="ListView" Value="Collapsed" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Fill" TargetName="GroupView" Value="#1DD2250E" cs:id="Setter_0005" />
-                            <Setter Property="Background" TargetName="IsDefault" Value="#1DE3250F" cs:id="Setter_0000" />
-                            <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1D8E2510" cs:id="Setter_0012" />
-                            <Setter Property="Fill" TargetName="ListView" Value="#1DBF2511" cs:id="Setter_0004" />
+                            <Setter Property="Fill" TargetName="GroupView" Value="#FF106EBE" cs:id="Setter_0005" x:Uid="@Value=HoverForeground" />
+                            <Setter Property="Background" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0000" x:Uid="@Value=HoverBackground" />
+                            <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0012" x:Uid="@Value=HoverBorder" />
+                            <Setter Property="Fill" TargetName="ListView" Value="#FF106EBE" cs:id="Setter_0004" x:Uid="@Value=HoverForeground" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Fill" TargetName="GroupView" Value="#1DEC2512" cs:id="Setter_0007" />
-                            <Setter Property="Background" TargetName="IsDefault" Value="#1DDD2513" cs:id="Setter_0001" />
-                            <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1D4A2514" cs:id="Setter_0013" />
-                            <Setter Property="Fill" TargetName="ListView" Value="#1D7B2515" cs:id="Setter_0006" />
+                            <Setter Property="Fill" TargetName="GroupView" Value="#FF106EBE" cs:id="Setter_0007" x:Uid="@Value=SelectionForeground" />
+                            <Setter Property="Background" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0001" x:Uid="@Value=SelectionBackground" />
+                            <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0013" x:Uid="@Value=SelectionBorder" />
+                            <Setter Property="Fill" TargetName="ListView" Value="#FF106EBE" cs:id="Setter_0006" x:Uid="@Value=SelectionForeground" />
                         </Trigger>
                         <Trigger Property="IsFocused" Value="True">
-                            <Setter Property="Fill" TargetName="GroupView" Value="#1D282516" cs:id="Setter_0009" />
-                            <Setter Property="Background" TargetName="IsDefault" Value="#1D192517" cs:id="Setter_0002" />
-                            <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1D372518" cs:id="Setter_0014" />
-                            <Setter Property="Fill" TargetName="ListView" Value="#1D062519" cs:id="Setter_0008" />
+                            <Setter Property="Fill" TargetName="GroupView" Value="#FF106EBE" cs:id="Setter_0009" x:Uid="@Value=SelectionForeground" />
+                            <Setter Property="Background" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0002" x:Uid="@Value=SelectionBackground" />
+                            <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0014" x:Uid="@Value=SelectionBorder" />
+                            <Setter Property="Fill" TargetName="ListView" Value="#FF106EBE" cs:id="Setter_0008" x:Uid="@Value=SelectionForeground" />
                         </Trigger>
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter Property="Fill" TargetName="GroupView" Value="#1D55251A" cs:id="Setter_0011" />
-                            <Setter Property="Background" TargetName="IsDefault" Value="#1D64251B" cs:id="Setter_0003" />
-                            <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1DF3251C" cs:id="Setter_0015" />
-                            <Setter Property="Fill" TargetName="ListView" Value="#1DC2251D" cs:id="Setter_0010" />
+                            <Setter Property="Fill" TargetName="GroupView" Value="#FF106EBE" cs:id="Setter_0011" x:Uid="@Value=SelectionForeground" />
+                            <Setter Property="Background" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0003" x:Uid="@Value=SelectionBackground" />
+                            <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0015" x:Uid="@Value=SelectionBorder" />
+                            <Setter Property="Fill" TargetName="ListView" Value="#FF106EBE" cs:id="Setter_0010" x:Uid="@Value=SelectionForeground" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Opacity" TargetName="Root" Value="0.38" />

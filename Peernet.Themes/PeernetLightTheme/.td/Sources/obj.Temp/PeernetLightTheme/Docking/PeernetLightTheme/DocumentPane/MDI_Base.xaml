@@ -8,24 +8,24 @@
 
     <ControlTemplate x:Key="{dxdot:DocumentPaneElementsThemeKey ResourceKey=MDIDocument}" TargetType="dxdove:MDIDocument">
         <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019White\DocumentPane\MDI_Base.xaml;22;10">
-            <dx:DXBorder x:Name="Window" Background="#1D012202" BorderBrush="#1D302203" BorderThickness="1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019White\DocumentPane\MDI_Base.xaml;23;14">
+            <dx:DXBorder x:Name="Window" Background="#FFFFFFFF" BorderBrush="#FF106EBE" BorderThickness="1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019White\DocumentPane\MDI_Base.xaml;23;14" x:Uid="@Background=Window.Background;BorderBrush=Backstage.Window.Background">
                 <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019White\DocumentPane\MDI_Base.xaml;28;18">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <dx:DXBorder x:Name="PART_Header" Background="#1DA72204" dxdove:DockPane.HitTestType="Header" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019White\DocumentPane\MDI_Base.xaml;33;22">
+                    <dx:DXBorder x:Name="PART_Header" Background="Transparent" dxdove:DockPane.HitTestType="Header" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019White\DocumentPane\MDI_Base.xaml;33;22">
                         <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019White\DocumentPane\MDI_Base.xaml;37;26">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition Width="5" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <dxdove:TemplatedCaptionControl x:Name="PART_CaptionControlPresenter" FontWeight="Bold" Foreground="#1D962205" HorizontalAlignment="Center" LayoutItem="{Binding}" Margin="5" VerticalAlignment="Center" cs:id="TemplatedCaptionControl_0000" />
+                            <dxdove:TemplatedCaptionControl x:Name="PART_CaptionControlPresenter" FontWeight="Bold" Foreground="#FF444444" HorizontalAlignment="Center" LayoutItem="{Binding}" Margin="5" VerticalAlignment="Center" cs:id="TemplatedCaptionControl_0000" x:Uid="@Foreground=Foreground" />
                             <dxdove:WindowControlBoxControl x:Name="PART_ControlBox" ButtonHeight="26" ButtonStyle="{DynamicResource {dxdot:DocumentElementsThemeKey ResourceKey=MDIDocumentButtonStyle}}" ButtonWidth="26" CloseButtonTemplate="{DynamicResource {dxdot:DocumentElementsThemeKey ResourceKey=CloseButton}}" Grid.Column="2" LayoutItem="{Binding}" MaximizeButtonTemplate="{DynamicResource {dxdot:DocumentElementsThemeKey ResourceKey=MaximizeButton}}" MinimizeButtonTemplate="{DynamicResource {dxdot:DocumentElementsThemeKey ResourceKey=MinimizeButton}}" RestoreButtonTemplate="{DynamicResource {dxdot:DocumentElementsThemeKey ResourceKey=RestoreButton}}" VerticalAlignment="Top" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019White\DocumentPane\MDI_Base.xaml;51;30" />
                         </Grid>
                     </dx:DXBorder>
-                    <dx:DXBorder x:Name="PART_Content" Background="#1DC52206" dxdove:DockPane.HitTestType="Content" Grid.Row="1" Margin="5,0,5,5" Visibility="{Binding IsMinimized, Converter={StaticResource BoolToVisibilityInverseConverter}}" cs:id="Border_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019White\DocumentPane\MDI_Base.xaml;64;22">
+                    <dx:DXBorder x:Name="PART_Content" Background="#FFFFFFFF" dxdove:DockPane.HitTestType="Content" Grid.Row="1" Margin="5,0,5,5" Visibility="{Binding IsMinimized, Converter={StaticResource BoolToVisibilityInverseConverter}}" cs:id="Border_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019White\DocumentPane\MDI_Base.xaml;64;22" x:Uid="@Background=Window.Background">
                         <dxdove:DocumentContentPresenter x:Name="PART_ContentPresenter" Content="{Binding LayoutItemData}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019White\DocumentPane\MDI_Base.xaml;71;26" />
                     </dx:DXBorder>
                 </Grid>
@@ -39,7 +39,7 @@
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Window" Storyboard.TargetProperty="BorderBrush">
                                 <DiscreteObjectKeyFrame KeyTime="0">
                                     <DiscreteObjectKeyFrame.Value>
-                                        <SolidColorBrush Color="#1DF42207" cs:id="SolidColorBrush_0000" />
+                                        <SolidColorBrush Color="#FFC8C6C4" cs:id="SolidColorBrush_0000" x:Uid="@Color=Border" />
                                     </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
                             </ObjectAnimationUsingKeyFrames>
@@ -85,13 +85,13 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <dx:DXBorder x:Name="Panel" Background="#1DDA2208" BorderBrush="#1DEB2209" BorderThickness="0,0,0,1" Visibility="Collapsed" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019White\DocumentPane\MDI_Base.xaml;159;14">
+            <dx:DXBorder x:Name="Panel" Background="#FFFFFFFF" BorderBrush="#FFC8C6C4" BorderThickness="0,0,0,1" Visibility="Collapsed" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019White\DocumentPane\MDI_Base.xaml;159;14" x:Uid="@Background=Window.Background;BorderBrush=Border">
                 <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019White\DocumentPane\MDI_Base.xaml;165;18">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <ContentPresenter x:Name="ContentPresenter" Content="{Binding SelectedItem.Caption}" ContentTemplate="{Binding LayoutItem.SelectedItem.CaptionTemplate, RelativeSource={RelativeSource TemplatedParent}}" ContentTemplateSelector="{Binding LayoutItem.SelectedItem.CaptionTemplateSelector, RelativeSource={RelativeSource TemplatedParent}}" Margin="5" TextElement.FontWeight="Bold" TextElement.Foreground="#1DB8220A" cs:id="ContentPresenter_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019White\DocumentPane\MDI_Base.xaml;170;22" />
+                    <ContentPresenter x:Name="ContentPresenter" Content="{Binding SelectedItem.Caption}" ContentTemplate="{Binding LayoutItem.SelectedItem.CaptionTemplate, RelativeSource={RelativeSource TemplatedParent}}" ContentTemplateSelector="{Binding LayoutItem.SelectedItem.CaptionTemplateSelector, RelativeSource={RelativeSource TemplatedParent}}" Margin="5" TextElement.FontWeight="Bold" TextElement.Foreground="#FF444444" cs:id="ContentPresenter_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019White\DocumentPane\MDI_Base.xaml;170;22" x:Uid="@TextElement.Foreground=Foreground" />
                     <dxdove:TabHeaderControlBoxControl x:Name="PART_ControlBox" ButtonHeight="26" ButtonStyle="{DynamicResource {dxdot:DocumentPaneElementsThemeKey ResourceKey=MDIContainerButtonStyle}}" ButtonWidth="26" CloseButtonTemplate="{DynamicResource {dxdot:DocumentPaneElementsThemeKey ResourceKey=CloseButton}}" DropDownButtonTemplate="{DynamicResource {dxdot:DocumentPaneElementsThemeKey ResourceKey=DropDownButton}}" Grid.Column="1" HorizontalAlignment="Right" LayoutItem="{Binding}" RestoreButtonTemplate="{DynamicResource {dxdot:DocumentPaneElementsThemeKey ResourceKey=RestoreButton}}" ScrollNextButtonTemplate="{DynamicResource {dxdot:DocumentPaneElementsThemeKey ResourceKey=ScrollNextButton}}" ScrollPrevButtonTemplate="{DynamicResource {dxdot:DocumentPaneElementsThemeKey ResourceKey=ScrollPrevButton}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019White\DocumentPane\MDI_Base.xaml;178;22" />
                 </Grid>
             </dx:DXBorder>

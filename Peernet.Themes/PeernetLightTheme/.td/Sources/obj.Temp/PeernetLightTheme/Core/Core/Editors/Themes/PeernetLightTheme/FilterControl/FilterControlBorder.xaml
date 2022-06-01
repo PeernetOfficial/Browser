@@ -8,7 +8,7 @@
 
     <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=FilterControlBorderTemplate}" TargetType="{x:Type ContentControl}">
         <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\FilterControl\FilterControlBorder.xaml;21;10">
-            <dx:DXBorder x:Name="IsDefault" Background="#1DA00599" BorderBrush="#1DF3059A" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\FilterControl\FilterControlBorder.xaml;22;14">
+            <dx:DXBorder x:Name="IsDefault" Background="#FFFFFFFF" BorderBrush="#FFC8C6C4" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\FilterControl\FilterControlBorder.xaml;22;14" x:Uid="@Background=Editor.Background;BorderBrush=Border">
                 <dx:DXBorder.BorderThickness>
                     <Binding Path="Tag" RelativeSource="{RelativeSource TemplatedParent}">
                         <Binding.Converter>
@@ -36,7 +36,7 @@
             <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\FilterControl\FilterControlBorder.xaml;50;14">
                 <ContentControl SnapsToDevicePixels="True" Tag="{Binding Path=ShowBorder, RelativeSource={RelativeSource TemplatedParent}}" Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=FilterControlBorderTemplate}}" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\FilterControl\FilterControlBorder.xaml;51;18">
                     <ScrollViewer BorderThickness="0" dxcore_unique_xmlns:FocusHelper2.Focusable="False" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\FilterControl\FilterControlBorder.xaml;55;22">
-                        <Grid TextElement.Foreground="#1DC2059B" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\FilterControl\FilterControlBorder.xaml;59;26">
+                        <Grid TextElement.Foreground="#FF444444" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\FilterControl\FilterControlBorder.xaml;59;26" x:Uid="@TextElement.Foreground=Foreground">
                             <ItemsControl x:Name="PART_ItemsControl" dxcore_unique_xmlns:FocusHelper2.Focusable="False" ItemsSource="{Binding Path=RootNode, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource itemsSourceConverter}}" ItemTemplate="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=ItemsControlItemTemplate}}" Margin="8,2,8,2" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\FilterControl\FilterControlBorder.xaml;60;30" />
                             <Canvas x:Name="PART_FocusVisualContainer" Focusable="False" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\FilterControl\FilterControlBorder.xaml;65;30" />
                         </Grid>
@@ -54,8 +54,8 @@
     
 
     <Style x:Key="{dxet:FilterPanelControlBaseThemeKey ResourceKey=FilterPanelBorderStyle}" TargetType="Border">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Office2019White\FilterControl\FilterControlBorder.xaml;82;6" /><Setter Property="Background" Value="#1D55059C" cs:id="Setter_0000" />
-        <Setter Property="BorderBrush" Value="#1D64059D" cs:id="Setter_0001" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Office2019White\FilterControl\FilterControlBorder.xaml;82;6" /><Setter Property="Background" Value="#FFFFFFFF" cs:id="Setter_0000" x:Uid="@Value=Control.Background" />
+        <Setter Property="BorderBrush" Value="#FFC8C6C4" cs:id="Setter_0001" x:Uid="@Value=Border" />
     </Style>
 
     
@@ -70,7 +70,7 @@
     </Style>
 
     <Style x:Key="{dxet:FilterPanelControlBaseThemeKey ResourceKey=FilterPanelTextStyle}" TargetType="{x:Type dxe:TextEdit}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Office2019White\FilterControl\FilterControlBorder.xaml;102;6" /><Setter Property="Foreground" Value="#1D37059E" cs:id="Setter_0000" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Office2019White\FilterControl\FilterControlBorder.xaml;102;6" /><Setter Property="Foreground" Value="#FF444444" cs:id="Setter_0000" x:Uid="@Value=Foreground" />
         <Setter Property="Margin" Value="3" />
         <Style.Triggers>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
@@ -82,7 +82,7 @@
     
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.Filtering.FilterPanelCaptionControl}" TargetType="dxe:FilterPanelCaptionControl">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Office2019White\FilterControl\FilterControlBorder.xaml;116;6" /><Setter Property="Foreground" Value="#1D06059F" cs:id="Setter_0000" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Office2019White\FilterControl\FilterControlBorder.xaml;116;6" /><Setter Property="Foreground" Value="#FF444444" cs:id="Setter_0000" x:Uid="@Value=Foreground" />
         <Setter Property="Margin" Value="6,0,6,0" />
         <Setter Property="Template">
             <Setter.Value>
@@ -102,7 +102,7 @@
 
     <ControlTemplate x:Key="{dxet:FilterPanelControlBaseThemeKey ResourceKey=MRUComboBoxTemplate}">
         <dxcore_unique_xmlns:DXDockPanel dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\FilterControl\FilterControlBorder.xaml;138;10">
-            <Path x:Name="Glyph" dxcore_unique_xmlns:DXDockPanel.Dock="Right" Fill="#1DED05A0" Margin="3" Style="{StaticResource UIShape.Down}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\FilterControl\FilterControlBorder.xaml;139;14">
+            <Path x:Name="Glyph" dxcore_unique_xmlns:DXDockPanel.Dock="Right" Fill="#FF444444" Margin="3" Style="{StaticResource UIShape.Down}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\FilterControl\FilterControlBorder.xaml;139;14" x:Uid="@Fill=Foreground">
                 <Path.Visibility>
                     <Binding Path="(dxe:BaseEdit.OwnerEdit).ShowEditorButtons" RelativeSource="{RelativeSource TemplatedParent}">
                         <Binding.Converter>
@@ -111,7 +111,7 @@
                     </Binding>
                 </Path.Visibility>
             </Path>
-            <TextBlock Foreground="#1DDC05A1" Text="{Binding Path=(dxe:BaseEdit.OwnerEdit).EditValue, RelativeSource={RelativeSource TemplatedParent}}" TextDecorations="{Binding Path=(dxe:BaseEdit.OwnerEdit).TextDecorations, RelativeSource={RelativeSource TemplatedParent}}" TextTrimming="WordEllipsis" cs:id="TextBlock_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\FilterControl\FilterControlBorder.xaml;153;14" />
+            <TextBlock Foreground="#FF444444" Text="{Binding Path=(dxe:BaseEdit.OwnerEdit).EditValue, RelativeSource={RelativeSource TemplatedParent}}" TextDecorations="{Binding Path=(dxe:BaseEdit.OwnerEdit).TextDecorations, RelativeSource={RelativeSource TemplatedParent}}" TextTrimming="WordEllipsis" cs:id="TextBlock_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\FilterControl\FilterControlBorder.xaml;153;14" x:Uid="@Foreground=Foreground" />
         </dxcore_unique_xmlns:DXDockPanel>
         <ControlTemplate.Triggers>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">

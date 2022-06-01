@@ -8,13 +8,13 @@
     
 
     <ControlTemplate x:Key="{dxt:CommonThemeKey ResourceKey=VerticalScrollBarPageButtonTemplate}" TargetType="{x:Type RepeatButton}">
-        <dx:DXBorder Background="#1D8A2104" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ScrollBar_Base.xaml;21;10">
+        <dx:DXBorder Background="Transparent" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ScrollBar_Base.xaml;21;10">
             <Rectangle Fill="{TemplateBinding Background}" Margin="{DynamicResource {dxt:CommonThemeKey ResourceKey=ScrollBarVerticalThumbMargin}}" Opacity="0.38" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ScrollBar_Base.xaml;22;14" />
         </dx:DXBorder>
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxt:CommonThemeKey ResourceKey=HorizontalScrollBarPageButtonTemplate}" TargetType="{x:Type RepeatButton}">
-        <dx:DXBorder Background="#1DBB2105" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ScrollBar_Base.xaml;29;10">
+        <dx:DXBorder Background="Transparent" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ScrollBar_Base.xaml;29;10">
             <Rectangle Fill="{TemplateBinding Background}" Margin="{DynamicResource {dxt:CommonThemeKey ResourceKey=ScrollBarHorizontalThumbMargin}}" Opacity="0.38" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ScrollBar_Base.xaml;30;14" />
         </dx:DXBorder>
     </ControlTemplate>
@@ -25,7 +25,7 @@
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Style.Triggers>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" Value="#1DE82106" cs:id="Setter_0000" />
+                <Setter Property="Background" Value="#FFE1DFDD" cs:id="Setter_0000" x:Uid="@Value=Delimiter" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -45,9 +45,9 @@
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Background" Value="#1DD92107" cs:id="Setter_0004" />
-        <Setter Property="BorderBrush" Value="#1DF72108" cs:id="Setter_0002" />
-        <Setter Property="Foreground" Value="#1DC62109" cs:id="Setter_0003" />
+        <Setter Property="Background" Value="#FFFFFFFF" cs:id="Setter_0004" x:Uid="@Value=Control.Background" />
+        <Setter Property="BorderBrush" Value="#FFC8C6C4" cs:id="Setter_0002" x:Uid="@Value=Border" />
+        <Setter Property="Foreground" Value="#FF444444" cs:id="Setter_0003" x:Uid="@Value=Foreground" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RepeatButton}">
@@ -65,14 +65,14 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#1D95210A" cs:id="Setter_0000" />
-                <Setter Property="BorderBrush" Value="#1DA4210B" cs:id="Setter_0005" />
-                <Setter Property="Foreground" Value="#1D33210C" cs:id="Setter_0008" />
+                <Setter Property="Background" Value="#FFFCFCFC" cs:id="Setter_0000" x:Uid="@Value=Button.Background" />
+                <Setter Property="BorderBrush" Value="#FFC8C6C4" cs:id="Setter_0005" x:Uid="@Value=Border" />
+                <Setter Property="Foreground" Value="#FF444444" cs:id="Setter_0008" x:Uid="@Value=Foreground" />
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" Value="#1D02210D" cs:id="Setter_0001" />
-                <Setter Property="BorderBrush" Value="#1D51210E" cs:id="Setter_0007" />
-                <Setter Property="Foreground" Value="#1D60210F" cs:id="Setter_0009" />
+                <Setter Property="Background" Value="#FFFCFCFC" cs:id="Setter_0001" x:Uid="@Value=Button.Background" />
+                <Setter Property="BorderBrush" Value="#FF444444" cs:id="Setter_0007" x:Uid="@Value=Foreground" />
+                <Setter Property="Foreground" Value="#FF444444" cs:id="Setter_0009" x:Uid="@Value=Foreground" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -80,7 +80,7 @@
     
 
     <ControlTemplate x:Key="{dxt:CommonThemeKey ResourceKey=VerticalScrollBarThumbTemplate}" TargetType="{x:Type Thumb}">
-        <dx:DXBorder Background="#1D0D2110" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ScrollBar_Base.xaml;126;10">
+        <dx:DXBorder Background="Transparent" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ScrollBar_Base.xaml;126;10">
             <Rectangle x:Name="IsDefault" Fill="{TemplateBinding Background}" Height="{TemplateBinding Height}" Margin="{DynamicResource {dxt:CommonThemeKey ResourceKey=ScrollBarVerticalThumbMargin}}" MinHeight="{TemplateBinding MinHeight}" MinWidth="{TemplateBinding MinWidth}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" Width="{TemplateBinding Width}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ScrollBar_Base.xaml;127;14" />
         </dx:DXBorder>
         <ControlTemplate.Triggers>
@@ -91,7 +91,7 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxt:CommonThemeKey ResourceKey=HorizontalScrollBarThumbTemplate}" TargetType="{x:Type Thumb}">
-        <dx:DXBorder Background="#1D3C2111" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ScrollBar_Base.xaml;147;10">
+        <dx:DXBorder Background="Transparent" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ScrollBar_Base.xaml;147;10">
             <Rectangle x:Name="IsDefault" Fill="{TemplateBinding Background}" Height="{TemplateBinding Height}" Margin="{DynamicResource {dxt:CommonThemeKey ResourceKey=ScrollBarHorizontalThumbMargin}}" MinHeight="{TemplateBinding MinHeight}" MinWidth="{TemplateBinding MinWidth}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" Width="{TemplateBinding Width}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\ScrollBar_Base.xaml;148;14" />
         </dx:DXBorder>
         <ControlTemplate.Triggers>
@@ -105,16 +105,16 @@
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Office2019White\StandardControls\ScrollBar_Base.xaml;167;6" /><Setter Property="MinHeight" Value="6" />
         <Setter Property="MinWidth" Value="6" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Background" Value="#1D6F2112" cs:id="Setter_0003" />
-        <Setter Property="BorderBrush" Value="#1D5E2113" cs:id="Setter_0002" />
+        <Setter Property="Background" Value="#FFFFFFFF" cs:id="Setter_0003" x:Uid="@Value=Control.Background" />
+        <Setter Property="BorderBrush" Value="#FFC8C6C4" cs:id="Setter_0002" x:Uid="@Value=Border" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#1DC92114" cs:id="Setter_0000" />
-                <Setter Property="BorderBrush" Value="#1DF82115" cs:id="Setter_0004" />
+                <Setter Property="Background" Value="#FFFCFCFC" cs:id="Setter_0000" x:Uid="@Value=Button.Background" />
+                <Setter Property="BorderBrush" Value="#FFC8C6C4" cs:id="Setter_0004" x:Uid="@Value=Border" />
             </Trigger>
             <Trigger Property="IsDragging" Value="True">
-                <Setter Property="Background" Value="#1DAB2116" cs:id="Setter_0001" />
-                <Setter Property="BorderBrush" Value="#1D9A2117" cs:id="Setter_0005" />
+                <Setter Property="Background" Value="#FFFCFCFC" cs:id="Setter_0001" x:Uid="@Value=Button.Background" />
+                <Setter Property="BorderBrush" Value="#FF444444" cs:id="Setter_0005" x:Uid="@Value=Foreground" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -136,7 +136,7 @@
     
 
     <Style x:Key="{dxt:ScrollBarThemeKey ResourceKey=ScrollingCornerStyle}" TargetType="{x:Type Border}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Office2019White\StandardControls\ScrollBar_Base.xaml;217;6" /><Setter Property="Background" Value="#1DB42118" cs:id="Setter_0000" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Office2019White\StandardControls\ScrollBar_Base.xaml;217;6" /><Setter Property="Background" Value="#FFFCFCFC" cs:id="Setter_0000" x:Uid="@Value=Button.Background" />
     </Style>
 
     
@@ -242,9 +242,9 @@
     </ControlTemplate>
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=System.Windows.Controls.Primitives.ScrollBar}" TargetType="{x:Type ScrollBar}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Office2019White\StandardControls\ScrollBar_Base.xaml;395;6" /><Setter Property="Background" Value="#1D852119" cs:id="Setter_0001" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Office2019White\StandardControls\ScrollBar_Base.xaml;395;6" /><Setter Property="Background" Value="#FFFCFCFC" cs:id="Setter_0001" x:Uid="@Value=Button.Background" />
         <Setter Property="BorderThickness" Value="1,0,0,0" />
-        <Setter Property="BorderBrush" Value="#1DD6211A" cs:id="Setter_0002" />
+        <Setter Property="BorderBrush" Value="Transparent" cs:id="Setter_0002" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="Stylus.IsPressAndHoldEnabled" Value="False" />
         <Setter Property="Width" Value="17" />
@@ -269,9 +269,9 @@
                     <Condition Property="dx:ScrollBarExtensions.IsTouchScrollBarMode" Value="False" />
                 </MultiTrigger.Conditions>
                 <MultiTrigger.Setters>
-                    <Setter Property="Background" Value="#1DE7211B" cs:id="Setter_0000" />
+                    <Setter Property="Background" Value="#FFFCFCFC" cs:id="Setter_0000" x:Uid="@Value=Button.Background" />
                     <Setter Property="BorderThickness" Value="0,1,0,0" />
-                    <Setter Property="BorderBrush" Value="#1D70211C" cs:id="Setter_0006" />
+                    <Setter Property="BorderBrush" Value="Transparent" cs:id="Setter_0006" />
                     <Setter Property="Width" Value="Auto" />
                     <Setter Property="Height" Value="17" />
                     <Setter Property="BorderThickness" Value="0,1,0,0" />
@@ -284,8 +284,8 @@
                     <Condition Property="dx:ScrollBarExtensions.IsTouchScrollBarMode" Value="True" />
                 </MultiTrigger.Conditions>
                 <MultiTrigger.Setters>
-                    <Setter Property="Background" Value="#1D41211D" cs:id="Setter_0004" />
-                    <Setter Property="BorderBrush" Value="#1D12211E" cs:id="Setter_0005" />
+                    <Setter Property="Background" Value="#FFFCFCFC" cs:id="Setter_0004" x:Uid="@Value=Button.Background" />
+                    <Setter Property="BorderBrush" Value="#FFC8C6C4" cs:id="Setter_0005" x:Uid="@Value=Border" />
                     <Setter Property="Width" Value="Auto" />
                     <Setter Property="Height" Value="17" />
                     <Setter Property="Template" Value="{DynamicResource {dxt:ScrollBarThemeKey ResourceKey=ScrollBarHorzTouchTemplate}}" />

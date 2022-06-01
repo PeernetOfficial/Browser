@@ -7,17 +7,17 @@
     
 
     <ControlTemplate x:Key="{dxgt:GridCardThemeKey ResourceKey=HeaderPanelTemplate}" TargetType="{x:Type ContentControl}">
-        <Grid x:Name="Root" Background="#1DE52311" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardHeader.xaml;21;10">
-            <dx:DXBorder x:Name="IsDefault" Background="#1DB62312" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardHeader.xaml;24;14" />
+        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardHeader.xaml;21;10">
+            <dx:DXBorder x:Name="IsDefault" Background="#FFFCFCFC" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardHeader.xaml;24;14" x:Uid="@Background=Button.Background" />
             <ContentPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardHeader.xaml;27;14" />
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="dxg:GridViewBase.IsFocusedRow" Value="True" />
             <DataTrigger Binding="{Binding Path=(dxg:RowData.RowData).SelectionState, RelativeSource={RelativeSource TemplatedParent}}" Value="Focused">
-                <Setter Property="Background" TargetName="IsDefault" Value="#1D872313" cs:id="Setter_0000" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0000" x:Uid="@Value=SelectionBackground" />
             </DataTrigger>
             <DataTrigger Binding="{Binding Path=(dxg:RowData.RowData).SelectionState, RelativeSource={RelativeSource TemplatedParent}}" Value="Selected">
-                <Setter Property="Background" TargetName="IsDefault" Value="#1D102314" cs:id="Setter_0001" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0001" x:Uid="@Value=HoverBackground" />
             </DataTrigger>
             <DataTrigger Binding="{Binding Path=IsExpanded}" Value="False" />
         </ControlTemplate.Triggers>

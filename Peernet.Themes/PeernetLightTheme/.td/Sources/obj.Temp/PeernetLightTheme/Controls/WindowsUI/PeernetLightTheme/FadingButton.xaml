@@ -7,13 +7,13 @@
     
 
     <ControlTemplate x:Key="{dxwuit:WindowsUIElementsThemeKey ResourceKey=FadingButtonTemplate}" TargetType="dxwuii:FadingButton">
-        <Grid x:Name="Root" Background="#1D0E0973" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019White\FadingButton.xaml;25;10">
-            <dx:DXBorder x:Name="IsDefault" Background="#1D990974" CornerRadius="96" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center" Width="38" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019White\FadingButton.xaml;28;14">
+        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019White\FadingButton.xaml;25;10">
+            <dx:DXBorder x:Name="IsDefault" Background="#FFC8C6C4" CornerRadius="96" Height="38" HorizontalAlignment="Center" VerticalAlignment="Center" Width="38" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019White\FadingButton.xaml;28;14" x:Uid="@Background=Border">
                 <Grid x:Name="Content" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019White\FadingButton.xaml;36;18">
-                    <Path x:Name="Left" Fill="#1DA80975" Height="16" Opacity="0" Style="{StaticResource UIShape.Left}" Width="8" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019White\FadingButton.xaml;37;22" />
-                    <Path x:Name="Right" Fill="#1DFB0976" Height="16" Opacity="0" Style="{StaticResource UIShape.Right}" Width="8" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019White\FadingButton.xaml;44;22" />
-                    <Path x:Name="Up" Fill="#1DCA0977" Height="8" Opacity="0" Style="{StaticResource UIShape.Up}" Width="16" cs:id="Path_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019White\FadingButton.xaml;51;22" />
-                    <Path x:Name="Down" Fill="#1DE40978" Height="8" Opacity="0" Style="{StaticResource UIShape.Down}" Width="16" cs:id="Path_0003" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019White\FadingButton.xaml;58;22" />
+                    <Path x:Name="Left" Fill="#FF444444" Height="16" Opacity="0" Style="{StaticResource UIShape.Left}" Width="8" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019White\FadingButton.xaml;37;22" x:Uid="@Fill=Foreground" />
+                    <Path x:Name="Right" Fill="#FF444444" Height="16" Opacity="0" Style="{StaticResource UIShape.Right}" Width="8" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019White\FadingButton.xaml;44;22" x:Uid="@Fill=Foreground" />
+                    <Path x:Name="Up" Fill="#FF444444" Height="8" Opacity="0" Style="{StaticResource UIShape.Up}" Width="16" cs:id="Path_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019White\FadingButton.xaml;51;22" x:Uid="@Fill=Foreground" />
+                    <Path x:Name="Down" Fill="#FF444444" Height="8" Opacity="0" Style="{StaticResource UIShape.Down}" Width="16" cs:id="Path_0003" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019White\FadingButton.xaml;58;22" x:Uid="@Fill=Foreground" />
                 </Grid>
             </dx:DXBorder>
             <VisualStateManager.VisualStateGroups>
@@ -21,13 +21,13 @@
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="MouseOver">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1DD50979" cs:id="ColorAnimation_0000" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFEFF6FC" cs:id="ColorAnimation_0000" x:Uid="@To=HoverBackground" />
                             <DoubleAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="Opacity" To="1" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Pressed">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D86097A" cs:id="ColorAnimation_0001" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFDEECF9" cs:id="ColorAnimation_0001" x:Uid="@To=SelectionBackground" />
                             <DoubleAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="Opacity" To="1" />
                         </Storyboard>
                     </VisualState>

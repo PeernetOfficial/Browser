@@ -10,8 +10,8 @@
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="SelectionMode" Value="None" />
         <Setter Property="AutoLayout" Value="False" />
-        <Setter Property="Background" Value="#1D8008F3" cs:id="Setter_0000" />
-        <Setter Property="BorderBrush" Value="#1D1708F4" cs:id="Setter_0001" />
+        <Setter Property="Background" Value="Transparent" cs:id="Setter_0000" />
+        <Setter Property="BorderBrush" Value="Transparent" cs:id="Setter_0001" />
         <Setter Property="CrosshairOptions" Value="{Binding CrosshairOptions}" />
         <Setter Property="dxmvvm:Interaction.BehaviorsTemplate">
             <Setter.Value>
@@ -161,18 +161,18 @@
         <ControlTemplate.Resources>
             <LinearGradientBrush x:Key="selectedMask" EndPoint="8,8" MappingMode="Absolute" SpreadMethod="Repeat" cs:id="LinearGradientBrush_0000">
                 <LinearGradientBrush.GradientStops>
-                    <GradientStop Color="#1D2608F5" Offset="0.5" cs:id="GradientStop_0000" />
-                    <GradientStop Color="#1D7508F6" Offset="0.5" cs:id="GradientStop_0001" />
+                    <GradientStop Color="#B5000000" Offset="0.5" cs:id="GradientStop_0000" />
+                    <GradientStop Color="Black" Offset="0.5" cs:id="GradientStop_0001" />
                 </LinearGradientBrush.GradientStops>
             </LinearGradientBrush>
             <LinearGradientBrush x:Key="highlightedMask" EndPoint="8,8" MappingMode="Absolute" SpreadMethod="Repeat" cs:id="LinearGradientBrush_0001">
                 <LinearGradientBrush.GradientStops>
-                    <GradientStop Color="#1D4408F7" Offset="0.5" cs:id="GradientStop_0002" />
-                    <GradientStop Color="#1D6A08F8" Offset="0.5" cs:id="GradientStop_0003" />
+                    <GradientStop Color="#E5000000" Offset="0.5" cs:id="GradientStop_0002" />
+                    <GradientStop Color="Black" Offset="0.5" cs:id="GradientStop_0003" />
                 </LinearGradientBrush.GradientStops>
             </LinearGradientBrush>
         </ControlTemplate.Resources>
-        <Grid x:Name="model" Background="#1D5B08F9" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\PieItem.xaml;285;10">
+        <Grid x:Name="model" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\PieItem.xaml;285;10">
             <Ellipse x:Name="fill" Fill="{Binding Path=PointColor, ConverterParameter=Gray, Converter={StaticResource brushOverlayConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\PieItem.xaml;288;14" />
         </Grid>
         <ControlTemplate.Triggers>

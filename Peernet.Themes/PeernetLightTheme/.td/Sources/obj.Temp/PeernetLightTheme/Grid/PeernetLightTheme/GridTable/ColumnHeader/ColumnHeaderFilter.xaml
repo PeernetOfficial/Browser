@@ -7,21 +7,21 @@
     
 
     <ControlTemplate x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=ColumnFilterTemplate}" TargetType="{x:Type ToggleButton}">
-        <Grid Background="#1D541996" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\ColumnHeader\ColumnHeaderFilter.xaml;24;10">
-            <Path x:Name="Filter" Fill="#1D651997" Margin="3,0,0,0" Style="{StaticResource UIShape.Filter}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\ColumnHeader\ColumnHeaderFilter.xaml;25;14" />
+        <Grid Background="Transparent" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\ColumnHeader\ColumnHeaderFilter.xaml;24;10">
+            <Path x:Name="Filter" Fill="#FF444444" Margin="3,0,0,0" Style="{StaticResource UIShape.Filter}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\ColumnHeader\ColumnHeaderFilter.xaml;25;14" x:Uid="@Fill=Foreground" />
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Fill" TargetName="Filter" Value="#1D4B1998" cs:id="Setter_0000" />
+                <Setter Property="Fill" TargetName="Filter" Value="#FF106EBE" cs:id="Setter_0000" x:Uid="@Value=HoverForeground" />
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Fill" TargetName="Filter" Value="#1D7A1999" cs:id="Setter_0001" />
+                <Setter Property="Fill" TargetName="Filter" Value="#FF106EBE" cs:id="Setter_0001" x:Uid="@Value=SelectionForeground" />
             </Trigger>
             <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Fill" TargetName="Filter" Value="#1D29199A" cs:id="Setter_0002" />
+                <Setter Property="Fill" TargetName="Filter" Value="#FF106EBE" cs:id="Setter_0002" x:Uid="@Value=SelectionForeground" />
             </Trigger>
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(dxe:BaseEdit.OwnerEdit).Parent.IsMouseOver}" Value="True">
-                <Setter Property="Fill" TargetName="Filter" Value="#1D18199B" cs:id="Setter_0003" />
+                <Setter Property="Fill" TargetName="Filter" Value="#FF444444" cs:id="Setter_0003" x:Uid="@Value=Foreground" />
             </DataTrigger>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                 <Setter Property="Margin" TargetName="Filter" Value="14,0,14,0" />
@@ -32,7 +32,7 @@
     
 
     <ControlTemplate x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=CalendarFilterControlTemplate}" TargetType="dxg:CalendarFilterControl">
-        <Grid Background="#1D8F199C" HorizontalAlignment="Center" VerticalAlignment="Center" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\ColumnHeader\ColumnHeaderFilter.xaml;67;10">
+        <Grid Background="#FFFFFFFF" HorizontalAlignment="Center" VerticalAlignment="Center" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\ColumnHeader\ColumnHeaderFilter.xaml;67;10" x:Uid="@Background=Editor.Background">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />

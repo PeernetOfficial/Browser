@@ -27,7 +27,7 @@
                         </Grid.RowDefinitions>
                         <dxspsi:SpreadsheetNameBoxControl x:Name="PART_Combobox" EditValuePostMode="Immediate" IsReadOnly="False" SpreadsheetControl="{Binding SpreadsheetControl, RelativeSource={RelativeSource TemplatedParent}}" ValidateOnTextInput="True" VerticalAlignment="Center" />
                         <Thumb x:Name="PART_VerticalThumb" Grid.Column="1" Margin="4,0,0,0" Style="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=FormulaBarVerticalThumbStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\FormulaBar\FormulaBarControl.xaml;51;26" />
-                        <dx:DXBorder Background="#1D4A1C59" BorderBrush="#1D191C5A" BorderThickness="1" Grid.Column="2" Margin="4,0,0,0" MaxHeight="{TemplateBinding MaxHeight}" MinHeight="{TemplateBinding MinHeight}" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\FormulaBar\FormulaBarControl.xaml;55;26">
+                        <dx:DXBorder Background="#FFFFFFFF" BorderBrush="#FFC8C6C4" BorderThickness="1" Grid.Column="2" Margin="4,0,0,0" MaxHeight="{TemplateBinding MaxHeight}" MinHeight="{TemplateBinding MinHeight}" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\FormulaBar\FormulaBarControl.xaml;55;26" x:Uid="@Background=Editor.Background;BorderBrush=Border">
                             <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\FormulaBar\FormulaBarControl.xaml;63;30">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition x:Name="EditorColumnGrid1" />
@@ -39,7 +39,7 @@
                                 <Button x:Name="PART_FunctionButton" Grid.Column="2" Style="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=FormulaBarFunctionButtonStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\FormulaBar\FormulaBarControl.xaml;73;34" />
                             </Grid>
                         </dx:DXBorder>
-                        <dx:DXBorder Background="#1D281C5B" BorderBrush="#1DBF1C5C" BorderThickness="1" Grid.Column="3" Grid.RowSpan="2" Margin="4,0,0,0" cs:id="Border_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\FormulaBar\FormulaBarControl.xaml;78;26">
+                        <dx:DXBorder Background="#FFFFFFFF" BorderBrush="#FFC8C6C4" BorderThickness="1" Grid.Column="3" Grid.RowSpan="2" Margin="4,0,0,0" cs:id="Border_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\FormulaBar\FormulaBarControl.xaml;78;26" x:Uid="@Background=Editor.Background;BorderBrush=Border">
                             <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\FormulaBar\FormulaBarControl.xaml;85;30">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
@@ -49,7 +49,7 @@
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
-                                <dxspsi:FormulaBarEditor x:Name="PART_Editor" Background="#1D8E1C5D" CaretBrush="#1DDD1C5E" Foreground="#1DEC1C5F" Grid.RowSpan="2" Margin="1" cs:id="FormulaBarEditor_0001" />
+                                <dxspsi:FormulaBarEditor x:Name="PART_Editor" Background="#FFFFFFFF" CaretBrush="#FF444444" Foreground="#FF444444" Grid.RowSpan="2" Margin="1" cs:id="FormulaBarEditor_0001" x:Uid="@Background=Editor.Background;CaretBrush=Foreground;Foreground=Foreground" />
                                 <ToggleButton x:Name="PART_ExpandButton" Grid.Column="1" Grid.Row="0" IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" Style="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=FormulaBarExpandButtonStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\FormulaBar\FormulaBarControl.xaml;101;34" />
                                 <ScrollBar Grid.Column="1" Grid.Row="1" LargeChange="{Binding ScrollViewer.ViewportHeight, ElementName=PART_Editor}" Maximum="{Binding ScrollViewer.ScrollableHeight, ElementName=PART_Editor}" Minimum="0" ViewportSize="{Binding ScrollViewer.ViewportHeight, ElementName=PART_Editor}" Visibility="{Binding IsExpanded, Converter={StaticResource BoolToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\FormulaBar\FormulaBarControl.xaml;106;34" />
                             </Grid>

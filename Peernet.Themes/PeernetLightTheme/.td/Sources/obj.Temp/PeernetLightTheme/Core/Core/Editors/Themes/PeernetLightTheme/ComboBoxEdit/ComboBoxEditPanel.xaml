@@ -10,7 +10,7 @@
     
 
     <ControlTemplate x:Key="{dxet:SearchControlThemeKey ResourceKey=PanelTemplate}" TargetType="ContentControl">
-        <dx:DXBorder BorderBrush="#1D4E2031" BorderThickness="0,0,0,1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\ComboBoxEdit\ComboBoxEditPanel.xaml;24;10">
+        <dx:DXBorder BorderBrush="#FFE1DFDD" BorderThickness="0,0,0,1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\ComboBoxEdit\ComboBoxEditPanel.xaml;24;10" x:Uid="@BorderBrush=Delimiter">
             <ContentPresenter Content="{TemplateBinding Content}" Margin="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\ComboBoxEdit\ComboBoxEditPanel.xaml;27;14" />
         </dx:DXBorder>
     </ControlTemplate>
@@ -22,16 +22,16 @@
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="False">
-                <Setter Property="Border.Background" TargetName="normal" Value="#1D1D2032" cs:id="Setter_0000" />
-                <Setter Property="Foreground" Value="#1D2C2033" cs:id="Setter_0001" />
+                <Setter Property="Border.Background" TargetName="normal" Value="Transparent" cs:id="Setter_0000" />
+                <Setter Property="Foreground" Value="#FF444444" cs:id="Setter_0001" x:Uid="@Value=Foreground" />
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" TargetName="normal" Value="#1DBB2034" cs:id="Setter_0003" />
-                <Setter Property="Foreground" Value="#1D8A2035" cs:id="Setter_0002" />
+                <Setter Property="Background" TargetName="normal" Value="#FFEFF6FC" cs:id="Setter_0003" x:Uid="@Value=HoverBackground" />
+                <Setter Property="Foreground" Value="#FF106EBE" cs:id="Setter_0002" x:Uid="@Value=HoverForeground" />
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" TargetName="normal" Value="#1DD92036" cs:id="Setter_0005" />
-                <Setter Property="Foreground" Value="#1DE82037" cs:id="Setter_0004" />
+                <Setter Property="Background" TargetName="normal" Value="#FFDEECF9" cs:id="Setter_0005" x:Uid="@Value=SelectionBackground" />
+                <Setter Property="Foreground" Value="#FF106EBE" cs:id="Setter_0004" x:Uid="@Value=SelectionForeground" />
             </Trigger>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                 <Setter Property="Margin" TargetName="grid" Value="6" />

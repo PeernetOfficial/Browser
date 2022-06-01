@@ -7,7 +7,7 @@
     
 
     <Style x:Key="SliderRepeatButtonStyle" TargetType="{x:Type RepeatButton}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;17;6" /><Setter Property="Background" Value="#1DAA2122" cs:id="Setter_0000" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;17;6" /><Setter Property="Background" Value="Transparent" cs:id="Setter_0000" />
         <Setter Property="Focusable" Value="False" />
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
@@ -27,15 +27,15 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
-                    <Grid x:Name="Root" Background="#1D9B2123" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;40;22">
-                        <dx:DXBorder x:Name="IsDefault" Background="#1D0C2124" BorderBrush="#1D3D2125" BorderThickness="1" Height="7" Width="14" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;43;26" />
+                    <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;40;22">
+                        <dx:DXBorder x:Name="IsDefault" Background="#FF444444" BorderBrush="#FFFFFFFF" BorderThickness="1" Height="7" Width="14" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;43;26" x:Uid="@Background=Foreground;BorderBrush=Window.Background" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" TargetName="IsDefault" Value="#1D6E2126" cs:id="Setter_0000" />
+                            <Setter Property="Background" TargetName="IsDefault" Value="#FF106EBE" cs:id="Setter_0000" x:Uid="@Value=Focused" />
                         </Trigger>
                         <Trigger Property="IsDragging" Value="True">
-                            <Setter Property="Background" TargetName="IsDefault" Value="#1D5F2127" cs:id="Setter_0001" />
+                            <Setter Property="Background" TargetName="IsDefault" Value="#FF106EBE" cs:id="Setter_0001" x:Uid="@Value=Focused" />
                         </Trigger>
                         <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                             <Setter Property="Margin" TargetName="Root" Value="-22" />
@@ -51,15 +51,15 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
-                    <Grid x:Name="Root" Background="#1D712128" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;80;22">
-                        <dx:DXBorder x:Name="IsDefault" Background="#1D402129" BorderBrush="#1D13212A" BorderThickness="1" Height="14" Width="7" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;83;26" />
+                    <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;80;22">
+                        <dx:DXBorder x:Name="IsDefault" Background="#FF444444" BorderBrush="#FFFFFFFF" BorderThickness="1" Height="14" Width="7" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;83;26" x:Uid="@Background=Foreground;BorderBrush=Window.Background" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" TargetName="IsDefault" Value="#1D22212B" cs:id="Setter_0000" />
+                            <Setter Property="Background" TargetName="IsDefault" Value="#FF106EBE" cs:id="Setter_0000" x:Uid="@Value=Focused" />
                         </Trigger>
                         <Trigger Property="IsDragging" Value="True">
-                            <Setter Property="Background" TargetName="IsDefault" Value="#1DB5212C" cs:id="Setter_0001" />
+                            <Setter Property="Background" TargetName="IsDefault" Value="#FF106EBE" cs:id="Setter_0001" x:Uid="@Value=Focused" />
                         </Trigger>
                         <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                             <Setter Property="Margin" TargetName="Root" Value="-22" />
@@ -82,7 +82,7 @@
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=System.Windows.Controls.Slider}" TargetType="{x:Type Slider}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;133;6" /><Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="Foreground" Value="#1D84212D" cs:id="Setter_0000" />
+        <Setter Property="Foreground" Value="#FF444444" cs:id="Setter_0000" x:Uid="@Value=Foreground" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Stylus.IsPressAndHoldEnabled" Value="False" />
         <Setter Property="Template">
@@ -90,12 +90,12 @@
                 <ControlTemplate TargetType="{x:Type Slider}">
                     <dx:DXBorder Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Width="{TemplateBinding Width}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;143;22">
                         <Grid x:Name="Root" MinHeight="22" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;148;26">
-                            <TickBar x:Name="TopTick" Fill="#1DD7212E" Height="4" Placement="Top" VerticalAlignment="Top" Visibility="Collapsed" cs:id="TickBar_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;149;30" />
+                            <TickBar x:Name="TopTick" Fill="#FF444444" Height="4" Placement="Top" VerticalAlignment="Top" Visibility="Collapsed" cs:id="TickBar_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;149;30" x:Uid="@Fill=Foreground" />
                             <Grid Margin="1,0,1,0" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;156;30">
-                                <dx:DXBorder x:Name="TrackBackground" Background="#1DE6212F" Height="2" VerticalAlignment="Center" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;157;34" />
-                                <dx:DXBorder x:Name="FocusState" Background="#1D8B2130" Visibility="Collapsed" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;162;34" />
+                                <dx:DXBorder x:Name="TrackBackground" Background="#FFC8C6C4" Height="2" VerticalAlignment="Center" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;157;34" x:Uid="@Background=Border" />
+                                <dx:DXBorder x:Name="FocusState" Background="#FF106EBE" Visibility="Collapsed" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;162;34" x:Uid="@Background=Focused" />
                                 <Canvas dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;166;34">
-                                    <Rectangle x:Name="PART_SelectionRange" Fill="#1DBA2131" Height="2" Opacity="0" cs:id="Rectangle_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;167;38" />
+                                    <Rectangle x:Name="PART_SelectionRange" Fill="#FF444444" Height="2" Opacity="0" cs:id="Rectangle_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;167;38" x:Uid="@Fill=Foreground" />
                                 </Canvas>
                             </Grid>
                             <Track x:Name="PART_Track" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;174;30">
@@ -106,10 +106,10 @@
                                     <RepeatButton Command="{x:Static Slider.IncreaseLarge}" Style="{StaticResource SliderRepeatButtonStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;179;38" />
                                 </Track.IncreaseRepeatButton>
                                 <Track.Thumb>
-                                    <Thumb x:Name="Thumb" Background="#1DE92132" Height="{TemplateBinding Height}" Style="{StaticResource HorizontalSliderThumbStyle}" cs:id="Thumb_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;182;38" />
+                                    <Thumb x:Name="Thumb" Background="#FF444444" Height="{TemplateBinding Height}" Style="{StaticResource HorizontalSliderThumbStyle}" cs:id="Thumb_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;182;38" x:Uid="@Background=Foreground" />
                                 </Track.Thumb>
                             </Track>
-                            <TickBar x:Name="BottomTick" Fill="#1DD82133" Height="4" Placement="Bottom" VerticalAlignment="Bottom" Visibility="Collapsed" cs:id="TickBar_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;189;30" />
+                            <TickBar x:Name="BottomTick" Fill="#FF444444" Height="4" Placement="Bottom" VerticalAlignment="Bottom" Visibility="Collapsed" cs:id="TickBar_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;189;30" x:Uid="@Fill=Foreground" />
                         </Grid>
                     </dx:DXBorder>
                     <ControlTemplate.Triggers>
@@ -148,12 +148,12 @@
                         <ControlTemplate TargetType="{x:Type Slider}">
                             <dx:DXBorder Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Height="{TemplateBinding Height}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;252;30">
                                 <Grid x:Name="Root" MinWidth="22" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;256;34">
-                                    <TickBar x:Name="LeftTick" Fill="#1D4F2134" HorizontalAlignment="Left" Placement="Left" Visibility="Collapsed" Width="4" cs:id="TickBar_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;257;38" />
+                                    <TickBar x:Name="LeftTick" Fill="#FFC8C6C4" HorizontalAlignment="Left" Placement="Left" Visibility="Collapsed" Width="4" cs:id="TickBar_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;257;38" x:Uid="@Fill=Border" />
                                     <Grid HorizontalAlignment="Center" Margin="0,1,0,1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;264;38">
-                                        <dx:DXBorder Name="TrackBackground" Background="#1D7E2135" Width="2" cs:id="Border_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;265;42" />
-                                        <dx:DXBorder x:Name="FocusState" Background="#1D2D2136" Visibility="Collapsed" cs:id="Border_0003" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;269;42" />
+                                        <dx:DXBorder Name="TrackBackground" Background="#FFC8C6C4" Width="2" cs:id="Border_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;265;42" x:Uid="@Background=Border" />
+                                        <dx:DXBorder x:Name="FocusState" Background="#FF106EBE" Visibility="Collapsed" cs:id="Border_0003" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;269;42" x:Uid="@Background=Focused" />
                                         <Canvas dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;273;42">
-                                            <Rectangle x:Name="PART_SelectionRange" Fill="#1D1C2137" Opacity="0" Width="2" cs:id="Rectangle_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;274;46" />
+                                            <Rectangle x:Name="PART_SelectionRange" Fill="#FF444444" Opacity="0" Width="2" cs:id="Rectangle_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;274;46" x:Uid="@Fill=Foreground" />
                                         </Canvas>
                                     </Grid>
                                     <Track x:Name="PART_Track" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;281;38">
@@ -164,10 +164,10 @@
                                             <RepeatButton Command="{x:Static Slider.IncreaseLarge}" Style="{StaticResource SliderRepeatButtonStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;286;46" />
                                         </Track.IncreaseRepeatButton>
                                         <Track.Thumb>
-                                            <Thumb x:Name="Thumb" Background="#1D322138" Style="{StaticResource VerticalSliderThumbStyle}" Width="{TemplateBinding Width}" cs:id="Thumb_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;289;46" />
+                                            <Thumb x:Name="Thumb" Background="#FF444444" Style="{StaticResource VerticalSliderThumbStyle}" Width="{TemplateBinding Width}" cs:id="Thumb_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;289;46" x:Uid="@Background=Foreground" />
                                         </Track.Thumb>
                                     </Track>
-                                    <TickBar x:Name="RightTick" Fill="#1D032139" HorizontalAlignment="Right" Placement="Right" Visibility="Collapsed" Width="4" cs:id="TickBar_0003" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;296;38" />
+                                    <TickBar x:Name="RightTick" Fill="#FF444444" HorizontalAlignment="Right" Placement="Right" Visibility="Collapsed" Width="4" cs:id="TickBar_0003" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\Slider.xaml;296;38" x:Uid="@Fill=Foreground" />
                                 </Grid>
                             </dx:DXBorder>
                             <ControlTemplate.Triggers>

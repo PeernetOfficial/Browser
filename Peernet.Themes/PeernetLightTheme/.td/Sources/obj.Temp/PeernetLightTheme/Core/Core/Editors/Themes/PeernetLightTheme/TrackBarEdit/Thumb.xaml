@@ -7,18 +7,18 @@
     
 
     <ControlTemplate x:Key="{dxet:TrackBarEditThumbThemeKey ResourceKey=VerticalThumbTemplate}" TargetType="{x:Type Thumb}">
-        <Grid x:Name="Root" Background="#1DC306FC" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\TrackBarEdit\Thumb.xaml;21;10">
-            <dx:DXBorder x:Name="Back" Background="#1DF206FD" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\TrackBarEdit\Thumb.xaml;24;14" />
-            <dx:DXBorder x:Name="IsDefault" Background="#1DA106FE" BorderBrush="#1D9006FF" BorderThickness="1" Height="7" Width="14" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\TrackBarEdit\Thumb.xaml;27;14" />
+        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\TrackBarEdit\Thumb.xaml;21;10">
+            <dx:DXBorder x:Name="Back" Background="Transparent" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\TrackBarEdit\Thumb.xaml;24;14" />
+            <dx:DXBorder x:Name="IsDefault" Background="#FF444444" BorderBrush="#FFFFFFFF" BorderThickness="1" Height="7" Width="14" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\TrackBarEdit\Thumb.xaml;27;14" x:Uid="@Background=Foreground;BorderBrush=Window.Background" />
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" TargetName="IsDefault" Value="#1DC80700" cs:id="Setter_0000" />
-                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1DF90701" cs:id="Setter_0001" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FF106EBE" cs:id="Setter_0000" x:Uid="@Value=Focused" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFFFFFFF" cs:id="Setter_0001" x:Uid="@Value=Window.Background" />
             </Trigger>
             <Trigger Property="IsDragging" Value="True">
-                <Setter Property="Background" TargetName="IsDefault" Value="#1DAA0702" cs:id="Setter_0002" />
-                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1D9B0703" cs:id="Setter_0003" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FF106EBE" cs:id="Setter_0002" x:Uid="@Value=Focused" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFFFFFFF" cs:id="Setter_0003" x:Uid="@Value=Window.Background" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Opacity" TargetName="IsDefault" Value="0.38" />
@@ -33,18 +33,18 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxet:TrackBarEditThumbThemeKey ResourceKey=HorizontalThumbTemplate}" TargetType="{x:Type Thumb}">
-        <Grid x:Name="Root" Background="#1D0C0704" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\TrackBarEdit\Thumb.xaml;79;10">
-            <dx:DXBorder x:Name="Back" Background="#1D3D0705" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\TrackBarEdit\Thumb.xaml;82;14" />
-            <dx:DXBorder x:Name="IsDefault" Background="#1D6E0706" BorderBrush="#1D5F0707" BorderThickness="1" Height="14" Width="7" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\TrackBarEdit\Thumb.xaml;85;14" />
+        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\TrackBarEdit\Thumb.xaml;79;10">
+            <dx:DXBorder x:Name="Back" Background="Transparent" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\TrackBarEdit\Thumb.xaml;82;14" />
+            <dx:DXBorder x:Name="IsDefault" Background="#FF444444" BorderBrush="#FFFFFFFF" BorderThickness="1" Height="14" Width="7" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\TrackBarEdit\Thumb.xaml;85;14" x:Uid="@Background=Foreground;BorderBrush=Window.Background" />
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" TargetName="IsDefault" Value="#1D710708" cs:id="Setter_0000" />
-                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1D400709" cs:id="Setter_0001" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FF106EBE" cs:id="Setter_0000" x:Uid="@Value=Focused" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFFFFFFF" cs:id="Setter_0001" x:Uid="@Value=Window.Background" />
             </Trigger>
             <Trigger Property="IsDragging" Value="True">
-                <Setter Property="Background" TargetName="IsDefault" Value="#1D13070A" cs:id="Setter_0002" />
-                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1D22070B" cs:id="Setter_0003" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FF106EBE" cs:id="Setter_0002" x:Uid="@Value=Focused" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFFFFFFF" cs:id="Setter_0003" x:Uid="@Value=Window.Background" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Opacity" TargetName="IsDefault" Value="0.38" />

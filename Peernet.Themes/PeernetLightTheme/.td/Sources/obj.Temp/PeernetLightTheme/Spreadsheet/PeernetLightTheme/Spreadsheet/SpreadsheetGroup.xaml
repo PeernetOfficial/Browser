@@ -7,7 +7,7 @@
     
 
     <ControlTemplate x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=GroupButtonTemplate}" TargetType="{x:Type dxspsi:GroupItem}">
-        <dx:DXBorder x:Name="IsDefault" Background="#1D32279E" BorderBrush="#1D03279F" BorderThickness="1" Margin="0,0,1,1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\Spreadsheet\SpreadsheetGroup.xaml;21;10">
+        <dx:DXBorder x:Name="IsDefault" Background="#FFFFFFFF" BorderBrush="#FFC8C6C4" BorderThickness="1" Margin="0,0,1,1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\Spreadsheet\SpreadsheetGroup.xaml;21;10" x:Uid="@Background=Window.Background;BorderBrush=Border">
             <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\Spreadsheet\SpreadsheetGroup.xaml;27;14">
                 <Path x:Name="CollapseShape" Style="{StaticResource UIShape.SmallPlus}" Visibility="Hidden" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\Spreadsheet\SpreadsheetGroup.xaml;28;18" />
                 <Path x:Name="ExpandShape" Style="{StaticResource UIShape.SmallMinus}" Visibility="Hidden" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\Spreadsheet\SpreadsheetGroup.xaml;31;18" />
@@ -15,10 +15,10 @@
         </dx:DXBorder>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" TargetName="IsDefault" Value="#1DE827A0" cs:id="Setter_0000" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0000" x:Uid="@Value=HoverBackground" />
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" TargetName="IsDefault" Value="#1DD927A1" cs:id="Setter_0001" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0001" x:Uid="@Value=SelectionBackground" />
             </Trigger>
             <Trigger Property="IsExpanded" Value="True">
                 <Setter Property="Visibility" TargetName="ExpandShape" Value="Visible" />
@@ -36,15 +36,15 @@
     
 
     <ControlTemplate x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=GroupHeaderTemplate}" TargetType="{x:Type dxspsi:GroupItem}">
-        <dx:DXBorder x:Name="IsDefault" Background="#1D8A27A2" BorderBrush="#1DBB27A3" BorderThickness="1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\Spreadsheet\SpreadsheetGroup.xaml;69;10">
+        <dx:DXBorder x:Name="IsDefault" Background="#FFFFFFFF" BorderBrush="#FFC8C6C4" BorderThickness="1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\Spreadsheet\SpreadsheetGroup.xaml;69;10" x:Uid="@Background=Window.Background;BorderBrush=Border">
             <TextBlock HorizontalAlignment="Center" Text="{TemplateBinding Text}" TextAlignment="Center" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\Spreadsheet\SpreadsheetGroup.xaml;74;14" />
         </dx:DXBorder>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" TargetName="IsDefault" Value="#1D2C27A4" cs:id="Setter_0000" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0000" x:Uid="@Value=HoverBackground" />
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" TargetName="IsDefault" Value="#1D1D27A5" cs:id="Setter_0001" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0001" x:Uid="@Value=SelectionBackground" />
             </Trigger>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                 <Setter Property="MinHeight" Value="44" />

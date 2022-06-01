@@ -107,13 +107,13 @@
                             </dxr:RibbonPageHeaderControl.Page>
                         </dxr:RibbonPageHeaderControl>
                         <ContentControl Name="PART_TabBackground" Focusable="False" Grid.ColumnSpan="4" Grid.Row="0" Grid.RowSpan="2" IsTabStop="False" Template="{DynamicResource {dxrt:RibbonThemeKey ResourceKey=TabPartBorderTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\Ribbon.xaml;168;26" />
-                        <Grid x:Name="PART_HeaderBorder" Background="#1D4E2697" Grid.ColumnSpan="4" Grid.Row="0" Visibility="Collapsed" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\Ribbon.xaml;175;26">
+                        <Grid x:Name="PART_HeaderBorder" Background="Transparent" Grid.ColumnSpan="4" Grid.Row="0" Visibility="Collapsed" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\Ribbon.xaml;175;26">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <ContentControl Name="HeaderBorderControl" Background="#1D602698" Focusable="False" Grid.ColumnSpan="3" IsTabStop="False" Template="{TemplateBinding ActualHeaderBorderTemplate}" cs:id="ContentControl_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\Ribbon.xaml;186;30" />
+                            <ContentControl Name="HeaderBorderControl" Background="Transparent" Focusable="False" Grid.ColumnSpan="3" IsTabStop="False" Template="{TemplateBinding ActualHeaderBorderTemplate}" cs:id="ContentControl_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\Ribbon.xaml;186;30" />
                             <dxri:RibbonControlBoxContainer x:Name="PART_ControlBoxContainer" Grid.Column="2" ShowCustomItems="False" Visibility="Hidden" />
                         </Grid>
                         <dxr:RibbonPageCategoriesPane x:Name="PART_PageCategoriesPane" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2" ItemsSource="{TemplateBinding ActualCategories}" />
@@ -129,7 +129,7 @@
                                 <Image MaxHeight="16" MaxWidth="16" Source="{TemplateBinding ActualApplicationIcon}" Stretch="Uniform" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\Ribbon.xaml;245;34" />
                             </dxcore_unique_xmlns:PixelSnapper>
                         </ContentControl>
-                        <ContentControl x:Name="PART_ToolbarContainer" Background="#1D512699" Focusable="False" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="0" HorizontalAlignment="Left" IsTabStop="False" Style="{TemplateBinding ActualHeaderQuickAccessToolbarContainerStyle}" VerticalContentAlignment="Center" cs:id="ContentControl_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\Ribbon.xaml;251;26" />
+                        <ContentControl x:Name="PART_ToolbarContainer" Background="Transparent" Focusable="False" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="0" HorizontalAlignment="Left" IsTabStop="False" Style="{TemplateBinding ActualHeaderQuickAccessToolbarContainerStyle}" VerticalContentAlignment="Center" cs:id="ContentControl_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\Ribbon.xaml;251;26" />
                         <DockPanel x:Name="PART_RightTabContainer" dxcn:WindowChrome.IsHitTestVisibleInChrome="True" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Right" LastChildFill="True" VerticalAlignment="Bottom" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\Ribbon.xaml;262;26">
                             <dxri:RibbonMinimizationButton x:Name="PART_MinimizationButton" DockPanel.Dock="Left" Style="{DynamicResource {dxrt:RibbonThemeKey ResourceKey=MinimizationButtonStyle}}" Template="{DynamicResource {dxrt:RibbonThemeKey ResourceKey=MinimizationButtonTemplate}}" Visibility="Collapsed" />
                             <dxcore_unique_xmlns:DXContentPresenter x:Name="PART_PageHeaderLinksControlContainer" DockPanel.Dock="Right" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\Ribbon.xaml;274;30" />
@@ -260,7 +260,7 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
                     <ContentControl Grid.ColumnSpan="4" Grid.RowSpan="2" Template="{DynamicResource {dxrt:RibbonThemeKey ResourceKey=HeaderAndTabsBorderTemplatedInAeroWindow}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\Ribbon.xaml;498;22" />
-                    <Grid x:Name="PART_HeaderBorder" Background="#1D02269A" Grid.ColumnSpan="4" Grid.Row="0" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\Ribbon.xaml;501;22">
+                    <Grid x:Name="PART_HeaderBorder" Background="Transparent" Grid.ColumnSpan="4" Grid.Row="0" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\Ribbon.xaml;501;22">
                         <ContentControl Focusable="False" IsTabStop="False" Template="{DynamicResource {dxrt:RibbonThemeKey ResourceKey=HeaderBorderTemplateInRibbonAeroWindow}}" Visibility="{Binding Path=IsInRibbonWindow, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\Ribbon.xaml;506;26" />
                         <ContentControl Focusable="False" IsTabStop="False" Template="{TemplateBinding ActualHeaderBorderTemplate}" Visibility="{Binding Path=IsInRibbonWindow, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource invertBoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\Ribbon.xaml;510;26" />
                     </Grid>
@@ -276,7 +276,7 @@
                             <Image MaxHeight="16" MaxWidth="16" Source="{TemplateBinding ActualApplicationIcon}" Stretch="Uniform" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\Ribbon.xaml;562;30" />
                         </dxcore_unique_xmlns:PixelSnapper>
                     </ContentControl>
-                    <ContentControl x:Name="PART_ToolbarContainer" Background="#1D33269B" Focusable="False" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" IsTabStop="False" Margin="0" Style="{TemplateBinding ActualHeaderQuickAccessToolbarContainerStyle}" VerticalContentAlignment="Center" cs:id="ContentControl_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\Ribbon.xaml;568;22" />
+                    <ContentControl x:Name="PART_ToolbarContainer" Background="Transparent" Focusable="False" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" IsTabStop="False" Margin="0" Style="{TemplateBinding ActualHeaderQuickAccessToolbarContainerStyle}" VerticalContentAlignment="Center" cs:id="ContentControl_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\Ribbon.xaml;568;22" />
                     <DockPanel x:Name="PART_RightTabContainer" dxcn:WindowChrome.IsHitTestVisibleInChrome="True" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Right" LastChildFill="True" VerticalAlignment="Bottom" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\Ribbon.xaml;579;22">
                         <dxri:RibbonMinimizationButton x:Name="PART_MinimizationButton" DockPanel.Dock="Left" Style="{DynamicResource {dxrt:RibbonThemeKey ResourceKey=MinimizationButtonStyleInRibbonAeroWindow}}" Template="{DynamicResource {dxrt:RibbonThemeKey ResourceKey=MinimizationButtonTemplateInRibbonAeroWindow}}" Visibility="Collapsed" />
                         <dxcore_unique_xmlns:DXContentPresenter x:Name="PART_PageHeaderLinksControlContainer" DockPanel.Dock="Right" VerticalAlignment="Stretch" VerticalContentAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\Ribbon.xaml;591;26" />
@@ -353,7 +353,7 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=RibbonPanelBorderTemplate}" TargetType="{x:Type ContentControl}">
-        <dx:DXBorder BorderBrush="#1DA4269C" BorderThickness="1" Padding="3,3,3,3" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\Ribbon.xaml;748;10">
+        <dx:DXBorder BorderBrush="Black" BorderThickness="1" Padding="3,3,3,3" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\Ribbon.xaml;748;10">
             <dx:DXBorder x:Name="PART_Content" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\Ribbon.xaml;752;14">
                 <ContentPresenter Content="{TemplateBinding Content}" MinHeight="68" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Generic\Ribbon.xaml;753;18" />
             </dx:DXBorder>

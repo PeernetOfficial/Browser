@@ -128,8 +128,8 @@
                 <Setter Property="BorderThickness" Value="{DynamicResource {dxt:ThemedWindowThemeKey ResourceKey=WindowRibbonContentBorderThickness}}" />
             </DataTrigger>
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=ActualWindowKind}" Value="Tabbed">
-                <Setter Property="Background" Value="#1D1E0851" cs:id="Setter_0000" />
-                <Setter Property="BorderBrush" Value="#1D4D0852" cs:id="Setter_0001" />
+                <Setter Property="Background" Value="Transparent" cs:id="Setter_0000" />
+                <Setter Property="BorderBrush" Value="Transparent" cs:id="Setter_0001" />
                 <Setter Property="BorderThickness" Value="0" />
             </DataTrigger>
         </Style.Triggers>
@@ -213,7 +213,7 @@
     
 
     <Style x:Key="dialogFooterBorderStyle" TargetType="{x:Type dx:ThemedWindowBorder}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Generic\ThemedWindow.xaml;233;6" /><Setter Property="Background" Value="#1D7C0853" cs:id="Setter_0000" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Generic\ThemedWindow.xaml;233;6" /><Setter Property="Background" Value="Transparent" cs:id="Setter_0000" />
         <Setter Property="Visibility" Value="Collapsed" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Path=ShowDialogFooter, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
@@ -275,7 +275,7 @@
     <ControlTemplate x:Key="{dxt:ThemedWindowThemeKey ResourceKey=BackButtonTemplate}" TargetType="{x:Type dx:ThemedWindowBackButton}">
         <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\ThemedWindow.xaml;298;10">
             <Control x:Name="PART_Background" Focusable="False" Template="{DynamicResource {dxt:ThemedWindowThemeKey ResourceKey=BackButtonBackgroundNormalState}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\ThemedWindow.xaml;299;14" />
-            <dx:DXBorder x:Name="MarginBorder" Background="#1DEB0854" Margin="4,0" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\ThemedWindow.xaml;302;14">
+            <dx:DXBorder x:Name="MarginBorder" Background="Transparent" Margin="4,0" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\ThemedWindow.xaml;302;14">
                 <ContentPresenter x:Name="PART_ContentPresenter" ContentTemplate="{DynamicResource {dxt:ThemedWindowThemeKey ResourceKey=BackButtonBackgroundGlyph}}" Focusable="False" HorizontalAlignment="Center" RecognizesAccessKey="True" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\ThemedWindow.xaml;306;18" />
             </dx:DXBorder>
         </Grid>
@@ -494,7 +494,7 @@
 
     <ControlTemplate x:Key="themedWindowTemplate" TargetType="{x:Type dx:ThemedWindow}">
         <dxcore_unique_xmlns:ThemedWindowRoot x:Name="PART_WindowRoot">
-            <Rectangle x:Name="PART_AcrylicBackground" Fill="#1DDA0855" Visibility="Collapsed" cs:id="Rectangle_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\ThemedWindow.xaml;630;14" />
+            <Rectangle x:Name="PART_AcrylicBackground" Fill="Transparent" Visibility="Collapsed" cs:id="Rectangle_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\ThemedWindow.xaml;630;14" />
             <AdornerDecorator x:Name="PART_WindowAdornerDecorator" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\ThemedWindow.xaml;634;14">
                 <dxcore_unique_xmlns:ThemedWindowBorder x:Name="PART_WindowBorder" Style="{StaticResource windowBorderStyle}">
                     <DockPanel x:Name="PART_WindowHeaderContentAndStatusPanel" LastChildFill="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\ThemedWindow.xaml;636;22">

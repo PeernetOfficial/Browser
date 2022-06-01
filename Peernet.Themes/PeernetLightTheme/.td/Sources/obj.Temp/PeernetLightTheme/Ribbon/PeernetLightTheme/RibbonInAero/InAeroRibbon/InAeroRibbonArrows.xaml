@@ -15,8 +15,8 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxrt:RibbonCustomizationThemeKey ResourceKey=CustomizationArrowControlTemplate}" TargetType="{x:Type dxr:CustomizationArrowControl}">
-        <Grid x:Name="Root" Background="#1D7C1B43" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonInAero\InAeroRibbon\InAeroRibbonArrows.xaml;31;10">
-            <dx:DXBorder x:Name="IsDefault" Background="#1DEB1B44" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonInAero\InAeroRibbon\InAeroRibbonArrows.xaml;34;14">
+        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonInAero\InAeroRibbon\InAeroRibbonArrows.xaml;31;10">
+            <dx:DXBorder x:Name="IsDefault" Background="Transparent" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonInAero\InAeroRibbon\InAeroRibbonArrows.xaml;34;14">
                 <Grid x:Name="Content" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonInAero\InAeroRibbon\InAeroRibbonArrows.xaml;37;18">
                     <Path x:Name="Left" Opacity="0" Style="{StaticResource UIShape.Left}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonInAero\InAeroRibbon\InAeroRibbonArrows.xaml;38;22" />
                     <Path x:Name="Right" Opacity="0" Style="{StaticResource UIShape.Right}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonInAero\InAeroRibbon\InAeroRibbonArrows.xaml;41;22" />
@@ -29,12 +29,12 @@
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="MouseOver">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1DDA1B45" cs:id="ColorAnimation_0000" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFEFF6FC" cs:id="ColorAnimation_0000" x:Uid="@To=HoverBackground" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Pressed">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D891B46" cs:id="ColorAnimation_0001" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFDEECF9" cs:id="ColorAnimation_0001" x:Uid="@To=SelectionBackground" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Disabled">
@@ -70,7 +70,7 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxrt:RibbonCustomizationThemeKey ResourceKey=CustomizationSeparatorControlTemplate}" TargetType="{x:Type dxr:CustomizationSeparatorControl}">
-        <dx:DXBorder Background="#1DB81B47" Height="1" HorizontalAlignment="Stretch" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonInAero\InAeroRibbon\InAeroRibbonArrows.xaml;120;10" />
+        <dx:DXBorder Background="#FFE1DFDD" Height="1" HorizontalAlignment="Stretch" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonInAero\InAeroRibbon\InAeroRibbonArrows.xaml;120;10" x:Uid="@Background=Delimiter" />
     </ControlTemplate>
 
 </ResourceDictionary>

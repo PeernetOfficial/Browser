@@ -11,8 +11,8 @@
 
     <ControlTemplate x:Key="{dxet:DateNavigatorThemeKey ResourceKey=HeaderButtonTemplate}" TargetType="{x:Type Button}">
         <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateNavigator\DateNavigatorHeader.xaml;24;10">
-            <dx:DXBorder x:Name="IsDefault" Background="#1D010640" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateNavigator\DateNavigatorHeader.xaml;25;14" />
-            <dxcore_unique_xmlns:ContentContainer x:Name="Content" Foreground="#1D300641" Margin="3" cs:id="ContentContainer_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateNavigator\DateNavigatorHeader.xaml;28;14">
+            <dx:DXBorder x:Name="IsDefault" Background="Transparent" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateNavigator\DateNavigatorHeader.xaml;25;14" />
+            <dxcore_unique_xmlns:ContentContainer x:Name="Content" Foreground="#FF444444" Margin="3" cs:id="ContentContainer_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateNavigator\DateNavigatorHeader.xaml;28;14" x:Uid="@Foreground=Foreground">
                 <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" HorizontalAlignment="Center" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateNavigator\DateNavigatorHeader.xaml;32;18" />
             </dxcore_unique_xmlns:ContentContainer>
             <VisualStateManager.VisualStateGroups>
@@ -20,7 +20,7 @@
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="MouseOver">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D630642" cs:id="ColorAnimation_0000" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFEFF6FC" cs:id="ColorAnimation_0000" x:Uid="@To=HoverBackground" />
                         </Storyboard>
                     </VisualState>
                 </VisualStateGroup>
@@ -29,8 +29,8 @@
     </ControlTemplate>
 
     <Style x:Key="{dxet:DateNavigatorThemeKey ResourceKey=HeaderButtonStyle}" TargetType="{x:Type Button}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Office2019White\DateNavigator\DateNavigatorHeader.xaml;54;6" /><Setter Property="Background" Value="#1D520643" cs:id="Setter_0000" />
-        <Setter Property="Foreground" Value="#1DC50644" cs:id="Setter_0001" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Office2019White\DateNavigator\DateNavigatorHeader.xaml;54;6" /><Setter Property="Background" Value="Transparent" cs:id="Setter_0000" />
+        <Setter Property="Foreground" Value="#FF444444" cs:id="Setter_0001" x:Uid="@Value=Foreground" />
         <Setter Property="Template" Value="{DynamicResource {dxet:DateNavigatorThemeKey ResourceKey=HeaderButtonTemplate}}" />
         <Setter Property="dx:FocusHelper2.Focusable" Value="False" />
         <Style.Triggers>
@@ -48,8 +48,8 @@
     </ControlTemplate>
 
     <Style x:Key="{dxet:DateNavigatorThemeKey ResourceKey=CurrentDateButtonStyle}" BasedOn="{StaticResource {dxet:DateNavigatorThemeKey ResourceKey=HeaderButtonStyle}}" TargetType="{x:Type Button}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Office2019White\DateNavigator\DateNavigatorHeader.xaml;79;6" /><Setter Property="Background" Value="#1DF40645" cs:id="Setter_0000" />
-        <Setter Property="Foreground" Value="#1DA70646" cs:id="Setter_0001" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Office2019White\DateNavigator\DateNavigatorHeader.xaml;79;6" /><Setter Property="Background" Value="Transparent" cs:id="Setter_0000" />
+        <Setter Property="Foreground" Value="#FF444444" cs:id="Setter_0001" x:Uid="@Value=Foreground" />
         <Setter Property="Template" Value="{DynamicResource {dxet:DateNavigatorThemeKey ResourceKey=CurrentDateButtonTemplate}}" />
         <Style.Triggers>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">

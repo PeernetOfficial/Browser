@@ -48,7 +48,7 @@
     
 
     <Style x:Key="{dxgt:GridRowThemeKey ResourceKey=DetailTotalSummaryIndentBorderStyle}" TargetType="{x:Type Border}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Office2019White\GridTable\Row\RowControl.xaml;79;6" /><Setter Property="BorderBrush" Value="#1D4819C4" cs:id="Setter_0000" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Office2019White\GridTable\Row\RowControl.xaml;79;6" /><Setter Property="BorderBrush" Value="#FFE1DFDD" cs:id="Setter_0000" x:Uid="@Value=Delimiter" />
         <Setter Property="BorderThickness" Value="0,0,0,1" />
     </Style>
 
@@ -134,12 +134,12 @@
 
     <ControlTemplate x:Key="{dxgt:GridRowThemeKey ResourceKey=LoadingRowTemplate}" TargetType="dxg:LoadingRowControl">
         <Grid x:Name="Root" Margin="1" MinHeight="32" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\Row\RowControl.xaml;187;10">
-            <ProgressBar x:Name="Indicator" Foreground="#1D7919C5" HorizontalAlignment="Center" IsIndeterminate="{Binding ShowLoadingIndicator}" Template="{StaticResource LoadingIndicator}" VerticalAlignment="Center" Visibility="{Binding ShowLoadingIndicator, Converter={StaticResource BoolToVisibilityConverter}}" cs:id="ProgressBar_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\Row\RowControl.xaml;190;14" />
+            <ProgressBar x:Name="Indicator" Foreground="#FF106EBE" HorizontalAlignment="Center" IsIndeterminate="{Binding ShowLoadingIndicator}" Template="{StaticResource LoadingIndicator}" VerticalAlignment="Center" Visibility="{Binding ShowLoadingIndicator, Converter={StaticResource BoolToVisibilityConverter}}" cs:id="ProgressBar_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\Row\RowControl.xaml;190;14" x:Uid="@Foreground=Focused" />
             <dxg:LoadingRowButton Click="{DXEvent 'LoadMoreRows()'}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="{Binding AllowLoadMore, Converter={StaticResource BoolToVisibilityConverter}}">
                 <StackPanel Margin="9,0,9,1" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\Row\RowControl.xaml;202;18">
                     <Label Content="{dxg:GridControlStringId LoadingRowLoadMore}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\Row\RowControl.xaml;203;22" />
                     <Grid Height="16" Margin="3" Width="16" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\Row\RowControl.xaml;204;22">
-                        <Path Data="F1 M 10,5L 5,10L 0,5L 3,5L 3,3L 7,3L 7,5L 10,5 Z M 3,2L 3,0L 7,0L 7,2L 3,2 Z " Fill="#1D2A19C6" Height="10" HorizontalAlignment="Center" Margin="0,1,0,0" Stretch="Fill" VerticalAlignment="Center" Width="10" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\Row\RowControl.xaml;207;26" />
+                        <Path Data="F1 M 10,5L 5,10L 0,5L 3,5L 3,3L 7,3L 7,5L 10,5 Z M 3,2L 3,0L 7,0L 7,2L 3,2 Z " Fill="#FF444444" Height="10" HorizontalAlignment="Center" Margin="0,1,0,0" Stretch="Fill" VerticalAlignment="Center" Width="10" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\Row\RowControl.xaml;207;26" x:Uid="@Fill=Foreground" />
                     </Grid>
                 </StackPanel>
             </dxg:LoadingRowButton>
@@ -153,7 +153,7 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Path Data="F1 M 7,0C 10.866,0 14,3.13401 14,7C 14,10.866 10.866,14 7,14C 3.13401,14 -6.35783e-007,10.866 -6.35783e-007,7C -6.35783e-007,3.13401 3.13401,0 7,0 Z M 2.75736,4.17157L 5.58579,7L 2.75736,9.82843L 4.17157,11.2426L 7,8.41422L 9.82843,11.2426L 11.2426,9.82843L 8.41421,7L 11.2426,4.17157L 9.82843,2.75736L 7,5.58579L 4.17157,2.75736L 2.75736,4.17157 Z " Fill="#1D1B19C7" Height="14" HorizontalAlignment="Center" Margin="4" Stretch="Fill" VerticalAlignment="Top" Width="14" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\Row\RowControl.xaml;232;18" />
+                <Path Data="F1 M 7,0C 10.866,0 14,3.13401 14,7C 14,10.866 10.866,14 7,14C 3.13401,14 -6.35783e-007,10.866 -6.35783e-007,7C -6.35783e-007,3.13401 3.13401,0 7,0 Z M 2.75736,4.17157L 5.58579,7L 2.75736,9.82843L 4.17157,11.2426L 7,8.41422L 9.82843,11.2426L 11.2426,9.82843L 8.41421,7L 11.2426,4.17157L 9.82843,2.75736L 7,5.58579L 4.17157,2.75736L 2.75736,4.17157 Z " Fill="#FFC12600" Height="14" HorizontalAlignment="Center" Margin="4" Stretch="Fill" VerticalAlignment="Top" Width="14" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\Row\RowControl.xaml;232;18" x:Uid="@Fill=Custom.Red" />
                 <StackPanel Grid.Column="1" Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\Row\RowControl.xaml;241;18">
                     <TextBlock HorizontalAlignment="Left" Margin="4,3,4,3" Text="{Binding ErrorText}" TextWrapping="Wrap" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\Row\RowControl.xaml;242;22" />
                     <TextBlock HorizontalAlignment="Center" Visibility="{Binding IsLoadingButtonVisible, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\Row\RowControl.xaml;246;22">
@@ -166,17 +166,17 @@
 
     <ControlTemplate x:Key="{dxgt:GridRowThemeKey ResourceKey=LoadingRowButtonTemplate}" TargetType="dxg:LoadingRowButton">
         <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\Row\RowControl.xaml;255;10">
-            <dx:DXBorder x:Name="IsDefault" Background="#1D3519C8" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\Row\RowControl.xaml;256;14" />
-            <ContentPresenter x:Name="Content" HorizontalAlignment="Center" Margin="3" TextBlock.Foreground="#1D0419C9" VerticalAlignment="Center" cs:id="ContentPresenter_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\Row\RowControl.xaml;259;14" />
+            <dx:DXBorder x:Name="IsDefault" Background="Transparent" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\Row\RowControl.xaml;256;14" />
+            <ContentPresenter x:Name="Content" HorizontalAlignment="Center" Margin="3" TextBlock.Foreground="#FF444444" VerticalAlignment="Center" cs:id="ContentPresenter_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridTable\Row\RowControl.xaml;259;14" x:Uid="@TextBlock.Foreground=Foreground" />
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="TextBlock.Foreground" TargetName="Content" Value="#1D5719CA" cs:id="Setter_0001" />
-                <Setter Property="Background" TargetName="IsDefault" Value="#1D6619CB" cs:id="Setter_0000" />
+                <Setter Property="TextBlock.Foreground" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0001" x:Uid="@Value=HoverForeground" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0000" x:Uid="@Value=HoverBackground" />
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="TextBlock.Foreground" TargetName="Content" Value="#1DF119CC" cs:id="Setter_0003" />
-                <Setter Property="Background" TargetName="IsDefault" Value="#1DC019CD" cs:id="Setter_0002" />
+                <Setter Property="TextBlock.Foreground" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0003" x:Uid="@Value=SelectionForeground" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0002" x:Uid="@Value=SelectionBackground" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>

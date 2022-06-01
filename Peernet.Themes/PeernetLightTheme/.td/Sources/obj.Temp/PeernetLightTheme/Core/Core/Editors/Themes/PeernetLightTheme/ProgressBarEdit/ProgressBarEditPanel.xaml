@@ -8,7 +8,7 @@
     
 
     <ControlTemplate x:Key="{dxet:ProgressBarEditThemeKey ResourceKey=PanelForegroundTemplate}" TargetType="{x:Type ContentControl}">
-        <Rectangle Fill="#1D49069D" cs:id="Rectangle_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\ProgressBarEdit\ProgressBarEditPanel.xaml;22;10" />
+        <Rectangle Fill="Transparent" cs:id="Rectangle_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\ProgressBarEdit\ProgressBarEditPanel.xaml;22;10" />
     </ControlTemplate>
 
     <Style x:Key="{dxet:ProgressBarEditThemeKey ResourceKey=PanelForegroundStyle}" TargetType="{x:Type ContentControl}">
@@ -17,15 +17,15 @@
     </Style>
 
     <ControlTemplate x:Key="{dxet:ProgressBarEditThemeKey ResourceKey=PanelBackgroundHorizontalTemplate}" TargetType="{x:Type ContentControl}">
-        <Grid x:Name="Root" Background="#1D1A069E" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\ProgressBarEdit\ProgressBarEditPanel.xaml;31;10">
+        <Grid x:Name="Root" Background="#FFFFFFFF" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\ProgressBarEdit\ProgressBarEditPanel.xaml;31;10" x:Uid="@Background=Editor.Background">
             <ContentPresenter x:Name="Content" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\ProgressBarEdit\ProgressBarEditPanel.xaml;34;14" />
         </Grid>
         <ControlTemplate.Triggers>
             <DataTrigger Binding="{Binding Path=(dxe:BaseEdit.OwnerEdit).EditMode}" Value="InplaceInactive">
-                <Setter Property="Background" TargetName="Root" Value="#1D2B069F" cs:id="Setter_0000" />
+                <Setter Property="Background" TargetName="Root" Value="#FFFFFFFF" cs:id="Setter_0000" x:Uid="@Value=Editor.Background" />
             </DataTrigger>
             <DataTrigger Binding="{Binding Path=(dxe:BaseEdit.OwnerEdit).EditMode}" Value="InplaceActive">
-                <Setter Property="Background" TargetName="Root" Value="#1DC006A0" cs:id="Setter_0001" />
+                <Setter Property="Background" TargetName="Root" Value="#FFFFFFFF" cs:id="Setter_0001" x:Uid="@Value=Editor.Background" />
             </DataTrigger>
             <Trigger Property="dxi:AppearanceOptions.HasBackground" Value="True">
                 <Setter Property="Background" TargetName="Root" Value="{Binding Path=(dxi:AppearanceOptions.Background), RelativeSource={RelativeSource TemplatedParent}}" />
@@ -34,15 +34,15 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxet:ProgressBarEditThemeKey ResourceKey=PanelBackgroundVerticalTemplate}" TargetType="{x:Type ContentControl}">
-        <Grid x:Name="Root" Background="#1DF106A1" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\ProgressBarEdit\ProgressBarEditPanel.xaml;58;10">
+        <Grid x:Name="Root" Background="#FFFFFFFF" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\ProgressBarEdit\ProgressBarEditPanel.xaml;58;10" x:Uid="@Background=Editor.Background">
             <ContentPresenter x:Name="Content" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\ProgressBarEdit\ProgressBarEditPanel.xaml;61;14" />
         </Grid>
         <ControlTemplate.Triggers>
             <DataTrigger Binding="{Binding Path=(dxe:BaseEdit.OwnerEdit).EditMode}" Value="InplaceInactive">
-                <Setter Property="Background" TargetName="Root" Value="#1DA206A2" cs:id="Setter_0000" />
+                <Setter Property="Background" TargetName="Root" Value="#FFFFFFFF" cs:id="Setter_0000" x:Uid="@Value=Editor.Background" />
             </DataTrigger>
             <DataTrigger Binding="{Binding Path=(dxe:BaseEdit.OwnerEdit).EditMode}" Value="InplaceActive">
-                <Setter Property="Background" TargetName="Root" Value="#1D9306A3" cs:id="Setter_0001" />
+                <Setter Property="Background" TargetName="Root" Value="#FFFFFFFF" cs:id="Setter_0001" x:Uid="@Value=Editor.Background" />
             </DataTrigger>
             <Trigger Property="dxi:AppearanceOptions.HasBackground" Value="True">
                 <Setter Property="Background" TargetName="Root" Value="{Binding Path=(dxi:AppearanceOptions.Background), RelativeSource={RelativeSource TemplatedParent}}" />

@@ -118,7 +118,7 @@
     </Style>
 
     <ControlTemplate x:Key="{dxet:ColorPickerThemeKey ResourceKey=Template}" TargetType="{x:Type dxei:ColorPicker}">
-        <Grid Background="#1DE309F4" Margin="{Binding Path=Padding, RelativeSource={RelativeSource TemplatedParent}}" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;415;10">
+        <Grid Background="Transparent" Margin="{Binding Path=Padding, RelativeSource={RelativeSource TemplatedParent}}" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;415;10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
@@ -129,39 +129,39 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <dx:DXBorder BorderBrush="#1DD209F5" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;428;14">
+            <dx:DXBorder BorderBrush="#7F3C3C3C" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;428;14">
                 <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;431;18">
                     <Rectangle dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;432;22">
                         <Rectangle.Fill>
                             <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5" cs:id="LinearGradientBrush_0000">
                                 <GradientStop Color="{Binding Path=HSBColor.H, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource HColorToZColorConverter}}" Offset="1" />
-                                <GradientStop Color="#1D8109F6" Offset="0" cs:id="GradientStop_0000" />
+                                <GradientStop Color="#FFFFFFFF" Offset="0" cs:id="GradientStop_0000" />
                             </LinearGradientBrush>
                         </Rectangle.Fill>
                     </Rectangle>
                     <Rectangle dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;444;22">
                         <Rectangle.Fill>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" cs:id="LinearGradientBrush_0001">
-                                <GradientStop Color="#1DB009F7" Offset="0" cs:id="GradientStop_0001" />
-                                <GradientStop Color="#1D9E09F8" Offset="1" cs:id="GradientStop_0002" />
+                                <GradientStop Color="Transparent" Offset="0" cs:id="GradientStop_0001" />
+                                <GradientStop Color="Black" Offset="1" cs:id="GradientStop_0002" />
                             </LinearGradientBrush>
                         </Rectangle.Fill>
                     </Rectangle>
-                    <Canvas x:Name="PART_ColorArea" Background="#1DAF09F9" dxcore_unique_xmlns:FrameworkElementHelper.IsClipped="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" cs:id="Canvas_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;458;22">
+                    <Canvas x:Name="PART_ColorArea" Background="Transparent" dxcore_unique_xmlns:FrameworkElementHelper.IsClipped="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" cs:id="Canvas_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;458;22">
                         <Canvas x:Name="ColorCanvas" Canvas.Left="{Binding Path=ActualXYThumbXOffset, RelativeSource={RelativeSource TemplatedParent}}" Canvas.Top="{Binding Path=ActualXYThumbYOffset, RelativeSource={RelativeSource TemplatedParent}}" Height="22" Width="22" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;464;26">
-                            <Rectangle x:Name="RectangleColorCanvas" Fill="#1DFC09FA" Height="22" Width="22" cs:id="Rectangle_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;469;30" />
-                            <Path Canvas.Left="0" Canvas.Top="9" Data="M0,9 L8,9" Fill="#1DCD09FB" Height="1" Stretch="Fill" Stroke="#1D5A09FC" Width="9" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;474;30" />
-                            <Path Canvas.Left="0" Canvas.Top="10" Data="M0,10 L8,10" Fill="#1D6B09FD" Height="1" Stretch="Fill" Stroke="#1D3809FE" Width="9" cs:id="Path_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;483;30" />
-                            <Path Canvas.Left="0" Canvas.Top="11" Data="M0,11 L8,11" Fill="#1D0909FF" Height="1" Stretch="Fill" Stroke="#1D880A00" Width="9" cs:id="Path_0003" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;492;30" />
-                            <Path Canvas.Left="12" Canvas.Top="9" Data="M0,9 L8,9" Fill="#1DB90A01" Height="1" Stretch="Fill" Stroke="#1DEA0A02" Width="9" cs:id="Path_0004" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;501;30" />
-                            <Path Canvas.Left="12" Canvas.Top="10" Data="M0,10 L8,10" Fill="#1DDB0A03" Height="1" Stretch="Fill" Stroke="#1D4C0A04" Width="9" cs:id="Path_0005" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;510;30" />
-                            <Path Canvas.Left="12" Canvas.Top="11" Data="M0,11 L8,11" Fill="#1D7D0A05" Height="1" Stretch="Fill" Stroke="#1D2E0A06" Width="9" cs:id="Path_0006" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;519;30" />
-                            <Path Canvas.Left="9" Canvas.Top="0" Data="M9,0 L9,8" Fill="#1D1F0A07" Height="9" Stretch="Fill" Stroke="#1D310A08" Width="1" cs:id="Path_0007" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;528;30" />
-                            <Path Canvas.Left="10" Canvas.Top="0" Data="M10,0 L10,8" Fill="#1D000A09" Height="9" Stretch="Fill" Stroke="#1D530A0A" Width="1" cs:id="Path_0008" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;537;30" />
-                            <Path Canvas.Left="11" Canvas.Top="0" Data="M11,0 L11,8" Fill="#1D620A0B" Height="9" Stretch="Fill" Stroke="#1DF50A0C" Width="1" cs:id="Path_0009" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;546;30" />
-                            <Path Canvas.Left="9" Canvas.Top="12" Data="M9,0 L9,8" Fill="#1DC40A0D" Height="9" Stretch="Fill" Stroke="#1D970A0E" Width="1" cs:id="Path_0010" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;555;30" />
-                            <Path Canvas.Left="10" Canvas.Top="12" Data="M10,0 L10,8" Fill="#1DA60A0F" Height="9" Stretch="Fill" Stroke="#1DCB0A10" Width="1" cs:id="Path_0011" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;564;30" />
-                            <Path Canvas.Left="11" Canvas.Top="12" Data="M11,0 L11,8" Fill="#1DFA0A11" Height="9" Stretch="Fill" Stroke="#1DA90A12" Width="1" cs:id="Path_0012" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;573;30" />
+                            <Rectangle x:Name="RectangleColorCanvas" Fill="Transparent" Height="22" Width="22" cs:id="Rectangle_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;469;30" />
+                            <Path Canvas.Left="0" Canvas.Top="9" Data="M0,9 L8,9" Fill="#FF000000" Height="1" Stretch="Fill" Stroke="#FFFFFFFF" Width="9" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;474;30" />
+                            <Path Canvas.Left="0" Canvas.Top="10" Data="M0,10 L8,10" Fill="#FF000000" Height="1" Stretch="Fill" Stroke="#FF000000" Width="9" cs:id="Path_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;483;30" />
+                            <Path Canvas.Left="0" Canvas.Top="11" Data="M0,11 L8,11" Fill="#FF000000" Height="1" Stretch="Fill" Stroke="#FFFFFFFF" Width="9" cs:id="Path_0003" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;492;30" />
+                            <Path Canvas.Left="12" Canvas.Top="9" Data="M0,9 L8,9" Fill="#FF000000" Height="1" Stretch="Fill" Stroke="#FFFFFFFF" Width="9" cs:id="Path_0004" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;501;30" />
+                            <Path Canvas.Left="12" Canvas.Top="10" Data="M0,10 L8,10" Fill="#FF000000" Height="1" Stretch="Fill" Stroke="#FF000000" Width="9" cs:id="Path_0005" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;510;30" />
+                            <Path Canvas.Left="12" Canvas.Top="11" Data="M0,11 L8,11" Fill="#FF000000" Height="1" Stretch="Fill" Stroke="#FFFFFFFF" Width="9" cs:id="Path_0006" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;519;30" />
+                            <Path Canvas.Left="9" Canvas.Top="0" Data="M9,0 L9,8" Fill="#FF000000" Height="9" Stretch="Fill" Stroke="#FFFFFFFF" Width="1" cs:id="Path_0007" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;528;30" />
+                            <Path Canvas.Left="10" Canvas.Top="0" Data="M10,0 L10,8" Fill="#FF000000" Height="9" Stretch="Fill" Stroke="#FF000000" Width="1" cs:id="Path_0008" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;537;30" />
+                            <Path Canvas.Left="11" Canvas.Top="0" Data="M11,0 L11,8" Fill="#FF000000" Height="9" Stretch="Fill" Stroke="#FFFFFFFF" Width="1" cs:id="Path_0009" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;546;30" />
+                            <Path Canvas.Left="9" Canvas.Top="12" Data="M9,0 L9,8" Fill="#FF000000" Height="9" Stretch="Fill" Stroke="#FFFFFFFF" Width="1" cs:id="Path_0010" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;555;30" />
+                            <Path Canvas.Left="10" Canvas.Top="12" Data="M10,0 L10,8" Fill="#FF000000" Height="9" Stretch="Fill" Stroke="#FF000000" Width="1" cs:id="Path_0011" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;564;30" />
+                            <Path Canvas.Left="11" Canvas.Top="12" Data="M11,0 L11,8" Fill="#FF000000" Height="9" Stretch="Fill" Stroke="#FFFFFFFF" Width="1" cs:id="Path_0012" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;573;30" />
                         </Canvas>
                     </Canvas>
                 </Grid>
@@ -173,17 +173,17 @@
                         <Rectangle.Fill>
                             <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5" cs:id="LinearGradientBrush_0002">
                                 <GradientStop Color="{Binding Path=Color, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ColorWithoutAlphaConverter}}" Offset="0" />
-                                <GradientStop Color="#1D980A13" Offset="1" cs:id="GradientStop_0003" />
+                                <GradientStop Color="#00000000" Offset="1" cs:id="GradientStop_0003" />
                             </LinearGradientBrush>
                         </Rectangle.Fill>
                     </Rectangle>
-                    <Canvas x:Name="PART_AlphaChannelArea" Background="#1D0F0A14" dxcore_unique_xmlns:FrameworkElementHelper.IsClipped="True" cs:id="Canvas_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;610;22">
-                        <Path x:Name="PART_AlphaThumbTop" Canvas.Left="{Binding Path=ActualAlphaThumbOffset, RelativeSource={RelativeSource TemplatedParent}}" Data="M0,0 L10,0 5,5 z" Fill="#1D3E0A15" Height="5" IsHitTestVisible="False" Width="10" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;614;26" />
-                        <Path x:Name="PART_AlphaThumbBottom" Canvas.Left="{Binding Path=ActualAlphaThumbOffset, RelativeSource={RelativeSource TemplatedParent}}" Canvas.Top="17" Data="M0,5 L5,0 10,5 z" Fill="#1D6D0A16" Height="5" IsHitTestVisible="False" Width="10" cs:id="Path_0013" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;622;26" />
+                    <Canvas x:Name="PART_AlphaChannelArea" Background="Transparent" dxcore_unique_xmlns:FrameworkElementHelper.IsClipped="True" cs:id="Canvas_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;610;22">
+                        <Path x:Name="PART_AlphaThumbTop" Canvas.Left="{Binding Path=ActualAlphaThumbOffset, RelativeSource={RelativeSource TemplatedParent}}" Data="M0,0 L10,0 5,5 z" Fill="#FF000000" Height="5" IsHitTestVisible="False" Width="10" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;614;26" />
+                        <Path x:Name="PART_AlphaThumbBottom" Canvas.Left="{Binding Path=ActualAlphaThumbOffset, RelativeSource={RelativeSource TemplatedParent}}" Canvas.Top="17" Data="M0,5 L5,0 10,5 z" Fill="#FF000000" Height="5" IsHitTestVisible="False" Width="10" cs:id="Path_0013" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;622;26" />
                     </Canvas>
                 </Grid>
             </dx:DXBorder>
-            <dx:DXBorder x:Name="BorderRoot" BorderBrush="#1D5C0A17" BorderThickness="1" Grid.Column="0" Grid.Row="2" Height="22" Margin="0,3,0,0" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;634;14">
+            <dx:DXBorder x:Name="BorderRoot" BorderBrush="#7F3C3C3C" BorderThickness="1" Grid.Column="0" Grid.Row="2" Height="22" Margin="0,3,0,0" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;634;14">
                 <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;642;18">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="{Binding Path=ShowDefaultColor, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ShowDefaultColorToColumnWidthConverter}}" />
@@ -198,7 +198,7 @@
                     <Rectangle x:Name="PART_ColorRect" Fill="{TemplateBinding Color, Converter={StaticResource ColorToBrushConverter}}" Grid.Column="1" HorizontalAlignment="Stretch" IsHitTestVisible="False" VerticalAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;665;22" />
                 </Grid>
             </dx:DXBorder>
-            <dx:DXBorder x:Name="Y" BorderBrush="#1D720A18" BorderThickness="1" Grid.Column="1" Grid.Row="0" Margin="4,0,0,0" VerticalAlignment="Stretch" cs:id="Border_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;673;14">
+            <dx:DXBorder x:Name="Y" BorderBrush="#7F3C3C3C" BorderThickness="1" Grid.Column="1" Grid.Row="0" Margin="4,0,0,0" VerticalAlignment="Stretch" cs:id="Border_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;673;14">
                 <Grid x:Name="YRoot" Width="22" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;681;18">
                     <Grid.RowDefinitions>
                         <RowDefinition />
@@ -207,19 +207,19 @@
                     <Rectangle x:Name="PART_ZColorAreaRect" Grid.RowSpan="2" StrokeThickness="0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;686;22">
                         <Rectangle.Fill>
                             <LinearGradientBrush x:Name="zColor" EndPoint="0.5,1" StartPoint="0.5,0" cs:id="LinearGradientBrush_0003">
-                                <GradientStop x:Name="zColor1" Color="#1D430A19" Offset="0" cs:id="GradientStop_0004" />
-                                <GradientStop x:Name="zColor2" Color="#1D100A1A" Offset="0.166666" cs:id="GradientStop_0005" />
-                                <GradientStop x:Name="zColor3" Color="#1D210A1B" Offset="0.333333" cs:id="GradientStop_0006" />
-                                <GradientStop x:Name="zColor4" Color="#1DB60A1C" Offset="0.5" cs:id="GradientStop_0007" />
-                                <GradientStop x:Name="zColor5" Color="#1D870A1D" Offset="0.666666" cs:id="GradientStop_0008" />
-                                <GradientStop x:Name="zColor6" Color="#1DD40A1E" Offset="0.833333" cs:id="GradientStop_0009" />
-                                <GradientStop x:Name="zColor7" Color="#1DE50A1F" Offset="1" cs:id="GradientStop_0010" />
+                                <GradientStop x:Name="zColor1" Color="#FFFF0000" Offset="0" cs:id="GradientStop_0004" />
+                                <GradientStop x:Name="zColor2" Color="#FFFFFF00" Offset="0.166666" cs:id="GradientStop_0005" />
+                                <GradientStop x:Name="zColor3" Color="#FF00FF00" Offset="0.333333" cs:id="GradientStop_0006" />
+                                <GradientStop x:Name="zColor4" Color="#FF00FFFF" Offset="0.5" cs:id="GradientStop_0007" />
+                                <GradientStop x:Name="zColor5" Color="#FF0000FF" Offset="0.666666" cs:id="GradientStop_0008" />
+                                <GradientStop x:Name="zColor6" Color="#FFFF00FF" Offset="0.833333" cs:id="GradientStop_0009" />
+                                <GradientStop x:Name="zColor7" Color="#FFFF0000" Offset="1" cs:id="GradientStop_0010" />
                             </LinearGradientBrush>
                         </Rectangle.Fill>
                     </Rectangle>
-                    <Canvas x:Name="PART_ZColorArea" Background="#1D0E0A20" dxcore_unique_xmlns:FrameworkElementHelper.IsClipped="True" Grid.Row="0" Grid.RowSpan="2" cs:id="Canvas_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;725;22">
-                        <Path x:Name="PART_ZThumbLeft" Canvas.Top="{Binding Path=ActualZThumbOffset, RelativeSource={RelativeSource TemplatedParent}}" Data="M0,0 L5,5 0,10 z" Fill="#1D3F0A21" Height="10" IsHitTestVisible="False" Width="5" cs:id="Path_0014" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;731;26" />
-                        <Path x:Name="PART_ZThumbRight" Canvas.Left="17" Canvas.Top="{Binding Path=ActualZThumbOffset, RelativeSource={RelativeSource TemplatedParent}}" Data="M 5,0 L0,5 5,10 z" Fill="#1D6C0A22" Height="10" IsHitTestVisible="False" Width="5" cs:id="Path_0015" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;739;26" />
+                    <Canvas x:Name="PART_ZColorArea" Background="Transparent" dxcore_unique_xmlns:FrameworkElementHelper.IsClipped="True" Grid.Row="0" Grid.RowSpan="2" cs:id="Canvas_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;725;22">
+                        <Path x:Name="PART_ZThumbLeft" Canvas.Top="{Binding Path=ActualZThumbOffset, RelativeSource={RelativeSource TemplatedParent}}" Data="M0,0 L5,5 0,10 z" Fill="#FF000000" Height="10" IsHitTestVisible="False" Width="5" cs:id="Path_0014" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;731;26" />
+                        <Path x:Name="PART_ZThumbRight" Canvas.Left="17" Canvas.Top="{Binding Path=ActualZThumbOffset, RelativeSource={RelativeSource TemplatedParent}}" Data="M 5,0 L0,5 5,10 z" Fill="#FF000000" Height="10" IsHitTestVisible="False" Width="5" cs:id="Path_0015" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ColorPicker.xaml;739;26" />
                     </Canvas>
                 </Grid>
             </dx:DXBorder>

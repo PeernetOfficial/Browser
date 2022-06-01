@@ -9,8 +9,8 @@
 
     <ControlTemplate x:Key="{dxet:DataPagerNumericButtonThemeKey ResourceKey=Template}" TargetType="{x:Type dxe:DataPagerNumericButton}">
         <Grid x:Name="Root" Height="20" MinWidth="16" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DataPager\DataPagerButtonNumeric.xaml;22;10">
-            <dx:DXBorder x:Name="IsDefault" Background="#1D0D0552" BorderBrush="#1D3C0553" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DataPager\DataPagerButtonNumeric.xaml;25;14" />
-            <dxcore_unique_xmlns:ContentContainer x:Name="Content" Foreground="#1DAB0554" cs:id="ContentContainer_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DataPager\DataPagerButtonNumeric.xaml;30;14">
+            <dx:DXBorder x:Name="IsDefault" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DataPager\DataPagerButtonNumeric.xaml;25;14" />
+            <dxcore_unique_xmlns:ContentContainer x:Name="Content" Foreground="#FF444444" cs:id="ContentContainer_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DataPager\DataPagerButtonNumeric.xaml;30;14" x:Uid="@Foreground=Foreground">
                 <Grid Margin="2" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DataPager\DataPagerButtonNumeric.xaml;33;18">
                     <ContentPresenter Content="99" ContentTemplate="{TemplateBinding ContentTemplate}" Opacity="0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DataPager\DataPagerButtonNumeric.xaml;34;22" />
                     <ContentPresenter Content="{TemplateBinding PageNumber}" ContentTemplate="{TemplateBinding ContentTemplate}" HorizontalAlignment="Center" Visibility="{Binding ShowEllipsis, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource DataPagerBoolToVisibilityInvertConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DataPager\DataPagerButtonNumeric.xaml;37;22" />
@@ -22,16 +22,16 @@
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="MouseOver">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D9A0555" cs:id="ColorAnimation_0000" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#1DC90556" cs:id="ColorAnimation_0006" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="(dx:ContentContainer.Foreground).(SolidColorBrush.Color)" To="#1DF80557" cs:id="ColorAnimation_0003" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFEFF6FC" cs:id="ColorAnimation_0000" x:Uid="@To=HoverBackground" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#FFEFF6FC" cs:id="ColorAnimation_0006" x:Uid="@To=HoverBorder" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="(dx:ContentContainer.Foreground).(SolidColorBrush.Color)" To="#FF444444" cs:id="ColorAnimation_0003" x:Uid="@To=Foreground" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Pressed">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1DD60558" cs:id="ColorAnimation_0001" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#1DE70559" cs:id="ColorAnimation_0007" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="(dx:ContentContainer.Foreground).(SolidColorBrush.Color)" To="#1DB4055A" cs:id="ColorAnimation_0004" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFDEECF9" cs:id="ColorAnimation_0001" x:Uid="@To=SelectionBackground" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#FFDEECF9" cs:id="ColorAnimation_0007" x:Uid="@To=SelectionBorder" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="(dx:ContentContainer.Foreground).(SolidColorBrush.Color)" To="#FF444444" cs:id="ColorAnimation_0004" x:Uid="@To=Foreground" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Disabled" />
@@ -40,9 +40,9 @@
                     <VisualState x:Name="NotSelected" />
                     <VisualState x:Name="Selected">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D85055B" cs:id="ColorAnimation_0002" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#1D12055C" cs:id="ColorAnimation_0008" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="(dx:ContentContainer.Foreground).(SolidColorBrush.Color)" To="#1D23055D" cs:id="ColorAnimation_0005" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFDEECF9" cs:id="ColorAnimation_0002" x:Uid="@To=SelectionBackground" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" To="#FFDEECF9" cs:id="ColorAnimation_0008" x:Uid="@To=SelectionBorder" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="(dx:ContentContainer.Foreground).(SolidColorBrush.Color)" To="#FF444444" cs:id="ColorAnimation_0005" x:Uid="@To=Foreground" />
                         </Storyboard>
                     </VisualState>
                 </VisualStateGroup>

@@ -12,7 +12,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="{dxt:DXTabItemThemeKey ResourceKey=HoverBackground}">
-        <dxi:TabBorder x:Name="IsDefault" BackgroundMode="None" BorderBackground="#1DEB077A" BorderMargin="0,-2,1,1" BorderMode="None" HoldBorderMargin="0,0,1,1" HoldBorderThickness="0" ViewInfo="{Binding}" cs:id="TabBorder_0000" />
+        <dxi:TabBorder x:Name="IsDefault" BackgroundMode="None" BorderBackground="#FFEFF6FC" BorderMargin="0,-2,1,1" BorderMode="None" HoldBorderMargin="0,0,1,1" HoldBorderThickness="0" ViewInfo="{Binding}" cs:id="TabBorder_0000" x:Uid="@BorderBackground=HoverBackground" />
         <DataTemplate.Triggers>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                 <Setter Property="BorderMargin" TargetName="IsDefault" Value="0,0,1,0" />
@@ -22,11 +22,11 @@
     </DataTemplate>
 
     <DataTemplate x:Key="{dxt:DXTabItemThemeKey ResourceKey=SelectedBackground}">
-        <dxi:TabBorder x:Name="IsDefault" BackgroundMode="None" BorderBackground="#1DDA077B" BorderBrush="#1D4D077C" BorderMargin="0,-2,1,-1" BorderMode="BorderBrush" BorderThickness="1,1,1,0" HoldBorderMargin="0,0,1,1" HoldBorderThickness="1" ViewInfo="{Binding}" cs:id="TabBorder_0001" />
+        <dxi:TabBorder x:Name="IsDefault" BackgroundMode="None" BorderBackground="#FFFFFFFF" BorderBrush="#FFC8C6C4" BorderMargin="0,-2,1,-1" BorderMode="BorderBrush" BorderThickness="1,1,1,0" HoldBorderMargin="0,0,1,1" HoldBorderThickness="1" ViewInfo="{Binding}" cs:id="TabBorder_0001" x:Uid="@BorderBackground=Control.Background;BorderBrush=Border" />
     </DataTemplate>
 
     <DataTemplate x:Key="{dxt:DXTabItemThemeKey ResourceKey=FocusedBackground}">
-        <dxi:TabBorder x:Name="IsDefault" BackgroundMode="None" BorderBackground="#1D7C077D" BorderBrush="#1D2F077E" BorderMargin="0,-2,1,0" BorderMode="BorderBrush" BorderThickness="0,2,0,0" HoldBorderMargin="0,0,1,1" HoldBorderThickness="1" ViewInfo="{Binding}" cs:id="TabBorder_0001" />
+        <dxi:TabBorder x:Name="IsDefault" BackgroundMode="None" BorderBackground="Transparent" BorderBrush="#FF106EBE" BorderMargin="0,-2,1,0" BorderMode="BorderBrush" BorderThickness="0,2,0,0" HoldBorderMargin="0,0,1,1" HoldBorderThickness="1" ViewInfo="{Binding}" cs:id="TabBorder_0001" x:Uid="@BorderBrush=Focused" />
     </DataTemplate>
 
     
@@ -46,24 +46,24 @@
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\TabControl\Themes\TabItem.xaml;92;6" /><Setter Property="Padding" Value="12,3,12,3" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="#1D1E077F" cs:id="Setter_0001" />
+                <Setter Property="Foreground" Value="#FF106EBE" cs:id="Setter_0001" x:Uid="@Value=HoverForeground" />
             </Trigger>
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Foreground" Value="#1DB20780" cs:id="Setter_0000" />
+                <Setter Property="Foreground" Value="#FF106EBE" cs:id="Setter_0000" x:Uid="@Value=Focused" />
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsSelected" Value="True" />
                     <Condition Property="IsFocused" Value="True" />
                 </MultiTrigger.Conditions>
-                <Setter Property="Foreground" Value="#1D830781" cs:id="Setter_0002" />
+                <Setter Property="Foreground" Value="#FF106EBE" cs:id="Setter_0002" x:Uid="@Value=Focused" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsSelected" Value="True" />
                     <Condition Property="IsFocused" Value="False" />
                 </MultiTrigger.Conditions>
-                <Setter Property="Foreground" Value="#1DD00782" cs:id="Setter_0003" />
+                <Setter Property="Foreground" Value="#FF106EBE" cs:id="Setter_0003" x:Uid="@Value=Focused" />
             </MultiTrigger>
             <DataTrigger Binding="{Binding 'BackgroundColor', RelativeSource={RelativeSource Mode=Self}, Converter={StaticResource colorIsTransparentConverter}}" Value="False">
                 <Setter Property="Foreground" Value="{Binding 'BackgroundColor', RelativeSource={RelativeSource Mode=Self}, Converter={dxmvvm:ColorToBrushConverter CustomA=#FF}}" />

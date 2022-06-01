@@ -11,24 +11,24 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Grid x:Name="Root" Background="#1D171C73" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\FormulaBar\FormulaBarExpandButton.xaml;25;22">
-                        <dx:DXBorder x:Name="IsDefault" Background="#1D801C74" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\FormulaBar\FormulaBarExpandButton.xaml;28;26">
+                    <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\FormulaBar\FormulaBarExpandButton.xaml;25;22">
+                        <dx:DXBorder x:Name="IsDefault" Background="Transparent" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\FormulaBar\FormulaBarExpandButton.xaml;28;26">
                             <Grid Margin="4,7,4,7" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\FormulaBar\FormulaBarExpandButton.xaml;31;30">
-                                <Path x:Name="Expanded" Fill="#1DB11C75" Opacity="0" Style="{StaticResource UIShape.Up}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\FormulaBar\FormulaBarExpandButton.xaml;32;34" />
-                                <Path x:Name="Collapsed" Fill="#1DE21C76" Style="{StaticResource UIShape.Down}" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\FormulaBar\FormulaBarExpandButton.xaml;37;34" />
+                                <Path x:Name="Expanded" Fill="#FF444444" Opacity="0" Style="{StaticResource UIShape.Up}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\FormulaBar\FormulaBarExpandButton.xaml;32;34" x:Uid="@Fill=Foreground" />
+                                <Path x:Name="Collapsed" Fill="#FF444444" Style="{StaticResource UIShape.Down}" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\FormulaBar\FormulaBarExpandButton.xaml;37;34" x:Uid="@Fill=Foreground" />
                             </Grid>
                         </dx:DXBorder>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Fill" TargetName="Collapsed" Value="#1DD31C77" cs:id="Setter_0003" />
-                            <Setter Property="Fill" TargetName="Expanded" Value="#1DFD1C78" cs:id="Setter_0002" />
-                            <Setter Property="Background" TargetName="IsDefault" Value="#1DCC1C79" cs:id="Setter_0000" />
+                            <Setter Property="Fill" TargetName="Collapsed" Value="#FF444444" cs:id="Setter_0003" x:Uid="@Value=Foreground" />
+                            <Setter Property="Fill" TargetName="Expanded" Value="#FF444444" cs:id="Setter_0002" x:Uid="@Value=Foreground" />
+                            <Setter Property="Background" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0000" x:Uid="@Value=HoverBackground" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Fill" TargetName="Collapsed" Value="#1D9F1C7A" cs:id="Setter_0005" />
-                            <Setter Property="Fill" TargetName="Expanded" Value="#1DAE1C7B" cs:id="Setter_0004" />
-                            <Setter Property="Background" TargetName="IsDefault" Value="#1D391C7C" cs:id="Setter_0001" />
+                            <Setter Property="Fill" TargetName="Collapsed" Value="#FF444444" cs:id="Setter_0005" x:Uid="@Value=Foreground" />
+                            <Setter Property="Fill" TargetName="Expanded" Value="#FF444444" cs:id="Setter_0004" x:Uid="@Value=Foreground" />
+                            <Setter Property="Background" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0001" x:Uid="@Value=SelectionBackground" />
                         </Trigger>
                         <Trigger Property="IsChecked" Value="True">
                             <Setter Property="Opacity" TargetName="Collapsed" Value="0" />

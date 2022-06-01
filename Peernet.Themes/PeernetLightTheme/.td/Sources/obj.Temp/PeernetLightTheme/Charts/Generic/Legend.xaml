@@ -23,7 +23,7 @@
     <sys:Double x:Key="{dxt:ChartControlThemeKey ResourceKey=LegendMarkerHeight}">12</sys:Double>
 
     <ControlTemplate x:Key="{dxt:ChartControlThemeKey ResourceKey=LegendCheckBoxTemplate}" TargetType="{x:Type CheckBox}">
-        <Grid x:Name="CheckBox" Background="#1D961EBD" Height="14" Width="14" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Legend.xaml;36;10">
+        <Grid x:Name="CheckBox" Background="Transparent" Height="14" Width="14" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Legend.xaml;36;10">
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup x:Name="CommonStates">
                     <VisualState x:Name="Disabled">
@@ -47,13 +47,13 @@
         <local:LegendItemContainer ClipToBounds="True" Margin="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=LegendItemMargin}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Legend.xaml;68;10">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Legend.xaml;69;14">
                 <local:LegendCheckBox AutomationProperties.Name="{DXBinding 'CheckBoxVisible ? Text + `LegendCheckbox` : ``'}" Focusable="False" IsChecked="{Binding RepresentedElement.CheckedInLegend, Mode=TwoWay}" IsEnabled="{Binding IsEnabled}" Template="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=LegendCheckBoxTemplate}}" Visibility="{Binding CheckBoxVisible, Converter={StaticResource boolToVisibilityConverter}}" />
-                <Rectangle x:Name="markersIndentRectangle" Fill="#1DC51EBE" Margin="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=LegendItemTextMargin}}" Visibility="{Binding ShowMarkersIndent, Converter={StaticResource boolToVisibilityConverter}}" Width="0" cs:id="Rectangle_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Legend.xaml;76;18" />
+                <Rectangle x:Name="markersIndentRectangle" Fill="Transparent" Margin="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=LegendItemTextMargin}}" Visibility="{Binding ShowMarkersIndent, Converter={StaticResource boolToVisibilityConverter}}" Width="0" cs:id="Rectangle_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Legend.xaml;76;18" />
                 <Grid x:Name="markerGrid" Height="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=LegendMarkerHeight}}" Opacity="{Binding Path=IsEnabled, Converter={StaticResource isEnabledToOpacityConverter}}" Visibility="{Binding MarkerVisible, Converter={StaticResource boolToVisibilityConverter}}" Width="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=LegendMarkerWidth}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Legend.xaml;82;18">
-                    <Rectangle Fill="#1DF41EBF" Stretch="Uniform" cs:id="Rectangle_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Legend.xaml;87;22" />
+                    <Rectangle Fill="Transparent" Stretch="Uniform" cs:id="Rectangle_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Legend.xaml;87;22" />
                     <local:ChartContentPresenter x:Name="markerPresenter" Content="{Binding}" ContentTemplate="{Binding Path=MarkerTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Legend.xaml;90;22" />
                 </Grid>
                 <local:LegendCheckBox AutomationProperties.Name="{DXBinding 'ShowMarkerAfterCheckBox ? Text + `LegendCheckbox` : ``'}" Focusable="False" IsChecked="{Binding RepresentedElement.CheckedInLegend, Mode=TwoWay}" IsEnabled="{Binding IsEnabled}" Margin="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=LegendItemTextMargin}}" Template="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=LegendCheckBoxTemplate}}" Visibility="{Binding ShowMarkerAfterCheckBox, Converter={StaticResource boolToVisibilityConverter}}" />
-                <Rectangle x:Name="textIndentRectangle" Fill="#1D221EC0" Margin="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=LegendItemTextMargin}}" Visibility="{Binding ShowTextIndent, Converter={StaticResource boolToVisibilityConverter}}" Width="0" cs:id="Rectangle_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Legend.xaml;101;18" />
+                <Rectangle x:Name="textIndentRectangle" Fill="Transparent" Margin="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=LegendItemTextMargin}}" Visibility="{Binding ShowTextIndent, Converter={StaticResource boolToVisibilityConverter}}" Width="0" cs:id="Rectangle_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Legend.xaml;101;18" />
                 <TextBlock x:Name="tbLegendItemText" FontFamily="{Binding Path=FontFamily}" FontSize="{Binding Path=FontSize}" FontStretch="{Binding Path=FontStretch}" FontStyle="{Binding Path=FontStyle}" FontWeight="{Binding Path=FontWeight}" Foreground="{Binding Path=Foreground}" Opacity="{Binding Path=IsEnabled, Converter={StaticResource isEnabledToOpacityConverter}}" Text="{Binding Path=Text, Mode=OneWay}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Legend.xaml;107;18" />
             </StackPanel>
             <TextBlock x:Name="tbLegendItemCrosshairText" FontFamily="{Binding Path=CrosshairFontFamily}" FontSize="{Binding Path=CrosshairFontSize}" FontStretch="{Binding Path=CrosshairFontStretch}" FontStyle="{Binding Path=CrosshairFontStyle}" FontWeight="{Binding Path=CrosshairFontWeight}" Foreground="{Binding Path=CrosshairForeground}" Height="{Binding Path=CrosshairContentHeight}" HorizontalAlignment="Right" Margin="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=LegendItemTextMargin}}" Opacity="{Binding Path=IsEnabled, Converter={StaticResource isEnabledToOpacityConverter}}" Text="{Binding Path=CrosshairText, Mode=OneWay}" TextAlignment="Right" TextTrimming="WordEllipsis" VerticalAlignment="Center" Visibility="{Binding Path=CrosshairTextVisible, Converter={StaticResource boolToVisibilityConverter}}" Width="{Binding Path=CrosshairContentWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Legend.xaml;118;14" />
@@ -64,10 +64,10 @@
         <local:LegendItemContainer ClipToBounds="True" Margin="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=LegendItemMargin}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Legend.xaml;139;10">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Legend.xaml;140;14">
                 <Grid x:Name="markerGrid" Height="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=LegendMarkerHeight}}" Width="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=LegendMarkerWidth}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Legend.xaml;141;18">
-                    <Rectangle Fill="#1D131EC1" Stretch="Uniform" cs:id="Rectangle_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Legend.xaml;144;22" />
+                    <Rectangle Fill="Transparent" Stretch="Uniform" cs:id="Rectangle_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Legend.xaml;144;22" />
                     <local:ChartContentPresenter x:Name="markerPresenter" Content="{Binding}" ContentTemplate="{Binding Path=MarkerTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Legend.xaml;147;22" />
                 </Grid>
-                <Rectangle x:Name="textIndentRectangle" Fill="#1D401EC2" Margin="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=LegendItemTextMargin}}" Width="0" cs:id="Rectangle_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Legend.xaml;151;18" />
+                <Rectangle x:Name="textIndentRectangle" Fill="Transparent" Margin="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=LegendItemTextMargin}}" Width="0" cs:id="Rectangle_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Legend.xaml;151;18" />
                 <TextBlock x:Name="tbLegendItemText" FontFamily="{Binding Path=FontFamily}" FontSize="{Binding Path=FontSize}" FontStretch="{Binding Path=FontStretch}" FontStyle="{Binding Path=FontStyle}" FontWeight="{Binding Path=FontWeight}" Foreground="{Binding Path=Foreground}" Text="{Binding Path=Text, Mode=OneWay}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Legend.xaml;156;18" />
             </StackPanel>
         </local:LegendItemContainer>
@@ -204,7 +204,7 @@
     </Style>
 
     <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.CustomLegendItem}" TargetType="local:CustomLegendItem">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Charts\Generic\Legend.xaml;360;6" /><Setter Property="MarkerBrush" Value="#1D711EC3" cs:id="Setter_0000" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Charts\Generic\Legend.xaml;360;6" /><Setter Property="MarkerBrush" Value="Red" cs:id="Setter_0000" />
         <Setter Property="MarkerTemplate">
             <Setter.Value>
                 <DataTemplate>

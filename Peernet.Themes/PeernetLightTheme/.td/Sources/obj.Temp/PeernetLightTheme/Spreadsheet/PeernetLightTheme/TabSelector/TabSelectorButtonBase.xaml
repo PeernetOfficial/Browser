@@ -12,16 +12,16 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Grid x:Name="PART_Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\TabSelector\TabSelectorButtonBase.xaml;25;22">
-                        <dx:DXBorder x:Name="IsDefault" Background="#1D2C1C8B" BorderBrush="#1DBB1C8C" BorderThickness="0,1,0,0" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\TabSelector\TabSelectorButtonBase.xaml;26;26">
+                        <dx:DXBorder x:Name="IsDefault" Background="#FFFCFCFC" BorderBrush="#FFC8C6C4" BorderThickness="0,1,0,0" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\TabSelector\TabSelectorButtonBase.xaml;26;26" x:Uid="@Background=Button.Background;BorderBrush=Border">
                             <ContentPresenter x:Name="Content" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\TabSelector\TabSelectorButtonBase.xaml;31;30" />
                         </dx:DXBorder>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" TargetName="IsDefault" Value="#1D8A1C8D" cs:id="Setter_0000" />
+                            <Setter Property="Background" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0000" x:Uid="@Value=HoverBackground" />
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Background" TargetName="IsDefault" Value="#1DD91C8E" cs:id="Setter_0001" />
+                            <Setter Property="Background" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0001" x:Uid="@Value=SelectionBackground" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Opacity" TargetName="Content" Value="0.38" />

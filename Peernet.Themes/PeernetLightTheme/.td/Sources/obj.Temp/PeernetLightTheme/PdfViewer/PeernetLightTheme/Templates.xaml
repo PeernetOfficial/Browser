@@ -7,10 +7,10 @@
     
 
     <ControlTemplate x:Key="{themes:PdfViewerThemeKey ResourceKey=PdfPageControlItemTemplate}" TargetType="{x:Type dxpdf:PdfPageControlItem}">
-        <dx:DXBorder x:Name="PageBorder" BorderBrush="#1D622492" BorderThickness="1" Margin="-1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Office2019White\Templates.xaml;22;10" />
+        <dx:DXBorder x:Name="PageBorder" BorderBrush="#FFC8C6C4" BorderThickness="1" Margin="-1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Office2019White\Templates.xaml;22;10" x:Uid="@BorderBrush=Border" />
         <ControlTemplate.Triggers>
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="BorderBrush" TargetName="PageBorder" Value="#1D532493" cs:id="Setter_0000" />
+                <Setter Property="BorderBrush" TargetName="PageBorder" Value="#FF106EBE" cs:id="Setter_0000" x:Uid="@Value=Focused" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -23,15 +23,15 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid x:Name="Shadow" Grid.Row="0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Office2019White\Templates.xaml;44;18">
-                    <dx:DXBorder BorderBrush="#1DC42494" BorderThickness="5" CornerRadius="5" Margin="-6" Opacity="0.01" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Office2019White\Templates.xaml;45;22" />
-                    <dx:DXBorder BorderBrush="#1DF52495" BorderThickness="4" CornerRadius="4" Margin="-5" Opacity="0.01" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Office2019White\Templates.xaml;51;22" />
-                    <dx:DXBorder BorderBrush="#1DA62496" BorderThickness="3" CornerRadius="3" Margin="-4" Opacity="0.02" cs:id="Border_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Office2019White\Templates.xaml;57;22" />
-                    <dx:DXBorder BorderBrush="#1D972497" BorderThickness="2" CornerRadius="2" Margin="-3" Opacity="0.03" cs:id="Border_0003" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Office2019White\Templates.xaml;63;22" />
-                    <dx:DXBorder BorderBrush="#1DB92498" BorderThickness="1" CornerRadius="1" Margin="-2" Opacity="0.05" cs:id="Border_0004" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Office2019White\Templates.xaml;69;22" />
-                    <dx:DXBorder BorderBrush="#1D882499" BorderThickness="1" Margin="-1" cs:id="Border_0005" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Office2019White\Templates.xaml;75;22" />
+                    <dx:DXBorder BorderBrush="#FF106EBE" BorderThickness="5" CornerRadius="5" Margin="-6" Opacity="0.01" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Office2019White\Templates.xaml;45;22" x:Uid="@BorderBrush=Backstage.Editor.Background" />
+                    <dx:DXBorder BorderBrush="#FF106EBE" BorderThickness="4" CornerRadius="4" Margin="-5" Opacity="0.01" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Office2019White\Templates.xaml;51;22" x:Uid="@BorderBrush=Backstage.Editor.Background" />
+                    <dx:DXBorder BorderBrush="#FF106EBE" BorderThickness="3" CornerRadius="3" Margin="-4" Opacity="0.02" cs:id="Border_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Office2019White\Templates.xaml;57;22" x:Uid="@BorderBrush=Backstage.Editor.Background" />
+                    <dx:DXBorder BorderBrush="#FF106EBE" BorderThickness="2" CornerRadius="2" Margin="-3" Opacity="0.03" cs:id="Border_0003" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Office2019White\Templates.xaml;63;22" x:Uid="@BorderBrush=Backstage.Editor.Background" />
+                    <dx:DXBorder BorderBrush="#FF106EBE" BorderThickness="1" CornerRadius="1" Margin="-2" Opacity="0.05" cs:id="Border_0004" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Office2019White\Templates.xaml;69;22" x:Uid="@BorderBrush=Backstage.Editor.Background" />
+                    <dx:DXBorder BorderBrush="#FFFFFFFF" BorderThickness="1" Margin="-1" cs:id="Border_0005" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Office2019White\Templates.xaml;75;22" x:Uid="@BorderBrush=Editor.Background" />
                 </Grid>
-                <dx:DXBorder x:Name="Highlight" BorderBrush="#1DDB249A" BorderThickness="6" Grid.Row="0" Margin="-7" Opacity="0" cs:id="Border_0007" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Office2019White\Templates.xaml;80;18" />
-                <dx:DXBorder x:Name="Selection" BorderBrush="#1DEA249B" BorderThickness="2" Grid.Row="0" Margin="-9" Opacity="0" cs:id="Border_0006" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Office2019White\Templates.xaml;87;18" />
+                <dx:DXBorder x:Name="Highlight" BorderBrush="#FFDEECF9" BorderThickness="6" Grid.Row="0" Margin="-7" Opacity="0" cs:id="Border_0007" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Office2019White\Templates.xaml;80;18" x:Uid="@BorderBrush=SelectionBackground" />
+                <dx:DXBorder x:Name="Selection" BorderBrush="#FFC8C6C4" BorderThickness="2" Grid.Row="0" Margin="-9" Opacity="0" cs:id="Border_0006" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Office2019White\Templates.xaml;87;18" x:Uid="@BorderBrush=Border" />
                 <TextBlock Grid.Row="1" Margin="0,12,0,10" Text="{Binding Path=PageNumber}" TextAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Office2019White\Templates.xaml;94;18" />
             </Grid>
         </Grid>
@@ -48,7 +48,7 @@
     <DataTemplate x:Key="{themes:PdfViewerThemeKey ResourceKey=SelectionCanvasContentTemplate}">
         <dx:DXBorder HorizontalAlignment="Stretch" VerticalAlignment="Stretch" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Office2019White\Templates.xaml;115;10">
             <dx:DXBorder.Background>
-                <SolidColorBrush Color="#1D7D249C" Opacity="0.3" cs:id="SolidColorBrush_0000" />
+                <SolidColorBrush Color="#FFDEECF9" Opacity="0.3" cs:id="SolidColorBrush_0000" x:Uid="@Color=SelectionBackground" />
             </dx:DXBorder.Background>
         </dx:DXBorder>
     </DataTemplate>

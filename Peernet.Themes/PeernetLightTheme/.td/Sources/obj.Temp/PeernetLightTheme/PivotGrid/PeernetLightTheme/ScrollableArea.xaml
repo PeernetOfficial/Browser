@@ -11,29 +11,29 @@
     <Thickness x:Key="{dxpgi:ScrollableAreaThemeKey ResourceKey=ExpandButtonStyleColumnMargin}">3,2,0,0</Thickness>
 
     <ControlTemplate x:Key="{dxpgi:ScrollableAreaThemeKey ResourceKey=SortedByIndicatorTemplate}">
-        <Grid x:Name="Root" Background="#1DC824D5" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Office2019White\ScrollableArea.xaml;24;10">
+        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Office2019White\ScrollableArea.xaml;24;10">
             <Grid Margin="2" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Office2019White\ScrollableArea.xaml;27;14">
-                <Path x:Name="Ascending" Fill="#1D9B24D6" Opacity="0" Style="{StaticResource UIShape.Sort.Ascending}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Office2019White\ScrollableArea.xaml;28;18" />
-                <Path x:Name="Descending" Fill="#1DAA24D7" Opacity="0" Style="{StaticResource UIShape.Sort.Descending}" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Office2019White\ScrollableArea.xaml;33;18" />
-                <Path x:Name="NotSorted" Fill="#1D8424D8" Opacity="0" Style="{StaticResource UIShape.Sort.Intermediate}" cs:id="Path_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Office2019White\ScrollableArea.xaml;38;18" />
+                <Path x:Name="Ascending" Fill="#FF444444" Opacity="0" Style="{StaticResource UIShape.Sort.Ascending}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Office2019White\ScrollableArea.xaml;28;18" x:Uid="@Fill=Foreground" />
+                <Path x:Name="Descending" Fill="#FF444444" Opacity="0" Style="{StaticResource UIShape.Sort.Descending}" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Office2019White\ScrollableArea.xaml;33;18" x:Uid="@Fill=Foreground" />
+                <Path x:Name="NotSorted" Fill="#FF444444" Opacity="0" Style="{StaticResource UIShape.Sort.Intermediate}" cs:id="Path_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PivotGrid\Office2019White\ScrollableArea.xaml;38;18" x:Uid="@Fill=Foreground" />
             </Grid>
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup x:Name="CommonStates">
                     <VisualState x:Name="MouseOver">
                         <Storyboard>
                             <DoubleAnimation Duration="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Opacity" To="1" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="Ascending" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" To="#1DB524D9" cs:id="ColorAnimation_0000" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="Descending" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" To="#1DE624DA" cs:id="ColorAnimation_0001" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="NotSorted" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" To="#1DD724DB" cs:id="ColorAnimation_0005" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="Ascending" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" To="#FF106EBE" cs:id="ColorAnimation_0000" x:Uid="@To=HoverForeground" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="Descending" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" To="#FF106EBE" cs:id="ColorAnimation_0001" x:Uid="@To=HoverForeground" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="NotSorted" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" To="#FF106EBE" cs:id="ColorAnimation_0005" x:Uid="@To=HoverForeground" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="Pressed">
                         <Storyboard>
                             <DoubleAnimation Duration="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Opacity" To="1" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="Ascending" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" To="#1D4024DC" cs:id="ColorAnimation_0002" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="Descending" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" To="#1D7124DD" cs:id="ColorAnimation_0003" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="NotSorted" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" To="#1D2224DE" cs:id="ColorAnimation_0006" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="Ascending" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" To="#FF106EBE" cs:id="ColorAnimation_0002" x:Uid="@To=HoverForeground" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="Descending" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" To="#FF106EBE" cs:id="ColorAnimation_0003" x:Uid="@To=HoverForeground" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="NotSorted" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" To="#FF106EBE" cs:id="ColorAnimation_0006" x:Uid="@To=HoverForeground" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Disabled" />

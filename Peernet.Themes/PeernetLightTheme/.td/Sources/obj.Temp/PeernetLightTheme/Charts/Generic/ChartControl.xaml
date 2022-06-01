@@ -38,9 +38,9 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <dx:DXBorder x:Name="lblData" Background="#1D991EA0" BorderBrush="#1DA81EA1" BorderThickness="1" Visibility="Collapsed" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\ChartControl.xaml;49;26" />
-                        <dx:DXBorder x:Name="lblHighlighted" Background="#1DFB1EA2" BorderBrush="#1DCA1EA3" BorderThickness="1" Visibility="Collapsed" cs:id="Border_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\ChartControl.xaml;55;26" />
-                        <Label x:Name="lblEmpty" Background="#1D5D1EA4" BorderBrush="#1D6C1EA5" BorderThickness="1" Content="{TemplateBinding Content}" HorizontalContentAlignment="Center" cs:id="Label_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\ChartControl.xaml;61;26" />
+                        <dx:DXBorder x:Name="lblData" Background="Gray" BorderBrush="Gray" BorderThickness="1" Visibility="Collapsed" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\ChartControl.xaml;49;26" />
+                        <dx:DXBorder x:Name="lblHighlighted" Background="LightGray" BorderBrush="Gray" BorderThickness="1" Visibility="Collapsed" cs:id="Border_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\ChartControl.xaml;55;26" />
+                        <Label x:Name="lblEmpty" Background="Transparent" BorderBrush="Gray" BorderThickness="1" Content="{TemplateBinding Content}" HorizontalContentAlignment="Center" cs:id="Label_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\ChartControl.xaml;61;26" />
                         <Label AllowDrop="True" MinHeight="16" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\ChartControl.xaml;68;26" />
                     </Grid>
                 </ControlTemplate>
@@ -67,8 +67,8 @@
                                                 </DiscreteObjectKeyFrame.Value>
                                             </DiscreteObjectKeyFrame>
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ColorAnimation Duration="0:0:0" Storyboard.TargetName="shape" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" To="#1D3F1EA6" cs:id="ColorAnimation_0000" />
-                                        <ColorAnimation Duration="0:0:0" Storyboard.TargetName="shape" Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" To="#1D0E1EA7" cs:id="ColorAnimation_0001" />
+                                        <ColorAnimation Duration="0:0:0" Storyboard.TargetName="shape" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" To="#20FF0000" cs:id="ColorAnimation_0000" />
+                                        <ColorAnimation Duration="0:0:0" Storyboard.TargetName="shape" Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" To="#FFFF0000" cs:id="ColorAnimation_0001" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Selected">
@@ -84,7 +84,7 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Rectangle x:Name="shape" Fill="#1D201EA8" Margin="-4" RadiusX="4" RadiusY="4" Stroke="#1D111EA9" StrokeThickness="3" cs:id="Rectangle_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\ChartControl.xaml;119;26" />
+                        <Rectangle x:Name="shape" Fill="#204ACBFC" Margin="-4" RadiusX="4" RadiusY="4" Stroke="#FF4ACBFC" StrokeThickness="3" cs:id="Rectangle_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\ChartControl.xaml;119;26" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -110,8 +110,8 @@
                                                 </DiscreteObjectKeyFrame.Value>
                                             </DiscreteObjectKeyFrame>
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ColorAnimation Duration="0:0:0" Storyboard.TargetName="shape" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" To="#1D421EAA" cs:id="ColorAnimation_0000" />
-                                        <ColorAnimation Duration="0:0:0" Storyboard.TargetName="shape" Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" To="#1D731EAB" cs:id="ColorAnimation_0001" />
+                                        <ColorAnimation Duration="0:0:0" Storyboard.TargetName="shape" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" To="#20FF0000" cs:id="ColorAnimation_0000" />
+                                        <ColorAnimation Duration="0:0:0" Storyboard.TargetName="shape" Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" To="#FFFF0000" cs:id="ColorAnimation_0001" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Selected">
@@ -127,7 +127,7 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Path x:Name="shape" Data="{Binding Path=SelectionGeometryItem.Geometry, Converter={StaticResource selectionListRectToGeometryConverter}, RelativeSource={RelativeSource TemplatedParent}}" Fill="#1DE41EAC" Stroke="#1DD51EAD" StrokeThickness="3" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\ChartControl.xaml;177;26" />
+                        <Path x:Name="shape" Data="{Binding Path=SelectionGeometryItem.Geometry, Converter={StaticResource selectionListRectToGeometryConverter}, RelativeSource={RelativeSource TemplatedParent}}" Fill="#204ACBFC" Stroke="#FF4ACBFC" StrokeThickness="3" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\ChartControl.xaml;177;26" />
                     </Canvas>
                 </ControlTemplate>
             </Setter.Value>
@@ -153,8 +153,8 @@
                                                 </DiscreteObjectKeyFrame.Value>
                                             </DiscreteObjectKeyFrame>
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ColorAnimation Duration="0:0:0" Storyboard.TargetName="shape" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" To="#1D861EAE" cs:id="ColorAnimation_0000" />
-                                        <ColorAnimation Duration="0:0:0" Storyboard.TargetName="shape" Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" To="#1DB71EAF" cs:id="ColorAnimation_0001" />
+                                        <ColorAnimation Duration="0:0:0" Storyboard.TargetName="shape" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" To="#20FF0000" cs:id="ColorAnimation_0000" />
+                                        <ColorAnimation Duration="0:0:0" Storyboard.TargetName="shape" Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" To="#FFFF0000" cs:id="ColorAnimation_0001" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Selected">
@@ -170,7 +170,7 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Path x:Name="shape" Data="{Binding Path=Geometry, Converter={StaticResource selectionListRectToGeometryConverter}, RelativeSource={RelativeSource TemplatedParent}}" Fill="#1DDA1EB0" Stroke="#1DEB1EB1" StrokeThickness="3" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\ChartControl.xaml;233;26" />
+                        <Path x:Name="shape" Data="{Binding Path=Geometry, Converter={StaticResource selectionListRectToGeometryConverter}, RelativeSource={RelativeSource TemplatedParent}}" Fill="#204ACBFC" Stroke="#FF4ACBFC" StrokeThickness="3" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\ChartControl.xaml;233;26" />
                     </Canvas>
                 </ControlTemplate>
             </Setter.Value>
@@ -199,7 +199,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Path x:Name="PART_HomeImage" Data="M8,1 L1,8 L3,8 L3,14 L7,14 L7,10 L9,10 L9,14 L13,14 L13,8 L15,8 L8,1z" Fill="#1DB81EB2" Height="16" StrokeThickness="1.5" VerticalAlignment="Center" Visibility="{Binding IsHome, Converter={mvvm:BooleanToVisibilityConverter}}" Width="16" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\ChartControl.xaml;272;14">
+            <Path x:Name="PART_HomeImage" Data="M8,1 L1,8 L3,8 L3,14 L7,14 L7,10 L9,10 L9,14 L13,14 L13,8 L15,8 L8,1z" Fill="Transparent" Height="16" StrokeThickness="1.5" VerticalAlignment="Center" Visibility="{Binding IsHome, Converter={mvvm:BooleanToVisibilityConverter}}" Width="16" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\ChartControl.xaml;272;14">
                 <Path.Style>
                     <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=Path}" TargetType="{x:Type Path}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Charts\Generic\ChartControl.xaml;282;22" />
                         <Style.Triggers>
@@ -324,7 +324,7 @@
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Charts\Generic\ChartControl.xaml;423;6" /><Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <local:ChartBreadcrumbItemsControl x:Name="PART_ChartBreadcrumbItemsControl" Background="#1D891EB3" ItemsSource="{Binding Path=ItemsSource, RelativeSource={RelativeSource TemplatedParent}}" cs:id="ChartBreadcrumbItemsControl_0000">
+                    <local:ChartBreadcrumbItemsControl x:Name="PART_ChartBreadcrumbItemsControl" Background="Transparent" ItemsSource="{Binding Path=ItemsSource, RelativeSource={RelativeSource TemplatedParent}}" cs:id="ChartBreadcrumbItemsControl_0000">
                         <local:ChartBreadcrumbItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <WrapPanel x:Name="chartBreadcrumbControlPanel" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\ChartControl.xaml;433;34" />

@@ -9,21 +9,21 @@
 
     
 
-    <dxe:DateNavigatorStateAppearance x:Key="{dxet:DateNavigatorThemeKey ResourceKey=AppearanceNormalState}" Foreground="#1D960647" PriorityIndex="1" cs:id="DateNavigatorStateAppearance_0000" />
+    <dxe:DateNavigatorStateAppearance x:Key="{dxet:DateNavigatorThemeKey ResourceKey=AppearanceNormalState}" Foreground="#FF444444" PriorityIndex="1" cs:id="DateNavigatorStateAppearance_0000" x:Uid="@Foreground=Foreground" />
 
-    <dxe:DateNavigatorStateAppearance x:Key="{dxet:DateNavigatorThemeKey ResourceKey=AppearanceDisabledState}" Background="#1DB80648" BorderBrush="#1D890649" Opacity="0.2" PriorityIndex="8" />
+    <dxe:DateNavigatorStateAppearance x:Key="{dxet:DateNavigatorThemeKey ResourceKey=AppearanceDisabledState}" Background="Transparent" BorderBrush="Transparent" Opacity="0.2" PriorityIndex="8" />
 
     <dxe:DateNavigatorStateAppearance x:Key="{dxet:DateNavigatorThemeKey ResourceKey=AppearanceInactiveState}" Opacity="0.38" PriorityIndex="2" />
 
-    <dxe:DateNavigatorStateAppearance x:Key="{dxet:DateNavigatorThemeKey ResourceKey=AppearanceFocusedState}" BorderBrush="#1DDA064A" BorderThickness="1" PriorityIndex="5" cs:id="DateNavigatorStateAppearance_0001" />
+    <dxe:DateNavigatorStateAppearance x:Key="{dxet:DateNavigatorThemeKey ResourceKey=AppearanceFocusedState}" BorderBrush="#FF106EBE" BorderThickness="1" PriorityIndex="5" cs:id="DateNavigatorStateAppearance_0001" x:Uid="@BorderBrush=Focused" />
 
-    <dxe:DateNavigatorStateAppearance x:Key="{dxet:DateNavigatorThemeKey ResourceKey=AppearanceMouseOverState}" Background="#1DEB064B" BorderBrush="#1D7C064C" BorderThickness="1" Foreground="#1D4D064D" Opacity="1" PriorityIndex="6" cs:id="DateNavigatorStateAppearance_0002" />
+    <dxe:DateNavigatorStateAppearance x:Key="{dxet:DateNavigatorThemeKey ResourceKey=AppearanceMouseOverState}" Background="#FFEFF6FC" BorderBrush="#FFEFF6FC" BorderThickness="1" Foreground="#FF444444" Opacity="1" PriorityIndex="6" cs:id="DateNavigatorStateAppearance_0002" x:Uid="@Background=HoverBackground;BorderBrush=HoverBorder;Foreground=Foreground" />
 
-    <dxe:DateNavigatorStateAppearance x:Key="{dxet:DateNavigatorThemeKey ResourceKey=AppearanceHolidayState}" Foreground="#1D1E064E" PriorityIndex="10" cs:id="DateNavigatorStateAppearance_0003" />
+    <dxe:DateNavigatorStateAppearance x:Key="{dxet:DateNavigatorThemeKey ResourceKey=AppearanceHolidayState}" Foreground="#FFC12600" PriorityIndex="10" cs:id="DateNavigatorStateAppearance_0003" x:Uid="@Foreground=Custom.Red" />
 
-    <dxe:DateNavigatorStateAppearance x:Key="{dxet:DateNavigatorThemeKey ResourceKey=AppearanceSelectedState}" Background="#1D2F064F" BorderBrush="#1D420650" BorderThickness="1" Foreground="#1D730651" PriorityIndex="7" cs:id="DateNavigatorStateAppearance_0004" />
+    <dxe:DateNavigatorStateAppearance x:Key="{dxet:DateNavigatorThemeKey ResourceKey=AppearanceSelectedState}" Background="#FFDEECF9" BorderBrush="#FFDEECF9" BorderThickness="1" Foreground="#FF444444" PriorityIndex="7" cs:id="DateNavigatorStateAppearance_0004" x:Uid="@Background=SelectionBackground;BorderBrush=SelectionBorder;Foreground=Foreground" />
 
-    <dxe:DateNavigatorStateAppearance x:Key="{dxet:DateNavigatorThemeKey ResourceKey=AppearanceTodayState}" Background="#1D200652" BorderBrush="#1D110653" BorderThickness="1" Foreground="#1D860654" PriorityIndex="3" cs:id="DateNavigatorStateAppearance_0005" />
+    <dxe:DateNavigatorStateAppearance x:Key="{dxet:DateNavigatorThemeKey ResourceKey=AppearanceTodayState}" Background="#FFE1DFDD" BorderBrush="#FFE1DFDD" BorderThickness="1" Foreground="#FF444444" PriorityIndex="3" cs:id="DateNavigatorStateAppearance_0005" x:Uid="@Background=Control.NeutralBackground;BorderBrush=Control.NeutralBackground;Foreground=Foreground" />
 
     <dxe:DateNavigatorStateAppearance x:Key="{dxet:DateNavigatorThemeKey ResourceKey=AppearanceSpecialDateState}" FontWeight="Bold" PriorityIndex="9" />
 
@@ -35,19 +35,19 @@
 
     <ControlTemplate x:Key="{dxet:DateNavigatorThemeKey ResourceKey=CellButtonTemplate}" TargetType="{x:Type Button}">
         <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateNavigator\DateNavigatorCell.xaml;94;10">
-            <dx:DXBorder x:Name="IsDefault" Background="#1DB70655" BorderBrush="#1DE40656" BorderThickness="1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateNavigator\DateNavigatorCell.xaml;95;14" />
-            <dx:DXBorder x:Name="IsSelection" Background="#1DD50657" BorderBrush="#1DFB0658" BorderThickness="1" Opacity="0" cs:id="Border_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateNavigator\DateNavigatorCell.xaml;100;14" />
-            <dx:DXBorder x:Name="IsToday" Background="#1DCA0659" BorderBrush="#1D99065A" BorderThickness="1" Opacity="0" cs:id="Border_0004" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateNavigator\DateNavigatorCell.xaml;106;14" />
-            <dx:DXBorder x:Name="IsHot" Background="#1DA8065B" BorderBrush="#1D3F065C" BorderThickness="1" Opacity="0" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateNavigator\DateNavigatorCell.xaml;112;14" />
-            <dx:DXBorder x:Name="IsFocused" Background="{x:Null}" BorderBrush="#1D0E065D" BorderThickness="1" Opacity="0" cs:id="Border_0003" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateNavigator\DateNavigatorCell.xaml;118;14" />
-            <dxcore_unique_xmlns:ContentContainer x:Name="Content" Content="{TemplateBinding Content}" Foreground="#1D5D065E" HorizontalAlignment="Center" Margin="3" VerticalAlignment="Center" cs:id="ContentContainer_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateNavigator\DateNavigatorCell.xaml;124;14" />
+            <dx:DXBorder x:Name="IsDefault" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateNavigator\DateNavigatorCell.xaml;95;14" />
+            <dx:DXBorder x:Name="IsSelection" Background="#FFDEECF9" BorderBrush="#FFDEECF9" BorderThickness="1" Opacity="0" cs:id="Border_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateNavigator\DateNavigatorCell.xaml;100;14" x:Uid="@Background=SelectionBackground;BorderBrush=SelectionBorder" />
+            <dx:DXBorder x:Name="IsToday" Background="#FFC8C6C4" BorderBrush="#FFC8C6C4" BorderThickness="1" Opacity="0" cs:id="Border_0004" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateNavigator\DateNavigatorCell.xaml;106;14" x:Uid="@Background=Border;BorderBrush=Border" />
+            <dx:DXBorder x:Name="IsHot" Background="#FFEFF6FC" BorderBrush="#FFEFF6FC" BorderThickness="1" Opacity="0" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateNavigator\DateNavigatorCell.xaml;112;14" x:Uid="@Background=HoverBackground;BorderBrush=HoverBorder" />
+            <dx:DXBorder x:Name="IsFocused" Background="{x:Null}" BorderBrush="#FF106EBE" BorderThickness="1" Opacity="0" cs:id="Border_0003" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateNavigator\DateNavigatorCell.xaml;118;14" x:Uid="@BorderBrush=Focused" />
+            <dxcore_unique_xmlns:ContentContainer x:Name="Content" Content="{TemplateBinding Content}" Foreground="#FF444444" HorizontalAlignment="Center" Margin="3" VerticalAlignment="Center" cs:id="ContentContainer_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateNavigator\DateNavigatorCell.xaml;124;14" x:Uid="@Foreground=Foreground" />
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup x:Name="CommonStates">
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="MouseOver">
                         <Storyboard>
                             <DoubleAnimation Duration="0" Storyboard.TargetName="IsHot" Storyboard.TargetProperty="Opacity" To="1" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="(dx:ContentContainer.Foreground).(SolidColorBrush.Color)" To="#1D6C065F" cs:id="ColorAnimation_0001" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="(dx:ContentContainer.Foreground).(SolidColorBrush.Color)" To="#FF444444" cs:id="ColorAnimation_0001" x:Uid="@To=Foreground" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Pressed" />
@@ -65,7 +65,7 @@
                     <VisualState x:Name="CellStateSelected">
                         <Storyboard>
                             <DoubleAnimation Duration="0" Storyboard.TargetName="IsSelection" Storyboard.TargetProperty="Opacity" To="1" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="ForegroundSolidColor2" To="#1D870660" cs:id="ColorAnimation_0002" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="ForegroundSolidColor2" To="#FF444444" cs:id="ColorAnimation_0002" x:Uid="@To=Foreground" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="CellStateNotSelected" />
@@ -74,7 +74,7 @@
                     <VisualState x:Name="CellStateToday">
                         <Storyboard>
                             <DoubleAnimation Duration="0" Storyboard.TargetName="IsToday" Storyboard.TargetProperty="Opacity" To="1" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="ForegroundSolidColor6" To="#1DB60661" cs:id="ColorAnimation_0003" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="ForegroundSolidColor6" To="#FF444444" cs:id="ColorAnimation_0003" x:Uid="@To=Foreground" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="CellStateNotToday" />
@@ -84,14 +84,14 @@
                     <VisualState x:Name="CellStateFocused">
                         <Storyboard>
                             <DoubleAnimation Duration="0" Storyboard.TargetName="IsFocused" Storyboard.TargetProperty="Opacity" To="1" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="ForegroundSolidColor5" To="#1DE50662" cs:id="ColorAnimation_0004" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="ForegroundSolidColor5" To="#FF444444" cs:id="ColorAnimation_0004" x:Uid="@To=Foreground" />
                         </Storyboard>
                     </VisualState>
                 </VisualStateGroup>
                 <VisualStateGroup x:Name="CellStatesHoliday">
                     <VisualState x:Name="CellStateHoliday">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="ForegroundSolidColor6" To="#1DD40663" cs:id="ColorAnimation_0000" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="ForegroundSolidColor6" To="#FFC12600" cs:id="ColorAnimation_0000" x:Uid="@To=Custom.Red" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="CellStateNotHoliday" />

@@ -8,27 +8,27 @@
 
     <ControlTemplate x:Key="{dxrt:RibbonPageGroupThemeKey ResourceKey=CaptionButtonTemplate}" TargetType="{x:Type dxr:RibbonCheckedBorderControl}">
         <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonPageGroup\RibbonPageGroupCaptionButton_Base.xaml;23;10">
-            <dx:DXBorder x:Name="IsDefault" Background="#1D521B4C" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonPageGroup\RibbonPageGroupCaptionButton_Base.xaml;24;14" />
-            <Path x:Name="Content" Fill="#1D631B4D" HorizontalAlignment="Right" Margin="3" Style="{StaticResource UIShape.RightDown}" VerticalAlignment="Bottom" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonPageGroup\RibbonPageGroupCaptionButton_Base.xaml;27;14" />
+            <dx:DXBorder x:Name="IsDefault" Background="Transparent" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonPageGroup\RibbonPageGroupCaptionButton_Base.xaml;24;14" />
+            <Path x:Name="Content" Fill="#FF444444" HorizontalAlignment="Right" Margin="3" Style="{StaticResource UIShape.RightDown}" VerticalAlignment="Bottom" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonPageGroup\RibbonPageGroupCaptionButton_Base.xaml;27;14" x:Uid="@Fill=Foreground" />
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup x:Name="CommonStates">
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="Hover">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D301B4E" cs:id="ColorAnimation_0000" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" To="#1D011B4F" cs:id="ColorAnimation_0003" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFEFF6FC" cs:id="ColorAnimation_0000" x:Uid="@To=HoverBackground" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" To="#FF444444" cs:id="ColorAnimation_0003" x:Uid="@To=Foreground" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Pressed">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D6C1B50" cs:id="ColorAnimation_0001" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" To="#1D5D1B51" cs:id="ColorAnimation_0004" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFDEECF9" cs:id="ColorAnimation_0001" x:Uid="@To=SelectionBackground" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" To="#FFFFFFFF" cs:id="ColorAnimation_0004" x:Uid="@To=Backstage.Foreground" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Checked">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D0E1B52" cs:id="ColorAnimation_0002" />
-                            <ColorAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" To="#1D3F1B53" cs:id="ColorAnimation_0005" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFDEECF9" cs:id="ColorAnimation_0002" x:Uid="@To=SelectionBackground" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="Content" Storyboard.TargetProperty="(Path.Fill).(SolidColorBrush.Color)" To="#FFFFFFFF" cs:id="ColorAnimation_0005" x:Uid="@To=Backstage.Foreground" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Disabled">

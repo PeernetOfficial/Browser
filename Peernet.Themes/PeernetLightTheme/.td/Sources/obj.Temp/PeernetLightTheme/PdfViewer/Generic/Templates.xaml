@@ -454,7 +454,7 @@
         <dx:DXBorder Background="{DynamicResource {themes:PdfViewerThemeKey ResourceKey=PdfPresenterControlBackgroundBrush}}" BorderBrush="{DynamicResource {themes:PdfViewerThemeKey ResourceKey=PdfPresenterControlBorderBrush}}" BorderThickness="{DynamicResource {themes:PdfViewerThemeKey ResourceKey=PdfPresenterControlBorderThickness}}" Focusable="False" Margin="{DynamicResource {themes:PdfViewerThemeKey ResourceKey=PdfPresenterControlMargin}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Generic\Templates.xaml;655;10">
             <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Generic\Templates.xaml;660;14">
                 <dxe:NativeImage x:Name="PART_NativeImage" IsTabStop="False" />
-                <pdfViewer:PdfPagesSelector x:Name="PART_ItemsControl" Background="#1DA9248B" IsSearchControlVisible="{Binding Path=IsSearchControlVisible, RelativeSource={RelativeSource TemplatedParent}}" SearchParameter="{Binding Path=SearchParameter, RelativeSource={RelativeSource TemplatedParent}}" Style="{DynamicResource {themes:PdfViewerThemeKey ResourceKey=PdfPagesSelectorStyle}}" VirtualizingStackPanel.VirtualizationMode="Recycling" cs:id="PdfPagesSelector_0000">
+                <pdfViewer:PdfPagesSelector x:Name="PART_ItemsControl" Background="Transparent" IsSearchControlVisible="{Binding Path=IsSearchControlVisible, RelativeSource={RelativeSource TemplatedParent}}" SearchParameter="{Binding Path=SearchParameter, RelativeSource={RelativeSource TemplatedParent}}" Style="{DynamicResource {themes:PdfViewerThemeKey ResourceKey=PdfPagesSelectorStyle}}" VirtualizingStackPanel.VirtualizationMode="Recycling" cs:id="PdfPagesSelector_0000">
                     <pdfViewer:PdfPagesSelector.ItemsPanel>
                         <ItemsPanelTemplate>
                             <dxdv:DocumentViewerPanel />
@@ -605,7 +605,7 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{themes:PdfViewerThemeKey ResourceKey=StartScreenDocumentLinkTemplate}" TargetType="{x:Type Button}">
-        <dx:DXBorder Background="#1D3E248C" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Generic\Templates.xaml;897;10">
+        <dx:DXBorder Background="Transparent" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Generic\Templates.xaml;897;10">
             <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Generic\Templates.xaml;898;14">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -622,7 +622,7 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{themes:PdfViewerThemeKey ResourceKey=StartScreenOpenDocumentTemplate}" TargetType="{x:Type Button}">
-        <dx:DXBorder Background="#1D0F248D" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Generic\Templates.xaml;917;10">
+        <dx:DXBorder Background="Transparent" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Generic\Templates.xaml;917;10">
             <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Generic\Templates.xaml;918;14">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -649,7 +649,7 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{themes:PdfViewerThemeKey ResourceKey=LoadingProgressControlTemplate}" TargetType="{x:Type pdfViewer:LoadingProgressControl}">
-        <dx:DXBorder Background="#1D5C248E" BorderBrush="#1D6D248F" BorderThickness="1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Generic\Templates.xaml;949;10">
+        <dx:DXBorder Background="White" BorderBrush="Black" BorderThickness="1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Generic\Templates.xaml;949;10">
             <StackPanel Margin="12" Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Generic\Templates.xaml;953;14">
                 <TextBlock Text="{Binding Path=Message, RelativeSource={RelativeSource TemplatedParent}}" TextTrimming="CharacterEllipsis" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Generic\Templates.xaml;954;18">
                     <TextBlock.Foreground>
@@ -704,7 +704,7 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{themes:PdfViewerThemeKey ResourceKey=StickyNotesEditDisplayTemplate}">
-        <dx:DXBorder x:Name="PART_Editor" Background="#1D002490" Height="10" Width="10" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Generic\Templates.xaml;1030;10" />
+        <dx:DXBorder x:Name="PART_Editor" Background="Red" Height="10" Width="10" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Generic\Templates.xaml;1030;10" />
     </ControlTemplate>
 
     <pdfViewer:PdfViewerStringIdConverter x:Key="PdfViewerStringIdConverter" />
@@ -1337,7 +1337,7 @@
                     <dxe:ComboBoxEdit ApplyItemTemplateToSelectedItem="True" EditValue="{Binding Path=IconName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsTextEditable="False" ItemsSource="{pdfViewer:PdfTextMarkupIconTypeSource}" ValueMember="Value" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Generic\Templates.xaml;2121;22">
                         <dxe:ComboBoxEdit.ItemTemplate>
                             <DataTemplate>
-                                <dx:DXBorder Background="#1D312491" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Generic\Templates.xaml;2128;34">
+                                <dx:DXBorder Background="Transparent" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Generic\Templates.xaml;2128;34">
                                     <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Generic\Templates.xaml;2129;38">
                                         <dxcore_unique_xmlns:DXImage Height="14" Margin="0,0,6,0" Source="{Binding Path=Icon, Converter={pdfViewer:PdfUriToBitmapImageConverter}}" Width="14" />
                                         <TextBlock Text="{Binding Path=DisplayName}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PdfViewer\Generic\Templates.xaml;2134;42" />

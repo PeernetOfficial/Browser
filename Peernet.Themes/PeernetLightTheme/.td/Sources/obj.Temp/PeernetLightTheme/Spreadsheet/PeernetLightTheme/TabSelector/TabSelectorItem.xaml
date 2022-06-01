@@ -8,30 +8,30 @@
 
     <ControlTemplate x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=TabSelectorItemTemplate}" TargetType="{x:Type dxspsi:TabSelectorItem}">
         <Grid x:Name="PART_Root" Margin="0,0,-1,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\TabSelector\TabSelectorItem.xaml;21;10">
-            <dx:DXBorder x:Name="IsDefault" Background="#1DE81C8F" BorderBrush="#1D851C90" BorderThickness="0,1,0,0" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\TabSelector\TabSelectorItem.xaml;22;14" />
-            <TextBlock x:Name="Content" Focusable="False" Foreground="#1DB41C91" Margin="12,0,12,0" Text="{TemplateBinding Text}" TextAlignment="Center" VerticalAlignment="Center" cs:id="TextBlock_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\TabSelector\TabSelectorItem.xaml;27;14" />
+            <dx:DXBorder x:Name="IsDefault" Background="#FFFCFCFC" BorderBrush="#FFC8C6C4" BorderThickness="0,1,0,0" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\TabSelector\TabSelectorItem.xaml;22;14" x:Uid="@Background=Button.Background;BorderBrush=Border" />
+            <TextBlock x:Name="Content" Focusable="False" Foreground="#FF444444" Margin="12,0,12,0" Text="{TemplateBinding Text}" TextAlignment="Center" VerticalAlignment="Center" cs:id="TextBlock_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\TabSelector\TabSelectorItem.xaml;27;14" x:Uid="@Foreground=Foreground" />
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="State" Value="Normal">
                 <Setter Property="Margin" TargetName="IsDefault" Value="1,0,0,0" />
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" TargetName="Content" Value="#1DE71C92" cs:id="Setter_0004" />
-                <Setter Property="Background" TargetName="IsDefault" Value="#1DD61C93" cs:id="Setter_0000" />
-                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1D411C94" cs:id="Setter_0002" />
+                <Setter Property="Foreground" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0004" x:Uid="@Value=HoverForeground" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0000" x:Uid="@Value=HoverBackground" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFC8C6C4" cs:id="Setter_0002" x:Uid="@Value=Border" />
                 <Setter Property="BorderThickness" TargetName="IsDefault" Value="0,1,0,0" />
                 <Setter Property="Margin" TargetName="IsDefault" Value="1,0,0,0" />
             </Trigger>
             <Trigger Property="State" Value="Selected">
-                <Setter Property="Foreground" TargetName="Content" Value="#1D701C95" cs:id="Setter_0007" />
-                <Setter Property="Background" TargetName="IsDefault" Value="#1D231C96" cs:id="Setter_0005" />
-                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1D121C97" cs:id="Setter_0006" />
+                <Setter Property="Foreground" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0007" x:Uid="@Value=SelectionForeground" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFFFFFFF" cs:id="Setter_0005" x:Uid="@Value=Editor.Background" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFC8C6C4" cs:id="Setter_0006" x:Uid="@Value=Border" />
                 <Setter Property="BorderThickness" TargetName="IsDefault" Value="1,1,1,0" />
             </Trigger>
             <Trigger Property="State" Value="Active">
-                <Setter Property="Foreground" TargetName="Content" Value="#1D3C1C98" cs:id="Setter_0003" />
-                <Setter Property="Background" TargetName="IsDefault" Value="#1D0D1C99" cs:id="Setter_0001" />
-                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1D5E1C9A" cs:id="Setter_0008" />
+                <Setter Property="Foreground" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0003" x:Uid="@Value=Focused" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFFFFFFF" cs:id="Setter_0001" x:Uid="@Value=Editor.Background" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFC8C6C4" cs:id="Setter_0008" x:Uid="@Value=Border" />
                 <Setter Property="BorderThickness" TargetName="IsDefault" Value="1,0,1,0" />
             </Trigger>
             <MultiTrigger>
@@ -58,7 +58,7 @@
 
     <ControlTemplate x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=TabSelectorColoredItemTemplate}" TargetType="{x:Type dxspsi:TabSelectorItem}">
         <Grid x:Name="PART_Root" Margin="0,0,-1,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\TabSelector\TabSelectorItem.xaml;129;10">
-            <dx:DXBorder x:Name="IsDefault" Background="{Binding Color, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ColorOverlayConveter}, ConverterParameter=#FFEFEFEF}" BorderBrush="#1D6F1C9B" BorderThickness="0,1,0,0" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\TabSelector\TabSelectorItem.xaml;130;14" />
+            <dx:DXBorder x:Name="IsDefault" Background="{Binding Color, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ColorOverlayConveter}, ConverterParameter=#FFEFEFEF}" BorderBrush="#FFC8C6C4" BorderThickness="0,1,0,0" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\TabSelector\TabSelectorItem.xaml;130;14" x:Uid="@BorderBrush=Border" />
             <TextBlock x:Name="Content" Focusable="False" Foreground="{Binding Color, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ColorOverlayConveter}, ConverterParameter=#FFA2A2A2}" Margin="12,0,12,0" Text="{TemplateBinding Text}" TextAlignment="Center" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\TabSelector\TabSelectorItem.xaml;135;14" />
         </Grid>
         <ControlTemplate.Triggers>
@@ -68,20 +68,20 @@
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Foreground" TargetName="Content" Value="{Binding Color, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ColorOverlayConveter}, ConverterParameter=#FFA2A2A2}" />
                 <Setter Property="Background" TargetName="IsDefault" Value="{Binding Color, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ColorOverlayConveter}, ConverterParameter=#FFD9D9D9}" />
-                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1DF81C9C" cs:id="Setter_0001" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFC8C6C4" cs:id="Setter_0001" x:Uid="@Value=Border" />
                 <Setter Property="BorderThickness" TargetName="IsDefault" Value="0,1,0,0" />
                 <Setter Property="Margin" TargetName="IsDefault" Value="1,0,0,0" />
             </Trigger>
             <Trigger Property="State" Value="Selected">
                 <Setter Property="Foreground" TargetName="Content" Value="{Binding Color, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ColorOverlayConveter}, ConverterParameter=#FF646464}" />
-                <Setter Property="Background" TargetName="IsDefault" Value="#1DC91C9D" cs:id="Setter_0002" />
-                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1D9A1C9E" cs:id="Setter_0003" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFFFFFFF" cs:id="Setter_0002" x:Uid="@Value=Editor.Background" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFC8C6C4" cs:id="Setter_0003" x:Uid="@Value=Border" />
                 <Setter Property="BorderThickness" TargetName="IsDefault" Value="1,1,1,0" />
             </Trigger>
             <Trigger Property="State" Value="Active">
                 <Setter Property="Foreground" TargetName="Content" Value="{Binding Color, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ColorOverlayConveter}, ConverterParameter=#FF646464}" />
-                <Setter Property="Background" TargetName="IsDefault" Value="#1DAB1C9F" cs:id="Setter_0000" />
-                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1D401CA0" cs:id="Setter_0004" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFFFFFFF" cs:id="Setter_0000" x:Uid="@Value=Editor.Background" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFC8C6C4" cs:id="Setter_0004" x:Uid="@Value=Border" />
                 <Setter Property="BorderThickness" TargetName="IsDefault" Value="1,0,1,0" />
             </Trigger>
             <MultiTrigger>

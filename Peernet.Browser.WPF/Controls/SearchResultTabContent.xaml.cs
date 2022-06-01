@@ -9,7 +9,6 @@ using Peernet.SDK.Models.Presentation.Home;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 
 namespace Peernet.Browser.WPF.Controls
 {
@@ -24,42 +23,12 @@ namespace Peernet.Browser.WPF.Controls
             SearchResultsTable.HiddenColumnChooser += SearchResultsTable_ColumnChooserStateChanged;
             SearchResultsTable.ShownColumnChooser += SearchResultsTable_ColumnChooserStateChanged;
             App.MainWindowClicked += OnMainWindowClicked;
+            pager.Loaded += Pager_Loaded;
         }
 
-        private void SearchResultsTable_ColumnChooserStateChanged(object sender, RoutedEventArgs e)
+        private void FilterIconControl_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            ((SearchTabElementViewModel)DataContext).ColumnsIconModel.IsSelected = SearchResultsTable.IsColumnChooserVisible;
-        }
-
-        private async void FileGrid_ScrollChanged(object sender, ScrollChangedEventArgs e)
-        {
-            var viewer = GetScrollViewer((GridControl)sender);
-            if (viewer.VerticalOffset + viewer.ViewportHeight == viewer.ExtentHeight)
-            {
-                if (DataContext is SearchTabElementViewModel viewModel)
-                {
-                    await viewModel.IsScrollEnd();
-                }
-            }
-        }
-
-        private ScrollViewer GetScrollViewer(UIElement element)
-        {
-            if (element == null) return null;
-
-            ScrollViewer retour = null;
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(element) && retour == null; i++)
-            {
-                if (VisualTreeHelper.GetChild(element, i) is ScrollViewer)
-                {
-                    retour = (ScrollViewer)(VisualTreeHelper.GetChild(element, i));
-                }
-                else
-                {
-                    retour = GetScrollViewer(VisualTreeHelper.GetChild(element, i) as UIElement);
-                }
-            }
-            return retour;
+            SearchResultsTable.IsColumnChooserVisible ^= true;
         }
 
         private void OnMainWindowClicked(object sender, RoutedEventArgs e)
@@ -89,9 +58,31 @@ namespace Peernet.Browser.WPF.Controls
             new FilePreviewWindow(filePreviewViewModel).Show();
         }
 
-        private void FilterIconControl_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        private void Pager_Loaded(object sender, RoutedEventArgs e)
         {
-            SearchResultsTable.IsColumnChooserVisible ^= true;
+            pager.PageIndexChanged += Pager_PageIndexChanged;
+            pager.PageSizeChanged += Pager_PageSizeChanged;
+        }
+
+        private async void Pager_PageIndexChanged(object sender, DevExpress.Xpf.Editors.DataPager.DataPagerPageIndexChangedEventArgs e)
+        {
+            if (DataContext != null)
+            {
+                await (DataContext as SearchTabElementViewModel)?.Refresh();
+            }
+        }
+
+        private async void Pager_PageSizeChanged(object sender, DevExpress.Xpf.Editors.DataPager.DataPagerPageSizeChangedEventArgs e)
+        {
+            if (DataContext != null)
+            {
+                await (DataContext as SearchTabElementViewModel)?.Refresh();
+            }
+        }
+
+        private void SearchResultsTable_ColumnChooserStateChanged(object sender, RoutedEventArgs e)
+        {
+            ((SearchTabElementViewModel)DataContext).ColumnsIconModel.IsSelected = SearchResultsTable.IsColumnChooserVisible;
         }
     }
 }

@@ -7,13 +7,13 @@
     
 
     <ControlTemplate x:Key="{dxnt:NavigationPaneSplitterThemeKey ResourceKey=SplitterTemplate}" TargetType="dxn:NavPaneSplitter">
-        <Grid x:Name="Root" Background="#1D472450" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="NavBar\Office2019White\NavigationPane\Splitter_Base.xaml;22;10">
-            <Path x:Name="Content" Fill="#1D762451" Margin="8" Style="{StaticResource UIShape.SizeGrip.Horizontal}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="NavBar\Office2019White\NavigationPane\Splitter_Base.xaml;25;14" />
+        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="NavBar\Office2019White\NavigationPane\Splitter_Base.xaml;22;10">
+            <Path x:Name="Content" Fill="#FF444444" Margin="8" Style="{StaticResource UIShape.SizeGrip.Horizontal}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="NavBar\Office2019White\NavigationPane\Splitter_Base.xaml;25;14" x:Uid="@Fill=Foreground" />
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Fill" TargetName="Content" Value="#1D252452" cs:id="Setter_0001" />
-                <Setter Property="Background" TargetName="Root" Value="#1D142453" cs:id="Setter_0000" />
+                <Setter Property="Fill" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0001" x:Uid="@Value=HoverForeground" />
+                <Setter Property="Background" TargetName="Root" Value="Transparent" cs:id="Setter_0000" />
             </Trigger>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                 <Setter Property="MinHeight" TargetName="Root" Value="44" />

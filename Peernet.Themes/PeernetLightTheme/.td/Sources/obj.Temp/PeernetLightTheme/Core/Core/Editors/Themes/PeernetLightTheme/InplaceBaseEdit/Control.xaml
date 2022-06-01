@@ -8,7 +8,7 @@
     
 
     <dxi:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=HoverBorderTemplate}">
-        <dxi:RenderBorder Name="PART_Focus" BorderBrush="#1D000674" BorderThickness="1" Visibility="Collapsed" cs:id="RenderBorder_0000" ThemeInfo="Core\Core\Editors\Themes\Office2019White\InplaceBaseEdit\Control.xaml;22;10" />
+        <dxi:RenderBorder Name="PART_Focus" BorderBrush="#FF106EBE" BorderThickness="1" Visibility="Collapsed" cs:id="RenderBorder_0000" ThemeInfo="Core\Core\Editors\Themes\Office2019White\InplaceBaseEdit\Control.xaml;22;10" x:Uid="@BorderBrush=Focused" />
         <dxi:RenderTemplate.Triggers>
             <dxi:RenderTrigger DependencyProperty="{x:Static dxei:ControlHelper.ShowFocusedStateProperty}" Value="True" ValueSource="Chrome">
                 <dxi:RenderSetter Property="Visibility" TargetName="PART_Focus" Value="Visible" />
@@ -32,7 +32,7 @@
     
 
     <dxi:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=CommonBorderTemplate}">
-        <dxi:RenderBorder Name="PART_Border" Background="#1D310675" BorderBrush="#1D620676" BorderThickness="1" cs:id="RenderBorder_0001" ThemeInfo="Core\Core\Editors\Themes\Office2019White\InplaceBaseEdit\Control.xaml;71;10" />
+        <dxi:RenderBorder Name="PART_Border" Background="#FFFFFFFF" BorderBrush="#FFC8C6C4" BorderThickness="1" cs:id="RenderBorder_0001" ThemeInfo="Core\Core\Editors\Themes\Office2019White\InplaceBaseEdit\Control.xaml;71;10" x:Uid="@Background=Editor.Background;BorderBrush=Border" />
         <dxi:RenderTemplate.Triggers>
             <dxi:ConditionalRenderBinding DependencyProperty="{x:Static dxe:BaseEdit.BorderThicknessProperty}" TargetName="PART_Border" TargetProperty="BorderThickness" ValueSource="TemplatedParent">
                 <dxi:RenderCondition DependencyProperty="{x:Static dxi:AppearanceOptions.HasBorderThicknessProperty}" Value="True" ValueSource="TemplatedParent" />
@@ -81,7 +81,7 @@
     
 
     <dxi:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=TextEditBorderTemplate}">
-        <dxi:RenderBorder Name="PART_Border" Background="#1D530677" BorderBrush="#1D7D0678" BorderThickness="1" cs:id="RenderBorder_0001" ThemeInfo="Core\Core\Editors\Themes\Office2019White\InplaceBaseEdit\Control.xaml;178;10" />
+        <dxi:RenderBorder Name="PART_Border" Background="#FFFFFFFF" BorderBrush="#FFC8C6C4" BorderThickness="1" cs:id="RenderBorder_0001" ThemeInfo="Core\Core\Editors\Themes\Office2019White\InplaceBaseEdit\Control.xaml;178;10" x:Uid="@Background=Editor.Background;BorderBrush=Border" />
         <dxi:RenderTemplate.Triggers>
             <dxi:ConditionalRenderBinding DependencyProperty="{x:Static dxe:BaseEdit.BorderThicknessProperty}" TargetName="PART_Border" TargetProperty="BorderThickness" ValueSource="TemplatedParent">
                 <dxi:RenderCondition DependencyProperty="{x:Static dxi:AppearanceOptions.HasBorderThicknessProperty}" Value="True" ValueSource="TemplatedParent" />

@@ -8,20 +8,20 @@
 
     <ControlTemplate x:Key="{dxbt:FloatingBarPopupThemeKey ResourceKey=CloseButtonTemplate}" TargetType="{x:Type Button}">
         <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019White\FloatingBarPopup\ButtonClose_Base.xaml;21;10">
-            <dx:DXBorder x:Name="IsDefault" Background="#1DA1030B" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019White\FloatingBarPopup\ButtonClose_Base.xaml;22;14" />
+            <dx:DXBorder x:Name="IsDefault" Background="Transparent" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019White\FloatingBarPopup\ButtonClose_Base.xaml;22;14" />
             <Path Style="{StaticResource UIShape.Close}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Bars\Themes\Office2019White\FloatingBarPopup\ButtonClose_Base.xaml;25;14" />
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup x:Name="CommonStates">
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="MouseOver">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D36030C" cs:id="ColorAnimation_0000" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFEFF6FC" cs:id="ColorAnimation_0000" x:Uid="@To=HoverBackground" />
                             <DoubleAnimation Duration="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Opacity" To="1" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Pressed">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D07030D" cs:id="ColorAnimation_0001" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFDEECF9" cs:id="ColorAnimation_0001" x:Uid="@To=SelectionBackground" />
                             <DoubleAnimation Duration="0" Storyboard.TargetName="Root" Storyboard.TargetProperty="Opacity" To="1" />
                         </Storyboard>
                     </VisualState>

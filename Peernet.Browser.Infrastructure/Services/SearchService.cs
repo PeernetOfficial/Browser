@@ -37,36 +37,25 @@ namespace Peernet.Browser.Infrastructure.Services
                 model.Uuid = response.Id;
             }
             var reqMod = Map<SearchGetRequest>(model);
-            var intervals = 0;
-            while (intervals < 20)
+            if (model.ShouldReset)
             {
-                if (intervals > 0)
-                {
-                    reqMod.Reset = 0;
-                }
-                else if (model.ShouldReset)
-                {
-                    reqMod.Reset = 1;
-                }
-
-                var result = await searchClient.GetSearchResult(reqMod);
-
-                res.Id = result.Status == SearchStatusEnum.IdNotFound ? string.Empty : model.Uuid;
-                res.StatusText = GetStatusText(result.Status);
-                res.Stats = GetStats(result.Statistic);
-                if (!result.Files.IsNullOrEmpty())
-                {
-                    res.Rows.AddRange(result.Files.Select(x => new DownloadModel(x)));
-                }
-
-                if (result.Status is SearchStatusEnum.NoMoreResults or SearchStatusEnum.IdNotFound)
-                {
-                    break;
-                }
-
-                intervals++;
-                await Task.Delay(500);
+                reqMod.Reset = 1;
             }
+
+            var result = await searchClient.GetSearchResult(reqMod);
+
+            res.Id = result.Status == SearchStatusEnum.IdNotFound ? string.Empty : model.Uuid;
+            res.Status = result.Status;
+            res.Stats = GetStats(result.Statistic);
+            if (!result.Files.IsNullOrEmpty())
+            {
+                res.Rows = result.Files.Select(f => new DownloadModel(f)).ToList();
+            }
+
+            //if (result.Status is SearchStatusEnum.NoMoreResults or SearchStatusEnum.IdNotFound)
+            //{
+            //    break;
+            //}
 
             return res;
         }
@@ -91,24 +80,6 @@ namespace Peernet.Browser.Infrastructure.Services
             return SearchResultModel
                 .GetDefaultStats()
                 .ToDictionary(x => x, y => y == FilterType.All ? data.Total : data.GetCount(Map(y)));
-        }
-
-        private string GetStatusText(SearchStatusEnum status)
-        {
-            switch (status)
-            {
-                case SearchStatusEnum.IdNotFound:
-                    return "Search was terminated.";
-
-                case SearchStatusEnum.KeepTrying:
-                    return "Searching...";
-
-                case SearchStatusEnum.NoMoreResults:
-                    return "No results.";
-
-                default:
-                    return "";
-            }
         }
 
         private SearchRequestSortTypeEnum Map(DataGridSortingNameEnum sortName, DataGridSortingTypeEnum sortType)
@@ -179,7 +150,8 @@ namespace Peernet.Browser.Infrastructure.Services
             }
             if (searchGetRequest != null)
             {
-                searchGetRequest.Limit = model.LimitOfResult;
+                searchGetRequest.Limit = model.Limit;
+                searchGetRequest.Offset = model.Offset;
             }
             if (model.Uuid.IsNullOrEmpty() && searchRequest != null)
             {

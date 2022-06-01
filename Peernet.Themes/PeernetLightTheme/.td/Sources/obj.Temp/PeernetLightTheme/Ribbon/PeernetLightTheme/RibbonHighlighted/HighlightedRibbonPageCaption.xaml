@@ -10,7 +10,7 @@
         <Grid x:Name="PART_Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonHighlighted\HighlightedRibbonPageCaption.xaml;23;10">
             <dx:DXBorder x:Name="OuterBorder" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonHighlighted\HighlightedRibbonPageCaption.xaml;24;14">
                 <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonHighlighted\HighlightedRibbonPageCaption.xaml;25;18">
-                    <dx:DXBorder x:Name="IsDefault" Background="#1DDA1DE3" CornerRadius="{Binding ElementName=OuterBorder, Path=CornerRadius}" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonHighlighted\HighlightedRibbonPageCaption.xaml;26;22" />
+                    <dx:DXBorder x:Name="IsDefault" Background="Transparent" CornerRadius="{Binding ElementName=OuterBorder, Path=CornerRadius}" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonHighlighted\HighlightedRibbonPageCaption.xaml;26;22" />
                     <dx:DXBorder x:Name="BackgroundBorder" CornerRadius="{Binding ElementName=OuterBorder, Path=CornerRadius}" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonHighlighted\HighlightedRibbonPageCaption.xaml;30;22" />
                 </Grid>
             </dx:DXBorder>
@@ -25,12 +25,12 @@
                     <VisualState x:Name="NormalChecked" />
                     <VisualState x:Name="HoverUnchecked">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D4D1DE4" cs:id="ColorAnimation_0002" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFFCFCFC" cs:id="ColorAnimation_0002" x:Uid="@To=Button.Background" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="HoverChecked">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D7C1DE5" cs:id="ColorAnimation_0000" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFFCFCFC" cs:id="ColorAnimation_0000" x:Uid="@To=Button.Background" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="PressedChecked" />

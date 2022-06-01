@@ -28,10 +28,10 @@
                 <dxschi:AppointmentRoundedBorder x:Name="AppointmentRoundedBorder" CornerRadius="0" DefaultCornerRadius="0" DefaultRoundBorderThickness="{Binding ViewInfo.Selected, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource selectionBoolToThicknessConverter}}" Grid.ColumnSpan="2" Grid.RowSpan="2" ViewInfo="{TemplateBinding ViewInfo}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\Appointments\VerticalAppointment.xaml;45;18">
                     <dxschi:AppointmentRoundedBorder.Style>
                         <Style>
-                            <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduler\Office2019White\Appointments\VerticalAppointment.xaml;53;26" /><Setter Property="dxschi:AppointmentRoundedBorder.BorderBrush" Value="#1D292740" cs:id="Setter_0000" />
+                            <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduler\Office2019White\Appointments\VerticalAppointment.xaml;53;26" /><Setter Property="dxschi:AppointmentRoundedBorder.BorderBrush" Value="#FFC8C6C4" cs:id="Setter_0000" x:Uid="@Value=Border" />
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding ViewInfo.Selected, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
-                                    <Setter Property="dxschi:AppointmentRoundedBorder.BorderBrush" Value="#1D182741" cs:id="Setter_0001" />
+                                    <Setter Property="dxschi:AppointmentRoundedBorder.BorderBrush" Value="#FF444444" cs:id="Setter_0001" x:Uid="@Value=Foreground" />
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
@@ -50,8 +50,8 @@
                                 <ColumnDefinition x:Name="ContentContainerStatusColumn" Width="{Binding StatusDisplayType, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource StatusDisplayTypeToGridLengthConverter}}" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <dx:DXBorder Background="#1D4B2742" BorderBrush="#1D7A2743" BorderThickness="0,0,1,0" Visibility="{Binding StatusDisplayType, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource AppointmentStatusDisplayTypeToVisibilityConverter}}" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\Appointments\VerticalAppointment.xaml;80;30">
-                                <dxsch:AppointmentStatusControl Background="#1DED2744" Orientation="Vertical" ViewInfo="{TemplateBinding ViewInfo}" cs:id="AppointmentStatusControl_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\Appointments\VerticalAppointment.xaml;85;34">
+                            <dx:DXBorder Background="#FFFCFCFC" BorderBrush="#FFFFFFFF" BorderThickness="0,0,1,0" Visibility="{Binding StatusDisplayType, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource AppointmentStatusDisplayTypeToVisibilityConverter}}" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\Appointments\VerticalAppointment.xaml;80;30" x:Uid="@Background=Button.Background;BorderBrush=Window.Background">
+                                <dxsch:AppointmentStatusControl Background="#FFFCFCFC" Orientation="Vertical" ViewInfo="{TemplateBinding ViewInfo}" cs:id="AppointmentStatusControl_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\Appointments\VerticalAppointment.xaml;85;34" x:Uid="@Background=Button.Background">
                                     <dxschi:AppointmentBorder Background="{Binding ViewInfo.Status.Brush, RelativeSource={RelativeSource TemplatedParent}}" DefaultBorderThickness="0" ViewInfo="{TemplateBinding ViewInfo}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\Appointments\VerticalAppointment.xaml;89;38" />
                                 </dxsch:AppointmentStatusControl>
                             </dx:DXBorder>
@@ -60,8 +60,8 @@
                         </Grid>
                     </Grid>
                 </dxschi:AppointmentRoundedBorder>
-                <Rectangle Cursor="SizeNS" dxsch:SchedulerControl.HitTestType="AppointmentResizingTopEdge" dxsch:SchedulerControl.SelectableIntervalViewInfo="{TemplateBinding ViewInfo}" Fill="#1DDC2745" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="4" IsHitTestVisible="True" VerticalAlignment="Top" Visibility="{Binding Path=ViewInfo.CanResizeStart, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" cs:id="Rectangle_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\Appointments\VerticalAppointment.xaml;103;18" />
-                <Rectangle Cursor="SizeNS" dxsch:SchedulerControl.HitTestType="AppointmentResizingBottomEdge" dxsch:SchedulerControl.SelectableIntervalViewInfo="{TemplateBinding ViewInfo}" Fill="#1D8F2746" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="4" IsHitTestVisible="True" VerticalAlignment="Bottom" Visibility="{Binding Path=ViewInfo.CanResizeEnd, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" cs:id="Rectangle_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\Appointments\VerticalAppointment.xaml;114;18" />
+                <Rectangle Cursor="SizeNS" dxsch:SchedulerControl.HitTestType="AppointmentResizingTopEdge" dxsch:SchedulerControl.SelectableIntervalViewInfo="{TemplateBinding ViewInfo}" Fill="Transparent" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="4" IsHitTestVisible="True" VerticalAlignment="Top" Visibility="{Binding Path=ViewInfo.CanResizeStart, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" cs:id="Rectangle_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\Appointments\VerticalAppointment.xaml;103;18" />
+                <Rectangle Cursor="SizeNS" dxsch:SchedulerControl.HitTestType="AppointmentResizingBottomEdge" dxsch:SchedulerControl.SelectableIntervalViewInfo="{TemplateBinding ViewInfo}" Fill="Transparent" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="4" IsHitTestVisible="True" VerticalAlignment="Bottom" Visibility="{Binding Path=ViewInfo.CanResizeEnd, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" cs:id="Rectangle_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\Appointments\VerticalAppointment.xaml;114;18" />
             </Grid>
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup x:Name="DraggedStates">
@@ -81,7 +81,7 @@
     </ControlTemplate>
 
     <DataTemplate x:Key="{dxscht:SchedulerViewThemeKey ResourceKey=VerticalAppointmentContentTemplate}">
-        <Grid Background="#1DBE2747" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\Appointments\VerticalAppointment.xaml;150;10">
+        <Grid Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\Appointments\VerticalAppointment.xaml;150;10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />

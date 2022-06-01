@@ -8,16 +8,16 @@
 
     <ControlTemplate x:Key="ButtonTemplate" TargetType="{x:Type Button}">
         <Grid x:Name="PART_Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;21;10">
-            <dx:DXBorder x:Name="IsDefault" Background="#1D06277B" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;22;14">
+            <dx:DXBorder x:Name="IsDefault" Background="#FFFCFCFC" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;22;14" x:Uid="@Background=Button.Background">
                 <ContentPresenter x:Name="Content" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;25;18" />
             </dx:DXBorder>
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" TargetName="IsDefault" Value="#1D91277C" cs:id="Setter_0000" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0000" x:Uid="@Value=HoverBackground" />
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" TargetName="IsDefault" Value="#1DA0277D" cs:id="Setter_0001" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0001" x:Uid="@Value=SelectionBackground" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Opacity" TargetName="Content" Value="0.38" />
@@ -42,57 +42,57 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <ScrollBar Grid.Column="0" IsEnabled="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ScrollBarEnabled}" LargeChange="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ResourcesPerPage}" Maximum="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Maximum}" Minimum="0" Orientation="Horizontal" SmallChange="1" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=FirstVisibleResourceIndex, Mode=TwoWay}" ViewportSize="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ViewportSize}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;67;14" />
-            <StackPanel Background="#1DF3277E" Grid.Column="1" Orientation="Horizontal" cs:id="StackPanel_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;76;14">
+            <StackPanel Background="#FFFCFCFC" Grid.Column="1" Orientation="Horizontal" cs:id="StackPanel_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;76;14" x:Uid="@Background=Button.Background">
                 <Button x:Name="PART_FirstButton" Command="{TemplateBinding CommandFirst}" CommandParameter="{TemplateBinding SchedulerControl}" Height="18" Style="{TemplateBinding Property=ButtonFirstStyle}" Visibility="{Binding SchedulerControl.ResourceNavigator.ButtonFirst.Visible, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" Width="18" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;80;18">
                     <ToolTipService.ToolTip>
                         <ToolTip Content="{Binding Source={StaticResource SchedulerStringIdConverter}, ConverterParameter=Caption_FirstVisibleResources, Converter={StaticResource SchedulerStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;88;26" />
                     </ToolTipService.ToolTip>
-                    <Path Fill="#1DC2277F" Style="{StaticResource UIShape.Navigation.First}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;90;22" />
+                    <Path Fill="#FF444444" Style="{StaticResource UIShape.Navigation.First}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;90;22" x:Uid="@Fill=Foreground" />
                 </Button>
                 <Button x:Name="PART_PrevPageButton" Command="{TemplateBinding CommandPrevPage}" CommandParameter="{TemplateBinding SchedulerControl}" Height="18" Style="{TemplateBinding Property=ButtonPrevPageStyle}" Visibility="{Binding SchedulerControl.ResourceNavigator.ButtonPrevPage.Visible, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" Width="18" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;94;18">
                     <ToolTipService.ToolTip>
                         <ToolTip Content="{Binding Source={StaticResource SchedulerStringIdConverter}, ConverterParameter=Caption_PrevVisibleResources, Converter={StaticResource SchedulerStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;102;26" />
                     </ToolTipService.ToolTip>
-                    <Path Fill="#1D6E2780" Style="{StaticResource UIShape.Navigation.PrevPage}" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;104;22" />
+                    <Path Fill="#FF444444" Style="{StaticResource UIShape.Navigation.PrevPage}" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;104;22" x:Uid="@Fill=Foreground" />
                 </Button>
                 <Button x:Name="PART_PrevItemButton" Command="{TemplateBinding CommandPrev}" CommandParameter="{TemplateBinding SchedulerControl}" Height="18" Style="{TemplateBinding Property=ButtonPrevStyle}" Visibility="{Binding SchedulerControl.ResourceNavigator.ButtonPrev.Visible, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" Width="18" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;108;18">
                     <ToolTipService.ToolTip>
                         <ToolTip Content="{Binding Source={StaticResource SchedulerStringIdConverter}, ConverterParameter=Caption_PrevVisibleResources, Converter={StaticResource SchedulerStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;116;26" />
                     </ToolTipService.ToolTip>
-                    <Path Fill="#1D5F2781" Style="{StaticResource UIShape.Navigation.PrevItem}" cs:id="Path_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;118;22" />
+                    <Path Fill="#FF444444" Style="{StaticResource UIShape.Navigation.PrevItem}" cs:id="Path_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;118;22" x:Uid="@Fill=Foreground" />
                 </Button>
                 <Button x:Name="PART_NextItemButton" Command="{TemplateBinding CommandNext}" CommandParameter="{TemplateBinding SchedulerControl}" Height="18" Style="{TemplateBinding Property=ButtonNextStyle}" Visibility="{Binding SchedulerControl.ResourceNavigator.ButtonNext.Visible, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" Width="18" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;122;18">
                     <ToolTipService.ToolTip>
                         <ToolTip Content="{Binding Source={StaticResource SchedulerStringIdConverter}, ConverterParameter=Caption_NextVisibleResources, Converter={StaticResource SchedulerStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;130;26" />
                     </ToolTipService.ToolTip>
-                    <Path Fill="#1D0C2782" Style="{StaticResource UIShape.Navigation.NextItem}" cs:id="Path_0003" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;132;22" />
+                    <Path Fill="#FF444444" Style="{StaticResource UIShape.Navigation.NextItem}" cs:id="Path_0003" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;132;22" x:Uid="@Fill=Foreground" />
                 </Button>
                 <Button x:Name="PART_NextPageButton" Command="{TemplateBinding CommandNext}" CommandParameter="{TemplateBinding SchedulerControl}" Height="18" Style="{TemplateBinding Property=ButtonNextStyle}" Visibility="{Binding SchedulerControl.ResourceNavigator.ButtonNext.Visible, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" Width="18" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;136;18">
                     <ToolTipService.ToolTip>
                         <ToolTip Content="{Binding Source={StaticResource SchedulerStringIdConverter}, ConverterParameter=Caption_NextVisibleResources, Converter={StaticResource SchedulerStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;144;26" />
                     </ToolTipService.ToolTip>
-                    <Path Fill="#1D3D2783" Style="{StaticResource UIShape.Navigation.NextPage}" cs:id="Path_0004" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;146;22" />
+                    <Path Fill="#FF444444" Style="{StaticResource UIShape.Navigation.NextPage}" cs:id="Path_0004" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;146;22" x:Uid="@Fill=Foreground" />
                 </Button>
                 <Button x:Name="PART_LastButton" Command="{TemplateBinding CommandLast}" CommandParameter="{TemplateBinding SchedulerControl}" Height="18" Style="{TemplateBinding Property=ButtonLastStyle}" Visibility="{Binding SchedulerControl.ResourceNavigator.ButtonLast.Visible, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" Width="18" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;150;18">
                     <ToolTipService.ToolTip>
                         <ToolTip Content="{Binding Source={StaticResource SchedulerStringIdConverter}, ConverterParameter=Caption_LastVisibleResources, Converter={StaticResource SchedulerStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;158;26" />
                     </ToolTipService.ToolTip>
-                    <Path Fill="#1DAA2784" Style="{StaticResource UIShape.Navigation.Last}" cs:id="Path_0005" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;160;22" />
+                    <Path Fill="#FF444444" Style="{StaticResource UIShape.Navigation.Last}" cs:id="Path_0005" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;160;22" x:Uid="@Fill=Foreground" />
                 </Button>
                 <Button x:Name="PART_IncrementButton" Command="{TemplateBinding CommandIncCount}" CommandParameter="{TemplateBinding SchedulerControl}" Height="18" Style="{TemplateBinding Property=ButtonIncCountStyle}" Visibility="{Binding SchedulerControl.ResourceNavigator.ButtonIncCount.Visible, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" Width="18" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;164;18">
                     <ToolTipService.ToolTip>
                         <ToolTip Content="{Binding Source={StaticResource SchedulerStringIdConverter}, ConverterParameter=Caption_IncreaseVisibleResourcesCount, Converter={StaticResource SchedulerStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;172;26" />
                     </ToolTipService.ToolTip>
-                    <Path Fill="#1D9B2785" Style="{StaticResource UIShape.Navigation.Plus}" cs:id="Path_0006" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;174;22" />
+                    <Path Fill="#FF444444" Style="{StaticResource UIShape.Navigation.Plus}" cs:id="Path_0006" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;174;22" x:Uid="@Fill=Foreground" />
                 </Button>
                 <Button x:Name="PART_DecrementButton" Command="{TemplateBinding CommandDecCount}" CommandParameter="{TemplateBinding SchedulerControl}" Height="18" Style="{TemplateBinding Property=ButtonDecCountStyle}" Visibility="{Binding SchedulerControl.ResourceNavigator.ButtonDecCount.Visible, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" Width="18" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;178;18">
                     <ToolTipService.ToolTip>
                         <ToolTip Content="{Binding Source={StaticResource SchedulerStringIdConverter}, ConverterParameter=Caption_DecreaseVisibleResourcesCount, Converter={StaticResource SchedulerStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;186;26" />
                     </ToolTipService.ToolTip>
-                    <Path Fill="#1DC82786" Style="{StaticResource UIShape.Navigation.Minus}" cs:id="Path_0007" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;188;22" />
+                    <Path Fill="#FF444444" Style="{StaticResource UIShape.Navigation.Minus}" cs:id="Path_0007" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;188;22" x:Uid="@Fill=Foreground" />
                 </Button>
             </StackPanel>
-            <dx:DXBorder BorderBrush="#1DF92787" BorderThickness="1,1,0,0" Grid.Column="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;193;14" />
+            <dx:DXBorder BorderBrush="#FFC8C6C4" BorderThickness="1,1,0,0" Grid.Column="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;193;14" x:Uid="@BorderBrush=Border" />
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
@@ -123,7 +123,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <ScrollBar Grid.Row="0" IsEnabled="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ScrollBarEnabled}" LargeChange="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ResourcesPerPage}" Maximum="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Maximum}" Minimum="0" Orientation="Vertical" SmallChange="1" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=FirstVisibleResourceIndex, Mode=TwoWay}" ViewportSize="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ViewportSize}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;258;14" />
-            <StackPanel Background="#1DD72788" Grid.Row="1" Orientation="Vertical" cs:id="StackPanel_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;267;14">
+            <StackPanel Background="#FFFCFCFC" Grid.Row="1" Orientation="Vertical" cs:id="StackPanel_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;267;14" x:Uid="@Background=Button.Background">
                 <Button x:Name="PART_FirstButton" Command="{TemplateBinding CommandFirst}" CommandParameter="{TemplateBinding SchedulerControl}" Height="18" Style="{TemplateBinding Property=ButtonFirstStyle}" Visibility="{Binding SchedulerControl.ResourceNavigator.ButtonFirst.Visible, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" Width="18" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;271;18">
                     <Button.LayoutTransform>
                         <RotateTransform Angle="90" CenterX="0.5" CenterY="0.5" />
@@ -131,7 +131,7 @@
                     <ToolTipService.ToolTip>
                         <ToolTip Content="{Binding Source={StaticResource SchedulerStringIdConverter}, ConverterParameter=Caption_FirstVisibleResources, Converter={StaticResource SchedulerStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;284;26" />
                     </ToolTipService.ToolTip>
-                    <Path Fill="#1DE62789" Style="{StaticResource UIShape.Navigation.First}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;286;22" />
+                    <Path Fill="#FF444444" Style="{StaticResource UIShape.Navigation.First}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;286;22" x:Uid="@Fill=Foreground" />
                 </Button>
                 <Button x:Name="PART_PrevPageButton" Command="{TemplateBinding CommandPrevPage}" CommandParameter="{TemplateBinding SchedulerControl}" Height="18" Style="{TemplateBinding Property=ButtonPrevPageStyle}" Visibility="{Binding SchedulerControl.ResourceNavigator.ButtonPrevPage.Visible, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" Width="18" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;290;18">
                     <Button.LayoutTransform>
@@ -140,7 +140,7 @@
                     <ToolTipService.ToolTip>
                         <ToolTip Content="{Binding Source={StaticResource SchedulerStringIdConverter}, ConverterParameter=Caption_PrevVisibleResources, Converter={StaticResource SchedulerStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;303;26" />
                     </ToolTipService.ToolTip>
-                    <Path Fill="#1DB5278A" Style="{StaticResource UIShape.Navigation.PrevPage}" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;305;22" />
+                    <Path Fill="#FF444444" Style="{StaticResource UIShape.Navigation.PrevPage}" cs:id="Path_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;305;22" x:Uid="@Fill=Foreground" />
                 </Button>
                 <Button x:Name="PART_PrevItemButton" Command="{TemplateBinding CommandPrev}" CommandParameter="{TemplateBinding SchedulerControl}" Height="18" Style="{TemplateBinding Property=ButtonPrevStyle}" Visibility="{Binding SchedulerControl.ResourceNavigator.ButtonPrev.Visible, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" Width="18" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;309;18">
                     <Button.LayoutTransform>
@@ -149,7 +149,7 @@
                     <ToolTipService.ToolTip>
                         <ToolTip Content="{Binding Source={StaticResource SchedulerStringIdConverter}, ConverterParameter=Caption_PrevVisibleResources, Converter={StaticResource SchedulerStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;322;26" />
                     </ToolTipService.ToolTip>
-                    <Path Fill="#1D84278B" Style="{StaticResource UIShape.Navigation.PrevItem}" cs:id="Path_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;324;22" />
+                    <Path Fill="#FF444444" Style="{StaticResource UIShape.Navigation.PrevItem}" cs:id="Path_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;324;22" x:Uid="@Fill=Foreground" />
                 </Button>
                 <Button x:Name="PART_NextItemButton" Command="{TemplateBinding CommandNext}" CommandParameter="{TemplateBinding SchedulerControl}" Height="18" Style="{TemplateBinding Property=ButtonNextStyle}" Visibility="{Binding SchedulerControl.ResourceNavigator.ButtonNext.Visible, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" Width="18" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;328;18">
                     <Button.LayoutTransform>
@@ -158,7 +158,7 @@
                     <ToolTipService.ToolTip>
                         <ToolTip Content="{Binding Source={StaticResource SchedulerStringIdConverter}, ConverterParameter=Caption_NextVisibleResources, Converter={StaticResource SchedulerStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;341;26" />
                     </ToolTipService.ToolTip>
-                    <Path Fill="#1D13278C" Style="{StaticResource UIShape.Navigation.NextItem}" cs:id="Path_0003" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;343;22" />
+                    <Path Fill="#FF444444" Style="{StaticResource UIShape.Navigation.NextItem}" cs:id="Path_0003" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;343;22" x:Uid="@Fill=Foreground" />
                 </Button>
                 <Button x:Name="PART_NextPageButton" Command="{TemplateBinding CommandNext}" CommandParameter="{TemplateBinding SchedulerControl}" Height="18" Style="{TemplateBinding Property=ButtonNextStyle}" Visibility="{Binding SchedulerControl.ResourceNavigator.ButtonNext.Visible, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" Width="18" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;347;18">
                     <Button.LayoutTransform>
@@ -167,7 +167,7 @@
                     <ToolTipService.ToolTip>
                         <ToolTip Content="{Binding Source={StaticResource SchedulerStringIdConverter}, ConverterParameter=Caption_NextVisibleResources, Converter={StaticResource SchedulerStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;360;26" />
                     </ToolTipService.ToolTip>
-                    <Path Fill="#1D22278D" Style="{StaticResource UIShape.Navigation.NextPage}" cs:id="Path_0004" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;362;22" />
+                    <Path Fill="#FF444444" Style="{StaticResource UIShape.Navigation.NextPage}" cs:id="Path_0004" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;362;22" x:Uid="@Fill=Foreground" />
                 </Button>
                 <Button x:Name="PART_LastButton" Command="{TemplateBinding CommandLast}" CommandParameter="{TemplateBinding SchedulerControl}" Height="18" Style="{TemplateBinding Property=ButtonLastStyle}" Visibility="{Binding SchedulerControl.ResourceNavigator.ButtonLast.Visible, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" Width="18" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;366;18">
                     <Button.LayoutTransform>
@@ -176,7 +176,7 @@
                     <ToolTipService.ToolTip>
                         <ToolTip Content="{Binding Source={StaticResource SchedulerStringIdConverter}, ConverterParameter=Caption_LastVisibleResources, Converter={StaticResource SchedulerStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;379;26" />
                     </ToolTipService.ToolTip>
-                    <Path Fill="#1D71278E" Style="{StaticResource UIShape.Navigation.Last}" cs:id="Path_0005" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;381;22" />
+                    <Path Fill="#FF444444" Style="{StaticResource UIShape.Navigation.Last}" cs:id="Path_0005" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;381;22" x:Uid="@Fill=Foreground" />
                 </Button>
                 <Button x:Name="PART_IncrementButton" Command="{TemplateBinding CommandIncCount}" CommandParameter="{TemplateBinding SchedulerControl}" Height="18" Style="{TemplateBinding Property=ButtonIncCountStyle}" Visibility="{Binding SchedulerControl.ResourceNavigator.ButtonIncCount.Visible, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" Width="18" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;385;18">
                     <Button.LayoutTransform>
@@ -185,16 +185,16 @@
                     <ToolTipService.ToolTip>
                         <ToolTip Content="{Binding Source={StaticResource SchedulerStringIdConverter}, ConverterParameter=Caption_IncreaseVisibleResourcesCount, Converter={StaticResource SchedulerStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;398;26" />
                     </ToolTipService.ToolTip>
-                    <Path Fill="#1D40278F" Style="{StaticResource UIShape.Navigation.Plus}" cs:id="Path_0006" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;400;22" />
+                    <Path Fill="#FF444444" Style="{StaticResource UIShape.Navigation.Plus}" cs:id="Path_0006" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;400;22" x:Uid="@Fill=Foreground" />
                 </Button>
                 <Button x:Name="PART_DecrementButton" Command="{TemplateBinding CommandDecCount}" CommandParameter="{TemplateBinding SchedulerControl}" Height="18" Style="{TemplateBinding Property=ButtonDecCountStyle}" Visibility="{Binding SchedulerControl.ResourceNavigator.ButtonDecCount.Visible, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" Width="18" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;404;18">
                     <ToolTipService.ToolTip>
                         <ToolTip Content="{Binding Source={StaticResource SchedulerStringIdConverter}, ConverterParameter=Caption_DecreaseVisibleResourcesCount, Converter={StaticResource SchedulerStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;412;26" />
                     </ToolTipService.ToolTip>
-                    <Path Fill="#1D2D2790" Style="{StaticResource UIShape.Navigation.Minus}" cs:id="Path_0007" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;414;22" />
+                    <Path Fill="#FF444444" Style="{StaticResource UIShape.Navigation.Minus}" cs:id="Path_0007" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;414;22" x:Uid="@Fill=Foreground" />
                 </Button>
             </StackPanel>
-            <dx:DXBorder BorderBrush="#1D1C2791" BorderThickness="1,1,0,0" Grid.Row="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;419;14" />
+            <dx:DXBorder BorderBrush="#FFC8C6C4" BorderThickness="1,1,0,0" Grid.Row="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduler\Office2019White\ResourceNavigator.xaml;419;14" x:Uid="@BorderBrush=Border" />
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">

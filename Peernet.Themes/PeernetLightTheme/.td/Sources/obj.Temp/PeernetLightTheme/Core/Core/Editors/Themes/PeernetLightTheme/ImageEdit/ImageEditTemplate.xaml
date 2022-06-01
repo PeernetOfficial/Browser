@@ -8,14 +8,14 @@
     
 
     <ControlTemplate x:Key="{dxet:ImageEditThemeKey ResourceKey=EditTemplate}">
-        <Grid x:Name="PART_Container" Background="#1D9E0585" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\ImageEdit\ImageEditTemplate.xaml;23;10">
+        <Grid x:Name="PART_Container" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\ImageEdit\ImageEditTemplate.xaml;23;10">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Image x:Name="PART_Editor" Effect="{Binding Path=(dxe:BaseEdit.OwnerEdit).ImageEffect, RelativeSource={RelativeSource TemplatedParent}}" Margin="{Binding Path=(dxe:BaseEdit.OwnerEdit).Padding, RelativeSource={RelativeSource TemplatedParent}}" Source="{Binding Path=(dxe:BaseEdit.OwnerEdit).Source, RelativeSource={RelativeSource TemplatedParent}}" Stretch="{Binding Path=(dxe:BaseEdit.OwnerEdit).Stretch, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\ImageEdit\ImageEditTemplate.xaml;30;14" />
             <ContentControl dxcore_unique_xmlns:FocusHelper2.Focusable="False" Template="{Binding Path=(dxe:BaseEdit.OwnerEdit).EmptyContentTemplate, RelativeSource={RelativeSource TemplatedParent}}" Visibility="{Binding Path=(dxe:BaseEdit.OwnerEdit).HasImage, Converter={StaticResource inverseBoolToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\ImageEdit\ImageEditTemplate.xaml;35;14" />
-            <dxe:FlyoutControl x:Name="PART_MenuFlyout" AnimationDuration="00:00:00.1" Background="#1DCD0586" BorderThickness="0" HorizontalAlignment="Center" OpenOnHover="True" PlacementTarget="{Binding Path=(dxe:BaseEdit.OwnerEdit)}" VerticalAlignment="Bottom" cs:id="FlyoutControl_0000">
+            <dxe:FlyoutControl x:Name="PART_MenuFlyout" AnimationDuration="00:00:00.1" Background="Transparent" BorderThickness="0" HorizontalAlignment="Center" OpenOnHover="True" PlacementTarget="{Binding Path=(dxe:BaseEdit.OwnerEdit)}" VerticalAlignment="Bottom" cs:id="FlyoutControl_0000">
                 <dxe:FlyoutControl.Settings>
                     <dxe:FlyInSettings />
                 </dxe:FlyoutControl.Settings>
@@ -26,7 +26,7 @@
                     <ContentControl Focusable="False" Template="{Binding Path=(dxe:BaseEdit.OwnerEdit).MenuTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\ImageEdit\ImageEditTemplate.xaml;56;22" />
                 </ContentControl>
             </dxe:FlyoutControl>
-            <dx:DXBorder x:Name="PART_InplaceMenu" Background="#1DFC0587" Grid.Row="1" Padding="3" Visibility="{Binding Path=(dxe:BaseEdit.OwnerEdit).(dxe:ActualPropertyProvider.Properties).InplaceMenuVisibility, RelativeSource={RelativeSource TemplatedParent}}" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\ImageEdit\ImageEditTemplate.xaml;59;14">
+            <dx:DXBorder x:Name="PART_InplaceMenu" Background="#FF106EBE" Grid.Row="1" Padding="3" Visibility="{Binding Path=(dxe:BaseEdit.OwnerEdit).(dxe:ActualPropertyProvider.Properties).InplaceMenuVisibility, RelativeSource={RelativeSource TemplatedParent}}" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\ImageEdit\ImageEditTemplate.xaml;59;14" x:Uid="@Background=Backstage.Window.Background">
                 <ContentControl Template="{Binding Path=(dxe:BaseEdit.OwnerEdit).MenuTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\ImageEdit\ImageEditTemplate.xaml;65;18" />
             </dx:DXBorder>
         </Grid>

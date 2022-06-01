@@ -19,7 +19,7 @@
                         <Storyboard>
                             <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetName="itemBackground" Storyboard.TargetProperty="Opacity" To="1" />
                             <DoubleAnimation Duration="0:0:0.0" Storyboard.TargetName="foregroundColor" Storyboard.TargetProperty="Opacity" To="1" />
-                            <ColorAnimation Duration="0:0:0.2" Storyboard.TargetName="foregroundColor" Storyboard.TargetProperty="Color" To="#1D430664" cs:id="ColorAnimation_0000" />
+                            <ColorAnimation Duration="0:0:0.2" Storyboard.TargetName="foregroundColor" Storyboard.TargetProperty="Color" To="#FF444444" cs:id="ColorAnimation_0000" x:Uid="@To=Foreground" />
                         </Storyboard>
                     </BeginStoryboard>
                 </MultiDataTrigger.EnterActions>
@@ -37,7 +37,7 @@
                         <Storyboard>
                             <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetName="itemBackground" Storyboard.TargetProperty="Opacity" To="0" />
                             <DoubleAnimation Duration="0:0:0.0" Storyboard.TargetName="foregroundColor" Storyboard.TargetProperty="Opacity" To="0.8" />
-                            <ColorAnimation Duration="0:0:0.2" Storyboard.TargetName="foregroundColor" Storyboard.TargetProperty="Color" To="#1D720665" cs:id="ColorAnimation_0001" />
+                            <ColorAnimation Duration="0:0:0.2" Storyboard.TargetName="foregroundColor" Storyboard.TargetProperty="Color" To="#FF444444" cs:id="ColorAnimation_0001" x:Uid="@To=Foreground" />
                         </Storyboard>
                     </BeginStoryboard>
                 </MultiDataTrigger.EnterActions>
@@ -55,7 +55,7 @@
                         <Storyboard>
                             <DoubleAnimation Duration="0:0:0.0" Storyboard.TargetName="itemBackground" Storyboard.TargetProperty="Opacity" To="1" />
                             <DoubleAnimation Duration="0:0:0.0" Storyboard.TargetName="foregroundColor" Storyboard.TargetProperty="Opacity" To="1" />
-                            <ColorAnimation Duration="0:0:0.0" Storyboard.TargetName="foregroundColor" Storyboard.TargetProperty="Color" To="#1D210666" cs:id="ColorAnimation_0002" />
+                            <ColorAnimation Duration="0:0:0.0" Storyboard.TargetName="foregroundColor" Storyboard.TargetProperty="Color" To="#FF444444" cs:id="ColorAnimation_0002" x:Uid="@To=Foreground" />
                         </Storyboard>
                     </BeginStoryboard>
                 </MultiDataTrigger.EnterActions>
@@ -73,7 +73,7 @@
                         <Storyboard>
                             <DoubleAnimation Duration="0:0:0.0" Storyboard.TargetName="itemBackground" Storyboard.TargetProperty="Opacity" To="0" />
                             <DoubleAnimation Duration="0:0:0.0" Storyboard.TargetName="foregroundColor" Storyboard.TargetProperty="Opacity" To="0.8" />
-                            <ColorAnimation Duration="0:0:0.0" Storyboard.TargetName="foregroundColor" Storyboard.TargetProperty="Color" To="#1D100667" cs:id="ColorAnimation_0003" />
+                            <ColorAnimation Duration="0:0:0.0" Storyboard.TargetName="foregroundColor" Storyboard.TargetProperty="Color" To="#FF444444" cs:id="ColorAnimation_0003" x:Uid="@To=Foreground" />
                         </Storyboard>
                     </BeginStoryboard>
                 </MultiDataTrigger.EnterActions>
@@ -82,28 +82,28 @@
                 </MultiDataTrigger.ExitActions>
             </MultiDataTrigger>
             <Trigger Property="IsActive" Value="True">
-                <Setter Property="TextBlock.Foreground" TargetName="content" Value="#1D3E0668" cs:id="Setter_0000" />
+                <Setter Property="TextBlock.Foreground" TargetName="content" Value="#FF444444" cs:id="Setter_0000" x:Uid="@Value=Foreground" />
             </Trigger>
         </ControlTemplate.Triggers>
-        <Grid Background="#1D0F0669" Opacity="{Binding Path=IsFake, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource InvertedBoolToDoubleConverter}}" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateTimePicker\DateTimePickerControl.xaml;142;10">
+        <Grid Background="Transparent" Opacity="{Binding Path=IsFake, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource InvertedBoolToDoubleConverter}}" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateTimePicker\DateTimePickerControl.xaml;142;10">
             <Grid x:Name="itemBackground" Margin="{TemplateBinding Padding}" Opacity="0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateTimePicker\DateTimePickerControl.xaml;145;14">
-                <dx:DXBorder x:Name="activeSelectedBorder" Background="#1D5C066A" Opacity="{Binding Path=IsActive, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToDoubleConverter}}" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateTimePicker\DateTimePickerControl.xaml;148;18">
-                    <dx:DXBorder x:Name="activeBackground" Background="#1D6D066B" Margin="1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateTimePicker\DateTimePickerControl.xaml;152;22" />
+                <dx:DXBorder x:Name="activeSelectedBorder" Background="#FFDEECF9" Opacity="{Binding Path=IsActive, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToDoubleConverter}}" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateTimePicker\DateTimePickerControl.xaml;148;18" x:Uid="@Background=SelectionBackground">
+                    <dx:DXBorder x:Name="activeBackground" Background="#FFDEECF9" Margin="1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateTimePicker\DateTimePickerControl.xaml;152;22" x:Uid="@Background=SelectionBackground" />
                 </dx:DXBorder>
-                <dx:DXBorder x:Name="selectedBorder" Background="#1DFA066C" Opacity="{Binding Path=IsActive, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource InvertedBoolToDoubleConverter}}" cs:id="Border_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateTimePicker\DateTimePickerControl.xaml;157;18">
-                    <dx:DXBorder x:Name="background" Background="#1DCB066D" Margin="1" cs:id="Border_0003" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateTimePicker\DateTimePickerControl.xaml;161;22" />
+                <dx:DXBorder x:Name="selectedBorder" Background="#FFEFF6FC" Opacity="{Binding Path=IsActive, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource InvertedBoolToDoubleConverter}}" cs:id="Border_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateTimePicker\DateTimePickerControl.xaml;157;18" x:Uid="@Background=HoverBackground">
+                    <dx:DXBorder x:Name="background" Background="#FFEFF6FC" Margin="1" cs:id="Border_0003" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateTimePicker\DateTimePickerControl.xaml;161;22" x:Uid="@Background=HoverBackground" />
                 </dx:DXBorder>
             </Grid>
             <ContentPresenter x:Name="content" Margin="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateTimePicker\DateTimePickerControl.xaml;167;14">
                 <TextBlock.Foreground>
-                    <SolidColorBrush x:Name="foregroundColor" Color="#1D98066E" cs:id="SolidColorBrush_0000" />
+                    <SolidColorBrush x:Name="foregroundColor" Color="#FF444444" cs:id="SolidColorBrush_0000" x:Uid="@Color=Foreground" />
                 </TextBlock.Foreground>
             </ContentPresenter>
         </Grid>
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxet:DateTimePickerThemeKey ResourceKey=Template}">
-        <ItemsControl x:Name="ItemsControl" Background="#1DA9066F" BorderBrush="#1DC40670" dxcore_unique_xmlns:FocusHelper2.Focusable="False" HorizontalAlignment="Center" ItemTemplate="{DynamicResource {dxet:DateTimePickerThemeKey ResourceKey=DateTimePickerItemTemplate}}" VirtualizingStackPanel.VirtualizationMode="Recycling" cs:id="ItemsControl_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateTimePicker\DateTimePickerControl.xaml;178;10">
+        <ItemsControl x:Name="ItemsControl" Background="#FFFFFFFF" BorderBrush="#FFC8C6C4" dxcore_unique_xmlns:FocusHelper2.Focusable="False" HorizontalAlignment="Center" ItemTemplate="{DynamicResource {dxet:DateTimePickerThemeKey ResourceKey=DateTimePickerItemTemplate}}" VirtualizingStackPanel.VirtualizationMode="Recycling" cs:id="ItemsControl_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateTimePicker\DateTimePickerControl.xaml;178;10" x:Uid="@Background=Editor.Background;BorderBrush=Border">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VirtualizingStackPanel Orientation="Horizontal" VirtualizingStackPanel.VirtualizationMode="Recycling" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateTimePicker\DateTimePickerControl.xaml;188;22" />
@@ -115,20 +115,20 @@
     <ControlTemplate x:Key="{dxet:DateTimePickerThemeKey ResourceKey=SelectorTemplate}" TargetType="{x:Type dxe:DateTimePickerSelector}">
         <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateTimePicker\DateTimePickerControl.xaml;195;10">
             <Grid x:Name="SelectedItemContainer" HorizontalAlignment="Center" Opacity="{Binding Path=IsAnimated, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource InvertedBoolToDoubleConverter}}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateTimePicker\DateTimePickerControl.xaml;196;14">
-                <dxe:DateTimePickerItem x:Name="SelectedItemContainerData" Content="{Binding Path=SelectedItem, RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{Binding Path=SelectedItemTemplate, RelativeSource={RelativeSource TemplatedParent}}" Foreground="#1DF50671" IsActive="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" IsExpanded="True" cs:id="DateTimePickerItem_0000" />
+                <dxe:DateTimePickerItem x:Name="SelectedItemContainerData" Content="{Binding Path=SelectedItem, RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{Binding Path=SelectedItemTemplate, RelativeSource={RelativeSource TemplatedParent}}" Foreground="#FF444444" IsActive="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" IsExpanded="True" cs:id="DateTimePickerItem_0000" x:Uid="@Foreground=Foreground" />
             </Grid>
             <Grid x:Name="pickerSelectorContainer" HorizontalAlignment="Center" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateTimePicker\DateTimePickerControl.xaml;208;14">
                 <dxe:DXScrollViewer CanContentScroll="True" dxcore_unique_xmlns:FocusHelper2.Focusable="False" IsDeferredScrollingEnabled="True" IsManipulationEnabled="False" PanningMode="None" VerticalScrollBarVisibility="Hidden" VerticalSnapPointsAlignment="Near">
                     <dxe:DateTimePickerPanel x:Name="pickerPanel" />
                 </dxe:DXScrollViewer>
                 <Grid x:Name="selectedItemCaption" HorizontalAlignment="Center" Opacity="{Binding Path=IsAnimated, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource InvertedBoolToDoubleConverter}}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateTimePicker\DateTimePickerControl.xaml;220;18">
-                    <TextBlock x:Name="tb" Foreground="#1DA60672" IsHitTestVisible="False" Margin="0,40,0,0" Opacity="0.62" Text="{Binding Path=SelectedItem, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource DateTimePickerDataCaptionConverter}}" cs:id="TextBlock_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateTimePicker\DateTimePickerControl.xaml;224;22" />
+                    <TextBlock x:Name="tb" Foreground="#FF444444" IsHitTestVisible="False" Margin="0,40,0,0" Opacity="0.62" Text="{Binding Path=SelectedItem, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource DateTimePickerDataCaptionConverter}}" cs:id="TextBlock_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\DateTimePicker\DateTimePickerControl.xaml;224;22" x:Uid="@Foreground=Foreground" />
                 </Grid>
             </Grid>
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsExpanded" Value="True">
-                <Setter Property="Foreground" TargetName="tb" Value="#1D970673" cs:id="Setter_0000" />
+                <Setter Property="Foreground" TargetName="tb" Value="#FF444444" cs:id="Setter_0000" x:Uid="@Value=Foreground" />
                 <Setter Property="Opacity" TargetName="tb" Value="1" />
             </Trigger>
         </ControlTemplate.Triggers>

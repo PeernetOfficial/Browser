@@ -7,11 +7,11 @@
     
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=System.Windows.Controls.TabItem}" TargetType="{x:Type TabItem}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Office2019White\StandardControls\TabItem.xaml;17;6" /><Setter Property="Background" Value="#1DC7213D" cs:id="Setter_0000" />
-        <Setter Property="BorderBrush" Value="#1D94213E" cs:id="Setter_0001" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Office2019White\StandardControls\TabItem.xaml;17;6" /><Setter Property="Background" Value="Transparent" cs:id="Setter_0000" />
+        <Setter Property="BorderBrush" Value="Transparent" cs:id="Setter_0001" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="Foreground" Value="#1DA5213F" cs:id="Setter_0002" />
+        <Setter Property="Foreground" Value="#FF444444" cs:id="Setter_0002" x:Uid="@Value=Foreground" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="Padding" Value="12,3,12,3" />
@@ -20,18 +20,18 @@
                 <ControlTemplate TargetType="{x:Type TabItem}">
                     <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\TabItem.xaml;35;22">
                         <dx:DXBorder x:Name="IsDefault" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\TabItem.xaml;36;26" />
-                        <dx:DXBorder x:Name="IsFocused" Background="#1D732140" Visibility="Collapsed" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\TabItem.xaml;40;26" />
+                        <dx:DXBorder x:Name="IsFocused" Background="#FF106EBE" Visibility="Collapsed" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\TabItem.xaml;40;26" x:Uid="@Background=Backstage.Window.Background" />
                         <ContentPresenter x:Name="Content" ContentSource="Header" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" TextElement.Foreground="{TemplateBinding Foreground}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\StandardControls\TabItem.xaml;44;26" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="TextElement.Foreground" TargetName="Content" Value="#1D422141" cs:id="Setter_0007" />
-                            <Setter Property="Background" TargetName="IsDefault" Value="#1D112142" cs:id="Setter_0003" />
+                            <Setter Property="TextElement.Foreground" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0007" x:Uid="@Value=HoverForeground" />
+                            <Setter Property="Background" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0003" x:Uid="@Value=HoverBackground" />
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="TextElement.Foreground" TargetName="Content" Value="#1D202143" cs:id="Setter_0008" />
-                            <Setter Property="Background" TargetName="IsDefault" Value="#1DB72144" cs:id="Setter_0004" />
-                            <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1D862145" cs:id="Setter_0005" />
+                            <Setter Property="TextElement.Foreground" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0008" x:Uid="@Value=SelectionForeground" />
+                            <Setter Property="Background" TargetName="IsDefault" Value="#FFFFFFFF" cs:id="Setter_0004" x:Uid="@Value=Control.Background" />
+                            <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFC8C6C4" cs:id="Setter_0005" x:Uid="@Value=Border" />
                         </Trigger>
                         <Trigger Property="TabStripPlacement" Value="Top">
                             <Setter Property="BorderThickness" TargetName="IsDefault" Value="1,1,1,0" />
@@ -54,7 +54,7 @@
                                 <Condition Property="IsSelected" Value="True" />
                                 <Condition Property="TabStripPlacement" Value="Top" />
                             </MultiTrigger.Conditions>
-                            <Setter Property="TextElement.Foreground" TargetName="Content" Value="#1DD52146" cs:id="Setter_0009" />
+                            <Setter Property="TextElement.Foreground" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0009" x:Uid="@Value=Focused" />
                             <Setter Property="BorderThickness" TargetName="IsDefault" Value="1,1,1,0" />
                             <Setter Property="Margin" TargetName="IsDefault" Value="0,0,0,-1" />
                         </MultiTrigger>
@@ -63,7 +63,7 @@
                                 <Condition Property="IsSelected" Value="True" />
                                 <Condition Property="TabStripPlacement" Value="Bottom" />
                             </MultiTrigger.Conditions>
-                            <Setter Property="TextElement.Foreground" TargetName="Content" Value="#1DE42147" cs:id="Setter_0010" />
+                            <Setter Property="TextElement.Foreground" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0010" x:Uid="@Value=Focused" />
                             <Setter Property="BorderThickness" TargetName="IsDefault" Value="1,0,1,1" />
                             <Setter Property="Margin" TargetName="IsDefault" Value="0,-1,0,0" />
                         </MultiTrigger>
@@ -72,7 +72,7 @@
                                 <Condition Property="IsSelected" Value="True" />
                                 <Condition Property="TabStripPlacement" Value="Left" />
                             </MultiTrigger.Conditions>
-                            <Setter Property="TextElement.Foreground" TargetName="Content" Value="#1DCA2148" cs:id="Setter_0011" />
+                            <Setter Property="TextElement.Foreground" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0011" x:Uid="@Value=Focused" />
                             <Setter Property="BorderThickness" TargetName="IsDefault" Value="1,1,0,1" />
                             <Setter Property="Margin" TargetName="IsDefault" Value="0,0,-1,0" />
                         </MultiTrigger>
@@ -81,7 +81,7 @@
                                 <Condition Property="IsSelected" Value="True" />
                                 <Condition Property="TabStripPlacement" Value="Right" />
                             </MultiTrigger.Conditions>
-                            <Setter Property="TextElement.Foreground" TargetName="Content" Value="#1DFB2149" cs:id="Setter_0012" />
+                            <Setter Property="TextElement.Foreground" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0012" x:Uid="@Value=Focused" />
                             <Setter Property="BorderThickness" TargetName="IsDefault" Value="0,1,1,1" />
                             <Setter Property="Margin" TargetName="IsDefault" Value="-1,0,0,0" />
                         </MultiTrigger>
@@ -90,15 +90,15 @@
                                 <Condition Property="IsSelected" Value="False" />
                                 <Condition Property="IsMouseOver" Value="True" />
                             </MultiTrigger.Conditions>
-                            <Setter Property="TextElement.Foreground" TargetName="Content" Value="#1DA8214A" cs:id="Setter_0013" />
-                            <Setter Property="Background" TargetName="IsDefault" Value="#1D99214B" cs:id="Setter_0006" />
+                            <Setter Property="TextElement.Foreground" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0013" x:Uid="@Value=HoverForeground" />
+                            <Setter Property="Background" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0006" x:Uid="@Value=HoverBackground" />
                         </MultiTrigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsFocused" Value="True" />
                                 <Condition Property="TabStripPlacement" Value="Top" />
                             </MultiTrigger.Conditions>
-                            <Setter Property="TextElement.Foreground" TargetName="Content" Value="#1D0E214C" cs:id="Setter_0014" />
+                            <Setter Property="TextElement.Foreground" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0014" x:Uid="@Value=Focused" />
                             <Setter Property="Height" TargetName="IsFocused" Value="2" />
                             <Setter Property="Visibility" TargetName="IsFocused" Value="Visible" />
                             <Setter Property="VerticalAlignment" TargetName="IsFocused" Value="Top" />
@@ -108,7 +108,7 @@
                                 <Condition Property="IsFocused" Value="True" />
                                 <Condition Property="TabStripPlacement" Value="Bottom" />
                             </MultiTrigger.Conditions>
-                            <Setter Property="TextElement.Foreground" TargetName="Content" Value="#1D3F214D" cs:id="Setter_0015" />
+                            <Setter Property="TextElement.Foreground" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0015" x:Uid="@Value=Focused" />
                             <Setter Property="Height" TargetName="IsFocused" Value="2" />
                             <Setter Property="Visibility" TargetName="IsFocused" Value="Visible" />
                             <Setter Property="VerticalAlignment" TargetName="IsFocused" Value="Bottom" />
@@ -118,7 +118,7 @@
                                 <Condition Property="IsFocused" Value="True" />
                                 <Condition Property="TabStripPlacement" Value="Left" />
                             </MultiTrigger.Conditions>
-                            <Setter Property="TextElement.Foreground" TargetName="Content" Value="#1D6C214E" cs:id="Setter_0016" />
+                            <Setter Property="TextElement.Foreground" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0016" x:Uid="@Value=Focused" />
                             <Setter Property="HorizontalAlignment" TargetName="IsFocused" Value="Left" />
                             <Setter Property="Visibility" TargetName="IsFocused" Value="Visible" />
                             <Setter Property="Width" TargetName="IsFocused" Value="2" />
@@ -128,7 +128,7 @@
                                 <Condition Property="IsFocused" Value="True" />
                                 <Condition Property="TabStripPlacement" Value="Right" />
                             </MultiTrigger.Conditions>
-                            <Setter Property="TextElement.Foreground" TargetName="Content" Value="#1D5D214F" cs:id="Setter_0017" />
+                            <Setter Property="TextElement.Foreground" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0017" x:Uid="@Value=Focused" />
                             <Setter Property="HorizontalAlignment" TargetName="IsFocused" Value="Right" />
                             <Setter Property="Visibility" TargetName="IsFocused" Value="Visible" />
                             <Setter Property="Width" TargetName="IsFocused" Value="2" />

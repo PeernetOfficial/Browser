@@ -10,9 +10,9 @@
     <dxi:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=RenderCheckBoxTemplate}">
         <dxi:RenderPanel Name="CheckBox" LayoutProvider="{dxi:DockPanelLayoutProvider LastChildFill=True}" ThemeInfo="Core\Core\Editors\Themes\Office2019White\InplaceBaseEdit\InplaceCheckBox.xaml;22;10">
             <dxi:RenderPanel Name="Field" Height="14" Margin="0,3" ShouldCalcDpiAwareThickness="False" Width="14" ThemeInfo="Core\Core\Editors\Themes\Office2019White\InplaceBaseEdit\InplaceCheckBox.xaml;23;14">
-                <dxi:RenderBorder Name="IsDefault" Background="#1D0A068D" BorderBrush="#1D59068E" BorderThickness="1" cs:id="RenderBorder_0001" ThemeInfo="Core\Core\Editors\Themes\Office2019White\InplaceBaseEdit\InplaceCheckBox.xaml;28;18" />
-                <dxi:RenderBorder Name="Indeterminate" Background="#1D68068F" Height="8" Visibility="Collapsed" Width="8" cs:id="RenderBorder_0000" ThemeInfo="Core\Core\Editors\Themes\Office2019White\InplaceBaseEdit\InplaceCheckBox.xaml;33;18" />
-                <dxi:RenderPath Name="Checked" Data="F1 M 0,3 0,5 3,8 8,3 8,1 3,6 0,3 Z " Fill="#1D050690" Height="8" Stretch="Fill" Visibility="Collapsed" Width="8" cs:id="RenderPath_0000" ThemeInfo="Core\Core\Editors\Themes\Office2019White\InplaceBaseEdit\InplaceCheckBox.xaml;39;18" />
+                <dxi:RenderBorder Name="IsDefault" Background="#FFFFFFFF" BorderBrush="#FFC8C6C4" BorderThickness="1" cs:id="RenderBorder_0001" ThemeInfo="Core\Core\Editors\Themes\Office2019White\InplaceBaseEdit\InplaceCheckBox.xaml;28;18" x:Uid="@Background=Editor.Background;BorderBrush=Border" />
+                <dxi:RenderBorder Name="Indeterminate" Background="#FF444444" Height="8" Visibility="Collapsed" Width="8" cs:id="RenderBorder_0000" ThemeInfo="Core\Core\Editors\Themes\Office2019White\InplaceBaseEdit\InplaceCheckBox.xaml;33;18" x:Uid="@Background=Foreground" />
+                <dxi:RenderPath Name="Checked" Data="F1 M 0,3 0,5 3,8 8,3 8,1 3,6 0,3 Z " Fill="#FF444444" Height="8" Stretch="Fill" Visibility="Collapsed" Width="8" cs:id="RenderPath_0000" ThemeInfo="Core\Core\Editors\Themes\Office2019White\InplaceBaseEdit\InplaceCheckBox.xaml;39;18" x:Uid="@Fill=Foreground" />
             </dxi:RenderPanel>
             <dxi:RenderContentPresenter Name="PART_ContentPresenter" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Office2019White\InplaceBaseEdit\InplaceCheckBox.xaml;48;14" />
         </dxi:RenderPanel>
@@ -20,10 +20,10 @@
             <dxi:RenderStateGroup Name="CommonStates">
                 <dxi:RenderStateTrigger Name="Normal" />
                 <dxi:RenderStateTrigger Name="MouseOver">
-                    <dxi:RenderSetter Property="Background" TargetName="IsDefault" Value="#1D340691" cs:id="RenderSetter_0000" />
+                    <dxi:RenderSetter Property="Background" TargetName="IsDefault" Value="#FFFFFFFF" cs:id="RenderSetter_0000" x:Uid="@Value=Editor.Background" />
                 </dxi:RenderStateTrigger>
                 <dxi:RenderStateTrigger Name="Pressed">
-                    <dxi:RenderSetter Property="Background" TargetName="IsDefault" Value="#1D670692" cs:id="RenderSetter_0001" />
+                    <dxi:RenderSetter Property="Background" TargetName="IsDefault" Value="#FFFFFFFF" cs:id="RenderSetter_0001" x:Uid="@Value=Editor.Background" />
                 </dxi:RenderStateTrigger>
                 <dxi:RenderStateTrigger Name="Disabled">
                     <dxi:RenderSetter Property="Opacity" TargetName="CheckBox" Value="0.38" />
@@ -42,7 +42,7 @@
             <dxi:RenderStateGroup Name="FocusStates">
                 <dxi:RenderStateTrigger Name="Unfocused" />
                 <dxi:RenderStateTrigger Name="Focused">
-                    <dxi:RenderSetter Property="BorderBrush" TargetName="IsDefault" Value="#1D560693" cs:id="RenderSetter_0002" />
+                    <dxi:RenderSetter Property="BorderBrush" TargetName="IsDefault" Value="#FF444444" cs:id="RenderSetter_0002" x:Uid="@Value=Foreground" />
                 </dxi:RenderStateTrigger>
             </dxi:RenderStateGroup>
             <dxi:RenderStateGroup Name="ContentStates">

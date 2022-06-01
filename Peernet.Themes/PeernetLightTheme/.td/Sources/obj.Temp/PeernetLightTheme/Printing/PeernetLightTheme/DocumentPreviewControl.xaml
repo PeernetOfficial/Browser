@@ -2,11 +2,11 @@
 
     <DataTemplate x:Key="{dxpt:NewDocumentViewerThemeKey ResourceKey=PageBorderTemplate}">
         <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Office2019White\DocumentPreviewControl.xaml;30;10">
-            <dx:DXBorder x:Name="Border" BorderBrush="#1DEC1AF9" BorderThickness="1" Margin="-1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Office2019White\DocumentPreviewControl.xaml;31;14" />
+            <dx:DXBorder x:Name="Border" BorderBrush="#FFC8C6C4" BorderThickness="1" Margin="-1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Office2019White\DocumentPreviewControl.xaml;31;14" x:Uid="@BorderBrush=Border" />
         </Grid>
         <DataTemplate.Triggers>
             <DataTrigger Binding="{Binding IsSelected}" Value="true">
-                <Setter Property="BorderBrush" TargetName="Border" Value="#1DBF1AFA" cs:id="Setter_0000" />
+                <Setter Property="BorderBrush" TargetName="Border" Value="#FF106EBE" cs:id="Setter_0000" x:Uid="@Value=Focused" />
             </DataTrigger>
         </DataTemplate.Triggers>
     </DataTemplate>

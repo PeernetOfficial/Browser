@@ -8,24 +8,24 @@
 
     <ControlTemplate x:Key="{dxrt:ApplicationButtonThemeKey ResourceKey=BorderTemplate2010}" TargetType="{x:Type ContentControl}">
         <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonApplicationMenu\ApplicationButton2010.xaml;23;10">
-            <dx:DXBorder x:Name="IsDefault" Background="#1DE51DCB" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonApplicationMenu\ApplicationButton2010.xaml;24;14" />
+            <dx:DXBorder x:Name="IsDefault" Background="#FF106EBE" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonApplicationMenu\ApplicationButton2010.xaml;24;14" x:Uid="@Background=Backstage.Window.Background" />
             <ContentPresenter x:Name="Content" Margin="14,6,14,6" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonApplicationMenu\ApplicationButton2010.xaml;27;14" />
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup x:Name="CommonStates">
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="Hover">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D721DCC" cs:id="ColorAnimation_0000" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FF005A9E" cs:id="ColorAnimation_0000" x:Uid="@To=Backstage.HoverBackground" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Checked">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D431DCD" cs:id="ColorAnimation_0001" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FF004578" cs:id="ColorAnimation_0001" x:Uid="@To=Backstage.SelectionBackground" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Focused">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D101DCE" cs:id="ColorAnimation_0002" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFFCFCFC" cs:id="ColorAnimation_0002" x:Uid="@To=Button.Background" />
                         </Storyboard>
                     </VisualState>
                 </VisualStateGroup>
@@ -42,7 +42,7 @@
 
     <ControlTemplate x:Key="{dxrt:ApplicationButtonThemeKey ResourceKey=BorderTemplate2010InPopup}" TargetType="{x:Type ContentControl}">
         <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonApplicationMenu\ApplicationButton2010.xaml;77;10">
-            <dx:DXBorder x:Name="IsDefault" Background="#1D211DCF" BorderBrush="#1D4C1DD0" BorderThickness="1,1,1,0" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonApplicationMenu\ApplicationButton2010.xaml;78;14" />
+            <dx:DXBorder x:Name="IsDefault" Background="#FF004578" BorderBrush="#FF004578" BorderThickness="1,1,1,0" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonApplicationMenu\ApplicationButton2010.xaml;78;14" x:Uid="@Background=Backstage.SelectionBackground;BorderBrush=Backstage.SelectionBackground" />
             <ContentPresenter x:Name="Content" Margin="14,7,14,7" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonApplicationMenu\ApplicationButton2010.xaml;83;14" />
         </Grid>
         <ControlTemplate.Triggers>

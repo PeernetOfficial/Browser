@@ -8,32 +8,32 @@
     
 
     <ControlTemplate x:Key="{dxt:SearchPanelThemeKey ResourceKey=BorderControlTemplate}" TargetType="{x:Type ContentControl}">
-        <dx:DXBorder Background="#1D130824" Padding="12" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\SearchPanel.xaml;19;10">
+        <dx:DXBorder Background="#FFFFFFFF" Padding="12" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\SearchPanel.xaml;19;10" x:Uid="@Background=Window.Background">
             <ContentPresenter Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" ContentTemplate="{TemplateBinding ContentTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\SearchPanel.xaml;22;14" />
         </dx:DXBorder>
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxt:SearchPanelThemeKey ResourceKey=SeparatorControlTemplate}" TargetType="{x:Type ContentControl}">
-        <dx:DXBorder Background="#1D220825" Margin="3" Width="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\SearchPanel.xaml;29;10" />
+        <dx:DXBorder Background="#FFE1DFDD" Margin="3" Width="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\SearchPanel.xaml;29;10" x:Uid="@Background=Delimiter" />
     </ControlTemplate>
 
     
 
     <ControlTemplate x:Key="{dxt:SearchPanelThemeKey ResourceKey=ButtonControlTemplate}" TargetType="{x:Type Button}">
         <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\SearchPanel.xaml;38;10">
-            <dx:DXBorder x:Name="IsDefault" Background="#1D710826" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\SearchPanel.xaml;39;14" />
+            <dx:DXBorder x:Name="IsDefault" Background="Transparent" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\SearchPanel.xaml;39;14" />
             <ContentPresenter x:Name="Content" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Office2019White\SearchPanel.xaml;42;14" />
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup x:Name="CommonStates">
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="MouseOver">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D400827" cs:id="ColorAnimation_0000" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFEFF6FC" cs:id="ColorAnimation_0000" x:Uid="@To=HoverBackground" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Pressed">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D6E0828" cs:id="ColorAnimation_0001" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFDEECF9" cs:id="ColorAnimation_0001" x:Uid="@To=SelectionBackground" />
                         </Storyboard>
                     </VisualState>
                 </VisualStateGroup>

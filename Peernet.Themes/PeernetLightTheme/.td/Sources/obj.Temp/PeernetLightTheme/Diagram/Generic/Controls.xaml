@@ -14,12 +14,12 @@
 
     <sys:Double x:Key="{dxdiagt:DiagramDesignerControlThemeKeys ResourceKey=PanZoomBottomRightOffset}">20</sys:Double>
 
-    <SolidColorBrush x:Key="{dxdiagt:DiagramControlThemeKeys ResourceKey=PageBackground}" Color="#1DFD08FF" />
+    <SolidColorBrush x:Key="{dxdiagt:DiagramControlThemeKeys ResourceKey=PageBackground}" Color="White" />
 
-    <SolidColorBrush x:Key="{dxdiagt:DiagramControlThemeKeys ResourceKey=PrintPageBackground}" Color="#1DA50900" />
+    <SolidColorBrush x:Key="{dxdiagt:DiagramControlThemeKeys ResourceKey=PrintPageBackground}" Color="White" />
 
     <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.Native.LayersHost}" TargetType="{x:Type dxdiagn:LayersHost}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Diagram\Generic\Controls.xaml;34;6" /><Setter Property="Background" Value="#1D940901" cs:id="Setter_0000" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Diagram\Generic\Controls.xaml;34;6" /><Setter Property="Background" Value="Transparent" cs:id="Setter_0000" />
         <Setter Property="dx:WpfSvgPalette.Palette">
             <Setter.Value>
                 <dxcore_unique_xmlns:WpfSvgPalette OverridesThemeColors="True" />
@@ -38,7 +38,7 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <ContentControl Grid.Column="1" Grid.Row="1" Template="{DynamicResource {dxdiagt:DiagramControlThemeKeys ResourceKey=BackgroundTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Controls.xaml;55;26">
-                            <Canvas x:Name="DiagramArea" Background="#1DC70902" ClipToBounds="True" cs:id="Canvas_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Controls.xaml;58;30" />
+                            <Canvas x:Name="DiagramArea" Background="Transparent" ClipToBounds="True" cs:id="Canvas_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Controls.xaml;58;30" />
                         </ContentControl>
                         <dx:DXBorder Name="Background" Background="{DynamicResource {dxdiagt:RulerThemeKey ResourceKey=HorizontalBackground}}" BorderBrush="{DynamicResource {dxdiagt:RulerThemeKey ResourceKey=BorderBrush}}" BorderThickness="0,0,0,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Controls.xaml;63;26" />
                         <dx:DXBorder Name="HorizontalRulerArea" Background="{DynamicResource {dxdiagt:RulerThemeKey ResourceKey=HorizontalBackground}}" BorderBrush="{DynamicResource {dxdiagt:RulerThemeKey ResourceKey=BorderBrush}}" BorderThickness="0,0,0,1" Grid.Column="1" Padding="0,4,0,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Controls.xaml;67;26" />
@@ -152,7 +152,7 @@
         <Setter Property="EndArrowSize" Value="{DynamicResource {dxdiagt:ControlsThemeKeys ResourceKey=DiagramConnectorArrowSize}}" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="ContentBackground" Value="#1DF60903" cs:id="Setter_0000" />
+        <Setter Property="ContentBackground" Value="White" cs:id="Setter_0000" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type dxdiag:DiagramConnector}">
@@ -201,7 +201,7 @@
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Diagram\Generic\Controls.xaml;326;6" /><Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type dxdiag:DiagramRoot}">
-                    <dx:DXBorder x:Name="ItemsContainer" Background="#1D610904" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Controls.xaml;330;22" />
+                    <dx:DXBorder x:Name="ItemsContainer" Background="Transparent" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Controls.xaml;330;22" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -240,7 +240,7 @@
         </Setter>
     </Style>
 
-    <Pen x:Key="PageBackgroundPen" Brush="#1D500905" Thickness="1">
+    <Pen x:Key="PageBackgroundPen" Brush="#FFB3B3B3" Thickness="1">
         <Pen.DashStyle>
             <DashStyle Dashes="8" Offset="3" />
         </Pen.DashStyle>
@@ -316,13 +316,13 @@
     </Style>
 
     <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.ItemEditorControl}" TargetType="{x:Type dxdiag:ItemEditorControl}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Diagram\Generic\Controls.xaml;496;6" /><Setter Property="Foreground" Value="#1D030906" cs:id="Setter_0000" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Diagram\Generic\Controls.xaml;496;6" /><Setter Property="Foreground" Value="#FF6E6E6E" cs:id="Setter_0000" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type dxdiag:ItemEditorControl}">
-                    <Grid Background="#1D320907" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Controls.xaml;503;22">
-                        <Rectangle Stroke="#1D1C0908" StrokeDashArray="2,2" StrokeThickness="1" cs:id="Rectangle_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Controls.xaml;504;26" />
-                        <TextBox x:Name="Editor" AcceptsReturn="True" AcceptsTab="True" Background="#1D2D0909" BorderThickness="0" dxcore_unique_xmlns:ThemeManager.ThemeName="None" Foreground="{TemplateBinding Foreground}" TextWrapping="Wrap" cs:id="TextBox_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Controls.xaml;508;26" />
+                    <Grid Background="White" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Controls.xaml;503;22">
+                        <Rectangle Stroke="#FFB9B9B9" StrokeDashArray="2,2" StrokeThickness="1" cs:id="Rectangle_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Controls.xaml;504;26" />
+                        <TextBox x:Name="Editor" AcceptsReturn="True" AcceptsTab="True" Background="Transparent" BorderThickness="0" dxcore_unique_xmlns:ThemeManager.ThemeName="None" Foreground="{TemplateBinding Foreground}" TextWrapping="Wrap" cs:id="TextBox_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Diagram\Generic\Controls.xaml;508;26" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

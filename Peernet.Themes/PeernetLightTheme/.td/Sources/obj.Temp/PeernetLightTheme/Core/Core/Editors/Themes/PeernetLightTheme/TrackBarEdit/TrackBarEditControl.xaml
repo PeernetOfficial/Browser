@@ -6,11 +6,11 @@
 
     
 
-    <SolidColorBrush x:Key="{dxet:TrackBarEditThemeKey ResourceKey=TickForeground}">#1DAF06D7</SolidColorBrush>
+    <SolidColorBrush x:Key="{dxet:TrackBarEditThemeKey ResourceKey=TickForeground}" x:Uid="@Content_Property=Foreground">#FF444444</SolidColorBrush>
 
     <ControlTemplate x:Key="{dxet:TrackBarEditThemeKey ResourceKey=VerticalBackgroundTemplate}" TargetType="{x:Type ContentControl}">
         <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\TrackBarEdit\TrackBarEditControl.xaml;23;10">
-            <dx:DXBorder x:Name="IsDefault" Background="{StaticResource {dxet:TrackBarEditThemeKey ResourceKey=Foreground}}" BorderBrush="#1D8106D8" BorderThickness="1" Width="4" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\TrackBarEdit\TrackBarEditControl.xaml;24;14" />
+            <dx:DXBorder x:Name="IsDefault" Background="{StaticResource {dxet:TrackBarEditThemeKey ResourceKey=Foreground}}" BorderBrush="#FFFFFFFF" BorderThickness="1" Width="4" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\TrackBarEdit\TrackBarEditControl.xaml;24;14" x:Uid="@BorderBrush=Window.Background" />
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="dxei:BaseEditAppearanceOptions.HasTrackWidth" Value="True">
@@ -29,7 +29,7 @@
                 <Setter Property="CornerRadius" TargetName="IsDefault" Value="{Binding Path=(dxi:AppearanceOptions.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}" />
             </Trigger>
             <Trigger Property="dxei:ControlHelper.ShowFocusedState" Value="True">
-                <Setter Property="Background" TargetName="IsDefault" Value="#1DB006D9" cs:id="Setter_0000" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FF106EBE" cs:id="Setter_0000" x:Uid="@Value=Focused" />
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -46,7 +46,7 @@
 
     <ControlTemplate x:Key="{dxet:TrackBarEditThemeKey ResourceKey=HorizontalBackgroundTemplate}" TargetType="{x:Type ContentControl}">
         <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\TrackBarEdit\TrackBarEditControl.xaml;81;10">
-            <dx:DXBorder x:Name="IsDefault" Background="{StaticResource {dxet:TrackBarEditThemeKey ResourceKey=Foreground}}" BorderBrush="#1DE306DA" BorderThickness="1" Height="4" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\TrackBarEdit\TrackBarEditControl.xaml;82;14" />
+            <dx:DXBorder x:Name="IsDefault" Background="{StaticResource {dxet:TrackBarEditThemeKey ResourceKey=Foreground}}" BorderBrush="#FFFFFFFF" BorderThickness="1" Height="4" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\TrackBarEdit\TrackBarEditControl.xaml;82;14" x:Uid="@BorderBrush=Window.Background" />
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="dxei:BaseEditAppearanceOptions.HasTrackHeight" Value="True">
@@ -65,7 +65,7 @@
                 <Setter Property="CornerRadius" TargetName="IsDefault" Value="{Binding Path=(dxi:AppearanceOptions.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}" />
             </Trigger>
             <Trigger Property="dxei:ControlHelper.ShowFocusedState" Value="True">
-                <Setter Property="Background" TargetName="IsDefault" Value="#1DD206DB" cs:id="Setter_0000" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FF106EBE" cs:id="Setter_0000" x:Uid="@Value=Focused" />
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>

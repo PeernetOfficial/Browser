@@ -7,13 +7,13 @@
     
 
     <ControlTemplate x:Key="{dxpgt:PropertyGridControlThemeKey ResourceKey=DescriptionPresenterTemplate}" TargetType="{x:Type dxpg:PropertyDescriptionPresenterControl}">
-        <dx:DXBorder x:Name="PART_Border" Background="#1D052545" BorderBrush="#1D562546" BorderThickness="0,1,0,0" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PropertyGrid\Office2019White\PropertyGridControl.xaml;23;10">
+        <dx:DXBorder x:Name="PART_Border" Background="#FFFFFFFF" BorderBrush="#FFC8C6C4" BorderThickness="0,1,0,0" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PropertyGrid\Office2019White\PropertyGridControl.xaml;23;10" x:Uid="@Background=Window.Background;BorderBrush=Border">
             <Grid x:Name="Root" Margin="12" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PropertyGrid\Office2019White\PropertyGridControl.xaml;28;14">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <ContentPresenter x:Name="PART_HeaderPresenter" Content="{Binding SelectedRow.Header, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Left" Margin="0,-3,0,0" TextElement.FontSize="16" TextElement.Foreground="#1D672547" cs:id="ContentPresenter_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PropertyGrid\Office2019White\PropertyGridControl.xaml;33;18" />
+                <ContentPresenter x:Name="PART_HeaderPresenter" Content="{Binding SelectedRow.Header, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Left" Margin="0,-3,0,0" TextElement.FontSize="16" TextElement.Foreground="#FF444444" cs:id="ContentPresenter_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PropertyGrid\Office2019White\PropertyGridControl.xaml;33;18" x:Uid="@TextElement.Foreground=Foreground" />
                 <ContentPresenter x:Name="ContentPresenter1" Grid.Row="1" Margin="0,4,0,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PropertyGrid\Office2019White\PropertyGridControl.xaml;40;18" />
             </Grid>
         </dx:DXBorder>
@@ -22,8 +22,8 @@
                 <Setter Property="Visibility" TargetName="PART_HeaderPresenter" Value="Collapsed" />
             </Trigger>
             <Trigger Property="IsInTooltip" Value="True">
-                <Setter Property="Background" TargetName="PART_Border" Value="#1D492548" cs:id="Setter_0000" />
-                <Setter Property="BorderBrush" TargetName="PART_Border" Value="#1D782549" cs:id="Setter_0001" />
+                <Setter Property="Background" TargetName="PART_Border" Value="Transparent" cs:id="Setter_0000" />
+                <Setter Property="BorderBrush" TargetName="PART_Border" Value="Transparent" cs:id="Setter_0001" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>

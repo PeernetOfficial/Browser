@@ -8,21 +8,21 @@
 
     <ControlTemplate x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=HorizontalHeaderItem}" TargetType="{x:Type dxspsi:HeaderItem}">
         <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\Spreadsheet\SpreadsheetHeaderItem.xaml;21;10">
-            <dx:DXBorder x:Name="IsDefault" Background="#1D5B1E1C" BorderBrush="#1D6A1E1D" BorderThickness="0,0,1,1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\Spreadsheet\SpreadsheetHeaderItem.xaml;22;14">
-                <TextBlock x:Name="Content" FontSize="{TemplateBinding FontHeight}" Foreground="#1D391E1E" HorizontalAlignment="Center" Text="{TemplateBinding Text}" TextAlignment="Center" VerticalAlignment="Center" cs:id="TextBlock_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\Spreadsheet\SpreadsheetHeaderItem.xaml;27;18" />
+            <dx:DXBorder x:Name="IsDefault" Background="#FFFFFFFF" BorderBrush="#FFC8C6C4" BorderThickness="0,0,1,1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\Spreadsheet\SpreadsheetHeaderItem.xaml;22;14" x:Uid="@Background=Control.Background;BorderBrush=Border">
+                <TextBlock x:Name="Content" FontSize="{TemplateBinding FontHeight}" Foreground="#FF444444" HorizontalAlignment="Center" Text="{TemplateBinding Text}" TextAlignment="Center" VerticalAlignment="Center" cs:id="TextBlock_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\Spreadsheet\SpreadsheetHeaderItem.xaml;27;18" x:Uid="@Foreground=Foreground" />
             </dx:DXBorder>
-            <dx:DXBorder x:Name="IsSelection" Background="#1D081E1F" Height="2" Opacity="0" VerticalAlignment="Bottom" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\Spreadsheet\SpreadsheetHeaderItem.xaml;36;14" />
+            <dx:DXBorder x:Name="IsSelection" Background="#FF106EBE" Height="2" Opacity="0" VerticalAlignment="Bottom" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\Spreadsheet\SpreadsheetHeaderItem.xaml;36;14" x:Uid="@Background=Focused" />
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" TargetName="Content" Value="#1DE31E20" cs:id="Setter_0000" />
-                <Setter Property="Background" TargetName="IsDefault" Value="#1DD21E21" cs:id="Setter_0001" />
-                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1D811E22" cs:id="Setter_0002" />
+                <Setter Property="Foreground" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0000" x:Uid="@Value=Focused" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0001" x:Uid="@Value=HoverBackground" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFC8C6C4" cs:id="Setter_0002" x:Uid="@Value=Border" />
             </Trigger>
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Foreground" TargetName="Content" Value="#1DB01E23" cs:id="Setter_0003" />
-                <Setter Property="Background" TargetName="IsDefault" Value="#1D271E24" cs:id="Setter_0004" />
-                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1D161E25" cs:id="Setter_0005" />
+                <Setter Property="Foreground" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0003" x:Uid="@Value=Focused" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFE1DFDD" cs:id="Setter_0004" x:Uid="@Value=Delimiter" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFC8C6C4" cs:id="Setter_0005" x:Uid="@Value=Border" />
                 <Setter Property="Opacity" TargetName="IsSelection" Value="1" />
             </Trigger>
         </ControlTemplate.Triggers>
@@ -32,21 +32,21 @@
 
     <ControlTemplate x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=VerticalHeaderItem}" TargetType="{x:Type dxspsi:HeaderItem}">
         <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\Spreadsheet\SpreadsheetHeaderItem.xaml;81;10">
-            <dx:DXBorder x:Name="IsDefault" Background="#1D451E26" BorderBrush="#1D741E27" BorderThickness="0,0,1,1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\Spreadsheet\SpreadsheetHeaderItem.xaml;82;14">
-                <TextBlock x:Name="Content" FontSize="{TemplateBinding FontHeight}" Foreground="#1D5A1E28" HorizontalAlignment="Center" Text="{TemplateBinding Text}" TextAlignment="Center" VerticalAlignment="Center" cs:id="TextBlock_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\Spreadsheet\SpreadsheetHeaderItem.xaml;87;18" />
+            <dx:DXBorder x:Name="IsDefault" Background="#FFFFFFFF" BorderBrush="#FFC8C6C4" BorderThickness="0,0,1,1" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\Spreadsheet\SpreadsheetHeaderItem.xaml;82;14" x:Uid="@Background=Control.Background;BorderBrush=Border">
+                <TextBlock x:Name="Content" FontSize="{TemplateBinding FontHeight}" Foreground="#FF444444" HorizontalAlignment="Center" Text="{TemplateBinding Text}" TextAlignment="Center" VerticalAlignment="Center" cs:id="TextBlock_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\Spreadsheet\SpreadsheetHeaderItem.xaml;87;18" x:Uid="@Foreground=Foreground" />
             </dx:DXBorder>
-            <dx:DXBorder x:Name="IsSelection" Background="#1D6B1E29" HorizontalAlignment="Right" Opacity="0" Width="2" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\Spreadsheet\SpreadsheetHeaderItem.xaml;96;14" />
+            <dx:DXBorder x:Name="IsSelection" Background="#FF106EBE" HorizontalAlignment="Right" Opacity="0" Width="2" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Office2019White\Spreadsheet\SpreadsheetHeaderItem.xaml;96;14" x:Uid="@Background=Focused" />
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" TargetName="Content" Value="#1D381E2A" cs:id="Setter_0000" />
-                <Setter Property="Background" TargetName="IsDefault" Value="#1D091E2B" cs:id="Setter_0001" />
-                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1D9E1E2C" cs:id="Setter_0002" />
+                <Setter Property="Foreground" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0000" x:Uid="@Value=Focused" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0001" x:Uid="@Value=HoverBackground" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFC8C6C4" cs:id="Setter_0002" x:Uid="@Value=Border" />
             </Trigger>
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Foreground" TargetName="Content" Value="#1DAF1E2D" cs:id="Setter_0003" />
-                <Setter Property="Background" TargetName="IsDefault" Value="#1DFC1E2E" cs:id="Setter_0004" />
-                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1DCD1E2F" cs:id="Setter_0005" />
+                <Setter Property="Foreground" TargetName="Content" Value="#FF106EBE" cs:id="Setter_0003" x:Uid="@Value=Focused" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFE1DFDD" cs:id="Setter_0004" x:Uid="@Value=Delimiter" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFC8C6C4" cs:id="Setter_0005" x:Uid="@Value=Border" />
                 <Setter Property="Opacity" TargetName="IsSelection" Value="1" />
             </Trigger>
         </ControlTemplate.Triggers>

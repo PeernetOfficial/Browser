@@ -7,7 +7,7 @@
     
 
     <Style x:Key="{dxgt:CardTemplatesThemeKey ResourceKey=CardRowHeaderTextStyle}" TargetType="{x:Type TextBlock}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Office2019White\GridCard\GridCardTemplates.xaml;19;6" /><Setter Property="Foreground" Value="#1D4922DF" cs:id="Setter_0000" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Office2019White\GridCard\GridCardTemplates.xaml;19;6" /><Setter Property="Foreground" Value="#FF444444" cs:id="Setter_0000" x:Uid="@Value=Foreground" />
         <Setter Property="Margin" Value="3" />
         <Style.Triggers>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
@@ -19,12 +19,12 @@
     <dxg:DefaultStyle x:Key="{dxgt:CardTemplatesThemeKey ResourceKey=CellStyle}" TargetType="{x:Type dxg:CellContentPresenter}" />
 
     <DataTemplate x:Key="{dxgt:CardTemplatesThemeKey ResourceKey=SeparatorTemplate}">
-        <Grid x:Name="Root" Background="#1DA222E0" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardTemplates.xaml;34;10">
-            <dx:DXBorder x:Name="Delimiter" Background="#1D9322E1" MinHeight="1" MinWidth="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardTemplates.xaml;37;14" />
+        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardTemplates.xaml;34;10">
+            <dx:DXBorder x:Name="Delimiter" Background="#FFE1DFDD" MinHeight="1" MinWidth="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardTemplates.xaml;37;14" x:Uid="@Background=Delimiter" />
         </Grid>
         <DataTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" TargetName="Delimiter" Value="#1DC022E2" cs:id="Setter_0000" />
+                <Setter Property="Background" TargetName="Delimiter" Value="#FF106EBE" cs:id="Setter_0000" x:Uid="@Value=HoverForeground" />
             </Trigger>
             <DataTrigger Binding="{Binding Path=(dxg:GridControl.ActiveView).Orientation, RelativeSource={RelativeSource TemplatedParent}}" Value="Horizontal">
                 <Setter Property="Margin" TargetName="Delimiter" Value="0,3,0,3" />

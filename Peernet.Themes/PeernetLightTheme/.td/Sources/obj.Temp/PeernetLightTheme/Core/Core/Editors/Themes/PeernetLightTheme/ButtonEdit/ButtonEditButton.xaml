@@ -12,29 +12,29 @@
     <Thickness x:Key="{dxet:ButtonsThemeKey ResourceKey=DefaultBorderThickness}">0,0,0,0</Thickness>
 
     <ControlTemplate x:Key="{dxet:ButtonsThemeKey ResourceKey=ButtonTemplate}" TargetType="{x:Type ButtonBase}">
-        <Grid x:Name="Root" Background="#1D0505C3" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\ButtonEdit\ButtonEditButton.xaml;26;10">
+        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\ButtonEdit\ButtonEditButton.xaml;26;10">
             <dx:DXBorder x:Name="IsDefault" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding dxi:AppearanceOptions.CornerRadius}" Padding="{TemplateBinding Padding}" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\ButtonEdit\ButtonEditButton.xaml;29;14">
                 <ContentPresenter x:Name="Content" Style="{Binding Path=DataContext.(dxei:ButtonInfoPropertyProvider.GlyphContainerStyle), RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Office2019White\ButtonEdit\ButtonEditButton.xaml;36;18" />
             </dx:DXBorder>
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#1D9205C4" cs:id="Setter_0004" />
-                <Setter Property="BorderBrush" Value="#1DA305C5" cs:id="Setter_0005" />
-                <Setter Property="TextElement.Foreground" Value="#1DF005C6" cs:id="Setter_0006" />
+                <Setter Property="Background" Value="#FFEFF6FC" cs:id="Setter_0004" x:Uid="@Value=HoverBackground" />
+                <Setter Property="BorderBrush" Value="#FFEFF6FC" cs:id="Setter_0005" x:Uid="@Value=HoverBorder" />
+                <Setter Property="TextElement.Foreground" Value="#FF444444" cs:id="Setter_0006" x:Uid="@Value=Foreground" />
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Background" Value="#1DC105C7" cs:id="Setter_0007" />
-                <Setter Property="BorderBrush" Value="#1DEF05C8" cs:id="Setter_0008" />
-                <Setter Property="TextElement.Foreground" Value="#1DDE05C9" cs:id="Setter_0009" />
+                <Setter Property="Background" Value="#FFDEECF9" cs:id="Setter_0007" x:Uid="@Value=SelectionBackground" />
+                <Setter Property="BorderBrush" Value="#FFDEECF9" cs:id="Setter_0008" x:Uid="@Value=SelectionBorder" />
+                <Setter Property="TextElement.Foreground" Value="#FF444444" cs:id="Setter_0009" x:Uid="@Value=Foreground" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Opacity" TargetName="Root" Value="0.38" />
             </Trigger>
             <DataTrigger Binding="{Binding Path=IsChecked}" Value="True">
-                <Setter Property="Background" Value="#1D8D05CA" cs:id="Setter_0010" />
-                <Setter Property="BorderBrush" Value="#1DBC05CB" cs:id="Setter_0011" />
-                <Setter Property="TextElement.Foreground" Value="#1D2B05CC" cs:id="Setter_0012" />
+                <Setter Property="Background" Value="#FFDEECF9" cs:id="Setter_0010" x:Uid="@Value=SelectionBackground" />
+                <Setter Property="BorderBrush" Value="#FFDEECF9" cs:id="Setter_0011" x:Uid="@Value=SelectionBorder" />
+                <Setter Property="TextElement.Foreground" Value="#FF444444" cs:id="Setter_0012" x:Uid="@Value=Foreground" />
             </DataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>

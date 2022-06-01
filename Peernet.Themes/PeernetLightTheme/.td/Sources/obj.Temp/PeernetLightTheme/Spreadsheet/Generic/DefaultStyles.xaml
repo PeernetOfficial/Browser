@@ -20,27 +20,27 @@
 
     <dxcore_unique_xmlns:ColorToBrushConverter x:Key="ColorToBrushConverter" />
 
-    <SolidColorBrush x:Key="{themes:SpreadsheetThemeKey ResourceKey=CommentIndicatorBrush}" Color="#1D1F27CD" />
+    <SolidColorBrush x:Key="{themes:SpreadsheetThemeKey ResourceKey=CommentIndicatorBrush}" Color="Red" />
 
-    <SolidColorBrush x:Key="{themes:SpreadsheetThemeKey ResourceKey=NumberIndicatorBrush}" Color="#1D4C27CE" />
+    <SolidColorBrush x:Key="{themes:SpreadsheetThemeKey ResourceKey=NumberIndicatorBrush}" Color="Green" />
 
     <sys:Double x:Key="{themes:SpreadsheetThemeKey ResourceKey=IndicatorWidth}">5</sys:Double>
 
-    <SolidColorBrush x:Key="{themes:SpreadsheetThemeKey ResourceKey=CommentLineBrush}" Color="#1D7D27CF" />
+    <SolidColorBrush x:Key="{themes:SpreadsheetThemeKey ResourceKey=CommentLineBrush}" Color="Black" />
 
     <sys:Double x:Key="{themes:SpreadsheetThemeKey ResourceKey=CommentLineWidth}">1</sys:Double>
 
-    <SolidColorBrush x:Key="{themes:SpreadsheetThemeKey ResourceKey=DataValidationCircleBrush}" Color="#1D1027D0" />
+    <SolidColorBrush x:Key="{themes:SpreadsheetThemeKey ResourceKey=DataValidationCircleBrush}" Color="Red" />
 
     <sys:Double x:Key="{themes:SpreadsheetThemeKey ResourceKey=DataValidationCircleWidth}">2</sys:Double>
 
-    <SolidColorBrush x:Key="{themes:SpreadsheetThemeKey ResourceKey=DataValidationMessageForeBrush}" Color="#1D2127D1" />
+    <SolidColorBrush x:Key="{themes:SpreadsheetThemeKey ResourceKey=DataValidationMessageForeBrush}" Color="#FF5D5D5D" />
 
     <sys:Double x:Key="{themes:SpreadsheetThemeKey ResourceKey=DataValidationMessageBorderWidth}">1</sys:Double>
 
-    <SolidColorBrush x:Key="{themes:SpreadsheetThemeKey ResourceKey=DataValidationMessageBorderBrush}" Color="#1D7227D2" />
+    <SolidColorBrush x:Key="{themes:SpreadsheetThemeKey ResourceKey=DataValidationMessageBorderBrush}" Color="#FF454849" />
 
-    <SolidColorBrush x:Key="{themes:SpreadsheetThemeKey ResourceKey=DataValidationMessageBackgroudBrush}" Color="#1D4327D3" />
+    <SolidColorBrush x:Key="{themes:SpreadsheetThemeKey ResourceKey=DataValidationMessageBackgroudBrush}" Color="#FFFFE1" />
 
     <ControlTemplate x:Key="{themes:SpreadsheetThemeKey ResourceKey=Template}" TargetType="{x:Type dxsps:SpreadsheetControl}">
         <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Generic\DefaultStyles.xaml;63;10">
@@ -71,7 +71,7 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{themes:SpreadsheetThemeKey ResourceKey=ViewControlTemplate}" TargetType="{x:Type dxspsi:SpreadsheetViewControl}">
-        <dx:DXBorder Background="#1DD427D4" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Generic\DefaultStyles.xaml;109;10">
+        <dx:DXBorder Background="Transparent" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Generic\DefaultStyles.xaml;109;10">
             <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Generic\DefaultStyles.xaml;110;14">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -261,7 +261,7 @@
                     </ToggleButton>
                 </Grid>
             </Grid>
-            <dxspsi:FormatBorderPreviewControlContainer BorderBrush="#1DE527D5" BorderThickness="1" Grid.Column="1" Grid.Row="0" cs:id="FormatBorderPreviewControlContainer_0000">
+            <dxspsi:FormatBorderPreviewControlContainer BorderBrush="LightGray" BorderThickness="1" Grid.Column="1" Grid.Row="0" cs:id="FormatBorderPreviewControlContainer_0000">
                 <dxspsi:FormatBorderPreviewControl IsTabStop="False" />
             </dxspsi:FormatBorderPreviewControlContainer>
             <ToggleButton AutomationProperties.Name="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatBorderControlDiagonalUp, Converter={StaticResource stringIdConverter}}" Grid.Column="0" Grid.Row="2" Height="25" HorizontalAlignment="Left" IsChecked="{Binding ShowDiagonalUpBorder, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" IsEnabled="{Binding EnableDiagonalBorderCheckState, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Margin="0,8,0,0" Padding="0" TabIndex="13" Width="25" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Generic\DefaultStyles.xaml;421;14">
@@ -343,10 +343,10 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="130" />
                     </Grid.RowDefinitions>
-                    <dxspsi:PageMarginsDrawingControlContainer x:Name="portraitOrientationContainer" BorderBrush="#1DB627D6" BorderThickness="1" Grid.Row="0" Height="130" Visibility="{Binding OrientationPortrait, Converter={StaticResource ResourceKey=BoolToVisibilityConverter}, ConverterParameter=HiddenOnFalse}" Width="100" cs:id="PageMarginsDrawingControlContainer_0000">
+                    <dxspsi:PageMarginsDrawingControlContainer x:Name="portraitOrientationContainer" BorderBrush="LightGray" BorderThickness="1" Grid.Row="0" Height="130" Visibility="{Binding OrientationPortrait, Converter={StaticResource ResourceKey=BoolToVisibilityConverter}, ConverterParameter=HiddenOnFalse}" Width="100" cs:id="PageMarginsDrawingControlContainer_0000">
                         <dxspsi:PageMarginsDrawingControl />
                     </dxspsi:PageMarginsDrawingControlContainer>
-                    <dxspsi:PageMarginsDrawingControlContainer x:Name="landscapeOrientationContainer" BorderBrush="#1D8727D7" BorderThickness="1" Grid.Row="0" Height="100" Visibility="{Binding OrientationPortrait, Converter={StaticResource InverseVisibilityConverter}}" Width="130" cs:id="PageMarginsDrawingControlContainer_0001">
+                    <dxspsi:PageMarginsDrawingControlContainer x:Name="landscapeOrientationContainer" BorderBrush="LightGray" BorderThickness="1" Grid.Row="0" Height="100" Visibility="{Binding OrientationPortrait, Converter={StaticResource InverseVisibilityConverter}}" Width="130" cs:id="PageMarginsDrawingControlContainer_0001">
                         <dxspsi:PageMarginsDrawingControl />
                     </dxspsi:PageMarginsDrawingControlContainer>
                 </Grid>
@@ -612,7 +612,7 @@
     </Style>
 
     <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.SpreadsheetTabSelector}" TargetType="{x:Type dxspsi:SpreadsheetTabSelector}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Spreadsheet\Generic\DefaultStyles.xaml;1092;6" /><Setter Property="Background" Value="#1DA927D8" cs:id="Setter_0000" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Spreadsheet\Generic\DefaultStyles.xaml;1092;6" /><Setter Property="Background" Value="Transparent" cs:id="Setter_0000" />
         <Setter Property="Template" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=TabSelectorTemplate}}" />
     </Style>
 
@@ -772,8 +772,8 @@
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Spreadsheet\Generic\DefaultStyles.xaml;1268;6" /><Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <dx:DXBorder BorderBrush="#1D9827D9" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Generic\DefaultStyles.xaml;1272;22">
-                        <Grid Background="#1DCB27DA" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Generic\DefaultStyles.xaml;1275;26">
+                    <dx:DXBorder BorderBrush="Red" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Generic\DefaultStyles.xaml;1272;22">
+                        <Grid Background="White" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Generic\DefaultStyles.xaml;1275;26">
                             <TextBlock FontSize="{Binding FontSize, RelativeSource={RelativeSource TemplatedParent}}" Margin="{Binding Margins, RelativeSource={RelativeSource TemplatedParent}}" Text="{Binding ErrorMessage, RelativeSource={RelativeSource TemplatedParent}}" TextWrapping="Wrap" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Spreadsheet\Generic\DefaultStyles.xaml;1276;30" />
                         </Grid>
                     </dx:DXBorder>

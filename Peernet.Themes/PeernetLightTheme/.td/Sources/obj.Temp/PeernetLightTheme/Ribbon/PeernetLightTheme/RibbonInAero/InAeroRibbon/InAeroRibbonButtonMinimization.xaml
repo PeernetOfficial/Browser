@@ -8,7 +8,7 @@
 
     <ControlTemplate x:Key="{dxrt:RibbonThemeKey ResourceKey=MinimizationButtonTemplateInRibbonAeroWindow}" TargetType="{x:Type dxr:RibbonCheckedBorderControl}">
         <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonInAero\InAeroRibbon\InAeroRibbonButtonMinimization.xaml;23;10">
-            <dx:DXBorder x:Name="IsDefault" Background="#1DC81B3E" CornerRadius="62" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonInAero\InAeroRibbon\InAeroRibbonButtonMinimization.xaml;24;14" />
+            <dx:DXBorder x:Name="IsDefault" Background="#FFFCFCFC" CornerRadius="62" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonInAero\InAeroRibbon\InAeroRibbonButtonMinimization.xaml;24;14" x:Uid="@Background=Button.Background" />
             <Grid HorizontalAlignment="Center" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonInAero\InAeroRibbon\InAeroRibbonButtonMinimization.xaml;28;14">
                 <Path x:Name="Collapsed" Opacity="0" Style="{StaticResource UIShape.Up}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonInAero\InAeroRibbon\InAeroRibbonButtonMinimization.xaml;29;18" />
                 <Path x:Name="Expanded" Opacity="0" Style="{StaticResource UIShape.Down}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonInAero\InAeroRibbon\InAeroRibbonButtonMinimization.xaml;32;18" />
@@ -18,17 +18,17 @@
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="Hover">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1DF91B3F" cs:id="ColorAnimation_0000" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFEFF6FC" cs:id="ColorAnimation_0000" x:Uid="@To=HoverBackground" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Pressed">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D2F1B40" cs:id="ColorAnimation_0001" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFDEECF9" cs:id="ColorAnimation_0001" x:Uid="@To=SelectionBackground" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Focused">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D1E1B41" cs:id="ColorAnimation_0002" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFEFF6FC" cs:id="ColorAnimation_0002" x:Uid="@To=HoverBackground" />
                         </Storyboard>
                     </VisualState>
                 </VisualStateGroup>

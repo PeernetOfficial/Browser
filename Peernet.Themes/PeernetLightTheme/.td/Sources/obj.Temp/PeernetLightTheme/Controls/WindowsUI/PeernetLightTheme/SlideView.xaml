@@ -7,7 +7,7 @@
     
 
     <DataTemplate x:Key="{dxwuit:SlideViewElementsThemeKey ResourceKey=InteractiveHeader}">
-        <Path Fill="#1D93098D" Style="{StaticResource UIShape.Right}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019White\SlideView.xaml;25;10" />
+        <Path Fill="#FF444444" Style="{StaticResource UIShape.Right}" cs:id="Path_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019White\SlideView.xaml;25;10" x:Uid="@Fill=Foreground" />
     </DataTemplate>
 
     
@@ -36,7 +36,7 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <dx:DXBorder x:Name="IsDefault" Background="#1DC0098E" Grid.Column="0" Grid.ColumnSpan="2" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019White\SlideView.xaml;64;18" />
+                <dx:DXBorder x:Name="IsDefault" Background="Transparent" Grid.Column="0" Grid.ColumnSpan="2" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019White\SlideView.xaml;64;18" />
                 <ContentControl x:Name="content" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Grid.Column="0" Grid.ColumnSpan="1" Margin="4,0,0,2" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019White\SlideView.xaml;69;18" />
                 <ContentPresenter x:Name="interactiveContent" ContentTemplate="{TemplateBinding InteractiveHeaderTemplate}" Grid.Column="1" Grid.ColumnSpan="1" Margin="4,0,4,0" Opacity="0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Office2019White\SlideView.xaml;75;18" />
             </Grid>
@@ -45,12 +45,12 @@
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="MouseOver">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1DF1098F" cs:id="ColorAnimation_0000" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFEFF6FC" cs:id="ColorAnimation_0000" x:Uid="@To=HoverBackground" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Pressed">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#1D9C0990" cs:id="ColorAnimation_0001" />
+                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFDEECF9" cs:id="ColorAnimation_0001" x:Uid="@To=SelectionBackground" />
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Disabled">

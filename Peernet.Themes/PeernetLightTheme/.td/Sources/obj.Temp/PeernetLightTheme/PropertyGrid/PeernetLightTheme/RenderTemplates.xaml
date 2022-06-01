@@ -8,19 +8,19 @@
 
     <dxi:RenderTemplate x:Key="{dxpgt:VSViewRenderTemplateThemeKey ResourceKey=RowCommandButton}">
         <dxi:RenderPanel Name="Root" Height="8" Margin="6,0" Width="8" ThemeInfo="PropertyGrid\Office2019White\RenderTemplates.xaml;23;10">
-            <dxi:RenderBorder Name="Content" Background="#1DBC254D" BorderBrush="#1DEF254E" BorderThickness="1" cs:id="RenderBorder_0001" ThemeInfo="PropertyGrid\Office2019White\RenderTemplates.xaml;27;14" />
+            <dxi:RenderBorder Name="Content" Background="#FFFCFCFC" BorderBrush="#FFC8C6C4" BorderThickness="1" cs:id="RenderBorder_0001" ThemeInfo="PropertyGrid\Office2019White\RenderTemplates.xaml;27;14" x:Uid="@Background=Button.Background;BorderBrush=Border" />
         </dxi:RenderPanel>
         <dxi:RenderTemplate.Triggers>
             <dxi:RenderStateGroup Name="CommonStates">
                 <dxi:RenderStateTrigger Name="Normal" />
                 <dxi:RenderStateTrigger Name="MouseOver">
-                    <dxi:RenderSetter Property="Background" TargetName="Content" Value="#1DDE254F" cs:id="RenderSetter_0000" />
-                    <dxi:RenderSetter Property="BorderBrush" TargetName="Content" Value="#1DB32550" cs:id="RenderSetter_0001" />
+                    <dxi:RenderSetter Property="Background" TargetName="Content" Value="#FFEFF6FC" cs:id="RenderSetter_0000" x:Uid="@Value=HoverBackground" />
+                    <dxi:RenderSetter Property="BorderBrush" TargetName="Content" Value="#FF106EBE" cs:id="RenderSetter_0001" x:Uid="@Value=Focused" />
                 </dxi:RenderStateTrigger>
             </dxi:RenderStateGroup>
             <dxi:RenderTrigger DependencyProperty="{x:Static dxpg:RowControl.ShouldHighlightValueProperty}" Value="True">
-                <dxi:RenderSetter Property="Background" TargetName="Content" Value="#1D822551" cs:id="RenderSetter_0002" />
-                <dxi:RenderSetter Property="BorderBrush" TargetName="Content" Value="#1DD12552" cs:id="RenderSetter_0003" />
+                <dxi:RenderSetter Property="Background" TargetName="Content" Value="#FFC8C6C4" cs:id="RenderSetter_0002" x:Uid="@Value=Border" />
+                <dxi:RenderSetter Property="BorderBrush" TargetName="Content" Value="#FF444444" cs:id="RenderSetter_0003" x:Uid="@Value=Foreground" />
             </dxi:RenderTrigger>
             <dxi:RenderTrigger DependencyProperty="{x:Static dx:ThemeManager.IsTouchEnabledProperty}" Value="True">
                 <dxi:RenderSetter Property="Width" TargetName="Root" Value="28" />
@@ -33,10 +33,10 @@
     <dxi:RenderTemplate x:Key="{dxpgt:VSViewRenderTemplateThemeKey ResourceKey=RowCollectionButton}">
         <dxi:RenderPanel Name="Root" ThemeInfo="PropertyGrid\Office2019White\RenderTemplates.xaml;72;10">
             <dxi:RenderPanel Name="PART_Add" Opacity="0.62" ThemeInfo="PropertyGrid\Office2019White\RenderTemplates.xaml;73;14">
-                <dxi:RenderPath Name="Path1" Data="F1 M 6,0C 9.31371,0 12,2.68629 12,6C 12,9.31371 9.31371,12 6,12C 2.68629,12 -6.35783e-007,9.31371 -6.35783e-007,6C -6.35783e-007,2.68629 2.68629,0 6,0 Z M 2,5L 2,7L 5,7L 5,10L 7,10L 7,7L 10,7L 10,5L 7,5L 7,2L 5,2L 5,5L 2,5 Z " Fill="#1DE02553" Height="12" Stretch="Fill" Width="12" cs:id="RenderPath_0000" ThemeInfo="PropertyGrid\Office2019White\RenderTemplates.xaml;74;18" />
+                <dxi:RenderPath Name="Path1" Data="F1 M 6,0C 9.31371,0 12,2.68629 12,6C 12,9.31371 9.31371,12 6,12C 2.68629,12 -6.35783e-007,9.31371 -6.35783e-007,6C -6.35783e-007,2.68629 2.68629,0 6,0 Z M 2,5L 2,7L 5,7L 5,10L 7,10L 7,7L 10,7L 10,5L 7,5L 7,2L 5,2L 5,5L 2,5 Z " Fill="#FF444444" Height="12" Stretch="Fill" Width="12" cs:id="RenderPath_0000" ThemeInfo="PropertyGrid\Office2019White\RenderTemplates.xaml;74;18" x:Uid="@Fill=Foreground" />
             </dxi:RenderPanel>
             <dxi:RenderPanel Name="PART_Remove" Opacity="0.62" Visibility="Collapsed" ThemeInfo="PropertyGrid\Office2019White\RenderTemplates.xaml;82;14">
-                <dxi:RenderPath Name="Path" Data="F1 M 1.75736,1.75736C 4.1005,-0.585785 7.89949,-0.585785 10.2426,1.75736C 12.5858,4.10051 12.5858,7.8995 10.2426,10.2426C 7.89949,12.5858 4.1005,12.5858 1.75736,10.2426C -0.585787,7.8995 -0.585787,4.10051 1.75736,1.75736 Z M 2.46447,8.12132L 3.87868,9.53553L 6,7.41421L 8.12132,9.53553L 9.53553,8.12132L 7.41421,6L 9.53553,3.87868L 8.12132,2.46447L 6,4.58579L 3.87868,2.46447L 2.46447,3.87868L 4.58579,6L 2.46447,8.12132 Z " Fill="#1D772554" Height="12" Stretch="Fill" Width="12" cs:id="RenderPath_0001" ThemeInfo="PropertyGrid\Office2019White\RenderTemplates.xaml;85;18" />
+                <dxi:RenderPath Name="Path" Data="F1 M 1.75736,1.75736C 4.1005,-0.585785 7.89949,-0.585785 10.2426,1.75736C 12.5858,4.10051 12.5858,7.8995 10.2426,10.2426C 7.89949,12.5858 4.1005,12.5858 1.75736,10.2426C -0.585787,7.8995 -0.585787,4.10051 1.75736,1.75736 Z M 2.46447,8.12132L 3.87868,9.53553L 6,7.41421L 8.12132,9.53553L 9.53553,8.12132L 7.41421,6L 9.53553,3.87868L 8.12132,2.46447L 6,4.58579L 3.87868,2.46447L 2.46447,3.87868L 4.58579,6L 2.46447,8.12132 Z " Fill="#FFC12600" Height="12" Stretch="Fill" Width="12" cs:id="RenderPath_0001" ThemeInfo="PropertyGrid\Office2019White\RenderTemplates.xaml;85;18" x:Uid="@Fill=Custom.Red" />
             </dxi:RenderPanel>
         </dxi:RenderPanel>
         <dxi:RenderTemplate.Triggers>

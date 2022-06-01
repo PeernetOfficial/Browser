@@ -8,19 +8,19 @@
 
     <DataTemplate x:Key="{dxrt:DXRibbonAeroWindowThemeKey ResourceKey=AeroWindowCaptionTemplate}">
         <dxb:ContentViewport ClipToBounds="True" KeepPositiveLeftContentPosition="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonInAero\InAeroRibbonWindow\InAeroRibbonWindowCaption.xaml;23;10">
-            <TextBlock Foreground="#1DD81B2D" HorizontalAlignment="Center" IsHitTestVisible="False" Margin="3" Text="{Binding}" TextWrapping="Wrap" VerticalAlignment="Center" cs:id="TextBlock_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonInAero\InAeroRibbonWindow\InAeroRibbonWindowCaption.xaml;24;14" />
+            <TextBlock Foreground="#FFFFFFFF" HorizontalAlignment="Center" IsHitTestVisible="False" Margin="3" Text="{Binding}" TextWrapping="Wrap" VerticalAlignment="Center" cs:id="TextBlock_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonInAero\InAeroRibbonWindow\InAeroRibbonWindowCaption.xaml;24;14" x:Uid="@Foreground=Backstage.Foreground" />
         </dxb:ContentViewport>
     </DataTemplate>
 
     <ControlTemplate x:Key="{dxrt:DXRibbonAeroWindowThemeKey ResourceKey=AeroWindowHeaderBorderTemplate}" TargetType="{x:Type ContentControl}">
-        <dx:DXBorder x:Name="PART_Header" Background="#1D8B1B2E" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonInAero\InAeroRibbonWindow\InAeroRibbonWindowCaption.xaml;36;10" />
+        <dx:DXBorder x:Name="PART_Header" Background="#FF106EBE" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonInAero\InAeroRibbonWindow\InAeroRibbonWindowCaption.xaml;36;10" x:Uid="@Background=Backstage.Window.Background" />
         <ControlTemplate.Triggers>
             <DataTrigger Binding="{Binding Path=(dx:FloatingContainer.IsActive)}" Value="False" />
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
     <Style x:Key="{dxrt:DXRibbonAeroWindowThemeKey ResourceKey=AeroWindowCaptionStyle}" TargetType="{x:Type ContentControl}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Ribbon\Office2019White\RibbonInAero\InAeroRibbonWindow\InAeroRibbonWindowCaption.xaml;44;6" /><Setter Property="Foreground" Value="#1DBA1B2F" cs:id="Setter_0000" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Ribbon\Office2019White\RibbonInAero\InAeroRibbonWindow\InAeroRibbonWindowCaption.xaml;44;6" /><Setter Property="Foreground" Value="#FF444444" cs:id="Setter_0000" x:Uid="@Value=Foreground" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Center" />
     </Style>

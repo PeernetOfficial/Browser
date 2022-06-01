@@ -24,7 +24,7 @@
 
     <dxi:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=RenderButtonTemplate}">
         <dxi:RenderPanel Name="Root" ThemeInfo="Core\Core\Editors\Themes\Office2019White\InplaceBaseEdit\InplaceButton.xaml;39;10">
-            <dxi:RenderBorder Name="IsDefault" Background="#1DCE0689" cs:id="RenderBorder_0000" ThemeInfo="Core\Core\Editors\Themes\Office2019White\InplaceBaseEdit\InplaceButton.xaml;40;14" />
+            <dxi:RenderBorder Name="IsDefault" Background="Transparent" cs:id="RenderBorder_0000" ThemeInfo="Core\Core\Editors\Themes\Office2019White\InplaceBaseEdit\InplaceButton.xaml;40;14" />
             <dxi:RenderContentPresenter Name="PART_ContentPresenter" HorizontalAlignment="Center" VerticalAlignment="Center" ThemeInfo="Core\Core\Editors\Themes\Office2019White\InplaceBaseEdit\InplaceButton.xaml;43;14" />
         </dxi:RenderPanel>
         <dxi:RenderTemplate.Triggers>
@@ -43,17 +43,17 @@
             <dxi:RenderStateGroup Name="CommonStates">
                 <dxi:RenderStateTrigger Name="Normal" />
                 <dxi:RenderStateTrigger Name="MouseOver">
-                    <dxi:RenderSetter Property="Background" TargetName="IsDefault" Value="#1D9D068A" cs:id="RenderSetter_0000" />
+                    <dxi:RenderSetter Property="Background" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="RenderSetter_0000" x:Uid="@Value=HoverBackground" />
                 </dxi:RenderStateTrigger>
                 <dxi:RenderStateTrigger Name="Pressed">
-                    <dxi:RenderSetter Property="Background" TargetName="IsDefault" Value="#1DAC068B" cs:id="RenderSetter_0001" />
+                    <dxi:RenderSetter Property="Background" TargetName="IsDefault" Value="#FFDEECF9" cs:id="RenderSetter_0001" x:Uid="@Value=SelectionBackground" />
                 </dxi:RenderStateTrigger>
                 <dxi:RenderStateTrigger Name="Disabled" />
             </dxi:RenderStateGroup>
             <dxi:RenderStateGroup Name="CheckedStates">
                 <dxi:RenderStateTrigger Name="Unchecked" />
                 <dxi:RenderStateTrigger Name="Checked">
-                    <dxi:RenderSetter Property="Background" TargetName="IsDefault" Value="#1D3B068C" cs:id="RenderSetter_0002" />
+                    <dxi:RenderSetter Property="Background" TargetName="IsDefault" Value="#FFDEECF9" cs:id="RenderSetter_0002" x:Uid="@Value=SelectionBackground" />
                 </dxi:RenderStateTrigger>
             </dxi:RenderStateGroup>
             <dxi:RenderStateGroup Name="TouchStates">

@@ -1,5 +1,6 @@
 ﻿using AsyncAwaitBestPractices.MVVM;
 using Peernet.Browser.Application.Dispatchers;
+using Peernet.SDK.Models.Domain.Search;
 using Peernet.SDK.Models.Extensions;
 using Peernet.SDK.Models.Presentation.Footer;
 using Peernet.SDK.Models.Presentation.Home;
@@ -13,11 +14,15 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public class SearchTabElementViewModel : ViewModelBase
     {
-        private const int increase = 100;
         private readonly Func<DownloadModel, bool> isPlayerSupported;
         private readonly Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction;
-        private bool isClearing;
-        private int limit = increase;
+        private ObservableCollection<DownloadModel> activeSearchResults;
+        private bool hasMorePages = true;
+        private int pageSize = 15;
+        private int pageIndex;
+
+        // => pageSize*pageIndex<totalResultsCount
+        private int totalResultsCount;
 
         public SearchTabElementViewModel(
             SearchFilterResultModel searchFilterResultModel,
@@ -75,7 +80,17 @@ namespace Peernet.Browser.Application.ViewModels
 
             InitIcons();
             Loader.Set("Searching...");
-            _ = Task.Run(async () => await Refresh(false));
+            Task.Run(async () => await Refresh());
+        }
+
+        public ObservableCollection<DownloadModel> ActiveSearchResults
+        {
+            get => activeSearchResults;
+            set
+            {
+                activeSearchResults = value;
+                OnPropertyChanged(nameof(ActiveSearchResults));
+            }
         }
 
         public IAsyncCommand ClearCommand { get; }
@@ -94,41 +109,49 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IconModel FiltersIconModel { get; }
 
+        public bool HasMorePages
+        {
+            get => hasMorePages;
+            set
+            {
+                hasMorePages = value;
+                OnPropertyChanged(nameof(HasMorePages));
+            }
+        }
+
         public LoadingModel Loader { get; } = new LoadingModel();
 
         public IAsyncCommand<DownloadModel> OpenCommand { get; }
 
+        public int PageSize
+        {
+            get => pageSize;
+            set
+            {
+                pageSize = value;
+                OnPropertyChanged(nameof(PageSize));
+            }
+        }
+
+        public int PageIndex
+        {
+            get => pageIndex;
+            set
+            {
+                pageIndex = value;
+                OnPropertyChanged(nameof(PageIndex));
+            }
+        }
+
         public IAsyncCommand<SearchFiltersType> RemoveFilterCommand { get; }
 
         public IAsyncCommand<DownloadModel> StreamFileCommand { get; }
-
-        public ObservableCollection<DownloadModel> TableResult { get; } = new();
-
         public string Title { get; }
 
         public async Task Initialize()
         {
             await Refresh();
         }
-
-        public async Task IsScrollEnd()
-        {
-            if (isClearing)
-            {
-                return;
-            }
-
-            var allCount = GetMax();
-            if (allCount == 0 || limit > allCount)
-            {
-                return;
-            }
-
-            limit += increase;
-            await Refresh(false);
-        }
-
-        private int GetMax() => (FilterIconModels.FirstOrDefault(x => x.IsSelected)?.Count).GetValueOrDefault();
 
         private void InitIcons()
         {
@@ -150,37 +173,33 @@ namespace Peernet.Browser.Application.ViewModels
             return Task.CompletedTask;
         }
 
-        private async Task Refresh(bool withClear = true)
+        public async Task Refresh()
         {
-            if (withClear)
-            {
-                isClearing = true;
-                UIThreadDispatcher.ExecuteOnMainThread(() => TableResult.Clear());
-            }
-            Filters.SearchFilterResult.LimitOfResult = limit;
+            Filters.SearchFilterResult.Limit = PageSize;
+            Filters.SearchFilterResult.Offset = (PageIndex + 1) * PageSize;
+
             var data = await refreshAction(Filters.SearchFilterResult);
             data.Rows.ForEach(row => row.IsPlayerEnabled = isPlayerSupported.Invoke(row));
 
             Filters.UuId = data.Id;
             UIThreadDispatcher.ExecuteOnMainThread(() =>
             {
-                for (var i = TableResult.Count; i < data.Rows.Count; i++)
-                {
-                    TableResult.Add(data.Rows[i]);
-                }
+                ActiveSearchResults = new (data.Rows);
             });
 
             RefreshIconFilters(data.Stats, data.Filters.FilterType);
-            if (TableResult.IsNullOrEmpty())
+            if (ActiveSearchResults.IsNullOrEmpty())
             {
-                Loader.Set(data.StatusText);
+                Loader.Set(GetStatusText(data.Status));
+                if(data.Status is SearchStatusEnum.KeepTrying)
+                {
+                    await Refresh();
+                }
             }
             else
             {
                 Loader.Reset();
             }
-
-            isClearing = false;
         }
 
         private void RefreshIconFilters(IDictionary<FilterType, int> stats, FilterType selected)
@@ -190,6 +209,24 @@ namespace Peernet.Browser.Application.ViewModels
                 FilterIconModels.Clear();
                 stats.Foreach(x => FilterIconModels.Add(new IconModel(x.Key, onClick: OnFilterIconClick, count: x.Value) { IsSelected = x.Key == selected }));
             });
+        }
+
+        private string GetStatusText(SearchStatusEnum status)
+        {
+            switch (status)
+            {
+                case SearchStatusEnum.IdNotFound:
+                    return "Search was terminated.";
+
+                case SearchStatusEnum.KeepTrying:
+                    return "Searching...";
+
+                case SearchStatusEnum.NoMoreResults:
+                    return "No results.";
+
+                default:
+                    return "";
+            }
         }
     }
 }

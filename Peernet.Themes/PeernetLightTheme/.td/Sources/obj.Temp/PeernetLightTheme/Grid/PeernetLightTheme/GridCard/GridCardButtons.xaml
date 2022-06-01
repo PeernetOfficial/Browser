@@ -8,7 +8,7 @@
 
     <ControlTemplate x:Key="{dxgt:GridCardThemeKey ResourceKey=ExpandButtonTemplate}" TargetType="{x:Type dx:ToggleStateButton}">
         <Grid x:Name="Root" Height="16" Width="16" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardButtons.xaml;21;10">
-            <dx:DXBorder x:Name="IsDefault" Background="#1DF91D99" BorderBrush="#1DAA1D9A" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardButtons.xaml;24;14" />
+            <dx:DXBorder x:Name="IsDefault" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardButtons.xaml;24;14" />
             <Grid x:Name="Path" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardButtons.xaml;29;14">
                 <Path x:Name="Collapsed" Fill="{TemplateBinding Foreground}" Style="{StaticResource UIShape.ArrowDown}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardButtons.xaml;30;18" />
                 <Path x:Name="Expanded" Fill="{TemplateBinding Foreground}" Style="{StaticResource UIShape.ArrowUp}" Visibility="Collapsed" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Office2019White\GridCard\GridCardButtons.xaml;33;18" />
@@ -16,16 +16,16 @@
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Fill" TargetName="Collapsed" Value="#1D9B1D9B" cs:id="Setter_0003" />
-                <Setter Property="Fill" TargetName="Expanded" Value="#1D0C1D9C" cs:id="Setter_0002" />
-                <Setter Property="Background" TargetName="IsDefault" Value="#1D3D1D9D" cs:id="Setter_0000" />
-                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1D6E1D9E" cs:id="Setter_0006" />
+                <Setter Property="Fill" TargetName="Collapsed" Value="#FF106EBE" cs:id="Setter_0003" x:Uid="@Value=HoverForeground" />
+                <Setter Property="Fill" TargetName="Expanded" Value="#FF106EBE" cs:id="Setter_0002" x:Uid="@Value=HoverForeground" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0000" x:Uid="@Value=HoverBackground" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFEFF6FC" cs:id="Setter_0006" x:Uid="@Value=HoverBorder" />
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
-                <Setter Property="Fill" TargetName="Collapsed" Value="#1D5F1D9F" cs:id="Setter_0005" />
-                <Setter Property="Fill" TargetName="Expanded" Value="#1DB41DA0" cs:id="Setter_0004" />
-                <Setter Property="Background" TargetName="IsDefault" Value="#1D851DA1" cs:id="Setter_0001" />
-                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#1DD61DA2" cs:id="Setter_0007" />
+                <Setter Property="Fill" TargetName="Collapsed" Value="#FF106EBE" cs:id="Setter_0005" x:Uid="@Value=SelectionForeground" />
+                <Setter Property="Fill" TargetName="Expanded" Value="#FF106EBE" cs:id="Setter_0004" x:Uid="@Value=SelectionForeground" />
+                <Setter Property="Background" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0001" x:Uid="@Value=SelectionBackground" />
+                <Setter Property="BorderBrush" TargetName="IsDefault" Value="#FFDEECF9" cs:id="Setter_0007" x:Uid="@Value=SelectionBorder" />
             </Trigger>
             <DataTrigger Binding="{Binding Path=SelectionState}" Value="Selected" />
             <Trigger Property="IsChecked" Value="true">
