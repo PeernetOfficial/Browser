@@ -60,19 +60,11 @@ namespace Peernet.Browser.WPF.Controls
 
         private void Pager_Loaded(object sender, RoutedEventArgs e)
         {
-            pager.PageIndexChanged += Pager_PageIndexChanged;
-            pager.PageSizeChanged += Pager_PageSizeChanged;
+            pager.PageIndexChanged += Pager_Changed;
+            pager.PageSizeChanged += Pager_Changed;
         }
 
-        private async void Pager_PageIndexChanged(object sender, DevExpress.Xpf.Editors.DataPager.DataPagerPageIndexChangedEventArgs e)
-        {
-            if (DataContext != null)
-            {
-                await (DataContext as SearchTabElementViewModel)?.Refresh();
-            }
-        }
-
-        private async void Pager_PageSizeChanged(object sender, DevExpress.Xpf.Editors.DataPager.DataPagerPageSizeChangedEventArgs e)
+        private async void Pager_Changed(object sender, System.EventArgs e)
         {
             if (DataContext != null)
             {

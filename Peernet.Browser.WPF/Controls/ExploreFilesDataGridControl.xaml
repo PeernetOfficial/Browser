@@ -7,9 +7,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls"
              xmlns:download="clr-namespace:Peernet.SDK.Models.Domain.Download;assembly=Peernet.SDK"
-             xmlns:presentation="clr-namespace:Peernet.SDK.Models.Presentation.Footer;assembly=Peernet.SDK"
              mc:Ignorable="d"
-             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
              x:Name="ExploreFilesDataGrid">
     <Grid>
         <Grid.RowDefinitions>
@@ -17,11 +15,6 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <dxg:GridControl ItemsSource="{Binding ActiveSearchResults, IsAsync=True}" Visibility="{Binding IsLoaded, Converter={StaticResource BoolToVisibility}}">
-            <!--<dxg:GridControl.ItemsSource>
-                <dx:PagedAsyncSource ElementType="{x:Type presentation:DownloadModel}"
-                                     PageNavigationMode="Arbitrary"
-                                     FetchPageCommand="{Binding FetchDataCommand}" />
-            </dxg:GridControl.ItemsSource>-->
             <dxg:GridControl.View>
                 <dxg:TableView ShowGroupPanel="False" />
             </dxg:GridControl.View>
@@ -179,11 +172,14 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <dxe:PagerControl x:Name="pager"
-                              Grid.Row="1"
-                              AllowPrevPageButton="True"
-                              HasMorePages="{Binding HasMorePages}"
-                              PageSize="{Binding PageSize, Mode=OneWay}"
-                              PageIndex="{Binding PageIndex, Mode=OneWayToSource}" />
+        <controls:PagerControl x:Name="pager"
+                                Grid.Row="4"
+                                PageSize="{Binding PageSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                PageIndex="{Binding PageIndex, Mode=TwoWay}"
+                                PagesCount="{Binding PagesCount}"
+                                FirstPageCommand="{Binding FirstPageCommand}"
+                                NextPageCommand="{Binding NextPageCommand}"
+                                PreviousPageCommand="{Binding PreviousPageCommand}" 
+                                LastPageCommand="{Binding LastPageCommand}" />
     </Grid>
 </UserControl>

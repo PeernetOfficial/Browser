@@ -5,6 +5,7 @@ using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.ViewModels;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.SDK.Models.Presentation.Footer;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -34,23 +35,15 @@ namespace Peernet.Browser.WPF.Controls
 
         private void Pager_Loaded(object sender, RoutedEventArgs e)
         {
-            pager.PageIndexChanged += Pager_PageIndexChanged;
-            pager.PageSizeChanged += Pager_PageSizeChanged;
+            pager.PageIndexChanged += Pager_OnChange;
+            pager.PageSizeChanged += Pager_OnChange;
         }
 
-        private async void Pager_PageIndexChanged(object sender, DevExpress.Xpf.Editors.DataPager.DataPagerPageIndexChangedEventArgs e)
+        private async void Pager_OnChange(object sender, EventArgs e)
         {
             if (DataContext != null)
             {
-                await (DataContext as SearchTabElementViewModel)?.Refresh();
-            }
-        }
-
-        private async void Pager_PageSizeChanged(object sender, DevExpress.Xpf.Editors.DataPager.DataPagerPageSizeChangedEventArgs e)
-        {
-            if (DataContext != null)
-            {
-                await (DataContext as SearchTabElementViewModel)?.Refresh();
+                await (DataContext as ExploreViewModel)?.ReloadResults();
             }
         }
     }

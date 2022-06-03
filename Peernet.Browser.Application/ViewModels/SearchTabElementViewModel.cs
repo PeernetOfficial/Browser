@@ -17,12 +17,10 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly Func<DownloadModel, bool> isPlayerSupported;
         private readonly Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction;
         private ObservableCollection<DownloadModel> activeSearchResults;
-        private bool hasMorePages = true;
-        private int pageSize = 15;
         private int pageIndex;
-
-        // => pageSize*pageIndex<totalResultsCount
-        private int totalResultsCount;
+        private int pagesCount;
+        private int pageSize;
+        private int totalResultsCount = 999;
 
         public SearchTabElementViewModel(
             SearchFilterResultModel searchFilterResultModel,
@@ -109,29 +107,12 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IconModel FiltersIconModel { get; }
 
-        public bool HasMorePages
-        {
-            get => hasMorePages;
-            set
-            {
-                hasMorePages = value;
-                OnPropertyChanged(nameof(HasMorePages));
-            }
-        }
+        public IAsyncCommand FirstPageCommand => new AsyncCommand(GoToFirstPage);
 
+        public IAsyncCommand LastPageCommand => new AsyncCommand(GoToLastPage);
         public LoadingModel Loader { get; } = new LoadingModel();
-
+        public IAsyncCommand NextPageCommand => new AsyncCommand(GoToNextPage);
         public IAsyncCommand<DownloadModel> OpenCommand { get; }
-
-        public int PageSize
-        {
-            get => pageSize;
-            set
-            {
-                pageSize = value;
-                OnPropertyChanged(nameof(PageSize));
-            }
-        }
 
         public int PageIndex
         {
@@ -143,6 +124,27 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
+        public int PagesCount
+        {
+            get => pagesCount;
+            set
+            {
+                pagesCount = value;
+                OnPropertyChanged(nameof(PagesCount));
+            }
+        }
+
+        public int PageSize
+        {
+            get => pageSize;
+            set
+            {
+                pageSize = value;
+                OnPropertyChanged(nameof(PageSize));
+            }
+        }
+
+        public IAsyncCommand PreviousPageCommand => new AsyncCommand(GoToPreviousPage);
         public IAsyncCommand<SearchFiltersType> RemoveFilterCommand { get; }
 
         public IAsyncCommand<DownloadModel> StreamFileCommand { get; }
@@ -151,6 +153,80 @@ namespace Peernet.Browser.Application.ViewModels
         public async Task Initialize()
         {
             await Refresh();
+        }
+
+        public async Task Refresh()
+        {
+            Filters.SearchFilterResult.Limit = PageSize;
+            Filters.SearchFilterResult.Offset = PageIndex * PageSize;
+
+            var data = await refreshAction(Filters.SearchFilterResult);
+            data.Rows.ForEach(row => row.IsPlayerEnabled = isPlayerSupported.Invoke(row));
+
+            Filters.UuId = data.Id;
+            UIThreadDispatcher.ExecuteOnMainThread(() =>
+            {
+                ActiveSearchResults = new(data.Rows);
+            });
+
+            RefreshIconFilters(data.Stats, data.Filters.FilterType);
+            if (ActiveSearchResults.IsNullOrEmpty())
+            {
+                Loader.Set(GetStatusText(data.Status));
+                if (data.Status is SearchStatusEnum.KeepTrying)
+                {
+                    await Refresh();
+                }
+            }
+            else
+            {
+                Loader.Reset();
+            }
+        }
+
+        private string GetStatusText(SearchStatusEnum status)
+        {
+            switch (status)
+            {
+                case SearchStatusEnum.IdNotFound:
+                    return "Search was terminated.";
+
+                case SearchStatusEnum.KeepTrying:
+                    return "Searching...";
+
+                case SearchStatusEnum.NoMoreResults:
+                    return "No results.";
+
+                default:
+                    return "";
+            }
+        }
+
+        private async Task GoToFirstPage() => await GoToPage(0);
+
+        private async Task GoToLastPage() => await GoToPage((int)Math.Ceiling(totalResultsCount / (double)PageSize));
+
+        private async Task GoToNextPage()
+        {
+            var lastPageIndex = (int)Math.Ceiling(totalResultsCount / (double)PageSize);
+            if (PageIndex < lastPageIndex)
+            {
+                await GoToPage(PageIndex + 1);
+            }
+        }
+
+        private async Task GoToPage(int pageIndex)
+        {
+            PageIndex = pageIndex;
+            await Refresh();
+        }
+
+        private async Task GoToPreviousPage()
+        {
+            if (PageIndex > 0)
+            {
+                await GoToPage(PageIndex - 1);
+            }
         }
 
         private void InitIcons()
@@ -173,35 +249,6 @@ namespace Peernet.Browser.Application.ViewModels
             return Task.CompletedTask;
         }
 
-        public async Task Refresh()
-        {
-            Filters.SearchFilterResult.Limit = PageSize;
-            Filters.SearchFilterResult.Offset = (PageIndex + 1) * PageSize;
-
-            var data = await refreshAction(Filters.SearchFilterResult);
-            data.Rows.ForEach(row => row.IsPlayerEnabled = isPlayerSupported.Invoke(row));
-
-            Filters.UuId = data.Id;
-            UIThreadDispatcher.ExecuteOnMainThread(() =>
-            {
-                ActiveSearchResults = new (data.Rows);
-            });
-
-            RefreshIconFilters(data.Stats, data.Filters.FilterType);
-            if (ActiveSearchResults.IsNullOrEmpty())
-            {
-                Loader.Set(GetStatusText(data.Status));
-                if(data.Status is SearchStatusEnum.KeepTrying)
-                {
-                    await Refresh();
-                }
-            }
-            else
-            {
-                Loader.Reset();
-            }
-        }
-
         private void RefreshIconFilters(IDictionary<FilterType, int> stats, FilterType selected)
         {
             UIThreadDispatcher.ExecuteOnMainThread(() =>
@@ -209,24 +256,6 @@ namespace Peernet.Browser.Application.ViewModels
                 FilterIconModels.Clear();
                 stats.Foreach(x => FilterIconModels.Add(new IconModel(x.Key, onClick: OnFilterIconClick, count: x.Value) { IsSelected = x.Key == selected }));
             });
-        }
-
-        private string GetStatusText(SearchStatusEnum status)
-        {
-            switch (status)
-            {
-                case SearchStatusEnum.IdNotFound:
-                    return "Search was terminated.";
-
-                case SearchStatusEnum.KeepTrying:
-                    return "Searching...";
-
-                case SearchStatusEnum.NoMoreResults:
-                    return "No results.";
-
-                default:
-                    return "";
-            }
         }
     }
 }
