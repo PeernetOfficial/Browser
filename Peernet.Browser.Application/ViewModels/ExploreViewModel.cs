@@ -29,9 +29,8 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IEnumerable<IPlayButtonPlug> playButtonPlugs;
 
         private int pageIndex;
-
         private int pagesCount;
-        private int pageSize;
+        private int pageSize = 15;
         private int totalResultsCount = 999;
 
         public ExploreViewModel(IExploreService exploreService, IDownloadManager downloadManager, INavigationService navigationService, IEnumerable<IPlayButtonPlug> playButtonPlugs)
@@ -174,6 +173,13 @@ namespace Peernet.Browser.Application.ViewModels
             return new FetchRowsResult(files, true);
         }
 
+        public async Task ReloadResults()
+        {
+            var exploreResult = await exploreService.GetFiles(200);
+            SetPlayerState(exploreResult);
+            ActiveSearchResults = new ObservableCollection<DownloadModel>(exploreResult);
+        }
+
         private static VirtualFileSystemCoreCategory GetCategory(VirtualFileSystemEntityType type)
         {
             return new VirtualFileSystemCoreCategory(type.ToString(), type, new List<VirtualFileSystemEntity>());
@@ -234,13 +240,6 @@ namespace Peernet.Browser.Application.ViewModels
 
             IsLoaded = true;
             ActiveSearchResults = new ObservableCollection<DownloadModel>(results);
-        }
-
-        public async Task ReloadResults()
-        {
-            var exploreResult = await exploreService.GetFiles(200);
-            SetPlayerState(exploreResult);
-            ActiveSearchResults = new ObservableCollection<DownloadModel>(exploreResult);
         }
 
         private void SetPlayerState(List<DownloadModel> results)

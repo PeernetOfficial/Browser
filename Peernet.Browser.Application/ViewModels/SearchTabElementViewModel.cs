@@ -19,7 +19,7 @@ namespace Peernet.Browser.Application.ViewModels
         private ObservableCollection<DownloadModel> activeSearchResults;
         private int pageIndex;
         private int pagesCount;
-        private int pageSize;
+        private int pageSize = 15;
         private int totalResultsCount = 999;
 
         public SearchTabElementViewModel(
@@ -100,7 +100,6 @@ namespace Peernet.Browser.Application.ViewModels
         public IAsyncCommand DeleteCommand { get; }
 
         public IAsyncCommand<DownloadModel> DownloadCommand { get; }
-
         public ObservableCollection<IconModel> FilterIconModels { get; } = new ObservableCollection<IconModel>();
 
         public FiltersModel Filters { get; }

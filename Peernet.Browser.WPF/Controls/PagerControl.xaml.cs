@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -114,6 +115,12 @@ namespace Peernet.Browser.WPF.Controls
             {
                 pc?.PageIndexChanged?.Invoke(sender, new());
             }
+        }
+
+        private void PageSizeComboItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var value = (int)((FrameworkElement)e.OriginalSource).DataContext;
+            PageSize = value;
         }
     }
 }

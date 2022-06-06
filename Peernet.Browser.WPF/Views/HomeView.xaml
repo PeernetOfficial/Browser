@@ -1,7 +1,7 @@
 ﻿<UserControl
     x:Class="Peernet.Browser.WPF.Views.HomeView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls">
     <Grid VerticalAlignment="{Binding Alignment, Converter={StaticResource VerticalAlignmentConverter}}">
         <StackPanel Width="600">
             <Image Source="{DynamicResource LogoDrawingImage}" Height="65" Visibility="{Binding IsNotVisible, Converter={StaticResource BoolToVisibility}}" Margin="0, 0, 0, 77" />
@@ -64,7 +64,7 @@
             </TextBlock>
         </StackPanel>
 
-        <TabControl Visibility="{Binding IsVisible, Converter={StaticResource BoolToVisibility}}" SelectedIndex="{Binding SelectedIndex}"
+        <controls:TabControlEx Visibility="{Binding IsVisible, Converter={StaticResource BoolToVisibility}}" SelectedIndex="{Binding SelectedIndex}"
                     Foreground="{DynamicResource MainContentBrush}" Margin="0 105 0 0" ItemsSource="{Binding Tabs, IsAsync=True}" Style="{StaticResource SearchResultTabs}" ItemContainerStyle="{StaticResource SearchResultTabItem}" PreviewMouseDown="TabControl_PreviewMouseDown" />
     </Grid>
 </UserControl>
