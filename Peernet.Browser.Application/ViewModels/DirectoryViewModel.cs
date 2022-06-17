@@ -9,7 +9,6 @@ using Peernet.SDK.Models.Domain.Blockchain;
 using Peernet.SDK.Models.Extensions;
 using Peernet.SDK.Models.Plugins;
 using Peernet.SDK.Models.Presentation.Footer;
-using Peernet.SDK.Models.Presentation.Home;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
