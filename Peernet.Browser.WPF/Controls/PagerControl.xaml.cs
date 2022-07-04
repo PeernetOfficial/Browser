@@ -15,35 +15,35 @@ namespace Peernet.Browser.WPF.Controls
         public event EventHandler PageIndexChanged;
 
         public static readonly DependencyProperty PageIndexProperty =
-            DependencyProperty.Register("PageIndex", typeof(int),
+            DependencyProperty.Register(nameof(PageIndex), typeof(int),
                 typeof(PagerControl), new PropertyMetadata(OnPageIndexChangedCallBack));
 
         public static readonly DependencyProperty PageSizeProperty =
-                    DependencyProperty.Register("PageSize", typeof(int),
+                    DependencyProperty.Register(nameof(PageSize), typeof(int),
                 typeof(PagerControl), new PropertyMetadata(OnPageSizeChangedCallBack));
         
         public static readonly DependencyProperty PagesCountProperty =
-                    DependencyProperty.Register("PagesCount", typeof(int),
+                    DependencyProperty.Register(nameof(PagesCount), typeof(int),
                 typeof(PagerControl), null);
         
         public static readonly DependencyProperty FirstPageCommandProperty =
-                    DependencyProperty.Register("FirstPageCommand", typeof(ICommand),
+                    DependencyProperty.Register(nameof(FirstPageCommand), typeof(ICommand),
                 typeof(PagerControl), null);
 
         public static readonly DependencyProperty LastPageCommandProperty =
-                    DependencyProperty.Register("LastPageCommand", typeof(ICommand),
+                    DependencyProperty.Register(nameof(LastPageCommand), typeof(ICommand),
                 typeof(PagerControl), null);
 
         public static readonly DependencyProperty PreviousPageCommandProperty =
-                    DependencyProperty.Register("PreviousPageCommand", typeof(ICommand),
+                    DependencyProperty.Register(nameof(PreviousPageCommand), typeof(ICommand),
                 typeof(PagerControl), null);
 
         public static readonly DependencyProperty NextPageCommandProperty =
-                    DependencyProperty.Register("NextPageCommand", typeof(ICommand),
+                    DependencyProperty.Register(nameof(NextPageCommand), typeof(ICommand),
                 typeof(PagerControl), null);
 
         public static readonly DependencyProperty RefreshPageCommandProperty =
-                    DependencyProperty.Register("RefreshPageCommand", typeof(ICommand),
+                    DependencyProperty.Register(nameof(RefreshPageCommand), typeof(ICommand),
                 typeof(PagerControl), null);
 
         public PagerControl()

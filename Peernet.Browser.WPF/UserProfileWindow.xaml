@@ -1,0 +1,92 @@
+﻿<sdk:PeernetWindow Style="{DynamicResource StandardPeernetWindowStyle}"
+                   x:Class="Peernet.Browser.WPF.UserProfileWindow"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls"
+                   xmlns:sdk="clr-namespace:Peernet.SDK.WPF;assembly=Peernet.SDK"
+                   mc:Ignorable="d"
+                   Height="500"
+                   Width="850"
+                   Title="User Profile">
+    <sdk:PeernetWindow.Resources>
+        <ResourceDictionary>
+            <Style TargetType="{x:Type TabItem}">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TabItem}">
+                            <ContentPresenter x:Name="ContentSite"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Left"
+                                    ContentSource="Header" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </sdk:PeernetWindow.Resources>
+    <controls:TabControlEx Background="Transparent" BorderThickness="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <controls:TabControlEx.Resources>
+            <Style x:Key="HeaderStyle" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="#8F8F8F" />
+                <Setter Property="TextAlignment" Value="Center" />
+                <Setter Property="Padding" Value="10, 5" />
+                <Setter Property="MinWidth" Value="150" />
+                <Setter Property="MinHeight" Value="25" />
+            </Style>
+        </controls:TabControlEx.Resources>
+        <TabItem Name="MasterDataHeader">
+            <TabItem.Header>
+                <TextBlock Text="Master Data">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource HeaderStyle}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=IsSelected, ElementName=MasterDataHeader}" Value="True">
+                                    <Setter Property="Foreground" Value="{DynamicResource MainContentBrush}" />
+                                    <Setter Property="Background" Value="{DynamicResource ViewBackgroundBrush}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </TabItem.Header>
+            <controls:MasterDataControl DataContext="{Binding MasterData}" />
+        </TabItem>
+        <TabItem Name="SharedDataHeader">
+            <TabItem.Header>
+                <TextBlock Text="Shared Data">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource HeaderStyle}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=IsSelected, ElementName=SharedDataHeader}" Value="True">
+                                    <Setter Property="Foreground" Value="{DynamicResource MainContentBrush}" />
+                                    <Setter Property="Background" Value="{DynamicResource ViewBackgroundBrush}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </TabItem.Header>
+            <controls:SharedDataControl DataContext="{Binding SharedData}" />
+        </TabItem>
+        <TabItem Name="SocialsHeader">
+            <TabItem.Header>
+                <TextBlock Text="Socials">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource HeaderStyle}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=IsSelected, ElementName=SocialsHeader}" Value="True">
+                                    <Setter Property="Foreground" Value="{DynamicResource MainContentBrush}" />
+                                    <Setter Property="Background" Value="{DynamicResource ViewBackgroundBrush}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </TabItem.Header>
+            <!--<controls:SharedDataControl DataContext="{Binding DataContext.Socials}" />-->
+        </TabItem>
+    </controls:TabControlEx>
+</sdk:PeernetWindow>

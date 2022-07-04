@@ -4,8 +4,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.ViewModels;
 using Peernet.Browser.Application.ViewModels.Parameters;
+using Peernet.Browser.Infrastructure.Services;
+using Peernet.SDK.Models.Plugins;
 using Peernet.SDK.Models.Presentation.Footer;
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -22,7 +25,7 @@ namespace Peernet.Browser.WPF.Controls
             pager.Loaded += Pager_Loaded;
         }
 
-        private void Open_OnClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void OpenFilePreview_OnClick(object sender, RoutedEventArgs e)
         {
             var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;
             var model = (DownloadModel)cellData.RowData.Row;
@@ -45,6 +48,18 @@ namespace Peernet.Browser.WPF.Controls
             {
                 await (DataContext as ExploreViewModel)?.ReloadResults();
             }
+        }
+
+        private async void OpenUserProfile_PreviewLeftMouseButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var context = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;
+            var model = (DownloadModel)context.Row;
+            var nodeId = model.File.NodeId;
+            var userService = App.ServiceProvider.GetService<IUserService>();
+            var downoadManager = App.ServiceProvider.GetService<IDownloadManager>();
+            var plugs = App.ServiceProvider.GetService<IEnumerable<IPlayButtonPlug>>();
+            var user = await userService.GetUser(nodeId);
+            new UserProfileWindow(new(user, downoadManager, plugs)).Show();
         }
     }
 }

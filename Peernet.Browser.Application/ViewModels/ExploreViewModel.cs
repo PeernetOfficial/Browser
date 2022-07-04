@@ -2,6 +2,7 @@
 using DevExpress.Mvvm.Xpf;
 using DevExpress.Xpf.Data;
 using Peernet.Browser.Application.Download;
+using Peernet.Browser.Application.Extensions;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Application.VirtualFileSystem;
@@ -143,7 +144,7 @@ namespace Peernet.Browser.Application.ViewModels
                     category.IsSelected = true;
 
                     var results = await exploreService.GetFiles(200, (int)category.Type);
-                    SetPlayerState(results);
+                    results.SetPlayerState(playButtonPlugs);
                     ActiveSearchResults = new ObservableCollection<DownloadModel>(results);
                 });
 
@@ -176,7 +177,7 @@ namespace Peernet.Browser.Application.ViewModels
         public async Task ReloadResults()
         {
             var exploreResult = await exploreService.GetFiles(200);
-            SetPlayerState(exploreResult);
+            exploreResult.SetPlayerState(playButtonPlugs);
             ActiveSearchResults = new ObservableCollection<DownloadModel>(exploreResult);
         }
 
@@ -236,18 +237,10 @@ namespace Peernet.Browser.Application.ViewModels
                 Thread.Sleep(7000);
             }
 
-            SetPlayerState(results);
+            results.SetPlayerState(playButtonPlugs);
 
             IsLoaded = true;
             ActiveSearchResults = new ObservableCollection<DownloadModel>(results);
-        }
-
-        private void SetPlayerState(List<DownloadModel> results)
-        {
-            results.Foreach(r =>
-            {
-                r.IsPlayerEnabled = playButtonPlugs.Any(plug => plug?.IsSupported(r.File) == true);
-            });
         }
     }
 }
