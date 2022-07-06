@@ -60,13 +60,13 @@ These components are required:
 
 An automated setup for end-users is provided via a Windows installer through a MSI file. For more details see the [Peernet Browser Installer Project](https://github.com/PeernetOfficial/BrowserSetup).
 
-This installation bundle contains the Browser and installs the required .NET framework, includes the backend, and also configures the Windows Firewall for admin users.
+This installation bundle contains the Browser and installs the required .NET framework, includes the backend, downloads additional plugins and also configures the Windows Firewall for admin users.
 
 ## Use
 
-Run the `Peernet Browser.exe` file from the release folder and enjoy the features.
-
 Change the configuration file `Peernet Browser.dll.config` as needed.
+
+Run the `Peernet Browser.exe` file from the release folder and enjoy the features.
 
 ## Compile
 
