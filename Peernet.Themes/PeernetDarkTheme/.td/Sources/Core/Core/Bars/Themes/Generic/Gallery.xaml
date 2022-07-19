@@ -3,12 +3,9 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxbc="http://schemas.devexpress.com/winfx/2008/xaml/bars/internal"
                     xmlns:dxbi="http://schemas.devexpress.com/winfx/2008/xaml/bars/internal"
                     xmlns:dxbt="http://schemas.devexpress.com/winfx/2008/xaml/bars/themekeys"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
-                    xmlns:dxtEx="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
@@ -302,18 +299,18 @@
     </ControlTemplate>
 
     <Style x:Key="{dxbt:GalleryThemeSelectorThemeKey ResourceKey=ItemStyle}" TargetType="dxb:GalleryItem">
-        <Setter Property="Caption" Value="{Binding Path=Theme.FullName}"/>
-        <Setter Property="Glyph" Value="{Binding Path=Theme.LargeGlyph}"/>
-        <Setter Property="HoverGlyph" Value="{Binding Path=Theme.LargeGlyph}"/>
+        <Setter Property="Caption" Value="{Binding Path=Theme.FullName, Mode=OneTime}"/>
+        <Setter Property="Glyph" Value="{Binding Path=Theme.LargeGlyph, Mode=OneTime}"/>
+        <Setter Property="HoverGlyph" Value="{Binding Path=Theme.LargeGlyph, Mode=OneTime}"/>
         <Setter Property="IsChecked" Value="{Binding Path=IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <Style.Triggers>
             <DataTrigger Binding="{Binding UseSvgGlyphs}" Value="True">
-                <Setter Property="Glyph" Value="{Binding Theme.SvgGlyph, Converter={dx:SvgUriToImageSourceConverter}}"/>
-                <Setter Property="HoverGlyph" Value="{Binding Theme.SvgGlyph, Converter={dx:SvgUriToImageSourceConverter}}"/>
+                <Setter Property="Glyph" Value="{Binding Theme.SvgGlyph, Mode=OneTime, Converter={dx:SvgUriToImageSourceConverter}}"/>
+                <Setter Property="HoverGlyph" Value="{Binding Theme.SvgGlyph, Mode=OneTime, Converter={dx:SvgUriToImageSourceConverter}}"/>
             </DataTrigger>
-            <DataTrigger Binding="{Binding Theme.SvgGlyph}" Value="{x:Null}">
-                <Setter Property="Glyph" Value="{Binding Path=Theme.LargeGlyph}"/>
-                <Setter Property="HoverGlyph" Value="{Binding Path=Theme.LargeGlyph}"/>
+            <DataTrigger Binding="{Binding Theme.SvgGlyph, Mode=OneTime}" Value="{x:Null}">
+                <Setter Property="Glyph" Value="{Binding Path=Theme.LargeGlyph, Mode=OneTime}"/>
+                <Setter Property="HoverGlyph" Value="{Binding Path=Theme.LargeGlyph, Mode=OneTime}"/>
             </DataTrigger>
         </Style.Triggers>
     </Style>
@@ -415,7 +412,7 @@
     <Style x:Key="{dxbt:GalleryThemeSelectorThemeKey ResourceKey=PaletteInRibbonGalleryItemStyle}" TargetType="dxb:GalleryItem">
         <Setter Property="Caption" Value="{Binding Converter={StaticResource ThemePaletteNameConverter}, Mode=OneWay}"/>
         <Setter Property="IsChecked" Value="{Binding Path=IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        <Setter Property="Glyph" Value="{Binding Theme.Name, Converter={StaticResource ThemePaletteGlyphConverter}, Mode=OneWay}"/>
+        <Setter Property="Glyph" Value="{Binding Theme.Name, Mode=OneTime, Converter={StaticResource ThemePaletteGlyphConverter}}"/>
         <!--<Setter Property="Glyph" Value="{Binding Theme.SvgGlyph, Converter={dx:SvgUriToImageSourceConverter}}"/>-->
         <!--<Setter Property="dxbi:ThemeSelectorSvgPaletteBehavior.Enabled" Value="True"/>-->
     </Style>

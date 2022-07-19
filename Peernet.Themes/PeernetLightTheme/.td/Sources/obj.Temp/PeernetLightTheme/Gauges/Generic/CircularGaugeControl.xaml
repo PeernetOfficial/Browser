@@ -1,6 +1,6 @@
-<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:core="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:cs="colorscheme_ignorable_uri" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:local="http://schemas.devexpress.com/winfx/2008/xaml/gauges" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core">
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxga="http://schemas.devexpress.com/winfx/2008/xaml/gauges" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gauges.CircularGaugeControl}" TargetType="local:CircularGaugeControl">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gauges.CircularGaugeControl}" TargetType="dxga:CircularGaugeControl">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Gauges\Generic\CircularGaugeControl.xaml;10;6" /><Setter Property="ScalePanelTemplate">
             <Setter.Value>
                 <ItemsPanelTemplate>
@@ -12,9 +12,9 @@
         <Setter Property="FontSize" Value="13.333" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:CircularGaugeControl">
+                <ControlTemplate TargetType="dxga:CircularGaugeControl">
                     <dx:DXBorder Name="PART_ClipElement" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gauges\Generic\CircularGaugeControl.xaml;23;22">
-                        <local:GaugeBaseLayoutElement x:Name="PART_BaseLayoutElement">
+                        <dxga:GaugeBaseLayoutElement x:Name="PART_BaseLayoutElement">
                             <dxcore_unique_xmlns:DXContentPresenter Content="{TemplateBinding ActualModel}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gauges\Generic\CircularGaugeControl.xaml;29;30" />
                             <dxcore_unique_xmlns:DXContentPresenter Content="{Binding Path=ActualModel.ModelFull, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gauges\Generic\CircularGaugeControl.xaml;30;30" />
                             <dxcore_unique_xmlns:DXContentPresenter Content="{Binding Path=ActualModel.ModelHalfTop, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gauges\Generic\CircularGaugeControl.xaml;31;30" />
@@ -24,14 +24,14 @@
                             <dx:DXBorder Background="Transparent" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gauges\Generic\CircularGaugeControl.xaml;35;30">
                                 <ItemsControl ItemsPanel="{TemplateBinding ScalePanelTemplate}" ItemsSource="{TemplateBinding Scales}" Margin="{Binding Path=ActualModel.InnerPadding, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gauges\Generic\CircularGaugeControl.xaml;36;34" />
                             </dx:DXBorder>
-                            <local:GaugeItemsControl x:Name="PART_Elements" ItemsSource="{TemplateBinding Elements}">
-                                <local:GaugeItemsControl.ItemsPanel>
+                            <dxga:GaugeItemsControl x:Name="PART_Elements" ItemsSource="{TemplateBinding Elements}">
+                                <dxga:GaugeItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <local:GaugeElementsPanel />
+                                        <dxga:GaugeElementsPanel />
                                     </ItemsPanelTemplate>
-                                </local:GaugeItemsControl.ItemsPanel>
-                            </local:GaugeItemsControl>
-                        </local:GaugeBaseLayoutElement>
+                                </dxga:GaugeItemsControl.ItemsPanel>
+                            </dxga:GaugeItemsControl>
+                        </dxga:GaugeBaseLayoutElement>
                     </dx:DXBorder>
                 </ControlTemplate>
             </Setter.Value>

@@ -2,161 +2,161 @@
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
-                    xmlns:local="http://schemas.devexpress.com/winfx/2008/xaml/charts"
+                    xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxdst:ResourceDictionaryEx Source="{dx:ChartsResource themes/Generic/LegendMarker.xaml}"/>
+        <dxt:ResourceDictionaryEx Source="{dx:ChartsResource themes/Generic/LegendMarker.xaml}"/>
     </ResourceDictionary.MergedDictionaries>
 
     <dx:BoolToVisibilityConverter x:Key="boolToVisibilityConverter"/>
 
-    <local:IndicatorLabelVisibilityConverter x:Key="indicatorLabelVisibilityConverter"/>
+    <dxc:IndicatorLabelVisibilityConverter x:Key="indicatorLabelVisibilityConverter"/>
 
-    <Style x:Key="IndicatorDefaultStyle" TargetType="local:Indicator">
+    <Style x:Key="IndicatorDefaultStyle" TargetType="dxc:Indicator">
         <Setter Property="LegendMarkerTemplate" Value="{StaticResource IndicatorLegendMarkerDefaultTemplate}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.RegressionLine}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.RegressionLine}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:RegressionLine"/>
+           TargetType="dxc:RegressionLine"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.FibonacciRetracement}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.FibonacciRetracement}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:FibonacciRetracement"/>
+           TargetType="dxc:FibonacciRetracement"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.FibonacciFans}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.FibonacciFans}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:FibonacciFans"/>
+           TargetType="dxc:FibonacciFans"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.FibonacciArcs}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.FibonacciArcs}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:FibonacciArcs"/>
+           TargetType="dxc:FibonacciArcs"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.TrendLine}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.TrendLine}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:TrendLine"/>
+           TargetType="dxc:TrendLine"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.SimpleMovingAverage}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.SimpleMovingAverage}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:SimpleMovingAverage"/>
+           TargetType="dxc:SimpleMovingAverage"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.WeightedMovingAverage}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.WeightedMovingAverage}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:WeightedMovingAverage"/>
+           TargetType="dxc:WeightedMovingAverage"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.ExponentialMovingAverage}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.ExponentialMovingAverage}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:ExponentialMovingAverage"/>
+           TargetType="dxc:ExponentialMovingAverage"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.TriangularMovingAverage}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.TriangularMovingAverage}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:TriangularMovingAverage"/>
+           TargetType="dxc:TriangularMovingAverage"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.TripleExponentialMovingAverageTema}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.TripleExponentialMovingAverageTema}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:TripleExponentialMovingAverageTema"/>
+           TargetType="dxc:TripleExponentialMovingAverageTema"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.AverageTrueRange}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.AverageTrueRange}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:AverageTrueRange"/>
+           TargetType="dxc:AverageTrueRange"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.ChaikinsVolatility}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.ChaikinsVolatility}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:ChaikinsVolatility"/>
+           TargetType="dxc:ChaikinsVolatility"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.CommodityChannelIndex}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.CommodityChannelIndex}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:CommodityChannelIndex"/>
+           TargetType="dxc:CommodityChannelIndex"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.DetrendedPriceOscillator}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.DetrendedPriceOscillator}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:DetrendedPriceOscillator"/>
+           TargetType="dxc:DetrendedPriceOscillator"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.MassIndex}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.MassIndex}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:MassIndex"/>
+           TargetType="dxc:MassIndex"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.MovingAverageConvergenceDivergence}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.MovingAverageConvergenceDivergence}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:MovingAverageConvergenceDivergence"/>
+           TargetType="dxc:MovingAverageConvergenceDivergence"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.RateOfChange}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.RateOfChange}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:RateOfChange"/>
+           TargetType="dxc:RateOfChange"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.RelativeStrengthIndex}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.RelativeStrengthIndex}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:RelativeStrengthIndex"/>
+           TargetType="dxc:RelativeStrengthIndex"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.StandardDeviation}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.StandardDeviation}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:StandardDeviation"/>
+           TargetType="dxc:StandardDeviation"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.TripleExponentialMovingAverageTrix}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.TripleExponentialMovingAverageTrix}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:TripleExponentialMovingAverageTrix"/>
+           TargetType="dxc:TripleExponentialMovingAverageTrix"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.WilliamsR}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.WilliamsR}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:WilliamsR"/>
+           TargetType="dxc:WilliamsR"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.BollingerBands}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.BollingerBands}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:BollingerBands"/>
+           TargetType="dxc:BollingerBands"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.TypicalPrice}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.TypicalPrice}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:TypicalPrice"/>
+           TargetType="dxc:TypicalPrice"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.WeightedClose}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.WeightedClose}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:WeightedClose"/>
+           TargetType="dxc:WeightedClose"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.MedianPrice}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.MedianPrice}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:MedianPrice"/>
+           TargetType="dxc:MedianPrice"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.FixedValueErrorBars}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.FixedValueErrorBars}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:FixedValueErrorBars"/>
+           TargetType="dxc:FixedValueErrorBars"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.PercentageErrorBars}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.PercentageErrorBars}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:PercentageErrorBars"/>
+           TargetType="dxc:PercentageErrorBars"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.StandardErrorBars}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.StandardErrorBars}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:StandardErrorBars"/>
+           TargetType="dxc:StandardErrorBars"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.StandardDeviationErrorBars}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.StandardDeviationErrorBars}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:StandardDeviationErrorBars"/>
+           TargetType="dxc:StandardDeviationErrorBars"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.DataSourceBasedErrorBars}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.DataSourceBasedErrorBars}"
            BasedOn="{StaticResource IndicatorDefaultStyle}"
-           TargetType="local:DataSourceBasedErrorBars"/>
+           TargetType="dxc:DataSourceBasedErrorBars"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.IndicatorPresentation}" TargetType="{x:Type local:IndicatorPresentation}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.IndicatorPresentation}" TargetType="{x:Type dxc:IndicatorPresentation}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:IndicatorPresentation}">
-                    <local:FastPath x:Name="PART_IndicatorPath"
-                                    Clip="{Binding Path=AnimationClip}"
-                                    Data="{Binding Geometry}"
-                                    RenderTransform="{Binding Path=AnimationTransform}"
-                                    SnapsToDevicePixels="True"
-                                    Stroke="{Binding Brush}"
-                                    StrokeDashArray="{Binding LineStyle.DashStyle.Dashes}"
-                                    StrokeDashCap="{Binding LineStyle.DashCap}"
-                                    StrokeDashOffset="{Binding LineStyle.DashStyle.Offset}"
-                                    StrokeLineJoin="{Binding LineStyle.LineJoin}"
-                                    StrokeMiterLimit="{Binding LineStyle.MiterLimit}"
-                                    StrokeThickness="{Binding ActualLineThickness}"
-                                    Visibility="{Binding Visible, Converter={StaticResource boolToVisibilityConverter}, Mode=OneWay}"/>
-                    <!--<local:IndicatorRenderControl x:Name="PART_IndicatorPath"
+                <ControlTemplate TargetType="{x:Type dxc:IndicatorPresentation}">
+                    <dxc:FastPath x:Name="PART_IndicatorPath"
+                                  Clip="{Binding Path=AnimationClip}"
+                                  Data="{Binding Geometry}"
+                                  RenderTransform="{Binding Path=AnimationTransform}"
+                                  SnapsToDevicePixels="True"
+                                  Stroke="{Binding Brush}"
+                                  StrokeDashArray="{Binding LineStyle.DashStyle.Dashes}"
+                                  StrokeDashCap="{Binding LineStyle.DashCap}"
+                                  StrokeDashOffset="{Binding LineStyle.DashStyle.Offset}"
+                                  StrokeLineJoin="{Binding LineStyle.LineJoin}"
+                                  StrokeMiterLimit="{Binding LineStyle.MiterLimit}"
+                                  StrokeThickness="{Binding ActualLineThickness}"
+                                  Visibility="{Binding Visible, Converter={StaticResource boolToVisibilityConverter}, Mode=OneWay}"/>
+                    <!--<dxc:IndicatorRenderControl x:Name="PART_IndicatorPath"
                         Geometry ="{Binding Path=Geometry}"
                         Geometries="{Binding Path=Geometries}"
                         Clip ="{Binding Path=AnimationClip}"
@@ -170,25 +170,25 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.IndicatorLabelPresentation}" TargetType="{x:Type local:IndicatorLabelPresentation}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.IndicatorLabelPresentation}" TargetType="{x:Type dxc:IndicatorLabelPresentation}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:IndicatorLabelPresentation}">
-                    <local:ChartContentPresenter Content="{Binding Path=LabelItem.Text, RelativeSource={RelativeSource TemplatedParent}}"
-                                                 ContentTemplate="{Binding Path=Indicator.Item.Label.ElementTemplate,  RelativeSource={RelativeSource TemplatedParent}}"
-                                                 TextElement.FontFamily="{Binding Path=Indicator.Item.Label.FontFamily,  RelativeSource={RelativeSource TemplatedParent}}"
-                                                 TextElement.FontSize="{Binding Path=Indicator.Item.Label.FontSize,    RelativeSource={RelativeSource TemplatedParent}}"
-                                                 TextElement.FontStretch="{Binding Path=Indicator.Item.Label.FontStretch, RelativeSource={RelativeSource TemplatedParent}}"
-                                                 TextElement.FontStyle="{Binding Path=Indicator.Item.Label.FontStyle,   RelativeSource={RelativeSource TemplatedParent}}"
-                                                 TextElement.FontWeight="{Binding Path=Indicator.Item.Label.FontWeight,  RelativeSource={RelativeSource TemplatedParent}}"
-                                                 TextElement.Foreground="{Binding Path=Indicator.Item.Label.Foreground,  RelativeSource={RelativeSource TemplatedParent}}">
-                        <local:ChartContentPresenter.Visibility>
+                <ControlTemplate TargetType="{x:Type dxc:IndicatorLabelPresentation}">
+                    <dxc:ChartContentPresenter Content="{Binding Path=LabelItem.Text, RelativeSource={RelativeSource TemplatedParent}}"
+                                               ContentTemplate="{Binding Path=Indicator.Item.Label.ElementTemplate,  RelativeSource={RelativeSource TemplatedParent}}"
+                                               TextElement.FontFamily="{Binding Path=Indicator.Item.Label.FontFamily,  RelativeSource={RelativeSource TemplatedParent}}"
+                                               TextElement.FontSize="{Binding Path=Indicator.Item.Label.FontSize,    RelativeSource={RelativeSource TemplatedParent}}"
+                                               TextElement.FontStretch="{Binding Path=Indicator.Item.Label.FontStretch, RelativeSource={RelativeSource TemplatedParent}}"
+                                               TextElement.FontStyle="{Binding Path=Indicator.Item.Label.FontStyle,   RelativeSource={RelativeSource TemplatedParent}}"
+                                               TextElement.FontWeight="{Binding Path=Indicator.Item.Label.FontWeight,  RelativeSource={RelativeSource TemplatedParent}}"
+                                               TextElement.Foreground="{Binding Path=Indicator.Item.Label.Foreground,  RelativeSource={RelativeSource TemplatedParent}}">
+                        <dxc:ChartContentPresenter.Visibility>
                             <MultiBinding Converter="{StaticResource indicatorLabelVisibilityConverter}">
                                 <Binding Path="Indicator.Item.AnimationState" RelativeSource="{RelativeSource TemplatedParent}"/>
                                 <Binding Path="Indicator.Item.Visible" RelativeSource="{RelativeSource TemplatedParent}"/>
                             </MultiBinding>
-                        </local:ChartContentPresenter.Visibility>
-                    </local:ChartContentPresenter>
+                        </dxc:ChartContentPresenter.Visibility>
+                    </dxc:ChartContentPresenter>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

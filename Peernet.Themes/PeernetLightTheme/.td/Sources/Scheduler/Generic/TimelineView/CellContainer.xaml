@@ -2,17 +2,17 @@
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxsch="http://schemas.devexpress.com/winfx/2008/xaml/scheduler"
-                    xmlns:dxschd="http://schemas.devexpress.com/winfx/2008/xaml/scheduler/internal"
+                    xmlns:dxschi="http://schemas.devexpress.com/winfx/2008/xaml/scheduler/internal"
                     xmlns:dxscht="http://schemas.devexpress.com/winfx/2008/xaml/scheduler/themekeys"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <!--BEGIN TOSLONLY REPLACE 'dxschd:SchedulerScrollViewer'ScrollViewer'-->
+    <!--BEGIN TOSLONLY REPLACE 'dxschi:SchedulerScrollViewer'ScrollViewer'-->
 
-    <ControlTemplate x:Key="Timeline_ScrollViewerTemplate" TargetType="{x:Type dxschd:SchedulerScrollViewer}">
+    <ControlTemplate x:Key="Timeline_ScrollViewerTemplate" TargetType="{x:Type dxschi:SchedulerScrollViewer}">
         <Grid x:Name="Grid"
               Background="{TemplateBinding Background}"
               SnapsToDevicePixels="True"
@@ -38,7 +38,7 @@
                 <!--END WPF-->
                 <!--ONLY SL<ScrollContentPresenter.Name>ScrollContentPresenter</ScrollContentPresenter.Name>ONLY SL-->
             </ScrollContentPresenter>
-            <dxschd:SharedSizePanel Grid.Column="1"
+            <dxschi:SharedSizePanel Grid.Column="1"
                                     IsBaseSizePanel="True"
                                     Orientation="Horizontal"
                                     SharedSizeGroup="Timeline_VerticalScrollBarSizeGroup"
@@ -55,7 +55,7 @@
                     <!--END WPF-->
                     <!--ONLY SL<ScrollBar.Name>VerticalScrollBar</ScrollBar.Name>ONLY SL-->
                 </ScrollBar>
-            </dxschd:SharedSizePanel>
+            </dxschi:SharedSizePanel>
             <ScrollBar AutomationProperties.AutomationId="HorizontalScrollBar"
                        Cursor="Arrow"
                        dxsch:SchedulerControl.HitTestType="Undefined"
@@ -75,60 +75,60 @@
         </Grid>
     </ControlTemplate>
 
-    <dxschd:TimelineTemplateConverter x:Key="TimelineViewThemeKey_TimelineTemplateConverter">
-        <dxschd:TimelineTemplateConverter.Timeline>
+    <dxschi:TimelineTemplateConverter x:Key="TimelineViewThemeKey_TimelineTemplateConverter">
+        <dxschi:TimelineTemplateConverter.Timeline>
             <ControlTemplate TargetType="{x:Type ContentControl}">
                 <ContentPresenter/>
             </ControlTemplate>
-        </dxschd:TimelineTemplateConverter.Timeline>
-        <dxschd:TimelineTemplateConverter.TimelineWithScroll>
+        </dxschi:TimelineTemplateConverter.Timeline>
+        <dxschi:TimelineTemplateConverter.TimelineWithScroll>
             <ControlTemplate TargetType="{x:Type ContentControl}">
-                <dxschd:SchedulerScrollViewer HorizontalScrollBarVisibility="Hidden"
+                <dxschi:SchedulerScrollViewer HorizontalScrollBarVisibility="Hidden"
                                               Padding="0"
                                               Template="{StaticResource Timeline_ScrollViewerTemplate}"
                                               VerticalScrollBarVisibility="Visible">
                     <ContentPresenter/>
-                </dxschd:SchedulerScrollViewer>
+                </dxschi:SchedulerScrollViewer>
             </ControlTemplate>
-        </dxschd:TimelineTemplateConverter.TimelineWithScroll>
-    </dxschd:TimelineTemplateConverter>
+        </dxschi:TimelineTemplateConverter.TimelineWithScroll>
+    </dxschi:TimelineTemplateConverter>
 
     <!--TimelineViewContainerTemplate-->
 
     <DataTemplate x:Key="{dxscht:TimelineViewThemeKey ResourceKey=TimelineViewContainerTemplate}">
-        <dx:XPFContentControl Content="{Binding CellContainer}" dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}">
+        <dx:XPFContentControl Content="{Binding CellContainer}" dxschi:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschi:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}">
             <ContentControl.Template>
                 <ControlTemplate TargetType="{x:Type ContentControl}">
                     <ContentPresenter Content="{TemplateBinding Content}"
                                       ContentTemplate="{TemplateBinding ContentTemplate}"
-                                      dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"/>
+                                      dxschi:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschi:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"/>
                 </ControlTemplate>
             </ContentControl.Template>
             <ContentControl.ContentTemplate>
                 <DataTemplate>
                     <Grid>
-                        <dxschd:ConverterProxy x:Name="LocalConverterProxy"
+                        <dxschi:ConverterProxy x:Name="LocalConverterProxy"
                                                ConverterResourceName="TimelineViewThemeKey_ResourceNavigatorVisibilityMarginResolver"
                                                ValueToConvert="{Binding View.Control.ResourceNavigator.Visibility}"/>
-                        <dxschd:SchedulerTimelineHorizontalTimeCellsControl x:Name="HorizontalWeek"
-                                                                            dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
+                        <dxschi:SchedulerTimelineHorizontalTimeCellsControl x:Name="HorizontalWeek"
+                                                                            dxschi:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschi:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
                                                                             HorizontalContentAlignment="Stretch"
                                                                             ItemContainerStyle="{Binding View.CellStyle}"
                                                                             ItemsSource="{Binding Cells}"
                                                                             VerticalContentAlignment="Stretch">
-                            <dxschd:SchedulerTimelineHorizontalTimeCellsControl.ItemsPanel>
+                            <dxschi:SchedulerTimelineHorizontalTimeCellsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <dxschd:TimelineCellPanel dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), ElementName=HorizontalWeek}" Orientation="Horizontal"/>
+                                    <dxschi:TimelineCellPanel dxschi:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschi:SchedulerItemsControl.ElementPosition), ElementName=HorizontalWeek}" Orientation="Horizontal"/>
                                 </ItemsPanelTemplate>
-                            </dxschd:SchedulerTimelineHorizontalTimeCellsControl.ItemsPanel>
-                        </dxschd:SchedulerTimelineHorizontalTimeCellsControl>
-                        <dxschd:SelectionPresenter CellContainer="{Binding}"
+                            </dxschi:SchedulerTimelineHorizontalTimeCellsControl.ItemsPanel>
+                        </dxschi:SchedulerTimelineHorizontalTimeCellsControl>
+                        <dxschi:SelectionPresenter CellContainer="{Binding}"
                                                    Resource="{Binding Resource}"
                                                    SchedulerTimeCellControl="{Binding ElementName=HorizontalWeek}"
                                                    SelectedCells="{Binding SelectedCells}"
                                                    SelectionTemplate="{Binding View.SelectionTemplate}"/>
                         <dx:XPFContentControl Template="{Binding View.TimelineScrollBarVisibility, Converter={StaticResource TimelineViewThemeKey_TimelineTemplateConverter}}">
-                            <dxschd:DynamicHorizontalAppointmentsPanel x:Name="AppointmentsPanel"
+                            <dxschi:DynamicHorizontalAppointmentsPanel x:Name="AppointmentsPanel"
                                                                        AppointmentControls="{Binding AppointmentControlCollection}"
                                                                        CellContainer="{Binding}"
                                                                        CellPadding="0,0,1,0"
@@ -138,31 +138,31 @@
                                                                        SchedulerTimeCellControl="{Binding ElementName=HorizontalWeek}"
                                                                        SnapToCells="{Binding  View.AppointmentDisplayOptions.SnapToCellsMode, Mode=TwoWay}"/>
                         </dx:XPFContentControl>
-                        <dxschd:DynamicHorizontalAppointmentsPanel AppointmentControls="{Binding DraggedAppointmentControlCollection}"
+                        <dxschi:DynamicHorizontalAppointmentsPanel AppointmentControls="{Binding DraggedAppointmentControlCollection}"
                                                                    AppointmentStyle="{Binding View.DragDropHoverTimeCellsStyle}"
                                                                    CellContainer="{Binding}"
                                                                    CellPadding="-1,0,0,0"
                                                                    DefaultAppointmentHeight="{DynamicResource {dxscht:SchedulerControlThemeKey ResourceKey=DefaultAppointmentHeight}}"
                                                                    IsDraggedMode="True"
                                                                    SchedulerTimeCellControl="{Binding ElementName=HorizontalWeek}"/>
-                        <dxschd:MoreButtonItemsControl x:Name="WeekMoreButton"
+                        <dxschi:MoreButtonItemsControl x:Name="WeekMoreButton"
                                                        HorizontalContentAlignment="Stretch"
                                                        ItemsSource="{Binding ElementName=AppointmentsPanel, Path=MoreButtonInfos}"
                                                        ItemTemplate="{DynamicResource {dxscht:SchedulerViewThemeKey ResourceKey=MoreButtonCellTemplate}}"
                                                        VerticalContentAlignment="Stretch"
                                                        View="{Binding View}">
-                            <dxschd:MoreButtonItemsControl.ItemsPanel>
+                            <dxschi:MoreButtonItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <dxschd:HorizontalWeekMoreButtonPanel2/>
+                                    <dxschi:HorizontalWeekMoreButtonPanel2/>
                                 </ItemsPanelTemplate>
-                            </dxschd:MoreButtonItemsControl.ItemsPanel>
-                        </dxschd:MoreButtonItemsControl>
+                            </dxschi:MoreButtonItemsControl.ItemsPanel>
+                        </dxschi:MoreButtonItemsControl>
                     </Grid>
                 </DataTemplate>
             </ContentControl.ContentTemplate>
         </dx:XPFContentControl>
     </DataTemplate>
 
-    <!--END TOSLONLY REPLACE 'dxschd:SchedulerScrollViewer'ScrollViewer'-->
+    <!--END TOSLONLY REPLACE 'dxschi:SchedulerScrollViewer'ScrollViewer'-->
 
 </ResourceDictionary>

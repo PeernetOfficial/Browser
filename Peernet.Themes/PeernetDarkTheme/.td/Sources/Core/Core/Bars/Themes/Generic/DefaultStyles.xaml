@@ -3,15 +3,11 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxbc="http://schemas.devexpress.com/winfx/2008/xaml/bars/internal"
-                    xmlns:dxbn="http://schemas.devexpress.com/winfx/2008/xaml/bars/internal"
+                    xmlns:dxbi="http://schemas.devexpress.com/winfx/2008/xaml/bars/internal"
                     xmlns:dxbt="http://schemas.devexpress.com/winfx/2008/xaml/bars/themekeys"
-                    xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core"
-                    xmlns:dxcn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
                     xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
-                    xmlns:dxtEx="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
@@ -32,23 +28,23 @@
         <Setter Property="IsEnabled" Value="{Binding RelativeSource={RelativeSource Self}, Path=Command, Converter={dxmvvm:ObjectToBooleanConverter}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Bars.Native.UndoSplitButtonItem}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Bars.Native.UndoSplitButtonItem}"
            BasedOn="{StaticResource BaseUndoButtonStyle}"
-           TargetType="{x:Type dxbn:UndoSplitButtonItem}"/>
+           TargetType="{x:Type dxbi:UndoSplitButtonItem}"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Bars.Native.UndoButtonItem}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Bars.Native.UndoButtonItem}"
            BasedOn="{StaticResource BaseUndoButtonStyle}"
-           TargetType="{x:Type dxbn:UndoButtonItem}"/>
+           TargetType="{x:Type dxbi:UndoButtonItem}"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Bars.Native.RedoSplitButtonItem}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Bars.Native.RedoSplitButtonItem}"
            BasedOn="{StaticResource BaseRedoButtonStyle}"
-           TargetType="{x:Type dxbn:RedoSplitButtonItem}"/>
+           TargetType="{x:Type dxbi:RedoSplitButtonItem}"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Bars.Native.RedoButtonItem}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Bars.Native.RedoButtonItem}"
            BasedOn="{StaticResource BaseRedoButtonStyle}"
-           TargetType="{x:Type dxbn:RedoButtonItem}"/>
+           TargetType="{x:Type dxbi:RedoButtonItem}"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Bars.Native.BarHistoryListItem}" TargetType="{x:Type dxbn:BarHistoryListItem}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Bars.Native.BarHistoryListItem}" TargetType="{x:Type dxbi:BarHistoryListItem}">
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <DataTemplate>
@@ -58,15 +54,15 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Bars.BarHistoryItem}" TargetType="{x:Type dxb:BarHistoryItem}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Bars.BarHistoryItem}" TargetType="{x:Type dxb:BarHistoryItem}">
         <Setter Property="dxb:BarManager.ShowGlyphsInPopupMenus" Value="False"/>
         <Setter Property="ItemStyleSelector">
             <Setter.Value>
-                <dxbn:SingleStyleSelector>
-                    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Bars.BarButtonItem}" TargetType="{x:Type dxb:BarButtonItem}">
+                <dxbi:SingleStyleSelector>
+                    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Bars.BarButtonItem}" TargetType="{x:Type dxb:BarButtonItem}">
                         <Setter Property="Content" Value="{Binding}"/>
                     </Style>
-                </dxbn:SingleStyleSelector>
+                </dxbi:SingleStyleSelector>
             </Setter.Value>
         </Setter>
     </Style>
@@ -118,9 +114,9 @@
             </DataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=LinksHolder.(dxcn:AppearanceOptions.HasMargin)}" Value="True"/>
+                    <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=LinksHolder.(dxi:AppearanceOptions.HasMargin)}" Value="True"/>
                 </MultiDataTrigger.Conditions>
-                <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource Self}, Path=LinksHolder.(dxcn:AppearanceOptions.Margin)}"/>
+                <Setter Property="Margin" Value="{Binding RelativeSource={RelativeSource Self}, Path=LinksHolder.(dxi:AppearanceOptions.Margin)}"/>
             </MultiDataTrigger>
         </Style.Triggers>
     </Style>
@@ -213,13 +209,13 @@
                 <ControlTemplate TargetType="{x:Type dxb:BarItemLinkControl}">
                     <Grid>
                         <dxb:BarItemLayoutPanel x:Name="PART_LayoutPanel"/>
-                        <dxc:LayoutTransformPanel x:Name="PART_PopupTransformPanel"
-                                                  Clockwise="False"
-                                                  Orientation="Vertical">
+                        <dx:LayoutTransformPanel x:Name="PART_PopupTransformPanel"
+                                                 Clockwise="False"
+                                                 Orientation="Vertical">
                             <Border x:Name="PART_PopupPlacementTarget">
                                 <dxb:PopupMenuBase x:Name="PART_Popup"/>
                             </Border>
-                        </dxc:LayoutTransformPanel>
+                        </dx:LayoutTransformPanel>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <MultiTrigger>
@@ -273,11 +269,11 @@
                 <ControlTemplate TargetType="{x:Type dxb:BarItemLinkControl}">
                     <Grid>
                         <dxb:BarItemLayoutPanel x:Name="PART_LayoutPanel"/>
-                        <dxc:LayoutTransformPanel x:Name="PART_PopupTransformPanel"
-                                                  Clockwise="False"
-                                                  Orientation="Vertical">
-                            <dxc:NonLogicalDecorator x:Name="PART_PopupPlacementTarget"/>
-                        </dxc:LayoutTransformPanel>
+                        <dx:LayoutTransformPanel x:Name="PART_PopupTransformPanel"
+                                                 Clockwise="False"
+                                                 Orientation="Vertical">
+                            <dx:NonLogicalDecorator x:Name="PART_PopupPlacementTarget"/>
+                        </dx:LayoutTransformPanel>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <MultiTrigger>
@@ -343,7 +339,7 @@
         </Style.Triggers>
     </Style>
 
-    <dxc:BooleanToVisibilityConverter x:Key="boolToVisibilityConverter"/>
+    <dx:BooleanToVisibilityConverter x:Key="boolToVisibilityConverter"/>
 
     <Style x:Key="BarStaticItemLinkControlDefaultStyle"
            BasedOn="{StaticResource BarItemLinkControlDefaultStyle}"
@@ -352,7 +348,7 @@
             <Setter.Value>
                 <ControlTemplate>
                     <Grid>
-                        <ContentControl dxc:FocusHelper2.Focusable="False"
+                        <ContentControl dx:FocusHelper2.Focusable="False"
                                         HorizontalAlignment="Stretch"
                                         Template="{DynamicResource {dxbt:BarStaticItemThemeKey ResourceKey=BorderTemplate}}"
                                         VerticalAlignment="Stretch"
@@ -404,11 +400,11 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="BarItemDragElementContentDefaultStyle" TargetType="{x:Type dxbc:BarItemDragElementContent}">
+    <Style x:Key="BarItemDragElementContentDefaultStyle" TargetType="{x:Type dxbi:BarItemDragElementContent}">
         <Setter Property="Template" Value="{DynamicResource {dxbt:CustomizationThemeKey ResourceKey=DragElementTemplate}}"/>
     </Style>
 
-    <Style x:Key="BarDragElementPopupDefaultStyle" TargetType="{x:Type dxbc:BarDragElementPopup}">
+    <Style x:Key="BarDragElementPopupDefaultStyle" TargetType="{x:Type dxbi:BarDragElementPopup}">
         <Setter Property="IsHitTestVisible" Value="False"/>
         <Setter Property="Placement" Value="Relative"/>
         <Setter Property="AllowsTransparency" Value="True"/>
@@ -458,7 +454,7 @@
         <Setter Property="Template" Value="{DynamicResource {dxbt:OfficeTabletItemsControlThemeKey ResourceKey=ControlTemplate}}"/>
         <Setter Property="ItemContainerStyle">
             <Setter.Value>
-                <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=FrameworkElement}" TargetType="FrameworkElement">
+                <Style x:Key="{dxt:DefaultStyleThemeKey FullName=FrameworkElement}" TargetType="FrameworkElement">
                     <Setter Property="RenderTransform">
                         <Setter.Value>
                             <TranslateTransform/>
@@ -483,7 +479,7 @@
         <Setter Property="SizeAnimationBeginTime" Value="0:0:0.2"/>
     </Style>
 
-    <Style x:Key="BarItemListDefaultStyle" TargetType="{x:Type dxbc:BarItemList}">
+    <Style x:Key="BarItemListDefaultStyle" TargetType="{x:Type dxbi:BarItemList}">
         <Setter Property="BorderBrush" Value="{x:Null}"/>
         <Setter Property="Background"
                 Value="Transparent"
@@ -492,7 +488,7 @@
         <Setter Property="Template" Value="{DynamicResource {dxt:ListBoxThemeKey ResourceKey=ControlTemplate}}"/>
     </Style>
 
-    <Style x:Key="BarItemListItemDefaultStyle" TargetType="{x:Type dxbc:BarItemListItem}">
+    <Style x:Key="BarItemListItemDefaultStyle" TargetType="{x:Type dxbi:BarItemListItem}">
         <Setter Property="Foreground"
                 Value="Black"
                 cs:id="Setter_0000"/>
@@ -577,12 +573,12 @@
         <Setter Property="ColorizeGlyph" Value="{DynamicResource {dxbt:CustomizationThemeKey ResourceKey=ColorizeGlyph}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Bars.ToolBarControlBase}" TargetType="{x:Type dxb:ToolBarControlBase}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Bars.ToolBarControlBase}" TargetType="{x:Type dxb:ToolBarControlBase}">
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Template" Value="{DynamicResource {dxbt:ToolBarThemeKey ResourceKey=Template}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Bars.Native.BarItemSearchControlNoResult}" TargetType="{x:Type dxbn:BarItemSearchControlNoResult}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Bars.Native.BarItemSearchControlNoResult}" TargetType="{x:Type dxbi:BarItemSearchControlNoResult}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>

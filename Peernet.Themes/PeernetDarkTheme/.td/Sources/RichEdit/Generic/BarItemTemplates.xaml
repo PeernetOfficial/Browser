@@ -3,18 +3,17 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-                    xmlns:dxoui="http://schemas.devexpress.com/winfx/2008/xaml/office"
+                    xmlns:dxo="http://schemas.devexpress.com/winfx/2008/xaml/office"
                     xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
                     xmlns:dxret="http://schemas.devexpress.com/winfx/2008/xaml/richedit/themekeys"
-                    xmlns:dxreui="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <dxoui:GalleryStyleItemForeColorConverter x:Key="galleryStyleItemForeColorConverter"/>
+    <dxo:GalleryStyleItemForeColorConverter x:Key="galleryStyleItemForeColorConverter"/>
 
-    <dxoui:OfficeDefaultBarItemDataTemplates x:Key="officeDefaultTemplates"/>
+    <dxo:OfficeDefaultBarItemDataTemplates x:Key="officeDefaultTemplates"/>
 
     <DataTemplate x:Key="{dxret:BarItemTemplate ResourceKey=StyleGalleryItemCaption}">
         <Border BorderBrush="LightGray"
@@ -30,7 +29,7 @@
                         Grid.Row="0"
                         Padding="0">
                     <Border.Resources>
-                        <dxreui:RichEditStringIdConverter x:Key="stringIdConverter"/>
+                        <dxre:RichEditStringIdConverter x:Key="stringIdConverter"/>
                     </Border.Resources>
                     <TextBlock FontFamily="{Binding FontFamily}"
                                FontSize="{Binding FontSize}"
@@ -85,7 +84,7 @@
         </Border>
     </DataTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.RichEdit.UI.DefaultBarItemDataTemplates}" TargetType="{x:Type dxreui:DefaultBarItemDataTemplates}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.RichEdit.UI.DefaultBarItemDataTemplates}" TargetType="{x:Type dxre:DefaultBarItemDataTemplates}">
         <Setter Property="Template" Value="{Binding Path=OfficeDefaultBarItemDataTemplates.Template, RelativeSource={RelativeSource Self}}"/>
         <Setter Property="CheckEditTemplate" Value="{Binding OfficeDefaultBarItemDataTemplates.CheckEditTemplate, RelativeSource={RelativeSource Self}}"/>
         <Setter Property="SectionMarginBarItemContentTemplate" Value="{Binding Path=OfficeDefaultBarItemDataTemplates.MarginBarItemContentTemplate, RelativeSource={RelativeSource Self}}"/>
@@ -94,7 +93,7 @@
         <Setter Property="TableStyleGalleryItemCaptionTemplate" Value="{DynamicResource {dxret:BarItemTemplate ResourceKey=TableStyleGalleryItemCaption}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.RichEdit.CommentSuperTipItem}" TargetType="{x:Type dxre:CommentSuperTipItem}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.RichEdit.CommentSuperTipItem}" TargetType="{x:Type dxre:CommentSuperTipItem}">
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>

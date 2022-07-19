@@ -1,21 +1,21 @@
-<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxcn="clr-namespace:DevExpress.Xpf.Core.Native;assembly=DevExpress.Xpf.Core.v21.2" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxpg="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid" xmlns:dxpgi="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid/internal" xmlns:dxpgt="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid/themekeys" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxcn="clr-namespace:DevExpress.Xpf.Core.Native;assembly=DevExpress.Xpf.Core.v22.1" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxprg="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid" xmlns:dxprgi="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid/internal" xmlns:dxprgt="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid/themekeys" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.PeernetLightTheme.v21.2;component/PropertyGrid/PeernetLightTheme/UICore.xaml" />
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.PeernetLightTheme.v22.1;component/PropertyGrid/PeernetLightTheme/UICore.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     
 
-    <Style x:Key="{dxpgt:PropertyGridControlThemeKey ResourceKey=SearchEditStyle}" TargetType="{x:Type dxe:TextEdit}">
+    <Style x:Key="{dxprgt:PropertyGridControlThemeKey ResourceKey=SearchEditStyle}" TargetType="{x:Type dxe:TextEdit}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="PropertyGrid\Office2019White\SearchControl.xaml;22;6" /><Setter Property="Background" Value="#FFFFFFFF" cs:id="Setter_0000" x:Uid="@Value=Editor.Background" />
         <Setter Property="ShowBorder" Value="True" />
     </Style>
 
-    <Style x:Key="{dxpgt:PropertyGridControlThemeKey ResourceKey=SearchControlStyle}" TargetType="{x:Type dxe:SearchControl}">
+    <Style x:Key="{dxprgt:PropertyGridControlThemeKey ResourceKey=SearchControlStyle}" TargetType="{x:Type dxe:SearchControl}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="PropertyGrid\Office2019White\SearchControl.xaml;29;6" /><Setter Property="Margin" Value="0" />
     </Style>
 
-    <Style x:Key="{dxpgt:PropertyGridControlThemeKey ResourceKey=TopPanelStyle}" TargetType="{x:Type ContentControl}">
+    <Style x:Key="{dxprgt:PropertyGridControlThemeKey ResourceKey=TopPanelStyle}" TargetType="{x:Type ContentControl}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="PropertyGrid\Office2019White\SearchControl.xaml;33;6" /><Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ContentControl}">
@@ -34,7 +34,7 @@
 
     
 
-    <Style x:Key="{dxpgt:PropertyGridControlThemeKey ResourceKey=ViewKindButtonStyle}" TargetType="{x:Type RadioButton}">
+    <Style x:Key="{dxprgt:PropertyGridControlThemeKey ResourceKey=ViewKindButtonStyle}" TargetType="{x:Type RadioButton}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="PropertyGrid\Office2019White\SearchControl.xaml;59;6" /><Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RadioButton}">
@@ -46,11 +46,11 @@
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="DataContext" Value="{x:Static dxpg:ApplyingMode.WhenNoGrouping}">
+                        <Trigger Property="DataContext" Value="{x:Static dxprg:ApplyingMode.WhenNoGrouping}">
                             <Setter Property="Visibility" TargetName="GroupView" Value="Collapsed" />
                             <Setter Property="Visibility" TargetName="ListView" Value="Visible" />
                         </Trigger>
-                        <Trigger Property="DataContext" Value="{x:Static dxpg:ApplyingMode.WhenGrouping}">
+                        <Trigger Property="DataContext" Value="{x:Static dxprg:ApplyingMode.WhenGrouping}">
                             <Setter Property="Visibility" TargetName="GroupView" Value="Visible" />
                             <Setter Property="Visibility" TargetName="ListView" Value="Collapsed" />
                         </Trigger>

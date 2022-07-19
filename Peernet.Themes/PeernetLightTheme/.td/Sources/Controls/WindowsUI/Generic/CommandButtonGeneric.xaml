@@ -3,8 +3,8 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
-                    xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+                    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui"
                     xmlns:dxwuii="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/internal"
                     xmlns:dxwuit="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/themekeys"
@@ -121,20 +121,20 @@
                 cs:id="Setter_0001"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.CommandButton}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.CommandButton}"
            BasedOn="{StaticResource commandButtonStyle}"
            TargetType="dxwui:CommandButton">
         <Setter Property="Template" Value="{StaticResource CommandButtonTemplate}"/>
         <Setter Property="dxb:ImageColorizer.Color" Value="{DynamicResource {dxwuit:CommandButtonElementsThemeKey ResourceKey=NormalForeColor}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.Internal.BackButton}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.Internal.BackButton}"
            BasedOn="{StaticResource commandButtonStyle}"
            TargetType="dxwuii:BackButton">
         <Setter Property="ContentTemplate" Value="{DynamicResource {dxwuit:CommandButtonElementsThemeKey ResourceKey=BackGlyph}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.Internal.ForwardButton}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.Internal.ForwardButton}"
            BasedOn="{StaticResource commandButtonStyle}"
            TargetType="dxwuii:ForwardButton">
         <Setter Property="ContentTemplate" Value="{DynamicResource {dxwuit:CommandButtonElementsThemeKey ResourceKey=ForwardGlyph}}"/>

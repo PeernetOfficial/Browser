@@ -36,7 +36,7 @@ namespace Peernet.Browser.WPF
 
     public partial class App : System.Windows.Application
     {
-        private const string DXVersion = "v21.2";
+        private const string DXVersion = "v22.1";
         private static CmdRunner cmdRunner;
         private static Services.SplashScreenManager splashScreenManager = new();
         private readonly object lockObject = new();

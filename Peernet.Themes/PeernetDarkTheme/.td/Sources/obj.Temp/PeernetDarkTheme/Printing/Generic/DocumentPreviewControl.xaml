@@ -1,4 +1,4 @@
-<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:bars="http://schemas.devexpress.com/winfx/2008/xaml/printing/bars" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxd="http://schemas.devexpress.com/winfx/2008/xaml/docking" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxdv="http://schemas.devexpress.com/winfx/2008/xaml/documentviewer" xmlns:dxdvt="http://schemas.devexpress.com/winfx/2008/xaml/documentviewer/themekeys" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:dxpn="http://schemas.devexpress.com/winfx/2008/xaml/printing/native" xmlns:dxpp="http://schemas.devexpress.com/winfx/2008/xaml/printing/parameters" xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:local="http://schemas.devexpress.com/winfx/2008/xaml/printing" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:native="http://schemas.devexpress.com/winfx/2008/xaml/printing/native" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:themes="http://schemas.devexpress.com/winfx/2008/xaml/printing/themekeys" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:xtraprintingnative="clr-namespace:DevExpress.XtraPrinting.Native;assembly=DevExpress.Printing.v21.2.Core" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking" xmlns:dxdv="http://schemas.devexpress.com/winfx/2008/xaml/documentviewer" xmlns:dxdvt="http://schemas.devexpress.com/winfx/2008/xaml/documentviewer/themekeys" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:dxp="http://schemas.devexpress.com/winfx/2008/xaml/printing" xmlns:dxpbars="http://schemas.devexpress.com/winfx/2008/xaml/printing/bars" xmlns:dxpn="http://schemas.devexpress.com/winfx/2008/xaml/printing/native" xmlns:dxpp="http://schemas.devexpress.com/winfx/2008/xaml/printing/parameters" xmlns:dxpt="http://schemas.devexpress.com/winfx/2008/xaml/printing/themekeys" xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:xtraprintingnative="clr-namespace:DevExpress.XtraPrinting.Native;assembly=DevExpress.Printing.v22.1.Core" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
 
     <sys:Boolean x:Key="TrueBoolean">True</sys:Boolean>
 
@@ -6,15 +6,15 @@
 
     <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
 
-    <native:NumberToVisibilityConverter x:Key="visibilityConverter" />
+    <dxpn:NumberToVisibilityConverter x:Key="visibilityConverter" />
 
-    <native:ObjectToCollectionConverter x:Key="objectToCollectionConverter" />
+    <dxpn:ObjectToCollectionConverter x:Key="objectToCollectionConverter" />
 
     <dxcore_unique_xmlns:ObjectToBooleanConverter x:Key="objectToBooleanConverter" />
 
     <dxcore_unique_xmlns:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
 
-    <local:CursorModeToCanMouseScrollConverter x:Key="cursorModeToCanMouseScrollConverter" />
+    <dxp:CursorModeToCanMouseScrollConverter x:Key="cursorModeToCanMouseScrollConverter" />
 
     <sys:Double x:Key="zoomComboBoxWidth">100</sys:Double>
 
@@ -22,18 +22,18 @@
 
     <dxcore_unique_xmlns:BoolInverseConverter x:Key="boolInverseConverter" />
 
-    <DataTemplate x:Key="{themes:NewDocumentViewerThemeKey ResourceKey=PaginationTemplate}">
-        <Grid Margin="10,0,10,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;51;10">
-            <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;52;14">
-                <TextBlock Text="{Binding Path=(local:DocumentPreviewControl.ActualViewer).CurrentPageNumber, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;53;18" />
-                <TextBlock Text=" / " dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;54;18" />
-                <TextBlock Text="{Binding Path=(local:DocumentPreviewControl.ActualViewer).PageCount, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;55;18" />
+    <DataTemplate x:Key="{dxpt:NewDocumentViewerThemeKey ResourceKey=PaginationTemplate}">
+        <Grid Margin="10,0,10,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;47;10">
+            <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;48;14">
+                <TextBlock Text="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).CurrentPageNumber, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;49;18" />
+                <TextBlock Text=" / " dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;50;18" />
+                <TextBlock Text="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).PageCount, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;51;18" />
             </StackPanel>
         </Grid>
     </DataTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Bars.DocumentPreviewBarButtonItem}" TargetType="{x:Type bars:DocumentPreviewBarButtonItem}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;60;6" /><Setter Property="Content" Value="{Binding Path=Caption}" />
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Bars.DocumentPreviewBarButtonItem}" TargetType="{x:Type dxpbars:DocumentPreviewBarButtonItem}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;56;6" /><Setter Property="Content" Value="{Binding Path=Caption}" />
         <Setter Property="Hint" Value="{Binding Path=Hint}" />
         <Setter Property="Glyph" Value="{Binding Path=SmallGlyph}" />
         <Setter Property="LargeGlyph" Value="{Binding Path=LargeGlyph}" />
@@ -42,8 +42,8 @@
 
     <dxdv:CheckBarItemTemplateSelector x:Key="checkItemTemplateSelector" />
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Bars.DocumentPreviewBarSubItem}" TargetType="{x:Type bars:DocumentPreviewBarSubItem}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;70;6" /><Setter Property="Content" Value="{Binding Path=Caption}" />
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Bars.DocumentPreviewBarSubItem}" TargetType="{x:Type dxpbars:DocumentPreviewBarSubItem}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;66;6" /><Setter Property="Content" Value="{Binding Path=Caption}" />
         <Setter Property="Hint" Value="{Binding Path=Hint}" />
         <Setter Property="Glyph" Value="{Binding Path=SmallGlyph}" />
         <Setter Property="LargeGlyph" Value="{Binding Path=LargeGlyph}" />
@@ -52,8 +52,8 @@
         <Setter Property="ItemTemplateSelector" Value="{StaticResource checkItemTemplateSelector}" />
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Bars.DocumentPreviewBarCheckItem}" TargetType="{x:Type bars:DocumentPreviewBarCheckItem}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;80;6" /><Setter Property="Content" Value="{Binding Path=Caption}" />
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Bars.DocumentPreviewBarCheckItem}" TargetType="{x:Type dxpbars:DocumentPreviewBarCheckItem}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;76;6" /><Setter Property="Content" Value="{Binding Path=Caption}" />
         <Setter Property="Hint" Value="{Binding Path=Hint}" />
         <Setter Property="Glyph" Value="{Binding Path=SmallGlyph}" />
         <Setter Property="LargeGlyph" Value="{Binding Path=LargeGlyph}" />
@@ -61,8 +61,8 @@
         <Setter Property="IsChecked" Value="{Binding Path=IsChecked, Mode=OneWay}" />
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Bars.PageLayoutBarSubItem}" TargetType="{x:Type bars:PageLayoutBarSubItem}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;89;6" /><Setter Property="SubItemsGlyphSize" Value="Large" />
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Bars.PageLayoutBarSubItem}" TargetType="{x:Type dxpbars:PageLayoutBarSubItem}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;85;6" /><Setter Property="SubItemsGlyphSize" Value="Large" />
         <Setter Property="Content" Value="{Binding Path=Caption}" />
         <Setter Property="Hint" Value="{Binding Path=Hint}" />
         <Setter Property="Glyph" Value="{Binding Path=SmallGlyph}" />
@@ -72,8 +72,8 @@
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <ContentControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;100;22">
-                        <bars:PageLayoutBarCheckItem Command="{Binding}" />
+                    <ContentControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;96;22">
+                        <dxpbars:PageLayoutBarCheckItem Command="{Binding}" />
                     </ContentControl>
                 </DataTemplate>
             </Setter.Value>
@@ -81,45 +81,45 @@
         <Setter Property="ItemTemplateSelector" Value="{x:Null}" />
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Bars.SelectToolBarItem}" BasedOn="{StaticResource {dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Bars.DocumentPreviewBarCheckItem}}" TargetType="{x:Type bars:SelectToolBarItem}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;109;6" /><Setter Property="CommandParameter" Value="{Binding Path=CommandValue}" />
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Bars.SelectToolBarItem}" BasedOn="{StaticResource {dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Bars.DocumentPreviewBarCheckItem}}" TargetType="{x:Type dxpbars:SelectToolBarItem}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;105;6" /><Setter Property="CommandParameter" Value="{Binding Path=CommandValue}" />
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Bars.HandToolBarItem}" BasedOn="{StaticResource {dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Bars.DocumentPreviewBarCheckItem}}" TargetType="{x:Type bars:HandToolBarItem}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;115;6" /><Setter Property="CommandParameter" Value="{Binding Path=CommandValue}" />
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Bars.HandToolBarItem}" BasedOn="{StaticResource {dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Bars.DocumentPreviewBarCheckItem}}" TargetType="{x:Type dxpbars:HandToolBarItem}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;111;6" /><Setter Property="CommandParameter" Value="{Binding Path=CommandValue}" />
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Bars.PageNumberEditItem}" TargetType="{x:Type bars:PageNumberEditItem}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;121;6" /><Setter Property="Content" Value="{local:PrintingStringId StringId=GoToPage}" />
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Bars.PageNumberEditItem}" TargetType="{x:Type dxpbars:PageNumberEditItem}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;117;6" /><Setter Property="Content" Value="{dxp:PrintingStringId StringId=GoToPage}" />
         <Setter Property="Content2" Value="{Binding Path=SettingsSource.PageCount, Converter={StaticResource pageCountFormatStringConverter}, RelativeSource={RelativeSource Self}}" />
         <Setter Property="EditValue" Value="{Binding Mode=TwoWay, UpdateSourceTrigger=Explicit, Path=SettingsSource.CurrentPageNumber, FallbackValue=0, RelativeSource={RelativeSource Self}}" />
         <Setter Property="IsEnabled" Value="{Binding SettingsSource.PageCount, FallbackValue=False, RelativeSource={RelativeSource Self}}" />
         <Setter Property="EditStyle">
             <Setter.Value>
-                <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/editors.TextEdit}" TargetType="{x:Type dxe:TextEdit}">
-                    <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;128;18" /><Setter Property="Padding" Value="0,-2,0,-2" />
+                <Style x:Key="{dxt:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/editors.TextEdit}" TargetType="{x:Type dxe:TextEdit}">
+                    <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;124;18" /><Setter Property="Padding" Value="0,-2,0,-2" />
                     <Setter Property="MinWidth" Value="30" />
                 </Style>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Bars.ExportSplitItem}" TargetType="{x:Type bars:ExportSplitItem}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;136;6" /><Setter Property="Content" Value="{Binding Path=Caption}" />
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Bars.ExportSplitItem}" TargetType="{x:Type dxpbars:ExportSplitItem}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;132;6" /><Setter Property="Content" Value="{Binding Path=Caption}" />
         <Setter Property="Hint" Value="{Binding Path=Hint}" />
         <Setter Property="Glyph" Value="{Binding Path=SmallGlyph}" />
         <Setter Property="LargeGlyph" Value="{Binding Path=LargeGlyph}" />
         <Setter Property="GlyphAlignment" Value="Top" />
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Bars.ZoomFactorEditItem}" TargetType="{x:Type bars:ZoomFactorEditItem}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;144;6" /><Setter Property="Content" Value="{Binding SettingsSource.ZoomFactor, FallbackValue={x:Null}, Converter={mvvm:FormatStringConverter FormatString=P0}, RelativeSource={RelativeSource Self}}" />
-        <Setter Property="EditValue" Value="{Binding SettingsSource.ZoomFactor, FallbackValue=1, Converter={native:TrackBarZoomValueConverter MinZoomValue=0.1, MaxZoomValue=5}, RelativeSource={RelativeSource Self}}" />
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Bars.ZoomFactorEditItem}" TargetType="{x:Type dxpbars:ZoomFactorEditItem}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;140;6" /><Setter Property="Content" Value="{Binding SettingsSource.ZoomFactor, FallbackValue={x:Null}, Converter={dxmvvm:FormatStringConverter FormatString=P0}, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="EditValue" Value="{Binding SettingsSource.ZoomFactor, FallbackValue=1, Converter={dxpn:TrackBarZoomValueConverter MinZoomValue=0.1, MaxZoomValue=5}, RelativeSource={RelativeSource Self}}" />
         <Setter Property="IsEnabled" Value="{Binding SettingsSource.ZoomFactor, FallbackValue=False, RelativeSource={RelativeSource Self}}" />
     </Style>
 
     <Style x:Key="exportItemStyleBase" TargetType="{x:Type dxb:BarButtonItem}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;150;6" /><Setter Property="Hint" Value="{Binding Path=Hint}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;146;6" /><Setter Property="Hint" Value="{Binding Path=Hint}" />
         <Setter Property="Glyph" Value="{Binding Path=SmallGlyph}" />
         <Setter Property="LargeGlyph" Value="{Binding Path=LargeGlyph}" />
         <Setter Property="GlyphAlignment" Value="Top" />
@@ -129,319 +129,319 @@
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <StackPanel dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;161;22">
-                        <TextBlock Text="{Binding Caption, Mode=OneWay}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;162;26" />
-                        <TextBlock Opacity="0.5" Text="{Binding Tag, Mode=OneWay}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;163;26" />
+                    <StackPanel dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;157;22">
+                        <TextBlock Text="{Binding Caption, Mode=OneWay}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;158;26" />
+                        <TextBlock Opacity="0.5" Text="{Binding Tag, Mode=OneWay}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;159;26" />
                     </StackPanel>
                 </DataTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <DataTemplate x:Key="{themes:NewDocumentViewerThemeKey  ResourceKey=ExportPopupMenuItemTemplate}">
-        <ContentControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;171;10">
-            <dxb:BarButtonItem local:DocumentPreviewControl.BarItemName="{Binding Path=Format, StringFormat=bExport{0}}" Style="{StaticResource exportItemStyleBase}" />
+    <DataTemplate x:Key="{dxpt:NewDocumentViewerThemeKey  ResourceKey=ExportPopupMenuItemTemplate}">
+        <ContentControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;167;10">
+            <dxb:BarButtonItem dxp:DocumentPreviewControl.BarItemName="{Binding Path=Format, StringFormat=bExport{0}}" Style="{StaticResource exportItemStyleBase}" />
         </ContentControl>
     </DataTemplate>
 
-    <DataTemplate x:Key="{themes:NewDocumentViewerThemeKey  ResourceKey=SendPopupMenuItemTemplate}">
-        <ContentControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;177;10">
-            <dxb:BarButtonItem local:DocumentPreviewControl.BarItemName="{Binding Path=Format, StringFormat=bSend{0}}" Style="{StaticResource exportItemStyleBase}" />
+    <DataTemplate x:Key="{dxpt:NewDocumentViewerThemeKey  ResourceKey=SendPopupMenuItemTemplate}">
+        <ContentControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;173;10">
+            <dxb:BarButtonItem dxp:DocumentPreviewControl.BarItemName="{Binding Path=Format, StringFormat=bSend{0}}" Style="{StaticResource exportItemStyleBase}" />
         </ContentControl>
     </DataTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Bars.ProgressEditItem}" TargetType="{x:Type bars:ProgressEditItem}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;182;6" /><Setter Property="EditValue" Value="{Binding ProgressSettings.ProgressPosition, Mode=OneWay, FallbackValue=0, RelativeSource={RelativeSource Self}}" />
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Bars.ProgressEditItem}" TargetType="{x:Type dxpbars:ProgressEditItem}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;178;6" /><Setter Property="EditValue" Value="{Binding ProgressSettings.ProgressPosition, Mode=OneWay, FallbackValue=0, RelativeSource={RelativeSource Self}}" />
         <Setter Property="IsVisible" Value="{Binding ProgressSettings.InProgress, FallbackValue={StaticResource FalseBoolean}, RelativeSource={RelativeSource Self}}" />
         <Setter Property="EditStyle">
             <Setter.Value>
-                <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/editors.ProgressBarEdit}" TargetType="{x:Type dxe:ProgressBarEdit}">
-                    <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;187;18" /><Setter Property="MinWidth" Value="150" />
+                <Style x:Key="{dxt:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/editors.ProgressBarEdit}" TargetType="{x:Type dxe:ProgressBarEdit}">
+                    <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;183;18" /><Setter Property="MinWidth" Value="150" />
                     <Setter Property="ContentDisplayMode" Value="Value" />
-                    <Setter Property="DisplayFormatString" Value="{Binding Path=(local:DocumentPreviewControl.ActualViewer).Document.ProgressDisplayText, RelativeSource={RelativeSource Self}}" />
+                    <Setter Property="DisplayFormatString" Value="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).Document.ProgressDisplayText, RelativeSource={RelativeSource Self}}" />
                 </Style>
             </Setter.Value>
         </Setter>
         <Setter Property="EditHeight" Value="22" />
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Bars.StopPageBuildItem}" TargetType="{x:Type bars:StopPageBuildItem}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;197;6" /><Setter Property="IsVisible" Value="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" />
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Bars.StopPageBuildItem}" TargetType="{x:Type dxpbars:StopPageBuildItem}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;193;6" /><Setter Property="IsVisible" Value="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" />
     </Style>
 
-    <DataTemplate x:Key="{themes:NewDocumentViewerThemeKey ResourceKey=NavigationPaneDockLayoutTemplate}">
-        <dxd:DockLayoutManager Background="Transparent" DisposeOnWindowClosing="False" ViewStyle="Light" cs:id="DockLayoutManager_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;202;10">
-            <mvvm:Interaction.Behaviors>
-                <native:HideClosingItemsBehavior />
-            </mvvm:Interaction.Behaviors>
-            <dxd:LayoutGroup dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;209;14">
-                <dxd:LayoutGroup ItemWidth="300" MinWidth="150" Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;210;18">
-                    <dxd:LayoutPanel Caption="{local:PrintingStringId StringId=Parameters}">
-                        <dxd:LayoutPanel.Visibility>
+    <DataTemplate x:Key="{dxpt:NewDocumentViewerThemeKey ResourceKey=NavigationPaneDockLayoutTemplate}">
+        <dxdo:DockLayoutManager Background="Transparent" DisposeOnWindowClosing="False" ViewStyle="Light" cs:id="DockLayoutManager_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;198;10">
+            <dxmvvm:Interaction.Behaviors>
+                <dxpn:HideClosingItemsBehavior />
+            </dxmvvm:Interaction.Behaviors>
+            <dxdo:LayoutGroup dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;205;14">
+                <dxdo:LayoutGroup ItemWidth="300" MinWidth="150" Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;206;18">
+                    <dxdo:LayoutPanel Caption="{dxp:PrintingStringId StringId=Parameters}">
+                        <dxdo:LayoutPanel.Visibility>
                             <MultiBinding FallbackValue="Collapsed" Mode="TwoWay">
                                 <MultiBinding.Converter>
-                                    <local:DockPanelVisibilityConverter />
+                                    <dxp:DockPanelVisibilityConverter />
                                 </MultiBinding.Converter>
-                                <Binding Mode="TwoWay" Path="(local:DocumentPreviewControl.ActualViewer).PropertyProvider.ShowParametersPanel" RelativeSource="{RelativeSource TemplatedParent}" />
-                                <Binding Mode="OneWay" Path="(local:DocumentPreviewControl.ActualViewer).ParameterPanelViewModel.HasVisibleParameters" RelativeSource="{RelativeSource TemplatedParent}" />
-                                <Binding Mode="OneWay" Path="(local:DocumentPreviewControl.ActualViewer).AutoShowParametersPanel" RelativeSource="{RelativeSource TemplatedParent}" />
+                                <Binding Mode="TwoWay" Path="(dxp:DocumentPreviewControl.ActualViewer).PropertyProvider.ShowParametersPanel" RelativeSource="{RelativeSource TemplatedParent}" />
+                                <Binding Mode="OneWay" Path="(dxp:DocumentPreviewControl.ActualViewer).ParameterPanelViewModel.HasVisibleParameters" RelativeSource="{RelativeSource TemplatedParent}" />
+                                <Binding Mode="OneWay" Path="(dxp:DocumentPreviewControl.ActualViewer).AutoShowParametersPanel" RelativeSource="{RelativeSource TemplatedParent}" />
                             </MultiBinding>
-                        </dxd:LayoutPanel.Visibility>
-                        <dxpp:ParametersPanel IsEnabled="{Binding Path=(local:DocumentPreviewControl.ActualViewer).Document.IsCreating, Converter={StaticResource boolInverseConverter}, RelativeSource={RelativeSource Self}}" ParametersModel="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ParameterPanelViewModel, RelativeSource={RelativeSource Self}}">
-                            <mvvm:Interaction.Behaviors>
-                                <native:LegacyParametersPanelModelSwitcher />
-                            </mvvm:Interaction.Behaviors>
+                        </dxdo:LayoutPanel.Visibility>
+                        <dxpp:ParametersPanel IsEnabled="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).Document.IsCreating, Converter={StaticResource boolInverseConverter}, RelativeSource={RelativeSource Self}}" ParametersModel="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ParameterPanelViewModel, RelativeSource={RelativeSource Self}}">
+                            <dxmvvm:Interaction.Behaviors>
+                                <dxpn:LegacyParametersPanelModelSwitcher />
+                            </dxmvvm:Interaction.Behaviors>
                         </dxpp:ParametersPanel>
-                    </dxd:LayoutPanel>
-                    <dxd:LayoutPanel Caption="{local:PrintingStringId StringId=NavigationPane_Title}">
-                        <dxd:LayoutPanel.Visibility>
+                    </dxdo:LayoutPanel>
+                    <dxdo:LayoutPanel Caption="{dxp:PrintingStringId StringId=NavigationPane_Title}">
+                        <dxdo:LayoutPanel.Visibility>
                             <MultiBinding FallbackValue="Collapsed" Mode="TwoWay">
                                 <MultiBinding.Converter>
-                                    <local:DockPanelVisibilityConverter />
+                                    <dxp:DockPanelVisibilityConverter />
                                 </MultiBinding.Converter>
-                                <Binding Mode="TwoWay" Path="(local:DocumentPreviewControl.ActualViewer).ShowNavigationPane" RelativeSource="{RelativeSource TemplatedParent}" />
-                                <Binding Converter="{StaticResource objectToBooleanConverter}" Mode="OneWay" Path="(local:DocumentPreviewControl.ActualViewer).Document" RelativeSource="{RelativeSource TemplatedParent}" />
+                                <Binding Mode="TwoWay" Path="(dxp:DocumentPreviewControl.ActualViewer).ShowNavigationPane" RelativeSource="{RelativeSource TemplatedParent}" />
+                                <Binding Converter="{StaticResource objectToBooleanConverter}" Mode="OneWay" Path="(dxp:DocumentPreviewControl.ActualViewer).Document" RelativeSource="{RelativeSource TemplatedParent}" />
                             </MultiBinding>
-                        </dxd:LayoutPanel.Visibility>
-                        <local:NavigationPaneControl Margin="12,12,12,0" />
-                    </dxd:LayoutPanel>
-                </dxd:LayoutGroup>
-                <dxd:LayoutPanel Name="DocumentViewerPanel" AllowClose="False" AllowDrag="False" Background="Transparent" Caption="{local:PrintingStringId StringId=ToolBarCaption}" ShowBorder="False" ShowCaption="False" cs:id="LayoutPanel_0000">
-                    <ContentPresenter Content="{Binding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;262;22" />
-                </dxd:LayoutPanel>
-            </dxd:LayoutGroup>
-        </dxd:DockLayoutManager>
+                        </dxdo:LayoutPanel.Visibility>
+                        <dxp:NavigationPaneControl Margin="12,12,12,0" />
+                    </dxdo:LayoutPanel>
+                </dxdo:LayoutGroup>
+                <dxdo:LayoutPanel Name="DocumentViewerPanel" AllowClose="False" AllowDrag="False" Background="Transparent" Caption="{dxp:PrintingStringId StringId=ToolBarCaption}" ShowBorder="False" ShowCaption="False" cs:id="LayoutPanel_0000">
+                    <ContentPresenter Content="{Binding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;258;22" />
+                </dxdo:LayoutPanel>
+            </dxdo:LayoutGroup>
+        </dxdo:DockLayoutManager>
     </DataTemplate>
 
-    <DataTemplate x:Key="{themes:NewDocumentViewerThemeKey ResourceKey=SeparatePanelsDockLayoutTemplate}">
-        <dxd:DockLayoutManager Background="Transparent" DisposeOnWindowClosing="False" cs:id="DockLayoutManager_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;269;10">
-            <mvvm:Interaction.Behaviors>
-                <native:HideClosingItemsBehavior />
-            </mvvm:Interaction.Behaviors>
-            <dxd:LayoutGroup dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;275;14">
-                <dxd:LayoutGroup ItemWidth="250" Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;276;18">
-                    <dxd:LayoutPanel Caption="{local:PrintingStringId StringId=Parameters}">
-                        <dxd:LayoutPanel.Visibility>
+    <DataTemplate x:Key="{dxpt:NewDocumentViewerThemeKey ResourceKey=SeparatePanelsDockLayoutTemplate}">
+        <dxdo:DockLayoutManager Background="Transparent" DisposeOnWindowClosing="False" cs:id="DockLayoutManager_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;265;10">
+            <dxmvvm:Interaction.Behaviors>
+                <dxpn:HideClosingItemsBehavior />
+            </dxmvvm:Interaction.Behaviors>
+            <dxdo:LayoutGroup dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;271;14">
+                <dxdo:LayoutGroup ItemWidth="250" Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;272;18">
+                    <dxdo:LayoutPanel Caption="{dxp:PrintingStringId StringId=Parameters}">
+                        <dxdo:LayoutPanel.Visibility>
                             <MultiBinding FallbackValue="Collapsed" Mode="TwoWay">
                                 <MultiBinding.Converter>
-                                    <local:DockPanelVisibilityConverter />
+                                    <dxp:DockPanelVisibilityConverter />
                                 </MultiBinding.Converter>
-                                <Binding Mode="TwoWay" Path="(local:DocumentPreviewControl.ActualViewer).PropertyProvider.ShowParametersPanel" RelativeSource="{RelativeSource TemplatedParent}" />
-                                <Binding Mode="OneWay" Path="(local:DocumentPreviewControl.ActualViewer).ParameterPanelViewModel.HasVisibleParameters" RelativeSource="{RelativeSource TemplatedParent}" />
-                                <Binding Mode="OneWay" Path="(local:DocumentPreviewControl.ActualViewer).AutoShowParametersPanel" RelativeSource="{RelativeSource TemplatedParent}" />
+                                <Binding Mode="TwoWay" Path="(dxp:DocumentPreviewControl.ActualViewer).PropertyProvider.ShowParametersPanel" RelativeSource="{RelativeSource TemplatedParent}" />
+                                <Binding Mode="OneWay" Path="(dxp:DocumentPreviewControl.ActualViewer).ParameterPanelViewModel.HasVisibleParameters" RelativeSource="{RelativeSource TemplatedParent}" />
+                                <Binding Mode="OneWay" Path="(dxp:DocumentPreviewControl.ActualViewer).AutoShowParametersPanel" RelativeSource="{RelativeSource TemplatedParent}" />
                             </MultiBinding>
-                        </dxd:LayoutPanel.Visibility>
-                        <dxpp:ParametersPanel IsEnabled="{Binding Path=(local:DocumentPreviewControl.ActualViewer).Document.IsCreating, Converter={StaticResource boolInverseConverter}, RelativeSource={RelativeSource Self}}" ParametersModel="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ParameterPanelViewModel, RelativeSource={RelativeSource Self}}">
-                            <mvvm:Interaction.Behaviors>
-                                <native:LegacyParametersPanelModelSwitcher />
-                            </mvvm:Interaction.Behaviors>
+                        </dxdo:LayoutPanel.Visibility>
+                        <dxpp:ParametersPanel IsEnabled="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).Document.IsCreating, Converter={StaticResource boolInverseConverter}, RelativeSource={RelativeSource Self}}" ParametersModel="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ParameterPanelViewModel, RelativeSource={RelativeSource Self}}">
+                            <dxmvvm:Interaction.Behaviors>
+                                <dxpn:LegacyParametersPanelModelSwitcher />
+                            </dxmvvm:Interaction.Behaviors>
                         </dxpp:ParametersPanel>
-                    </dxd:LayoutPanel>
-                    <dxd:LayoutPanel Caption="{local:PrintingStringId StringId=DocumentMap}">
-                        <dxd:LayoutPanel.Visibility>
+                    </dxdo:LayoutPanel>
+                    <dxdo:LayoutPanel Caption="{dxp:PrintingStringId StringId=DocumentMap}">
+                        <dxdo:LayoutPanel.Visibility>
                             <MultiBinding FallbackValue="Collapsed" Mode="TwoWay">
                                 <MultiBinding.Converter>
-                                    <local:DockPanelVisibilityConverter />
+                                    <dxp:DockPanelVisibilityConverter />
                                 </MultiBinding.Converter>
-                                <Binding Mode="TwoWay" Path="(local:DocumentPreviewControl.ActualViewer).PropertyProvider.ShowDocumentMap" RelativeSource="{RelativeSource TemplatedParent}" />
-                                <Binding Mode="OneWay" Path="(local:DocumentPreviewControl.ActualViewer).Document.HasBookmarks" RelativeSource="{RelativeSource TemplatedParent}" />
-                                <Binding Mode="OneWay" Path="(local:DocumentPreviewControl.ActualViewer).AutoShowDocumentMap" RelativeSource="{RelativeSource TemplatedParent}" />
+                                <Binding Mode="TwoWay" Path="(dxp:DocumentPreviewControl.ActualViewer).PropertyProvider.ShowDocumentMap" RelativeSource="{RelativeSource TemplatedParent}" />
+                                <Binding Mode="OneWay" Path="(dxp:DocumentPreviewControl.ActualViewer).Document.HasBookmarks" RelativeSource="{RelativeSource TemplatedParent}" />
+                                <Binding Mode="OneWay" Path="(dxp:DocumentPreviewControl.ActualViewer).AutoShowDocumentMap" RelativeSource="{RelativeSource TemplatedParent}" />
                             </MultiBinding>
-                        </dxd:LayoutPanel.Visibility>
-                        <native:DocumentMap SelectedItem="{Binding ActualSettings.SelectedNode, RelativeSource={RelativeSource Self}}" Settings="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualDocumentMapSettings, RelativeSource={RelativeSource TemplatedParent}}" />
-                    </dxd:LayoutPanel>
-                    <dxd:LayoutPanel Caption="{local:PrintingStringId StringId=Thumbnails}">
-                        <dxd:LayoutPanel.Visibility>
+                        </dxdo:LayoutPanel.Visibility>
+                        <dxpn:DocumentMap SelectedItem="{Binding ActualSettings.SelectedNode, RelativeSource={RelativeSource Self}}" Settings="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualDocumentMapSettings, RelativeSource={RelativeSource TemplatedParent}}" />
+                    </dxdo:LayoutPanel>
+                    <dxdo:LayoutPanel Caption="{dxp:PrintingStringId StringId=Thumbnails}">
+                        <dxdo:LayoutPanel.Visibility>
                             <MultiBinding FallbackValue="Collapsed" Mode="TwoWay">
                                 <MultiBinding.Converter>
-                                    <local:DockPanelVisibilityConverter />
+                                    <dxp:DockPanelVisibilityConverter />
                                 </MultiBinding.Converter>
-                                <Binding Mode="TwoWay" Path="(local:DocumentPreviewControl.ActualViewer).ShowThumbnails" RelativeSource="{RelativeSource TemplatedParent}" />
-                                <Binding Converter="{StaticResource objectToBooleanConverter}" Mode="OneWay" Path="(local:DocumentPreviewControl.ActualViewer).Document" RelativeSource="{RelativeSource TemplatedParent}" />
+                                <Binding Mode="TwoWay" Path="(dxp:DocumentPreviewControl.ActualViewer).ShowThumbnails" RelativeSource="{RelativeSource TemplatedParent}" />
+                                <Binding Converter="{StaticResource objectToBooleanConverter}" Mode="OneWay" Path="(dxp:DocumentPreviewControl.ActualViewer).Document" RelativeSource="{RelativeSource TemplatedParent}" />
                             </MultiBinding>
-                        </dxd:LayoutPanel.Visibility>
-                        <native:ThumbnailsViewerControl SelectedPageNumber="{Binding Path=(local:DocumentPreviewControl.ActualViewer).CurrentPageNumber, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Settings="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ThumbnailsSettings, RelativeSource={RelativeSource TemplatedParent}}" />
-                    </dxd:LayoutPanel>
-                </dxd:LayoutGroup>
-                <dxd:LayoutPanel Name="DocumentViewerPanel" AllowDrag="False" Background="Transparent" Caption="{local:PrintingStringId StringId=ToolBarCaption}" ShowBorder="False" ShowCaption="False" cs:id="LayoutPanel_0000">
-                    <ContentPresenter Content="{Binding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;344;22" />
-                </dxd:LayoutPanel>
-            </dxd:LayoutGroup>
-        </dxd:DockLayoutManager>
+                        </dxdo:LayoutPanel.Visibility>
+                        <dxpn:ThumbnailsViewerControl SelectedPageNumber="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).CurrentPageNumber, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Settings="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ThumbnailsSettings, RelativeSource={RelativeSource TemplatedParent}}" />
+                    </dxdo:LayoutPanel>
+                </dxdo:LayoutGroup>
+                <dxdo:LayoutPanel Name="DocumentViewerPanel" AllowDrag="False" Background="Transparent" Caption="{dxp:PrintingStringId StringId=ToolBarCaption}" ShowBorder="False" ShowCaption="False" cs:id="LayoutPanel_0000">
+                    <ContentPresenter Content="{Binding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;340;22" />
+                </dxdo:LayoutPanel>
+            </dxdo:LayoutGroup>
+        </dxdo:DockLayoutManager>
     </DataTemplate>
 
-    <DataTemplate x:Key="{themes:NewDocumentViewerThemeKey ResourceKey=PresenterTemplate}">
-        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;351;10">
-            <native:PreviewSurface dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;352;14" />
-            <ContentControl ContentTemplate="{DynamicResource {themes:NewDocumentViewerThemeKey ResourceKey=NavigationPaneDockLayoutTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;353;14">
-                <mvvm:Interaction.Behaviors>
-                    <native:DocumentPreviewDockingLayoutTemplateUpdater UseNavigationPaneTemplate="{Binding Path=AssociatedObject.(local:DocumentPreviewControl.ActualViewer).UseOfficeInspiredNavigationPane, RelativeSource={RelativeSource Self}}" />
-                </mvvm:Interaction.Behaviors>
-                <local:DocumentPresenterControl>
+    <DataTemplate x:Key="{dxpt:NewDocumentViewerThemeKey ResourceKey=PresenterTemplate}">
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;347;10">
+            <dxpn:PreviewSurface dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;348;14" />
+            <ContentControl ContentTemplate="{DynamicResource {dxpt:NewDocumentViewerThemeKey ResourceKey=NavigationPaneDockLayoutTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;349;14">
+                <dxmvvm:Interaction.Behaviors>
+                    <dxpn:DocumentPreviewDockingLayoutTemplateUpdater UseNavigationPaneTemplate="{Binding Path=AssociatedObject.(dxp:DocumentPreviewControl.ActualViewer).UseOfficeInspiredNavigationPane, RelativeSource={RelativeSource Self}}" />
+                </dxmvvm:Interaction.Behaviors>
+                <dxp:DocumentPresenterControl>
                     <dxb:BarManager.DXContextMenu>
-                        <dxb:PopupMenu dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;359;26">
-                            <bars:HandToolBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.HandToolCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.HandTool}" />
-                            <bars:SelectToolBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.SelectToolCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.SelectTool}" />
+                        <dxb:PopupMenu dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;355;26">
+                            <dxpbars:HandToolBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.HandToolCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.HandTool}" />
+                            <dxpbars:SelectToolBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.SelectToolCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.SelectTool}" />
                             <dxb:BarItemSeparator />
-                            <bars:CopyBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.CopyCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Copy}" />
+                            <dxpbars:CopyBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.CopyCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Copy}" />
                         </dxb:PopupMenu>
                     </dxb:BarManager.DXContextMenu>
-                </local:DocumentPresenterControl>
+                </dxp:DocumentPresenterControl>
             </ContentControl>
         </Grid>
     </DataTemplate>
 
-    <DataTemplate x:Key="{themes:NewDocumentViewerThemeKey ResourceKey=BarsTemplate}">
-        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;372;10">
+    <DataTemplate x:Key="{dxpt:NewDocumentViewerThemeKey ResourceKey=BarsTemplate}">
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;368;10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
-            <dxb:BarContainerControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;378;14">
-                <dxb:ToolBarControl AllowCustomizationMenu="False" AllowHide="False" Caption="{local:PrintingStringId StringId=ToolBarCaption}" GlyphSize="Large" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Bar}" UseWholeRow="True">
-                    <mvvm:Interaction.Behaviors>
-                        <dxb:ControllerBehavior Actions="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.Actions, RelativeSource={RelativeSource TemplatedParent}}" ExecutionMode="OnEvent">
+            <dxb:BarContainerControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;374;14">
+                <dxb:ToolBarControl AllowCustomizationMenu="False" AllowHide="False" Caption="{dxp:PrintingStringId StringId=ToolBarCaption}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Bar}" GlyphSize="Large" UseWholeRow="True">
+                    <dxmvvm:Interaction.Behaviors>
+                        <dxb:ControllerBehavior Actions="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.Actions, RelativeSource={RelativeSource TemplatedParent}}" ExecutionMode="OnEvent">
                             <dxb:ControllerBehavior.Triggers>
                                 <dxb:ActionTrigger EventName="Loaded" ExecuteOnce="True" />
                             </dxb:ControllerBehavior.Triggers>
                         </dxb:ControllerBehavior>
-                    </mvvm:Interaction.Behaviors>
-                    <bars:OpenBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.OpenDocumentCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Open}" />
-                    <bars:SaveBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.SaveCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Save}" />
+                    </dxmvvm:Interaction.Behaviors>
+                    <dxpbars:OpenBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.OpenDocumentCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Open}" />
+                    <dxpbars:SaveBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.SaveCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Save}" />
                     <dxb:BarItemLinkSeparator />
-                    <bars:ParametersBarCheckItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ToggleParametersPanelCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Parameters}" />
-                    <bars:DocumentMapBarCheckItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ToggleDocumentMapCommand, RelativeSource={RelativeSource TemplatedParent}}" IsVisible="{Binding Path=(local:DocumentPreviewControl.ActualViewer).UseOfficeInspiredNavigationPane, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:BooleanNegationConverter}, FallbackValue=False}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.DocumentMap}" />
-                    <bars:ThumbnailsBarCheckItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ToggleThumbnailsCommand, RelativeSource={RelativeSource TemplatedParent}}" IsVisible="{Binding Path=(local:DocumentPreviewControl.ActualViewer).UseOfficeInspiredNavigationPane, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:BooleanNegationConverter}, FallbackValue=False}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Thumbnails}" />
-                    <bars:EditingFieldsBarCheckItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ToggleEditingFieldsCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.EditingFields}" />
-                    <bars:FindTextBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ShowFindTextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="{StaticResource TrueBoolean}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Find}" />
+                    <dxpbars:ParametersBarCheckItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ToggleParametersPanelCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Parameters}" />
+                    <dxpbars:DocumentMapBarCheckItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ToggleDocumentMapCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.DocumentMap}" IsVisible="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).UseOfficeInspiredNavigationPane, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:BooleanNegationConverter}, FallbackValue=False}" />
+                    <dxpbars:ThumbnailsBarCheckItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ToggleThumbnailsCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Thumbnails}" IsVisible="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).UseOfficeInspiredNavigationPane, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:BooleanNegationConverter}, FallbackValue=False}" />
+                    <dxpbars:EditingFieldsBarCheckItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ToggleEditingFieldsCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.EditingFields}" />
+                    <dxpbars:FindTextBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ShowFindTextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="{StaticResource TrueBoolean}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Find}" />
                     <dxb:BarItemLinkSeparator />
-                    <bars:PrintBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.PrintCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Print}" />
-                    <bars:PrintDirectBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.PrintDirectCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.PrintDirect}" />
-                    <bars:PageSetupBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.PageSetupCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.PageSetup}" />
-                    <bars:ScaleBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ScaleCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Scale}" />
+                    <dxpbars:PrintBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.PrintCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Print}" />
+                    <dxpbars:PrintDirectBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.PrintDirectCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.PrintDirect}" />
+                    <dxpbars:PageSetupBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.PageSetupCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.PageSetup}" />
+                    <dxpbars:ScaleBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ScaleCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Scale}" />
                     <dxb:BarItemLinkSeparator />
-                    <bars:FirstPageBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.FirstPageCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.FirstPage}" />
-                    <bars:PreviousPageBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.PreviousPageCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.PreviousPage}" />
-                    <bars:NextPageBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.NextPageCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.NextPage}" />
-                    <bars:LastPageBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.LastPageCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.LastPage}" />
-                    <bars:NavigationPaneBarCheckItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ToggleNavigationPaneCommand, RelativeSource={RelativeSource TemplatedParent}}" IsVisible="{Binding Path=(local:DocumentPreviewControl.ActualViewer).UseOfficeInspiredNavigationPane, RelativeSource={RelativeSource TemplatedParent}, FallbackValue=True}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.NavigationPane}" />
+                    <dxpbars:FirstPageBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.FirstPageCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.FirstPage}" />
+                    <dxpbars:PreviousPageBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.PreviousPageCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.PreviousPage}" />
+                    <dxpbars:NextPageBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.NextPageCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.NextPage}" />
+                    <dxpbars:LastPageBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.LastPageCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.LastPage}" />
+                    <dxpbars:NavigationPaneBarCheckItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ToggleNavigationPaneCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.NavigationPane}" IsVisible="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).UseOfficeInspiredNavigationPane, RelativeSource={RelativeSource TemplatedParent}, FallbackValue=True}" />
                     <dxb:BarItemLinkSeparator />
-                    <bars:ZoomOutBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ZoomOutCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.ZoomOut}" />
-                    <bars:ZoomBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ZoomCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Zoom}" />
-                    <bars:ZoomInBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ZoomInCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.ZoomIn}" />
+                    <dxpbars:ZoomOutBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ZoomOutCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.ZoomOut}" />
+                    <dxpbars:ZoomBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ZoomCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Zoom}" />
+                    <dxpbars:ZoomInBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ZoomInCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.ZoomIn}" />
                     <dxb:BarItemLinkSeparator />
-                    <bars:PageLayoutBarSubItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.SetPageLayoutSplitCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.PageLayoutSplit}" SubItemsGlyphSize="Small" />
-                    <bars:ContinuousScrollingBarCheckItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ToggleEnableContinuousScrollingCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.ContinuousScrolling}" />
-                    <bars:CoverPageBarCheckItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ToggleShowCoverPageCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.ShowCoverPage}" />
+                    <dxpbars:PageLayoutBarSubItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.SetPageLayoutSplitCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.PageLayoutSplit}" SubItemsGlyphSize="Small" />
+                    <dxpbars:ContinuousScrollingBarCheckItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ToggleEnableContinuousScrollingCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.ContinuousScrolling}" />
+                    <dxpbars:CoverPageBarCheckItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ToggleShowCoverPageCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.ShowCoverPage}" />
                     <dxb:BarItemLinkSeparator />
-                    <bars:ExportSplitItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ExportSplitCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Export}" />
-                    <bars:SendSplitItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.SendSplitCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Send}" />
-                    <bars:WatermarkBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.SetWatermarkCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Watermark}" />
+                    <dxpbars:ExportSplitItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ExportSplitCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Export}" />
+                    <dxpbars:SendSplitItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.SendSplitCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Send}" />
+                    <dxpbars:WatermarkBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.SetWatermarkCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Watermark}" />
                 </dxb:ToolBarControl>
             </dxb:BarContainerControl>
-            <ContentControl ContentTemplate="{DynamicResource {themes:NewDocumentViewerThemeKey ResourceKey=PresenterTemplate}}" Grid.Row="1" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;435;14" />
-            <dxb:StatusBarControl AllowCustomizationMenu="False" Caption="{local:PrintingStringId StringId=StatusBarCaption}" Grid.Row="2" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.StatusBar}">
-                <bars:PageNumberEditItem local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.PageNumber}" SettingsSource="{Binding Path=(local:DocumentPreviewControl.ActualViewer), RelativeSource={RelativeSource TemplatedParent}}" />
-                <bars:ProgressEditItem local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Progress}" ProgressSettings="{Binding Path=(local:DocumentPreviewControl.ActualViewer).Document, RelativeSource={RelativeSource TemplatedParent}, FallbackValue={x:Null}}" />
-                <bars:StopPageBuildItem Command="{Binding  Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.StopPageBuildingCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.StopBuilding}" />
-                <bars:ZoomFactorEditItem Alignment="Far" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.ZoomFactor}" SettingsSource="{Binding Path=(local:DocumentPreviewControl.ActualViewer), RelativeSource={RelativeSource TemplatedParent}}" />
+            <ContentControl ContentTemplate="{DynamicResource {dxpt:NewDocumentViewerThemeKey ResourceKey=PresenterTemplate}}" Grid.Row="1" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;431;14" />
+            <dxb:StatusBarControl AllowCustomizationMenu="False" Caption="{dxp:PrintingStringId StringId=StatusBarCaption}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.StatusBar}" Grid.Row="2">
+                <dxpbars:PageNumberEditItem dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.PageNumber}" SettingsSource="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer), RelativeSource={RelativeSource TemplatedParent}}" />
+                <dxpbars:ProgressEditItem dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Progress}" ProgressSettings="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).Document, RelativeSource={RelativeSource TemplatedParent}, FallbackValue={x:Null}}" />
+                <dxpbars:StopPageBuildItem Command="{Binding  Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.StopPageBuildingCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.StopBuilding}" />
+                <dxpbars:ZoomFactorEditItem Alignment="Far" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.ZoomFactor}" SettingsSource="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer), RelativeSource={RelativeSource TemplatedParent}}" />
             </dxb:StatusBarControl>
         </Grid>
     </DataTemplate>
 
-    <Style x:Key="{themes:NewDocumentViewerThemeKey ResourceKey=RibbonStyle}" TargetType="{x:Type dxr:RibbonControl}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;452;6" /><Setter Property="ToolbarShowMode" Value="Hide" />
+    <Style x:Key="{dxpt:NewDocumentViewerThemeKey ResourceKey=RibbonStyle}" TargetType="{x:Type dxr:RibbonControl}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;448;6" /><Setter Property="ToolbarShowMode" Value="Hide" />
         <Setter Property="RibbonTitleBarVisibility" Value="Collapsed" />
         <Setter Property="RibbonStyle" Value="Office2010" />
         <Setter Property="HideEmptyGroups" Value="True" />
         <Setter Property="AllowCustomization" Value="False" />
     </Style>
 
-    <DataTemplate x:Key="{themes:NewDocumentViewerThemeKey ResourceKey=RibbonTemplate}">
-        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;461;10">
-            <mvvm:Interaction.Behaviors>
-                <dxb:ControllerBehavior Actions="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.RibbonActions, RelativeSource={RelativeSource TemplatedParent}}" ExecutionMode="OnEvent">
+    <DataTemplate x:Key="{dxpt:NewDocumentViewerThemeKey ResourceKey=RibbonTemplate}">
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;457;10">
+            <dxmvvm:Interaction.Behaviors>
+                <dxb:ControllerBehavior Actions="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.RibbonActions, RelativeSource={RelativeSource TemplatedParent}}" ExecutionMode="OnEvent">
                     <dxb:ControllerBehavior.Triggers>
                         <dxb:ActionTrigger EventName="Loaded" ExecuteOnce="True" />
                     </dxb:ControllerBehavior.Triggers>
                 </dxb:ControllerBehavior>
-            </mvvm:Interaction.Behaviors>
+            </dxmvvm:Interaction.Behaviors>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
-            <dxr:RibbonControl Focusable="False" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Ribbon}" Style="{DynamicResource {themes:NewDocumentViewerThemeKey ResourceKey=RibbonStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;474;14">
+            <dxr:RibbonControl dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Ribbon}" Focusable="False" Style="{DynamicResource {dxpt:NewDocumentViewerThemeKey ResourceKey=RibbonStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;470;14">
                 <dxr:RibbonControl.ApplicationMenu>
-                    <dxr:ApplicationMenu Name="menu" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;478;22">
-                        <dxb:BarButtonItemLink BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Open}" />
-                        <dxb:BarButtonItemLink BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Save}" />
+                    <dxr:ApplicationMenu Name="menu" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;474;22">
+                        <dxb:BarButtonItemLink BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Open}" />
+                        <dxb:BarButtonItemLink BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Save}" />
                         <dxb:BarItemSeparator />
-                        <dxb:BarButtonItemLink BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Print}" />
+                        <dxb:BarButtonItemLink BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Print}" />
                     </dxr:ApplicationMenu>
                 </dxr:RibbonControl.ApplicationMenu>
                 <dxr:RibbonDefaultPageCategory>
-                    <dxr:RibbonPage Caption="{local:PrintingStringId StringId=RibbonPageCaption}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.PreviewPage}">
-                        <dxr:RibbonPageGroup Caption="{local:PrintingStringId StringId=RibbonPageGroup_File}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.FileGroup}">
-                            <bars:OpenBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.OpenDocumentCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Open}" />
-                            <bars:SaveBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.SaveCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Save}" />
+                    <dxr:RibbonPage Caption="{dxp:PrintingStringId StringId=RibbonPageCaption}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.PreviewPage}">
+                        <dxr:RibbonPageGroup Caption="{dxp:PrintingStringId StringId=RibbonPageGroup_File}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.FileGroup}">
+                            <dxpbars:OpenBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.OpenDocumentCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Open}" />
+                            <dxpbars:SaveBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.SaveCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Save}" />
                         </dxr:RibbonPageGroup>
-                        <dxr:RibbonPageGroup Caption="{local:PrintingStringId StringId=RibbonPageGroup_Print}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.PrintGroup}">
-                            <bars:PrintBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.PrintCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Print}" />
-                            <bars:PrintDirectBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.PrintDirectCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.PrintDirect}" />
-                            <bars:PageSetupBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.PageSetupCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.PageSetup}" />
-                            <bars:ScaleBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ScaleCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Scale}" />
+                        <dxr:RibbonPageGroup Caption="{dxp:PrintingStringId StringId=RibbonPageGroup_Print}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.PrintGroup}">
+                            <dxpbars:PrintBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.PrintCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Print}" />
+                            <dxpbars:PrintDirectBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.PrintDirectCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.PrintDirect}" />
+                            <dxpbars:PageSetupBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.PageSetupCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.PageSetup}" />
+                            <dxpbars:ScaleBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ScaleCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Scale}" />
                         </dxr:RibbonPageGroup>
-                        <dxr:RibbonPageGroup Caption="{local:PrintingStringId StringId=RibbonPageGroup_Navigation}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.NavigationGroup}">
-                            <bars:FirstPageBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.FirstPageCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.FirstPage}" />
-                            <bars:PreviousPageBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.PreviousPageCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.PreviousPage}" />
-                            <bars:NextPageBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.NextPageCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.NextPage}" />
-                            <bars:LastPageBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.LastPageCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.LastPage}" />
-                            <bars:NavigationPaneBarCheckItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ToggleNavigationPaneCommand, RelativeSource={RelativeSource TemplatedParent}}" IsVisible="{Binding Path=(local:DocumentPreviewControl.ActualViewer).UseOfficeInspiredNavigationPane, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.NavigationPane}" />
+                        <dxr:RibbonPageGroup Caption="{dxp:PrintingStringId StringId=RibbonPageGroup_Navigation}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.NavigationGroup}">
+                            <dxpbars:FirstPageBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.FirstPageCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.FirstPage}" />
+                            <dxpbars:PreviousPageBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.PreviousPageCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.PreviousPage}" />
+                            <dxpbars:NextPageBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.NextPageCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.NextPage}" />
+                            <dxpbars:LastPageBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.LastPageCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.LastPage}" />
+                            <dxpbars:NavigationPaneBarCheckItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ToggleNavigationPaneCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.NavigationPane}" IsVisible="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).UseOfficeInspiredNavigationPane, RelativeSource={RelativeSource TemplatedParent}}" />
                         </dxr:RibbonPageGroup>
-                        <dxr:RibbonPageGroup Caption="{local:PrintingStringId StringId=RibbonPageGroup_Zoom}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.ZoomGroup}">
-                            <bars:ZoomOutBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ZoomOutCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.ZoomOut}" />
-                            <bars:ZoomBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ZoomCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Zoom}" />
-                            <bars:ZoomInBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ZoomInCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.ZoomIn}" />
+                        <dxr:RibbonPageGroup Caption="{dxp:PrintingStringId StringId=RibbonPageGroup_Zoom}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.ZoomGroup}">
+                            <dxpbars:ZoomOutBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ZoomOutCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.ZoomOut}" />
+                            <dxpbars:ZoomBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ZoomCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Zoom}" />
+                            <dxpbars:ZoomInBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ZoomInCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.ZoomIn}" />
                         </dxr:RibbonPageGroup>
-                        <dxr:RibbonPageGroup Caption="{local:PrintingStringId StringId=RibbonPageGroup_View}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.ViewGroup}">
-                            <bars:PageLayoutBarSubItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.SetPageLayoutSplitCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.PageLayoutSplit}" />
+                        <dxr:RibbonPageGroup Caption="{dxp:PrintingStringId StringId=RibbonPageGroup_View}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.ViewGroup}">
+                            <dxpbars:PageLayoutBarSubItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.SetPageLayoutSplitCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.PageLayoutSplit}" />
                             <dxb:BarItemSeparator />
-                            <bars:ContinuousScrollingBarCheckItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ToggleEnableContinuousScrollingCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.ContinuousScrolling}" />
-                            <bars:CoverPageBarCheckItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ToggleShowCoverPageCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.ShowCoverPage}" />
+                            <dxpbars:ContinuousScrollingBarCheckItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ToggleEnableContinuousScrollingCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.ContinuousScrolling}" />
+                            <dxpbars:CoverPageBarCheckItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ToggleShowCoverPageCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.ShowCoverPage}" />
                         </dxr:RibbonPageGroup>
-                        <dxr:RibbonPageGroup Caption="{local:PrintingStringId StringId=RibbonPageGroup_Export}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.ExportGroup}">
-                            <bars:ExportSplitItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ExportSplitCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Export}" />
-                            <bars:SendSplitItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.SendSplitCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Send}" />
+                        <dxr:RibbonPageGroup Caption="{dxp:PrintingStringId StringId=RibbonPageGroup_Export}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.ExportGroup}">
+                            <dxpbars:ExportSplitItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ExportSplitCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Export}" />
+                            <dxpbars:SendSplitItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.SendSplitCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Send}" />
                         </dxr:RibbonPageGroup>
-                        <dxr:RibbonPageGroup Caption="{local:PrintingStringId StringId=RibbonPageGroup_Document}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.DocumentGroup}">
-                            <bars:ParametersBarCheckItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ToggleParametersPanelCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Parameters}" />
-                            <bars:DocumentMapBarCheckItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ToggleDocumentMapCommand, RelativeSource={RelativeSource TemplatedParent}}" IsVisible="{Binding Path=(local:DocumentPreviewControl.ActualViewer).UseOfficeInspiredNavigationPane, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:BooleanNegationConverter}, FallbackValue=False}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.DocumentMap}" />
-                            <bars:ThumbnailsBarCheckItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ToggleThumbnailsCommand, RelativeSource={RelativeSource TemplatedParent}}" IsVisible="{Binding Path=(local:DocumentPreviewControl.ActualViewer).UseOfficeInspiredNavigationPane, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:BooleanNegationConverter}, FallbackValue=False}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Thumbnails}" />
-                            <bars:EditingFieldsBarCheckItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ToggleEditingFieldsCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.EditingFields}" />
-                            <bars:FindTextBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ShowFindTextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="{StaticResource TrueBoolean}" IsVisible="{Binding Path=(local:DocumentPreviewControl.ActualViewer).UseOfficeInspiredNavigationPane, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:BooleanNegationConverter}, FallbackValue=False}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Find}" />
-                            <bars:WatermarkBarItem Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.SetWatermarkCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Watermark}" />
+                        <dxr:RibbonPageGroup Caption="{dxp:PrintingStringId StringId=RibbonPageGroup_Document}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.DocumentGroup}">
+                            <dxpbars:ParametersBarCheckItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ToggleParametersPanelCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Parameters}" />
+                            <dxpbars:DocumentMapBarCheckItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ToggleDocumentMapCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.DocumentMap}" IsVisible="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).UseOfficeInspiredNavigationPane, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:BooleanNegationConverter}, FallbackValue=False}" />
+                            <dxpbars:ThumbnailsBarCheckItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ToggleThumbnailsCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Thumbnails}" IsVisible="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).UseOfficeInspiredNavigationPane, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:BooleanNegationConverter}, FallbackValue=False}" />
+                            <dxpbars:EditingFieldsBarCheckItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ToggleEditingFieldsCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.EditingFields}" />
+                            <dxpbars:FindTextBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.ShowFindTextCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="{StaticResource TrueBoolean}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Find}" IsVisible="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).UseOfficeInspiredNavigationPane, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:BooleanNegationConverter}, FallbackValue=False}" />
+                            <dxpbars:WatermarkBarItem Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.SetWatermarkCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Watermark}" />
                         </dxr:RibbonPageGroup>
                     </dxr:RibbonPage>
                 </dxr:RibbonDefaultPageCategory>
             </dxr:RibbonControl>
-            <ContentControl ContentTemplate="{DynamicResource {themes:NewDocumentViewerThemeKey ResourceKey=PresenterTemplate}}" Focusable="False" Grid.Row="1" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;539;14" />
-            <dxr:RibbonStatusBarControl Focusable="False" Grid.Row="2" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.StatusBar}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;543;14">
+            <ContentControl ContentTemplate="{DynamicResource {dxpt:NewDocumentViewerThemeKey ResourceKey=PresenterTemplate}}" Focusable="False" Grid.Row="1" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;535;14" />
+            <dxr:RibbonStatusBarControl dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.StatusBar}" Focusable="False" Grid.Row="2" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;539;14">
                 <dxr:RibbonStatusBarControl.LeftItems>
-                    <bars:PageNumberEditItem local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.PageNumber}" SettingsSource="{Binding Path=(local:DocumentPreviewControl.ActualViewer), RelativeSource={RelativeSource TemplatedParent}}" />
-                    <bars:ProgressEditItem local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.Progress}" ProgressSettings="{Binding Path=(local:DocumentPreviewControl.ActualViewer).Document, RelativeSource={RelativeSource TemplatedParent}, FallbackValue={x:Null}}" />
-                    <bars:StopPageBuildItem Command="{Binding  Path=(local:DocumentPreviewControl.ActualViewer).ActualCommandProvider.StopPageBuildingCommand, RelativeSource={RelativeSource TemplatedParent}}" local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.StopBuilding}" />
+                    <dxpbars:PageNumberEditItem dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.PageNumber}" SettingsSource="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer), RelativeSource={RelativeSource TemplatedParent}}" />
+                    <dxpbars:ProgressEditItem dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.Progress}" ProgressSettings="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).Document, RelativeSource={RelativeSource TemplatedParent}, FallbackValue={x:Null}}" />
+                    <dxpbars:StopPageBuildItem Command="{Binding  Path=(dxp:DocumentPreviewControl.ActualViewer).ActualCommandProvider.StopPageBuildingCommand, RelativeSource={RelativeSource TemplatedParent}}" dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.StopBuilding}" />
                 </dxr:RibbonStatusBarControl.LeftItems>
                 <dxr:RibbonStatusBarControl.RightItems>
-                    <bars:ZoomFactorEditItem local:DocumentPreviewControl.BarItemName="{x:Static bars:DefaultPreviewBarItemNames.ZoomFactor}" SettingsSource="{Binding Path=(local:DocumentPreviewControl.ActualViewer), RelativeSource={RelativeSource TemplatedParent}}" />
+                    <dxpbars:ZoomFactorEditItem dxp:DocumentPreviewControl.BarItemName="{x:Static dxpbars:DefaultPreviewBarItemNames.ZoomFactor}" SettingsSource="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer), RelativeSource={RelativeSource TemplatedParent}}" />
                 </dxr:RibbonStatusBarControl.RightItems>
             </dxr:RibbonStatusBarControl>
         </Grid>
     </DataTemplate>
 
-    <ControlTemplate x:Key="{themes:NewDocumentViewerThemeKey ResourceKey=ScrollViewerTemplate}" TargetType="{x:Type native:PreviewScrollViewer}">
-        <Grid x:Name="Grid" Background="{TemplateBinding Background}" Margin="{TemplateBinding Margin}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;559;10">
+    <ControlTemplate x:Key="{dxpt:NewDocumentViewerThemeKey ResourceKey=ScrollViewerTemplate}" TargetType="{x:Type dxpn:PreviewScrollViewer}">
+        <Grid x:Name="Grid" Background="{TemplateBinding Background}" Margin="{TemplateBinding Margin}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;555;10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
@@ -450,9 +450,9 @@
                 <RowDefinition />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" CanContentScroll="{TemplateBinding CanContentScroll}" CanHorizontallyScroll="False" CanVerticallyScroll="False" Margin="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;570;14">
+            <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" CanContentScroll="{TemplateBinding CanContentScroll}" CanHorizontallyScroll="False" CanVerticallyScroll="False" Margin="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;566;14">
                 <Grid.RowSpan>
-                    <Binding Path="(dxc:ScrollBarExtensions.ScrollBarMode)" RelativeSource="{RelativeSource TemplatedParent}">
+                    <Binding Path="(dx:ScrollBarExtensions.ScrollBarMode)" RelativeSource="{RelativeSource TemplatedParent}">
                         <Binding.Converter>
                             <dxcore_unique_xmlns:EnumToObjectConverter DefaultValue="1">
                                 <dxcore_unique_xmlns:EnumToObjectConverter.Values>
@@ -463,7 +463,7 @@
                     </Binding>
                 </Grid.RowSpan>
                 <Grid.ColumnSpan>
-                    <Binding Path="(dxc:ScrollBarExtensions.ScrollBarMode)" RelativeSource="{RelativeSource TemplatedParent}">
+                    <Binding Path="(dx:ScrollBarExtensions.ScrollBarMode)" RelativeSource="{RelativeSource TemplatedParent}">
                         <Binding.Converter>
                             <dxcore_unique_xmlns:EnumToObjectConverter DefaultValue="1">
                                 <dxcore_unique_xmlns:EnumToObjectConverter.Values>
@@ -474,12 +474,12 @@
                     </Binding>
                 </Grid.ColumnSpan>
             </ScrollContentPresenter>
-            <ScrollBar x:Name="PART_VerticalScrollBar" AutomationProperties.AutomationId="VerticalScrollBar" Cursor="Arrow" Grid.Column="1" Grid.Row="0" Maximum="{TemplateBinding ScrollableHeight}" Minimum="0" Value="{Binding Path=VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportHeight}" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;598;14">
+            <ScrollBar x:Name="PART_VerticalScrollBar" AutomationProperties.AutomationId="VerticalScrollBar" Cursor="Arrow" Grid.Column="1" Grid.Row="0" Maximum="{TemplateBinding ScrollableHeight}" Minimum="0" Value="{Binding Path=VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportHeight}" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;594;14">
                 <Grid.RowSpan>
                     <MultiBinding>
                         <MultiBinding.Bindings>
-                            <Binding Path="(dxc:ScrollBarExtensions.ScrollBarMode)" RelativeSource="{RelativeSource Self}" />
-                            <Binding Path="(dxc:ScrollBarExtensions.ScrollViewerOrientation)" RelativeSource="{RelativeSource TemplatedParent}" />
+                            <Binding Path="(dx:ScrollBarExtensions.ScrollBarMode)" RelativeSource="{RelativeSource Self}" />
+                            <Binding Path="(dx:ScrollBarExtensions.ScrollViewerOrientation)" RelativeSource="{RelativeSource TemplatedParent}" />
                         </MultiBinding.Bindings>
                         <MultiBinding.Converter>
                             <dxcore_unique_xmlns:VerticalScrollBarRowSpanConverter />
@@ -487,12 +487,12 @@
                     </MultiBinding>
                 </Grid.RowSpan>
             </ScrollBar>
-            <ScrollBar x:Name="PART_HorizontalScrollBar" AutomationProperties.AutomationId="HorizontalScrollBar" Cursor="Arrow" Grid.Column="0" Grid.Row="1" Maximum="{TemplateBinding ScrollableWidth}" Minimum="0" Orientation="Horizontal" Value="{Binding Path=HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportWidth}" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;620;14">
+            <ScrollBar x:Name="PART_HorizontalScrollBar" AutomationProperties.AutomationId="HorizontalScrollBar" Cursor="Arrow" Grid.Column="0" Grid.Row="1" Maximum="{TemplateBinding ScrollableWidth}" Minimum="0" Orientation="Horizontal" Value="{Binding Path=HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportWidth}" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;616;14">
                 <Grid.ColumnSpan>
                     <MultiBinding>
                         <MultiBinding.Bindings>
-                            <Binding Path="(dxc:ScrollBarExtensions.ScrollBarMode)" RelativeSource="{RelativeSource Self}" />
-                            <Binding Path="(dxc:ScrollBarExtensions.ScrollViewerOrientation)" RelativeSource="{RelativeSource TemplatedParent}" />
+                            <Binding Path="(dx:ScrollBarExtensions.ScrollBarMode)" RelativeSource="{RelativeSource Self}" />
+                            <Binding Path="(dx:ScrollBarExtensions.ScrollViewerOrientation)" RelativeSource="{RelativeSource TemplatedParent}" />
                         </MultiBinding.Bindings>
                         <MultiBinding.Converter>
                             <dxcore_unique_xmlns:HorizontalScrollBarRowSpanConverter />
@@ -500,9 +500,9 @@
                     </MultiBinding>
                 </Grid.ColumnSpan>
             </ScrollBar>
-            <dx:DXBorder x:Name="Corner" Grid.Column="1" Grid.Row="1" Style="{DynamicResource {dxt:ScrollBarThemeKey ResourceKey=ScrollingCornerStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;643;14">
+            <dx:DXBorder x:Name="Corner" Grid.Column="1" Grid.Row="1" Style="{DynamicResource {dxt:ScrollBarThemeKey ResourceKey=ScrollingCornerStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;639;14">
                 <dx:DXBorder.Visibility>
-                    <Binding Path="(dxc:ScrollBarExtensions.ScrollBarMode)" RelativeSource="{RelativeSource TemplatedParent}">
+                    <Binding Path="(dx:ScrollBarExtensions.ScrollBarMode)" RelativeSource="{RelativeSource TemplatedParent}">
                         <Binding.Converter>
                             <dxcore_unique_xmlns:EnumToObjectConverter DefaultValue="Visible">
                                 <dxcore_unique_xmlns:EnumToObjectConverter.Values>
@@ -514,7 +514,7 @@
                 </dx:DXBorder.Visibility>
                 <dxcore_unique_xmlns:BackgroundPanel />
             </dx:DXBorder>
-            <dxe:FlyoutControl x:Name="PART_FlyoutControl" AllowMoveAnimation="False" ContentTemplate="{DynamicResource {themes:NewDocumentViewerThemeKey ResourceKey=PaginationTemplate}}" IsOpen="False" PlacementTarget="{Binding ElementName=PART_VerticalScrollBar}" VerticalAlignment="Center">
+            <dxe:FlyoutControl x:Name="PART_FlyoutControl" AllowMoveAnimation="False" ContentTemplate="{DynamicResource {dxpt:NewDocumentViewerThemeKey ResourceKey=PaginationTemplate}}" IsOpen="False" PlacementTarget="{Binding ElementName=PART_VerticalScrollBar}" VerticalAlignment="Center">
                 <dxe:FlyoutControl.Settings>
                     <dxe:FlyoutSettings Placement="Left" ShowIndicator="True" />
                 </dxe:FlyoutControl.Settings>
@@ -522,18 +522,18 @@
         </Grid>
     </ControlTemplate>
 
-    <DataTemplate x:Key="{themes:NewDocumentViewerThemeKey ResourceKey=SelectionCanvasContentTemplate}">
-        <dx:DXBorder Background="#45007FFF" BorderBrush="#FF007FFF" BorderThickness="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;674;10" />
+    <DataTemplate x:Key="{dxpt:NewDocumentViewerThemeKey ResourceKey=SelectionCanvasContentTemplate}">
+        <dx:DXBorder Background="#45007FFF" BorderBrush="#FF007FFF" BorderThickness="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;670;10" />
     </DataTemplate>
 
-    <ControlTemplate x:Key="{themes:NewDocumentViewerThemeKey ResourceKey=SelectionCanvasTemplate}" TargetType="{x:Type native:SelectionCanvas}">
-        <Canvas x:Name="PART_SelectionCanvas" ClipToBounds="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;683;10">
-            <ContentControl Canvas.Left="{Binding Path=(SelectionRectangle).X, RelativeSource={RelativeSource TemplatedParent}}" Canvas.Top="{Binding Path=(SelectionRectangle).Y, RelativeSource={RelativeSource TemplatedParent}}" Content="{Binding Path=SelectionRectangle, RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{DynamicResource {themes:NewDocumentViewerThemeKey ResourceKey=SelectionCanvasContentTemplate}}" Focusable="False" Height="{Binding Path=(SelectionRectangle).Height, RelativeSource={RelativeSource TemplatedParent}}" Width="{Binding Path=(SelectionRectangle).Width, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;684;14" />
+    <ControlTemplate x:Key="{dxpt:NewDocumentViewerThemeKey ResourceKey=SelectionCanvasTemplate}" TargetType="{x:Type dxpn:SelectionCanvas}">
+        <Canvas x:Name="PART_SelectionCanvas" ClipToBounds="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;679;10">
+            <ContentControl Canvas.Left="{Binding Path=(SelectionRectangle).X, RelativeSource={RelativeSource TemplatedParent}}" Canvas.Top="{Binding Path=(SelectionRectangle).Y, RelativeSource={RelativeSource TemplatedParent}}" Content="{Binding Path=SelectionRectangle, RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{DynamicResource {dxpt:NewDocumentViewerThemeKey ResourceKey=SelectionCanvasContentTemplate}}" Focusable="False" Height="{Binding Path=(SelectionRectangle).Height, RelativeSource={RelativeSource TemplatedParent}}" Width="{Binding Path=(SelectionRectangle).Width, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;680;14" />
         </Canvas>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="{themes:NewDocumentViewerThemeKey ResourceKey=PageSelectorTemplate}" TargetType="{x:Type native:PageSelector}">
-        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;695;10">
+    <ControlTemplate x:Key="{dxpt:NewDocumentViewerThemeKey ResourceKey=PageSelectorTemplate}" TargetType="{x:Type dxpn:PageSelector}">
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;691;10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="{Binding Path=VerticalScrollBarWidth, ElementName=PART_ScrollViewer}" />
@@ -543,56 +543,56 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <dxdv:DocumentPresenterDecorator x:Name="PART_Decorator" Focusable="True" FocusVisualStyle="{x:Null}" Grid.ColumnSpan="2" Grid.RowSpan="2">
-                <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;709;18">
-                    <native:PreviewScrollViewer x:Name="PART_ScrollViewer" CanContentScroll="True" CanMouseScroll="{Binding Path=(local:DocumentPreviewControl.ActualViewer).CursorMode, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource cursorModeToCanMouseScrollConverter}}" dxcore_unique_xmlns:ScrollBarExtensions.ScrollBehavior="{dxc:ScrollViewerScrollBehavior}" FlowDirection="{Binding FlowDirection, RelativeSource={RelativeSource AncestorType=local:DocumentPreviewControl}}" Focusable="false" Padding="{TemplateBinding Padding}" Template="{DynamicResource {themes:NewDocumentViewerThemeKey ResourceKey=ScrollViewerTemplate}}">
-                        <mvvm:Interaction.Behaviors>
-                            <native:CursorAttachedBehavior CursorMode="{Binding Path=(local:DocumentPreviewControl.ActualViewer).CursorMode, RelativeSource={RelativeSource TemplatedParent}}" />
+                <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;705;18">
+                    <dxpn:PreviewScrollViewer x:Name="PART_ScrollViewer" CanContentScroll="True" CanMouseScroll="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).CursorMode, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource cursorModeToCanMouseScrollConverter}}" dxcore_unique_xmlns:ScrollBarExtensions.ScrollBehavior="{dx:ScrollViewerScrollBehavior}" FlowDirection="{Binding FlowDirection, RelativeSource={RelativeSource AncestorType=dxp:DocumentPreviewControl}}" Focusable="false" Padding="{TemplateBinding Padding}" Template="{DynamicResource {dxpt:NewDocumentViewerThemeKey ResourceKey=ScrollViewerTemplate}}">
+                        <dxmvvm:Interaction.Behaviors>
+                            <dxpn:CursorAttachedBehavior CursorMode="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).CursorMode, RelativeSource={RelativeSource TemplatedParent}}" />
                             <dxcore_unique_xmlns:ScrollViewerTouchBehavior Orientation="Vertical" />
-                        </mvvm:Interaction.Behaviors>
-                        <ItemsPresenter x:Name="PART_ItemsPresenter" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;722;26" />
-                    </native:PreviewScrollViewer>
+                        </dxmvvm:Interaction.Behaviors>
+                        <ItemsPresenter x:Name="PART_ItemsPresenter" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;718;26" />
+                    </dxpn:PreviewScrollViewer>
                 </Grid>
             </dxdv:DocumentPresenterDecorator>
-            <native:SelectionCanvas SelectionRectangle="{Binding Path=SelectionRectangle, RelativeSource={RelativeSource AncestorType=local:DocumentPresenterControl}}" />
-            <dxcore_unique_xmlns:DXExpander HorizontalAlignment="Stretch" HorizontalExpand="FromLeftToRight" IsExpanded="{Binding Path=IsSearchControlVisible, RelativeSource={RelativeSource TemplatedParent}}" Opacity="{Binding Path=AnimationProgress, RelativeSource={RelativeSource Self}}" VerticalAlignment="Top" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;727;14">
+            <dxpn:SelectionCanvas SelectionRectangle="{Binding Path=SelectionRectangle, RelativeSource={RelativeSource AncestorType=dxp:DocumentPresenterControl}}" />
+            <dxcore_unique_xmlns:DXExpander HorizontalAlignment="Stretch" HorizontalExpand="FromLeftToRight" IsExpanded="{Binding Path=IsSearchControlVisible, RelativeSource={RelativeSource TemplatedParent}}" Opacity="{Binding Path=AnimationProgress, RelativeSource={RelativeSource Self}}" VerticalAlignment="Top" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;723;14">
                 <dxdv:SearchControlContainer IsSearchControlVisible="{Binding Path=IsSearchControlVisible, RelativeSource={RelativeSource TemplatedParent}}" SearchParameter="{Binding Path=SearchParameter, RelativeSource={RelativeSource TemplatedParent}}" />
             </dxcore_unique_xmlns:DXExpander>
         </Grid>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="{themes:NewDocumentViewerThemeKey ResourceKey=DocumentPresenterTemplate}" TargetType="{x:Type local:DocumentPresenterControl}">
-        <dx:DXBorder Focusable="False" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;738;10">
-            <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;739;14">
+    <ControlTemplate x:Key="{dxpt:NewDocumentViewerThemeKey ResourceKey=DocumentPresenterTemplate}" TargetType="{x:Type dxp:DocumentPresenterControl}">
+        <dx:DXBorder Focusable="False" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;734;10">
+            <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;735;14">
                 <Grid.RowDefinitions>
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <TextBlock Background="Transparent" FontWeight="Bold" HorizontalAlignment="Center" Text="{Binding Path=(local:DocumentPreviewControl.ActualViewer).Document.DocumentStatus, UpdateSourceTrigger=PropertyChanged, Converter={dxpn:DocumentStatusToTextConverter}, RelativeSource={RelativeSource TemplatedParent}}" TextAlignment="Center" VerticalAlignment="Center" Visibility="{Binding Path=(local:DocumentPreviewControl.ActualViewer).Document.DocumentStatus, Converter={dxpn:DocumentStatusToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource TemplatedParent}}" cs:id="TextBlock_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;743;18" />
-                <Grid Name="renderContainer" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;751;18">
+                <TextBlock Background="Transparent" FontWeight="Bold" HorizontalAlignment="Center" Text="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).Document.DocumentStatus, UpdateSourceTrigger=PropertyChanged, Converter={dxpn:DocumentStatusToTextConverter}, RelativeSource={RelativeSource TemplatedParent}}" TextAlignment="Center" VerticalAlignment="Center" Visibility="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).Document.DocumentStatus, Converter={dxpn:DocumentStatusToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource TemplatedParent}}" cs:id="TextBlock_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;739;18" />
+                <Grid Name="renderContainer" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;747;18">
                     <dxe:NativeImage x:Name="PART_NativeImage" Focusable="False" />
-                    <native:PageSelector x:Name="PART_ItemsControl" Background="Transparent" IsSearchControlVisible="{Binding Path=IsSearchControlVisible, RelativeSource={RelativeSource TemplatedParent}}" SearchParameter="{Binding Path=SearchParameter, RelativeSource={RelativeSource TemplatedParent}}" VirtualizingStackPanel.VirtualizationMode="Recycling" cs:id="PageSelector_0000">
-                        <native:PageSelector.ItemsPanel>
+                    <dxpn:PageSelector x:Name="PART_ItemsControl" Background="Transparent" IsSearchControlVisible="{Binding Path=IsSearchControlVisible, RelativeSource={RelativeSource TemplatedParent}}" SearchParameter="{Binding Path=SearchParameter, RelativeSource={RelativeSource TemplatedParent}}" VirtualizingStackPanel.VirtualizationMode="Recycling" cs:id="PageSelector_0000">
+                        <dxpn:PageSelector.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <dxdv:DocumentViewerPanel Name="itemsHost" FlowDirection="LeftToRight" IsItemsHost="True" />
                             </ItemsPanelTemplate>
-                        </native:PageSelector.ItemsPanel>
-                    </native:PageSelector>
+                        </dxpn:PageSelector.ItemsPanel>
+                    </dxpn:PageSelector>
                 </Grid>
             </Grid>
         </dx:DXBorder>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="{themes:NewDocumentViewerThemeKey ResourceKey=Template}" TargetType="{x:Type local:DocumentPreviewControl}">
-        <ContentControl ContentTemplate="{Binding Path=ActualBarsTemplate, RelativeSource={RelativeSource TemplatedParent}}" Focusable="False" Grid.ColumnSpan="3" Grid.RowSpan="3" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;773;10" />
+    <ControlTemplate x:Key="{dxpt:NewDocumentViewerThemeKey ResourceKey=Template}" TargetType="{x:Type dxp:DocumentPreviewControl}">
+        <ContentControl ContentTemplate="{Binding Path=ActualBarsTemplate, RelativeSource={RelativeSource TemplatedParent}}" Focusable="False" Grid.ColumnSpan="3" Grid.RowSpan="3" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;769;10" />
     </ControlTemplate>
 
-    <ControlTemplate x:Key="{themes:NewDocumentViewerThemeKey ResourceKey=DocumentMapTemplate}" TargetType="{x:Type native:DocumentMap}">
-        <dxg:GridControl x:Name="PART_GridControl" CurrentItem="{Binding SelectedItem, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" Grid.Row="1" ItemsSource="{TemplateBinding ActualSource}" SelectedItem="{Binding SelectedItem, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Row" ShowBorder="False" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;780;10">
-            <mvvm:Interaction.Behaviors>
-                <mvvm:KeyToCommand Command="{x:Static dxdv:DocumentMapCommands.GoToNodeCommand}" CommandParameter="{Binding Path=CurrentItem, ElementName=PART_GridControl}" EventName="PreviewKeyDown" KeyGesture="Enter" MarkRoutedEventsAsHandled="True" />
-                <mvvm:KeyToCommand Command="{x:Static dxdv:DocumentMapCommands.GoToNodeCommand}" CommandParameter="{Binding Path=CurrentItem, ElementName=PART_GridControl}" EventName="PreviewKeyDown" KeyGesture="Space" MarkRoutedEventsAsHandled="True" />
-            </mvvm:Interaction.Behaviors>
+    <ControlTemplate x:Key="{dxpt:NewDocumentViewerThemeKey ResourceKey=DocumentMapTemplate}" TargetType="{x:Type dxpn:DocumentMap}">
+        <dxg:GridControl x:Name="PART_GridControl" CurrentItem="{Binding SelectedItem, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" Grid.Row="1" ItemsSource="{TemplateBinding ActualSource}" SelectedItem="{Binding SelectedItem, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Row" ShowBorder="False" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;776;10">
+            <dxmvvm:Interaction.Behaviors>
+                <dxmvvm:KeyToCommand Command="{x:Static dxdv:DocumentMapCommands.GoToNodeCommand}" CommandParameter="{Binding Path=CurrentItem, ElementName=PART_GridControl}" EventName="PreviewKeyDown" KeyGesture="Enter" MarkRoutedEventsAsHandled="True" />
+                <dxmvvm:KeyToCommand Command="{x:Static dxdv:DocumentMapCommands.GoToNodeCommand}" CommandParameter="{Binding Path=CurrentItem, ElementName=PART_GridControl}" EventName="PreviewKeyDown" KeyGesture="Space" MarkRoutedEventsAsHandled="True" />
+            </dxmvvm:Interaction.Behaviors>
             <dxg:GridControl.View>
-                <dxg:TreeListView x:Name="PART_TreeView" Style="{TemplateBinding TreeViewStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;800;18">
+                <dxg:TreeListView x:Name="PART_TreeView" Style="{TemplateBinding TreeViewStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;796;18">
                     <dxg:TreeListView.FormatConditions>
                         <dxg:FormatCondition ApplyToRow="True" Expression="[IsHighlighted] = True" FieldName="IsHighlighted">
                             <dxg:FormatCondition.Format>
@@ -603,13 +603,13 @@
                     <dxg:TreeListView.RowCellMenuCustomizations>
                         <dxb:BarButtonItem Command="{x:Static dxdv:DocumentMapCommands.GoToNodeCommand}" CommandParameter="{Binding Path=CurrentItem, ElementName=PART_GridControl}" CommandTarget="{Binding ElementName=PART_GridControl}" Content="{dxdv:DocumentViewerControlLocalizedString DocumentMapGoToCaption}" />
                     </dxg:TreeListView.RowCellMenuCustomizations>
-                    <mvvm:Interaction.Behaviors>
-                        <mvvm:EventToCommand Command="{x:Static dxdv:DocumentMapCommands.GoToNodeCommand}" EventName="MouseLeftButtonUp">
-                            <mvvm:EventToCommand.EventArgsConverter>
+                    <dxmvvm:Interaction.Behaviors>
+                        <dxmvvm:EventToCommand Command="{x:Static dxdv:DocumentMapCommands.GoToNodeCommand}" EventName="MouseLeftButtonUp">
+                            <dxmvvm:EventToCommand.EventArgsConverter>
                                 <dxdv:MouseEventArgsToDataRowConverter ChangedButton="Left" />
-                            </mvvm:EventToCommand.EventArgsConverter>
-                        </mvvm:EventToCommand>
-                    </mvvm:Interaction.Behaviors>
+                            </dxmvvm:EventToCommand.EventArgsConverter>
+                        </dxmvvm:EventToCommand>
+                    </dxmvvm:Interaction.Behaviors>
                 </dxg:TreeListView>
             </dxg:GridControl.View>
             <dxg:GridControl.Columns>
@@ -618,73 +618,73 @@
         </dxg:GridControl>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="{themes:NewDocumentViewerThemeKey ResourceKey=ThumbnailsTemplate}" TargetType="{x:Type native:ThumbnailsViewerControl}">
-        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;834;10">
-            <native:ThumbnailsPresenterControl PageDisplayMode="Wrap" />
+    <ControlTemplate x:Key="{dxpt:NewDocumentViewerThemeKey ResourceKey=ThumbnailsTemplate}" TargetType="{x:Type dxpn:ThumbnailsViewerControl}">
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;830;10">
+            <dxpn:ThumbnailsPresenterControl PageDisplayMode="Wrap" />
         </Grid>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="{themes:NewDocumentViewerThemeKey ResourceKey=ThumbnailsPresenterTemplate}" TargetType="{x:Type native:ThumbnailsPresenterControl}">
-        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;840;10">
+    <ControlTemplate x:Key="{dxpt:NewDocumentViewerThemeKey ResourceKey=ThumbnailsPresenterTemplate}" TargetType="{x:Type dxpn:ThumbnailsPresenterControl}">
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;836;10">
             <dxe:NativeImage x:Name="PART_NativeImage" />
-            <native:ThumbnailsPageSelector x:Name="PART_ItemsControl">
-                <native:ThumbnailsPageSelector.ItemsPanel>
+            <dxpn:ThumbnailsPageSelector x:Name="PART_ItemsControl">
+                <dxpn:ThumbnailsPageSelector.ItemsPanel>
                     <ItemsPanelTemplate>
                         <dxdv:DocumentViewerPanel x:Name="PART_DocumentViewerPanel" />
                     </ItemsPanelTemplate>
-                </native:ThumbnailsPageSelector.ItemsPanel>
-            </native:ThumbnailsPageSelector>
+                </dxpn:ThumbnailsPageSelector.ItemsPanel>
+            </dxpn:ThumbnailsPageSelector>
         </Grid>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="{themes:NewDocumentViewerThemeKey ResourceKey=PageControlItemTemplate}" TargetType="{x:Type local:PreviewPageControlItem}">
-        <Grid Margin="1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;853;10">
-            <ContentControl Content="{Binding}" ContentTemplate="{DynamicResource {themes:NewDocumentViewerThemeKey ResourceKey=PageBorderTemplate}}" IsHitTestVisible="False" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;854;14" />
-            <native:PageMarginsEditor Margin="-1" Page="{Binding}" Zoom="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ZoomFactor, RelativeSource={RelativeSource Self}}" />
+    <ControlTemplate x:Key="{dxpt:NewDocumentViewerThemeKey ResourceKey=PageControlItemTemplate}" TargetType="{x:Type dxp:PreviewPageControlItem}">
+        <Grid Margin="1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;849;10">
+            <ContentControl Content="{Binding}" ContentTemplate="{DynamicResource {dxpt:NewDocumentViewerThemeKey ResourceKey=PageBorderTemplate}}" IsHitTestVisible="False" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;850;14" />
+            <dxpn:PageMarginsEditor Margin="-1" Page="{Binding}" Zoom="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ZoomFactor, RelativeSource={RelativeSource Self}}" />
         </Grid>
     </ControlTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Native.ThumbnailPageControlItem}" TargetType="{x:Type native:ThumbnailPageControlItem}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;863;6" /><Setter Property="Focusable" Value="False" />
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Native.ThumbnailPageControlItem}" TargetType="{x:Type dxpn:ThumbnailPageControlItem}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;859;6" /><Setter Property="Focusable" Value="False" />
         <Setter Property="VerticalAlignment" Value="Bottom" />
         <Setter Property="IsSelected" Value="{Binding Path=IsSelected}" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type native:ThumbnailPageControlItem}">
-                    <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;870;22">
+                <ControlTemplate TargetType="{x:Type dxpn:ThumbnailPageControlItem}">
+                    <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;866;22">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <ContentControl Content="{Binding}" ContentTemplate="{DynamicResource ResourceKey={themes:NewDocumentViewerThemeKey ResourceKey=PageBorderTemplate}}" IsHitTestVisible="False" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;875;26" />
-                        <TextBlock Grid.Row="1" Margin="0,5,0,5" Text="{Binding Path=PageNumber}" TextAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;878;26" />
+                        <ContentControl Content="{Binding}" ContentTemplate="{DynamicResource ResourceKey={dxpt:NewDocumentViewerThemeKey ResourceKey=PageBorderTemplate}}" IsHitTestVisible="False" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;871;26" />
+                        <TextBlock Grid.Row="1" Margin="0,5,0,5" Text="{Binding Path=PageNumber}" TextAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;874;26" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Native.ThumbnailsViewerControl}" TargetType="{x:Type native:ThumbnailsViewerControl}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;888;6" /><Setter Property="Template" Value="{DynamicResource {themes:NewDocumentViewerThemeKey ResourceKey=ThumbnailsTemplate}}" />
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Native.ThumbnailsViewerControl}" TargetType="{x:Type dxpn:ThumbnailsViewerControl}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;884;6" /><Setter Property="Template" Value="{DynamicResource {dxpt:NewDocumentViewerThemeKey ResourceKey=ThumbnailsTemplate}}" />
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Native.ThumbnailsPresenterControl}" TargetType="{x:Type native:ThumbnailsPresenterControl}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;892;6" /><Setter Property="Template" Value="{DynamicResource {themes:NewDocumentViewerThemeKey ResourceKey=ThumbnailsPresenterTemplate}}" />
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Native.ThumbnailsPresenterControl}" TargetType="{x:Type dxpn:ThumbnailsPresenterControl}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;888;6" /><Setter Property="Template" Value="{DynamicResource {dxpt:NewDocumentViewerThemeKey ResourceKey=ThumbnailsPresenterTemplate}}" />
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Native.ThumbnailsPageSelector}" TargetType="{x:Type native:ThumbnailsPageSelector}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;896;6" /><Setter Property="Focusable" Value="False" />
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Native.ThumbnailsPageSelector}" TargetType="{x:Type dxpn:ThumbnailsPageSelector}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;892;6" /><Setter Property="Focusable" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type native:ThumbnailsPageSelector}">
-                    <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;901;22">
+                <ControlTemplate TargetType="{x:Type dxpn:ThumbnailsPageSelector}">
+                    <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;897;22">
                         <dxdv:DocumentPresenterDecorator x:Name="PART_Decorator" Focusable="True" FocusVisualStyle="{x:Null}" Grid.ColumnSpan="2" Grid.RowSpan="2">
-                            <native:PreviewScrollViewer x:Name="PART_ScrollViewer" CanContentScroll="True" CanMouseScroll="True" dxcore_unique_xmlns:ScrollBarExtensions.ScrollBehavior="{dxc:ScrollViewerScrollBehavior}" dxcore_unique_xmlns:ScrollViewerTouchBehavior.IsEnabled="True" Focusable="false" HorizontalScrollBarVisibility="Auto" Padding="{TemplateBinding Padding}" ShowFlyoutOnScroll="False" Template="{DynamicResource {themes:NewDocumentViewerThemeKey ResourceKey=ScrollViewerTemplate}}" VerticalScrollBarVisibility="Auto">
-                                <mvvm:Interaction.Behaviors>
+                            <dxpn:PreviewScrollViewer x:Name="PART_ScrollViewer" CanContentScroll="True" CanMouseScroll="True" dxcore_unique_xmlns:ScrollBarExtensions.ScrollBehavior="{dx:ScrollViewerScrollBehavior}" dxcore_unique_xmlns:ScrollViewerTouchBehavior.IsEnabled="True" Focusable="false" HorizontalScrollBarVisibility="Auto" Padding="{TemplateBinding Padding}" ShowFlyoutOnScroll="False" Template="{DynamicResource {dxpt:NewDocumentViewerThemeKey ResourceKey=ScrollViewerTemplate}}" VerticalScrollBarVisibility="Auto">
+                                <dxmvvm:Interaction.Behaviors>
                                     <dxcore_unique_xmlns:ScrollViewerTouchBehavior Orientation="Vertical" />
-                                </mvvm:Interaction.Behaviors>
-                                <ItemsPresenter x:Name="PART_ItemsPresenter" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;921;34" />
-                            </native:PreviewScrollViewer>
+                                </dxmvvm:Interaction.Behaviors>
+                                <ItemsPresenter x:Name="PART_ItemsPresenter" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;917;34" />
+                            </dxpn:PreviewScrollViewer>
                         </dxdv:DocumentPresenterDecorator>
                     </Grid>
                 </ControlTemplate>
@@ -692,65 +692,57 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Native.DocumentMap}" TargetType="{x:Type native:DocumentMap}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;930;6" /><Setter Property="TreeViewStyle" Value="{DynamicResource {dxdvt:DocumentViewerThemeKey ResourceKey=TreeViewStyle}}" />
-        <Setter Property="Template" Value="{DynamicResource {themes:NewDocumentViewerThemeKey ResourceKey=DocumentMapTemplate}}" />
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Native.DocumentMap}" TargetType="{x:Type dxpn:DocumentMap}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;926;6" /><Setter Property="TreeViewStyle" Value="{DynamicResource {dxdvt:DocumentViewerThemeKey ResourceKey=TreeViewStyle}}" />
+        <Setter Property="Template" Value="{DynamicResource {dxpt:NewDocumentViewerThemeKey ResourceKey=DocumentMapTemplate}}" />
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewPageControlItem}" TargetType="{x:Type local:PreviewPageControlItem}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;935;6" /><Setter Property="Focusable" Value="False" />
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewPageControlItem}" TargetType="{x:Type dxp:PreviewPageControlItem}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;931;6" /><Setter Property="Focusable" Value="False" />
         <Setter Property="IsSelected" Value="{Binding IsSelected}" />
-        <Setter Property="Template" Value="{DynamicResource {themes:NewDocumentViewerThemeKey ResourceKey=PageControlItemTemplate}}" />
+        <Setter Property="Template" Value="{DynamicResource {dxpt:NewDocumentViewerThemeKey ResourceKey=PageControlItemTemplate}}" />
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Native.SelectionCanvas}" TargetType="{x:Type native:SelectionCanvas}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;941;6" /><Setter Property="Template" Value="{DynamicResource {themes:NewDocumentViewerThemeKey ResourceKey=SelectionCanvasTemplate}}" />
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Native.SelectionCanvas}" TargetType="{x:Type dxpn:SelectionCanvas}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;937;6" /><Setter Property="Template" Value="{DynamicResource {dxpt:NewDocumentViewerThemeKey ResourceKey=SelectionCanvasTemplate}}" />
         <Setter Property="Focusable" Value="False" />
         <Setter Property="IsHitTestVisible" Value="False" />
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Native.PageSelector}" TargetType="{x:Type native:PageSelector}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;947;6" /><Setter Property="Focusable" Value="False" />
-        <Setter Property="Template" Value="{DynamicResource {themes:NewDocumentViewerThemeKey ResourceKey=PageSelectorTemplate}}" />
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Native.PageSelector}" TargetType="{x:Type dxpn:PageSelector}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;943;6" /><Setter Property="Focusable" Value="False" />
+        <Setter Property="Template" Value="{DynamicResource {dxpt:NewDocumentViewerThemeKey ResourceKey=PageSelectorTemplate}}" />
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.DocumentPresenterControl}" TargetType="{x:Type local:DocumentPresenterControl}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;952;6" /><Setter Property="MinHeight" Value="10" />
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.DocumentPresenterControl}" TargetType="{x:Type dxp:DocumentPresenterControl}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;948;6" /><Setter Property="MinHeight" Value="10" />
         <Setter Property="FlowDirection" Value="LeftToRight" />
-        <Setter Property="Template" Value="{DynamicResource {themes:NewDocumentViewerThemeKey ResourceKey=DocumentPresenterTemplate}}" />
+        <Setter Property="Template" Value="{DynamicResource {dxpt:NewDocumentViewerThemeKey ResourceKey=DocumentPresenterTemplate}}" />
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.DocumentPreviewControl}" TargetType="{x:Type local:DocumentPreviewControl}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;958;6" /><Setter Property="HighlightSelectionColor" Value="{DynamicResource {themes:NewDocumentViewerThemeKey ResourceKey=HighlightSelectionColor}}" />
-        <Setter Property="BarsTemplate" Value="{DynamicResource {themes:NewDocumentViewerThemeKey ResourceKey=BarsTemplate}}" />
-        <Setter Property="RibbonTemplate" Value="{DynamicResource {themes:NewDocumentViewerThemeKey ResourceKey=RibbonTemplate}}" />
-        <Setter Property="PresenterTemplate" Value="{DynamicResource {themes:NewDocumentViewerThemeKey ResourceKey=PresenterTemplate}}" />
-        <Setter Property="Template" Value="{DynamicResource {themes:NewDocumentViewerThemeKey ResourceKey=Template}}" />
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.DocumentPreviewControl}" TargetType="{x:Type dxp:DocumentPreviewControl}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;954;6" /><Setter Property="HighlightSelectionColor" Value="{DynamicResource {dxpt:NewDocumentViewerThemeKey ResourceKey=HighlightSelectionColor}}" />
+        <Setter Property="BarsTemplate" Value="{DynamicResource {dxpt:NewDocumentViewerThemeKey ResourceKey=BarsTemplate}}" />
+        <Setter Property="RibbonTemplate" Value="{DynamicResource {dxpt:NewDocumentViewerThemeKey ResourceKey=RibbonTemplate}}" />
+        <Setter Property="PresenterTemplate" Value="{DynamicResource {dxpt:NewDocumentViewerThemeKey ResourceKey=PresenterTemplate}}" />
+        <Setter Property="Template" Value="{DynamicResource {dxpt:NewDocumentViewerThemeKey ResourceKey=Template}}" />
         <Setter Property="dx:ScrollBarExtensions.ScrollBarMode" Value="TouchOverlap" />
     </Style>
 
-    <Style x:Key="{themes:NewDocumentViewerThemeKey ResourceKey=ExportOptionsDialogStyle}" TargetType="{x:Type dxc:DXDialogWindow}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;967;6" /><Setter Property="dxe:ValidationService.IsValidationContainer" Value="True" />
-        <Setter Property="SizeToContent" Value="WidthAndHeight" />
-        <Setter Property="WindowStyle" Value="ToolWindow" />
-        <Setter Property="ResizeMode" Value="NoResize" />
-        <Setter Property="ShowInTaskbar" Value="False" />
-    </Style>
-
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Native.PageMarginsEditor}" TargetType="{x:Type native:PageMarginsEditor}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;975;6" /><Setter Property="Visibility">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Native.PageMarginsEditor}" TargetType="{x:Type dxpn:PageMarginsEditor}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;963;6" /><Setter Property="Visibility">
             <Setter.Value>
-                <MultiBinding Converter="{native:PageViewModelToPageMarginsVisibilityConverter}">
+                <MultiBinding Converter="{dxpn:PageViewModelToPageMarginsVisibilityConverter}">
                     <Binding />
-                    <Binding Path="(local:DocumentPreviewControl.ActualViewer).CurrentPageNumber" RelativeSource="{RelativeSource Self}" />
+                    <Binding Path="(dxp:DocumentPreviewControl.ActualViewer).CurrentPageNumber" RelativeSource="{RelativeSource Self}" />
                 </MultiBinding>
             </Setter.Value>
         </Setter>
-        <Setter Property="IsEnabled" Value="{Binding Path=(local:DocumentPreviewControl.ActualViewer).Document.CanChangePageSettings, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="IsEnabled" Value="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).Document.CanChangePageSettings, RelativeSource={RelativeSource Self}}" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="native:PageMarginsEditor">
-                    <Grid Name="Margins" ClipToBounds="True" Visibility="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ShowPageMargins, RelativeSource={RelativeSource Self}, Converter={dxc:BooleanToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;988;22">
+                <ControlTemplate TargetType="dxpn:PageMarginsEditor">
+                    <Grid Name="Margins" ClipToBounds="True" Visibility="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ShowPageMargins, RelativeSource={RelativeSource Self}, Converter={dx:BooleanToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;976;22">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="{Binding TopMargin.Size, RelativeSource={RelativeSource TemplatedParent}}" MaxHeight="{Binding TopMargin.MaxSize, RelativeSource={RelativeSource TemplatedParent}}" MinHeight="0" />
                             <RowDefinition Height="auto" />
@@ -765,21 +757,21 @@
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition MaxWidth="{Binding RightMargin.MaxSize, RelativeSource={RelativeSource TemplatedParent}}" MinWidth="0" Width="{Binding RightMargin.Size, RelativeSource={RelativeSource TemplatedParent}}" />
                         </Grid.ColumnDefinitions>
-                        <native:MarginThumb Background="LightGray" Grid.Column="1" Grid.RowSpan="5" Orientation="Vertical" PageMargin="{Binding LeftMargin, RelativeSource={RelativeSource TemplatedParent}}" ResizeBehavior="PreviousAndNext" SetPageMarginCommand="{Binding Page.SetPageMarginCommand, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Stretch" cs:id="MarginThumb_0000" />
-                        <native:MarginThumb Background="LightGray" Grid.ColumnSpan="5" Grid.Row="1" HorizontalAlignment="Stretch" Orientation="Horizontal" PageMargin="{Binding TopMargin, RelativeSource={RelativeSource TemplatedParent}}" ResizeBehavior="PreviousAndNext" SetPageMarginCommand="{Binding SetPageMarginCommand}" cs:id="MarginThumb_0001" />
-                        <native:MarginThumb Background="LightGray" Grid.Column="3" Grid.RowSpan="5" Orientation="Vertical" PageMargin="{Binding RightMargin, RelativeSource={RelativeSource TemplatedParent}}" ResizeBehavior="PreviousAndNext" SetPageMarginCommand="{Binding SetPageMarginCommand}" VerticalAlignment="Stretch" cs:id="MarginThumb_0002" />
-                        <native:MarginThumb Background="LightGray" Grid.ColumnSpan="5" Grid.Row="3" HorizontalAlignment="Stretch" Orientation="Horizontal" PageMargin="{Binding BottomMargin, RelativeSource={RelativeSource TemplatedParent}}" ResizeBehavior="PreviousAndNext" SetPageMarginCommand="{Binding SetPageMarginCommand}" cs:id="MarginThumb_0003" />
+                        <dxpn:MarginThumb Background="LightGray" Grid.Column="1" Grid.RowSpan="5" Orientation="Vertical" PageMargin="{Binding LeftMargin, RelativeSource={RelativeSource TemplatedParent}}" ResizeBehavior="PreviousAndNext" SetPageMarginCommand="{Binding Page.SetPageMarginCommand, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Stretch" cs:id="MarginThumb_0000" />
+                        <dxpn:MarginThumb Background="LightGray" Grid.ColumnSpan="5" Grid.Row="1" HorizontalAlignment="Stretch" Orientation="Horizontal" PageMargin="{Binding TopMargin, RelativeSource={RelativeSource TemplatedParent}}" ResizeBehavior="PreviousAndNext" SetPageMarginCommand="{Binding SetPageMarginCommand}" cs:id="MarginThumb_0001" />
+                        <dxpn:MarginThumb Background="LightGray" Grid.Column="3" Grid.RowSpan="5" Orientation="Vertical" PageMargin="{Binding RightMargin, RelativeSource={RelativeSource TemplatedParent}}" ResizeBehavior="PreviousAndNext" SetPageMarginCommand="{Binding SetPageMarginCommand}" VerticalAlignment="Stretch" cs:id="MarginThumb_0002" />
+                        <dxpn:MarginThumb Background="LightGray" Grid.ColumnSpan="5" Grid.Row="3" HorizontalAlignment="Stretch" Orientation="Horizontal" PageMargin="{Binding BottomMargin, RelativeSource={RelativeSource TemplatedParent}}" ResizeBehavior="PreviousAndNext" SetPageMarginCommand="{Binding SetPageMarginCommand}" cs:id="MarginThumb_0003" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Native.MarginThumb}" TargetType="{x:Type native:MarginThumb}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;1055;6" /><Setter Property="Template">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.PreviewControl.Native.MarginThumb}" TargetType="{x:Type dxpn:MarginThumb}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Printing\Generic\DocumentPreviewControl.xaml;1043;6" /><Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type native:MarginThumb}">
-                    <Grid Background="#00000000" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;1059;22">
+                <ControlTemplate TargetType="{x:Type dxpn:MarginThumb}">
+                    <Grid Background="#00000000" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;1047;22">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal" />
@@ -794,13 +786,13 @@
                                 <VisualState x:Name="Pressed" />
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <native:NoSizeDecorator>
-                            <Line Name="border" HorizontalAlignment="Stretch" Stroke="LightGray" StrokeDashArray="1 1" StrokeThickness="5" VerticalAlignment="Stretch" X2="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}" Y2="{Binding ActualHeight, RelativeSource={RelativeSource TemplatedParent}}" cs:id="Line_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;1077;30" />
-                        </native:NoSizeDecorator>
+                        <dxpn:NoSizeDecorator>
+                            <Line Name="border" HorizontalAlignment="Stretch" Stroke="LightGray" StrokeDashArray="1 1" StrokeThickness="5" VerticalAlignment="Stretch" X2="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}" Y2="{Binding ActualHeight, RelativeSource={RelativeSource TemplatedParent}}" cs:id="Line_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;1065;30" />
+                        </dxpn:NoSizeDecorator>
                         <ToolTipService.ToolTip>
-                            <ToolTip x:Name="PART_Tooltip" Placement="Mouse" Visibility="{Binding IsDragging, RelativeSource={RelativeSource TemplatedParent}, Converter={mvvm:BooleanToVisibilityConverter HiddenInsteadOfCollapsed=True}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;1088;30">
+                            <ToolTip x:Name="PART_Tooltip" Placement="Mouse" Visibility="{Binding IsDragging, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:BooleanToVisibilityConverter HiddenInsteadOfCollapsed=True}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Printing\Generic\DocumentPreviewControl.xaml;1076;30">
                                 <ToolTip.Content>
-                                    <MultiBinding Converter="{native:MarginSideAndSizeToTextConverter}" FallbackValue="{x:Null}">
+                                    <MultiBinding Converter="{dxpn:MarginSideAndSizeToTextConverter}" FallbackValue="{x:Null}">
                                         <Binding Mode="OneWay" Path="PageMargin.Side" RelativeSource="{RelativeSource TemplatedParent}" />
                                         <Binding Mode="OneWay" Path="ActualSize" RelativeSource="{RelativeSource TemplatedParent}" />
                                     </MultiBinding>

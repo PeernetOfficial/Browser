@@ -2,13 +2,10 @@
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
                     xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys"
                     xmlns:dxsch="http://schemas.devexpress.com/winfx/2008/xaml/scheduling"
-                    xmlns:dxschc="http://schemas.devexpress.com/winfx/2008/xaml/scheduling"
                     xmlns:dxschi="clr-namespace:DevExpress.Xpf.Scheduling.Internal"
-                    xmlns:dxschp="http://schemas.devexpress.com/winfx/2008/xaml/scheduling/visual"
                     xmlns:dxscht="http://schemas.devexpress.com/winfx/2008/xaml/scheduling/themekeys"
                     xmlns:dxschv="http://schemas.devexpress.com/winfx/2008/xaml/scheduling/visual"
                     xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
@@ -457,28 +454,28 @@
     <Style x:Key="DayView.DefaultStyle"
            BasedOn="{StaticResource DayViewBase.Style}"
            TargetType="dxsch:DayView">
-        <Setter Property="Caption" Value="{dxschc:SchedulerLocalizer StringId=Caption_DayView}"/>
-        <Setter Property="Description" Value="{dxschc:SchedulerLocalizer StringId=Description_DayView}"/>
-        <Setter Property="Glyph" Value="{dx:ImageSelector Source={dx:DXImage Image=DayView_16x16.png}, SvgSource={dxschc:SchedulerSvgImage Path='Scheduling/DayView.svg'}}"/>
-        <Setter Property="LargeGlyph" Value="{dx:ImageSelector Source={dx:DXImage Image=DayView_32x32.png}, SvgSource={dxschc:SchedulerSvgImage Path='Scheduling/DayView.svg'}}"/>
+        <Setter Property="Caption" Value="{dxsch:SchedulerLocalizer StringId=Caption_DayView}"/>
+        <Setter Property="Description" Value="{dxsch:SchedulerLocalizer StringId=Description_DayView}"/>
+        <Setter Property="Glyph" Value="{dx:ImageSelector Source={dx:DXImage Image=DayView_16x16.png}, SvgSource={dxsch:SchedulerSvgImage Path='Scheduling/DayView.svg'}}"/>
+        <Setter Property="LargeGlyph" Value="{dx:ImageSelector Source={dx:DXImage Image=DayView_32x32.png}, SvgSource={dxsch:SchedulerSvgImage Path='Scheduling/DayView.svg'}}"/>
     </Style>
 
     <Style x:Key="WeekView.DefaultStyle"
            BasedOn="{StaticResource DayViewBase.Style}"
            TargetType="dxsch:WeekView">
-        <Setter Property="Caption" Value="{dxschc:SchedulerLocalizer StringId=Caption_WeekView}"/>
-        <Setter Property="Description" Value="{dxschc:SchedulerLocalizer StringId=Description_WeekView}"/>
-        <Setter Property="Glyph" Value="{dx:ImageSelector Source={dx:DXImage Image=WeekView_16x16.png}, SvgSource={dxschc:SchedulerSvgImage Path='Scheduling/WeekView.svg'}}"/>
-        <Setter Property="LargeGlyph" Value="{dx:ImageSelector Source={dx:DXImage Image=WeekView_32x32.png}, SvgSource={dxschc:SchedulerSvgImage Path='Scheduling/WeekView.svg'}}"/>
+        <Setter Property="Caption" Value="{dxsch:SchedulerLocalizer StringId=Caption_WeekView}"/>
+        <Setter Property="Description" Value="{dxsch:SchedulerLocalizer StringId=Description_WeekView}"/>
+        <Setter Property="Glyph" Value="{dx:ImageSelector Source={dx:DXImage Image=WeekView_16x16.png}, SvgSource={dxsch:SchedulerSvgImage Path='Scheduling/WeekView.svg'}}"/>
+        <Setter Property="LargeGlyph" Value="{dx:ImageSelector Source={dx:DXImage Image=WeekView_32x32.png}, SvgSource={dxsch:SchedulerSvgImage Path='Scheduling/WeekView.svg'}}"/>
     </Style>
 
     <Style x:Key="WorkWeekView.DefaultStyle"
            BasedOn="{StaticResource DayViewBase.Style}"
            TargetType="dxsch:WorkWeekView">
-        <Setter Property="Caption" Value="{dxschc:SchedulerLocalizer StringId=Caption_WorkWeekView}"/>
-        <Setter Property="Description" Value="{dxschc:SchedulerLocalizer StringId=Description_WorkWeekView}"/>
-        <Setter Property="Glyph" Value="{dx:ImageSelector Source={dx:DXImage Image=WorkWeekView_16x16.png}, SvgSource={dxschc:SchedulerSvgImage Path='Scheduling/WorkWeekView.svg'}}"/>
-        <Setter Property="LargeGlyph" Value="{dx:ImageSelector Source={dx:DXImage Image=WorkWeekView_32x32.png}, SvgSource={dxschc:SchedulerSvgImage Path='Scheduling/WorkWeekView.svg'}}"/>
+        <Setter Property="Caption" Value="{dxsch:SchedulerLocalizer StringId=Caption_WorkWeekView}"/>
+        <Setter Property="Description" Value="{dxsch:SchedulerLocalizer StringId=Description_WorkWeekView}"/>
+        <Setter Property="Glyph" Value="{dx:ImageSelector Source={dx:DXImage Image=WorkWeekView_16x16.png}, SvgSource={dxsch:SchedulerSvgImage Path='Scheduling/WorkWeekView.svg'}}"/>
+        <Setter Property="LargeGlyph" Value="{dx:ImageSelector Source={dx:DXImage Image=WorkWeekView_32x32.png}, SvgSource={dxsch:SchedulerSvgImage Path='Scheduling/WorkWeekView.svg'}}"/>
     </Style>
 
     <Style x:Key="MonthView.DefaultStyle"
@@ -486,10 +483,10 @@
            TargetType="dxsch:MonthView">
         <Setter Property="DateHeaderUseUpperCase" Value="{StaticResource DateHeaderUseUpperCase}"/>
         <Setter Property="GroupSeparatorSize" Value="{StaticResource GroupSeparatorSize}"/>
-        <Setter Property="Caption" Value="{dxschc:SchedulerLocalizer StringId=Caption_MonthView}"/>
-        <Setter Property="Description" Value="{dxschc:SchedulerLocalizer StringId=Description_MonthView}"/>
-        <Setter Property="Glyph" Value="{dx:ImageSelector Source={dx:DXImage Image=MonthView_16x16.png}, SvgSource={dxschc:SchedulerSvgImage Path='Scheduling/MonthView.svg'}}"/>
-        <Setter Property="LargeGlyph" Value="{dx:ImageSelector Source={dx:DXImage Image=MonthView_32x32.png}, SvgSource={dxschc:SchedulerSvgImage Path='Scheduling/MonthView.svg'}}"/>
+        <Setter Property="Caption" Value="{dxsch:SchedulerLocalizer StringId=Caption_MonthView}"/>
+        <Setter Property="Description" Value="{dxsch:SchedulerLocalizer StringId=Description_MonthView}"/>
+        <Setter Property="Glyph" Value="{dx:ImageSelector Source={dx:DXImage Image=MonthView_16x16.png}, SvgSource={dxsch:SchedulerSvgImage Path='Scheduling/MonthView.svg'}}"/>
+        <Setter Property="LargeGlyph" Value="{dx:ImageSelector Source={dx:DXImage Image=MonthView_32x32.png}, SvgSource={dxsch:SchedulerSvgImage Path='Scheduling/MonthView.svg'}}"/>
         <Style.Triggers>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                 <Setter Property="AppointmentMinHeight" Value="40"/>
@@ -515,10 +512,10 @@
            BasedOn="{StaticResource SchedulerViewBase.Style}"
            TargetType="dxsch:TimelineView">
         <Setter Property="GroupSeparatorSize" Value="0"/>
-        <Setter Property="Caption" Value="{dxschc:SchedulerLocalizer StringId=Caption_TimelineView}"/>
-        <Setter Property="Description" Value="{dxschc:SchedulerLocalizer StringId=Description_TimelineView}"/>
-        <Setter Property="Glyph" Value="{dx:ImageSelector Source={dx:DXImage Image=TimelineView_16x16.png}, SvgSource={dxschc:SchedulerSvgImage Path='Scheduling/TimelineView.svg'}}"/>
-        <Setter Property="LargeGlyph" Value="{dx:ImageSelector Source={dx:DXImage Image=TimelineView_32x32.png}, SvgSource={dxschc:SchedulerSvgImage Path='Scheduling/TimelineView.svg'}}"/>
+        <Setter Property="Caption" Value="{dxsch:SchedulerLocalizer StringId=Caption_TimelineView}"/>
+        <Setter Property="Description" Value="{dxsch:SchedulerLocalizer StringId=Description_TimelineView}"/>
+        <Setter Property="Glyph" Value="{dx:ImageSelector Source={dx:DXImage Image=TimelineView_16x16.png}, SvgSource={dxsch:SchedulerSvgImage Path='Scheduling/TimelineView.svg'}}"/>
+        <Setter Property="LargeGlyph" Value="{dx:ImageSelector Source={dx:DXImage Image=TimelineView_32x32.png}, SvgSource={dxsch:SchedulerSvgImage Path='Scheduling/TimelineView.svg'}}"/>
         <Style.Triggers>
             <Trigger Property="ActualViewMode" Value="Legacy">
                 <Setter Property="ResourceMinHeight" Value="60"/>
@@ -541,17 +538,17 @@
     </Style>
 
     <Style x:Key="AgendaView.DefaultStyle" TargetType="dxsch:AgendaView">
-        <Setter Property="Caption" Value="{dxschc:SchedulerLocalizer StringId=Caption_AgendaView}"/>
-        <Setter Property="Description" Value="{dxschc:SchedulerLocalizer StringId=Description_AgendaView}"/>
-        <Setter Property="Glyph" Value="{dx:ImageSelector Source={dx:DXImage Image=AgendaView_16x16.png}, SvgSource={dxschc:SchedulerSvgImage Path='Scheduling/AgendaView.svg'}}"/>
-        <Setter Property="LargeGlyph" Value="{dx:ImageSelector Source={dx:DXImage Image=AgendaView_32x32.png}, SvgSource={dxschc:SchedulerSvgImage Path='Scheduling/AgendaView.svg'}}"/>
+        <Setter Property="Caption" Value="{dxsch:SchedulerLocalizer StringId=Caption_AgendaView}"/>
+        <Setter Property="Description" Value="{dxsch:SchedulerLocalizer StringId=Description_AgendaView}"/>
+        <Setter Property="Glyph" Value="{dx:ImageSelector Source={dx:DXImage Image=AgendaView_16x16.png}, SvgSource={dxsch:SchedulerSvgImage Path='Scheduling/AgendaView.svg'}}"/>
+        <Setter Property="LargeGlyph" Value="{dx:ImageSelector Source={dx:DXImage Image=AgendaView_32x32.png}, SvgSource={dxsch:SchedulerSvgImage Path='Scheduling/AgendaView.svg'}}"/>
     </Style>
 
     <Style x:Key="ListView.DefaultStyle" TargetType="dxsch:ListView">
-        <Setter Property="Caption" Value="{dxschc:SchedulerLocalizer StringId=Caption_ListView}"/>
-        <Setter Property="Description" Value="{dxschc:SchedulerLocalizer StringId=Description_ListView}"/>
-        <Setter Property="Glyph" Value="{dx:ImageSelector SvgSource={dxschc:SchedulerSvgImage Path='Scheduling/ListView.svg'}}"/>
-        <Setter Property="LargeGlyph" Value="{dx:ImageSelector SvgSource={dxschc:SchedulerSvgImage Path='Scheduling/ListView.svg'}}"/>
+        <Setter Property="Caption" Value="{dxsch:SchedulerLocalizer StringId=Caption_ListView}"/>
+        <Setter Property="Description" Value="{dxsch:SchedulerLocalizer StringId=Description_ListView}"/>
+        <Setter Property="Glyph" Value="{dx:ImageSelector SvgSource={dxsch:SchedulerSvgImage Path='Scheduling/ListView.svg'}}"/>
+        <Setter Property="LargeGlyph" Value="{dx:ImageSelector SvgSource={dxsch:SchedulerSvgImage Path='Scheduling/ListView.svg'}}"/>
         <Setter Property="ColumnStyleType" Value="{DynamicResource {dxscht:ListViewGridThemeKey ResourceKey=GridColumn_Type}}"/>
         <Setter Property="ColumnStyleSubject" Value="{DynamicResource {dxscht:ListViewGridThemeKey ResourceKey=GridColumn_Subject}}"/>
         <Setter Property="ColumnStyleLocation" Value="{DynamicResource {dxscht:ListViewGridThemeKey ResourceKey=GridColumn_Location}}"/>

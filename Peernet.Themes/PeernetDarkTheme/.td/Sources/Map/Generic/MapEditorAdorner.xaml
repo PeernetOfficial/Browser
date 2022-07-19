@@ -1,27 +1,27 @@
 <ResourceDictionary mc:Ignorable="cs"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
-                    xmlns:dxcore="http://schemas.devexpress.com/winfx/2008/xaml/core"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
-                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/map/themekeys"
-                    xmlns:local="http://schemas.devexpress.com/winfx/2008/xaml/map"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                    xmlns:dxm="http://schemas.devexpress.com/winfx/2008/xaml/map"
+                    xmlns:dxmt="http://schemas.devexpress.com/winfx/2008/xaml/map/themekeys"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <dxcore:ObjectToVisibilityConverter x:Key="objectToVisibilityConverter" HandleList="False"/>
+    <dx:ObjectToVisibilityConverter x:Key="objectToVisibilityConverter" HandleList="False"/>
 
     <Style x:Key="ResizeBoxStyle" TargetType="Rectangle">
-        <Setter Property="Width" Value="{DynamicResource {dxt:AdornersThemeKeys ResourceKey=ResizePointSize}}"/>
-        <Setter Property="Height" Value="{DynamicResource {dxt:AdornersThemeKeys ResourceKey=ResizePointSize}}"/>
-        <Setter Property="Fill" Value="{DynamicResource {dxt:AdornersThemeKeys ResourceKey=ResizeBoxBackground}}"/>
-        <Setter Property="Stroke" Value="{DynamicResource {dxt:AdornersThemeKeys ResourceKey=SelectionAdornerStroke}}"/>
+        <Setter Property="Width" Value="{DynamicResource {dxmt:AdornersThemeKeys ResourceKey=ResizePointSize}}"/>
+        <Setter Property="Height" Value="{DynamicResource {dxmt:AdornersThemeKeys ResourceKey=ResizePointSize}}"/>
+        <Setter Property="Fill" Value="{DynamicResource {dxmt:AdornersThemeKeys ResourceKey=ResizeBoxBackground}}"/>
+        <Setter Property="Stroke" Value="{DynamicResource {dxmt:AdornersThemeKeys ResourceKey=SelectionAdornerStroke}}"/>
     </Style>
 
     <Style x:Key="AdditionalPointStyle" TargetType="Ellipse">
-        <Setter Property="Width" Value="{DynamicResource {dxt:AdornersThemeKeys ResourceKey=EditablePointSize}}"/>
-        <Setter Property="Height" Value="{DynamicResource {dxt:AdornersThemeKeys ResourceKey=EditablePointSize}}"/>
-        <Setter Property="Fill" Value="{DynamicResource {dxt:AdornersThemeKeys ResourceKey=EditablePointBackground}}"/>
-        <Setter Property="Stroke" Value="{DynamicResource {dxt:AdornersThemeKeys ResourceKey=EditablePointStroke}}"/>
+        <Setter Property="Width" Value="{DynamicResource {dxmt:AdornersThemeKeys ResourceKey=EditablePointSize}}"/>
+        <Setter Property="Height" Value="{DynamicResource {dxmt:AdornersThemeKeys ResourceKey=EditablePointSize}}"/>
+        <Setter Property="Fill" Value="{DynamicResource {dxmt:AdornersThemeKeys ResourceKey=EditablePointBackground}}"/>
+        <Setter Property="Stroke" Value="{DynamicResource {dxmt:AdornersThemeKeys ResourceKey=EditablePointStroke}}"/>
     </Style>
 
     <Style x:Key="EditablePointStyle"
@@ -57,23 +57,23 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Map.MapEditorAdorner}" TargetType="{x:Type local:MapEditorAdorner}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Map.MapEditorAdorner}" TargetType="{x:Type dxm:MapEditorAdorner}">
         <Setter Property="Background"
                 Value="Transparent"
                 cs:id="Setter_0000"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:MapEditorAdorner}">
+                <ControlTemplate TargetType="{x:Type dxm:MapEditorAdorner}">
                     <Grid Name="root">
                         <Image x:Name="RotationIcon"
                                Height="21"
                                HorizontalAlignment="Center"
-                               Margin="{DynamicResource {dxt:AdornersThemeKeys ResourceKey=RotationAdornerMargin}}"
-                               Source="{local:MapCoreSvgImage Size='21,21', Path=Images/Svg/Rotate.svg}"
+                               Margin="{DynamicResource {dxmt:AdornersThemeKeys ResourceKey=RotationAdornerMargin}}"
+                               Source="{dxm:MapCoreSvgImage Size='21,21', Path=Images/Svg/Rotate.svg}"
                                VerticalAlignment="Top"
                                Width="21"/>
                         <Grid>
-                            <Rectangle x:Name="EditRect" Stroke="{DynamicResource {dxt:AdornersThemeKeys ResourceKey=SelectionAdornerStroke}}"/>
+                            <Rectangle x:Name="EditRect" Stroke="{DynamicResource {dxmt:AdornersThemeKeys ResourceKey=SelectionAdornerStroke}}"/>
                             <Canvas>
                                 <Ellipse x:Name="AdditionalPoint"
                                          Canvas.Left="{DXBinding 'X - @e(AdditionalPoint).ActualWidth * 0.5'}"
@@ -85,12 +85,12 @@
                             <ItemsControl x:Name="Points" ItemsSource="{TemplateBinding EditablePoints}">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <local:EditablePointsPanel/>
+                                        <dxm:EditablePointsPanel/>
                                     </ItemsPanelTemplate>
                                 </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Ellipse local:MapEditorUIInput.MapEditorInputElement="{Binding InputElement}" Style="{StaticResource EditablePointStyle}"/>
+                                        <Ellipse dxm:MapEditorUIInput.MapEditorInputElement="{Binding InputElement}" Style="{StaticResource EditablePointStyle}"/>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
@@ -102,8 +102,8 @@
                                 </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Rectangle HorizontalAlignment="{Binding HorizontalAlignment}"
-                                                   local:MapEditorUIInput.MapEditorInputElement="{Binding InputElement}"
+                                        <Rectangle dxm:MapEditorUIInput.MapEditorInputElement="{Binding InputElement}"
+                                                   HorizontalAlignment="{Binding HorizontalAlignment}"
                                                    Style="{StaticResource ResizeBoxStyle}"
                                                    VerticalAlignment="{Binding VerticalAlignment}"/>
                                     </DataTemplate>

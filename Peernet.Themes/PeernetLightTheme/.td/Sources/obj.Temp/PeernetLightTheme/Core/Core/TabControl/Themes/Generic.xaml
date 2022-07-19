@@ -1,4 +1,4 @@
-<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxcn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:dxmvvmi="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
 
     <Duration x:Key="ScrollAnimationDuration">0:0:0.25</Duration>
 
@@ -6,95 +6,95 @@
 
     <sys:Int32 x:Key="ScrollButtonInterval">100</sys:Int32>
 
-    <dxcn:DXTabControlHeaderMenuTemplateSelector x:Key="headerMenuSelector" />
+    <dxi:DXTabControlHeaderMenuTemplateSelector x:Key="headerMenuSelector" />
 
-    <dxmvvmi:ObjectToObjectConverter x:Key="HideButtonShowModeToVisibilityConverter" DefaultTarget="Collapsed">
-        <dxmvvmi:MapItem Source="InHeaderArea" Target="Visible" />
-        <dxmvvmi:MapItem Source="InAllTabsAndHeaderArea" Target="Visible" />
-        <dxmvvmi:MapItem Source="InActiveTabAndHeaderArea" Target="Visible" />
-    </dxmvvmi:ObjectToObjectConverter>
+    <dxmvvm:ObjectToObjectConverter x:Key="HideButtonShowModeToVisibilityConverter" DefaultTarget="Collapsed">
+        <dxmvvm:MapItem Source="InHeaderArea" Target="Visible" />
+        <dxmvvm:MapItem Source="InAllTabsAndHeaderArea" Target="Visible" />
+        <dxmvvm:MapItem Source="InActiveTabAndHeaderArea" Target="Visible" />
+    </dxmvvm:ObjectToObjectConverter>
 
-    <dxmvvmi:ObjectToObjectConverter x:Key="HeaderLocationIsRightOrBottom" DefaultTarget="False">
-        <dxmvvmi:MapItem Source="Right" Target="True" />
-        <dxmvvmi:MapItem Source="Bottom" Target="True" />
-    </dxmvvmi:ObjectToObjectConverter>
+    <dxmvvm:ObjectToObjectConverter x:Key="HeaderLocationIsRightOrBottom" DefaultTarget="False">
+        <dxmvvm:MapItem Source="Right" Target="True" />
+        <dxmvvm:MapItem Source="Bottom" Target="True" />
+    </dxmvvm:ObjectToObjectConverter>
 
-    <dxcn:TabPanelSelector x:Key="TabPanelSelector">
-        <dxcn:TabPanelSelector.MultiLineView>
+    <dxi:TabPanelSelector x:Key="TabPanelSelector">
+        <dxi:TabPanelSelector.MultiLineView>
             <ItemsPanelTemplate>
-                <dxcn:TabPanelMultiLineView HeaderLocation="{Binding Tag.HeaderLocation, RelativeSource={RelativeSource Self}}" IsHoldMode="{Binding Tag.FixedHeaders, RelativeSource={RelativeSource Self}}" IsStretchedHorizontally="{Binding Tag.HeaderAutoFill, RelativeSource={RelativeSource Self}}" SelectedIndex="{Binding SelectedIndex, RelativeSource={RelativeSource AncestorType=dx:DXTabControl}}" Tag="{Binding Path=Tag.MultiLineView, RelativeSource={RelativeSource TemplatedParent}}" />
+                <dxi:TabPanelMultiLineView HeaderLocation="{Binding Tag.HeaderLocation, RelativeSource={RelativeSource Self}}" IsHoldMode="{Binding Tag.FixedHeaders, RelativeSource={RelativeSource Self}}" IsStretchedHorizontally="{Binding Tag.HeaderAutoFill, RelativeSource={RelativeSource Self}}" SelectedIndex="{Binding SelectedIndex, RelativeSource={RelativeSource AncestorType=dx:DXTabControl}}" Tag="{Binding Path=Tag.MultiLineView, RelativeSource={RelativeSource TemplatedParent}}" />
             </ItemsPanelTemplate>
-        </dxcn:TabPanelSelector.MultiLineView>
-        <dxcn:TabPanelSelector.ScrollView>
+        </dxi:TabPanelSelector.MultiLineView>
+        <dxi:TabPanelSelector.ScrollView>
             <ItemsPanelTemplate>
-                <dxcn:TabPanelScrollView AllowAnimation="{Binding Tag.AllowAnimation, RelativeSource={RelativeSource Self}}" HeaderLocation="{Binding Tag.HeaderLocation, RelativeSource={RelativeSource Self}}" IsStretchedHorizontally="{Binding Tag.HeaderAutoFill, RelativeSource={RelativeSource Self}}" SelectedIndex="{Binding SelectedIndex, RelativeSource={RelativeSource AncestorType=dx:DXTabControl}}" Tag="{Binding Path=Tag.ScrollView, RelativeSource={RelativeSource TemplatedParent}}">
-                    <dxcn:TabPanelScrollView.ScrollAnimation>
+                <dxi:TabPanelScrollView AllowAnimation="{Binding Tag.AllowAnimation, RelativeSource={RelativeSource Self}}" HeaderLocation="{Binding Tag.HeaderLocation, RelativeSource={RelativeSource Self}}" IsStretchedHorizontally="{Binding Tag.HeaderAutoFill, RelativeSource={RelativeSource Self}}" SelectedIndex="{Binding SelectedIndex, RelativeSource={RelativeSource AncestorType=dx:DXTabControl}}" Tag="{Binding Path=Tag.ScrollView, RelativeSource={RelativeSource TemplatedParent}}">
+                    <dxi:TabPanelScrollView.ScrollAnimation>
                         <DoubleAnimation Duration="{StaticResource ScrollAnimationDuration}" />
-                    </dxcn:TabPanelScrollView.ScrollAnimation>
-                </dxcn:TabPanelScrollView>
+                    </dxi:TabPanelScrollView.ScrollAnimation>
+                </dxi:TabPanelScrollView>
             </ItemsPanelTemplate>
-        </dxcn:TabPanelSelector.ScrollView>
-        <dxcn:TabPanelSelector.StretchView>
+        </dxi:TabPanelSelector.ScrollView>
+        <dxi:TabPanelSelector.StretchView>
             <ItemsPanelTemplate>
-                <dxcn:TabPanelStretchView ActiveChildMinSize="{Binding Tag.SelectedTabMinSize, RelativeSource={RelativeSource Self}}" DragDropMode="{Binding Tag.DragDropMode, RelativeSource={RelativeSource Self}}" HeaderLocation="{Binding Tag.HeaderLocation, RelativeSource={RelativeSource Self}}" NormalChildMinSize="{Binding Tag.TabMinSize, RelativeSource={RelativeSource Self}}" NormalChildSize="{Binding Tag.TabNormalSize, RelativeSource={RelativeSource Self}}" Owner="{Binding Tag, RelativeSource={RelativeSource Self}}" PinChildLeftSize="{Binding Tag.PinnedTabSize, RelativeSource={RelativeSource Self}}" PinChildRightSize="{Binding Tag.PinnedTabSize, RelativeSource={RelativeSource Self}}" SelectedIndex="{Binding SelectedIndex, RelativeSource={RelativeSource AncestorType=dx:DXTabControl}}" Tag="{Binding Path=Tag.StretchView, RelativeSource={RelativeSource TemplatedParent}}" />
+                <dxi:TabPanelStretchView ActiveChildMinSize="{Binding Tag.SelectedTabMinSize, RelativeSource={RelativeSource Self}}" DragDropMode="{Binding Tag.DragDropMode, RelativeSource={RelativeSource Self}}" HeaderLocation="{Binding Tag.HeaderLocation, RelativeSource={RelativeSource Self}}" NormalChildMinSize="{Binding Tag.TabMinSize, RelativeSource={RelativeSource Self}}" NormalChildSize="{Binding Tag.TabNormalSize, RelativeSource={RelativeSource Self}}" Owner="{Binding Tag, RelativeSource={RelativeSource Self}}" PinChildLeftSize="{Binding Tag.PinnedTabSize, RelativeSource={RelativeSource Self}}" PinChildRightSize="{Binding Tag.PinnedTabSize, RelativeSource={RelativeSource Self}}" SelectedIndex="{Binding SelectedIndex, RelativeSource={RelativeSource AncestorType=dx:DXTabControl}}" Tag="{Binding Path=Tag.StretchView, RelativeSource={RelativeSource TemplatedParent}}" />
             </ItemsPanelTemplate>
-        </dxcn:TabPanelSelector.StretchView>
-    </dxcn:TabPanelSelector>
+        </dxi:TabPanelSelector.StretchView>
+    </dxi:TabPanelSelector>
 
-    <Style x:Key="PanelContainerDefaultStyle" TargetType="{x:Type dxcn:TabPanelContainer}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\TabControl\Themes\Generic.xaml;73;6" /><Setter Property="NormalMargin" Value="4,0,3,-1" />
+    <Style x:Key="PanelContainerDefaultStyle" TargetType="{x:Type dxi:TabPanelContainer}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\TabControl\Themes\Generic.xaml;71;6" /><Setter Property="NormalMargin" Value="4,0,3,-1" />
         <Setter Property="NormalPadding" Value="0,2,0,1" />
         <Setter Property="HoldMargin" Value="0,0,-1,0" />
         <Setter Property="HoldPadding" Value="0,0,0,0" />
     </Style>
 
-    <Style x:Key="TabControlGlyphDefaultStyle" TargetType="{x:Type dxcn:GlyphControl}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\TabControl\Themes\Generic.xaml;80;6" /><Setter Property="GlyphLeftTemplate">
+    <Style x:Key="TabControlGlyphDefaultStyle" TargetType="{x:Type dxi:GlyphControl}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\TabControl\Themes\Generic.xaml;78;6" /><Setter Property="GlyphLeftTemplate">
             <Setter.Value>
-                <ControlTemplate TargetType="dxcn:GlyphControl">
-                    <Path x:Name="PART_Path" Data="F1 M 4,0L 5,0L 5,9L 4,9L 4,8L 3,8L 3,7L 2,7L 2,6L 1,6L 1,5L 0,5L 0,4L 1,4L 1,3L 2,3L 2,2L 3,2L 3,1L 4,1L 4,0 Z " Fill="{TemplateBinding Background}" Height="9" Margin="{TemplateBinding Padding}" Stretch="Fill" Width="5" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;84;22" />
+                <ControlTemplate TargetType="dxi:GlyphControl">
+                    <Path x:Name="PART_Path" Data="F1 M 4,0L 5,0L 5,9L 4,9L 4,8L 3,8L 3,7L 2,7L 2,6L 1,6L 1,5L 0,5L 0,4L 1,4L 1,3L 2,3L 2,2L 3,2L 3,1L 4,1L 4,0 Z " Fill="{TemplateBinding Background}" Height="9" Margin="{TemplateBinding Padding}" Stretch="Fill" Width="5" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;82;22" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Setter Property="GlyphRightTemplate">
             <Setter.Value>
-                <ControlTemplate TargetType="dxcn:GlyphControl">
-                    <Path x:Name="PART_Path" Data="F1 M 0,0L 1,0L 1,1L 2,1L 2,2L 3,2L 3,3L 4,3L 4,4L 5,4L 5,5L 4,5L 4,6L 3,6L 3,7L 2,7L 2,8L 1,8L 1,9L 0,9L 0,0 Z " Fill="{TemplateBinding Background}" Height="9" Margin="{TemplateBinding Padding}" Stretch="Fill" Width="5" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;97;22" />
+                <ControlTemplate TargetType="dxi:GlyphControl">
+                    <Path x:Name="PART_Path" Data="F1 M 0,0L 1,0L 1,1L 2,1L 2,2L 3,2L 3,3L 4,3L 4,4L 5,4L 5,5L 4,5L 4,6L 3,6L 3,7L 2,7L 2,8L 1,8L 1,9L 0,9L 0,0 Z " Fill="{TemplateBinding Background}" Height="9" Margin="{TemplateBinding Padding}" Stretch="Fill" Width="5" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;95;22" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Setter Property="GlyphUpTemplate">
             <Setter.Value>
-                <ControlTemplate TargetType="dxcn:GlyphControl">
-                    <Path x:Name="PART_Path" Data="F1 M 1.52588e-005,7.00006L 11,7.00006L 5.99998,0L 4.99998,0L 1.52588e-005,7.00006 Z " Fill="{TemplateBinding Background}" Height="5" Margin="{TemplateBinding Padding}" Stretch="Fill" Width="9" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;110;22" />
+                <ControlTemplate TargetType="dxi:GlyphControl">
+                    <Path x:Name="PART_Path" Data="F1 M 1.52588e-005,7.00006L 11,7.00006L 5.99998,0L 4.99998,0L 1.52588e-005,7.00006 Z " Fill="{TemplateBinding Background}" Height="5" Margin="{TemplateBinding Padding}" Stretch="Fill" Width="9" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;108;22" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Setter Property="GlyphDownTemplate">
             <Setter.Value>
-                <ControlTemplate TargetType="dxcn:GlyphControl">
-                    <Path x:Name="PART_Path" Data="F1 M 0,0L 11,0L 5.99995,7L 4.99995,7L 0,0 Z " Fill="{TemplateBinding Background}" Height="5" Margin="{TemplateBinding Padding}" Stretch="Fill" Width="9" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;123;22" />
+                <ControlTemplate TargetType="dxi:GlyphControl">
+                    <Path x:Name="PART_Path" Data="F1 M 0,0L 11,0L 5.99995,7L 4.99995,7L 0,0 Z " Fill="{TemplateBinding Background}" Height="5" Margin="{TemplateBinding Padding}" Stretch="Fill" Width="9" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;121;22" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Setter Property="GlyphPlusTemplate">
             <Setter.Value>
-                <ControlTemplate TargetType="dxcn:GlyphControl">
-                    <Path x:Name="PART_Path" Data="F1 M 1,4L 4,4L 4,1L 5,1L 5,4L 8,4L 8,5L 5,5L 5,8L 4,8L 4,5L 1,5L 1,4 Z " Fill="{TemplateBinding Background}" Height="9" Margin="{TemplateBinding Padding}" Stretch="Fill" Width="9" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;136;22" />
+                <ControlTemplate TargetType="dxi:GlyphControl">
+                    <Path x:Name="PART_Path" Data="F1 M 1,4L 4,4L 4,1L 5,1L 5,4L 8,4L 8,5L 5,5L 5,8L 4,8L 4,5L 1,5L 1,4 Z " Fill="{TemplateBinding Background}" Height="9" Margin="{TemplateBinding Padding}" Stretch="Fill" Width="9" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;134;22" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Setter Property="GlyphCloseTemplate">
             <Setter.Value>
-                <ControlTemplate TargetType="dxcn:GlyphControl">
-                    <Path x:Name="PART_Path" Data="F1 M 385,283L 386,283L 388,285L 390,283L 391,283L 391,284L 389,286L 391,288L 391,289L 390,289L 388,287L 386,289L 385,289L 385,288L 387,286L 385,284L 385,283 Z " Fill="{TemplateBinding Background}" Height="7" Margin="{TemplateBinding Padding}" Stretch="Fill" Width="7" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;149;22" />
+                <ControlTemplate TargetType="dxi:GlyphControl">
+                    <Path x:Name="PART_Path" Data="F1 M 385,283L 386,283L 388,285L 390,283L 391,283L 391,284L 389,286L 391,288L 391,289L 390,289L 388,287L 386,289L 385,289L 385,288L 387,286L 385,284L 385,283 Z " Fill="{TemplateBinding Background}" Height="7" Margin="{TemplateBinding Padding}" Stretch="Fill" Width="7" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;147;22" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
     <Style x:Key="ButtonDefaultStyle" TargetType="{x:Type ButtonBase}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\TabControl\Themes\Generic.xaml;161;6" /><Setter Property="Padding" Value="0" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\TabControl\Themes\Generic.xaml;159;6" /><Setter Property="Padding" Value="0" />
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -106,14 +106,14 @@
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <dxcn:GlyphControl Background="{Binding (TextBlock.Foreground), RelativeSource={RelativeSource Self}}" GlyphViewInfo="{Binding}" Style="{StaticResource TabControlGlyphDefaultStyle}" />
+                    <dxi:GlyphControl Background="{Binding (TextBlock.Foreground), RelativeSource={RelativeSource Self}}" GlyphViewInfo="{Binding}" Style="{StaticResource TabControlGlyphDefaultStyle}" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ButtonBase}">
-                    <Grid Background="{TemplateBinding Background}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;185;22">
+                    <Grid Background="{TemplateBinding Background}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;183;22">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="FocusStates">
                                 <VisualState x:Name="Focused" />
@@ -147,10 +147,10 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <ContentPresenter x:Name="normal" ContentTemplate="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=ButtonNormalBackground}}" Margin="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;233;26" />
-                        <ContentPresenter x:Name="hover" ContentTemplate="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=ButtonHoverBackground}}" Margin="{TemplateBinding Padding}" Opacity="0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;236;26" />
-                        <ContentPresenter x:Name="pressed" ContentTemplate="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=ButtonPressedBackground}}" Margin="{TemplateBinding Padding}" Opacity="0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;240;26" />
-                        <ContentPresenter x:Name="content" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" TextBlock.Foreground="{TemplateBinding Foreground}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;244;26" />
+                        <ContentPresenter x:Name="normal" ContentTemplate="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=ButtonNormalBackground}}" Margin="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;231;26" />
+                        <ContentPresenter x:Name="hover" ContentTemplate="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=ButtonHoverBackground}}" Margin="{TemplateBinding Padding}" Opacity="0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;234;26" />
+                        <ContentPresenter x:Name="pressed" ContentTemplate="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=ButtonPressedBackground}}" Margin="{TemplateBinding Padding}" Opacity="0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;238;26" />
+                        <ContentPresenter x:Name="content" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" TextBlock.Foreground="{TemplateBinding Foreground}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;242;26" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -158,18 +158,18 @@
     </Style>
 
     <ControlTemplate x:Key="TabControlDefaultTemplate" TargetType="{x:Type dx:DXTabControl}">
-        <dxcn:TabLayoutPanel KeyboardNavigation.TabNavigation="Local" UseLayoutRounding="True" ViewInfo="{TemplateBinding ViewInfo}">
-            <dxcn:TabLayoutPanel.LayoutDefinitions>
+        <dxi:TabLayoutPanel KeyboardNavigation.TabNavigation="Local" UseLayoutRounding="True" ViewInfo="{TemplateBinding ViewInfo}">
+            <dxi:TabLayoutPanel.LayoutDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
-            </dxcn:TabLayoutPanel.LayoutDefinitions>
-            <dxcn:TabOrientablePanel x:Name="PART_HeaderContainer" dxcn:TabLayoutPanel.LayoutPosition="0" Indent="{TemplateBinding PanelIndent}" Panel.ZIndex="1" ViewInfo="{TemplateBinding ViewInfo}">
-                <dxmvvmi:Interaction.Behaviors>
-                    <dxmvvmi:EventToCommand Command="{Binding View.ScrollView.ScrollToSelectedCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="False" EventName="SizeChanged" />
-                </dxmvvmi:Interaction.Behaviors>
-                <dxcn:TabOrientablePanel.HorizontalLayout>
-                    <dxcn:OrientableLayout>
-                        <dxcn:OrientableLayout.ColumnDefinitions>
+            </dxi:TabLayoutPanel.LayoutDefinitions>
+            <dxi:TabOrientablePanel x:Name="PART_HeaderContainer" dxi:TabLayoutPanel.LayoutPosition="0" Indent="{TemplateBinding PanelIndent}" Panel.ZIndex="1" ViewInfo="{TemplateBinding ViewInfo}">
+                <dxmvvm:Interaction.Behaviors>
+                    <dxmvvm:EventToCommand Command="{Binding View.ScrollView.ScrollToSelectedCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="False" EventName="SizeChanged" />
+                </dxmvvm:Interaction.Behaviors>
+                <dxi:TabOrientablePanel.HorizontalLayout>
+                    <dxi:OrientableLayout>
+                        <dxi:OrientableLayout.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
@@ -178,12 +178,12 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
-                        </dxcn:OrientableLayout.ColumnDefinitions>
-                    </dxcn:OrientableLayout>
-                </dxcn:TabOrientablePanel.HorizontalLayout>
-                <dxcn:TabOrientablePanel.VerticalLayout>
-                    <dxcn:OrientableLayout>
-                        <dxcn:OrientableLayout.RowDefinitions>
+                        </dxi:OrientableLayout.ColumnDefinitions>
+                    </dxi:OrientableLayout>
+                </dxi:TabOrientablePanel.HorizontalLayout>
+                <dxi:TabOrientablePanel.VerticalLayout>
+                    <dxi:OrientableLayout>
+                        <dxi:OrientableLayout.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -192,64 +192,64 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
-                        </dxcn:OrientableLayout.RowDefinitions>
-                    </dxcn:OrientableLayout>
-                </dxcn:TabOrientablePanel.VerticalLayout>
-                <ContentPresenter x:Name="PART_ControlBoxLeft" Content="{TemplateBinding ControlBoxLeft}" dxcn:TabOrientablePanel.HColumn="0" dxcn:TabOrientablePanel.VRow="7" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;303;18" />
-                <dxcn:TabPanelContainer x:Name="PART_TabPanelContainer" ClipToBounds="True" dxcn:TabOrientablePanel.HColumn="1" dxcn:TabOrientablePanel.VRow="6" Style="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=PanelContainerStyle}}" ViewInfo="{TemplateBinding ViewInfo}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;307;18">
-                    <dxmvvmi:Interaction.Behaviors>
+                        </dxi:OrientableLayout.RowDefinitions>
+                    </dxi:OrientableLayout>
+                </dxi:TabOrientablePanel.VerticalLayout>
+                <ContentPresenter x:Name="PART_ControlBoxLeft" Content="{TemplateBinding ControlBoxLeft}" dxi:TabOrientablePanel.HColumn="0" dxi:TabOrientablePanel.VRow="7" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;301;18" />
+                <dxi:TabPanelContainer x:Name="PART_TabPanelContainer" ClipToBounds="True" dxi:TabOrientablePanel.HColumn="1" dxi:TabOrientablePanel.VRow="6" Style="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=PanelContainerStyle}}" ViewInfo="{TemplateBinding ViewInfo}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;305;18">
+                    <dxmvvm:Interaction.Behaviors>
                         
-                        <dxmvvmi:EventToCommand Command="{Binding View.ScrollView.UpdateScrollButtonsCommand, RelativeSource={RelativeSource TemplatedParent}}" EventName="LayoutUpdated" />
-                        <dxmvvmi:EventToCommand Command="{Binding View.ScrollView.ScrollOnMouseWheelCommand, RelativeSource={RelativeSource TemplatedParent}}" EventName="MouseWheel" PassEventArgsToCommand="True" />
-                    </dxmvvmi:Interaction.Behaviors>
-                    <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Cycle" KeyboardNavigation.TabIndex="1" KeyboardNavigation.TabNavigation="Once" Tag="{TemplateBinding View}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;320;22" />
-                    <dxcn:TabPanelContainer.ControlBox>
-                        <StackPanel Orientation="{Binding Path=ViewInfo.Orientation, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;325;26">
-                            <Button x:Name="PART_PanelNewButton" Command="{Binding View.ActualNewTabCommand, RelativeSource={RelativeSource TemplatedParent}}" dxcn:GlyphControl.GlyphControlMode="Plus" Style="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=PanelNewButtonStyle}}" Visibility="{Binding View.PanelNewButtonVisibility, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;326;30" />
-                            <ContentPresenter x:Name="PART_ControlBoxPanel" Content="{TemplateBinding ControlBoxPanel}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;331;30" />
+                        <dxmvvm:EventToCommand Command="{Binding View.ScrollView.UpdateScrollButtonsCommand, RelativeSource={RelativeSource TemplatedParent}}" EventName="LayoutUpdated" />
+                        <dxmvvm:EventToCommand Command="{Binding View.ScrollView.ScrollOnMouseWheelCommand, RelativeSource={RelativeSource TemplatedParent}}" EventName="MouseWheel" PassEventArgsToCommand="True" />
+                    </dxmvvm:Interaction.Behaviors>
+                    <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Cycle" KeyboardNavigation.TabIndex="1" KeyboardNavigation.TabNavigation="Once" Tag="{TemplateBinding View}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;318;22" />
+                    <dxi:TabPanelContainer.ControlBox>
+                        <StackPanel Orientation="{Binding Path=ViewInfo.Orientation, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;323;26">
+                            <Button x:Name="PART_PanelNewButton" Command="{Binding View.ActualNewTabCommand, RelativeSource={RelativeSource TemplatedParent}}" dxi:GlyphControl.GlyphControlMode="Plus" Style="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=PanelNewButtonStyle}}" Visibility="{Binding View.PanelNewButtonVisibility, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;324;30" />
+                            <ContentPresenter x:Name="PART_ControlBoxPanel" Content="{TemplateBinding ControlBoxPanel}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;329;30" />
                         </StackPanel>
-                    </dxcn:TabPanelContainer.ControlBox>
-                </dxcn:TabPanelContainer>
-                <ContentPresenter x:Name="PART_ControlBoxRight" Content="{TemplateBinding ControlBoxRight}" dxcn:TabOrientablePanel.HColumn="2" dxcn:TabOrientablePanel.VRow="5" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;335;18" />
-                <RepeatButton x:Name="PART_PrevButton" Command="{Binding View.ScrollView.ScrollPrevCommand, RelativeSource={RelativeSource TemplatedParent}}" dxcn:GlyphControl.GlyphControlMode="Left" dxcn:TabOrientablePanel.HColumn="3" dxcn:TabOrientablePanel.VRow="3" Interval="{StaticResource ScrollButtonInterval}" Style="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=PrevButtonStyle}}" Visibility="{Binding View.ScrollView.IsScrollPrevButtonVisible, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:BooleanToVisibilityConverter}, FallbackValue=Collapsed}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;339;18" />
-                <RepeatButton x:Name="PART_NextButton" Command="{Binding View.ScrollView.ScrollNextCommand, RelativeSource={RelativeSource TemplatedParent}}" dxcn:GlyphControl.GlyphControlMode="Right" dxcn:TabOrientablePanel.HColumn="4" dxcn:TabOrientablePanel.VRow="4" Interval="{StaticResource ScrollButtonInterval}" Style="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=NextButtonStyle}}" Visibility="{Binding View.ScrollView.IsScrollNextButtonVisible, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:BooleanToVisibilityConverter}, FallbackValue=Collapsed}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;347;18" />
-                <Grid dxcn:TabOrientablePanel.HColumn="5" dxcn:TabOrientablePanel.VRow="2" Visibility="{Binding View.ShowHeaderMenu, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:BooleanToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;355;18">
-                    <ToggleButton x:Name="PART_HeaderMenu" dxcn:GlyphControl.GlyphControlMode="Down" IsChecked="{Binding MenuInfo.IsMenuOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" IsHitTestVisible="{Binding IsOpen, ElementName=PART_HeaderMenuPopup, Converter={dxmvvm:BooleanNegationConverter}}" Style="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=MenuButtonStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;358;22" />
-                    <dxb:PopupMenu x:Name="PART_HeaderMenuPopup" IsOpen="{Binding Path=IsChecked, ElementName=PART_HeaderMenu}" Placement="Right" PlacementTarget="{Binding ElementName=PART_HeaderMenu}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;363;22">
+                    </dxi:TabPanelContainer.ControlBox>
+                </dxi:TabPanelContainer>
+                <ContentPresenter x:Name="PART_ControlBoxRight" Content="{TemplateBinding ControlBoxRight}" dxi:TabOrientablePanel.HColumn="2" dxi:TabOrientablePanel.VRow="5" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;333;18" />
+                <RepeatButton x:Name="PART_PrevButton" Command="{Binding View.ScrollView.ScrollPrevCommand, RelativeSource={RelativeSource TemplatedParent}}" dxi:GlyphControl.GlyphControlMode="Left" dxi:TabOrientablePanel.HColumn="3" dxi:TabOrientablePanel.VRow="3" Interval="{StaticResource ScrollButtonInterval}" Style="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=PrevButtonStyle}}" Visibility="{Binding View.ScrollView.IsScrollPrevButtonVisible, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:BooleanToVisibilityConverter}, FallbackValue=Collapsed}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;337;18" />
+                <RepeatButton x:Name="PART_NextButton" Command="{Binding View.ScrollView.ScrollNextCommand, RelativeSource={RelativeSource TemplatedParent}}" dxi:GlyphControl.GlyphControlMode="Right" dxi:TabOrientablePanel.HColumn="4" dxi:TabOrientablePanel.VRow="4" Interval="{StaticResource ScrollButtonInterval}" Style="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=NextButtonStyle}}" Visibility="{Binding View.ScrollView.IsScrollNextButtonVisible, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:BooleanToVisibilityConverter}, FallbackValue=Collapsed}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;345;18" />
+                <Grid dxi:TabOrientablePanel.HColumn="5" dxi:TabOrientablePanel.VRow="2" Visibility="{Binding View.ShowHeaderMenu, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:BooleanToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;353;18">
+                    <ToggleButton x:Name="PART_HeaderMenu" dxi:GlyphControl.GlyphControlMode="Down" IsChecked="{Binding MenuInfo.IsMenuOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" IsHitTestVisible="{Binding IsOpen, ElementName=PART_HeaderMenuPopup, Converter={dxmvvm:BooleanNegationConverter}}" Style="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=MenuButtonStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;356;22" />
+                    <dxb:PopupMenu x:Name="PART_HeaderMenuPopup" IsOpen="{Binding Path=IsChecked, ElementName=PART_HeaderMenu}" Placement="Right" PlacementTarget="{Binding ElementName=PART_HeaderMenu}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;361;22">
                         <dxb:BarLinkContainerItem x:Name="PART_HeaderMenuPopupItemsContainer" IsPrivate="True" ItemLinksSource="{Binding MenuInfo.Items, RelativeSource={RelativeSource TemplatedParent}}" ItemTemplateSelector="{StaticResource headerMenuSelector}" />
                     </dxb:PopupMenu>
                 </Grid>
-                <Button x:Name="PART_CloseButton" Command="{Binding View.CloseTabCommand, RelativeSource={RelativeSource TemplatedParent}}" dxcn:GlyphControl.GlyphControlMode="Close" dxcn:TabOrientablePanel.HColumn="6" dxcn:TabOrientablePanel.VRow="1" Style="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=CloseButtonStyle}}" Visibility="{Binding View.HideButtonShowMode, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource HideButtonShowModeToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;373;18" />
-                <Button x:Name="PART_MainNewButton" Command="{Binding View.ActualNewTabCommand, RelativeSource={RelativeSource TemplatedParent}}" dxcn:GlyphControl.GlyphControlMode="Plus" dxcn:TabOrientablePanel.HColumn="7" dxcn:TabOrientablePanel.VRow="0" Style="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=MainNewButtonStyle}}" Visibility="{Binding View.MainNewButtonVisibility, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;380;18" />
-            </dxcn:TabOrientablePanel>
-            <Grid Name="PART_ContentContainer" dxcn:TabLayoutPanel.LayoutPosition="1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;388;14">
-                <ContentPresenter Content="{TemplateBinding ViewInfo}" ContentTemplate="{TemplateBinding BackgroundTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;389;18" />
-                <dx:DXBorder Padding="1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;390;18">
-                    <Grid Name="PART_ContentHost" Grid.Row="1" IsEnabled="{TemplateBinding SelectedItemIsEnabled}" Margin="{TemplateBinding Padding}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;391;22">
+                <Button x:Name="PART_CloseButton" Command="{Binding View.CloseTabCommand, RelativeSource={RelativeSource TemplatedParent}}" dxi:GlyphControl.GlyphControlMode="Close" dxi:TabOrientablePanel.HColumn="6" dxi:TabOrientablePanel.VRow="1" Style="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=CloseButtonStyle}}" Visibility="{Binding View.HideButtonShowMode, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource HideButtonShowModeToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;371;18" />
+                <Button x:Name="PART_MainNewButton" Command="{Binding View.ActualNewTabCommand, RelativeSource={RelativeSource TemplatedParent}}" dxi:GlyphControl.GlyphControlMode="Plus" dxi:TabOrientablePanel.HColumn="7" dxi:TabOrientablePanel.VRow="0" Style="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=MainNewButtonStyle}}" Visibility="{Binding View.MainNewButtonVisibility, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;378;18" />
+            </dxi:TabOrientablePanel>
+            <Grid Name="PART_ContentContainer" dxi:TabLayoutPanel.LayoutPosition="1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;386;14">
+                <ContentPresenter Content="{TemplateBinding ViewInfo}" ContentTemplate="{TemplateBinding BackgroundTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;387;18" />
+                <dx:DXBorder Padding="1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;388;18">
+                    <Grid Name="PART_ContentHost" Grid.Row="1" IsEnabled="{TemplateBinding SelectedItemIsEnabled}" Margin="{TemplateBinding Padding}" Style="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=ContentStyle}}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;389;22">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <ContentPresenter x:Name="PART_ContentHeader" Content="{TemplateBinding ContentHeader}" Grid.Row="0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;401;26" />
-                        <ContentPresenter x:Name="PART_ContentFooter" Content="{TemplateBinding ContentFooter}" Grid.Row="2" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;404;26" />
-                        <Grid Name="PART_ContentHostPresenter" Grid.Row="1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;407;26">
-                            <dxcn:TabControlContentPresenter x:Name="PART_SelectedContentHost" ActualHorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" ActualVerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding SelectedItemContent}" ContentStringFormat="{TemplateBinding SelectedItemContentStringFormat}" ContentTemplate="{TemplateBinding SelectedItemContentTemplate}" ContentTemplateSelector="{TemplateBinding SelectedItemContentTemplateSelector}" KeyboardNavigation.DirectionalNavigation="Contained" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local" TextBlock.Foreground="{TemplateBinding Foreground}" />
-                            <dxcn:FastRenderPanel x:Name="PART_FastRenderPanel" ContentCacheMode="{TemplateBinding TabContentCacheMode}" KeyboardNavigation.DirectionalNavigation="Contained" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local" TextBlock.Foreground="{TemplateBinding Foreground}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;419;30" />
+                        <ContentPresenter x:Name="PART_ContentHeader" Content="{TemplateBinding ContentHeader}" Grid.Row="0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;400;26" />
+                        <ContentPresenter x:Name="PART_ContentFooter" Content="{TemplateBinding ContentFooter}" Grid.Row="2" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;403;26" />
+                        <Grid Name="PART_ContentHostPresenter" Grid.Row="1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;406;26">
+                            <dxi:TabControlContentPresenter x:Name="PART_SelectedContentHost" ActualHorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" ActualVerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding SelectedItemContent}" ContentStringFormat="{TemplateBinding SelectedItemContentStringFormat}" ContentTemplate="{TemplateBinding SelectedItemContentTemplate}" ContentTemplateSelector="{TemplateBinding SelectedItemContentTemplateSelector}" KeyboardNavigation.DirectionalNavigation="Contained" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local" TextBlock.Foreground="{TemplateBinding Foreground}" />
+                            <dxi:FastRenderPanel x:Name="PART_FastRenderPanel" ContentCacheMode="{TemplateBinding TabContentCacheMode}" KeyboardNavigation.DirectionalNavigation="Contained" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local" TextBlock.Foreground="{TemplateBinding Foreground}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;418;30" />
                         </Grid>
                     </Grid>
                 </dx:DXBorder>
             </Grid>
-        </dxcn:TabLayoutPanel>
+        </dxi:TabLayoutPanel>
         <ControlTemplate.Triggers>
             <DataTrigger Binding="{Binding ViewInfo.HeaderLocation, RelativeSource={RelativeSource Self}}" Value="None">
                 <Setter Property="Height" TargetName="PART_HeaderContainer" Value="0" />
                 <Setter Property="Width" TargetName="PART_HeaderContainer" Value="0" />
             </DataTrigger>
             <DataTrigger Binding="{Binding ViewInfo.Orientation, RelativeSource={RelativeSource Self}}" Value="Vertical">
-                <Setter Property="dxcn:GlyphControl.GlyphControlMode" TargetName="PART_PrevButton" Value="Up" />
-                <Setter Property="dxcn:GlyphControl.GlyphControlMode" TargetName="PART_NextButton" Value="Down" />
-                <Setter Property="dxcn:GlyphControl.GlyphControlMode" TargetName="PART_HeaderMenu" Value="Right" />
+                <Setter Property="dxi:GlyphControl.GlyphControlMode" TargetName="PART_PrevButton" Value="Up" />
+                <Setter Property="dxi:GlyphControl.GlyphControlMode" TargetName="PART_NextButton" Value="Down" />
+                <Setter Property="dxi:GlyphControl.GlyphControlMode" TargetName="PART_HeaderMenu" Value="Right" />
             </DataTrigger>
             <DataTrigger Binding="{Binding MenuInfo.HasItems, RelativeSource={RelativeSource Self}}" Value="False">
                 <Setter Property="Visibility" TargetName="PART_HeaderMenu" Value="Collapsed" />
@@ -258,18 +258,18 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="TabControlDefaultTemplate.ContentHost" TargetType="{x:Type dx:DXTabControl}">
-        <dxcn:TabLayoutPanel KeyboardNavigation.TabNavigation="Local" UseLayoutRounding="True" ViewInfo="{TemplateBinding ViewInfo}">
-            <dxcn:TabLayoutPanel.LayoutDefinitions>
+        <dxi:TabLayoutPanel KeyboardNavigation.TabNavigation="Local" UseLayoutRounding="True" ViewInfo="{TemplateBinding ViewInfo}">
+            <dxi:TabLayoutPanel.LayoutDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
-            </dxcn:TabLayoutPanel.LayoutDefinitions>
-            <dxcn:TabOrientablePanel x:Name="PART_HeaderContainer" dxcn:TabLayoutPanel.LayoutPosition="0" Indent="{TemplateBinding PanelIndent}" Panel.ZIndex="1" ViewInfo="{TemplateBinding ViewInfo}">
-                <dxmvvmi:Interaction.Behaviors>
-                    <dxmvvmi:EventToCommand Command="{Binding View.ScrollView.ScrollToSelectedCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="False" EventName="SizeChanged" />
-                </dxmvvmi:Interaction.Behaviors>
-                <dxcn:TabOrientablePanel.HorizontalLayout>
-                    <dxcn:OrientableLayout>
-                        <dxcn:OrientableLayout.ColumnDefinitions>
+            </dxi:TabLayoutPanel.LayoutDefinitions>
+            <dxi:TabOrientablePanel x:Name="PART_HeaderContainer" dxi:TabLayoutPanel.LayoutPosition="0" Indent="{TemplateBinding PanelIndent}" Panel.ZIndex="1" ViewInfo="{TemplateBinding ViewInfo}">
+                <dxmvvm:Interaction.Behaviors>
+                    <dxmvvm:EventToCommand Command="{Binding View.ScrollView.ScrollToSelectedCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="False" EventName="SizeChanged" />
+                </dxmvvm:Interaction.Behaviors>
+                <dxi:TabOrientablePanel.HorizontalLayout>
+                    <dxi:OrientableLayout>
+                        <dxi:OrientableLayout.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
@@ -278,12 +278,12 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
-                        </dxcn:OrientableLayout.ColumnDefinitions>
-                    </dxcn:OrientableLayout>
-                </dxcn:TabOrientablePanel.HorizontalLayout>
-                <dxcn:TabOrientablePanel.VerticalLayout>
-                    <dxcn:OrientableLayout>
-                        <dxcn:OrientableLayout.RowDefinitions>
+                        </dxi:OrientableLayout.ColumnDefinitions>
+                    </dxi:OrientableLayout>
+                </dxi:TabOrientablePanel.HorizontalLayout>
+                <dxi:TabOrientablePanel.VerticalLayout>
+                    <dxi:OrientableLayout>
+                        <dxi:OrientableLayout.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -292,68 +292,68 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
-                        </dxcn:OrientableLayout.RowDefinitions>
-                    </dxcn:OrientableLayout>
-                </dxcn:TabOrientablePanel.VerticalLayout>
-                <ContentPresenter x:Name="PART_ControlBoxLeft" Content="{TemplateBinding ControlBoxLeft}" dxcn:TabOrientablePanel.HColumn="0" dxcn:TabOrientablePanel.VRow="7" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;504;18" />
-                <dxcn:TabPanelContainer x:Name="PART_TabPanelContainer" ClipToBounds="True" dxcn:TabOrientablePanel.HColumn="1" dxcn:TabOrientablePanel.VRow="6" Style="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=PanelContainerStyle}}" ViewInfo="{TemplateBinding ViewInfo}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;508;18">
-                    <dxmvvmi:Interaction.Behaviors>
+                        </dxi:OrientableLayout.RowDefinitions>
+                    </dxi:OrientableLayout>
+                </dxi:TabOrientablePanel.VerticalLayout>
+                <ContentPresenter x:Name="PART_ControlBoxLeft" Content="{TemplateBinding ControlBoxLeft}" dxi:TabOrientablePanel.HColumn="0" dxi:TabOrientablePanel.VRow="7" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;503;18" />
+                <dxi:TabPanelContainer x:Name="PART_TabPanelContainer" ClipToBounds="True" dxi:TabOrientablePanel.HColumn="1" dxi:TabOrientablePanel.VRow="6" Style="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=PanelContainerStyle}}" ViewInfo="{TemplateBinding ViewInfo}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;507;18">
+                    <dxmvvm:Interaction.Behaviors>
                         
-                        <dxmvvmi:EventToCommand Command="{Binding View.ScrollView.UpdateScrollButtonsCommand, RelativeSource={RelativeSource TemplatedParent}}" EventName="LayoutUpdated" />
-                        <dxmvvmi:EventToCommand Command="{Binding View.ScrollView.ScrollOnMouseWheelCommand, RelativeSource={RelativeSource TemplatedParent}}" EventName="MouseWheel" PassEventArgsToCommand="True" />
-                    </dxmvvmi:Interaction.Behaviors>
-                    <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Cycle" KeyboardNavigation.TabIndex="1" KeyboardNavigation.TabNavigation="Once" Tag="{TemplateBinding View}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;521;22" />
-                    <dxcn:TabPanelContainer.ControlBox>
-                        <StackPanel Orientation="{Binding Path=ViewInfo.Orientation, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;526;26">
-                            <Button x:Name="PART_PanelNewButton" Command="{Binding View.ActualNewTabCommand, RelativeSource={RelativeSource TemplatedParent}}" dxcn:GlyphControl.GlyphControlMode="Plus" Style="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=PanelNewButtonStyle}}" Visibility="{Binding View.PanelNewButtonVisibility, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;527;30" />
-                            <ContentPresenter x:Name="PART_ControlBoxPanel" Content="{TemplateBinding ControlBoxPanel}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;532;30" />
+                        <dxmvvm:EventToCommand Command="{Binding View.ScrollView.UpdateScrollButtonsCommand, RelativeSource={RelativeSource TemplatedParent}}" EventName="LayoutUpdated" />
+                        <dxmvvm:EventToCommand Command="{Binding View.ScrollView.ScrollOnMouseWheelCommand, RelativeSource={RelativeSource TemplatedParent}}" EventName="MouseWheel" PassEventArgsToCommand="True" />
+                    </dxmvvm:Interaction.Behaviors>
+                    <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Cycle" KeyboardNavigation.TabIndex="1" KeyboardNavigation.TabNavigation="Once" Tag="{TemplateBinding View}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;520;22" />
+                    <dxi:TabPanelContainer.ControlBox>
+                        <StackPanel Orientation="{Binding Path=ViewInfo.Orientation, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;525;26">
+                            <Button x:Name="PART_PanelNewButton" Command="{Binding View.ActualNewTabCommand, RelativeSource={RelativeSource TemplatedParent}}" dxi:GlyphControl.GlyphControlMode="Plus" Style="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=PanelNewButtonStyle}}" Visibility="{Binding View.PanelNewButtonVisibility, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;526;30" />
+                            <ContentPresenter x:Name="PART_ControlBoxPanel" Content="{TemplateBinding ControlBoxPanel}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;531;30" />
                         </StackPanel>
-                    </dxcn:TabPanelContainer.ControlBox>
-                </dxcn:TabPanelContainer>
-                <ContentPresenter x:Name="PART_ControlBoxRight" Content="{TemplateBinding ControlBoxRight}" dxcn:TabOrientablePanel.HColumn="2" dxcn:TabOrientablePanel.VRow="5" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;536;18" />
-                <RepeatButton x:Name="PART_PrevButton" Command="{Binding View.ScrollView.ScrollPrevCommand, RelativeSource={RelativeSource TemplatedParent}}" dxcn:GlyphControl.GlyphControlMode="Left" dxcn:TabOrientablePanel.HColumn="3" dxcn:TabOrientablePanel.VRow="3" Interval="{StaticResource ScrollButtonInterval}" Style="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=PrevButtonStyle}}" Visibility="{Binding View.ScrollView.IsScrollPrevButtonVisible, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:BooleanToVisibilityConverter}, FallbackValue=Collapsed}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;540;18" />
-                <RepeatButton x:Name="PART_NextButton" Command="{Binding View.ScrollView.ScrollNextCommand, RelativeSource={RelativeSource TemplatedParent}}" dxcn:GlyphControl.GlyphControlMode="Right" dxcn:TabOrientablePanel.HColumn="4" dxcn:TabOrientablePanel.VRow="4" Interval="{StaticResource ScrollButtonInterval}" Style="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=NextButtonStyle}}" Visibility="{Binding View.ScrollView.IsScrollNextButtonVisible, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:BooleanToVisibilityConverter}, FallbackValue=Collapsed}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;548;18" />
-                <Grid dxcn:TabOrientablePanel.HColumn="5" dxcn:TabOrientablePanel.VRow="2" Visibility="{Binding View.ShowHeaderMenu, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:BooleanToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;556;18">
-                    <ToggleButton x:Name="PART_HeaderMenu" dxcn:GlyphControl.GlyphControlMode="Down" IsChecked="{Binding MenuInfo.IsMenuOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" IsHitTestVisible="{Binding IsOpen, ElementName=PART_HeaderMenuPopup, Converter={dxmvvm:BooleanNegationConverter}}" Style="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=MenuButtonStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;559;22" />
-                    <dxb:PopupMenu x:Name="PART_HeaderMenuPopup" IsOpen="{Binding Path=IsChecked, ElementName=PART_HeaderMenu}" Placement="Right" PlacementTarget="{Binding ElementName=PART_HeaderMenu}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;564;22">
+                    </dxi:TabPanelContainer.ControlBox>
+                </dxi:TabPanelContainer>
+                <ContentPresenter x:Name="PART_ControlBoxRight" Content="{TemplateBinding ControlBoxRight}" dxi:TabOrientablePanel.HColumn="2" dxi:TabOrientablePanel.VRow="5" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;535;18" />
+                <RepeatButton x:Name="PART_PrevButton" Command="{Binding View.ScrollView.ScrollPrevCommand, RelativeSource={RelativeSource TemplatedParent}}" dxi:GlyphControl.GlyphControlMode="Left" dxi:TabOrientablePanel.HColumn="3" dxi:TabOrientablePanel.VRow="3" Interval="{StaticResource ScrollButtonInterval}" Style="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=PrevButtonStyle}}" Visibility="{Binding View.ScrollView.IsScrollPrevButtonVisible, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:BooleanToVisibilityConverter}, FallbackValue=Collapsed}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;539;18" />
+                <RepeatButton x:Name="PART_NextButton" Command="{Binding View.ScrollView.ScrollNextCommand, RelativeSource={RelativeSource TemplatedParent}}" dxi:GlyphControl.GlyphControlMode="Right" dxi:TabOrientablePanel.HColumn="4" dxi:TabOrientablePanel.VRow="4" Interval="{StaticResource ScrollButtonInterval}" Style="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=NextButtonStyle}}" Visibility="{Binding View.ScrollView.IsScrollNextButtonVisible, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:BooleanToVisibilityConverter}, FallbackValue=Collapsed}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;547;18" />
+                <Grid dxi:TabOrientablePanel.HColumn="5" dxi:TabOrientablePanel.VRow="2" Visibility="{Binding View.ShowHeaderMenu, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:BooleanToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;555;18">
+                    <ToggleButton x:Name="PART_HeaderMenu" dxi:GlyphControl.GlyphControlMode="Down" IsChecked="{Binding MenuInfo.IsMenuOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" IsHitTestVisible="{Binding IsOpen, ElementName=PART_HeaderMenuPopup, Converter={dxmvvm:BooleanNegationConverter}}" Style="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=MenuButtonStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;558;22" />
+                    <dxb:PopupMenu x:Name="PART_HeaderMenuPopup" IsOpen="{Binding Path=IsChecked, ElementName=PART_HeaderMenu}" Placement="Right" PlacementTarget="{Binding ElementName=PART_HeaderMenu}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;563;22">
                         <dxb:BarLinkContainerItem x:Name="PART_HeaderMenuPopupItemsContainer" IsPrivate="True" ItemLinksSource="{Binding MenuInfo.Items, RelativeSource={RelativeSource TemplatedParent}}" ItemTemplateSelector="{StaticResource headerMenuSelector}" />
                     </dxb:PopupMenu>
                 </Grid>
-                <Button x:Name="PART_CloseButton" Command="{Binding View.CloseTabCommand, RelativeSource={RelativeSource TemplatedParent}}" dxcn:GlyphControl.GlyphControlMode="Close" dxcn:TabOrientablePanel.HColumn="6" dxcn:TabOrientablePanel.VRow="1" Style="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=CloseButtonStyle}}" Visibility="{Binding View.HideButtonShowMode, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource HideButtonShowModeToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;574;18" />
-                <Button x:Name="PART_MainNewButton" Command="{Binding View.ActualNewTabCommand, RelativeSource={RelativeSource TemplatedParent}}" dxcn:GlyphControl.GlyphControlMode="Plus" dxcn:TabOrientablePanel.HColumn="7" dxcn:TabOrientablePanel.VRow="0" Style="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=MainNewButtonStyle}}" Visibility="{Binding View.MainNewButtonVisibility, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;581;18" />
-            </dxcn:TabOrientablePanel>
-            <Grid Name="PART_ContentContainer" dxcn:TabLayoutPanel.LayoutPosition="1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;589;14">
-                <ContentPresenter Content="{TemplateBinding ViewInfo}" ContentTemplate="{TemplateBinding BackgroundTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;590;18" />
-                <dx:DXBorder Padding="1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;591;18">
-                    <Grid Name="PART_ContentHost" Grid.Row="1" IsEnabled="{TemplateBinding SelectedItemIsEnabled}" Margin="{TemplateBinding Padding}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;592;22">
+                <Button x:Name="PART_CloseButton" Command="{Binding View.CloseTabCommand, RelativeSource={RelativeSource TemplatedParent}}" dxi:GlyphControl.GlyphControlMode="Close" dxi:TabOrientablePanel.HColumn="6" dxi:TabOrientablePanel.VRow="1" Style="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=CloseButtonStyle}}" Visibility="{Binding View.HideButtonShowMode, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource HideButtonShowModeToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;573;18" />
+                <Button x:Name="PART_MainNewButton" Command="{Binding View.ActualNewTabCommand, RelativeSource={RelativeSource TemplatedParent}}" dxi:GlyphControl.GlyphControlMode="Plus" dxi:TabOrientablePanel.HColumn="7" dxi:TabOrientablePanel.VRow="0" Style="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=MainNewButtonStyle}}" Visibility="{Binding View.MainNewButtonVisibility, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;580;18" />
+            </dxi:TabOrientablePanel>
+            <Grid Name="PART_ContentContainer" dxi:TabLayoutPanel.LayoutPosition="1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;588;14">
+                <ContentPresenter Content="{TemplateBinding ViewInfo}" ContentTemplate="{TemplateBinding BackgroundTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;589;18" />
+                <dx:DXBorder Padding="1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;590;18">
+                    <Grid Name="PART_ContentHost" Grid.Row="1" IsEnabled="{TemplateBinding SelectedItemIsEnabled}" Margin="{TemplateBinding Padding}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;591;22">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <ContentPresenter x:Name="PART_ContentHeader" Content="{TemplateBinding ContentHeader}" Grid.Row="0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;602;26" />
-                        <ContentPresenter x:Name="PART_ContentFooter" Content="{TemplateBinding ContentFooter}" Grid.Row="2" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;605;26" />
-                        <dxcn:ContentHostPresenter x:Name="PART_ContentHostPresenter" Content="{TemplateBinding ContentHost}" ContentCacheMode="{TemplateBinding TabContentCacheMode}" Grid.Row="1">
-                            <dxcn:ContentHostPresenter.RegularContentPresenter>
-                                <dxcn:TabControlContentPresenter x:Name="PART_SelectedContentHost" ActualHorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" ActualVerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding SelectedItemContent}" ContentStringFormat="{TemplateBinding SelectedItemContentStringFormat}" ContentTemplate="{TemplateBinding SelectedItemContentTemplate}" ContentTemplateSelector="{TemplateBinding SelectedItemContentTemplateSelector}" KeyboardNavigation.DirectionalNavigation="Contained" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local" TextBlock.Foreground="{TemplateBinding Foreground}" />
-                            </dxcn:ContentHostPresenter.RegularContentPresenter>
-                            <dxcn:ContentHostPresenter.FastContentPresenter>
-                                <dxcn:FastRenderPanel x:Name="PART_FastRenderPanel" ContentCacheMode="{TemplateBinding TabContentCacheMode}" KeyboardNavigation.DirectionalNavigation="Contained" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local" TextBlock.Foreground="{TemplateBinding Foreground}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;626;34" />
-                            </dxcn:ContentHostPresenter.FastContentPresenter>
-                        </dxcn:ContentHostPresenter>
+                        <ContentPresenter x:Name="PART_ContentHeader" Content="{TemplateBinding ContentHeader}" Grid.Row="0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;601;26" />
+                        <ContentPresenter x:Name="PART_ContentFooter" Content="{TemplateBinding ContentFooter}" Grid.Row="2" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;604;26" />
+                        <dxi:ContentHostPresenter x:Name="PART_ContentHostPresenter" Content="{TemplateBinding ContentHost}" ContentCacheMode="{TemplateBinding TabContentCacheMode}" Grid.Row="1">
+                            <dxi:ContentHostPresenter.RegularContentPresenter>
+                                <dxi:TabControlContentPresenter x:Name="PART_SelectedContentHost" ActualHorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" ActualVerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding SelectedItemContent}" ContentStringFormat="{TemplateBinding SelectedItemContentStringFormat}" ContentTemplate="{TemplateBinding SelectedItemContentTemplate}" ContentTemplateSelector="{TemplateBinding SelectedItemContentTemplateSelector}" KeyboardNavigation.DirectionalNavigation="Contained" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local" TextBlock.Foreground="{TemplateBinding Foreground}" />
+                            </dxi:ContentHostPresenter.RegularContentPresenter>
+                            <dxi:ContentHostPresenter.FastContentPresenter>
+                                <dxi:FastRenderPanel x:Name="PART_FastRenderPanel" ContentCacheMode="{TemplateBinding TabContentCacheMode}" KeyboardNavigation.DirectionalNavigation="Contained" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local" TextBlock.Foreground="{TemplateBinding Foreground}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;625;34" />
+                            </dxi:ContentHostPresenter.FastContentPresenter>
+                        </dxi:ContentHostPresenter>
                     </Grid>
                 </dx:DXBorder>
             </Grid>
-        </dxcn:TabLayoutPanel>
+        </dxi:TabLayoutPanel>
         <ControlTemplate.Triggers>
             <DataTrigger Binding="{Binding ViewInfo.HeaderLocation, RelativeSource={RelativeSource Self}}" Value="None">
                 <Setter Property="Height" TargetName="PART_HeaderContainer" Value="0" />
                 <Setter Property="Width" TargetName="PART_HeaderContainer" Value="0" />
             </DataTrigger>
             <DataTrigger Binding="{Binding ViewInfo.Orientation, RelativeSource={RelativeSource Self}}" Value="Vertical">
-                <Setter Property="dxcn:GlyphControl.GlyphControlMode" TargetName="PART_PrevButton" Value="Up" />
-                <Setter Property="dxcn:GlyphControl.GlyphControlMode" TargetName="PART_NextButton" Value="Down" />
-                <Setter Property="dxcn:GlyphControl.GlyphControlMode" TargetName="PART_HeaderMenu" Value="Right" />
+                <Setter Property="dxi:GlyphControl.GlyphControlMode" TargetName="PART_PrevButton" Value="Up" />
+                <Setter Property="dxi:GlyphControl.GlyphControlMode" TargetName="PART_NextButton" Value="Down" />
+                <Setter Property="dxi:GlyphControl.GlyphControlMode" TargetName="PART_HeaderMenu" Value="Right" />
             </DataTrigger>
             <DataTrigger Binding="{Binding MenuInfo.HasItems, RelativeSource={RelativeSource Self}}" Value="False">
                 <Setter Property="Visibility" TargetName="PART_HeaderMenu" Value="Collapsed" />
@@ -362,7 +362,7 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="TabItemDefaultTemplate" TargetType="{x:Type dx:DXTabItem}">
-        <Grid ToolTip="{TemplateBinding ToolTip}" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;667;10">
+        <Grid ToolTip="{TemplateBinding ToolTip}" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;666;10">
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup x:Name="FocusStates">
                     <VisualState x:Name="Focused">
@@ -398,33 +398,33 @@
                     </VisualState>
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <ContentPresenter x:Name="normal" Content="{TemplateBinding ViewInfo}" ContentTemplate="{TemplateBinding NormalBackgroundTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;718;14" />
-            <ContentPresenter x:Name="hover" Content="{TemplateBinding ViewInfo}" ContentTemplate="{TemplateBinding HoverBackgroundTemplate}" Opacity="0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;721;14" />
-            <ContentPresenter x:Name="selected" Content="{TemplateBinding ViewInfo}" ContentTemplate="{TemplateBinding SelectedBackgroundTemplate}" Opacity="0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;725;14" />
-            <ContentPresenter x:Name="focused" Content="{TemplateBinding ViewInfo}" ContentTemplate="{TemplateBinding FocusedBackgroundTemplate}" Opacity="0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;729;14" />
-            <dxcn:HeaderContainerPresenter x:Name="container" ChildMinHeight="{Binding Path=(dxcn:TabPanelBase.ChildMinHeight), RelativeSource={RelativeSource TemplatedParent}}" ViewInfo="{TemplateBinding ViewInfo}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;733;14">
-                <Grid UseLayoutRounding="{TemplateBinding UseLayoutRounding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;736;18">
+            <ContentPresenter x:Name="normal" Content="{TemplateBinding ViewInfo}" ContentTemplate="{TemplateBinding NormalBackgroundTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;717;14" />
+            <ContentPresenter x:Name="hover" Content="{TemplateBinding ViewInfo}" ContentTemplate="{TemplateBinding HoverBackgroundTemplate}" Opacity="0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;720;14" />
+            <ContentPresenter x:Name="selected" Content="{TemplateBinding ViewInfo}" ContentTemplate="{TemplateBinding SelectedBackgroundTemplate}" Opacity="0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;724;14" />
+            <ContentPresenter x:Name="focused" Content="{TemplateBinding ViewInfo}" ContentTemplate="{TemplateBinding FocusedBackgroundTemplate}" Opacity="0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;728;14" />
+            <dxi:HeaderContainerPresenter x:Name="container" ChildMinHeight="{Binding Path=(dxi:TabPanelBase.ChildMinHeight), RelativeSource={RelativeSource TemplatedParent}}" ViewInfo="{TemplateBinding ViewInfo}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;732;14">
+                <Grid UseLayoutRounding="{TemplateBinding UseLayoutRounding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;735;18">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <dxcn:TabHeaderSmartPresenter x:Name="content" IsSelected="{TemplateBinding IsSelected}" Margin="{TemplateBinding Padding}">
-                        <dxcn:TabHeaderSmartPresenter.IconBox>
-                            <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;745;30">
-                                <ContentPresenter x:Name="oldIcon" Content="{TemplateBinding Icon}" Focusable="False" Height="{TemplateBinding IconHeight}" Margin="0,0,4,0" VerticalAlignment="Center" Width="{TemplateBinding IconWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;746;34" />
-                                <ContentPresenter x:Name="icon" Content="{TemplateBinding Glyph}" ContentTemplate="{TemplateBinding GlyphTemplate}" Focusable="False" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;753;34" />
+                    <dxi:TabHeaderSmartPresenter x:Name="content" IsSelected="{TemplateBinding IsSelected}" Margin="{TemplateBinding Padding}">
+                        <dxi:TabHeaderSmartPresenter.IconBox>
+                            <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;744;30">
+                                <ContentPresenter x:Name="oldIcon" Content="{TemplateBinding Icon}" Focusable="False" Height="{TemplateBinding IconHeight}" Margin="0,0,4,0" VerticalAlignment="Center" Width="{TemplateBinding IconWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;745;34" />
+                                <ContentPresenter x:Name="icon" Content="{TemplateBinding Glyph}" ContentTemplate="{TemplateBinding GlyphTemplate}" Focusable="False" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;752;34" />
                             </Grid>
-                        </dxcn:TabHeaderSmartPresenter.IconBox>
-                        <dxcn:TabHeaderSmartPresenter.ContentBox>
-                            <dxcn:TrimContentPresenter ContentSource="Header" DisableToolTipWhenFullyVisible="{Binding ShowToolTipForNonTrimmedHeader, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:BooleanNegationConverter}}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" ToolTipOwner="{Binding RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Center" />
-                        </dxcn:TabHeaderSmartPresenter.ContentBox>
-                        <dxcn:TabHeaderSmartPresenter.ControlBox>
-                            <Button x:Name="PART_CloseButton" Command="{TemplateBinding ActualCloseCommand}" Style="{DynamicResource {dxt:DXTabItemThemeKey ResourceKey=CloseButtonStyle}}" VerticalAlignment="Center" Visibility="{TemplateBinding ActualHideButtonVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;769;30" />
-                        </dxcn:TabHeaderSmartPresenter.ControlBox>
-                    </dxcn:TabHeaderSmartPresenter>
-                    <ContentPresenter ContentSource="{x:Null}" Grid.Column="1" Style="{DynamicResource {dxt:DXTabItemThemeKey ResourceKey=SeparatorStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;776;22" />
+                        </dxi:TabHeaderSmartPresenter.IconBox>
+                        <dxi:TabHeaderSmartPresenter.ContentBox>
+                            <dxi:TrimContentPresenter ContentSource="Header" DisableToolTipWhenFullyVisible="{Binding ShowToolTipForNonTrimmedHeader, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:BooleanNegationConverter}}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" ToolTipOwner="{Binding RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Center" />
+                        </dxi:TabHeaderSmartPresenter.ContentBox>
+                        <dxi:TabHeaderSmartPresenter.ControlBox>
+                            <Button x:Name="PART_CloseButton" Command="{TemplateBinding ActualCloseCommand}" Style="{DynamicResource {dxt:DXTabItemThemeKey ResourceKey=CloseButtonStyle}}" VerticalAlignment="Center" Visibility="{TemplateBinding ActualHideButtonVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;768;30" />
+                        </dxi:TabHeaderSmartPresenter.ControlBox>
+                    </dxi:TabHeaderSmartPresenter>
+                    <ContentPresenter ContentSource="{x:Null}" Grid.Column="1" Style="{DynamicResource {dxt:DXTabItemThemeKey ResourceKey=SeparatorStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;775;22" />
                 </Grid>
-            </dxcn:HeaderContainerPresenter>
+            </dxi:HeaderContainerPresenter>
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="Icon" Value="{x:Null}">
@@ -434,7 +434,7 @@
     </ControlTemplate>
 
     <DataTemplate x:Key="TabItemDefaultGlyphTemplate">
-        <Image x:Name="icon" Margin="0,0,4,0" Source="{Binding}" Stretch="None" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;792;10" />
+        <Image x:Name="icon" Margin="0,0,4,0" Source="{Binding}" Stretch="None" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\TabControl\Themes\Generic.xaml;791;10" />
         <DataTemplate.Triggers>
             <DataTrigger Binding="{Binding}" Value="{x:Null}">
                 <Setter Property="Visibility" TargetName="icon" Value="Collapsed" />
@@ -443,14 +443,14 @@
     </DataTemplate>
 
     <Style x:Key="TabControlDefaultStyle" TargetType="{x:Type dx:DXTabControl}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\TabControl\Themes\Generic.xaml;805;6" /><Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\TabControl\Themes\Generic.xaml;804;6" /><Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="KeyboardNavigation.DirectionalNavigation" Value="Contained" />
         <Setter Property="IsTabStop" Value="False" />
         <Setter Property="Template" Value="{StaticResource TabControlDefaultTemplate}" />
         <Setter Property="BackgroundTemplate" Value="{DynamicResource {dxt:DXTabControlThemeKey ResourceKey=Background}}" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
-        <Setter Property="dxcn:WindowChrome.IsHitTestVisibleInChrome" Value="True" />
+        <Setter Property="dxi:WindowChrome.IsHitTestVisibleInChrome" Value="True" />
         <Setter Property="ItemsPanel" Value="{Binding View, RelativeSource={RelativeSource Self}, Converter={StaticResource TabPanelSelector}}" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding ContentHostTemplate, RelativeSource={RelativeSource Self}, Converter={dxmvvm:ObjectToBooleanConverter}}" Value="True">
@@ -460,7 +460,7 @@
     </Style>
 
     <Style x:Key="TabItemDefaultStyle" TargetType="{x:Type dx:DXTabItem}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\TabControl\Themes\Generic.xaml;822;6" /><Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\TabControl\Themes\Generic.xaml;821;6" /><Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Template" Value="{StaticResource TabItemDefaultTemplate}" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="GlyphTemplate" Value="{StaticResource TabItemDefaultGlyphTemplate}" />

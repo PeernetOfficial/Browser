@@ -54,7 +54,8 @@ Although Browser makes sure backend terminated and kills the process if it didn'
 These components are required:
 1. Latest [.NET Desktop Runtime for Windows x64](https://dotnet.microsoft.com/download/dotnet/6.0). The installer version is recommended.
 2. The backend executable. You can compile the [Cmd project](https://github.com/PeernetOfficial/Cmd) and use that resulting executable.
-3. For improved connectivity add a Windows Firewall rule to allow all connections for the backend executable (the linked Cmd project has the netsh command documented).
+3. WPF Controls from [DevExpress Unified Component Installer](https://docs.devexpress.com/GeneralInformation/15033/installation/download-the-net-products-installer). 
+4. For improved connectivity add a Windows Firewall rule to allow all connections for the backend executable (the linked Cmd project has the netsh command documented).
 
 ### Automated Setup
 
@@ -90,7 +91,11 @@ This step is optional. It is not required to be able to **build** and **run** so
 Peernet Browser is written with the latest as of now .NET 6.0. It requires [Visual Studio 2022](https://visualstudio.microsoft.com/pl/vs/) version or newer to be able to load.
 There is a Community version that is free of charge for non-commercial use.
 
-### Step 4 Build Solution
+### Step 4 Install DevExpress Components
+Unified Component Installer should automatically add installed components references to the NuGet Sources. 
+If it did not happened follow [the manual](https://docs.microsoft.com/en-us/nuget/consume-packages/install-use-packages-visual-studio#package-sources).
+
+### Step 5 Build Solution
 
 The solution can be built either by using Visual Studio, or using the command line tool [dotnet](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet).
 
@@ -132,7 +137,7 @@ To sign the executable use the `signtool` from the Windows SDK. Note that all ot
 signtool sign /a /fd SHA256 "Peernet Browser.exe"
 ```
 
-### Step 5 Run the app
+### Step 6 Run the app
 Having already built solution and installed runtime you are able to run the application. It can be achieved in few ways similar to building the solution.  
 
 One way is to use Visual Studio. The other way is to use dotnet tool.
@@ -203,6 +208,18 @@ The visibility of the button in the grid is controlled by _PlayButtonPlugEnabled
 the button will simply have no effect.
 
 Multiple plugin implementing same interface will override each other, meaning the interface from last loaded plugin will be the one that have actual effect.
+
+## DevExpress
+Peernet Browser uses DevExpress WPF Controls for Data Grids and some other features. As result of continuous DevExpress product development
+new versions are frequently released and Peernet Browser requires updating to keep up to date.
+The easiest way to upgrade DevExpress dependencies in Peernet Browser you should install latest Unified Component Installer from your license 
+[Download Manager](https://www.devexpress.com/ClientCenter/DownloadManager/). It will automatically add new Package Source which you can use 
+to [update the version](https://docs.microsoft.com/en-us/nuget/consume-packages/install-use-packages-visual-studio#update-a-package).
+
+Since Peernet Browser uses DevExpress Themes for DevExpress layout and color customization you need to keep Themes and Dependencies versions in sync.
+To upgrade themes to the respective WPF Controls version follow [the manual](https://docs.devexpress.com/WpfThemeDesigner/118935/upgrade-themes).  
+Themes are located inside the _Peernet.Themes_ folder of the repository.
+Once the themes are upgraded you need to publish them using _Theme Designer_ and replace the DLLs inside the _lib_ folder (it may require DLL reference name update).
 
 ## Peernet Browser Insights
 

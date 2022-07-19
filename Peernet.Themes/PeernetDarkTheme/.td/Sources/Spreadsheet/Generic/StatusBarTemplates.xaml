@@ -3,14 +3,14 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
                     xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
                     xmlns:dxsps="http://schemas.devexpress.com/winfx/2008/xaml/spreadsheet"
                     xmlns:dxspsi="http://schemas.devexpress.com/winfx/2008/xaml/spreadsheet/internal"
+                    xmlns:dxspst="http://schemas.devexpress.com/winfx/2008/xaml/spreadsheet/themekeys"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:themes="http://schemas.devexpress.com/winfx/2008/xaml/spreadsheet/themekeys"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <dxspsi:MinZoomFactorToZoomTrackBarMinimumConverter x:Key="MinZoomFactorToZoomTrackBarMinimumConverter"/>
@@ -19,12 +19,12 @@
 
     <dxspsi:BoolAndConverter x:Key="BoolAndConverter"/>
 
-    <ControlTemplate x:Key="{themes:SpreadsheetThemeKey ResourceKey=EmptyStatusBarTemplate}" TargetType="{x:Type Control}"/>
+    <ControlTemplate x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=EmptyStatusBarTemplate}" TargetType="{x:Type Control}"/>
 
-    <ControlTemplate x:Key="{themes:SpreadsheetThemeKey ResourceKey=StatusBarTemplate}" TargetType="{x:Type Control}">
+    <ControlTemplate x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=StatusBarTemplate}" TargetType="{x:Type Control}">
         <dxr:RibbonStatusBarControl dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarControl}"
                                     dxb:BarNameScope.IsScopeOwner="True"
-                                    Style="{DynamicResource {themes:BarItemStyleKey ResourceKey=StatusBarControl}}">
+                                    Style="{DynamicResource {dxspst:BarItemStyleKey ResourceKey=StatusBarControl}}">
             <dxmvvm:Interaction.Behaviors>
                 <dxb:ControllerBehavior Actions="{Binding Path=(dxsps:SpreadsheetControl.Spreadsheet).StatusBarActions, RelativeSource={RelativeSource TemplatedParent}}" ExecutionMode="OnEvent">
                     <dxb:ControllerBehavior.Triggers>
@@ -33,47 +33,47 @@
                 </dxb:ControllerBehavior>
             </dxmvvm:Interaction.Behaviors>
             <dxr:RibbonStatusBarControl.LeftItems>
-                <dxb:BarEditItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_Progress}" Style="{DynamicResource {themes:BarItemStyleKey ResourceKey=StatusBarItem_Progress}}"/>
-                <!--<dxb:BarButtonItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_CancelOperation}" Style="{DynamicResource {themes:BarItemStyleKey ResourceKey=StatusBarItem_CancelOperation}}"/>-->
-                <dxspsi:EndModeStaticItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_EndMode}" Style="{DynamicResource {themes:BarItemStyleKey ResourceKey=StatusBarItem_EndMode}}"/>
+                <dxb:BarEditItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_Progress}" Style="{DynamicResource {dxspst:BarItemStyleKey ResourceKey=StatusBarItem_Progress}}"/>
+                <!--<dxb:BarButtonItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_CancelOperation}" Style="{DynamicResource {dxspst:BarItemStyleKey ResourceKey=StatusBarItem_CancelOperation}}"/>-->
+                <dxspsi:EndModeStaticItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_EndMode}" Style="{DynamicResource {dxspst:BarItemStyleKey ResourceKey=StatusBarItem_EndMode}}"/>
             </dxr:RibbonStatusBarControl.LeftItems>
             <dxr:RibbonStatusBarControl.RightItems>
-                <dxb:BarStaticItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_Average}" Style="{DynamicResource {themes:BarItemStyleKey ResourceKey=StatusBarItem_Average}}"/>
-                <dxb:BarStaticItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_Count}" Style="{DynamicResource {themes:BarItemStyleKey ResourceKey=StatusBarItem_Count}}"/>
-                <dxb:BarStaticItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_NumericalCount}" Style="{DynamicResource {themes:BarItemStyleKey ResourceKey=StatusBarItem_NumericalCount}}"/>
-                <dxb:BarStaticItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_Min}" Style="{DynamicResource {themes:BarItemStyleKey ResourceKey=StatusBarItem_Min}}"/>
-                <dxb:BarStaticItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_Max}" Style="{DynamicResource {themes:BarItemStyleKey ResourceKey=StatusBarItem_Max}}"/>
-                <dxb:BarStaticItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_Sum}" Style="{DynamicResource {themes:BarItemStyleKey ResourceKey=StatusBarItem_Sum}}"/>
-                <dxb:BarEditItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_ZoomSlider}" Style="{DynamicResource {themes:BarItemStyleKey ResourceKey=StatusBarItem_ZoomSlider}}"/>
-                <dxb:BarButtonItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_Zoom}" Style="{DynamicResource {themes:BarItemStyleKey ResourceKey=StatusBarItem_Zoom}}"/>
+                <dxb:BarStaticItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_Average}" Style="{DynamicResource {dxspst:BarItemStyleKey ResourceKey=StatusBarItem_Average}}"/>
+                <dxb:BarStaticItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_Count}" Style="{DynamicResource {dxspst:BarItemStyleKey ResourceKey=StatusBarItem_Count}}"/>
+                <dxb:BarStaticItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_NumericalCount}" Style="{DynamicResource {dxspst:BarItemStyleKey ResourceKey=StatusBarItem_NumericalCount}}"/>
+                <dxb:BarStaticItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_Min}" Style="{DynamicResource {dxspst:BarItemStyleKey ResourceKey=StatusBarItem_Min}}"/>
+                <dxb:BarStaticItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_Max}" Style="{DynamicResource {dxspst:BarItemStyleKey ResourceKey=StatusBarItem_Max}}"/>
+                <dxb:BarStaticItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_Sum}" Style="{DynamicResource {dxspst:BarItemStyleKey ResourceKey=StatusBarItem_Sum}}"/>
+                <dxb:BarEditItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_ZoomSlider}" Style="{DynamicResource {dxspst:BarItemStyleKey ResourceKey=StatusBarItem_ZoomSlider}}"/>
+                <dxb:BarButtonItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_Zoom}" Style="{DynamicResource {dxspst:BarItemStyleKey ResourceKey=StatusBarItem_Zoom}}"/>
             </dxr:RibbonStatusBarControl.RightItems>
             <dxb:BarManager.DXContextMenu>
                 <dxb:PopupMenu dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBar_PopupMenu}"
                                Opening="{DXEvent Handler='@sender.($dxsps:SpreadsheetControl.Spreadsheet).OnStatusBarPopupMenuOpening(@args)'}"
-                               Style="{DynamicResource {themes:BarItemStyleKey ResourceKey=StatusBar_PopupMenu}}">
+                               Style="{DynamicResource {dxspst:BarItemStyleKey ResourceKey=StatusBar_PopupMenu}}">
                     <dxb:PopupMenu.Items>
-                        <dxb:BarItemMenuHeader dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_PopupMenu_Header}" Style="{DynamicResource {themes:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Header}}"/>
-                        <dxb:BarCheckItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_PopupMenu_EndMode}" Style="{DynamicResource {themes:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_EndMode}}"/>
-                        <dxb:BarCheckItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_PopupMenu_Progress}" Style="{DynamicResource {themes:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Progress}}"/>
-                        <dxb:BarCheckItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_PopupMenu_Average}" Style="{DynamicResource {themes:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Average}}"/>
-                        <dxb:BarCheckItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_PopupMenu_Count}" Style="{DynamicResource {themes:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Count}}"/>
-                        <dxb:BarCheckItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_PopupMenu_NumericalCount}" Style="{DynamicResource {themes:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_NumericalCount}}"/>
-                        <dxb:BarCheckItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_PopupMenu_Min}" Style="{DynamicResource {themes:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Min}}"/>
-                        <dxb:BarCheckItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_PopupMenu_Max}" Style="{DynamicResource {themes:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Max}}"/>
-                        <dxb:BarCheckItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_PopupMenu_Sum}" Style="{DynamicResource {themes:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Sum}}"/>
-                        <dxb:BarCheckItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_PopupMenu_ZoomSlider}" Style="{DynamicResource {themes:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_ZoomSlider}}"/>
-                        <dxb:BarCheckItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_PopupMenu_Zoom}" Style="{DynamicResource {themes:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Zoom}}"/>
+                        <dxb:BarItemMenuHeader dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_PopupMenu_Header}" Style="{DynamicResource {dxspst:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Header}}"/>
+                        <dxb:BarCheckItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_PopupMenu_EndMode}" Style="{DynamicResource {dxspst:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_EndMode}}"/>
+                        <dxb:BarCheckItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_PopupMenu_Progress}" Style="{DynamicResource {dxspst:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Progress}}"/>
+                        <dxb:BarCheckItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_PopupMenu_Average}" Style="{DynamicResource {dxspst:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Average}}"/>
+                        <dxb:BarCheckItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_PopupMenu_Count}" Style="{DynamicResource {dxspst:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Count}}"/>
+                        <dxb:BarCheckItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_PopupMenu_NumericalCount}" Style="{DynamicResource {dxspst:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_NumericalCount}}"/>
+                        <dxb:BarCheckItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_PopupMenu_Min}" Style="{DynamicResource {dxspst:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Min}}"/>
+                        <dxb:BarCheckItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_PopupMenu_Max}" Style="{DynamicResource {dxspst:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Max}}"/>
+                        <dxb:BarCheckItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_PopupMenu_Sum}" Style="{DynamicResource {dxspst:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Sum}}"/>
+                        <dxb:BarCheckItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_PopupMenu_ZoomSlider}" Style="{DynamicResource {dxspst:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_ZoomSlider}}"/>
+                        <dxb:BarCheckItem dx:XamlHelper.Name="{x:Static dxsps:DefaultBarItemNames.StatusBarItem_PopupMenu_Zoom}" Style="{DynamicResource {dxspst:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Zoom}}"/>
                     </dxb:PopupMenu.Items>
                 </dxb:PopupMenu>
             </dxb:BarManager.DXContextMenu>
         </dxr:RibbonStatusBarControl>
     </ControlTemplate>
 
-    <Style x:Key="{themes:BarItemStyleKey ResourceKey=StatusBarControl}" TargetType="{x:Type dxr:RibbonStatusBarControl}">
+    <Style x:Key="{dxspst:BarItemStyleKey ResourceKey=StatusBarControl}" TargetType="{x:Type dxr:RibbonStatusBarControl}">
         <Setter Property="IsSizeGripVisible" Value="False"/>
     </Style>
 
-    <Style x:Key="{themes:BarItemStyleKey ResourceKey=StatusBarItem_EndMode}" TargetType="{x:Type dxspsi:EndModeStaticItem}">
+    <Style x:Key="{dxspst:BarItemStyleKey ResourceKey=StatusBarItem_EndMode}" TargetType="{x:Type dxspsi:EndModeStaticItem}">
         <Setter Property="Content" Value="{Binding RelativeSource={RelativeSource Self}, Mode=OneWay, Path=(dxsps:SpreadsheetControl.Spreadsheet).CommandProvider.StatusBarEndMode.EditValue}"/>
         <Setter Property="AutomationProperties.Name" Value="{dxsps:SpreadsheetLocalizedString MenuCmd_None}"/>
         <Setter Property="AutomationProperties.HelpText" Value="{dxsps:SpreadsheetLocalizedString MenuCmd_EndModeStatusBarCommandDescription}"/>
@@ -89,7 +89,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{themes:BarItemStyleKey ResourceKey=StatusBarItem_Progress}" TargetType="{x:Type dxb:BarEditItem}">
+    <Style x:Key="{dxspst:BarItemStyleKey ResourceKey=StatusBarItem_Progress}" TargetType="{x:Type dxb:BarEditItem}">
         <Setter Property="dxmvvm:Interaction.BehaviorsTemplate">
             <Setter.Value>
                 <DataTemplate>
@@ -119,7 +119,7 @@
         </Setter>
     </Style>
 
-    <!--<Style x:Key="{themes:BarItemStyleKey ResourceKey=StatusBarItem_CancelOperation}" TargetType="{x:Type dxb:BarButtonItem}">
+    <!--<Style x:Key="{dxspst:BarItemStyleKey ResourceKey=StatusBarItem_CancelOperation}" TargetType="{x:Type dxb:BarButtonItem}">
         <Setter Property="Content" Value="{Binding RelativeSource={RelativeSource Self}, Mode=OneWay, Path=(dxsps:SpreadsheetControl.Spreadsheet).CommandProvider.StatusBarCancelOperation.EditValue}"/>
         <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxsps:SpreadsheetControl.Spreadsheet).CommandProvider.StatusBarCancelOperation}"/>
         <Setter Property="Glyph" Value="{dx:ImageSelector Source={dx:DXImage Image=RemovePivotField_16x16.png}, SvgSource={dxsps:SpreadsheetSvgImage Name=RemovePivotField.svg}}"/>
@@ -134,7 +134,7 @@
         </Setter>
     </Style>-->
 
-    <Style x:Key="{themes:BarItemStyleKey ResourceKey=StatusBarItem_Average}" TargetType="{x:Type dxb:BarStaticItem}">
+    <Style x:Key="{dxspst:BarItemStyleKey ResourceKey=StatusBarItem_Average}" TargetType="{x:Type dxb:BarStaticItem}">
         <Setter Property="Content" Value="{Binding RelativeSource={RelativeSource Self}, Mode=OneWay, Path=(dxsps:SpreadsheetControl.Spreadsheet).CommandProvider.StatusBarAverage.EditValue}"/>
         <Setter Property="AutomationProperties.Name" Value="{dxsps:SpreadsheetLocalizedString MenuCmd_AverageInfoStatusBarCommandCaptionPart}"/>
         <Setter Property="AutomationProperties.HelpText" Value="{dxsps:SpreadsheetLocalizedString MenuCmd_AverageInfoStatusBarCommandDescription}"/>
@@ -150,7 +150,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{themes:BarItemStyleKey ResourceKey=StatusBarItem_Count}" TargetType="{x:Type dxb:BarStaticItem}">
+    <Style x:Key="{dxspst:BarItemStyleKey ResourceKey=StatusBarItem_Count}" TargetType="{x:Type dxb:BarStaticItem}">
         <Setter Property="Content" Value="{Binding RelativeSource={RelativeSource Self}, Mode=OneWay, Path=(dxsps:SpreadsheetControl.Spreadsheet).CommandProvider.StatusBarCount.EditValue}"/>
         <Setter Property="AutomationProperties.Name" Value="{dxsps:SpreadsheetLocalizedString MenuCmd_CountInfoStatusBarCommandCaptionPart}"/>
         <Setter Property="AutomationProperties.HelpText" Value="{dxsps:SpreadsheetLocalizedString MenuCmd_CountInfoStatusBarCommandDescription}"/>
@@ -166,7 +166,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{themes:BarItemStyleKey ResourceKey=StatusBarItem_NumericalCount}" TargetType="{x:Type dxb:BarStaticItem}">
+    <Style x:Key="{dxspst:BarItemStyleKey ResourceKey=StatusBarItem_NumericalCount}" TargetType="{x:Type dxb:BarStaticItem}">
         <Setter Property="Content" Value="{Binding RelativeSource={RelativeSource Self}, Mode=OneWay, Path=(dxsps:SpreadsheetControl.Spreadsheet).CommandProvider.StatusBarNumericalCount.EditValue}"/>
         <Setter Property="AutomationProperties.Name" Value="{dxsps:SpreadsheetLocalizedString MenuCmd_NumericalCountInfoStatusBarCommandCaptionPart}"/>
         <Setter Property="AutomationProperties.HelpText" Value="{dxsps:SpreadsheetLocalizedString MenuCmd_NumericalCountInfoStatusBarCommandDescription}"/>
@@ -182,7 +182,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{themes:BarItemStyleKey ResourceKey=StatusBarItem_Min}" TargetType="{x:Type dxb:BarStaticItem}">
+    <Style x:Key="{dxspst:BarItemStyleKey ResourceKey=StatusBarItem_Min}" TargetType="{x:Type dxb:BarStaticItem}">
         <Setter Property="Content" Value="{Binding RelativeSource={RelativeSource Self}, Mode=OneWay, Path=(dxsps:SpreadsheetControl.Spreadsheet).CommandProvider.StatusBarMin.EditValue}"/>
         <Setter Property="AutomationProperties.Name" Value="{dxsps:SpreadsheetLocalizedString MenuCmd_MinInfoStatusBarCommandCaptionPart}"/>
         <Setter Property="AutomationProperties.HelpText" Value="{dxsps:SpreadsheetLocalizedString MenuCmd_MinInfoStatusBarCommandDescription}"/>
@@ -198,7 +198,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{themes:BarItemStyleKey ResourceKey=StatusBarItem_Max}" TargetType="{x:Type dxb:BarStaticItem}">
+    <Style x:Key="{dxspst:BarItemStyleKey ResourceKey=StatusBarItem_Max}" TargetType="{x:Type dxb:BarStaticItem}">
         <Setter Property="Content" Value="{Binding RelativeSource={RelativeSource Self}, Mode=OneWay, Path=(dxsps:SpreadsheetControl.Spreadsheet).CommandProvider.StatusBarMax.EditValue}"/>
         <Setter Property="AutomationProperties.Name" Value="{dxsps:SpreadsheetLocalizedString MenuCmd_MaxInfoStatusBarCommandCaptionPart}"/>
         <Setter Property="AutomationProperties.HelpText" Value="{dxsps:SpreadsheetLocalizedString MenuCmd_MaxInfoStatusBarCommandDescription}"/>
@@ -214,7 +214,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{themes:BarItemStyleKey ResourceKey=StatusBarItem_Sum}" TargetType="{x:Type dxb:BarStaticItem}">
+    <Style x:Key="{dxspst:BarItemStyleKey ResourceKey=StatusBarItem_Sum}" TargetType="{x:Type dxb:BarStaticItem}">
         <Setter Property="Content" Value="{Binding RelativeSource={RelativeSource Self}, Mode=OneWay, Path=(dxsps:SpreadsheetControl.Spreadsheet).CommandProvider.StatusBarSum.EditValue}"/>
         <Setter Property="AutomationProperties.Name" Value="{dxsps:SpreadsheetLocalizedString MenuCmd_SumInfoStatusBarCommandCaptionPart}"/>
         <Setter Property="AutomationProperties.HelpText" Value="{dxsps:SpreadsheetLocalizedString MenuCmd_SumInfoStatusBarCommandDescription}"/>
@@ -230,7 +230,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{themes:BarItemStyleKey ResourceKey=StatusBarItem_ZoomSlider}" TargetType="{x:Type dxb:BarEditItem}">
+    <Style x:Key="{dxspst:BarItemStyleKey ResourceKey=StatusBarItem_ZoomSlider}" TargetType="{x:Type dxb:BarEditItem}">
         <Setter Property="AutomationProperties.Name" Value="{dxsps:SpreadsheetLocalizedString MenuCmd_ViewZoom}"/>
         <Setter Property="AutomationProperties.HelpText" Value="{dxsps:OfficeLocalizedString MenuCmd_StatusBarZoomSliderDescription}"/>
         <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxsps:SpreadsheetControl.Spreadsheet).CommandProvider.StatusBarZoomSlider}"/>
@@ -261,7 +261,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{themes:BarItemStyleKey ResourceKey=StatusBarItem_Zoom}" TargetType="{x:Type dxb:BarButtonItem}">
+    <Style x:Key="{dxspst:BarItemStyleKey ResourceKey=StatusBarItem_Zoom}" TargetType="{x:Type dxb:BarButtonItem}">
         <Setter Property="Content" Value="{Binding RelativeSource={RelativeSource Self}, Mode=OneWay, Path=(dxsps:SpreadsheetControl.Spreadsheet).CommandProvider.StatusBarZoom.EditValue}"/>
         <Setter Property="AutomationProperties.Name" Value="{dxsps:SpreadsheetLocalizedString MenuCmd_ViewZoom}"/>
         <Setter Property="AutomationProperties.HelpText" Value="{dxsps:OfficeLocalizedString MenuCmd_StatusBarZoomDescription}"/>
@@ -287,69 +287,69 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{themes:BarItemStyleKey ResourceKey=StatusBar_PopupMenu}" TargetType="{x:Type dxb:PopupMenu}">
+    <Style x:Key="{dxspst:BarItemStyleKey ResourceKey=StatusBar_PopupMenu}" TargetType="{x:Type dxb:PopupMenu}">
         <Setter Property="MinWidth" Value="160"/>
     </Style>
 
-    <Style x:Key="{themes:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Header}" TargetType="{x:Type dxb:BarItemMenuHeader}">
+    <Style x:Key="{dxspst:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Header}" TargetType="{x:Type dxb:BarItemMenuHeader}">
         <Setter Property="Content" Value="{dxsps:OfficeLocalizedString MenuCmd_StatusBarPopupMenuHeader}"/>
     </Style>
 
-    <Style x:Key="{themes:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_EndMode}" TargetType="{x:Type dxb:BarCheckItem}">
+    <Style x:Key="{dxspst:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_EndMode}" TargetType="{x:Type dxb:BarCheckItem}">
         <Setter Property="Content" Value="{dxsps:SpreadsheetLocalizedString MenuCmd_StatusBarPopupMenuEndMode}"/>
         <Setter Property="CloseSubMenuOnClick" Value="False"/>
         <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Mode=TwoWay, Path=(dxsps:SpreadsheetControl.Spreadsheet).StatusBarShowEndMode}"/>
     </Style>
 
-    <Style x:Key="{themes:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Progress}" TargetType="{x:Type dxb:BarCheckItem}">
+    <Style x:Key="{dxspst:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Progress}" TargetType="{x:Type dxb:BarCheckItem}">
         <Setter Property="Content" Value="{dxsps:SpreadsheetLocalizedString MenuCmd_StatusBarPopupMenuProgressBar}"/>
         <Setter Property="CloseSubMenuOnClick" Value="False"/>
         <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Mode=TwoWay, Path=(dxsps:SpreadsheetControl.Spreadsheet).StatusBarShowProgress}"/>
     </Style>
 
-    <Style x:Key="{themes:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Average}" TargetType="{x:Type dxb:BarCheckItem}">
+    <Style x:Key="{dxspst:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Average}" TargetType="{x:Type dxb:BarCheckItem}">
         <Setter Property="Content" Value="{dxsps:SpreadsheetLocalizedString MenuCmd_StatusBarPopupMenuAverage}"/>
         <Setter Property="CloseSubMenuOnClick" Value="False"/>
         <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Mode=TwoWay, Path=(dxsps:SpreadsheetControl.Spreadsheet).StatusBarShowAverage}"/>
     </Style>
 
-    <Style x:Key="{themes:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Count}" TargetType="{x:Type dxb:BarCheckItem}">
+    <Style x:Key="{dxspst:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Count}" TargetType="{x:Type dxb:BarCheckItem}">
         <Setter Property="Content" Value="{dxsps:SpreadsheetLocalizedString MenuCmd_StatusBarPopupMenuCount}"/>
         <Setter Property="CloseSubMenuOnClick" Value="False"/>
         <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Mode=TwoWay, Path=(dxsps:SpreadsheetControl.Spreadsheet).StatusBarShowCount}"/>
     </Style>
 
-    <Style x:Key="{themes:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_NumericalCount}" TargetType="{x:Type dxb:BarCheckItem}">
+    <Style x:Key="{dxspst:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_NumericalCount}" TargetType="{x:Type dxb:BarCheckItem}">
         <Setter Property="Content" Value="{dxsps:SpreadsheetLocalizedString MenuCmd_StatusBarPopupMenuNumericalCount}"/>
         <Setter Property="CloseSubMenuOnClick" Value="False"/>
         <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Mode=TwoWay, Path=(dxsps:SpreadsheetControl.Spreadsheet).StatusBarShowNumericalCount}"/>
     </Style>
 
-    <Style x:Key="{themes:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Min}" TargetType="{x:Type dxb:BarCheckItem}">
+    <Style x:Key="{dxspst:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Min}" TargetType="{x:Type dxb:BarCheckItem}">
         <Setter Property="Content" Value="{dxsps:SpreadsheetLocalizedString MenuCmd_StatusBarPopupMenuMin}"/>
         <Setter Property="CloseSubMenuOnClick" Value="False"/>
         <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Mode=TwoWay, Path=(dxsps:SpreadsheetControl.Spreadsheet).StatusBarShowMin}"/>
     </Style>
 
-    <Style x:Key="{themes:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Max}" TargetType="{x:Type dxb:BarCheckItem}">
+    <Style x:Key="{dxspst:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Max}" TargetType="{x:Type dxb:BarCheckItem}">
         <Setter Property="Content" Value="{dxsps:SpreadsheetLocalizedString MenuCmd_StatusBarPopupMenuMax}"/>
         <Setter Property="CloseSubMenuOnClick" Value="False"/>
         <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Mode=TwoWay, Path=(dxsps:SpreadsheetControl.Spreadsheet).StatusBarShowMax}"/>
     </Style>
 
-    <Style x:Key="{themes:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Sum}" TargetType="{x:Type dxb:BarCheckItem}">
+    <Style x:Key="{dxspst:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Sum}" TargetType="{x:Type dxb:BarCheckItem}">
         <Setter Property="Content" Value="{dxsps:SpreadsheetLocalizedString MenuCmd_StatusBarPopupMenuSum}"/>
         <Setter Property="CloseSubMenuOnClick" Value="False"/>
         <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Mode=TwoWay, Path=(dxsps:SpreadsheetControl.Spreadsheet).StatusBarShowSum}"/>
     </Style>
 
-    <Style x:Key="{themes:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_ZoomSlider}" TargetType="{x:Type dxb:BarCheckItem}">
+    <Style x:Key="{dxspst:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_ZoomSlider}" TargetType="{x:Type dxb:BarCheckItem}">
         <Setter Property="Content" Value="{dxsps:OfficeLocalizedString MenuCmd_StatusBarPopupMenuZoomSlider}"/>
         <Setter Property="CloseSubMenuOnClick" Value="False"/>
         <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Mode=TwoWay, Path=(dxsps:SpreadsheetControl.Spreadsheet).StatusBarShowZoomSlider}"/>
     </Style>
 
-    <Style x:Key="{themes:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Zoom}" TargetType="{x:Type dxb:BarCheckItem}">
+    <Style x:Key="{dxspst:BarItemStyleKey ResourceKey=StatusBarItem_PopupMenu_Zoom}" TargetType="{x:Type dxb:BarCheckItem}">
         <Setter Property="Content" Value="{dxsps:OfficeLocalizedString MenuCmd_StatusBarPopupMenuZoom}"/>
         <Setter Property="CloseSubMenuOnClick" Value="False"/>
         <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Mode=TwoWay, Path=(dxsps:SpreadsheetControl.Spreadsheet).StatusBarShowZoom}"/>

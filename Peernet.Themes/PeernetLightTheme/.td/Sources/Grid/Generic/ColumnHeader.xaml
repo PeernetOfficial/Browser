@@ -3,14 +3,13 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal"
                     xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
                     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
-                    xmlns:dxgcore="http://schemas.devexpress.com/winfx/2008/xaml/grid"
-                    xmlns:dxght="http://schemas.devexpress.com/winfx/2008/xaml/grid/internal"
+                    xmlns:dxgi="http://schemas.devexpress.com/winfx/2008/xaml/grid/internal"
                     xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
@@ -19,18 +18,18 @@
 
     <dx:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
 
-    <dxgcore:GridColumnToGridColumnDataConverter x:Key="GridColumnToGridColumnDataConverter"/>
+    <dxg:GridColumnToGridColumnDataConverter x:Key="GridColumnToGridColumnDataConverter"/>
 
     <!--BEGIN WPF-->
 
-    <dxgcore:DefaultDataTemplate x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=ContentTemplate}">
+    <dxg:DefaultDataTemplate x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=ContentTemplate}">
         <!--END WPF-->
         <!--ONLY SL 
     <DataTemplate x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=ContentTemplate}">
     ONLY SL-->
         <ContentPresenter Name="textBlock"
                           Content="{Binding}"
-                          dxgcore:GridColumnHeader.GridColumn="{Binding Path=(dxg:GridColumnHeader.GridColumn), RelativeSource={RelativeSource TemplatedParent}}">
+                          dxg:GridColumnHeader.GridColumn="{Binding Path=(dxg:GridColumnHeader.GridColumn), RelativeSource={RelativeSource TemplatedParent}}">
             <!--BEGIN WPF-->
             <ContentPresenter.Resources>
                 <Style TargetType="{x:Type TextBlock}">
@@ -50,7 +49,7 @@
             <!--END WPF-->
         </ContentPresenter>
         <!--BEGIN WPF-->
-    </dxgcore:DefaultDataTemplate>
+    </dxg:DefaultDataTemplate>
 
     <!--END WPF-->
 
@@ -60,13 +59,13 @@
 
     <!--BEGIN WPF-->
 
-    <dxgcore:DefaultDataTemplate x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=CustomizationAreaTemplate}">
+    <dxg:DefaultDataTemplate x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=CustomizationAreaTemplate}">
         <!--END WPF-->
         <!--ONLY SL 
     <DataTemplate x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=CustomizationAreaTemplate}">
     ONLY SL-->
         <!--BEGIN WPF-->
-    </dxgcore:DefaultDataTemplate>
+    </dxg:DefaultDataTemplate>
 
     <!--END WPF-->
 
@@ -74,7 +73,7 @@
     </DataTemplate>
     ONLY SL-->
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.GridThumb}" TargetType="{x:Type dxg:GridThumb}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.GridThumb}" TargetType="{x:Type dxg:GridThumb}">
         <!--BEGIN WPF-->
         <Setter Property="MinWidth" Value="{DynamicResource {x:Static SystemParameters.ResizeFrameVerticalBorderWidthKey}}"/>
         <Setter Property="MinHeight" Value="{DynamicResource {x:Static SystemParameters.ResizeFrameHorizontalBorderHeightKey}}"/>
@@ -93,7 +92,7 @@
         </Setter>
         <Setter Property="dxg:GridViewHitInfoBase.HitTestAcceptor">
             <Setter.Value>
-                <dxght:ColumnEdgeTableViewHitTestAcceptor/>
+                <dxgi:ColumnEdgeTableViewHitTestAcceptor/>
             </Setter.Value>
         </Setter>
     </Style>
@@ -121,7 +120,7 @@
         <!--END WPF-->
     </ControlTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.DesignTimeSelectionControl}" TargetType="{x:Type dxg:DesignTimeSelectionControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.DesignTimeSelectionControl}" TargetType="{x:Type dxg:DesignTimeSelectionControl}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
@@ -136,7 +135,7 @@
 
     <!--BEGIN WPF-->
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.SortIndicatorControl}" TargetType="dxg:SortIndicatorControl">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.SortIndicatorControl}" TargetType="dxg:SortIndicatorControl">
         <Setter Property="HorizontalAlignment" Value="Right"/>
         <Setter Property="Width" Value="{DynamicResource {dxgt:GridColumnHeaderThemeKey ResourceKey=SortIndicatorWidth}}"/>
         <Setter Property="Margin" Value="{DynamicResource {dxgt:GridColumnHeaderThemeKey ResourceKey=SortIndicatorUpMargin}}"/>
@@ -153,17 +152,17 @@
 
     <DataTemplate x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=CheckBoxSelectorColumnHeaderTemplate}">
         <Border Margin="{DynamicResource {dxgt:GridColumnHeaderThemeKey ResourceKey=CheckBoxSelectorMargin}}" Padding="0,0,2,0">
-            <dxe:CheckEdit EditValue="{Binding Path=(dxgcore:DataControlBase.ActiveView).AllItemsSelected, RelativeSource={RelativeSource Self}, Mode=OneWay}"
-                           IsEnabled="{Binding Path=(dxgcore:DataControlBase.ActiveView).EnabledCheckBoxSelector, RelativeSource={RelativeSource Self}, Mode=OneWay}"
+            <dxe:CheckEdit EditValue="{Binding Path=(dxg:DataControlBase.ActiveView).AllItemsSelected, RelativeSource={RelativeSource Self}, Mode=OneWay}"
+                           IsEnabled="{Binding Path=(dxg:DataControlBase.ActiveView).EnabledCheckBoxSelector, RelativeSource={RelativeSource Self}, Mode=OneWay}"
                            IsHitTestVisible="False"/>
         </Border>
     </DataTemplate>
 
     <ControlTemplate x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=Layout}" TargetType="{x:Type Control}">
-        <dxgcore:ColumnHeaderDockPanel x:Name="PART_LayoutPanel" ContentMargin="{TemplateBinding Padding}"/>
+        <dxg:ColumnHeaderDockPanel x:Name="PART_LayoutPanel" ContentMargin="{TemplateBinding Padding}"/>
     </ControlTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.ColumnHeaderLayout}" TargetType="{x:Type dxg:ColumnHeaderLayout}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.ColumnHeaderLayout}" TargetType="{x:Type dxg:ColumnHeaderLayout}">
         <Setter Property="Template" Value="{DynamicResource {dxgt:GridColumnHeaderThemeKey ResourceKey=Layout}}"/>
     </Style>
 
@@ -182,7 +181,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.HeaderImageControl}" TargetType="{x:Type dxg:HeaderImageControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.HeaderImageControl}" TargetType="{x:Type dxg:HeaderImageControl}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type dxg:HeaderImageControl}">

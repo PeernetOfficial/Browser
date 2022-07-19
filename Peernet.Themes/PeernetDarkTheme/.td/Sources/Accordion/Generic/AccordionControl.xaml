@@ -3,20 +3,20 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxa="http://schemas.devexpress.com/winfx/2008/xaml/accordion"
-                    xmlns:dxan="http://schemas.devexpress.com/winfx/2008/xaml/accordion/internal"
+                    xmlns:dxai="http://schemas.devexpress.com/winfx/2008/xaml/accordion/internal"
                     xmlns:dxat="http://schemas.devexpress.com/winfx/2008/xaml/accordion/themekeys"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
-                    xmlns:dxmvvminternal="clr-namespace:DevExpress.Mvvm.UI.Interactivity.Internal;assembly=DevExpress.Xpf.Core.v21.2"
+                    xmlns:dxmvvminternal="clr-namespace:DevExpress.Mvvm.UI.Interactivity.Internal;assembly=DevExpress.Xpf.Core.v22.1"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxdst:ResourceDictionaryEx Source="/DevExpress.Xpf.Accordion.v21.2;component/Themes/Generic/Resources.xaml"/>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Accordion.v22.1;component/Themes/Generic/Resources.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="{dxat:AccordionThemeKeys ResourceKey=PopupStyleBase}" TargetType="dxa:AccordionPopup">
@@ -37,9 +37,8 @@
            BasedOn="{StaticResource {dxat:AccordionThemeKeys ResourceKey=PopupStyleBase}}"
            TargetType="dxa:AccordionPopup"/>
 
-    <Style x:Key="{dxat:AccordionThemeKeys ResourceKey=AccordionViewExpanderStyleBase}" TargetType="dxan:AccordionViewExpander">
+    <Style x:Key="{dxat:AccordionThemeKeys ResourceKey=AccordionViewExpanderStyleBase}" TargetType="dxai:AccordionViewExpander">
         <Setter Property="HorizontalExpand" Value="FromLeftToRight"/>
-        <Setter Property="dx:DXExpander.AllowTracksRevealing" Value="False"/>
         <Setter Property="Duration" Value="0"/>
         <Setter Property="VerticalExpand" Value="None"/>
         <Setter Property="ExpandStoryboard" Value="{DynamicResource {dxat:AccordionThemeKeys ResourceKey=ExpandAccordionStoryboard}}"/>
@@ -48,9 +47,9 @@
 
     <Style x:Key="{dxat:AccordionThemeKeys ResourceKey=AccordionViewExpanderStyle}"
            BasedOn="{StaticResource {dxat:AccordionThemeKeys ResourceKey=AccordionViewExpanderStyleBase}}"
-           TargetType="dxan:AccordionViewExpander"/>
+           TargetType="dxai:AccordionViewExpander"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Accordion.AccordionControl}" TargetType="{x:Type dxa:AccordionControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Accordion.AccordionControl}" TargetType="{x:Type dxa:AccordionControl}">
         <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="False"/>
         <Setter Property="Background" Value="{DynamicResource {dxat:AccordionThemeKeys ResourceKey=Background}}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource {dxat:AccordionThemeKeys ResourceKey=BorderBrush}}"/>
@@ -62,9 +61,11 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
-        <Setter Property="HeaderGlyphTemplate" Value="{StaticResource AccordionItemDefaultGlyphTemplate}"/>
-        <Setter Property="DefaultGlyph" Value="{dx:SvgImageSource Size='16,16', Uri='/DevExpress.Xpf.Accordion.v21.2;component/Images/DefaultGlyph.svg'}"/>
+        <Setter Property="HeaderGlyphTemplate" Value="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=AccordionItemDefaultGlyphTemplate}}"/>
+        <Setter Property="DefaultGlyph" Value="{dx:SvgImageSource Size='16,16', Uri='/DevExpress.Xpf.Accordion.v22.1;component/Images/DefaultGlyph.svg'}"/>
         <Setter Property="HeaderStyle" Value="{DynamicResource {dxat:AccordionThemeKeys ResourceKey=HeaderPresenterStyle}}"/>
+        <Setter Property="SubItemExpandButtonPosition" Value="{DynamicResource {dxat:AccordionThemeKeys ResourceKey=DefaultSubItemExpandButtonPosition}}"/>
+        <Setter Property="EmptySourceText" Value="{dxe:EditorStringId EmptySource}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type dxa:AccordionControl}">
@@ -76,7 +77,7 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition x:Name="RightAccordionColumn" Width="0"/>
                             </Grid.ColumnDefinitions>
-                            <dxan:AccordionViewExpander x:Name="PART_Expander"
+                            <dxai:AccordionViewExpander x:Name="PART_Expander"
                                                         ContentMinWidth="{Binding ActualWidth, ElementName=contentExpanderContainer}"
                                                         ItemMinWidth="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=RootItemHeaderHeight}}"
                                                         Style="{DynamicResource {dxat:AccordionThemeKeys ResourceKey=AccordionViewExpanderStyle}}">
@@ -106,7 +107,7 @@
                                                     Visibility="{TemplateBinding ActualShowHeader, Converter={dxmvvm:BooleanToVisibilityConverter}}"/>
                                     <dxa:HeaderPresenter x:Name="PART_HeaderPresenter" Style="{Binding Path=HeaderStyle, RelativeSource={RelativeSource TemplatedParent}}">
                                         <dxa:HeaderPresenter.Visibility>
-                                            <MultiBinding Converter="{dxan:ParametersToVisibilityConverter}">
+                                            <MultiBinding Converter="{dxai:ParametersToVisibilityConverter}">
                                                 <Binding Path="ActualShowHeader" RelativeSource="{RelativeSource TemplatedParent}"/>
                                                 <Binding Path="IsExpandedView" RelativeSource="{RelativeSource TemplatedParent}"/>
                                             </MultiBinding>
@@ -117,7 +118,7 @@
                                                                 NullText="{Binding Path=SearchControlNullText, RelativeSource={RelativeSource TemplatedParent}}"
                                                                 Style="{DynamicResource {dxat:AccordionThemeKeys ResourceKey=SearchControlStyle}}">
                                         <dxa:AccordionSearchControl.Visibility>
-                                            <MultiBinding Converter="{dxan:ParametersToVisibilityConverter}">
+                                            <MultiBinding Converter="{dxai:ParametersToVisibilityConverter}">
                                                 <Binding Path="ShowSearchControl" RelativeSource="{RelativeSource TemplatedParent}"/>
                                                 <Binding Path="IsExpandedView" RelativeSource="{RelativeSource TemplatedParent}"/>
                                             </MultiBinding>
@@ -154,7 +155,7 @@
                                             </dxe:ListBoxEdit.ItemTemplate>
                                             <dxe:ListBoxEdit.ItemsPanel>
                                                 <ItemsPanelTemplate>
-                                                    <dxan:CollapsedAccordionVirtualizingPanel Style="{DynamicResource {dxat:AccordionThemeKeys ResourceKey=CollapsedAccordionPanelStyle}}"/>
+                                                    <dxai:CollapsedAccordionVirtualizingPanel Style="{DynamicResource {dxat:AccordionThemeKeys ResourceKey=CollapsedAccordionPanelStyle}}"/>
                                                 </ItemsPanelTemplate>
                                             </dxe:ListBoxEdit.ItemsPanel>
                                         </dxe:ListBoxEdit>
@@ -176,14 +177,14 @@
                                                                   Style="{DynamicResource {dxat:AccordionThemeKeys ResourceKey=AccordionOverflowControlStyle}}"
                                                                   Template="{DynamicResource {dxat:AccordionThemeKeys ResourceKey=AccordionOverflowControlTemplate}}">
                                         <dxa:AccordionOverflowControl.Visibility>
-                                            <MultiBinding Converter="{dxan:OverflowControlVisibilityConverter}">
+                                            <MultiBinding Converter="{dxai:OverflowControlVisibilityConverter}">
                                                 <Binding Path="CompactNavigation" RelativeSource="{RelativeSource TemplatedParent}"/>
                                                 <Binding Path="ActualViewMode" RelativeSource="{RelativeSource TemplatedParent}"/>
                                             </MultiBinding>
                                         </dxa:AccordionOverflowControl.Visibility>
                                     </dxa:AccordionOverflowControl>
                                 </Grid>
-                            </dxan:AccordionViewExpander>
+                            </dxai:AccordionViewExpander>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -235,27 +236,37 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Accordion.AccordionView}" TargetType="{x:Type dxa:AccordionView}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Accordion.AccordionView}" TargetType="{x:Type dxa:AccordionView}">
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="dxa:AccordionView">
-                    <ScrollViewer x:Name="PART_ScrollViewer"
-                                  BorderThickness="0"
-                                  CanContentScroll="False"
-                                  Focusable="False">
-                        <dxmvvm:Interaction.Behaviors>
-                            <dxa:ItemsViewerMarginBehavior HeaderContainerMargin="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=ItemHeaderContainerMargin}}"
-                                                           IsSingleRootItemViewMode="{Binding Path=IsSingleRootItemViewMode,RelativeSource={RelativeSource TemplatedParent}}"
-                                                           RootItemDisplayMode="{Binding Path=Accordion.RootItemDisplayMode, RelativeSource={RelativeSource TemplatedParent}}"/>
-                        </dxmvvm:Interaction.Behaviors>
-                        <ItemsPresenter/>
-                    </ScrollViewer>
+                    <Grid>
+                        <ScrollViewer x:Name="PART_ScrollViewer"
+                                      BorderThickness="0"
+                                      CanContentScroll="False"
+                                      Focusable="False">
+                            <dxmvvm:Interaction.Behaviors>
+                                <dxa:ItemsViewerMarginBehavior HeaderContainerMargin="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=ItemHeaderContainerMargin}}"
+                                                               IsSingleRootItemViewMode="{Binding Path=IsSingleRootItemViewMode,RelativeSource={RelativeSource TemplatedParent}}"
+                                                               RootItemDisplayMode="{Binding Path=Accordion.RootItemDisplayMode, RelativeSource={RelativeSource TemplatedParent}}"/>
+                            </dxmvvm:Interaction.Behaviors>
+                            <ItemsPresenter/>
+                        </ScrollViewer>
+                        <ContentControl x:Name="PART_EmptySourceControl"
+                                        Template="{DynamicResource {dxat:AccordionThemeKeys ResourceKey=EmptySourceTemplate}}"
+                                        Visibility="Collapsed"/>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="VirtualizingStackPanel.IsVirtualizing" Value="true">
                             <Setter Property="CanContentScroll"
                                     TargetName="PART_ScrollViewer"
                                     Value="True"/>
+                        </Trigger>
+                        <Trigger Property="ShowEmptySourceTemplate" Value="True">
+                            <Setter Property="Visibility"
+                                    TargetName="PART_EmptySourceControl"
+                                    Value="Visible"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -266,7 +277,7 @@
                 <Setter Property="ItemsPanel">
                     <Setter.Value>
                         <ItemsPanelTemplate>
-                            <dxan:AccordionVirtualizingPanel/>
+                            <dxai:AccordionVirtualizingPanel/>
                         </ItemsPanelTemplate>
                     </Setter.Value>
                 </Setter>
@@ -274,7 +285,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxat:AccordionThemeKeys ResourceKey=CollapsedAccordionPanelStyleBase}" TargetType="dxan:CollapsedAccordionVirtualizingPanel">
+    <Style x:Key="{dxat:AccordionThemeKeys ResourceKey=CollapsedAccordionPanelStyleBase}" TargetType="dxai:CollapsedAccordionVirtualizingPanel">
         <Setter Property="MinWidth" Value="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=RootItemHeaderHeight}}"/>
         <Setter Property="MinHeight" Value="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=RootItemHeaderHeight}}"/>
         <Setter Property="StretchSingleChild" Value="True"/>
@@ -282,6 +293,6 @@
 
     <Style x:Key="{dxat:AccordionThemeKeys ResourceKey=CollapsedAccordionPanelStyle}"
            BasedOn="{StaticResource {dxat:AccordionThemeKeys ResourceKey=CollapsedAccordionPanelStyleBase}}"
-           TargetType="dxan:CollapsedAccordionVirtualizingPanel"/>
+           TargetType="dxai:CollapsedAccordionVirtualizingPanel"/>
 
 </ResourceDictionary>

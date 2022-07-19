@@ -3,9 +3,8 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dxdot="http://schemas.devexpress.com/winfx/2008/xaml/docking/themekeys"
                     xmlns:dxdove="http://schemas.devexpress.com/winfx/2008/xaml/docking/visualelements"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
-                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/docking/themekeys"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
@@ -96,9 +95,9 @@
         </Grid>
     </ControlTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.DropBoundsControl}" TargetType="{x:Type dxdove:DropBoundsControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.DropBoundsControl}" TargetType="{x:Type dxdove:DropBoundsControl}">
         <Setter Property="Template" Value="{DynamicResource {dxdot:DropBoundsControlElementsThemeKey ResourceKey=Template}}"/>
-        <Setter Property="Background" Value="{DynamicResource {dxt:BrushElementsThemeKey ResourceKey=MoveTargetBackground}}"/>
+        <Setter Property="Background" Value="{DynamicResource {dxdot:BrushElementsThemeKey ResourceKey=MoveTargetBackground}}"/>
         <Setter Property="CenterElementTemplate">
             <Setter.Value>
                 <DataTemplate>

@@ -1,13 +1,13 @@
 <ResourceDictionary mc:Ignorable="cs"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
-                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/charts/themekeys"
-                    xmlns:local="http://schemas.devexpress.com/winfx/2008/xaml/charts"
+                    xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts"
+                    xmlns:dxct="http://schemas.devexpress.com/winfx/2008/xaml/charts/themekeys"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style x:Key="axisScrollBarThumbBaseStyle" TargetType="local:AxisScrollBarThumb">
+    <Style x:Key="axisScrollBarThumbBaseStyle" TargetType="dxc:AxisScrollBarThumb">
         <Setter Property="Background"
                 Value="#FF1F3B53"
                 cs:id="Setter_0000"/>
@@ -35,7 +35,7 @@
         </Setter>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:AxisScrollBarThumb">
+                <ControlTemplate TargetType="dxc:AxisScrollBarThumb">
                     <Grid>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
@@ -168,23 +168,23 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.AxisScrollBarThumb}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.AxisScrollBarThumb}"
            BasedOn="{StaticResource axisScrollBarThumbBaseStyle}"
-           TargetType="local:AxisScrollBarThumb"/>
+           TargetType="dxc:AxisScrollBarThumb"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.AxisScrollBarThumbResizer}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.AxisScrollBarThumbResizer}"
            BasedOn="{StaticResource axisScrollBarThumbBaseStyle}"
-           TargetType="local:AxisScrollBarThumbResizer"/>
+           TargetType="dxc:AxisScrollBarThumbResizer"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.AxisScrollBar}" TargetType="local:AxisScrollBar">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.AxisScrollBar}" TargetType="dxc:AxisScrollBar">
         <Setter Property="IsTabStop" Value="False"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource {dxt:ChartBrushesThemeKey ResourceKey=AxisBrush}}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource {dxct:ChartBrushesThemeKey ResourceKey=AxisBrush}}"/>
         <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Template" Value="{DynamicResource {dxt:ChartControlThemeKey ResourceKey=AxisScrollBarTemplate}}"/>
+        <Setter Property="Template" Value="{DynamicResource {dxct:ChartControlThemeKey ResourceKey=AxisScrollBarTemplate}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.ScrollBarBorder}" TargetType="local:ScrollBarBorder">
-        <Setter Property="Brush" Value="{DynamicResource {dxt:ChartBrushesThemeKey ResourceKey=AxisBrush}}"/>
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.ScrollBarBorder}" TargetType="dxc:ScrollBarBorder">
+        <Setter Property="Brush" Value="{DynamicResource {dxct:ChartBrushesThemeKey ResourceKey=AxisBrush}}"/>
     </Style>
 
 </ResourceDictionary>

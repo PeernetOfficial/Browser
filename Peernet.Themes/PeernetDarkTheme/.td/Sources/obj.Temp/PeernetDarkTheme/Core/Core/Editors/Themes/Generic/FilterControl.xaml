@@ -1,11 +1,11 @@
-<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxec="clr-namespace:DevExpress.Xpf.Editors.Controls;assembly=DevExpress.Xpf.Core.v21.2" xmlns:dxef="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys" xmlns:dxtEx="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core">
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxec="clr-namespace:DevExpress.Xpf.Editors.Controls;assembly=DevExpress.Xpf.Core.v22.1" xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
 
     <DataTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=ClauseNodeTemplate}">
-        <dxef:FilterControlClauseNode SecondOperandsCount="{Binding SecondOperandsCount}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;16;10" />
+        <dxe:FilterControlClauseNode SecondOperandsCount="{Binding SecondOperandsCount}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;14;10" />
     </DataTemplate>
 
     <DataTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=GroupNodeTemplate}">
-        <dxef:FilterControlGroupNode dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;20;10" />
+        <dxe:FilterControlGroupNode dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;18;10" />
     </DataTemplate>
 
     <dxcore_unique_xmlns:BoolToVisibilityInverseConverter x:Key="BoolToVisibilityInverseConverter" />
@@ -14,62 +14,62 @@
 
     <dxcore_unique_xmlns:EmbeddedResourceImageConverter x:Key="EmbeddedResourceImageConverter" />
 
-    <dxef:CheckedUncheckedBoolToStringConverter x:Key="FilterControlBoolToStringConverter" />
+    <dxe:CheckedUncheckedBoolToStringConverter x:Key="FilterControlBoolToStringConverter" />
 
-    <dxef:FirstToCollapsedConverter x:Key="FilterControlFirstToCollapsedConverter" />
+    <dxe:FirstToCollapsedConverter x:Key="FilterControlFirstToCollapsedConverter" />
 
-    <dxef:AdditionalOperandsCountToVisibilityConverter x:Key="AdditionalOperandsCountToVisibilityConverter" />
+    <dxe:AdditionalOperandsCountToVisibilityConverter x:Key="AdditionalOperandsCountToVisibilityConverter" />
 
-    <dxef:OperatorPropertyNameConverter x:Key="OperatorPropertyNameConverter" />
+    <dxe:OperatorPropertyNameConverter x:Key="OperatorPropertyNameConverter" />
 
     <dxcore_unique_xmlns:EditorStringIdConverter x:Key="EditorStringIdConverter" />
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.Filtering.InplaceFilterEditor}" TargetType="{x:Type dxef:InplaceFilterEditor}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Generic\FilterControl.xaml;39;6" /><Setter Property="TextElement.Foreground" Value="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=InplaceFilterEditorForeground}}" />
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.Filtering.InplaceFilterEditor}" TargetType="{x:Type dxe:InplaceFilterEditor}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Generic\FilterControl.xaml;37;6" /><Setter Property="TextElement.Foreground" Value="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=InplaceFilterEditorForeground}}" />
     </Style>
 
     <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=OneElementsInSecondOperandTemplate}">
-        <dxef:FilterControlEditor EditMode="{Binding Path=Content.Content.EditMode, RelativeSource={RelativeSource Self}}" Index="0" Node="{Binding}" Operator="{Binding Path=AdditionalOperands[0]}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;44;10" />
+        <dxe:FilterControlEditor EditMode="{Binding Path=Content.Content.EditMode, RelativeSource={RelativeSource Self}}" Index="0" Node="{Binding}" Operator="{Binding Path=AdditionalOperands[0]}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;42;10" />
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=TwoElementsInSecondOperandTemplate}">
-        <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;51;10">
-            <dxef:FilterControlEditor EditMode="{Binding Path=Content.Content.EditMode, RelativeSource={RelativeSource Self}}" Index="0" Node="{Binding}" Operator="{Binding Path=AdditionalOperands[0]}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;52;14" />
-            <TextBlock Foreground="Green" Margin="0,3,3,3" Text="{Binding Source={x:Null}, ConverterParameter=FilterClauseBetweenAnd, Converter={StaticResource EditorStringIdConverter}}" VerticalAlignment="Center" cs:id="TextBlock_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;56;14" />
-            <dxef:FilterControlEditor EditMode="{Binding Path=Content.Content.EditMode, RelativeSource={RelativeSource Self}}" Index="1" Node="{Binding}" Operator="{Binding Path=AdditionalOperands[1]}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;61;14" />
+        <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;49;10">
+            <dxe:FilterControlEditor EditMode="{Binding Path=Content.Content.EditMode, RelativeSource={RelativeSource Self}}" Index="0" Node="{Binding}" Operator="{Binding Path=AdditionalOperands[0]}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;50;14" />
+            <TextBlock Foreground="Green" Margin="0,3,3,3" Text="{Binding Source={x:Null}, ConverterParameter=FilterClauseBetweenAnd, Converter={StaticResource EditorStringIdConverter}}" VerticalAlignment="Center" cs:id="TextBlock_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;54;14" />
+            <dxe:FilterControlEditor EditMode="{Binding Path=Content.Content.EditMode, RelativeSource={RelativeSource Self}}" Index="1" Node="{Binding}" Operator="{Binding Path=AdditionalOperands[1]}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;59;14" />
         </StackPanel>
     </ControlTemplate>
 
     <DataTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=SomeValuesTemplate}">
-        <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;69;10">
-            <TextBlock x:Name="TextBlock" Margin="-3,3,3,3" Text="," VerticalAlignment="Center" Visibility="{Binding Path=(dxc:PositionStackPanel.Position), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource FilterControlFirstToCollapsedConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;70;14" />
-            <dxef:FilterControlEditor EditMode="{Binding Path=Content.Content.EditMode, RelativeSource={RelativeSource Self}}" Index="{Binding Path=(dxc:PositionStackPanel.Index), RelativeSource={RelativeSource TemplatedParent}}" Node="{Binding Path=Tag, RelativeSource={RelativeSource TemplatedParent}}" Operator="{Binding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;75;14" />
+        <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;67;10">
+            <TextBlock x:Name="TextBlock" Margin="-3,3,3,3" Text="," VerticalAlignment="Center" Visibility="{Binding Path=(dx:PositionStackPanel.Position), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource FilterControlFirstToCollapsedConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;68;14" />
+            <dxe:FilterControlEditor EditMode="{Binding Path=Content.Content.EditMode, RelativeSource={RelativeSource Self}}" Index="{Binding Path=(dx:PositionStackPanel.Index), RelativeSource={RelativeSource TemplatedParent}}" Node="{Binding Path=Tag, RelativeSource={RelativeSource TemplatedParent}}" Operator="{Binding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;73;14" />
         </StackPanel>
     </DataTemplate>
 
     <ItemsPanelTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=SeveralElementsItemPanelTemplate}">
-        <dxcore_unique_xmlns:PositionStackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;83;10" />
+        <dxcore_unique_xmlns:PositionStackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;81;10" />
     </ItemsPanelTemplate>
 
     <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=FieldInOperationButtonTemplate}" TargetType="{x:Type ContentControl}">
-        <dxcore_unique_xmlns:XPFContentControl x:Name="ColumnButton" Content="{Binding ColumnCaption, RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{Binding Path=ContentTemplate, RelativeSource={RelativeSource TemplatedParent}}" ContentTemplateSelector="{Binding Path=ContentTemplateSelector, RelativeSource={RelativeSource TemplatedParent}}" Cursor="Hand" Foreground="Blue" Margin="0,2,3,2" VerticalAlignment="Center" cs:id="XPFContentControl_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;87;10" />
+        <dxcore_unique_xmlns:XPFContentControl x:Name="ColumnButton" Content="{Binding ColumnCaption, RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{Binding Path=ContentTemplate, RelativeSource={RelativeSource TemplatedParent}}" ContentTemplateSelector="{Binding Path=ContentTemplateSelector, RelativeSource={RelativeSource TemplatedParent}}" Cursor="Hand" Foreground="Blue" Margin="0,2,3,2" VerticalAlignment="Center" cs:id="XPFContentControl_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;85;10" />
     </ControlTemplate>
 
     <Style x:Key="{dxet:FilterControlThemeKey ResourceKey=InactiveTextBlockStyle}" TargetType="{x:Type TextBlock}">
         
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Generic\FilterControl.xaml;98;6" /><Setter Property="Margin" Value="0,2,0,2" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Generic\FilterControl.xaml;96;6" /><Setter Property="Margin" Value="0,2,0,2" />
         
     </Style>
 
     <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=AddButtonTemplate}">
-        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;105;10">
-            <Grid Height="11" HorizontalAlignment="Center" Margin="0,3,0,2" VerticalAlignment="Center" Width="11" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;108;14">
-                <Image Source="{Binding Source=DevExpress.Xpf.Core.Editors.Images.FilterControl.add-normal.png, Converter={StaticResource EmbeddedResourceImageConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;113;18" />
-                <Image Source="{Binding Source=DevExpress.Xpf.Core.Editors.Images.FilterControl.add.png, Converter={StaticResource EmbeddedResourceImageConverter}}" Visibility="{Binding IsMouseOver, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;114;18" />
+        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;103;10">
+            <Grid Height="11" HorizontalAlignment="Center" Margin="0,3,0,2" VerticalAlignment="Center" Width="11" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;106;14">
+                <Image Source="{Binding Source=DevExpress.Xpf.Core.Editors.Images.FilterControl.add-normal.png, Converter={StaticResource EmbeddedResourceImageConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;111;18" />
+                <Image Source="{Binding Source=DevExpress.Xpf.Core.Editors.Images.FilterControl.add.png, Converter={StaticResource EmbeddedResourceImageConverter}}" Visibility="{Binding IsMouseOver, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;112;18" />
             </Grid>
         </Grid>
         <ControlTemplate.Triggers>
-            <Trigger Property="dxc:ThemeManager.IsTouchEnabled" Value="True">
+            <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                 <Setter Property="MinWidth" TargetName="Root" Value="44" />
                 <Setter Property="MinHeight" TargetName="Root" Value="44" />
             </Trigger>
@@ -77,14 +77,14 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=GroupCommandsButtonTemplate}">
-        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;130;10">
-            <Grid Height="11" HorizontalAlignment="Center" Margin="0,3,0,2" VerticalAlignment="Center" Width="11" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;133;14">
-                <Image Source="{Binding Source=DevExpress.Xpf.Core.Editors.Images.FilterControl.ellipse-normal.png, Converter={StaticResource EmbeddedResourceImageConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;138;18" />
-                <Image Source="{Binding Source=DevExpress.Xpf.Core.Editors.Images.FilterControl.ellipse.png, Converter={StaticResource EmbeddedResourceImageConverter}}" Visibility="{Binding IsMouseOver, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;139;18" />
+        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;128;10">
+            <Grid Height="11" HorizontalAlignment="Center" Margin="0,3,0,2" VerticalAlignment="Center" Width="11" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;131;14">
+                <Image Source="{Binding Source=DevExpress.Xpf.Core.Editors.Images.FilterControl.ellipse-normal.png, Converter={StaticResource EmbeddedResourceImageConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;136;18" />
+                <Image Source="{Binding Source=DevExpress.Xpf.Core.Editors.Images.FilterControl.ellipse.png, Converter={StaticResource EmbeddedResourceImageConverter}}" Visibility="{Binding IsMouseOver, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;137;18" />
             </Grid>
         </Grid>
         <ControlTemplate.Triggers>
-            <Trigger Property="dxc:ThemeManager.IsTouchEnabled" Value="True">
+            <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                 <Setter Property="MinWidth" TargetName="Root" Value="44" />
                 <Setter Property="MinHeight" TargetName="Root" Value="44" />
             </Trigger>
@@ -92,14 +92,14 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=DeleteNodeButtonTemplate}">
-        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;155;10">
-            <Grid Height="11" HorizontalAlignment="Center" Margin="0,3,0,2" VerticalAlignment="Center" Width="11" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;158;14">
-                <Image Source="{Binding Source=DevExpress.Xpf.Core.Editors.Images.FilterControl.delete-normal.png, Converter={StaticResource EmbeddedResourceImageConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;163;18" />
-                <Image Source="{Binding Source=DevExpress.Xpf.Core.Editors.Images.FilterControl.delete.png, Converter={StaticResource EmbeddedResourceImageConverter}}" Visibility="{Binding IsMouseOver, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;164;18" />
+        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;153;10">
+            <Grid Height="11" HorizontalAlignment="Center" Margin="0,3,0,2" VerticalAlignment="Center" Width="11" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;156;14">
+                <Image Source="{Binding Source=DevExpress.Xpf.Core.Editors.Images.FilterControl.delete-normal.png, Converter={StaticResource EmbeddedResourceImageConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;161;18" />
+                <Image Source="{Binding Source=DevExpress.Xpf.Core.Editors.Images.FilterControl.delete.png, Converter={StaticResource EmbeddedResourceImageConverter}}" Visibility="{Binding IsMouseOver, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;162;18" />
             </Grid>
         </Grid>
         <ControlTemplate.Triggers>
-            <Trigger Property="dxc:ThemeManager.IsTouchEnabled" Value="True">
+            <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                 <Setter Property="MinWidth" TargetName="Root" Value="44" />
                 <Setter Property="MinHeight" TargetName="Root" Value="44" />
             </Trigger>
@@ -107,20 +107,20 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=ChangeOperandTypeButtonTemplate}" TargetType="{x:Type ToggleButton}">
-        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;180;10">
-            <Grid Height="11" HorizontalAlignment="Center" Margin="0,3,0,2" VerticalAlignment="Center" Width="11" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;183;14">
-                <Grid Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityInverseConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;188;18">
-                    <Image Source="{Binding Source=DevExpress.Xpf.Core.Editors.Images.FilterControl.edit-normal.png, Converter={StaticResource EmbeddedResourceImageConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;189;22" />
-                    <Image Source="{Binding Source=DevExpress.Xpf.Core.Editors.Images.FilterControl.edit.png, Converter={StaticResource EmbeddedResourceImageConverter}}" Visibility="{Binding IsMouseOver, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;190;22" />
+        <Grid x:Name="Root" Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;178;10">
+            <Grid Height="11" HorizontalAlignment="Center" Margin="0,3,0,2" VerticalAlignment="Center" Width="11" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;181;14">
+                <Grid Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityInverseConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;186;18">
+                    <Image Source="{Binding Source=DevExpress.Xpf.Core.Editors.Images.FilterControl.edit-normal.png, Converter={StaticResource EmbeddedResourceImageConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;187;22" />
+                    <Image Source="{Binding Source=DevExpress.Xpf.Core.Editors.Images.FilterControl.edit.png, Converter={StaticResource EmbeddedResourceImageConverter}}" Visibility="{Binding IsMouseOver, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;188;22" />
                 </Grid>
-                <Grid Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;192;18">
-                    <Image Source="{Binding Source=DevExpress.Xpf.Core.Editors.Images.FilterControl.list-normal.png, Converter={StaticResource EmbeddedResourceImageConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;193;22" />
-                    <Image Source="{Binding Source=DevExpress.Xpf.Core.Editors.Images.FilterControl.list.png, Converter={StaticResource EmbeddedResourceImageConverter}}" Visibility="{Binding IsMouseOver, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;194;22" />
+                <Grid Visibility="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;190;18">
+                    <Image Source="{Binding Source=DevExpress.Xpf.Core.Editors.Images.FilterControl.list-normal.png, Converter={StaticResource EmbeddedResourceImageConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;191;22" />
+                    <Image Source="{Binding Source=DevExpress.Xpf.Core.Editors.Images.FilterControl.list.png, Converter={StaticResource EmbeddedResourceImageConverter}}" Visibility="{Binding IsMouseOver, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;192;22" />
                 </Grid>
             </Grid>
         </Grid>
         <ControlTemplate.Triggers>
-            <Trigger Property="dxc:ThemeManager.IsTouchEnabled" Value="True">
+            <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                 <Setter Property="MinWidth" TargetName="Root" Value="44" />
                 <Setter Property="MinHeight" TargetName="Root" Value="44" />
             </Trigger>
@@ -128,28 +128,28 @@
     </ControlTemplate>
 
     <Style x:Key="{dxet:FilterControlThemeKey ResourceKey=FocusVisualStyle}" TargetType="Control">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Generic\FilterControl.xaml;210;6" /><Setter Property="Template">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Generic\FilterControl.xaml;208;6" /><Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Control">
-                    <Rectangle Margin="-1" Stroke="Black" StrokeDashArray="1 2" StrokeThickness="1" cs:id="Rectangle_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;214;22" />
+                    <Rectangle Margin="-1" Stroke="Black" StrokeDashArray="1 2" StrokeThickness="1" cs:id="Rectangle_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;212;22" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
     <DataTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=ItemsControlItemTemplate}">
-        <dxec:ContentControlSelector Content="{Binding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;225;10">
+        <dxec:ContentControlSelector Content="{Binding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;223;10">
             <dxec:ContentControlSelector.Resources>
                 <DataTemplate x:Key="ClauseNode">
-                    <ContentPresenter Content="{Binding}" ContentTemplate="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=ClauseNodeTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;228;22" />
+                    <ContentPresenter Content="{Binding}" ContentTemplate="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=ClauseNodeTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;226;22" />
                 </DataTemplate>
                 <DataTemplate x:Key="GroupNode">
-                    <ContentControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;231;22">
-                        <StackPanel dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;232;26">
-                            <ContentPresenter Content="{Binding}" ContentTemplate="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=GroupNodeTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;233;30" />
-                            <StackPanel Margin="16,0,0,0" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;234;30">
-                                <ContentControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;235;34">
-                                    <ItemsControl ItemsSource="{Binding Path=SubNodes}" ItemTemplate="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=ItemsControlItemTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;236;38" />
+                    <ContentControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;229;22">
+                        <StackPanel dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;230;26">
+                            <ContentPresenter Content="{Binding}" ContentTemplate="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=GroupNodeTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;231;30" />
+                            <StackPanel Margin="16,0,0,0" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;232;30">
+                                <ContentControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;233;34">
+                                    <ItemsControl ItemsSource="{Binding Path=SubNodes}" ItemTemplate="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=ItemsControlItemTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;234;38" />
                                 </ContentControl>
                             </StackPanel>
                         </StackPanel>
@@ -160,21 +160,21 @@
     </DataTemplate>
 
     <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=FilterControlGroupNodeTemplate}">
-        <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;247;10">
-            <ContentControl x:Name="PART_TypeControl" Cursor="Hand" Margin="0,3,3,3" Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=FilterControlGroupTypeButtonTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;248;14" />
-            <Button x:Name="PART_GroupCommandsButton" Command="{Binding PressCommandButtonCommand, RelativeSource={RelativeSource TemplatedParent}}" Cursor="Hand" dxcore_unique_xmlns:FocusHelper2.Focusable="False" Margin="0,3,3,3" Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=GroupCommandsButtonTemplate}}" VerticalAlignment="Center" Visibility="{Binding Path=Owner.ShowGroupCommandsIcon, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;252;14">
+        <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;245;10">
+            <ContentControl x:Name="PART_TypeControl" Cursor="Hand" Margin="0,3,3,3" Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=FilterControlGroupTypeButtonTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;246;14" />
+            <Button x:Name="PART_GroupCommandsButton" Command="{Binding PressCommandButtonCommand, RelativeSource={RelativeSource TemplatedParent}}" Cursor="Hand" dxcore_unique_xmlns:FocusHelper2.Focusable="False" Margin="0,3,3,3" Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=GroupCommandsButtonTemplate}}" VerticalAlignment="Center" Visibility="{Binding Path=Owner.ShowGroupCommandsIcon, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;250;14">
                 <ToolTipService.ToolTip>
-                    <ToolTip Visibility="{Binding Owner.ShowToolTips, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;261;22">
-                        <TextBlock Text="{Binding Source={x:Null}, ConverterParameter=FilterToolTipNodeAction, Converter={StaticResource EditorStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;262;26" />
+                    <ToolTip Visibility="{Binding Owner.ShowToolTips, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;259;22">
+                        <TextBlock Text="{Binding Source={x:Null}, ConverterParameter=FilterToolTipNodeAction, Converter={StaticResource EditorStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;260;26" />
                     </ToolTip>
                 </ToolTipService.ToolTip>
             </Button>
-            <Button x:Name="PART_AddButton" Cursor="Hand" dxcore_unique_xmlns:FocusHelper2.Focusable="False" Margin="0,3,3,3" Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=AddButtonTemplate}}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;266;14">
+            <Button x:Name="PART_AddButton" Cursor="Hand" dxcore_unique_xmlns:FocusHelper2.Focusable="False" Margin="0,3,3,3" Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=AddButtonTemplate}}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;264;14">
                 <ToolTipService.ToolTip>
-                    <ToolTip Visibility="{Binding Owner.ShowToolTips, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;273;22">
-                        <StackPanel Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;274;26">
-                            <TextBlock FontWeight="Bold" Margin="0,0,0,4" Text="{Binding Source={x:Null}, ConverterParameter=FilterToolTipKeysAdd, Converter={StaticResource EditorStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;275;30" />
-                            <TextBlock Text="{Binding Source={x:Null}, ConverterParameter=FilterToolTipNodeAdd, Converter={StaticResource EditorStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;278;30" />
+                    <ToolTip Visibility="{Binding Owner.ShowToolTips, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;271;22">
+                        <StackPanel Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;272;26">
+                            <TextBlock FontWeight="Bold" Margin="0,0,0,4" Text="{Binding Source={x:Null}, ConverterParameter=FilterToolTipKeysAdd, Converter={StaticResource EditorStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;273;30" />
+                            <TextBlock Text="{Binding Source={x:Null}, ConverterParameter=FilterToolTipNodeAdd, Converter={StaticResource EditorStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;276;30" />
                         </StackPanel>
                     </ToolTip>
                 </ToolTipService.ToolTip>
@@ -183,16 +183,16 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=SeveralElementsInSecondOperandTemplate}">
-        <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;287;10">
-            <TextBlock Margin="0,3,0,3" Text="(" VerticalAlignment="Center" Visibility="{Binding Path=AdditionalOperands.Count, Converter={StaticResource AdditionalOperandsCountToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;288;14" />
-            <dxef:AdditionalOperandsItemsControl ItemsPanel="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=SeveralElementsItemPanelTemplate}}" ItemsSource="{Binding Path=AdditionalOperands}" ItemTemplate="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=SomeValuesTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;292;14" />
-            <TextBlock Margin="-3,3,3,3" Text=")" VerticalAlignment="Center" Visibility="{Binding Path=AdditionalOperands.Count, Converter={StaticResource AdditionalOperandsCountToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;295;14" />
-            <Button x:Name="PART_AddNewOperandButton" Command="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}" Cursor="Hand" dxcore_unique_xmlns:FocusHelper2.Focusable="False" Margin="0,3,3,3" Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=AddButtonTemplate}}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;299;14">
+        <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;285;10">
+            <TextBlock Margin="0,3,0,3" Text="(" VerticalAlignment="Center" Visibility="{Binding Path=AdditionalOperands.Count, Converter={StaticResource AdditionalOperandsCountToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;286;14" />
+            <dxe:AdditionalOperandsItemsControl ItemsPanel="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=SeveralElementsItemPanelTemplate}}" ItemsSource="{Binding Path=AdditionalOperands}" ItemTemplate="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=SomeValuesTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;290;14" />
+            <TextBlock Margin="-3,3,3,3" Text=")" VerticalAlignment="Center" Visibility="{Binding Path=AdditionalOperands.Count, Converter={StaticResource AdditionalOperandsCountToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;293;14" />
+            <Button x:Name="PART_AddNewOperandButton" Command="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}" Cursor="Hand" dxcore_unique_xmlns:FocusHelper2.Focusable="False" Margin="0,3,3,3" Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=AddButtonTemplate}}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;297;14">
                 <ToolTipService.ToolTip>
-                    <ToolTip Visibility="{Binding Owner.ShowToolTips, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;307;22">
-                        <StackPanel Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;308;26">
-                            <TextBlock FontWeight="Bold" Margin="0,0,0,4" Text="{Binding Source={x:Null}, ConverterParameter=FilterToolTipKeysAdd, Converter={StaticResource EditorStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;309;30" />
-                            <TextBlock Text="{Binding Source={x:Null}, ConverterParameter=FilterToolTipElementAdd, Converter={StaticResource EditorStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;312;30" />
+                    <ToolTip Visibility="{Binding Owner.ShowToolTips, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;305;22">
+                        <StackPanel Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;306;26">
+                            <TextBlock FontWeight="Bold" Margin="0,0,0,4" Text="{Binding Source={x:Null}, ConverterParameter=FilterToolTipKeysAdd, Converter={StaticResource EditorStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;307;30" />
+                            <TextBlock Text="{Binding Source={x:Null}, ConverterParameter=FilterToolTipElementAdd, Converter={StaticResource EditorStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;310;30" />
                         </StackPanel>
                     </ToolTip>
                 </ToolTipService.ToolTip>
@@ -201,16 +201,16 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=FilterControlClauseNodeTemplate}">
-        <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;321;10">
-            <ContentControl x:Name="PART_FirstOperand" Cursor="Hand" Margin="0,1,3,1" Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=FilterControlFirstOperandButtonTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;322;14" />
-            <ContentControl x:Name="PART_Operation" Cursor="Hand" Margin="0,1,3,1" Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=FilterControlClauseOperationButtonTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;326;14" />
-            <ContentControl x:Name="SecondOperandsControl" Tag="{Binding AddOperandNodeCommand, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;330;14" />
-            <Button x:Name="PART_Delete" Cursor="Hand" dxcore_unique_xmlns:FocusHelper2.Focusable="False" Margin="0,3,0,3" Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=DeleteNodeButtonTemplate}}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;331;14">
+        <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;319;10">
+            <ContentControl x:Name="PART_FirstOperand" Cursor="Hand" Margin="0,1,3,1" Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=FilterControlFirstOperandButtonTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;320;14" />
+            <ContentControl x:Name="PART_Operation" Cursor="Hand" Margin="0,1,3,1" Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=FilterControlClauseOperationButtonTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;324;14" />
+            <ContentControl x:Name="SecondOperandsControl" Tag="{Binding AddOperandNodeCommand, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;328;14" />
+            <Button x:Name="PART_Delete" Cursor="Hand" dxcore_unique_xmlns:FocusHelper2.Focusable="False" Margin="0,3,0,3" Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=DeleteNodeButtonTemplate}}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;329;14">
                 <ToolTipService.ToolTip>
-                    <ToolTip Visibility="{Binding Owner.ShowToolTips, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;338;22">
-                        <StackPanel Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;339;26">
-                            <TextBlock FontWeight="Bold" Margin="0,0,0,4" Text="{Binding Source={x:Null}, ConverterParameter=FilterToolTipKeysRemove, Converter={StaticResource EditorStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;340;30" />
-                            <TextBlock Text="{Binding Source={x:Null}, ConverterParameter=FilterToolTipNodeRemove, Converter={StaticResource EditorStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;343;30" />
+                    <ToolTip Visibility="{Binding Owner.ShowToolTips, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;336;22">
+                        <StackPanel Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;337;26">
+                            <TextBlock FontWeight="Bold" Margin="0,0,0,4" Text="{Binding Source={x:Null}, ConverterParameter=FilterToolTipKeysRemove, Converter={StaticResource EditorStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;338;30" />
+                            <TextBlock Text="{Binding Source={x:Null}, ConverterParameter=FilterToolTipNodeRemove, Converter={StaticResource EditorStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;341;30" />
                         </StackPanel>
                     </ToolTip>
                 </ToolTipService.ToolTip>
@@ -218,8 +218,8 @@
         </StackPanel>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=FilterControlEditorTemplate}" TargetType="{x:Type dxef:FilterControlEditor}">
-        <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;352;10">
+    <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=FilterControlEditorTemplate}" TargetType="{x:Type dxe:FilterControlEditor}">
+        <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;350;10">
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup x:Name="EditModeStates">
                     <VisualState x:Name="InplaceActive">
@@ -250,22 +250,22 @@
                     </VisualState>
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <dxef:FieldInOperationButtonControl x:Name="PART_Column" Margin="0,1,0,1" Node="{Binding Node, RelativeSource={RelativeSource TemplatedParent}}" OperatorPropertyName="{Binding Path=Operator, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource OperatorPropertyNameConverter}}" Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=FieldInOperationButtonTemplate}}" Visibility="{Binding Path=FieldInValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;403;14" />
-            <dx:DXBorder Name="PART_Stroke_Border" CornerRadius="2" Margin="0,0,3,0" Padding="1" Visibility="{Binding Path=FieldInValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityInverseConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;409;14">
+            <dxe:FieldInOperationButtonControl x:Name="PART_Column" Margin="0,1,0,1" Node="{Binding Node, RelativeSource={RelativeSource TemplatedParent}}" OperatorPropertyName="{Binding Path=Operator, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource OperatorPropertyNameConverter}}" Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=FieldInOperationButtonTemplate}}" Visibility="{Binding Path=FieldInValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;401;14" />
+            <dx:DXBorder Name="PART_Stroke_Border" CornerRadius="2" Margin="0,0,3,0" Padding="1" Visibility="{Binding Path=FieldInValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityInverseConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;407;14">
                 <dx:DXBorder.Background>
                     <SolidColorBrush x:Name="stroke_border_brush" />
                 </dx:DXBorder.Background>
-                <dx:DXBorder Name="border" CornerRadius="1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;417;18">
+                <dx:DXBorder Name="border" CornerRadius="1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;415;18">
                     <dx:DXBorder.Background>
                         <SolidColorBrush x:Name="border_brush" />
                     </dx:DXBorder.Background>
-                    <ContentPresenter Name="PART_EditorPresenter" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;421;22" />
+                    <ContentPresenter Name="PART_EditorPresenter" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;419;22" />
                 </dx:DXBorder>
             </dx:DXBorder>
-            <ToggleButton x:Name="PART_ChangeOperandTypeButton" Command="{Binding ChangeOperandTypeCommand, RelativeSource={RelativeSource TemplatedParent}}" Cursor="Hand" dxcore_unique_xmlns:FocusHelper2.Focusable="False" IsChecked="{Binding Path=FieldInValue, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" Margin="0,0,3,0" Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=ChangeOperandTypeButtonTemplate}}" VerticalAlignment="Center" Visibility="{Binding Path=Node.Owner.ShowOperandTypeIcon, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;424;14">
+            <ToggleButton x:Name="PART_ChangeOperandTypeButton" Command="{Binding ChangeOperandTypeCommand, RelativeSource={RelativeSource TemplatedParent}}" Cursor="Hand" dxcore_unique_xmlns:FocusHelper2.Focusable="False" IsChecked="{Binding Path=FieldInValue, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" Margin="0,0,3,0" Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=ChangeOperandTypeButtonTemplate}}" VerticalAlignment="Center" Visibility="{Binding Path=Node.Owner.ShowOperandTypeIcon, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;422;14">
                 <ToolTipService.ToolTip>
-                    <ToolTip Visibility="{Binding Node.Owner.ShowToolTips, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;434;22">
-                        <TextBlock Text="{Binding Source={x:Null}, ConverterParameter=FilterToolTipValueType, Converter={StaticResource EditorStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;435;26" />
+                    <ToolTip Visibility="{Binding Node.Owner.ShowToolTips, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;432;22">
+                        <TextBlock Text="{Binding Source={x:Null}, ConverterParameter=FilterToolTipValueType, Converter={StaticResource EditorStringIdConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;433;26" />
                     </ToolTip>
                 </ToolTipService.ToolTip>
             </ToggleButton>
@@ -273,19 +273,19 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=EmptyValueTemplate}">
-        <TextBlock Foreground="Gray" Style="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=InactiveTextBlockStyle}}" Text="{Binding Source={x:Null}, ConverterParameter=FilterEmptyValueText, Converter={StaticResource EditorStringIdConverter}}" VerticalAlignment="Center" cs:id="TextBlock_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;443;10" />
+        <TextBlock Foreground="Gray" Style="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=InactiveTextBlockStyle}}" Text="{Binding Source={x:Null}, ConverterParameter=FilterEmptyValueText, Converter={StaticResource EditorStringIdConverter}}" VerticalAlignment="Center" cs:id="TextBlock_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;441;10" />
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=EmptyStringTemplate}">
-        <TextBlock Style="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=InactiveTextBlockStyle}}" Text="''" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;451;10" />
+        <TextBlock Style="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=InactiveTextBlockStyle}}" Text="''" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;449;10" />
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=ValueTemplate}">
-        <TextBlock x:Name="PART_Editor" Style="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=InactiveTextBlockStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;457;10" />
+        <TextBlock x:Name="PART_Editor" Style="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=InactiveTextBlockStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;455;10" />
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=BooleanValueTemplate}">
-        <TextBlock Style="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=InactiveTextBlockStyle}}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;461;10">
+        <TextBlock Style="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=InactiveTextBlockStyle}}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;459;10">
             <TextBlock.Text>
                 
                 <Binding Converter="{StaticResource FilterControlBoolToStringConverter}" Path="Value" />
@@ -296,21 +296,21 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=FilterControlTemplate}">
-        <dxef:FilterControlBarManager dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;474;10">
-            <dxef:FilterControlBarManager.Resources>
-                <dxef:GroupFilterControlNodeToListConverter x:Key="itemsSourceConverter" />
-            </dxef:FilterControlBarManager.Resources>
-            <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;478;14">
-                <ContentControl SnapsToDevicePixels="True" Tag="{Binding Path=ShowBorder, RelativeSource={RelativeSource TemplatedParent}}" Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=FilterControlBorderTemplate}}" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;479;18">
-                    <ScrollViewer BorderThickness="0" dxcore_unique_xmlns:FocusHelper2.Focusable="False" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;483;22">
-                        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;487;26">
-                            <ItemsControl x:Name="PART_ItemsControl" dxcore_unique_xmlns:FocusHelper2.Focusable="False" ItemsSource="{Binding Path=RootNode, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource itemsSourceConverter}}" ItemTemplate="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=ItemsControlItemTemplate}}" Margin="6,2,6,6" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;488;30" />
-                            <Canvas x:Name="PART_FocusVisualContainer" Focusable="False" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;493;30" />
+        <dxe:FilterControlBarManager dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;472;10">
+            <dxe:FilterControlBarManager.Resources>
+                <dxe:GroupFilterControlNodeToListConverter x:Key="itemsSourceConverter" />
+            </dxe:FilterControlBarManager.Resources>
+            <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;476;14">
+                <ContentControl SnapsToDevicePixels="True" Tag="{Binding Path=ShowBorder, RelativeSource={RelativeSource TemplatedParent}}" Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=FilterControlBorderTemplate}}" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;477;18">
+                    <ScrollViewer BorderThickness="0" dxcore_unique_xmlns:FocusHelper2.Focusable="False" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;481;22">
+                        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;485;26">
+                            <ItemsControl x:Name="PART_ItemsControl" dxcore_unique_xmlns:FocusHelper2.Focusable="False" ItemsSource="{Binding Path=RootNode, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource itemsSourceConverter}}" ItemTemplate="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=ItemsControlItemTemplate}}" Margin="6,2,6,6" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;486;30" />
+                            <Canvas x:Name="PART_FocusVisualContainer" Focusable="False" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\FilterControl.xaml;491;30" />
                         </Grid>
                     </ScrollViewer>
                 </ContentControl>
             </Grid>
-        </dxef:FilterControlBarManager>
+        </dxe:FilterControlBarManager>
     </ControlTemplate>
 
 </ResourceDictionary>

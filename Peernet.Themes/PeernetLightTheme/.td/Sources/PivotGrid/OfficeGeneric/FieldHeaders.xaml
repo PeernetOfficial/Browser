@@ -3,11 +3,11 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxcn="clr-namespace:DevExpress.Xpf.Core.Native;assembly=DevExpress.Xpf.Core.v21.2"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dxcn="clr-namespace:DevExpress.Xpf.Core.Native;assembly=DevExpress.Xpf.Core.v22.1"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxpg="http://schemas.devexpress.com/winfx/2008/xaml/pivotgrid"
                     xmlns:dxpgi="http://schemas.devexpress.com/winfx/2008/xaml/pivotgrid/internal"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
@@ -143,14 +143,14 @@
         <Setter Property="ToolTipService.ToolTip" Value="{Binding DisplayText, RelativeSource={RelativeSource Self}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.PivotGrid.Internal.InnerGroupHeader}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.PivotGrid.Internal.InnerGroupHeader}"
            BasedOn="{StaticResource PivotHeaderBaseStyle}"
            TargetType="{x:Type dxpgi:InnerGroupHeader}">
         <Setter Property="Padding" Value="{Binding Path=HeaderPosition, Converter={StaticResource groupedHeaderPositionToPaddingConverter}, RelativeSource={RelativeSource Self}}"/>
         <Setter Property="Template" Value="{DynamicResource {dxpgi:FieldHeaderThemeKey ResourceKey=InnerGroupHeaderTemplate}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.PivotGrid.Internal.FieldHeader}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.PivotGrid.Internal.FieldHeader}"
            BasedOn="{StaticResource PivotHeaderBaseStyle}"
            TargetType="{x:Type dxpgi:FieldHeader}">
         <Setter Property="Padding">
@@ -164,11 +164,11 @@
         <Setter Property="Template" Value="{DynamicResource {dxpgi:FieldHeaderThemeKey ResourceKey=FieldHeaderTemplate}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.PivotGrid.Internal.GroupHeader}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.PivotGrid.Internal.GroupHeader}"
            BasedOn="{StaticResource PivotGroupHeaderBaseStyle}"
            TargetType="{x:Type dxpgi:GroupHeader}"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.PivotGrid.Internal.DragGroupHeader}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.PivotGrid.Internal.DragGroupHeader}"
            BasedOn="{StaticResource PivotGroupHeaderBaseStyle}"
            TargetType="{x:Type dxpgi:DragGroupHeader}">
         <Setter Property="Opacity" Value="0.5"/>
@@ -177,7 +177,7 @@
         <Setter Property="ToolTipService.ToolTip" Value="{x:Null}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.PivotGrid.Internal.DragFieldHeader}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.PivotGrid.Internal.DragFieldHeader}"
            BasedOn="{StaticResource PivotHeaderBaseStyle}"
            TargetType="{x:Type dxpgi:DragFieldHeader}">
         <Setter Property="Padding" Value="0"/>
@@ -188,7 +188,7 @@
         <Setter Property="BestFitWCorrection" Value="7"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.PivotGrid.Internal.DragInnerGroupHeader}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.PivotGrid.Internal.DragInnerGroupHeader}"
            BasedOn="{StaticResource PivotHeaderBaseStyle}"
            TargetType="{x:Type dxpgi:DragInnerGroupHeader}">
         <Setter Property="Padding" Value="0"/>

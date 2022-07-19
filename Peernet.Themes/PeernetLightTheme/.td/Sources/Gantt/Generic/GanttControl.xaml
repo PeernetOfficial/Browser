@@ -2,8 +2,7 @@
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
-                    xmlns:dxg="clr-namespace:DevExpress.Xpf.Grid;assembly=DevExpress.Xpf.Grid.v21.2"
+                    xmlns:dxg="clr-namespace:DevExpress.Xpf.Grid;assembly=DevExpress.Xpf.Grid.v22.1"
                     xmlns:dxgn="http://schemas.devexpress.com/winfx/2008/xaml/gantt"
                     xmlns:dxgni="http://schemas.devexpress.com/winfx/2008/xaml/gantt/internal"
                     xmlns:dxgnt="http://schemas.devexpress.com/winfx/2008/xaml/gantt/themekeys"
@@ -17,7 +16,7 @@
         <dxt:ResourceDictionaryEx Source="{dx:DynamicThemeResource DefaultGridViewStyles.xaml, ResourcePath=Themes, ResourcePathInTheme='Grid', TypeInTargetAssembly={x:Type dxg:TreeListControlBase}, UseGeneric=True}"/>
     </ResourceDictionary.MergedDictionaries>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gantt.GanttControl}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gantt.GanttControl}"
            BasedOn="{StaticResource DataControlBaseStyle}"
            TargetType="{x:Type dxgn:GanttControl}"/>
 
@@ -135,8 +134,8 @@
         </ContentControl>
     </DataTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gantt.GanttView}"
-           BasedOn="{StaticResource {dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.TreeListView}}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gantt.GanttView}"
+           BasedOn="{StaticResource {dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.TreeListView}}"
            TargetType="{x:Type dxgn:GanttView}">
         <Setter Property="TaskContentIndent" Value="{DynamicResource ResourceKey={dxgnt:GanttItemsThemeKeys ResourceKey=TaskContentIndent}}"/>
         <Setter Property="RowIndent" Value="{DynamicResource ResourceKey={dxgnt:GanttControlThemeKeys ResourceKey=RowIndent}}"/>
@@ -192,7 +191,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gantt.Native.GanttDragDropHintDetail}" TargetType="{x:Type dxgni:GanttDragDropHintDetail}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gantt.Native.GanttDragDropHintDetail}" TargetType="{x:Type dxgni:GanttDragDropHintDetail}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type dxgni:GanttDragDropHintDetail}">

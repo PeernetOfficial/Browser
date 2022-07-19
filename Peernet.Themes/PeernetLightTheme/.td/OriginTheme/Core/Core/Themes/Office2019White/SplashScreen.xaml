@@ -1,63 +1,10 @@
 ﻿<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dxn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <ResourceDictionary.MergedDictionaries>
-    <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v21.2;component/Core/Core/Themes/Office2019White/SplashScreen_Base.xaml" />
-  </ResourceDictionary.MergedDictionaries>
-  <!-- PROGRESS INDICATOR -->
-  <ControlTemplate x:Key="ProgressBarTemplate" TargetType="{x:Type ProgressBar}">
-    <Grid x:Name="Root">
-      <dxn:SplashScreenBorder Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0">
-        <Grid x:Name="PART_Track" Margin="0">
-          <Grid x:Name="PART_Indicator" ClipToBounds="True" HorizontalAlignment="Left">
-            <Rectangle x:Name="Indicator" Fill="{TemplateBinding Foreground}" />
-            <Rectangle x:Name="Animation" Fill="{TemplateBinding Foreground}" RenderTransformOrigin="-0.5,0.5" Visibility="Collapsed">
-              <Rectangle.RenderTransform>
-                <TransformGroup>
-                  <ScaleTransform ScaleX="0.25" />
-                </TransformGroup>
-              </Rectangle.RenderTransform>
-            </Rectangle>
-          </Grid>
-        </Grid>
-      </dxn:SplashScreenBorder>
-      <VisualStateManager.VisualStateGroups>
-        <VisualStateGroup x:Name="CommonStates">
-          <VisualState x:Name="Determinate" />
-          <VisualState x:Name="Indeterminate">
-            <Storyboard RepeatBehavior="Forever">
-              <PointAnimationUsingKeyFrames Storyboard.TargetName="Animation" Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)">
-                <EasingPointKeyFrame KeyTime="0" Value="-0.5,0.5" />
-                <EasingPointKeyFrame KeyTime="0:0:1" Value="0.5,0.5" />
-                <EasingPointKeyFrame KeyTime="0:0:2" Value="1.5,0.5" />
-              </PointAnimationUsingKeyFrames>
-            </Storyboard>
-          </VisualState>
-        </VisualStateGroup>
-      </VisualStateManager.VisualStateGroups>
-    </Grid>
-    <ControlTemplate.Triggers>
-      <Trigger Property="Orientation" Value="Vertical">
-        <Setter Property="LayoutTransform" TargetName="Root">
-          <Setter.Value>
-            <RotateTransform Angle="-90" />
-          </Setter.Value>
-        </Setter>
-      </Trigger>
-      <Trigger Property="IsIndeterminate" Value="true">
-        <Setter Property="Visibility" TargetName="Indicator" Value="Collapsed" />
-        <Setter Property="Visibility" TargetName="Animation" Value="Visible" />
-      </Trigger>
-    </ControlTemplate.Triggers>
-  </ControlTemplate>
-  <Style x:Key="{dxt:SplashScreenThemeKey ResourceKey=ProgressBarStyle}" TargetType="ProgressBar">
-    <Setter Property="Foreground" Value="{StaticResource ProgressBarIndicatorBrush}" />
-    <Setter Property="Background" Value="{StaticResource ProgressBarBackgroundBrush}" />
-    <Setter Property="BorderBrush" Value="{StaticResource ProgressBarBorderBrush}" />
-    <Setter Property="Template" Value="{StaticResource ProgressBarTemplate}" />
-    <Setter Property="BorderThickness" Value="0" />
-    <Setter Property="Width" Value="350" />
-    <Setter Property="Height" Value="16" />
-    <Setter Property="Margin" Value="0,0,0,6" />
-    <Setter Property="HorizontalAlignment" Value="Center" />
-    <Setter Property="VerticalAlignment" Value="Center" />
-  </Style>
+    <ResourceDictionary.MergedDictionaries>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v22.1;component/Core/Core/Themes/Office2019White/SplashScreen_Base.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+<!-- PROGRESS INDICATOR --><ControlTemplate x:Key="ProgressBarTemplate" TargetType="{x:Type ProgressBar}"><Grid x:Name="Root"><dxn:SplashScreenBorder Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0"><Grid x:Name="PART_Track" Margin="0"><Grid x:Name="PART_Indicator" ClipToBounds="True" HorizontalAlignment="Left"><Rectangle x:Name="Indicator" Fill="{TemplateBinding Foreground}" /><Rectangle x:Name="Animation" Fill="{TemplateBinding Foreground}" RenderTransformOrigin="-0.5,0.5" Visibility="Collapsed"><Rectangle.RenderTransform><TransformGroup><ScaleTransform ScaleX="0.25" /></TransformGroup></Rectangle.RenderTransform></Rectangle></Grid></Grid></dxn:SplashScreenBorder><VisualStateManager.VisualStateGroups><VisualStateGroup x:Name="CommonStates"><VisualState x:Name="Determinate" /><VisualState x:Name="Indeterminate"><Storyboard RepeatBehavior="Forever"><PointAnimationUsingKeyFrames Storyboard.TargetName="Animation" Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)"><EasingPointKeyFrame KeyTime="0" Value="-0.5,0.5" /><EasingPointKeyFrame KeyTime="0:0:1" Value="0.5,0.5" /><EasingPointKeyFrame KeyTime="0:0:2" Value="1.5,0.5" /></PointAnimationUsingKeyFrames></Storyboard></VisualState></VisualStateGroup></VisualStateManager.VisualStateGroups></Grid><ControlTemplate.Triggers><Trigger Property="Orientation" Value="Vertical"><Setter Property="LayoutTransform" TargetName="Root"><Setter.Value><RotateTransform Angle="-90" /></Setter.Value></Setter></Trigger><Trigger Property="IsIndeterminate" Value="true"><Setter Property="Visibility" TargetName="Indicator" Value="Collapsed" /><Setter Property="Visibility" TargetName="Animation" Value="Visible" /></Trigger></ControlTemplate.Triggers></ControlTemplate>
+
+<Style x:Key="{dxt:SplashScreenThemeKey ResourceKey=ProgressBarStyle}" TargetType="ProgressBar"><Setter Property="Foreground" Value="{StaticResource ProgressBarIndicatorBrush}" /><Setter Property="Background" Value="{StaticResource ProgressBarBackgroundBrush}" /><Setter Property="BorderBrush" Value="{StaticResource ProgressBarBorderBrush}" /><Setter Property="Template" Value="{StaticResource ProgressBarTemplate}" /><Setter Property="BorderThickness" Value="0" /><Setter Property="Width" Value="350" /><Setter Property="Height" Value="16" /><Setter Property="Margin" Value="0,0,0,6" /><Setter Property="HorizontalAlignment" Value="Center" /><Setter Property="VerticalAlignment" Value="Center" /></Style>
+
 </ResourceDictionary>

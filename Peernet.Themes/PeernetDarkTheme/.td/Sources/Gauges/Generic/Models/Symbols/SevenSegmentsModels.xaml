@@ -2,25 +2,25 @@
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
-                    xmlns:local="http://schemas.devexpress.com/winfx/2008/xaml/gauges"
+                    xmlns:dxga="http://schemas.devexpress.com/winfx/2008/xaml/gauges"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxdst:ResourceDictionaryEx Source="{dx:GaugesResource themes/Generic/Models/Symbols/BaseStyles.xaml}"/>
+        <dxt:ResourceDictionaryEx Source="{dx:GaugesResource themes/Generic/Models/Symbols/BaseStyles.xaml}"/>
     </ResourceDictionary.MergedDictionaries>
 
-    <local:PresentationToFillConverter x:Key="BrushConverter"/>
+    <dxga:PresentationToFillConverter x:Key="BrushConverter"/>
 
-    <local:SymbolStateToVisibilityConverter x:Key="VisibilityConverter"/>
+    <dxga:SymbolStateToVisibilityConverter x:Key="VisibilityConverter"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gauges.DefaultSevenSegmentsControl}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gauges.DefaultSevenSegmentsControl}"
            BasedOn="{StaticResource SymbolStyleBase}"
-           TargetType="local:DefaultSevenSegmentsControl">
+           TargetType="dxga:DefaultSevenSegmentsControl">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:DefaultSevenSegmentsControl">
+                <ControlTemplate TargetType="dxga:DefaultSevenSegmentsControl">
                     <Viewbox Stretch="Fill">
                         <Canvas Height="122" Width="74">
                             <Path Canvas.Left="14.4362"

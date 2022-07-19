@@ -1,4 +1,4 @@
-<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxschc="http://schemas.devexpress.com/winfx/2008/xaml/scheduling" xmlns:dxscht="http://schemas.devexpress.com/winfx/2008/xaml/scheduling/themekeys" xmlns:dxschv="http://schemas.devexpress.com/winfx/2008/xaml/scheduling/visual" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxsch="http://schemas.devexpress.com/winfx/2008/xaml/scheduling" xmlns:dxscht="http://schemas.devexpress.com/winfx/2008/xaml/scheduling/themekeys" xmlns:dxschv="http://schemas.devexpress.com/winfx/2008/xaml/scheduling/visual" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
 
     <ResourceDictionary.MergedDictionaries>
         <dxt:ResourceDictionaryEx Source="{dx:SchedulingResource UICore.xaml, ShortPaths=True}" />
@@ -6,11 +6,11 @@
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="{dxscht:SchedulerControlThemeKey ResourceKey=ScrollingCornerStyle}" TargetType="Border">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\SchedulerScrollViewer.xaml;18;6" /><Setter Property="Background" Value="{StaticResource Scheduler.Corner.Background}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\SchedulerScrollViewer.xaml;17;6" /><Setter Property="Background" Value="{StaticResource Scheduler.Corner.Background}" />
     </Style>
 
     <ControlTemplate x:Key="SchedulerScrollViewer.DefaultTemplate" TargetType="dxschv:SchedulerScrollViewer">
-        <Grid x:Name="Grid" Background="{TemplateBinding Background}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\SchedulerScrollViewer.xaml;23;10">
+        <Grid x:Name="Grid" Background="{TemplateBinding Background}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\SchedulerScrollViewer.xaml;22;10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
@@ -19,17 +19,17 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" CanContentScroll="{TemplateBinding CanContentScroll}" CanHorizontallyScroll="False" CanVerticallyScroll="False" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Grid.Column="0" Grid.Row="0" Margin="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\SchedulerScrollViewer.xaml;32;14" />
-            <DockPanel x:Name="PART_VerticalScrollBarArea" Grid.Column="1" Grid.Row="0" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\SchedulerScrollViewer.xaml;41;14">
-                <ContentPresenter Content="{TemplateBinding VerticalScrollBarControlBox}" ContentTemplate="{TemplateBinding VerticalScrollBarControlBoxTemplate}" DockPanel.Dock="Bottom" Visibility="{TemplateBinding VerticalScrollBarControlBoxVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\SchedulerScrollViewer.xaml;45;18" />
-                <dxschv:SchedulerScrollBar x:Name="PART_VerticalScrollBar" AutomationProperties.AutomationId="VerticalScrollBar" Cursor="Arrow" Maximum="{TemplateBinding ScrollableHeight}" Minimum="0" Orientation="Vertical" ToolTipService.IsEnabled="False" Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportHeight}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\SchedulerScrollViewer.xaml;49;18">
+            <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" CanContentScroll="{TemplateBinding CanContentScroll}" CanHorizontallyScroll="False" CanVerticallyScroll="False" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Grid.Column="0" Grid.Row="0" Margin="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\SchedulerScrollViewer.xaml;31;14" />
+            <DockPanel x:Name="PART_VerticalScrollBarArea" Grid.Column="1" Grid.Row="0" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\SchedulerScrollViewer.xaml;40;14">
+                <ContentPresenter Content="{TemplateBinding VerticalScrollBarControlBox}" ContentTemplate="{TemplateBinding VerticalScrollBarControlBoxTemplate}" DockPanel.Dock="Bottom" Visibility="{TemplateBinding VerticalScrollBarControlBoxVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\SchedulerScrollViewer.xaml;44;18" />
+                <dxschv:SchedulerScrollBar x:Name="PART_VerticalScrollBar" AutomationProperties.AutomationId="VerticalScrollBar" Cursor="Arrow" Maximum="{TemplateBinding ScrollableHeight}" Minimum="0" Orientation="Vertical" ToolTipService.IsEnabled="False" Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportHeight}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\SchedulerScrollViewer.xaml;48;18">
                     <dxschv:SchedulerScrollBar.ToolTip>
-                        <ToolTip HorizontalOffset="-6" Placement="Left" StaysOpen="True" VerticalOffset="24" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\SchedulerScrollViewer.xaml;59;26">
-                            <dxcore_unique_xmlns:SuperTipControl PatchDataContext="True" Width="140" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\SchedulerScrollViewer.xaml;63;30">
+                        <ToolTip HorizontalOffset="-6" Placement="Left" StaysOpen="True" VerticalOffset="24" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\SchedulerScrollViewer.xaml;58;26">
+                            <dxcore_unique_xmlns:SuperTipControl PatchDataContext="True" Width="140" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\SchedulerScrollViewer.xaml;62;30">
                                 <dxcore_unique_xmlns:SuperTipControl.SuperTip>
                                     <dxcore_unique_xmlns:SuperTip>
-                                        <dxcore_unique_xmlns:SuperTipHeaderItem Content="{Binding VisualData.ScrollTipInfo.IntervalStart, Converter={dxschc:DateTimeToScrollTipStringConverter}, ConverterParameter='MMM, yyyy'}" />
-                                        <dxcore_unique_xmlns:SuperTipItem Content="{Binding VisualData.ScrollTipInfo.Interval, Converter={dxschc:DateTimeRangeToScrollTipStringConverter}, ConverterParameter=d}" />
+                                        <dxcore_unique_xmlns:SuperTipHeaderItem Content="{Binding VisualData.ScrollTipInfo.IntervalStart, Converter={dxsch:DateTimeToScrollTipStringConverter}, ConverterParameter='MMM, yyyy'}" />
+                                        <dxcore_unique_xmlns:SuperTipItem Content="{Binding VisualData.ScrollTipInfo.Interval, Converter={dxsch:DateTimeRangeToScrollTipStringConverter}, ConverterParameter=d}" />
                                     </dxcore_unique_xmlns:SuperTip>
                                 </dxcore_unique_xmlns:SuperTipControl.SuperTip>
                             </dxcore_unique_xmlns:SuperTipControl>
@@ -37,11 +37,11 @@
                     </dxschv:SchedulerScrollBar.ToolTip>
                 </dxschv:SchedulerScrollBar>
             </DockPanel>
-            <DockPanel x:Name="PART_HorizontalScrollBarArea" Grid.Column="0" Grid.Row="1" Panel.ZIndex="1" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\SchedulerScrollViewer.xaml;75;14">
-                <ContentPresenter Content="{TemplateBinding HorizontalScrollBarControlBox}" ContentTemplate="{TemplateBinding HorizontalScrollBarControlBoxTemplate}" DockPanel.Dock="Right" Visibility="{TemplateBinding HorizontalScrollBarControlBoxVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\SchedulerScrollViewer.xaml;80;18" />
-                <dxschv:SchedulerScrollBar x:Name="PART_HorizontalScrollBar" AutomationProperties.AutomationId="HorizontalScrollBar" Cursor="Arrow" Maximum="{TemplateBinding ScrollableWidth}" Minimum="0" Orientation="Horizontal" Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\SchedulerScrollViewer.xaml;84;18" />
+            <DockPanel x:Name="PART_HorizontalScrollBarArea" Grid.Column="0" Grid.Row="1" Panel.ZIndex="1" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\SchedulerScrollViewer.xaml;74;14">
+                <ContentPresenter Content="{TemplateBinding HorizontalScrollBarControlBox}" ContentTemplate="{TemplateBinding HorizontalScrollBarControlBoxTemplate}" DockPanel.Dock="Right" Visibility="{TemplateBinding HorizontalScrollBarControlBoxVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\SchedulerScrollViewer.xaml;79;18" />
+                <dxschv:SchedulerScrollBar x:Name="PART_HorizontalScrollBar" AutomationProperties.AutomationId="HorizontalScrollBar" Cursor="Arrow" Maximum="{TemplateBinding ScrollableWidth}" Minimum="0" Orientation="Horizontal" Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\SchedulerScrollViewer.xaml;83;18" />
             </DockPanel>
-            <dx:DXBorder x:Name="corner" Grid.Column="1" Grid.Row="1" Style="{TemplateBinding CornerBoxStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\SchedulerScrollViewer.xaml;93;14" />
+            <dx:DXBorder x:Name="corner" Grid.Column="1" Grid.Row="1" Style="{TemplateBinding CornerBoxStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\SchedulerScrollViewer.xaml;92;14" />
         </Grid>
         <ControlTemplate.Triggers>
             <MultiTrigger>
@@ -79,7 +79,7 @@
 
     <Style x:Key="SchedulerScrollViewer.DefaultStyle" TargetType="dxschv:SchedulerScrollViewer">
         
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\SchedulerScrollViewer.xaml;160;6" /><Setter Property="dx:ScrollBarExtensions.AllowShiftKeyMode" Value="True" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\SchedulerScrollViewer.xaml;159;6" /><Setter Property="dx:ScrollBarExtensions.AllowShiftKeyMode" Value="True" />
         <Setter Property="dx:ScrollBarExtensions.AllowMouseScrolling" Value="True" />
         <Setter Property="dx:ScrollBarExtensions.ScrollBehavior" Value="{dxschv:SchedulerScrollViewerScrollBehavior}" />
         <Setter Property="dx:ScrollViewerTouchBehavior.IsEnabled" Value="True" />

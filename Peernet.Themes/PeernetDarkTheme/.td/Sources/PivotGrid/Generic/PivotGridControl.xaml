@@ -3,22 +3,21 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
                     xmlns:dxfui="http://schemas.devexpress.com/winfx/2008/xaml/core/filteringui"
-                    xmlns:dxfui_local_native="clr-namespace:DevExpress.Xpf.Core.FilteringUI.Native;assembly=DevExpress.Xpf.Grid.v21.2"
+                    xmlns:dxfui_local_native="clr-namespace:DevExpress.Xpf.Core.FilteringUI.Native;assembly=DevExpress.Xpf.Grid.v22.1"
                     xmlns:dxfuit="http://schemas.devexpress.com/winfx/2008/xaml/core/filteringui/themekeys"
+                    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
                     xmlns:dxpg="http://schemas.devexpress.com/winfx/2008/xaml/pivotgrid"
                     xmlns:dxpgi="http://schemas.devexpress.com/winfx/2008/xaml/pivotgrid/internal"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:mvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <dxpgi:RowTreeToFieldHeadersMeasureModeConverter x:Key="rowTreeToFieldHeadersMeasureModeConverter"/>
 
-    <dxpgi:FontSizeToFieldHeightConverter x:Key="fontSizeToFieldHeightConverter"/>
-
-    <sys:Int32 x:Key="largeFontHeight">50</sys:Int32>
+    <dxpgi:FontSizeToFieldHeightConverter x:Key="fontSizeToFieldHeightConverter" LargeFontHeight="50"/>
 
     <!-- Moved from theme -->
 
@@ -509,7 +508,7 @@
         <Rectangle Fill="{DynamicResource {dxpgi:AppearanceThemeKey ResourceKey=ResizingIndicatorBrush}}"/>
     </ControlTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.PivotGrid.PivotGridControl}" TargetType="{x:Type dxpg:PivotGridControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.PivotGrid.PivotGridControl}" TargetType="{x:Type dxpg:PivotGridControl}">
         <Setter Property="FieldHeaderDragIndicatorTemplate" Value="{DynamicResource {dxpgi:FieldHeaderThemeKey ResourceKey=DragIndicatorTemplate}}"/>
         <Setter Property="FieldHeaderTemplate" Value="{DynamicResource {dxpgi:FieldHeaderThemeKey ResourceKey=ContentTemplate}}"/>
         <Setter Property="FieldCellKpiTemplate" Value="{DynamicResource {dxpgi:ScrollableAreaThemeKey ResourceKey=FieldCellKpiTemplate}}"/>
@@ -563,7 +562,8 @@
                              Path="(dx:ThemeManager.IsTouchEnabled)"
                              RelativeSource="{RelativeSource Self}"
                              UpdateSourceTrigger="PropertyChanged"/>
-                    <Binding Source="{StaticResource ResourceKey=largeFontHeight}"/>
+                    <Binding Mode="OneTime" RelativeSource="{RelativeSource Self}"/>
+                    <Binding Mode="OneTime" Source="{dxet:InplaceBaseEditThemeKey ResourceKey=TextEditPadding}"/>
                 </MultiBinding>
             </Setter.Value>
         </Setter>
@@ -593,12 +593,12 @@
         <Setter Property="Template" Value="{DynamicResource {dxpgi:PivotGridThemeKey ResourceKey=ThemeLoaderTemplate}}"/>
         <Setter Property="dx:DragManager.DropTargetFactory" Value="{dxpgi:PivotGridDropTargetFactory}"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-        <Setter Property="PredefinedFormats" Value="{DynamicResource {dxdst:ConditionalFormattingThemeKey ResourceKey=PredefinedFormats}}"/>
-        <Setter Property="PredefinedColorScaleFormats" Value="{DynamicResource {dxdst:ConditionalFormattingThemeKey ResourceKey=PredefinedColorScaleFormats}}"/>
-        <Setter Property="PredefinedDataBarFormats" Value="{DynamicResource {dxdst:ConditionalFormattingThemeKey ResourceKey=PredefinedDataBarFormats}}"/>
-        <Setter Property="PredefinedIconSetFormats" Value="{DynamicResource {dxdst:ConditionalFormattingThemeKey ResourceKey=PredefinedIconSetFormats}}"/>
-        <Setter Property="FormatConditionDialogServiceTemplate" Value="{DynamicResource {dxdst:ConditionalFormattingThemeKey ResourceKey=ApplyFormatConditionDialogTemplate}}"/>
-        <Setter Property="ConditionalFormattingManagerServiceTemplate" Value="{DynamicResource {dxdst:ConditionalFormattingThemeKey ResourceKey=ConditionalFormattingManagerTemplate}}"/>
+        <Setter Property="PredefinedFormats" Value="{DynamicResource {dxt:ConditionalFormattingThemeKey ResourceKey=PredefinedFormats}}"/>
+        <Setter Property="PredefinedColorScaleFormats" Value="{DynamicResource {dxt:ConditionalFormattingThemeKey ResourceKey=PredefinedColorScaleFormats}}"/>
+        <Setter Property="PredefinedDataBarFormats" Value="{DynamicResource {dxt:ConditionalFormattingThemeKey ResourceKey=PredefinedDataBarFormats}}"/>
+        <Setter Property="PredefinedIconSetFormats" Value="{DynamicResource {dxt:ConditionalFormattingThemeKey ResourceKey=PredefinedIconSetFormats}}"/>
+        <Setter Property="FormatConditionDialogServiceTemplate" Value="{DynamicResource {dxt:ConditionalFormattingThemeKey ResourceKey=ApplyFormatConditionDialogTemplate}}"/>
+        <Setter Property="ConditionalFormattingManagerServiceTemplate" Value="{DynamicResource {dxt:ConditionalFormattingThemeKey ResourceKey=ConditionalFormattingManagerTemplate}}"/>
         <Setter Property="ErrorPanelStyle" Value="{DynamicResource {dxpgi:PivotGridThemeKey ResourceKey=ErrorPanelStyle}}"/>
         <Setter Property="FilterEditorTemplate" Value="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=FilterEditorTemplate}}"/>
         <Setter Property="FilterEditorDialogServiceTemplate" Value="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=FilterEditorDialogServiceTemplate}}"/>

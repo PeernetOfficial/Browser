@@ -3,12 +3,12 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxdiag="http://schemas.devexpress.com/winfx/2008/xaml/diagram"
-                    xmlns:dxdiagcore="clr-namespace:DevExpress.Diagram.Core;assembly=DevExpress.Diagram.v21.2.Core"
-                    xmlns:dxdiagn="http://schemas.devexpress.com/winfx/2008/xaml/diagram/internal"
+                    xmlns:dxdiagcore="clr-namespace:DevExpress.Diagram.Core;assembly=DevExpress.Diagram.v22.1.Core"
+                    xmlns:dxdiagi="http://schemas.devexpress.com/winfx/2008/xaml/diagram/internal"
                     xmlns:dxdiagt="http://schemas.devexpress.com/winfx/2008/xaml/diagram/themekeys"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
@@ -31,7 +31,7 @@
 
     <SolidColorBrush x:Key="{dxdiagt:DiagramControlThemeKeys ResourceKey=PrintPageBackground}" Color="White"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.Native.LayersHost}" TargetType="{x:Type dxdiagn:LayersHost}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.Native.LayersHost}" TargetType="{x:Type dxdiagi:LayersHost}">
         <Setter Property="Background"
                 Value="Transparent"
                 cs:id="Setter_0000"/>
@@ -42,7 +42,7 @@
         </Setter>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type dxdiagn:LayersHost}">
+                <ControlTemplate TargetType="{x:Type dxdiagi:LayersHost}">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -102,7 +102,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.DiagramShape}" TargetType="{x:Type dxdiag:DiagramShape}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.DiagramShape}" TargetType="{x:Type dxdiag:DiagramShape}">
         <Setter Property="MinWidth" Value="{x:Static dxdiagcore:DiagramItemController.ItemMinSize}"/>
         <Setter Property="MinHeight" Value="{x:Static dxdiagcore:DiagramItemController.ItemMinSize}"/>
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -137,7 +137,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.BaseDiagramContainer}" TargetType="{x:Type dxdiag:BaseDiagramContainer}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.BaseDiagramContainer}" TargetType="{x:Type dxdiag:BaseDiagramContainer}">
         <Setter Property="MinWidth" Value="{x:Static dxdiagcore:DiagramItemController.ContainerMinSize}"/>
         <Setter Property="MinHeight" Value="{x:Static dxdiagcore:DiagramItemController.ContainerMinSize}"/>
         <Setter Property="Template">
@@ -152,8 +152,8 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.DiagramContainer}"
-           BasedOn="{StaticResource {dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.BaseDiagramContainer}}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.DiagramContainer}"
+           BasedOn="{StaticResource {dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.BaseDiagramContainer}}"
            TargetType="{x:Type dxdiag:DiagramContainer}">
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="TextAlignment" Value="Center"/>
@@ -218,7 +218,7 @@
                Source="{dxdiag:DiagramSvgImage AutoSize=True, Path=Images/Svg/ExpandedContainerIcon.svg}"
                Stretch="UniformToFill">
             <dxmvvm:Interaction.Behaviors>
-                <dxdiagn:ColorizeSvgImageBehavior Stroke="{Binding BorderBrush, RelativeSource={RelativeSource Mode=TemplatedParent}}" StrokeCode="{x:Static dxdiagcore:DiagramContainerController.CollapseButtonReplaceColorCode}"/>
+                <dxdiagi:ColorizeSvgImageBehavior Stroke="{Binding BorderBrush, RelativeSource={RelativeSource Mode=TemplatedParent}}" StrokeCode="{x:Static dxdiagcore:DiagramContainerController.CollapseButtonReplaceColorCode}"/>
             </dxmvvm:Interaction.Behaviors>
         </Image>
         <ControlTemplate.Triggers>
@@ -230,7 +230,7 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.DiagramContentItem}" TargetType="{x:Type dxdiag:DiagramContentItem}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.DiagramContentItem}" TargetType="{x:Type dxdiag:DiagramContentItem}">
         <Setter Property="MinWidth" Value="{x:Static dxdiagcore:DiagramItemController.ItemMinSize}"/>
         <Setter Property="MinHeight" Value="{x:Static dxdiagcore:DiagramItemController.ItemMinSize}"/>
         <Setter Property="Template">
@@ -250,7 +250,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.DiagramConnector}" TargetType="{x:Type dxdiag:DiagramConnector}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.DiagramConnector}" TargetType="{x:Type dxdiag:DiagramConnector}">
         <Setter Property="BeginArrowSize" Value="{DynamicResource {dxdiagt:ControlsThemeKeys ResourceKey=DiagramConnectorArrowSize}}"/>
         <Setter Property="EndArrowSize" Value="{DynamicResource {dxdiagt:ControlsThemeKeys ResourceKey=DiagramConnectorArrowSize}}"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -293,7 +293,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.DiagramImage}" TargetType="{x:Type dxdiag:DiagramImage}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.DiagramImage}" TargetType="{x:Type dxdiag:DiagramImage}">
         <Setter Property="MinWidth" Value="{x:Static dxdiagcore:DiagramItemController.ItemMinSize}"/>
         <Setter Property="MinHeight" Value="{x:Static dxdiagcore:DiagramItemController.ItemMinSize}"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -323,7 +323,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.DiagramRoot}" TargetType="{x:Type dxdiag:DiagramRoot}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.DiagramRoot}" TargetType="{x:Type dxdiag:DiagramRoot}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type dxdiag:DiagramRoot}">
@@ -335,13 +335,13 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.DragPreview}" TargetType="{x:Type dxdiag:DragPreview}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.DragPreview}" TargetType="{x:Type dxdiag:DragPreview}">
         <Setter Property="BorderBrush" Value="{DynamicResource {dxdiagt:ControlsThemeKeys ResourceKey=DragPreviewBrush}}"/>
         <Setter Property="Opacity" Value="{DynamicResource {dxdiagt:ControlsThemeKeys ResourceKey=DragPreviewOpacity}}"/>
         <Setter Property="IsHitTestVisible" Value="False"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.SelectionPreview}" TargetType="{x:Type dxdiag:SelectionPreview}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.SelectionPreview}" TargetType="{x:Type dxdiag:SelectionPreview}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type dxdiag:SelectionPreview}">
@@ -351,7 +351,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.ScaleItemsControl}" TargetType="dxdiag:ScaleItemsControl">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.ScaleItemsControl}" TargetType="dxdiag:ScaleItemsControl">
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
@@ -376,7 +376,7 @@
         </Pen.DashStyle>
     </Pen>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.PageBackgroundControl}" TargetType="{x:Type dxdiag:PageBackgroundControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.PageBackgroundControl}" TargetType="{x:Type dxdiag:PageBackgroundControl}">
         <Setter Property="Background" Value="{DynamicResource {dxdiagt:DiagramControlThemeKeys ResourceKey=PageBackground}}"/>
         <Setter Property="BorderThickness" Value="{DynamicResource {dxdiagt:ControlsThemeKeys ResourceKey=PageBorderThickness}}"/>
         <Setter Property="Template">
@@ -386,7 +386,7 @@
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
                                     Template="{DynamicResource {dxdiagt:DiagramControlThemeKeys ResourceKey=PageBackgroundTemplate}}">
-                        <Grid Margin="{Binding Path=BorderThickness, RelativeSource={RelativeSource TemplatedParent}, Converter={dxdiagn:InvertThicknessConverter}}">
+                        <Grid Margin="{Binding Path=BorderThickness, RelativeSource={RelativeSource TemplatedParent}, Converter={dxdiagi:InvertThicknessConverter}}">
                             <Viewbox>
                                 <dxdiag:PagesBackgroundControl x:Name="PART_PageBackground"
                                                                Background="{TemplateBinding Background}"
@@ -401,7 +401,7 @@
                                                                Width="{Binding Path=Tag.Width, RelativeSource={RelativeSource Self}}"
                                                                ZoomFactor="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Diagram.ZoomFactor}"/>
                             </Viewbox>
-                            <dxdiagn:GridPainter x:Name="PART_GridPainter"
+                            <dxdiagi:GridPainter x:Name="PART_GridPainter"
                                                  GridSize="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Diagram.GridSize}"
                                                  LineBrush="{DynamicResource {dxdiagt:ControlsThemeKeys ResourceKey=GridLineBrush}}"
                                                  Location="{Binding Path=(dxdiag:AdornerLayer.Location), RelativeSource={RelativeSource TemplatedParent}}"
@@ -441,7 +441,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.PagesBackgroundControl}" TargetType="{x:Type dxdiag:PagesBackgroundControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.PagesBackgroundControl}" TargetType="{x:Type dxdiag:PagesBackgroundControl}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type dxdiag:PagesBackgroundControl}">
@@ -460,11 +460,11 @@
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemContainerStyle>
-                                <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=ContentPresenter}" TargetType="ContentPresenter">
-                                    <Setter Property="Canvas.Left" Value="{Binding Left}"/>
-                                    <Setter Property="Canvas.Top" Value="{Binding Top}"/>
-                                    <Setter Property="Width" Value="{Binding Width}"/>
-                                    <Setter Property="Height" Value="{Binding Height}"/>
+                                <Style x:Key="{dxt:DefaultStyleThemeKey FullName=ContentPresenter}" TargetType="ContentPresenter">
+                                    <Setter Property="Canvas.Left" Value="{Binding Left, Mode=OneTime}"/>
+                                    <Setter Property="Canvas.Top" Value="{Binding Top, Mode=OneTime}"/>
+                                    <Setter Property="Width" Value="{Binding Width, Mode=OneTime}"/>
+                                    <Setter Property="Height" Value="{Binding Height, Mode=OneTime}"/>
                                 </Style>
                             </ItemsControl.ItemContainerStyle>
                         </ItemsControl>
@@ -493,7 +493,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.ItemEditorControl}" TargetType="{x:Type dxdiag:ItemEditorControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.ItemEditorControl}" TargetType="{x:Type dxdiag:ItemEditorControl}">
         <Setter Property="Foreground"
                 Value="#FF6E6E6E"
                 cs:id="Setter_0000"/>
@@ -520,10 +520,10 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.Native.ShapeGeometryPresenter}" TargetType="{x:Type dxdiagn:ShapeGeometryPresenter}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.Native.ShapeGeometryPresenter}" TargetType="{x:Type dxdiagi:ShapeGeometryPresenter}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type dxdiagn:ShapeGeometryPresenter}">
+                <ControlTemplate TargetType="{x:Type dxdiagi:ShapeGeometryPresenter}">
                     <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                       Margin="{TemplateBinding Padding}"
                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
@@ -532,7 +532,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.ShapePresenter}" TargetType="{x:Type dxdiag:ShapePresenter}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.ShapePresenter}" TargetType="{x:Type dxdiag:ShapePresenter}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type dxdiag:ShapePresenter}">

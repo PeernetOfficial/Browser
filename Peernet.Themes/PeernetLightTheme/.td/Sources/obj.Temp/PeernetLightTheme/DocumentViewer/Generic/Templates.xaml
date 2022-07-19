@@ -1,4 +1,4 @@
-<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxdv="http://schemas.devexpress.com/winfx/2008/xaml/documentviewer" xmlns:dxdvt="http://schemas.devexpress.com/winfx/2008/xaml/documentviewer/themekeys" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxdv="http://schemas.devexpress.com/winfx/2008/xaml/documentviewer" xmlns:dxdvt="http://schemas.devexpress.com/winfx/2008/xaml/documentviewer/themekeys" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:system="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
 
     <DataTemplate x:Key="{dxdvt:DocumentViewerThemeKey ResourceKey=SetZoomFactorAndModeItemSeparatorTemplate}">
         <dxb:BarItemSeparator />
@@ -19,8 +19,8 @@
     <dxdv:TextEditEditValueChangedConverter x:Key="textEditEditValueChangedConverter" />
 
     <DataTemplate x:Key="{dxdvt:DocumentViewerThemeKey ResourceKey=BarPaginationItemContentTemplate}">
-        <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;66;10">
-            <dxe:SpinEdit x:Name="editor" AllowDefaultButton="False" AllowRoundOutOfRangeValue="True" EditValue="{Binding Path=CurrentPageNumber, Mode=TwoWay}" IsFloatValue="False" MinWidth="30" SelectAllOnGotFocus="True" ShowError="False" ValidateOnTextInput="False" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;67;14">
+        <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;65;10">
+            <dxe:SpinEdit x:Name="editor" AllowDefaultButton="False" AllowRoundOutOfRangeValue="True" EditValue="{Binding Path=CurrentPageNumber, Mode=TwoWay}" IsFloatValue="False" MinWidth="30" SelectAllOnGotFocus="True" ShowError="False" ValidateOnTextInput="False" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;66;14">
                 <dxmvvm:Interaction.Triggers>
                     <dxmvvm:EventToCommand Command="{Binding Path=Command}" EventArgsConverter="{StaticResource textEditEditValueChangedConverter}" EventName="EditValueChanged" PassEventArgsToCommand="True" />
                 </dxmvvm:Interaction.Triggers>
@@ -28,13 +28,13 @@
                     <dxdv:PaginationEditValueChangedBehavior />
                 </dxmvvm:Interaction.Behaviors>
             </dxe:SpinEdit>
-            <TextBlock Text=" / " VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;86;14" />
-            <TextBlock Text="{Binding Path=PageCount}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;87;14" />
+            <TextBlock Text=" / " VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;85;14" />
+            <TextBlock Text="{Binding Path=PageCount}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;86;14" />
         </StackPanel>
     </DataTemplate>
 
     <DataTemplate x:Key="{dxdvt:DocumentViewerThemeKey ResourceKey=RibbonPaginationItemGlyphTemplate}">
-        <dxe:SpinEdit x:Name="editor" AllowDefaultButton="False" AllowRoundOutOfRangeValue="True" EditValue="{Binding Path=Item.DataContext.CurrentPageNumber, Mode=TwoWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:BarItemLinkInfo}}}" HorizontalContentAlignment="Center" IsFloatValue="False" MinWidth="30" SelectAllOnGotFocus="True" ShowError="False" ValidateOnTextInput="False" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;92;10">
+        <dxe:SpinEdit x:Name="editor" AllowDefaultButton="False" AllowRoundOutOfRangeValue="True" EditValue="{Binding Path=Item.DataContext.CurrentPageNumber, Mode=TwoWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:BarItemLinkInfo}}}" HorizontalContentAlignment="Center" IsFloatValue="False" MinWidth="30" SelectAllOnGotFocus="True" ShowError="False" ValidateOnTextInput="False" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;91;10">
             <dxe:SpinEdit.NullValue>
                 <system:Decimal />
             </dxe:SpinEdit.NullValue>
@@ -48,7 +48,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="{dxdvt:DocumentViewerThemeKey ResourceKey=RibbonTemplate}">
-        <dxb:BarManager x:Name="PART_BarManager" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;118;10">
+        <dxb:BarManager x:Name="PART_BarManager" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;117;10">
             <dxmvvm:Interaction.Behaviors>
                 <dxdv:BarManagerActionAttachedBehavior />
                 <dxb:ControllerBehavior Actions="{Binding Path=(dxdv:DocumentViewerControl.ActualViewer).ActualCommandProvider.Actions, RelativeSource={RelativeSource TemplatedParent}}" ExecutionMode="OnEvent">
@@ -71,8 +71,8 @@
                 <dxdv:PreviousViewBarItem Command="{Binding Path=(dxdv:DocumentViewerControl.ActualViewer).ActualCommandProvider.PreviousViewCommand, RelativeSource={RelativeSource TemplatedParent}}" dxdv:DocumentViewerControl.BarItemName="{x:Static dxdv:DefaultBarManagerItemNames.PreviousView}" />
                 <dxdv:NextViewBarItem Command="{Binding Path=(dxdv:DocumentViewerControl.ActualViewer).ActualCommandProvider.NextViewCommand, RelativeSource={RelativeSource TemplatedParent}}" dxdv:DocumentViewerControl.BarItemName="{x:Static dxdv:DefaultBarManagerItemNames.NextView}" />
             </dxb:BarManager.Items>
-            <DockPanel dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;141;14">
-                <dxr:RibbonControl DockPanel.Dock="Top" dxdv:DocumentViewerControl.BarItemName="{x:Static dxdv:DefaultBarManagerItemNames.Ribbon}" RibbonStyle="Office2010" RibbonTitleBarVisibility="Collapsed" ToolbarShowMode="Hide" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;142;18">
+            <DockPanel dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;140;14">
+                <dxr:RibbonControl DockPanel.Dock="Top" dxdv:DocumentViewerControl.BarItemName="{x:Static dxdv:DefaultBarManagerItemNames.Ribbon}" RibbonStyle="Office2010" RibbonTitleBarVisibility="Collapsed" ToolbarShowMode="Hide" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;141;18">
                     <dxmvvm:Interaction.Behaviors>
                         <dxb:ControllerBehavior Actions="{Binding Path=(dxdv:DocumentViewerControl.ActualViewer).ActualCommandProvider.RibbonActions, RelativeSource={RelativeSource TemplatedParent}}" ExecutionMode="OnEvent">
                             <dxb:ControllerBehavior.Triggers>
@@ -105,7 +105,7 @@
                         </dxr:RibbonPage>
                     </dxr:RibbonDefaultPageCategory>
                 </dxr:RibbonControl>
-                <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;179;18">
+                <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;178;18">
                     <dxdv:DocumentPresenterControl />
                 </Grid>
             </DockPanel>
@@ -113,7 +113,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="{dxdvt:DocumentViewerThemeKey ResourceKey=BarsTemplate}">
-        <dxb:BarManager x:Name="PART_BarManager" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;187;10">
+        <dxb:BarManager x:Name="PART_BarManager" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;186;10">
             <dxmvvm:Interaction.Behaviors>
                 <dxdv:BarManagerActionAttachedBehavior />
                 <dxb:ControllerBehavior Actions="{Binding Path=(dxdv:DocumentViewerControl.ActualViewer).ActualCommandProvider.Actions, RelativeSource={RelativeSource TemplatedParent}}" ExecutionMode="OnEvent">
@@ -154,7 +154,7 @@
                     </dxb:Bar.ItemLinks>
                 </dxb:Bar>
             </dxb:BarManager.Bars>
-            <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;228;14">
+            <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;227;14">
                 <dxdv:DocumentPresenterControl />
             </Grid>
         </dxb:BarManager>
@@ -165,21 +165,21 @@
     </DataTemplate>
 
     <ControlTemplate x:Key="{dxdvt:DocumentViewerThemeKey ResourceKey=Template}" TargetType="{x:Type dxdv:DocumentViewerControl}">
-        <ContentControl Content="{Binding Path=ActualCommandProvider, RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{Binding Path=ActualBarsTemplate, RelativeSource={RelativeSource TemplatedParent}}" Focusable="False" Grid.ColumnSpan="3" Grid.RowSpan="3" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;239;10" />
+        <ContentControl Content="{Binding Path=ActualCommandProvider, RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{Binding Path=ActualBarsTemplate, RelativeSource={RelativeSource TemplatedParent}}" Focusable="False" Grid.ColumnSpan="3" Grid.RowSpan="3" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;238;10" />
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxdvt:DocumentViewerThemeKey ResourceKey=PageTemplate}" TargetType="{x:Type dxdv:PageControl}">
-        <ItemsPresenter x:Name="PART_ItemsPresenter" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;247;10" />
+        <ItemsPresenter x:Name="PART_ItemsPresenter" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;246;10" />
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxdvt:DocumentViewerThemeKey ResourceKey=PageControlItemTemplate}" TargetType="{x:Type dxdv:PageControlItem}">
-        <dx:DXBorder Background="#10FF0000" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;251;10">
-            <TextBlock Text="Sample page" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;252;14" />
+        <dx:DXBorder Background="#10FF0000" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;250;10">
+            <TextBlock Text="Sample page" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;251;14" />
         </dx:DXBorder>
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxdvt:DocumentViewerThemeKey ResourceKey=DocumentPresenterTemplate}" TargetType="{x:Type dxdv:DocumentPresenterControl}">
-        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;257;10">
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;256;10">
             <dxe:NativeImage x:Name="PART_NativeImage" />
             <dxdv:DocumentViewerItemsControl x:Name="PART_ItemsControl">
                 <dxdv:DocumentViewerItemsControl.ItemsPanel>
@@ -192,17 +192,17 @@
     </ControlTemplate>
 
     <DataTemplate x:Key="{dxdvt:DocumentViewerThemeKey ResourceKey=FlyoutControlPaginationTemplate}">
-        <Grid Margin="10,0,10,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;270;10">
-            <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;271;14">
-                <TextBlock Text="{Binding Path=(dxdv:DocumentViewerControl.ActualViewer).CurrentPageNumber, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;272;18" />
-                <TextBlock Text=" / " dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;273;18" />
-                <TextBlock Text="{Binding Path=(dxdv:DocumentViewerControl.ActualViewer).PageCount, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;274;18" />
+        <Grid Margin="10,0,10,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;269;10">
+            <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;270;14">
+                <TextBlock Text="{Binding Path=(dxdv:DocumentViewerControl.ActualViewer).CurrentPageNumber, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;271;18" />
+                <TextBlock Text=" / " dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;272;18" />
+                <TextBlock Text="{Binding Path=(dxdv:DocumentViewerControl.ActualViewer).PageCount, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;273;18" />
             </StackPanel>
         </Grid>
     </DataTemplate>
 
     <ControlTemplate x:Key="ScrollViewerTemplate" TargetType="{x:Type dxdv:DXScrollViewer}">
-        <Grid x:Name="Grid" Background="{TemplateBinding Background}" Margin="{TemplateBinding Margin}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;280;10">
+        <Grid x:Name="Grid" Background="{TemplateBinding Background}" Margin="{TemplateBinding Margin}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;279;10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
@@ -211,7 +211,7 @@
                 <RowDefinition />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" CanContentScroll="{TemplateBinding CanContentScroll}" CanHorizontallyScroll="False" CanVerticallyScroll="False" Margin="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;291;14">
+            <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" CanContentScroll="{TemplateBinding CanContentScroll}" CanHorizontallyScroll="False" CanVerticallyScroll="False" Margin="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;290;14">
                 <Grid.RowSpan>
                     <Binding Path="(dx:ScrollBarExtensions.ScrollBarMode)" RelativeSource="{RelativeSource TemplatedParent}">
                         <Binding.Converter>
@@ -235,7 +235,7 @@
                     </Binding>
                 </Grid.ColumnSpan>
             </ScrollContentPresenter>
-            <ScrollBar x:Name="PART_VerticalScrollBar" AutomationProperties.AutomationId="VerticalScrollBar" Cursor="Arrow" Grid.Column="1" Grid.Row="0" Maximum="{TemplateBinding ScrollableHeight}" Minimum="0" Value="{Binding Path=VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportHeight}" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;319;14">
+            <ScrollBar x:Name="PART_VerticalScrollBar" AutomationProperties.AutomationId="VerticalScrollBar" Cursor="Arrow" Grid.Column="1" Grid.Row="0" Maximum="{TemplateBinding ScrollableHeight}" Minimum="0" Value="{Binding Path=VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportHeight}" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;318;14">
                 <Grid.RowSpan>
                     <MultiBinding>
                         <MultiBinding.Bindings>
@@ -248,7 +248,7 @@
                     </MultiBinding>
                 </Grid.RowSpan>
             </ScrollBar>
-            <ScrollBar x:Name="PART_HorizontalScrollBar" AutomationProperties.AutomationId="HorizontalScrollBar" Cursor="Arrow" Grid.Column="0" Grid.Row="1" Maximum="{TemplateBinding ScrollableWidth}" Minimum="0" Orientation="Horizontal" Value="{Binding Path=HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportWidth}" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;341;14">
+            <ScrollBar x:Name="PART_HorizontalScrollBar" AutomationProperties.AutomationId="HorizontalScrollBar" Cursor="Arrow" Grid.Column="0" Grid.Row="1" Maximum="{TemplateBinding ScrollableWidth}" Minimum="0" Orientation="Horizontal" Value="{Binding Path=HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportWidth}" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;340;14">
                 <Grid.ColumnSpan>
                     <MultiBinding>
                         <MultiBinding.Bindings>
@@ -261,7 +261,7 @@
                     </MultiBinding>
                 </Grid.ColumnSpan>
             </ScrollBar>
-            <dx:DXBorder x:Name="Corner" Grid.Column="1" Grid.Row="1" Style="{DynamicResource {dxt:ScrollBarThemeKey ResourceKey=ScrollingCornerStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;364;14">
+            <dx:DXBorder x:Name="Corner" Grid.Column="1" Grid.Row="1" Style="{DynamicResource {dxt:ScrollBarThemeKey ResourceKey=ScrollingCornerStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;363;14">
                 <dx:DXBorder.Visibility>
                     <Binding Path="(dx:ScrollBarExtensions.ScrollBarMode)" RelativeSource="{RelativeSource TemplatedParent}">
                         <Binding.Converter>
@@ -285,7 +285,7 @@
     <ControlTemplate x:Key="{dxdvt:DocumentViewerThemeKey ResourceKey=ItemsControlTemplate}" TargetType="{x:Type dxdv:DocumentViewerItemsControl}">
         <dxdv:DocumentPresenterDecorator x:Name="PART_Decorator" Focusable="True" FocusVisualStyle="{x:Null}" IsManipulationEnabled="True">
             <dxdv:DXScrollViewer x:Name="PART_ScrollViewer" CanContentScroll="True" Focusable="false" HorizontalScrollBarVisibility="Visible" Margin="0" Template="{StaticResource ScrollViewerTemplate}" VerticalScrollBarVisibility="Visible">
-                <ItemsPresenter x:Name="PART_ItemsPresenter" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;405;18" />
+                <ItemsPresenter x:Name="PART_ItemsPresenter" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;404;18" />
             </dxdv:DXScrollViewer>
         </dxdv:DocumentPresenterDecorator>
     </ControlTemplate>
@@ -295,9 +295,9 @@
             <dxdv:SearchBarStaticItem Content="{Binding Path=SearchParameter, RelativeSource={RelativeSource TemplatedParent}}" dxdv:DocumentViewerControl.BarItemName="{x:Static dxdv:DefaultBarManagerItemNames.Search}">
                 <dxdv:SearchBarStaticItem.ContentTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;424;26">
-                            <TextBlock Margin="0,0,4,0" Text="{dxdv:DocumentViewerControlLocalizedString FindControlSearchCaption}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;425;30" />
-                            <dxe:TextEdit dxei:MVVMFocusBehavior.IsFocused="{Binding Path=(dxdv:SearchControlContainer.ActualSearchContainer).IsSearchControlVisible, RelativeSource={RelativeSource TemplatedParent}}" EditValue="{Binding Path=Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="0,0,4,0" SelectAllOnGotFocus="True" Width="150" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;428;30">
+                        <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;423;26">
+                            <TextBlock Margin="0,0,4,0" Text="{dxdv:DocumentViewerControlLocalizedString FindControlSearchCaption}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;424;30" />
+                            <dxe:TextEdit dxei:MVVMFocusBehavior.IsFocused="{Binding Path=(dxdv:SearchControlContainer.ActualSearchContainer).IsSearchControlVisible, RelativeSource={RelativeSource TemplatedParent}}" EditValue="{Binding Path=Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="0,0,4,0" SelectAllOnGotFocus="True" Width="150" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;427;30">
                                 <dxe:TextEdit.InputBindings>
                                     <KeyBinding Command="{Binding Path=(dxdv:SearchControlContainer.ActualSearchContainer).FindNextTextCommand, RelativeSource={RelativeSource TemplatedParent}}" Key="Enter" />
                                 </dxe:TextEdit.InputBindings>
@@ -317,7 +317,7 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxdvt:DocumentViewerThemeKey ResourceKey=DocumentMapControlTemplate}" TargetType="{x:Type dxdv:DocumentMapControl}">
-        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;468;10">
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;467;10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition />
@@ -332,13 +332,13 @@
                     <dxb:BarButtonItem Command="{x:Static dxdv:DocumentMapCommands.GoToNodeCommand}" CommandParameter="{Binding Path=CurrentItem, ElementName=PART_GridControl}" CommandTarget="{Binding ElementName=PART_TreeView}" Content="{dxdv:DocumentViewerControlLocalizedString DocumentMapGoToCaption}" dxdv:DocumentViewerControl.BarItemName="{x:Static dxdv:DefaultBarManagerItemNames.DocumentMapGoToBookmark}" />
                 </dxdv:ShowOptionsBarItem>
             </dxb:ToolBarControl>
-            <dxg:GridControl x:Name="PART_GridControl" Grid.Row="1" ItemsSource="{TemplateBinding ActualSource}" SelectionMode="Row" ShowBorder="False" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;499;14">
+            <dxg:GridControl x:Name="PART_GridControl" Grid.Row="1" ItemsSource="{TemplateBinding ActualSource}" SelectionMode="Row" ShowBorder="False" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;498;14">
                 <dxmvvm:Interaction.Behaviors>
                     <dxmvvm:KeyToCommand Command="{x:Static dxdv:DocumentMapCommands.GoToNodeCommand}" CommandParameter="{Binding Path=CurrentItem, ElementName=PART_GridControl}" EventName="PreviewKeyDown" KeyGesture="Enter" MarkRoutedEventsAsHandled="True" />
                     <dxmvvm:KeyToCommand Command="{x:Static dxdv:DocumentMapCommands.GoToNodeCommand}" CommandParameter="{Binding Path=CurrentItem, ElementName=PART_GridControl}" EventName="PreviewKeyDown" KeyGesture="Space" MarkRoutedEventsAsHandled="True" />
                 </dxmvvm:Interaction.Behaviors>
                 <dxg:GridControl.View>
-                    <dxg:TreeListView x:Name="PART_TreeView" Style="{TemplateBinding TreeViewStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;517;22">
+                    <dxg:TreeListView x:Name="PART_TreeView" Style="{TemplateBinding TreeViewStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="DocumentViewer\Generic\Templates.xaml;516;22">
                         <dxg:TreeListView.RowCellMenuCustomizations>
                             <dxb:BarButtonItem Command="{x:Static dxdv:DocumentMapCommands.GoToNodeCommand}" CommandParameter="{Binding Path=CurrentItem, ElementName=PART_GridControl}" CommandTarget="{Binding ElementName=PART_GridControl}" Content="{dxdv:DocumentViewerControlLocalizedString DocumentMapGoToCaption}" />
                         </dxg:TreeListView.RowCellMenuCustomizations>

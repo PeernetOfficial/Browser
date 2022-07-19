@@ -3,16 +3,15 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxbn="http://schemas.devexpress.com/winfx/2008/xaml/bars/internal"
+                    xmlns:dxbi="http://schemas.devexpress.com/winfx/2008/xaml/bars/internal"
                     xmlns:dxbt="http://schemas.devexpress.com/winfx/2008/xaml/bars/themekeys"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v21.2;component/Core/Core/Editors/Themes/Generic/Generic.xaml"/>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v22.1;component/Core/Core/Editors/Themes/Generic/Generic.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <ControlTemplate x:Key="{dxbt:BarItemSearchControlThemeKey ResourceKey=PopupContentTemplate}">
@@ -26,12 +25,12 @@
         </Grid>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="{dxbt:BarItemSearchControlThemeKey ResourceKey=Template}" TargetType="{x:Type dxbn:BarItemSearchControl}">
-        <dxbn:BarItemSearchControlAutoSuggestEdit x:Name="PART_AutoSuggestEditRoot">
-            <dxbn:BarItemSearchControlAutoSuggestEdit.Buttons>
-                <dxbn:BarItemSearchControlSearchButtonInfo IsLeft="True"/>
-            </dxbn:BarItemSearchControlAutoSuggestEdit.Buttons>
-        </dxbn:BarItemSearchControlAutoSuggestEdit>
+    <ControlTemplate x:Key="{dxbt:BarItemSearchControlThemeKey ResourceKey=Template}" TargetType="{x:Type dxbi:BarItemSearchControl}">
+        <dxbi:BarItemSearchControlAutoSuggestEdit x:Name="PART_AutoSuggestEditRoot">
+            <dxbi:BarItemSearchControlAutoSuggestEdit.Buttons>
+                <dxbi:BarItemSearchControlSearchButtonInfo IsLeft="True"/>
+            </dxbi:BarItemSearchControlAutoSuggestEdit.Buttons>
+        </dxbi:BarItemSearchControlAutoSuggestEdit>
     </ControlTemplate>
 
     <Style x:Key="{dxbt:BarItemSearchControlThemeKey ResourceKey=SearchIconButtonInfoStyle}" TargetType="{x:Type Button}">
@@ -91,7 +90,7 @@
         <Button Style="{DynamicResource {dxbt:BarItemSearchControlThemeKey ResourceKey=SearchIconButtonInfoStyle}}"/>
     </DataTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Bars.Native.BarItemSearchControlSearchButtonInfo}" TargetType="{x:Type dxbn:BarItemSearchControlSearchButtonInfo}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Bars.Native.BarItemSearchControlSearchButtonInfo}" TargetType="{x:Type dxbi:BarItemSearchControlSearchButtonInfo}">
         <Setter Property="Template" Value="{DynamicResource {dxbt:BarItemSearchControlThemeKey ResourceKey=SearchIconButtonInfoTemplate}}"/>
     </Style>
 
@@ -101,11 +100,11 @@
         </Border>
     </DataTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Bars.Native.BarItemSearchControlDeleteButtonInfo}" TargetType="{x:Type dxbn:BarItemSearchControlDeleteButtonInfo}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Bars.Native.BarItemSearchControlDeleteButtonInfo}" TargetType="{x:Type dxbi:BarItemSearchControlDeleteButtonInfo}">
         <Setter Property="Template" Value="{DynamicResource {dxbt:BarItemSearchControlThemeKey ResourceKey=DeleteButtonInfoTemplate}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Bars.Native.BarItemSearchControl}" TargetType="{x:Type dxbn:BarItemSearchControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Bars.Native.BarItemSearchControl}" TargetType="{x:Type dxbi:BarItemSearchControl}">
         <Setter Property="MaxWidth" Value="{DynamicResource {dxt:ThemedWindowSearchBoxThemeKey ResourceKey=MaxWidth}}"/>
         <Setter Property="MinWidth" Value="{DynamicResource {dxt:ThemedWindowSearchBoxThemeKey ResourceKey=MinWidth}}"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
@@ -118,9 +117,9 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Bars.Native.BarItemSearchControlAutoSuggestEdit}"
-           BasedOn="{StaticResource {dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.AutoSuggestEdit}}"
-           TargetType="{x:Type dxbn:BarItemSearchControlAutoSuggestEdit}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Bars.Native.BarItemSearchControlAutoSuggestEdit}"
+           BasedOn="{StaticResource {dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.AutoSuggestEdit}}"
+           TargetType="{x:Type dxbi:BarItemSearchControlAutoSuggestEdit}">
         <Setter Property="ShowNullTextIfFocused" Value="False"/>
         <Setter Property="ShowNullValueButtonOnFocusOnly" Value="True"/>
         <Setter Property="NullValueButtonPlacement" Value="EditBox"/>

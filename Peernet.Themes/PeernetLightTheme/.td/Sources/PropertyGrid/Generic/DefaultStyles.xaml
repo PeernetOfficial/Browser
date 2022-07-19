@@ -3,22 +3,21 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxprg="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid"
                     xmlns:dxprgi="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid/internal"
                     xmlns:dxprgt="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid/themekeys"
-                    xmlns:editors="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.PropertyGrid.Internal.CategorySelectorControl}" TargetType="{x:Type dxprgi:CategorySelectorControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.PropertyGrid.Internal.CategorySelectorControl}" TargetType="{x:Type dxprgi:CategorySelectorControl}">
         <Setter Property="ItemsPanel" Value="{DynamicResource {dxprgt:PropertyGridViewThemeKey ResourceKey=CategorySelectorItemsPanelTemplate}}"/>
         <Setter Property="Template" Value="{DynamicResource {dxprgt:PropertyGridViewThemeKey ResourceKey=CategorySelectorTemplate}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.PropertyGrid.Internal.CategoryHeaderRowControl}" TargetType="{x:Type dxprgi:CategoryHeaderRowControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.PropertyGrid.Internal.CategoryHeaderRowControl}" TargetType="{x:Type dxprgi:CategoryHeaderRowControl}">
         <Setter Property="Template" Value="{DynamicResource {dxprgt:PropertyGridViewThemeKey ResourceKey=CategoryHeaderTemplate}}"/>
         <Setter Property="Margin" Value="{DynamicResource {dxprgt:PropertyGridViewThemeKey ResourceKey=CategoryHeaderMargin}}"/>
         <Setter Property="Padding" Value="{DynamicResource {dxprgt:PropertyGridViewThemeKey ResourceKey=CategoryHeaderPadding}}"/>
@@ -42,7 +41,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.PropertyGrid.PropertyGridView}" TargetType="{x:Type dxprg:PropertyGridView}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.PropertyGrid.PropertyGridView}" TargetType="{x:Type dxprg:PropertyGridView}">
         <Setter Property="Template" Setter.Value="{DynamicResource {dxprgt:PropertyGridViewThemeKey ResourceKey=ControlTemplate}}"/>
         <Setter Property="ItemsPanel" Setter.Value="{DynamicResource {dxprgt:PropertyGridViewThemeKey ResourceKey=ItemsPanelTemplate}}"/>
         <Setter Property="VirtualizingStackPanel.VirtualizationMode" Value="{Binding Path=PropertyGrid.(VirtualizingStackPanel.VirtualizationMode), RelativeSource={RelativeSource Self}}"/>
@@ -63,7 +62,7 @@
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.PropertyGrid.PropertyGridControl}" TargetType="{x:Type dxprg:PropertyGridControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.PropertyGrid.PropertyGridControl}" TargetType="{x:Type dxprg:PropertyGridControl}">
         <Setter Property="Template" Value="{DynamicResource {dxprgt:PropertyGridControlThemeKey ResourceKey=ControlTemplate}}"/>
         <Setter Property="DescriptionTemplate" Value="{DynamicResource {dxprgt:PropertyGridControlThemeKey ResourceKey=DefaultDescriptionTemplate}}"/>
         <Setter Property="ValueColumnMinWidth" Value="{DynamicResource ResourceKey={dxprgt:PropertyGridControlThemeKey ResourceKey=ValueColumnMinWidth}}"/>
@@ -86,19 +85,19 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.PropertyGrid.PropertyGridViewKindSelectorControl}" TargetType="{x:Type dxprg:PropertyGridViewKindSelectorControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.PropertyGrid.PropertyGridViewKindSelectorControl}" TargetType="{x:Type dxprg:PropertyGridViewKindSelectorControl}">
         <Setter Property="Template" Value="{DynamicResource {dxprgt:PropertyGridControlThemeKey ResourceKey=ViewKindSelectorTemplate}}"/>
         <Setter Property="KeyboardNavigation.TabNavigation" Value="Continue"/>
         <Setter Property="KeyboardNavigation.DirectionalNavigation" Value="Continue"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.PropertyGrid.PropertyDescriptionPresenterControl}" TargetType="{x:Type dxprg:PropertyDescriptionPresenterControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.PropertyGrid.PropertyDescriptionPresenterControl}" TargetType="{x:Type dxprg:PropertyDescriptionPresenterControl}">
         <Setter Property="Content" Value="{Binding SelectedRow.Description, RelativeSource={RelativeSource Self}}"/>
         <Setter Property="ContentTemplateSelector" Value="{Binding ActualDescriptionTemplateSelector, RelativeSource={RelativeSource TemplatedParent}}"/>
         <Setter Property="Template" Value="{DynamicResource ResourceKey={dxprgt:PropertyGridControlThemeKey ResourceKey=DescriptionPresenterTemplate}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.PropertyGrid.RowControl}" TargetType="{x:Type dxprg:RowControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.PropertyGrid.RowControl}" TargetType="{x:Type dxprg:RowControl}">
         <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
         <Setter Property="KeyboardNavigation.ControlTabNavigation" Value="None"/>
         <Setter Property="KeyboardNavigation.DirectionalNavigation" Value="None"/>

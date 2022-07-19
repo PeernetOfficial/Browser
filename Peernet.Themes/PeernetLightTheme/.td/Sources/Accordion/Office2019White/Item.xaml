@@ -3,7 +3,7 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxa="http://schemas.devexpress.com/winfx/2008/xaml/accordion"
-                    xmlns:dxan="http://schemas.devexpress.com/winfx/2008/xaml/accordion/internal"
+                    xmlns:dxai="http://schemas.devexpress.com/winfx/2008/xaml/accordion/internal"
                     xmlns:dxat="http://schemas.devexpress.com/winfx/2008/xaml/accordion/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
@@ -14,7 +14,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v21.2;component/Accordion/Office2019White/UICore.xaml"/>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v22.1;component/Accordion/Office2019White/UICore.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <!-- Item -->
@@ -213,7 +213,7 @@
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding Path=IsKeyboardFocused, RelativeSource={RelativeSource Self}}" Value="True"/>
-                    <Condition Binding="{Binding Path=IsSingleItemVisible, RelativeSource={RelativeSource AncestorType=dxan:CollapsedAccordionVirtualizingPanel}}" Value="False"/>
+                    <Condition Binding="{Binding Path=IsSingleItemVisible, RelativeSource={RelativeSource AncestorType=dxai:CollapsedAccordionVirtualizingPanel}}" Value="False"/>
                 </MultiDataTrigger.Conditions>
                 <Setter Property="Foreground"
                         TargetName="Content"

@@ -1,4 +1,4 @@
-<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxe="clr-namespace:DevExpress.Xpf.Editors;assembly=DevExpress.Xpf.Core.v21.2" xmlns:dxprg="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid" xmlns:dxprgt="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid/themekeys" xmlns:internal="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxe="clr-namespace:DevExpress.Xpf.Editors;assembly=DevExpress.Xpf.Core.v22.1" xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal" xmlns:dxprg="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid" xmlns:dxprgt="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid/themekeys" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
 
     <dxe:BrushType x:Key="NoneBrushType">None</dxe:BrushType>
 
@@ -10,9 +10,9 @@
 
     <dxe:BrushType x:Key="TileBrushType">TileBrush</dxe:BrushType>
 
-    <internal:GradientBrushType x:Key="LinearGradientBrushType2">Linear</internal:GradientBrushType>
+    <dxei:GradientBrushType x:Key="LinearGradientBrushType2">Linear</dxei:GradientBrushType>
 
-    <internal:GradientBrushType x:Key="RadialGradientBrushType2">Radial</internal:GradientBrushType>
+    <dxei:GradientBrushType x:Key="RadialGradientBrushType2">Radial</dxei:GradientBrushType>
 
     <dxcore_unique_xmlns:EnumToObjectConverter x:Key="EnumToObjectConverter" DefaultValue="{StaticResource LinearGradientBrushType2}">
         <dxcore_unique_xmlns:EnumToObjectConverter.Values>
@@ -31,17 +31,17 @@
         <dxprg:PropertyGridControl x:Name="PART_GridControl" />
     </ControlTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.PropertyGrid.BrushEdit}" BasedOn="{StaticResource {dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.BrushEditBase}}" TargetType="{x:Type dxprg:BrushEdit}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="PropertyGrid\Generic\BrushEdit.xaml;44;6" /></Style>
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.PropertyGrid.BrushEdit}" BasedOn="{StaticResource {dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.BrushEditBase}}" TargetType="{x:Type dxprg:BrushEdit}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="PropertyGrid\Generic\BrushEdit.xaml;44;6" /></Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.PropertyGrid.PopupBrushEdit}" BasedOn="{StaticResource {dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.PopupBrushEditBase}}" TargetType="{x:Type dxprg:PopupBrushEdit}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.PropertyGrid.PopupBrushEdit}" BasedOn="{StaticResource {dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.PopupBrushEditBase}}" TargetType="{x:Type dxprg:PopupBrushEdit}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="PropertyGrid\Generic\BrushEdit.xaml;48;6" /><Setter Property="PopupContentTemplate" Value="{DynamicResource {dxprgt:PopupBrushEditThemeKey ResourceKey=PopupContentTemplate}}" />
         <Setter Property="PopupMinHeight" Value="275" />
     </Style>
 
     <DataTemplate x:Key="{dxprgt:PopupBrushEditThemeKey ResourceKey=GradientsTemplate}">
         <StackPanel dxprg:NavigationManager.NavigationMode="Local" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="PropertyGrid\Generic\BrushEdit.xaml;56;10">
-            <internal:ColorPicker Color="{Binding Path=SelectedThumbColor, ElementName=GradientMultiSlider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="12" />
-            <internal:GradientMultiSlider x:Name="GradientMultiSlider" Brush="{Binding Path=EditableObject, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={dxprg:EditableObjectConverter}}" BrushType="{Binding Path=Parent.EditableObject.BrushType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource brushTypeConverter}}" Margin="0,0,0,12" />
+            <dxei:ColorPicker Color="{Binding Path=SelectedThumbColor, ElementName=GradientMultiSlider, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="12" />
+            <dxei:GradientMultiSlider x:Name="GradientMultiSlider" Brush="{Binding Path=EditableObject, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={dxprg:EditableObjectConverter}}" BrushType="{Binding Path=Parent.EditableObject.BrushType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource brushTypeConverter}}" Margin="0,0,0,12" />
         </StackPanel>
     </DataTemplate>
 

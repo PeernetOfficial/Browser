@@ -1,19 +1,19 @@
 <ResourceDictionary mc:Ignorable="cs"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
-                    xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core"
-                    xmlns:dxcn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                    xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
                     xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
                     xmlns:dxri="http://schemas.devexpress.com/winfx/2008/xaml/ribbon/internal"
                     xmlns:dxrt="http://schemas.devexpress.com/winfx/2008/xaml/ribbon/themekeys"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <dxc:BooleanToVisibilityConverter x:Key="boolToVisibilityConverter" Invert="False"/>
+    <dx:BooleanToVisibilityConverter x:Key="boolToVisibilityConverter" Invert="False"/>
 
-    <dxc:BooleanToVisibilityConverter x:Key="invertBoolToVisibilityConverter" Invert="True"/>
+    <dx:BooleanToVisibilityConverter x:Key="invertBoolToVisibilityConverter" Invert="True"/>
 
     <ControlTemplate x:Key="{dxrt:BackstageThemeKey ResourceKey=ControlItemsTemplate}" TargetType="{x:Type dxr:BackstageViewItemsControl}">
         <ItemsPresenter x:Name="itemsPresenter"
@@ -34,7 +34,7 @@
                     <DockPanel LastChildFill="True">
                         <dxr:RibbonCheckedBorderControl x:Name="PART_Glyph"
                                                         DockPanel.Dock="Top"
-                                                        dxcn:WindowChrome.IsHitTestVisibleInChrome="True"
+                                                        dxi:WindowChrome.IsHitTestVisibleInChrome="True"
                                                         Style="{DynamicResource ResourceKey={dxrt:BackstageThemeKey ResourceKey=BackstageViewBackGlyphTemplate}}"/>
                         <ContentControl x:Name="PART_Left"
                                         Content="{TemplateBinding LeftContent}"
@@ -58,14 +58,14 @@
                 <Control x:Name="PART_HeaderAndButtonsBackground" Template="{DynamicResource ResourceKey={dxrt:BackstageThemeKey ResourceKey=HeaderAndButtonsBackground}}"/>
                 <dxri:BackstageViewHeaderPresenter x:Name="PART_HeaderPresenter"
                                                    BackstageViewControl="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=dxr:BackstageViewControl}}"
-                                                   Content="{Binding Path=(dxcn:DXWindowsHelper.Window).Title, RelativeSource={RelativeSource Mode=Self}}"
+                                                   Content="{Binding Path=(dxi:DXWindowsHelper.Window).Title, RelativeSource={RelativeSource Mode=Self}}"
                                                    HorizontalAlignment="Stretch"
                                                    LeftOffset="{Binding ElementName=PART_Left, Path=ActualWidth}"
                                                    RightOffset="{Binding ElementName=PART_ControlBoxContainer, Path=ActualWidth}"
                                                    Style="{DynamicResource ResourceKey={dxrt:BackstageThemeKey ResourceKey=HeaderPresenterStyle}}"
                                                    VerticalAlignment="Top"/>
                 <dxri:RibbonControlBoxContainer x:Name="PART_ControlBoxContainer"
-                                                dxcn:WindowChrome.IsHitTestVisibleInChrome="True"
+                                                dxi:WindowChrome.IsHitTestVisibleInChrome="True"
                                                 HorizontalAlignment="Right"
                                                 ShowCustomItems="False"
                                                 Style="{DynamicResource ResourceKey={dxrt:BackstageThemeKey ResourceKey=ControlBoxContainerStyle}}"

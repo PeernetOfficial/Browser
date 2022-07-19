@@ -3,10 +3,8 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxcn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
-                    xmlns:dxmvvmi="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
                     xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
@@ -45,7 +43,7 @@
         <Setter Property="Margin" Value="{Binding Path=(dx:DXWindow.AeroControlBoxMargin), RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=dx:DXWindow}}"/>
         <Setter Property="ItemContainerStyle">
             <Setter.Value>
-                <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=ButtonBase}" TargetType="ButtonBase">
+                <Style x:Key="{dxt:DefaultStyleThemeKey FullName=ButtonBase}" TargetType="ButtonBase">
                     <Setter Property="Width" Value="0"/>
                     <Setter Property="Height" Value="0"/>
                 </Style>
@@ -66,7 +64,7 @@
                                     <RowDefinition.MinHeight>
                                         <MultiBinding>
                                             <MultiBinding.Converter>
-                                                <dxcn:DXTabbedWindowHeaderSizeConverter/>
+                                                <dxi:DXTabbedWindowHeaderSizeConverter/>
                                             </MultiBinding.Converter>
                                             <Binding Path="TabHeaderSize" RelativeSource="{RelativeSource TemplatedParent}"/>
                                             <Binding Path="HeaderIndentInNormalState" RelativeSource="{RelativeSource TemplatedParent}"/>
@@ -89,11 +87,11 @@
                                                Panel.ZIndex="100">
                                 <DockPanel LastChildFill="True">
                                     <Decorator DockPanel.Dock="Right">
-                                        <dxmvvmi:Interaction.Behaviors>
-                                            <dxmvvmi:DependencyPropertyBehavior Binding="{Binding RelativeSource={RelativeSource AncestorType=dx:DXTabbedWindow}, Path=ButtonContainerActualWidth, Mode=OneWayToSource}"
-                                                                                EventName="SizeChanged"
-                                                                                PropertyName="ActualWidth"/>
-                                        </dxmvvmi:Interaction.Behaviors>
+                                        <dxmvvm:Interaction.Behaviors>
+                                            <dxmvvm:DependencyPropertyBehavior Binding="{Binding RelativeSource={RelativeSource AncestorType=dx:DXTabbedWindow}, Path=ButtonContainerActualWidth, Mode=OneWayToSource}"
+                                                                               EventName="SizeChanged"
+                                                                               PropertyName="ActualWidth"/>
+                                        </dxmvvm:Interaction.Behaviors>
                                         <ItemsControl x:Name="ButtonContainer"
                                                       dx:HeaderItemControl.CloseTemplateProvider="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=HeaderItemControlCloseTemplateProvider}}"
                                                       dx:HeaderItemControl.CommonTemplateProvider="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=HeaderItemControlCommonTemplateProvider}}"
@@ -110,12 +108,12 @@
                                             <dx:HeaderItemControl x:Name="PART_CloseButton" Style="{DynamicResource {dxt:FloatingContainerThemeKey ResourceKey=FloatingContainerHeaderCloseButtonStyle}}"/>
                                         </ItemsControl>
                                     </Decorator>
-                                    <dxcn:DXTabbedWindowHeaderDecorator x:Name="HeaderPresented" TabbedWindowMode="{TemplateBinding TabbedWindowMode}">
-                                        <dxmvvmi:Interaction.Behaviors>
-                                            <dxmvvmi:DependencyPropertyBehavior Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CaptionActualWidth, Mode=OneWayToSource}"
-                                                                                EventName="SizeChanged"
-                                                                                PropertyName="ActualWidth"/>
-                                        </dxmvvmi:Interaction.Behaviors>
+                                    <dxi:DXTabbedWindowHeaderDecorator x:Name="HeaderPresented" TabbedWindowMode="{TemplateBinding TabbedWindowMode}">
+                                        <dxmvvm:Interaction.Behaviors>
+                                            <dxmvvm:DependencyPropertyBehavior Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CaptionActualWidth, Mode=OneWayToSource}"
+                                                                               EventName="SizeChanged"
+                                                                               PropertyName="ActualWidth"/>
+                                        </dxmvvm:Interaction.Behaviors>
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto"/>
@@ -130,7 +128,7 @@
                                                               Grid.Column="1"
                                                               Style="{DynamicResource {dxt:DXTabbedWindowThemeKey ResourceKey=CaptionPresenterStyle}}"/>
                                         </Grid>
-                                    </dxcn:DXTabbedWindowHeaderDecorator>
+                                    </dxi:DXTabbedWindowHeaderDecorator>
                                 </DockPanel>
                             </dx:DXWindowHeader>
                             <Decorator x:Name="FloatingContainerBodyContainer"
@@ -139,7 +137,7 @@
                                 <Decorator.Margin>
                                     <MultiBinding>
                                         <MultiBinding.Converter>
-                                            <dxcn:DXTabbedWindowMarginConverter/>
+                                            <dxi:DXTabbedWindowMarginConverter/>
                                         </MultiBinding.Converter>
                                         <Binding Path="TabHeaderSize" RelativeSource="{RelativeSource TemplatedParent}"/>
                                         <Binding Path="TabbedWindowMode" RelativeSource="{RelativeSource TemplatedParent}"/>

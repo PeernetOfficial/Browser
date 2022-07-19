@@ -3,12 +3,12 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxcn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
-                    xmlns:dxcop="clr-namespace:DevExpress.Xpf.Controls.Primitives;assembly=DevExpress.Xpf.Controls.v21.2"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dxcop="clr-namespace:DevExpress.Xpf.Controls.Primitives;assembly=DevExpress.Xpf.Controls.v22.1"
+                    xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
                     xmlns:dxnav="http://schemas.devexpress.com/winfx/2008/xaml/navigation"
-                    xmlns:dxnavi="clr-namespace:DevExpress.Xpf.Navigation.Internal;assembly=DevExpress.Xpf.Controls.v21.2"
+                    xmlns:dxnavi="clr-namespace:DevExpress.Xpf.Navigation.Internal;assembly=DevExpress.Xpf.Controls.v22.1"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxwuit="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
@@ -22,7 +22,7 @@
 
     <!--ScrolllaleControl-->
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Controls.Primitives.ScrollableControl}" TargetType="dxcop:ScrollableControl">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Controls.Primitives.ScrollableControl}" TargetType="dxcop:ScrollableControl">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="dxcop:ScrollableControl">
@@ -77,16 +77,16 @@
                                 <VisualState x:Name="Horizontal"/>
                                 <VisualState x:Name="Vertical">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames dxcn:ValueSetter.Visibility="Collapsed"
+                                        <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Visibility="Collapsed"
                                                                        Storyboard.TargetName="PART_RightButton"
                                                                        Storyboard.TargetProperty="Visibility"/>
-                                        <ObjectAnimationUsingKeyFrames dxcn:ValueSetter.Visibility="Collapsed"
+                                        <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Visibility="Collapsed"
                                                                        Storyboard.TargetName="PART_LeftButton"
                                                                        Storyboard.TargetProperty="Visibility"/>
-                                        <ObjectAnimationUsingKeyFrames dxcn:ValueSetter.Visibility="Visible"
+                                        <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Visibility="Visible"
                                                                        Storyboard.TargetName="PART_TopButton"
                                                                        Storyboard.TargetProperty="Visibility"/>
-                                        <ObjectAnimationUsingKeyFrames dxcn:ValueSetter.Visibility="Visible"
+                                        <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Visibility="Visible"
                                                                        Storyboard.TargetName="PART_BottomButton"
                                                                        Storyboard.TargetProperty="Visibility"/>
                                     </Storyboard>
@@ -128,16 +128,16 @@
                                 </VisualState>
                                 <VisualState x:Name="DisabledScroll">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames dxcn:ValueSetter.Visibility="Collapsed"
+                                        <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Visibility="Collapsed"
                                                                        Storyboard.TargetName="PART_RightButton"
                                                                        Storyboard.TargetProperty="Visibility"/>
-                                        <ObjectAnimationUsingKeyFrames dxcn:ValueSetter.Visibility="Collapsed"
+                                        <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Visibility="Collapsed"
                                                                        Storyboard.TargetName="PART_LeftButton"
                                                                        Storyboard.TargetProperty="Visibility"/>
-                                        <ObjectAnimationUsingKeyFrames dxcn:ValueSetter.Visibility="Collapsed"
+                                        <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Visibility="Collapsed"
                                                                        Storyboard.TargetName="PART_TopButton"
                                                                        Storyboard.TargetProperty="Visibility"/>
-                                        <ObjectAnimationUsingKeyFrames dxcn:ValueSetter.Visibility="Collapsed"
+                                        <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Visibility="Collapsed"
                                                                        Storyboard.TargetName="PART_BottomButton"
                                                                        Storyboard.TargetProperty="Visibility"/>
                                     </Storyboard>
@@ -151,7 +151,7 @@
         <Setter Property="Focusable" Value="False"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Controls.Primitives.ScrollableControlButton}" TargetType="dxcop:ScrollableControlButton">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Controls.Primitives.ScrollableControlButton}" TargetType="dxcop:ScrollableControlButton">
         <Setter Property="Template" Value="{DynamicResource {dxwuit:WindowsUIElementsThemeKey ResourceKey=ScrollableControlButtonTemplate}}"/>
     </Style>
 
@@ -255,7 +255,7 @@
                     <VisualState x:Name="ShadowHidden"/>
                     <VisualState x:Name="ShadowVisible">
                         <Storyboard>
-                            <ObjectAnimationUsingKeyFrames dxcn:ValueSetter.Visibility="Visible"
+                            <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Visibility="Visible"
                                                            Storyboard.TargetName="PART_Shadow"
                                                            Storyboard.TargetProperty="Visibility"/>
                         </Storyboard>
@@ -267,7 +267,7 @@
 
     <!--TileBar-->
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.TileBar}" TargetType="dxnav:TileBar">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.TileBar}" TargetType="dxnav:TileBar">
         <Setter Property="dxcop:ScrollableControl.ScrollButtonMode" Value="Default"/>
         <Setter Property="Padding" Value="20,30,20,20"/>
         <Setter Property="Template">
@@ -303,7 +303,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.Internal.TileBarItemArrowControl}" TargetType="dxnavi:TileBarItemArrowControl">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.Internal.TileBarItemArrowControl}" TargetType="dxnavi:TileBarItemArrowControl">
         <Setter Property="Template" Value="{DynamicResource {dxwuit:TileNavPaneElementsThemeKey ResourceKey=TileBarArrowTemplate}}"/>
         <Setter Property="Background"
                 Value="Transparent"
@@ -311,7 +311,7 @@
         <Setter Property="Focusable" Value="False"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.TileSelectorItem}" TargetType="dxnav:TileSelectorItem">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.TileSelectorItem}" TargetType="dxnav:TileSelectorItem">
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="VerticalContentAlignment" Value="Bottom"/>
         <Setter Property="Padding" Value="8"/>
@@ -322,28 +322,28 @@
         <Setter Property="SelectionPadding" Value="4"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.TileBarItem}"
-           BasedOn="{StaticResource {dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.TileSelectorItem}}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.TileBarItem}"
+           BasedOn="{StaticResource {dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.TileSelectorItem}}"
            TargetType="dxnav:TileBarItem"/>
 
     <Style x:Key="navItemBaseStyle"
-           BasedOn="{StaticResource {dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.TileSelectorItem}}"
+           BasedOn="{StaticResource {dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.TileSelectorItem}}"
            TargetType="dxnav:TileSelectorItem"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.TileNavCategory}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.TileNavCategory}"
            BasedOn="{StaticResource navItemBaseStyle}"
            TargetType="dxnav:TileNavCategory"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.TileNavItem}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.TileNavItem}"
            BasedOn="{StaticResource navItemBaseStyle}"
            TargetType="dxnav:TileNavItem"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.TileNavSubItem}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.TileNavSubItem}"
            BasedOn="{StaticResource navItemBaseStyle}"
            TargetType="dxnav:TileNavSubItem"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.Internal.TileNavPaneBar}"
-           BasedOn="{StaticResource {dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.TileBar}}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.Internal.TileNavPaneBar}"
+           BasedOn="{StaticResource {dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.TileBar}}"
            TargetType="dxnavi:TileNavPaneBar">
         <Setter Property="ItemsPanel">
             <Setter.Value>
@@ -358,7 +358,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.Internal.TileNavPaneContentControl}" TargetType="dxnavi:TileNavPaneContentControl">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.Internal.TileNavPaneContentControl}" TargetType="dxnavi:TileNavPaneContentControl">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="dxnavi:TileNavPaneContentControl">
@@ -375,7 +375,7 @@
         <Setter Property="Focusable" Value="False"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.TileNavPane}" TargetType="dxnav:TileNavPane">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.TileNavPane}" TargetType="dxnav:TileNavPane">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="dxnav:TileNavPane">
@@ -405,7 +405,7 @@
         <Setter Property="ClipToBounds" Value="True"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.NavButton}" TargetType="dxnav:NavButton">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.NavButton}" TargetType="dxnav:NavButton">
         <Setter Property="FontFamily" Value="Segoe UI Light"/>
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="Padding" Value="12"/>
@@ -418,12 +418,12 @@
         <Setter Property="UseLayoutRounding" Value="True"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.Internal.SelectedNavButton}"
-           BasedOn="{StaticResource {dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.NavButton}}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.Internal.SelectedNavButton}"
+           BasedOn="{StaticResource {dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.NavButton}}"
            TargetType="dxnavi:SelectedNavButton"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.Internal.NavButtonSeparator}"
-           BasedOn="{StaticResource {dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.NavButton}}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.Internal.NavButtonSeparator}"
+           BasedOn="{StaticResource {dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.NavButton}}"
            TargetType="dxnavi:NavButtonSeparator">
         <Setter Property="Template">
             <Setter.Value>
@@ -434,7 +434,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.Internal.TileButtonControl}" TargetType="dxnavi:TileButtonControl">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.Internal.TileButtonControl}" TargetType="dxnavi:TileButtonControl">
         <Setter Property="GlyphColor" Value="{DynamicResource {dxwuit:TileNavPaneElementsThemeKey ResourceKey=TileSelectorItemForegroundColor}}"/>
         <Setter Property="Template" Value="{DynamicResource {dxwuit:TileNavPaneElementsThemeKey ResourceKey=TileButtonControlTemplate}}"/>
         <Setter Property="Background"
@@ -443,7 +443,7 @@
         <Setter Property="Focusable" Value="False"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.Internal.TileBarGroupHeader}" TargetType="dxnavi:TileBarGroupHeader">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Navigation.Internal.TileBarGroupHeader}" TargetType="dxnavi:TileBarGroupHeader">
         <Setter Property="FontFamily" Value="Segoe UI Light"/>
         <Setter Property="Foreground"
                 Value="#FF000000"

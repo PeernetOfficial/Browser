@@ -3,10 +3,9 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxa="http://schemas.devexpress.com/winfx/2008/xaml/accordion"
-                    xmlns:dxan="http://schemas.devexpress.com/winfx/2008/xaml/accordion/internal"
+                    xmlns:dxai="http://schemas.devexpress.com/winfx/2008/xaml/accordion/internal"
                     xmlns:dxat="http://schemas.devexpress.com/winfx/2008/xaml/accordion/themekeys"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal"
                     xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
@@ -17,7 +16,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Accordion.v21.2;component/Themes/Generic/Resources.xaml"/>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Accordion.v22.1;component/Themes/Generic/Resources.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="{dxat:AccordionThemeKeys ResourceKey=SplitterStyleBase}" TargetType="{x:Type dxa:AccordionSplitter}">
@@ -121,7 +120,7 @@
                         </dxe:ListBoxEdit.ItemTemplate>
                         <dxe:ListBoxEdit.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <dxan:OverflowVirtualizingPanel ActualChildrenLength="{Binding Path=OverflowItemActualLength, Mode=TwoWay, RelativeSource={RelativeSource AncestorType=dxa:AccordionOverflowControl}}"
+                                <dxai:OverflowVirtualizingPanel ActualChildrenLength="{Binding Path=OverflowItemActualLength, Mode=TwoWay, RelativeSource={RelativeSource AncestorType=dxa:AccordionOverflowControl}}"
                                                                 CanCollapseAllChildren="True"
                                                                 CollapsedItems="{Binding Path=CollapsedItemsSource, RelativeSource={RelativeSource AncestorType=dxa:AccordionOverflowControl}, Mode=TwoWay}"
                                                                 MaxVisibleItems="{Binding Path=ActualMaxVisibleItems, RelativeSource={RelativeSource AncestorType=dxa:AccordionOverflowControl}}"

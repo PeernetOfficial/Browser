@@ -3,9 +3,8 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxa="http://schemas.devexpress.com/winfx/2008/xaml/accordion"
-                    xmlns:dxan="http://schemas.devexpress.com/winfx/2008/xaml/accordion/internal"
+                    xmlns:dxai="http://schemas.devexpress.com/winfx/2008/xaml/accordion/internal"
                     xmlns:dxat="http://schemas.devexpress.com/winfx/2008/xaml/accordion/themekeys"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal"
                     xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
@@ -16,12 +15,12 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Accordion.v21.2;component/Themes/Generic/Resources.xaml"/>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Accordion.v22.1;component/Themes/Generic/Resources.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <dx:EditorStringIdConverter x:Key="EditorStringIdConverter"/>
 
-    <dxan:AccordionItemConverter x:Key="accordionItemConverter"/>
+    <dxai:AccordionItemConverter x:Key="accordionItemConverter"/>
 
     <Style x:Key="{dxat:AccordionItemThemeKeys ResourceKey=ExpanderButtonStyle}" TargetType="dxa:AccordionExpandButton">
         <Setter Property="Focusable" Value="False"/>
@@ -409,6 +408,9 @@
                 <Setter Property="Grid.Row"
                         TargetName="PART_Glyph"
                         Value="1"/>
+                <Setter Property="Margin"
+                        TargetName="PART_HeaderInternalContainer"
+                        Value="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=CollapsedItemGlyphMargin}}"/>
             </Trigger>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                 <Setter Property="MinHeight"
@@ -454,6 +456,9 @@
         <Setter Property="Height" Value="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=RootItemExpandButtonSize}}"/>
         <Setter Property="Margin" Value="{DynamicResource {dxat:AccordionThemeKeys ResourceKey=CollapseButtonMargin}}"/>
         <Style.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Margin" Value="{DynamicResource {dxat:AccordionThemeKeys ResourceKey=CollapseButtonCheckedMargin}}"/>
+            </Trigger>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                 <Setter Property="Width" Value="{StaticResource ExpandButtonTouchSize}"/>
                 <Setter Property="Height" Value="{StaticResource ExpandButtonTouchSize}"/>
@@ -509,7 +514,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="GlyphPosition" Value="Left"/>
-        <Setter Property="GlyphTemplate" Value="{StaticResource AccordionItemDefaultGlyphTemplate}"/>
+        <Setter Property="GlyphTemplate" Value="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=AccordionItemDefaultGlyphTemplate}}"/>
         <Setter Property="MinWidth" Value="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=RootItemHeaderHeight}}"/>
         <Setter Property="MinHeight" Value="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=RootItemHeaderHeight}}"/>
         <Setter Property="RotateAngle" Value="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=ItemRotateAngle}}"/>
@@ -550,7 +555,7 @@
            BasedOn="{StaticResource {dxat:AccordionThemeKeys ResourceKey=HeaderPresenterStyleBase}}"
            TargetType="{x:Type dxa:ItemPresenter}"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Accordion.HeaderPresenter}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Accordion.HeaderPresenter}"
            BasedOn="{StaticResource {dxat:AccordionThemeKeys ResourceKey=HeaderPresenterStyle}}"
            TargetType="{x:Type dxa:HeaderPresenter}"/>
 

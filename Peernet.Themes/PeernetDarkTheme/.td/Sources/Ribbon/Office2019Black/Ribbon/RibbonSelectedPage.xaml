@@ -4,7 +4,7 @@
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
                     xmlns:dxbt="http://schemas.devexpress.com/winfx/2008/xaml/bars/themekeys"
-                    xmlns:dxcn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
+                    xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
                     xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
                     xmlns:dxri="http://schemas.devexpress.com/winfx/2008/xaml/ribbon/internal"
                     xmlns:dxrt="http://schemas.devexpress.com/winfx/2008/xaml/ribbon/themekeys"
@@ -14,7 +14,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v21.2;component/Ribbon/Office2019Black/UICore.xaml"/>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v22.1;component/Ribbon/Office2019Black/UICore.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <!-- General -->
@@ -29,10 +29,10 @@
             <ContentPresenter/>
         </Grid>
         <ControlTemplate.Triggers>
-            <DataTrigger Binding="{Binding Path=(dxr:RibbonControl.Ribbon).(dxcn:AppearanceOptions.HasCornerRadius), RelativeSource={RelativeSource Self}}" Value="True">
+            <DataTrigger Binding="{Binding Path=(dxr:RibbonControl.Ribbon).(dxi:AppearanceOptions.HasCornerRadius), RelativeSource={RelativeSource Self}}" Value="True">
                 <Setter Property="CornerRadius"
                         TargetName="Border"
-                        Value="{Binding Path=(dxr:RibbonControl.Ribbon).(dxcn:AppearanceOptions.CornerRadius), RelativeSource={RelativeSource Self}, Converter={StaticResource CornerRadiusConverter}, ConverterParameter=Bottom}"/>
+                        Value="{Binding Path=(dxr:RibbonControl.Ribbon).(dxi:AppearanceOptions.CornerRadius), RelativeSource={RelativeSource Self}, Converter={StaticResource CornerRadiusConverter}, ConverterParameter=Bottom}"/>
             </DataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>

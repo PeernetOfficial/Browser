@@ -3,18 +3,16 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-                    xmlns:dxee="clr-namespace:DevExpress.Xpf.Editors;assembly=DevExpress.Xpf.Core.v21.2"
+                    xmlns:dxee="clr-namespace:DevExpress.Xpf.Editors;assembly=DevExpress.Xpf.Core.v22.1"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
-                    xmlns:dxr="clr-namespace:DevExpress.Xpf.Ribbon;assembly=DevExpress.Xpf.Ribbon.v21.2"
+                    xmlns:dxr="clr-namespace:DevExpress.Xpf.Ribbon;assembly=DevExpress.Xpf.Ribbon.v22.1"
                     xmlns:dxsps="http://schemas.devexpress.com/winfx/2008/xaml/spreadsheet"
                     xmlns:dxspsi="http://schemas.devexpress.com/winfx/2008/xaml/spreadsheet/internal"
-                    xmlns:dxspsui="http://schemas.devexpress.com/winfx/2008/xaml/spreadsheet"
+                    xmlns:dxspst="http://schemas.devexpress.com/winfx/2008/xaml/spreadsheet/themekeys"
                     xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
-                    xmlns:themes="http://schemas.devexpress.com/winfx/2008/xaml/spreadsheet/themekeys"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
@@ -31,35 +29,35 @@
 
     <dxspsi:ColorToStringConverter x:Key="ColorToStringConverter"/>
 
-    <dxspsui:SpreadsheetControlStringIdConverter x:Key="stringIdConverter"/>
+    <dxsps:SpreadsheetControlStringIdConverter x:Key="stringIdConverter"/>
 
     <dx:BoolInverseConverter x:Key="BoolInverseConverter"/>
 
     <dx:ColorToBrushConverter x:Key="ColorToBrushConverter"/>
 
-    <SolidColorBrush x:Key="{themes:SpreadsheetThemeKey ResourceKey=CommentIndicatorBrush}" Color="Red"/>
+    <SolidColorBrush x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=CommentIndicatorBrush}" Color="Red"/>
 
-    <SolidColorBrush x:Key="{themes:SpreadsheetThemeKey ResourceKey=NumberIndicatorBrush}" Color="Green"/>
+    <SolidColorBrush x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=NumberIndicatorBrush}" Color="Green"/>
 
-    <sys:Double x:Key="{themes:SpreadsheetThemeKey ResourceKey=IndicatorWidth}">5</sys:Double>
+    <sys:Double x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=IndicatorWidth}">5</sys:Double>
 
-    <SolidColorBrush x:Key="{themes:SpreadsheetThemeKey ResourceKey=CommentLineBrush}" Color="Black"/>
+    <SolidColorBrush x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=CommentLineBrush}" Color="Black"/>
 
-    <sys:Double x:Key="{themes:SpreadsheetThemeKey ResourceKey=CommentLineWidth}">1</sys:Double>
+    <sys:Double x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=CommentLineWidth}">1</sys:Double>
 
-    <SolidColorBrush x:Key="{themes:SpreadsheetThemeKey ResourceKey=DataValidationCircleBrush}" Color="Red"/>
+    <SolidColorBrush x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=DataValidationCircleBrush}" Color="Red"/>
 
-    <sys:Double x:Key="{themes:SpreadsheetThemeKey ResourceKey=DataValidationCircleWidth}">2</sys:Double>
+    <sys:Double x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=DataValidationCircleWidth}">2</sys:Double>
 
-    <SolidColorBrush x:Key="{themes:SpreadsheetThemeKey ResourceKey=DataValidationMessageForeBrush}" Color="#FF5D5D5D"/>
+    <SolidColorBrush x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=DataValidationMessageForeBrush}" Color="#FF5D5D5D"/>
 
-    <sys:Double x:Key="{themes:SpreadsheetThemeKey ResourceKey=DataValidationMessageBorderWidth}">1</sys:Double>
+    <sys:Double x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=DataValidationMessageBorderWidth}">1</sys:Double>
 
-    <SolidColorBrush x:Key="{themes:SpreadsheetThemeKey ResourceKey=DataValidationMessageBorderBrush}" Color="#FF454849"/>
+    <SolidColorBrush x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=DataValidationMessageBorderBrush}" Color="#FF454849"/>
 
-    <SolidColorBrush x:Key="{themes:SpreadsheetThemeKey ResourceKey=DataValidationMessageBackgroudBrush}" Color="#FFFFE1"/>
+    <SolidColorBrush x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=DataValidationMessageBackgroudBrush}" Color="#FFFFE1"/>
 
-    <ControlTemplate x:Key="{themes:SpreadsheetThemeKey ResourceKey=Template}" TargetType="{x:Type dxsps:SpreadsheetControl}">
+    <ControlTemplate x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=Template}" TargetType="{x:Type dxsps:SpreadsheetControl}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -67,10 +65,10 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Control x:Name="PART_RibbonHost" Template="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=EmptyRibbonTemplate}}"/>
+            <Control x:Name="PART_RibbonHost" Template="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=EmptyRibbonTemplate}}"/>
             <Control x:Name="PART_FormulaBar"
                      Grid.Row="1"
-                     Template="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=EmptyFormulaBarTemplate}}"/>
+                     Template="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=EmptyFormulaBarTemplate}}"/>
             <Border x:Name="rootBorder"
                     Background="{TemplateBinding Background}"
                     BorderBrush="{TemplateBinding BorderBrush}"
@@ -84,28 +82,28 @@
             </Border>
             <Control x:Name="PART_StatusBar"
                      Grid.Row="3"
-                     Template="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=EmptyStatusBarTemplate}}"/>
+                     Template="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=EmptyStatusBarTemplate}}"/>
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="CommandBarStyle" Value="Ribbon">
                 <Setter Property="Template"
                         TargetName="PART_RibbonHost"
-                        Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=RibbonTemplate}}"/>
+                        Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=RibbonTemplate}}"/>
             </Trigger>
             <Trigger Property="ShowFormulaBar" Value="True">
                 <Setter Property="Template"
                         TargetName="PART_FormulaBar"
-                        Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=FormulaBarTemplate}}"/>
+                        Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=FormulaBarTemplate}}"/>
             </Trigger>
             <Trigger Property="ShowStatusBar" Value="True">
                 <Setter Property="Template"
                         TargetName="PART_StatusBar"
-                        Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=StatusBarTemplate}}"/>
+                        Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=StatusBarTemplate}}"/>
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="{themes:SpreadsheetThemeKey ResourceKey=ViewControlTemplate}" TargetType="{x:Type dxspsi:SpreadsheetViewControl}">
+    <ControlTemplate x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=ViewControlTemplate}" TargetType="{x:Type dxspsi:SpreadsheetViewControl}">
         <Border Background="Transparent" cs:id="Border_0000">
             <Grid>
                 <Grid.RowDefinitions>
@@ -139,7 +137,7 @@
                            Visibility="{TemplateBinding ShowVerticalScrollbar, Converter={StaticResource BoolToVisibilityConverter}}"/>
                 <Border Grid.Column="0"
                         Grid.Row="1"
-                        Style="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=TabSelectorPanelStyle}}"
+                        Style="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=TabSelectorPanelStyle}}"
                         Visibility="{TemplateBinding ShowTabSelector,                                                  Converter={StaticResource BoolToVisibilityConverter}}">
                     <Grid.ColumnSpan>
                         <Binding Path="(dx:ScrollBarExtensions.ScrollBarMode)" RelativeSource="{RelativeSource TemplatedParent}">
@@ -178,7 +176,7 @@
                         </Grid.ColumnDefinitions>
                         <Thumb x:Name="PART_ResizeScrollBarThumb"
                                Grid.Column="1"
-                               Style="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=ResizeThumbStyle}}"
+                               Style="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=ResizeThumbStyle}}"
                                Visibility="{TemplateBinding ShowTabSelector,                                                         Converter={StaticResource BoolToVisibilityConverter}}"/>
                         <ScrollBar x:Name="PART_HorizontalScrollBar"
                                    dx:ScrollBarExtensions.ScrollBarMode="Standard"
@@ -188,7 +186,7 @@
                 </Grid>
                 <Border Grid.Column="1"
                         Grid.Row="1"
-                        Style="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=BottomRightCornerStyle}}">
+                        Style="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=BottomRightCornerStyle}}">
                     <Border.Visibility>
                         <MultiBinding>
                             <MultiBinding.Bindings>
@@ -205,7 +203,7 @@
         </Border>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="{themes:SpreadsheetThemeKey ResourceKey=WorksheetTemplate}" TargetType="{x:Type dxspsi:WorksheetControl}">
+    <ControlTemplate x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=WorksheetTemplate}" TargetType="{x:Type dxspsi:WorksheetControl}">
         <Border>
             <Grid SnapsToDevicePixels="True" UseLayoutRounding="False">
                 <Grid.ColumnDefinitions>
@@ -219,26 +217,26 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Border x:Name="PART_HorizontalGroupBackgroundControl"
-                        Background="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=GroupControlBackgroundBrush}}"
+                        Background="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=GroupControlBackgroundBrush}}"
                         Grid.ColumnSpan="3"/>
                 <Border x:Name="PART_VerticalGroupBackgroundControl"
-                        Background="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=GroupControlBackgroundBrush}}"
+                        Background="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=GroupControlBackgroundBrush}}"
                         Grid.Row="1"
                         Grid.RowSpan="2"/>
                 <Border x:Name="PART_LeftWorksheetBorder"
-                        BorderBrush="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=WorksheetBorderBrush}}"
+                        BorderBrush="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=WorksheetBorderBrush}}"
                         BorderThickness="0,0,1,0"
                         Grid.Row="1"
                         Grid.RowSpan="2"
                         Margin="0,-1,0,0"/>
                 <Border x:Name="PART_TopWorksheetBorder"
-                        BorderBrush="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=WorksheetBorderBrush}}"
+                        BorderBrush="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=WorksheetBorderBrush}}"
                         BorderThickness="0,0,0,1"
                         Grid.Column="1"
                         Grid.ColumnSpan="2"/>
                 <dxspsi:WorksheetGroupControl Grid.ColumnSpan="3"
                                               Grid.RowSpan="3"
-                                              Style="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=GroupControlStyle}}"/>
+                                              Style="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=GroupControlStyle}}"/>
                 <dxspsi:WorksheetBackgroundControl Grid.ColumnSpan="3" Grid.RowSpan="3"/>
                 <dxspsi:ChartsheetBackgroundControl Grid.ColumnSpan="3" Grid.RowSpan="3"/>
                 <dxspsi:WorksheetLineControl Grid.ColumnSpan="3" Grid.RowSpan="3"/>
@@ -250,7 +248,7 @@
                 <dxspsi:WorksheetDiagonalBorderControl Grid.ColumnSpan="3" Grid.RowSpan="3"/>
                 <dxspsi:WorksheetSelectionControl Grid.ColumnSpan="3"
                                                   Grid.RowSpan="3"
-                                                  Style="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=WorksheetSelectionControlStyle}}"/>
+                                                  Style="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=WorksheetSelectionControlStyle}}"/>
                 <dxspsi:FormulaRangesControl Focusable="False"
                                              Grid.ColumnSpan="3"
                                              Grid.RowSpan="3"/>
@@ -294,18 +292,18 @@
                                                 Grid.ColumnSpan="2"
                                                 Grid.Row="1"
                                                 Orientation="Horizontal"
-                                                Style="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=HorizontalHeadersControlStyle}}"/>
+                                                Style="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=HorizontalHeadersControlStyle}}"/>
                 <dxspsi:WorksheetHeadersControl x:Name="PART_VerticalHeadersControl"
                                                 Focusable="False"
                                                 Grid.Column="1"
                                                 Grid.Row="1"
                                                 Grid.RowSpan="2"
                                                 Orientation="Vertical"
-                                                Style="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=VerticalHeadersControlStyle}}"/>
+                                                Style="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=VerticalHeadersControlStyle}}"/>
                 <Border x:Name="PART_TopLeftCorner"
                         Grid.Column="1"
                         Grid.Row="1"
-                        Style="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=TopLeftCornerStyle}}"/>
+                        Style="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=TopLeftCornerStyle}}"/>
                 <dxspsi:VisualFeedbackControl Focusable="False"
                                               Grid.ColumnSpan="3"
                                               Grid.RowSpan="3"
@@ -314,11 +312,11 @@
         </Border>
     </ControlTemplate>
 
-    <DataTemplate x:Key="{themes:SpreadsheetThemeKey ResourceKey=CellControlContentTemplate}" DataType="{x:Type dxsps:CellData}">
+    <DataTemplate x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=CellControlContentTemplate}" DataType="{x:Type dxsps:CellData}">
         <dxspsi:CellControl Clip="{Binding Clip}" TextSettings="{Binding TextSettings}"/>
     </DataTemplate>
 
-    <DataTemplate x:Key="{themes:SpreadsheetThemeKey ResourceKey=ConditionalFormattingIconCellTemplate}">
+    <DataTemplate x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=ConditionalFormattingIconCellTemplate}">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -334,7 +332,7 @@
         </Grid>
     </DataTemplate>
 
-    <DataTemplate x:Key="{themes:SpreadsheetThemeKey ResourceKey=ConditionalFormattingDataBarCellTemplate}">
+    <DataTemplate x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=ConditionalFormattingDataBarCellTemplate}">
         <Grid>
             <Rectangle Fill="{Binding ConditionalFormattingSettings.DataBarFillBrush}"
                        Height="{Binding ConditionalFormattingSettings.DataBarBounds.Height}"
@@ -357,7 +355,7 @@
         </Grid>
     </DataTemplate>
 
-    <ControlTemplate x:Key="{themes:SpreadsheetThemeKey ResourceKey=FormatBorderControlTemplate}" TargetType="{x:Type dxspsi:FormatBorderControl}">
+    <ControlTemplate x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=FormatBorderControlTemplate}" TargetType="{x:Type dxspsi:FormatBorderControl}">
         <Grid SnapsToDevicePixels="True">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -384,7 +382,7 @@
                                   TabIndex="7"
                                   VerticalAlignment="Top"
                                   Width="25">
-                        <Image Source="/DevExpress.Xpf.Spreadsheet.v21.2;component/Images/BorderTop_16x16.png" Stretch="None"/>
+                        <Image Source="/DevExpress.Xpf.Spreadsheet.v22.1;component/Images/BorderTop_16x16.png" Stretch="None"/>
                     </ToggleButton>
                     <ToggleButton AutomationProperties.Name="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatBorderControlHorizontal, Converter={StaticResource stringIdConverter}}"
                                   Grid.Row="1"
@@ -396,7 +394,7 @@
                                   TabIndex="11"
                                   VerticalAlignment="Center"
                                   Width="25">
-                        <Image Source="/DevExpress.Xpf.Spreadsheet.v21.2;component/Images/BorderInsideHorizontal_16x16.png" Stretch="None"/>
+                        <Image Source="/DevExpress.Xpf.Spreadsheet.v22.1;component/Images/BorderInsideHorizontal_16x16.png" Stretch="None"/>
                     </ToggleButton>
                     <ToggleButton AutomationProperties.Name="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatBorderControlBottom, Converter={StaticResource stringIdConverter}}"
                                   Grid.Row="2"
@@ -407,7 +405,7 @@
                                   TabIndex="8"
                                   VerticalAlignment="Bottom"
                                   Width="25">
-                        <Image Source="/DevExpress.Xpf.Spreadsheet.v21.2;component/Images/BorderBottom_16x16.png" Stretch="None"/>
+                        <Image Source="/DevExpress.Xpf.Spreadsheet.v22.1;component/Images/BorderBottom_16x16.png" Stretch="None"/>
                     </ToggleButton>
                 </Grid>
             </Grid>
@@ -429,7 +427,7 @@
                           Padding="0"
                           TabIndex="13"
                           Width="25">
-                <Image Source="/DevExpress.Xpf.Spreadsheet.v21.2;component/Images/BorderDiagonalUp_16x16.png" Stretch="None"/>
+                <Image Source="/DevExpress.Xpf.Spreadsheet.v22.1;component/Images/BorderDiagonalUp_16x16.png" Stretch="None"/>
             </ToggleButton>
             <Grid Grid.Column="1" Grid.Row="2">
                 <Grid>
@@ -447,7 +445,7 @@
                                   Padding="0"
                                   TabIndex="6"
                                   Width="25">
-                        <Image Source="/DevExpress.Xpf.Spreadsheet.v21.2;component/Images/BorderLeft_16x16.png" Stretch="None"/>
+                        <Image Source="/DevExpress.Xpf.Spreadsheet.v22.1;component/Images/BorderLeft_16x16.png" Stretch="None"/>
                     </ToggleButton>
                     <ToggleButton AutomationProperties.Name="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatBorderControlVertical, Converter={StaticResource stringIdConverter}}"
                                   Grid.Column="1"
@@ -459,7 +457,7 @@
                                   Padding="0"
                                   TabIndex="10"
                                   Width="25">
-                        <Image Source="/DevExpress.Xpf.Spreadsheet.v21.2;component/Images/BorderInsideVertical_16x16.png" Stretch="None"/>
+                        <Image Source="/DevExpress.Xpf.Spreadsheet.v22.1;component/Images/BorderInsideVertical_16x16.png" Stretch="None"/>
                     </ToggleButton>
                     <ToggleButton AutomationProperties.Name="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_FormatBorderControlRight, Converter={StaticResource stringIdConverter}}"
                                   Grid.Column="2"
@@ -470,7 +468,7 @@
                                   Padding="0"
                                   TabIndex="9"
                                   Width="25">
-                        <Image Source="/DevExpress.Xpf.Spreadsheet.v21.2;component/Images/BorderRight_16x16.png" Stretch="None"/>
+                        <Image Source="/DevExpress.Xpf.Spreadsheet.v22.1;component/Images/BorderRight_16x16.png" Stretch="None"/>
                     </ToggleButton>
                 </Grid>
             </Grid>
@@ -485,12 +483,12 @@
                           Padding="0"
                           TabIndex="12"
                           Width="25">
-                <Image Source="/DevExpress.Xpf.Spreadsheet.v21.2;component/Images/BorderDiagonalDown_16x16.png" Stretch="None"/>
+                <Image Source="/DevExpress.Xpf.Spreadsheet.v22.1;component/Images/BorderDiagonalDown_16x16.png" Stretch="None"/>
             </ToggleButton>
         </Grid>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="{themes:SpreadsheetThemeKey ResourceKey=PageMarginsPreviewControlTemplate}" TargetType="{x:Type dxspsi:PageMarginsPreviewControl}">
+    <ControlTemplate x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=PageMarginsPreviewControlTemplate}" TargetType="{x:Type dxspsi:PageMarginsPreviewControl}">
         <Grid SnapsToDevicePixels="True">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -708,7 +706,7 @@
         </Grid>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="{themes:SpreadsheetThemeKey ResourceKey=HeaderFooterEditControlTemplate}" TargetType="{x:Type dxspsi:HeaderFooterEditControl}">
+    <ControlTemplate x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=HeaderFooterEditControlTemplate}" TargetType="{x:Type dxspsi:HeaderFooterEditControl}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -803,7 +801,7 @@
                         Padding="0"
                         ToolTip="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_HeaderFooterInsertPageNumber, Converter={StaticResource stringIdConverter}}"
                         Width="30">
-                    <Image Source="/DevExpress.Xpf.Spreadsheet.v21.2;component/Images/InsertPageNumber_16x16.png" Stretch="None"/>
+                    <Image Source="/DevExpress.Xpf.Spreadsheet.v22.1;component/Images/InsertPageNumber_16x16.png" Stretch="None"/>
                 </Button>
                 <Button x:Name="btnPages"
                         Grid.Column="1"
@@ -812,7 +810,7 @@
                         Padding="0"
                         ToolTip="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_HeaderFooterInsertNumberOfPages, Converter={StaticResource stringIdConverter}}"
                         Width="30">
-                    <Image Source="/DevExpress.Xpf.Spreadsheet.v21.2;component/Images/InsertPageCount_16x16.png" Stretch="None"/>
+                    <Image Source="/DevExpress.Xpf.Spreadsheet.v22.1;component/Images/InsertPageCount_16x16.png" Stretch="None"/>
                 </Button>
                 <Button x:Name="btnDate"
                         Grid.Column="2"
@@ -821,7 +819,7 @@
                         Padding="0"
                         ToolTip="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_HeaderFooterInsertDate, Converter={StaticResource stringIdConverter}}"
                         Width="30">
-                    <Image Source="/DevExpress.Xpf.Spreadsheet.v21.2;component/Images/InsertDate_16x16.png" Stretch="None"/>
+                    <Image Source="/DevExpress.Xpf.Spreadsheet.v22.1;component/Images/InsertDate_16x16.png" Stretch="None"/>
                 </Button>
                 <Button x:Name="btnTime"
                         Grid.Column="3"
@@ -830,7 +828,7 @@
                         Padding="0"
                         ToolTip="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_HeaderFooterInsertTime, Converter={StaticResource stringIdConverter}}"
                         Width="30">
-                    <Image Source="/DevExpress.Xpf.Spreadsheet.v21.2;component/Images/FormatNumberTime_16x16.png" Stretch="None"/>
+                    <Image Source="/DevExpress.Xpf.Spreadsheet.v22.1;component/Images/FormatNumberTime_16x16.png" Stretch="None"/>
                 </Button>
                 <Button x:Name="btnFilePath"
                         Grid.Column="4"
@@ -839,7 +837,7 @@
                         Padding="0"
                         ToolTip="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_HeaderFooterInsertFilePath, Converter={StaticResource stringIdConverter}}"
                         Width="30">
-                    <Image Source="/DevExpress.Xpf.Spreadsheet.v21.2;component/Images/InsertFilePath_16x16.png" Stretch="None"/>
+                    <Image Source="/DevExpress.Xpf.Spreadsheet.v22.1;component/Images/InsertFilePath_16x16.png" Stretch="None"/>
                 </Button>
                 <Button x:Name="btnFileName"
                         Grid.Column="5"
@@ -848,7 +846,7 @@
                         Padding="0"
                         ToolTip="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_HeaderFooterInsertFileName, Converter={StaticResource stringIdConverter}}"
                         Width="30">
-                    <Image Source="/DevExpress.Xpf.Spreadsheet.v21.2;component/Images/InsertFileName_16x16.png" Stretch="None"/>
+                    <Image Source="/DevExpress.Xpf.Spreadsheet.v22.1;component/Images/InsertFileName_16x16.png" Stretch="None"/>
                 </Button>
                 <Button x:Name="btnSheetName"
                         Grid.Column="6"
@@ -857,7 +855,7 @@
                         Padding="0"
                         ToolTip="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_HeaderFooterInsertSheetName, Converter={StaticResource stringIdConverter}}"
                         Width="30">
-                    <Image Source="/DevExpress.Xpf.Spreadsheet.v21.2;component/Images/SingleSheet_16x16.png" Stretch="None"/>
+                    <Image Source="/DevExpress.Xpf.Spreadsheet.v22.1;component/Images/SingleSheet_16x16.png" Stretch="None"/>
                 </Button>
                 <Button x:Name="btnInsertPicture"
                         Grid.Column="7"
@@ -866,7 +864,7 @@
                         Padding="0"
                         ToolTip="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_HeaderFooterInsertPicture, Converter={StaticResource stringIdConverter}}"
                         Width="30">
-                    <Image Source="/DevExpress.Xpf.Spreadsheet.v21.2;component/Images/ImportImage_16x16.png" Stretch="None"/>
+                    <Image Source="/DevExpress.Xpf.Spreadsheet.v22.1;component/Images/ImportImage_16x16.png" Stretch="None"/>
                 </Button>
                 <Button x:Name="btnFormatPicture"
                         Grid.Column="8"
@@ -875,7 +873,7 @@
                         Padding="0"
                         ToolTip="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_HeaderFooterFormatPicture, Converter={StaticResource stringIdConverter}}"
                         Width="30">
-                    <Image Source="/DevExpress.Xpf.Spreadsheet.v21.2;component/Images/Image_16x16.png" Stretch="None"/>
+                    <Image Source="/DevExpress.Xpf.Spreadsheet.v22.1;component/Images/Image_16x16.png" Stretch="None"/>
                 </Button>
             </Grid>
             <Grid Grid.Row="4">
@@ -936,7 +934,7 @@
         </Grid>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="{themes:SpreadsheetThemeKey ResourceKey=HeaderFooterPreviewControlTemplate}" TargetType="{x:Type dxspsi:HeaderFooterPreviewControl}">
+    <ControlTemplate x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=HeaderFooterPreviewControlTemplate}" TargetType="{x:Type dxspsi:HeaderFooterPreviewControl}">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -969,7 +967,7 @@
         </Grid>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="{themes:SpreadsheetThemeKey ResourceKey=PageSetupPrintButtonsControlTemplate}" TargetType="{x:Type dxspsi:PageSetupPrintButtonsControl}">
+    <ControlTemplate x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=PageSetupPrintButtonsControlTemplate}" TargetType="{x:Type dxspsi:PageSetupPrintButtonsControl}">
         <StackPanel Height="Auto"
                     HorizontalAlignment="Right"
                     Orientation="Horizontal"
@@ -985,44 +983,44 @@
         </StackPanel>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="{themes:SpreadsheetThemeKey ResourceKey=GroupControlTemplate}" TargetType="{x:Type dxspsi:WorksheetGroupControl}">
+    <ControlTemplate x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=GroupControlTemplate}" TargetType="{x:Type dxspsi:WorksheetGroupControl}">
         <dxspsi:GroupPanel LayoutInfo="{Binding Path=(dxspsi:SpreadsheetViewControl.ActiveSpreadsheetView).LayoutInfo, RelativeSource={RelativeSource Self}}"/>
     </ControlTemplate>
 
-    <DataTemplate x:Key="{themes:SpreadsheetThemeKey ResourceKey=AddButtonDataTemplate}">
+    <DataTemplate x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=AddButtonDataTemplate}">
         <Button AutomationProperties.Name="{Binding Source={StaticResource stringIdConverter}, ConverterParameter=Caption_SheetTabNewWorksheet, Converter={StaticResource stringIdConverter}}"
                 Command="{Binding AddCommand}"
                 CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}}"
                 Focusable="False"
                 IsEnabled="{Binding AddCommandEnabled, Mode=OneWay}"
-                Style="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=AddButtonStyle}}"
+                Style="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=AddButtonStyle}}"
                 Visibility="{Binding AddCommandVisible, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}"/>
     </DataTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.FormatBorderControl}" TargetType="{x:Type dxspsi:FormatBorderControl}">
-        <Setter Property="Template" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=FormatBorderControlTemplate}}"/>
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.FormatBorderControl}" TargetType="{x:Type dxspsi:FormatBorderControl}">
+        <Setter Property="Template" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=FormatBorderControlTemplate}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.PageMarginsPreviewControl}" TargetType="{x:Type dxspsi:PageMarginsPreviewControl}">
-        <Setter Property="Template" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=PageMarginsPreviewControlTemplate}}"/>
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.PageMarginsPreviewControl}" TargetType="{x:Type dxspsi:PageMarginsPreviewControl}">
+        <Setter Property="Template" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=PageMarginsPreviewControlTemplate}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.HeaderFooterEditControl}" TargetType="{x:Type dxspsi:HeaderFooterEditControl}">
-        <Setter Property="Template" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=HeaderFooterEditControlTemplate}}"/>
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.HeaderFooterEditControl}" TargetType="{x:Type dxspsi:HeaderFooterEditControl}">
+        <Setter Property="Template" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=HeaderFooterEditControlTemplate}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.HeaderFooterPreviewControl}" TargetType="{x:Type dxspsi:HeaderFooterPreviewControl}">
-        <Setter Property="Template" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=HeaderFooterPreviewControlTemplate}}"/>
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.HeaderFooterPreviewControl}" TargetType="{x:Type dxspsi:HeaderFooterPreviewControl}">
+        <Setter Property="Template" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=HeaderFooterPreviewControlTemplate}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.PageSetupPrintButtonsControl}" TargetType="{x:Type dxspsi:PageSetupPrintButtonsControl}">
-        <Setter Property="Template" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=PageSetupPrintButtonsControlTemplate}}"/>
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.PageSetupPrintButtonsControl}" TargetType="{x:Type dxspsi:PageSetupPrintButtonsControl}">
+        <Setter Property="Template" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=PageSetupPrintButtonsControlTemplate}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.SpreadsheetFormulaBarControl}" TargetType="{x:Type dxsps:SpreadsheetFormulaBarControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.SpreadsheetFormulaBarControl}" TargetType="{x:Type dxsps:SpreadsheetFormulaBarControl}">
         <Setter Property="Focusable" Value="False"/>
-        <Setter Property="MinHeight" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=FormulaBarControlMinHeight}}"/>
-        <Setter Property="Template" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=FormulaBarControlTemplate}}"/>
+        <Setter Property="MinHeight" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=FormulaBarControlMinHeight}}"/>
+        <Setter Property="Template" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=FormulaBarControlTemplate}}"/>
         <Style.Triggers>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                 <Setter Property="MinHeight" Value="44"/>
@@ -1030,80 +1028,80 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.CellControl}" TargetType="{x:Type dxspsi:CellControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.CellControl}" TargetType="{x:Type dxspsi:CellControl}">
         <Setter Property="Focusable" Value="False"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.VisualFeedbackControl}" TargetType="{x:Type dxspsi:VisualFeedbackControl}">
-        <Setter Property="LineBrush" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=VisualFeedbackLineBrush}}"/>
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.VisualFeedbackControl}" TargetType="{x:Type dxspsi:VisualFeedbackControl}">
+        <Setter Property="LineBrush" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=VisualFeedbackLineBrush}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.WorksheetBackgroundControl}" TargetType="{x:Type dxspsi:WorksheetBackgroundControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.WorksheetBackgroundControl}" TargetType="{x:Type dxspsi:WorksheetBackgroundControl}">
         <Setter Property="Focusable" Value="False"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.ChartsheetBackgroundControl}" TargetType="{x:Type dxspsi:ChartsheetBackgroundControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.ChartsheetBackgroundControl}" TargetType="{x:Type dxspsi:ChartsheetBackgroundControl}">
         <Setter Property="Focusable" Value="False"/>
-        <Setter Property="Background" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=SpreadsheetBackgroundBrush}}"/>
+        <Setter Property="Background" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=SpreadsheetBackgroundBrush}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.WorksheetLineControl}" TargetType="{x:Type dxspsi:WorksheetLineControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.WorksheetLineControl}" TargetType="{x:Type dxspsi:WorksheetLineControl}">
         <Setter Property="Focusable" Value="False"/>
-        <Setter Property="FrozenSeparatorBrush" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=FrozenSeparatorBrush}}"/>
-        <Setter Property="GridLinesColor" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=GridLinesColor}}"/>
+        <Setter Property="FrozenSeparatorBrush" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=FrozenSeparatorBrush}}"/>
+        <Setter Property="GridLinesColor" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=GridLinesColor}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.CellPresenter}" TargetType="{x:Type dxspsi:CellPresenter}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.CellPresenter}" TargetType="{x:Type dxspsi:CellPresenter}">
         <Setter Property="ToolTip" Value="{Binding CellToolTip, RelativeSource={RelativeSource Self}}"/>
         <Setter Property="ToolTipService.IsEnabled" Value="{Binding ShowCellToolTip, RelativeSource={RelativeSource Self}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.TabSelectorItem}" TargetType="{x:Type dxspsi:TabSelectorItem}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.TabSelectorItem}" TargetType="{x:Type dxspsi:TabSelectorItem}">
         <Setter Property="IsTabStop" Value="False"/>
     </Style>
 
-    <Style x:Key="{themes:SpreadsheetThemeKey ResourceKey=HorizontalHeadersControlStyle}" TargetType="{x:Type dxspsi:WorksheetHeadersControl}">
-        <Setter Property="ItemTemplate" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=HorizontalHeaderItem}}"/>
+    <Style x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=HorizontalHeadersControlStyle}" TargetType="{x:Type dxspsi:WorksheetHeadersControl}">
+        <Setter Property="ItemTemplate" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=HorizontalHeaderItem}}"/>
     </Style>
 
-    <Style x:Key="{themes:SpreadsheetThemeKey ResourceKey=VerticalHeadersControlStyle}" TargetType="{x:Type dxspsi:WorksheetHeadersControl}">
-        <Setter Property="ItemTemplate" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=VerticalHeaderItem}}"/>
+    <Style x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=VerticalHeadersControlStyle}" TargetType="{x:Type dxspsi:WorksheetHeadersControl}">
+        <Setter Property="ItemTemplate" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=VerticalHeaderItem}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.WorksheetHeadersControl}" TargetType="{x:Type dxspsi:WorksheetHeadersControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.WorksheetHeadersControl}" TargetType="{x:Type dxspsi:WorksheetHeadersControl}">
         <Setter Property="Focusable" Value="False"/>
-        <Setter Property="Template" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=HeadersControlTemplate}}"/>
+        <Setter Property="Template" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=HeadersControlTemplate}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.WorksheetGroupControl}" TargetType="{x:Type dxspsi:WorksheetGroupControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.WorksheetGroupControl}" TargetType="{x:Type dxspsi:WorksheetGroupControl}">
         <Setter Property="Focusable" Value="False"/>
-        <Setter Property="Template" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=GroupControlTemplate}}"/>
+        <Setter Property="Template" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=GroupControlTemplate}}"/>
     </Style>
 
-    <Style x:Key="{themes:SpreadsheetThemeKey ResourceKey=GroupControlStyle}" TargetType="{x:Type dxspsi:WorksheetGroupControl}">
-        <Setter Property="ButtonTemplate" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=GroupButtonTemplate}}"/>
-        <Setter Property="DotBrush" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=GroupDotBrush}}"/>
-        <Setter Property="DotThickness" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=GroupDotThickness}}"/>
-        <Setter Property="HeaderTemplate" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=GroupHeaderTemplate}}"/>
-        <Setter Property="LineBrush" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=GroupLineBrush}}"/>
-        <Setter Property="LineThickness" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=GroupLineThickness}}"/>
+    <Style x:Key="{dxspst:SpreadsheetThemeKey ResourceKey=GroupControlStyle}" TargetType="{x:Type dxspsi:WorksheetGroupControl}">
+        <Setter Property="ButtonTemplate" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=GroupButtonTemplate}}"/>
+        <Setter Property="DotBrush" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=GroupDotBrush}}"/>
+        <Setter Property="DotThickness" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=GroupDotThickness}}"/>
+        <Setter Property="HeaderTemplate" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=GroupHeaderTemplate}}"/>
+        <Setter Property="LineBrush" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=GroupLineBrush}}"/>
+        <Setter Property="LineThickness" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=GroupLineThickness}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.SpreadsheetTabSelector}" TargetType="{x:Type dxspsi:SpreadsheetTabSelector}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.SpreadsheetTabSelector}" TargetType="{x:Type dxspsi:SpreadsheetTabSelector}">
         <Setter Property="Background"
                 Value="Transparent"
                 cs:id="Setter_0000"/>
-        <Setter Property="Template" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=TabSelectorTemplate}}"/>
+        <Setter Property="Template" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=TabSelectorTemplate}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.WorksheetControl}" TargetType="{x:Type dxspsi:WorksheetControl}">
-        <Setter Property="CellTemplate" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=CellControlContentTemplate}}"/>
-        <Setter Property="ConditionalFormattingDataBarTemplate" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=ConditionalFormattingDataBarCellTemplate}}"/>
-        <Setter Property="ConditionalFormattingIconTemplate" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=ConditionalFormattingIconCellTemplate}}"/>
-        <Setter Property="HeaderHeight" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=DefaultHeaderHeight}}"/>
-        <Setter Property="HeaderWidth" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=DefaultHeaderWidth}}"/>
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.WorksheetControl}" TargetType="{x:Type dxspsi:WorksheetControl}">
+        <Setter Property="CellTemplate" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=CellControlContentTemplate}}"/>
+        <Setter Property="ConditionalFormattingDataBarTemplate" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=ConditionalFormattingDataBarCellTemplate}}"/>
+        <Setter Property="ConditionalFormattingIconTemplate" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=ConditionalFormattingIconCellTemplate}}"/>
+        <Setter Property="HeaderHeight" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=DefaultHeaderHeight}}"/>
+        <Setter Property="HeaderWidth" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=DefaultHeaderWidth}}"/>
         <Setter Property="IsManipulationEnabled" Value="True"/>
-        <Setter Property="Template" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=WorksheetTemplate}}"/>
+        <Setter Property="Template" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=WorksheetTemplate}}"/>
         <Style.Triggers>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                 <Setter Property="HeaderHeight" Value="44"/>
@@ -1112,16 +1110,16 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.SpreadsheetViewControl}" TargetType="{x:Type dxspsi:SpreadsheetViewControl}">
-        <Setter Property="Template" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=ViewControlTemplate}}"/>
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.SpreadsheetViewControl}" TargetType="{x:Type dxspsi:SpreadsheetViewControl}">
+        <Setter Property="Template" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=ViewControlTemplate}}"/>
         <Setter Property="dx:ScrollViewerTouchBehavior.IsEnabled" Value="True"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.SpreadsheetControl}" TargetType="{x:Type dxsps:SpreadsheetControl}">
-        <Setter Property="Background" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=SpreadsheetBackgroundBrush}}"/>
-        <Setter Property="Foreground" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=SpreadsheetForegroundBrush}}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=SpreadsheetBorderBrush}}"/>
-        <Setter Property="BorderThickness" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=SpreadsheetBorderThickness}}"/>
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.SpreadsheetControl}" TargetType="{x:Type dxsps:SpreadsheetControl}">
+        <Setter Property="Background" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=SpreadsheetBackgroundBrush}}"/>
+        <Setter Property="Foreground" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=SpreadsheetForegroundBrush}}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=SpreadsheetBorderBrush}}"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=SpreadsheetBorderThickness}}"/>
         <Setter Property="CellToolTip">
             <Setter.Value>
                 <dxmvvm:ValueFactory>
@@ -1134,7 +1132,7 @@
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Focusable" Value="True"/>
         <Setter Property="IsManipulationEnabled" Value="True"/>
-        <Setter Property="Template" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=Template}}"/>
+        <Setter Property="Template" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=Template}}"/>
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">
                 <Trigger.Setters>
@@ -1144,68 +1142,68 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.SpreadsheetDefaultBarItemDataTemplates}" TargetType="{x:Type dxsps:SpreadsheetDefaultBarItemDataTemplates}">
-        <Setter Property="ChartLayoutGalleryGroupTemplate" Value="{DynamicResource {themes:BarItemTemplate ResourceKey=ChartLayoutGalleryGroup}}"/>
-        <Setter Property="ChartStylesGalleryGroupTemplate" Value="{DynamicResource {themes:BarItemTemplate ResourceKey=ChartStylesGalleryGroup}}"/>
-        <Setter Property="StyleGalleryGroupTemplate" Value="{DynamicResource {themes:BarItemTemplate ResourceKey=StyleGalleryGroup}}"/>
-        <Setter Property="CellStyleGalleryItemCaptionTemplate" Value="{DynamicResource {themes:BarItemTemplate ResourceKey=CellStyleGalleryItemCaption}}"/>
-        <Setter Property="StyleGalleryHintCaptionTemplate" Value="{DynamicResource {themes:BarItemTemplate ResourceKey=StyleGalleryHintCaption}}"/>
-        <Setter Property="TableStyleGalleryItemCaptionTemplate" Value="{DynamicResource {themes:BarItemTemplate ResourceKey=TableStyleGalleryItemCaption}}"/>
-        <Setter Property="PivotTableStyleGalleryItemCaptionTemplate" Value="{DynamicResource {themes:BarItemTemplate ResourceKey=PivotTableStyleGalleryItemCaption}}"/>
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.SpreadsheetDefaultBarItemDataTemplates}" TargetType="{x:Type dxsps:SpreadsheetDefaultBarItemDataTemplates}">
+        <Setter Property="ChartLayoutGalleryGroupTemplate" Value="{DynamicResource {dxspst:BarItemTemplate ResourceKey=ChartLayoutGalleryGroup}}"/>
+        <Setter Property="ChartStylesGalleryGroupTemplate" Value="{DynamicResource {dxspst:BarItemTemplate ResourceKey=ChartStylesGalleryGroup}}"/>
+        <Setter Property="StyleGalleryGroupTemplate" Value="{DynamicResource {dxspst:BarItemTemplate ResourceKey=StyleGalleryGroup}}"/>
+        <Setter Property="CellStyleGalleryItemCaptionTemplate" Value="{DynamicResource {dxspst:BarItemTemplate ResourceKey=CellStyleGalleryItemCaption}}"/>
+        <Setter Property="StyleGalleryHintCaptionTemplate" Value="{DynamicResource {dxspst:BarItemTemplate ResourceKey=StyleGalleryHintCaption}}"/>
+        <Setter Property="TableStyleGalleryItemCaptionTemplate" Value="{DynamicResource {dxspst:BarItemTemplate ResourceKey=TableStyleGalleryItemCaption}}"/>
+        <Setter Property="PivotTableStyleGalleryItemCaptionTemplate" Value="{DynamicResource {dxspst:BarItemTemplate ResourceKey=PivotTableStyleGalleryItemCaption}}"/>
         <Setter Property="CheckEditTemplate" Value="{Binding OfficeDefaultBarItemDataTemplates.CheckEditTemplate, RelativeSource={RelativeSource Self}}"/>
         <Setter Property="MarginBarItemContentTemplate" Value="{Binding OfficeDefaultBarItemDataTemplates.MarginBarItemContentTemplate, RelativeSource={RelativeSource Self}}"/>
         <Setter Property="PaperKindBarItemContentTemplate" Value="{Binding OfficeDefaultBarItemDataTemplates.PaperKindBarItemContentTemplate, RelativeSource={RelativeSource Self}}"/>
         <Setter Property="Template" Value="{Binding OfficeDefaultBarItemDataTemplates.Template, RelativeSource={RelativeSource Self}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.WorksheetIndicatorControl}" TargetType="{x:Type dxspsi:WorksheetIndicatorControl}">
-        <Setter Property="CommentIndicatorBrush" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=CommentIndicatorBrush}}"/>
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.WorksheetIndicatorControl}" TargetType="{x:Type dxspsi:WorksheetIndicatorControl}">
+        <Setter Property="CommentIndicatorBrush" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=CommentIndicatorBrush}}"/>
         <Setter Property="Focusable" Value="False"/>
-        <Setter Property="IndicatorWidth" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=IndicatorWidth}}"/>
-        <Setter Property="NumberIndicatorBrush" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=NumberIndicatorBrush}}"/>
+        <Setter Property="IndicatorWidth" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=IndicatorWidth}}"/>
+        <Setter Property="NumberIndicatorBrush" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=NumberIndicatorBrush}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.WorksheetCommentPanel}" TargetType="{x:Type dxspsi:WorksheetCommentPanel}">
-        <Setter Property="CommentLineBrush" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=CommentLineBrush}}"/>
-        <Setter Property="CommentLineWidth" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=CommentLineWidth}}"/>
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.WorksheetCommentPanel}" TargetType="{x:Type dxspsi:WorksheetCommentPanel}">
+        <Setter Property="CommentLineBrush" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=CommentLineBrush}}"/>
+        <Setter Property="CommentLineWidth" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=CommentLineWidth}}"/>
         <Setter Property="Focusable" Value="False"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.CommentItem}" TargetType="{x:Type dxspsi:CommentItem}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.CommentItem}" TargetType="{x:Type dxspsi:CommentItem}">
         <Setter Property="Focusable" Value="False"/>
         <Setter Property="IsReadOnly" Value="True"/>
-        <Setter Property="Template" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=CommentTemplate}}"/>
+        <Setter Property="Template" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=CommentTemplate}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.XpfCommentInplaceEditor}" TargetType="{x:Type dxspsi:XpfCommentInplaceEditor}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.XpfCommentInplaceEditor}" TargetType="{x:Type dxspsi:XpfCommentInplaceEditor}">
         <Setter Property="Focusable" Value="True"/>
         <Setter Property="IsReadOnly" Value="False"/>
-        <Setter Property="Template" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=CommentTemplate}}"/>
+        <Setter Property="Template" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=CommentTemplate}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.WorksheetDataValidationPanel}" TargetType="{x:Type dxspsi:WorksheetDataValidationPanel}">
-        <Setter Property="DataValidationBackgroundBrush" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=AutoFilterBackgroundBrush}}"/>
-        <Setter Property="DataValidationBorderColor" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=GridLinesColor}}"/>
-        <Setter Property="DataValidationCircleBrush" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=DataValidationCircleBrush}}"/>
-        <Setter Property="DataValidationCircleWidth" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=DataValidationCircleWidth}}"/>
-        <Setter Property="DataValidationMessageBackgroudBrush" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=DataValidationMessageBackgroudBrush}}"/>
-        <Setter Property="DataValidationMessageBorderBrush" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=DataValidationMessageBorderBrush}}"/>
-        <Setter Property="DataValidationMessageBorderWidth" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=DataValidationMessageBorderWidth}}"/>
-        <Setter Property="DataValidationMessageForeBrush" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=DataValidationMessageForeBrush}}"/>
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.WorksheetDataValidationPanel}" TargetType="{x:Type dxspsi:WorksheetDataValidationPanel}">
+        <Setter Property="DataValidationBackgroundBrush" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=AutoFilterBackgroundBrush}}"/>
+        <Setter Property="DataValidationBorderColor" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=GridLinesColor}}"/>
+        <Setter Property="DataValidationCircleBrush" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=DataValidationCircleBrush}}"/>
+        <Setter Property="DataValidationCircleWidth" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=DataValidationCircleWidth}}"/>
+        <Setter Property="DataValidationMessageBackgroudBrush" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=DataValidationMessageBackgroudBrush}}"/>
+        <Setter Property="DataValidationMessageBorderBrush" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=DataValidationMessageBorderBrush}}"/>
+        <Setter Property="DataValidationMessageBorderWidth" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=DataValidationMessageBorderWidth}}"/>
+        <Setter Property="DataValidationMessageForeBrush" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=DataValidationMessageForeBrush}}"/>
         <Setter Property="Focusable" Value="True"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.ReferenceEdit}"
-           BasedOn="{StaticResource {dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.ButtonEdit}}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.ReferenceEdit}"
+           BasedOn="{StaticResource {dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.ButtonEdit}}"
            TargetType="{x:Type dxspsi:ReferenceEdit}">
         <Setter Property="AllowDefaultButton" Value="False"/>
-        <Setter Property="CollapseButtonTemplate" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=ReferenceEditCollapseButtonTemplate}}"/>
-        <Setter Property="ExpandButtonTemplate" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=ReferenceEditExpandButtonTemplate}}"/>
+        <Setter Property="CollapseButtonTemplate" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=ReferenceEditCollapseButtonTemplate}}"/>
+        <Setter Property="ExpandButtonTemplate" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=ReferenceEditExpandButtonTemplate}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.UI.SpreadsheetChangeNumberFormatComboBoxEdit}"
-           BasedOn="{StaticResource {dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.ComboBoxEdit}}"
-           TargetType="{x:Type dxspsui:SpreadsheetChangeNumberFormatComboBoxEdit}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.UI.SpreadsheetChangeNumberFormatComboBoxEdit}"
+           BasedOn="{StaticResource {dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.ComboBoxEdit}}"
+           TargetType="{x:Type dxsps:SpreadsheetChangeNumberFormatComboBoxEdit}">
         <Setter Property="IsTextEditable" Value="False"/>
         <Setter Property="PopupMaxHeight" Value="1000"/>
         <Setter Property="ItemTemplate">
@@ -1223,8 +1221,8 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.SpreadsheetPopupColorEdit}"
-           BasedOn="{StaticResource {dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.PopupColorEdit}}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.SpreadsheetPopupColorEdit}"
+           BasedOn="{StaticResource {dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.PopupColorEdit}}"
            TargetType="{x:Type dxspsi:SpreadsheetPopupColorEdit}">
         <Setter Property="Height" Value="20"/>
         <Setter Property="IsTextEditable" Value="False"/>
@@ -1241,31 +1239,31 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.UI.CellStyleGalleryBarItemLinkControl}"
-           BasedOn="{StaticResource {dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Ribbon.RibbonGalleryBarItemLinkControl}}"
-           TargetType="{x:Type dxspsui:CellStyleGalleryBarItemLinkControl}">
-        <Setter Property="MaxHeight" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=CellStyleGalleryBarItemHeight}}"/>
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.UI.CellStyleGalleryBarItemLinkControl}"
+           BasedOn="{StaticResource {dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Ribbon.RibbonGalleryBarItemLinkControl}}"
+           TargetType="{x:Type dxsps:CellStyleGalleryBarItemLinkControl}">
+        <Setter Property="MaxHeight" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=CellStyleGalleryBarItemHeight}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.UI.TableStyleGalleryBarItemLinkControl}"
-           BasedOn="{StaticResource {dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Ribbon.RibbonGalleryBarItemLinkControl}}"
-           TargetType="{x:Type dxspsui:TableStyleGalleryBarItemLinkControl}">
-        <Setter Property="MaxHeight" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=TableStyleGalleryBarItemHeight}}"/>
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.UI.TableStyleGalleryBarItemLinkControl}"
+           BasedOn="{StaticResource {dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Ribbon.RibbonGalleryBarItemLinkControl}}"
+           TargetType="{x:Type dxsps:TableStyleGalleryBarItemLinkControl}">
+        <Setter Property="MaxHeight" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=TableStyleGalleryBarItemHeight}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.UI.ChartLayoutGalleryBarItemLinkControl}"
-           BasedOn="{StaticResource {dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Ribbon.RibbonGalleryBarItemLinkControl}}"
-           TargetType="{x:Type dxspsui:ChartLayoutGalleryBarItemLinkControl}">
-        <Setter Property="MaxHeight" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=ChartLayoutGalleryBarItemHeight}}"/>
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.UI.ChartLayoutGalleryBarItemLinkControl}"
+           BasedOn="{StaticResource {dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Ribbon.RibbonGalleryBarItemLinkControl}}"
+           TargetType="{x:Type dxsps:ChartLayoutGalleryBarItemLinkControl}">
+        <Setter Property="MaxHeight" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=ChartLayoutGalleryBarItemHeight}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.UI.ChartStyleGalleryBarItemLinkControl}"
-           BasedOn="{StaticResource {dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Ribbon.RibbonGalleryBarItemLinkControl}}"
-           TargetType="{x:Type dxspsui:ChartStyleGalleryBarItemLinkControl}">
-        <Setter Property="MaxHeight" Value="{DynamicResource {themes:SpreadsheetThemeKey ResourceKey=ChartStyleGalleryBarItemHeight}}"/>
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.UI.ChartStyleGalleryBarItemLinkControl}"
+           BasedOn="{StaticResource {dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Ribbon.RibbonGalleryBarItemLinkControl}}"
+           TargetType="{x:Type dxsps:ChartStyleGalleryBarItemLinkControl}">
+        <Setter Property="MaxHeight" Value="{DynamicResource {dxspst:SpreadsheetThemeKey ResourceKey=ChartStyleGalleryBarItemHeight}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.PlaceholderPanel}" TargetType="{x:Type dxspsi:PlaceholderPanel}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Spreadsheet.Internal.PlaceholderPanel}" TargetType="{x:Type dxspsi:PlaceholderPanel}">
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>

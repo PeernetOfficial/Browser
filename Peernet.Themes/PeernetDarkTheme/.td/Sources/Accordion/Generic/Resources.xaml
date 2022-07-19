@@ -3,10 +3,11 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxa="http://schemas.devexpress.com/winfx/2008/xaml/accordion"
-                    xmlns:dxan="http://schemas.devexpress.com/winfx/2008/xaml/accordion/internal"
+                    xmlns:dxai="http://schemas.devexpress.com/winfx/2008/xaml/accordion/internal"
                     xmlns:dxat="http://schemas.devexpress.com/winfx/2008/xaml/accordion/themekeys"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
@@ -103,6 +104,13 @@
         </BooleanAnimationUsingKeyFrames>
     </Storyboard>
 
+    <ControlTemplate x:Key="{dxat:AccordionThemeKeys ResourceKey=EmptySourceTemplate}">
+        <TextBlock HorizontalAlignment="Center"
+                   Text="{Binding Path=Accordion.EmptySourceText, RelativeSource={RelativeSource AncestorType=dxa:AccordionView}}"
+                   TextWrapping="Wrap"
+                   VerticalAlignment="Center"/>
+    </ControlTemplate>
+
     <dxmvvm:ObjectToObjectConverter x:Key="scrollBarVisibilityConverter" DefaultTarget="Auto">
         <dxmvvm:MapItem Source="False" Target="Hidden"/>
     </dxmvvm:ObjectToObjectConverter>
@@ -144,7 +152,7 @@
         </Style.Triggers>
     </Style>
 
-    <DataTemplate x:Key="AccordionItemDefaultGlyphTemplate">
+    <DataTemplate x:Key="{dxat:AccordionItemThemeKeys ResourceKey=AccordionItemDefaultGlyphTemplate}">
         <dx:DXImage x:Name="glyph"
                     Height="{Binding GlyphHeight, RelativeSource={RelativeSource TemplatedParent}}"
                     Margin="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=HeaderElementsMargin}}"

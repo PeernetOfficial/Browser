@@ -1,57 +1,89 @@
 ﻿<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxdash="http://schemas.devexpress.com/winfx/2008/xaml/dashboard" xmlns:dxdashi="http://schemas.devexpress.com/winfx/2008/xaml/dashboardi" xmlns:dxdasht="http://schemas.devexpress.com/winfx/2008/xaml/dashboard/themekeys" xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:wn="clr-namespace:System.Windows;assembly=PresentationCore" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <ResourceDictionary.MergedDictionaries>
-    <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v21.2;component/Dashboard/Office2019White/UICustom.xaml" />
-    <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v21.2;component/Dashboard/Office2019White/UIPreset.xaml" />
-  </ResourceDictionary.MergedDictionaries>
-  <!-- DashboardControl -->
-  <SolidColorBrush x:Key="{dxdasht:DashboardControlThemeKey ResourceKey=SelectedItemBackground}" Color="#FFDEECF9" />
-  <SolidColorBrush x:Key="{dxdasht:DashboardControlThemeKey ResourceKey=SelectedItemBorder}" Color="#FFC8C6C4" />
-  <sys:Boolean x:Key="{dxdasht:DashboardControlThemeKey ResourceKey=IsDarkTheme}">False</sys:Boolean>
-  <SolidColorBrush x:Key="{dxdasht:DashboardControlThemeKey ResourceKey=Background}" Color="#FFFFFFFF" />
-  <SolidColorBrush x:Key="{dxdasht:DashboardControlThemeKey ResourceKey=TitleForeground}" Color="#FF444444" />
-  <SolidColorBrush x:Key="{dxdasht:DashboardControlThemeKey ResourceKey=SubTitleForeground}" Color="#FF444444" Opacity="0.62" />
-  <Color x:Key="{dxdasht:DashboardControlThemeKey ResourceKey=MasterFilterIconColor}">#FF444444</Color>
-  <SolidColorBrush x:Key="{dxdasht:DashboardControlThemeKey ResourceKey=FormatConditionBarDrawAxisBrush}" Color="#FF106EBE" />
-  <!-- DashboardLayoutItem -->
-  <SolidColorBrush x:Key="{dxdasht:DashboardLayoutItemThemeKey ResourceKey=Background}" Color="#FFFFFFFF" />
-  <SolidColorBrush x:Key="{dxdasht:DashboardLayoutItemThemeKey ResourceKey=BorderBrush}" Color="#FFC8C6C4" />
-  <SolidColorBrush x:Key="{dxdasht:DashboardLayoutItemThemeKey ResourceKey=CaptionBackground}" Color="#FFFFFFFF" />
-  <SolidColorBrush x:Key="{dxdasht:DashboardLayoutItemThemeKey ResourceKey=CaptionForeground}" Color="#FF444444" />
-  <SolidColorBrush x:Key="{dxdasht:DashboardLayoutItemThemeKey ResourceKey=WaitIndicatorForeground}" Color="#FF106EBE" />
-  <!-- CardItem -->
-  <SolidColorBrush x:Key="{dxdasht:CardItemThemeKey ResourceKey=Background}">#FFFFFFFF</SolidColorBrush>
-  <SolidColorBrush x:Key="{dxdasht:CardItemThemeKey ResourceKey=MainTextForeground}">#FF444444</SolidColorBrush>
-  <SolidColorBrush x:Key="{dxdasht:CardItemThemeKey ResourceKey=CardItemBackground}">#FFFFFFFF</SolidColorBrush>
-  <SolidColorBrush x:Key="{dxdasht:CardItemThemeKey ResourceKey=CardItemBorderBrush}">#FFC8C6C4</SolidColorBrush>
-  <SolidColorBrush x:Key="{dxdasht:CardItemThemeKey ResourceKey=HighlightedBackground}">#FFEFF6FC</SolidColorBrush>
-  <SolidColorBrush x:Key="{dxdasht:CardItemThemeKey ResourceKey=HighlightedBorderBrush}">#FFE1DFDD</SolidColorBrush>
-  <!-- GaugeItem -->
-  <SolidColorBrush x:Key="{dxdasht:GaugeItemThemeKey ResourceKey=GaugeHighlightedBackgroundBrush}" Color="#FFEFF6FC" />
-  <SolidColorBrush x:Key="{dxdasht:GaugeItemThemeKey ResourceKey=GaugeHighlightedBorderBrush}" Color="#FFEFF6FC" />
-  <SolidColorBrush x:Key="{dxdasht:GaugeItemThemeKey ResourceKey=GaugeCaptionForeground}" Color="#FF444444" />
-  <SolidColorBrush x:Key="{dxdasht:GaugeItemThemeKey ResourceKey=GaugeScaleLabelForeground}" Color="#FF444444" />
-  <sys:Double x:Key="{dxdasht:GaugeItemThemeKey ResourceKey=GaugeCaptionFontSize}">12</sys:Double>
-  <SolidColorBrush x:Key="{dxdasht:GaugeItemThemeKey ResourceKey=GaugeSubCaptionForeground}" Color="#FF444444" Opacity="0.62" />
-  <sys:Double x:Key="{dxdasht:GaugeItemThemeKey ResourceKey=GaugeSubCaptionFontSize}">12</sys:Double>
-  <!-- MapItem -->
-  <SolidColorBrush x:Key="{dxdasht:MapItemThemeKey ResourceKey=GeoPointBackgroundBrush}" Color="#FF444444" />
-  <SolidColorBrush x:Key="{dxdasht:MapItemThemeKey ResourceKey=GeoPointHighLightedBackgroundBrush}" Color="#FF106EBE" />
-  <SolidColorBrush x:Key="{dxdasht:MapItemThemeKey ResourceKey=GeoPointBorderBrush}" Color="#FFFFFFFF" />
-  <!-- PieItem -->
-  <SolidColorBrush x:Key="{dxdasht:PieItemThemeKey ResourceKey=PieHighlightedBackgroundBrush}" Color="#FFEFF6FC" />
-  <SolidColorBrush x:Key="{dxdasht:PieItemThemeKey ResourceKey=PieHighlightedBorderBrush}" Color="#FFEFF6FC" />
-  <!-- ChartItem -->
-  <SolidColorBrush x:Key="{dxdasht:ChartItemThemeKey ResourceKey=LegendBackgroundBrush}" Color="#FFFFFFFF" />
-  <SolidColorBrush x:Key="{dxdasht:ChartItemThemeKey ResourceKey=LegendForegroundBrush}" Color="#FF444444" />
-  <!-- TreemapItem -->
-  <SolidColorBrush x:Key="{dxdasht:TreemapItemThemeKey ResourceKey=ToolTipForeground}" Color="#FFFFFFFF" />
-  <sys:Double x:Key="{dxdasht:TreemapItemThemeKey ResourceKey=ToolTipFontSize}">12</sys:Double>
-  <FontWeight x:Key="{dxdasht:TreemapItemThemeKey ResourceKey=ToolTipFontWeight}">Bold</FontWeight>
-  <!-- ListBox -->
-  <SolidColorBrush x:Key="{dxdasht:ListBoxItemThemeKey ResourceKey=Foreground}" Color="#FF444444" />
-  <!-- Other -->
-  <Color x:Key="{dxdasht:PivotItemThemeKey ResourceKey=DefaultBackgroundColor}">#FFFFFFFF</Color>
-  <Color x:Key="{dxdasht:GridItemThemeKey ResourceKey=DefaultBackgroundColor}">#FFFFFFFF</Color>
-  <Color x:Key="{dxdasht:CardItemThemeKey ResourceKey=DefaultBackgroundColor}">#FFFFFFFF</Color>
-  <Color x:Key="{dxdasht:ChartItemThemeKey ResourceKey=DefaultBackgroundColor}">#FFFFFFFF</Color>
+    <ResourceDictionary.MergedDictionaries>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v22.1;component/Dashboard/Office2019White/UICustom.xaml" />
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v22.1;component/Dashboard/Office2019White/UIPreset.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+<!-- DashboardControl --><SolidColorBrush x:Key="{dxdasht:DashboardControlThemeKey ResourceKey=SelectedItemBackground}" Color="#FFDEECF9" />
+
+<SolidColorBrush x:Key="{dxdasht:DashboardControlThemeKey ResourceKey=SelectedItemBorder}" Color="#FFC8C6C4" />
+
+<sys:Boolean x:Key="{dxdasht:DashboardControlThemeKey ResourceKey=IsDarkTheme}">False</sys:Boolean>
+
+<SolidColorBrush x:Key="{dxdasht:DashboardControlThemeKey ResourceKey=Background}" Color="#FFFFFFFF" />
+
+<SolidColorBrush x:Key="{dxdasht:DashboardControlThemeKey ResourceKey=TitleForeground}" Color="#FF444444" />
+
+<SolidColorBrush x:Key="{dxdasht:DashboardControlThemeKey ResourceKey=SubTitleForeground}" Color="#FF444444" Opacity="0.62" />
+
+<Color x:Key="{dxdasht:DashboardControlThemeKey ResourceKey=MasterFilterIconColor}">#FF444444</Color>
+
+<SolidColorBrush x:Key="{dxdasht:DashboardControlThemeKey ResourceKey=FormatConditionBarDrawAxisBrush}" Color="#FF106EBE" />
+
+<!-- DashboardLayoutItem --><SolidColorBrush x:Key="{dxdasht:DashboardLayoutItemThemeKey ResourceKey=Background}" Color="#FFFFFFFF" />
+
+<SolidColorBrush x:Key="{dxdasht:DashboardLayoutItemThemeKey ResourceKey=BorderBrush}" Color="#FFC8C6C4" />
+
+<SolidColorBrush x:Key="{dxdasht:DashboardLayoutItemThemeKey ResourceKey=CaptionBackground}" Color="#FFFFFFFF" />
+
+<SolidColorBrush x:Key="{dxdasht:DashboardLayoutItemThemeKey ResourceKey=CaptionForeground}" Color="#FF444444" />
+
+<SolidColorBrush x:Key="{dxdasht:DashboardLayoutItemThemeKey ResourceKey=WaitIndicatorForeground}" Color="#FF106EBE" />
+
+<!-- CardItem --><SolidColorBrush x:Key="{dxdasht:CardItemThemeKey ResourceKey=Background}">#FFFFFFFF</SolidColorBrush>
+
+<SolidColorBrush x:Key="{dxdasht:CardItemThemeKey ResourceKey=MainTextForeground}">#FF444444</SolidColorBrush>
+
+<SolidColorBrush x:Key="{dxdasht:CardItemThemeKey ResourceKey=CardItemBackground}">#FFFFFFFF</SolidColorBrush>
+
+<SolidColorBrush x:Key="{dxdasht:CardItemThemeKey ResourceKey=CardItemBorderBrush}">#FFC8C6C4</SolidColorBrush>
+
+<SolidColorBrush x:Key="{dxdasht:CardItemThemeKey ResourceKey=HighlightedBackground}">#FFEFF6FC</SolidColorBrush>
+
+<SolidColorBrush x:Key="{dxdasht:CardItemThemeKey ResourceKey=HighlightedBorderBrush}">#FFE1DFDD</SolidColorBrush>
+
+<!-- GaugeItem --><SolidColorBrush x:Key="{dxdasht:GaugeItemThemeKey ResourceKey=GaugeHighlightedBackgroundBrush}" Color="#FFEFF6FC" />
+
+<SolidColorBrush x:Key="{dxdasht:GaugeItemThemeKey ResourceKey=GaugeHighlightedBorderBrush}" Color="#FFEFF6FC" />
+
+<SolidColorBrush x:Key="{dxdasht:GaugeItemThemeKey ResourceKey=GaugeCaptionForeground}" Color="#FF444444" />
+
+<SolidColorBrush x:Key="{dxdasht:GaugeItemThemeKey ResourceKey=GaugeScaleLabelForeground}" Color="#FF444444" />
+
+<sys:Double x:Key="{dxdasht:GaugeItemThemeKey ResourceKey=GaugeCaptionFontSize}">12</sys:Double>
+
+<SolidColorBrush x:Key="{dxdasht:GaugeItemThemeKey ResourceKey=GaugeSubCaptionForeground}" Color="#FF444444" Opacity="0.62" />
+
+<sys:Double x:Key="{dxdasht:GaugeItemThemeKey ResourceKey=GaugeSubCaptionFontSize}">12</sys:Double>
+
+<!-- MapItem --><SolidColorBrush x:Key="{dxdasht:MapItemThemeKey ResourceKey=GeoPointBackgroundBrush}" Color="#FF444444" />
+
+<SolidColorBrush x:Key="{dxdasht:MapItemThemeKey ResourceKey=GeoPointHighLightedBackgroundBrush}" Color="#FF106EBE" />
+
+<SolidColorBrush x:Key="{dxdasht:MapItemThemeKey ResourceKey=GeoPointBorderBrush}" Color="#FFFFFFFF" />
+
+<!-- PieItem --><SolidColorBrush x:Key="{dxdasht:PieItemThemeKey ResourceKey=PieHighlightedBackgroundBrush}" Color="#FFEFF6FC" />
+
+<SolidColorBrush x:Key="{dxdasht:PieItemThemeKey ResourceKey=PieHighlightedBorderBrush}" Color="#FFEFF6FC" />
+
+<!-- ChartItem --><SolidColorBrush x:Key="{dxdasht:ChartItemThemeKey ResourceKey=LegendBackgroundBrush}" Color="#FFFFFFFF" />
+
+<SolidColorBrush x:Key="{dxdasht:ChartItemThemeKey ResourceKey=LegendForegroundBrush}" Color="#FF444444" />
+
+<!-- TreemapItem --><SolidColorBrush x:Key="{dxdasht:TreemapItemThemeKey ResourceKey=ToolTipForeground}" Color="#FFFFFFFF" />
+
+<sys:Double x:Key="{dxdasht:TreemapItemThemeKey ResourceKey=ToolTipFontSize}">12</sys:Double>
+
+<FontWeight x:Key="{dxdasht:TreemapItemThemeKey ResourceKey=ToolTipFontWeight}">Bold</FontWeight>
+
+<!-- ListBox --><SolidColorBrush x:Key="{dxdasht:ListBoxItemThemeKey ResourceKey=Foreground}" Color="#FF444444" />
+
+<!-- Other --><Color x:Key="{dxdasht:PivotItemThemeKey ResourceKey=DefaultBackgroundColor}">#FFFFFFFF</Color>
+
+<Color x:Key="{dxdasht:GridItemThemeKey ResourceKey=DefaultBackgroundColor}">#FFFFFFFF</Color>
+
+<Color x:Key="{dxdasht:CardItemThemeKey ResourceKey=DefaultBackgroundColor}">#FFFFFFFF</Color>
+
+<Color x:Key="{dxdasht:ChartItemThemeKey ResourceKey=DefaultBackgroundColor}">#FFFFFFFF</Color>
+
 </ResourceDictionary>

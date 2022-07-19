@@ -4,11 +4,11 @@
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
                     xmlns:dxdiag="http://schemas.devexpress.com/winfx/2008/xaml/diagram"
-                    xmlns:dxdiagn="http://schemas.devexpress.com/winfx/2008/xaml/diagram/internal"
+                    xmlns:dxdiagi="http://schemas.devexpress.com/winfx/2008/xaml/diagram/internal"
                     xmlns:dxdiagt="http://schemas.devexpress.com/winfx/2008/xaml/diagram/themekeys"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
@@ -107,7 +107,7 @@
         </ContentControl>
     </DataTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.ShapeToolboxPreview}" TargetType="{x:Type dxdiag:ShapeToolboxPreview}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.ShapeToolboxPreview}" TargetType="{x:Type dxdiag:ShapeToolboxPreview}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type dxdiag:ShapeToolboxPreview}">
@@ -150,7 +150,7 @@
         </Border>
     </ControlTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.DiagramToolboxControl}" TargetType="{x:Type dxdiag:DiagramToolboxControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.DiagramToolboxControl}" TargetType="{x:Type dxdiag:DiagramToolboxControl}">
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -175,7 +175,7 @@
                                  Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxdiag:DiagramToolboxControl}}}"
                                  Template="{StaticResource ListBoxTemplate}">
                             <dxmvvm:Interaction.Behaviors>
-                                <dxdiagn:ListBoxMenuBehavior IsCompact="{Binding IsCompact, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiag:DiagramToolboxControl}}}"
+                                <dxdiagi:ListBoxMenuBehavior IsCompact="{Binding IsCompact, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiag:DiagramToolboxControl}}}"
                                                              MenuViewMode="{Binding MenuViewMode, Mode=TwoWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiag:DiagramToolboxControl}}}"
                                                              PopupMenu="{Binding ElementName=popupMenu}"
                                                              ViewModel="{Binding ViewModel, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiag:DiagramToolboxControl}}}"/>
@@ -236,7 +236,7 @@
                                             </DataTemplate>
                                         </dxb:BarLinkContainerItem.ItemTemplate>
                                         <dxb:BarLinkContainerItem.Style>
-                                            <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/bars.BarLinkContainerItem}" TargetType="{x:Type dxb:BarLinkContainerItem}">
+                                            <Style x:Key="{dxt:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/bars.BarLinkContainerItem}" TargetType="{x:Type dxb:BarLinkContainerItem}">
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding Path=MenuViewMode, RelativeSource={RelativeSource TemplatedParent}}" Value="StencilsSelector">
                                                         <Setter Property="ItemLinksSource" Value="{Binding Path=ViewModel.Stencils, RelativeSource={RelativeSource TemplatedParent}}"/>
@@ -252,7 +252,7 @@
                                                     ItemTemplate="{StaticResource StencilCompactItemTemplate}"/>
                                     <dxb:BarLinkContainerItem ItemTemplate="{StaticResource SelectedStencilItemTemplate}">
                                         <dxb:BarLinkContainerItem.Style>
-                                            <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/bars.BarLinkContainerItem}" TargetType="{x:Type dxb:BarLinkContainerItem}">
+                                            <Style x:Key="{dxt:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/bars.BarLinkContainerItem}" TargetType="{x:Type dxb:BarLinkContainerItem}">
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding Path=MenuViewMode, RelativeSource={RelativeSource TemplatedParent}}" Value="StencilsCompactSelector">
                                                         <Setter Property="ItemLinksSource" Value="{Binding Path=ViewModel.CheckedStencils, RelativeSource={RelativeSource TemplatedParent}}"/>
@@ -314,7 +314,7 @@
                                                               Margin="0"
                                                               Padding="0">
                                                     <dxmvvm:Interaction.Behaviors>
-                                                        <dxdiagn:ScrollViewerButtonsBehavior x:Name="scrollViewerBehavior"
+                                                        <dxdiagi:ScrollViewerButtonsBehavior x:Name="scrollViewerBehavior"
                                                                                              IsCompact="{Binding ElementName=ShapesListBox, Path=Tag.IsCompact}"
                                                                                              ViewerViewportWidth="{Binding ElementName=ShapesListBox, Path=Tag.VisualWidth, Mode=TwoWay}"/>
                                                     </dxmvvm:Interaction.Behaviors>
@@ -327,7 +327,7 @@
                                         <DataTemplate>
                                             <Grid HorizontalAlignment="Stretch">
                                                 <Grid.Resources>
-                                                    <CollectionViewSource x:Key="ShapesCollection" Source="{Binding Tools, Converter={dxdiagn:IsQuickToolsConverter}}">
+                                                    <CollectionViewSource x:Key="ShapesCollection" Source="{Binding Tools, Converter={dxdiagi:IsQuickToolsConverter}}">
                                                         <CollectionViewSource.GroupDescriptions>
                                                             <PropertyGroupDescription PropertyName="IsQuick"/>
                                                         </CollectionViewSource.GroupDescriptions>
@@ -359,18 +359,18 @@
                                                          Template="{StaticResource ListBoxTemplate}"
                                                          cs:id="ListBox_0001">
                                                     <dxmvvm:Interaction.Behaviors>
-                                                        <dxdiagn:ActualWidthBehavior ActualControlWidth="{Binding ElementName=ShapesListBox, Path=Tag.ShapeContainerWidth, Mode=TwoWay}"/>
-                                                        <dxdiagn:MouseMoveSelectionBehavior/>
+                                                        <dxdiagi:ActualWidthBehavior ActualControlWidth="{Binding ElementName=ShapesListBox, Path=Tag.ShapeContainerWidth, Mode=TwoWay}"/>
+                                                        <dxdiagi:MouseMoveSelectionBehavior/>
                                                     </dxmvvm:Interaction.Behaviors>
                                                     <ListBox.GroupStyle>
                                                         <GroupStyle>
                                                             <GroupStyle.ContainerStyle>
-                                                                <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=GroupItem}" TargetType="{x:Type GroupItem}">
+                                                                <Style x:Key="{dxt:DefaultStyleThemeKey FullName=GroupItem}" TargetType="{x:Type GroupItem}">
                                                                     <Setter Property="Template">
                                                                         <Setter.Value>
                                                                             <ControlTemplate TargetType="{x:Type GroupItem}">
                                                                                 <StackPanel>
-                                                                                    <Grid Visibility="{Binding ElementName=ShapeListBox, Path=ItemsSource, Converter={dxdiagn:HeaderVisibilityConverter}}">
+                                                                                    <Grid Visibility="{Binding ElementName=ShapeListBox, Path=ItemsSource, Converter={dxdiagi:HeaderVisibilityConverter}}">
                                                                                         <Separator HorizontalAlignment="Stretch"
                                                                                                    Margin="3,0,3,0"
                                                                                                    Visibility="{Binding Path=Name, Converter={dxmvvm:BooleanToVisibilityConverter Inverse=True}}"/>
@@ -391,7 +391,7 @@
                                                                           KeyboardNavigation.TabNavigation="None"
                                                                           VerticalScrollBarVisibility="Disabled">
                                                                 <dxmvvm:Interaction.Behaviors>
-                                                                    <dxdiagn:ScrollingLengthBehavior ScrollingLength="{Binding ElementName=ShapesListBox, Path=Tag.ScrollingLength, Mode=TwoWay}"/>
+                                                                    <dxdiagi:ScrollingLengthBehavior ScrollingLength="{Binding ElementName=ShapesListBox, Path=Tag.ScrollingLength, Mode=TwoWay}"/>
                                                                 </dxmvvm:Interaction.Behaviors>
                                                                 <dxdiag:ShapeToolboxPreview Diagram="{Binding ElementName=ShapesListBox, Path=Tag.DiagramControl}"
                                                                                             IsCompact="{Binding ElementName=ShapesListBox, Path=Tag.IsCompact}"
@@ -404,7 +404,7 @@
                                                     </ListBox.ItemTemplate>
                                                     <ListBox.ItemsPanel>
                                                         <ItemsPanelTemplate>
-                                                            <dxdiagn:ExtendedWrapPanel ActualItemWidth="{Binding ElementName=ShapesListBox, Path=Tag.ShapeItemWidth, Mode=TwoWay}"/>
+                                                            <dxdiagi:ExtendedWrapPanel ActualItemWidth="{Binding ElementName=ShapesListBox, Path=Tag.ShapeItemWidth, Mode=TwoWay}"/>
                                                         </ItemsPanelTemplate>
                                                     </ListBox.ItemsPanel>
                                                 </ListBox>

@@ -1,12 +1,12 @@
 <ResourceDictionary mc:Ignorable="cs"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
-                    xmlns:dasboardthemes="http://schemas.devexpress.com/winfx/2008/xaml/dashboard/themekeys"
                     xmlns:dxdash="http://schemas.devexpress.com/winfx/2008/xaml/dashboard"
                     xmlns:dxdashi="http://schemas.devexpress.com/winfx/2008/xaml/dashboard/internal"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dxdasht="http://schemas.devexpress.com/winfx/2008/xaml/dashboard/themekeys"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
                     xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
@@ -14,7 +14,7 @@
 
     <dxdashi:EventToCommandConverter x:Key="EventToCommandConverter"/>
 
-    <Style x:Key="{dasboardthemes:TextBoxItemThemeKey ResourceKey=ViewStyle}" TargetType="{x:Type dxre:RichEditControl}">
+    <Style x:Key="{dxdasht:TextBoxItemThemeKey ResourceKey=ViewStyle}" TargetType="{x:Type dxre:RichEditControl}">
         <Setter Property="Content" Value="{Binding Rtf, Converter={StaticResource rtfToContentConverter}}"/>
         <Setter Property="ActiveViewType" Value="Simple"/>
         <Setter Property="ShowCaretInReadOnly" Value="False"/>
@@ -74,7 +74,7 @@
         </Setter>
     </Style>
 
-    <DataTemplate x:Key="{dasboardthemes:TextBoxItemThemeKey ResourceKey=Template}">
+    <DataTemplate x:Key="{dxdasht:TextBoxItemThemeKey ResourceKey=Template}">
         <dxre:RichEditControl Style="{Binding Path=(dxdash:DashboardLayoutItem.ViewStyle), RelativeSource={RelativeSource TemplatedParent}}"/>
     </DataTemplate>
 

@@ -1,19 +1,19 @@
-<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxa="http://schemas.devexpress.com/winfx/2008/xaml/accordion" xmlns:dxan="http://schemas.devexpress.com/winfx/2008/xaml/accordion/internal" xmlns:dxat="http://schemas.devexpress.com/winfx/2008/xaml/accordion/themekeys" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:dxmvvminternal="clr-namespace:DevExpress.Mvvm.UI.Interactivity.Internal;assembly=DevExpress.Xpf.Core.v21.2" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxa="http://schemas.devexpress.com/winfx/2008/xaml/accordion" xmlns:dxai="http://schemas.devexpress.com/winfx/2008/xaml/accordion/internal" xmlns:dxat="http://schemas.devexpress.com/winfx/2008/xaml/accordion/themekeys" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:dxmvvminternal="clr-namespace:DevExpress.Mvvm.UI.Interactivity.Internal;assembly=DevExpress.Xpf.Core.v22.1" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxdst:ResourceDictionaryEx Source="/DevExpress.Xpf.Accordion.v21.2;component/Themes/Generic/Resources.xaml" />
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Accordion.v22.1;component/Themes/Generic/Resources.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <dxmvvm:ObjectToObjectConverter x:Key="collapseItemConverter" DefaultTarget="False">
         <dxmvvm:MapItem Source="Container" Target="True" />
     </dxmvvm:ObjectToObjectConverter>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Accordion.AccordionItem}" TargetType="{x:Type dxa:AccordionItem}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Accordion.AccordionItem}" TargetType="{x:Type dxa:AccordionItem}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Accordion\Generic\AccordionItem.xaml;24;6" /><Setter Property="Background" Value="Transparent" cs:id="Setter_0000" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="GlyphTemplate" Value="{StaticResource AccordionItemDefaultGlyphTemplate}" />
+        <Setter Property="GlyphTemplate" Value="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=AccordionItemDefaultGlyphTemplate}}" />
         <Setter Property="Foreground" Value="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=TextForeground}}" />
         <Setter Property="FontSize" Value="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=ItemHeaderFontSize}}" />
         <Setter Property="FontWeight" Value="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=ItemHeaderFontWeight}}" />
@@ -39,10 +39,11 @@
                                 <RowDefinition x:Name="HeaderRow" Height="Auto" MinHeight="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=ItemHeaderHeight}}" />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
-                            <Grid x:Name="PART_HeaderContainer" Grid.Column="1" Margin="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=ItemHeaderContainerMargin}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Generic\AccordionItem.xaml;75;30">
-                                <dxa:AccordionItemBackgroundControl x:Name="PART_BackgroundControl" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Focusable="False" ItemState="Default" ItemType="{Binding ItemType, RelativeSource={RelativeSource TemplatedParent}}" Template="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=ItemBackgroundTemplate}}" />
-                                <Grid x:Name="PART_HeaderInternalContainer" Margin="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=ItemHeaderMargin}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Generic\AccordionItem.xaml;86;34">
+                            <dxa:AccordionItemBackgroundControl x:Name="PART_BackgroundControl" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Focusable="False" Grid.Column="1" ItemState="Default" ItemType="{Binding ItemType, RelativeSource={RelativeSource TemplatedParent}}" Margin="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=ItemHeaderContainerMargin}}" Template="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=ItemBackgroundTemplate}}" />
+                            <Grid x:Name="PART_HeaderContainer" Background="Transparent" Grid.Column="1" Margin="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=ItemHeaderContainerMargin}}" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Generic\AccordionItem.xaml;85;30">
+                                <Grid x:Name="PART_HeaderInternalContainer" Grid.Column="1" Margin="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=ItemHeaderMargin}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Generic\AccordionItem.xaml;90;34">
                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition x:Name="LeftExpandButtonColumn" Width="Auto" />
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="*" />
@@ -56,27 +57,28 @@
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
-                                    <dxa:AccordionExpandButton x:Name="PART_ExpandButton" Grid.RowSpan="2" Style="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=ExpanderButtonStyle}}" />
-                                    <dxa:GlyphPresenter x:Name="PART_Glyph" Grid.Column="1" Grid.Row="1" Style="{StaticResource glyphPresenterStyle}">
+                                    <dxa:AccordionItemBackgroundControl x:Name="PART_SelectionIndicator" Focusable="False" Grid.RowSpan="2" HorizontalAlignment="Left" ItemState="Default" ItemType="{Binding ItemType, RelativeSource={RelativeSource TemplatedParent}}" Template="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=SelectionIndicatorTemplate}}" VerticalAlignment="Center" />
+                                    <dxa:AccordionExpandButton x:Name="PART_ExpandButton" Grid.Column="1" Grid.RowSpan="2" Style="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=ExpanderButtonStyle}}" />
+                                    <dxa:GlyphPresenter x:Name="PART_Glyph" Grid.Column="2" Grid.Row="1" Style="{StaticResource glyphPresenterStyle}">
                                         <dxmvvm:Interaction.Behaviors>
                                             <dxa:GlyphMarginBehavior GlyphPosition="{Binding ActualGlyphPosition, RelativeSource={RelativeSource TemplatedParent}}" GlyphTouchMargin="{StaticResource GlyphTouchMargin}" HasGlyph="{Binding Glyph, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:ObjectToBooleanConverter}}" HeaderElementsMargin="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=HeaderElementsMargin}}" IsTouchEnabled="{Binding Path=(dx:ThemeManager.IsTouchEnabled), RelativeSource={RelativeSource TemplatedParent}}" />
                                         </dxmvvm:Interaction.Behaviors>
                                     </dxa:GlyphPresenter>
-                                    <dx:DXBorder x:Name="PART_Header" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" VerticalAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Generic\AccordionItem.xaml;116;38">
-                                        <ContentPresenter x:Name="PART_HeaderContent" ContentSource="Header" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=HeaderElementsMargin}}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Generic\AccordionItem.xaml;123;42">
+                                    <dx:DXBorder x:Name="PART_Header" Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" VerticalAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Generic\AccordionItem.xaml;132;38">
+                                        <ContentPresenter x:Name="PART_HeaderContent" ContentSource="Header" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=HeaderElementsMargin}}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Generic\AccordionItem.xaml;139;42">
                                             <ContentPresenter.Resources>
                                                 <Style x:Key="{x:Type TextBlock}" TargetType="TextBlock">
-                                                    <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Accordion\Generic\AccordionItem.xaml;130;50" /><Setter Property="TextTrimming" Value="CharacterEllipsis" />
+                                                    <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Accordion\Generic\AccordionItem.xaml;146;50" /><Setter Property="TextTrimming" Value="CharacterEllipsis" />
                                                 </Style>
                                             </ContentPresenter.Resources>
                                         </ContentPresenter>
                                     </dx:DXBorder>
-                                    <dx:DXBorder x:Name="PART_RightBorder" BorderThickness="0" Grid.Column="7" Grid.RowSpan="2" Margin="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=HeaderElementsMargin}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Generic\AccordionItem.xaml;136;38" />
+                                    <dx:DXBorder x:Name="PART_RightBorder" BorderThickness="0" Grid.Column="8" Grid.RowSpan="2" Margin="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=HeaderElementsMargin}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Generic\AccordionItem.xaml;152;38" />
                                 </Grid>
                             </Grid>
-                            <dxan:AccordionExpander x:Name="PART_Expander" CollapseStoryboard="{Binding Path=(dxa:AccordionView.CurrentView).Accordion.CollapseStoryboard, RelativeSource={RelativeSource TemplatedParent}}" Duration="0" dxcore_unique_xmlns:DXExpander.AllowTracksRevealing="False" ExpandStoryboard="{Binding Path=(dxa:AccordionView.CurrentView).Accordion.ExpandStoryboard, RelativeSource={RelativeSource TemplatedParent}}" Grid.Column="1" Grid.Row="1" IsExpanded="True">
-                                <ItemsPresenter x:Name="ItemsHost" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Generic\AccordionItem.xaml;151;34" />
-                            </dxan:AccordionExpander>
+                            <dxai:AccordionExpander x:Name="PART_Expander" CollapseStoryboard="{Binding Path=(dxa:AccordionView.CurrentView).Accordion.CollapseStoryboard, RelativeSource={RelativeSource TemplatedParent}}" Duration="0" ExpandStoryboard="{Binding Path=(dxa:AccordionView.CurrentView).Accordion.ExpandStoryboard, RelativeSource={RelativeSource TemplatedParent}}" Grid.Column="1" Grid.Row="1" IsExpanded="True">
+                                <ItemsPresenter x:Name="ItemsHost" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Accordion\Generic\AccordionItem.xaml;166;34" />
+                            </dxai:AccordionExpander>
                         </Grid>
                     </ContentControl>
                     <ControlTemplate.Triggers>
@@ -92,6 +94,7 @@
                             <Setter Property="Margin" TargetName="PART_HeaderInternalContainer" Value="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=RootItemHeaderMargin}}" />
                             <Setter Property="Margin" TargetName="PART_Expander" Value="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=RootItemContainerMargin}}" />
                             <Setter Property="Margin" TargetName="PART_HeaderContainer" Value="0" />
+                            <Setter Property="Margin" TargetName="PART_BackgroundControl" Value="0" />
                         </Trigger>
                         <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                             <Setter Property="Margin" TargetName="PART_HeaderContent" Value="{StaticResource HeaderTouchMargin}" />
@@ -105,6 +108,7 @@
                             <Setter Property="Margin" TargetName="PART_HeaderInternalContainer" Value="0" />
                             <Setter Property="Margin" TargetName="PART_RightBorder" Value="0" />
                             <Setter Property="Margin" TargetName="PART_HeaderContainer" Value="0" />
+                            <Setter Property="Margin" TargetName="PART_BackgroundControl" Value="0" />
                         </Trigger>
                         
                         
@@ -149,12 +153,12 @@
                         </Trigger>
                         <Trigger Property="ActualGlyphPosition" Value="Right">
                             <Setter Property="Visibility" TargetName="PART_Glyph" Value="Visible" />
-                            <Setter Property="Grid.Column" TargetName="PART_Glyph" Value="5" />
+                            <Setter Property="Grid.Column" TargetName="PART_Glyph" Value="6" />
                             <Setter Property="Grid.Row" TargetName="PART_Glyph" Value="1" />
                         </Trigger>
                         <Trigger Property="ActualGlyphPosition" Value="Top">
                             <Setter Property="Visibility" TargetName="PART_Glyph" Value="Visible" />
-                            <Setter Property="Grid.Column" TargetName="PART_Glyph" Value="3" />
+                            <Setter Property="Grid.Column" TargetName="PART_Glyph" Value="4" />
                             <Setter Property="Grid.Row" TargetName="PART_Glyph" Value="0" />
                         </Trigger>
                         
@@ -212,7 +216,7 @@
                                 <Condition Binding="{Binding ActualExpandButtonPosition, RelativeSource={RelativeSource Self}}" Value="Right" />
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Visibility" TargetName="PART_ExpandButton" Value="Visible" />
-                            <Setter Property="Grid.Column" TargetName="PART_ExpandButton" Value="6" />
+                            <Setter Property="Grid.Column" TargetName="PART_ExpandButton" Value="7" />
                             <Setter Property="IsRightExpandButton" TargetName="PART_ExpandButton" Value="True" />
                         </MultiDataTrigger>
                         <MultiDataTrigger>
@@ -260,6 +264,7 @@
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="ItemState" TargetName="PART_BackgroundControl" Value="Selected" />
+                            <Setter Property="ItemState" TargetName="PART_SelectionIndicator" Value="Selected" />
                             <Setter Property="ItemState" TargetName="PART_ExpandButton" Value="Selected" />
                         </Trigger>
                         <MultiTrigger>
@@ -268,6 +273,7 @@
                                 <Condition Property="IsSelectionActive" Value="False" />
                             </MultiTrigger.Conditions>
                             <Setter Property="ItemState" TargetName="PART_BackgroundControl" Value="SelectedInactive" />
+                            <Setter Property="ItemState" TargetName="PART_SelectionIndicator" Value="SelectedInactive" />
                             <Setter Property="ItemState" TargetName="PART_ExpandButton" Value="SelectedInactive" />
                         </MultiTrigger>
                         <MultiTrigger>
@@ -313,6 +319,7 @@
                             <Setter Property="Tag" TargetName="PART_RootContentControl" Value="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=ItemHeaderHoverForeground}}" />
                             <Setter Property="Foreground" TargetName="PART_ExpandButton" Value="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=ItemHeaderHoverForeground}}" />
                             <Setter Property="ItemState" TargetName="PART_BackgroundControl" Value="Hover" />
+                            <Setter Property="ItemState" TargetName="PART_SelectionIndicator" Value="Hover" />
                             <Setter Property="ItemState" TargetName="PART_ExpandButton" Value="Hover" />
                         </MultiTrigger>
                         <MultiTrigger>
@@ -324,6 +331,7 @@
                             <Setter Property="Tag" TargetName="PART_RootContentControl" Value="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=RootItemHeaderHoverForeground}}" />
                             <Setter Property="Foreground" TargetName="PART_ExpandButton" Value="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=RootItemHeaderHoverForeground}}" />
                             <Setter Property="ItemState" TargetName="PART_BackgroundControl" Value="Hover" />
+                            <Setter Property="ItemState" TargetName="PART_SelectionIndicator" Value="Hover" />
                             <Setter Property="ItemState" TargetName="PART_ExpandButton" Value="Hover" />
                         </MultiTrigger>
                         <MultiTrigger>
@@ -334,6 +342,7 @@
                             </MultiTrigger.Conditions>
                             <Setter Property="ItemState" TargetName="PART_ExpandButton" Value="Pressed" />
                             <Setter Property="ItemState" TargetName="PART_BackgroundControl" Value="Pressed" />
+                            <Setter Property="ItemState" TargetName="PART_SelectionIndicator" Value="Pressed" />
                             <Setter Property="Tag" TargetName="PART_RootContentControl" Value="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=ItemHeaderPressedForeground}}" />
                             <Setter Property="Foreground" TargetName="PART_ExpandButton" Value="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=ItemHeaderPressedForeground}}" />
                         </MultiTrigger>
@@ -345,11 +354,13 @@
                             </MultiTrigger.Conditions>
                             <Setter Property="ItemState" TargetName="PART_ExpandButton" Value="Pressed" />
                             <Setter Property="ItemState" TargetName="PART_BackgroundControl" Value="Pressed" />
+                            <Setter Property="ItemState" TargetName="PART_SelectionIndicator" Value="Pressed" />
                             <Setter Property="Tag" TargetName="PART_RootContentControl" Value="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=RootItemHeaderPressedForeground}}" />
                             <Setter Property="Foreground" TargetName="PART_ExpandButton" Value="{DynamicResource {dxat:AccordionItemThemeKeys ResourceKey=RootItemHeaderPressedForeground}}" />
                         </MultiTrigger>
                         <Trigger Property="ItemType" Value="Wrapper">
                             <Setter Property="ItemState" TargetName="PART_BackgroundControl" Value="Default" />
+                            <Setter Property="ItemState" TargetName="PART_SelectionIndicator" Value="Default" />
                         </Trigger>
                         
                     </ControlTemplate.Triggers>
@@ -361,7 +372,7 @@
                 <Setter Property="ItemsPanel">
                     <Setter.Value>
                         <ItemsPanelTemplate>
-                            <dxan:AccordionVirtualizingPanel />
+                            <dxai:AccordionVirtualizingPanel />
                         </ItemsPanelTemplate>
                     </Setter.Value>
                 </Setter>

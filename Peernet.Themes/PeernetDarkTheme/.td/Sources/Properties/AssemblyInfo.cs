@@ -64,7 +64,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyCompany("Developer Express Inc.")]
 [assembly: AssemblyProduct("DevExpress.Xpf.Themes.Office2019Black.Theme")]
 [assembly: AssemblyTitle("DevExpress.Xpf.Themes.Office2019Black")]
-[assembly: AssemblyCopyright("Copyright © 2000-2022 Developer Express Inc.")]
+[assembly: AssemblyCopyright("Copyright Â© 2000-2022 Developer Express Inc.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: CLSCompliant(true)]

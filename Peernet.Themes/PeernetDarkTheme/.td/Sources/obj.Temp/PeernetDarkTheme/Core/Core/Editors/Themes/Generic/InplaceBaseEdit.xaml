@@ -1,9 +1,9 @@
-<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:core="clr-namespace:DevExpress.Xpf.Core;assembly=DevExpress.Data.Desktop.v21.2" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxeh="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal" xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal" xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys" xmlns:dxn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxtEx="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:core="clr-namespace:DevExpress.Xpf.Core;assembly=DevExpress.Data.Desktop.v22.1" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal" xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys" xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxtEx:ResourceDictionaryEx Source="{dx:DynamicEditorsResource ButtonEdit.xaml, ShortPaths=True}" />
-        <dxtEx:ResourceDictionaryEx Source="{dx:DynamicEditorsResource InplaceGlyphes.xaml, ShortPaths=True}" />
-        <dxtEx:ResourceDictionaryEx Source="{dx:DynamicEditorsResource InplaceBaseEdit.xaml, ShortPaths=True}" />
+        <dxt:ResourceDictionaryEx Source="{dx:DynamicEditorsResource ButtonEdit.xaml, ShortPaths=True}" />
+        <dxt:ResourceDictionaryEx Source="{dx:DynamicEditorsResource InplaceGlyphes.xaml, ShortPaths=True}" />
+        <dxt:ResourceDictionaryEx Source="{dx:DynamicEditorsResource InplaceBaseEdit.xaml, ShortPaths=True}" />
     </ResourceDictionary.MergedDictionaries>
 
     <dxei:InplaceBaseEditTemplateSelector x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=TextEditInplaceTemplateSelector}" />
@@ -16,363 +16,363 @@
 
     <dxei:RenderButtonTemplateSelector x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=RenderButtonContainerTemplateSelector}" />
 
-    <dxn:RenderDropDownArrowTemplateSelector x:Key="RenderDropDownArrowTemplateSelector" />
+    <dxi:RenderDropDownArrowTemplateSelector x:Key="RenderDropDownArrowTemplateSelector" />
 
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
-    <dxn:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=ImageButtonInfoGlyphTemplate}">
-        <dxn:RenderPanel Name="root" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;38;10">
-            <dxn:RenderImage Name="PART_Image" Height="16" Width="16" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;39;14" />
-        </dxn:RenderPanel>
-        <dxn:RenderTemplate.Triggers>
-            <dxn:RenderBinding DependencyProperty="{x:Static dxe:ImageButtonInfo.GlyphProperty}" TargetName="PART_Image" TargetProperty="Source" ValueSource="DataContext" />
-            <dxn:RenderStateGroup Name="TouchStates">
-                <dxn:RenderStateTrigger Name="NonTouch" />
-                <dxn:RenderStateTrigger Name="Touch">
-                    <dxn:RenderSetter Property="MinWidth" TargetName="root" Value="42" />
-                </dxn:RenderStateTrigger>
-            </dxn:RenderStateGroup>
-        </dxn:RenderTemplate.Triggers>
-    </dxn:RenderTemplate>
+    <dxi:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=ImageButtonInfoGlyphTemplate}">
+        <dxi:RenderPanel Name="root" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;36;10">
+            <dxi:RenderImage Name="PART_Image" Height="16" Width="16" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;37;14" />
+        </dxi:RenderPanel>
+        <dxi:RenderTemplate.Triggers>
+            <dxi:RenderBinding DependencyProperty="{x:Static dxe:ImageButtonInfo.GlyphProperty}" TargetName="PART_Image" TargetProperty="Source" ValueSource="DataContext" />
+            <dxi:RenderStateGroup Name="TouchStates">
+                <dxi:RenderStateTrigger Name="NonTouch" />
+                <dxi:RenderStateTrigger Name="Touch">
+                    <dxi:RenderSetter Property="MinWidth" TargetName="root" Value="42" />
+                </dxi:RenderStateTrigger>
+            </dxi:RenderStateGroup>
+        </dxi:RenderTemplate.Triggers>
+    </dxi:RenderTemplate>
 
     <dxei:BrushToSvgPaletteConverter x:Key="BrushToSvgPaletteConverter" />
 
-    <dxn:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=DateEditButtonInfoGlyphTemplate}">
-        <dxn:RenderPanel Name="root2" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;62;10">
-            <dxn:RenderImage Name="PART_Image" Height="16" Width="16" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;63;14" />
-        </dxn:RenderPanel>
-        <dxn:RenderTemplate.Triggers>
-            <dxn:RenderBinding Converter="{StaticResource BrushToSvgPaletteConverter}" ConverterParamenter="BlackColor" DependencyProperty="{x:Static dxe:ImageButtonInfo.ForegroundProperty}" TargetName="PART_Image" TargetProperty="SvgPalette" ValueSource="DataContext" />
-            <dxn:RenderBinding DependencyProperty="{x:Static dxe:ImageButtonInfo.GlyphProperty}" TargetName="PART_Image" TargetProperty="Source" ValueSource="DataContext" />
-            <dxn:RenderStateGroup Name="TouchStates">
-                <dxn:RenderStateTrigger Name="NonTouch" />
-                <dxn:RenderStateTrigger Name="Touch">
-                    <dxn:RenderSetter Property="MinWidth" TargetName="root2" Value="42" />
-                </dxn:RenderStateTrigger>
-            </dxn:RenderStateGroup>
-        </dxn:RenderTemplate.Triggers>
-    </dxn:RenderTemplate>
+    <dxi:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=DateEditButtonInfoGlyphTemplate}">
+        <dxi:RenderPanel Name="root2" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;60;10">
+            <dxi:RenderImage Name="PART_Image" Height="16" Width="16" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;61;14" />
+        </dxi:RenderPanel>
+        <dxi:RenderTemplate.Triggers>
+            <dxi:RenderBinding Converter="{StaticResource BrushToSvgPaletteConverter}" ConverterParamenter="BlackColor" DependencyProperty="{x:Static dxe:ImageButtonInfo.ForegroundProperty}" TargetName="PART_Image" TargetProperty="SvgPalette" ValueSource="DataContext" />
+            <dxi:RenderBinding DependencyProperty="{x:Static dxe:ImageButtonInfo.GlyphProperty}" TargetName="PART_Image" TargetProperty="Source" ValueSource="DataContext" />
+            <dxi:RenderStateGroup Name="TouchStates">
+                <dxi:RenderStateTrigger Name="NonTouch" />
+                <dxi:RenderStateTrigger Name="Touch">
+                    <dxi:RenderSetter Property="MinWidth" TargetName="root2" Value="42" />
+                </dxi:RenderStateTrigger>
+            </dxi:RenderStateGroup>
+        </dxi:RenderTemplate.Triggers>
+    </dxi:RenderTemplate>
 
     <DataTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorToolTipTemplate}">
-        <TextBlock Text="{Binding Path=ErrorContent}" TextWrapping="Wrap" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;90;10" />
+        <TextBlock Text="{Binding Path=ErrorContent}" TextWrapping="Wrap" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;88;10" />
     </DataTemplate>
 
     <DataTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=TrimmedTextToolTipTemplate}">
-        <TextBlock Text="{Binding}" TextWrapping="Wrap" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;94;10" />
+        <TextBlock Text="{Binding}" TextWrapping="Wrap" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;92;10" />
     </DataTemplate>
 
-    <dxn:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=RealContentPresenterTemplate}">
-        <dxn:RenderRealContentPresenter Name="PART_ContentPresenter" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;98;10" />
-    </dxn:RenderTemplate>
+    <dxi:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=RealContentPresenterTemplate}">
+        <dxi:RenderRealContentPresenter Name="PART_ContentPresenter" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;96;10" />
+    </dxi:RenderTemplate>
 
-    <dxn:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=ContentPresenterTemplate}">
-        <dxn:RenderContentPresenter Name="PART_ContentPresenter" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;102;10" />
-    </dxn:RenderTemplate>
+    <dxi:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=ContentPresenterTemplate}">
+        <dxi:RenderContentPresenter Name="PART_ContentPresenter" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;100;10" />
+    </dxi:RenderTemplate>
 
-    <dxn:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=TextContentPresenterTemplate}">
-        <dxn:RenderTextBlock Name="textBlock" ClipToBounds="True" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;106;10" />
-        <dxn:RenderTemplate.Triggers>
-            <dxn:RenderBinding TargetName="textBlock" TargetProperty="Text" />
-        </dxn:RenderTemplate.Triggers>
-    </dxn:RenderTemplate>
+    <dxi:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=TextContentPresenterTemplate}">
+        <dxi:RenderTextBlock Name="textBlock" ClipToBounds="True" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;104;10" />
+        <dxi:RenderTemplate.Triggers>
+            <dxi:RenderBinding TargetName="textBlock" TargetProperty="Text" />
+        </dxi:RenderTemplate.Triggers>
+    </dxi:RenderTemplate>
 
-    <dxn:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=TextEditInplaceActiveTemplate}">
-        <dxei:RenderBaseEdit Name="PART_Editor" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;113;10" />
-    </dxn:RenderTemplate>
+    <dxi:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=TextEditInplaceActiveTemplate}">
+        <dxei:RenderBaseEdit Name="PART_Editor" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;111;10" />
+    </dxi:RenderTemplate>
 
-    <dxn:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=CheckEditInplaceInactiveTemplate}">
-        <dxn:RenderPanel Name="PART_Root" LayoutProvider="{dxn:DockPanelLayoutProvider LastChildFill=True}" UseLayoutRounding="True" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;117;10">
-            <dxn:RenderContentControl Name="PART_ErrorProvider" Dock="Left" HorizontalAlignment="Center" Margin="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorPadding}}" PreferRenderTemplate="false" RenderContentTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorTemplateSelector}}" VerticalAlignment="Center" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;120;14" />
+    <dxi:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=CheckEditInplaceInactiveTemplate}">
+        <dxi:RenderPanel Name="PART_Root" LayoutProvider="{dxi:DockPanelLayoutProvider LastChildFill=True}" UseLayoutRounding="True" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;115;10">
+            <dxi:RenderContentControl Name="PART_ErrorProvider" Dock="Left" HorizontalAlignment="Center" Margin="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorPadding}}" PreferRenderTemplate="false" RenderContentTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorTemplateSelector}}" VerticalAlignment="Center" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;118;14" />
             <dxe:EditorRenderCheckBox Name="PART_Editor" HorizontalAlignment="Center" UsePropagatedIsMouseOver="True" VerticalAlignment="Center" />
-        </dxn:RenderPanel>
-    </dxn:RenderTemplate>
+        </dxi:RenderPanel>
+    </dxi:RenderTemplate>
 
-    <dxn:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=RenderImageCheckBoxTemplate}">
-        <dxn:RenderPanel Name="Root" LayoutProvider="{dxn:DockPanelLayoutProvider LastChildFill=True}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;136;10">
-            <dxn:RenderPanel Dock="Left" FlowDirection="LeftToRight" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;137;14">
-                <dxn:RenderContentControl Name="PART_ErrorProvider" Dock="Left" HorizontalAlignment="Center" Margin="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorPadding}}" PreferRenderTemplate="false" RenderContentTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorTemplateSelector}}" VerticalAlignment="Center" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;138;18" />
-                <dxn:RenderImage Name="PART_Image" Height="14" Width="14" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;146;18" />
-            </dxn:RenderPanel>
-            <dxn:RenderContentPresenter Name="PART_ContentPresenter" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;150;14" />
-        </dxn:RenderPanel>
-        <dxn:RenderTemplate.Triggers>
-            <dxn:RenderTrigger DependencyProperty="{x:Static dx:ThemeManager.IsTouchEnabledProperty}" Value="True" ValueSource="Chrome">
-                <dxn:RenderSetter Property="MinWidth" TargetName="PART_Image" Value="40" />
-                <dxn:RenderSetter Property="MinHeight" TargetName="PART_Image" Value="40" />
-            </dxn:RenderTrigger>
-        </dxn:RenderTemplate.Triggers>
-    </dxn:RenderTemplate>
+    <dxi:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=RenderImageCheckBoxTemplate}">
+        <dxi:RenderPanel Name="Root" LayoutProvider="{dxi:DockPanelLayoutProvider LastChildFill=True}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;134;10">
+            <dxi:RenderPanel Dock="Left" FlowDirection="LeftToRight" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;135;14">
+                <dxi:RenderContentControl Name="PART_ErrorProvider" Dock="Left" HorizontalAlignment="Center" Margin="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorPadding}}" PreferRenderTemplate="false" RenderContentTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorTemplateSelector}}" VerticalAlignment="Center" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;136;18" />
+                <dxi:RenderImage Name="PART_Image" Height="14" Width="14" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;144;18" />
+            </dxi:RenderPanel>
+            <dxi:RenderContentPresenter Name="PART_ContentPresenter" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;148;14" />
+        </dxi:RenderPanel>
+        <dxi:RenderTemplate.Triggers>
+            <dxi:RenderTrigger DependencyProperty="{x:Static dx:ThemeManager.IsTouchEnabledProperty}" Value="True" ValueSource="Chrome">
+                <dxi:RenderSetter Property="MinWidth" TargetName="PART_Image" Value="40" />
+                <dxi:RenderSetter Property="MinHeight" TargetName="PART_Image" Value="40" />
+            </dxi:RenderTrigger>
+        </dxi:RenderTemplate.Triggers>
+    </dxi:RenderTemplate>
 
-    <dxn:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=RenderImageWithTemplateCheckBoxTemplate}">
-        <dxn:RenderPanel Name="Root" LayoutProvider="{dxe:EditorRenderCheckBoxLayoutProvider LastChildFill=True}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;167;10">
-            <dxn:RenderPanel Dock="Left" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;168;14">
-                <dxn:RenderContentControl Name="PART_ErrorProvider" Dock="Left" HorizontalAlignment="Center" Margin="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorPadding}}" PreferRenderTemplate="false" RenderContentTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorTemplateSelector}}" VerticalAlignment="Center" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;169;18" />
-                <dxn:RenderContentPresenter Name="PART_Image" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;177;18" />
-            </dxn:RenderPanel>
-            <dxn:RenderContentPresenter Name="PART_ContentPresenter" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;179;14" />
-        </dxn:RenderPanel>
-    </dxn:RenderTemplate>
+    <dxi:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=RenderImageWithTemplateCheckBoxTemplate}">
+        <dxi:RenderPanel Name="Root" LayoutProvider="{dxe:EditorRenderCheckBoxLayoutProvider LastChildFill=True}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;165;10">
+            <dxi:RenderPanel Dock="Left" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;166;14">
+                <dxi:RenderContentControl Name="PART_ErrorProvider" Dock="Left" HorizontalAlignment="Center" Margin="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorPadding}}" PreferRenderTemplate="false" RenderContentTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorTemplateSelector}}" VerticalAlignment="Center" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;167;18" />
+                <dxi:RenderContentPresenter Name="PART_Image" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;175;18" />
+            </dxi:RenderPanel>
+            <dxi:RenderContentPresenter Name="PART_ContentPresenter" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;177;14" />
+        </dxi:RenderPanel>
+    </dxi:RenderTemplate>
 
-    <dxn:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=CommonBaseEditInplaceInactiveTemplate}">
-        <dxn:RenderPanel ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;184;10">
-            <dxn:RenderControl Name="PART_Border" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;185;14" />
-            <dxn:RenderPanel Name="PART_Root" LayoutProvider="{dxn:DockPanelLayoutProvider LastChildFill=True}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;186;14">
-                <dxn:RenderContentControl Name="PART_ErrorProvider" Dock="Left" HorizontalAlignment="Center" Margin="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorPadding}}" PreferRenderTemplate="false" RenderContentTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorTemplateSelector}}" VerticalAlignment="Center" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;187;18" />
-                <dxn:RenderItemsControl Name="PART_LeftButtons" Dock="Left" ItemTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=RenderButtonContainerTemplateSelector}}" Margin="{StaticResource {dxet:ButtonEditThemeKey ResourceKey=ButtonEditPadding}}" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;195;18">
-                    <dxn:RenderItemsControl.ItemPanelTemplate>
-                        <dxn:RenderPanel LayoutProvider="{x:Static dxe:ButtonsPanelLayoutProvider.ButtonsPanelInstance}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;201;26" />
-                    </dxn:RenderItemsControl.ItemPanelTemplate>
-                </dxn:RenderItemsControl>
-                <dxn:RenderItemsControl Name="PART_RightButtons" Dock="Right" ItemTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=RenderButtonContainerTemplateSelector}}" Margin="{StaticResource {dxet:ButtonEditThemeKey ResourceKey=ButtonEditPadding}}" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;204;18">
-                    <dxn:RenderItemsControl.ItemPanelTemplate>
-                        <dxn:RenderPanel LayoutProvider="{x:Static dxe:ButtonsPanelLayoutProvider.ButtonsPanelInstance}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;210;26" />
-                    </dxn:RenderItemsControl.ItemPanelTemplate>
-                </dxn:RenderItemsControl>
-                <dxn:RenderTextBlock Name="PART_Editor" AllowGlyphRunRendering="{x:Static core:CompatibilitySettings.AllowGlyphRunRenderingInInplaceEditors}" ClipToBounds="True" Margin="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=TextEditPadding}}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;213;18" />
-            </dxn:RenderPanel>
-            <dxn:RenderControl Name="PART_Glow" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;218;14" />
-        </dxn:RenderPanel>
-        <dxn:RenderTemplate.Triggers>
-            <dxn:RenderStateGroup Name="TouchStates">
-                <dxn:RenderStateTrigger Name="NonTouch" />
-                <dxn:RenderStateTrigger Name="Touch">
-                    <dxn:RenderSetter Property="Margin" TargetName="PART_Editor" Value="13" />
-                </dxn:RenderStateTrigger>
-            </dxn:RenderStateGroup>
-        </dxn:RenderTemplate.Triggers>
-    </dxn:RenderTemplate>
+    <dxi:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=CommonBaseEditInplaceInactiveTemplate}">
+        <dxi:RenderPanel ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;182;10">
+            <dxi:RenderControl Name="PART_Border" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;183;14" />
+            <dxi:RenderPanel Name="PART_Root" LayoutProvider="{dxi:DockPanelLayoutProvider LastChildFill=True}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;184;14">
+                <dxi:RenderContentControl Name="PART_ErrorProvider" Dock="Left" HorizontalAlignment="Center" Margin="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorPadding}}" PreferRenderTemplate="false" RenderContentTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorTemplateSelector}}" VerticalAlignment="Center" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;185;18" />
+                <dxi:RenderItemsControl Name="PART_LeftButtons" Dock="Left" ItemTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=RenderButtonContainerTemplateSelector}}" Margin="{StaticResource {dxet:ButtonEditThemeKey ResourceKey=ButtonEditPadding}}" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;193;18">
+                    <dxi:RenderItemsControl.ItemPanelTemplate>
+                        <dxi:RenderPanel LayoutProvider="{x:Static dxe:ButtonsPanelLayoutProvider.ButtonsPanelInstance}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;199;26" />
+                    </dxi:RenderItemsControl.ItemPanelTemplate>
+                </dxi:RenderItemsControl>
+                <dxi:RenderItemsControl Name="PART_RightButtons" Dock="Right" ItemTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=RenderButtonContainerTemplateSelector}}" Margin="{StaticResource {dxet:ButtonEditThemeKey ResourceKey=ButtonEditPadding}}" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;202;18">
+                    <dxi:RenderItemsControl.ItemPanelTemplate>
+                        <dxi:RenderPanel LayoutProvider="{x:Static dxe:ButtonsPanelLayoutProvider.ButtonsPanelInstance}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;208;26" />
+                    </dxi:RenderItemsControl.ItemPanelTemplate>
+                </dxi:RenderItemsControl>
+                <dxi:RenderTextBlock Name="PART_Editor" AllowGlyphRunRendering="{x:Static core:CompatibilitySettings.AllowGlyphRunRenderingInInplaceEditors}" ClipToBounds="True" Margin="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=TextEditPadding}}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;211;18" />
+            </dxi:RenderPanel>
+            <dxi:RenderControl Name="PART_Glow" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;216;14" />
+        </dxi:RenderPanel>
+        <dxi:RenderTemplate.Triggers>
+            <dxi:RenderStateGroup Name="TouchStates">
+                <dxi:RenderStateTrigger Name="NonTouch" />
+                <dxi:RenderStateTrigger Name="Touch">
+                    <dxi:RenderSetter Property="Margin" TargetName="PART_Editor" Value="13" />
+                </dxi:RenderStateTrigger>
+            </dxi:RenderStateGroup>
+        </dxi:RenderTemplate.Triggers>
+    </dxi:RenderTemplate>
 
     <ControlTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=SelectedItemImageTemplate}" TargetType="{x:Type dxei:EditorControlStub}">
-        <DockPanel LastChildFill="True" MinHeight="20" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;233;10">
+        <DockPanel LastChildFill="True" MinHeight="20" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;231;10">
             <dxei:ImagePresenter x:Name="PART_Image" DockPanel.Dock="Left" Padding="{StaticResource {dxet:ComboBoxEditThemeKey ResourceKey=SelectedItemImagePadding}}" />
-            <ContentPresenter x:Name="PART_ContentPresenter" Margin="{StaticResource {dxet:ComboBoxEditThemeKey ResourceKey=SelectedItemContentPadding}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;237;14" />
+            <ContentPresenter x:Name="PART_ContentPresenter" Margin="{StaticResource {dxet:ComboBoxEditThemeKey ResourceKey=SelectedItemContentPadding}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;235;14" />
         </DockPanel>
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=SelectedItemTemplate}" TargetType="{x:Type dxei:EditorControlStub}">
-        <ContentPresenter x:Name="PART_ContentPresenter" Margin="{DynamicResource {dxet:ComboBoxEditThemeKey ResourceKey=SelectedItemContentPadding}}" MinHeight="16" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;242;10" />
+        <ContentPresenter x:Name="PART_ContentPresenter" Margin="{DynamicResource {dxet:ComboBoxEditThemeKey ResourceKey=SelectedItemContentPadding}}" MinHeight="16" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;240;10" />
     </ControlTemplate>
 
-    <dxn:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=CommonBaseEditInplaceInactiveTemplateWithDisplayTemplate}">
-        <dxn:RenderPanel ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;248;10">
-            <dxn:RenderControl Name="PART_Border" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;249;14" />
-            <dxn:RenderPanel Name="PART_Root" LayoutProvider="{dxn:DockPanelLayoutProvider LastChildFill=True}" Margin="{StaticResource ResourceKey={dxet:InplaceBaseEditThemeKey ResourceKey=TextEditBorderThickness}}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;250;14">
-                <dxn:RenderContentControl Name="PART_ErrorProvider" Dock="Left" HorizontalAlignment="Center" Margin="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorPadding}}" PreferRenderTemplate="false" RenderContentTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorTemplateSelector}}" VerticalAlignment="Center" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;253;18" />
-                <dxn:RenderItemsControl Name="PART_LeftButtons" Dock="Left" ItemTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=RenderButtonContainerTemplateSelector}}" Margin="{StaticResource {dxet:ButtonEditThemeKey ResourceKey=ButtonEditPadding}}" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;261;18">
-                    <dxn:RenderItemsControl.ItemPanelTemplate>
-                        <dxn:RenderPanel LayoutProvider="{dxe:ButtonsPanelLayoutProvider}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;267;26" />
-                    </dxn:RenderItemsControl.ItemPanelTemplate>
-                </dxn:RenderItemsControl>
-                <dxn:RenderItemsControl Name="PART_RightButtons" Dock="Right" ItemTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=RenderButtonContainerTemplateSelector}}" Margin="{StaticResource {dxet:ButtonEditThemeKey ResourceKey=ButtonEditPadding}}" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;270;18">
-                    <dxn:RenderItemsControl.ItemPanelTemplate>
-                        <dxn:RenderPanel LayoutProvider="{dxe:ButtonsPanelLayoutProvider}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;276;26" />
-                    </dxn:RenderItemsControl.ItemPanelTemplate>
-                </dxn:RenderItemsControl>
-                <dxei:RenderEditorControl Name="PART_Editor" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;279;18" />
-            </dxn:RenderPanel>
-            <dxn:RenderControl Name="PART_Glow" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;281;14" />
-        </dxn:RenderPanel>
-        <dxn:RenderTemplate.Triggers>
-            <dxn:ConditionalRenderBinding DependencyProperty="{x:Static dxn:AppearanceOptions.BorderThicknessProperty}" TargetName="PART_Root" TargetProperty="Margin" ValueSource="TemplatedParent">
-                <dxn:RenderCondition DependencyProperty="{x:Static dxn:AppearanceOptions.HasBorderThicknessProperty}" Value="True" ValueSource="TemplatedParent" />
-            </dxn:ConditionalRenderBinding>
-        </dxn:RenderTemplate.Triggers>
-    </dxn:RenderTemplate>
+    <dxi:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=CommonBaseEditInplaceInactiveTemplateWithDisplayTemplate}">
+        <dxi:RenderPanel ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;246;10">
+            <dxi:RenderControl Name="PART_Border" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;247;14" />
+            <dxi:RenderPanel Name="PART_Root" LayoutProvider="{dxi:DockPanelLayoutProvider LastChildFill=True}" Margin="{StaticResource ResourceKey={dxet:InplaceBaseEditThemeKey ResourceKey=TextEditBorderThickness}}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;248;14">
+                <dxi:RenderContentControl Name="PART_ErrorProvider" Dock="Left" HorizontalAlignment="Center" Margin="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorPadding}}" PreferRenderTemplate="false" RenderContentTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorTemplateSelector}}" VerticalAlignment="Center" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;251;18" />
+                <dxi:RenderItemsControl Name="PART_LeftButtons" Dock="Left" ItemTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=RenderButtonContainerTemplateSelector}}" Margin="{StaticResource {dxet:ButtonEditThemeKey ResourceKey=ButtonEditPadding}}" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;259;18">
+                    <dxi:RenderItemsControl.ItemPanelTemplate>
+                        <dxi:RenderPanel LayoutProvider="{dxe:ButtonsPanelLayoutProvider}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;265;26" />
+                    </dxi:RenderItemsControl.ItemPanelTemplate>
+                </dxi:RenderItemsControl>
+                <dxi:RenderItemsControl Name="PART_RightButtons" Dock="Right" ItemTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=RenderButtonContainerTemplateSelector}}" Margin="{StaticResource {dxet:ButtonEditThemeKey ResourceKey=ButtonEditPadding}}" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;268;18">
+                    <dxi:RenderItemsControl.ItemPanelTemplate>
+                        <dxi:RenderPanel LayoutProvider="{dxe:ButtonsPanelLayoutProvider}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;274;26" />
+                    </dxi:RenderItemsControl.ItemPanelTemplate>
+                </dxi:RenderItemsControl>
+                <dxei:RenderEditorControl Name="PART_Editor" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;277;18" />
+            </dxi:RenderPanel>
+            <dxi:RenderControl Name="PART_Glow" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;279;14" />
+        </dxi:RenderPanel>
+        <dxi:RenderTemplate.Triggers>
+            <dxi:ConditionalRenderBinding DependencyProperty="{x:Static dxi:AppearanceOptions.BorderThicknessProperty}" TargetName="PART_Root" TargetProperty="Margin" ValueSource="TemplatedParent">
+                <dxi:RenderCondition DependencyProperty="{x:Static dxi:AppearanceOptions.HasBorderThicknessProperty}" Value="True" ValueSource="TemplatedParent" />
+            </dxi:ConditionalRenderBinding>
+        </dxi:RenderTemplate.Triggers>
+    </dxi:RenderTemplate>
 
-    <dxn:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=InformationErrorTemplate}">
-        <dxn:RenderImage Height="14" Source="{dx:ImageSelector Source='pack://application:,,,/DevExpress.Xpf.Core.v21.2;component/Editors/Images/info.png'}" Stretch="Fill" SvgPalette="{dxei:ValidationErrorSvgPaletteProvider}" Width="14" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;296;10" />
-    </dxn:RenderTemplate>
+    <dxi:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=InformationErrorTemplate}">
+        <dxi:RenderImage Height="14" Source="{dx:ImageSelector Source='pack://application:,,,/DevExpress.Xpf.Core.v22.1;component/Editors/Images/info.png'}" Stretch="Fill" SvgPalette="{dxei:ValidationErrorSvgPaletteProvider}" Width="14" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;294;10" />
+    </dxi:RenderTemplate>
 
-    <dxn:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=WarningErrorTemplate}">
-        <dxn:RenderImage Height="14" Source="{dx:ImageSelector Source='pack://application:,,,/DevExpress.Xpf.Core.v21.2;component/Editors/Images/warning.png'}" Stretch="Fill" SvgPalette="{dxei:ValidationErrorSvgPaletteProvider}" Width="14" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;304;10" />
-    </dxn:RenderTemplate>
+    <dxi:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=WarningErrorTemplate}">
+        <dxi:RenderImage Height="14" Source="{dx:ImageSelector Source='pack://application:,,,/DevExpress.Xpf.Core.v22.1;component/Editors/Images/warning.png'}" Stretch="Fill" SvgPalette="{dxei:ValidationErrorSvgPaletteProvider}" Width="14" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;302;10" />
+    </dxi:RenderTemplate>
 
-    <dxn:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=CriticalErrorTemplate}">
-        <dxn:RenderImage Height="14" Source="{dx:ImageSelector Source='pack://application:,,,/DevExpress.Xpf.Core.v21.2;component/Editors/Images/error.png'}" Stretch="Fill" SvgPalette="{dxei:ValidationErrorSvgPaletteProvider}" Width="14" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;312;10" />
-    </dxn:RenderTemplate>
+    <dxi:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=CriticalErrorTemplate}">
+        <dxi:RenderImage Height="14" Source="{dx:ImageSelector Source='pack://application:,,,/DevExpress.Xpf.Core.v22.1;component/Editors/Images/error.png'}" Stretch="Fill" SvgPalette="{dxei:ValidationErrorSvgPaletteProvider}" Width="14" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;310;10" />
+    </dxi:RenderTemplate>
 
-    <dxn:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorTemplate}">
-        <dxn:ErrorRenderControl />
-    </dxn:RenderTemplate>
+    <dxi:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorTemplate}">
+        <dxi:ErrorRenderControl />
+    </dxi:RenderTemplate>
 
-    <dxn:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=RenderRealButtonContainerTemplate}">
+    <dxi:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=RenderRealButtonContainerTemplate}">
         <dxe:RenderButtonContainer Name="PART_ButtonContainer" />
-        <dxn:RenderTemplate.Triggers>
-            <dxn:RenderBinding DependencyProperty="{x:Static dxe:ButtonInfo.TemplateProperty}" TargetName="PART_ButtonContainer" TargetProperty="ContentTemplate" ValueSource="DataContext" />
-            <dxn:RenderBinding TargetName="PART_ButtonContainer" TargetProperty="Content" ValueSource="DataContext" />
-        </dxn:RenderTemplate.Triggers>
-    </dxn:RenderTemplate>
+        <dxi:RenderTemplate.Triggers>
+            <dxi:RenderBinding DependencyProperty="{x:Static dxe:ButtonInfo.TemplateProperty}" TargetName="PART_ButtonContainer" TargetProperty="ContentTemplate" ValueSource="DataContext" />
+            <dxi:RenderBinding TargetName="PART_ButtonContainer" TargetProperty="Content" ValueSource="DataContext" />
+        </dxi:RenderTemplate.Triggers>
+    </dxi:RenderTemplate>
 
-    <dxn:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=TextEditInplaceInactiveTemplate}">
-        <dxn:RenderTextBlock Name="PART_Editor" AllowGlyphRunRendering="{x:Static core:CompatibilitySettings.AllowGlyphRunRenderingInInplaceEditors}" ClipToBounds="True" Margin="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=TextEditPadding}}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;337;10" />
-        <dxn:RenderTemplate.Triggers>
-            <dxn:RenderStateGroup Name="TouchStates">
-                <dxn:RenderStateTrigger Name="NonTouch" />
-                <dxn:RenderStateTrigger Name="Touch">
-                    <dxn:RenderSetter Property="Margin" TargetName="PART_Editor" Value="13" />
-                </dxn:RenderStateTrigger>
-            </dxn:RenderStateGroup>
-        </dxn:RenderTemplate.Triggers>
-    </dxn:RenderTemplate>
+    <dxi:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=TextEditInplaceInactiveTemplate}">
+        <dxi:RenderTextBlock Name="PART_Editor" AllowGlyphRunRendering="{x:Static core:CompatibilitySettings.AllowGlyphRunRenderingInInplaceEditors}" ClipToBounds="True" Margin="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=TextEditPadding}}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;335;10" />
+        <dxi:RenderTemplate.Triggers>
+            <dxi:RenderStateGroup Name="TouchStates">
+                <dxi:RenderStateTrigger Name="NonTouch" />
+                <dxi:RenderStateTrigger Name="Touch">
+                    <dxi:RenderSetter Property="Margin" TargetName="PART_Editor" Value="13" />
+                </dxi:RenderStateTrigger>
+            </dxi:RenderStateGroup>
+        </dxi:RenderTemplate.Triggers>
+    </dxi:RenderTemplate>
 
     <SolidColorBrush x:Key="ArrowBrush" Color="{StaticResource {dxet:SpinEditThemeKey ResourceKey=ArrowBrushColor}}" />
 
-    <dxn:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=RenderSpinButtonTemplate}">
-        <dxn:RenderPanel ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;356;10">
+    <dxi:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=RenderSpinButtonTemplate}">
+        <dxi:RenderPanel ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;354;10">
             <dxe:EditorRenderButton Name="PART_SpinUpButton" AllowMouseCapturing="true" ButtonKind="Repeat" Content="{StaticResource ArrowBrush}" Dock="Top" RenderContentTemplateSelector="{dxei:RenderSpinButtonUpGlyphTemplateSelector}" RenderTemplateSelector="{dxei:RenderSpinButtonUpTemplateSelector}" UsePropagatedIsMouseOver="True" />
             <dxe:EditorRenderButton Name="PART_SpinDownButton" AllowMouseCapturing="true" ButtonKind="Repeat" Content="{StaticResource ArrowBrush}" Dock="Bottom" RenderContentTemplateSelector="{dxei:RenderSpinButtonDownGlyphTemplateSelector}" RenderTemplateSelector="{dxei:RenderSpinButtonDownTemplateSelector}" UsePropagatedIsMouseOver="True" />
-        </dxn:RenderPanel>
-        <dxn:RenderTemplate.Triggers>
-            <dxn:RenderTrigger DependencyProperty="{x:Static dxe:SpinButtonInfo.SpinStyleProperty}" Value="Horizontal" ValueSource="DataContext">
-                <dxn:RenderSetter Property="RenderTemplateSelector" TargetName="PART_SpinUpButton" Value="{dxei:RenderSpinButtonRightTemplateSelector}" />
-                <dxn:RenderSetter Property="RenderContentTemplateSelector" TargetName="PART_SpinUpButton" Value="{dxei:RenderSpinButtonRightGlyphTemplateSelector}" />
-                <dxn:RenderSetter Property="Dock" TargetName="PART_SpinUpButton" Value="Right" />
-                <dxn:RenderSetter Property="RenderTemplateSelector" TargetName="PART_SpinDownButton" Value="{dxei:RenderSpinButtonLeftTemplateSelector}" />
-                <dxn:RenderSetter Property="RenderContentTemplateSelector" TargetName="PART_SpinDownButton" Value="{dxei:RenderSpinButtonLeftGlyphTemplateSelector}" />
-                <dxn:RenderSetter Property="Dock" TargetName="PART_SpinDownButton" Value="Left" />
-            </dxn:RenderTrigger>
-        </dxn:RenderTemplate.Triggers>
-    </dxn:RenderTemplate>
+        </dxi:RenderPanel>
+        <dxi:RenderTemplate.Triggers>
+            <dxi:RenderTrigger DependencyProperty="{x:Static dxe:SpinButtonInfo.SpinStyleProperty}" Value="Horizontal" ValueSource="DataContext">
+                <dxi:RenderSetter Property="RenderTemplateSelector" TargetName="PART_SpinUpButton" Value="{dxei:RenderSpinButtonRightTemplateSelector}" />
+                <dxi:RenderSetter Property="RenderContentTemplateSelector" TargetName="PART_SpinUpButton" Value="{dxei:RenderSpinButtonRightGlyphTemplateSelector}" />
+                <dxi:RenderSetter Property="Dock" TargetName="PART_SpinUpButton" Value="Right" />
+                <dxi:RenderSetter Property="RenderTemplateSelector" TargetName="PART_SpinDownButton" Value="{dxei:RenderSpinButtonLeftTemplateSelector}" />
+                <dxi:RenderSetter Property="RenderContentTemplateSelector" TargetName="PART_SpinDownButton" Value="{dxei:RenderSpinButtonLeftGlyphTemplateSelector}" />
+                <dxi:RenderSetter Property="Dock" TargetName="PART_SpinDownButton" Value="Left" />
+            </dxi:RenderTrigger>
+        </dxi:RenderTemplate.Triggers>
+    </dxi:RenderTemplate>
 
     <ControlTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=AutoCompleteBoxTemplate}">
         <dxei:TokenEditor x:Name="PART_Editor" ScrollViewer.VerticalScrollBarVisibility="Hidden" />
     </ControlTemplate>
 
-    <dxn:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=RenderSpinButtonContainerTemplate}">
-        <dxn:RenderContentControl Name="PART_SpinButton" HorizontalContentAlignment="Stretch" RenderContentTemplate="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=RenderSpinButtonTemplate}}" VerticalContentAlignment="Stretch" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;405;10" />
-        <dxn:RenderTemplate.Triggers>
-            <dxn:RenderBinding TargetName="PART_SpinButton" TargetProperty="Content" ValueSource="DataContext" />
-        </dxn:RenderTemplate.Triggers>
-    </dxn:RenderTemplate>
+    <dxi:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=RenderSpinButtonContainerTemplate}">
+        <dxi:RenderContentControl Name="PART_SpinButton" HorizontalContentAlignment="Stretch" RenderContentTemplate="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=RenderSpinButtonTemplate}}" VerticalContentAlignment="Stretch" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;403;10" />
+        <dxi:RenderTemplate.Triggers>
+            <dxi:RenderBinding TargetName="PART_SpinButton" TargetProperty="Content" ValueSource="DataContext" />
+        </dxi:RenderTemplate.Triggers>
+    </dxi:RenderTemplate>
 
-    <dxn:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=RenderButtonContainerTemplate}">
+    <dxi:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=RenderButtonContainerTemplate}">
         <dxe:EditorRenderButton Name="PART_Button" AllowMouseCapturing="true" PreferRenderTemplate="true" RenderTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=DefaultButtonInfoTemplateSelector}}" UsePropagatedIsMouseOver="true" />
-    </dxn:RenderTemplate>
+    </dxi:RenderTemplate>
 
-    <dxn:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=ButtonEditStandaloneWithTextTemplate}">
-        <dxn:RenderPanel LayoutProvider="{dxn:GridPanelLayoutProvider}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;425;10">
-            <dxn:RenderContentControl Name="PART_Border" RenderTemplate="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=TextEditBorderTemplate}}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;426;14" />
-            <dxn:RenderPanel Name="PART_Root" LayoutProvider="{dxn:DockPanelLayoutProvider LastChildFill=True}" Margin="{StaticResource ResourceKey={dxet:InplaceBaseEditThemeKey ResourceKey=TextEditBorderThickness}}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;427;14">
-                <dxn:RenderContentControl Name="PART_ErrorProvider" Dock="Left" HorizontalAlignment="Center" Margin="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorPadding}}" PreferRenderTemplate="false" RenderContentTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorTemplateSelector}}" VerticalAlignment="Center" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;430;18" />
-                <dxn:RenderItemsControl Name="PART_LeftButtons" Dock="Left" ItemTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=RenderButtonContainerTemplateSelector}}" Margin="{StaticResource {dxet:ButtonEditThemeKey ResourceKey=ButtonEditPadding}}" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;438;18">
-                    <dxn:RenderItemsControl.ItemPanelTemplate>
-                        <dxn:RenderPanel LayoutProvider="{dxe:ButtonsPanelLayoutProvider}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;444;26" />
-                    </dxn:RenderItemsControl.ItemPanelTemplate>
-                </dxn:RenderItemsControl>
-                <dxn:RenderItemsControl Name="PART_RightButtons" Dock="Right" ItemTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=RenderButtonContainerTemplateSelector}}" Margin="{StaticResource {dxet:ButtonEditThemeKey ResourceKey=ButtonEditPadding}}" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;447;18">
-                    <dxn:RenderItemsControl.ItemPanelTemplate>
-                        <dxn:RenderPanel LayoutProvider="{dxe:ButtonsPanelLayoutProvider}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;453;26" />
-                    </dxn:RenderItemsControl.ItemPanelTemplate>
-                </dxn:RenderItemsControl>
+    <dxi:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=ButtonEditStandaloneWithTextTemplate}">
+        <dxi:RenderPanel LayoutProvider="{dxi:GridPanelLayoutProvider}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;423;10">
+            <dxi:RenderContentControl Name="PART_Border" RenderTemplate="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=TextEditBorderTemplate}}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;424;14" />
+            <dxi:RenderPanel Name="PART_Root" LayoutProvider="{dxi:DockPanelLayoutProvider LastChildFill=True}" Margin="{StaticResource ResourceKey={dxet:InplaceBaseEditThemeKey ResourceKey=TextEditBorderThickness}}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;425;14">
+                <dxi:RenderContentControl Name="PART_ErrorProvider" Dock="Left" HorizontalAlignment="Center" Margin="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorPadding}}" PreferRenderTemplate="false" RenderContentTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorTemplateSelector}}" VerticalAlignment="Center" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;428;18" />
+                <dxi:RenderItemsControl Name="PART_LeftButtons" Dock="Left" ItemTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=RenderButtonContainerTemplateSelector}}" Margin="{StaticResource {dxet:ButtonEditThemeKey ResourceKey=ButtonEditPadding}}" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;436;18">
+                    <dxi:RenderItemsControl.ItemPanelTemplate>
+                        <dxi:RenderPanel LayoutProvider="{dxe:ButtonsPanelLayoutProvider}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;442;26" />
+                    </dxi:RenderItemsControl.ItemPanelTemplate>
+                </dxi:RenderItemsControl>
+                <dxi:RenderItemsControl Name="PART_RightButtons" Dock="Right" ItemTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=RenderButtonContainerTemplateSelector}}" Margin="{StaticResource {dxet:ButtonEditThemeKey ResourceKey=ButtonEditPadding}}" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;445;18">
+                    <dxi:RenderItemsControl.ItemPanelTemplate>
+                        <dxi:RenderPanel LayoutProvider="{dxe:ButtonsPanelLayoutProvider}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;451;26" />
+                    </dxi:RenderItemsControl.ItemPanelTemplate>
+                </dxi:RenderItemsControl>
                 <dxei:RenderStandaloneEditorControl Name="PART_Editor" />
-            </dxn:RenderPanel>
-            <dxn:RenderContentControl Name="PART_Focus" RenderTemplate="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=HoverBorderTemplate}}" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;458;14" />
-        </dxn:RenderPanel>
-        <dxn:RenderTemplate.Triggers>
-            <dxn:ConditionalRenderBinding DependencyProperty="{x:Static dxn:AppearanceOptions.BorderThicknessProperty}" TargetName="PART_Root" TargetProperty="Margin" ValueSource="TemplatedParent">
-                <dxn:RenderCondition DependencyProperty="{x:Static dxn:AppearanceOptions.HasBorderThicknessProperty}" Value="True" ValueSource="TemplatedParent" />
-            </dxn:ConditionalRenderBinding>
-            <dxn:RenderBinding Converter="{StaticResource BooleanToVisibilityConverter}" DependencyProperty="{x:Static dxe:ButtonEdit.ActualShowLeftButtonsProperty}" TargetName="PART_LeftButtons" TargetProperty="Visibility" ValueSource="DataContext" />
-            <dxn:RenderBinding DependencyProperty="{x:Static dxe:ButtonEdit.LeftButtonsProperty}" TargetName="PART_LeftButtons" TargetProperty="ItemsSource" ValueSource="DataContext" />
-            <dxn:RenderBinding Converter="{StaticResource BooleanToVisibilityConverter}" DependencyProperty="{x:Static dxe:ButtonEdit.ActualShowRightButtonsProperty}" TargetName="PART_RightButtons" TargetProperty="Visibility" ValueSource="DataContext" />
-            <dxn:RenderBinding DependencyProperty="{x:Static dxe:ButtonEdit.RightButtonsProperty}" TargetName="PART_RightButtons" TargetProperty="ItemsSource" ValueSource="DataContext" />
-            <dxn:RenderTrigger DependencyProperty="{x:Static dxe:BaseEdit.ShowBorderProperty}" Value="False" ValueSource="DataContext">
-                <dxn:RenderSetter Property="Visibility" TargetName="PART_Border" Value="Collapsed" />
-                <dxn:RenderSetter Property="Margin" TargetName="PART_Root" Value="0" />
-            </dxn:RenderTrigger>
-            <dxn:RenderTrigger DependencyProperty="{x:Static dxe:BaseEdit.HasValidationErrorProperty}" Value="True" ValueSource="DataContext">
-                <dxn:RenderSetter Property="Visibility" TargetName="PART_ErrorProvider" Value="Visible" />
-            </dxn:RenderTrigger>
-            <dxn:RenderBinding DependencyProperty="{x:Static dxe:BaseEdit.ValidationErrorProperty}" TargetName="PART_ErrorProvider" TargetProperty="Content" ValueSource="DataContext" />
-            <dxn:RenderBinding DependencyProperty="{x:Static dxe:BaseEdit.ActualEditorControlTemplateProperty}" TargetName="PART_Editor" TargetProperty="Template" ValueSource="DataContext" />
-            <dxn:RenderBinding DependencyProperty="{x:Static dxe:BaseEdit.ValidationErrorTemplateProperty}" TargetName="PART_ErrorProvider" TargetProperty="ContentTemplate" ValueSource="DataContext" />
-            <dxn:RenderTrigger DependencyProperty="{x:Static FrameworkElement.IsKeyboardFocusWithinProperty}" Value="True" ValueSource="DataContext">
-                <dxn:RenderSetter Property="Visibility" TargetName="PART_Focus" Value="Visible" />
-            </dxn:RenderTrigger>
-        </dxn:RenderTemplate.Triggers>
-    </dxn:RenderTemplate>
+            </dxi:RenderPanel>
+            <dxi:RenderContentControl Name="PART_Focus" RenderTemplate="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=HoverBorderTemplate}}" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;456;14" />
+        </dxi:RenderPanel>
+        <dxi:RenderTemplate.Triggers>
+            <dxi:ConditionalRenderBinding DependencyProperty="{x:Static dxi:AppearanceOptions.BorderThicknessProperty}" TargetName="PART_Root" TargetProperty="Margin" ValueSource="TemplatedParent">
+                <dxi:RenderCondition DependencyProperty="{x:Static dxi:AppearanceOptions.HasBorderThicknessProperty}" Value="True" ValueSource="TemplatedParent" />
+            </dxi:ConditionalRenderBinding>
+            <dxi:RenderBinding Converter="{StaticResource BooleanToVisibilityConverter}" DependencyProperty="{x:Static dxe:ButtonEdit.ActualShowLeftButtonsProperty}" TargetName="PART_LeftButtons" TargetProperty="Visibility" ValueSource="DataContext" />
+            <dxi:RenderBinding DependencyProperty="{x:Static dxe:ButtonEdit.LeftButtonsProperty}" TargetName="PART_LeftButtons" TargetProperty="ItemsSource" ValueSource="DataContext" />
+            <dxi:RenderBinding Converter="{StaticResource BooleanToVisibilityConverter}" DependencyProperty="{x:Static dxe:ButtonEdit.ActualShowRightButtonsProperty}" TargetName="PART_RightButtons" TargetProperty="Visibility" ValueSource="DataContext" />
+            <dxi:RenderBinding DependencyProperty="{x:Static dxe:ButtonEdit.RightButtonsProperty}" TargetName="PART_RightButtons" TargetProperty="ItemsSource" ValueSource="DataContext" />
+            <dxi:RenderTrigger DependencyProperty="{x:Static dxe:BaseEdit.ShowBorderProperty}" Value="False" ValueSource="DataContext">
+                <dxi:RenderSetter Property="Visibility" TargetName="PART_Border" Value="Collapsed" />
+                <dxi:RenderSetter Property="Margin" TargetName="PART_Root" Value="0" />
+            </dxi:RenderTrigger>
+            <dxi:RenderTrigger DependencyProperty="{x:Static dxe:BaseEdit.HasValidationErrorProperty}" Value="True" ValueSource="DataContext">
+                <dxi:RenderSetter Property="Visibility" TargetName="PART_ErrorProvider" Value="Visible" />
+            </dxi:RenderTrigger>
+            <dxi:RenderBinding DependencyProperty="{x:Static dxe:BaseEdit.ValidationErrorProperty}" TargetName="PART_ErrorProvider" TargetProperty="Content" ValueSource="DataContext" />
+            <dxi:RenderBinding DependencyProperty="{x:Static dxe:BaseEdit.ActualEditorControlTemplateProperty}" TargetName="PART_Editor" TargetProperty="Template" ValueSource="DataContext" />
+            <dxi:RenderBinding DependencyProperty="{x:Static dxe:BaseEdit.ValidationErrorTemplateProperty}" TargetName="PART_ErrorProvider" TargetProperty="ContentTemplate" ValueSource="DataContext" />
+            <dxi:RenderTrigger DependencyProperty="{x:Static FrameworkElement.IsKeyboardFocusWithinProperty}" Value="True" ValueSource="DataContext">
+                <dxi:RenderSetter Property="Visibility" TargetName="PART_Focus" Value="Visible" />
+            </dxi:RenderTrigger>
+        </dxi:RenderTemplate.Triggers>
+    </dxi:RenderTemplate>
 
-    <dxn:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=ButtonEditStandaloneWithoutTextTemplate}">
-        <dxn:RenderPanel LayoutProvider="{dxn:GridPanelLayoutProvider}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;529;10">
-            <dxn:RenderContentControl Name="PART_Border" RenderTemplate="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=TextEditBorderTemplate}}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;530;14" />
-            <dxn:RenderPanel Name="PART_Root" LayoutProvider="{dxn:DockPanelLayoutProvider LastChildFill=True}" Margin="{StaticResource ResourceKey={dxet:InplaceBaseEditThemeKey ResourceKey=TextEditBorderThickness}}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;531;14">
-                <dxn:RenderContentControl Name="PART_ErrorProvider" Dock="Left" HorizontalAlignment="Center" Margin="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorPadding}}" PreferRenderTemplate="false" RenderContentTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorTemplateSelector}}" VerticalAlignment="Center" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;534;18" />
-                <dxn:RenderPanel LayoutProvider="{dxn:DockPanelLayoutProvider LastChildFill=True}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;542;18">
-                    <dxn:RenderTextBlock Text=" " Visibility="Hidden" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;543;22" />
-                    <dxn:RenderItemsControl Name="PART_RightButtons" Dock="Right" ItemTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=RenderButtonContainerTemplateSelector}}" Margin="{StaticResource {dxet:ButtonEditThemeKey ResourceKey=ButtonEditPadding}}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;544;22">
-                        <dxn:RenderItemsControl.ItemPanelTemplate>
-                            <dxn:RenderPanel LayoutProvider="{dxe:ButtonsPanelLayoutProvider}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;549;30" />
-                        </dxn:RenderItemsControl.ItemPanelTemplate>
-                    </dxn:RenderItemsControl>
-                </dxn:RenderPanel>
-            </dxn:RenderPanel>
-            <dxn:RenderContentControl Name="PART_Focus" RenderTemplate="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=HoverBorderTemplate}}" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;554;14" />
-        </dxn:RenderPanel>
-        <dxn:RenderTemplate.Triggers>
-            <dxn:ConditionalRenderBinding DependencyProperty="{x:Static dxn:AppearanceOptions.BorderThicknessProperty}" TargetName="PART_Root" TargetProperty="Margin" ValueSource="TemplatedParent">
-                <dxn:RenderCondition DependencyProperty="{x:Static dxn:AppearanceOptions.HasBorderThicknessProperty}" Value="True" ValueSource="TemplatedParent" />
-            </dxn:ConditionalRenderBinding>
-            <dxn:RenderBinding Converter="{StaticResource BooleanToVisibilityConverter}" DependencyProperty="{x:Static dxe:ButtonEdit.ActualShowRightButtonsProperty}" TargetName="PART_RightButtons" TargetProperty="Visibility" ValueSource="DataContext" />
-            <dxn:RenderBinding DependencyProperty="{x:Static dxe:ButtonEdit.RightButtonsProperty}" TargetName="PART_RightButtons" TargetProperty="ItemsSource" ValueSource="DataContext" />
-            <dxn:RenderTrigger DependencyProperty="{x:Static dxe:BaseEdit.ShowBorderProperty}" Value="False" ValueSource="DataContext">
-                <dxn:RenderSetter Property="Visibility" TargetName="PART_Border" Value="Collapsed" />
-                <dxn:RenderSetter Property="Margin" TargetName="PART_Root" Value="0" />
-            </dxn:RenderTrigger>
-            <dxn:RenderTrigger DependencyProperty="{x:Static dxe:BaseEdit.HasValidationErrorProperty}" Value="True" ValueSource="DataContext">
-                <dxn:RenderSetter Property="Visibility" TargetName="PART_ErrorProvider" Value="Visible" />
-            </dxn:RenderTrigger>
-            <dxn:RenderBinding DependencyProperty="{x:Static dxe:BaseEdit.ValidationErrorProperty}" TargetName="PART_ErrorProvider" TargetProperty="Content" ValueSource="DataContext" />
-            <dxn:RenderBinding DependencyProperty="{x:Static dxe:BaseEdit.ValidationErrorTemplateProperty}" TargetName="PART_ErrorProvider" TargetProperty="ContentTemplate" ValueSource="DataContext" />
-            <dxn:RenderTrigger DependencyProperty="{x:Static FrameworkElement.IsKeyboardFocusWithinProperty}" Value="True" ValueSource="DataContext">
-                <dxn:RenderSetter Property="Visibility" TargetName="PART_Focus" Value="Visible" />
-            </dxn:RenderTrigger>
-        </dxn:RenderTemplate.Triggers>
-    </dxn:RenderTemplate>
+    <dxi:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=ButtonEditStandaloneWithoutTextTemplate}">
+        <dxi:RenderPanel LayoutProvider="{dxi:GridPanelLayoutProvider}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;527;10">
+            <dxi:RenderContentControl Name="PART_Border" RenderTemplate="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=TextEditBorderTemplate}}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;528;14" />
+            <dxi:RenderPanel Name="PART_Root" LayoutProvider="{dxi:DockPanelLayoutProvider LastChildFill=True}" Margin="{StaticResource ResourceKey={dxet:InplaceBaseEditThemeKey ResourceKey=TextEditBorderThickness}}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;529;14">
+                <dxi:RenderContentControl Name="PART_ErrorProvider" Dock="Left" HorizontalAlignment="Center" Margin="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorPadding}}" PreferRenderTemplate="false" RenderContentTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorTemplateSelector}}" VerticalAlignment="Center" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;532;18" />
+                <dxi:RenderPanel LayoutProvider="{dxi:DockPanelLayoutProvider LastChildFill=True}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;540;18">
+                    <dxi:RenderTextBlock Text=" " Visibility="Hidden" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;541;22" />
+                    <dxi:RenderItemsControl Name="PART_RightButtons" Dock="Right" ItemTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=RenderButtonContainerTemplateSelector}}" Margin="{StaticResource {dxet:ButtonEditThemeKey ResourceKey=ButtonEditPadding}}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;542;22">
+                        <dxi:RenderItemsControl.ItemPanelTemplate>
+                            <dxi:RenderPanel LayoutProvider="{dxe:ButtonsPanelLayoutProvider}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;547;30" />
+                        </dxi:RenderItemsControl.ItemPanelTemplate>
+                    </dxi:RenderItemsControl>
+                </dxi:RenderPanel>
+            </dxi:RenderPanel>
+            <dxi:RenderContentControl Name="PART_Focus" RenderTemplate="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=HoverBorderTemplate}}" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;552;14" />
+        </dxi:RenderPanel>
+        <dxi:RenderTemplate.Triggers>
+            <dxi:ConditionalRenderBinding DependencyProperty="{x:Static dxi:AppearanceOptions.BorderThicknessProperty}" TargetName="PART_Root" TargetProperty="Margin" ValueSource="TemplatedParent">
+                <dxi:RenderCondition DependencyProperty="{x:Static dxi:AppearanceOptions.HasBorderThicknessProperty}" Value="True" ValueSource="TemplatedParent" />
+            </dxi:ConditionalRenderBinding>
+            <dxi:RenderBinding Converter="{StaticResource BooleanToVisibilityConverter}" DependencyProperty="{x:Static dxe:ButtonEdit.ActualShowRightButtonsProperty}" TargetName="PART_RightButtons" TargetProperty="Visibility" ValueSource="DataContext" />
+            <dxi:RenderBinding DependencyProperty="{x:Static dxe:ButtonEdit.RightButtonsProperty}" TargetName="PART_RightButtons" TargetProperty="ItemsSource" ValueSource="DataContext" />
+            <dxi:RenderTrigger DependencyProperty="{x:Static dxe:BaseEdit.ShowBorderProperty}" Value="False" ValueSource="DataContext">
+                <dxi:RenderSetter Property="Visibility" TargetName="PART_Border" Value="Collapsed" />
+                <dxi:RenderSetter Property="Margin" TargetName="PART_Root" Value="0" />
+            </dxi:RenderTrigger>
+            <dxi:RenderTrigger DependencyProperty="{x:Static dxe:BaseEdit.HasValidationErrorProperty}" Value="True" ValueSource="DataContext">
+                <dxi:RenderSetter Property="Visibility" TargetName="PART_ErrorProvider" Value="Visible" />
+            </dxi:RenderTrigger>
+            <dxi:RenderBinding DependencyProperty="{x:Static dxe:BaseEdit.ValidationErrorProperty}" TargetName="PART_ErrorProvider" TargetProperty="Content" ValueSource="DataContext" />
+            <dxi:RenderBinding DependencyProperty="{x:Static dxe:BaseEdit.ValidationErrorTemplateProperty}" TargetName="PART_ErrorProvider" TargetProperty="ContentTemplate" ValueSource="DataContext" />
+            <dxi:RenderTrigger DependencyProperty="{x:Static FrameworkElement.IsKeyboardFocusWithinProperty}" Value="True" ValueSource="DataContext">
+                <dxi:RenderSetter Property="Visibility" TargetName="PART_Focus" Value="Visible" />
+            </dxi:RenderTrigger>
+        </dxi:RenderTemplate.Triggers>
+    </dxi:RenderTemplate>
 
-    <dxn:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=ButtonEditStandaloneTemplate}">
-        <dxn:RenderContentControl Name="PART_Root" RenderTemplate="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ButtonEditStandaloneWithTextTemplate}}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;612;10" />
-        <dxn:RenderTemplate.Triggers>
-            <dxn:ConditionalRenderBinding DependencyProperty="{x:Static dxn:AppearanceOptions.BorderThicknessProperty}" TargetName="PART_Root" TargetProperty="Margin" ValueSource="TemplatedParent">
-                <dxn:RenderCondition DependencyProperty="{x:Static dxn:AppearanceOptions.HasBorderThicknessProperty}" Value="True" ValueSource="TemplatedParent" />
-            </dxn:ConditionalRenderBinding>
-            <dxn:RenderTrigger DependencyProperty="{x:Static dxe:ButtonEdit.ShowTextProperty}" Value="false" ValueSource="DataContext">
-                <dxn:RenderSetter Property="RenderTemplate" TargetName="PART_Root" Value="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ButtonEditStandaloneWithoutTextTemplate}}" />
-            </dxn:RenderTrigger>
-        </dxn:RenderTemplate.Triggers>
-    </dxn:RenderTemplate>
+    <dxi:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=ButtonEditStandaloneTemplate}">
+        <dxi:RenderContentControl Name="PART_Root" RenderTemplate="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ButtonEditStandaloneWithTextTemplate}}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;610;10" />
+        <dxi:RenderTemplate.Triggers>
+            <dxi:ConditionalRenderBinding DependencyProperty="{x:Static dxi:AppearanceOptions.BorderThicknessProperty}" TargetName="PART_Root" TargetProperty="Margin" ValueSource="TemplatedParent">
+                <dxi:RenderCondition DependencyProperty="{x:Static dxi:AppearanceOptions.HasBorderThicknessProperty}" Value="True" ValueSource="TemplatedParent" />
+            </dxi:ConditionalRenderBinding>
+            <dxi:RenderTrigger DependencyProperty="{x:Static dxe:ButtonEdit.ShowTextProperty}" Value="false" ValueSource="DataContext">
+                <dxi:RenderSetter Property="RenderTemplate" TargetName="PART_Root" Value="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ButtonEditStandaloneWithoutTextTemplate}}" />
+            </dxi:RenderTrigger>
+        </dxi:RenderTemplate.Triggers>
+    </dxi:RenderTemplate>
 
     <ControlTemplate x:Key="{dxet:ButtonEditThemeKey ResourceKey=LightweightTemplate}" TargetType="{x:Type dxe:ButtonEdit}">
-        <dxn:Chrome x:Name="PART_Chrome" RenderTemplate="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ButtonEditStandaloneTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;633;10" />
+        <dxi:Chrome x:Name="PART_Chrome" RenderTemplate="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ButtonEditStandaloneTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;631;10" />
     </ControlTemplate>
 
-    <dxn:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=TextEditStandaloneTemplate}">
-        <dxn:RenderPanel LayoutProvider="{dxn:GridPanelLayoutProvider}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;637;10">
-            <dxn:RenderContentControl Name="PART_Border" RenderTemplate="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=TextEditBorderTemplate}}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;638;14" />
-            <dxn:RenderPanel Name="PART_Root" LayoutProvider="{dxn:DockPanelLayoutProvider LastChildFill=True}" Margin="{StaticResource ResourceKey={dxet:InplaceBaseEditThemeKey ResourceKey=TextEditBorderThickness}}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;639;14">
-                <dxn:RenderContentControl Name="PART_ErrorProvider" Dock="Left" HorizontalAlignment="Center" Margin="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorPadding}}" PreferRenderTemplate="false" RenderContentTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorTemplateSelector}}" VerticalAlignment="Center" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;642;18" />
+    <dxi:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=TextEditStandaloneTemplate}">
+        <dxi:RenderPanel LayoutProvider="{dxi:GridPanelLayoutProvider}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;635;10">
+            <dxi:RenderContentControl Name="PART_Border" RenderTemplate="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=TextEditBorderTemplate}}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;636;14" />
+            <dxi:RenderPanel Name="PART_Root" LayoutProvider="{dxi:DockPanelLayoutProvider LastChildFill=True}" Margin="{StaticResource ResourceKey={dxet:InplaceBaseEditThemeKey ResourceKey=TextEditBorderThickness}}" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;637;14">
+                <dxi:RenderContentControl Name="PART_ErrorProvider" Dock="Left" HorizontalAlignment="Center" Margin="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorPadding}}" PreferRenderTemplate="false" RenderContentTemplateSelector="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorTemplateSelector}}" VerticalAlignment="Center" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;640;18" />
                 <dxei:RenderStandaloneEditorControl Name="PART_Editor" />
-            </dxn:RenderPanel>
-            <dxn:RenderContentControl Name="PART_Focus" RenderTemplate="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=HoverBorderTemplate}}" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;652;14" />
-        </dxn:RenderPanel>
-        <dxn:RenderTemplate.Triggers>
-            <dxn:RenderTrigger DependencyProperty="{x:Static dxe:BaseEdit.ShowBorderProperty}" Value="False" ValueSource="DataContext">
-                <dxn:RenderSetter Property="Visibility" TargetName="PART_Border" Value="Collapsed" />
-                <dxn:RenderSetter Property="Margin" TargetName="PART_Root" Value="0" />
-            </dxn:RenderTrigger>
-            <dxn:RenderTrigger DependencyProperty="{x:Static dxe:BaseEdit.HasValidationErrorProperty}" Value="True" ValueSource="DataContext">
-                <dxn:RenderSetter Property="Visibility" TargetName="PART_ErrorProvider" Value="Visible" />
-            </dxn:RenderTrigger>
-            <dxn:RenderBinding DependencyProperty="{x:Static dxe:BaseEdit.ValidationErrorProperty}" TargetName="PART_ErrorProvider" TargetProperty="Content" ValueSource="DataContext" />
-            <dxn:RenderBinding DependencyProperty="{x:Static dxe:BaseEdit.ActualEditorControlTemplateProperty}" TargetName="PART_Editor" TargetProperty="Template" ValueSource="DataContext" />
-            <dxn:RenderBinding DependencyProperty="{x:Static dxe:BaseEdit.ValidationErrorTemplateProperty}" TargetName="PART_ErrorProvider" TargetProperty="ContentTemplate" ValueSource="DataContext" />
-            <dxn:RenderTrigger DependencyProperty="{x:Static dxe:BaseEdit.IsKeyboardFocusWithinProperty}" Value="True" ValueSource="DataContext">
-                <dxn:RenderSetter Property="Visibility" TargetName="PART_Focus" Value="Visible" />
-            </dxn:RenderTrigger>
-        </dxn:RenderTemplate.Triggers>
-    </dxn:RenderTemplate>
+            </dxi:RenderPanel>
+            <dxi:RenderContentControl Name="PART_Focus" RenderTemplate="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=HoverBorderTemplate}}" Visibility="Collapsed" ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;650;14" />
+        </dxi:RenderPanel>
+        <dxi:RenderTemplate.Triggers>
+            <dxi:RenderTrigger DependencyProperty="{x:Static dxe:BaseEdit.ShowBorderProperty}" Value="False" ValueSource="DataContext">
+                <dxi:RenderSetter Property="Visibility" TargetName="PART_Border" Value="Collapsed" />
+                <dxi:RenderSetter Property="Margin" TargetName="PART_Root" Value="0" />
+            </dxi:RenderTrigger>
+            <dxi:RenderTrigger DependencyProperty="{x:Static dxe:BaseEdit.HasValidationErrorProperty}" Value="True" ValueSource="DataContext">
+                <dxi:RenderSetter Property="Visibility" TargetName="PART_ErrorProvider" Value="Visible" />
+            </dxi:RenderTrigger>
+            <dxi:RenderBinding DependencyProperty="{x:Static dxe:BaseEdit.ValidationErrorProperty}" TargetName="PART_ErrorProvider" TargetProperty="Content" ValueSource="DataContext" />
+            <dxi:RenderBinding DependencyProperty="{x:Static dxe:BaseEdit.ActualEditorControlTemplateProperty}" TargetName="PART_Editor" TargetProperty="Template" ValueSource="DataContext" />
+            <dxi:RenderBinding DependencyProperty="{x:Static dxe:BaseEdit.ValidationErrorTemplateProperty}" TargetName="PART_ErrorProvider" TargetProperty="ContentTemplate" ValueSource="DataContext" />
+            <dxi:RenderTrigger DependencyProperty="{x:Static dxe:BaseEdit.IsKeyboardFocusWithinProperty}" Value="True" ValueSource="DataContext">
+                <dxi:RenderSetter Property="Visibility" TargetName="PART_Focus" Value="Visible" />
+            </dxi:RenderTrigger>
+        </dxi:RenderTemplate.Triggers>
+    </dxi:RenderTemplate>
 
     <ControlTemplate x:Key="{dxet:TextEditThemeKey ResourceKey=LightweightTemplate}" TargetType="{x:Type dxe:TextEdit}">
-        <dxn:Chrome RenderTemplate="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=TextEditStandaloneTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;697;10" />
+        <dxi:Chrome RenderTemplate="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=TextEditStandaloneTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\InplaceBaseEdit.xaml;695;10" />
     </ControlTemplate>
 
 </ResourceDictionary>

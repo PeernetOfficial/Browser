@@ -3,14 +3,13 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
-                    xmlns:dxoui="http://schemas.devexpress.com/winfx/2008/xaml/office"
+                    xmlns:dxo="http://schemas.devexpress.com/winfx/2008/xaml/office"
                     xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
                     xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
                     xmlns:dxret="http://schemas.devexpress.com/winfx/2008/xaml/richedit/themekeys"
-                    xmlns:dxreui="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
@@ -95,8 +94,8 @@
                                             </dxb:BarSubItem>
                                         </dxr:BarButtonGroup>
                                         <dxr:BarButtonGroup dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_Home_Font_FontColorLayoutGroup}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_Home_Font_FontColorLayoutGroup}}">
-                                            <dxoui:BarSplitButtonColorEditItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_Home_Font_FontHighlightColor}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_Home_Font_FontHighlightColor}}"/>
-                                            <dxoui:BarSplitButtonColorEditItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_Home_Font_FontForeColor}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_Home_Font_FontForeColor}}"/>
+                                            <dxo:BarSplitButtonColorEditItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_Home_Font_FontHighlightColor}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_Home_Font_FontHighlightColor}}"/>
+                                            <dxo:BarSplitButtonColorEditItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_Home_Font_FontForeColor}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_Home_Font_FontForeColor}}"/>
                                         </dxr:BarButtonGroup>
                                     </dxr:RibbonPageGroup>
                                     <dxr:RibbonPageGroup dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonGroup_Home_Paragraph}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonGroup_Home_Paragraph}}">
@@ -144,11 +143,11 @@
                                                 <dxb:BarButtonItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_Home_Paragraph_ParagraphAddSpacingAfter}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_Home_Paragraph_ParagraphAddSpacingAfter}}"/>
                                                 <dxb:BarButtonItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_Home_Paragraph_ParagraphRemoveSpacingAfter}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_Home_Paragraph_ParagraphRemoveSpacingAfter}}"/>
                                             </dxb:BarSubItem>
-                                            <dxoui:BarSplitButtonColorEditItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_Home_Paragraph_ParagraphBackColor}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_Home_Paragraph_ParagraphBackColor}}"/>
+                                            <dxo:BarSplitButtonColorEditItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_Home_Paragraph_ParagraphBackColor}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_Home_Paragraph_ParagraphBackColor}}"/>
                                         </dxr:BarButtonGroup>
                                     </dxr:RibbonPageGroup>
                                     <dxr:RibbonPageGroup dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonGroup_Home_Styles}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonGroup_Home_Styles}}">
-                                        <dxreui:GalleryStyleItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_Home_Styles_GalleryStyle}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_Home_Styles_GalleryStyle}}"/>
+                                        <dxre:GalleryStyleItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_Home_Styles_GalleryStyle}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_Home_Styles_GalleryStyle}}"/>
                                     </dxr:RibbonPageGroup>
                                     <dxr:RibbonPageGroup dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonGroup_Home_Editing}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonGroup_Home_Editing}}">
                                         <dxb:BarButtonItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_Home_Editing_Find}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_Home_Editing_Find}}"/>
@@ -209,7 +208,7 @@
                                             <dxb:BarCheckItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_PageLayout_PageSetup_LandscapeOrientation}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_PageLayout_PageSetup_LandscapeOrientation}}"/>
                                         </dxb:BarSubItem>
                                         <dxb:BarSubItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_PageLayout_PageSetup_SizeCommandGroup}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_PageLayout_PageSetup_SizeCommandGroup}}">
-                                            <dxreui:PaperKindBarListItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_PageLayout_PageSetup_SizeList}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_PageLayout_PageSetup_SizeList}}"/>
+                                            <dxre:PaperKindBarListItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_PageLayout_PageSetup_SizeList}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_PageLayout_PageSetup_SizeList}}"/>
                                             <dxb:BarButtonItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_PageLayout_PageSetup_PagePaperOptions}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_PageLayout_PageSetup_PagePaperOptions}}"/>
                                         </dxb:BarSubItem>
                                         <dxb:BarSubItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_PageLayout_PageSetup_ColumnsCommandGroup}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_PageLayout_PageSetup_ColumnsCommandGroup}}">
@@ -240,7 +239,9 @@
                                         </dxb:BarSubItem>
                                     </dxr:RibbonPageGroup>
                                     <dxr:RibbonPageGroup dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonGroup_PageLayout_PageBackground}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonGroup_PageLayout_PageBackground}}">
-                                        <dxoui:BarButtonColorEditItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_PageLayout_PageLayoutPageColor}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_PageLayout_PageLayoutPageColor}}"/>
+                                        <dxo:BarButtonColorEditItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_PageLayout_PageLayoutPageColor}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_PageLayout_PageLayoutPageColor}}"/>
+                                        <dxb:BarButtonItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_PageLayout_ShowWatermarkForm}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_PageLayout_ShowWatermarkForm}}"/>
+                                        <dxb:BarButtonItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_PageLayout_DeleteWatermark}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_PageLayout_DeleteWatermark}}"/>
                                     </dxr:RibbonPageGroup>
                                 </ItemsControl>
                             </DataTemplate>
@@ -299,7 +300,7 @@
                             <DataTemplate>
                                 <ItemsControl>
                                     <dxr:RibbonPageGroup dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonGroup_MailMerge_WriteInsertFields}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonGroup_MailMerge_WriteInsertFields}}">
-                                        <dxreui:InsertMergeFieldsBarSubItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_MailMerge_InsertMergeFieldCommandGroup}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_MailMerge_InsertMergeFieldCommandGroup}}"/>
+                                        <dxre:InsertMergeFieldsBarSubItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_MailMerge_InsertMergeFieldCommandGroup}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_MailMerge_InsertMergeFieldCommandGroup}}"/>
                                     </dxr:RibbonPageGroup>
                                     <dxr:RibbonPageGroup dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonGroup_MailMerge_PreviewResults}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonGroup_MailMerge_PreviewResults}}">
                                         <dxb:BarCheckItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_MailMerge_PreviewResults_ViewMergedData}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_MailMerge_PreviewResults_ViewMergedData}}"/>
@@ -360,14 +361,14 @@
                                         <dxb:BarButtonItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_Review_Comment_Next}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_Review_Comment_Next}}"/>
                                     </dxr:RibbonPageGroup>
                                     <dxr:RibbonPageGroup dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonGroup_Review_Tracking}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonGroup_Review_Tracking}}">
-                                        <dxreui:TrackChangesBarSplitCheckItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_Review_Tracking_ToggleTrackChanges}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_Review_Tracking_ToggleTrackChanges}}"/>
-                                        <dxreui:ChangeDisplayForReviewModeItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_Review_Tracking_DisplayForReviewMode}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_Review_Tracking_DisplayForReviewMode}}"/>
-                                        <dxreui:ShowMarkupItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_Review_Tracking_ShowMarkup}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_Review_Tracking_ShowMarkup}}"/>
+                                        <dxre:TrackChangesBarSplitCheckItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_Review_Tracking_ToggleTrackChanges}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_Review_Tracking_ToggleTrackChanges}}"/>
+                                        <dxre:ChangeDisplayForReviewModeItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_Review_Tracking_DisplayForReviewMode}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_Review_Tracking_DisplayForReviewMode}}"/>
+                                        <dxre:ShowMarkupItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_Review_Tracking_ShowMarkup}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_Review_Tracking_ShowMarkup}}"/>
                                         <dxb:BarCheckItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_Review_Tracking_ReviewingPane}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_Review_Tracking_ReviewingPane}}"/>
                                     </dxr:RibbonPageGroup>
                                     <dxr:RibbonPageGroup dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonGroup_Review_Changes}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonGroup_Review_Changes}}">
-                                        <dxreui:RevisionSplitButtonItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_Review_Changes_AcceptChange}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_Review_Changes_AcceptChange}}"/>
-                                        <dxreui:RevisionSplitButtonItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_Review_Changes_RejectChange}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_Review_Changes_RejectChange}}"/>
+                                        <dxre:RevisionSplitButtonItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_Review_Changes_AcceptChange}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_Review_Changes_AcceptChange}}"/>
+                                        <dxre:RevisionSplitButtonItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_Review_Changes_RejectChange}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_Review_Changes_RejectChange}}"/>
                                         <dxb:BarButtonItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_Review_Changes_PreviousChangeItem}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_Review_Changes_PreviousChangeItem}}"/>
                                         <dxb:BarButtonItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_Review_Changes_NextChangeItem}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_Review_Changes_NextChangeItem}}"/>
                                     </dxr:RibbonPageGroup>
@@ -414,11 +415,11 @@
                                         <dxb:BarStaticItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_TableToolsDesign_TableStyleOptions_BandedRows}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_TableToolsDesign_TableStyleOptions_BandedRows}}"/>
                                     </dxr:RibbonPageGroup>
                                     <dxr:RibbonPageGroup dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonGroup_TableToolsDesign_TableStyles}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonGroup_TableToolsDesign_TableStyles}}">
-                                        <dxreui:GalleryStyleItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_TableToolsDesign_TableStyles_GalleryTableStyle}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_TableToolsDesign_TableStyles_GalleryTableStyle}}">
+                                        <dxre:GalleryStyleItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_TableToolsDesign_TableStyles_GalleryTableStyle}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_TableToolsDesign_TableStyles_GalleryTableStyle}}">
                                             <dxb:BarButtonItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_TableToolsDesign_TableStyles_GalleryTableStyle_NewTableStyle}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_TableToolsDesign_TableStyles_GalleryTableStyle_NewTableStyle}}"/>
                                             <dxb:BarButtonItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_TableToolsDesign_TableStyles_GalleryTableStyle_ModifyTableStyle}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_TableToolsDesign_TableStyles_GalleryTableStyle_ModifyTableStyle}}"/>
                                             <dxb:BarButtonItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_TableToolsDesign_TableStyles_GalleryTableStyle_DeleteTableStyle}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_TableToolsDesign_TableStyles_GalleryTableStyle_DeleteTableStyle}}"/>
-                                        </dxreui:GalleryStyleItem>
+                                        </dxre:GalleryStyleItem>
                                     </dxr:RibbonPageGroup>
                                     <dxr:RibbonPageGroup dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonGroup_TableToolsDesign_BordersAndShadings}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonGroup_TableToolsDesign_BordersAndShadings}}">
                                         <dxr:BarButtonGroup dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_TableToolsDesign_BordersAndShadingsLineStyleLayoutGroup}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_TableToolsDesign_BordersAndShadingsLineStyleLayoutGroup}}">
@@ -427,7 +428,7 @@
                                         <dxr:BarButtonGroup dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_TableToolsDesign_BordersAndShadingsLineWidthLayoutGroup}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_TableToolsDesign_BordersAndShadingsLineWidthLayoutGroup}}">
                                             <dxb:BarEditItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_TableToolsDesign_BordersAndShadingsLineWidth}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_TableToolsDesign_BordersAndShadingsLineWidth}}"/>
                                         </dxr:BarButtonGroup>
-                                        <dxoui:BarSplitButtonColorEditItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_TableToolsDesign_DrawBorders_PenColor}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_TableToolsDesign_DrawBorders_PenColor}}"/>
+                                        <dxo:BarSplitButtonColorEditItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_TableToolsDesign_DrawBorders_PenColor}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_TableToolsDesign_DrawBorders_PenColor}}"/>
                                         <dxb:BarSubItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_TableToolsDesign_TableStyles_BordersCommandGroup}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_TableToolsDesign_TableStyles_BordersCommandGroup}}">
                                             <dxb:BarCheckItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_TableToolsDesign_TableStyles_BottomBorder}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_TableToolsDesign_TableStyles_BottomBorder}}"/>
                                             <dxb:BarCheckItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_TableToolsDesign_TableStyles_TopBorder}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_TableToolsDesign_TableStyles_TopBorder}}"/>
@@ -440,7 +441,7 @@
                                             <dxb:BarCheckItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_TableToolsDesign_TableStyles_InsideHorizontalBorder}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_TableToolsDesign_TableStyles_InsideHorizontalBorder}}"/>
                                             <dxb:BarCheckItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_TableToolsDesign_TableStyles_InsideVerticalBorder}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_TableToolsDesign_TableStyles_InsideVerticalBorder}}"/>
                                         </dxb:BarSubItem>
-                                        <dxoui:BarSplitButtonColorEditItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_TableToolsDesign_TableStyles_Shading}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_TableToolsDesign_TableStyles_Shading}}"/>
+                                        <dxo:BarSplitButtonColorEditItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_TableToolsDesign_TableStyles_Shading}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_TableToolsDesign_TableStyles_Shading}}"/>
                                     </dxr:RibbonPageGroup>
                                 </ItemsControl>
                             </DataTemplate>
@@ -509,8 +510,8 @@
                                 <ItemsControl>
                                     <dxr:RibbonPageGroup dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonGroup_PictureToolsFormat_ShapeStyles}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonGroup_PictureToolsFormat_ShapeStyles}}">
                                         <dxr:BarButtonGroup dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_PictureToolsFormat_ShapeStylesShapeColorLayoutGroup}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_PictureToolsFormat_ShapeStylesShapeColorLayoutGroup}}">
-                                            <dxoui:BarSplitButtonColorEditItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_PictureToolsFormat_ShapeStyles_ShapeFill}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_PictureToolsFormat_ShapeStyles_ShapeFill}}"/>
-                                            <dxoui:BarSplitButtonColorEditItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_PictureToolsFormat_ShapeStyles_ShapeOutline}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_PictureToolsFormat_ShapeStyles_ShapeOutline}}"/>
+                                            <dxo:BarSplitButtonColorEditItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_PictureToolsFormat_ShapeStyles_ShapeFill}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_PictureToolsFormat_ShapeStyles_ShapeFill}}"/>
+                                            <dxo:BarSplitButtonColorEditItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_PictureToolsFormat_ShapeStyles_ShapeOutline}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_PictureToolsFormat_ShapeStyles_ShapeOutline}}"/>
                                         </dxr:BarButtonGroup>
                                         <dxr:BarButtonGroup dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_PictureToolsFormat_ShapeStylesShapeOutlineWidthLayoutGroup}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_PictureToolsFormat_ShapeStylesShapeOutlineWidthLayoutGroup}}">
                                             <dxb:BarEditItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_PictureToolsFormat_ShapeStyles_ShapeOutlineWidth}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_PictureToolsFormat_ShapeStyles_ShapeOutlineWidth}}"/>

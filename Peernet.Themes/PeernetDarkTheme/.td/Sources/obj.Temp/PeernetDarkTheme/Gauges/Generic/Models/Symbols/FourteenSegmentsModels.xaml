@@ -1,17 +1,17 @@
-<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:local="http://schemas.devexpress.com/winfx/2008/xaml/gauges" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxga="http://schemas.devexpress.com/winfx/2008/xaml/gauges" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxdst:ResourceDictionaryEx Source="{dx:GaugesResource themes/Generic/Models/Symbols/BaseStyles.xaml}" />
+        <dxt:ResourceDictionaryEx Source="{dx:GaugesResource themes/Generic/Models/Symbols/BaseStyles.xaml}" />
     </ResourceDictionary.MergedDictionaries>
 
-    <local:PresentationToFillConverter x:Key="BrushConverter" />
+    <dxga:PresentationToFillConverter x:Key="BrushConverter" />
 
-    <local:SymbolStateToVisibilityConverter x:Key="VisibilityConverter" />
+    <dxga:SymbolStateToVisibilityConverter x:Key="VisibilityConverter" />
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gauges.DefaultFourteenSegmentsControl}" BasedOn="{StaticResource SymbolStyleBase}" TargetType="local:DefaultFourteenSegmentsControl">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gauges.DefaultFourteenSegmentsControl}" BasedOn="{StaticResource SymbolStyleBase}" TargetType="dxga:DefaultFourteenSegmentsControl">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Gauges\Generic\Models\Symbols\FourteenSegmentsModels.xaml;18;6" /><Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:DefaultFourteenSegmentsControl">
+                <ControlTemplate TargetType="dxga:DefaultFourteenSegmentsControl">
                     <Viewbox Stretch="Fill" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gauges\Generic\Models\Symbols\FourteenSegmentsModels.xaml;24;22">
                         <Canvas Height="122" Width="86" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gauges\Generic\Models\Symbols\FourteenSegmentsModels.xaml;25;26">
                             <Path Canvas.Left="44.5521" Canvas.Top="56" Data="F1 M 65.9502,56C 66.5273,56 67.334,56.334 67.7422,56.7422L 71.2578,60.2578C 71.666,60.666 71.666,61.334 71.2578,61.7422L 67.7422,65.2578C 67.334,65.666 66.5273,66 65.9502,66L 55.0498,66C 54.4727,66 53.5771,65.7891 53.0605,65.5303L 44.9396,61.4697C 44.423,61.2109 44.423,60.7891 44.9396,60.5303L 53.0605,56.4697C 53.5771,56.2109 54.4727,56 55.0498,56L 65.9502,56 Z " Fill="{Binding Path=Presentation, Converter={StaticResource BrushConverter}, ConverterParameter=Inactive}" Height="10" Stretch="Fill" Width="27.0118" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Gauges\Generic\Models\Symbols\FourteenSegmentsModels.xaml;26;30" />

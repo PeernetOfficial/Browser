@@ -9,7 +9,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v21.2;component/Core/Core/Themes/UICore.xaml"/>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v22.1;component/Core/Core/Themes/UICore.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <!-- General -->
@@ -65,6 +65,7 @@
                             <Setter Property="BorderBrush"
                                     Value="$HoverBorder"
                                     cs:id="Setter_0009"/>
+                            <Setter Property="dx:SvgImageHelper.State" Value="Hover"/>
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="Foreground"
@@ -79,6 +80,7 @@
                             <Setter Property="Visibility"
                                     TargetName="IsFocus"
                                     Value="Collapsed"/>
+                            <Setter Property="dx:SvgImageHelper.State" Value="Pressed"/>
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -97,6 +99,7 @@
                             <Setter Property="Opacity"
                                     TargetName="IsDefault"
                                     Value="0.62"/>
+                            <Setter Property="dx:SvgImageHelper.State" Value="Pressed"/>
                         </MultiTrigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter Property="Opacity"

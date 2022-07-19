@@ -3,18 +3,17 @@
                     xmlns:collections="clr-namespace:System.Collections;assembly=mscorlib"
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
-                    xmlns:dxcn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
-                    xmlns:dxcop="clr-namespace:DevExpress.Xpf.Controls.Primitives;assembly=DevExpress.Xpf.Controls.v21.2"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dxcop="clr-namespace:DevExpress.Xpf.Controls.Primitives;assembly=DevExpress.Xpf.Controls.v22.1"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-                    xmlns:dxet="clr-namespace:DevExpress.Xpf.Editors.Themes;assembly=DevExpress.Xpf.Core.v21.2"
+                    xmlns:dxet="clr-namespace:DevExpress.Xpf.Editors.Themes;assembly=DevExpress.Xpf.Core.v22.1"
+                    xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
                     xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui"
                     xmlns:dxwuii="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/internal"
                     xmlns:dxwuin="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/navigation"
                     xmlns:dxwuit="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/themekeys"
-                    xmlns:EditorsFlyout="clr-namespace:DevExpress.Xpf.Editors.Flyout;assembly=DevExpress.Xpf.Core.v21.2"
-                    xmlns:FlyoutNative="clr-namespace:DevExpress.Xpf.Editors.Flyout.Native;assembly=DevExpress.Xpf.Core.v21.2"
+                    xmlns:EditorsFlyout="clr-namespace:DevExpress.Xpf.Editors.Flyout;assembly=DevExpress.Xpf.Core.v22.1"
+                    xmlns:FlyoutNative="clr-namespace:DevExpress.Xpf.Editors.Flyout.Native;assembly=DevExpress.Xpf.Core.v22.1"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
@@ -23,7 +22,7 @@
 
     <dx:BoolToVisibilityConverter x:Key="boolToVisibilityConverter"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.MenuFlyoutItem}" TargetType="{x:Type dxwui:MenuFlyoutItem}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.MenuFlyoutItem}" TargetType="{x:Type dxwui:MenuFlyoutItem}">
         <Setter Property="Background"
                 Value="Transparent"
                 cs:id="Setter_0000"/>
@@ -94,7 +93,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.MenuFlyoutSeparator}" TargetType="{x:Type dxwui:MenuFlyoutSeparator}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.MenuFlyoutSeparator}" TargetType="{x:Type dxwui:MenuFlyoutSeparator}">
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="Padding" Value="20,9,20,10"/>
@@ -111,7 +110,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.MenuFlyout}" TargetType="{x:Type dxwui:MenuFlyout}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.MenuFlyout}" TargetType="{x:Type dxwui:MenuFlyout}">
         <Setter Property="Background" Value="{DynamicResource ResourceKey={dxwuit:MenuFlyoutElementsThemeKey ResourceKey=Background}}"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -126,7 +125,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.Internal.MenuFlyoutPresenter}" TargetType="{x:Type dxwuii:MenuFlyoutPresenter}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.Internal.MenuFlyoutPresenter}" TargetType="{x:Type dxwuii:MenuFlyoutPresenter}">
         <Setter Property="Background" Value="{DynamicResource ResourceKey={dxwuit:MenuFlyoutElementsThemeKey ResourceKey=Background}}"/>
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
         <Setter Property="Focusable" Value="False"/>
@@ -141,7 +140,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.Flyout}" TargetType="{x:Type dxwui:Flyout}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.Flyout}" TargetType="{x:Type dxwui:Flyout}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="dxwui:Flyout">
@@ -161,7 +160,7 @@
                 cs:id="Setter_0000"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.Internal.FlyoutContentPresenter}" TargetType="{x:Type dxwuii:FlyoutContentPresenter}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.Internal.FlyoutContentPresenter}" TargetType="{x:Type dxwuii:FlyoutContentPresenter}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type dxwuii:FlyoutContentPresenter}">
@@ -184,7 +183,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.Internal.FlyoutCommandButton}" TargetType="dxwuii:FlyoutCommandButton">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.Internal.FlyoutCommandButton}" TargetType="dxwuii:FlyoutCommandButton">
         <Setter Property="Template" Value="{DynamicResource ResourceKey={dxwuit:WindowsUIElementsThemeKey ResourceKey=FlyoutCommandButtonTemplate}}"/>
     </Style>
 
@@ -340,11 +339,11 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Controls.Primitives.FlyoutAdornerControl}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Controls.Primitives.FlyoutAdornerControl}"
            BasedOn="{StaticResource FlyoutBaseAdornerStyle}"
            TargetType="dxcop:FlyoutAdornerControl"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Controls.Primitives.FlyoutDecorator}" TargetType="dxcop:FlyoutDecorator">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Controls.Primitives.FlyoutDecorator}" TargetType="dxcop:FlyoutDecorator">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="dxcop:FlyoutDecorator">

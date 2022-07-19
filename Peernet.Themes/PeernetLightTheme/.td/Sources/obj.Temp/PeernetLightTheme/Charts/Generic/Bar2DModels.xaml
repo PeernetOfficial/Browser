@@ -1,11 +1,11 @@
-<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:local="http://schemas.devexpress.com/winfx/2008/xaml/charts" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core">
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core">
 
-    <local:BrushOverlayConverter x:Key="brushOverlayConverter" />
+    <dxc:BrushOverlayConverter x:Key="brushOverlayConverter" />
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.BorderlessGradientBar2DModelControl}" TargetType="{x:Type local:BorderlessGradientBar2DModelControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.BorderlessGradientBar2DModelControl}" TargetType="{x:Type dxc:BorderlessGradientBar2DModelControl}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Charts\Generic\Bar2DModels.xaml;11;6" /><Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:BorderlessGradientBar2DModelControl}">
+                <ControlTemplate TargetType="{x:Type dxc:BorderlessGradientBar2DModelControl}">
                     <dx:DXBorder BorderThickness="0" OpacityMask="{Binding OpacityMask}" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;15;22">
                         <dx:DXBorder.Background>
                             <Binding Converter="{StaticResource brushOverlayConverter}" Path="PointColor" RelativeSource="{RelativeSource TemplatedParent}">
@@ -23,20 +23,20 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.BorderlessSimpleBar2DModelControl}" TargetType="{x:Type local:BorderlessSimpleBar2DModelControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.BorderlessSimpleBar2DModelControl}" TargetType="{x:Type dxc:BorderlessSimpleBar2DModelControl}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Charts\Generic\Bar2DModels.xaml;42;6" /><Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:BorderlessSimpleBar2DModelControl}">
+                <ControlTemplate TargetType="{x:Type dxc:BorderlessSimpleBar2DModelControl}">
                     <dx:DXBorder Background="{Binding Path=PointColor, ConverterParameter=#FF808080, Converter={StaticResource brushOverlayConverter}, RelativeSource={RelativeSource TemplatedParent}}" BorderThickness="0" OpacityMask="{Binding OpacityMask}" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;46;22" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.GradientBar2DModelControl}" TargetType="{x:Type local:GradientBar2DModelControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.GradientBar2DModelControl}" TargetType="{x:Type dxc:GradientBar2DModelControl}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Charts\Generic\Bar2DModels.xaml;55;6" /><Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:GradientBar2DModelControl}">
+                <ControlTemplate TargetType="{x:Type dxc:GradientBar2DModelControl}">
                     <dx:DXBorder BorderBrush="{Binding Path=PointColor, ConverterParameter=#FF262626, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource brushOverlayConverter}}" BorderThickness="1,1,1,1" OpacityMask="{Binding OpacityMask}" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;59;22">
                         <dx:DXBorder.Background>
                             <Binding Converter="{StaticResource brushOverlayConverter}" Path="PointColor" RelativeSource="{RelativeSource TemplatedParent}">
@@ -54,20 +54,20 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.SimpleBar2DModelControl}" TargetType="{x:Type local:SimpleBar2DModelControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.SimpleBar2DModelControl}" TargetType="{x:Type dxc:SimpleBar2DModelControl}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Charts\Generic\Bar2DModels.xaml;87;6" /><Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:SimpleBar2DModelControl}">
+                <ControlTemplate TargetType="{x:Type dxc:SimpleBar2DModelControl}">
                     <dx:DXBorder Background="{Binding Path=PointColor, ConverterParameter=#FF808080, Converter={StaticResource brushOverlayConverter}, RelativeSource={RelativeSource TemplatedParent}}" BorderBrush="{Binding Path=PointColor, ConverterParameter=#FF404040, Converter={StaticResource brushOverlayConverter}, RelativeSource={RelativeSource TemplatedParent}}" BorderThickness="1,1,1,1" OpacityMask="{Binding OpacityMask}" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;91;22" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.TransparentBar2DModelControl}" TargetType="{x:Type local:TransparentBar2DModelControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.TransparentBar2DModelControl}" TargetType="{x:Type dxc:TransparentBar2DModelControl}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Charts\Generic\Bar2DModels.xaml;101;6" /><Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:TransparentBar2DModelControl}">
+                <ControlTemplate TargetType="{x:Type dxc:TransparentBar2DModelControl}">
                     <dx:DXBorder BorderBrush="{Binding Path=PointColor, ConverterParameter=#FF606060, Converter={StaticResource brushOverlayConverter}, RelativeSource={RelativeSource TemplatedParent}}" BorderThickness="1,1,1,1" OpacityMask="{Binding OpacityMask}" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;105;22">
                         <dx:DXBorder.Background>
                             <Binding Converter="{StaticResource brushOverlayConverter}" Path="PointColor" RelativeSource="{RelativeSource TemplatedParent}">
@@ -85,10 +85,10 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.FlatBar2DModelControl}" TargetType="{x:Type local:FlatBar2DModelControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.FlatBar2DModelControl}" TargetType="{x:Type dxc:FlatBar2DModelControl}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Charts\Generic\Bar2DModels.xaml;133;6" /><Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:FlatBar2DModelControl}">
+                <ControlTemplate TargetType="{x:Type dxc:FlatBar2DModelControl}">
                     <Grid OpacityMask="{Binding OpacityMask}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;137;22">
                         <dx:DXBorder Background="{Binding Path=PointColor, ConverterParameter=#FF505050, Converter={StaticResource brushOverlayConverter}, RelativeSource={RelativeSource TemplatedParent}}" CornerRadius="3,3,0,0" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;138;26" />
                         <dx:DXBorder Background="{Binding Path=PointColor, ConverterParameter=#FFA0A0A0, Converter={StaticResource brushOverlayConverter}, RelativeSource={RelativeSource TemplatedParent}}" CornerRadius="2,2,0,0" Margin="1,1,1,0" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;141;26" />
@@ -110,10 +110,10 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.FlatGlassBar2DModelControl}" TargetType="{x:Type local:FlatGlassBar2DModelControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.FlatGlassBar2DModelControl}" TargetType="{x:Type dxc:FlatGlassBar2DModelControl}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Charts\Generic\Bar2DModels.xaml;173;6" /><Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:FlatGlassBar2DModelControl}">
+                <ControlTemplate TargetType="{x:Type dxc:FlatGlassBar2DModelControl}">
                     <Grid OpacityMask="{Binding OpacityMask}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;177;22">
                         <dx:DXBorder Background="{Binding Path=PointColor, ConverterParameter=#FF505050, Converter={StaticResource brushOverlayConverter}, RelativeSource={RelativeSource TemplatedParent}}" CornerRadius="3,3,0,0" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;178;26" />
                         <dx:DXBorder CornerRadius="1,1,0,0" Margin="1,1,1,0" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;181;26">
@@ -137,10 +137,10 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.OutsetBar2DModelControl}" TargetType="{x:Type local:OutsetBar2DModelControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.OutsetBar2DModelControl}" TargetType="{x:Type dxc:OutsetBar2DModelControl}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Charts\Generic\Bar2DModels.xaml;220;6" /><Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:OutsetBar2DModelControl}">
+                <ControlTemplate TargetType="{x:Type dxc:OutsetBar2DModelControl}">
                     <Grid OpacityMask="{Binding OpacityMask}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;224;22">
                         <Grid.RowDefinitions>
                             <RowDefinition MaxHeight="5" MinHeight="5" />
@@ -256,10 +256,10 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.SteelColumnBar2DModelControl}" TargetType="{x:Type local:SteelColumnBar2DModelControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.SteelColumnBar2DModelControl}" TargetType="{x:Type dxc:SteelColumnBar2DModelControl}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Charts\Generic\Bar2DModels.xaml;458;6" /><Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:SteelColumnBar2DModelControl}">
+                <ControlTemplate TargetType="{x:Type dxc:SteelColumnBar2DModelControl}">
                     <Grid OpacityMask="{Binding OpacityMask}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;462;22">
                         <Grid.RowDefinitions>
                             <RowDefinition MaxHeight="22" MinHeight="22" />
@@ -313,12 +313,12 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.Quasi3DBar2DModelControl}" TargetType="{x:Type local:Quasi3DBar2DModelControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.Quasi3DBar2DModelControl}" TargetType="{x:Type dxc:Quasi3DBar2DModelControl}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Charts\Generic\Bar2DModels.xaml;570;6" /><Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:Quasi3DBar2DModelControl}">
-                    <local:Pseudo3DBarModelPanel OpacityMask="{Binding OpacityMask}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;574;22">
-                        <Rectangle local:Pseudo3DBarModelPanel.Sides="Front" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;575;26">
+                <ControlTemplate TargetType="{x:Type dxc:Quasi3DBar2DModelControl}">
+                    <dxc:Pseudo3DBarModelPanel OpacityMask="{Binding OpacityMask}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;574;22">
+                        <Rectangle dxc:Pseudo3DBarModelPanel.Sides="Front" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;575;26">
                             <Rectangle.RenderTransform>
                                 <TranslateTransform X="-8" Y="8" />
                             </Rectangle.RenderTransform>
@@ -336,7 +336,7 @@
                                 </Binding>
                             </Rectangle.Fill>
                         </Rectangle>
-                        <Rectangle local:Pseudo3DBarModelPanel.Sides="Right" Width="8" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;603;26">
+                        <Rectangle dxc:Pseudo3DBarModelPanel.Sides="Right" Width="8" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;603;26">
                             <Rectangle.RenderTransform>
                                 <SkewTransform AngleY="-45" CenterX="8" />
                             </Rectangle.RenderTransform>
@@ -354,7 +354,7 @@
                                 </Binding>
                             </Rectangle.Fill>
                         </Rectangle>
-                        <Rectangle Height="8" local:Pseudo3DBarModelPanel.Sides="Top" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;631;26">
+                        <Rectangle dxc:Pseudo3DBarModelPanel.Sides="Top" Height="8" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;631;26">
                             <Rectangle.RenderTransform>
                                 <SkewTransform AngleX="-45" CenterX="23" />
                             </Rectangle.RenderTransform>
@@ -372,18 +372,18 @@
                                 </Binding>
                             </Rectangle.Fill>
                         </Rectangle>
-                    </local:Pseudo3DBarModelPanel>
+                    </dxc:Pseudo3DBarModelPanel>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.GlassCylinderBar2DModelControl}" TargetType="{x:Type local:GlassCylinderBar2DModelControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.GlassCylinderBar2DModelControl}" TargetType="{x:Type dxc:GlassCylinderBar2DModelControl}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Charts\Generic\Bar2DModels.xaml;665;6" /><Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:GlassCylinderBar2DModelControl}">
-                    <local:Pseudo3DBarModelPanel OpacityMask="{Binding OpacityMask}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;669;22">
-                        <Grid local:Pseudo3DBarModelPanel.Sides="Front" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;670;26">
+                <ControlTemplate TargetType="{x:Type dxc:GlassCylinderBar2DModelControl}">
+                    <dxc:Pseudo3DBarModelPanel OpacityMask="{Binding OpacityMask}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;669;22">
+                        <Grid dxc:Pseudo3DBarModelPanel.Sides="Front" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;670;26">
                             <Rectangle Stretch="Fill" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;671;30">
                                 <Rectangle.Fill>
                                     <Binding Converter="{StaticResource brushOverlayConverter}" Path="PointColor" RelativeSource="{RelativeSource TemplatedParent}">
@@ -425,7 +425,7 @@
                                     </Binding>
                                 </Rectangle.Fill>
                             </Rectangle>
-                            <Grid local:Pseudo3DBarModelPanel.Sides="Front" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;742;30">
+                            <Grid dxc:Pseudo3DBarModelPanel.Sides="Front" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;742;30">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="0.1*" />
                                     <ColumnDefinition Width="0.04*" />
@@ -449,7 +449,7 @@
                                 </Rectangle>
                             </Grid>
                         </Grid>
-                        <Grid local:Pseudo3DBarModelPanel.Sides="Bottom" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;778;26">
+                        <Grid dxc:Pseudo3DBarModelPanel.Sides="Bottom" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;778;26">
                             <Grid.RenderTransform>
                                 <TranslateTransform Y="9" />
                             </Grid.RenderTransform>
@@ -527,7 +527,7 @@
                                 <Path Data="F1 M 38,7.688C 39.838,7.285 41.515,6.797 43,6.242L 43,0 38,0 38,7.688 Z " Fill="{TemplateBinding RightEdgeBaseBrush}" Grid.Column="7" Stretch="Fill" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;905;34" />
                             </Grid>
                         </Grid>
-                        <Grid local:Pseudo3DBarModelPanel.Sides="Front" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;911;26">
+                        <Grid dxc:Pseudo3DBarModelPanel.Sides="Front" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;911;26">
                             <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;912;30">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="0.1*" />
@@ -559,7 +559,7 @@
                                 </Rectangle.Fill>
                             </Rectangle>
                         </Grid>
-                        <Grid local:Pseudo3DBarModelPanel.Sides="Top" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;959;26">
+                        <Grid dxc:Pseudo3DBarModelPanel.Sides="Top" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Charts\Generic\Bar2DModels.xaml;959;26">
                             <Grid.RenderTransform>
                                 <TranslateTransform Y="-9" />
                             </Grid.RenderTransform>
@@ -621,12 +621,12 @@
                                 </Path.Fill>
                             </Path>
                         </Grid>
-                    </local:Pseudo3DBarModelPanel>
+                    </dxc:Pseudo3DBarModelPanel>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.CustomModelControl}" TargetType="{x:Type local:CustomModelControl}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Charts\Generic\Bar2DModels.xaml;1073;6" /></Style>
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.CustomModelControl}" TargetType="{x:Type dxc:CustomModelControl}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Charts\Generic\Bar2DModels.xaml;1073;6" /></Style>
 
 </ResourceDictionary>

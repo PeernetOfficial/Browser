@@ -1,19 +1,16 @@
 <ResourceDictionary mc:Ignorable="cs"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
-                    xmlns:designer="http://schemas.devexpress.com/winfx/2008/xaml/reports/userdesigner"
-                    xmlns:designernative="http://schemas.devexpress.com/winfx/2008/xaml/reports/userdesigner/internal"
-                    xmlns:diagram="http://schemas.devexpress.com/winfx/2008/xaml/reports/userdesigner/internal"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
                     xmlns:dxprg="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid"
                     xmlns:dxprgt="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid/themekeys"
-                    xmlns:localization="http://schemas.devexpress.com/winfx/2008/xaml/reports/userdesigner"
+                    xmlns:dxrud="http://schemas.devexpress.com/winfx/2008/xaml/reports/userdesigner"
+                    xmlns:dxrudi="http://schemas.devexpress.com/winfx/2008/xaml/reports/userdesigner/internal"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:propertygrid="http://schemas.devexpress.com/winfx/2008/xaml/reports/userdesigner/internal"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
@@ -70,8 +67,8 @@
     </DataTemplate>
 
     <dxmvvm:BooleanToObjectConverter x:Key="propertiesGlyphConverter"
-                                     FalseValue="{dx:SvgImageSource Uri='/DevExpress.Xpf.ReportDesigner.v21.2;component/Images/SVG/PropertyGrid/Properties.svg'}"
-                                     TrueValue="{dx:SvgImageSource Uri='/DevExpress.Xpf.ReportDesigner.v21.2;component/Images/SVG/PropertyGrid/FavoriteProperties.svg'}"/>
+                                     FalseValue="{dx:SvgImageSource Uri='/DevExpress.Xpf.ReportDesigner.v22.1;component/Images/SVG/PropertyGrid/Properties.svg'}"
+                                     TrueValue="{dx:SvgImageSource Uri='/DevExpress.Xpf.ReportDesigner.v22.1;component/Images/SVG/PropertyGrid/FavoriteProperties.svg'}"/>
 
     <DataTemplate x:Key="commonPanelTemplate">
         <dxb:ToolBarControl AllowCustomizationMenu="False"
@@ -81,8 +78,8 @@
                             ShowDragWidget="False"
                             Visibility="{Binding Path=(dxprg:PropertyGridHelper.PropertyGrid).ShowToolPanel, RelativeSource={RelativeSource Self}, Converter={dx:BooleanToVisibilityConverter}}">
             <dxb:BarCheckItem GroupIndex="3120"
-                              Hint="{localization:ReportDesignerStringId StringId=PropertyGrid_BarControl_BarItem_Categorized}"
-                              IsChecked="{Binding Path=(dxprg:PropertyGridHelper.PropertyGrid).ShowCategories, Converter={designernative:ShowCategoriesToIsCheckedConverter ShowCategories=Visible}, Mode=TwoWay, RelativeSource={RelativeSource Self}}">
+                              Hint="{dxrud:ReportDesignerStringId StringId=PropertyGrid_BarControl_BarItem_Categorized}"
+                              IsChecked="{Binding Path=(dxprg:PropertyGridHelper.PropertyGrid).ShowCategories, Converter={dxrudi:ShowCategoriesToIsCheckedConverter ShowCategories=Visible}, Mode=TwoWay, RelativeSource={RelativeSource Self}}">
                 <dxb:BarCheckItem.GlyphTemplate>
                     <DataTemplate>
                         <Path x:Name="PART_GroupView"
@@ -95,8 +92,8 @@
                 </dxb:BarCheckItem.GlyphTemplate>
             </dxb:BarCheckItem>
             <dxb:BarCheckItem GroupIndex="3120"
-                              Hint="{localization:ReportDesignerStringId StringId=PropertyGrid_BarControl_BarItem_Alphabetical}"
-                              IsChecked="{Binding Path=(dxprg:PropertyGridHelper.PropertyGrid).ShowCategories, Converter={designernative:ShowCategoriesToIsCheckedConverter ShowCategories=Hidden}, Mode=TwoWay, RelativeSource={RelativeSource Self}}">
+                              Hint="{dxrud:ReportDesignerStringId StringId=PropertyGrid_BarControl_BarItem_Alphabetical}"
+                              IsChecked="{Binding Path=(dxprg:PropertyGridHelper.PropertyGrid).ShowCategories, Converter={dxrudi:ShowCategoriesToIsCheckedConverter ShowCategories=Hidden}, Mode=TwoWay, RelativeSource={RelativeSource Self}}">
                 <dxb:BarCheckItem.GlyphTemplate>
                     <DataTemplate>
                         <Path x:Name="PART_ListView"
@@ -109,13 +106,13 @@
                 </dxb:BarCheckItem.GlyphTemplate>
             </dxb:BarCheckItem>
             <dxb:BarItemSeparator/>
-            <dxb:BarSplitCheckItem Glyph="{dx:SvgImageSource Uri='/DevExpress.Xpf.ReportDesigner.v21.2;component/Images/SVG/PropertyGrid/FavoriteProperties.svg'}"
+            <dxb:BarSplitCheckItem Glyph="{dx:SvgImageSource Uri='/DevExpress.Xpf.ReportDesigner.v22.1;component/Images/SVG/PropertyGrid/FavoriteProperties.svg'}"
                                    Hint="Show Favorite Properties"
                                    IsChecked="{Binding Path=(dxprg:PropertyGridHelper.PropertyGrid).ShowFavoriteProperties, RelativeSource={RelativeSource Self}}"
-                                   IsVisible="{Binding Path=(diagram:XtraReportDiagramItem.ReportModel).DataBindingMode, RelativeSource={RelativeSource Self}, Converter={designernative:BindingModeAndExpressionsToBooleanConverter Inverse=True}, FallbackValue=False}">
+                                   IsVisible="{Binding Path=(dxrudi:XtraReportDiagramItem.ReportModel).DataBindingMode, RelativeSource={RelativeSource Self}, Converter={dxrudi:BindingModeAndExpressionsToBooleanConverter Inverse=True}, FallbackValue=False}">
                 <dxb:BarSplitCheckItem.PopupControl>
                     <dxb:PopupMenu>
-                        <dxb:BarButtonItem Command="{Binding Path=(designer:ReportDesigner.Designer).ActualCommands.EditFavoritePropertiesCommand, RelativeSource={RelativeSource Self}}"
+                        <dxb:BarButtonItem Command="{Binding Path=(dxrud:ReportDesigner.Designer).ActualCommands.EditFavoritePropertiesCommand, RelativeSource={RelativeSource Self}}"
                                            Content="Edit Favorite Properties..."
                                            ContentTemplate="{StaticResource popupMenuItemContentTemplate}"/>
                     </dxb:PopupMenu>
@@ -123,27 +120,27 @@
             </dxb:BarSplitCheckItem>
             <dxb:BarSplitCheckItem Glyph="{Binding Path=(dxprg:PropertyGridHelper.PropertyGrid).ShowFavoriteProperties, RelativeSource={RelativeSource Self}, Converter={StaticResource propertiesGlyphConverter}}"
                                    GroupIndex="52416"
-                                   Hint="{localization:ReportDesignerStringId StringId=Properties}"
+                                   Hint="{dxrud:ReportDesignerStringId StringId=Properties}"
                                    IsChecked="{Binding Path=(dxprg:PropertyGridHelper.PropertyGrid).ExpressionTabIsActive, RelativeSource={RelativeSource Self}, FallbackValue=False, Converter={dxmvvm:BooleanNegationConverter}}"
-                                   IsVisible="{Binding Path=(diagram:XtraReportDiagramItem.ReportModel).DataBindingMode, RelativeSource={RelativeSource Self}, Converter={designernative:BindingModeAndExpressionsToBooleanConverter}}">
+                                   IsVisible="{Binding Path=(dxrudi:XtraReportDiagramItem.ReportModel).DataBindingMode, RelativeSource={RelativeSource Self}, Converter={dxrudi:BindingModeAndExpressionsToBooleanConverter}}">
                 <dxb:BarSplitCheckItem.PopupControl>
                     <dxb:PopupMenu>
                         <dxb:BarCheckItem Content="Show Favorite Properties"
                                           ContentTemplate="{StaticResource popupMenuItemContentTemplate}"
-                                          Glyph="{dx:SvgImageSource Uri='/DevExpress.Xpf.ReportDesigner.v21.2;component/Images/SVG/PropertyGrid/FavoriteProperties.svg'}"
+                                          Glyph="{dx:SvgImageSource Uri='/DevExpress.Xpf.ReportDesigner.v22.1;component/Images/SVG/PropertyGrid/FavoriteProperties.svg'}"
                                           IsChecked="{Binding Path=(dxprg:PropertyGridHelper.PropertyGrid).ShowFavoriteProperties, RelativeSource={RelativeSource Self}}"/>
-                        <dxb:BarButtonItem Command="{Binding Path=(designer:ReportDesigner.Designer).ActualCommands.EditFavoritePropertiesCommand, RelativeSource={RelativeSource Self}}"
+                        <dxb:BarButtonItem Command="{Binding Path=(dxrud:ReportDesigner.Designer).ActualCommands.EditFavoritePropertiesCommand, RelativeSource={RelativeSource Self}}"
                                            Content="Edit Favorite Properties..."
                                            ContentTemplate="{StaticResource popupMenuItemContentTemplate}"/>
                     </dxb:PopupMenu>
                 </dxb:BarSplitCheckItem.PopupControl>
             </dxb:BarSplitCheckItem>
-            <dxb:BarCheckItem Glyph="{dx:SvgImageSource Uri='/DevExpress.Xpf.ReportDesigner.v21.2;component/Images/SVG/PropertyGrid/Expressions.svg'}"
+            <dxb:BarCheckItem Glyph="{dx:SvgImageSource Uri='/DevExpress.Xpf.ReportDesigner.v22.1;component/Images/SVG/PropertyGrid/Expressions.svg'}"
                               GroupIndex="52416"
-                              Hint="{localization:ReportDesignerStringId StringId=PropertyGrid_TabExpressions}">
+                              Hint="{dxrud:ReportDesignerStringId StringId=PropertyGrid_TabExpressions}">
                 <dxb:BarCheckItem.IsVisible>
-                    <MultiBinding Converter="{designernative:BindingModeAndExpressionsToBooleanConverter}">
-                        <Binding Path="(diagram:XtraReportDiagramItem.ReportModel).DataBindingMode" RelativeSource="{RelativeSource Self}"/>
+                    <MultiBinding Converter="{dxrudi:BindingModeAndExpressionsToBooleanConverter}">
+                        <Binding Path="(dxrudi:XtraReportDiagramItem.ReportModel).DataBindingMode" RelativeSource="{RelativeSource Self}"/>
                         <Binding Path="(dxprg:PropertyGridHelper.PropertyGrid).ShowExpressionsInSeparateTab" RelativeSource="{RelativeSource Self}"/>
                     </MultiBinding>
                 </dxb:BarCheckItem.IsVisible>
@@ -180,13 +177,13 @@
         <Grid MaxWidth="65" ToolTip="{Binding Header}">
             <dx:DXImage Name="glyph"
                         Height="22"
-                        Source="{Binding Header, Converter={designernative:CategoryNameToIconConverter}}"
-                        Visibility="{Binding Source, Converter={designernative:ObjectToVisibilityConverter}, RelativeSource={RelativeSource Self}}"
+                        Source="{Binding Header, Converter={dxrudi:CategoryNameToIconConverter}}"
+                        Visibility="{Binding Source, Converter={dxrudi:ObjectToVisibilityConverter}, RelativeSource={RelativeSource Self}}"
                         Width="22"/>
             <TextBlock Text="{Binding Header}"
                        TextTrimming="CharacterEllipsis"
                        VerticalAlignment="Center"
-                       Visibility="{Binding Source, ElementName=glyph, Converter={designernative:ObjectToVisibilityConverter Inverse=True}}"/>
+                       Visibility="{Binding Source, ElementName=glyph, Converter={dxrudi:ObjectToVisibilityConverter Inverse=True}}"/>
         </Grid>
     </DataTemplate>
 
@@ -199,7 +196,7 @@
                           Template="{StaticResource emptyButtonTemplate}"
                           VerticalContentAlignment="Center">
                 <dxb:BarManager.DXContextMenu>
-                    <dxb:PopupMenu DataContext="{Binding Path=PlacementTarget.(designer:ReportDesigner.Designer).ActualCommands, RelativeSource={RelativeSource Self}}" IsOpen="{Binding PlacementTarget.IsChecked, RelativeSource={RelativeSource Self}}">
+                    <dxb:PopupMenu DataContext="{Binding Path=PlacementTarget.(dxrud:ReportDesigner.Designer).ActualCommands, RelativeSource={RelativeSource Self}}" IsOpen="{Binding PlacementTarget.IsChecked, RelativeSource={RelativeSource Self}}">
                         <dxb:BarButtonItem Command="{Binding EditFavoritePropertiesCommand}" Content="Edit Favorite Properties..."/>
                     </dxb:PopupMenu>
                 </dxb:BarManager.DXContextMenu>
@@ -223,7 +220,7 @@
             </dxe:ListBoxEdit.ItemsPanel>
             <dxe:ListBoxEdit.ItemTemplate>
                 <DataTemplate>
-                    <ContentControl Content="{Binding}" ContentTemplate="{Binding Header, Converter={designernative:StringEqualsToDataTemplateConverter ExpectedString={localization:ReportStringId StringId=UD_PropertyGrid_TabFavorites}, TrueValue={StaticResource favoritesCategoryTab}, FalseValue={StaticResource commonCategoryTab}}}"/>
+                    <ContentControl Content="{Binding}" ContentTemplate="{Binding Header, Converter={dxrudi:StringEqualsToDataTemplateConverter ExpectedString={dxrud:ReportStringId StringId=UD_PropertyGrid_TabFavorites}, TrueValue={StaticResource favoritesCategoryTab}, FalseValue={StaticResource commonCategoryTab}}}"/>
                 </DataTemplate>
             </dxe:ListBoxEdit.ItemTemplate>
         </dxe:ListBoxEdit>
@@ -239,7 +236,7 @@
                         TargetName="PART_SelectorContainer"
                         Value="{StaticResource categorizedPanelTemplate}"/>
             </DataTrigger>
-            <DataTrigger Binding="{Binding Path=(dxprg:PropertyGridHelper.PropertyGrid).UserFilterCriteria, Converter={designernative:CriteriaToBooleanConverter}, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
+            <DataTrigger Binding="{Binding Path=(dxprg:PropertyGridHelper.PropertyGrid).UserFilterCriteria, Converter={dxrudi:CriteriaToBooleanConverter}, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
                 <Setter Property="IsEnabled"
                         TargetName="PART_SelectorContainer"
                         Value="False"/>
@@ -250,7 +247,7 @@
         </DataTemplate.Triggers>
     </DataTemplate>
 
-    <ControlTemplate x:Key="propertyGridTemplate" TargetType="propertygrid:ReportDesignerPropertyGrid">
+    <ControlTemplate x:Key="propertyGridTemplate" TargetType="dxrudi:ReportDesignerPropertyGrid">
         <Border Background="{TemplateBinding Background}"
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}">
@@ -353,9 +350,9 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
-    <Style x:Key="propertyGridStyle" TargetType="propertygrid:ReportDesignerPropertyGrid">
+    <Style x:Key="propertyGridStyle" TargetType="dxrudi:ReportDesignerPropertyGrid">
         <Style.Triggers>
-            <DataTrigger Binding="{Binding Path=(designer:ReportDesigner.Designer).PropertyGridOptions.UseOfficeInspiredPropertyGrid, RelativeSource={RelativeSource Self}}" Value="True">
+            <DataTrigger Binding="{Binding Path=(dxrud:ReportDesigner.Designer).PropertyGridOptions.UseOfficeInspiredPropertyGrid, RelativeSource={RelativeSource Self}}" Value="True">
                 <Setter Property="Background"
                         Value="Transparent"
                         cs:id="Setter_0000"/>

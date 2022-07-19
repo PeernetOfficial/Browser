@@ -2,12 +2,11 @@
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal"
-                    xmlns:dxer="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-                    xmlns:dxn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
-                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
-                    xmlns:dxtEx="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
+                    xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
@@ -20,47 +19,47 @@
 
     <dxei:BoolToGridLengthConverter x:Key="BoolToGridLengthConverter"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.RangeControl.CalendarGroupItem}" TargetType="{x:Type dxer:CalendarGroupItem}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.RangeControl.CalendarGroupItem}" TargetType="{x:Type dxe:CalendarGroupItem}">
         <Setter Property="Margin" Value="1,1,1,0"/>
         <Setter Property="IsTabStop" Value="False"/>
-        <Setter Property="Template" Value="{DynamicResource {dxt:CalendarClientThemeKey ResourceKey=CalendarGroupItemTemplate}}"/>
+        <Setter Property="Template" Value="{DynamicResource {dxet:CalendarClientThemeKey ResourceKey=CalendarGroupItemTemplate}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.RangeControl.CalendarItem}" TargetType="{x:Type dxer:CalendarItem}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.RangeControl.CalendarItem}" TargetType="{x:Type dxe:CalendarItem}">
         <Setter Property="Margin" Value="1,0,1,1"/>
         <Setter Property="IsTabStop" Value="False"/>
-        <Setter Property="Template" Value="{DynamicResource {dxt:CalendarClientThemeKey ResourceKey=CalendarItemTemplate}}"/>
+        <Setter Property="Template" Value="{DynamicResource {dxet:CalendarClientThemeKey ResourceKey=CalendarItemTemplate}}"/>
     </Style>
 
-    <ControlTemplate x:Key="{dxt:CalendarClientThemeKey ResourceKey=CalendarClientTemplate}" TargetType="{x:Type dxer:CalendarClient}">
+    <ControlTemplate x:Key="{dxet:CalendarClientThemeKey ResourceKey=CalendarClientTemplate}" TargetType="{x:Type dxe:CalendarClient}">
         <Grid Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
             <dxei:CalendarClientPanel/>
         </Grid>
     </ControlTemplate>
 
-    <Style x:Key="{dxt:RangeControlThemeKey ResourceKey=SelectionThumbBaseStyle}" TargetType="{x:Type Thumb}">
+    <Style x:Key="{dxet:RangeControlThemeKey ResourceKey=SelectionThumbBaseStyle}" TargetType="{x:Type Thumb}">
         <Setter Property="Width" Value="30"/>
         <Setter Property="IsHitTestVisible" Value="False"/>
     </Style>
 
-    <Style x:Key="{dxt:RangeControlThemeKey ResourceKey=LeftSelectionThumbStyle}"
-           BasedOn="{StaticResource {dxt:RangeControlThemeKey ResourceKey=SelectionThumbBaseStyle}}"
+    <Style x:Key="{dxet:RangeControlThemeKey ResourceKey=LeftSelectionThumbStyle}"
+           BasedOn="{StaticResource {dxet:RangeControlThemeKey ResourceKey=SelectionThumbBaseStyle}}"
            TargetType="{x:Type Thumb}">
-        <Setter Property="Template" Value="{DynamicResource {dxt:RangeControlThemeKey ResourceKey=LeftSelectionThumbTemplate}}"/>
+        <Setter Property="Template" Value="{DynamicResource {dxet:RangeControlThemeKey ResourceKey=LeftSelectionThumbTemplate}}"/>
     </Style>
 
-    <Style x:Key="{dxt:RangeControlThemeKey ResourceKey=RightSelectionThumbStyle}"
-           BasedOn="{StaticResource {dxt:RangeControlThemeKey ResourceKey=SelectionThumbBaseStyle}}"
+    <Style x:Key="{dxet:RangeControlThemeKey ResourceKey=RightSelectionThumbStyle}"
+           BasedOn="{StaticResource {dxet:RangeControlThemeKey ResourceKey=SelectionThumbBaseStyle}}"
            TargetType="{x:Type Thumb}">
-        <Setter Property="Template" Value="{DynamicResource {dxt:RangeControlThemeKey ResourceKey=RightSelectionThumbTemplate}}"/>
+        <Setter Property="Template" Value="{DynamicResource {dxet:RangeControlThemeKey ResourceKey=RightSelectionThumbTemplate}}"/>
     </Style>
 
-    <ControlTemplate x:Key="{dxt:RangeControlThemeKey ResourceKey=RangeBarTemplate}" TargetType="{x:Type dxei:RangeBar}">
+    <ControlTemplate x:Key="{dxet:RangeControlThemeKey ResourceKey=RangeBarTemplate}" TargetType="{x:Type dxei:RangeBar}">
         <ContentControl x:Name="PART_RangeBarContainer"
                         Background="{TemplateBinding Background}"
                         Height="{TemplateBinding Height}"
                         IsTabStop="False"
-                        Template="{DynamicResource {dxt:RangeControlThemeKey ResourceKey=RangeBarRootBorderTemplate}}"
+                        Template="{DynamicResource {dxet:RangeControlThemeKey ResourceKey=RangeBarRootBorderTemplate}}"
                         Width="{TemplateBinding Width}">
             <Grid x:Name="PART_ThumbContainer">
                 <Grid.ColumnDefinitions>
@@ -72,7 +71,7 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Border Grid.ColumnSpan="7" Style="{DynamicResource {dxt:RangeControlThemeKey ResourceKey=RangeBarBottomBorderStyle}}"/>
+                <Border Grid.ColumnSpan="7" Style="{DynamicResource {dxet:RangeControlThemeKey ResourceKey=RangeBarBottomBorderStyle}}"/>
                 <Grid x:Name="PART_MiddleLayerContainer"
                       Grid.ColumnSpan="7"
                       IsHitTestVisible="False">
@@ -81,11 +80,11 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Border Style="{DynamicResource {dxt:RangeControlThemeKey ResourceKey=RangeBarOutOfSelectionBorderStyle}}"/>
+                    <Border Style="{DynamicResource {dxet:RangeControlThemeKey ResourceKey=RangeBarOutOfSelectionBorderStyle}}"/>
                     <Border x:Name="PART_SelectionSide"
                             Grid.Column="1"
-                            Style="{DynamicResource {dxt:RangeControlThemeKey ResourceKey=RangeBarSelectionBorderStyle}}"/>
-                    <Border Grid.Column="2" Style="{DynamicResource {dxt:RangeControlThemeKey ResourceKey=RangeBarOutOfSelectionBorderStyle}}"/>
+                            Style="{DynamicResource {dxet:RangeControlThemeKey ResourceKey=RangeBarSelectionBorderStyle}}"/>
+                    <Border Grid.Column="2" Style="{DynamicResource {dxet:RangeControlThemeKey ResourceKey=RangeBarOutOfSelectionBorderStyle}}"/>
                 </Grid>
                 <Grid x:Name="PART_TopLayerContainer"
                       Background="Transparent"
@@ -96,63 +95,63 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Border x:Name="PART_LeftSide" Style="{DynamicResource {dxt:RangeControlThemeKey ResourceKey=RangeBarOutOfRangeBorderStyle}}"/>
+                    <Border x:Name="PART_LeftSide" Style="{DynamicResource {dxet:RangeControlThemeKey ResourceKey=RangeBarOutOfRangeBorderStyle}}"/>
                     <Thumb x:Name="PART_Slider"
                            Grid.Column="1"
                            Opacity="0"/>
                     <Border x:Name="PART_RightSide"
                             Grid.Column="2"
-                            Style="{DynamicResource {dxt:RangeControlThemeKey ResourceKey=RangeBarOutOfRangeBorderStyle}}"/>
+                            Style="{DynamicResource {dxet:RangeControlThemeKey ResourceKey=RangeBarOutOfRangeBorderStyle}}"/>
                 </Grid>
                 <Thumb x:Name="PART_LeftResizeThumb"
                        Grid.Column="1"
-                       Template="{DynamicResource {dxt:RangeControlThemeKey ResourceKey=RangeBarLeftResizeThumbTemplate}}"
+                       Template="{DynamicResource {dxet:RangeControlThemeKey ResourceKey=RangeBarLeftResizeThumbTemplate}}"
                        UseLayoutRounding="True"/>
                 <Thumb x:Name="PART_RightResizeThumb"
                        Grid.Column="5"
-                       Template="{DynamicResource {dxt:RangeControlThemeKey ResourceKey=RangeBarRightResizeThumbTemplate}}"
+                       Template="{DynamicResource {dxet:RangeControlThemeKey ResourceKey=RangeBarRightResizeThumbTemplate}}"
                        UseLayoutRounding="True"/>
             </Grid>
         </ContentControl>
     </ControlTemplate>
 
-    <Style x:Key="{dxt:RangeControlThemeKey ResourceKey=RangeBarStyle}" TargetType="{x:Type dxei:RangeBar}">
+    <Style x:Key="{dxet:RangeControlThemeKey ResourceKey=RangeBarStyle}" TargetType="{x:Type dxei:RangeBar}">
         <Setter Property="IsTabStop" Value="False"/>
         <Setter Property="UseLayoutRounding" Value="False"/>
         <Setter Property="VerticalAlignment" Value="Bottom"/>
-        <Setter Property="Visibility" Value="{Binding Path=(dxer:RangeControl.OwnerRangeControl).ShowRangeBar, Converter={StaticResource BoolToVisibilityConverter}, RelativeSource={RelativeSource Self}, Mode=OneWay}"/>
-        <Setter Property="Template" Value="{DynamicResource {dxt:RangeControlThemeKey ResourceKey=RangeBarTemplate}}"/>
+        <Setter Property="Visibility" Value="{Binding Path=(dxe:RangeControl.OwnerRangeControl).ShowRangeBar, Converter={StaticResource BoolToVisibilityConverter}, RelativeSource={RelativeSource Self}, Mode=OneWay}"/>
+        <Setter Property="Template" Value="{DynamicResource {dxet:RangeControlThemeKey ResourceKey=RangeBarTemplate}}"/>
     </Style>
 
-    <Style x:Key="{dxt:RangeControlThemeKey ResourceKey=LabelStyle}" TargetType="{x:Type ContentPresenter}">
-        <Setter Property="ContentTemplate" Value="{Binding Path=(dxer:RangeControl.OwnerRangeControl).LabelTemplate, RelativeSource={RelativeSource Self}, Mode=OneWay}"/>
+    <Style x:Key="{dxet:RangeControlThemeKey ResourceKey=LabelStyle}" TargetType="{x:Type ContentPresenter}">
+        <Setter Property="ContentTemplate" Value="{Binding Path=(dxe:RangeControl.OwnerRangeControl).LabelTemplate, RelativeSource={RelativeSource Self}, Mode=OneWay}"/>
     </Style>
 
-    <Style x:Key="{dxt:RangeControlThemeKey ResourceKey=LeftNavigationButtonStyle}" TargetType="{x:Type Button}">
+    <Style x:Key="{dxet:RangeControlThemeKey ResourceKey=LeftNavigationButtonStyle}" TargetType="{x:Type Button}">
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Visibility" Value="Collapsed"/>
-        <Setter Property="Template" Value="{DynamicResource {dxt:RangeControlThemeKey ResourceKey=LeftNavigationButtonTemplate}}"/>
+        <Setter Property="Template" Value="{DynamicResource {dxet:RangeControlThemeKey ResourceKey=LeftNavigationButtonTemplate}}"/>
     </Style>
 
-    <Style x:Key="{dxt:RangeControlThemeKey ResourceKey=RightNavigationButtonStyle}" TargetType="{x:Type Button}">
+    <Style x:Key="{dxet:RangeControlThemeKey ResourceKey=RightNavigationButtonStyle}" TargetType="{x:Type Button}">
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Visibility" Value="Collapsed"/>
-        <Setter Property="Template" Value="{DynamicResource {dxt:RangeControlThemeKey ResourceKey=RightNavigationButtonTemplate}}"/>
+        <Setter Property="Template" Value="{DynamicResource {dxet:RangeControlThemeKey ResourceKey=RightNavigationButtonTemplate}}"/>
     </Style>
 
-    <ControlTemplate x:Key="{dxt:RangeControlThemeKey ResourceKey=RangeControlTemplate}" TargetType="{x:Type dxer:RangeControl}">
+    <ControlTemplate x:Key="{dxet:RangeControlThemeKey ResourceKey=RangeControlTemplate}" TargetType="{x:Type dxe:RangeControl}">
         <ContentControl x:Name="PART_Border"
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
-                        dxn:AppearanceOptions.Background="{TemplateBinding dxn:AppearanceOptions.Background}"
-                        dxn:AppearanceOptions.BorderBrush="{TemplateBinding dxn:AppearanceOptions.BorderBrush}"
-                        dxn:AppearanceOptions.HasBackground="{TemplateBinding dxn:AppearanceOptions.HasBackground}"
-                        dxn:AppearanceOptions.HasBorderBrush="{TemplateBinding dxn:AppearanceOptions.HasBorderBrush}"
+                        dxi:AppearanceOptions.Background="{TemplateBinding dxi:AppearanceOptions.Background}"
+                        dxi:AppearanceOptions.BorderBrush="{TemplateBinding dxi:AppearanceOptions.BorderBrush}"
+                        dxi:AppearanceOptions.HasBackground="{TemplateBinding dxi:AppearanceOptions.HasBackground}"
+                        dxi:AppearanceOptions.HasBorderBrush="{TemplateBinding dxi:AppearanceOptions.HasBorderBrush}"
                         Height="{TemplateBinding Height}"
                         IsTabStop="False"
                         Padding="{TemplateBinding Padding}"
-                        Template="{DynamicResource {dxt:RangeControlThemeKey ResourceKey=BorderTemplate}}"
+                        Template="{DynamicResource {dxet:RangeControlThemeKey ResourceKey=BorderTemplate}}"
                         Width="{TemplateBinding Width}">
             <Grid x:Name="PART_RootContainer">
                 <Grid.RowDefinitions>
@@ -189,64 +188,64 @@
                                      Canvas.Left="0"
                                      EnableDPICorrection="False"
                                      IsHitTestVisible="False"
-                                     Style="{DynamicResource {dxt:RangeControlThemeKey ResourceKey=OutOfRangeAreaBorderStyle}}"/>
+                                     Style="{DynamicResource {dxet:RangeControlThemeKey ResourceKey=OutOfRangeAreaBorderStyle}}"/>
                         <dx:DXBorder x:Name="PART_RightSideBorder"
                                      Canvas.Left="0"
                                      EnableDPICorrection="False"
                                      IsHitTestVisible="False"
-                                     Style="{DynamicResource {dxt:RangeControlThemeKey ResourceKey=OutOfRangeAreaBorderStyle}}"/>
+                                     Style="{DynamicResource {dxet:RangeControlThemeKey ResourceKey=OutOfRangeAreaBorderStyle}}"/>
                         <Thumb x:Name="PART_SelectionLeftThumb"
                                Canvas.Left="0"
                                IsHitTestVisible="False"
-                               Style="{DynamicResource {dxt:RangeControlThemeKey ResourceKey=LeftSelectionThumbStyle}}"/>
+                               Style="{DynamicResource {dxet:RangeControlThemeKey ResourceKey=LeftSelectionThumbStyle}}"/>
                         <Thumb x:Name="PART_SelectionRightThumb"
                                Canvas.Left="0"
                                IsHitTestVisible="False"
-                               Style="{DynamicResource {dxt:RangeControlThemeKey ResourceKey=RightSelectionThumbStyle}}"/>
+                               Style="{DynamicResource {dxet:RangeControlThemeKey ResourceKey=RightSelectionThumbStyle}}"/>
                         <Grid x:Name="PART_NavigationButtonsContainer" Canvas.Left="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <Button x:Name="PART_LeftNavigationButton" Style="{DynamicResource {dxt:RangeControlThemeKey ResourceKey=LeftNavigationButtonStyle}}"/>
+                            <Button x:Name="PART_LeftNavigationButton" Style="{DynamicResource {dxet:RangeControlThemeKey ResourceKey=LeftNavigationButtonStyle}}"/>
                             <Button x:Name="PART_RightNavigationButton"
                                     Grid.Column="2"
-                                    Style="{DynamicResource {dxt:RangeControlThemeKey ResourceKey=RightNavigationButtonStyle}}"/>
+                                    Style="{DynamicResource {dxet:RangeControlThemeKey ResourceKey=RightNavigationButtonStyle}}"/>
                         </Grid>
                         <ContentPresenter x:Name="PART_LeftLabel"
                                           Canvas.Left="0"
                                           IsHitTestVisible="False"
-                                          Margin="{DynamicResource {dxt:RangeControlThemeKey ResourceKey=LeftLabelMargin}}"
-                                          Style="{DynamicResource {dxt:RangeControlThemeKey ResourceKey=LabelStyle}}"/>
+                                          Margin="{DynamicResource {dxet:RangeControlThemeKey ResourceKey=LeftLabelMargin}}"
+                                          Style="{DynamicResource {dxet:RangeControlThemeKey ResourceKey=LabelStyle}}"/>
                         <ContentPresenter x:Name="PART_RightLabel"
                                           Canvas.Left="0"
                                           IsHitTestVisible="False"
-                                          Margin="{DynamicResource {dxt:RangeControlThemeKey ResourceKey=RightLabelMargin}}"
-                                          Style="{DynamicResource {dxt:RangeControlThemeKey ResourceKey=LabelStyle}}"/>
+                                          Margin="{DynamicResource {dxet:RangeControlThemeKey ResourceKey=RightLabelMargin}}"
+                                          Style="{DynamicResource {dxet:RangeControlThemeKey ResourceKey=LabelStyle}}"/>
                     </Canvas>
                     <Canvas>
                         <dx:DXBorder x:Name="PART_SelectionRectangle"
                                      EnableDPICorrection="False"
-                                     Style="{DynamicResource {dxt:RangeControlThemeKey ResourceKey=SelectionRectangleStyle}}"
+                                     Style="{DynamicResource {dxet:RangeControlThemeKey ResourceKey=SelectionRectangleStyle}}"
                                      Visibility="Collapsed"/>
                     </Canvas>
                 </Grid>
                 <dxei:RangeBar x:Name="PART_RangeBar"
                                Grid.Row="1"
-                               Style="{DynamicResource {dxt:RangeControlThemeKey ResourceKey=RangeBarStyle}}"/>
+                               Style="{DynamicResource {dxet:RangeControlThemeKey ResourceKey=RangeBarStyle}}"/>
             </Grid>
         </ContentControl>
         <ControlTemplate.Triggers>
-            <DataTrigger Binding="{Binding Path=(dxer:RangeControl.PropertyProvider).InvertLeftThumb, RelativeSource={RelativeSource Self}}" Value="True">
+            <DataTrigger Binding="{Binding Path=(dxe:RangeControl.PropertyProvider).InvertLeftThumb, RelativeSource={RelativeSource Self}}" Value="True">
                 <Setter Property="Style"
                         TargetName="PART_SelectionLeftThumb"
-                        Value="{DynamicResource {dxt:RangeControlThemeKey ResourceKey=RightSelectionThumbStyle}}"/>
+                        Value="{DynamicResource {dxet:RangeControlThemeKey ResourceKey=RightSelectionThumbStyle}}"/>
             </DataTrigger>
-            <DataTrigger Binding="{Binding Path=(dxer:RangeControl.PropertyProvider).InvertRightThumb, RelativeSource={RelativeSource Self}}" Value="True">
+            <DataTrigger Binding="{Binding Path=(dxe:RangeControl.PropertyProvider).InvertRightThumb, RelativeSource={RelativeSource Self}}" Value="True">
                 <Setter Property="Style"
                         TargetName="PART_SelectionRightThumb"
-                        Value="{DynamicResource {dxt:RangeControlThemeKey ResourceKey=LeftSelectionThumbStyle}}"/>
+                        Value="{DynamicResource {dxet:RangeControlThemeKey ResourceKey=LeftSelectionThumbStyle}}"/>
             </DataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>

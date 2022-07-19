@@ -6,7 +6,6 @@
                     xmlns:dxco="http://schemas.devexpress.com/winfx/2008/xaml/controls"
                     xmlns:dxcoi="http://schemas.devexpress.com/winfx/2008/xaml/controls/internal"
                     xmlns:dxcot="http://schemas.devexpress.com/winfx/2008/xaml/controls/themekeys"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
                     xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
@@ -79,7 +78,7 @@
                    VerticalAlignment="Center"/>
     </DataTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Controls.BreadcrumbControl}" TargetType="{x:Type dxco:BreadcrumbControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Controls.BreadcrumbControl}" TargetType="{x:Type dxco:BreadcrumbControl}">
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Template">
@@ -281,15 +280,14 @@
         <Border Background="{TemplateBinding Background}"
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}"
                 Padding="{TemplateBinding Padding}">
-            <Decorator>
-                <Path Data="F1 M 2,0 6,4 2,8 Z"
+            <Decorator Height="8" Width="8">
+                <Path Data="{TemplateBinding ArrowGeometry}"
                       Fill="{TemplateBinding Foreground}"
-                      Height="8"
                       HorizontalAlignment="Center"
                       LayoutTransform="{TemplateBinding GlyphTransform}"
-                      VerticalAlignment="Center"
-                      Width="8"/>
+                      VerticalAlignment="Center"/>
             </Decorator>
         </Border>
     </ControlTemplate>
@@ -301,6 +299,7 @@
                 cs:id="Setter_0000"/>
         <Setter Property="Padding" Value="3"/>
         <Setter Property="BorderThickness" Value="0,1,1,1"/>
+        <Setter Property="ArrowGeometry" Value="F1 M 2,0 6,4 2,8 Z"/>
         <Style.Triggers>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                 <Setter Property="Padding" Value="16"/>
@@ -325,6 +324,7 @@
         <Border Background="{TemplateBinding Background}"
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}"
                 Padding="{TemplateBinding Padding}">
             <dx:MeasurePixelSnapper SnapperType="Around">
                 <ContentPresenter Content="{Binding}"

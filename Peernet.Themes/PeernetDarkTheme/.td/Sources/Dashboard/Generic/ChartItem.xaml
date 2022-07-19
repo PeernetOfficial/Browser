@@ -1,13 +1,11 @@
 <ResourceDictionary mc:Ignorable="cs"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
-                    xmlns:dasboardthemes="http://schemas.devexpress.com/winfx/2008/xaml/dashboard/themekeys"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts"
                     xmlns:dxdash="http://schemas.devexpress.com/winfx/2008/xaml/dashboard"
                     xmlns:dxdashi="http://schemas.devexpress.com/winfx/2008/xaml/dashboard/internal"
                     xmlns:dxdasht="http://schemas.devexpress.com/winfx/2008/xaml/dashboard/themekeys"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
                     xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -428,8 +426,8 @@
         <Setter Property="DockTarget" Value="{Binding DefaultPane}"/>
         <Setter Property="CustomItemTemplate" Value="{StaticResource customItemTemplateKey}"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Background" Value="{DynamicResource {dasboardthemes:ChartItemThemeKey ResourceKey=LegendBackgroundBrush}}"/>
-        <Setter Property="Foreground" Value="{DynamicResource {dasboardthemes:ChartItemThemeKey ResourceKey=LegendForegroundBrush}}"/>
+        <Setter Property="Background" Value="{DynamicResource {dxdasht:ChartItemThemeKey ResourceKey=LegendBackgroundBrush}}"/>
+        <Setter Property="Foreground" Value="{DynamicResource {dxdasht:ChartItemThemeKey ResourceKey=LegendForegroundBrush}}"/>
     </Style>
 
     <DataTemplate x:Key="{dxdasht:ChartItemThemeKey ResourceKey=LegendTemplate}">

@@ -1,6 +1,6 @@
-<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/docking/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ve="http://schemas.devexpress.com/winfx/2008/xaml/docking/visualelements" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core">
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dxdot="http://schemas.devexpress.com/winfx/2008/xaml/docking/themekeys" xmlns:dxdove="http://schemas.devexpress.com/winfx/2008/xaml/docking/visualelements" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core">
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.LayoutItemsControl}" TargetType="{x:Type ve:LayoutItemsControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.LayoutItemsControl}" TargetType="{x:Type dxdove:LayoutItemsControl}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Generic\DockLayoutManagerContainers.xaml;10;6" /><Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
@@ -11,60 +11,60 @@
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <ve:GroupPanel dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\DockLayoutManagerContainers.xaml;21;22" />
+                    <dxdove:GroupPanel dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\DockLayoutManagerContainers.xaml;21;22" />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.FloatingLayoutItemsControl}" BasedOn="{StaticResource {dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.LayoutItemsControl}}" TargetType="{x:Type ve:FloatingLayoutItemsControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.FloatingLayoutItemsControl}" BasedOn="{StaticResource {dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.LayoutItemsControl}}" TargetType="{x:Type dxdove:FloatingLayoutItemsControl}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Generic\DockLayoutManagerContainers.xaml;27;6" /><Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <ve:FloatingItemsPanel />
+                    <dxdove:FloatingItemsPanel />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.PanelTabContainer}" TargetType="{x:Type ve:PanelTabContainer}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.PanelTabContainer}" TargetType="{x:Type dxdove:PanelTabContainer}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Generic\DockLayoutManagerContainers.xaml;39;6" /><Setter Property="SnapsToDevicePixels" Value="true" />
-        <Setter Property="Template" Value="{DynamicResource {dxt:TabbedPaneElementsThemeKey ResourceKey=TabContainerTemplate}}" />
+        <Setter Property="Template" Value="{DynamicResource {dxdot:TabbedPaneElementsThemeKey ResourceKey=TabContainerTemplate}}" />
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <ve:TabHeadersPanel Background="{DynamicResource {dxt:TabbedPaneElementsThemeKey ResourceKey=TabHeadersBackground}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\DockLayoutManagerContainers.xaml;45;22" />
+                    <dxdove:TabHeadersPanel Background="{DynamicResource {dxdot:TabbedPaneElementsThemeKey ResourceKey=TabHeadersBackground}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\DockLayoutManagerContainers.xaml;45;22" />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="ClipMargin" Value="{DynamicResource {dxt:TabbedPaneElementsThemeKey ResourceKey=TabHeadersClipMargin}}" />
-        <Setter Property="TabHeaderBorderThickness" Value="{DynamicResource {dxt:TabbedPaneElementsThemeKey ResourceKey=TabHeadersBorderThickness}}" />
+        <Setter Property="ClipMargin" Value="{DynamicResource {dxdot:TabbedPaneElementsThemeKey ResourceKey=TabHeadersClipMargin}}" />
+        <Setter Property="TabHeaderBorderThickness" Value="{DynamicResource {dxdot:TabbedPaneElementsThemeKey ResourceKey=TabHeadersBorderThickness}}" />
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.DocumentTabContainer}" TargetType="{x:Type ve:DocumentTabContainer}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Generic\DockLayoutManagerContainers.xaml;53;6" /><Setter Property="Template" Value="{DynamicResource {dxt:DocumentPaneElementsThemeKey ResourceKey=TabContainerTemplate}}" />
-        <Setter Property="ThemeDependentBackground" Value="{DynamicResource {dxt:DocumentPaneElementsThemeKey ResourceKey=TabbedBackground}}" />
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.DocumentTabContainer}" TargetType="{x:Type dxdove:DocumentTabContainer}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Generic\DockLayoutManagerContainers.xaml;53;6" /><Setter Property="Template" Value="{DynamicResource {dxdot:DocumentPaneElementsThemeKey ResourceKey=TabContainerTemplate}}" />
+        <Setter Property="ThemeDependentBackground" Value="{DynamicResource {dxdot:DocumentPaneElementsThemeKey ResourceKey=TabbedBackground}}" />
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <ve:TabHeadersPanel Background="{DynamicResource {dxt:DocumentPaneElementsThemeKey ResourceKey=TabHeadersBackground}}" TransparencySize="{DynamicResource {dxt:DocumentPaneElementsThemeKey ResourceKey=TabHeadersTransparencySize}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\DockLayoutManagerContainers.xaml;59;22" />
+                    <dxdove:TabHeadersPanel Background="{DynamicResource {dxdot:DocumentPaneElementsThemeKey ResourceKey=TabHeadersBackground}}" TransparencySize="{DynamicResource {dxdot:DocumentPaneElementsThemeKey ResourceKey=TabHeadersTransparencySize}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\DockLayoutManagerContainers.xaml;59;22" />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="ClipMargin" Value="{DynamicResource {dxt:DocumentPaneElementsThemeKey ResourceKey=TabHeadersClipMargin}}" />
-        <Setter Property="TabPanelMargin" Value="{DynamicResource {dxt:DocumentPaneElementsThemeKey ResourceKey=TabPanelMargin}}" />
-        <Setter Property="ContentBorderThickness" Value="{DynamicResource {dxt:DocumentPaneElementsThemeKey ResourceKey=ContentBorderThickness}}" />
-        <Setter Property="BorderMargin" Value="{DynamicResource {dxt:DocumentPaneElementsThemeKey ResourceKey=TabbedBorderMargin}}" />
+        <Setter Property="ClipMargin" Value="{DynamicResource {dxdot:DocumentPaneElementsThemeKey ResourceKey=TabHeadersClipMargin}}" />
+        <Setter Property="TabPanelMargin" Value="{DynamicResource {dxdot:DocumentPaneElementsThemeKey ResourceKey=TabPanelMargin}}" />
+        <Setter Property="ContentBorderThickness" Value="{DynamicResource {dxdot:DocumentPaneElementsThemeKey ResourceKey=ContentBorderThickness}}" />
+        <Setter Property="BorderMargin" Value="{DynamicResource {dxdot:DocumentPaneElementsThemeKey ResourceKey=TabbedBorderMargin}}" />
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.DocumentMDIContainer}" TargetType="{x:Type ve:DocumentMDIContainer}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.DocumentMDIContainer}" TargetType="{x:Type dxdove:DocumentMDIContainer}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Generic\DockLayoutManagerContainers.xaml;69;6" /><Setter Property="SnapsToDevicePixels" Value="true" />
-        <Setter Property="Template" Value="{DynamicResource {dxt:DocumentPaneElementsThemeKey ResourceKey=MDIContainerTemplate}}" />
-        <Setter Property="ThemeDependentBackground" Value="{DynamicResource {dxt:DocumentPaneElementsThemeKey ResourceKey=MDIBackground}}" />
+        <Setter Property="Template" Value="{DynamicResource {dxdot:DocumentPaneElementsThemeKey ResourceKey=MDIContainerTemplate}}" />
+        <Setter Property="ThemeDependentBackground" Value="{DynamicResource {dxdot:DocumentPaneElementsThemeKey ResourceKey=MDIBackground}}" />
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <ve:MDIPanel dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\DockLayoutManagerContainers.xaml;76;22" />
+                    <dxdove:MDIPanel dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\DockLayoutManagerContainers.xaml;76;22" />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>

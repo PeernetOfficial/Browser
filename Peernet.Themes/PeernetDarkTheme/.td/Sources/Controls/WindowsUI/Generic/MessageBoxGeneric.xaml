@@ -2,9 +2,9 @@
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
-                    xmlns:dxcn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui"
                     xmlns:dxwuii="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/internal"
                     xmlns:dxwuit="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/themekeys"
@@ -136,28 +136,28 @@
                 <VisualStateGroup x:Name="group1">
                     <VisualState x:Name="OK">
                         <Storyboard>
-                            <ObjectAnimationUsingKeyFrames dxcn:ValueSetter.Visibility="Visible"
+                            <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Visibility="Visible"
                                                            Storyboard.TargetName="okGrid"
                                                            Storyboard.TargetProperty="Visibility"/>
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="OKCancel">
                         <Storyboard>
-                            <ObjectAnimationUsingKeyFrames dxcn:ValueSetter.Visibility="Visible"
+                            <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Visibility="Visible"
                                                            Storyboard.TargetName="okCancelGrid"
                                                            Storyboard.TargetProperty="Visibility"/>
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="YesNo">
                         <Storyboard>
-                            <ObjectAnimationUsingKeyFrames dxcn:ValueSetter.Visibility="Visible"
+                            <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Visibility="Visible"
                                                            Storyboard.TargetName="yesNoGrid"
                                                            Storyboard.TargetProperty="Visibility"/>
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="YesNoCancel">
                         <Storyboard>
-                            <ObjectAnimationUsingKeyFrames dxcn:ValueSetter.Visibility="Visible"
+                            <ObjectAnimationUsingKeyFrames dxi:ValueSetter.Visibility="Visible"
                                                            Storyboard.TargetName="yesNoCancelGrid"
                                                            Storyboard.TargetProperty="Visibility"/>
                         </Storyboard>
@@ -167,7 +167,7 @@
         </Border>
     </ControlTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.WinUIMessageBox}" TargetType="{x:Type dxwui:WinUIMessageBox}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.WinUIMessageBox}" TargetType="{x:Type dxwui:WinUIMessageBox}">
         <Setter Property="Template" Value="{StaticResource DXMessageBoxTemplate}"/>
         <Setter Property="FocusManager.IsFocusScope" Value="True"/>
     </Style>
@@ -246,7 +246,7 @@
         </Grid>
     </ControlTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.WinUIDialogWindow}" TargetType="{x:Type dxwui:WinUIDialogWindow}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.WinUIDialogWindow}" TargetType="{x:Type dxwui:WinUIDialogWindow}">
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -255,7 +255,7 @@
         <Setter Property="Foreground" Value="{DynamicResource {dxwuit:MessageBoxElementsThemeKey ResourceKey=Foreground}}"/>
         <Setter Property="CommandButtonStyle">
             <Setter.Value>
-                <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=System.Windows.Controls.Button}" TargetType="Button">
+                <Style x:Key="{dxt:DefaultStyleThemeKey FullName=System.Windows.Controls.Button}" TargetType="Button">
                     <Setter Property="MinWidth" Value="65"/>
                     <Setter Property="MinHeight" Value="22"/>
                     <Setter Property="Margin" Value="6,0,0,0"/>
@@ -274,7 +274,7 @@
         </Setter>
         <Setter Property="TitleStyle">
             <Setter.Value>
-                <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=ContentControl}" TargetType="ContentControl">
+                <Style x:Key="{dxt:DefaultStyleThemeKey FullName=ContentControl}" TargetType="ContentControl">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                     <Setter Property="VerticalContentAlignment" Value="Stretch"/>
                     <Setter Property="IsTabStop" Value="False"/>
@@ -294,16 +294,16 @@
         </Setter>
         <Setter Property="ContentStyle">
             <Setter.Value>
-                <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=FrameworkElement}" TargetType="FrameworkElement">
+                <Style x:Key="{dxt:DefaultStyleThemeKey FullName=FrameworkElement}" TargetType="FrameworkElement">
                     <Setter Property="Margin" Value="0,8"/>
                     <Setter Property="HorizontalAlignment" Value="Center"/>
                 </Style>
             </Setter.Value>
         </Setter>
         <!--SPECIFICTHEME TouchlineDark 
-        <Setter Property="TextElement.FontSize" Value="{DynamicResource {dxdst:FloatingContainerThemeKey ResourceKey=GlobalFontSize}}" />
-        <Setter Property="TextElement.FontFamily" Value="{DynamicResource {dxdst:FloatingContainerThemeKey ResourceKey=GlobalFontFamily}}" />
-        <Setter Property="Control.Foreground" Value="{DynamicResource {dxdst:ThemeColorsThemeKey ResourceKey=WhiteForegroundColor}}" /> SPECIFICTHEME-->
+        <Setter Property="TextElement.FontSize" Value="{DynamicResource {dxt:FloatingContainerThemeKey ResourceKey=GlobalFontSize}}" />
+        <Setter Property="TextElement.FontFamily" Value="{DynamicResource {dxt:FloatingContainerThemeKey ResourceKey=GlobalFontFamily}}" />
+        <Setter Property="Control.Foreground" Value="{DynamicResource {dxt:ThemeColorsThemeKey ResourceKey=WhiteForegroundColor}}" /> SPECIFICTHEME-->
         <Style.Triggers>
             <Trigger Property="HasContent" Value="False">
                 <Setter Property="Template" Value="{StaticResource WinUIDialogWindowTemplate}"/>

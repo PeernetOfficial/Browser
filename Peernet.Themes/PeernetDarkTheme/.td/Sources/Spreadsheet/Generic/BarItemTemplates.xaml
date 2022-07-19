@@ -2,13 +2,13 @@
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
-                    xmlns:dxspsui="http://schemas.devexpress.com/winfx/2008/xaml/spreadsheet"
+                    xmlns:dxsps="http://schemas.devexpress.com/winfx/2008/xaml/spreadsheet"
+                    xmlns:dxspst="http://schemas.devexpress.com/winfx/2008/xaml/spreadsheet/themekeys"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:themes="http://schemas.devexpress.com/winfx/2008/xaml/spreadsheet/themekeys"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <DataTemplate x:Key="{themes:BarItemTemplate ResourceKey=ChartLayoutGalleryGroup}" DataType="dxb:GalleryItemGroup">
+    <DataTemplate x:Key="{dxspst:BarItemTemplate ResourceKey=ChartLayoutGalleryGroup}" DataType="dxb:GalleryItemGroup">
         <ContentControl>
             <dxb:GalleryItemGroup Caption="{Binding Caption}" ItemsSource="{Binding Items}">
                 <dxb:GalleryItemGroup.ItemTemplate>
@@ -22,7 +22,7 @@
         </ContentControl>
     </DataTemplate>
 
-    <DataTemplate x:Key="{themes:BarItemTemplate ResourceKey=ChartStylesGalleryGroup}" DataType="dxb:GalleryItemGroup">
+    <DataTemplate x:Key="{dxspst:BarItemTemplate ResourceKey=ChartStylesGalleryGroup}" DataType="dxb:GalleryItemGroup">
         <ContentControl>
             <dxb:GalleryItemGroup Caption="{Binding Caption}" ItemsSource="{Binding Items}">
                 <dxb:GalleryItemGroup.ItemTemplate>
@@ -36,7 +36,7 @@
         </ContentControl>
     </DataTemplate>
 
-    <DataTemplate x:Key="{themes:BarItemTemplate ResourceKey=StyleGalleryGroup}">
+    <DataTemplate x:Key="{dxspst:BarItemTemplate ResourceKey=StyleGalleryGroup}">
         <dxb:GalleryItemGroup Caption="{Binding Caption}" ItemsSource="{Binding Items}">
             <dxb:GalleryItemGroup.ItemTemplate>
                 <DataTemplate>
@@ -46,7 +46,7 @@
         </dxb:GalleryItemGroup>
     </DataTemplate>
 
-    <DataTemplate x:Key="{themes:BarItemTemplate ResourceKey=CellStyleGalleryItemCaption}">
+    <DataTemplate x:Key="{dxspst:BarItemTemplate ResourceKey=CellStyleGalleryItemCaption}">
         <Grid Background="{Binding Background}"
               Height="22"
               Width="100">
@@ -65,19 +65,19 @@
         </Grid>
     </DataTemplate>
 
-    <DataTemplate x:Key="{themes:BarItemTemplate ResourceKey=StyleGalleryHintCaption}">
+    <DataTemplate x:Key="{dxspst:BarItemTemplate ResourceKey=StyleGalleryHintCaption}">
         <TextBlock Text="{Binding Text}"/>
     </DataTemplate>
 
-    <DataTemplate x:Key="{themes:BarItemTemplate ResourceKey=TableStyleGalleryItemCaption}">
+    <DataTemplate x:Key="{dxspst:BarItemTemplate ResourceKey=TableStyleGalleryItemCaption}">
         <Grid Height="46" Width="61">
-            <dxspsui:TableStyleGalleryItem Spreadsheet="{Binding Spreadsheet}" StyleName="{Binding StyleName}"/>
+            <dxsps:TableStyleGalleryItem Spreadsheet="{Binding Spreadsheet}" StyleName="{Binding StyleName}"/>
         </Grid>
     </DataTemplate>
 
-    <DataTemplate x:Key="{themes:BarItemTemplate ResourceKey=PivotTableStyleGalleryItemCaption}">
+    <DataTemplate x:Key="{dxspst:BarItemTemplate ResourceKey=PivotTableStyleGalleryItemCaption}">
         <Grid Height="46" Width="61">
-            <dxspsui:PivotTableStyleGalleryItem Spreadsheet="{Binding Spreadsheet}" StyleName="{Binding StyleName}"/>
+            <dxsps:PivotTableStyleGalleryItem Spreadsheet="{Binding Spreadsheet}" StyleName="{Binding StyleName}"/>
         </Grid>
     </DataTemplate>
 

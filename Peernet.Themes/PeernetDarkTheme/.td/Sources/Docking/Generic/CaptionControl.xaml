@@ -3,48 +3,48 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dxdove="http://schemas.devexpress.com/winfx/2008/xaml/docking/visualelements"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:ve="http://schemas.devexpress.com/winfx/2008/xaml/docking/visualelements"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <ve:ImageLocationToDockConverter x:Key="imageLocationToDockConverter"/>
+    <dxdove:ImageLocationToDockConverter x:Key="imageLocationToDockConverter"/>
 
     <dx:BoolToVisibilityConverter x:Key="boolToVisibilityConverter"/>
 
-    <ve:DoubleToThicknessConverter x:Key="doubleToThicknessConverterRight" Direction="Right"/>
+    <dxdove:DoubleToThicknessConverter x:Key="doubleToThicknessConverterRight" Direction="Right"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.CaptionControl}" TargetType="{x:Type ve:CaptionControl}">
-        <!--SPECIFICTHEME Office2010Black <Setter Property="AlternateForeground" Value="{DynamicResource {dxdst:ThemeColorsThemeKey ResourceKey=BlackForegroundColor}}" /> SPECIFICTHEME-->
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.CaptionControl}" TargetType="{x:Type dxdove:CaptionControl}">
+        <!--SPECIFICTHEME Office2010Black <Setter Property="AlternateForeground" Value="{DynamicResource {dxt:ThemeColorsThemeKey ResourceKey=BlackForegroundColor}}" /> SPECIFICTHEME-->
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ve:CaptionControl}">
+                <ControlTemplate TargetType="{x:Type dxdove:CaptionControl}">
                     <Grid>
                         <dxb:SplitLayoutPanel Content1Location="{Binding CaptionImageLocation,Converter={StaticResource imageLocationToDockConverter}}" LeftContent1Margin="{Binding ImageToTextDistance, Converter={StaticResource doubleToThicknessConverterRight}}">
                             <dxb:SplitLayoutPanel.Content1>
-                                <ve:CaptionImage x:Name="PART_Image"
-                                                 Source="{TemplateBinding CaptionImage}"
-                                                 Style="{Binding CaptionImageStyle}"
-                                                 Visibility="{Binding ShowCaptionImage, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityConverter}}"/>
+                                <dxdove:CaptionImage x:Name="PART_Image"
+                                                     Source="{TemplateBinding CaptionImage}"
+                                                     Style="{Binding CaptionImageStyle}"
+                                                     Visibility="{Binding ShowCaptionImage, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityConverter}}"/>
                             </dxb:SplitLayoutPanel.Content1>
                             <dxb:SplitLayoutPanel.Content2>
                                 <Border x:Name="captionBorder"
                                         Background="{Binding ActualAppearance.Background, RelativeSource={RelativeSource TemplatedParent}}"
                                         Visibility="{Binding HasCaption, Converter={StaticResource boolToVisibilityConverter}}">
-                                    <ve:psvCaption x:Name="PART_Text"
-                                                   Background="{Binding ActualAppearance.Background, RelativeSource={RelativeSource TemplatedParent}}"
-                                                   FontFamily="{Binding ActualAppearance.FontFamily, RelativeSource={RelativeSource TemplatedParent}}"
-                                                   FontSize="{Binding ActualAppearance.FontSize, RelativeSource={RelativeSource TemplatedParent}}"
-                                                   FontStretch="{Binding ActualAppearance.FontStretch, RelativeSource={RelativeSource TemplatedParent}}"
-                                                   FontStyle="{Binding ActualAppearance.FontStyle, RelativeSource={RelativeSource TemplatedParent}}"
-                                                   FontWeight="{Binding ActualAppearance.FontWeight, RelativeSource={RelativeSource TemplatedParent}}"
-                                                   Foreground="{Binding ActualAppearance.Foreground, RelativeSource={RelativeSource TemplatedParent}}"
-                                                   HorizontalAlignment="Left"
-                                                   Text="{Binding ActualCaption}"
-                                                   TextTrimming="{Binding TextTrimming}"
-                                                   TextWrapping="{Binding TextWrapping, RelativeSource={RelativeSource TemplatedParent}}"
-                                                   ve:DockPane.HitTestType="Label"
-                                                   VerticalAlignment="Center"/>
+                                    <dxdove:psvCaption x:Name="PART_Text"
+                                                       Background="{Binding ActualAppearance.Background, RelativeSource={RelativeSource TemplatedParent}}"
+                                                       dxdove:DockPane.HitTestType="Label"
+                                                       FontFamily="{Binding ActualAppearance.FontFamily, RelativeSource={RelativeSource TemplatedParent}}"
+                                                       FontSize="{Binding ActualAppearance.FontSize, RelativeSource={RelativeSource TemplatedParent}}"
+                                                       FontStretch="{Binding ActualAppearance.FontStretch, RelativeSource={RelativeSource TemplatedParent}}"
+                                                       FontStyle="{Binding ActualAppearance.FontStyle, RelativeSource={RelativeSource TemplatedParent}}"
+                                                       FontWeight="{Binding ActualAppearance.FontWeight, RelativeSource={RelativeSource TemplatedParent}}"
+                                                       Foreground="{Binding ActualAppearance.Foreground, RelativeSource={RelativeSource TemplatedParent}}"
+                                                       HorizontalAlignment="Left"
+                                                       Text="{Binding ActualCaption}"
+                                                       TextTrimming="{Binding TextTrimming}"
+                                                       TextWrapping="{Binding TextWrapping, RelativeSource={RelativeSource TemplatedParent}}"
+                                                       VerticalAlignment="Center"/>
                                 </Border>
                             </dxb:SplitLayoutPanel.Content2>
                         </dxb:SplitLayoutPanel>
@@ -54,37 +54,37 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.TabCaptionControl}" TargetType="{x:Type ve:TabCaptionControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.TabCaptionControl}" TargetType="{x:Type dxdove:TabCaptionControl}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ve:TabCaptionControl}">
+                <ControlTemplate TargetType="{x:Type dxdove:TabCaptionControl}">
                     <dxb:SplitLayoutPanel Content1Location="{Binding CaptionImageLocation,Converter={StaticResource imageLocationToDockConverter}}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           LeftContent1Margin="{Binding ImageToTextDistance, Converter={StaticResource doubleToThicknessConverterRight}}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                         <dxb:SplitLayoutPanel.Content1>
-                            <ve:CaptionImage x:Name="PART_Image"
-                                             Source="{TemplateBinding CaptionImage}"
-                                             Style="{Binding CaptionImageStyle}"
-                                             Visibility="{Binding ShowCaptionImage, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityConverter}}"/>
+                            <dxdove:CaptionImage x:Name="PART_Image"
+                                                 Source="{TemplateBinding CaptionImage}"
+                                                 Style="{Binding CaptionImageStyle}"
+                                                 Visibility="{Binding ShowCaptionImage, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityConverter}}"/>
                         </dxb:SplitLayoutPanel.Content1>
                         <dxb:SplitLayoutPanel.Content2>
                             <dx:PixelSnapper HorizontalAlignment="Left"
                                              VerticalAlignment="Center"
                                              Visibility="{Binding HasTabCaption, Converter={StaticResource boolToVisibilityConverter}}">
-                                <ve:psvTabCaption x:Name="PART_Text"
-                                                  Background="{Binding ActualAppearance.Background, RelativeSource={RelativeSource TemplatedParent}}"
-                                                  FontFamily="{Binding ActualAppearance.FontFamily, RelativeSource={RelativeSource TemplatedParent}}"
-                                                  FontSize="{Binding ActualAppearance.FontSize, RelativeSource={RelativeSource TemplatedParent}}"
-                                                  FontStretch="{Binding ActualAppearance.FontStretch, RelativeSource={RelativeSource TemplatedParent}}"
-                                                  FontStyle="{Binding ActualAppearance.FontStyle, RelativeSource={RelativeSource TemplatedParent}}"
-                                                  FontWeight="{Binding ActualAppearance.FontWeight, RelativeSource={RelativeSource TemplatedParent}}"
-                                                  Foreground="{Binding ActualAppearance.Foreground, RelativeSource={RelativeSource TemplatedParent}}"
-                                                  Text="{Binding ActualTabCaption}"
-                                                  TextTrimming="{Binding TextTrimming}"
-                                                  TextWrapping="NoWrap"
-                                                  UseLayoutRounding="True"
-                                                  ve:DockPane.HitTestType="Label"/>
+                                <dxdove:psvTabCaption x:Name="PART_Text"
+                                                      Background="{Binding ActualAppearance.Background, RelativeSource={RelativeSource TemplatedParent}}"
+                                                      dxdove:DockPane.HitTestType="Label"
+                                                      FontFamily="{Binding ActualAppearance.FontFamily, RelativeSource={RelativeSource TemplatedParent}}"
+                                                      FontSize="{Binding ActualAppearance.FontSize, RelativeSource={RelativeSource TemplatedParent}}"
+                                                      FontStretch="{Binding ActualAppearance.FontStretch, RelativeSource={RelativeSource TemplatedParent}}"
+                                                      FontStyle="{Binding ActualAppearance.FontStyle, RelativeSource={RelativeSource TemplatedParent}}"
+                                                      FontWeight="{Binding ActualAppearance.FontWeight, RelativeSource={RelativeSource TemplatedParent}}"
+                                                      Foreground="{Binding ActualAppearance.Foreground, RelativeSource={RelativeSource TemplatedParent}}"
+                                                      Text="{Binding ActualTabCaption}"
+                                                      TextTrimming="{Binding TextTrimming}"
+                                                      TextWrapping="NoWrap"
+                                                      UseLayoutRounding="True"/>
                             </dx:PixelSnapper>
                         </dxb:SplitLayoutPanel.Content2>
                     </dxb:SplitLayoutPanel>
@@ -93,10 +93,10 @@
         </Setter>
     </Style>
 
-    <Style x:Key="TemplatedCaptionControlBaseStyle" TargetType="{x:Type ve:TemplatedCaptionControl}">
+    <Style x:Key="TemplatedCaptionControlBaseStyle" TargetType="{x:Type dxdove:TemplatedCaptionControl}">
         <Setter Property="ContentPresenterTemplate">
             <Setter.Value>
-                <ControlTemplate TargetType="ve:TemplatedCaptionControl">
+                <ControlTemplate TargetType="dxdove:TemplatedCaptionControl">
                     <dxb:SplitLayoutPanel Content1Location="{Binding LayoutItem.CaptionImageLocation, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource imageLocationToDockConverter}}"
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           LeftContent1Margin="{Binding LayoutItem.ImageToTextDistance, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource doubleToThicknessConverterRight}}"
@@ -105,10 +105,10 @@
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                           Width="{TemplateBinding ActualCaptionWidth}">
                         <dxb:SplitLayoutPanel.Content1>
-                            <ve:CaptionImage x:Name="PART_Image"
-                                             Source="{Binding CaptionImage, RelativeSource={RelativeSource TemplatedParent}}"
-                                             Style="{Binding CaptionImageStyle}"
-                                             Visibility="{Binding IsCaptionImageVisible, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityConverter}}"/>
+                            <dxdove:CaptionImage x:Name="PART_Image"
+                                                 Source="{Binding CaptionImage, RelativeSource={RelativeSource TemplatedParent}}"
+                                                 Style="{Binding CaptionImageStyle}"
+                                                 Visibility="{Binding IsCaptionImageVisible, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityConverter}}"/>
                         </dxb:SplitLayoutPanel.Content1>
                         <dxb:SplitLayoutPanel.Content2>
                             <ContentPresenter Content="{TemplateBinding ActualContent}"
@@ -124,42 +124,42 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.TemplatedCaptionControl}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.TemplatedCaptionControl}"
            BasedOn="{StaticResource TemplatedCaptionControlBaseStyle}"
-           TargetType="{x:Type ve:TemplatedCaptionControl}">
+           TargetType="{x:Type dxdove:TemplatedCaptionControl}">
         <Setter Property="CaptionControlTemplate">
             <Setter.Value>
-                <ControlTemplate TargetType="ve:TemplatedCaptionControl">
-                    <ve:CaptionControl x:Name="PART_Caption"
-                                       CaptionImage="{TemplateBinding CaptionImage}"
-                                       FontWeight="{TemplateBinding FontWeight}"
-                                       Foreground="{TemplateBinding Foreground}"
-                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                       Margin="{TemplateBinding Padding}"
-                                       ShowCaptionImage="{TemplateBinding IsCaptionImageVisible}"
-                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                <ControlTemplate TargetType="dxdove:TemplatedCaptionControl">
+                    <dxdove:CaptionControl x:Name="PART_Caption"
+                                           CaptionImage="{TemplateBinding CaptionImage}"
+                                           FontWeight="{TemplateBinding FontWeight}"
+                                           Foreground="{TemplateBinding Foreground}"
+                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                           Margin="{TemplateBinding Padding}"
+                                           ShowCaptionImage="{TemplateBinding IsCaptionImageVisible}"
+                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.TemplatedTabCaptionControl}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.TemplatedTabCaptionControl}"
            BasedOn="{StaticResource TemplatedCaptionControlBaseStyle}"
-           TargetType="{x:Type ve:TemplatedTabCaptionControl}">
+           TargetType="{x:Type dxdove:TemplatedTabCaptionControl}">
         <Setter Property="Foreground"
                 Value="#FF000000"
                 cs:id="Setter_0000"/>
         <Setter Property="CaptionControlTemplate">
             <Setter.Value>
-                <ControlTemplate TargetType="ve:TemplatedTabCaptionControl">
-                    <ve:TabCaptionControl x:Name="PART_Caption"
-                                          CaptionImage="{TemplateBinding CaptionImage}"
-                                          Foreground="{TemplateBinding Foreground}"
-                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                          Margin="{TemplateBinding Padding}"
-                                          ShowCaptionImage="{TemplateBinding IsCaptionImageVisible}"
-                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                                          Width="{Binding TabCaptionWidth}"/>
+                <ControlTemplate TargetType="dxdove:TemplatedTabCaptionControl">
+                    <dxdove:TabCaptionControl x:Name="PART_Caption"
+                                              CaptionImage="{TemplateBinding CaptionImage}"
+                                              Foreground="{TemplateBinding Foreground}"
+                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              Margin="{TemplateBinding Padding}"
+                                              ShowCaptionImage="{TemplateBinding IsCaptionImageVisible}"
+                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              Width="{Binding TabCaptionWidth}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

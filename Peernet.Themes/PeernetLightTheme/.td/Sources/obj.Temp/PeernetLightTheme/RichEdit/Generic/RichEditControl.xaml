@@ -1,25 +1,25 @@
-<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon" xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit" xmlns:dxrec="http://schemas.devexpress.com/winfx/2008/xaml/richedit/internal" xmlns:dxret="http://schemas.devexpress.com/winfx/2008/xaml/richedit/themekeys" xmlns:dxreui="http://schemas.devexpress.com/winfx/2008/xaml/richedit" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon" xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit" xmlns:dxrei="http://schemas.devexpress.com/winfx/2008/xaml/richedit/internal" xmlns:dxret="http://schemas.devexpress.com/winfx/2008/xaml/richedit/themekeys" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxdst:ResourceDictionaryEx Source="/DevExpress.Xpf.RichEdit.v21.2;component/Themes/Generic/Ruler.xaml" />
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.RichEdit.v22.1;component/Themes/Generic/Ruler.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <ControlTemplate x:Key="InvisibleBorderTemplate" TargetType="{x:Type ContentControl}">
-        <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" SnapsToDevicePixels="True" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;22;10" />
+        <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" SnapsToDevicePixels="True" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;21;10" />
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxret:RichEditControlThemeKey ResourceKey=EmptyCommentControlTemplate}" />
 
     <ControlTemplate x:Key="{dxret:RichEditControlThemeKey ResourceKey=CommentControlTemplate}">
-        <dxreui:RichEditCommentControl DockLayoutManager="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type dxdo:DockLayoutManager}}, Mode=OneTime}" dxreui:InnerCommentControl.IsTemplatePart="True" HorizontalAlignment="Stretch" LayoutPanel="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type dxdo:LayoutPanel}}, Mode=OneTime}" MinWidth="350" RichEditControl="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type dxre:RichEditControl}}}" VerticalAlignment="Stretch" />
+        <dxre:RichEditCommentControl DockLayoutManager="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type dxdo:DockLayoutManager}}, Mode=OneTime}" dxre:InnerCommentControl.IsTemplatePart="True" HorizontalAlignment="Stretch" LayoutPanel="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type dxdo:LayoutPanel}}, Mode=OneTime}" MinWidth="350" RichEditControl="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type dxre:RichEditControl}}}" VerticalAlignment="Stretch" />
     </ControlTemplate>
 
     <dxcore_unique_xmlns:BoolToThicknessConverter x:Key="layoutGroupBoolToThicknessConverter" ThicknessFalse="0" ThicknessTrue="Auto" />
 
     
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.RichEdit.RichEditControl}" TargetType="{x:Type dxre:RichEditControl}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="RichEdit\Generic\RichEditControl.xaml;46;6" /><Setter Property="MaxWidth" Value="3000000" />
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.RichEdit.RichEditControl}" TargetType="{x:Type dxre:RichEditControl}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="RichEdit\Generic\RichEditControl.xaml;45;6" /><Setter Property="MaxWidth" Value="3000000" />
         <Setter Property="MaxHeight" Value="3000000" />
         <Setter Property="AutoBackground" Value="{DynamicResource {dxret:RichEditControlThemeKey ResourceKey=RichEditBackgroundBrush}}" />
         <Setter Property="AutoForeground" Value="{DynamicResource {dxret:RichEditControlThemeKey ResourceKey=RichEditForegroundBrush}}" />
@@ -27,7 +27,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="dxre:RichEditControl">
-                    <DockPanel dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;55;22">
+                    <DockPanel dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;54;22">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualStateGroup.Transitions>
@@ -85,27 +85,27 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Control x:Name="PART_RibbonHost" DockPanel.Dock="Top" Template="{DynamicResource {dxret:RichEditControlThemeKey ResourceKey=EmptyRibbonTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;139;26" />
-                        <ContentControl Background="{TemplateBinding Background}" Focusable="False" Template="{DynamicResource {dxret:RichEditControlThemeKey ResourceKey=BackgroundControlTemplate}}" UseLayoutRounding="False" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;142;26">
-                            <dxdo:DockLayoutManager x:Name="PART_DockLayoutManager" Background="Transparent" ShowInvisibleItems="False" cs:id="DockLayoutManager_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;146;30">
-                                <dxdo:LayoutGroup Margin="{TemplateBinding ShowBorder, Converter={StaticResource layoutGroupBoolToThicknessConverter}}" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;150;34">
+                        <Control x:Name="PART_RibbonHost" DockPanel.Dock="Top" Template="{DynamicResource {dxret:RichEditControlThemeKey ResourceKey=EmptyRibbonTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;138;26" />
+                        <ContentControl Background="{TemplateBinding Background}" Focusable="False" Template="{DynamicResource {dxret:RichEditControlThemeKey ResourceKey=BackgroundControlTemplate}}" UseLayoutRounding="False" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;141;26">
+                            <dxdo:DockLayoutManager x:Name="PART_DockLayoutManager" Background="Transparent" ShowInvisibleItems="False" cs:id="DockLayoutManager_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;145;30">
+                                <dxdo:LayoutGroup Margin="{TemplateBinding ShowBorder, Converter={StaticResource layoutGroupBoolToThicknessConverter}}" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;149;34">
                                     <dxdo:LayoutPanel Name="paneComments" Caption="Main document comments" MaxWidth="500" Visibility="Collapsed">
-                                        <Control x:Name="PART_CommentControlHost" Template="{DynamicResource {dxret:RichEditControlThemeKey ResourceKey=EmptyCommentControlTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;155;42" />
+                                        <Control x:Name="PART_CommentControlHost" Template="{DynamicResource {dxret:RichEditControlThemeKey ResourceKey=EmptyCommentControlTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;154;42" />
                                     </dxdo:LayoutPanel>
                                     <dxdo:DocumentGroup Background="Transparent" ShowTabHeaders="False" TabbedGroupDisplayMode="ContentOnly" cs:id="DocumentGroup_0000">
                                         <dxdo:DocumentPanel x:Name="paneRichEdit" Background="Transparent" cs:id="DocumentPanel_0000">
-                                            <dxrec:RichEditControlBorder Focusable="False" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" InvisibleBorderTemplate="{StaticResource InvisibleBorderTemplate}" ShowBorder="{TemplateBinding ShowBorder}" SnapsToDevicePixels="True" UseLayoutRounding="True" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" VisibleBorderTemplate="{DynamicResource {dxret:RichEditControlThemeKey ResourceKey=BorderControlTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;164;46">
-                                                <dxcore_unique_xmlns:DXArranger SnapsToDevicePixels="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;174;50">
-                                                    <Grid Background="Transparent" SnapsToDevicePixels="True" UseLayoutRounding="True" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;175;54">
+                                            <dxrei:RichEditControlBorder Focusable="False" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" InvisibleBorderTemplate="{StaticResource InvisibleBorderTemplate}" ShowBorder="{TemplateBinding ShowBorder}" SnapsToDevicePixels="True" UseLayoutRounding="True" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" VisibleBorderTemplate="{DynamicResource {dxret:RichEditControlThemeKey ResourceKey=BorderControlTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;163;46">
+                                                <dxcore_unique_xmlns:DXArranger SnapsToDevicePixels="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;173;50">
+                                                    <Grid Background="Transparent" SnapsToDevicePixels="True" UseLayoutRounding="True" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;174;54">
                                                         <Grid.RowDefinitions>
                                                             <RowDefinition Height="Auto" />
                                                             <RowDefinition Height="*" />
                                                         </Grid.RowDefinitions>
-                                                        <dxcore_unique_xmlns:DXExpander x:Name="searchPanelExpander" AnimationProgress="0" HorizontalExpand="FromLeftToRight" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;183;58">
-                                                            <dxreui:RichEditSearchPanel x:Name="SearchPanel" SnapsToDevicePixels="True" UseLayoutRounding="True" Visibility="Collapsed" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;186;62" />
+                                                        <dxcore_unique_xmlns:DXExpander x:Name="searchPanelExpander" AnimationProgress="0" HorizontalExpand="FromLeftToRight" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;182;58">
+                                                            <dxre:RichEditSearchPanel x:Name="SearchPanel" SnapsToDevicePixels="True" UseLayoutRounding="True" Visibility="Collapsed" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;185;62" />
                                                         </dxcore_unique_xmlns:DXExpander>
-                                                        <ContentControl x:Name="FocusElement" Focusable="False" Grid.Row="1" HorizontalContentAlignment="Stretch" SnapsToDevicePixels="True" UseLayoutRounding="True" VerticalContentAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;191;58">
-                                                            <Grid SnapsToDevicePixels="True" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;198;62">
+                                                        <ContentControl x:Name="FocusElement" Focusable="False" Grid.Row="1" HorizontalContentAlignment="Stretch" SnapsToDevicePixels="True" UseLayoutRounding="True" VerticalContentAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;190;58">
+                                                            <Grid SnapsToDevicePixels="True" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;197;62">
                                                                 <Grid.RowDefinitions>
                                                                     <RowDefinition Height="Auto" />
                                                                     <RowDefinition Height="*" />
@@ -116,7 +116,7 @@
                                                                     <ColumnDefinition Width="*" />
                                                                     <ColumnDefinition Width="Auto" />
                                                                 </Grid.ColumnDefinitions>
-                                                                <dx:DXBorder x:Name="SurfaceBorder" BorderThickness="0" dxcore_unique_xmlns:FrameworkElementHelper.IsClipped="True" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" UseLayoutRounding="True" VerticalAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;209;66">
+                                                                <dx:DXBorder x:Name="SurfaceBorder" BorderThickness="0" dxcore_unique_xmlns:FrameworkElementHelper.IsClipped="True" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" UseLayoutRounding="True" VerticalAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;208;66">
                                                                     <Grid.ColumnSpan>
                                                                         <Binding Path="(dx:ScrollBarExtensions.ScrollBarMode)" RelativeSource="{RelativeSource TemplatedParent}">
                                                                             <Binding.Converter>
@@ -139,30 +139,30 @@
                                                                             </Binding.Converter>
                                                                         </Binding>
                                                                     </Grid.RowSpan>
-                                                                    <Grid HorizontalAlignment="Stretch" SnapsToDevicePixels="True" UseLayoutRounding="True" VerticalAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;240;70">
-                                                                        <Canvas x:Name="Surface" AllowDrop="True" Background="Transparent" SnapsToDevicePixels="True" UseLayoutRounding="True" cs:id="Canvas_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;244;74" />
-                                                                        <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;250;74">
-                                                                            <dxrec:KeyCodeConverter x:Name="KeyCodeConverter" Height="0" Opacity="0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;251;78" />
+                                                                    <Grid HorizontalAlignment="Stretch" SnapsToDevicePixels="True" UseLayoutRounding="True" VerticalAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;239;70">
+                                                                        <Canvas x:Name="Surface" AllowDrop="True" Background="Transparent" SnapsToDevicePixels="True" UseLayoutRounding="True" cs:id="Canvas_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;243;74" />
+                                                                        <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;249;74">
+                                                                            <dxrei:KeyCodeConverter x:Name="KeyCodeConverter" Height="0" Opacity="0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;250;78" />
                                                                         </Canvas>
                                                                     </Grid>
                                                                 </dx:DXBorder>
                                                                 
-                                                                <Grid x:Name="Hruler" Grid.ColumnSpan="3" SnapsToDevicePixels="True" UseLayoutRounding="True" Visibility="{TemplateBinding HorizontalRulerVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;258;66">
-                                                                    <dxrec:HorizontalRulerControl x:Name="HorizontalRuler" Focusable="False" Template="{DynamicResource {dxret:RichEditRulerThemeKey ResourceKey=HorizontalRulerControlTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;263;70" />
+                                                                <Grid x:Name="Hruler" Grid.ColumnSpan="3" SnapsToDevicePixels="True" UseLayoutRounding="True" Visibility="{TemplateBinding HorizontalRulerVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;257;66">
+                                                                    <dxrei:HorizontalRulerControl x:Name="HorizontalRuler" Focusable="False" Template="{DynamicResource {dxret:RichEditRulerThemeKey ResourceKey=HorizontalRulerControlTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;262;70" />
                                                                 </Grid>
                                                                 
-                                                                <Grid x:Name="Vruler" Grid.Row="1" Grid.RowSpan="2" Margin="0,0,0,0" SnapsToDevicePixels="True" UseLayoutRounding="True" Visibility="{TemplateBinding VerticalRulerVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;268;66">
-                                                                    <dxrec:VerticalRulerControl x:Name="VerticalRuler" Focusable="False" Template="{DynamicResource {dxret:RichEditRulerThemeKey ResourceKey=VerticalRulerControlTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;275;70" />
+                                                                <Grid x:Name="Vruler" Grid.Row="1" Grid.RowSpan="2" Margin="0,0,0,0" SnapsToDevicePixels="True" UseLayoutRounding="True" Visibility="{TemplateBinding VerticalRulerVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;267;66">
+                                                                    <dxrei:VerticalRulerControl x:Name="VerticalRuler" Focusable="False" Template="{DynamicResource {dxret:RichEditRulerThemeKey ResourceKey=VerticalRulerControlTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;274;70" />
                                                                 </Grid>
                                                                 
-                                                                <Grid Grid.Column="2" Grid.Row="1" SnapsToDevicePixels="True" UseLayoutRounding="True" Visibility="{TemplateBinding VerticalScrollBarVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;280;66">
-                                                                    <ScrollBar x:Name="VerticalScrollBar" dxcore_unique_xmlns:StyleManager.ApplyApplicationTheme="True" Orientation="Vertical" SnapsToDevicePixels="True" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;285;70" />
+                                                                <Grid Grid.Column="2" Grid.Row="1" SnapsToDevicePixels="True" UseLayoutRounding="True" Visibility="{TemplateBinding VerticalScrollBarVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;279;66">
+                                                                    <ScrollBar x:Name="VerticalScrollBar" dxcore_unique_xmlns:StyleManager.ApplyApplicationTheme="True" Orientation="Vertical" SnapsToDevicePixels="True" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;284;70" />
                                                                 </Grid>
                                                                 
-                                                                <Grid Grid.Column="1" Grid.Row="2" SnapsToDevicePixels="True" UseLayoutRounding="True" Visibility="{TemplateBinding HorizontalScrollBarVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;292;66">
-                                                                    <ScrollBar x:Name="HorizontalScrollBar" dxcore_unique_xmlns:StyleManager.ApplyApplicationTheme="True" Orientation="Horizontal" SnapsToDevicePixels="True" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;297;70" />
+                                                                <Grid Grid.Column="1" Grid.Row="2" SnapsToDevicePixels="True" UseLayoutRounding="True" Visibility="{TemplateBinding HorizontalScrollBarVisibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;291;66">
+                                                                    <ScrollBar x:Name="HorizontalScrollBar" dxcore_unique_xmlns:StyleManager.ApplyApplicationTheme="True" Orientation="Horizontal" SnapsToDevicePixels="True" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;296;70" />
                                                                 </Grid>
-                                                                <dxcore_unique_xmlns:CornerBox Focusable="False" Grid.Column="2" Grid.Row="2" SnapsToDevicePixels="True" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;303;66">
+                                                                <dxcore_unique_xmlns:CornerBox Focusable="False" Grid.Column="2" Grid.Row="2" SnapsToDevicePixels="True" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="RichEdit\Generic\RichEditControl.xaml;302;66">
                                                                     <dxcore_unique_xmlns:CornerBox.Visibility>
                                                                         <MultiBinding>
                                                                             <MultiBinding.Bindings>
@@ -170,7 +170,7 @@
                                                                                 <Binding Path="CornerBoxVisibility" RelativeSource="{RelativeSource TemplatedParent}" />
                                                                             </MultiBinding.Bindings>
                                                                             <MultiBinding.Converter>
-                                                                                <dxrec:CornerBoxVisibilityConverter />
+                                                                                <dxrei:CornerBoxVisibilityConverter />
                                                                             </MultiBinding.Converter>
                                                                         </MultiBinding>
                                                                     </dxcore_unique_xmlns:CornerBox.Visibility>
@@ -179,7 +179,7 @@
                                                         </ContentControl>
                                                     </Grid>
                                                 </dxcore_unique_xmlns:DXArranger>
-                                            </dxrec:RichEditControlBorder>
+                                            </dxrei:RichEditControlBorder>
                                         </dxdo:DocumentPanel>
                                     </dxdo:DocumentGroup>
                                 </dxdo:LayoutGroup>

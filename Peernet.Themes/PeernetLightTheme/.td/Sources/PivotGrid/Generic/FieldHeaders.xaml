@@ -4,7 +4,6 @@
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
                     xmlns:dxcr="http://schemas.devexpress.com/winfx/2008/xaml/charts/rangecontrolclient"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxfui="http://schemas.devexpress.com/winfx/2008/xaml/core/filteringui"
                     xmlns:dxfuit="http://schemas.devexpress.com/winfx/2008/xaml/core/filteringui/themekeys"
@@ -12,22 +11,22 @@
                     xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
                     xmlns:dxpg="http://schemas.devexpress.com/winfx/2008/xaml/pivotgrid"
                     xmlns:dxpgi="http://schemas.devexpress.com/winfx/2008/xaml/pivotgrid/internal"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
-                    xmlns:themes="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <themes:ObjectToStringConverter x:Key="objectToStringConverter"/>
+    <dx:ObjectToStringConverter x:Key="objectToStringConverter"/>
 
-    <themes:BoolToObjectConverter x:Key="boolToObjectConverterFPW"
-                                  FalseValue="0"
-                                  TrueValue="16"/>
+    <dx:BoolToObjectConverter x:Key="boolToObjectConverterFPW"
+                              FalseValue="0"
+                              TrueValue="16"/>
 
     <dxpgi:PivotGridFieldDataConverter x:Key="PivotGridFieldDataConverter"/>
 
     <dxpgi:FieldListActualAreaToAreaTextConverter x:Key="fieldListActualAreaToAreaTextConverter"/>
 
-    <themes:BoolToVisibilityConverter x:Key="boolToVisibilityConverter"/>
+    <dx:BoolToVisibilityConverter x:Key="boolToVisibilityConverter"/>
 
     <dxpgi:ObjectToThicknessConverter x:Key="headerImageMarginConverter"
                                       NotNullValue="0,0,3,0"
@@ -90,19 +89,19 @@
                                    Field="{Binding Content.Content, RelativeSource={RelativeSource TemplatedParent}}"
                                    Height="{Binding Path=(dxpgi:FieldHeader.DragElementSize).Height, RelativeSource={RelativeSource TemplatedParent}}"
                                    Width="{Binding Path=(dxpgi:FieldHeader.DragElementSize).Width, RelativeSource={RelativeSource TemplatedParent}}"/>
-            <themes:DragIconControl x:Name="dropIndicator"
-                                    DragType="Remove"
-                                    Grid.Column="1"
-                                    Grid.Row="1"
-                                    Margin="-12,-12,0,0">
-                <themes:DragIconControl.Opacity>
+            <dx:DragIconControl x:Name="dropIndicator"
+                                DragType="Remove"
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                Margin="-12,-12,0,0">
+                <dx:DragIconControl.Opacity>
                     <Binding Path="(dxpgi:DragFieldHeader.CanHide)" RelativeSource="{RelativeSource TemplatedParent}">
                         <Binding.Converter>
-                            <themes:BoolToObjectConverter FalseValue="0" TrueValue="1"/>
+                            <dx:BoolToObjectConverter FalseValue="0" TrueValue="1"/>
                         </Binding.Converter>
                     </Binding>
-                </themes:DragIconControl.Opacity>
-            </themes:DragIconControl>
+                </dx:DragIconControl.Opacity>
+            </dx:DragIconControl>
         </Grid>
     </DataTemplate>
 
@@ -120,19 +119,19 @@
                                    Group="{Binding Content.Content, RelativeSource={RelativeSource TemplatedParent}}"
                                    Height="{Binding Path=(dxpgi:FieldHeader.DragElementSize).Height, RelativeSource={RelativeSource TemplatedParent}}"
                                    Width="{Binding Path=(dxpgi:FieldHeader.DragElementSize).Width, RelativeSource={RelativeSource TemplatedParent}}"/>
-            <themes:DragIconControl x:Name="dropIndicator"
-                                    DragType="Remove"
-                                    Grid.Column="1"
-                                    Grid.Row="1"
-                                    Margin="-12,-12,0,0">
-                <themes:DragIconControl.Opacity>
+            <dx:DragIconControl x:Name="dropIndicator"
+                                DragType="Remove"
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                Margin="-12,-12,0,0">
+                <dx:DragIconControl.Opacity>
                     <Binding Path="(dxpgi:DragFieldHeader.CanHide)" RelativeSource="{RelativeSource TemplatedParent}">
                         <Binding.Converter>
-                            <themes:BoolToObjectConverter FalseValue="0" TrueValue="1"/>
+                            <dx:BoolToObjectConverter FalseValue="0" TrueValue="1"/>
                         </Binding.Converter>
                     </Binding>
-                </themes:DragIconControl.Opacity>
-            </themes:DragIconControl>
+                </dx:DragIconControl.Opacity>
+            </dx:DragIconControl>
         </Grid>
     </DataTemplate>
 
@@ -229,7 +228,7 @@
                                   Margin="0,4"
                                   SelectedItem="{Binding RowField, Mode=TwoWay}">
                     <dxe:ComboBoxEdit.ItemContainerStyle>
-                        <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/editors.ComboBoxEditItem}" TargetType="dxe:ComboBoxEditItem">
+                        <Style x:Key="{dxt:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/editors.ComboBoxEditItem}" TargetType="dxe:ComboBoxEditItem">
                             <Style.Triggers>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
@@ -254,7 +253,7 @@
                                   Margin="0,4"
                                   SelectedItem="{Binding ColumnField, Mode=TwoWay}">
                     <dxe:ComboBoxEdit.ItemContainerStyle>
-                        <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/editors.ComboBoxEditItem}" TargetType="dxe:ComboBoxEditItem">
+                        <Style x:Key="{dxt:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/editors.ComboBoxEditItem}" TargetType="dxe:ComboBoxEditItem">
                             <Style.Triggers>
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
@@ -458,7 +457,7 @@
     </Style>
 
     <ControlTemplate x:Key="{dxpgi:FieldHeaderThemeKey ResourceKey=FieldHeaderTemplate}" TargetType="{x:Type dxpgi:FieldHeader}">
-        <themes:SimplePanel themes:DragManager.IsStartDragPlace="false">
+        <dx:SimplePanel dx:DragManager.IsStartDragPlace="false">
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup x:Name="Cursor">
                     <VisualState x:Name="NormalCursor"/>
@@ -498,6 +497,7 @@
                         Command="{TemplateBinding ChangeFieldSortOrder}"
                         CommandParameter="{Binding Path=(dxpgi:FieldHeader.Field), RelativeSource={RelativeSource TemplatedParent}}"
                         DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                        dx:DragManager.IsStartDragPlace="true"
                         dxpgi:FieldHeader.Field="{Binding Path=(dxpgi:FieldHeader.Field), RelativeSource={RelativeSource TemplatedParent}}"
                         dxpgi:FieldHeadersBase.FieldListArea="{Binding Path=(dxpgi:FieldHeadersBase.FieldListArea), RelativeSource={RelativeSource TemplatedParent}}"
                         Focusable="False"
@@ -505,10 +505,9 @@
                         Margin="{TemplateBinding Padding}"
                         SnapsToDevicePixels="True"
                         Style="{DynamicResource {dxpgi:FieldHeaderThemeKey ResourceKey=ButtonStyle}}"
-                        themes:DragManager.IsStartDragPlace="true"
                         VerticalAlignment="Top"/>
             </Border>
-        </themes:SimplePanel>
+        </dx:SimplePanel>
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxpgi:FieldHeaderThemeKey ResourceKey=InnerGroupHeaderTemplate}" TargetType="{x:Type dxpgi:FieldHeader}">
@@ -529,6 +528,7 @@
                     Command="{Binding ChangeFieldSortOrder, RelativeSource={RelativeSource TemplatedParent}, Mode=OneTime}"
                     CommandParameter="{Binding Path=(dxpgi:FieldHeader.Field), RelativeSource={RelativeSource TemplatedParent}}"
                     DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                    dx:DragManager.IsStartDragPlace="true"
                     dxpgi:FieldHeader.Field="{Binding Path=(dxpgi:FieldHeader.Field), RelativeSource={RelativeSource TemplatedParent}}"
                     dxpgi:FieldHeadersBase.FieldListArea="{Binding Path=(dxpgi:FieldHeadersBase.FieldListArea), RelativeSource={RelativeSource TemplatedParent}}"
                     Focusable="False"
@@ -536,14 +536,13 @@
                     Margin="{TemplateBinding Padding}"
                     SnapsToDevicePixels="True"
                     Style="{DynamicResource {dxpgi:FieldHeaderThemeKey ResourceKey=ButtonStyle}}"
-                    themes:DragManager.IsStartDragPlace="true"
                     VerticalAlignment="Top"/>
         </Border>
         <!--</dx:SimplePanel>-->
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxpgi:FieldHeaderThemeKey ResourceKey=GroupHeaderTemplate}" TargetType="{x:Type dxpgi:GroupHeader}">
-        <themes:SimplePanel themes:DragManager.IsStartDragPlace="false">
+        <dx:SimplePanel dx:DragManager.IsStartDragPlace="false">
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup x:Name="Cursor">
                     <VisualState x:Name="NormalCursor"/>
@@ -592,10 +591,10 @@
                           cs:id="Grid_0000"/>
                 </ContentControl>
             </Border>
-        </themes:SimplePanel>
+        </dx:SimplePanel>
     </ControlTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.PivotGrid.Internal.FieldHeaders}" TargetType="{x:Type dxpgi:FieldHeaders}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.PivotGrid.Internal.FieldHeaders}" TargetType="{x:Type dxpgi:FieldHeaders}">
         <Setter Property="dxpg:PivotGridPopupMenu.GridMenuType" Value="HeadersArea"/>
         <Setter Property="dxb:BarManager.DXContextMenu" Value="{Binding Path=(dxpg:PivotGridControl.PivotGrid).GridMenu, RelativeSource={RelativeSource Self}}"/>
         <Setter Property="Template">
@@ -645,14 +644,14 @@
                         <Grid Margin="{TemplateBinding Padding}">
                             <dxpgi:FieldHeadersPanel x:Name="PART_Panel"
                                                      Background="Transparent"
+                                                     dx:DragManager.DropTargetFactory="{dxpgi:PivotGridDropTargetFactory}"
                                                      HorizontalAlignment="Stretch"
                                                      MeasureMode="{TemplateBinding MeasureMode}"
                                                      SkipWidth="{TemplateBinding LeftPixels}"
-                                                     themes:DragManager.DropTargetFactory="{dxpgi:PivotGridDropTargetFactory}"
                                                      VerticalAlignment="{TemplateBinding HeadersVAlignment}"
                                                      cs:id="FieldHeadersPanel_0000"/>
-                            <themes:SimplePanel VerticalAlignment="Center" Visibility="{Binding Path=IsCutted, ElementName=PART_Panel, Converter={StaticResource ResourceKey=boolToVisibilityConverter}}">
-                                <themes:XPFContentControl x:Name="CuttedContentText" HorizontalAlignment="Center">
+                            <dx:SimplePanel VerticalAlignment="Center" Visibility="{Binding Path=IsCutted, ElementName=PART_Panel, Converter={StaticResource ResourceKey=boolToVisibilityConverter}}">
+                                <dx:XPFContentControl x:Name="CuttedContentText" HorizontalAlignment="Center">
                                     <TextBlock Foreground="{DynamicResource ResourceKey={dxpgi:AppearanceThemeKey ResourceKey=DataAreaCuttedTextForeground}}"
                                                HorizontalAlignment="Center"
                                                Padding="0"
@@ -663,7 +662,7 @@
                                         <TextBlock.TextTrimming>CharacterEllipsis</TextBlock.TextTrimming>
                                         <!--END WPF-->
                                     </TextBlock>
-                                </themes:XPFContentControl>
+                                </dx:XPFContentControl>
                                 <!--BEGIN TOSLONLY REPLACE 'ActualWidth'ActualWidthCore'-->
                                 <Line Height="2"
                                       HorizontalAlignment="Center"
@@ -680,7 +679,7 @@
                                     </Line.RenderTransform>
                                 </Line>
                                 <!--END TOSLONLY REPLACE 'ActualWidth'ActualWidthCore'-->
-                            </themes:SimplePanel>
+                            </dx:SimplePanel>
                             <dxe:TextEdit x:Name="PART_EmptyText"
                                           EditMode="InplaceInactive"
                                           EditValue="{Binding ActualArea, Converter={StaticResource  ResourceKey=fieldListActualAreaToAreaTextConverter}, RelativeSource={RelativeSource TemplatedParent}}"
@@ -689,9 +688,9 @@
                                           Style="{DynamicResource {dxpgi:FieldHeaderThemeKey ResourceKey=HeaderEmptyTextStyle}}"
                                           VerticalAlignment="{TemplateBinding EmptyTextVAlignment}"
                                           Visibility="Collapsed"/>
-                            <themes:BestFitDecorator x:Name="PART_HeaderBestFitControlDecorator"
-                                                     Height="0"
-                                                     Width="0"/>
+                            <dx:BestFitDecorator x:Name="PART_HeaderBestFitControlDecorator"
+                                                 Height="0"
+                                                 Width="0"/>
                         </Grid>
                     </ContentControl>
                 </ControlTemplate>

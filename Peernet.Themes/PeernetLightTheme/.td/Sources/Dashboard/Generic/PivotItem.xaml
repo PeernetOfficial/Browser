@@ -1,12 +1,11 @@
 <ResourceDictionary mc:Ignorable="cs"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
-                    xmlns:dasboardthemes="http://schemas.devexpress.com/winfx/2008/xaml/dashboard/themekeys"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
-                    xmlns:dxci="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
                     xmlns:dxdash="http://schemas.devexpress.com/winfx/2008/xaml/dashboard"
                     xmlns:dxdashi="http://schemas.devexpress.com/winfx/2008/xaml/dashboard/internal"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dxdasht="http://schemas.devexpress.com/winfx/2008/xaml/dashboard/themekeys"
+                    xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
                     xmlns:dxpg="http://schemas.devexpress.com/winfx/2008/xaml/pivotgrid"
                     xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
@@ -19,20 +18,20 @@
 
     <DataTemplate x:Key="SimpleTemplate">
         <ContentControl>
-            <dxpg:FormatCondition Expression="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Expression, RelativeSource={RelativeSource Self}}"
-                                  Format="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Format, RelativeSource={RelativeSource Self}}"
-                                  MeasureName="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).MeasureName, RelativeSource={RelativeSource Self}}"/>
+            <dxpg:FormatCondition Expression="{Binding Path=(dxi:DependencyObjectExtensions.DataContext).Expression, RelativeSource={RelativeSource Self}}"
+                                  Format="{Binding Path=(dxi:DependencyObjectExtensions.DataContext).Format, RelativeSource={RelativeSource Self}}"
+                                  MeasureName="{Binding Path=(dxi:DependencyObjectExtensions.DataContext).MeasureName, RelativeSource={RelativeSource Self}}"/>
         </ContentControl>
     </DataTemplate>
 
     <DataTemplate x:Key="BarTemplate">
         <ContentControl>
-            <dxpg:DataBarFormatCondition Expression="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Expression, RelativeSource={RelativeSource Self}}"
-                                         Format="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Format, RelativeSource={RelativeSource Self}}"
-                                         MaxValue="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).MaxValue, RelativeSource={RelativeSource Self}}"
-                                         MeasureName="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).MeasureName, RelativeSource={RelativeSource Self}}"
-                                         MinValue="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).MinValue, RelativeSource={RelativeSource Self}}"
-                                         SelectiveExpression="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).SelectiveExpression, RelativeSource={RelativeSource Self}}"/>
+            <dxpg:DataBarFormatCondition Expression="{Binding Path=(dxi:DependencyObjectExtensions.DataContext).Expression, RelativeSource={RelativeSource Self}}"
+                                         Format="{Binding Path=(dxi:DependencyObjectExtensions.DataContext).Format, RelativeSource={RelativeSource Self}}"
+                                         MaxValue="{Binding Path=(dxi:DependencyObjectExtensions.DataContext).MaxValue, RelativeSource={RelativeSource Self}}"
+                                         MeasureName="{Binding Path=(dxi:DependencyObjectExtensions.DataContext).MeasureName, RelativeSource={RelativeSource Self}}"
+                                         MinValue="{Binding Path=(dxi:DependencyObjectExtensions.DataContext).MinValue, RelativeSource={RelativeSource Self}}"
+                                         SelectiveExpression="{Binding Path=(dxi:DependencyObjectExtensions.DataContext).SelectiveExpression, RelativeSource={RelativeSource Self}}"/>
         </ContentControl>
     </DataTemplate>
 
@@ -40,7 +39,7 @@
                                                            BarTemplate="{StaticResource BarTemplate}"
                                                            SimpleTemplate="{StaticResource SimpleTemplate}"/>
 
-    <Style x:Key="{dasboardthemes:PivotItemThemeKey ResourceKey=ViewStyle}" TargetType="{x:Type dxpg:PivotGridControl}">
+    <Style x:Key="{dxdasht:PivotItemThemeKey ResourceKey=ViewStyle}" TargetType="{x:Type dxpg:PivotGridControl}">
         <Setter Property="ShowBorder" Value="False"/>
         <Setter Property="DataSource" Value="{Binding DataSource}"/>
         <Setter Property="FieldsSource" Value="{Binding Fields}"/>
@@ -120,7 +119,7 @@
         </Setter>
     </Style>
 
-    <DataTemplate x:Key="{dasboardthemes:PivotItemThemeKey ResourceKey=Template}">
+    <DataTemplate x:Key="{dxdasht:PivotItemThemeKey ResourceKey=Template}">
         <dxpg:PivotGridControl Style="{Binding Path=(dxdash:DashboardLayoutItem.ViewStyle), RelativeSource={RelativeSource TemplatedParent}}"/>
     </DataTemplate>
 

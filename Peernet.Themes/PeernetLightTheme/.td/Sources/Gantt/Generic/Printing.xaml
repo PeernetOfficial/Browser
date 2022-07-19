@@ -1,12 +1,12 @@
 <ResourceDictionary mc:Ignorable="cs"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
                     xmlns:dxgn="http://schemas.devexpress.com/winfx/2008/xaml/gantt"
                     xmlns:dxgni="http://schemas.devexpress.com/winfx/2008/xaml/gantt/internal"
                     xmlns:dxgnt="http://schemas.devexpress.com/winfx/2008/xaml/gantt/themekeys"
                     xmlns:dxp="http://schemas.devexpress.com/winfx/2008/xaml/printing"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
@@ -14,7 +14,7 @@
         <TextBlock Text="{Binding Node.Name}"/>
     </DataTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gantt.PrintGanttRowControl}" TargetType="{x:Type dxgn:PrintGanttRowControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gantt.PrintGanttRowControl}" TargetType="{x:Type dxgn:PrintGanttRowControl}">
         <Setter Property="Background" Value="{x:Null}"/>
         <Setter Property="BorderThickness" Value="{Binding Path=(dxg:GridPrintingHelper.PrintRowInfo).GanttRowBorderThickness}"/>
         <Setter Property="BorderBrush"
@@ -114,7 +114,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gantt.PrintGanttHeaderControl}" TargetType="{x:Type dxgn:PrintGanttHeaderControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gantt.PrintGanttHeaderControl}" TargetType="{x:Type dxgn:PrintGanttHeaderControl}">
         <Setter Property="Background"
                 Value="Silver"
                 cs:id="Setter_0000"/>
@@ -154,7 +154,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gantt.PrintGanttPageControl}" TargetType="{x:Type dxgn:PrintGanttPageControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gantt.PrintGanttPageControl}" TargetType="{x:Type dxgn:PrintGanttPageControl}">
         <Setter Property="dxg:DataControlBase.ActiveView" Value="{Binding Content.View}"/>
         <Setter Property="BorderBrush"
                 Value="Black"

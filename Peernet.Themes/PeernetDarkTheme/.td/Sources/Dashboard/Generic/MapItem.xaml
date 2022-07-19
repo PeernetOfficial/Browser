@@ -1,12 +1,10 @@
 <ResourceDictionary mc:Ignorable="cs"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
-                    xmlns:dasboardthemes="http://schemas.devexpress.com/winfx/2008/xaml/dashboard/themekeys"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxdash="http://schemas.devexpress.com/winfx/2008/xaml/dashboard"
                     xmlns:dxdashi="http://schemas.devexpress.com/winfx/2008/xaml/dashboard/internal"
                     xmlns:dxdasht="http://schemas.devexpress.com/winfx/2008/xaml/dashboard/themekeys"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxm="http://schemas.devexpress.com/winfx/2008/xaml/map"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
                     xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
@@ -179,21 +177,21 @@
                                         </Grid.ColumnDefinitions>
                                         <Grid>
                                             <Border x:Name="Stroke"
-                                                    Background="{DynamicResource {dasboardthemes:MapItemThemeKey ResourceKey=GeoPointBorderBrush}}"
+                                                    Background="{DynamicResource {dxdasht:MapItemThemeKey ResourceKey=GeoPointBorderBrush}}"
                                                     CornerRadius="45"
                                                     Height="26"
                                                     Opacity="0.38"
                                                     Width="26"/>
                                             <Border x:Name="Point"
-                                                    Background="{DynamicResource {dasboardthemes:MapItemThemeKey ResourceKey=GeoPointBackgroundBrush}}"
-                                                    BorderBrush="{DynamicResource {dasboardthemes:MapItemThemeKey ResourceKey=GeoPointBorderBrush}}"
+                                                    Background="{DynamicResource {dxdasht:MapItemThemeKey ResourceKey=GeoPointBackgroundBrush}}"
+                                                    BorderBrush="{DynamicResource {dxdasht:MapItemThemeKey ResourceKey=GeoPointBorderBrush}}"
                                                     BorderThickness="2"
                                                     CornerRadius="45"
                                                     Height="{Binding PointSize}"
                                                     Width="{Binding PointSize}"/>
                                         </Grid>
-                                        <TextBlock FontSize="{DynamicResource {dasboardthemes:MapItemThemeKey ResourceKey=GeoPointDisplayTextFontSize}}"
-                                                   FontWeight="{DynamicResource {dasboardthemes:MapItemThemeKey ResourceKey=GeoPointDisplayTextFontWeight}}"
+                                        <TextBlock FontSize="{DynamicResource {dxdasht:MapItemThemeKey ResourceKey=GeoPointDisplayTextFontSize}}"
+                                                   FontWeight="{DynamicResource {dxdasht:MapItemThemeKey ResourceKey=GeoPointDisplayTextFontWeight}}"
                                                    Foreground="{Binding DisplayTextForeground}"
                                                    Grid.Column="1"
                                                    Margin="8,0,0,0"
@@ -204,7 +202,7 @@
                                             <DataTrigger.Setters>
                                                 <Setter Property="Background"
                                                         TargetName="Point"
-                                                        Value="{DynamicResource {dasboardthemes:MapItemThemeKey ResourceKey=GeoPointHighLightedBackgroundBrush}}"/>
+                                                        Value="{DynamicResource {dxdasht:MapItemThemeKey ResourceKey=GeoPointHighLightedBackgroundBrush}}"/>
                                             </DataTrigger.Setters>
                                         </DataTrigger>
                                     </DataTemplate.Triggers>
@@ -326,11 +324,11 @@
         </dxm:VectorLayer>
     </DataTemplate>
 
-    <dxdasht:MapLegendTemplateSelector x:Key="{dasboardthemes:MapItemThemeKey ResourceKey=LegendTemplateSelector}"/>
+    <dxdasht:MapLegendTemplateSelector x:Key="{dxdasht:MapItemThemeKey ResourceKey=LegendTemplateSelector}"/>
 
-    <dxdasht:MapLayerTemplateSelector x:Key="{dasboardthemes:MapItemThemeKey ResourceKey=LayerTemplateSelector}"/>
+    <dxdasht:MapLayerTemplateSelector x:Key="{dxdasht:MapItemThemeKey ResourceKey=LayerTemplateSelector}"/>
 
-    <Style x:Key="{dasboardthemes:MapItemThemeKey ResourceKey=ViewStyle}" TargetType="dxm:MapControl">
+    <Style x:Key="{dxdasht:MapItemThemeKey ResourceKey=ViewStyle}" TargetType="dxm:MapControl">
         <Setter Property="MinZoomLevel" Value="0.1"/>
         <Setter Property="ZoomLevel" Value="{Binding ZoomLevel, Mode=TwoWay}"/>
         <Setter Property="CenterPoint" Value="{Binding CenterPoint, Mode=TwoWay}"/>
@@ -363,9 +361,9 @@
                 <DataTemplate>
                     <ItemsControl>
                         <dxdashi:MapItemElementGenerator LayersSource="{Binding Layers}"
-                                                         LayerTemplateSelector="{DynamicResource {dasboardthemes:MapItemThemeKey ResourceKey=LayerTemplateSelector}}"
+                                                         LayerTemplateSelector="{DynamicResource {dxdasht:MapItemThemeKey ResourceKey=LayerTemplateSelector}}"
                                                          LegendsSource="{Binding Legends}"
-                                                         LegendTemplateSelector="{DynamicResource {dasboardthemes:MapItemThemeKey ResourceKey=LegendTemplateSelector}}"/>
+                                                         LegendTemplateSelector="{DynamicResource {dxdasht:MapItemThemeKey ResourceKey=LegendTemplateSelector}}"/>
                         <dxdashi:MapControlToolTipService UnregisterOnUnloaded="True">
                             <dxdashi:MapControlToolTipService.ToolTip>
                                 <ItemsControl ItemsSource="{Binding ToolTipItems}">
@@ -419,7 +417,7 @@
         </Setter>
     </Style>
 
-    <DataTemplate x:Key="{dasboardthemes:MapItemThemeKey ResourceKey=Template}">
+    <DataTemplate x:Key="{dxdasht:MapItemThemeKey ResourceKey=Template}">
         <dxm:MapControl Style="{Binding Path=(dxdash:DashboardLayoutItem.ViewStyle), RelativeSource={RelativeSource TemplatedParent}}"/>
     </DataTemplate>
 

@@ -3,30 +3,29 @@
                     xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
-                    xmlns:dxe="clr-namespace:DevExpress.Xpf.Editors;assembly=DevExpress.Xpf.Core.v21.2"
+                    xmlns:dxe="clr-namespace:DevExpress.Xpf.Editors;assembly=DevExpress.Xpf.Core.v22.1"
                     xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
                     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
-                    xmlns:dxgl="http://schemas.devexpress.com/winfx/2008/xaml/grid"
                     xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ControlTemplate x:Key="{dxgt:LookUpEditThemeKey ResourceKey=PopupContentTemplate}" TargetType="{x:Type ContentControl}">
-        <dxgl:GridControl x:Name="PART_GridControl" ShowBorder="False"/>
+        <dxg:GridControl x:Name="PART_GridControl" ShowBorder="False"/>
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxgt:AutoCompleteEditThemeKey ResourceKey=PopupContentTemplate}" TargetType="{x:Type ContentControl}">
-        <dxgl:GridControl x:Name="PART_Content"
-                          AutoGenerateColumns="AddNew"
-                          ItemsSource="{Binding Path=(dxe:BaseEdit.OwnerEdit).ItemsSource, RelativeSource={RelativeSource TemplatedParent}}"
-                          ShowBorder="False"/>
+        <dxg:GridControl x:Name="PART_Content"
+                         AutoGenerateColumns="AddNew"
+                         ItemsSource="{Binding Path=(dxe:BaseEdit.OwnerEdit).ItemsSource, RelativeSource={RelativeSource TemplatedParent}}"
+                         ShowBorder="False"/>
     </ControlTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.LookUp.LookUpEdit}"
-           BasedOn="{StaticResource {dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.LookUpEditBase}}"
-           TargetType="{x:Type dxgl:LookUpEdit}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.LookUp.LookUpEdit}"
+           BasedOn="{StaticResource {dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.LookUpEditBase}}"
+           TargetType="{x:Type dxg:LookUpEdit}">
         <Setter Property="ValidateOnTextInput" Value="false"/>
         <Setter Property="AutoComplete" Value="true"/>
         <Setter Property="IncrementalFiltering" Value="true"/>

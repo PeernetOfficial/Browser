@@ -3,11 +3,9 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
                     xmlns:dxsch="http://schemas.devexpress.com/winfx/2008/xaml/scheduling"
-                    xmlns:dxschc="http://schemas.devexpress.com/winfx/2008/xaml/scheduling"
                     xmlns:dxscht="http://schemas.devexpress.com/winfx/2008/xaml/scheduling/themekeys"
                     xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -32,8 +30,8 @@
 
     <Style x:Key="ResourceTreeControl.DefaultStyle" TargetType="dxsch:ResourceTreeControl">
         <Setter Property="Template" Value="{DynamicResource {dxscht:ResourceTreeThemeKey ResourceKey=Template}}"/>
-        <Setter Property="NewResourceText" Value="{dxschc:SchedulerLocalizer StringId=ResourceTree_NewResourceText}"/>
-        <Setter Property="NewGroupText" Value="{dxschc:SchedulerLocalizer StringId=ResourceTree_NewGroupText}"/>
+        <Setter Property="NewResourceText" Value="{dxsch:SchedulerLocalizer StringId=ResourceTree_NewResourceText}"/>
+        <Setter Property="NewGroupText" Value="{dxsch:SchedulerLocalizer StringId=ResourceTree_NewGroupText}"/>
         <Setter Property="RowContextMenu" Value="{dxmvvm:ValueFactory ValueTemplate={StaticResource ContextMenu}}"/>
     </Style>
 

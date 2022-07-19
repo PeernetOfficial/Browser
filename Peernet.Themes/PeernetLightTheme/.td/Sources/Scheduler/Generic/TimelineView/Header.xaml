@@ -2,18 +2,17 @@
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxsch="http://schemas.devexpress.com/winfx/2008/xaml/scheduler"
-                    xmlns:dxschd="http://schemas.devexpress.com/winfx/2008/xaml/scheduler/internal"
-                    xmlns:dxschdui="http://schemas.devexpress.com/winfx/2008/xaml/scheduler"
+                    xmlns:dxschi="http://schemas.devexpress.com/winfx/2008/xaml/scheduler/internal"
                     xmlns:dxscht="http://schemas.devexpress.com/winfx/2008/xaml/scheduler/themekeys"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <DataTemplate x:Key="{dxscht:TimelineViewThemeKey ResourceKey=TimelineHeader}">
         <dx:XPFContentControl Style="{DynamicResource {dxscht:SchedulerViewThemeKey ResourceKey=HorizontalHeadersContainerStyle}}" VerticalAlignment="Top">
-            <dxschd:SchedulerItemsControl x:Name="ResourcesItemsControl"
+            <dxschi:SchedulerItemsControl x:Name="ResourcesItemsControl"
                                           HorizontalContentAlignment="Stretch"
                                           ItemsSource="{Binding HeaderLevels}"
                                           ItemTemplateSelector="{DynamicResource {dxscht:TimelineViewThemeKey ResourceKey=TimelineColumnHeaderTemplateSelector}}"
@@ -24,7 +23,7 @@
                         <StackPanel Orientation="Vertical"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
-            </dxschd:SchedulerItemsControl>
+            </dxschi:SchedulerItemsControl>
         </dx:XPFContentControl>
     </DataTemplate>
 
@@ -32,7 +31,7 @@
         <dx:XPFContentControl Grid.Row="1"
                               Style="{DynamicResource {dxscht:SchedulerViewThemeKey ResourceKey=HorizontalHeadersContainerStyle}}"
                               VerticalAlignment="Top">
-            <dxschd:SchedulerItemsControl x:Name="ResourcesItemsControl"
+            <dxschi:SchedulerItemsControl x:Name="ResourcesItemsControl"
                                           HorizontalContentAlignment="Stretch"
                                           ItemsSource="{Binding HeaderLevels}"
                                           ItemTemplateSelector="{DynamicResource {dxscht:TimelineViewThemeKey ResourceKey=TimelineColumnHeaderTemplateSelectorGroupByDate}}"
@@ -43,7 +42,7 @@
                         <StackPanel Orientation="Vertical"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
-            </dxschd:SchedulerItemsControl>
+            </dxschi:SchedulerItemsControl>
         </dx:XPFContentControl>
     </DataTemplate>
 

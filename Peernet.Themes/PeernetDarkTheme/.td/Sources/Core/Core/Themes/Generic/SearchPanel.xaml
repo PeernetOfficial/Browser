@@ -1,28 +1,26 @@
 <ResourceDictionary mc:Ignorable="cs"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
-                    xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core"
-                    xmlns:dxci="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-                    xmlns:dxtEx="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:themes="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!--SearchPanel-->
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Core.Native.SearchPanel}" TargetType="{x:Type dxci:SearchPanel}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Core.Native.SearchPanel}" TargetType="{x:Type dxi:SearchPanel}">
         <Setter Property="AutomationProperties.AutomationId" Value="SearchPanel"/>
         <Setter Property="AutomationProperties.Name" Value="SearchPanel"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="dxci:SearchPanel">
+                <ControlTemplate TargetType="dxi:SearchPanel">
                     <ContentControl SnapsToDevicePixels="True"
-                                    Template="{DynamicResource {themes:SearchPanelThemeKey ResourceKey=BorderControlTemplate}}"
+                                    Template="{DynamicResource {dxt:SearchPanelThemeKey ResourceKey=BorderControlTemplate}}"
                                     UseLayoutRounding="True">
                         <ContentControl.Resources>
-                            <dxc:BoolToVisibilityConverter x:Key="boolToVisibilityConverter"/>
+                            <dx:BoolToVisibilityConverter x:Key="boolToVisibilityConverter"/>
                         </ContentControl.Resources>
                         <Grid HorizontalAlignment="Stretch"
                               SnapsToDevicePixels="True"
@@ -45,7 +43,7 @@
                                         SnapsToDevicePixels="True"
                                         UseLayoutRounding="True">
                                 <TextBlock SnapsToDevicePixels="True"
-                                           Style="{DynamicResource {themes:SearchPanelThemeKey ResourceKey=PanelTextBlockStyle}}"
+                                           Style="{DynamicResource {dxt:SearchPanelThemeKey ResourceKey=PanelTextBlockStyle}}"
                                            Text="{TemplateBinding FindLabelText}"
                                            UseLayoutRounding="True"/>
                                 <dxe:ButtonEdit x:Name="tbSearchString"
@@ -67,7 +65,7 @@
                                         Visibility="{Binding ReplaceMode, Converter={StaticResource boolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}">
                                 <TextBlock Margin="4,0,4,0"
                                            SnapsToDevicePixels="True"
-                                           Style="{DynamicResource {themes:SearchPanelThemeKey ResourceKey=PanelTextBlockStyle}}"
+                                           Style="{DynamicResource {dxt:SearchPanelThemeKey ResourceKey=PanelTextBlockStyle}}"
                                            Text="{TemplateBinding ReplaceLabelText}"
                                            UseLayoutRounding="True"/>
                                 <dxe:ButtonEdit x:Name="tbReplaceString"
@@ -83,20 +81,20 @@
                             </StackPanel>
                             <ContentControl Grid.Column="2"
                                             SnapsToDevicePixels="True"
-                                            Template="{DynamicResource {themes:SearchPanelThemeKey ResourceKey=SeparatorControlTemplate}}"
+                                            Template="{DynamicResource {dxt:SearchPanelThemeKey ResourceKey=SeparatorControlTemplate}}"
                                             UseLayoutRounding="True"/>
                             <Button x:Name="SearchOptionsButton"
                                     AutomationProperties.AutomationId="SearchOptions"
                                     AutomationProperties.Name="SearchOptions"
                                     Grid.Column="3"
                                     Padding="0"
-                                    Style="{DynamicResource {themes:SearchPanelThemeKey ResourceKey=OptionsButtonStyle}}">
+                                    Style="{DynamicResource {dxt:SearchPanelThemeKey ResourceKey=OptionsButtonStyle}}">
                                 <!--BEGIN WPF-->
                                 <Button.ToolTip>
                                     <Binding Path="SearchOptionsButtonTooltip" RelativeSource="{RelativeSource TemplatedParent}"/>
                                 </Button.ToolTip>
                                 <!--END WPF-->
-                                <ContentPresenter ContentTemplate="{DynamicResource {themes:SearchPanelThemeKey ResourceKey=OptionsButtonShape}}"
+                                <ContentPresenter ContentTemplate="{DynamicResource {dxt:SearchPanelThemeKey ResourceKey=OptionsButtonShape}}"
                                                   SnapsToDevicePixels="True"
                                                   UseLayoutRounding="True"/>
                             </Button>
@@ -112,10 +110,10 @@
                                         Command="{Binding ReplaceForwardCommand}"
                                         CommandParameter="{Binding Path=CommandParameter, RelativeSource={RelativeSource TemplatedParent}}"
                                         SnapsToDevicePixels="True"
-                                        Style="{DynamicResource {themes:SearchPanelThemeKey ResourceKey=ReplaceButtonStyle}}"
+                                        Style="{DynamicResource {dxt:SearchPanelThemeKey ResourceKey=ReplaceButtonStyle}}"
                                         UseLayoutRounding="True">
                                     <TextBlock SnapsToDevicePixels="True"
-                                               Style="{DynamicResource {themes:SearchPanelThemeKey ResourceKey=ButtonTextBlockStyle}}"
+                                               Style="{DynamicResource {dxt:SearchPanelThemeKey ResourceKey=ButtonTextBlockStyle}}"
                                                Text="{TemplateBinding ReplaceButtonText}"
                                                UseLayoutRounding="True"/>
                                 </Button>
@@ -125,10 +123,10 @@
                                         Command="{Binding ReplaceAllForwardCommand}"
                                         CommandParameter="{Binding Path=CommandParameter, RelativeSource={RelativeSource TemplatedParent}}"
                                         SnapsToDevicePixels="True"
-                                        Style="{DynamicResource {themes:SearchPanelThemeKey ResourceKey=ReplaceAllButtonStyle}}"
+                                        Style="{DynamicResource {dxt:SearchPanelThemeKey ResourceKey=ReplaceAllButtonStyle}}"
                                         UseLayoutRounding="True">
                                     <TextBlock SnapsToDevicePixels="True"
-                                               Style="{DynamicResource {themes:SearchPanelThemeKey ResourceKey=ButtonTextBlockStyle}}"
+                                               Style="{DynamicResource {dxt:SearchPanelThemeKey ResourceKey=ButtonTextBlockStyle}}"
                                                Text="{TemplateBinding ReplaceAllButtonText}"
                                                UseLayoutRounding="True"/>
                                 </Button>
@@ -141,14 +139,14 @@
                                     Grid.Column="6"
                                     Padding="0"
                                     SnapsToDevicePixels="True"
-                                    Style="{DynamicResource {themes:SearchPanelThemeKey ResourceKey=FindPrevButtonStyle}}"
+                                    Style="{DynamicResource {dxt:SearchPanelThemeKey ResourceKey=FindPrevButtonStyle}}"
                                     UseLayoutRounding="True">
                                 <!--BEGIN WPF-->
                                 <Button.ToolTip>
                                     <Binding Path="FindPrevButtonTooltip" RelativeSource="{RelativeSource TemplatedParent}"/>
                                 </Button.ToolTip>
                                 <!--END WPF-->
-                                <ContentPresenter ContentTemplate="{DynamicResource {themes:SearchPanelThemeKey ResourceKey=FindPrevButtonShape}}"
+                                <ContentPresenter ContentTemplate="{DynamicResource {dxt:SearchPanelThemeKey ResourceKey=FindPrevButtonShape}}"
                                                   SnapsToDevicePixels="True"
                                                   UseLayoutRounding="True"/>
                             </Button>
@@ -160,20 +158,20 @@
                                     Grid.Column="7"
                                     Padding="0"
                                     SnapsToDevicePixels="True"
-                                    Style="{DynamicResource {themes:SearchPanelThemeKey ResourceKey=FindNextButtonStyle}}"
+                                    Style="{DynamicResource {dxt:SearchPanelThemeKey ResourceKey=FindNextButtonStyle}}"
                                     UseLayoutRounding="True">
                                 <!--BEGIN WPF-->
                                 <Button.ToolTip>
                                     <Binding Path="FindNextButtonTooltip" RelativeSource="{RelativeSource TemplatedParent}"/>
                                 </Button.ToolTip>
                                 <!--END WPF-->
-                                <ContentPresenter ContentTemplate="{DynamicResource {themes:SearchPanelThemeKey ResourceKey=FindNextButtonShape}}"
+                                <ContentPresenter ContentTemplate="{DynamicResource {dxt:SearchPanelThemeKey ResourceKey=FindNextButtonShape}}"
                                                   SnapsToDevicePixels="True"
                                                   UseLayoutRounding="True"/>
                             </Button>
                             <ContentControl Grid.Column="8"
                                             SnapsToDevicePixels="True"
-                                            Template="{DynamicResource {themes:SearchPanelThemeKey ResourceKey=SeparatorControlTemplate}}"
+                                            Template="{DynamicResource {dxt:SearchPanelThemeKey ResourceKey=SeparatorControlTemplate}}"
                                             UseLayoutRounding="True"/>
                             <Button x:Name="SearchClose"
                                     AutomationProperties.AutomationId="SearchClose"
@@ -182,14 +180,14 @@
                                     Grid.Column="9"
                                     Padding="0"
                                     SnapsToDevicePixels="True"
-                                    Style="{DynamicResource {themes:SearchPanelThemeKey ResourceKey=CloseButtonStyle}}"
+                                    Style="{DynamicResource {dxt:SearchPanelThemeKey ResourceKey=CloseButtonStyle}}"
                                     UseLayoutRounding="True">
                                 <!--BEGIN WPF-->
                                 <Button.ToolTip>
                                     <Binding Path="CloseButtonTooltip" RelativeSource="{RelativeSource TemplatedParent}"/>
                                 </Button.ToolTip>
                                 <!--END WPF-->
-                                <ContentPresenter ContentTemplate="{DynamicResource {themes:SearchPanelThemeKey ResourceKey=CloseButtonShape}}"
+                                <ContentPresenter ContentTemplate="{DynamicResource {dxt:SearchPanelThemeKey ResourceKey=CloseButtonShape}}"
                                                   SnapsToDevicePixels="True"
                                                   UseLayoutRounding="True"/>
                             </Button>

@@ -1,11 +1,11 @@
-<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dasboardthemes="http://schemas.devexpress.com/winfx/2008/xaml/dashboard/themekeys" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxdash="http://schemas.devexpress.com/winfx/2008/xaml/dashboard" xmlns:dxdashi="http://schemas.devexpress.com/winfx/2008/xaml/dashboard/internal" xmlns:dxdasht="http://schemas.devexpress.com/winfx/2008/xaml/dashboard/themekeys" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxm="http://schemas.devexpress.com/winfx/2008/xaml/map" xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxdash="http://schemas.devexpress.com/winfx/2008/xaml/dashboard" xmlns:dxdashi="http://schemas.devexpress.com/winfx/2008/xaml/dashboard/internal" xmlns:dxdasht="http://schemas.devexpress.com/winfx/2008/xaml/dashboard/themekeys" xmlns:dxm="http://schemas.devexpress.com/winfx/2008/xaml/map" xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
 
     <dxdashi:EventToCommandConverter x:Key="EventToCommandConverter" />
 
     <dxdashi:LegendLabelConverter x:Key="LegendLabelConverter" />
 
     <DataTemplate x:Key="LegendLabelTemplate">
-        <TextBlock Text="{Binding Converter={StaticResource ResourceKey=LegendLabelConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\MapItem.xaml;21;10" />
+        <TextBlock Text="{Binding Converter={StaticResource ResourceKey=LegendLabelConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\MapItem.xaml;19;10" />
     </DataTemplate>
 
     <DataTemplate x:Key="{dxdasht:MapItemThemeKey ResourceKey=DashboardColorListLegendTemplate}">
@@ -41,7 +41,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="{dxdasht:MapItemThemeKey ResourceKey=DashboardsLayerTemplate}">
-        <ContentControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\MapItem.xaml;77;10">
+        <ContentControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\MapItem.xaml;75;10">
             <dxm:VectorLayer x:Name="DashboardsLayer" SelectedItems="{Binding SelectedItems}">
                 <dxm:VectorLayer.Resources>
                     <dxm:ListSourceDataAdapter x:Key="dashboardsLayerDataAdapter" DataSource="{Binding Items}" />
@@ -122,21 +122,21 @@
                         <dxm:MapCustomElementSettings>
                             <dxm:MapCustomElementSettings.ContentTemplate>
                                 <DataTemplate>
-                                    <Grid Margin="-13, -13" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\MapItem.xaml;175;38">
+                                    <Grid Margin="-13, -13" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\MapItem.xaml;173;38">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
-                                        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\MapItem.xaml;180;42">
-                                            <dx:DXBorder x:Name="Stroke" Background="{DynamicResource {dasboardthemes:MapItemThemeKey ResourceKey=GeoPointBorderBrush}}" CornerRadius="45" Height="26" Opacity="0.38" Width="26" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\MapItem.xaml;181;46" />
-                                            <dx:DXBorder x:Name="Point" Background="{DynamicResource {dasboardthemes:MapItemThemeKey ResourceKey=GeoPointBackgroundBrush}}" BorderBrush="{DynamicResource {dasboardthemes:MapItemThemeKey ResourceKey=GeoPointBorderBrush}}" BorderThickness="2" CornerRadius="45" Height="{Binding PointSize}" Width="{Binding PointSize}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\MapItem.xaml;187;46" />
+                                        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\MapItem.xaml;178;42">
+                                            <dx:DXBorder x:Name="Stroke" Background="{DynamicResource {dxdasht:MapItemThemeKey ResourceKey=GeoPointBorderBrush}}" CornerRadius="45" Height="26" Opacity="0.38" Width="26" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\MapItem.xaml;179;46" />
+                                            <dx:DXBorder x:Name="Point" Background="{DynamicResource {dxdasht:MapItemThemeKey ResourceKey=GeoPointBackgroundBrush}}" BorderBrush="{DynamicResource {dxdasht:MapItemThemeKey ResourceKey=GeoPointBorderBrush}}" BorderThickness="2" CornerRadius="45" Height="{Binding PointSize}" Width="{Binding PointSize}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\MapItem.xaml;185;46" />
                                         </Grid>
-                                        <TextBlock FontSize="{DynamicResource {dasboardthemes:MapItemThemeKey ResourceKey=GeoPointDisplayTextFontSize}}" FontWeight="{DynamicResource {dasboardthemes:MapItemThemeKey ResourceKey=GeoPointDisplayTextFontWeight}}" Foreground="{Binding DisplayTextForeground}" Grid.Column="1" Margin="8,0,0,0" Text="{Binding DisplayText}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\MapItem.xaml;195;42" />
+                                        <TextBlock FontSize="{DynamicResource {dxdasht:MapItemThemeKey ResourceKey=GeoPointDisplayTextFontSize}}" FontWeight="{DynamicResource {dxdasht:MapItemThemeKey ResourceKey=GeoPointDisplayTextFontWeight}}" Foreground="{Binding DisplayTextForeground}" Grid.Column="1" Margin="8,0,0,0" Text="{Binding DisplayText}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\MapItem.xaml;193;42" />
                                     </Grid>
                                     <DataTemplate.Triggers>
                                         <DataTrigger Binding="{Binding Highlighted}" Value="True">
                                             <DataTrigger.Setters>
-                                                <Setter Property="Background" TargetName="Point" Value="{DynamicResource {dasboardthemes:MapItemThemeKey ResourceKey=GeoPointHighLightedBackgroundBrush}}" />
+                                                <Setter Property="Background" TargetName="Point" Value="{DynamicResource {dxdasht:MapItemThemeKey ResourceKey=GeoPointHighLightedBackgroundBrush}}" />
                                             </DataTrigger.Setters>
                                         </DataTrigger>
                                     </DataTemplate.Triggers>
@@ -236,12 +236,12 @@
         </dxm:VectorLayer>
     </DataTemplate>
 
-    <dxdasht:MapLegendTemplateSelector x:Key="{dasboardthemes:MapItemThemeKey ResourceKey=LegendTemplateSelector}" />
+    <dxdasht:MapLegendTemplateSelector x:Key="{dxdasht:MapItemThemeKey ResourceKey=LegendTemplateSelector}" />
 
-    <dxdasht:MapLayerTemplateSelector x:Key="{dasboardthemes:MapItemThemeKey ResourceKey=LayerTemplateSelector}" />
+    <dxdasht:MapLayerTemplateSelector x:Key="{dxdasht:MapItemThemeKey ResourceKey=LayerTemplateSelector}" />
 
-    <Style x:Key="{dasboardthemes:MapItemThemeKey ResourceKey=ViewStyle}" TargetType="dxm:MapControl">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Dashboard\Generic\MapItem.xaml;333;6" /><Setter Property="MinZoomLevel" Value="0.1" />
+    <Style x:Key="{dxdasht:MapItemThemeKey ResourceKey=ViewStyle}" TargetType="dxm:MapControl">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Dashboard\Generic\MapItem.xaml;331;6" /><Setter Property="MinZoomLevel" Value="0.1" />
         <Setter Property="ZoomLevel" Value="{Binding ZoomLevel, Mode=TwoWay}" />
         <Setter Property="CenterPoint" Value="{Binding CenterPoint, Mode=TwoWay}" />
         <Setter Property="EnableScrolling" Value="{Binding EnableNavigation}" />
@@ -271,14 +271,14 @@
         <Setter Property="dxmvvm:Interaction.BehaviorsTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <ItemsControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\MapItem.xaml;364;22">
-                        <dxdashi:MapItemElementGenerator LayersSource="{Binding Layers}" LayerTemplateSelector="{DynamicResource {dasboardthemes:MapItemThemeKey ResourceKey=LayerTemplateSelector}}" LegendsSource="{Binding Legends}" LegendTemplateSelector="{DynamicResource {dasboardthemes:MapItemThemeKey ResourceKey=LegendTemplateSelector}}" />
+                    <ItemsControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\MapItem.xaml;362;22">
+                        <dxdashi:MapItemElementGenerator LayersSource="{Binding Layers}" LayerTemplateSelector="{DynamicResource {dxdasht:MapItemThemeKey ResourceKey=LayerTemplateSelector}}" LegendsSource="{Binding Legends}" LegendTemplateSelector="{DynamicResource {dxdasht:MapItemThemeKey ResourceKey=LegendTemplateSelector}}" />
                         <dxdashi:MapControlToolTipService UnregisterOnUnloaded="True">
                             <dxdashi:MapControlToolTipService.ToolTip>
-                                <ItemsControl ItemsSource="{Binding ToolTipItems}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\MapItem.xaml;371;34">
+                                <ItemsControl ItemsSource="{Binding ToolTipItems}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\MapItem.xaml;369;34">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <TextBlock FontWeight="{Binding FontWeight}" Text="{Binding Text}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\MapItem.xaml;374;46" />
+                                            <TextBlock FontWeight="{Binding FontWeight}" Text="{Binding Text}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\MapItem.xaml;372;46" />
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
@@ -299,7 +299,7 @@
         </Setter>
     </Style>
 
-    <DataTemplate x:Key="{dasboardthemes:MapItemThemeKey ResourceKey=Template}">
+    <DataTemplate x:Key="{dxdasht:MapItemThemeKey ResourceKey=Template}">
         <dxm:MapControl Style="{Binding Path=(dxdash:DashboardLayoutItem.ViewStyle), RelativeSource={RelativeSource TemplatedParent}}" />
     </DataTemplate>
 

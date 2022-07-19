@@ -1,67 +1,65 @@
 <ResourceDictionary mc:Ignorable="cs"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-                    xmlns:dxec="clr-namespace:DevExpress.Xpf.Editors.Controls;assembly=DevExpress.Xpf.Core.v21.2"
-                    xmlns:dxef="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+                    xmlns:dxec="clr-namespace:DevExpress.Xpf.Editors.Controls;assembly=DevExpress.Xpf.Core.v22.1"
                     xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
-                    xmlns:dxtEx="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <DataTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=ClauseNodeTemplate}">
-        <dxef:FilterControlClauseNode SecondOperandsCount="{Binding SecondOperandsCount}"/>
+        <dxe:FilterControlClauseNode SecondOperandsCount="{Binding SecondOperandsCount}"/>
     </DataTemplate>
 
     <DataTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=GroupNodeTemplate}">
-        <dxef:FilterControlGroupNode/>
+        <dxe:FilterControlGroupNode/>
     </DataTemplate>
 
-    <dxc:BoolToVisibilityInverseConverter x:Key="BoolToVisibilityInverseConverter"/>
+    <dx:BoolToVisibilityInverseConverter x:Key="BoolToVisibilityInverseConverter"/>
 
-    <dxc:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    <dx:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
 
-    <dxc:EmbeddedResourceImageConverter x:Key="EmbeddedResourceImageConverter"/>
+    <dx:EmbeddedResourceImageConverter x:Key="EmbeddedResourceImageConverter"/>
 
-    <dxef:CheckedUncheckedBoolToStringConverter x:Key="FilterControlBoolToStringConverter"/>
+    <dxe:CheckedUncheckedBoolToStringConverter x:Key="FilterControlBoolToStringConverter"/>
 
-    <dxef:FirstToCollapsedConverter x:Key="FilterControlFirstToCollapsedConverter"/>
+    <dxe:FirstToCollapsedConverter x:Key="FilterControlFirstToCollapsedConverter"/>
 
-    <dxef:AdditionalOperandsCountToVisibilityConverter x:Key="AdditionalOperandsCountToVisibilityConverter"/>
+    <dxe:AdditionalOperandsCountToVisibilityConverter x:Key="AdditionalOperandsCountToVisibilityConverter"/>
 
-    <dxef:OperatorPropertyNameConverter x:Key="OperatorPropertyNameConverter"/>
+    <dxe:OperatorPropertyNameConverter x:Key="OperatorPropertyNameConverter"/>
 
-    <dxc:EditorStringIdConverter x:Key="EditorStringIdConverter"/>
+    <dx:EditorStringIdConverter x:Key="EditorStringIdConverter"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.Filtering.InplaceFilterEditor}" TargetType="{x:Type dxef:InplaceFilterEditor}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.Filtering.InplaceFilterEditor}" TargetType="{x:Type dxe:InplaceFilterEditor}">
         <Setter Property="TextElement.Foreground" Value="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=InplaceFilterEditorForeground}}"/>
     </Style>
 
     <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=OneElementsInSecondOperandTemplate}">
-        <dxef:FilterControlEditor EditMode="{Binding Path=Content.Content.EditMode, RelativeSource={RelativeSource Self}}"
-                                  Index="0"
-                                  Node="{Binding}"
-                                  Operator="{Binding Path=AdditionalOperands[0]}"/>
+        <dxe:FilterControlEditor EditMode="{Binding Path=Content.Content.EditMode, RelativeSource={RelativeSource Self}}"
+                                 Index="0"
+                                 Node="{Binding}"
+                                 Operator="{Binding Path=AdditionalOperands[0]}"/>
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=TwoElementsInSecondOperandTemplate}">
         <StackPanel Orientation="Horizontal">
-            <dxef:FilterControlEditor EditMode="{Binding Path=Content.Content.EditMode, RelativeSource={RelativeSource Self}}"
-                                      Index="0"
-                                      Node="{Binding}"
-                                      Operator="{Binding Path=AdditionalOperands[0]}"/>
+            <dxe:FilterControlEditor EditMode="{Binding Path=Content.Content.EditMode, RelativeSource={RelativeSource Self}}"
+                                     Index="0"
+                                     Node="{Binding}"
+                                     Operator="{Binding Path=AdditionalOperands[0]}"/>
             <TextBlock Foreground="Green"
                        Margin="0,3,3,3"
                        Text="{Binding Source={x:Null}, ConverterParameter=FilterClauseBetweenAnd, Converter={StaticResource EditorStringIdConverter}}"
                        VerticalAlignment="Center"
                        cs:id="TextBlock_0000"/>
-            <dxef:FilterControlEditor EditMode="{Binding Path=Content.Content.EditMode, RelativeSource={RelativeSource Self}}"
-                                      Index="1"
-                                      Node="{Binding}"
-                                      Operator="{Binding Path=AdditionalOperands[1]}"/>
+            <dxe:FilterControlEditor EditMode="{Binding Path=Content.Content.EditMode, RelativeSource={RelativeSource Self}}"
+                                     Index="1"
+                                     Node="{Binding}"
+                                     Operator="{Binding Path=AdditionalOperands[1]}"/>
         </StackPanel>
     </ControlTemplate>
 
@@ -71,28 +69,28 @@
                        Margin="-3,3,3,3"
                        Text=","
                        VerticalAlignment="Center"
-                       Visibility="{Binding Path=(dxc:PositionStackPanel.Position), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource FilterControlFirstToCollapsedConverter}}"/>
-            <dxef:FilterControlEditor EditMode="{Binding Path=Content.Content.EditMode, RelativeSource={RelativeSource Self}}"
-                                      Index="{Binding Path=(dxc:PositionStackPanel.Index), RelativeSource={RelativeSource TemplatedParent}}"
-                                      Node="{Binding Path=Tag, RelativeSource={RelativeSource TemplatedParent}}"
-                                      Operator="{Binding}"/>
+                       Visibility="{Binding Path=(dx:PositionStackPanel.Position), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource FilterControlFirstToCollapsedConverter}}"/>
+            <dxe:FilterControlEditor EditMode="{Binding Path=Content.Content.EditMode, RelativeSource={RelativeSource Self}}"
+                                     Index="{Binding Path=(dx:PositionStackPanel.Index), RelativeSource={RelativeSource TemplatedParent}}"
+                                     Node="{Binding Path=Tag, RelativeSource={RelativeSource TemplatedParent}}"
+                                     Operator="{Binding}"/>
         </StackPanel>
     </DataTemplate>
 
     <ItemsPanelTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=SeveralElementsItemPanelTemplate}">
-        <dxc:PositionStackPanel Orientation="Horizontal"/>
+        <dx:PositionStackPanel Orientation="Horizontal"/>
     </ItemsPanelTemplate>
 
     <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=FieldInOperationButtonTemplate}" TargetType="{x:Type ContentControl}">
-        <dxc:XPFContentControl x:Name="ColumnButton"
-                               Content="{Binding ColumnCaption, RelativeSource={RelativeSource TemplatedParent}}"
-                               ContentTemplate="{Binding Path=ContentTemplate, RelativeSource={RelativeSource TemplatedParent}}"
-                               ContentTemplateSelector="{Binding Path=ContentTemplateSelector, RelativeSource={RelativeSource TemplatedParent}}"
-                               Cursor="Hand"
-                               Foreground="Blue"
-                               Margin="0,2,3,2"
-                               VerticalAlignment="Center"
-                               cs:id="XPFContentControl_0000"/>
+        <dx:XPFContentControl x:Name="ColumnButton"
+                              Content="{Binding ColumnCaption, RelativeSource={RelativeSource TemplatedParent}}"
+                              ContentTemplate="{Binding Path=ContentTemplate, RelativeSource={RelativeSource TemplatedParent}}"
+                              ContentTemplateSelector="{Binding Path=ContentTemplateSelector, RelativeSource={RelativeSource TemplatedParent}}"
+                              Cursor="Hand"
+                              Foreground="Blue"
+                              Margin="0,2,3,2"
+                              VerticalAlignment="Center"
+                              cs:id="XPFContentControl_0000"/>
     </ControlTemplate>
 
     <Style x:Key="{dxet:FilterControlThemeKey ResourceKey=InactiveTextBlockStyle}" TargetType="{x:Type TextBlock}">
@@ -115,7 +113,7 @@
             </Grid>
         </Grid>
         <ControlTemplate.Triggers>
-            <Trigger Property="dxc:ThemeManager.IsTouchEnabled" Value="True">
+            <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                 <Setter Property="MinWidth"
                         TargetName="Root"
                         Value="44"/>
@@ -140,7 +138,7 @@
             </Grid>
         </Grid>
         <ControlTemplate.Triggers>
-            <Trigger Property="dxc:ThemeManager.IsTouchEnabled" Value="True">
+            <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                 <Setter Property="MinWidth"
                         TargetName="Root"
                         Value="44"/>
@@ -165,7 +163,7 @@
             </Grid>
         </Grid>
         <ControlTemplate.Triggers>
-            <Trigger Property="dxc:ThemeManager.IsTouchEnabled" Value="True">
+            <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                 <Setter Property="MinWidth"
                         TargetName="Root"
                         Value="44"/>
@@ -196,7 +194,7 @@
             </Grid>
         </Grid>
         <ControlTemplate.Triggers>
-            <Trigger Property="dxc:ThemeManager.IsTouchEnabled" Value="True">
+            <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                 <Setter Property="MinWidth"
                         TargetName="Root"
                         Value="44"/>
@@ -252,7 +250,7 @@
             <Button x:Name="PART_GroupCommandsButton"
                     Command="{Binding PressCommandButtonCommand, RelativeSource={RelativeSource TemplatedParent}}"
                     Cursor="Hand"
-                    dxc:FocusHelper2.Focusable="False"
+                    dx:FocusHelper2.Focusable="False"
                     Margin="0,3,3,3"
                     Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=GroupCommandsButtonTemplate}}"
                     VerticalAlignment="Center"
@@ -265,7 +263,7 @@
             </Button>
             <Button x:Name="PART_AddButton"
                     Cursor="Hand"
-                    dxc:FocusHelper2.Focusable="False"
+                    dx:FocusHelper2.Focusable="False"
                     Margin="0,3,3,3"
                     Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=AddButtonTemplate}}"
                     VerticalAlignment="Center">
@@ -289,9 +287,9 @@
                        Text="("
                        VerticalAlignment="Center"
                        Visibility="{Binding Path=AdditionalOperands.Count, Converter={StaticResource AdditionalOperandsCountToVisibilityConverter}}"/>
-            <dxef:AdditionalOperandsItemsControl ItemsPanel="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=SeveralElementsItemPanelTemplate}}"
-                                                 ItemsSource="{Binding Path=AdditionalOperands}"
-                                                 ItemTemplate="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=SomeValuesTemplate}}"/>
+            <dxe:AdditionalOperandsItemsControl ItemsPanel="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=SeveralElementsItemPanelTemplate}}"
+                                                ItemsSource="{Binding Path=AdditionalOperands}"
+                                                ItemTemplate="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=SomeValuesTemplate}}"/>
             <TextBlock Margin="-3,3,3,3"
                        Text=")"
                        VerticalAlignment="Center"
@@ -299,7 +297,7 @@
             <Button x:Name="PART_AddNewOperandButton"
                     Command="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"
                     Cursor="Hand"
-                    dxc:FocusHelper2.Focusable="False"
+                    dx:FocusHelper2.Focusable="False"
                     Margin="0,3,3,3"
                     Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=AddButtonTemplate}}"
                     VerticalAlignment="Center">
@@ -330,7 +328,7 @@
             <ContentControl x:Name="SecondOperandsControl" Tag="{Binding AddOperandNodeCommand, RelativeSource={RelativeSource TemplatedParent}}"/>
             <Button x:Name="PART_Delete"
                     Cursor="Hand"
-                    dxc:FocusHelper2.Focusable="False"
+                    dx:FocusHelper2.Focusable="False"
                     Margin="0,3,0,3"
                     Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=DeleteNodeButtonTemplate}}"
                     VerticalAlignment="Center">
@@ -348,7 +346,7 @@
         </StackPanel>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=FilterControlEditorTemplate}" TargetType="{x:Type dxef:FilterControlEditor}">
+    <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=FilterControlEditorTemplate}" TargetType="{x:Type dxe:FilterControlEditor}">
         <StackPanel Orientation="Horizontal">
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup x:Name="EditModeStates">
@@ -400,12 +398,12 @@
                     </VisualState>
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <dxef:FieldInOperationButtonControl x:Name="PART_Column"
-                                                Margin="0,1,0,1"
-                                                Node="{Binding Node, RelativeSource={RelativeSource TemplatedParent}}"
-                                                OperatorPropertyName="{Binding Path=Operator, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource OperatorPropertyNameConverter}}"
-                                                Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=FieldInOperationButtonTemplate}}"
-                                                Visibility="{Binding Path=FieldInValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}"/>
+            <dxe:FieldInOperationButtonControl x:Name="PART_Column"
+                                               Margin="0,1,0,1"
+                                               Node="{Binding Node, RelativeSource={RelativeSource TemplatedParent}}"
+                                               OperatorPropertyName="{Binding Path=Operator, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource OperatorPropertyNameConverter}}"
+                                               Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=FieldInOperationButtonTemplate}}"
+                                               Visibility="{Binding Path=FieldInValue, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityConverter}}"/>
             <Border Name="PART_Stroke_Border"
                     CornerRadius="2"
                     Margin="0,0,3,0"
@@ -424,7 +422,7 @@
             <ToggleButton x:Name="PART_ChangeOperandTypeButton"
                           Command="{Binding ChangeOperandTypeCommand, RelativeSource={RelativeSource TemplatedParent}}"
                           Cursor="Hand"
-                          dxc:FocusHelper2.Focusable="False"
+                          dx:FocusHelper2.Focusable="False"
                           IsChecked="{Binding Path=FieldInValue, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
                           Margin="0,0,3,0"
                           Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=ChangeOperandTypeButtonTemplate}}"
@@ -471,22 +469,22 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxet:FilterControlThemeKey ResourceKey=FilterControlTemplate}">
-        <dxef:FilterControlBarManager>
-            <dxef:FilterControlBarManager.Resources>
-                <dxef:GroupFilterControlNodeToListConverter x:Key="itemsSourceConverter"/>
-            </dxef:FilterControlBarManager.Resources>
+        <dxe:FilterControlBarManager>
+            <dxe:FilterControlBarManager.Resources>
+                <dxe:GroupFilterControlNodeToListConverter x:Key="itemsSourceConverter"/>
+            </dxe:FilterControlBarManager.Resources>
             <Grid>
                 <ContentControl SnapsToDevicePixels="True"
                                 Tag="{Binding Path=ShowBorder, RelativeSource={RelativeSource TemplatedParent}}"
                                 Template="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=FilterControlBorderTemplate}}"
                                 UseLayoutRounding="True">
                     <ScrollViewer BorderThickness="0"
-                                  dxc:FocusHelper2.Focusable="False"
+                                  dx:FocusHelper2.Focusable="False"
                                   HorizontalScrollBarVisibility="Auto"
                                   VerticalScrollBarVisibility="Auto">
                         <Grid>
                             <ItemsControl x:Name="PART_ItemsControl"
-                                          dxc:FocusHelper2.Focusable="False"
+                                          dx:FocusHelper2.Focusable="False"
                                           ItemsSource="{Binding Path=RootNode, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource itemsSourceConverter}}"
                                           ItemTemplate="{DynamicResource {dxet:FilterControlThemeKey ResourceKey=ItemsControlItemTemplate}}"
                                           Margin="6,2,6,6"/>
@@ -495,7 +493,7 @@
                     </ScrollViewer>
                 </ContentControl>
             </Grid>
-        </dxef:FilterControlBarManager>
+        </dxe:FilterControlBarManager>
     </ControlTemplate>
 
 </ResourceDictionary>

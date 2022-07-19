@@ -4,18 +4,17 @@
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
                     xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
                     xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
-                    xmlns:dxrec="http://schemas.devexpress.com/winfx/2008/xaml/richedit/internal"
+                    xmlns:dxrei="http://schemas.devexpress.com/winfx/2008/xaml/richedit/internal"
                     xmlns:dxret="http://schemas.devexpress.com/winfx/2008/xaml/richedit/themekeys"
-                    xmlns:dxreui="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxdst:ResourceDictionaryEx Source="/DevExpress.Xpf.RichEdit.v21.2;component/Themes/Generic/Ruler.xaml"/>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.RichEdit.v22.1;component/Themes/Generic/Ruler.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <ControlTemplate x:Key="InvisibleBorderTemplate" TargetType="{x:Type ContentControl}">
@@ -28,13 +27,13 @@
     <ControlTemplate x:Key="{dxret:RichEditControlThemeKey ResourceKey=EmptyCommentControlTemplate}"/>
 
     <ControlTemplate x:Key="{dxret:RichEditControlThemeKey ResourceKey=CommentControlTemplate}">
-        <dxreui:RichEditCommentControl DockLayoutManager="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type dxdo:DockLayoutManager}}, Mode=OneTime}"
-                                       dxreui:InnerCommentControl.IsTemplatePart="True"
-                                       HorizontalAlignment="Stretch"
-                                       LayoutPanel="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type dxdo:LayoutPanel}}, Mode=OneTime}"
-                                       MinWidth="350"
-                                       RichEditControl="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type dxre:RichEditControl}}}"
-                                       VerticalAlignment="Stretch"/>
+        <dxre:RichEditCommentControl DockLayoutManager="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type dxdo:DockLayoutManager}}, Mode=OneTime}"
+                                     dxre:InnerCommentControl.IsTemplatePart="True"
+                                     HorizontalAlignment="Stretch"
+                                     LayoutPanel="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type dxdo:LayoutPanel}}, Mode=OneTime}"
+                                     MinWidth="350"
+                                     RichEditControl="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type dxre:RichEditControl}}}"
+                                     VerticalAlignment="Stretch"/>
     </ControlTemplate>
 
     <dx:BoolToThicknessConverter x:Key="layoutGroupBoolToThicknessConverter"
@@ -43,7 +42,7 @@
 
     <!--RichEditControl-->
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.RichEdit.RichEditControl}" TargetType="{x:Type dxre:RichEditControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.RichEdit.RichEditControl}" TargetType="{x:Type dxre:RichEditControl}">
         <Setter Property="MaxWidth" Value="3000000"/>
         <Setter Property="MaxHeight" Value="3000000"/>
         <Setter Property="AutoBackground" Value="{DynamicResource {dxret:RichEditControlThemeKey ResourceKey=RichEditBackgroundBrush}}"/>
@@ -161,7 +160,7 @@
                                         <dxdo:DocumentPanel x:Name="paneRichEdit"
                                                             Background="Transparent"
                                                             cs:id="DocumentPanel_0000">
-                                            <dxrec:RichEditControlBorder Focusable="False"
+                                            <dxrei:RichEditControlBorder Focusable="False"
                                                                          HorizontalAlignment="Stretch"
                                                                          HorizontalContentAlignment="Stretch"
                                                                          InvisibleBorderTemplate="{StaticResource InvisibleBorderTemplate}"
@@ -183,10 +182,10 @@
                                                         <dx:DXExpander x:Name="searchPanelExpander"
                                                                        AnimationProgress="0"
                                                                        HorizontalExpand="FromLeftToRight">
-                                                            <dxreui:RichEditSearchPanel x:Name="SearchPanel"
-                                                                                        SnapsToDevicePixels="True"
-                                                                                        UseLayoutRounding="True"
-                                                                                        Visibility="Collapsed"/>
+                                                            <dxre:RichEditSearchPanel x:Name="SearchPanel"
+                                                                                      SnapsToDevicePixels="True"
+                                                                                      UseLayoutRounding="True"
+                                                                                      Visibility="Collapsed"/>
                                                         </dx:DXExpander>
                                                         <ContentControl x:Name="FocusElement"
                                                                         Focusable="False"
@@ -248,7 +247,7 @@
                                                                                 UseLayoutRounding="True"
                                                                                 cs:id="Canvas_0000"/>
                                                                         <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                                                            <dxrec:KeyCodeConverter x:Name="KeyCodeConverter"
+                                                                            <dxrei:KeyCodeConverter x:Name="KeyCodeConverter"
                                                                                                     Height="0"
                                                                                                     Opacity="0"/>
                                                                         </Canvas>
@@ -260,7 +259,7 @@
                                                                       SnapsToDevicePixels="True"
                                                                       UseLayoutRounding="True"
                                                                       Visibility="{TemplateBinding HorizontalRulerVisibility}">
-                                                                    <dxrec:HorizontalRulerControl x:Name="HorizontalRuler"
+                                                                    <dxrei:HorizontalRulerControl x:Name="HorizontalRuler"
                                                                                                   Focusable="False"
                                                                                                   Template="{DynamicResource {dxret:RichEditRulerThemeKey ResourceKey=HorizontalRulerControlTemplate}}"/>
                                                                 </Grid>
@@ -272,7 +271,7 @@
                                                                       SnapsToDevicePixels="True"
                                                                       UseLayoutRounding="True"
                                                                       Visibility="{TemplateBinding VerticalRulerVisibility}">
-                                                                    <dxrec:VerticalRulerControl x:Name="VerticalRuler"
+                                                                    <dxrei:VerticalRulerControl x:Name="VerticalRuler"
                                                                                                 Focusable="False"
                                                                                                 Template="{DynamicResource {dxret:RichEditRulerThemeKey ResourceKey=VerticalRulerControlTemplate}}"/>
                                                                 </Grid>
@@ -312,7 +311,7 @@
                                                                                 <Binding Path="CornerBoxVisibility" RelativeSource="{RelativeSource TemplatedParent}"/>
                                                                             </MultiBinding.Bindings>
                                                                             <MultiBinding.Converter>
-                                                                                <dxrec:CornerBoxVisibilityConverter/>
+                                                                                <dxrei:CornerBoxVisibilityConverter/>
                                                                             </MultiBinding.Converter>
                                                                         </MultiBinding>
                                                                     </dx:CornerBox.Visibility>
@@ -321,7 +320,7 @@
                                                         </ContentControl>
                                                     </Grid>
                                                 </dx:DXArranger>
-                                            </dxrec:RichEditControlBorder>
+                                            </dxrei:RichEditControlBorder>
                                         </dxdo:DocumentPanel>
                                     </dxdo:DocumentGroup>
                                 </dxdo:LayoutGroup>

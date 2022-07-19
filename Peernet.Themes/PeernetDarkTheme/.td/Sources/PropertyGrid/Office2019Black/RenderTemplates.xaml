@@ -2,24 +2,24 @@
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
-                    xmlns:dxbc="http://schemas.devexpress.com/winfx/2008/xaml/bars/internal"
-                    xmlns:dxcn="clr-namespace:DevExpress.Xpf.Core.Native;assembly=DevExpress.Xpf.Core.v21.2"
+                    xmlns:dxbi="http://schemas.devexpress.com/winfx/2008/xaml/bars/internal"
+                    xmlns:dxcn="clr-namespace:DevExpress.Xpf.Core.Native;assembly=DevExpress.Xpf.Core.v22.1"
                     xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
-                    xmlns:dxpg="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid"
-                    xmlns:dxpgi="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid/internal"
-                    xmlns:dxpgt="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid/themekeys"
+                    xmlns:dxprg="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid"
+                    xmlns:dxprgi="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid/internal"
+                    xmlns:dxprgt="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid/themekeys"
                     xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v21.2;component/PropertyGrid/Office2019Black/UICore.xaml"/>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v22.1;component/PropertyGrid/Office2019Black/UICore.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <!-- General -->
 
-    <dxi:RenderTemplate x:Key="{dxpgt:VSViewRenderTemplateThemeKey ResourceKey=RowCommandButton}">
+    <dxi:RenderTemplate x:Key="{dxprgt:VSViewRenderTemplateThemeKey ResourceKey=RowCommandButton}">
         <dxi:RenderPanel Name="Root"
                          Height="8"
                          Margin="6,0"
@@ -44,7 +44,7 @@
                                       cs:id="RenderSetter_0001"/>
                 </dxi:RenderStateTrigger>
             </dxi:RenderStateGroup>
-            <dxi:RenderTrigger DependencyProperty="{x:Static dxpg:RowControl.ShouldHighlightValueProperty}" Value="True">
+            <dxi:RenderTrigger DependencyProperty="{x:Static dxprg:RowControl.ShouldHighlightValueProperty}" Value="True">
                 <dxi:RenderSetter Property="Background"
                                   TargetName="Content"
                                   Value="$Border"
@@ -68,7 +68,7 @@
         </dxi:RenderTemplate.Triggers>
     </dxi:RenderTemplate>
 
-    <dxi:RenderTemplate x:Key="{dxpgt:VSViewRenderTemplateThemeKey ResourceKey=RowCollectionButton}">
+    <dxi:RenderTemplate x:Key="{dxprgt:VSViewRenderTemplateThemeKey ResourceKey=RowCollectionButton}">
         <dxi:RenderPanel Name="Root">
             <dxi:RenderPanel Name="PART_Add" Opacity="0.62">
                 <dxi:RenderPath Name="Path1"
@@ -128,7 +128,7 @@
         </dxi:RenderTemplate.Triggers>
     </dxi:RenderTemplate>
 
-    <dxi:RenderTemplate x:Key="{dxpgt:VSViewRenderTemplateThemeKey ResourceKey=Expander}">
+    <dxi:RenderTemplate x:Key="{dxprgt:VSViewRenderTemplateThemeKey ResourceKey=Expander}">
         <dxi:RenderPanel Name="Root"
                          Height="16"
                          Width="16">
@@ -136,13 +136,13 @@
                 <dxi:RenderPanel Name="RootUnscaled"
                                  Height="16"
                                  Width="16">
-                    <dxbc:RenderArrowPath Name="GlyphCollapsed"
+                    <dxbi:RenderArrowPath Name="GlyphCollapsed"
                                           Data="F1 M 0,0 0,8 4,4 0,0 Z "
                                           Height="8"
                                           Stretch="Fill"
                                           Width="4"
                                           cs:id="RenderPath_0000"/>
-                    <dxbc:RenderArrowPath Name="GlyphExpanded"
+                    <dxbi:RenderArrowPath Name="GlyphExpanded"
                                           Data="F1 M 6,0 6,6 0,6 6,0 Z "
                                           Height="6"
                                           Opacity="0"

@@ -1,27 +1,27 @@
 <ResourceDictionary mc:Ignorable="cs"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
-                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/map/themekeys"
-                    xmlns:local="http://schemas.devexpress.com/winfx/2008/xaml/map"
+                    xmlns:dxm="http://schemas.devexpress.com/winfx/2008/xaml/map"
+                    xmlns:dxmt="http://schemas.devexpress.com/winfx/2008/xaml/map/themekeys"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <local:DXMapImages x:Key="MapImages"/>
+    <dxm:DXMapImages x:Key="MapImages"/>
 
-    <local:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
+    <dxm:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
 
-    <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    <dxm:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
 
-    <local:SystemParametersWrapper x:Key="SystemParametersWrapper"/>
+    <dxm:SystemParametersWrapper x:Key="SystemParametersWrapper"/>
 
-    <local:PushpinTooltipMenuDropAlignmentToLayoutTransformConverter x:Key="PushpinTooltipMenuDropAlignmentToLayoutTransformConverter"/>
+    <dxm:PushpinTooltipMenuDropAlignmentToLayoutTransformConverter x:Key="PushpinTooltipMenuDropAlignmentToLayoutTransformConverter"/>
 
-    <local:PushpinTooltipMenuDropAlignmentToHorizontalAlignmentConverter x:Key="PushpinTooltipMenuDropAlignmentToHorizontalAlignmentConverter"/>
+    <dxm:PushpinTooltipMenuDropAlignmentToHorizontalAlignmentConverter x:Key="PushpinTooltipMenuDropAlignmentToHorizontalAlignmentConverter"/>
 
-    <local:PushpinTooltipMenuDropAlignmentToHorizontalOffsetConverter x:Key="PushpinTooltipMenuDropAlignmentToHorizontalOffsetConverter"/>
+    <dxm:PushpinTooltipMenuDropAlignmentToHorizontalOffsetConverter x:Key="PushpinTooltipMenuDropAlignmentToHorizontalOffsetConverter"/>
 
-    <local:PushpinTooltipMenuDropAlignmentToMarginConverter x:Key="PushpinTooltipMenuDropAlignmentToMarginConverter"/>
+    <dxm:PushpinTooltipMenuDropAlignmentToMarginConverter x:Key="PushpinTooltipMenuDropAlignmentToMarginConverter"/>
 
     <Style x:Key="PushpinTooltipStyle" TargetType="ToolTip">
         <Setter Property="Background"
@@ -34,7 +34,7 @@
                           Margin="12"
                           VerticalAlignment="Center"
                           Visibility="{Binding Path=MapItem.Information, Converter={StaticResource NullToVisibilityConverter}}">
-                        <Border Background="{DynamicResource {dxt:MapBrushesThemeKey ResourceKey=ToolTipBackground}}">
+                        <Border Background="{DynamicResource {dxmt:MapBrushesThemeKey ResourceKey=ToolTipBackground}}">
                             <ContentPresenter Content="{TemplateBinding Content}"
                                               ContentTemplate="{TemplateBinding ContentTemplate}"
                                               Cursor="{TemplateBinding Cursor}"
@@ -46,17 +46,17 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Map.PushpinMarkerControl}" TargetType="local:PushpinMarkerControl">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Map.PushpinMarkerControl}" TargetType="dxm:PushpinMarkerControl">
         <Setter Property="Item" Value="{Binding MapItem}"/>
         <Setter Property="State" Value="{Binding MapItem.State}"/>
         <Setter Property="IsHighlighted" Value="{Binding MapItem.IsHighlighted}"/>
         <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
-        <Setter Property="Background" Value="{DynamicResource {dxt:MapBrushesThemeKey ResourceKey=PushpinBackground}}"/>
-        <Setter Property="Foreground" Value="{DynamicResource {dxt:MapBrushesThemeKey ResourceKey=PushpinForeground}}"/>
-        <Setter Property="StrokeBrush" Value="{DynamicResource {dxt:MapBrushesThemeKey ResourceKey=MapBackground}}"/>
+        <Setter Property="Background" Value="{DynamicResource {dxmt:MapBrushesThemeKey ResourceKey=PushpinBackground}}"/>
+        <Setter Property="Foreground" Value="{DynamicResource {dxmt:MapBrushesThemeKey ResourceKey=PushpinForeground}}"/>
+        <Setter Property="StrokeBrush" Value="{DynamicResource {dxmt:MapBrushesThemeKey ResourceKey=MapBackground}}"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:PushpinMarkerControl">
+                <ControlTemplate TargetType="dxm:PushpinMarkerControl">
                     <Grid x:Name="ContainerGrid"
                           Height="64"
                           HorizontalAlignment="Center"
@@ -67,7 +67,7 @@
                                      Placement="Top"
                                      Style="{StaticResource PushpinTooltipStyle}">
                                 <ToolTip.Content>
-                                    <TextBlock Foreground="{DynamicResource {dxt:MapBrushesThemeKey ResourceKey=ToolTipForeground}}"
+                                    <TextBlock Foreground="{DynamicResource {dxmt:MapBrushesThemeKey ResourceKey=ToolTipForeground}}"
                                                Margin="24,16"
                                                Text="{Binding MapItem.Information}"
                                                TextWrapping="Wrap"/>
@@ -85,16 +85,16 @@
                                 <VisualState x:Name="Selected">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Pin" Storyboard.TargetProperty="(Path.Fill)">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource {dxt:MapBrushesThemeKey ResourceKey=PushpinSelectionBrush}}"/>
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource {dxmt:MapBrushesThemeKey ResourceKey=PushpinSelectionBrush}}"/>
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Pin" Storyboard.TargetProperty="(Path.Stroke)">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource {dxt:MapBrushesThemeKey ResourceKey=MapBackground}}"/>
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource {dxmt:MapBrushesThemeKey ResourceKey=MapBackground}}"/>
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LoadingIndicator" Storyboard.TargetProperty="(Path.Fill)">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource {dxt:MapBrushesThemeKey ResourceKey=PushpinSelectionBrush}}"/>
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource {dxmt:MapBrushesThemeKey ResourceKey=PushpinSelectionBrush}}"/>
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Label" Storyboard.TargetProperty="(TextBlock.Foreground)">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource {dxt:MapBrushesThemeKey ResourceKey=PushpinSelectionForeground}}"/>
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{DynamicResource {dxmt:MapBrushesThemeKey ResourceKey=PushpinSelectionForeground}}"/>
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -166,7 +166,7 @@
                                 </Grid.RenderTransform>
                                 <Path x:Name="LoadingIndicator"
                                       Data="F1 M 55,40C 61.6274,40 67,45.3726 67,52L 65,52C 65,46.4772 60.5228,42 55,42C 49.4771,42 45,46.4772 45,52L 43,52C 43,45.3726 48.3726,40 55,40 Z "
-                                      Fill="{DynamicResource {dxt:MapBrushesThemeKey ResourceKey=PushpinBackground}}"
+                                      Fill="{DynamicResource {dxmt:MapBrushesThemeKey ResourceKey=PushpinBackground}}"
                                       Height="12"
                                       RenderTransformOrigin="0.5,1"
                                       Stretch="Fill"
@@ -204,27 +204,27 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Map.PushpinControl}" TargetType="local:PushpinControl">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Map.PushpinControl}" TargetType="dxm:PushpinControl">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:PushpinControl">
+                <ControlTemplate TargetType="dxm:PushpinControl">
                     <Grid>
-                        <local:PushpinPanel x:Name="PART_Container">
-                            <local:PushpinTraceControl x:Name="PART_Trace" Item="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ItemInfo.MapItem}"/>
+                        <dxm:PushpinPanel x:Name="PART_Container">
+                            <dxm:PushpinTraceControl x:Name="PART_Trace" Item="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ItemInfo.MapItem}"/>
                             <ContentPresenter x:Name="PART_Marker"
                                               Content="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ItemInfo}"
                                               ContentTemplate="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ItemInfo.MapItem.MarkerTemplate}"/>
-                        </local:PushpinPanel>
+                        </dxm:PushpinPanel>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Map.PushpinTraceControl}" TargetType="local:PushpinTraceControl">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Map.PushpinTraceControl}" TargetType="dxm:PushpinTraceControl">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:PushpinTraceControl">
+                <ControlTemplate TargetType="dxm:PushpinTraceControl">
                     <Grid Name="PART_Canvas"/>
                 </ControlTemplate>
             </Setter.Value>

@@ -3,19 +3,18 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
-                    xmlns:editors="http://schemas.devexpress.com/winfx/2008/xaml/reports/userdesigner/internal"
+                    xmlns:dxbt="http://schemas.devexpress.com/winfx/2008/xaml/bars/themekeys"
+                    xmlns:dxrudi="http://schemas.devexpress.com/winfx/2008/xaml/reports/userdesigner/internal"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:native="http://schemas.devexpress.com/winfx/2008/xaml/reports/userdesigner/internal"
-                    xmlns:themes="http://schemas.devexpress.com/winfx/2008/xaml/bars/themekeys"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <ControlTemplate x:Key="flatbuttonTemplate" TargetType="native:FlatToggleButton">
+    <ControlTemplate x:Key="flatbuttonTemplate" TargetType="dxrudi:FlatToggleButton">
         <Grid Background="Transparent" cs:id="Grid_0000">
             <dxb:ItemBorderControl x:Name="PART_Border"
-                                   HoverTemplate="{DynamicResource ResourceKey={themes:BarItemBorderThemeKey ResourceKey=Hover}}"
-                                   NormalTemplate="{DynamicResource ResourceKey={themes:BarItemBorderThemeKey ResourceKey=Normal}}"
-                                   PressedTemplate="{DynamicResource ResourceKey={themes:BarItemBorderThemeKey ResourceKey=Pressed}}"/>
+                                   HoverTemplate="{DynamicResource ResourceKey={dxbt:BarItemBorderThemeKey ResourceKey=Hover}}"
+                                   NormalTemplate="{DynamicResource ResourceKey={dxbt:BarItemBorderThemeKey ResourceKey=Normal}}"
+                                   PressedTemplate="{DynamicResource ResourceKey={dxbt:BarItemBorderThemeKey ResourceKey=Pressed}}"/>
             <ContentPresenter/>
         </Grid>
         <ControlTemplate.Triggers>
@@ -32,9 +31,9 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Reports.UserDesigner.Native.FlatToggleButton}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Reports.UserDesigner.Native.FlatToggleButton}"
            BasedOn="{StaticResource ResourceKey={x:Type ToggleButton}}"
-           TargetType="{x:Type native:FlatToggleButton}">
+           TargetType="{x:Type dxrudi:FlatToggleButton}">
         <Setter Property="Template" Value="{StaticResource flatbuttonTemplate}"/>
         <Setter Property="Foreground" Value="{Binding Path=(TextElement.Foreground), RelativeSource= {RelativeSource Mode=Self}}"/>
     </Style>

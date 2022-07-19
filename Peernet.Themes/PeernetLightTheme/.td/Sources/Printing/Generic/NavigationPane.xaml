@@ -3,7 +3,6 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxdv="http://schemas.devexpress.com/winfx/2008/xaml/documentviewer"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
@@ -11,28 +10,27 @@
                     xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys"
                     xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+                    xmlns:dxp="http://schemas.devexpress.com/winfx/2008/xaml/printing"
                     xmlns:dxpn="http://schemas.devexpress.com/winfx/2008/xaml/printing/native"
+                    xmlns:dxpt="http://schemas.devexpress.com/winfx/2008/xaml/printing/themekeys"
                     xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
-                    xmlns:local="http://schemas.devexpress.com/winfx/2008/xaml/printing"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:native="http://schemas.devexpress.com/winfx/2008/xaml/printing/native"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
-                    xmlns:themes="http://schemas.devexpress.com/winfx/2008/xaml/printing/themekeys"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <DataTemplate x:Key="documentMapTemplate">
         <Grid>
-            <TextBlock Text="{local:PrintingStringId StringId=NavigationPane_NoBookmarks}" Visibility="{Binding Path=(local:DocumentPreviewControl.ActualViewer).Document.HasBookmarks, RelativeSource={RelativeSource Self}, Converter={dx:BooleanToVisibilityConverter Invert=True}}"/>
-            <native:DocumentMap x:Name="PART_DocumentMapControl"
-                                Settings="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualDocumentMapSettings, RelativeSource={RelativeSource TemplatedParent}}"
-                                Visibility="{Binding Path=(local:DocumentPreviewControl.ActualViewer).Document.HasBookmarks, RelativeSource={RelativeSource Self}, Converter={dx:BooleanToVisibilityConverter}}">
-                <native:DocumentMap.Resources>
+            <TextBlock Text="{dxp:PrintingStringId StringId=NavigationPane_NoBookmarks}" Visibility="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).Document.HasBookmarks, RelativeSource={RelativeSource Self}, Converter={dx:BooleanToVisibilityConverter Invert=True}}"/>
+            <dxpn:DocumentMap x:Name="PART_DocumentMapControl"
+                              Settings="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualDocumentMapSettings, RelativeSource={RelativeSource TemplatedParent}}"
+                              Visibility="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).Document.HasBookmarks, RelativeSource={RelativeSource Self}, Converter={dx:BooleanToVisibilityConverter}}">
+                <dxpn:DocumentMap.Resources>
                     <ControlTemplate x:Key="{dxgt:GridControlThemeKey ResourceKey=BorderTemplate, IsThemeIndependent=True}" TargetType="{x:Type ContentControl}">
                         <ContentPresenter x:Name="content"
                                           Grid.RowSpan="3"
                                           Margin="3"/>
                     </ControlTemplate>
-                    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/grid.OuterBorderElement}" TargetType="{x:Type dxg:OuterBorderElement}">
+                    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/grid.OuterBorderElement}" TargetType="{x:Type dxg:OuterBorderElement}">
                         <Setter Property="Template" Value="{x:Null}"/>
                     </Style>
                     <SolidColorBrush x:Key="{dxgt:GridRowThemeKey ResourceKey=BorderNoneBrush, IsThemeIndependent=True}"
@@ -44,22 +42,22 @@
                     <ControlTemplate x:Key="{dxgt:TableViewThemeKey ResourceKey=DataPresenterTemplate, IsThemeIndependent=True}" TargetType="{x:Type dxg:DataPresenter}">
                         <ContentPresenter/>
                     </ControlTemplate>
-                </native:DocumentMap.Resources>
-            </native:DocumentMap>
+                </dxpn:DocumentMap.Resources>
+            </dxpn:DocumentMap>
         </Grid>
     </DataTemplate>
 
     <DataTemplate x:Key="pagesTemplate">
-        <native:ThumbnailsViewerControl FilteredPageIndices="{Binding NavigationPaneSearchModel.ResultPageIndices, RelativeSource={RelativeSource AncestorType=local:NavigationPaneControl}}"
-                                        SelectedPageNumber="{Binding Path=(local:DocumentPreviewControl.ActualViewer).CurrentPageNumber, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                        Settings="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ThumbnailsSettings, RelativeSource={RelativeSource TemplatedParent}}"/>
+        <dxpn:ThumbnailsViewerControl FilteredPageIndices="{Binding NavigationPaneSearchModel.ResultPageIndices, RelativeSource={RelativeSource AncestorType=dxp:NavigationPaneControl}}"
+                                      SelectedPageNumber="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).CurrentPageNumber, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                      Settings="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ThumbnailsSettings, RelativeSource={RelativeSource TemplatedParent}}"/>
     </DataTemplate>
 
     <DataTemplate x:Key="searchResultTemplate">
-        <Grid DataContext="{Binding NavigationPaneSearchModel, RelativeSource={RelativeSource AncestorType=local:NavigationPaneControl}}">
+        <Grid DataContext="{Binding NavigationPaneSearchModel, RelativeSource={RelativeSource AncestorType=dxp:NavigationPaneControl}}">
             <TextBlock TextWrapping="Wrap">
                 <TextBlock.Text>
-                    <MultiBinding Converter="{native:NavigationPaneSearchResultsStateConverter}">
+                    <MultiBinding Converter="{dxpn:NavigationPaneSearchResultsStateConverter}">
                         <Binding Path="SearchState"/>
                         <Binding Path="SearchResults.Count"/>
                         <Binding Path="SearchText"/>
@@ -69,7 +67,7 @@
             <dxe:ListBoxEdit Name="searchResultsList"
                              DisplayMember="Name"
                              EditValue="{Binding SelectedSearchResult, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             IsEnabled="{Binding Path=(local:DocumentPreviewControl.ActualViewer).Document.IsCreating, Converter={dxmvvm:BooleanNegationConverter}, RelativeSource={RelativeSource Self}, FallbackValue=False}"
+                             IsEnabled="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).Document.IsCreating, Converter={dxmvvm:BooleanNegationConverter}, RelativeSource={RelativeSource Self}, FallbackValue=False}"
                              ItemsSource="{Binding SearchResults}"
                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                              ShowBorder="False">
@@ -83,16 +81,16 @@
                                        TextTrimming="CharacterEllipsis"
                                        TextWrapping="Wrap">
                                 <dxmvvm:Interaction.Behaviors>
-                                    <native:TextBlockBindableInlinesBehavior>
-                                        <native:TextBlockBindableInlinesBehavior.InlineList>
-                                            <MultiBinding Converter="{native:BrickPagePairToDisplayTextConverter}" ConverterParameter="Backward">
-                                                <Binding Path="(local:DocumentPreviewControl.ActualViewer).Document.PrintingSystem.Pages" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                    <dxpn:TextBlockBindableInlinesBehavior>
+                                        <dxpn:TextBlockBindableInlinesBehavior.InlineList>
+                                            <MultiBinding Converter="{dxpn:BrickPagePairToDisplayTextConverter}" ConverterParameter="Backward">
+                                                <Binding Path="(dxp:DocumentPreviewControl.ActualViewer).Document.PrintingSystem.Pages" RelativeSource="{RelativeSource TemplatedParent}"/>
                                                 <Binding Path="BrickPagePair"/>
-                                                <Binding Path="NavigationPaneSearchModel.UseCaseSensitiveSearch" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type local:NavigationPaneControl}}"/>
-                                                <Binding Path="NavigationPaneSearchModel.SearchText" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type local:NavigationPaneControl}}"/>
+                                                <Binding Path="NavigationPaneSearchModel.UseCaseSensitiveSearch" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type dxp:NavigationPaneControl}}"/>
+                                                <Binding Path="NavigationPaneSearchModel.SearchText" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type dxp:NavigationPaneControl}}"/>
                                             </MultiBinding>
-                                        </native:TextBlockBindableInlinesBehavior.InlineList>
-                                    </native:TextBlockBindableInlinesBehavior>
+                                        </dxpn:TextBlockBindableInlinesBehavior.InlineList>
+                                    </dxpn:TextBlockBindableInlinesBehavior>
                                 </dxmvvm:Interaction.Behaviors>
                             </TextBlock>
                         </Border>
@@ -104,13 +102,13 @@
                     </ItemsPanelTemplate>
                 </dxe:ListBoxEdit.ItemsPanel>
                 <dxe:ListBoxEdit.ItemContainerStyle>
-                    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/editors.ListBoxEditItem}" TargetType="{x:Type dxe:ListBoxEditItem}">
+                    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/editors.ListBoxEditItem}" TargetType="{x:Type dxe:ListBoxEditItem}">
                         <Setter Property="DockPanel.Dock" Value="Top"/>
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                         <Setter Property="ToolTip">
                             <Setter.Value>
                                 <ToolTip MaxWidth="200">
-                                    <TextBlock Text="{Binding Converter={native:SearchDataToLocationTextConverter}}"
+                                    <TextBlock Text="{Binding Converter={dxpn:SearchDataToLocationTextConverter}}"
                                                TextTrimming="CharacterEllipsis"
                                                TextWrapping="Wrap"/>
                                 </ToolTip>
@@ -119,8 +117,8 @@
                     </Style>
                 </dxe:ListBoxEdit.ItemContainerStyle>
                 <dxmvvm:Interaction.Behaviors>
-                    <dxmvvm:EventToCommand Command="{Binding Path=(local:DocumentPreviewControl.ActualViewer).NavigateCommand, RelativeSource={RelativeSource TemplatedParent}}"
-                                           EventArgsConverter="{native:EditValueChangedEventArgsSelectedItemConverter}"
+                    <dxmvvm:EventToCommand Command="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).NavigateCommand, RelativeSource={RelativeSource TemplatedParent}}"
+                                           EventArgsConverter="{dxpn:EditValueChangedEventArgsSelectedItemConverter}"
                                            EventName="EditValueChanged"
                                            PassEventArgsToCommand="True"/>
                 </dxmvvm:Interaction.Behaviors>
@@ -135,10 +133,10 @@
         <Setter Property="Margin" Value="3,0,0,0"/>
     </Style>
 
-    <native:NavigationPaneTabTemplateSelector x:Key="tabTemplateSelector"
-                                              DocumentMapTemplate="{StaticResource documentMapTemplate }"
-                                              PagesTemplate="{StaticResource pagesTemplate}"
-                                              SearchResultTemplate="{StaticResource searchResultTemplate}"/>
+    <dxpn:NavigationPaneTabTemplateSelector x:Key="tabTemplateSelector"
+                                            DocumentMapTemplate="{StaticResource documentMapTemplate }"
+                                            PagesTemplate="{StaticResource pagesTemplate}"
+                                            SearchResultTemplate="{StaticResource searchResultTemplate}"/>
 
     <DataTemplate x:Key="TabItemNormalBackground">
         <dxi:TabBorder BorderBackground="Transparent"
@@ -183,7 +181,7 @@
                        cs:id="TabBorder_0001"/>
     </DataTemplate>
 
-    <ControlTemplate x:Key="{themes:NavigationPaneThemeKey ResourceKey=Template}" TargetType="{x:Type local:NavigationPaneControl}">
+    <ControlTemplate x:Key="{dxpt:NavigationPaneThemeKey ResourceKey=Template}" TargetType="{x:Type dxp:NavigationPaneControl}">
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
@@ -195,7 +193,7 @@
                             AllowNullInput="True"
                             EditValue="{Binding NavigationPaneSearchModel.SearchText, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                             Margin="0,0,0,4"
-                            NullText="{local:PrintingStringId StringId=NavigationPane_SearchBoxPlaceholder}"
+                            NullText="{dxp:PrintingStringId StringId=NavigationPane_SearchBoxPlaceholder}"
                             ShowNullText="True">
                 <dxe:ButtonEdit.Buttons>
                     <dxe:ButtonInfo Command="{Binding Path=(dxe:BaseEdit.OwnerEdit).SetNullValueCommand, RelativeSource={RelativeSource Self}}"
@@ -208,7 +206,7 @@
                                               IsChecked="{Binding IsChecked, Mode=TwoWay}"
                                               Style="{DynamicResource {dxet:ButtonsThemeKey ResourceKey=ButtonStyle}}">
                                     <dxb:BarManager.DXContextMenu>
-                                        <dxb:PopupMenu DataContext="{Binding NavigationPaneSearchModel, RelativeSource={RelativeSource AncestorType={x:Type local:NavigationPaneControl}}}" IsOpen="{Binding PlacementTarget.IsChecked, RelativeSource={RelativeSource Self}}">
+                                        <dxb:PopupMenu DataContext="{Binding NavigationPaneSearchModel, RelativeSource={RelativeSource AncestorType={x:Type dxp:NavigationPaneControl}}}" IsOpen="{Binding PlacementTarget.IsChecked, RelativeSource={RelativeSource Self}}">
                                             <dxb:BarCheckItem CloseSubMenuOnClick="False"
                                                               Content="{dxdv:DocumentViewerControlLocalizedString FindControlCaseSensitive}"
                                                               IsChecked="{Binding UseCaseSensitiveSearch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -226,7 +224,7 @@
             <Grid DataContext="{Binding NavigationPaneSearchModel, RelativeSource={RelativeSource TemplatedParent}}"
                   Grid.Row="1"
                   Margin="0,0,0,8"
-                  Visibility="{Binding NavigationPaneSearchModel.SearchState, RelativeSource={RelativeSource TemplatedParent}, Converter={native:NavigationPaneSearchStateToVisibilityConverter}}">
+                  Visibility="{Binding NavigationPaneSearchModel.SearchState, RelativeSource={RelativeSource TemplatedParent}, Converter={dxpn:NavigationPaneSearchStateToVisibilityConverter}}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="auto"/>
@@ -234,7 +232,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock>
                     <TextBlock.Text>
-                        <MultiBinding Converter="{native:NavigationPaneSearchStateConverter}">
+                        <MultiBinding Converter="{dxpn:NavigationPaneSearchStateConverter}">
                             <Binding Path="SearchState"/>
                             <Binding Path="SearchResults.Count"/>
                             <Binding Path="SelectedSearchResultIndex"/>
@@ -253,27 +251,27 @@
             <dx:DXTabControl BackgroundTemplate="{StaticResource TabControlBackground}"
                              ClipToBounds="True"
                              Grid.Row="2"
-                             ItemHeaderTemplate="{DynamicResource ResourceKey={themes:NavigationPaneThemeKey ResourceKey=TabHeaderTemplate}}"
+                             ItemHeaderTemplate="{DynamicResource ResourceKey={dxpt:NavigationPaneThemeKey ResourceKey=TabHeaderTemplate}}"
                              ItemTemplateSelector="{StaticResource tabTemplateSelector}"
                              Padding="0,4,0,0"
                              SelectedItem="{Binding NavigationPaneSettings.ActiveTab, RelativeSource={RelativeSource TemplatedParent}}"
                              TabContentCacheMode="CacheTabsOnSelecting">
                 <dx:DXTabControl.Resources>
                     <Style x:Key="{dxt:DXTabControlThemeKey ResourceKey=PanelContainerStyle, IsThemeIndependent=True}" TargetType="{x:Type dxi:TabPanelContainer}">
-                        <Setter Property="NormalMargin" Value="{native:NavigationPaneTabPanelMarginExtension}"/>
+                        <Setter Property="NormalMargin" Value="{dxpn:NavigationPaneTabPanelMarginExtension}"/>
                         <!--<Setter Property="NormalPadding" Value="0,2,0,2"/>
                         <Setter Property="HoldMargin" Value="0,0,-1,0" />
                         <Setter Property="HoldPadding" Value="0,0,0,0"/>-->
                     </Style>
                 </dx:DXTabControl.Resources>
                 <dx:DXTabControl.ItemsSource>
-                    <MultiBinding Converter="{native:NavigationPaneTabItemsSourceConverter}">
+                    <MultiBinding Converter="{dxpn:NavigationPaneTabItemsSourceConverter}">
                         <Binding Path="NavigationPaneSettings.ShowDocumentMapTab" RelativeSource="{RelativeSource TemplatedParent}"/>
                         <Binding Path="NavigationPaneSettings.ShowPagesTab" RelativeSource="{RelativeSource TemplatedParent}"/>
                     </MultiBinding>
                 </dx:DXTabControl.ItemsSource>
                 <dx:DXTabControl.ItemContainerStyle>
-                    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/core.DXTabItem}" TargetType="dx:DXTabItem">
+                    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/core.DXTabItem}" TargetType="dx:DXTabItem">
                         <Setter Property="Padding" Value="0,3,0,0"/>
                         <Setter Property="FocusedBackgroundTemplate" Value="{StaticResource TabItemFocusedBackground}"/>
                         <Setter Property="HoverBackgroundTemplate" Value="{StaticResource TabItemHoverBackground}"/>
@@ -293,9 +291,9 @@
         </Grid>
     </ControlTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.NavigationPaneControl}" TargetType="{x:Type local:NavigationPaneControl}">
-        <Setter Property="NavigationPaneSettings" Value="{Binding Path=(local:DocumentPreviewControl.ActualViewer).ActualNavigationPaneSettings, RelativeSource={RelativeSource TemplatedParent}}"/>
-        <Setter Property="Template" Value="{DynamicResource {themes:NavigationPaneThemeKey ResourceKey=Template}}"/>
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Printing.NavigationPaneControl}" TargetType="{x:Type dxp:NavigationPaneControl}">
+        <Setter Property="NavigationPaneSettings" Value="{Binding Path=(dxp:DocumentPreviewControl.ActualViewer).ActualNavigationPaneSettings, RelativeSource={RelativeSource TemplatedParent}}"/>
+        <Setter Property="Template" Value="{DynamicResource {dxpt:NavigationPaneThemeKey ResourceKey=Template}}"/>
     </Style>
 
 </ResourceDictionary>

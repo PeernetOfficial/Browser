@@ -2,32 +2,32 @@
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+                    xmlns:dxdop="http://schemas.devexpress.com/winfx/2008/xaml/docking/platform"
+                    xmlns:dxdot="http://schemas.devexpress.com/winfx/2008/xaml/docking/themekeys"
+                    xmlns:dxdove="http://schemas.devexpress.com/winfx/2008/xaml/docking/visualelements"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-                    xmlns:dxp="http://schemas.devexpress.com/winfx/2008/xaml/docking/platform"
-                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/docking/themekeys"
-                    xmlns:local="http://schemas.devexpress.com/winfx/2008/xaml/docking"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:ve="http://schemas.devexpress.com/winfx/2008/xaml/docking/visualelements"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!-- Brushes -->
 
-    <SolidColorBrush x:Key="{dxt:BrushElementsThemeKey ResourceKey=TreeItemSelected}"
+    <SolidColorBrush x:Key="{dxdot:BrushElementsThemeKey ResourceKey=TreeItemSelected}"
                      Color="#FF1D4ABD"
                      Opacity="0.10"/>
 
-    <SolidColorBrush x:Key="{dxt:BrushElementsThemeKey ResourceKey=TreeItemHovered}"
+    <SolidColorBrush x:Key="{dxdot:BrushElementsThemeKey ResourceKey=TreeItemHovered}"
                      Color="LightBlue"
                      Opacity="0.50"/>
 
-    <SolidColorBrush x:Key="{dxt:BrushElementsThemeKey ResourceKey=TreeItemDragged}"
+    <SolidColorBrush x:Key="{dxdot:BrushElementsThemeKey ResourceKey=TreeItemDragged}"
                      Color="LightGray"
                      Opacity="0.50"/>
 
     <!-- Controls -->
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.CustomizationControl}" TargetType="{x:Type ve:CustomizationControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.CustomizationControl}" TargetType="{x:Type dxdove:CustomizationControl}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
@@ -37,32 +37,32 @@
                             <RowDefinition/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <ve:ButtonsPanel x:Name="PART_ButtonsPanel"
-                                         Grid.Row="0"
-                                         HorizontalAlignment="Left"
-                                         Margin="0,0,0,12"/>
+                        <dxdove:ButtonsPanel x:Name="PART_ButtonsPanel"
+                                             Grid.Row="0"
+                                             HorizontalAlignment="Left"
+                                             Margin="0,0,0,12"/>
                         <dx:DXTabControl DestroyContentOnTabSwitching="False" Grid.Row="1">
                             <dx:DXTabControl.Items>
                                 <dx:DXTabItem x:Name="PART_TabItemLayoutTree">
-                                    <ve:LayoutTreeView x:Name="PART_LayoutTreeView"/>
+                                    <dxdove:LayoutTreeView x:Name="PART_LayoutTreeView"/>
                                 </dx:DXTabItem>
                                 <dx:DXTabItem x:Name="PART_TabItemHiddenItems">
-                                    <ve:HiddenItemsPanel x:Name="PART_HiddenItemsPanel"/>
+                                    <dxdove:HiddenItemsPanel x:Name="PART_HiddenItemsPanel"/>
                                 </dx:DXTabItem>
                             </dx:DXTabControl.Items>
                         </dx:DXTabControl>
-                        <ve:OptionsPanel x:Name="PART_OptionsPanel"
-                                         Grid.Row="2"
-                                         Margin="0,12,0,0"/>
+                        <dxdove:OptionsPanel x:Name="PART_OptionsPanel"
+                                             Grid.Row="2"
+                                             Margin="0,12,0,0"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <!--SPECIFICTHEME MetropolisDark <Setter Property="Foreground" Value="{DynamicResource {dxdst:ThemeColorsThemeKey ResourceKey=WhiteForegroundColor}}" /> SPECIFICTHEME-->
-        <!--SPECIFICTHEME TouchlineDark <Setter Property="Foreground" Value="{DynamicResource {dxdst:ThemeColorsThemeKey ResourceKey=BlackForegroundColor}}" /> SPECIFICTHEME-->
+        <!--SPECIFICTHEME MetropolisDark <Setter Property="Foreground" Value="{DynamicResource {dxt:ThemeColorsThemeKey ResourceKey=WhiteForegroundColor}}" /> SPECIFICTHEME-->
+        <!--SPECIFICTHEME TouchlineDark <Setter Property="Foreground" Value="{DynamicResource {dxt:ThemeColorsThemeKey ResourceKey=BlackForegroundColor}}" /> SPECIFICTHEME-->
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.ButtonsPanel}" TargetType="{x:Type ve:ButtonsPanel}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.ButtonsPanel}" TargetType="{x:Type dxdove:ButtonsPanel}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
@@ -86,7 +86,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.OptionsPanel}" TargetType="{x:Type ve:OptionsPanel}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.OptionsPanel}" TargetType="{x:Type dxdove:OptionsPanel}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
@@ -104,10 +104,10 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.TreeItem}" TargetType="{x:Type ve:TreeItem}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.TreeItem}" TargetType="{x:Type dxdove:TreeItem}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="ve:TreeItem">
+                <ControlTemplate TargetType="dxdove:TreeItem">
                     <Border x:Name="PART_Border" BorderThickness="1">
                         <StackPanel Orientation="Horizontal">
                             <Image x:Name="PART_Image"/>
@@ -118,7 +118,7 @@
                         <Trigger Property="TreeItemState" Value="Selected">
                             <Setter Property="Background"
                                     TargetName="PART_Border"
-                                    Value="{DynamicResource {dxt:BrushElementsThemeKey ResourceKey=TreeItemSelected}}"/>
+                                    Value="{DynamicResource {dxdot:BrushElementsThemeKey ResourceKey=TreeItemSelected}}"/>
                         </Trigger>
                         <Trigger Property="TreeItemState" Value="Dragged">
                             <Setter Property="Opacity"
@@ -128,7 +128,7 @@
                         <Trigger Property="TreeItemState" Value="Hovered">
                             <Setter Property="Background"
                                     TargetName="PART_Border"
-                                    Value="{DynamicResource {dxt:BrushElementsThemeKey ResourceKey=TreeItemHovered}}"/>
+                                    Value="{DynamicResource {dxdot:BrushElementsThemeKey ResourceKey=TreeItemHovered}}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -136,56 +136,56 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.LayoutTreeView}" TargetType="{x:Type ve:LayoutTreeView}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.LayoutTreeView}" TargetType="{x:Type dxdove:LayoutTreeView}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
                     <Grid>
                         <Grid.Resources>
                             <HierarchicalDataTemplate x:Key="groupTemplate"
-                                                      DataType="{x:Type local:LayoutGroup}"
+                                                      DataType="{x:Type dxdo:LayoutGroup}"
                                                       ItemsSource="{Binding Path=Items}">
-                                <ve:TreeItem LayoutItem="{Binding}"/>
+                                <dxdove:TreeItem LayoutItem="{Binding}"/>
                             </HierarchicalDataTemplate>
-                            <HierarchicalDataTemplate x:Key="itemTemplate" DataType="{x:Type local:BaseLayoutItem}">
-                                <ve:TreeItem LayoutItem="{Binding}"/>
+                            <HierarchicalDataTemplate x:Key="itemTemplate" DataType="{x:Type dxdo:BaseLayoutItem}">
+                                <dxdove:TreeItem LayoutItem="{Binding}"/>
                             </HierarchicalDataTemplate>
                         </Grid.Resources>
-                        <ve:psvTreeView x:Name="PART_TreeView"
-                                        LayoutGroupTemplate="{StaticResource groupTemplate}"
-                                        LayoutItemTemplate="{StaticResource itemTemplate}"
-                                        VirtualizingStackPanel.IsVirtualizing="False">
-                            <ve:psvTreeView.ItemContainerStyle>
-                                <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=TreeViewItem}" TargetType="{x:Type TreeViewItem}">
+                        <dxdove:psvTreeView x:Name="PART_TreeView"
+                                            LayoutGroupTemplate="{StaticResource groupTemplate}"
+                                            LayoutItemTemplate="{StaticResource itemTemplate}"
+                                            VirtualizingStackPanel.IsVirtualizing="False">
+                            <dxdove:psvTreeView.ItemContainerStyle>
+                                <Style x:Key="{dxt:DefaultStyleThemeKey FullName=TreeViewItem}" TargetType="{x:Type TreeViewItem}">
                                     <Setter Property="IsExpanded" Value="True"/>
                                     <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=OneWay}"/>
                                     <Setter Property="Visibility" Value="{Binding Path=Visibility}"/>
                                 </Style>
-                            </ve:psvTreeView.ItemContainerStyle>
-                        </ve:psvTreeView>
+                            </dxdove:psvTreeView.ItemContainerStyle>
+                        </dxdove:psvTreeView>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.DragCursorControl}" TargetType="{x:Type ve:DragCursorControl}">
-        <Setter Property="Template" Value="{DynamicResource {dxt:DockElementsThemeKey ResourceKey=DragCursor}}"/>
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.DragCursorControl}" TargetType="{x:Type dxdove:DragCursorControl}">
+        <Setter Property="Template" Value="{DynamicResource {dxdot:DockElementsThemeKey ResourceKey=DragCursor}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.HiddenItem}" TargetType="{x:Type ve:HiddenItem}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.HiddenItem}" TargetType="{x:Type dxdove:HiddenItem}">
         <Setter Property="Margin" Value="0,0,0,1"/>
-        <Setter Property="Template" Value="{DynamicResource {dxt:OtherResourcesThemeKey ResourceKey=HiddenItemTemplate}}"/>
+        <Setter Property="Template" Value="{DynamicResource {dxdot:OtherResourcesThemeKey ResourceKey=HiddenItemTemplate}}"/>
     </Style>
 
-    <Style x:Key="{dxt:DockElementsThemeKey ResourceKey=HiddenItemsPanelItem}" TargetType="ve:psvListBox">
+    <Style x:Key="{dxdot:DockElementsThemeKey ResourceKey=HiddenItemsPanelItem}" TargetType="dxdove:psvListBox">
         <Setter Property="ItemContainerStyle">
             <Setter.Value>
-                <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.psvListBoxItem}" TargetType="{x:Type ve:psvListBoxItem}">
+                <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.psvListBoxItem}" TargetType="{x:Type dxdove:psvListBoxItem}">
                     <Setter Property="Template">
                         <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type ve:psvListBoxItem}">
-                                <ve:HiddenItem LayoutItem="{Binding}"/>
+                            <ControlTemplate TargetType="{x:Type dxdove:psvListBoxItem}">
+                                <dxdove:HiddenItem LayoutItem="{Binding}"/>
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
@@ -196,11 +196,11 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.HiddenItemsPanel}" TargetType="{x:Type ve:HiddenItemsPanel}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.HiddenItemsPanel}" TargetType="{x:Type dxdove:HiddenItemsPanel}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <ve:psvListBox x:Name="PART_ListBox" Style="{DynamicResource {dxt:DockElementsThemeKey ResourceKey=HiddenItemsPanelItem}}"/>
+                    <dxdove:psvListBox x:Name="PART_ListBox" Style="{DynamicResource {dxdot:DockElementsThemeKey ResourceKey=HiddenItemsPanelItem}}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

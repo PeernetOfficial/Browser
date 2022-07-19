@@ -3,20 +3,16 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxbc="http://schemas.devexpress.com/winfx/2008/xaml/bars/internal"
-                    xmlns:dxbn="http://schemas.devexpress.com/winfx/2008/xaml/bars/internal"
+                    xmlns:dxbi="http://schemas.devexpress.com/winfx/2008/xaml/bars/internal"
                     xmlns:dxbt="http://schemas.devexpress.com/winfx/2008/xaml/bars/themekeys"
-                    xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core"
-                    xmlns:dxcn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
                     xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
-                    xmlns:dxtEx="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxtEx:ResourceDictionaryEx Source="{dxt:ThemePartLoader PathCore='/Bars/Themes/Generic/RenderTemplates/_Common.xaml', Path='/Core/Core/Bars/Themes/Generic/RenderTemplates/_Common.xaml'}"/>
+        <dxt:ResourceDictionaryEx Source="{dxt:ThemePartLoader PathCore='/Bars/Themes/Generic/RenderTemplates/_Common.xaml', Path='/Core/Core/Bars/Themes/Generic/RenderTemplates/_Common.xaml'}"/>
     </ResourceDictionary.MergedDictionaries>
 
     <dxb:RenderBarItemBorderStateTemplateSelector x:Key="{dxbt:BarItemRenderThemeKey ResourceKey=BorderStateTemplateSelectorInRibbonStatusBar}"
@@ -28,166 +24,166 @@
                                                   NormalTemplate="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=NormalBackgroundTemplateInRibbonStatusBar}}"
                                                   PressedTemplate="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=PressedBackgroundTemplateInRibbonStatusBar}}"/>
 
-    <dxcn:RenderTemplate x:Key="{dxbt:BarItemRenderThemeKey ResourceKey=BaseEditTemplateInRibbonStatusBar}" x:Shared="False">
-        <dxcn:RenderBorder Name="PART_Root"
-                           Background="Transparent"
-                           cs:id="RenderBorder_0000">
-            <dxcn:RenderPanel>
+    <dxi:RenderTemplate x:Key="{dxbt:BarItemRenderThemeKey ResourceKey=BaseEditTemplateInRibbonStatusBar}" x:Shared="False">
+        <dxi:RenderBorder Name="PART_Root"
+                          Background="Transparent"
+                          cs:id="RenderBorder_0000">
+            <dxi:RenderPanel>
                 <dxb:RenderBarItemBorderControl Name="PART_Background"/>
-                <dxcn:RenderPanel Name="PART_Container" LayoutProvider="{x:Static dxcn:LayoutProvider.DockInstance}">
-                    <dxcn:RenderContentControl Name="PART_Glyph"
-                                               PreferRenderTemplate="False"
-                                               RenderContentTemplate="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=GlyphTemplate}}"/>
-                    <dxcn:RenderPanel Name="PART_ContentContainer" LayoutProvider="{x:Static dxcn:LayoutProvider.DockInstance}">
-                        <dxcn:RenderContentControl Name="PART_Content" PreferRenderTemplate="False"/>
-                        <dxcn:RenderContentControl Name="PART_Editor"/>
-                        <dxcn:RenderContentControl Name="PART_Content2"/>
-                    </dxcn:RenderPanel>
-                </dxcn:RenderPanel>
-            </dxcn:RenderPanel>
-        </dxcn:RenderBorder>
-        <dxcn:RenderTemplate.Triggers>
-            <dxcn:RenderTriggersCollection>
-                <dxcn:RenderTriggersCollection.MergedTriggers>
-                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=EditForegroundColorStatesInRibbonStatusBar}}"/>
-                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=EnabledBorderStates}}"/>
-                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=EnabledBorderStatesEditor}}"/>
-                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=AppearanceTriggers}}"/>
-                </dxcn:RenderTriggersCollection.MergedTriggers>
-            </dxcn:RenderTriggersCollection>
-        </dxcn:RenderTemplate.Triggers>
-    </dxcn:RenderTemplate>
+                <dxi:RenderPanel Name="PART_Container" LayoutProvider="{x:Static dxi:LayoutProvider.DockInstance}">
+                    <dxi:RenderContentControl Name="PART_Glyph"
+                                              PreferRenderTemplate="False"
+                                              RenderContentTemplate="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=GlyphTemplate}}"/>
+                    <dxi:RenderPanel Name="PART_ContentContainer" LayoutProvider="{x:Static dxi:LayoutProvider.DockInstance}">
+                        <dxi:RenderContentControl Name="PART_Content" PreferRenderTemplate="False"/>
+                        <dxi:RenderContentControl Name="PART_Editor"/>
+                        <dxi:RenderContentControl Name="PART_Content2"/>
+                    </dxi:RenderPanel>
+                </dxi:RenderPanel>
+            </dxi:RenderPanel>
+        </dxi:RenderBorder>
+        <dxi:RenderTemplate.Triggers>
+            <dxi:RenderTriggersCollection>
+                <dxi:RenderTriggersCollection.MergedTriggers>
+                    <dxi:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=EditForegroundColorStatesInRibbonStatusBar}}"/>
+                    <dxi:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=EnabledBorderStates}}"/>
+                    <dxi:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=EnabledBorderStatesEditor}}"/>
+                    <dxi:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=AppearanceTriggers}}"/>
+                </dxi:RenderTriggersCollection.MergedTriggers>
+            </dxi:RenderTriggersCollection>
+        </dxi:RenderTemplate.Triggers>
+    </dxi:RenderTemplate>
 
-    <dxcn:RenderTemplate x:Key="{dxbt:BarItemRenderThemeKey ResourceKey=BaseDefaultTemplateInRibbonStatusBar}" x:Shared="False">
-        <dxcn:RenderBorder Name="PART_Root"
-                           Background="Transparent"
-                           cs:id="RenderBorder_0000">
-            <dxcn:RenderPanel>
+    <dxi:RenderTemplate x:Key="{dxbt:BarItemRenderThemeKey ResourceKey=BaseDefaultTemplateInRibbonStatusBar}" x:Shared="False">
+        <dxi:RenderBorder Name="PART_Root"
+                          Background="Transparent"
+                          cs:id="RenderBorder_0000">
+            <dxi:RenderPanel>
                 <dxb:RenderBarItemBorderControl Name="PART_Background" RenderTemplateSelector="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=BorderStateTemplateSelectorInRibbonStatusBar}}"/>
-                <dxcn:RenderPanel Name="PART_Container" LayoutProvider="{x:Static dxcn:LayoutProvider.DockInstance}">
-                    <dxcn:RenderContentControl Name="PART_Glyph"
-                                               Dock="Top"
-                                               HorizontalAlignment="Center"
-                                               HorizontalContentAlignment="Center"
-                                               PreferRenderTemplate="False"
-                                               RenderContentTemplate="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=GlyphTemplate}}"
-                                               Visibility="Collapsed"/>
-                    <dxcn:RenderContentControl Name="PART_Content"
-                                               Dock="Bottom"
-                                               HorizontalAlignment="Center"
-                                               HorizontalContentAlignment="Center"
-                                               PreferRenderTemplate="False"/>
-                </dxcn:RenderPanel>
-            </dxcn:RenderPanel>
-        </dxcn:RenderBorder>
-        <dxcn:RenderTemplate.Triggers>
-            <dxcn:RenderTriggersCollection>
-                <dxcn:RenderTriggersCollection.MergedTriggers>
-                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=GlyphAlignmentStatesInBar}}"/>
-                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=ForegroundColorStatesInRibbonStatusBar}}"/>
-                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=EnabledBorderStates}}"/>
-                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=AppearanceTriggers}}"/>
-                </dxcn:RenderTriggersCollection.MergedTriggers>
-            </dxcn:RenderTriggersCollection>
-        </dxcn:RenderTemplate.Triggers>
-    </dxcn:RenderTemplate>
+                <dxi:RenderPanel Name="PART_Container" LayoutProvider="{x:Static dxi:LayoutProvider.DockInstance}">
+                    <dxi:RenderContentControl Name="PART_Glyph"
+                                              Dock="Top"
+                                              HorizontalAlignment="Center"
+                                              HorizontalContentAlignment="Center"
+                                              PreferRenderTemplate="False"
+                                              RenderContentTemplate="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=GlyphTemplate}}"
+                                              Visibility="Collapsed"/>
+                    <dxi:RenderContentControl Name="PART_Content"
+                                              Dock="Bottom"
+                                              HorizontalAlignment="Center"
+                                              HorizontalContentAlignment="Center"
+                                              PreferRenderTemplate="False"/>
+                </dxi:RenderPanel>
+            </dxi:RenderPanel>
+        </dxi:RenderBorder>
+        <dxi:RenderTemplate.Triggers>
+            <dxi:RenderTriggersCollection>
+                <dxi:RenderTriggersCollection.MergedTriggers>
+                    <dxi:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=GlyphAlignmentStatesInBar}}"/>
+                    <dxi:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=ForegroundColorStatesInRibbonStatusBar}}"/>
+                    <dxi:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=EnabledBorderStates}}"/>
+                    <dxi:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=AppearanceTriggers}}"/>
+                </dxi:RenderTriggersCollection.MergedTriggers>
+            </dxi:RenderTriggersCollection>
+        </dxi:RenderTemplate.Triggers>
+    </dxi:RenderTemplate>
 
-    <dxcn:RenderTemplate x:Key="{dxbt:BarItemRenderThemeKey ResourceKey=BaseSplitItemTemplateInRibbonStatusBar}" x:Shared="False">
-        <dxcn:RenderBorder Name="PART_Root"
-                           Background="Transparent"
-                           cs:id="RenderBorder_0000">
-            <dxcn:RenderPanel>
+    <dxi:RenderTemplate x:Key="{dxbt:BarItemRenderThemeKey ResourceKey=BaseSplitItemTemplateInRibbonStatusBar}" x:Shared="False">
+        <dxi:RenderBorder Name="PART_Root"
+                          Background="Transparent"
+                          cs:id="RenderBorder_0000">
+            <dxi:RenderPanel>
                 <dxb:RenderBarItemBorderControl Name="PART_Background" RenderTemplateSelector="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=BorderStateTemplateSelectorInRibbonStatusBar}}"/>
-                <dxcn:RenderPanel LayoutProvider="{x:Static dxcn:LayoutProvider.DockInstance}">
-                    <dxcn:RenderPanel Name="PART_ContentContainer">
+                <dxi:RenderPanel LayoutProvider="{x:Static dxi:LayoutProvider.DockInstance}">
+                    <dxi:RenderPanel Name="PART_ContentContainer">
                         <dxb:RenderBarItemBorderControl Name="PART_ContentBackground"
                                                         HideBorderSide="Right"
                                                         RenderTemplateSelector="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=BorderStateTemplateSelectorInRibbonStatusBar}}"/>
-                        <dxcn:RenderPanel Name="PART_Container" LayoutProvider="{x:Static dxcn:LayoutProvider.DockInstance}">
-                            <dxcn:RenderContentControl Name="PART_Glyph"
-                                                       PreferRenderTemplate="False"
-                                                       RenderContentTemplate="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=GlyphTemplate}}"/>
-                            <dxcn:RenderContentControl Name="PART_Content"
-                                                       HorizontalAlignment="Center"
-                                                       HorizontalContentAlignment="Center"
-                                                       PreferRenderTemplate="False"/>
-                        </dxcn:RenderPanel>
-                    </dxcn:RenderPanel>
-                    <dxcn:RenderBorder Name="PART_Separator" Width="1"/>
-                    <dxcn:RenderPanel Name="PART_ArrowContainer">
-                        <dxcn:RenderBorder Background="Transparent" cs:id="RenderBorder_0001"/>
+                        <dxi:RenderPanel Name="PART_Container" LayoutProvider="{x:Static dxi:LayoutProvider.DockInstance}">
+                            <dxi:RenderContentControl Name="PART_Glyph"
+                                                      PreferRenderTemplate="False"
+                                                      RenderContentTemplate="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=GlyphTemplate}}"/>
+                            <dxi:RenderContentControl Name="PART_Content"
+                                                      HorizontalAlignment="Center"
+                                                      HorizontalContentAlignment="Center"
+                                                      PreferRenderTemplate="False"/>
+                        </dxi:RenderPanel>
+                    </dxi:RenderPanel>
+                    <dxi:RenderBorder Name="PART_Separator" Width="1"/>
+                    <dxi:RenderPanel Name="PART_ArrowContainer">
+                        <dxi:RenderBorder Background="Transparent" cs:id="RenderBorder_0001"/>
                         <dxb:RenderBarItemBorderControl Name="PART_ArrowBackground"
                                                         HideBorderSide="Left"
                                                         RenderTemplateSelector="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=BorderStateTemplateSelectorInRibbonStatusBar}}"/>
-                        <dxcn:RenderPanel Name="PART_PathArrowContainer"
-                                          HorizontalAlignment="Center"
-                                          VerticalAlignment="Center">
+                        <dxi:RenderPanel Name="PART_PathArrowContainer"
+                                         HorizontalAlignment="Center"
+                                         VerticalAlignment="Center">
                             <dxb:RenderArrowControl RenderTemplateSelector="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=RenderArrowControlTemplateSelector}}"/>
-                        </dxcn:RenderPanel>
-                    </dxcn:RenderPanel>
-                </dxcn:RenderPanel>
-            </dxcn:RenderPanel>
-        </dxcn:RenderBorder>
-        <dxcn:RenderTemplate.Triggers>
-            <dxcn:RenderTriggersCollection>
-                <dxcn:RenderTriggersCollection.MergedTriggers>
-                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=GlyphAlignmentStatesInBar}}"/>
-                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=ArrowAlignmentStates}}"/>
-                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=ForegroundColorStatesInRibbonStatusBar}}"/>
-                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=EnabledBorderStates}}"/>
-                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=SplitAppearanceTriggers}}"/>
-                </dxcn:RenderTriggersCollection.MergedTriggers>
-            </dxcn:RenderTriggersCollection>
-        </dxcn:RenderTemplate.Triggers>
-    </dxcn:RenderTemplate>
+                        </dxi:RenderPanel>
+                    </dxi:RenderPanel>
+                </dxi:RenderPanel>
+            </dxi:RenderPanel>
+        </dxi:RenderBorder>
+        <dxi:RenderTemplate.Triggers>
+            <dxi:RenderTriggersCollection>
+                <dxi:RenderTriggersCollection.MergedTriggers>
+                    <dxi:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=GlyphAlignmentStatesInBar}}"/>
+                    <dxi:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=ArrowAlignmentStates}}"/>
+                    <dxi:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=ForegroundColorStatesInRibbonStatusBar}}"/>
+                    <dxi:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=EnabledBorderStates}}"/>
+                    <dxi:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=SplitAppearanceTriggers}}"/>
+                </dxi:RenderTriggersCollection.MergedTriggers>
+            </dxi:RenderTriggersCollection>
+        </dxi:RenderTemplate.Triggers>
+    </dxi:RenderTemplate>
 
-    <dxcn:RenderTemplate x:Key="{dxbt:BarItemRenderThemeKey ResourceKey=BaseStaticTemplateInRibbonStatusBar}" x:Shared="False">
-        <dxcn:RenderBorder Name="PART_Root"
-                           Background="Transparent"
-                           cs:id="RenderBorder_0000">
-            <dxcn:RenderPanel>
+    <dxi:RenderTemplate x:Key="{dxbt:BarItemRenderThemeKey ResourceKey=BaseStaticTemplateInRibbonStatusBar}" x:Shared="False">
+        <dxi:RenderBorder Name="PART_Root"
+                          Background="Transparent"
+                          cs:id="RenderBorder_0000">
+            <dxi:RenderPanel>
                 <dxb:RenderBarItemBorderControl Name="PART_Background"/>
-                <dxcn:RenderPanel Name="PART_Container" LayoutProvider="{dxcn:DockPanelLayoutProvider LastChildFill=True}">
-                    <dxcn:RenderContentControl Name="PART_Glyph"
-                                               Dock="Top"
-                                               HorizontalAlignment="Center"
-                                               HorizontalContentAlignment="Center"
-                                               PreferRenderTemplate="False"
-                                               RenderContentTemplate="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=GlyphTemplate}}"
-                                               Visibility="Collapsed"/>
-                    <dxcn:RenderContentControl Name="PART_Content"
-                                               Dock="Bottom"
-                                               HorizontalAlignment="Stretch"
-                                               PreferRenderTemplate="False"/>
-                </dxcn:RenderPanel>
-            </dxcn:RenderPanel>
-        </dxcn:RenderBorder>
-        <dxcn:RenderTemplate.Triggers>
-            <dxcn:RenderTriggersCollection>
-                <dxcn:RenderTriggersCollection.MergedTriggers>
-                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=GlyphAlignmentStatesInBar}}"/>
-                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=ForegroundColorStatesInRibbonStatusBar}}"/>
-                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=EnabledBorderStates}}"/>
-                    <dxcn:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=AppearanceTriggers}}"/>
-                </dxcn:RenderTriggersCollection.MergedTriggers>
-            </dxcn:RenderTriggersCollection>
-        </dxcn:RenderTemplate.Triggers>
-    </dxcn:RenderTemplate>
+                <dxi:RenderPanel Name="PART_Container" LayoutProvider="{dxi:DockPanelLayoutProvider LastChildFill=True}">
+                    <dxi:RenderContentControl Name="PART_Glyph"
+                                              Dock="Top"
+                                              HorizontalAlignment="Center"
+                                              HorizontalContentAlignment="Center"
+                                              PreferRenderTemplate="False"
+                                              RenderContentTemplate="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=GlyphTemplate}}"
+                                              Visibility="Collapsed"/>
+                    <dxi:RenderContentControl Name="PART_Content"
+                                              Dock="Bottom"
+                                              HorizontalAlignment="Stretch"
+                                              PreferRenderTemplate="False"/>
+                </dxi:RenderPanel>
+            </dxi:RenderPanel>
+        </dxi:RenderBorder>
+        <dxi:RenderTemplate.Triggers>
+            <dxi:RenderTriggersCollection>
+                <dxi:RenderTriggersCollection.MergedTriggers>
+                    <dxi:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=GlyphAlignmentStatesInBar}}"/>
+                    <dxi:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=ForegroundColorStatesInRibbonStatusBar}}"/>
+                    <dxi:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=EnabledBorderStates}}"/>
+                    <dxi:RenderTriggersCollection Source="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=AppearanceTriggers}}"/>
+                </dxi:RenderTriggersCollection.MergedTriggers>
+            </dxi:RenderTriggersCollection>
+        </dxi:RenderTemplate.Triggers>
+    </dxi:RenderTemplate>
 
-    <dxcn:RenderTemplate x:Key="{dxbt:BarItemRenderThemeKey ResourceKey=EditItemTemplateInRibbonStatusBar}"
-                         BasedOn="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=BaseEditTemplateInRibbonStatusBar}}"
-                         Styles="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=EditTemplateInRibbonStatusBarStyles}}"/>
+    <dxi:RenderTemplate x:Key="{dxbt:BarItemRenderThemeKey ResourceKey=EditItemTemplateInRibbonStatusBar}"
+                        BasedOn="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=BaseEditTemplateInRibbonStatusBar}}"
+                        Styles="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=EditTemplateInRibbonStatusBarStyles}}"/>
 
-    <dxcn:RenderTemplate x:Key="{dxbt:BarItemRenderThemeKey ResourceKey=TemplateInRibbonStatusBar}"
-                         BasedOn="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=BaseDefaultTemplateInRibbonStatusBar}}"
-                         Styles="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=TemplateInRibbonStatusBarStyles}}"/>
+    <dxi:RenderTemplate x:Key="{dxbt:BarItemRenderThemeKey ResourceKey=TemplateInRibbonStatusBar}"
+                        BasedOn="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=BaseDefaultTemplateInRibbonStatusBar}}"
+                        Styles="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=TemplateInRibbonStatusBarStyles}}"/>
 
-    <dxcn:RenderTemplate x:Key="{dxbt:BarItemRenderThemeKey ResourceKey=SplitTemplateInRibbonStatusBar}"
-                         BasedOn="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=BaseSplitItemTemplateInRibbonStatusBar}}"
-                         Styles="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=SplitTemplateInRibbonStatusBarStyles}}"/>
+    <dxi:RenderTemplate x:Key="{dxbt:BarItemRenderThemeKey ResourceKey=SplitTemplateInRibbonStatusBar}"
+                        BasedOn="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=BaseSplitItemTemplateInRibbonStatusBar}}"
+                        Styles="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=SplitTemplateInRibbonStatusBarStyles}}"/>
 
-    <dxcn:RenderTemplate x:Key="{dxbt:BarItemRenderThemeKey ResourceKey=StaticTemplateInRibbonStatusBar}"
-                         BasedOn="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=BaseStaticTemplateInRibbonStatusBar}}"
-                         Styles="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=StaticTemplateInRibbonStatusBarStyles}}"/>
+    <dxi:RenderTemplate x:Key="{dxbt:BarItemRenderThemeKey ResourceKey=StaticTemplateInRibbonStatusBar}"
+                        BasedOn="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=BaseStaticTemplateInRibbonStatusBar}}"
+                        Styles="{StaticResource {dxbt:BarItemRenderThemeKey ResourceKey=StaticTemplateInRibbonStatusBarStyles}}"/>
 
 </ResourceDictionary>

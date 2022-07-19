@@ -1,20 +1,20 @@
 <ResourceDictionary mc:Ignorable="cs"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
                     xmlns:dxbt="http://schemas.devexpress.com/winfx/2008/xaml/bars/themekeys"
-                    xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core"
-                    xmlns:dxcn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
                     xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
                     xmlns:dxrt="http://schemas.devexpress.com/winfx/2008/xaml/ribbon/themekeys"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <dxc:BooleanToVisibilityConverterExtension x:Key="boolToVisibilityConverter" Invert="False"/>
+    <dx:BooleanToVisibilityConverterExtension x:Key="boolToVisibilityConverter" Invert="False"/>
 
-    <dxc:BooleanToVisibilityConverterExtension x:Key="invertBoolToVisibilityConverter" Invert="True"/>
+    <dx:BooleanToVisibilityConverterExtension x:Key="invertBoolToVisibilityConverter" Invert="True"/>
 
     <sys:Double x:Key="{dxrt:RibbonPageCategoryThemeKey ResourceKey=CaptionHeight}">30.0</sys:Double>
 
@@ -27,7 +27,7 @@
                                         Template="{DynamicResource {dxrt:RibbonPageCategoryThemeKey ResourceKey=HeaderBackgroundTemplate}}">
             <dxb:ContentViewport x:Name="PART_Content"
                                  ClipToBounds="True"
-                                 dxc:FrameworkElementHelper.IsClipped="True"
+                                 dx:FrameworkElementHelper.IsClipped="True"
                                  HorizontalContentAlignment="Center"
                                  UseWholeRow="False">
                 <Grid>
@@ -54,23 +54,23 @@
                         TargetName="PART_NormalContent"
                         Value="Collapsed"/>
             </DataTrigger>
-            <DataTrigger Binding="{Binding Path=Category.(dxcn:AppearanceOptions.HasForeground), RelativeSource={RelativeSource Self}}" Value="True">
+            <DataTrigger Binding="{Binding Path=Category.(dxi:AppearanceOptions.HasForeground), RelativeSource={RelativeSource Self}}" Value="True">
                 <Setter Property="Foreground"
                         TargetName="PART_SelectedContent"
-                        Value="{Binding Path=Category.(dxcn:AppearanceOptions.Foreground), RelativeSource={RelativeSource TemplatedParent}}"/>
+                        Value="{Binding Path=Category.(dxi:AppearanceOptions.Foreground), RelativeSource={RelativeSource TemplatedParent}}"/>
                 <Setter Property="Foreground"
                         TargetName="PART_NormalContent"
-                        Value="{Binding Path=Category.(dxcn:AppearanceOptions.Foreground), RelativeSource={RelativeSource TemplatedParent}}"/>
+                        Value="{Binding Path=Category.(dxi:AppearanceOptions.Foreground), RelativeSource={RelativeSource TemplatedParent}}"/>
             </DataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
     <ItemsPanelTemplate x:Key="{dxrt:RibbonPageCategoryThemeKey ResourceKey=PanelTemplate}">
-        <dxr:RibbonPageCategoryItemsPanel dxcn:WindowChrome.IsHitTestVisibleInChrome="True"/>
+        <dxr:RibbonPageCategoryItemsPanel dxi:WindowChrome.IsHitTestVisibleInChrome="True"/>
     </ItemsPanelTemplate>
 
     <ItemsPanelTemplate x:Key="{dxrt:RibbonPageCategoryThemeKey ResourceKey=OfficeSlimPanelTemplate}">
-        <dxr:OfficeSlimRibbonPageCategoryItemsPanel dxcn:WindowChrome.IsHitTestVisibleInChrome="True"/>
+        <dxr:OfficeSlimRibbonPageCategoryItemsPanel dxi:WindowChrome.IsHitTestVisibleInChrome="True"/>
     </ItemsPanelTemplate>
 
     <ControlTemplate x:Key="{dxrt:RibbonPageCategoryThemeKey ResourceKey=ControlTemplate}" TargetType="{x:Type dxr:RibbonPageCategoryControl}">
@@ -150,25 +150,25 @@
                         TargetName="PART_CategoryHeaderControl"
                         Value="Hidden"/>
             </Trigger>
-            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=PageCategory.(dxcn:AppearanceOptions.HasMargin)}" Value="True">
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=PageCategory.(dxi:AppearanceOptions.HasMargin)}" Value="True">
                 <Setter Property="Margin"
                         TargetName="PART_AppearanceBorder"
-                        Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PageCategory.(dxcn:AppearanceOptions.Margin)}"/>
+                        Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PageCategory.(dxi:AppearanceOptions.Margin)}"/>
             </DataTrigger>
-            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=PageCategory.(dxcn:AppearanceOptions.HasBorderBrush)}" Value="True">
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=PageCategory.(dxi:AppearanceOptions.HasBorderBrush)}" Value="True">
                 <Setter Property="BorderBrush"
                         TargetName="PART_AppearanceBorder"
-                        Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PageCategory.(dxcn:AppearanceOptions.BorderBrush)}"/>
+                        Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PageCategory.(dxi:AppearanceOptions.BorderBrush)}"/>
             </DataTrigger>
-            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=PageCategory.(dxcn:AppearanceOptions.HasBorderThickness)}" Value="True">
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=PageCategory.(dxi:AppearanceOptions.HasBorderThickness)}" Value="True">
                 <Setter Property="BorderThickness"
                         TargetName="PART_AppearanceBorder"
-                        Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PageCategory.(dxcn:AppearanceOptions.BorderThickness)}"/>
+                        Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PageCategory.(dxi:AppearanceOptions.BorderThickness)}"/>
             </DataTrigger>
-            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=PageCategory.(dxcn:AppearanceOptions.HasCornerRadius)}" Value="True">
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=PageCategory.(dxi:AppearanceOptions.HasCornerRadius)}" Value="True">
                 <Setter Property="CornerRadius"
                         TargetName="PART_AppearanceBorder"
-                        Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PageCategory.(dxcn:AppearanceOptions.CornerRadius)}"/>
+                        Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=PageCategory.(dxi:AppearanceOptions.CornerRadius)}"/>
             </DataTrigger>
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=PageCategory.ActualIsVisible}" Value="False">
                 <Setter Property="Visibility"
@@ -188,7 +188,7 @@
                                         Template="{DynamicResource {dxrt:RibbonPageCategoryThemeKey ResourceKey=HeaderBackgroundTemplateInAeroWindow}}">
             <dxb:ContentViewport x:Name="PART_Content"
                                  ClipToBounds="True"
-                                 dxc:FrameworkElementHelper.IsClipped="True"
+                                 dx:FrameworkElementHelper.IsClipped="True"
                                  HorizontalContentAlignment="Left"
                                  UseWholeRow="False">
                 <Grid>

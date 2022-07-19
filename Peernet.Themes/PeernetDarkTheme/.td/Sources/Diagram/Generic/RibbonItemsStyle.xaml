@@ -4,21 +4,21 @@
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
                     xmlns:dxdiag="http://schemas.devexpress.com/winfx/2008/xaml/diagram"
-                    xmlns:dxdiagcore="clr-namespace:DevExpress.Diagram.Core;assembly=DevExpress.Diagram.v21.2.Core"
-                    xmlns:dxdiagn="http://schemas.devexpress.com/winfx/2008/xaml/diagram/internal"
+                    xmlns:dxdiagcn="clr-namespace:DevExpress.Diagram.Core.Native;assembly=DevExpress.Diagram.v22.1.Core"
+                    xmlns:dxdiagcore="clr-namespace:DevExpress.Diagram.Core;assembly=DevExpress.Diagram.v22.1.Core"
+                    xmlns:dxdiagi="http://schemas.devexpress.com/winfx/2008/xaml/diagram/internal"
                     xmlns:dxdiagt="http://schemas.devexpress.com/winfx/2008/xaml/diagram/themekeys"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
                     xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
-                    xmlns:localization="clr-namespace:DevExpress.Diagram.Core.Localization;assembly=DevExpress.Diagram.v21.2.Core"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:localization="clr-namespace:DevExpress.Diagram.Core.Localization;assembly=DevExpress.Diagram.v22.1.Core"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:themes="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <themes:ResourceDictionaryEx Source="{dx:DiagramResource Generic/RibbonItemsStyles.meta.designer.xaml, ShortPaths=True}"/>
-        <themes:ResourceDictionaryEx Source="{dx:DiagramResource Generic/RibbonResources.xaml, ShortPaths=True}"/>
+        <dxt:ResourceDictionaryEx Source="{dx:DiagramResource Generic/RibbonItemsStyles.meta.designer.xaml, ShortPaths=True}"/>
+        <dxt:ResourceDictionaryEx Source="{dx:DiagramResource Generic/RibbonResources.xaml, ShortPaths=True}"/>
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="{dxdiagt:DiagramDesignerControlThemeKeys ResourceKey=SnapToGridButtonStyle}" TargetType="{x:Type dxb:BarEditItem}">
@@ -65,7 +65,7 @@
         <Style.Setters>
             <Setter Property="ToolTip" Value="{Binding ConverterParameter=Menu_SnapDistance_Editor, Converter={StaticResource DiagramStringIdConverter}}"/>
             <Setter Property="EditHorizontalAlignment" Value="Stretch"/>
-            <Setter Property="EditValue" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).SnapToItemsDistance,                  Converter={dxdiagn:DoubleToDecimalConverter}}"/>
+            <Setter Property="EditValue" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).SnapToItemsDistance,                  Converter={dxdiagi:DoubleToDecimalConverter}}"/>
         </Style.Setters>
     </Style>
 
@@ -75,13 +75,13 @@
             <Setter Property="CustomizationContent" Value="{Binding ConverterParameter=FontFamily, Converter={StaticResource DiagramStringIdConverter}}"/>
             <Setter Property="SuperTip" Value="{dxdiag:DiagramItemToolTipProvider CaptionId=FontFamily, DescriptionId=FontFamily_Description}"/>
             <Setter Property="ShowScreenTip" Value="True"/>
-            <Setter Property="EditValue" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).SelectionToolsModel[FontFamily], Converter={dxdiagn:FontFamilyInfoToFontFamilyConverter}}"/>
+            <Setter Property="EditValue" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).SelectionToolsModel[FontFamily], Converter={dxdiagi:FontFamilyInfoToFontFamilyConverter}}"/>
             <Setter Property="EditTemplate">
                 <Setter.Value>
                     <DataTemplate>
                         <dxe:FontEdit>
                             <dxe:FontEdit.Style>
-                                <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/editors.FontEdit}" TargetType="dxe:FontEdit">
+                                <Style x:Key="{dxt:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/editors.FontEdit}" TargetType="dxe:FontEdit">
                                     <Style.Setters>
                                         <Setter Property="Width" Value="{DynamicResource {dxdiagt:DiagramDesignerControlThemeKeys ResourceKey=FontFamilyEditorWidth}}"/>
                                         <Setter Property="ScrollUnit" Value="Item"/>
@@ -102,7 +102,7 @@
             </Setter>
             <Setter Property="IsVisible">
                 <Setter.Value>
-                    <MultiBinding Converter="{dxdiagn:ProtectionPropertiesToIsVisibleConverter Operator=And}">
+                    <MultiBinding Converter="{dxdiagi:ProtectionPropertiesToIsVisibleConverter Operator=And}">
                         <Binding Path="(dxdiag:DiagramControl.Diagram).AllowChangeTextFont" RelativeSource="{RelativeSource Mode=Self}"/>
                         <Binding Path="(dxdiag:DiagramControl.Diagram).IsReadOnly" RelativeSource="{RelativeSource Mode=Self}"/>
                     </MultiBinding>
@@ -130,14 +130,14 @@
                 <Setter.Value>
                     <dxmvvm:ValueFactory>
                         <DataTemplate>
-                            <dxe:ComboBoxEditSettings ItemsSource="{StaticResource DiagramFontSizes}" MaskType="Numeric"/>
+                            <dxe:ComboBoxEditSettings ItemsSource="{x:Static dxdiagcn:DiagramFontActions.FontSizeSteps}" MaskType="Numeric"/>
                         </DataTemplate>
                     </dxmvvm:ValueFactory>
                 </Setter.Value>
             </Setter>
             <Setter Property="IsVisible">
                 <Setter.Value>
-                    <MultiBinding Converter="{dxdiagn:ProtectionPropertiesToIsVisibleConverter Operator=And}">
+                    <MultiBinding Converter="{dxdiagi:ProtectionPropertiesToIsVisibleConverter Operator=And}">
                         <Binding Path="(dxdiag:DiagramControl.Diagram).AllowChangeTextFont" RelativeSource="{RelativeSource Mode=Self}"/>
                         <Binding Path="(dxdiag:DiagramControl.Diagram).IsReadOnly" RelativeSource="{RelativeSource Mode=Self}"/>
                     </MultiBinding>
@@ -241,7 +241,7 @@
                                     Height="3"
                                     Width="14">
                                 <Border.Background>
-                                    <SolidColorBrush Color="{Binding Path=(dxdiagn:BarColorEditBehavior.BarColor)}"/>
+                                    <SolidColorBrush Color="{Binding Path=(dxdiagi:BarColorEditBehavior.BarColor)}"/>
                                 </Border.Background>
                             </Border>
                         </Canvas>
@@ -255,7 +255,7 @@
                 <Setter.Value>
                     <DataTemplate>
                         <ItemsControl>
-                            <dxdiagn:BarColorEditBehavior ColorEditUnit="{Binding Path=PopupControl.Tag, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:BarSplitButtonItem}}}"
+                            <dxdiagi:BarColorEditBehavior ColorEditUnit="{Binding Path=PopupControl.Tag, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:BarSplitButtonItem}}}"
                                                           Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:BarSplitButtonItem}}}"
                                                           EditablePropertyName="{x:Static dxdiagcore:DiagramItemController.BackgroundPropertyName}"/>
                         </ItemsControl>
@@ -267,17 +267,17 @@
                     <dxmvvm:ValueFactory>
                         <DataTemplate>
                             <dxb:PopupControlContainer Tag="{Binding ElementName=backgroundColorEditBehavior, Path=EditorColor}">
-                                <dxdiagn:ExtendedColorEdit AllowNullInput="True"
-                                                           Palettes="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).Theme, Converter={dxdiagn:DiagramThemeToColorEditPaletteConverter}}"
+                                <dxdiagi:ExtendedColorEdit AllowNullInput="True"
+                                                           Palettes="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).Theme, Converter={dxdiagi:DiagramThemeToColorEditPaletteConverter}}"
                                                            ShowBorder="False"
                                                            ShowDefaultColorButton="False">
                                     <dxmvvm:Interaction.Behaviors>
-                                        <dxdiagn:DiagramColorEditBehavior x:Name="backgroundColorEditBehavior"
-                                                                          Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagn:ExtendedColorEdit}}}"
-                                                                          DiagramColor="{Binding Path=(dxdiag:DiagramControl.Diagram).SelectionToolsModel[BackgroundColor], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagn:ExtendedColorEdit}}}"
+                                        <dxdiagi:DiagramColorEditBehavior x:Name="backgroundColorEditBehavior"
+                                                                          Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagi:ExtendedColorEdit}}}"
+                                                                          DiagramColor="{Binding Path=(dxdiag:DiagramControl.Diagram).SelectionToolsModel[BackgroundColor], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagi:ExtendedColorEdit}}}"
                                                                           EditablePropertyName="{x:Static dxdiagcore:DiagramItemController.BackgroundPropertyName}"/>
                                     </dxmvvm:Interaction.Behaviors>
-                                </dxdiagn:ExtendedColorEdit>
+                                </dxdiagi:ExtendedColorEdit>
                             </dxb:PopupControlContainer>
                         </DataTemplate>
                     </dxmvvm:ValueFactory>
@@ -285,7 +285,7 @@
             </Setter>
             <Setter Property="IsVisible">
                 <Setter.Value>
-                    <MultiBinding Converter="{dxdiagn:ProtectionPropertiesToIsVisibleConverter}">
+                    <MultiBinding Converter="{dxdiagi:ProtectionPropertiesToIsVisibleConverter}">
                         <Binding Path="(dxdiag:DiagramControl.Diagram).AllowChangeItemBackground" RelativeSource="{RelativeSource Mode=Self}"/>
                         <Binding Path="(dxdiag:DiagramControl.Diagram).IsReadOnly" RelativeSource="{RelativeSource Mode=Self}"/>
                     </MultiBinding>
@@ -313,7 +313,7 @@
                                     Height="3"
                                     Width="14">
                                 <Border.Background>
-                                    <SolidColorBrush Color="{Binding Path=(dxdiagn:BarColorEditBehavior.BarColor)}"/>
+                                    <SolidColorBrush Color="{Binding Path=(dxdiagi:BarColorEditBehavior.BarColor)}"/>
                                 </Border.Background>
                             </Border>
                         </Canvas>
@@ -328,7 +328,7 @@
                 <Setter.Value>
                     <DataTemplate>
                         <ItemsControl>
-                            <dxdiagn:BarColorEditBehavior ColorEditUnit="{Binding Path=PopupControl.Tag, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:BarSplitButtonItem}}}"
+                            <dxdiagi:BarColorEditBehavior ColorEditUnit="{Binding Path=PopupControl.Tag, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:BarSplitButtonItem}}}"
                                                           Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:BarSplitButtonItem}}}"
                                                           EditablePropertyName="{x:Static dxdiagcore:DiagramItemController.ForegroundPropertyName}"/>
                         </ItemsControl>
@@ -340,17 +340,17 @@
                     <dxmvvm:ValueFactory>
                         <DataTemplate>
                             <dxb:PopupControlContainer Tag="{Binding ElementName=foregroundColorEditBehavior, Path=EditorColor}">
-                                <dxdiagn:ExtendedColorEdit AllowNullInput="True"
-                                                           Palettes="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).Theme, Converter={dxdiagn:DiagramThemeToColorEditPaletteConverter}}"
+                                <dxdiagi:ExtendedColorEdit AllowNullInput="True"
+                                                           Palettes="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).Theme, Converter={dxdiagi:DiagramThemeToColorEditPaletteConverter}}"
                                                            ShowBorder="False"
                                                            ShowDefaultColorButton="False">
                                     <dxmvvm:Interaction.Behaviors>
-                                        <dxdiagn:DiagramColorEditBehavior x:Name="foregroundColorEditBehavior"
-                                                                          Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagn:ExtendedColorEdit}}}"
+                                        <dxdiagi:DiagramColorEditBehavior x:Name="foregroundColorEditBehavior"
+                                                                          Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagi:ExtendedColorEdit}}}"
                                                                           DiagramColor="{Binding Path=Diagram.SelectionToolsModel[ForegroundColor], RelativeSource={RelativeSource Self}}"
                                                                           EditablePropertyName="{x:Static dxdiagcore:DiagramItemController.ForegroundPropertyName}"/>
                                     </dxmvvm:Interaction.Behaviors>
-                                </dxdiagn:ExtendedColorEdit>
+                                </dxdiagi:ExtendedColorEdit>
                             </dxb:PopupControlContainer>
                         </DataTemplate>
                     </dxmvvm:ValueFactory>
@@ -358,7 +358,7 @@
             </Setter>
             <Setter Property="IsVisible">
                 <Setter.Value>
-                    <MultiBinding Converter="{dxdiagn:ProtectionPropertiesToIsVisibleConverter }">
+                    <MultiBinding Converter="{dxdiagi:ProtectionPropertiesToIsVisibleConverter }">
                         <Binding Path="(dxdiag:DiagramControl.Diagram).AllowChangeTextForeground" RelativeSource="{RelativeSource Mode=Self}"/>
                         <Binding Path="(dxdiag:DiagramControl.Diagram).IsReadOnly" RelativeSource="{RelativeSource Mode=Self}"/>
                     </MultiBinding>
@@ -386,7 +386,7 @@
                                     Height="3"
                                     Width="14">
                                 <Border.Background>
-                                    <SolidColorBrush Color="{Binding Path=(dxdiagn:BarColorEditBehavior.BarColor)}"/>
+                                    <SolidColorBrush Color="{Binding Path=(dxdiagi:BarColorEditBehavior.BarColor)}"/>
                                 </Border.Background>
                             </Border>
                         </Canvas>
@@ -400,7 +400,7 @@
                 <Setter.Value>
                     <DataTemplate>
                         <ItemsControl>
-                            <dxdiagn:BarColorEditBehavior ColorEditUnit="{Binding Path=PopupControl.Tag, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:BarSplitButtonItem}}}"
+                            <dxdiagi:BarColorEditBehavior ColorEditUnit="{Binding Path=PopupControl.Tag, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:BarSplitButtonItem}}}"
                                                           Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:BarSplitButtonItem}}}"
                                                           EditablePropertyName="{x:Static dxdiagcore:DiagramItemController.StrokePropertyName}"/>
                         </ItemsControl>
@@ -412,17 +412,17 @@
                     <dxmvvm:ValueFactory>
                         <DataTemplate>
                             <dxb:PopupControlContainer Tag="{Binding ElementName=strokeColorEditBehavior, Path=EditorColor}">
-                                <dxdiagn:ExtendedColorEdit AllowNullInput="True"
-                                                           Palettes="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).Theme, Converter={dxdiagn:DiagramThemeToColorEditPaletteConverter}}"
+                                <dxdiagi:ExtendedColorEdit AllowNullInput="True"
+                                                           Palettes="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).Theme, Converter={dxdiagi:DiagramThemeToColorEditPaletteConverter}}"
                                                            ShowBorder="False"
                                                            ShowDefaultColorButton="False">
                                     <dxmvvm:Interaction.Behaviors>
-                                        <dxdiagn:DiagramColorEditBehavior x:Name="strokeColorEditBehavior"
-                                                                          Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagn:ExtendedColorEdit}}}"
-                                                                          DiagramColor="{Binding Path=(dxdiag:DiagramControl.Diagram).SelectionToolsModel[StrokeColor], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagn:ExtendedColorEdit}}}"
+                                        <dxdiagi:DiagramColorEditBehavior x:Name="strokeColorEditBehavior"
+                                                                          Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagi:ExtendedColorEdit}}}"
+                                                                          DiagramColor="{Binding Path=(dxdiag:DiagramControl.Diagram).SelectionToolsModel[StrokeColor], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagi:ExtendedColorEdit}}}"
                                                                           EditablePropertyName="{x:Static dxdiagcore:DiagramItemController.StrokePropertyName}"/>
                                     </dxmvvm:Interaction.Behaviors>
-                                </dxdiagn:ExtendedColorEdit>
+                                </dxdiagi:ExtendedColorEdit>
                             </dxb:PopupControlContainer>
                         </DataTemplate>
                     </dxmvvm:ValueFactory>
@@ -430,7 +430,7 @@
             </Setter>
             <Setter Property="IsVisible">
                 <Setter.Value>
-                    <MultiBinding Converter="{dxdiagn:ProtectionPropertiesToIsVisibleConverter}">
+                    <MultiBinding Converter="{dxdiagi:ProtectionPropertiesToIsVisibleConverter}">
                         <Binding Path="(dxdiag:DiagramControl.Diagram).AllowChangeItemStroke" RelativeSource="{RelativeSource Mode=Self}"/>
                         <Binding Path="(dxdiag:DiagramControl.Diagram).IsReadOnly" RelativeSource="{RelativeSource Mode=Self}"/>
                     </MultiBinding>
@@ -467,7 +467,7 @@
                                     <dxb:GalleryControl.Gallery>
                                         <dxb:Gallery Style="{StaticResource insertContainerGalleryStyle}">
                                             <dxmvvm:Interaction.Behaviors>
-                                                <dxdiagn:SelectContainerToolsBehavior ToolsPageName="{x:Static dxdiagcore:DefaultBarItemNames.ContainerToolsRibbonPage}"/>
+                                                <dxdiagi:SelectContainerToolsBehavior ToolsPageName="{x:Static dxdiagcore:DefaultBarItemNames.ContainerToolsRibbonPage}"/>
                                             </dxmvvm:Interaction.Behaviors>
                                             <dxb:GalleryItemGroup ItemsSource="{x:Static dxdiagcore:DiagramContainerGalleryRegistrator.Shapes}" ItemTemplate="{StaticResource galleryControlItemTemplate}"/>
                                         </dxb:Gallery>
@@ -509,7 +509,7 @@
                                     <dxb:GalleryControl.Gallery>
                                         <dxb:Gallery Style="{StaticResource insertListGalleryStyle}">
                                             <dxmvvm:Interaction.Behaviors>
-                                                <dxdiagn:SelectListToolsBehavior ToolsPageName="{x:Static dxdiagcore:DefaultBarItemNames.ContainerToolsRibbonPage}"/>
+                                                <dxdiagi:SelectListToolsBehavior ToolsPageName="{x:Static dxdiagcore:DefaultBarItemNames.ContainerToolsRibbonPage}"/>
                                             </dxmvvm:Interaction.Behaviors>
                                             <dxb:GalleryItemGroup Caption="{dxdiag:DiagramControlLocalizedString ListOrientation_Vertical}"
                                                                   ItemsSource="{x:Static dxdiagcore:DiagramContainerGalleryRegistrator.Shapes}"
@@ -565,7 +565,7 @@
             </Setter>
             <Setter Property="IsVisible">
                 <Setter.Value>
-                    <MultiBinding Converter="{dxdiagn:ProtectionPropertiesToIsVisibleConverter Operator=And}">
+                    <MultiBinding Converter="{dxdiagi:ProtectionPropertiesToIsVisibleConverter Operator=And}">
                         <Binding Path="(dxdiag:DiagramControl.Diagram).AllowChangeRulerVisibility" RelativeSource="{RelativeSource Mode=Self}"/>
                         <Binding Path="(dxdiag:DiagramControl.Diagram).IsReadOnly" RelativeSource="{RelativeSource Mode=Self}"/>
                     </MultiBinding>
@@ -593,7 +593,7 @@
             </Setter>
             <Setter Property="IsVisible">
                 <Setter.Value>
-                    <MultiBinding Converter="{dxdiagn:ProtectionPropertiesToIsVisibleConverter Operator=And}">
+                    <MultiBinding Converter="{dxdiagi:ProtectionPropertiesToIsVisibleConverter Operator=And}">
                         <Binding Path="(dxdiag:DiagramControl.Diagram).AllowChangeGridVisibility" RelativeSource="{RelativeSource Mode=Self}"/>
                         <Binding Path="(dxdiag:DiagramControl.Diagram).IsReadOnly" RelativeSource="{RelativeSource Mode=Self}"/>
                     </MultiBinding>
@@ -621,7 +621,7 @@
             </Setter>
             <Setter Property="IsVisible">
                 <Setter.Value>
-                    <MultiBinding Converter="{dxdiagn:ProtectionPropertiesToIsVisibleConverter Operator=And}">
+                    <MultiBinding Converter="{dxdiagi:ProtectionPropertiesToIsVisibleConverter Operator=And}">
                         <Binding Path="(dxdiag:DiagramControl.Diagram).AllowChangePageBreaksVisibility" RelativeSource="{RelativeSource Mode=Self}"/>
                         <Binding Path="(dxdiag:DiagramControl.Diagram).IsReadOnly" RelativeSource="{RelativeSource Mode=Self}"/>
                     </MultiBinding>
@@ -660,7 +660,7 @@
                 <Setter.Value>
                     <DataTemplate>
                         <ItemsControl>
-                            <dxdiagn:SetPaddingBarSubItemBehavior Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:BarSubItem}}}"/>
+                            <dxdiagi:SetPaddingBarSubItemBehavior Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:BarSubItem}}}"/>
                         </ItemsControl>
                     </DataTemplate>
                 </Setter.Value>
@@ -676,7 +676,7 @@
                 <Setter.Value>
                     <DataTemplate>
                         <ItemsControl>
-                            <dxdiagn:SetHeaderPaddingBarSubItemBehavior Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:BarSubItem}}}"/>
+                            <dxdiagi:SetHeaderPaddingBarSubItemBehavior Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:BarSubItem}}}"/>
                         </ItemsControl>
                     </DataTemplate>
                 </Setter.Value>
@@ -692,8 +692,8 @@
                 <Setter.Value>
                     <DataTemplate>
                         <ItemsControl>
-                            <dxdiagn:SetListOrientationBehavior Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:BarSubItem}}}"/>
-                            <dxdiagn:BarSubItemListOrientationVisibilityBehavior Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:BarSubItem}}}"/>
+                            <dxdiagi:SetListOrientationBehavior Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:BarSubItem}}}"/>
+                            <dxdiagi:BarSubItemListOrientationVisibilityBehavior Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:BarSubItem}}}"/>
                         </ItemsControl>
                     </DataTemplate>
                 </Setter.Value>
@@ -727,7 +727,7 @@
         <Style.Setters>
             <Setter Property="Content" Value="{dxdiag:DiagramControlLocalizedString ShapesPanel}"/>
             <Setter Property="Description" Value="{Binding ConverterParameter=ShapesPanel_Description, Converter={StaticResource DiagramStringIdConverter}}"/>
-            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).ToolboxVisibility,                  Converter={dxdiagn:ToolboxVisibilityConverter}, Mode=TwoWay}"/>
+            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).ToolboxVisibility,                  Converter={dxdiagi:ToolboxVisibilityConverter}, Mode=TwoWay}"/>
             <Setter Property="Glyph" Value="{dxdiag:DiagramSvgImage Path=Images/Svg/ShapesPanel.svg}"/>
             <Setter Property="LargeGlyph" Value="{dxdiag:DiagramSvgImage Path=Images/Svg/ShapesPanel.svg}"/>
             <Setter Property="GlyphSize" Value="Large"/>
@@ -741,7 +741,7 @@
         <Style.Setters>
             <Setter Property="Content" Value="{dxdiag:DiagramControlLocalizedString PropertiesPanel}"/>
             <Setter Property="Description" Value="{Binding ConverterParameter=PropertiesPanel_Description, Converter={StaticResource DiagramStringIdConverter}}"/>
-            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).PropertiesPanelVisibility,                  Converter={dxdiagn:PropertiesPanelVisibilityConverter}, Mode=TwoWay}"/>
+            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).PropertiesPanelVisibility,                  Converter={dxdiagi:PropertiesPanelVisibilityConverter}, Mode=TwoWay}"/>
             <Setter Property="Glyph" Value="{dxdiag:DiagramSvgImage Path=Images/Svg/PropertiesPanel.svg}"/>
             <Setter Property="LargeGlyph" Value="{dxdiag:DiagramSvgImage Path=Images/Svg/PropertiesPanel.svg}"/>
             <Setter Property="GlyphSize" Value="Large"/>
@@ -1026,7 +1026,7 @@
             <Setter.Value>
                 <DataTemplate>
                     <ItemsControl>
-                        <dxdiagn:BarItemToolBehavior ActiveTool="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxb:BarCheckItem}}, Path=(dxdiag:DiagramControl.Diagram).ActiveTool, Mode=TwoWay}" Tool="{x:Static dxdiagcore:DiagramController.DefaultTool}"/>
+                        <dxdiagi:BarItemToolBehavior ActiveTool="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxb:BarCheckItem}}, Path=(dxdiag:DiagramControl.Diagram).ActiveTool, Mode=TwoWay}" Tool="{x:Static dxdiagcore:DiagramController.DefaultTool}"/>
                     </ItemsControl>
                 </DataTemplate>
             </Setter.Value>
@@ -1040,7 +1040,7 @@
             <Setter.Value>
                 <DataTemplate>
                     <ItemsControl>
-                        <dxdiagn:BarItemToolBehavior ActiveTool="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxb:BarCheckItem}}, Path=(dxdiag:DiagramControl.Diagram).ActiveTool, Mode=TwoWay }" Tool="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxb:BarCheckItem}}, Path=(dxdiag:DiagramControl.Diagram).ConnectorTool}"/>
+                        <dxdiagi:BarItemToolBehavior ActiveTool="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxb:BarCheckItem}}, Path=(dxdiag:DiagramControl.Diagram).ActiveTool, Mode=TwoWay }" Tool="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxb:BarCheckItem}}, Path=(dxdiag:DiagramControl.Diagram).ConnectorTool}"/>
                     </ItemsControl>
                 </DataTemplate>
             </Setter.Value>
@@ -1054,7 +1054,7 @@
             <Setter.Value>
                 <DataTemplate>
                     <ItemsControl>
-                        <dxdiagn:BarItemToolBehavior ActiveTool="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxb:BarCheckItem}}, Path=(dxdiag:DiagramControl.Diagram).ActiveTool, Mode=TwoWay}" Tool="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxb:BarCheckItem}}, Path=(dxdiag:DiagramControl.Diagram).RectangleTool}"/>
+                        <dxdiagi:BarItemToolBehavior ActiveTool="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxb:BarCheckItem}}, Path=(dxdiag:DiagramControl.Diagram).ActiveTool, Mode=TwoWay}" Tool="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxb:BarCheckItem}}, Path=(dxdiag:DiagramControl.Diagram).RectangleTool}"/>
                     </ItemsControl>
                 </DataTemplate>
             </Setter.Value>
@@ -1068,7 +1068,7 @@
             <Setter.Value>
                 <DataTemplate>
                     <ItemsControl>
-                        <dxdiagn:BarItemToolBehavior ActiveTool="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxb:BarCheckItem}}, Path=(dxdiag:DiagramControl.Diagram).ActiveTool, Mode=TwoWay}" Tool="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxb:BarCheckItem}}, Path=(dxdiag:DiagramControl.Diagram).EllipseTool}"/>
+                        <dxdiagi:BarItemToolBehavior ActiveTool="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxb:BarCheckItem}}, Path=(dxdiag:DiagramControl.Diagram).ActiveTool, Mode=TwoWay}" Tool="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxb:BarCheckItem}}, Path=(dxdiag:DiagramControl.Diagram).EllipseTool}"/>
                     </ItemsControl>
                 </DataTemplate>
             </Setter.Value>
@@ -1082,7 +1082,7 @@
             <Setter.Value>
                 <DataTemplate>
                     <ItemsControl>
-                        <dxdiagn:BarItemToolBehavior ActiveTool="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxb:BarCheckItem}}, Path=(dxdiag:DiagramControl.Diagram).ActiveTool, Mode=TwoWay}" Tool="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxb:BarCheckItem}}, Path=(dxdiag:DiagramControl.Diagram).RightTriangleTool}"/>
+                        <dxdiagi:BarItemToolBehavior ActiveTool="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxb:BarCheckItem}}, Path=(dxdiag:DiagramControl.Diagram).ActiveTool, Mode=TwoWay}" Tool="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxb:BarCheckItem}}, Path=(dxdiag:DiagramControl.Diagram).RightTriangleTool}"/>
                     </ItemsControl>
                 </DataTemplate>
             </Setter.Value>
@@ -1096,7 +1096,7 @@
             <Setter.Value>
                 <DataTemplate>
                     <ItemsControl>
-                        <dxdiagn:BarItemToolBehavior ActiveTool="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxb:BarCheckItem}}, Path=(dxdiag:DiagramControl.Diagram).ActiveTool, Mode=TwoWay}" Tool="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxb:BarCheckItem}}, Path=(dxdiag:DiagramControl.Diagram).HexagonTool}"/>
+                        <dxdiagi:BarItemToolBehavior ActiveTool="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxb:BarCheckItem}}, Path=(dxdiag:DiagramControl.Diagram).ActiveTool, Mode=TwoWay}" Tool="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxb:BarCheckItem}}, Path=(dxdiag:DiagramControl.Diagram).HexagonTool}"/>
                     </ItemsControl>
                 </DataTemplate>
             </Setter.Value>
@@ -1110,7 +1110,7 @@
             <Setter.Value>
                 <DataTemplate>
                     <ItemsControl>
-                        <dxdiagn:BarItemToolBehavior ActiveTool="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxb:BarCheckItem}}, Path=(dxdiag:DiagramControl.Diagram).ActiveTool, Mode=TwoWay}" Tool="{x:Static dxdiagcore:DiagramController.PanTool}"/>
+                        <dxdiagi:BarItemToolBehavior ActiveTool="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxb:BarCheckItem}}, Path=(dxdiag:DiagramControl.Diagram).ActiveTool, Mode=TwoWay}" Tool="{x:Static dxdiagcore:DiagramController.PanTool}"/>
                     </ItemsControl>
                 </DataTemplate>
             </Setter.Value>
@@ -1124,7 +1124,7 @@
             <Setter.Value>
                 <DataTemplate>
                     <ItemsControl>
-                        <dxdiagn:BarItemToolBehavior ActiveTool="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxb:BarCheckItem}}, Path=(dxdiag:DiagramControl.Diagram).ActiveTool, Mode=TwoWay}" Tool="{x:Static dxdiagcore:DiagramController.TextTool}"/>
+                        <dxdiagi:BarItemToolBehavior ActiveTool="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxb:BarCheckItem}}, Path=(dxdiag:DiagramControl.Diagram).ActiveTool, Mode=TwoWay}" Tool="{x:Static dxdiagcore:DiagramController.TextTool}"/>
                     </ItemsControl>
                 </DataTemplate>
             </Setter.Value>
@@ -1216,8 +1216,8 @@
            TargetType="{x:Type dxb:BarCheckItem}">
         <Style.Setters>
             <Setter Property="AllowUncheckInGroup" Value="False"/>
-            <Setter Property="Content" Value="{x:Static dxdiagn:CanvasSizeModeInfo.AutoSize}"/>
-            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[CanvasSizeMode], Converter={dxdiagn:AutoSizeConverter}, ConverterParameter=AutoSize, Mode=TwoWay}"/>
+            <Setter Property="Content" Value="{x:Static dxdiagi:CanvasSizeModeInfo.AutoSize}"/>
+            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[CanvasSizeMode], Converter={dxdiagi:AutoSizeConverter}, ConverterParameter=AutoSize, Mode=TwoWay}"/>
             <Setter Property="ContentTemplate" Value="{StaticResource AutoSizeContentTemplate}"/>
         </Style.Setters>
     </Style>
@@ -1227,8 +1227,8 @@
            TargetType="{x:Type dxb:BarCheckItem}">
         <Style.Setters>
             <Setter Property="AllowUncheckInGroup" Value="False"/>
-            <Setter Property="Content" Value="{x:Static dxdiagn:CanvasSizeModeInfo.Fill}"/>
-            <Setter Property="IsChecked" Value="{Binding                 Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[CanvasSizeMode],                 RelativeSource={RelativeSource Self},                 Converter={dxdiagn:AutoSizeConverter},                 ConverterParameter=Fill,                 Mode=TwoWay}"/>
+            <Setter Property="Content" Value="{x:Static dxdiagi:CanvasSizeModeInfo.Fill}"/>
+            <Setter Property="IsChecked" Value="{Binding                 Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[CanvasSizeMode],                 RelativeSource={RelativeSource Self},                 Converter={dxdiagi:AutoSizeConverter},                 ConverterParameter=Fill,                 Mode=TwoWay}"/>
             <Setter Property="ContentTemplate" Value="{StaticResource AutoSizeContentTemplate}"/>
         </Style.Setters>
     </Style>
@@ -1238,8 +1238,8 @@
            TargetType="{x:Type dxb:BarCheckItem}">
         <Style.Setters>
             <Setter Property="AllowUncheckInGroup" Value="False"/>
-            <Setter Property="Content" Value="{x:Static dxdiagn:CanvasSizeModeInfo.None}"/>
-            <Setter Property="IsChecked" Value="{Binding                 Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[CanvasSizeMode],                 RelativeSource={RelativeSource Self},                 Converter={dxdiagn:AutoSizeConverter},                 ConverterParameter=None,                 Mode=TwoWay}"/>
+            <Setter Property="Content" Value="{x:Static dxdiagi:CanvasSizeModeInfo.None}"/>
+            <Setter Property="IsChecked" Value="{Binding                 Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[CanvasSizeMode],                 RelativeSource={RelativeSource Self},                 Converter={dxdiagi:AutoSizeConverter},                 ConverterParameter=None,                 Mode=TwoWay}"/>
             <Setter Property="ContentTemplate" Value="{StaticResource AutoSizeContentTemplate}"/>
         </Style.Setters>
     </Style>
@@ -1249,7 +1249,7 @@
            TargetType="{x:Type dxb:BarCheckItem}">
         <Style.Setters>
             <Setter Property="AllowUncheckInGroup" Value="False"/>
-            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[PageSize],                  Converter={dxdiagn:PaperOrientationConverter}, ConverterParameter=Horizontal, Mode=TwoWay}"/>
+            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[PageSize],                  Converter={dxdiagi:PaperOrientationConverter}, ConverterParameter=Horizontal, Mode=TwoWay}"/>
         </Style.Setters>
     </Style>
 
@@ -1258,7 +1258,7 @@
            TargetType="{x:Type dxb:BarCheckItem}">
         <Style.Setters>
             <Setter Property="AllowUncheckInGroup" Value="False"/>
-            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[PageSize],                  Converter={dxdiagn:PaperOrientationConverter}, ConverterParameter=Vertical, Mode=TwoWay}"/>
+            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[PageSize],                  Converter={dxdiagi:PaperOrientationConverter}, ConverterParameter=Vertical, Mode=TwoWay}"/>
         </Style.Setters>
     </Style>
 
@@ -1266,8 +1266,8 @@
            BasedOn="{StaticResource {dxdiagt:DesignerControlSourceItemsThemeKeys ResourceKey=PageSize_A3ItemStyleBase}}"
            TargetType="{x:Type dxdiag:BarMouseCheckOnlyItem}">
         <Style.Setters>
-            <Setter Property="Content" Value="{dxdiagn:RibbonPageSizeContentProvider PaperKind=A3}"/>
-            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[PageSize],                  Converter={dxdiagn:SelectedPaperSizeConverter}, ConverterParameter=A3, Mode=TwoWay}"/>
+            <Setter Property="Content" Value="{dxdiagi:RibbonPageSizeContentProvider PaperKind=A3}"/>
+            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[PageSize],                  Converter={dxdiagi:SelectedPaperSizeConverter}, ConverterParameter=A3, Mode=TwoWay}"/>
             <Setter Property="ContentTemplate" Value="{StaticResource PageSizeContentTemplate}"/>
         </Style.Setters>
     </Style>
@@ -1276,8 +1276,8 @@
            BasedOn="{StaticResource {dxdiagt:DesignerControlSourceItemsThemeKeys ResourceKey=PageSize_A4ItemStyleBase}}"
            TargetType="{x:Type dxdiag:BarMouseCheckOnlyItem}">
         <Style.Setters>
-            <Setter Property="Content" Value="{dxdiagn:RibbonPageSizeContentProvider PaperKind=A4}"/>
-            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[PageSize],                  Converter={dxdiagn:SelectedPaperSizeConverter}, ConverterParameter=A4, Mode=TwoWay}"/>
+            <Setter Property="Content" Value="{dxdiagi:RibbonPageSizeContentProvider PaperKind=A4}"/>
+            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[PageSize],                  Converter={dxdiagi:SelectedPaperSizeConverter}, ConverterParameter=A4, Mode=TwoWay}"/>
             <Setter Property="ContentTemplate" Value="{StaticResource PageSizeContentTemplate}"/>
         </Style.Setters>
     </Style>
@@ -1286,8 +1286,8 @@
            BasedOn="{StaticResource {dxdiagt:DesignerControlSourceItemsThemeKeys ResourceKey=PageSize_A5ItemStyleBase}}"
            TargetType="{x:Type dxdiag:BarMouseCheckOnlyItem}">
         <Style.Setters>
-            <Setter Property="Content" Value="{dxdiagn:RibbonPageSizeContentProvider PaperKind=A5}"/>
-            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[PageSize],                  Converter={dxdiagn:SelectedPaperSizeConverter}, ConverterParameter=A5, Mode=TwoWay}"/>
+            <Setter Property="Content" Value="{dxdiagi:RibbonPageSizeContentProvider PaperKind=A5}"/>
+            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[PageSize],                  Converter={dxdiagi:SelectedPaperSizeConverter}, ConverterParameter=A5, Mode=TwoWay}"/>
             <Setter Property="ContentTemplate" Value="{StaticResource PageSizeContentTemplate}"/>
         </Style.Setters>
     </Style>
@@ -1296,8 +1296,8 @@
            BasedOn="{StaticResource {dxdiagt:DesignerControlSourceItemsThemeKeys ResourceKey=PageSize_B4ItemStyleBase}}"
            TargetType="{x:Type dxdiag:BarMouseCheckOnlyItem}">
         <Style.Setters>
-            <Setter Property="Content" Value="{dxdiagn:RibbonPageSizeContentProvider PaperKind=B4}"/>
-            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[PageSize],                  Converter={dxdiagn:SelectedPaperSizeConverter}, ConverterParameter=B4, Mode=TwoWay}"/>
+            <Setter Property="Content" Value="{dxdiagi:RibbonPageSizeContentProvider PaperKind=B4}"/>
+            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[PageSize],                  Converter={dxdiagi:SelectedPaperSizeConverter}, ConverterParameter=B4, Mode=TwoWay}"/>
             <Setter Property="ContentTemplate" Value="{StaticResource PageSizeContentTemplate}"/>
         </Style.Setters>
     </Style>
@@ -1306,8 +1306,8 @@
            BasedOn="{StaticResource {dxdiagt:DesignerControlSourceItemsThemeKeys ResourceKey=PageSize_B5ItemStyleBase}}"
            TargetType="{x:Type dxdiag:BarMouseCheckOnlyItem}">
         <Style.Setters>
-            <Setter Property="Content" Value="{dxdiagn:RibbonPageSizeContentProvider PaperKind=B5}"/>
-            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[PageSize],                  Converter={dxdiagn:SelectedPaperSizeConverter}, ConverterParameter=B5, Mode=TwoWay}"/>
+            <Setter Property="Content" Value="{dxdiagi:RibbonPageSizeContentProvider PaperKind=B5}"/>
+            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[PageSize],                  Converter={dxdiagi:SelectedPaperSizeConverter}, ConverterParameter=B5, Mode=TwoWay}"/>
             <Setter Property="ContentTemplate" Value="{StaticResource PageSizeContentTemplate}"/>
         </Style.Setters>
     </Style>
@@ -1316,8 +1316,8 @@
            BasedOn="{StaticResource {dxdiagt:DesignerControlSourceItemsThemeKeys ResourceKey=PageSize_ExecutiveItemStyleBase}}"
            TargetType="{x:Type dxdiag:BarMouseCheckOnlyItem}">
         <Style.Setters>
-            <Setter Property="Content" Value="{dxdiagn:RibbonPageSizeContentProvider PaperKind=Executive}"/>
-            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[PageSize],                  Converter={dxdiagn:SelectedPaperSizeConverter}, ConverterParameter=Executive, Mode=TwoWay}"/>
+            <Setter Property="Content" Value="{dxdiagi:RibbonPageSizeContentProvider PaperKind=Executive}"/>
+            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[PageSize],                  Converter={dxdiagi:SelectedPaperSizeConverter}, ConverterParameter=Executive, Mode=TwoWay}"/>
             <Setter Property="ContentTemplate" Value="{StaticResource PageSizeContentTemplate}"/>
         </Style.Setters>
     </Style>
@@ -1326,8 +1326,8 @@
            BasedOn="{StaticResource {dxdiagt:DesignerControlSourceItemsThemeKeys ResourceKey=PageSize_LegalItemStyleBase}}"
            TargetType="{x:Type dxdiag:BarMouseCheckOnlyItem}">
         <Style.Setters>
-            <Setter Property="Content" Value="{dxdiagn:RibbonPageSizeContentProvider PaperKind=Legal}"/>
-            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[PageSize],                  Converter={dxdiagn:SelectedPaperSizeConverter}, ConverterParameter=Legal, Mode=TwoWay}"/>
+            <Setter Property="Content" Value="{dxdiagi:RibbonPageSizeContentProvider PaperKind=Legal}"/>
+            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[PageSize],                  Converter={dxdiagi:SelectedPaperSizeConverter}, ConverterParameter=Legal, Mode=TwoWay}"/>
             <Setter Property="ContentTemplate" Value="{StaticResource PageSizeContentTemplate}"/>
         </Style.Setters>
     </Style>
@@ -1336,8 +1336,8 @@
            BasedOn="{StaticResource {dxdiagt:DesignerControlSourceItemsThemeKeys ResourceKey=PageSize_LetterItemStyleBase}}"
            TargetType="{x:Type dxdiag:BarMouseCheckOnlyItem}">
         <Style.Setters>
-            <Setter Property="Content" Value="{dxdiagn:RibbonPageSizeContentProvider PaperKind=Letter}"/>
-            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[PageSize],                  Converter={dxdiagn:SelectedPaperSizeConverter}, ConverterParameter=Letter, Mode=TwoWay}"/>
+            <Setter Property="Content" Value="{dxdiagi:RibbonPageSizeContentProvider PaperKind=Letter}"/>
+            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[PageSize],                  Converter={dxdiagi:SelectedPaperSizeConverter}, ConverterParameter=Letter, Mode=TwoWay}"/>
             <Setter Property="ContentTemplate" Value="{StaticResource PageSizeContentTemplate}"/>
         </Style.Setters>
     </Style>
@@ -1346,8 +1346,8 @@
            BasedOn="{StaticResource {dxdiagt:DesignerControlSourceItemsThemeKeys ResourceKey=PageSize_StatementItemStyleBase}}"
            TargetType="{x:Type dxdiag:BarMouseCheckOnlyItem}">
         <Style.Setters>
-            <Setter Property="Content" Value="{dxdiagn:RibbonPageSizeContentProvider PaperKind=Statement}"/>
-            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[PageSize],                  Converter={dxdiagn:SelectedPaperSizeConverter}, ConverterParameter=Statement, Mode=TwoWay}"/>
+            <Setter Property="Content" Value="{dxdiagi:RibbonPageSizeContentProvider PaperKind=Statement}"/>
+            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[PageSize],                  Converter={dxdiagi:SelectedPaperSizeConverter}, ConverterParameter=Statement, Mode=TwoWay}"/>
             <Setter Property="ContentTemplate" Value="{StaticResource PageSizeContentTemplate}"/>
         </Style.Setters>
     </Style>
@@ -1356,8 +1356,8 @@
            BasedOn="{StaticResource {dxdiagt:DesignerControlSourceItemsThemeKeys ResourceKey=PageSize_TabloidItemStyleBase}}"
            TargetType="{x:Type dxdiag:BarMouseCheckOnlyItem}">
         <Style.Setters>
-            <Setter Property="Content" Value="{dxdiagn:RibbonPageSizeContentProvider PaperKind=Tabloid}"/>
-            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[PageSize],                  Converter={dxdiagn:SelectedPaperSizeConverter}, ConverterParameter=Tabloid, Mode=TwoWay}"/>
+            <Setter Property="Content" Value="{dxdiagi:RibbonPageSizeContentProvider PaperKind=Tabloid}"/>
+            <Setter Property="IsChecked" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).RootToolsModel[PageSize],                  Converter={dxdiagi:SelectedPaperSizeConverter}, ConverterParameter=Tabloid, Mode=TwoWay}"/>
             <Setter Property="ContentTemplate" Value="{StaticResource PageSizeContentTemplate}"/>
         </Style.Setters>
     </Style>
@@ -1518,7 +1518,7 @@
                 <Setter.Value>
                     <DataTemplate>
                         <ItemsControl>
-                            <dxdiagn:SelectImageToolsBehavior ToolsPageName="{x:Static dxdiagcore:DefaultBarItemNames.ImageToolsRibbonPage}"/>
+                            <dxdiagi:SelectImageToolsBehavior ToolsPageName="{x:Static dxdiagcore:DefaultBarItemNames.ImageToolsRibbonPage}"/>
                         </ItemsControl>
                     </DataTemplate>
                 </Setter.Value>
@@ -1537,7 +1537,7 @@
             <Setter.Value>
                 <DataTemplate>
                     <ItemsControl>
-                        <dxdiagn:SetStretchModeBarSubItemBehavior Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:BarSubItem}}}"/>
+                        <dxdiagi:SetStretchModeBarSubItemBehavior Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:BarSubItem}}}"/>
                     </ItemsControl>
                 </DataTemplate>
             </Setter.Value>
@@ -1568,7 +1568,7 @@
             <Setter.Value>
                 <DataTemplate>
                     <ItemsControl>
-                        <dxdiagn:SetImageScaleBarSubItemBehavior Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:BarSubItem}}}"/>
+                        <dxdiagi:SetImageScaleBarSubItemBehavior Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:BarSubItem}}}"/>
                     </ItemsControl>
                 </DataTemplate>
             </Setter.Value>
@@ -1639,7 +1639,7 @@
                 <Setter.Value>
                     <DataTemplate>
                         <ItemsControl>
-                            <dxdiagn:SetShowHeaderStateBehavior Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:BarCheckItem}}}"/>
+                            <dxdiagi:SetShowHeaderStateBehavior Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:BarCheckItem}}}"/>
                         </ItemsControl>
                     </DataTemplate>
                 </Setter.Value>
@@ -1657,7 +1657,7 @@
                 <Setter.Value>
                     <DataTemplate>
                         <ItemsControl>
-                            <dxdiagn:BarToolsSelectorBehavior SelectedTool="{Binding  RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:BarSplitCheckItem}}, Path=(dxdiag:DiagramControl.Diagram).ActiveTool}"/>
+                            <dxdiagi:BarToolsSelectorBehavior SelectedTool="{Binding  RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:BarSplitCheckItem}}, Path=(dxdiag:DiagramControl.Diagram).ActiveTool}"/>
                         </ItemsControl>
                     </DataTemplate>
                 </Setter.Value>
@@ -1680,7 +1680,7 @@
             </Setter>
             <Setter Property="IsVisible">
                 <Setter.Value>
-                    <MultiBinding Converter="{dxdiagn:ProtectionPropertiesToIsVisibleConverter Operator=And}">
+                    <MultiBinding Converter="{dxdiagi:ProtectionPropertiesToIsVisibleConverter Operator=And}">
                         <Binding Path="(dxdiag:DiagramControl.Diagram).AllowAddRemoveItems" RelativeSource="{RelativeSource Mode=Self}"/>
                         <Binding Path="(dxdiag:DiagramControl.Diagram).IsReadOnly" RelativeSource="{RelativeSource Mode=Self}"/>
                     </MultiBinding>
@@ -1695,7 +1695,7 @@
                 <ControlTemplate>
                     <dxdiag:ShapeStylePresenter StyleId="{Binding Caption}"
                                                 Theme="{Binding Path=(dxdiag:DiagramControl.Diagram).Theme}"
-                                                ToolTip="{Binding Caption, Converter={dxdiagn:DiagramStyleIdToNameConverter}}"/>
+                                                ToolTip="{Binding Caption, Converter={dxdiagi:DiagramStyleIdToNameConverter}}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -1712,7 +1712,7 @@
         <Setter Property="AutoHideGallery" Value="False"/>
         <Setter Property="ItemCheckMode" Value="Single"/>
         <Setter Property="ItemClickCommand" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).Commands.SetSelectedItemsStyle}"/>
-        <Setter Property="FirstCheckedItem" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).SelectionToolsModel[StyleInfo], Mode=OneWay, Converter={dxdiagn:StyleInfoToStyleIdConverter}}"/>
+        <Setter Property="FirstCheckedItem" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).SelectionToolsModel[StyleInfo], Mode=OneWay, Converter={dxdiagi:StyleInfoToStyleIdConverter}}"/>
     </Style>
 
     <Style x:Key="shapeGalleryStyle"
@@ -1739,11 +1739,11 @@
                 <Setter.Value>
                     <dxmvvm:ValueFactory>
                         <DataTemplate>
-                            <dxb:Gallery GroupsSource="{Binding Path=(dxdiag:DiagramControl.Diagram).LastShapeStyles, RelativeSource={RelativeSource Self}, Converter={dxdiagn:LastShapeStylesToGalleryGroupConverter}}" Style="{StaticResource shapeGalleryStyleBase}">
+                            <dxb:Gallery GroupsSource="{Binding Path=(dxdiag:DiagramControl.Diagram).LastShapeStyles, RelativeSource={RelativeSource Self}, Converter={dxdiagi:LastShapeStylesToGalleryGroupConverter}}" Style="{StaticResource shapeGalleryStyleBase}">
                                 <dxb:Gallery.GroupTemplate>
                                     <DataTemplate>
                                         <ContentControl>
-                                            <dxb:GalleryItemGroup Caption="{Binding Name}"
+                                            <dxb:GalleryItemGroup Caption="{Binding Name, Mode=OneTime}"
                                                                   ItemsSource="{Binding Items}"
                                                                   ItemTemplate="{StaticResource galleryControlItemTemplate}"/>
                                         </ContentControl>
@@ -1756,7 +1756,7 @@
             </Setter>
             <Setter Property="IsVisible">
                 <Setter.Value>
-                    <MultiBinding Converter="{dxdiagn:ProtectionPropertiesToIsVisibleConverter}">
+                    <MultiBinding Converter="{dxdiagi:ProtectionPropertiesToIsVisibleConverter}">
                         <Binding Path="(dxdiag:DiagramControl.Diagram).AllowChangeItemStyle" RelativeSource="{RelativeSource Mode=Self}"/>
                         <Binding Path="(dxdiag:DiagramControl.Diagram).IsReadOnly" RelativeSource="{RelativeSource Mode=Self}"/>
                     </MultiBinding>
@@ -1779,7 +1779,7 @@
                 <ControlTemplate>
                     <dxdiag:ThemePresenter DataContext="{Binding Path=Item.Caption, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type dxb:GalleryItemControl}}}"
                                            DiagramTheme="{Binding}"
-                                           ToolTip="{Binding Name}"/>
+                                           ToolTip="{Binding Name, Mode=OneTime}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -1831,7 +1831,7 @@
             </Setter>
             <Setter Property="IsVisible">
                 <Setter.Value>
-                    <MultiBinding Converter="{dxdiagn:ProtectionPropertiesToIsVisibleConverter}">
+                    <MultiBinding Converter="{dxdiagi:ProtectionPropertiesToIsVisibleConverter}">
                         <Binding Path="(dxdiag:DiagramControl.Diagram).AllowChangeTheme" RelativeSource="{RelativeSource Mode=Self}"/>
                         <Binding Path="(dxdiag:DiagramControl.Diagram).IsReadOnly" RelativeSource="{RelativeSource Mode=Self}"/>
                     </MultiBinding>
@@ -1852,7 +1852,7 @@
             <Setter.Value>
                 <DataTemplate>
                     <ItemsControl>
-                        <dxdiagn:SetContainerShapeBehavior Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:Gallery}}}"/>
+                        <dxdiagi:SetContainerShapeBehavior Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:Gallery}}}"/>
                     </ItemsControl>
                 </DataTemplate>
             </Setter.Value>
@@ -1893,7 +1893,7 @@
             </Setter>
             <Setter Property="IsVisible">
                 <Setter.Value>
-                    <MultiBinding Converter="{dxdiagn:ProtectionPropertiesToIsVisibleConverter}">
+                    <MultiBinding Converter="{dxdiagi:ProtectionPropertiesToIsVisibleConverter}">
                         <Binding Path="(dxdiag:DiagramControl.Diagram).AllowChangeContainerStyle" RelativeSource="{RelativeSource Mode=Self}"/>
                         <Binding Path="(dxdiag:DiagramControl.Diagram).IsReadOnly" RelativeSource="{RelativeSource Mode=Self}"/>
                     </MultiBinding>
@@ -1921,7 +1921,7 @@
            TargetType="{x:Type dxb:BarItemSeparator}">
         <Setter Property="IsVisible">
             <Setter.Value>
-                <MultiBinding Converter="{dxdiagn:ProtectionPropertiesToIsVisibleConverter Operator=And}">
+                <MultiBinding Converter="{dxdiagi:ProtectionPropertiesToIsVisibleConverter Operator=And}">
                     <Binding Path="(dxdiag:DiagramControl.Diagram).AllowChangeTextFont" RelativeSource="{RelativeSource Mode=Self}"/>
                     <Binding Path="(dxdiag:DiagramControl.Diagram).AllowChangeTextForeground" RelativeSource="{RelativeSource Mode=Self}"/>
                     <Binding Path="(dxdiag:DiagramControl.Diagram).IsReadOnly" RelativeSource="{RelativeSource Mode=Self}"/>
@@ -1933,7 +1933,7 @@
     <Style x:Key="{dxdiagt:DiagramDesignerControlThemeKeys ResourceKey=StatusBarWidthItemStyle}" TargetType="{x:Type dxb:BarStaticItem}">
         <Setter Property="Content">
             <Setter.Value>
-                <MultiBinding Converter="{dxdiagn:LengthWithMeasureUnitToStatusBarConverter}">
+                <MultiBinding Converter="{dxdiagi:LengthWithMeasureUnitToStatusBarConverter}">
                     <Binding Path="(dxdiag:DiagramControl.Diagram).SelectionToolsModel[Width]" RelativeSource="{RelativeSource Self}"/>
                     <Binding Source="{x:Static localization:DiagramControlStringId.StatusBarWidth}"/>
                     <Binding Path="(dxdiag:DiagramControl.Diagram).MeasureUnit" RelativeSource="{RelativeSource Self}"/>
@@ -1948,7 +1948,7 @@
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).ShowMeasureUnit}" Value="False">
                 <Setter Property="Content">
                     <Setter.Value>
-                        <MultiBinding Converter="{dxdiagn:LengthToStatusBarConverter}">
+                        <MultiBinding Converter="{dxdiagi:LengthToStatusBarConverter}">
                             <Binding Path="(dxdiag:DiagramControl.Diagram).SelectionToolsModel[Width]" RelativeSource="{RelativeSource Self}"/>
                             <Binding Source="{x:Static localization:DiagramControlStringId.StatusBarWidth}"/>
                         </MultiBinding>
@@ -1961,7 +1961,7 @@
     <Style x:Key="{dxdiagt:DiagramDesignerControlThemeKeys ResourceKey=StatusBarHeightItemStyle}" TargetType="{x:Type dxb:BarStaticItem}">
         <Setter Property="Content">
             <Setter.Value>
-                <MultiBinding Converter="{dxdiagn:LengthWithMeasureUnitToStatusBarConverter}">
+                <MultiBinding Converter="{dxdiagi:LengthWithMeasureUnitToStatusBarConverter}">
                     <Binding Path="(dxdiag:DiagramControl.Diagram).SelectionToolsModel[Height]" RelativeSource="{RelativeSource Self}"/>
                     <Binding Source="{x:Static localization:DiagramControlStringId.StatusBarHeight}"/>
                     <Binding Path="(dxdiag:DiagramControl.Diagram).MeasureUnit" RelativeSource="{RelativeSource Self}"/>
@@ -1976,7 +1976,7 @@
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(dxdiag:DiagramControl.Diagram).ShowMeasureUnit}" Value="False">
                 <Setter Property="Content">
                     <Setter.Value>
-                        <MultiBinding Converter="{dxdiagn:LengthToStatusBarConverter}" ConverterParameter="{}{0}: {1:0.###}">
+                        <MultiBinding Converter="{dxdiagi:LengthToStatusBarConverter}" ConverterParameter="{}{0}: {1:0.###}">
                             <Binding Path="(dxdiag:DiagramControl.Diagram).SelectionToolsModel[Height]" RelativeSource="{RelativeSource Self}"/>
                             <Binding Source="{x:Static localization:DiagramControlStringId.StatusBarHeight}"/>
                         </MultiBinding>
@@ -1989,7 +1989,7 @@
     <Style x:Key="{dxdiagt:DiagramDesignerControlThemeKeys ResourceKey=StatusBarAngleItemStyle}" TargetType="{x:Type dxb:BarStaticItem}">
         <Setter Property="Content">
             <Setter.Value>
-                <MultiBinding Converter="{dxdiagn:AngleToStatusBarConverter}">
+                <MultiBinding Converter="{dxdiagi:AngleToStatusBarConverter}">
                     <Binding Path="(dxdiag:DiagramControl.Diagram).SelectionToolsModel[Angle]" RelativeSource="{RelativeSource Self}"/>
                     <Binding Source="{x:Static localization:DiagramControlStringId.StatusBarAngle}"/>
                 </MultiBinding>

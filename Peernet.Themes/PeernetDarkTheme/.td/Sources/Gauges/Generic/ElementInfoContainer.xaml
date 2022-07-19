@@ -1,21 +1,21 @@
 <ResourceDictionary mc:Ignorable="cs"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:core="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:cs="colorscheme_ignorable_uri"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
-                    xmlns:local="http://schemas.devexpress.com/winfx/2008/xaml/gauges"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                    xmlns:dxga="http://schemas.devexpress.com/winfx/2008/xaml/gauges"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gauges.ElementInfoContainer}" TargetType="local:ElementInfoContainer">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gauges.ElementInfoContainer}" TargetType="dxga:ElementInfoContainer">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:ElementInfoContainer">
-                    <local:ElementInfoPanel x:Name="PART_ElementPresentationContainer"
-                                            DataContext="{TemplateBinding ElementInfo}"
-                                            StretchToAvailableSize="{TemplateBinding StretchToAvailableSize}">
-                        <core:DXContentPresenter Content="{Binding Path=ElementInfo.PresentationControl, RelativeSource={RelativeSource TemplatedParent}}"/>
-                    </local:ElementInfoPanel>
+                <ControlTemplate TargetType="dxga:ElementInfoContainer">
+                    <dxga:ElementInfoPanel x:Name="PART_ElementPresentationContainer"
+                                           DataContext="{TemplateBinding ElementInfo}"
+                                           StretchToAvailableSize="{TemplateBinding StretchToAvailableSize}">
+                        <dx:DXContentPresenter Content="{Binding Path=ElementInfo.PresentationControl, RelativeSource={RelativeSource TemplatedParent}}"/>
+                    </dxga:ElementInfoPanel>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

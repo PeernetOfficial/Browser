@@ -4,16 +4,16 @@
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
                     xmlns:dxdiag="http://schemas.devexpress.com/winfx/2008/xaml/diagram"
-                    xmlns:dxdiagn="http://schemas.devexpress.com/winfx/2008/xaml/diagram/internal"
+                    xmlns:dxdiagi="http://schemas.devexpress.com/winfx/2008/xaml/diagram/internal"
                     xmlns:dxdiagt="http://schemas.devexpress.com/winfx/2008/xaml/diagram/themekeys"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.PanAndZoomClientFramePresenter}" TargetType="{x:Type dxdiag:PanAndZoomClientFramePresenter}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.PanAndZoomClientFramePresenter}" TargetType="{x:Type dxdiag:PanAndZoomClientFramePresenter}">
         <Setter Property="BorderThickness" Value="2"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Focusable" Value="False"/>
@@ -31,7 +31,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.PanAndZoomPreviewFramePresenter}" TargetType="{x:Type dxdiag:PanAndZoomPreviewFramePresenter}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.PanAndZoomPreviewFramePresenter}" TargetType="{x:Type dxdiag:PanAndZoomPreviewFramePresenter}">
         <Setter Property="BorderThickness" Value="2"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Focusable" Value="False"/>
@@ -49,7 +49,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.PanAndZoomDiagramPresenter}" TargetType="{x:Type dxdiag:PanAndZoomDiagramPresenter}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.PanAndZoomDiagramPresenter}" TargetType="{x:Type dxdiag:PanAndZoomDiagramPresenter}">
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="Background"
@@ -74,7 +74,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.DiagramPanAndZoomControl}" TargetType="{x:Type dxdiag:DiagramPanAndZoomControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.DiagramPanAndZoomControl}" TargetType="{x:Type dxdiag:DiagramPanAndZoomControl}">
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
@@ -97,7 +97,7 @@
                                 Grid.Column="1"
                                 Padding="3"
                                 Visibility="{Binding Diagram.AllowZoom, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:BooleanToVisibilityConverter}}">
-                            <dxe:TrackBarEdit EditValue="{Binding Diagram.ZoomFactor, RelativeSource={RelativeSource TemplatedParent}, Converter={dxdiagn:NonlinearZoomConverter}, Mode=TwoWay}"
+                            <dxe:TrackBarEdit EditValue="{Binding Diagram.ZoomFactor, RelativeSource={RelativeSource TemplatedParent}, Converter={dxdiagi:NonlinearZoomConverter}, Mode=TwoWay}"
                                               LargeStep="240"
                                               Maximum="3600"
                                               Minimum="-3600"

@@ -5,14 +5,14 @@
                     xmlns:dxdash="http://schemas.devexpress.com/winfx/2008/xaml/dashboard"
                     xmlns:dxdashi="http://schemas.devexpress.com/winfx/2008/xaml/dashboard/internal"
                     xmlns:dxdasht="http://schemas.devexpress.com/winfx/2008/xaml/dashboard/themekeys"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxdst:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v21.2;component/Dashboard/Generic/DeltaValuePresenter.xaml"/>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v22.1;component/Dashboard/Generic/DeltaValuePresenter.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <dxdashi:EventToCommandConverter x:Key="EventToCommandConverter"/>
@@ -145,7 +145,7 @@
         <dxdashi:CardItemsControl Style="{Binding Path=(dxdash:DashboardLayoutItem.ViewStyle), RelativeSource={RelativeSource TemplatedParent}}"/>
     </DataTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.DashboardWpf.Internal.CardItem}" TargetType="{x:Type dxdashi:CardItem}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.DashboardWpf.Internal.CardItem}" TargetType="{x:Type dxdashi:CardItem}">
         <Setter Property="Focusable" Value="False"/>
         <Setter Property="Template" Value="{StaticResource ItemTemplate}"/>
         <Setter Property="Background" Value="{DynamicResource {dxdasht:CardItemThemeKey ResourceKey=CardItemBackground}}"/>
@@ -196,7 +196,7 @@
         </Setter>
         <Setter Property="ItemContainerStyle">
             <Setter.Value>
-                <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.DashboardWpf.Internal.CardItemContainer}" TargetType="{x:Type dxdashi:CardItemContainer}">
+                <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.DashboardWpf.Internal.CardItemContainer}" TargetType="{x:Type dxdashi:CardItemContainer}">
                     <Setter Property="Focusable" Value="False"/>
                     <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
                     <Setter Property="Template">

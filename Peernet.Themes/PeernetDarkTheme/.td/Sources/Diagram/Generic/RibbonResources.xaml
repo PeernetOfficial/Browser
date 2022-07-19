@@ -3,8 +3,8 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
                     xmlns:dxdiag="http://schemas.devexpress.com/winfx/2008/xaml/diagram"
-                    xmlns:dxdiagn="http://schemas.devexpress.com/winfx/2008/xaml/diagram/internal"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dxdiagi="http://schemas.devexpress.com/winfx/2008/xaml/diagram/internal"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
@@ -27,7 +27,7 @@
 
     <DataTemplate x:Key="galleryControlItemTemplate">
         <ContentControl>
-            <dxb:GalleryItem Caption="{Binding}">
+            <dxb:GalleryItem Caption="{Binding Mode=OneTime}">
                 <dxb:GalleryItem.Glyph>
                     <DrawingImage/>
                 </dxb:GalleryItem.Glyph>
@@ -58,7 +58,7 @@
                 <ControlTemplate>
                     <dxdiag:ShapeToolboxPreview Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram)}"
                                                 IsCompact="False"
-                                                ItemTool="{Binding Path=Caption, Converter={dxdiagn:ContainerShapeDescriptionToToolConverter}}"
+                                                ItemTool="{Binding Path=Caption, Converter={dxdiagi:ContainerShapeDescriptionToToolConverter}}"
                                                 ShapePresenterSize="70,45"
                                                 ShapePresenterStretch="Fill"
                                                 Theme="{Binding Path=Diagram.Theme, RelativeSource={RelativeSource Self}}"
@@ -85,7 +85,7 @@
                 <ControlTemplate>
                     <dxdiag:ShapeToolboxPreview Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram)}"
                                                 IsCompact="False"
-                                                ItemTool="{Binding Converter={dxdiagn:ContainerShapeDescriptionToListToolConverter}}"
+                                                ItemTool="{Binding Converter={dxdiagi:ContainerShapeDescriptionToListToolConverter}}"
                                                 ShapePresenterSize="70,45"
                                                 ShapePresenterStretch="Fill"
                                                 Theme="{Binding Path=Diagram.Theme, RelativeSource={RelativeSource Self}}"

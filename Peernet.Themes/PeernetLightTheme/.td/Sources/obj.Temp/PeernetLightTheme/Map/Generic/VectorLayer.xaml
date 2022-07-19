@@ -1,9 +1,9 @@
-<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/map/themekeys" xmlns:local="http://schemas.devexpress.com/winfx/2008/xaml/map" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core">
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dxm="http://schemas.devexpress.com/winfx/2008/xaml/map" xmlns:dxmt="http://schemas.devexpress.com/winfx/2008/xaml/map/themekeys" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core">
 
-    <Style x:Key="VectorLayerBaseStyle" TargetType="local:VectorLayerBase">
+    <Style x:Key="VectorLayerBaseStyle" TargetType="dxm:VectorLayerBase">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Map\Generic\VectorLayer.xaml;10;6" /><Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:VectorLayerBase">
+                <ControlTemplate TargetType="dxm:VectorLayerBase">
                     <Canvas x:Name="PART_RootVisual" UseLayoutRounding="False" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Map\Generic\VectorLayer.xaml;14;22">
                         <ItemsControl x:Name="PART_Elements" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Map\Generic\VectorLayer.xaml;15;26">
                             <ItemsControl.ItemsPanel>
@@ -19,38 +19,38 @@
         <Setter Property="ToolTipContentTemplate">
             <Setter.Value>
                 <DataTemplate x:Name="toolTipContentTemplate">
-                    <local:MapToolTipTextBlock x:Name="toolTipTextElement" FontSize="21" Foreground="{DynamicResource {dxt:MapBrushesThemeKey ResourceKey=ToolTipForeground}}" Margin="20,15,20,18" Text="{Binding ToolTipText}" TextWrapping="Wrap" />
+                    <dxm:MapToolTipTextBlock x:Name="toolTipTextElement" FontSize="21" Foreground="{DynamicResource {dxmt:MapBrushesThemeKey ResourceKey=ToolTipForeground}}" Margin="20,15,20,18" Text="{Binding ToolTipText}" TextWrapping="Wrap" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="ShapeFill" Value="{DynamicResource {dxt:MapBrushesThemeKey ResourceKey=ShapeFill}}" />
-        <Setter Property="ShapeStroke" Value="{DynamicResource {dxt:MapBrushesThemeKey ResourceKey=ShapeStroke}}" />
-        <Setter Property="HighlightShapeStroke" Value="{DynamicResource {dxt:MapBrushesThemeKey ResourceKey=HighlightShapeStroke}}" />
-        <Setter Property="HighlightShapeStrokeStyle" Value="{DynamicResource {dxt:MapThemeKey ResourceKey=HighlightShapeStroke}}" />
-        <Setter Property="SelectedShapeStroke" Value="{DynamicResource {dxt:MapBrushesThemeKey ResourceKey=SelectedShapeStroke}}" />
-        <Setter Property="SelectedShapeStrokeStyle" Value="{DynamicResource {dxt:MapThemeKey ResourceKey=SelectedShapeStroke}}" />
+        <Setter Property="ShapeFill" Value="{DynamicResource {dxmt:MapBrushesThemeKey ResourceKey=ShapeFill}}" />
+        <Setter Property="ShapeStroke" Value="{DynamicResource {dxmt:MapBrushesThemeKey ResourceKey=ShapeStroke}}" />
+        <Setter Property="HighlightShapeStroke" Value="{DynamicResource {dxmt:MapBrushesThemeKey ResourceKey=HighlightShapeStroke}}" />
+        <Setter Property="HighlightShapeStrokeStyle" Value="{DynamicResource {dxmt:MapThemeKey ResourceKey=HighlightShapeStroke}}" />
+        <Setter Property="SelectedShapeStroke" Value="{DynamicResource {dxmt:MapBrushesThemeKey ResourceKey=SelectedShapeStroke}}" />
+        <Setter Property="SelectedShapeStrokeStyle" Value="{DynamicResource {dxmt:MapThemeKey ResourceKey=SelectedShapeStroke}}" />
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Map.VectorLayer}" BasedOn="{StaticResource VectorLayerBaseStyle}" TargetType="local:VectorLayer"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Map\Generic\VectorLayer.xaml;46;6" /></Style>
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Map.VectorLayer}" BasedOn="{StaticResource VectorLayerBaseStyle}" TargetType="dxm:VectorLayer"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Map\Generic\VectorLayer.xaml;46;6" /></Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Map.InformationLayer}" BasedOn="{StaticResource VectorLayerBaseStyle}" TargetType="local:InformationLayer"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Map\Generic\VectorLayer.xaml;50;6" /></Style>
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Map.InformationLayer}" BasedOn="{StaticResource VectorLayerBaseStyle}" TargetType="dxm:InformationLayer"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Map\Generic\VectorLayer.xaml;50;6" /></Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Map.VectorLayerRenderControl}" TargetType="local:VectorLayerRenderControl">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Map.VectorLayerRenderControl}" TargetType="dxm:VectorLayerRenderControl">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Map\Generic\VectorLayer.xaml;54;6" /><Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:VectorLayerRenderControl">
+                <ControlTemplate TargetType="dxm:VectorLayerRenderControl">
                     <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Map\Generic\VectorLayer.xaml;58;22">
-                        <local:ItemsRenderControl x:Name="PART_Items" />
-                        <local:HighlightedItemRenderControl x:Name="PART_HighlightedItem" />
+                        <dxm:ItemsRenderControl x:Name="PART_Items" />
+                        <dxm:HighlightedItemRenderControl x:Name="PART_HighlightedItem" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Map.ShapeTitleTextControl}" TargetType="{x:Type local:ShapeTitleTextControl}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Map\Generic\VectorLayer.xaml;67;6" /><Setter Property="Foreground" Value="{DynamicResource {dxt:MapBrushesThemeKey ResourceKey=ShapeTitleForeground}}" />
-        <Setter Property="Stroke" Value="{DynamicResource {dxt:MapBrushesThemeKey ResourceKey=ShapeTitleStroke}}" />
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Map.ShapeTitleTextControl}" TargetType="{x:Type dxm:ShapeTitleTextControl}">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Map\Generic\VectorLayer.xaml;67;6" /><Setter Property="Foreground" Value="{DynamicResource {dxmt:MapBrushesThemeKey ResourceKey=ShapeTitleForeground}}" />
+        <Setter Property="Stroke" Value="{DynamicResource {dxmt:MapBrushesThemeKey ResourceKey=ShapeTitleStroke}}" />
     </Style>
 
 </ResourceDictionary>

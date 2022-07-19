@@ -3,11 +3,11 @@
                     xmlns:collections="clr-namespace:System.Collections;assembly=mscorlib"
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dxco="http://schemas.devexpress.com/winfx/2008/xaml/controls"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui"
                     xmlns:dxwuii="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/internal"
                     xmlns:dxwuit="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/themekeys"
-                    xmlns:local="http://schemas.devexpress.com/winfx/2008/xaml/controls"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
@@ -44,14 +44,14 @@
         <dxwuii:SlideViewItemsPanel ItemSizeMode="AutoSize" Orientation="{Binding RelativeSource={RelativeSource AncestorType=dxwui:SlideView}, Path=Orientation}"/>
     </ItemsPanelTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.SlideView}" TargetType="{x:Type dxwui:SlideView}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.SlideView}" TargetType="{x:Type dxwui:SlideView}">
         <Setter Property="Template" Value="{DynamicResource {dxwuit:SlideViewElementsThemeKey ResourceKey=Template}}"/>
         <Setter Property="ItemsPanel" Value="{StaticResource SlideViewDefaultPanel}"/>
         <Setter Property="Padding" Value="40,30,40,0"/>
         <Setter Property="dx:ScrollViewerTouchBehavior.IsEnabled" Value="True"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.SlideViewItem}" TargetType="{x:Type dxwui:SlideViewItem}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.SlideViewItem}" TargetType="{x:Type dxwui:SlideViewItem}">
         <Setter Property="Template" Value="{DynamicResource {dxwuit:SlideViewElementsThemeKey ResourceKey=ItemTemplate}}"/>
         <Setter Property="InteractiveHeaderTemplate" Value="{DynamicResource {dxwuit:SlideViewElementsThemeKey ResourceKey=InteractiveHeader}}"/>
         <Setter Property="Background"
@@ -59,7 +59,7 @@
                 cs:id="Setter_0000"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.Internal.SlideViewItemHeader}" TargetType="{x:Type dxwuii:SlideViewItemHeader}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.Internal.SlideViewItemHeader}" TargetType="{x:Type dxwuii:SlideViewItemHeader}">
         <Setter Property="Template" Value="{DynamicResource {dxwuit:SlideViewElementsThemeKey ResourceKey=ItemHeaderTemplate}}"/>
         <Setter Property="FontSize" Value="16"/>
         <!--ONLY SL

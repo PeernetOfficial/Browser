@@ -1,17 +1,17 @@
 <ResourceDictionary mc:Ignorable="cs"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
-                    xmlns:local="http://schemas.devexpress.com/winfx/2008/xaml/charts"
+                    xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <local:BrushOverlayConverter x:Key="brushOverlayConverter"/>
+    <dxc:BrushOverlayConverter x:Key="brushOverlayConverter"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.BorderlessGradientRangeBar2DModelControl}" TargetType="{x:Type local:BorderlessGradientRangeBar2DModelControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.BorderlessGradientRangeBar2DModelControl}" TargetType="{x:Type dxc:BorderlessGradientRangeBar2DModelControl}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:BorderlessGradientRangeBar2DModelControl}">
+                <ControlTemplate TargetType="{x:Type dxc:BorderlessGradientRangeBar2DModelControl}">
                     <Border BorderThickness="0"
                             OpacityMask="{Binding OpacityMask}"
                             UseLayoutRounding="True">
@@ -39,10 +39,10 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.BorderlessSimpleRangeBar2DModelControl}" TargetType="{x:Type local:BorderlessSimpleRangeBar2DModelControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.BorderlessSimpleRangeBar2DModelControl}" TargetType="{x:Type dxc:BorderlessSimpleRangeBar2DModelControl}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:BorderlessSimpleRangeBar2DModelControl}">
+                <ControlTemplate TargetType="{x:Type dxc:BorderlessSimpleRangeBar2DModelControl}">
                     <Border Background="{Binding Path=PointColor, ConverterParameter=#FF808080, Converter={StaticResource brushOverlayConverter}, RelativeSource={RelativeSource TemplatedParent}}"
                             BorderThickness="0"
                             OpacityMask="{Binding OpacityMask}"
@@ -52,10 +52,10 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.GradientRangeBar2DModelControl}" TargetType="{x:Type local:GradientRangeBar2DModelControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.GradientRangeBar2DModelControl}" TargetType="{x:Type dxc:GradientRangeBar2DModelControl}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:GradientRangeBar2DModelControl}">
+                <ControlTemplate TargetType="{x:Type dxc:GradientRangeBar2DModelControl}">
                     <Border BorderBrush="{Binding Path=PointColor, ConverterParameter=#FF262626, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource brushOverlayConverter}}"
                             BorderThickness="1,1,1,1"
                             OpacityMask="{Binding OpacityMask}"
@@ -84,10 +84,10 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.SimpleRangeBar2DModelControl}" TargetType="{x:Type local:SimpleRangeBar2DModelControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.SimpleRangeBar2DModelControl}" TargetType="{x:Type dxc:SimpleRangeBar2DModelControl}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:SimpleRangeBar2DModelControl}">
+                <ControlTemplate TargetType="{x:Type dxc:SimpleRangeBar2DModelControl}">
                     <Border Background="{Binding Path=PointColor, ConverterParameter=#FF808080, Converter={StaticResource brushOverlayConverter}, RelativeSource={RelativeSource TemplatedParent}}"
                             BorderBrush="{Binding Path=PointColor, ConverterParameter=#FF404040, Converter={StaticResource brushOverlayConverter}, RelativeSource={RelativeSource TemplatedParent}}"
                             BorderThickness="1,1,1,1"
@@ -98,10 +98,10 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.TransparentRangeBar2DModelControl}" TargetType="{x:Type local:TransparentRangeBar2DModelControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.TransparentRangeBar2DModelControl}" TargetType="{x:Type dxc:TransparentRangeBar2DModelControl}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:TransparentRangeBar2DModelControl}">
+                <ControlTemplate TargetType="{x:Type dxc:TransparentRangeBar2DModelControl}">
                     <Border BorderBrush="{Binding Path=PointColor, ConverterParameter=#FF606060, Converter={StaticResource brushOverlayConverter}, RelativeSource={RelativeSource TemplatedParent}}"
                             BorderThickness="1,1,1,1"
                             OpacityMask="{Binding OpacityMask}"
@@ -130,10 +130,10 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.FlatRangeBar2DModelControl}" TargetType="{x:Type local:FlatRangeBar2DModelControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.FlatRangeBar2DModelControl}" TargetType="{x:Type dxc:FlatRangeBar2DModelControl}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:FlatRangeBar2DModelControl}">
+                <ControlTemplate TargetType="{x:Type dxc:FlatRangeBar2DModelControl}">
                     <Grid OpacityMask="{Binding OpacityMask}">
                         <Border Background="{Binding Path=PointColor, ConverterParameter=#FF505050, Converter={StaticResource brushOverlayConverter}, RelativeSource={RelativeSource TemplatedParent}}"
                                 CornerRadius="3"
@@ -170,10 +170,10 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.FlatGlassRangeBar2DModelControl}" TargetType="{x:Type local:FlatGlassRangeBar2DModelControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.FlatGlassRangeBar2DModelControl}" TargetType="{x:Type dxc:FlatGlassRangeBar2DModelControl}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:FlatGlassRangeBar2DModelControl}">
+                <ControlTemplate TargetType="{x:Type dxc:FlatGlassRangeBar2DModelControl}">
                     <Grid OpacityMask="{Binding OpacityMask}">
                         <Border Background="{Binding Path=PointColor, ConverterParameter=#FF505050, Converter={StaticResource brushOverlayConverter}, RelativeSource={RelativeSource TemplatedParent}}"
                                 CornerRadius="3"
@@ -217,10 +217,10 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.OutsetRangeBar2DModelControl}" TargetType="{x:Type local:OutsetRangeBar2DModelControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.OutsetRangeBar2DModelControl}" TargetType="{x:Type dxc:OutsetRangeBar2DModelControl}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:OutsetRangeBar2DModelControl}">
+                <ControlTemplate TargetType="{x:Type dxc:OutsetRangeBar2DModelControl}">
                     <Grid OpacityMask="{Binding OpacityMask}">
                         <Grid.RowDefinitions>
                             <RowDefinition MaxHeight="5" MinHeight="5"/>

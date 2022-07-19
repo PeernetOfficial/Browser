@@ -4,22 +4,23 @@
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
                     xmlns:dxbt="http://schemas.devexpress.com/winfx/2008/xaml/bars/themekeys"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal"
                     xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
-                    xmlns:dxn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
-                    xmlns:dxtEx="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!--BEGIN WPF-->
 
     <ResourceDictionary.MergedDictionaries>
-        <dxtEx:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v21.2;component/Core/Core/Editors/Themes/Generic/Common.xaml"/>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v22.1;component/Core/Core/Editors/Themes/Generic/Common.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <!--END WPF-->
+
+    <Thickness x:Key="{dxet:PopupColorEditThemeKey ResourceKey=InplaceMargin}">0</Thickness>
 
     <SolidColorBrush x:Key="{dxet:ColorEditThemeKey ResourceKey=ChipBorderBrush}" Color="#FFC5C5C5"/>
 
@@ -54,10 +55,10 @@
             </VisualStateManager.VisualStateGroups>
             <ContentControl x:Name="Border"
                             Background="{TemplateBinding Background}"
-                            dxn:AppearanceOptions.BorderThickness="{Binding Path=(dxn:AppearanceOptions.BorderThickness), RelativeSource={RelativeSource TemplatedParent}}"
-                            dxn:AppearanceOptions.CornerRadius="{Binding Path=(dxn:AppearanceOptions.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
-                            dxn:AppearanceOptions.HasBorderThickness="{Binding Path=(dxn:AppearanceOptions.HasBorderThickness), RelativeSource={RelativeSource TemplatedParent}}"
-                            dxn:AppearanceOptions.HasCornerRadius="{Binding Path=(dxn:AppearanceOptions.HasCornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
+                            dxi:AppearanceOptions.BorderThickness="{Binding Path=(dxi:AppearanceOptions.BorderThickness), RelativeSource={RelativeSource TemplatedParent}}"
+                            dxi:AppearanceOptions.CornerRadius="{Binding Path=(dxi:AppearanceOptions.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
+                            dxi:AppearanceOptions.HasBorderThickness="{Binding Path=(dxi:AppearanceOptions.HasBorderThickness), RelativeSource={RelativeSource TemplatedParent}}"
+                            dxi:AppearanceOptions.HasCornerRadius="{Binding Path=(dxi:AppearanceOptions.HasCornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
                             HorizontalContentAlignment="Stretch"
                             IsTabStop="False"
                             Template="{TemplateBinding ActualBorderTemplate}"
@@ -147,6 +148,16 @@
                         TargetName="grid"
                         Value="14,13"/>
             </Trigger>
+            <DataTrigger Binding="{Binding Path=(dxe:BaseEdit.OwnerEdit).EditMode, RelativeSource={RelativeSource Self}}" Value="InplaceInactive">
+                <Setter Property="Margin"
+                        TargetName="grid"
+                        Value="{DynamicResource {dxet:PopupColorEditThemeKey ResourceKey=InplaceMargin}}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=(dxe:BaseEdit.OwnerEdit).EditMode, RelativeSource={RelativeSource Self}}" Value="InplaceActive">
+                <Setter Property="Margin"
+                        TargetName="grid"
+                        Value="{DynamicResource {dxet:PopupColorEditThemeKey ResourceKey=InplaceMargin}}"/>
+            </DataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
@@ -179,7 +190,7 @@
                 <dxb:BarButtonItem x:Name="PART_MoreColorsButton"
                                    CloseSubMenuOnClick="False"
                                    Content="{Binding Path=DataContext.MoreColorsButtonContent, RelativeSource={RelativeSource TemplatedParent}, Converter={dxe:ColorEditLocalizerConverter Id=ColorEdit_MoreColorsButtonCaption}}"
-                                   Glyph="/DevExpress.Xpf.Core.v21.2;component/Editors/Images/ColorEdit/MoreColors.svg"
+                                   Glyph="/DevExpress.Xpf.Core.v22.1;component/Editors/Images/ColorEdit/MoreColors.svg"
                                    IsVisible="{Binding Path=DataContext.ShowMoreColorsButton,RelativeSource={RelativeSource TemplatedParent}}"/>
             </dxb:BarManager.Items>
             <dxb:MenuBarControl Background="{DynamicResource ResourceKey={dxet:ColorEditThemeKey ResourceKey=Background}}">
@@ -221,7 +232,7 @@
                                    IsVisible="{Binding ShowNoColorButton}"/>
                 <dxb:BarButtonItem x:Name="PART_MoreColorsButton"
                                    Content="{Binding MoreColorsButtonContent, RelativeSource={RelativeSource TemplatedParent}, Converter={dxe:ColorEditLocalizerConverter Id=ColorEdit_NoColorButtonCaption}}"
-                                   Glyph="/DevExpress.Xpf.Core.v21.2;component/Editors/Images/ColorEdit/MoreColors.svg"
+                                   Glyph="/DevExpress.Xpf.Core.v22.1;component/Editors/Images/ColorEdit/MoreColors.svg"
                                    IsVisible="{Binding ShowMoreColorsButton}"/>
             </dxb:BarManager.Items>
             <dxb:MenuBarControl>

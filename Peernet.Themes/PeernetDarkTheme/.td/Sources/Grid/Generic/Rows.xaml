@@ -3,12 +3,11 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
-                    xmlns:dxgcore="http://schemas.devexpress.com/winfx/2008/xaml/grid"
-                    xmlns:dxght="http://schemas.devexpress.com/winfx/2008/xaml/grid/internal"
+                    xmlns:dxgi="http://schemas.devexpress.com/winfx/2008/xaml/grid/internal"
                     xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
@@ -19,25 +18,25 @@
     <ControlTemplate x:Key="{dxgt:TableViewThemeKey ResourceKey=FixedNoneHeadersPanelTemplate}">
         <dx:StackVisibleIndexPanel Name="headersPanel"
                                    ArrangeAccordingToVisibleIndex="True"
-                                   dxgcore:GridColumn.HeaderPresenterType="Headers"
+                                   dxg:GridColumn.HeaderPresenterType="Headers"
                                    Orientation="Horizontal">
             <dx:DragManager.DropTargetFactory>
-                <dxgcore:FixedNoneColumnHeaderDropTargetFactory/>
+                <dxg:FixedNoneColumnHeaderDropTargetFactory/>
             </dx:DragManager.DropTargetFactory>
         </dx:StackVisibleIndexPanel>
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxgt:TableViewThemeKey ResourceKey=FixedNoneDropPanelTemplate}">
-        <dxgcore:OrdinaryStackVisibleIndexPanel ArrangeAccordingToVisibleIndex="True" Orientation="Horizontal"/>
+        <dxg:OrdinaryStackVisibleIndexPanel ArrangeAccordingToVisibleIndex="True" Orientation="Horizontal"/>
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxgt:TableViewThemeKey ResourceKey=FixedLeftHeadersPanelTemplate}">
         <dx:StackVisibleIndexPanel Name="fixedLeftHeadersPanel"
                                    ArrangeAccordingToVisibleIndex="True"
-                                   dxgcore:GridColumn.HeaderPresenterType="Headers"
+                                   dxg:GridColumn.HeaderPresenterType="Headers"
                                    Orientation="Horizontal">
             <dx:DragManager.DropTargetFactory>
-                <dxgcore:FixedLeftColumnHeaderDropTargetFactory/>
+                <dxg:FixedLeftColumnHeaderDropTargetFactory/>
             </dx:DragManager.DropTargetFactory>
         </dx:StackVisibleIndexPanel>
     </ControlTemplate>
@@ -49,10 +48,10 @@
     <ControlTemplate x:Key="{dxgt:TableViewThemeKey ResourceKey=FixedRightHeadersPanelTemplate}">
         <dx:StackVisibleIndexPanel Name="fixedRightHeadersPanel"
                                    ArrangeAccordingToVisibleIndex="True"
-                                   dxgcore:GridColumn.HeaderPresenterType="Headers"
+                                   dxg:GridColumn.HeaderPresenterType="Headers"
                                    Orientation="Horizontal">
             <dx:DragManager.DropTargetFactory>
-                <dxgcore:FixedRightColumnHeaderDropTargetFactory/>
+                <dxg:FixedRightColumnHeaderDropTargetFactory/>
             </dx:DragManager.DropTargetFactory>
         </dx:StackVisibleIndexPanel>
     </ControlTemplate>
@@ -63,14 +62,14 @@
 
     <!--BEGIN WPF-->
 
-    <dxgcore:DefaultControlTemplate x:Key="{dxgt:GridRowThemeKey ResourceKey=RowDecorationTemplate}" TargetType="{x:Type ContentControl}">
+    <dxg:DefaultControlTemplate x:Key="{dxgt:GridRowThemeKey ResourceKey=RowDecorationTemplate}" TargetType="{x:Type ContentControl}">
         <!--END WPF-->
         <!--ONLY SL 
     <ControlTemplate x:Key="{dxgt:GridRowThemeKey ResourceKey=RowDecorationTemplate}" TargetType="{x:Type ContentControl}">
     ONLY SL-->
         <ContentPresenter/>
         <!--BEGIN WPF-->
-    </dxgcore:DefaultControlTemplate>
+    </dxg:DefaultControlTemplate>
 
     <!--END WPF-->
 
@@ -87,35 +86,35 @@
 
     <ControlTemplate x:Key="{dxgt:GridRowThemeKey ResourceKey=RowControlTemplate}">
         <ContentControl Template="{Binding Path=View.RowDecorationTemplate}">
-            <dxgcore:GridRowContent x:Name="PART_DataRow"
-                                    MinHeight="{Binding Path=View.RowMinHeight}"
-                                    Style="{Binding Path=View.RowStyle}">
+            <dxg:GridRowContent x:Name="PART_DataRow"
+                                MinHeight="{Binding Path=View.RowMinHeight}"
+                                Style="{Binding Path=View.RowStyle}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <dx:DXDockPanel>
-                        <dxgcore:RowIndicatorControl dxb:BarManager.DXContextMenu="{Binding Path=View.DataControlMenu}"
-                                                     dxgcore:GridPopupMenu.GridMenuType="RowCell"
-                                                     Template="{DynamicResource {dxgt:RowIndicatorThemeKey ResourceKey=ItemTemplate}}"
-                                                     Visibility="{Binding Path=View.ActualShowIndicator, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                                     Width="{Binding Path=View.ActualIndicatorWidth}"/>
-                        <dxgcore:DetailRowsIndentControl ItemsSource="{Binding Path=View.DataControl.OwnerDetailDescriptor.DetailViewIndents}"/>
+                        <dxg:RowIndicatorControl dxb:BarManager.DXContextMenu="{Binding Path=View.DataControlMenu}"
+                                                 dxg:GridPopupMenu.GridMenuType="RowCell"
+                                                 Template="{DynamicResource {dxgt:RowIndicatorThemeKey ResourceKey=ItemTemplate}}"
+                                                 Visibility="{Binding Path=View.ActualShowIndicator, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                 Width="{Binding Path=View.ActualIndicatorWidth}"/>
+                        <dxg:DetailRowsIndentControl ItemsSource="{Binding Path=View.DataControl.OwnerDetailDescriptor.DetailViewIndents}"/>
                         <ContentPresenter x:Name="PART_RowOffsetPresenter"/>
-                        <dxgcore:GridDetailExpandButtonContainer dx:FrameworkElementHelper.IsVisible="{Binding View.ActualShowDetailButtons}"/>
+                        <dxg:GridDetailExpandButtonContainer dx:FrameworkElementHelper.IsVisible="{Binding View.ActualShowDetailButtons}"/>
                         <Grid>
                             <dx:DataContentPresenter x:Name="PART_DataRowContent"
                                                      Content="{Binding}"
                                                      ContentTemplateSelector="{Binding Path=View.ActualDataRowTemplateSelector}"
                                                      Margin="0,0,0,1">
                                 <ToolTipService.ToolTip>
-                                    <Binding Path="(dxgcore:RowData.CurrentRowData).(dxe:BaseEdit.HasValidationError)" RelativeSource="{RelativeSource TemplatedParent}">
+                                    <Binding Path="(dxg:RowData.CurrentRowData).(dxe:BaseEdit.HasValidationError)" RelativeSource="{RelativeSource TemplatedParent}">
                                         <Binding.Converter>
                                             <dx:BoolToObjectConverter FalseValue="{x:Null}">
                                                 <dx:BoolToObjectConverter.TrueValue>
                                                     <ToolTip Name="toolTip"
-                                                             Content="{Binding Path=(dxgcore:RowData.CurrentRowData).(dxe:BaseEdit.ValidationError), RelativeSource={RelativeSource TemplatedParent}}"
+                                                             Content="{Binding Path=(dxg:RowData.CurrentRowData).(dxe:BaseEdit.ValidationError), RelativeSource={RelativeSource TemplatedParent}}"
                                                              ContentTemplate="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=RowToolTipTemplate}}"/>
                                                 </dx:BoolToObjectConverter.TrueValue>
                                             </dx:BoolToObjectConverter>
@@ -130,11 +129,11 @@
                                                      Visibility="Collapsed"/>
                         </Grid>
                     </dx:DXDockPanel>
-                    <dxgcore:DetailRowsIndentControl Grid.Column="1"
-                                                     IsLeft="False"
-                                                     ItemsSource="{Binding Path=View.DataControl.OwnerDetailDescriptor.DetailViewIndents}"/>
+                    <dxg:DetailRowsIndentControl Grid.Column="1"
+                                                 IsLeft="False"
+                                                 ItemsSource="{Binding Path=View.DataControl.OwnerDetailDescriptor.DetailViewIndents}"/>
                 </Grid>
-            </dxgcore:GridRowContent>
+            </dxg:GridRowContent>
         </ContentControl>
         <ControlTemplate.Triggers>
             <DataTrigger Binding="{Binding Path=View.ShowHorizontalLines}" Value="false">
@@ -166,7 +165,7 @@
 
     <!--BEGIN WPF-->
 
-    <dxgcore:DefaultStyle x:Key="{dxgt:GridRowThemeKey ResourceKey=RowStyle}" TargetType="{x:Type dxg:GridRowContent}">
+    <dxg:DefaultStyle x:Key="{dxgt:GridRowThemeKey ResourceKey=RowStyle}" TargetType="{x:Type dxg:GridRowContent}">
         <Setter Property="dxg:GridRowContent.Background" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=BorderNoneBrush}}"/>
         <Setter Property="dxg:GridRowContent.Foreground" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=TextUnfocusedBrush}}"/>
         <Style.Triggers>
@@ -186,11 +185,11 @@
                 <Setter Property="TextBlock.Foreground" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=HoverForeground}}"/>
             </DataTrigger>
         </Style.Triggers>
-    </dxgcore:DefaultStyle>
+    </dxg:DefaultStyle>
 
     <!--END WPF-->
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.FixedDelimiter}" TargetType="{x:Type dxg:FixedDelimiter}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.FixedDelimiter}" TargetType="{x:Type dxg:FixedDelimiter}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
@@ -200,7 +199,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.RowsDelimiter}" TargetType="{x:Type dxg:RowsDelimiter}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.RowsDelimiter}" TargetType="{x:Type dxg:RowsDelimiter}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
@@ -210,105 +209,105 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.FitRowContentPresenter}" TargetType="{x:Type dxg:FitRowContentPresenter}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.FitRowContentPresenter}" TargetType="{x:Type dxg:FitRowContentPresenter}">
         <Setter Property="Template" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=FitColumnContentTemplate}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.FitRowLeftContentPresenter}" TargetType="{x:Type dxg:FitRowLeftContentPresenter}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.FitRowLeftContentPresenter}" TargetType="{x:Type dxg:FitRowLeftContentPresenter}">
         <Setter Property="Template" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=FitColumnLeftContentTemplate}}"/>
     </Style>
 
     <!--BEGIN WPF-->
 
-    <dxgcore:DefaultDataTemplate x:Key="{dxgt:GridRowThemeKey ResourceKey=DataRowTemplate}">
+    <dxg:DefaultDataTemplate x:Key="{dxgt:GridRowThemeKey ResourceKey=DataRowTemplate}">
         <!--END WPF-->
         <!--ONLY SL 
     <DataTemplate x:Key="{dxgt:GridRowThemeKey ResourceKey=DataRowTemplate}">
     ONLY SL-->
-        <dxgcore:BandedViewContentSelector BandsLayout="{Binding Path=View.DataControl.BandsLayout}" HorizontalContentAlignment="Stretch">
-            <dxgcore:BandedViewContentSelector.TableViewContent>
+        <dxg:BandedViewContentSelector BandsLayout="{Binding Path=View.DataControl.BandsLayout}" HorizontalContentAlignment="Stretch">
+            <dxg:BandedViewContentSelector.TableViewContent>
                 <ControlTemplate>
-                    <dxgcore:GridScrollablePart x:Name="ScrollablePart"
-                                                dxgcore:GridControl.CurrentView="{Binding Path=View}"
-                                                FixedColumnsDelimiterTemplate="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=FixedColumnsDelimiterTemplate}}"
-                                                FixedLeftVisibleColumns="{Binding Path=View.FixedLeftVisibleColumns}"
-                                                FixedLineWidth="{Binding Path=View.FixedLineWidth}"
-                                                FixedNoneContentWidth="{Binding Path=FixedNoneContentWidth}"
-                                                FixedRightVisibleColumns="{Binding Path=View.FixedRightVisibleColumns}"
-                                                ScrollingMargin="{Binding Path=View.ScrollingVirtualizationMargin}">
-                        <dxgcore:GridScrollablePart.FitContent>
-                            <dxgcore:FitRowContentPresenter Content="{Binding}"
-                                                            dxb:BarManager.DXContextMenu="{Binding Path=View.DataControlMenu}"
-                                                            dxgcore:GridPopupMenu.GridMenuType="RowCell"
-                                                            VerticalContentAlignment="Stretch"/>
-                        </dxgcore:GridScrollablePart.FitContent>
-                        <dxgcore:GridScrollablePart.FixedLeftContent>
-                            <dxgcore:CellItemsControl dxgcore:GridControl.CurrentView="{Binding View}"
-                                                      ItemsPanel="{DynamicResource {dxgt:TableViewThemeKey ResourceKey=FixedLeftNoneDropPanelTemplate}}"
-                                                      ItemsSource="{Binding Path=FixedLeftCellData}"/>
-                        </dxgcore:GridScrollablePart.FixedLeftContent>
-                        <dxgcore:GridScrollablePart.FixedRightContent>
-                            <dxgcore:CellItemsControl dxgcore:GridControl.CurrentView="{Binding View}"
-                                                      ItemsPanel="{DynamicResource {dxgt:TableViewThemeKey ResourceKey=FixedRightNoneDropPanelTemplate}}"
-                                                      ItemsSource="{Binding Path=FixedRightCellData}"/>
-                        </dxgcore:GridScrollablePart.FixedRightContent>
-                        <dxgcore:GridScrollablePart.FixedNoneContent>
-                            <dxgcore:CellItemsControl dxgcore:GridControl.CurrentView="{Binding View}"
-                                                      ItemsPanel="{DynamicResource {dxgt:TableViewThemeKey ResourceKey=FixedNoneDropPanelTemplate}}"
-                                                      ItemsSource="{Binding Path=FixedNoneCellData}"/>
-                        </dxgcore:GridScrollablePart.FixedNoneContent>
-                    </dxgcore:GridScrollablePart>
+                    <dxg:GridScrollablePart x:Name="ScrollablePart"
+                                            dxg:GridControl.CurrentView="{Binding Path=View}"
+                                            FixedColumnsDelimiterTemplate="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=FixedColumnsDelimiterTemplate}}"
+                                            FixedLeftVisibleColumns="{Binding Path=View.FixedLeftVisibleColumns}"
+                                            FixedLineWidth="{Binding Path=View.FixedLineWidth}"
+                                            FixedNoneContentWidth="{Binding Path=FixedNoneContentWidth}"
+                                            FixedRightVisibleColumns="{Binding Path=View.FixedRightVisibleColumns}"
+                                            ScrollingMargin="{Binding Path=View.ScrollingVirtualizationMargin}">
+                        <dxg:GridScrollablePart.FitContent>
+                            <dxg:FitRowContentPresenter Content="{Binding}"
+                                                        dxb:BarManager.DXContextMenu="{Binding Path=View.DataControlMenu}"
+                                                        dxg:GridPopupMenu.GridMenuType="RowCell"
+                                                        VerticalContentAlignment="Stretch"/>
+                        </dxg:GridScrollablePart.FitContent>
+                        <dxg:GridScrollablePart.FixedLeftContent>
+                            <dxg:CellItemsControl dxg:GridControl.CurrentView="{Binding View}"
+                                                  ItemsPanel="{DynamicResource {dxgt:TableViewThemeKey ResourceKey=FixedLeftNoneDropPanelTemplate}}"
+                                                  ItemsSource="{Binding Path=FixedLeftCellData}"/>
+                        </dxg:GridScrollablePart.FixedLeftContent>
+                        <dxg:GridScrollablePart.FixedRightContent>
+                            <dxg:CellItemsControl dxg:GridControl.CurrentView="{Binding View}"
+                                                  ItemsPanel="{DynamicResource {dxgt:TableViewThemeKey ResourceKey=FixedRightNoneDropPanelTemplate}}"
+                                                  ItemsSource="{Binding Path=FixedRightCellData}"/>
+                        </dxg:GridScrollablePart.FixedRightContent>
+                        <dxg:GridScrollablePart.FixedNoneContent>
+                            <dxg:CellItemsControl dxg:GridControl.CurrentView="{Binding View}"
+                                                  ItemsPanel="{DynamicResource {dxgt:TableViewThemeKey ResourceKey=FixedNoneDropPanelTemplate}}"
+                                                  ItemsSource="{Binding Path=FixedNoneCellData}"/>
+                        </dxg:GridScrollablePart.FixedNoneContent>
+                    </dxg:GridScrollablePart>
                 </ControlTemplate>
-            </dxgcore:BandedViewContentSelector.TableViewContent>
-            <dxgcore:BandedViewContentSelector.BandedViewContent>
+            </dxg:BandedViewContentSelector.TableViewContent>
+            <dxg:BandedViewContentSelector.BandedViewContent>
                 <ControlTemplate>
-                    <dxgcore:GridScrollablePart x:Name="ScrollablePart"
-                                                dxgcore:GridControl.CurrentView="{Binding Path=View}"
-                                                FixedColumnsDelimiterTemplate="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=FixedColumnsDelimiterTemplate}}"
-                                                FixedLeftVisibleColumns="{Binding Path=View.DataControl.BandsLayout.FixedLeftVisibleBands}"
-                                                FixedLineWidth="{Binding Path=View.FixedLineWidth}"
-                                                FixedNoneContentWidth="{Binding Path=FixedNoneContentWidth}"
-                                                FixedRightVisibleColumns="{Binding Path=View.DataControl.BandsLayout.FixedRightVisibleBands}"
-                                                ScrollingMargin="{Binding Path=View.ScrollingVirtualizationMargin}">
-                        <dxgcore:GridScrollablePart.FitContent>
-                            <dxgcore:FitRowContentPresenter Content="{Binding}"
-                                                            dxb:BarManager.DXContextMenu="{Binding Path=View.DataControlMenu}"
-                                                            dxgcore:GridPopupMenu.GridMenuType="RowCell"
-                                                            VerticalContentAlignment="Stretch"/>
-                        </dxgcore:GridScrollablePart.FitContent>
-                        <dxgcore:GridScrollablePart.FixedLeftContent>
-                            <dxgcore:CellItemsControl dxgcore:GridControl.CurrentView="{Binding View}" ItemsSource="{Binding Path=FixedLeftCellData}">
-                                <dxgcore:CellItemsControl.ItemsPanel>
+                    <dxg:GridScrollablePart x:Name="ScrollablePart"
+                                            dxg:GridControl.CurrentView="{Binding Path=View}"
+                                            FixedColumnsDelimiterTemplate="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=FixedColumnsDelimiterTemplate}}"
+                                            FixedLeftVisibleColumns="{Binding Path=View.DataControl.BandsLayout.FixedLeftVisibleBands}"
+                                            FixedLineWidth="{Binding Path=View.FixedLineWidth}"
+                                            FixedNoneContentWidth="{Binding Path=FixedNoneContentWidth}"
+                                            FixedRightVisibleColumns="{Binding Path=View.DataControl.BandsLayout.FixedRightVisibleBands}"
+                                            ScrollingMargin="{Binding Path=View.ScrollingVirtualizationMargin}">
+                        <dxg:GridScrollablePart.FitContent>
+                            <dxg:FitRowContentPresenter Content="{Binding}"
+                                                        dxb:BarManager.DXContextMenu="{Binding Path=View.DataControlMenu}"
+                                                        dxg:GridPopupMenu.GridMenuType="RowCell"
+                                                        VerticalContentAlignment="Stretch"/>
+                        </dxg:GridScrollablePart.FitContent>
+                        <dxg:GridScrollablePart.FixedLeftContent>
+                            <dxg:CellItemsControl dxg:GridControl.CurrentView="{Binding View}" ItemsSource="{Binding Path=FixedLeftCellData}">
+                                <dxg:CellItemsControl.ItemsPanel>
                                     <ControlTemplate>
-                                        <dxgcore:BandsCellsPanel Bands="{Binding Path=View.DataControl.BandsLayout.FixedLeftVisibleBands}"/>
+                                        <dxg:BandsCellsPanel Bands="{Binding Path=View.DataControl.BandsLayout.FixedLeftVisibleBands}"/>
                                     </ControlTemplate>
-                                </dxgcore:CellItemsControl.ItemsPanel>
-                            </dxgcore:CellItemsControl>
-                        </dxgcore:GridScrollablePart.FixedLeftContent>
-                        <dxgcore:GridScrollablePart.FixedRightContent>
-                            <dxgcore:CellItemsControl dxgcore:GridControl.CurrentView="{Binding View}" ItemsSource="{Binding Path=FixedRightCellData}">
-                                <dxgcore:CellItemsControl.ItemsPanel>
+                                </dxg:CellItemsControl.ItemsPanel>
+                            </dxg:CellItemsControl>
+                        </dxg:GridScrollablePart.FixedLeftContent>
+                        <dxg:GridScrollablePart.FixedRightContent>
+                            <dxg:CellItemsControl dxg:GridControl.CurrentView="{Binding View}" ItemsSource="{Binding Path=FixedRightCellData}">
+                                <dxg:CellItemsControl.ItemsPanel>
                                     <ControlTemplate>
-                                        <dxgcore:BandsCellsPanel Bands="{Binding Path=View.DataControl.BandsLayout.FixedRightVisibleBands}"/>
+                                        <dxg:BandsCellsPanel Bands="{Binding Path=View.DataControl.BandsLayout.FixedRightVisibleBands}"/>
                                     </ControlTemplate>
-                                </dxgcore:CellItemsControl.ItemsPanel>
-                            </dxgcore:CellItemsControl>
-                        </dxgcore:GridScrollablePart.FixedRightContent>
-                        <dxgcore:GridScrollablePart.FixedNoneContent>
-                            <dxgcore:CellItemsControl dxgcore:GridControl.CurrentView="{Binding View}" ItemsSource="{Binding Path=FixedNoneCellData}">
-                                <dxgcore:CellItemsControl.ItemsPanel>
+                                </dxg:CellItemsControl.ItemsPanel>
+                            </dxg:CellItemsControl>
+                        </dxg:GridScrollablePart.FixedRightContent>
+                        <dxg:GridScrollablePart.FixedNoneContent>
+                            <dxg:CellItemsControl dxg:GridControl.CurrentView="{Binding View}" ItemsSource="{Binding Path=FixedNoneCellData}">
+                                <dxg:CellItemsControl.ItemsPanel>
                                     <ControlTemplate>
-                                        <dxgcore:BandsCellsPanel Bands="{Binding Path=View.DataControl.BandsLayout.FixedNoneVisibleBands}" FixedNoneContentWidth="{Binding Path=FixedNoneContentWidth}"/>
+                                        <dxg:BandsCellsPanel Bands="{Binding Path=View.DataControl.BandsLayout.FixedNoneVisibleBands}" FixedNoneContentWidth="{Binding Path=FixedNoneContentWidth}"/>
                                     </ControlTemplate>
-                                </dxgcore:CellItemsControl.ItemsPanel>
-                            </dxgcore:CellItemsControl>
-                        </dxgcore:GridScrollablePart.FixedNoneContent>
-                    </dxgcore:GridScrollablePart>
+                                </dxg:CellItemsControl.ItemsPanel>
+                            </dxg:CellItemsControl>
+                        </dxg:GridScrollablePart.FixedNoneContent>
+                    </dxg:GridScrollablePart>
                 </ControlTemplate>
-            </dxgcore:BandedViewContentSelector.BandedViewContent>
-        </dxgcore:BandedViewContentSelector>
+            </dxg:BandedViewContentSelector.BandedViewContent>
+        </dxg:BandedViewContentSelector>
         <!--BEGIN WPF-->
-    </dxgcore:DefaultDataTemplate>
+    </dxg:DefaultDataTemplate>
 
     <!--END WPF-->
 
@@ -327,27 +326,27 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <dxgcore:RowIndicatorControl Grid.Column="0"
-                                         Template="{DynamicResource {dxgt:RowIndicatorThemeKey ResourceKey=GroupPresenterTemplate}}"
-                                         Visibility="{Binding Path=View.ActualShowIndicator, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                         Width="{Binding Path=View.ActualIndicatorWidth}"/>
-            <dxgcore:DetailRowsIndentControl Grid.Column="1" ItemsSource="{Binding Path=View.DataControl.OwnerDetailDescriptor.DetailViewIndents}"/>
-            <dxgcore:GroupRowOffsetPresenter Grid.Column="2"/>
+            <dxg:RowIndicatorControl Grid.Column="0"
+                                     Template="{DynamicResource {dxgt:RowIndicatorThemeKey ResourceKey=GroupPresenterTemplate}}"
+                                     Visibility="{Binding Path=View.ActualShowIndicator, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                     Width="{Binding Path=View.ActualIndicatorWidth}"/>
+            <dxg:DetailRowsIndentControl Grid.Column="1" ItemsSource="{Binding Path=View.DataControl.OwnerDetailDescriptor.DetailViewIndents}"/>
+            <dxg:GroupRowOffsetPresenter Grid.Column="2"/>
             <ContentControl Grid.Column="3" Template="{DynamicResource {dxgt:GroupRowThemeKey ResourceKey=GroupRowControlContainerTemplate}}">
                 <ContentControl Template="{DynamicResource {dxgt:GroupRowThemeKey ResourceKey=GroupRowControlHeaderContentTemplate}}">
                     <dx:DoubleClicker Command="{Binding View.Commands.ChangeGroupExpanded}"
                                       CommandParameter="{Binding RowHandle.Value}"
                                       HorizontalContentAlignment="Stretch">
-                        <dxgcore:GroupGridRowPresenter x:Name="PART_HeaderContentPresenter"
-                                                       Content="{Binding}"
-                                                       ContentTemplateSelector="{Binding Path=View.ActualGroupRowTemplateSelector}"
-                                                       Style="{DynamicResource {dxgt:GroupRowThemeKey ResourceKey=GroupRowPresenterStyle}}"/>
+                        <dxg:GroupGridRowPresenter x:Name="PART_HeaderContentPresenter"
+                                                   Content="{Binding}"
+                                                   ContentTemplateSelector="{Binding Path=View.ActualGroupRowTemplateSelector}"
+                                                   Style="{DynamicResource {dxgt:GroupRowThemeKey ResourceKey=GroupRowPresenterStyle}}"/>
                     </dx:DoubleClicker>
                 </ContentControl>
             </ContentControl>
-            <dxgcore:DetailRowsIndentControl Grid.Column="4"
-                                             IsLeft="False"
-                                             ItemsSource="{Binding Path=View.DataControl.OwnerDetailDescriptor.DetailViewIndents}"/>
+            <dxg:DetailRowsIndentControl Grid.Column="4"
+                                         IsLeft="False"
+                                         ItemsSource="{Binding Path=View.DataControl.OwnerDetailDescriptor.DetailViewIndents}"/>
         </Grid>
     </ControlTemplate>
 
@@ -361,24 +360,24 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <dxgcore:RowIndicatorControl Grid.Column="0"
-                                         Template="{DynamicResource {dxgt:RowIndicatorThemeKey ResourceKey=AdditionalTemplate}}"
-                                         Visibility="{Binding Path=View.ActualShowIndicator, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                         Width="{Binding Path=View.ActualIndicatorWidth}"/>
-            <dxgcore:DetailRowsIndentControl Grid.Column="1" ItemsSource="{Binding Path=View.DataControl.OwnerDetailDescriptor.DetailViewIndents}"/>
-            <dxgcore:GroupRowOffsetPresenter Grid.Column="2" Visibility="{Binding Path=IsFooterMarginControlVisible, Converter={StaticResource BooleanToVisibilityConverterInverted}}"/>
-            <dxgcore:FooterMarginControl Grid.Column="3"
-                                         NextRowLevel="{Binding Path=NextRowLevel}"
-                                         ScrollingMargin="{Binding View.ScrollingHeaderVirtualizationMargin}"
-                                         Visibility="{Binding Path=IsFooterMarginControlVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            <dxgcore:FooterContentPresenter x:Name="PART_GroupFooterContentPresenter"
-                                            Content="{Binding}"
-                                            ContentTemplateSelector="{Binding Path=View.ActualGroupFooterRowTemplateSelector}"
-                                            Grid.Column="4"
-                                            Style="{Binding Path=View.FooterRowStyle}"/>
-            <dxgcore:DetailRowsIndentControl Grid.Column="5"
-                                             IsLeft="False"
-                                             ItemsSource="{Binding Path=View.DataControl.OwnerDetailDescriptor.DetailViewIndents}"/>
+            <dxg:RowIndicatorControl Grid.Column="0"
+                                     Template="{DynamicResource {dxgt:RowIndicatorThemeKey ResourceKey=AdditionalTemplate}}"
+                                     Visibility="{Binding Path=View.ActualShowIndicator, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                     Width="{Binding Path=View.ActualIndicatorWidth}"/>
+            <dxg:DetailRowsIndentControl Grid.Column="1" ItemsSource="{Binding Path=View.DataControl.OwnerDetailDescriptor.DetailViewIndents}"/>
+            <dxg:GroupRowOffsetPresenter Grid.Column="2" Visibility="{Binding Path=IsFooterMarginControlVisible, Converter={StaticResource BooleanToVisibilityConverterInverted}}"/>
+            <dxg:FooterMarginControl Grid.Column="3"
+                                     NextRowLevel="{Binding Path=NextRowLevel}"
+                                     ScrollingMargin="{Binding View.ScrollingHeaderVirtualizationMargin}"
+                                     Visibility="{Binding Path=IsFooterMarginControlVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <dxg:FooterContentPresenter x:Name="PART_GroupFooterContentPresenter"
+                                        Content="{Binding}"
+                                        ContentTemplateSelector="{Binding Path=View.ActualGroupFooterRowTemplateSelector}"
+                                        Grid.Column="4"
+                                        Style="{Binding Path=View.FooterRowStyle}"/>
+            <dxg:DetailRowsIndentControl Grid.Column="5"
+                                         IsLeft="False"
+                                         ItemsSource="{Binding Path=View.DataControl.OwnerDetailDescriptor.DetailViewIndents}"/>
         </Grid>
     </ControlTemplate>
 
@@ -388,9 +387,9 @@
                             DockPanel.Dock="Top"
                             Template="{DynamicResource {dxgt:CardViewThemeKey ResourceKey=GroupRowControlHeaderContentTemplate}}">
                 <dx:DoubleClicker Command="{x:Static dxg:GridCommands.ChangeGroupExpanded}" CommandParameter="{Binding RowHandle.Value}">
-                    <dxgcore:GroupGridRowPresenter x:Name="PART_HeaderContentPresenter"
-                                                   Content="{Binding}"
-                                                   ContentTemplateSelector="{Binding Path=View.ActualGroupRowTemplateSelector}"/>
+                    <dxg:GroupGridRowPresenter x:Name="PART_HeaderContentPresenter"
+                                               Content="{Binding}"
+                                               ContentTemplateSelector="{Binding Path=View.ActualGroupRowTemplateSelector}"/>
                 </dx:DoubleClicker>
             </ContentControl>
         </ContentControl>
@@ -409,18 +408,18 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxgt:GridControlThemeKey ResourceKey=DetailHeaderControlTemplate}" TargetType="dxg:DetailHeaderControl">
-        <dxgcore:DetailRowsContentControl DetailDescriptor="{Binding Path=DetailDescriptor, RelativeSource={RelativeSource TemplatedParent}}"
-                                          ShowLastDetailMargin="{Binding Path=ShowLastDetailMargin, RelativeSource={RelativeSource TemplatedParent}}"
-                                          View="{Binding Path=MasterRowData.View, RelativeSource={RelativeSource TemplatedParent}}">
-            <dxgcore:DetailDescriptorContentBorder>
-                <dxgcore:DetailRowContentPresenter Content="{Binding DetailDescriptor.HeaderContent, RelativeSource={RelativeSource TemplatedParent}}"
-                                                   ContentTemplate="{Binding DetailDescriptor.HeaderContentTemplate, RelativeSource={RelativeSource TemplatedParent}}"
-                                                   MasterRowData="{TemplateBinding MasterRowData}"/>
-            </dxgcore:DetailDescriptorContentBorder>
-        </dxgcore:DetailRowsContentControl>
+        <dxg:DetailRowsContentControl DetailDescriptor="{Binding Path=DetailDescriptor, RelativeSource={RelativeSource TemplatedParent}}"
+                                      ShowLastDetailMargin="{Binding Path=ShowLastDetailMargin, RelativeSource={RelativeSource TemplatedParent}}"
+                                      View="{Binding Path=MasterRowData.View, RelativeSource={RelativeSource TemplatedParent}}">
+            <dxg:DetailDescriptorContentBorder>
+                <dxg:DetailRowContentPresenter Content="{Binding DetailDescriptor.HeaderContent, RelativeSource={RelativeSource TemplatedParent}}"
+                                               ContentTemplate="{Binding DetailDescriptor.HeaderContentTemplate, RelativeSource={RelativeSource TemplatedParent}}"
+                                               MasterRowData="{TemplateBinding MasterRowData}"/>
+            </dxg:DetailDescriptorContentBorder>
+        </dxg:DetailRowsContentControl>
     </ControlTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.FixRowControl}" TargetType="{x:Type dxg:FixRowControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.FixRowControl}" TargetType="{x:Type dxg:FixRowControl}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="dxg:FixRowControl">

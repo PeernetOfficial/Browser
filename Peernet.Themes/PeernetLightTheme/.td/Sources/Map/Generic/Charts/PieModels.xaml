@@ -1,12 +1,12 @@
 <ResourceDictionary mc:Ignorable="cs"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
-                    xmlns:local="http://schemas.devexpress.com/winfx/2008/xaml/map"
+                    xmlns:dxm="http://schemas.devexpress.com/winfx/2008/xaml/map"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <local:StrokeDashArrayConverter x:Key="StrokeDashArrayConverter"/>
+    <dxm:StrokeDashArrayConverter x:Key="StrokeDashArrayConverter"/>
 
     <Style x:Key="pieShapeStyle" TargetType="Shape">
         <Setter Property="Stroke" Value="{Binding PieInfo.Stroke}"/>
@@ -22,10 +22,10 @@
         <Setter Property="Visibility" Value="{Binding PieInfo.ContentVisibility}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Map.PieSegmentPresentationControl}" TargetType="local:PieSegmentPresentationControl">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Map.PieSegmentPresentationControl}" TargetType="dxm:PieSegmentPresentationControl">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:PieSegmentPresentationControl">
+                <ControlTemplate TargetType="dxm:PieSegmentPresentationControl">
                     <Ellipse Fill="{Binding Fill}"
                              Style="{StaticResource pieShapeStyle}"
                              UseLayoutRounding="False"/>
@@ -34,18 +34,18 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Map.MapPieControl}" TargetType="local:MapPieControl">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Map.MapPieControl}" TargetType="dxm:MapPieControl">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:MapPieControl">
-                    <local:MapPieItemsControl ItemsSource="{Binding MapItem.Segments}">
-                        <local:MapPieItemsControl.ItemsPanel>
+                <ControlTemplate TargetType="dxm:MapPieControl">
+                    <dxm:MapPieItemsControl ItemsSource="{Binding MapItem.Segments}">
+                        <dxm:MapPieItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <Grid/>
                                 <!--TODO Replace Grid with panel-->
                             </ItemsPanelTemplate>
-                        </local:MapPieItemsControl.ItemsPanel>
-                    </local:MapPieItemsControl>
+                        </dxm:MapPieItemsControl.ItemsPanel>
+                    </dxm:MapPieItemsControl>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

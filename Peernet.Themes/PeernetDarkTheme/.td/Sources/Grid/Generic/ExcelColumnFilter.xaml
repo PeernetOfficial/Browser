@@ -3,23 +3,23 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxcn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-                    xmlns:dxe_helpers="clr-namespace:DevExpress.Xpf.Editors.Helpers;assembly=DevExpress.Xpf.Core.v21.2"
-                    xmlns:dxe1="clr-namespace:DevExpress.Xpf.Editors.Filtering;assembly=DevExpress.Xpf.Core.v21.2"
-                    xmlns:dxep="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+                    xmlns:dxe_helpers="clr-namespace:DevExpress.Xpf.Editors.Helpers;assembly=DevExpress.Xpf.Core.v22.1"
+                    xmlns:dxe1="clr-namespace:DevExpress.Xpf.Editors.Filtering;assembly=DevExpress.Xpf.Core.v22.1"
                     xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
                     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
-                    xmlns:dxgcore="clr-namespace:DevExpress.Xpf.Grid;assembly=DevExpress.Xpf.Grid.v21.2.Core"
-                    xmlns:dxgh="clr-namespace:DevExpress.Xpf.Grid.Hierarchy;assembly=DevExpress.Xpf.Grid.v21.2.Core"
-                    xmlns:dxght="http://schemas.devexpress.com/winfx/2008/xaml/grid/internal"
+                    xmlns:dxgcore="clr-namespace:DevExpress.Xpf.Grid;assembly=DevExpress.Xpf.Grid.v22.1.Core"
+                    xmlns:dxgh="clr-namespace:DevExpress.Xpf.Grid.Hierarchy;assembly=DevExpress.Xpf.Grid.v22.1.Core"
+                    xmlns:dxgi="http://schemas.devexpress.com/winfx/2008/xaml/grid/internal"
                     xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys"
-                    xmlns:dxgtl="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+                    xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="{dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=TreeListBorderStyle}" TargetType="{x:Type Border}"/>
 
     <dxmvvm:ObjectToObjectConverter x:Key="HeaderVisibilityConverter" DefaultTarget="Collapsed">
         <dxmvvm:MapItem Source="{x:Null}" Target="Visible"/>
@@ -48,10 +48,10 @@
                 <dxmvvm:MapItem Source="FilterRules" Target="False"/>
             </dxmvvm:ObjectToObjectConverter>
         </DataTemplate.Resources>
-        <dxgtl:ExcelColumnFilterPanel Background="{DynamicResource {dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=FilterPanelBackground}}"
-                                      ChildMinWidth="{Binding Path=(dxe:PopupBaseEdit.PopupOwnerEdit).PopupMinWidth, RelativeSource={RelativeSource Self}}"
-                                      DataContext="{Binding Path=ColumnFilterInfo, RelativeSource={RelativeSource TemplatedParent}}"
-                                      LastChildFilled="{Binding FilterType, Converter={StaticResource HeaderButtonValuesConverter}}">
+        <dxg:ExcelColumnFilterPanel Background="{DynamicResource {dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=FilterPanelBackground}}"
+                                    ChildMinWidth="{Binding Path=(dxe:PopupBaseEdit.PopupOwnerEdit).PopupMinWidth, RelativeSource={RelativeSource Self}}"
+                                    DataContext="{Binding Path=ColumnFilterInfo, RelativeSource={RelativeSource TemplatedParent}}"
+                                    LastChildFilled="{Binding FilterType, Converter={StaticResource HeaderButtonValuesConverter}}">
             <Grid x:Name="PART_HeadersPanel"
                   Style="{DynamicResource {dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=HeaderContainerStyle}}"
                   VerticalAlignment="Top"
@@ -63,34 +63,34 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Border Grid.ColumnSpan="4" Style="{DynamicResource ResourceKey={dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=HeaderPanelBottomBorderStyle}}"/>
-                <dxgtl:ExcelColumnFilterHeaderButton x:Name="PART_HeaderCustom"
-                                                     Command="{Binding SetIsSelectedCommand, RelativeSource={RelativeSource Self}}"
-                                                     IsSelected="{Binding Path=FilterType, Converter={StaticResource HeaderButtonRulesConverter}, Mode=TwoWay}"
-                                                     Style="{DynamicResource {dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=ButtonHeaderStyle}}">
-                    <dxgtl:ExcelColumnFilterHeaderButton.Content>
+                <dxg:ExcelColumnFilterHeaderButton x:Name="PART_HeaderCustom"
+                                                   Command="{Binding SetIsSelectedCommand, RelativeSource={RelativeSource Self}}"
+                                                   IsSelected="{Binding Path=FilterType, Converter={StaticResource HeaderButtonRulesConverter}, Mode=TwoWay}"
+                                                   Style="{DynamicResource {dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=ButtonHeaderStyle}}">
+                    <dxg:ExcelColumnFilterHeaderButton.Content>
                         <Binding ConverterParameter="ExcelColumnFilterPopupFilterRulesTabCaption" Path="Column.View.LocalizationDescriptor">
                             <Binding.Converter>
-                                <dxgtl:DynamicLocalizationStringValueConvertor/>
+                                <dxg:DynamicLocalizationStringValueConvertor/>
                             </Binding.Converter>
                         </Binding>
-                    </dxgtl:ExcelColumnFilterHeaderButton.Content>
-                </dxgtl:ExcelColumnFilterHeaderButton>
+                    </dxg:ExcelColumnFilterHeaderButton.Content>
+                </dxg:ExcelColumnFilterHeaderButton>
                 <Control x:Name="PART_HeaderSeparator"
                          Grid.Column="1"
                          Style="{DynamicResource {dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=HeaderSeparatorStyle}}"/>
-                <dxgtl:ExcelColumnFilterHeaderButton x:Name="PART_HeaderValues"
-                                                     Command="{Binding SetIsSelectedCommand, RelativeSource={RelativeSource Self}}"
-                                                     Grid.Column="2"
-                                                     IsSelected="{Binding Path=FilterType, Converter={StaticResource HeaderButtonValuesConverter}, Mode=TwoWay}"
-                                                     Style="{DynamicResource {dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=ButtonHeaderStyle}}">
-                    <dxgtl:ExcelColumnFilterHeaderButton.Content>
+                <dxg:ExcelColumnFilterHeaderButton x:Name="PART_HeaderValues"
+                                                   Command="{Binding SetIsSelectedCommand, RelativeSource={RelativeSource Self}}"
+                                                   Grid.Column="2"
+                                                   IsSelected="{Binding Path=FilterType, Converter={StaticResource HeaderButtonValuesConverter}, Mode=TwoWay}"
+                                                   Style="{DynamicResource {dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=ButtonHeaderStyle}}">
+                    <dxg:ExcelColumnFilterHeaderButton.Content>
                         <Binding ConverterParameter="ExcelColumnFilterPopupValuesTabCaption" Path="Column.View.LocalizationDescriptor">
                             <Binding.Converter>
-                                <dxgtl:DynamicLocalizationStringValueConvertor/>
+                                <dxg:DynamicLocalizationStringValueConvertor/>
                             </Binding.Converter>
                         </Binding>
-                    </dxgtl:ExcelColumnFilterHeaderButton.Content>
-                </dxgtl:ExcelColumnFilterHeaderButton>
+                    </dxg:ExcelColumnFilterHeaderButton.Content>
+                </dxg:ExcelColumnFilterHeaderButton>
             </Grid>
             <Grid Style="{DynamicResource {dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=ContentStyle}}" VerticalAlignment="Stretch">
                 <ContentControl x:Name="PART_ContentCustom"
@@ -108,10 +108,10 @@
                                 IsTabStop="False"
                                 Visibility="{Binding Path=FilterType, Converter={StaticResource FilterTypeValuesConverter}}"/>
             </Grid>
-        </dxgtl:ExcelColumnFilterPanel>
+        </dxg:ExcelColumnFilterPanel>
     </DataTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.ExcelColumnFilterContentPresenter}" TargetType="{x:Type dxg:ExcelColumnFilterContentPresenter}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.ExcelColumnFilterContentPresenter}" TargetType="{x:Type dxg:ExcelColumnFilterContentPresenter}">
         <Setter Property="ContentTemplate" Value="{DynamicResource {dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=Template}}"/>
     </Style>
 
@@ -121,9 +121,9 @@
                    StrokeThickness="0"/>
     </ControlTemplate>
 
-    <dxgtl:ExcelCustomFilterOperandConverter x:Key="ExcelCustomFilterOperandConverter"/>
+    <dxg:ExcelCustomFilterOperandConverter x:Key="ExcelCustomFilterOperandConverter"/>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.ExcelCustomFilterOperandLineControl}" TargetType="{x:Type dxg:ExcelCustomFilterOperandLineControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.ExcelCustomFilterOperandLineControl}" TargetType="{x:Type dxg:ExcelCustomFilterOperandLineControl}">
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="Margin" Value="0,0,0,4"/>
@@ -142,11 +142,11 @@
                        Text="{Binding Path=OperandCaption, RelativeSource={RelativeSource TemplatedParent}}"
                        VerticalAlignment="Center"
                        Visibility="{Binding Path=Text, RelativeSource={RelativeSource Self}, Converter={dx:NullableToVisibilityConverter}}"/>
-            <dxgtl:ExcelCustomFilterOperandLineContentPresenter x:Name="PART_EditorValuesContainer"
-                                                                Content="{Binding}"
-                                                                CustomFilterInfo="{Binding Path=CustomFilterInfo, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                EditValuePath="{Binding Path=EditValuePath, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                ValueConverter="{Binding Path=ValueConverter, RelativeSource={RelativeSource TemplatedParent}}">
+            <dxg:ExcelCustomFilterOperandLineContentPresenter x:Name="PART_EditorValuesContainer"
+                                                              Content="{Binding}"
+                                                              CustomFilterInfo="{Binding Path=CustomFilterInfo, RelativeSource={RelativeSource TemplatedParent}}"
+                                                              EditValuePath="{Binding Path=EditValuePath, RelativeSource={RelativeSource TemplatedParent}}"
+                                                              ValueConverter="{Binding Path=ValueConverter, RelativeSource={RelativeSource TemplatedParent}}">
                 <Grid.Column>
                     <Binding Path="OperandCaption" RelativeSource="{RelativeSource TemplatedParent}">
                         <Binding.Converter>
@@ -165,27 +165,27 @@
                         </Binding.Converter>
                     </Binding>
                 </Grid.ColumnSpan>
-                <dxgtl:ExcelCustomFilterOperandLineContentPresenter.ContentTemplateSelector>
-                    <dxgtl:ExcelCustonFilterEditorTemplateSelector>
-                        <dxgtl:ExcelCustonFilterEditorTemplateSelector.NumericTemplate>
+                <dxg:ExcelCustomFilterOperandLineContentPresenter.ContentTemplateSelector>
+                    <dxg:ExcelCustonFilterEditorTemplateSelector>
+                        <dxg:ExcelCustonFilterEditorTemplateSelector.NumericTemplate>
                             <DataTemplate>
-                                <dxgtl:ExcelCustomFilterOperandEditorContainer CustomFilterInfo="{Binding Path=CustomFilterInfo, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                               EditValuePath="{Binding Path=EditValuePath, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                               NullTextLocalizationKey="ExcelColumnFilterPopupEnterValue"
-                                                                               ValueConverter="{Binding Path=ValueConverter, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                <dxg:ExcelCustomFilterOperandEditorContainer CustomFilterInfo="{Binding Path=CustomFilterInfo, RelativeSource={RelativeSource TemplatedParent}}"
+                                                                             EditValuePath="{Binding Path=EditValuePath, RelativeSource={RelativeSource TemplatedParent}}"
+                                                                             NullTextLocalizationKey="ExcelColumnFilterPopupEnterValue"
+                                                                             ValueConverter="{Binding Path=ValueConverter, RelativeSource={RelativeSource TemplatedParent}}"/>
                             </DataTemplate>
-                        </dxgtl:ExcelCustonFilterEditorTemplateSelector.NumericTemplate>
-                        <dxgtl:ExcelCustonFilterEditorTemplateSelector.DateTimeTemplate>
+                        </dxg:ExcelCustonFilterEditorTemplateSelector.NumericTemplate>
+                        <dxg:ExcelCustonFilterEditorTemplateSelector.DateTimeTemplate>
                             <DataTemplate>
-                                <dxgtl:ExcelCustomFilterOperandDateEditorContainer CustomFilterInfo="{Binding Path=CustomFilterInfo, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                                   EditValuePath="{Binding Path=EditValuePath, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                                   NullTextLocalizationKey="ExcelColumnFilterPopupSelectDate"
-                                                                                   ValueConverter="{Binding Path=ValueConverter, RelativeSource={RelativeSource TemplatedParent}}">
-                                    <dxgtl:ExcelCustomFilterOperandDateEditorContainer.DateButtonTemplate>
+                                <dxg:ExcelCustomFilterOperandDateEditorContainer CustomFilterInfo="{Binding Path=CustomFilterInfo, RelativeSource={RelativeSource TemplatedParent}}"
+                                                                                 EditValuePath="{Binding Path=EditValuePath, RelativeSource={RelativeSource TemplatedParent}}"
+                                                                                 NullTextLocalizationKey="ExcelColumnFilterPopupSelectDate"
+                                                                                 ValueConverter="{Binding Path=ValueConverter, RelativeSource={RelativeSource TemplatedParent}}">
+                                    <dxg:ExcelCustomFilterOperandDateEditorContainer.DateButtonTemplate>
                                         <DataTemplate>
-                                            <dx:DXImage Source="{dx:SvgImageSource Uri='/DevExpress.Xpf.Grid.v21.2;component/Images/CalendarDate.svg'}">
+                                            <dx:DXImage Source="{dx:SvgImageSource Uri='/DevExpress.Xpf.Grid.v22.1;component/Images/CalendarDate.svg'}">
                                                 <dx:DXImage.Style>
-                                                    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/core.DXImage}" TargetType="{x:Type dx:DXImage}">
+                                                    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/core.DXImage}" TargetType="{x:Type dx:DXImage}">
                                                         <Setter Property="Margin" Value="2,1,1,0"/>
                                                         <Setter Property="VerticalAlignment" Value="Center"/>
                                                         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -200,78 +200,78 @@
                                                 </dx:DXImage.Style>
                                             </dx:DXImage>
                                         </DataTemplate>
-                                    </dxgtl:ExcelCustomFilterOperandDateEditorContainer.DateButtonTemplate>
-                                </dxgtl:ExcelCustomFilterOperandDateEditorContainer>
+                                    </dxg:ExcelCustomFilterOperandDateEditorContainer.DateButtonTemplate>
+                                </dxg:ExcelCustomFilterOperandDateEditorContainer>
                             </DataTemplate>
-                        </dxgtl:ExcelCustonFilterEditorTemplateSelector.DateTimeTemplate>
-                        <dxgtl:ExcelCustonFilterEditorTemplateSelector.ObjectEditableTemplate>
+                        </dxg:ExcelCustonFilterEditorTemplateSelector.DateTimeTemplate>
+                        <dxg:ExcelCustonFilterEditorTemplateSelector.ObjectEditableTemplate>
                             <DataTemplate>
-                                <dxgtl:ExcelCustomFilterOperandEditorContainer CustomFilterInfo="{Binding Path=CustomFilterInfo, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                               EditValuePath="{Binding Path=EditValuePath, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                               NullTextLocalizationKey="ExcelColumnFilterPopupEnterValue"
-                                                                               ValueConverter="{Binding Path=ValueConverter, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                <dxg:ExcelCustomFilterOperandEditorContainer CustomFilterInfo="{Binding Path=CustomFilterInfo, RelativeSource={RelativeSource TemplatedParent}}"
+                                                                             EditValuePath="{Binding Path=EditValuePath, RelativeSource={RelativeSource TemplatedParent}}"
+                                                                             NullTextLocalizationKey="ExcelColumnFilterPopupEnterValue"
+                                                                             ValueConverter="{Binding Path=ValueConverter, RelativeSource={RelativeSource TemplatedParent}}"/>
                             </DataTemplate>
-                        </dxgtl:ExcelCustonFilterEditorTemplateSelector.ObjectEditableTemplate>
-                        <dxgtl:ExcelCustonFilterEditorTemplateSelector.ObjectNonEditableTemplate>
+                        </dxg:ExcelCustonFilterEditorTemplateSelector.ObjectEditableTemplate>
+                        <dxg:ExcelCustonFilterEditorTemplateSelector.ObjectNonEditableTemplate>
                             <DataTemplate>
-                                <dxgtl:ExcelCustomFilterOperandEditorContainer CustomFilterInfo="{Binding Path=CustomFilterInfo, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                               EditValuePath="{Binding Path=EditValuePath, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                               NullTextLocalizationKey="ExcelColumnFilterPopupEnterValue"
-                                                                               ValueConverter="{Binding Path=ValueConverter, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                <dxg:ExcelCustomFilterOperandEditorContainer CustomFilterInfo="{Binding Path=CustomFilterInfo, RelativeSource={RelativeSource TemplatedParent}}"
+                                                                             EditValuePath="{Binding Path=EditValuePath, RelativeSource={RelativeSource TemplatedParent}}"
+                                                                             NullTextLocalizationKey="ExcelColumnFilterPopupEnterValue"
+                                                                             ValueConverter="{Binding Path=ValueConverter, RelativeSource={RelativeSource TemplatedParent}}"/>
                             </DataTemplate>
-                        </dxgtl:ExcelCustonFilterEditorTemplateSelector.ObjectNonEditableTemplate>
-                    </dxgtl:ExcelCustonFilterEditorTemplateSelector>
-                </dxgtl:ExcelCustomFilterOperandLineContentPresenter.ContentTemplateSelector>
-            </dxgtl:ExcelCustomFilterOperandLineContentPresenter>
+                        </dxg:ExcelCustonFilterEditorTemplateSelector.ObjectNonEditableTemplate>
+                    </dxg:ExcelCustonFilterEditorTemplateSelector>
+                </dxg:ExcelCustomFilterOperandLineContentPresenter.ContentTemplateSelector>
+            </dxg:ExcelCustomFilterOperandLineContentPresenter>
         </Grid>
     </ControlTemplate>
 
     <DataTemplate x:Key="{dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=RulesSimpleTemplate}"/>
 
     <DataTemplate x:Key="{dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=RulesUnaryTemplate}">
-        <dxgtl:ExcelCustomFilterOperandLineControl x:Name="PART_LeftOperandContainer"
-                                                   CustomFilterInfo="{Binding CustomFilterInfo}"
-                                                   EditValuePath="AdditionalOperands[0].Operand"
-                                                   ValueConverter="{StaticResource ExcelCustomFilterOperandConverter}"/>
+        <dxg:ExcelCustomFilterOperandLineControl x:Name="PART_LeftOperandContainer"
+                                                 CustomFilterInfo="{Binding CustomFilterInfo}"
+                                                 EditValuePath="AdditionalOperands[0].Operand"
+                                                 ValueConverter="{StaticResource ExcelCustomFilterOperandConverter}"/>
     </DataTemplate>
 
     <DataTemplate x:Key="{dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=RulesBinaryTemplate}">
         <StackPanel>
-            <dxgtl:ExcelCustomFilterOperandLineControl x:Name="PART_LeftOperandContainer"
-                                                       CustomFilterInfo="{Binding CustomFilterInfo}"
-                                                       EditValuePath="AdditionalOperands[0].Operand"
-                                                       ValueConverter="{StaticResource ExcelCustomFilterOperandConverter}">
-                <dxgtl:ExcelCustomFilterOperandLineControl.OperandCaption>
+            <dxg:ExcelCustomFilterOperandLineControl x:Name="PART_LeftOperandContainer"
+                                                     CustomFilterInfo="{Binding CustomFilterInfo}"
+                                                     EditValuePath="AdditionalOperands[0].Operand"
+                                                     ValueConverter="{StaticResource ExcelCustomFilterOperandConverter}">
+                <dxg:ExcelCustomFilterOperandLineControl.OperandCaption>
                     <Binding ConverterParameter="ExcelColumnFilterPopupFilterBetweenFrom" Path="CustomFilterInfo.Column.View.LocalizationDescriptor">
                         <Binding.Converter>
-                            <dxgtl:DynamicLocalizationStringValueConvertor/>
+                            <dxg:DynamicLocalizationStringValueConvertor/>
                         </Binding.Converter>
                     </Binding>
-                </dxgtl:ExcelCustomFilterOperandLineControl.OperandCaption>
-            </dxgtl:ExcelCustomFilterOperandLineControl>
-            <dxgtl:ExcelCustomFilterOperandLineControl x:Name="PART_RightOperandContainer"
-                                                       CustomFilterInfo="{Binding CustomFilterInfo}"
-                                                       EditValuePath="AdditionalOperands[1].Operand"
-                                                       ValueConverter="{StaticResource ExcelCustomFilterOperandConverter}">
-                <dxgtl:ExcelCustomFilterOperandLineControl.OperandCaption>
+                </dxg:ExcelCustomFilterOperandLineControl.OperandCaption>
+            </dxg:ExcelCustomFilterOperandLineControl>
+            <dxg:ExcelCustomFilterOperandLineControl x:Name="PART_RightOperandContainer"
+                                                     CustomFilterInfo="{Binding CustomFilterInfo}"
+                                                     EditValuePath="AdditionalOperands[1].Operand"
+                                                     ValueConverter="{StaticResource ExcelCustomFilterOperandConverter}">
+                <dxg:ExcelCustomFilterOperandLineControl.OperandCaption>
                     <Binding ConverterParameter="ExcelColumnFilterPopupFilterBetweenTo" Path="CustomFilterInfo.Column.View.LocalizationDescriptor">
                         <Binding.Converter>
-                            <dxgtl:DynamicLocalizationStringValueConvertor/>
+                            <dxg:DynamicLocalizationStringValueConvertor/>
                         </Binding.Converter>
                     </Binding>
-                </dxgtl:ExcelCustomFilterOperandLineControl.OperandCaption>
-            </dxgtl:ExcelCustomFilterOperandLineControl>
+                </dxg:ExcelCustomFilterOperandLineControl.OperandCaption>
+            </dxg:ExcelCustomFilterOperandLineControl>
         </StackPanel>
     </DataTemplate>
 
     <DataTemplate x:Key="{dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=RulesOneLocalDateTimeTemplate}">
         <DataTemplate.Resources>
-            <dxgtl:ExcelCustomFilterLocalDateTimeOperandConverter x:Key="ExcelCustomFilterLocalDateTimeOperandConverter"/>
+            <dxg:ExcelCustomFilterLocalDateTimeOperandConverter x:Key="ExcelCustomFilterLocalDateTimeOperandConverter"/>
         </DataTemplate.Resources>
-        <dxgtl:ExcelCustomFilterOperandLineControl x:Name="PART_OperandContainer"
-                                                   CustomFilterInfo="{Binding CustomFilterInfo}"
-                                                   EditValuePath="AdditionalOperands[0].Operand"
-                                                   ValueConverter="{StaticResource ExcelCustomFilterLocalDateTimeOperandConverter}"/>
+        <dxg:ExcelCustomFilterOperandLineControl x:Name="PART_OperandContainer"
+                                                 CustomFilterInfo="{Binding CustomFilterInfo}"
+                                                 EditValuePath="AdditionalOperands[0].Operand"
+                                                 ValueConverter="{StaticResource ExcelCustomFilterLocalDateTimeOperandConverter}"/>
     </DataTemplate>
 
     <Style x:Key="{dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=CustomOperatorTypeStyle}" TargetType="{x:Type dxe:ComboBoxEdit}">
@@ -285,53 +285,53 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <dxep:ComboBoxEdit x:Name="PART_OperatorType"
-                               AllowUpdateTwoWayBoundPropertiesOnSynchronization="False"
-                               DisplayMember="Caption"
-                               EditValue="{Binding CurrentOperator, UpdateSourceTrigger=PropertyChanged}"
-                               IsTextEditable="False"
-                               ItemsSource="{Binding Operators}"
-                               Style="{DynamicResource ResourceKey={dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=CustomOperatorTypeStyle}}"
-                               ValueMember="Operator"/>
+            <dxe:ComboBoxEdit x:Name="PART_OperatorType"
+                              AllowUpdateTwoWayBoundPropertiesOnSynchronization="False"
+                              DisplayMember="Caption"
+                              EditValue="{Binding CurrentOperator, UpdateSourceTrigger=PropertyChanged}"
+                              IsTextEditable="False"
+                              ItemsSource="{Binding Operators}"
+                              Style="{DynamicResource ResourceKey={dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=CustomOperatorTypeStyle}}"
+                              ValueMember="Operator"/>
             <ContentControl Content="{Binding Clause}"
                             dx:FocusHelper2.Focusable="False"
                             Grid.Row="1"
                             IsTabStop="False">
                 <ContentControl.ContentTemplateSelector>
-                    <dxgtl:ExcelCustomFilterTemplateSelector>
-                        <dxgtl:ExcelCustomFilterTemplateSelector.SimpleOperandTemplate>
+                    <dxg:ExcelCustomFilterTemplateSelector>
+                        <dxg:ExcelCustomFilterTemplateSelector.SimpleOperandTemplate>
                             <DataTemplate>
                                 <ContentControl Content="{Binding}"
                                                 ContentTemplate="{DynamicResource {dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=RulesSimpleTemplate}}"
                                                 dx:FocusHelper2.Focusable="False"
                                                 IsTabStop="False"/>
                             </DataTemplate>
-                        </dxgtl:ExcelCustomFilterTemplateSelector.SimpleOperandTemplate>
-                        <dxgtl:ExcelCustomFilterTemplateSelector.UnaryOperandTemplate>
+                        </dxg:ExcelCustomFilterTemplateSelector.SimpleOperandTemplate>
+                        <dxg:ExcelCustomFilterTemplateSelector.UnaryOperandTemplate>
                             <DataTemplate>
                                 <ContentControl Content="{Binding}"
                                                 ContentTemplate="{DynamicResource {dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=RulesUnaryTemplate}}"
                                                 dx:FocusHelper2.Focusable="False"
                                                 IsTabStop="False"/>
                             </DataTemplate>
-                        </dxgtl:ExcelCustomFilterTemplateSelector.UnaryOperandTemplate>
-                        <dxgtl:ExcelCustomFilterTemplateSelector.BinaryOperandTemplate>
+                        </dxg:ExcelCustomFilterTemplateSelector.UnaryOperandTemplate>
+                        <dxg:ExcelCustomFilterTemplateSelector.BinaryOperandTemplate>
                             <DataTemplate>
                                 <ContentControl Content="{Binding}"
                                                 ContentTemplate="{DynamicResource {dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=RulesBinaryTemplate}}"
                                                 dx:FocusHelper2.Focusable="False"
                                                 IsTabStop="False"/>
                             </DataTemplate>
-                        </dxgtl:ExcelCustomFilterTemplateSelector.BinaryOperandTemplate>
-                        <dxgtl:ExcelCustomFilterTemplateSelector.OneLocalDateTimeOperandTemplate>
+                        </dxg:ExcelCustomFilterTemplateSelector.BinaryOperandTemplate>
+                        <dxg:ExcelCustomFilterTemplateSelector.OneLocalDateTimeOperandTemplate>
                             <DataTemplate>
                                 <ContentControl Content="{Binding}"
                                                 ContentTemplate="{DynamicResource {dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=RulesOneLocalDateTimeTemplate}}"
                                                 dx:FocusHelper2.Focusable="False"
                                                 IsTabStop="False"/>
                             </DataTemplate>
-                        </dxgtl:ExcelCustomFilterTemplateSelector.OneLocalDateTimeOperandTemplate>
-                    </dxgtl:ExcelCustomFilterTemplateSelector>
+                        </dxg:ExcelCustomFilterTemplateSelector.OneLocalDateTimeOperandTemplate>
+                    </dxg:ExcelCustomFilterTemplateSelector>
                 </ContentControl.ContentTemplateSelector>
             </ContentControl>
         </Grid>
@@ -344,95 +344,95 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid Style="{DynamicResource {dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=SearchControlContainerStyle}}">
-                <dxep:ButtonEdit x:Name="searchTextEdit"
-                                 EditValue="{Binding Path=SearchText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                 Style="{DynamicResource {dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=SearchControlStyle}}">
+                <dxe:ButtonEdit x:Name="searchTextEdit"
+                                EditValue="{Binding Path=SearchText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                Style="{DynamicResource {dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=SearchControlStyle}}">
                     <dxmvvm:Interaction.Behaviors>
                         <dxmvvm:KeyToCommand Command="{DXCommand Execute='@e(treeListView).Focus()'}" KeyGesture="Down"/>
                     </dxmvvm:Interaction.Behaviors>
-                    <dxep:ButtonEdit.Buttons>
-                        <dxep:ButtonInfo x:Name="buttonClear"
-                                         Command="{Binding Path=SetNullValueCommand, ElementName=searchTextEdit}"
-                                         GlyphKind="Custom"
-                                         Visibility="{Binding Path=EditValue, ElementName=searchTextEdit, Converter={dx:NullableToVisibilityConverter}}">
-                            <dxep:ButtonInfo.Template>
+                    <dxe:ButtonEdit.Buttons>
+                        <dxe:ButtonInfo x:Name="buttonClear"
+                                        Command="{Binding Path=SetNullValueCommand, ElementName=searchTextEdit}"
+                                        GlyphKind="Custom"
+                                        Visibility="{Binding Path=EditValue, ElementName=searchTextEdit, Converter={dx:NullableToVisibilityConverter}}">
+                            <dxe:ButtonInfo.Template>
                                 <DataTemplate>
-                                    <dxep:ButtonClose Command="{Binding Command}"
-                                                      HorizontalAlignment="Center"
-                                                      Margin="2,0"
-                                                      VerticalAlignment="Center"
-                                                      Visibility="{Binding Visibility}"/>
+                                    <dxe:ButtonClose Command="{Binding Command}"
+                                                     HorizontalAlignment="Center"
+                                                     Margin="2,0"
+                                                     VerticalAlignment="Center"
+                                                     Visibility="{Binding Visibility}"/>
                                 </DataTemplate>
-                            </dxep:ButtonInfo.Template>
-                        </dxep:ButtonInfo>
-                        <dxep:ButtonInfo GlyphKind="Custom" IsLeft="True">
-                            <dxep:ButtonInfo.Template>
+                            </dxe:ButtonInfo.Template>
+                        </dxe:ButtonInfo>
+                        <dxe:ButtonInfo GlyphKind="Custom" IsLeft="True">
+                            <dxe:ButtonInfo.Template>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
                                         <Control Template="{DynamicResource ResourceKey={dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=SearchGlyphTemplate}}"/>
-                                        <dxep:ComboBoxEdit x:Name="PART_SearchScope"
-                                                           DataContext="{Binding Path=(dxe:BaseEdit.OwnerEdit).DataContext}"
-                                                           EditMode="InplaceActive"
-                                                           EditValue="{Binding Path=SearchScope, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                           Style="{DynamicResource {dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=SearchScopeSelectorStyle}}"
-                                                           Visibility="{Binding Path=ShowSearchPanelScopeSelector, Converter={dx:BooleanToVisibilityConverter}}">
-                                            <dxep:ComboBoxEdit.ItemsSource>
+                                        <dxe:ComboBoxEdit x:Name="PART_SearchScope"
+                                                          DataContext="{Binding Path=(dxe:BaseEdit.OwnerEdit).DataContext}"
+                                                          EditMode="InplaceActive"
+                                                          EditValue="{Binding Path=SearchScope, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                          Style="{DynamicResource {dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=SearchScopeSelectorStyle}}"
+                                                          Visibility="{Binding Path=ShowSearchPanelScopeSelector, Converter={dx:BooleanToVisibilityConverter}}">
+                                            <dxe:ComboBoxEdit.ItemsSource>
                                                 <x:Array Type="{x:Type dxgcore:ExcelDateColumnFilterScope}">
                                                     <dxgcore:ExcelDateColumnFilterScope>Day</dxgcore:ExcelDateColumnFilterScope>
                                                     <dxgcore:ExcelDateColumnFilterScope>Month</dxgcore:ExcelDateColumnFilterScope>
                                                     <dxgcore:ExcelDateColumnFilterScope>Year</dxgcore:ExcelDateColumnFilterScope>
                                                     <dxgcore:ExcelDateColumnFilterScope>All</dxgcore:ExcelDateColumnFilterScope>
                                                 </x:Array>
-                                            </dxep:ComboBoxEdit.ItemsSource>
+                                            </dxe:ComboBoxEdit.ItemsSource>
                                             <dxmvvm:Interaction.Behaviors>
-                                                <dxgtl:ExcelColumnFilterSearchScopeBehavior/>
+                                                <dxg:ExcelColumnFilterSearchScopeBehavior/>
                                             </dxmvvm:Interaction.Behaviors>
-                                            <dxep:ComboBoxEdit.Buttons>
-                                                <dxep:ButtonInfo Command="{Binding Path=(dxe:BaseEdit.OwnerEdit).OpenPopupCommand, RelativeSource={RelativeSource Self}}"
-                                                                 GlyphKind="Custom"
-                                                                 IsDefaultButton="True">
-                                                    <dxep:ButtonInfo.Template>
+                                            <dxe:ComboBoxEdit.Buttons>
+                                                <dxe:ButtonInfo Command="{Binding Path=(dxe:BaseEdit.OwnerEdit).OpenPopupCommand, RelativeSource={RelativeSource Self}}"
+                                                                GlyphKind="Custom"
+                                                                IsDefaultButton="True">
+                                                    <dxe:ButtonInfo.Template>
                                                         <DataTemplate>
-                                                            <dxgtl:ExcelColumnFilterDropDownButton x:Name="buttonSearchScope"
-                                                                                                   Command="{Binding Command}"
-                                                                                                   Template="{DynamicResource ResourceKey={dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=DropDownGlyphTemplate}}"/>
+                                                            <dxg:ExcelColumnFilterDropDownButton x:Name="buttonSearchScope"
+                                                                                                 Command="{Binding Command}"
+                                                                                                 Template="{DynamicResource ResourceKey={dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=DropDownGlyphTemplate}}"/>
                                                         </DataTemplate>
-                                                    </dxep:ButtonInfo.Template>
-                                                </dxep:ButtonInfo>
-                                            </dxep:ComboBoxEdit.Buttons>
-                                        </dxep:ComboBoxEdit>
+                                                    </dxe:ButtonInfo.Template>
+                                                </dxe:ButtonInfo>
+                                            </dxe:ComboBoxEdit.Buttons>
+                                        </dxe:ComboBoxEdit>
                                     </StackPanel>
                                 </DataTemplate>
-                            </dxep:ButtonInfo.Template>
-                        </dxep:ButtonInfo>
-                    </dxep:ButtonEdit.Buttons>
-                </dxep:ButtonEdit>
+                            </dxe:ButtonInfo.Template>
+                        </dxe:ButtonInfo>
+                    </dxe:ButtonEdit.Buttons>
+                </dxe:ButtonEdit>
             </Grid>
-            <dxgtl:TreeListControl Grid.Row="1"
-                                   ItemsSource="{Binding FilterItems}"
-                                   Style="{DynamicResource {dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=TreeListControlStyle}}">
-                <dxgtl:TreeListControl.Columns>
-                    <dxgtl:TreeListColumn AllowSearchPanel="False"
-                                          FieldName="EditValue"
-                                          Style="{DynamicResource {dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=ValueColumnStyle}}"/>
-                    <dxgtl:TreeListColumn AllowSearchPanel="True"
-                                          FieldName="SearchValue"
-                                          UnboundType="String"
-                                          Visible="False"/>
-                    <dxgtl:TreeListColumn AllowSearchPanel="False"
-                                          FieldName="IsExpanded"
-                                          Visible="False"/>
-                </dxgtl:TreeListControl.Columns>
-                <dxgtl:TreeListControl.View>
-                    <dxgtl:TreeListView x:Name="treeListView"
-                                        ExpandStateFieldName="IsExpanded"
-                                        Style="{DynamicResource {dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=TreeListStyle}}">
-                        <dxmvvm:Interaction.Behaviors>
-                            <dxgtl:ExcelColumnFilterNavigationBehavior SearchControl="{Binding ElementName=searchTextEdit}"/>
-                        </dxmvvm:Interaction.Behaviors>
-                    </dxgtl:TreeListView>
-                </dxgtl:TreeListControl.View>
-            </dxgtl:TreeListControl>
+            <Border Grid.Row="1" Style="{DynamicResource {dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=TreeListBorderStyle}}">
+                <dxg:TreeListControl ItemsSource="{Binding FilterItems}" Style="{DynamicResource {dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=TreeListControlStyle}}">
+                    <dxg:TreeListControl.Columns>
+                        <dxg:TreeListColumn AllowSearchPanel="False"
+                                            FieldName="EditValue"
+                                            Style="{DynamicResource {dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=ValueColumnStyle}}"/>
+                        <dxg:TreeListColumn AllowSearchPanel="True"
+                                            FieldName="SearchValue"
+                                            UnboundType="String"
+                                            Visible="False"/>
+                        <dxg:TreeListColumn AllowSearchPanel="False"
+                                            FieldName="IsExpanded"
+                                            Visible="False"/>
+                    </dxg:TreeListControl.Columns>
+                    <dxg:TreeListControl.View>
+                        <dxg:TreeListView x:Name="treeListView"
+                                          ExpandStateFieldName="IsExpanded"
+                                          Style="{DynamicResource {dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=TreeListStyle}}">
+                            <dxmvvm:Interaction.Behaviors>
+                                <dxg:ExcelColumnFilterNavigationBehavior SearchControl="{Binding ElementName=searchTextEdit}"/>
+                            </dxmvvm:Interaction.Behaviors>
+                        </dxg:TreeListView>
+                    </dxg:TreeListControl.View>
+                </dxg:TreeListControl>
+            </Border>
         </Grid>
     </DataTemplate>
 
@@ -441,13 +441,13 @@
         <Setter Property="EditSettings" Value="{Binding ValueColumnEditSettings}"/>
         <Setter Property="CellTemplateSelector">
             <Setter.Value>
-                <dxgtl:ExcelColumnFilterCellTemplateSelector>
-                    <dxgtl:ExcelColumnFilterCellTemplateSelector.ServiceValueTemplate>
+                <dxg:ExcelColumnFilterCellTemplateSelector>
+                    <dxg:ExcelColumnFilterCellTemplateSelector.ServiceValueTemplate>
                         <DataTemplate>
-                            <dxep:TextEdit EditMode="InplaceInactive" EditValue="{Binding RowData.Row.DisplayValue, Mode=OneWay}"/>
+                            <dxe:TextEdit EditMode="InplaceInactive" EditValue="{Binding RowData.Row.DisplayValue, Mode=OneWay}"/>
                         </DataTemplate>
-                    </dxgtl:ExcelColumnFilterCellTemplateSelector.ServiceValueTemplate>
-                </dxgtl:ExcelColumnFilterCellTemplateSelector>
+                    </dxg:ExcelColumnFilterCellTemplateSelector.ServiceValueTemplate>
+                </dxg:ExcelColumnFilterCellTemplateSelector>
             </Setter.Value>
         </Setter>
     </Style>
@@ -467,11 +467,11 @@
                         <Binding Path="SearchScope"/>
                     </MultiBinding.Bindings>
                     <MultiBinding.Converter>
-                        <dxgtl:ExcelColumnFilterSearchNullTextConverter DateAll="ExcelColumnFilterPopupSearchNullTextAll"
-                                                                        DateDay="ExcelColumnFilterPopupSearchNullTextDate"
-                                                                        DateMonth="ExcelColumnFilterPopupSearchNullTextMonth"
-                                                                        DateYear="ExcelColumnFilterPopupSearchNullTextYear"
-                                                                        Simple="ExcelColumnFilterPopupSearchNullText"/>
+                        <dxg:ExcelColumnFilterSearchNullTextConverter DateAll="ExcelColumnFilterPopupSearchNullTextAll"
+                                                                      DateDay="ExcelColumnFilterPopupSearchNullTextDate"
+                                                                      DateMonth="ExcelColumnFilterPopupSearchNullTextMonth"
+                                                                      DateYear="ExcelColumnFilterPopupSearchNullTextYear"
+                                                                      Simple="ExcelColumnFilterPopupSearchNullText"/>
                     </MultiBinding.Converter>
                 </MultiBinding>
             </Setter.Value>
@@ -482,7 +482,7 @@
 
     <Style x:Key="{dxgt:ExcelColumnFilterPopupThemeKey ResourceKey=SearchScopeSelectorStyle}" TargetType="{x:Type dxe:ComboBoxEdit}">
         <Style.Resources>
-            <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/editors.ButtonsControl}" TargetType="{x:Type dxe:ButtonsControl}">
+            <Style x:Key="{dxt:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/editors.ButtonsControl}" TargetType="{x:Type dxe:ButtonsControl}">
                 <Setter Property="Margin" Value="0,1"/>
             </Style>
         </Style.Resources>
@@ -497,11 +497,11 @@
                         <TextBlock.Text>
                             <MultiBinding>
                                 <MultiBinding.Converter>
-                                    <dxgtl:ExcelColumnFilterSearchNullTextConverter DateAll="ExcelColumnFilterPopupSearchScopeAll"
-                                                                                    DateDay="ExcelColumnFilterPopupSearchScopeDay"
-                                                                                    DateMonth="ExcelColumnFilterPopupSearchScopeMonth"
-                                                                                    DateYear="ExcelColumnFilterPopupSearchScopeYear"
-                                                                                    Simple="ExcelColumnFilterPopupSearchNullText"/>
+                                    <dxg:ExcelColumnFilterSearchNullTextConverter DateAll="ExcelColumnFilterPopupSearchScopeAll"
+                                                                                  DateDay="ExcelColumnFilterPopupSearchScopeDay"
+                                                                                  DateMonth="ExcelColumnFilterPopupSearchScopeMonth"
+                                                                                  DateYear="ExcelColumnFilterPopupSearchScopeYear"
+                                                                                  Simple="ExcelColumnFilterPopupSearchNullText"/>
                                 </MultiBinding.Converter>
                                 <Binding ElementName="PART_SearchScope" Path="DataContext"/>
                                 <Binding Path="."/>
@@ -641,7 +641,7 @@
                         <Button.Content>
                             <Binding ConverterParameter="ExcelColumnFilterPopupClearFilter" Path="Column.View.LocalizationDescriptor">
                                 <Binding.Converter>
-                                    <dxgtl:DynamicLocalizationStringValueConvertor/>
+                                    <dxg:DynamicLocalizationStringValueConvertor/>
                                 </Binding.Converter>
                             </Binding>
                         </Button.Content>
@@ -663,7 +663,7 @@
                             VerticalAlignment="Center"
                             Visibility="{Binding Path=(dxe:BaseEdit.OwnerEdit).(dxe:ActualPropertyProvider.Properties).PopupViewModel.OkButtonVisibility, RelativeSource={RelativeSource TemplatedParent}}">
                         <Button.CommandParameter>
-                            <dxep:PopupCloseMode>Normal</dxep:PopupCloseMode>
+                            <dxe:PopupCloseMode>Normal</dxe:PopupCloseMode>
                         </Button.CommandParameter>
                     </Button>
                     <Button x:Name="PART_CancelButton"
@@ -675,18 +675,18 @@
                             VerticalAlignment="Center"
                             Visibility="{Binding Path=(dxe:BaseEdit.OwnerEdit).(dxe:ActualPropertyProvider.Properties).PopupViewModel.CancelButtonVisibility, RelativeSource={RelativeSource TemplatedParent}}">
                         <Button.CommandParameter>
-                            <dxep:PopupCloseMode>Cancel</dxep:PopupCloseMode>
+                            <dxe:PopupCloseMode>Cancel</dxe:PopupCloseMode>
                         </Button.CommandParameter>
                     </Button>
                 </dx:UniformStackPanel>
             </Grid>
-            <dxep:PopupSizeGrip x:Name="PART_SizeGrip"
-                                dx:FocusHelper2.Focusable="False"
-                                HorizontalAlignment="Right"
-                                Margin="2,3,2,2"
-                                Style="{DynamicResource {dxet:PopupBaseEditThemeKey ResourceKey=ResizeGripStyle}}"
-                                VerticalAlignment="{Binding Path=(dxe:BaseEdit.OwnerEdit).(dxe:ActualPropertyProvider.Properties).ResizeGripViewModel.VerticalAlignment, RelativeSource={RelativeSource TemplatedParent}}"
-                                Visibility="{Binding Path=(dxe:BaseEdit.OwnerEdit).(dxe:ActualPropertyProvider.Properties).ResizeGripViewModel.Visibility, RelativeSource={RelativeSource TemplatedParent}}"/>
+            <dxe:PopupSizeGrip x:Name="PART_SizeGrip"
+                               dx:FocusHelper2.Focusable="False"
+                               HorizontalAlignment="Right"
+                               Margin="2,3,2,2"
+                               Style="{DynamicResource {dxet:PopupBaseEditThemeKey ResourceKey=ResizeGripStyle}}"
+                               VerticalAlignment="{Binding Path=(dxe:BaseEdit.OwnerEdit).(dxe:ActualPropertyProvider.Properties).ResizeGripViewModel.VerticalAlignment, RelativeSource={RelativeSource TemplatedParent}}"
+                               Visibility="{Binding Path=(dxe:BaseEdit.OwnerEdit).(dxe:ActualPropertyProvider.Properties).ResizeGripViewModel.Visibility, RelativeSource={RelativeSource TemplatedParent}}"/>
         </Grid>
         <ControlTemplate.Triggers>
             <DataTrigger Binding="{Binding Path=(dxe:BaseEdit.OwnerEdit).(dxe:ActualPropertyProvider.Properties).PopupViewModel.IsLeft, RelativeSource={RelativeSource Self}}" Value="True">

@@ -1,4 +1,4 @@
-<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui" xmlns:dxwuii="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/internal" xmlns:dxwuit="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui" xmlns:dxwuii="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/internal" xmlns:dxwuit="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
 
     <dxwui:HamburgerMenuStringIdConverter x:Key="HamburgerMenuStringIdConverter" />
 
@@ -211,7 +211,7 @@
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Opacity" TargetName="root" Value="0.3" />
             </Trigger>
-            <DataTrigger Binding="{Binding GlyphTemplate, RelativeSource={RelativeSource Self}, Converter={mvvm:ObjectToBooleanConverter}}" Value="True">
+            <DataTrigger Binding="{Binding GlyphTemplate, RelativeSource={RelativeSource Self}, Converter={dxmvvm:ObjectToBooleanConverter}}" Value="True">
                 <Setter Property="Visibility" TargetName="PART_IconTemplateContainer" Value="Visible" />
                 <Setter Property="Visibility" TargetName="PART_IconContainer" Value="Collapsed" />
             </DataTrigger>
@@ -318,7 +318,7 @@
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Opacity" TargetName="root" Value="0.3" />
             </Trigger>
-            <DataTrigger Binding="{Binding GlyphTemplate, RelativeSource={RelativeSource Self}, Converter={mvvm:ObjectToBooleanConverter}}" Value="True">
+            <DataTrigger Binding="{Binding GlyphTemplate, RelativeSource={RelativeSource Self}, Converter={dxmvvm:ObjectToBooleanConverter}}" Value="True">
                 <Setter Property="Visibility" TargetName="PART_IconTemplateContainer" Value="Visible" />
                 <Setter Property="Visibility" TargetName="PART_IconContainer" Value="Collapsed" />
             </DataTrigger>
@@ -434,7 +434,7 @@
                 <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\HamburgerMenuGeneric.xaml;938;18">
                     <ContentPresenter x:Name="contentPresenter" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" ContentTemplate="{TemplateBinding ContentTemplate}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\HamburgerMenuGeneric.xaml;939;22">
                         <ContentPresenter.Resources>
-                            <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=TextBlock}" TargetType="{x:Type TextBlock}">
+                            <Style x:Key="{dxt:DefaultStyleThemeKey FullName=TextBlock}" TargetType="{x:Type TextBlock}">
                                 <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\HamburgerMenuGeneric.xaml;949;30" /><Setter Property="TextDecorations" Value="Underline" />
                             </Style>
                         </ContentPresenter.Resources>
@@ -467,7 +467,7 @@
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Opacity" TargetName="root" Value="0.3" />
             </Trigger>
-            <DataTrigger Binding="{Binding GlyphTemplate, RelativeSource={RelativeSource Self}, Converter={mvvm:ObjectToBooleanConverter}}" Value="True">
+            <DataTrigger Binding="{Binding GlyphTemplate, RelativeSource={RelativeSource Self}, Converter={dxmvvm:ObjectToBooleanConverter}}" Value="True">
                 <Setter Property="Visibility" TargetName="PART_IconTemplateContainer" Value="Visible" />
                 <Setter Property="Visibility" TargetName="PART_IconContainer" Value="Collapsed" />
             </DataTrigger>
@@ -492,7 +492,7 @@
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Opacity" TargetName="root" Value="0.3" />
             </Trigger>
-            <DataTrigger Binding="{Binding GlyphTemplate, RelativeSource={RelativeSource Self}, Converter={mvvm:ObjectToBooleanConverter}}" Value="True">
+            <DataTrigger Binding="{Binding GlyphTemplate, RelativeSource={RelativeSource Self}, Converter={dxmvvm:ObjectToBooleanConverter}}" Value="True">
                 <Setter Property="Visibility" TargetName="PART_IconTemplateContainer" Value="Visible" />
                 <Setter Property="Visibility" TargetName="PART_IconContainer" Value="Collapsed" />
             </DataTrigger>
@@ -517,7 +517,7 @@
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Opacity" TargetName="root" Value="0.3" />
             </Trigger>
-            <DataTrigger Binding="{Binding GlyphTemplate, RelativeSource={RelativeSource Self}, Converter={mvvm:ObjectToBooleanConverter}}" Value="True">
+            <DataTrigger Binding="{Binding GlyphTemplate, RelativeSource={RelativeSource Self}, Converter={dxmvvm:ObjectToBooleanConverter}}" Value="True">
                 <Setter Property="Visibility" TargetName="PART_IconTemplateContainer" Value="Visible" />
                 <Setter Property="Visibility" TargetName="PART_IconContainer" Value="Collapsed" />
             </DataTrigger>
@@ -556,7 +556,7 @@
 
     
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.HamburgerMenuToggleStateButton}" TargetType="{x:Type dxwui:HamburgerMenuToggleStateButton}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.HamburgerMenuToggleStateButton}" TargetType="{x:Type dxwui:HamburgerMenuToggleStateButton}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\HamburgerMenuGeneric.xaml;1172;6" /><Setter Property="Background" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuBrushesThemeKey ResourceKey=ToggleStateButtonInlineBackgroundBrush}}" />
         <Setter Property="Foreground" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuBrushesThemeKey ResourceKey=ToggleStateButtonInlineForegroundBrush}}" />
         <Setter Property="Padding" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuElementsThemeKey ResourceKey=ToggleStateButtonPadding}}" />
@@ -608,7 +608,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.HamburgerMenuNavigationButton}" TargetType="{x:Type dxwui:HamburgerMenuNavigationButton}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.HamburgerMenuNavigationButton}" TargetType="{x:Type dxwui:HamburgerMenuNavigationButton}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\HamburgerMenuGeneric.xaml;1224;6" /><Setter Property="MinHeight" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuElementsThemeKey ResourceKey=DefaultItemHeight}}" />
         <Setter Property="Background" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuBrushesThemeKey ResourceKey=ItemBackgroundBrush}}" />
         <Setter Property="Foreground" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuBrushesThemeKey ResourceKey=ItemForegroundBrush}}" />
@@ -671,7 +671,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.HamburgerSubMenuPreviewNavigationButton}" TargetType="{x:Type dxwui:HamburgerSubMenuPreviewNavigationButton}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.HamburgerSubMenuPreviewNavigationButton}" TargetType="{x:Type dxwui:HamburgerSubMenuPreviewNavigationButton}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\HamburgerMenuGeneric.xaml;1287;6" /><Setter Property="MinHeight" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuElementsThemeKey ResourceKey=DefaultItemHeight}}" />
         <Setter Property="Background" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuBrushesThemeKey ResourceKey=ItemBackgroundBrush}}" />
         <Setter Property="Foreground" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuBrushesThemeKey ResourceKey=ItemForegroundBrush}}" />
@@ -731,7 +731,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.HamburgerSubMenuNavigationButton}" TargetType="{x:Type dxwui:HamburgerSubMenuNavigationButton}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.HamburgerSubMenuNavigationButton}" TargetType="{x:Type dxwui:HamburgerSubMenuNavigationButton}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\HamburgerMenuGeneric.xaml;1347;6" /><Setter Property="MinHeight" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuElementsThemeKey ResourceKey=DefaultItemHeight}}" />
         <Setter Property="Background" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuBrushesThemeKey ResourceKey=FlyoutItemBackgroundBrush}}" />
         <Setter Property="Foreground" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuBrushesThemeKey ResourceKey=FlyoutItemForegroundBrush}}" />
@@ -798,7 +798,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.Internal.HamburgerSubMenuButton}" TargetType="{x:Type dxwuii:HamburgerSubMenuButton}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.Internal.HamburgerSubMenuButton}" TargetType="{x:Type dxwuii:HamburgerSubMenuButton}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\HamburgerMenuGeneric.xaml;1414;6" /><Setter Property="MinHeight" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuElementsThemeKey ResourceKey=DefaultItemHeight}}" />
         <Setter Property="Background" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuBrushesThemeKey ResourceKey=ItemBackgroundBrush}}" />
         <Setter Property="Foreground" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuBrushesThemeKey ResourceKey=ItemForegroundBrush}}" />
@@ -850,7 +850,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.Internal.HamburgerSubMenuMoreButton}" TargetType="{x:Type dxwuii:HamburgerSubMenuMoreButton}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.Internal.HamburgerSubMenuMoreButton}" TargetType="{x:Type dxwuii:HamburgerSubMenuMoreButton}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\HamburgerMenuGeneric.xaml;1466;6" /><Setter Property="MinHeight" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuElementsThemeKey ResourceKey=DefaultItemHeight}}" />
         <Setter Property="Background" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuBrushesThemeKey ResourceKey=ItemBackgroundBrush}}" />
         <Setter Property="Foreground" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuBrushesThemeKey ResourceKey=ItemForegroundBrush}}" />
@@ -903,7 +903,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.Internal.HamburgerSubMenuPane}" TargetType="{x:Type dxwuii:HamburgerSubMenuPane}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.Internal.HamburgerSubMenuPane}" TargetType="{x:Type dxwuii:HamburgerSubMenuPane}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\HamburgerMenuGeneric.xaml;1519;6" /><Setter Property="IsTabStop" Value="False" />
         <Setter Property="KeyboardNavigation.TabNavigation" Value="Cycle" />
         <Setter Property="KeyboardNavigation.ControlTabNavigation" Value="Cycle" />
@@ -914,7 +914,7 @@
         <Setter Property="dx:WpfSvgPalette.Palette" Value="{DynamicResource {dxwuit:HamburgerMenuSvgPaletteThemeKeyExtension ResourceKey=SvgPaletteInSubMenu}}" />
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.HamburgerMenuHyperlinkButton}" TargetType="{x:Type dxwui:HamburgerMenuHyperlinkButton}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.HamburgerMenuHyperlinkButton}" TargetType="{x:Type dxwui:HamburgerMenuHyperlinkButton}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\HamburgerMenuGeneric.xaml;1530;6" /><Setter Property="Background" Value="{x:Null}" />
         <Setter Property="MinHeight" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuElementsThemeKey ResourceKey=DefaultItemHeight}}" />
         <Setter Property="Foreground" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuBrushesThemeKey ResourceKey=HyperlinkForegroundBrush}}" />
@@ -936,7 +936,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.Internal.HamburgerMenuEmptySpaceBar}" TargetType="{x:Type dxwuii:HamburgerMenuEmptySpaceBar}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.Internal.HamburgerMenuEmptySpaceBar}" TargetType="{x:Type dxwuii:HamburgerMenuEmptySpaceBar}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\HamburgerMenuGeneric.xaml;1552;6" /><Setter Property="Background" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuBrushesThemeKey ResourceKey=ItemBackgroundBrush}}" />
         <Setter Property="Template" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuElementsThemeKey ResourceKey=EmptySpaceBarTemplate}}" />
         <Setter Property="AutomationProperties.AutomationId" Value="Expand" />
@@ -957,7 +957,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.Internal.HamburgerSubMenuPaneBackButton}" TargetType="{x:Type dxwuii:HamburgerSubMenuPaneBackButton}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.Internal.HamburgerSubMenuPaneBackButton}" TargetType="{x:Type dxwuii:HamburgerSubMenuPaneBackButton}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\HamburgerMenuGeneric.xaml;1573;6" /><Setter Property="Background" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuBrushesThemeKey ResourceKey=FlyoutBackButtonBackgroundBrush}}" />
         <Setter Property="Foreground" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuBrushesThemeKey ResourceKey=FlyoutBackButtonForegroundBrush}}" />
         <Setter Property="Content" Value="" />
@@ -980,7 +980,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.HamburgerMenuBottomBarNavigationButton}" TargetType="{x:Type dxwui:HamburgerMenuBottomBarNavigationButton}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.HamburgerMenuBottomBarNavigationButton}" TargetType="{x:Type dxwui:HamburgerMenuBottomBarNavigationButton}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\HamburgerMenuGeneric.xaml;1596;6" /><Setter Property="MinHeight" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuElementsThemeKey ResourceKey=DefaultItemHeight}}" />
         <Setter Property="Background" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuBrushesThemeKey ResourceKey=ItemBackgroundBrush}}" />
         <Setter Property="Foreground" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuBrushesThemeKey ResourceKey=ItemForegroundBrush}}" />
@@ -1103,15 +1103,15 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.HamburgerMenuBottomBarRadioButton}" BasedOn="{StaticResource HamburgerMenuBottomBarToggleButtonStyleBase}" TargetType="{x:Type dxwui:HamburgerMenuBottomBarRadioButton}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.HamburgerMenuBottomBarRadioButton}" BasedOn="{StaticResource HamburgerMenuBottomBarToggleButtonStyleBase}" TargetType="{x:Type dxwui:HamburgerMenuBottomBarRadioButton}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\HamburgerMenuGeneric.xaml;1719;6" /><Setter Property="Template" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuElementsThemeKey ResourceKey=BottomBarRadioButtonTemplate}}" />
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.HamburgerMenuBottomBarCheckBox}" BasedOn="{StaticResource HamburgerMenuBottomBarToggleButtonStyleBase}" TargetType="{x:Type dxwui:HamburgerMenuBottomBarCheckBox}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.HamburgerMenuBottomBarCheckBox}" BasedOn="{StaticResource HamburgerMenuBottomBarToggleButtonStyleBase}" TargetType="{x:Type dxwui:HamburgerMenuBottomBarCheckBox}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\HamburgerMenuGeneric.xaml;1725;6" /><Setter Property="Template" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuElementsThemeKey ResourceKey=BottomBarCheckBoxTemplate}}" />
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.HamburgerSubMenu}" TargetType="{x:Type dxwui:HamburgerSubMenu}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.HamburgerSubMenu}" TargetType="{x:Type dxwui:HamburgerSubMenu}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\HamburgerMenuGeneric.xaml;1731;6" /><Setter Property="Background" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuBrushesThemeKey ResourceKey=ItemBackgroundBrush}}" />
         <Setter Property="Foreground" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuBrushesThemeKey ResourceKey=ItemForegroundBrush}}" />
         <Setter Property="IsTabStop" Value="False" />
@@ -1142,7 +1142,7 @@
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\HamburgerMenuGeneric.xaml;1764;6" /><Setter Property="ItemTemplate" Value="{StaticResource SubMenuThemeSelectorButton}" />
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.Internal.HamburgerMenuBottomBarSeparator}" TargetType="{x:Type dxwuii:HamburgerMenuBottomBarSeparator}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.Internal.HamburgerMenuBottomBarSeparator}" TargetType="{x:Type dxwuii:HamburgerMenuBottomBarSeparator}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\HamburgerMenuGeneric.xaml;1768;6" /><Setter Property="IsTabStop" Value="False" />
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Template" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuElementsThemeKey ResourceKey=BottomBarSeparatorTemplate}}" />
@@ -1154,7 +1154,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.HamburgerMenuItemSeparator}" TargetType="{x:Type dxwui:HamburgerMenuItemSeparator}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.HamburgerMenuItemSeparator}" TargetType="{x:Type dxwui:HamburgerMenuItemSeparator}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\HamburgerMenuGeneric.xaml;1780;6" /><Setter Property="IsTabStop" Value="False" />
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Padding" Value="{DynamicResource ResourceKey={dxwuit:HamburgerMenuElementsThemeKey ResourceKey=ItemSeparatorPadding}}" />
@@ -1167,7 +1167,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.Internal.SplitView}" TargetType="{x:Type dxwuii:SplitView}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.Internal.SplitView}" TargetType="{x:Type dxwuii:SplitView}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\HamburgerMenuGeneric.xaml;1793;6" /><Setter Property="IsTabStop" Value="False" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
@@ -1177,7 +1177,7 @@
         <Setter Property="PaneSvgPalette" Value="{DynamicResource {dxwuit:HamburgerMenuSvgPaletteThemeKeyExtension ResourceKey=SvgPaletteInMenu}}" />
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.HamburgerMenu}" TargetType="{x:Type dxwui:HamburgerMenu}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.WindowsUI.HamburgerMenu}" TargetType="{x:Type dxwui:HamburgerMenu}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\HamburgerMenuGeneric.xaml;1803;6" /><Setter Property="IsTabStop" Value="False" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />

@@ -3,14 +3,13 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+                    xmlns:dxo="http://schemas.devexpress.com/winfx/2008/xaml/office"
                     xmlns:dxot="http://schemas.devexpress.com/winfx/2008/xaml/office/themekeys"
-                    xmlns:dxoui="http://schemas.devexpress.com/winfx/2008/xaml/office"
                     xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
                     xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
                     xmlns:dxret="http://schemas.devexpress.com/winfx/2008/xaml/richedit/themekeys"
-                    xmlns:dxreui="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
@@ -341,7 +340,7 @@
             <Setter.Value>
                 <dxmvvm:ValueFactory>
                     <DataTemplate>
-                        <dxoui:FontComboBoxEditSettings/>
+                        <dxo:FontComboBoxEditSettings/>
                     </DataTemplate>
                 </dxmvvm:ValueFactory>
             </Setter.Value>
@@ -370,7 +369,7 @@
             <Setter.Value>
                 <dxmvvm:ValueFactory>
                     <DataTemplate>
-                        <dxoui:FontSizeComboBoxEditSettings OfficeFontSizeProvider="{Binding RelativeSource={RelativeSource Self}, Mode=OneWay, Path=(dxre:RichEditControl.RichEdit)}"/>
+                        <dxo:FontSizeComboBoxEditSettings OfficeFontSizeProvider="{Binding RelativeSource={RelativeSource Self}, Mode=OneWay, Path=(dxre:RichEditControl.RichEdit)}"/>
                     </DataTemplate>
                 </dxmvvm:ValueFactory>
             </Setter.Value>
@@ -387,6 +386,11 @@
                 </dxmvvm:ValueFactory>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="dx:ThemeManager.IsWin11Theme" Value="True">
+                <Setter Property="EditWidth" Value="60"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_Home_Font_FontSizeLayoutGroup}" TargetType="{x:Type dxr:BarButtonGroup}"/>
@@ -714,7 +718,7 @@
 
     <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_Home_Font_FontColorLayoutGroup}" TargetType="{x:Type dxr:BarButtonGroup}"/>
 
-    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_Home_Font_FontHighlightColor}" TargetType="{x:Type dxoui:BarSplitButtonColorEditItem}">
+    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_Home_Font_FontHighlightColor}" TargetType="{x:Type dxo:BarSplitButtonColorEditItem}">
         <Setter Property="Content" Value="{dxre:RichEditLocalizedString MenuCmd_HighlightText}"/>
         <Setter Property="Description" Value="{dxre:RichEditLocalizedString MenuCmd_HighlightTextDescription}"/>
         <Setter Property="Glyph" Value="{dx:ImageSelector Source={dxre:RichEditImage Image=Highlight_16x16.png}, SvgSource={dxre:RichEditSvgImage Name=Highlight}}"/>
@@ -735,7 +739,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_Home_Font_FontForeColor}" TargetType="{x:Type dxoui:BarSplitButtonColorEditItem}">
+    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_Home_Font_FontForeColor}" TargetType="{x:Type dxo:BarSplitButtonColorEditItem}">
         <Setter Property="Content" Value="{dxre:RichEditLocalizedString MenuCmd_ChangeFontColor}"/>
         <Setter Property="Description" Value="{dxre:RichEditLocalizedString MenuCmd_ChangeFontColorDescription}"/>
         <Setter Property="Glyph" Value="{dx:ImageSelector Source={dxre:RichEditImage Image=FontColor_16x16.png}, SvgSource={dxre:RichEditSvgImage Name=FontColor}}"/>
@@ -1465,7 +1469,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_Home_Paragraph_ParagraphBackColor}" TargetType="{x:Type dxoui:BarSplitButtonColorEditItem}">
+    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_Home_Paragraph_ParagraphBackColor}" TargetType="{x:Type dxo:BarSplitButtonColorEditItem}">
         <Setter Property="Content" Value="{dxre:RichEditLocalizedString MenuCmd_ChangeParagraphBackColor}"/>
         <Setter Property="Description" Value="{dxre:RichEditLocalizedString MenuCmd_ChangeParagraphBackColorDescription}"/>
         <Setter Property="Glyph" Value="{dx:ImageSelector Source={dxre:RichEditImage Image=Shading_16x16.png}, SvgSource={dxre:RichEditSvgImage Name=Shading}}"/>
@@ -1486,7 +1490,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_Home_Styles_GalleryStyle}" TargetType="{x:Type dxreui:GalleryStyleItem}">
+    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_Home_Styles_GalleryStyle}" TargetType="{x:Type dxre:GalleryStyleItem}">
         <Setter Property="Description" Value="{dxre:RichEditLocalizedString MenuCmd_ChangeStyleDescription}"/>
         <Setter Property="Glyph" Value="{dx:ImageSelector Source={dxre:RichEditImage Image=ChangeFontStyle_16x16.png}, SvgSource={dxre:RichEditSvgImage Name=ChangeFontStyle}}"/>
         <Setter Property="LargeGlyph" Value="{dx:ImageSelector Source={dxre:RichEditImage Image=ChangeFontStyle_32x32.png}, SvgSource={dxre:RichEditSvgImage Name=ChangeFontStyle}}"/>
@@ -1497,13 +1501,13 @@
             <Setter.Value>
                 <dxmvvm:ValueFactory>
                     <DataTemplate>
-                        <dxreui:RichEditStyleGallery ColCount="10"
-                                                     IsItemDescriptionVisible="False"
-                                                     IsItemGlyphVisible="False"
-                                                     ItemCaptionTemplate="{DynamicResource {dxret:BarItemTemplate ResourceKey=StyleGalleryItemCaption}}"
-                                                     ItemCheckMode="Single"
-                                                     MinColCount="3"
-                                                     SizeMode="None"/>
+                        <dxre:RichEditStyleGallery ColCount="10"
+                                                   IsItemDescriptionVisible="False"
+                                                   IsItemGlyphVisible="False"
+                                                   ItemCaptionTemplate="{DynamicResource {dxret:BarItemTemplate ResourceKey=StyleGalleryItemCaption}}"
+                                                   ItemCheckMode="Single"
+                                                   MinColCount="3"
+                                                   SizeMode="None"/>
                     </DataTemplate>
                 </dxmvvm:ValueFactory>
             </Setter.Value>
@@ -2112,7 +2116,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_PageLayout_PageSetup_SizeList}" TargetType="{x:Type dxreui:PaperKindBarListItem}">
+    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_PageLayout_PageSetup_SizeList}" TargetType="{x:Type dxre:PaperKindBarListItem}">
         <Setter Property="ContentTemplate" Value="{DynamicResource {dxot:OfficeBarItemThemeKey ResourceKey=PaperKindBarItemContentTemplate}}"/>
         <Setter Property="RichEditControl" Value="{Binding RelativeSource={RelativeSource Self}, Mode=OneWay, Path=(dxre:RichEditControl.RichEdit)}"/>
         <Setter Property="Unit" Value="{Binding RelativeSource={RelativeSource Self}, Mode=OneWay, Path=(dxre:RichEditControl.RichEdit).Unit}"/>
@@ -2601,7 +2605,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_PageLayout_PageLayoutPageColor}" TargetType="{x:Type dxoui:BarButtonColorEditItem}">
+    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_PageLayout_PageLayoutPageColor}" TargetType="{x:Type dxo:BarButtonColorEditItem}">
         <Setter Property="Content" Value="{dxre:RichEditLocalizedString MenuCmd_ChangePageColor}"/>
         <Setter Property="Description" Value="{dxre:RichEditLocalizedString MenuCmd_ChangePageColorDescription}"/>
         <Setter Property="Glyph" Value="{dx:ImageSelector Source={dxre:RichEditImage Image=PageColor_16x16.png}, SvgSource={dxre:RichEditSvgImage Name=PageColor}}"/>
@@ -2615,6 +2619,48 @@
                         <dx:SuperTip>
                             <dx:SuperTipHeaderItem Content="{Binding RelativeSource={RelativeSource Self}, Path=(dxre:RichEditControl.RichEdit), Converter={dxre:SuperTipHeader 319, MenuCmd_ChangePageColor}}"/>
                             <dx:SuperTipItem Content="{dxre:RichEditLocalizedString MenuCmd_ChangePageColorDescription}"/>
+                        </dx:SuperTip>
+                    </DataTemplate>
+                </dxmvvm:ValueFactory>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_PageLayout_ShowWatermarkForm}" TargetType="{x:Type dxb:BarButtonItem}">
+        <Setter Property="Content" Value="{dxre:RichEditLocalizedString MenuCmd_ShowWatermarkForm}"/>
+        <Setter Property="Description" Value="{dxre:RichEditLocalizedString MenuCmd_ShowWatermarkFormDescription}"/>
+        <Setter Property="Glyph" Value="{dx:ImageSelector Source={dxre:RichEditImage Image=EditWatermark_16x16.png}, SvgSource={dxre:RichEditSvgImage Name=EditWatermark}}"/>
+        <Setter Property="LargeGlyph" Value="{dx:ImageSelector Source={dxre:RichEditImage Image=EditWatermark_32x32.png}, SvgSource={dxre:RichEditSvgImage Name=EditWatermark}}"/>
+        <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxre:RichEditControl.RichEdit).CommandProvider.ShowWatermarkForm}"/>
+        <Setter Property="IsVisible" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxre:RichEditControl.RichEdit).CommandProvider.ShowWatermarkForm.IsVisible}"/>
+        <Setter Property="SuperTip">
+            <Setter.Value>
+                <dxmvvm:ValueFactory>
+                    <DataTemplate>
+                        <dx:SuperTip>
+                            <dx:SuperTipHeaderItem Content="{Binding RelativeSource={RelativeSource Self}, Path=(dxre:RichEditControl.RichEdit), Converter={dxre:SuperTipHeader 492, MenuCmd_ShowWatermarkForm}}"/>
+                            <dx:SuperTipItem Content="{dxre:RichEditLocalizedString MenuCmd_ShowWatermarkFormDescription}"/>
+                        </dx:SuperTip>
+                    </DataTemplate>
+                </dxmvvm:ValueFactory>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_PageLayout_DeleteWatermark}" TargetType="{x:Type dxb:BarButtonItem}">
+        <Setter Property="Content" Value="{dxre:RichEditLocalizedString MenuCmd_DeleteWatermark}"/>
+        <Setter Property="Description" Value="{dxre:RichEditLocalizedString MenuCmd_DeleteWatermarkDescription}"/>
+        <Setter Property="Glyph" Value="{dx:ImageSelector Source={dxre:RichEditImage Image=DeleteWatermark_16x16.png}, SvgSource={dxre:RichEditSvgImage Name=DeleteWatermark}}"/>
+        <Setter Property="LargeGlyph" Value="{dx:ImageSelector Source={dxre:RichEditImage Image=DeleteWatermark_32x32.png}, SvgSource={dxre:RichEditSvgImage Name=DeleteWatermark}}"/>
+        <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxre:RichEditControl.RichEdit).CommandProvider.DeleteWatermark}"/>
+        <Setter Property="IsVisible" Value="{Binding RelativeSource={RelativeSource Self}, Path=(dxre:RichEditControl.RichEdit).CommandProvider.DeleteWatermark.IsVisible}"/>
+        <Setter Property="SuperTip">
+            <Setter.Value>
+                <dxmvvm:ValueFactory>
+                    <DataTemplate>
+                        <dx:SuperTip>
+                            <dx:SuperTipHeaderItem Content="{Binding RelativeSource={RelativeSource Self}, Path=(dxre:RichEditControl.RichEdit), Converter={dxre:SuperTipHeader 493, MenuCmd_DeleteWatermark}}"/>
+                            <dx:SuperTipItem Content="{dxre:RichEditLocalizedString MenuCmd_DeleteWatermarkDescription}"/>
                         </dx:SuperTip>
                     </DataTemplate>
                 </dxmvvm:ValueFactory>
@@ -3226,7 +3272,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_MailMerge_InsertMergeFieldCommandGroup}" TargetType="{x:Type dxreui:InsertMergeFieldsBarSubItem}">
+    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_MailMerge_InsertMergeFieldCommandGroup}" TargetType="{x:Type dxre:InsertMergeFieldsBarSubItem}">
         <Setter Property="Content" Value="{dxre:RichEditLocalizedString MenuCmd_InsertMergeField}"/>
         <Setter Property="Description" Value="{dxre:RichEditLocalizedString MenuCmd_InsertMergeFieldDescription}"/>
         <Setter Property="Glyph" Value="{dx:ImageSelector Source={dxre:RichEditImage Image=InsertDataField_16x16.png}, SvgSource={dxre:RichEditSvgImage Name=InsertDataField}}"/>
@@ -3839,7 +3885,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_Review_Comment_Reviewers}" TargetType="{x:Type dxreui:ReviewersBarSubItem}">
+    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_Review_Comment_Reviewers}" TargetType="{x:Type dxre:ReviewersBarSubItem}">
         <Setter Property="Content" Value="{dxre:RichEditLocalizedString MenuCmd_Reviewers}"/>
         <Setter Property="Description" Value="{dxre:RichEditLocalizedString MenuCmd_ReviewersDescription}"/>
         <Setter Property="Glyph" Value="{dx:ImageSelector Source={dxre:RichEditImage Image=Reviewers_16x16.png}, SvgSource={dxre:RichEditSvgImage Name=Reviewers}}"/>
@@ -3861,7 +3907,7 @@
         <Setter Property="RichEditControl" Value="{Binding RelativeSource={RelativeSource Self}, Mode=OneWay, Path=(dxre:RichEditControl.RichEdit)}"/>
     </Style>
 
-    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_Review_Tracking_ToggleTrackChanges}" TargetType="{x:Type dxreui:TrackChangesBarSplitCheckItem}">
+    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_Review_Tracking_ToggleTrackChanges}" TargetType="{x:Type dxre:TrackChangesBarSplitCheckItem}">
         <Setter Property="Content" Value="{dxre:RichEditLocalizedString MenuCmd_TrackChanges}"/>
         <Setter Property="Description" Value="{dxre:RichEditLocalizedString MenuCmd_TrackChangesDescription}"/>
         <Setter Property="Glyph" Value="{dx:ImageSelector Source={dxre:RichEditImage Image=TrackingChanges_TrackChanges_16x16.png}, SvgSource={dxre:RichEditSvgImage Name=TrackingChanges_TrackChanges}}"/>
@@ -3941,7 +3987,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_Review_Tracking_DisplayForReviewMode}" TargetType="{x:Type dxreui:ChangeDisplayForReviewModeItem}">
+    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_Review_Tracking_DisplayForReviewMode}" TargetType="{x:Type dxre:ChangeDisplayForReviewModeItem}">
         <Setter Property="Description" Value="{dxre:RichEditLocalizedString MenuCmd_ChangeDisplayForReviewModeDescription}"/>
         <Setter Property="Glyph" Value="{dx:ImageSelector Source={dxre:RichEditImage Image=TrackingChanges_AllMarkup_16x16.png}, SvgSource={dxre:RichEditSvgImage Name=TrackingChanges_AllMarkup}}"/>
         <Setter Property="LargeGlyph" Value="{dx:ImageSelector Source={dxre:RichEditImage Image=TrackingChanges_AllMarkup_32x32.png}, SvgSource={dxre:RichEditSvgImage Name=TrackingChanges_AllMarkup}}"/>
@@ -3953,7 +3999,7 @@
             <Setter.Value>
                 <dxmvvm:ValueFactory>
                     <DataTemplate>
-                        <dxreui:ChangeDisplayForReviewModeSettings RichEditControl="{Binding RelativeSource={RelativeSource Self}, Mode=OneWay, Path=(dxre:RichEditControl.RichEdit)}"/>
+                        <dxre:ChangeDisplayForReviewModeSettings RichEditControl="{Binding RelativeSource={RelativeSource Self}, Mode=OneWay, Path=(dxre:RichEditControl.RichEdit)}"/>
                     </DataTemplate>
                 </dxmvvm:ValueFactory>
             </Setter.Value>
@@ -3972,7 +4018,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_Review_Tracking_ShowMarkup}" TargetType="{x:Type dxreui:ShowMarkupItem}">
+    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_Review_Tracking_ShowMarkup}" TargetType="{x:Type dxre:ShowMarkupItem}">
         <Setter Property="Content" Value="{dxre:RichEditLocalizedString MenuCmd_ShowMarkup}"/>
         <Setter Property="Description" Value="{dxre:RichEditLocalizedString MenuCmd_ShowMarkupDescription}"/>
         <Setter Property="Glyph" Value="{dx:ImageSelector Source={dxre:RichEditImage Image=TrackingChanges_ShowMarkup_16x16.png}, SvgSource={dxre:RichEditSvgImage Name=TrackingChanges_ShowMarkup}}"/>
@@ -3998,7 +4044,7 @@
                         <dxb:PopupMenu dxb:BarNameScope.IsScopeOwner="True">
                             <dxb:PopupMenu.Items>
                                 <dxb:BarCheckItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_Review_Comment_ViewComments}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_Review_Comment_ViewComments}}"/>
-                                <dxreui:ReviewersBarSubItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_Review_Comment_Reviewers}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_Review_Comment_Reviewers}}"/>
+                                <dxre:ReviewersBarSubItem dx:XamlHelper.Name="{x:Static dxre:DefaultBarItemNames.RibbonItem_Review_Comment_Reviewers}" Style="{DynamicResource {dxret:BarItemStyleKey ResourceKey=RibbonItem_Review_Comment_Reviewers}}"/>
                             </dxb:PopupMenu.Items>
                         </dxb:PopupMenu>
                     </DataTemplate>
@@ -4029,7 +4075,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_Review_Changes_AcceptChange}" TargetType="{x:Type dxreui:RevisionSplitButtonItem}">
+    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_Review_Changes_AcceptChange}" TargetType="{x:Type dxre:RevisionSplitButtonItem}">
         <Setter Property="Content" Value="{dxre:RichEditLocalizedString MenuCmd_Accept}"/>
         <Setter Property="Description" Value="{dxre:RichEditLocalizedString MenuCmd_AcceptAndMoveToNextRevisionDescription}"/>
         <Setter Property="Glyph" Value="{dx:ImageSelector Source={dxre:RichEditImage Image=TrackingChanges_Accept_16x16.png}, SvgSource={dxre:RichEditSvgImage Name=TrackingChanges_Accept}}"/>
@@ -4166,7 +4212,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_Review_Changes_RejectChange}" TargetType="{x:Type dxreui:RevisionSplitButtonItem}">
+    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_Review_Changes_RejectChange}" TargetType="{x:Type dxre:RevisionSplitButtonItem}">
         <Setter Property="Content" Value="{dxre:RichEditLocalizedString MenuCmd_Reject}"/>
         <Setter Property="Description" Value="{dxre:RichEditLocalizedString MenuCmd_RejectAndMoveToNextRevisionDescription}"/>
         <Setter Property="Glyph" Value="{dx:ImageSelector Source={dxre:RichEditImage Image=TrackingChanges_Reject_16x16.png}, SvgSource={dxre:RichEditSvgImage Name=TrackingChanges_Reject}}"/>
@@ -4642,7 +4688,7 @@
         <Setter Property="DataContext" Value="{Binding RelativeSource={RelativeSource Self}, Mode=OneWay, Path=(dxre:RichEditControl.RichEdit).CommandProvider.ToggleBandedColumns.IsChecked}"/>
     </Style>
 
-    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_TableToolsDesign_TableStyles_GalleryTableStyle}" TargetType="{x:Type dxreui:GalleryStyleItem}">
+    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_TableToolsDesign_TableStyles_GalleryTableStyle}" TargetType="{x:Type dxre:GalleryStyleItem}">
         <Setter Property="Description" Value="{dxre:RichEditLocalizedString MenuCmd_ChangeStyleDescription}"/>
         <Setter Property="Glyph" Value="{dx:ImageSelector Source={dxre:RichEditImage Image=ChangeFontStyle_16x16.png}, SvgSource={dxre:RichEditSvgImage Name=ChangeFontStyle}}"/>
         <Setter Property="LargeGlyph" Value="{dx:ImageSelector Source={dxre:RichEditImage Image=ChangeFontStyle_32x32.png}, SvgSource={dxre:RichEditSvgImage Name=ChangeFontStyle}}"/>
@@ -4653,13 +4699,13 @@
             <Setter.Value>
                 <dxmvvm:ValueFactory>
                     <DataTemplate>
-                        <dxreui:RichEditTableStyleGallery ColCount="10"
-                                                          IsItemDescriptionVisible="False"
-                                                          IsItemGlyphVisible="False"
-                                                          ItemCaptionTemplate="{DynamicResource {dxret:BarItemTemplate ResourceKey=TableStyleGalleryItemCaption}}"
-                                                          ItemCheckMode="Single"
-                                                          MinColCount="3"
-                                                          SizeMode="None"/>
+                        <dxre:RichEditTableStyleGallery ColCount="10"
+                                                        IsItemDescriptionVisible="False"
+                                                        IsItemGlyphVisible="False"
+                                                        ItemCaptionTemplate="{DynamicResource {dxret:BarItemTemplate ResourceKey=TableStyleGalleryItemCaption}}"
+                                                        ItemCheckMode="Single"
+                                                        MinColCount="3"
+                                                        SizeMode="None"/>
                     </DataTemplate>
                 </dxmvvm:ValueFactory>
             </Setter.Value>
@@ -4754,7 +4800,7 @@
             <Setter.Value>
                 <dxmvvm:ValueFactory>
                     <DataTemplate>
-                        <dxreui:RichEditTableStyleBorderLineComboBoxEditSettings RichEditControl="{Binding RelativeSource={RelativeSource Self}, Mode=OneWay, Path=(dxre:RichEditControl.RichEdit)}"/>
+                        <dxre:RichEditTableStyleBorderLineComboBoxEditSettings RichEditControl="{Binding RelativeSource={RelativeSource Self}, Mode=OneWay, Path=(dxre:RichEditControl.RichEdit)}"/>
                     </DataTemplate>
                 </dxmvvm:ValueFactory>
             </Setter.Value>
@@ -4785,7 +4831,7 @@
             <Setter.Value>
                 <dxmvvm:ValueFactory>
                     <DataTemplate>
-                        <dxreui:RichEditBorderLineWidthEditSettings RichEditControl="{Binding RelativeSource={RelativeSource Self}, Mode=OneWay, Path=(dxre:RichEditControl.RichEdit)}"/>
+                        <dxre:RichEditBorderLineWidthEditSettings RichEditControl="{Binding RelativeSource={RelativeSource Self}, Mode=OneWay, Path=(dxre:RichEditControl.RichEdit)}"/>
                     </DataTemplate>
                 </dxmvvm:ValueFactory>
             </Setter.Value>
@@ -4804,7 +4850,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_TableToolsDesign_DrawBorders_PenColor}" TargetType="{x:Type dxoui:BarSplitButtonColorEditItem}">
+    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_TableToolsDesign_DrawBorders_PenColor}" TargetType="{x:Type dxo:BarSplitButtonColorEditItem}">
         <Setter Property="Content" Value="{dxre:RichEditLocalizedString MenuCmd_ChangeCurrentBorderRepositoryItemColor}"/>
         <Setter Property="Description" Value="{dxre:RichEditLocalizedString MenuCmd_ChangeCurrentBorderRepositoryItemColorDescription}"/>
         <Setter Property="Glyph" Value="{dx:ImageSelector Source={dxre:RichEditImage Image=PenColor_16x16.png}, SvgSource={dxre:RichEditSvgImage Name=PenColor}}"/>
@@ -5065,7 +5111,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_TableToolsDesign_TableStyles_Shading}" TargetType="{x:Type dxoui:BarSplitButtonColorEditItem}">
+    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_TableToolsDesign_TableStyles_Shading}" TargetType="{x:Type dxo:BarSplitButtonColorEditItem}">
         <Setter Property="Content" Value="{dxre:RichEditLocalizedString MenuCmd_ChangeTableCellShading}"/>
         <Setter Property="Description" Value="{dxre:RichEditLocalizedString MenuCmd_ChangeTableCellShadingDescription}"/>
         <Setter Property="Glyph" Value="{dx:ImageSelector Source={dxre:RichEditImage Image=Shading_16x16.png}, SvgSource={dxre:RichEditSvgImage Name=Shading}}"/>
@@ -5831,7 +5877,7 @@
 
     <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_PictureToolsFormat_ShapeStylesShapeColorLayoutGroup}" TargetType="{x:Type dxr:BarButtonGroup}"/>
 
-    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_PictureToolsFormat_ShapeStyles_ShapeFill}" TargetType="{x:Type dxoui:BarSplitButtonColorEditItem}">
+    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_PictureToolsFormat_ShapeStyles_ShapeFill}" TargetType="{x:Type dxo:BarSplitButtonColorEditItem}">
         <Setter Property="Content" Value="{dxre:RichEditLocalizedString MenuCmd_ChangeFloatingObjectFillColor}"/>
         <Setter Property="Description" Value="{dxre:RichEditLocalizedString MenuCmd_ChangeFloatingObjectFillColorDescription}"/>
         <Setter Property="Glyph" Value="{dx:ImageSelector Source={dxre:RichEditImage Image=FloatingObjectFillColor_16x16.png}, SvgSource={dxre:RichEditSvgImage Name=FloatingObjectFillColor}}"/>
@@ -5852,7 +5898,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_PictureToolsFormat_ShapeStyles_ShapeOutline}" TargetType="{x:Type dxoui:BarSplitButtonColorEditItem}">
+    <Style x:Key="{dxret:BarItemStyleKey ResourceKey=RibbonItem_PictureToolsFormat_ShapeStyles_ShapeOutline}" TargetType="{x:Type dxo:BarSplitButtonColorEditItem}">
         <Setter Property="Content" Value="{dxre:RichEditLocalizedString MenuCmd_ChangeFloatingObjectOutlineColor}"/>
         <Setter Property="Description" Value="{dxre:RichEditLocalizedString MenuCmd_ChangeFloatingObjectOutlineColorDescription}"/>
         <Setter Property="Glyph" Value="{dx:ImageSelector Source={dxre:RichEditImage Image=FloatingObjectOutlineColor_16x16.png}, SvgSource={dxre:RichEditSvgImage Name=FloatingObjectOutlineColor}}"/>
@@ -5885,7 +5931,7 @@
             <Setter.Value>
                 <dxmvvm:ValueFactory>
                     <DataTemplate>
-                        <dxreui:RichEditBorderLineWidthEditSettings RichEditControl="{Binding RelativeSource={RelativeSource Self}, Mode=OneWay, Path=(dxre:RichEditControl.RichEdit)}"/>
+                        <dxre:RichEditBorderLineWidthEditSettings RichEditControl="{Binding RelativeSource={RelativeSource Self}, Mode=OneWay, Path=(dxre:RichEditControl.RichEdit)}"/>
                     </DataTemplate>
                 </dxmvvm:ValueFactory>
             </Setter.Value>

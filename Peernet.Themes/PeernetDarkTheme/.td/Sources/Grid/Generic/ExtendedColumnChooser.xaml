@@ -3,16 +3,14 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxcn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-                    xmlns:dxeh="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal"
+                    xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal"
                     xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
                     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
-                    xmlns:dxgcore="clr-namespace:DevExpress.Xpf.Grid;assembly=DevExpress.Xpf.Grid.v21.2.Core"
-                    xmlns:dxght="http://schemas.devexpress.com/winfx/2008/xaml/grid/internal"
+                    xmlns:dxgcore="clr-namespace:DevExpress.Xpf.Grid;assembly=DevExpress.Xpf.Grid.v22.1.Core"
+                    xmlns:dxgi="http://schemas.devexpress.com/winfx/2008/xaml/grid/internal"
                     xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys"
-                    xmlns:dxgtl="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+                    xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
                     xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -31,7 +29,7 @@
 
     <dx:EditorStringIdConverter x:Key="EditorStringIdConverter"/>
 
-    <dxgtl:ExtendedColumnChooserHeaderPresenterTypeConverter x:Key="ExtendedColumnChooserHeaderPresenterTypeConverter"/>
+    <dxg:ExtendedColumnChooserHeaderPresenterTypeConverter x:Key="ExtendedColumnChooserHeaderPresenterTypeConverter"/>
 
     <DataTemplate x:Key="{dxgt:ExtendedColumnChooserThemeKey ResourceKey=CheckBoxColumnCellTemplate}">
         <dxe:CheckEdit EditMode="Standalone"
@@ -45,59 +43,59 @@
 
     <DataTemplate x:Key="{dxgt:ExtendedColumnChooserThemeKey ResourceKey=DropMarkerTemplate}">
         <ContentPresenter ContentTemplate="{DynamicResource {dxgt:GridColumnHeaderThemeKey ResourceKey=DragIndicatorTemplate}}"
-                          dxgtl:GridColumnHeader.CanGroupMergeState="False"
-                          dxgtl:GridColumnHeader.DropPlaceOrientation="Vertical"
-                          dxgtl:GridColumnHeader.IsColumnChooser="True"
-                          dxgtl:GridColumnHeader.IsGroupPanel="False"/>
+                          dxg:GridColumnHeader.CanGroupMergeState="False"
+                          dxg:GridColumnHeader.DropPlaceOrientation="Vertical"
+                          dxg:GridColumnHeader.IsColumnChooser="True"
+                          dxg:GridColumnHeader.IsGroupPanel="False"/>
     </DataTemplate>
 
     <DataTemplate x:Key="ColumnHeaderTemplate">
-        <dxgtl:ExtendedColumnChooserGridColumnHeader ColumnPosition="Standalone"
-                                                     DataContext="{Binding Value}"
-                                                     DropMarkerTemplate="{DynamicResource {dxgt:ExtendedColumnChooserThemeKey ResourceKey=DropMarkerTemplate}}"
-                                                     dxb:BarManager.DXContextMenu="{Binding Path=View.DataControlMenu}"
-                                                     dxgtl:GridColumn.HeaderPresenterType="ColumnChooser"
-                                                     dxgtl:GridColumnHeader.ExtendedColumnChooserView="{Binding RowData.View, RelativeSource={RelativeSource TemplatedParent}}"
-                                                     dxgtl:GridColumnHeader.GridColumn="{Binding}"
-                                                     dxgtl:GridControl.CurrentView="{Binding View}"
-                                                     dxgtl:GridPopupMenu.GridMenuType="Column"
-                                                     Margin="1,1,2,0"
-                                                     SnapsToDevicePixels="True">
-            <dxgtl:ExtendedColumnChooserGridColumnHeader.ColumnChooserHeaderPresenterType>
+        <dxg:ExtendedColumnChooserGridColumnHeader ColumnPosition="Standalone"
+                                                   DataContext="{Binding Value}"
+                                                   DropMarkerTemplate="{DynamicResource {dxgt:ExtendedColumnChooserThemeKey ResourceKey=DropMarkerTemplate}}"
+                                                   dxb:BarManager.DXContextMenu="{Binding Path=View.DataControlMenu}"
+                                                   dxg:GridColumn.HeaderPresenterType="ColumnChooser"
+                                                   dxg:GridColumnHeader.ExtendedColumnChooserView="{Binding RowData.View, RelativeSource={RelativeSource TemplatedParent}}"
+                                                   dxg:GridColumnHeader.GridColumn="{Binding}"
+                                                   dxg:GridControl.CurrentView="{Binding View}"
+                                                   dxg:GridPopupMenu.GridMenuType="Column"
+                                                   Margin="1,1,2,0"
+                                                   SnapsToDevicePixels="True">
+            <dxg:ExtendedColumnChooserGridColumnHeader.ColumnChooserHeaderPresenterType>
                 <MultiBinding Converter="{StaticResource ExtendedColumnChooserHeaderPresenterTypeConverter}">
                     <Binding Path="Visible"/>
                     <Binding Path="RowData.Row.IsGrouped" RelativeSource="{RelativeSource TemplatedParent}"/>
                 </MultiBinding>
-            </dxgtl:ExtendedColumnChooserGridColumnHeader.ColumnChooserHeaderPresenterType>
-            <dxgtl:GridControl.CurrentViewChangedListener>
-                <dxgtl:ExtendedColumnChooserColumnHeaderInitializer/>
-            </dxgtl:GridControl.CurrentViewChangedListener>
-        </dxgtl:ExtendedColumnChooserGridColumnHeader>
+            </dxg:ExtendedColumnChooserGridColumnHeader.ColumnChooserHeaderPresenterType>
+            <dxg:GridControl.CurrentViewChangedListener>
+                <dxg:ExtendedColumnChooserColumnHeaderInitializer/>
+            </dxg:GridControl.CurrentViewChangedListener>
+        </dxg:ExtendedColumnChooserGridColumnHeader>
     </DataTemplate>
 
     <DataTemplate x:Key="BandHeaderTemplate">
-        <dxgtl:ExtendedColumnChooserBandHeaderControl ColumnChooserHeaderPresenterType="{Binding Visible, Converter={StaticResource HeaderPresenterTypeConverter}}"
-                                                      ColumnPosition="Standalone"
-                                                      DataContext="{Binding Value}"
-                                                      DropMarkerTemplate="{DynamicResource {dxgt:ExtendedColumnChooserThemeKey ResourceKey=DropMarkerTemplate}}"
-                                                      dxb:BarManager.DXContextMenu="{Binding Path=View.DataControlMenu}"
-                                                      dxgtl:GridColumn.HeaderPresenterType="ColumnChooser"
-                                                      dxgtl:GridColumnHeader.ExtendedColumnChooserView="{Binding RowData.View, RelativeSource={RelativeSource TemplatedParent}}"
-                                                      dxgtl:GridColumnHeader.GridColumn="{Binding}"
-                                                      dxgtl:GridControl.CurrentView="{Binding View}"
-                                                      dxgtl:GridPopupMenu.GridMenuType="Band"
-                                                      Margin="1,1,2,0"
-                                                      SnapsToDevicePixels="True">
-            <dxgtl:GridControl.CurrentViewChangedListener>
-                <dxgtl:ExtendedColumnChooserColumnHeaderInitializer/>
-            </dxgtl:GridControl.CurrentViewChangedListener>
-        </dxgtl:ExtendedColumnChooserBandHeaderControl>
+        <dxg:ExtendedColumnChooserBandHeaderControl ColumnChooserHeaderPresenterType="{Binding Visible, Converter={StaticResource HeaderPresenterTypeConverter}}"
+                                                    ColumnPosition="Standalone"
+                                                    DataContext="{Binding Value}"
+                                                    DropMarkerTemplate="{DynamicResource {dxgt:ExtendedColumnChooserThemeKey ResourceKey=DropMarkerTemplate}}"
+                                                    dxb:BarManager.DXContextMenu="{Binding Path=View.DataControlMenu}"
+                                                    dxg:GridColumn.HeaderPresenterType="ColumnChooser"
+                                                    dxg:GridColumnHeader.ExtendedColumnChooserView="{Binding RowData.View, RelativeSource={RelativeSource TemplatedParent}}"
+                                                    dxg:GridColumnHeader.GridColumn="{Binding}"
+                                                    dxg:GridControl.CurrentView="{Binding View}"
+                                                    dxg:GridPopupMenu.GridMenuType="Band"
+                                                    Margin="1,1,2,0"
+                                                    SnapsToDevicePixels="True">
+            <dxg:GridControl.CurrentViewChangedListener>
+                <dxg:ExtendedColumnChooserColumnHeaderInitializer/>
+            </dxg:GridControl.CurrentViewChangedListener>
+        </dxg:ExtendedColumnChooserBandHeaderControl>
     </DataTemplate>
 
     <Style x:Key="{dxgt:ExtendedColumnChooserThemeKey ResourceKey=ColumnStyle}" TargetType="{x:Type dxg:TreeListColumn}">
         <Setter Property="CellTemplateSelector">
             <Setter.Value>
-                <dxgtl:ExtendedColumnChooserColumnTemplateSelector BandHeaderTemplate="{StaticResource BandHeaderTemplate}" ColumnHeaderTemplate="{StaticResource ColumnHeaderTemplate}"/>
+                <dxg:ExtendedColumnChooserColumnTemplateSelector BandHeaderTemplate="{StaticResource BandHeaderTemplate}" ColumnHeaderTemplate="{StaticResource ColumnHeaderTemplate}"/>
             </Setter.Value>
         </Setter>
     </Style>
@@ -112,7 +110,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.ExtendedColumnChooserRowMarginControl}" TargetType="{x:Type dxg:ExtendedColumnChooserRowMarginControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.ExtendedColumnChooserRowMarginControl}" TargetType="{x:Type dxg:ExtendedColumnChooserRowMarginControl}">
         <Setter Property="Foreground" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=TextUnfocusedBrush}}"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -124,40 +122,40 @@
                         <Path x:Name="PART_TreeLinePath"
                               Stroke="{TemplateBinding BorderBrush}"
                               StrokeThickness="1"/>
-                        <dxgtl:IndentsPanel HorizontalAlignment="Right" RowIndent="{Binding View.RowIndent}">
-                            <dxgtl:TreeListNodeExpandButton x:Name="PART_ExpandButton"
-                                                            Command="{Binding View.Commands.ChangeNodeExpanded}"
-                                                            CommandParameter="{Binding RowHandle.Value}"
-                                                            HorizontalAlignment="Left"
-                                                            IsEnabled="{Binding IsButtonVisible}">
-                                <dxgtl:TreeListNodeExpandButton.IsExpandButtonVisible>
+                        <dxg:IndentsPanel HorizontalAlignment="Right" RowIndent="{Binding View.RowIndent}">
+                            <dxg:TreeListNodeExpandButton x:Name="PART_ExpandButton"
+                                                          Command="{Binding View.Commands.ChangeNodeExpanded}"
+                                                          CommandParameter="{Binding RowHandle.Value}"
+                                                          HorizontalAlignment="Left"
+                                                          IsEnabled="{Binding IsButtonVisible}">
+                                <dxg:TreeListNodeExpandButton.IsExpandButtonVisible>
                                     <MultiBinding>
                                         <Binding Path="IsButtonVisible"/>
                                         <Binding Path="Row"/>
                                         <MultiBinding.Converter>
-                                            <dxgtl:ExtendedColumnChooserExpandButtonVisibleConverter/>
+                                            <dxg:ExtendedColumnChooserExpandButtonVisibleConverter/>
                                         </MultiBinding.Converter>
                                     </MultiBinding>
-                                </dxgtl:TreeListNodeExpandButton.IsExpandButtonVisible>
-                                <dxgtl:TreeListNodeExpandButton.IsChecked>
+                                </dxg:TreeListNodeExpandButton.IsExpandButtonVisible>
+                                <dxg:TreeListNodeExpandButton.IsChecked>
                                     <MultiBinding>
                                         <Binding Path="IsButtonVisible"/>
                                         <Binding Path="IsExpanded"/>
                                         <MultiBinding.Converter>
-                                            <dxgtl:ExtendedColumnChooserExpandButtonCheckedConverter/>
+                                            <dxg:ExtendedColumnChooserExpandButtonCheckedConverter/>
                                         </MultiBinding.Converter>
                                     </MultiBinding>
-                                </dxgtl:TreeListNodeExpandButton.IsChecked>
-                            </dxgtl:TreeListNodeExpandButton>
+                                </dxg:TreeListNodeExpandButton.IsChecked>
+                            </dxg:TreeListNodeExpandButton>
                             <dxe:CheckEdit x:Name="PART_NodeCheckBox"
                                            Focusable="False"
                                            IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                            IsEnabled="{Binding IsCheckBoxEnabled}"
                                            IsThreeState="{Binding View.AllowIndeterminateCheckState}"
                                            Visibility="{Binding IsCheckBoxVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <dxgtl:GridViewHitInfoBase.HitTestAcceptor>
-                                    <dxgtl:TreeListNodeCheckboxHitTestAcceptor/>
-                                </dxgtl:GridViewHitInfoBase.HitTestAcceptor>
+                                <dxg:GridViewHitInfoBase.HitTestAcceptor>
+                                    <dxg:TreeListNodeCheckboxHitTestAcceptor/>
+                                </dxg:GridViewHitInfoBase.HitTestAcceptor>
                             </dxe:CheckEdit>
                             <dx:MeasurePixelSnapper Visibility="{Binding IsImageVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <dx:DXImage x:Name="PART_NodeImage"
@@ -165,19 +163,19 @@
                                             Height="{Binding Path=View.NodeImageSize.Height}"
                                             Source="{Binding Image, UpdateSourceTrigger=PropertyChanged}"
                                             Width="{Binding Path=View.NodeImageSize.Width}">
-                                    <dxgtl:GridViewHitInfoBase.HitTestAcceptor>
-                                        <dxgtl:TreeListNodeImageHitTestAcceptor/>
-                                    </dxgtl:GridViewHitInfoBase.HitTestAcceptor>
+                                    <dxg:GridViewHitInfoBase.HitTestAcceptor>
+                                        <dxg:TreeListNodeImageHitTestAcceptor/>
+                                    </dxg:GridViewHitInfoBase.HitTestAcceptor>
                                     <RenderOptions.BitmapScalingMode>NearestNeighbor</RenderOptions.BitmapScalingMode>
                                 </dx:DXImage>
                             </dx:MeasurePixelSnapper>
-                        </dxgtl:IndentsPanel>
+                        </dxg:IndentsPanel>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding Path=(dxg:GridControl.ActiveView).DataControl.(dxcn:AppearanceOptions.HasBackground), RelativeSource={RelativeSource Self}}" Value="True">
+                        <DataTrigger Binding="{Binding Path=(dxg:GridControl.ActiveView).DataControl.(dxi:AppearanceOptions.HasBackground), RelativeSource={RelativeSource Self}}" Value="True">
                             <Setter Property="Background"
                                     TargetName="PART_RootGrid"
-                                    Value="{Binding Path=(dxg:GridControl.ActiveView).DataControl.(dxcn:AppearanceOptions.Background), RelativeSource={RelativeSource Self}}"/>
+                                    Value="{Binding Path=(dxg:GridControl.ActiveView).DataControl.(dxi:AppearanceOptions.Background), RelativeSource={RelativeSource Self}}"/>
                         </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -249,7 +247,7 @@
         </Style.Triggers>
     </Style>
 
-    <dxgtl:DefaultStyle x:Key="{dxgt:ExtendedColumnChooserThemeKey ResourceKey=RowStyle}" TargetType="{x:Type dxg:GridRowContent}">
+    <dxg:DefaultStyle x:Key="{dxgt:ExtendedColumnChooserThemeKey ResourceKey=RowStyle}" TargetType="{x:Type dxg:GridRowContent}">
         <Setter Property="dxg:GridRowContent.Background" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=BorderNoneBrush}}"/>
         <Setter Property="dxg:GridRowContent.Foreground" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=TextUnfocusedBrush}}"/>
         <Style.Triggers>
@@ -265,7 +263,7 @@
                 <Setter Property="dxg:GridRowContent.Background" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=BorderFocusedBrush}}"/>
             </DataTrigger>
         </Style.Triggers>
-    </dxgtl:DefaultStyle>
+    </dxg:DefaultStyle>
 
     <Style x:Key="{dxgt:ExtendedColumnChooserThemeKey ResourceKey=TreeListViewStyle}" TargetType="{x:Type dxg:TreeListView}">
         <Setter Property="AllowSorting" Value="False"/>
@@ -291,7 +289,7 @@
                     <Binding Path="DataControl.View.LocalizationDescriptor"/>
                     <Binding Path="HasBands"/>
                     <MultiBinding.Converter>
-                        <dxgtl:ExtendedColumnChooserSearchNullTextConverter SearchColumnsAndBandsKey="ExtendedColumnChooserSearchColumnsAndBands" SearchColumnsKey="ExtendedColumnChooserSearchColumns"/>
+                        <dxg:ExtendedColumnChooserSearchNullTextConverter SearchColumnsAndBandsKey="ExtendedColumnChooserSearchColumnsAndBands" SearchColumnsKey="ExtendedColumnChooserSearchColumns"/>
                     </MultiBinding.Converter>
                 </MultiBinding>
             </Setter.Value>
@@ -300,31 +298,31 @@
     </Style>
 
     <ControlTemplate x:Key="{dxgt:ExtendedColumnChooserThemeKey ResourceKey=Template}">
-        <dxgtl:TreeListControl DataContext="{Binding Path=(dxg:ExtendedColumnChooserControl.ViewModel), RelativeSource={RelativeSource Self}}"
-                               ItemsSource="{Binding Path=Columns}"
-                               Style="{DynamicResource ResourceKey={dxgt:ExtendedColumnChooserThemeKey ResourceKey=TreeListControlStyle}}">
-            <dxgtl:TreeListControl.Columns>
-                <dxgtl:TreeListColumn AllowSearchPanel="False"
-                                      FieldName="IsVisible"
-                                      Style="{DynamicResource ResourceKey={dxgt:ExtendedColumnChooserThemeKey ResourceKey=CheckBoxColumnStyle}}"/>
-                <dxgtl:TreeListColumn AllowSearchPanel="False"
-                                      FieldName="Source"
-                                      Style="{DynamicResource ResourceKey={dxgt:ExtendedColumnChooserThemeKey ResourceKey=ColumnStyle}}"
-                                      Width="*"/>
-                <dxgtl:TreeListColumn AllowSearchPanel="False"
-                                      FieldName="VisibleIndex"
-                                      SortOrder="Ascending"
-                                      Visible="False"/>
-                <dxgtl:TreeListColumn AllowSearchPanel="True"
-                                      FieldName="Header"
-                                      Visible="False"/>
-            </dxgtl:TreeListControl.Columns>
-            <dxgtl:TreeListControl.View>
-                <dxgtl:ExtendedColumnChooserTreeListView KeyFieldName="Source"
-                                                         OriginalDataControl="{Binding DataControl}"
-                                                         ParentFieldName="ParentBand"
-                                                         Style="{DynamicResource ResourceKey={dxgt:ExtendedColumnChooserThemeKey ResourceKey=TreeListViewStyle}}"
-                                                         TreeColumnFieldName="Source">
+        <dxg:TreeListControl DataContext="{Binding Path=(dxg:ExtendedColumnChooserControl.ViewModel), RelativeSource={RelativeSource Self}}"
+                             ItemsSource="{Binding Path=Columns}"
+                             Style="{DynamicResource ResourceKey={dxgt:ExtendedColumnChooserThemeKey ResourceKey=TreeListControlStyle}}">
+            <dxg:TreeListControl.Columns>
+                <dxg:TreeListColumn AllowSearchPanel="False"
+                                    FieldName="IsVisible"
+                                    Style="{DynamicResource ResourceKey={dxgt:ExtendedColumnChooserThemeKey ResourceKey=CheckBoxColumnStyle}}"/>
+                <dxg:TreeListColumn AllowSearchPanel="False"
+                                    FieldName="Source"
+                                    Style="{DynamicResource ResourceKey={dxgt:ExtendedColumnChooserThemeKey ResourceKey=ColumnStyle}}"
+                                    Width="*"/>
+                <dxg:TreeListColumn AllowSearchPanel="False"
+                                    FieldName="VisibleIndex"
+                                    SortOrder="Ascending"
+                                    Visible="False"/>
+                <dxg:TreeListColumn AllowSearchPanel="True"
+                                    FieldName="Header"
+                                    Visible="False"/>
+            </dxg:TreeListControl.Columns>
+            <dxg:TreeListControl.View>
+                <dxg:ExtendedColumnChooserTreeListView KeyFieldName="Source"
+                                                       OriginalDataControl="{Binding DataControl}"
+                                                       ParentFieldName="ParentBand"
+                                                       Style="{DynamicResource ResourceKey={dxgt:ExtendedColumnChooserThemeKey ResourceKey=TreeListViewStyle}}"
+                                                       TreeColumnFieldName="Source">
                     <dxmvvm:Interaction.Behaviors>
                         <dxmvvm:EventToCommand Command="{DXCommand Execute='@s.AssociatedObject.UpdateRowsFixedState()'}"
                                                EventName="ColumnsFixedStateChanged"
@@ -335,21 +333,21 @@
                                                SourceObject="{Binding DragDropManager}"/>
                     </dxmvvm:Interaction.Behaviors>
                     <dx:DragManager.DropTargetFactory>
-                        <dxgtl:ExtendedColumnChooserDropTargetFactory/>
+                        <dxg:ExtendedColumnChooserDropTargetFactory/>
                     </dx:DragManager.DropTargetFactory>
-                </dxgtl:ExtendedColumnChooserTreeListView>
-            </dxgtl:TreeListControl.View>
-        </dxgtl:TreeListControl>
+                </dxg:ExtendedColumnChooserTreeListView>
+            </dxg:TreeListControl.View>
+        </dxg:TreeListControl>
     </ControlTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.ExtendedColumnChooserControl}" TargetType="{x:Type dxg:ExtendedColumnChooserControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.ExtendedColumnChooserControl}" TargetType="{x:Type dxg:ExtendedColumnChooserControl}">
         <Setter Property="Template" Value="{DynamicResource ResourceKey={dxgt:ExtendedColumnChooserThemeKey ResourceKey=Template}}"/>
     </Style>
 
     <ControlTemplate x:Key="{dxgt:ExtendedColumnChooserThemeKey ResourceKey=TreeViewTemplate}">
         <ScrollViewer x:Name="scr"
                       dx:ScrollBarExtensions.ScrollBehavior="{x:Null}"
-                      dxgtl:GridControl.CurrentView="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                      dxg:GridControl.CurrentView="{Binding RelativeSource={RelativeSource TemplatedParent}}"
                       Focusable="False"
                       HorizontalScrollBarVisibility="{Binding HorizontalScrollbarVisibility, RelativeSource={RelativeSource TemplatedParent}}"
                       Template="{DynamicResource {dxgt:ExtendedColumnChooserThemeKey ResourceKey=TreeViewScrollViewerTemplate}}"
@@ -373,12 +371,12 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <dxeh:ChildMinWidthPanel ChildMinWidth="{Binding Path=SearchTextBoxMinWidth, RelativeSource={RelativeSource TemplatedParent}}">
+                <dxei:ChildMinWidthPanel ChildMinWidth="{Binding Path=SearchTextBoxMinWidth, RelativeSource={RelativeSource TemplatedParent}}">
                     <dxe:ComboBoxEdit x:Name="editor"
                                       AllowDefaultButton="False"
                                       AutomationProperties.AutomationId="SearchComboBox"
                                       AutomationProperties.Name="SearchComboBox"
-                                      dxeh:MVVMFocusBehavior.IsFocused="{Binding Path=IsKeyboardFocusWithin, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}"
+                                      dxei:MVVMFocusBehavior.IsFocused="{Binding Path=IsKeyboardFocusWithin, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}"
                                       EditValue="{Binding Path=SearchText, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                       EditValuePostDelay="{Binding Path=SearchTextPostDelay, RelativeSource={RelativeSource TemplatedParent}}"
                                       EditValuePostMode="{Binding Path=SearchControlPropertyProvider.ActualPostMode, RelativeSource={RelativeSource TemplatedParent}}"
@@ -424,7 +422,7 @@
                                             Visibility="{Binding Path=ShowMRUButton, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         </dxe:ComboBoxEdit.Buttons>
                     </dxe:ComboBoxEdit>
-                </dxeh:ChildMinWidthPanel>
+                </dxei:ChildMinWidthPanel>
                 <Button x:Name="SearchFindButton"
                         Command="{Binding Path=SearchControlPropertyProvider.FindCommand, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}"
                         CommandParameter="{Binding Path=FilterCriteria, RelativeSource={RelativeSource TemplatedParent}}"
@@ -465,15 +463,15 @@
             <Setter.Value>
                 <ControlTemplate>
                     <Grid Background="{DynamicResource {dxgt:ExtendedColumnChooserThemeKey ResourceKey=SearchPanelBackground}}">
-                        <dxgtl:GridSearchControl x:Name="PART_SearchControl"
-                                                 HorizontalAlignment="{Binding Path=(dxg:GridControl.CurrentView).SearchPanelHorizontalAlignment, RelativeSource={RelativeSource TemplatedParent}}"
-                                                 IsEditorTabStop="False"
-                                                 IsTabStop="False"
-                                                 Margin="{DynamicResource {dxgt:ExtendedColumnChooserThemeKey ResourceKey=SearchPanelMargin}}"
-                                                 SearchTextBoxMinWidth="{DynamicResource {dxgt:ExtendedColumnChooserThemeKey ResourceKey=SearchPanelTextBoxMinWidth}}"
-                                                 Template="{DynamicResource {dxgt:ExtendedColumnChooserThemeKey ResourceKey=SearchControlTemplate}}"
-                                                 View="{Binding Path=(dxg:GridControl.CurrentView), RelativeSource={RelativeSource TemplatedParent}}"
-                                                 Visibility="{Binding Path=View.ActualShowSearchPanel, RelativeSource={RelativeSource Self}, Converter={dx:BooleanToVisibilityConverter}}"/>
+                        <dxg:GridSearchControl x:Name="PART_SearchControl"
+                                               HorizontalAlignment="{Binding Path=(dxg:GridControl.CurrentView).SearchPanelHorizontalAlignment, RelativeSource={RelativeSource TemplatedParent}}"
+                                               IsEditorTabStop="False"
+                                               IsTabStop="False"
+                                               Margin="{DynamicResource {dxgt:ExtendedColumnChooserThemeKey ResourceKey=SearchPanelMargin}}"
+                                               SearchTextBoxMinWidth="{DynamicResource {dxgt:ExtendedColumnChooserThemeKey ResourceKey=SearchPanelTextBoxMinWidth}}"
+                                               Template="{DynamicResource {dxgt:ExtendedColumnChooserThemeKey ResourceKey=SearchControlTemplate}}"
+                                               View="{Binding Path=(dxg:GridControl.CurrentView), RelativeSource={RelativeSource TemplatedParent}}"
+                                               Visibility="{Binding Path=View.ActualShowSearchPanel, RelativeSource={RelativeSource Self}, Converter={dx:BooleanToVisibilityConverter}}"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -486,7 +484,7 @@
 
     <ControlTemplate x:Key="{dxgt:ExtendedColumnChooserThemeKey ResourceKey=TreeViewScrollViewerTemplate}">
         <Grid ClipToBounds="True"
-              dxgtl:GridControl.CurrentView="{Binding Path=(dxg:GridControl.CurrentView), RelativeSource={RelativeSource TemplatedParent}}"
+              dxg:GridControl.CurrentView="{Binding Path=(dxg:GridControl.CurrentView), RelativeSource={RelativeSource TemplatedParent}}"
               SnapsToDevicePixels="true">
             <dx:ScrollBarExtensions.ScrollBehavior>
                 <Binding Path="(dxg:GridControl.CurrentView).UseExtendedMouseScrolling" RelativeSource="{RelativeSource Self}">
@@ -505,16 +503,16 @@
                     BorderThickness="{DynamicResource ResourceKey={dxgt:ExtendedColumnChooserThemeKey ResourceKey=SearchPanelBorderThickness}}"
                     Grid.Row="0">
                 <ContentControl x:Name="part_SearchControlContainer"
-                                dxgtl:GridControl.CurrentView="{Binding Path=(dxg:GridControl.CurrentView), RelativeSource={RelativeSource TemplatedParent}}"
+                                dxg:GridControl.CurrentView="{Binding Path=(dxg:GridControl.CurrentView), RelativeSource={RelativeSource TemplatedParent}}"
                                 Style="{DynamicResource {dxgt:ExtendedColumnChooserThemeKey ResourceKey=SearchPanelContentStyle}}"
                                 Visibility="{Binding Path=(dxg:GridControl.CurrentView).ActualShowSearchPanel, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <dxgtl:GridViewHitInfoBase.HitTestAcceptor>
-                        <dxght:GridSearchPanelHitTestAcceptor/>
-                    </dxgtl:GridViewHitInfoBase.HitTestAcceptor>
+                    <dxg:GridViewHitInfoBase.HitTestAcceptor>
+                        <dxgi:GridSearchPanelHitTestAcceptor/>
+                    </dxg:GridViewHitInfoBase.HitTestAcceptor>
                 </ContentControl>
             </Border>
             <Grid x:Name="rowPresenterGrid"
-                  dxgtl:GridControl.CurrentView="{Binding Path=(dxg:GridControl.CurrentView), RelativeSource={RelativeSource TemplatedParent}}"
+                  dxg:GridControl.CurrentView="{Binding Path=(dxg:GridControl.CurrentView), RelativeSource={RelativeSource TemplatedParent}}"
                   Grid.Row="1"
                   Margin="{DynamicResource {dxgt:ExtendedColumnChooserThemeKey ResourceKey=RowPresenterGridMargin}}">
                 <Grid.RowDefinitions>
@@ -539,21 +537,21 @@
                         </Binding>
                     </Grid.ColumnSpan>
                     <ScrollContentPresenter x:Name="PART_ScrollContentPresenter"
+                                            dxg:GridControl.CurrentView="{Binding Path=(dxg:GridControl.CurrentView), RelativeSource={RelativeSource TemplatedParent}}"
                                             dxgcore:FocusRectPresenter.IsVerticalScrollHost="True"
-                                            dxgtl:GridControl.CurrentView="{Binding Path=(dxg:GridControl.CurrentView), RelativeSource={RelativeSource TemplatedParent}}"
                                             MinWidth="{Binding Path=(dxg:GridControl.CurrentView).ScrollableAreaMinWidth, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
                                             ScrollViewer.CanContentScroll="True">
-                        <dxgtl:GridControl.CurrentViewChangedListener>
-                            <dxgtl:ScrollContentPresenterInitializer/>
-                        </dxgtl:GridControl.CurrentViewChangedListener>
+                        <dxg:GridControl.CurrentViewChangedListener>
+                            <dxg:ScrollContentPresenterInitializer/>
+                        </dxg:GridControl.CurrentViewChangedListener>
                         <ScrollContentPresenter.Content>
-                            <dxgtl:DataPresenter x:Name="dataPresenter"
-                                                 dxgtl:GridControl.CurrentView="{Binding Path=(dxg:GridControl.CurrentView), RelativeSource={RelativeSource TemplatedParent}}"
-                                                 Template="{DynamicResource {dxgt:ExtendedColumnChooserThemeKey ResourceKey=DataPresenterTemplate}}"/>
+                            <dxg:DataPresenter x:Name="dataPresenter"
+                                               dxg:GridControl.CurrentView="{Binding Path=(dxg:GridControl.CurrentView), RelativeSource={RelativeSource TemplatedParent}}"
+                                               Template="{DynamicResource {dxgt:ExtendedColumnChooserThemeKey ResourceKey=DataPresenterTemplate}}"/>
                         </ScrollContentPresenter.Content>
-                        <dxgtl:GridViewHitInfoBase.HitTestAcceptor>
-                            <dxght:DataAreaTableViewHitTestAcceptor/>
-                        </dxgtl:GridViewHitInfoBase.HitTestAcceptor>
+                        <dxg:GridViewHitInfoBase.HitTestAcceptor>
+                            <dxgi:DataAreaTableViewHitTestAcceptor/>
+                        </dxg:GridViewHitInfoBase.HitTestAcceptor>
                     </ScrollContentPresenter>
                     <ContentControl HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                         <ContentControl.Template>
@@ -587,22 +585,22 @@
                                 <Binding Path="(dxg:GridControl.CurrentView).ShowTotalSummary" RelativeSource="{RelativeSource TemplatedParent}"/>
                             </MultiBinding.Bindings>
                             <MultiBinding.Converter>
-                                <dxgtl:VerticalScrollBarRowSpanConverter/>
+                                <dxg:VerticalScrollBarRowSpanConverter/>
                             </MultiBinding.Converter>
                         </MultiBinding>
                     </Grid.RowSpan>
                     <ScrollBar x:Name="PART_VerticalScrollBar"
-                               dxgtl:GridControl.CurrentView="{Binding Path=(dxg:GridControl.CurrentView), RelativeSource={RelativeSource TemplatedParent}}"
+                               dxg:GridControl.CurrentView="{Binding Path=(dxg:GridControl.CurrentView), RelativeSource={RelativeSource TemplatedParent}}"
                                HorizontalAlignment="Right"
                                Maximum="{Binding ScrollableHeight, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
                                Value="{Binding VerticalOffset, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
                                ViewportSize="{Binding ViewportHeight, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}">
-                        <dxgtl:GridControl.CurrentViewChangedListener>
-                            <dxgtl:VerticalScrollBarBlendCustomizationExtension/>
-                        </dxgtl:GridControl.CurrentViewChangedListener>
-                        <dxgtl:GridViewHitInfoBase.HitTestAcceptor>
-                            <dxght:VerticalScrollBarTableViewHitTestAcceptor/>
-                        </dxgtl:GridViewHitInfoBase.HitTestAcceptor>
+                        <dxg:GridControl.CurrentViewChangedListener>
+                            <dxg:VerticalScrollBarBlendCustomizationExtension/>
+                        </dxg:GridControl.CurrentViewChangedListener>
+                        <dxg:GridViewHitInfoBase.HitTestAcceptor>
+                            <dxgi:VerticalScrollBarTableViewHitTestAcceptor/>
+                        </dxg:GridViewHitInfoBase.HitTestAcceptor>
                     </ScrollBar>
                 </Grid>
                 <Grid x:Name="gridScroll"
@@ -620,7 +618,7 @@
                                 <Binding Path="(dxg:GridControl.CurrentView).ShowTotalSummary" RelativeSource="{RelativeSource TemplatedParent}"/>
                             </MultiBinding.Bindings>
                             <MultiBinding.Converter>
-                                <dxgtl:HorizontalScrollBarRowConverter/>
+                                <dxg:HorizontalScrollBarRowConverter/>
                             </MultiBinding.Converter>
                         </MultiBinding>
                     </Grid.Row>
@@ -631,7 +629,7 @@
                                 <Binding Path="(dxg:GridControl.CurrentView).ShowTotalSummary" RelativeSource="{RelativeSource TemplatedParent}"/>
                             </MultiBinding.Bindings>
                             <MultiBinding.Converter>
-                                <dxgtl:HorizontalScrollBarRowSpanConverter/>
+                                <dxg:HorizontalScrollBarRowSpanConverter/>
                             </MultiBinding.Converter>
                         </MultiBinding>
                     </Grid.RowSpan>
@@ -644,7 +642,7 @@
                                 <Binding Path="(dxg:GridControl.CurrentView).ExtendScrollBarToFixedColumns" RelativeSource="{RelativeSource TemplatedParent}"/>
                             </MultiBinding.Bindings>
                             <MultiBinding.Converter>
-                                <dxgtl:HorizontalScrollBarGridColumnSpanConverter/>
+                                <dxg:HorizontalScrollBarGridColumnSpanConverter/>
                             </MultiBinding.Converter>
                         </MultiBinding>
                     </Grid.ColumnSpan>
@@ -653,13 +651,13 @@
                                Orientation="Horizontal"
                                Value="{Binding HorizontalOffset, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
                                ViewportSize="{Binding ViewportWidth, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}">
-                        <dxgtl:GridViewHitInfoBase.HitTestAcceptor>
-                            <dxght:HorizontalScrollBarTableViewHitTestAcceptor/>
-                        </dxgtl:GridViewHitInfoBase.HitTestAcceptor>
+                        <dxg:GridViewHitInfoBase.HitTestAcceptor>
+                            <dxgi:HorizontalScrollBarTableViewHitTestAcceptor/>
+                        </dxg:GridViewHitInfoBase.HitTestAcceptor>
                     </ScrollBar>
                 </Grid>
-                <dxgtl:FitContentContainer Grid.Column="1" Grid.Row="3">
-                    <dxgtl:FitContentContainer.Visibility>
+                <dxg:FitContentContainer Grid.Column="1" Grid.Row="3">
+                    <dxg:FitContentContainer.Visibility>
                         <MultiBinding>
                             <MultiBinding.Bindings>
                                 <Binding Path="(dx:ScrollBarExtensions.ScrollBarMode)" RelativeSource="{RelativeSource TemplatedParent}"/>
@@ -669,22 +667,22 @@
                                 <Binding Path="ComputedVerticalScrollBarVisibility" RelativeSource="{RelativeSource TemplatedParent}"/>
                             </MultiBinding.Bindings>
                             <MultiBinding.Converter>
-                                <dxgtl:FitContentContainerConverter/>
+                                <dxg:FitContentContainerConverter/>
                             </MultiBinding.Converter>
                         </MultiBinding>
-                    </dxgtl:FitContentContainer.Visibility>
+                    </dxg:FitContentContainer.Visibility>
                     <Border x:Name="PART_HorizontalScrollCorner"
-                            dxgtl:GridBorderHelper.ShowBorder="{Binding Path=(dxg:GridControl.CurrentView).ShowTotalSummary, RelativeSource={RelativeSource TemplatedParent}}"
-                            dxgtl:GridScrollBarHelper.ExtendScrollBarToFixedColumns="{Binding Path=(dxg:GridControl.CurrentView).ExtendScrollBarToFixedColumns, RelativeSource={RelativeSource TemplatedParent}}"
-                            dxgtl:GridScrollBarHelper.HasFixedRightColumns="False"
+                            dxg:GridBorderHelper.ShowBorder="{Binding Path=(dxg:GridControl.CurrentView).ShowTotalSummary, RelativeSource={RelativeSource TemplatedParent}}"
+                            dxg:GridScrollBarHelper.ExtendScrollBarToFixedColumns="{Binding Path=(dxg:GridControl.CurrentView).ExtendScrollBarToFixedColumns, RelativeSource={RelativeSource TemplatedParent}}"
+                            dxg:GridScrollBarHelper.HasFixedRightColumns="False"
                             Style="{DynamicResource {dxgt:ScrollBarThemeKey ResourceKey=ScrollingCornerStyle}}"/>
-                </dxgtl:FitContentContainer>
+                </dxg:FitContentContainer>
             </Grid>
-            <dxgtl:OuterBorderElement x:Name="outerBorder"
-                                      Grid.Row="1"
-                                      Grid.RowSpan="2"
-                                      ShowColumnHeaders="{Binding Path=(dxg:GridControl.CurrentView).ShowColumnHeaders, RelativeSource={RelativeSource TemplatedParent}}"
-                                      Style="{DynamicResource ResourceKey={dxgt:ExtendedColumnChooserThemeKey ResourceKey=OuterBorderElementStyle}}"/>
+            <dxg:OuterBorderElement x:Name="outerBorder"
+                                    Grid.Row="1"
+                                    Grid.RowSpan="2"
+                                    ShowColumnHeaders="{Binding Path=(dxg:GridControl.CurrentView).ShowColumnHeaders, RelativeSource={RelativeSource TemplatedParent}}"
+                                    Style="{DynamicResource ResourceKey={dxgt:ExtendedColumnChooserThemeKey ResourceKey=OuterBorderElementStyle}}"/>
             <dxgcore:FocusRectPresenter x:Name="PART_FocusRectPresenter"
                                         Grid.RowSpan="4"
                                         HorizontalAlignment="Left"

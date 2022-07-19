@@ -1,11 +1,11 @@
 <ResourceDictionary mc:Ignorable="cs"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:core="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:cs="colorscheme_ignorable_uri"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+                    xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal"
                     xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
-                    xmlns:internal="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
@@ -15,11 +15,11 @@
     <system:Boolean x:Key="FalseBoonean">False</system:Boolean>
 
     <ControlTemplate x:Key="{dxet:BrushEditThemeKey ResourceKey=DisplayTemplate}">
-        <internal:BrushPicker x:Name="PART_Editor"/>
+        <dxei:BrushPicker x:Name="PART_Editor"/>
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxet:BrushEditThemeKey ResourceKey=EditTemplate}">
-        <internal:BrushPicker x:Name="PART_Editor"/>
+        <dxei:BrushPicker x:Name="PART_Editor"/>
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxet:BrushEditThemeKey ResourceKey=Template}" TargetType="dxe:BrushEditBase">
@@ -28,19 +28,19 @@
 
     <ControlTemplate x:Key="{dxet:BrushEditThemeKey ResourceKey=BrushTypeSelectorControlTemplate}" TargetType="dxe:BrushTypeSelectorControl"/>
 
-    <ControlTemplate x:Key="{dxet:BrushEditThemeKey ResourceKey=BrushPickerNoneTemplate}" TargetType="{x:Type internal:BrushPicker}">
+    <ControlTemplate x:Key="{dxet:BrushEditThemeKey ResourceKey=BrushPickerNoneTemplate}" TargetType="{x:Type dxei:BrushPicker}">
         <Rectangle x:Name="PART_Content"
                    Fill="Red"
                    Height="30"
                    cs:id="Rectangle_0000"/>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="{dxet:BrushEditThemeKey ResourceKey=BrushPickerSolidTemplate}" TargetType="{x:Type internal:BrushPicker}">
-        <internal:ColorPicker x:Name="PART_Content" Padding="12,3,12,12"/>
+    <ControlTemplate x:Key="{dxet:BrushEditThemeKey ResourceKey=BrushPickerSolidTemplate}" TargetType="{x:Type dxei:BrushPicker}">
+        <dxei:ColorPicker x:Name="PART_Content" Padding="12,3,12,12"/>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="{dxet:BrushEditThemeKey ResourceKey=BrushPickerGradientTemplate}" TargetType="{x:Type internal:BrushPicker}">
-        <internal:ColorPicker x:Name="PART_Content"/>
+    <ControlTemplate x:Key="{dxet:BrushEditThemeKey ResourceKey=BrushPickerGradientTemplate}" TargetType="{x:Type dxei:BrushPicker}">
+        <dxei:ColorPicker x:Name="PART_Content"/>
     </ControlTemplate>
 
 </ResourceDictionary>

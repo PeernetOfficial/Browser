@@ -3,21 +3,19 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal"
                     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
-                    xmlns:dxgcore="http://schemas.devexpress.com/winfx/2008/xaml/grid"
-                    xmlns:dxght="http://schemas.devexpress.com/winfx/2008/xaml/grid/internal"
+                    xmlns:dxgi="http://schemas.devexpress.com/winfx/2008/xaml/grid/internal"
                     xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys"
                     xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:mvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <dxgcore:SummaryToTextConverter x:Key="SummaryToTextConverter"/>
+    <dxg:SummaryToTextConverter x:Key="SummaryToTextConverter"/>
 
     <dx:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
@@ -38,7 +36,7 @@
     <Style x:Key="{dxgt:GridControlThemeKey ResourceKey=GroupPanelStyle}" TargetType="{x:Type dx:DXDockPanel}">
         <Setter Property="dx:DragManager.DropTargetFactory">
             <Setter.Value>
-                <dxgcore:GroupPanelColumnHeaderDropTargetFactory/>
+                <dxg:GroupPanelColumnHeaderDropTargetFactory/>
             </Setter.Value>
         </Setter>
     </Style>
@@ -52,13 +50,13 @@
             <Setter.Value>
                 <ControlTemplate>
                     <Grid x:Name="grid" Background="{DynamicResource {dxgt:TableViewThemeKey ResourceKey=SearchPanelBackground}}">
-                        <dxgcore:GridSearchControl x:Name="PART_SearchControl"
-                                                   HorizontalAlignment="{Binding Path=(dxg:GridControl.CurrentView).ActualSearchPanelHorizontalAlignment, RelativeSource={RelativeSource TemplatedParent}}"
-                                                   IsEditorTabStop="False"
-                                                   IsTabStop="False"
-                                                   Margin="{DynamicResource {dxgt:TableViewThemeKey ResourceKey=SearchPanelWithoutGroupedPanelMargin}}"
-                                                   View="{Binding Path=(dxg:GridControl.CurrentView), RelativeSource={RelativeSource TemplatedParent}}"
-                                                   Visibility="{Binding Path=View.ActualShowSearchPanel, RelativeSource={RelativeSource Self}, Converter={dx:BooleanToVisibilityConverter}}"/>
+                        <dxg:GridSearchControl x:Name="PART_SearchControl"
+                                               HorizontalAlignment="{Binding Path=(dxg:GridControl.CurrentView).ActualSearchPanelHorizontalAlignment, RelativeSource={RelativeSource TemplatedParent}}"
+                                               IsEditorTabStop="False"
+                                               IsTabStop="False"
+                                               Margin="{DynamicResource {dxgt:TableViewThemeKey ResourceKey=SearchPanelWithoutGroupedPanelMargin}}"
+                                               View="{Binding Path=(dxg:GridControl.CurrentView), RelativeSource={RelativeSource TemplatedParent}}"
+                                               Visibility="{Binding Path=View.ActualShowSearchPanel, RelativeSource={RelativeSource Self}, Converter={dx:BooleanToVisibilityConverter}}"/>
                         <Border x:Name="PART_SearchPanelBorderBottom"
                                 BorderBrush="{DynamicResource {dxgt:TableViewThemeKey ResourceKey=SearchPanelBorderBottomBrush}}"
                                 BorderThickness="0,0,0,1">
@@ -111,23 +109,23 @@
                                 <Setter.Value>
                                     <Binding ElementName="PART_SearchControl" Path="ShowSearchPanelMode">
                                         <Binding.Converter>
-                                            <mvvm:ObjectToObjectConverter DefaultSource="Default" DefaultTarget="0">
-                                                <mvvm:MapItem Source="Always">
-                                                    <mvvm:MapItem.Target>
+                                            <dxmvvm:ObjectToObjectConverter DefaultSource="Default" DefaultTarget="0">
+                                                <dxmvvm:MapItem Source="Always">
+                                                    <dxmvvm:MapItem.Target>
                                                         <Thickness>0,0,7,0</Thickness>
-                                                    </mvvm:MapItem.Target>
-                                                </mvvm:MapItem>
-                                                <mvvm:MapItem Source="HotKey">
-                                                    <mvvm:MapItem.Target>
+                                                    </dxmvvm:MapItem.Target>
+                                                </dxmvvm:MapItem>
+                                                <dxmvvm:MapItem Source="HotKey">
+                                                    <dxmvvm:MapItem.Target>
                                                         <Thickness>0</Thickness>
-                                                    </mvvm:MapItem.Target>
-                                                </mvvm:MapItem>
-                                                <mvvm:MapItem Source="Never">
-                                                    <mvvm:MapItem.Target>
+                                                    </dxmvvm:MapItem.Target>
+                                                </dxmvvm:MapItem>
+                                                <dxmvvm:MapItem Source="Never">
+                                                    <dxmvvm:MapItem.Target>
                                                         <Thickness>0</Thickness>
-                                                    </mvvm:MapItem.Target>
-                                                </mvvm:MapItem>
-                                            </mvvm:ObjectToObjectConverter>
+                                                    </dxmvvm:MapItem.Target>
+                                                </dxmvvm:MapItem>
+                                            </dxmvvm:ObjectToObjectConverter>
                                         </Binding.Converter>
                                     </Binding>
                                 </Setter.Value>
@@ -162,7 +160,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.FixedTotalSummaryControl}" TargetType="{x:Type dxg:FixedTotalSummaryControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.FixedTotalSummaryControl}" TargetType="{x:Type dxg:FixedTotalSummaryControl}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type dxg:FixedTotalSummaryControl}">
@@ -196,22 +194,22 @@
         <!--END WPF-->
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.FixedTotalSummaryItemsTextBlock}" TargetType="{x:Type dxg:FixedTotalSummaryItemsTextBlock}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.FixedTotalSummaryItemsTextBlock}" TargetType="{x:Type dxg:FixedTotalSummaryItemsTextBlock}">
         <Setter Property="dxg:GridViewHitInfoBase.HitTestAcceptor">
             <Setter.Value>
-                <dxght:FixedTotalSummaryTableViewHitTestAcceptor/>
+                <dxgi:FixedTotalSummaryTableViewHitTestAcceptor/>
             </Setter.Value>
         </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type dxg:FixedTotalSummaryItemsTextBlock}">
-                    <TextBlock dxgcore:InlineTextService.InlineInfo="{Binding SummaryTextInfo, RelativeSource={RelativeSource TemplatedParent}}" Style="{DynamicResource {dxgt:TableViewThemeKey ResourceKey=FixedSummaryTextBlockStyle}}"/>
+                    <TextBlock dxg:InlineTextService.InlineInfo="{Binding SummaryTextInfo, RelativeSource={RelativeSource TemplatedParent}}" Style="{DynamicResource {dxgt:TableViewThemeKey ResourceKey=FixedSummaryTextBlockStyle}}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.FixedTotalSummaryContainerControl}" TargetType="{x:Type dxg:FixedTotalSummaryContainerControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.FixedTotalSummaryContainerControl}" TargetType="{x:Type dxg:FixedTotalSummaryContainerControl}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type dxg:FixedTotalSummaryContainerControl}">
@@ -227,27 +225,27 @@
                                 </Binding>
                             </Border.BorderThickness>
                         </Border>
-                        <dxgcore:FixedTotalSummaryControl x:Name="PART_FixedTotalSummary"
-                                                          Foreground="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=TotalSummaryBrush}}"
-                                                          Margin="{DynamicResource {dxgt:TableViewThemeKey ResourceKey=TotalSummaryPanelMargin}}"
-                                                          MinHeight="29">
+                        <dxg:FixedTotalSummaryControl x:Name="PART_FixedTotalSummary"
+                                                      Foreground="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=TotalSummaryBrush}}"
+                                                      Margin="{DynamicResource {dxgt:TableViewThemeKey ResourceKey=TotalSummaryPanelMargin}}"
+                                                      MinHeight="29">
                             <dx:DXDockPanel Background="Transparent"
                                             LastChildFill="True"
                                             cs:id="DXDockPanel_0000">
-                                <dxgcore:FixedTotalSummaryItemsTextBlock x:Name="PART_FixedTotalSummaryLeftPart"
-                                                                         dx:DXDockPanel.Dock="Left"
-                                                                         FixedTotalSummaryElementStyle="{Binding Path=(dxg:GridControl.CurrentView).FixedTotalSummaryElementStyle, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                         HorizontalAlignment="Left"
-                                                                         Margin="6"
-                                                                         TotalSummariesSource="{Binding Path=(dxg:GridControl.CurrentView).FixedSummariesLeft, RelativeSource={RelativeSource TemplatedParent}}"/>
-                                <dxgcore:FixedTotalSummaryItemsTextBlock x:Name="PART_FixedTotalSummaryRightPart"
-                                                                         dx:DXDockPanel.Dock="Right"
-                                                                         FixedTotalSummaryElementStyle="{Binding Path=(dxg:GridControl.CurrentView).FixedTotalSummaryElementStyle, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                         HorizontalAlignment="Right"
-                                                                         Margin="6"
-                                                                         TotalSummariesSource="{Binding Path=(dxg:GridControl.CurrentView).FixedSummariesRight, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                <dxg:FixedTotalSummaryItemsTextBlock x:Name="PART_FixedTotalSummaryLeftPart"
+                                                                     dx:DXDockPanel.Dock="Left"
+                                                                     FixedTotalSummaryElementStyle="{Binding Path=(dxg:GridControl.CurrentView).FixedTotalSummaryElementStyle, RelativeSource={RelativeSource TemplatedParent}}"
+                                                                     HorizontalAlignment="Left"
+                                                                     Margin="6"
+                                                                     TotalSummariesSource="{Binding Path=(dxg:GridControl.CurrentView).FixedSummariesLeft, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                <dxg:FixedTotalSummaryItemsTextBlock x:Name="PART_FixedTotalSummaryRightPart"
+                                                                     dx:DXDockPanel.Dock="Right"
+                                                                     FixedTotalSummaryElementStyle="{Binding Path=(dxg:GridControl.CurrentView).FixedTotalSummaryElementStyle, RelativeSource={RelativeSource TemplatedParent}}"
+                                                                     HorizontalAlignment="Right"
+                                                                     Margin="6"
+                                                                     TotalSummariesSource="{Binding Path=(dxg:GridControl.CurrentView).FixedSummariesRight, RelativeSource={RelativeSource TemplatedParent}}"/>
                             </dx:DXDockPanel>
-                        </dxgcore:FixedTotalSummaryControl>
+                        </dxg:FixedTotalSummaryControl>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding Path=(dxg:GridControl.CurrentView).DataControl.(dxi:AppearanceOptions.HasBackground), RelativeSource={RelativeSource Self}}" Value="True">
@@ -269,8 +267,8 @@
                 <ControlTemplate>
                     <dx:DXDockPanel Name="groupHeadersPanel"
                                     Background="Transparent"
-                                    dxgcore:BaseGridColumnHeader.CorrectDragIndicatorLocation="False"
-                                    dxgcore:GridColumn.HeaderPresenterType="GroupPanel"
+                                    dxg:BaseGridColumnHeader.CorrectDragIndicatorLocation="False"
+                                    dxg:GridColumn.HeaderPresenterType="GroupPanel"
                                     LastChildFill="False"
                                     Style="{DynamicResource {dxgt:GridControlThemeKey ResourceKey=GroupPanelStyle}}"
                                     cs:id="DXDockPanel_0000"/>
@@ -280,25 +278,25 @@
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <dxgcore:GridColumnHeader ColumnPosition="Standalone"
-                                              Command="{Binding Path=Commands.ChangeColumnSortOrder}"
-                                              DataContext="{Binding Content.Column, RelativeSource={RelativeSource TemplatedParent}}"
-                                              dxb:BarManager.DXContextMenu="{Binding Path=View.GridMenu}"
-                                              dxgcore:GridColumn.ActualVisibleIndex="{Binding Path=(dxg:GridColumn.GroupIndex)}"
-                                              dxgcore:GridColumn.HeaderPresenterType="GroupPanel"
-                                              dxgcore:GridColumn.VisibleIndex="{Binding Path=(dxg:GridColumn.GroupIndex)}"
-                                              dxgcore:GridColumnHeader.GridColumn="{Binding}"
-                                              dxgcore:GridPopupMenu.GridMenuType="Column">
-                        <dxgcore:GridViewHitInfoBase.HitTestAcceptor>
-                            <dxght:GroupPanelColumnHeaderTableViewHitTestAcceptor/>
-                        </dxgcore:GridViewHitInfoBase.HitTestAcceptor>
-                    </dxgcore:GridColumnHeader>
+                    <dxg:GridColumnHeader ColumnPosition="Standalone"
+                                          Command="{Binding Path=Commands.ChangeColumnSortOrder}"
+                                          DataContext="{Binding Content.Column, RelativeSource={RelativeSource TemplatedParent}}"
+                                          dxb:BarManager.DXContextMenu="{Binding Path=View.GridMenu}"
+                                          dxg:GridColumn.ActualVisibleIndex="{Binding Path=(dxg:GridColumn.GroupIndex)}"
+                                          dxg:GridColumn.HeaderPresenterType="GroupPanel"
+                                          dxg:GridColumn.VisibleIndex="{Binding Path=(dxg:GridColumn.GroupIndex)}"
+                                          dxg:GridColumnHeader.GridColumn="{Binding}"
+                                          dxg:GridPopupMenu.GridMenuType="Column">
+                        <dxg:GridViewHitInfoBase.HitTestAcceptor>
+                            <dxgi:GroupPanelColumnHeaderTableViewHitTestAcceptor/>
+                        </dxg:GridViewHitInfoBase.HitTestAcceptor>
+                    </dxg:GridColumnHeader>
                 </DataTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.GroupPanelColumnItemsControl}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.GroupPanelColumnItemsControl}"
            BasedOn="{StaticResource {dxgt:GroupRowThemeKey ResourceKey=GroupItemsControlStyle}}"
            TargetType="{x:Type dxg:GroupPanelColumnItemsControl}">
         <Setter Property="MinHeight" Value="21"/>
@@ -319,11 +317,11 @@
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <dxgcore:GridTotalSummary x:Name="summary">
-                        <dxgcore:GridViewHitInfoBase.HitTestAcceptor>
-                            <dxght:TotalSummaryTableViewHitTestAcceptor/>
-                        </dxgcore:GridViewHitInfoBase.HitTestAcceptor>
-                    </dxgcore:GridTotalSummary>
+                    <dxg:GridTotalSummary x:Name="summary">
+                        <dxg:GridViewHitInfoBase.HitTestAcceptor>
+                            <dxgi:TotalSummaryTableViewHitTestAcceptor/>
+                        </dxg:GridViewHitInfoBase.HitTestAcceptor>
+                    </dxg:GridTotalSummary>
                     <DataTemplate.Triggers>
                         <DataTrigger Binding="{Binding Path=Column.HasTotalSummaries}" Value="false">
                             <Setter Property="Visibility"
@@ -339,7 +337,7 @@
     <Style x:Key="{dxgt:CardViewThemeKey ResourceKey=CardHeaderPanelStyle}" TargetType="{x:Type dx:StackVisibleIndexPanel}">
         <Setter Property="dx:DragManager.DropTargetFactory">
             <Setter.Value>
-                <dxgcore:ColumnHeaderDropTargetFactory/>
+                <dxg:ColumnHeaderDropTargetFactory/>
             </Setter.Value>
         </Setter>
     </Style>
@@ -352,8 +350,8 @@
             <Setter.Value>
                 <ItemsPanelTemplate>
                     <dx:StackVisibleIndexPanel Background="Transparent"
-                                               dxgcore:GridColumn.HeaderPresenterType="Headers"
-                                               dxgcore:GridColumnHeader.DropPlaceOrientation="Vertical"
+                                               dxg:GridColumn.HeaderPresenterType="Headers"
+                                               dxg:GridColumnHeader.DropPlaceOrientation="Vertical"
                                                MinHeight="3"
                                                Orientation="Vertical"
                                                Style="{DynamicResource {dxgt:CardViewThemeKey ResourceKey=CardHeaderPanelStyle}}"
@@ -364,22 +362,22 @@
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <dxgcore:GridColumnHeader ColumnPosition="Standalone"
-                                              Command="{Binding Path=Commands.ChangeColumnSortOrder}"
-                                              dxb:BarManager.DXContextMenu="{Binding Path=(dxg:GridControl.ActiveView).DataControlMenu, RelativeSource={RelativeSource TemplatedParent}}"
-                                              dxgcore:GridColumn.ActualCollectionIndex="{Binding Path=(dxg:GridColumn.ActualVisibleIndex)}"
-                                              dxgcore:GridColumn.ActualVisibleIndex="{Binding Path=(dxg:GridColumn.ActualVisibleIndex)}"
-                                              dxgcore:GridColumn.HeaderPresenterType="Headers"
-                                              dxgcore:GridColumn.VisibleIndex="{Binding Path=(dxg:GridColumn.VisibleIndex)}"
-                                              dxgcore:GridColumnHeader.DropPlaceOrientation="Vertical"
-                                              dxgcore:GridColumnHeader.GridColumn="{Binding}"
-                                              dxgcore:GridPopupMenu.GridMenuType="Column"
-                                              HorizontalAlignment="Stretch"
-                                              Margin="0,0,0,1">
-                        <dxgcore:GridViewHitInfoBase.HitTestAcceptor>
-                            <dxght:ColumnHeaderTableViewHitTestAcceptor/>
-                        </dxgcore:GridViewHitInfoBase.HitTestAcceptor>
-                    </dxgcore:GridColumnHeader>
+                    <dxg:GridColumnHeader ColumnPosition="Standalone"
+                                          Command="{Binding Path=Commands.ChangeColumnSortOrder}"
+                                          dxb:BarManager.DXContextMenu="{Binding Path=(dxg:GridControl.ActiveView).DataControlMenu, RelativeSource={RelativeSource TemplatedParent}}"
+                                          dxg:GridColumn.ActualCollectionIndex="{Binding Path=(dxg:GridColumn.ActualVisibleIndex)}"
+                                          dxg:GridColumn.ActualVisibleIndex="{Binding Path=(dxg:GridColumn.ActualVisibleIndex)}"
+                                          dxg:GridColumn.HeaderPresenterType="Headers"
+                                          dxg:GridColumn.VisibleIndex="{Binding Path=(dxg:GridColumn.VisibleIndex)}"
+                                          dxg:GridColumnHeader.DropPlaceOrientation="Vertical"
+                                          dxg:GridColumnHeader.GridColumn="{Binding}"
+                                          dxg:GridPopupMenu.GridMenuType="Column"
+                                          HorizontalAlignment="Stretch"
+                                          Margin="0,0,0,1">
+                        <dxg:GridViewHitInfoBase.HitTestAcceptor>
+                            <dxgi:ColumnHeaderTableViewHitTestAcceptor/>
+                        </dxg:GridViewHitInfoBase.HitTestAcceptor>
+                    </dxg:GridColumnHeader>
                 </DataTemplate>
             </Setter.Value>
         </Setter>

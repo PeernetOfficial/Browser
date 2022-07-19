@@ -3,18 +3,16 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-                    xmlns:dxeh="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal"
                     xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal"
                     xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
-                    xmlns:dxtEx="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxtEx:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v21.2;component/Core/Core/Editors/Themes/Generic/Common.xaml"/>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v22.1;component/Core/Core/Editors/Themes/Generic/Common.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <dxei:HorizontalContentAlignmentToTextAlignmentConverter x:Key="HorizontalContentAlignmentToTextAlignmentConverter"/>
@@ -181,10 +179,10 @@
     <Style x:Key="{dxet:TextEditThemeKey ResourceKey=TextStyle}"
            BasedOn="{StaticResource BaseTextStyle}"
            TargetType="{x:Type TextBox}">
-        <Setter Property="dxeh:EditorMarginHelper.Margin" Value="3,2,3,2,0,2,3,2"/>
+        <Setter Property="dxei:EditorMarginHelper.Margin" Value="3,2,3,2,0,2,3,2"/>
         <Style.Triggers>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
-                <Setter Property="dxeh:EditorMarginHelper.Margin" Value="14,13,14,13,0,13,14,13"/>
+                <Setter Property="dxei:EditorMarginHelper.Margin" Value="14,13,14,13,0,13,14,13"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -192,10 +190,10 @@
     <Style x:Key="{dxet:TextEditThemeKey ResourceKey=TextInplaceStyle}"
            BasedOn="{StaticResource BaseTextInplaceStyle}"
            TargetType="{x:Type TextBox}">
-        <Setter Property="dxeh:EditorMarginHelper.Margin" Value="2,2,2,2,0,2,2,2"/>
+        <Setter Property="dxei:EditorMarginHelper.Margin" Value="2,2,2,2,0,2,2,2"/>
         <Style.Triggers>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
-                <Setter Property="dxeh:EditorMarginHelper.Margin" Value="13,13,13,13,0,13,13,13"/>
+                <Setter Property="dxei:EditorMarginHelper.Margin" Value="13,13,13,13,0,13,13,13"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -203,10 +201,10 @@
     <Style x:Key="{dxet:TextEditThemeKey ResourceKey=TextBlockInplaceStyle}"
            BasedOn="{StaticResource BaseTextBlockInplaceStyle}"
            TargetType="{x:Type TextBlock}">
-        <Setter Property="dxeh:EditorMarginHelper.Margin" Value="4,2,4,2,2,2,4,2"/>
+        <Setter Property="dxei:EditorMarginHelper.Margin" Value="4,2,4,2,2,2,4,2"/>
         <Style.Triggers>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
-                <Setter Property="dxeh:EditorMarginHelper.Margin" Value="14,13,14,13,13,13,14,13"/>
+                <Setter Property="dxei:EditorMarginHelper.Margin" Value="14,13,14,13,13,13,14,13"/>
             </Trigger>
         </Style.Triggers>
     </Style>

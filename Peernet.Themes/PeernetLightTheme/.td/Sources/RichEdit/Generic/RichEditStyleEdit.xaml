@@ -3,26 +3,26 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-                    xmlns:dxee="clr-namespace:DevExpress.Xpf.Editors;assembly=DevExpress.Xpf.Core.v21.2"
+                    xmlns:dxee="clr-namespace:DevExpress.Xpf.Editors;assembly=DevExpress.Xpf.Core.v22.1"
                     xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
+                    xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
                     xmlns:dxret="http://schemas.devexpress.com/winfx/2008/xaml/richedit/themekeys"
-                    xmlns:dxreui="http://schemas.devexpress.com/winfx/2008/xaml/richedit"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!--BEGIN WPF-->
 
     <!--<ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="{dxdst:ThemePartLoader Path=/DevExpress.Xpf.Core/Editors/Themes/Generic/Generic.xaml, PathCore=/Themes/Empty.xaml}" />
+        <ResourceDictionary Source="{dxt:ThemePartLoader Path=/DevExpress.Xpf.Core/Editors/Themes/Generic/Generic.xaml, PathCore=/Themes/Empty.xaml}" />
     </ResourceDictionary.MergedDictionaries>-->
 
     <!--END WPF-->
 
-    <!--ONLY SL<ResourceDictionary x:Key="EditorsDictionary" Source="/DevExpress.Xpf.Core.v21.2;component/Themes/generic.xaml" dx:Wpf2SLOptions.AllowProcessNode ="False" />ONLY SL-->
+    <!--ONLY SL<ResourceDictionary x:Key="EditorsDictionary" Source="/DevExpress.Xpf.Core.v22.1;component/Themes/generic.xaml" dx:Wpf2SLOptions.AllowProcessNode ="False" />ONLY SL-->
 
-    <!--<Style TargetType="{x:Type dxreui:RichEditStyleItemControl}">
+    <!--<Style TargetType="{x:Type dxre:RichEditStyleItemControl}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
@@ -39,11 +39,11 @@
 
     <!--BEGIN WPF-->
 
-    <!--<Style TargetType="{x:Type dxreui:RichEditStyleGalleryItemGroup" >-->
+    <!--<Style TargetType="{x:Type dxre:RichEditStyleGalleryItemGroup" >-->
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.RichEdit.UI.RichEditStyleGalleryItemGroup}" TargetType="{x:Type dxreui:RichEditStyleGalleryItemGroup}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.RichEdit.UI.RichEditStyleGalleryItemGroup}" TargetType="{x:Type dxre:RichEditStyleGalleryItemGroup}">
         <!--END WPF-->
-        <!--ONLY SL<Style TargetType="{x:Type dxreui:RichEditStyleGalleryItemGroup}">ONLY SL-->
+        <!--ONLY SL<Style TargetType="{x:Type dxre:RichEditStyleGalleryItemGroup}">ONLY SL-->
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <DataTemplate>
@@ -71,18 +71,18 @@
 
     <!--BEGIN WPF-->
 
-    <!--<Style TargetType="{x:Type dxreui:RichEditStyleEdit" BasedOn="{StaticResource EditorsDictionary}">-->
+    <!--<Style TargetType="{x:Type dxre:RichEditStyleEdit" BasedOn="{StaticResource EditorsDictionary}">-->
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.RichEdit.UI.RichEditStyleEdit}"
-           BasedOn="{StaticResource {dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.ComboBoxEdit}}"
-           TargetType="{x:Type dxreui:RichEditStyleEdit}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.RichEdit.UI.RichEditStyleEdit}"
+           BasedOn="{StaticResource {dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.ComboBoxEdit}}"
+           TargetType="{x:Type dxre:RichEditStyleEdit}">
         <!--END WPF-->
-        <!--ONLY SL<Style TargetType="{x:Type dxreui:RichEditStyleEdit}" dx:ThemeManager.InheritedStyleSource="{StaticResource EditorsDictionary}">ONLY SL-->
+        <!--ONLY SL<Style TargetType="{x:Type dxre:RichEditStyleEdit}" dx:ThemeManager.InheritedStyleSource="{StaticResource EditorsDictionary}">ONLY SL-->
         <Setter Property="ValidateOnTextInput" Value="False"/>
         <Setter Property="IsTextEditable" Value="False"/>
         <Setter Property="ItemContainerStyle">
             <Setter.Value>
-                <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/editors.ComboBoxEditItem}" TargetType="{x:Type dxe:ComboBoxEditItem}">
+                <Style x:Key="{dxt:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/editors.ComboBoxEditItem}" TargetType="{x:Type dxe:ComboBoxEditItem}">
                     <Setter Property="Foreground" Value="{Binding Path=Foreground}"/>
                 </Style>
             </Setter.Value>

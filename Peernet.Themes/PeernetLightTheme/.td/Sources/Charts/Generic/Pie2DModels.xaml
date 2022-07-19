@@ -1,27 +1,27 @@
 <ResourceDictionary mc:Ignorable="cs"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
-                    xmlns:local="http://schemas.devexpress.com/winfx/2008/xaml/charts"
+                    xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <local:BrushOverlayConverter x:Key="brushOverlayConverter"/>
+    <dxc:BrushOverlayConverter x:Key="brushOverlayConverter"/>
 
-    <Style x:Key="pie2DModelControlSyleBase" TargetType="{x:Type local:PredefinedModelControl}">
+    <Style x:Key="pie2DModelControlSyleBase" TargetType="{x:Type dxc:PredefinedModelControl}">
         <Setter Property="Flipped" Value="False"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.CustomPie2DModelControl}" TargetType="{x:Type local:CustomPie2DModelControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.CustomPie2DModelControl}" TargetType="{x:Type dxc:CustomPie2DModelControl}">
         <Setter Property="Flipped" Value="False"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.BorderlessFlatPie2DModelControl}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.BorderlessFlatPie2DModelControl}"
            BasedOn="{StaticResource pie2DModelControlSyleBase}"
-           TargetType="{x:Type local:BorderlessFlatPie2DModelControl}">
+           TargetType="{x:Type dxc:BorderlessFlatPie2DModelControl}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:BorderlessFlatPie2DModelControl}">
+                <ControlTemplate TargetType="{x:Type dxc:BorderlessFlatPie2DModelControl}">
                     <Ellipse Fill="{Binding Path=PointColor, ConverterParameter=#FF808080, Converter={StaticResource brushOverlayConverter}, RelativeSource={RelativeSource TemplatedParent}}"
                              OpacityMask="{Binding OpacityMask}"
                              Stretch="Fill"/>
@@ -30,12 +30,12 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.GlarePie2DModelControl}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.GlarePie2DModelControl}"
            BasedOn="{StaticResource pie2DModelControlSyleBase}"
-           TargetType="{x:Type local:GlarePie2DModelControl}">
+           TargetType="{x:Type dxc:GlarePie2DModelControl}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:GlarePie2DModelControl}">
+                <ControlTemplate TargetType="{x:Type dxc:GlarePie2DModelControl}">
                     <Grid OpacityMask="{Binding OpacityMask}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.252037*"/>
@@ -111,12 +111,12 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.SimplePie2DModelControl}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.SimplePie2DModelControl}"
            BasedOn="{StaticResource pie2DModelControlSyleBase}"
-           TargetType="{x:Type local:SimplePie2DModelControl}">
+           TargetType="{x:Type dxc:SimplePie2DModelControl}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:SimplePie2DModelControl}">
+                <ControlTemplate TargetType="{x:Type dxc:SimplePie2DModelControl}">
                     <Ellipse OpacityMask="{Binding OpacityMask}"
                              Stretch="Fill"
                              StrokeThickness="1">
@@ -166,12 +166,12 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.SimpleFunnel2DModelControl}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.SimpleFunnel2DModelControl}"
            BasedOn="{StaticResource pie2DModelControlSyleBase}"
-           TargetType="{x:Type local:SimpleFunnel2DModelControl}">
+           TargetType="{x:Type dxc:SimpleFunnel2DModelControl}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:SimpleFunnel2DModelControl}">
+                <ControlTemplate TargetType="{x:Type dxc:SimpleFunnel2DModelControl}">
                     <Grid OpacityMask="{Binding OpacityMask}">
                         <Path x:Name="PART_FunnelPointView"
                               Data="{Binding Path=PointGeometry, RelativeSource={RelativeSource TemplatedParent}}"
@@ -193,12 +193,12 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.FlatPie2DModelControl}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.FlatPie2DModelControl}"
            BasedOn="{StaticResource pie2DModelControlSyleBase}"
-           TargetType="{x:Type local:FlatPie2DModelControl}">
+           TargetType="{x:Type dxc:FlatPie2DModelControl}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:FlatPie2DModelControl}">
+                <ControlTemplate TargetType="{x:Type dxc:FlatPie2DModelControl}">
                     <Ellipse Fill="{Binding Path=PointColor, ConverterParameter=#FF808080, Converter={StaticResource brushOverlayConverter}, RelativeSource={RelativeSource TemplatedParent}}"
                              OpacityMask="{Binding OpacityMask}"
                              Stretch="Fill"
@@ -209,12 +209,12 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.GlossyPie2DModelControl}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.GlossyPie2DModelControl}"
            BasedOn="{StaticResource pie2DModelControlSyleBase}"
-           TargetType="{x:Type local:GlossyPie2DModelControl}">
+           TargetType="{x:Type dxc:GlossyPie2DModelControl}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:GlossyPie2DModelControl}">
+                <ControlTemplate TargetType="{x:Type dxc:GlossyPie2DModelControl}">
                     <Ellipse OpacityMask="{Binding OpacityMask}"
                              Stretch="Fill"
                              StrokeThickness="2">
@@ -294,12 +294,12 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.GlassPie2DModelControl}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.GlassPie2DModelControl}"
            BasedOn="{StaticResource pie2DModelControlSyleBase}"
-           TargetType="{x:Type local:GlassPie2DModelControl}">
+           TargetType="{x:Type dxc:GlassPie2DModelControl}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:GlassPie2DModelControl}">
+                <ControlTemplate TargetType="{x:Type dxc:GlassPie2DModelControl}">
                     <Grid OpacityMask="{Binding OpacityMask}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.0559998*"/>
@@ -404,12 +404,12 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.CupidPie2DModelControl}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Charts.CupidPie2DModelControl}"
            BasedOn="{StaticResource pie2DModelControlSyleBase}"
-           TargetType="{x:Type local:CupidPie2DModelControl}">
+           TargetType="{x:Type dxc:CupidPie2DModelControl}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:CupidPie2DModelControl}">
+                <ControlTemplate TargetType="{x:Type dxc:CupidPie2DModelControl}">
                     <Grid OpacityMask="{Binding OpacityMask}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.068*"/>

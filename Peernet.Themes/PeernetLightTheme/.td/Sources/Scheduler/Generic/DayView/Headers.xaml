@@ -2,17 +2,17 @@
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxsch="http://schemas.devexpress.com/winfx/2008/xaml/scheduler"
-                    xmlns:dxschd="http://schemas.devexpress.com/winfx/2008/xaml/scheduler/internal"
+                    xmlns:dxschi="http://schemas.devexpress.com/winfx/2008/xaml/scheduler/internal"
                     xmlns:dxscht="http://schemas.devexpress.com/winfx/2008/xaml/scheduler/themekeys"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <dxschd:ElementPositionDayViewConverter x:Key="elementPositionDayViewConverter"/>
+    <dxschi:ElementPositionDayViewConverter x:Key="elementPositionDayViewConverter"/>
 
-    <!--BEGIN TOSLONLY REPLACE 'dxschd:SchedulerScrollViewer'ScrollViewer'-->
+    <!--BEGIN TOSLONLY REPLACE 'dxschi:SchedulerScrollViewer'ScrollViewer'-->
 
     <!--AllDayTemplate-->
 
@@ -28,59 +28,59 @@
                                MaxHeight="2"
                                MinHeight="2"/>
             </Grid.RowDefinitions>
-            <dxschd:HeightLimitControl OuterSizeSourceElement="{Binding ElementName=DayViewContainer}">
-                <dxschd:SchedulerItemsControl x:Name="MasterAllDayAreaContainer"
+            <dxschi:HeightLimitControl OuterSizeSourceElement="{Binding ElementName=DayViewContainer}">
+                <dxschi:SchedulerItemsControl x:Name="MasterAllDayAreaContainer"
                                               Background="Transparent"
-                                              dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
+                                              dxschi:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschi:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
                                               HorizontalAlignment="Stretch"
                                               ItemsSource="{Binding}"
                                               SnapsToDevicePixels="True"
                                               cs:id="SchedulerItemsControl_0000">
-                    <dxschd:SchedulerItemsControl.ItemTemplate>
+                    <dxschi:SchedulerItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <dxschd:SchedulerItemsControl x:Name="AllDayAreaItemsControl"
+                            <dxschi:SchedulerItemsControl x:Name="AllDayAreaItemsControl"
                                                           Background="Transparent"
-                                                          dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
+                                                          dxschi:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschi:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
                                                           HorizontalAlignment="Stretch"
                                                           ItemsSource="{Binding AllDayAreaContainers}"
                                                           ItemTemplate="{DynamicResource {dxscht:DayViewThemeKey ResourceKey=AllDayAreaBestFitTemplate}}"
                                                           SnapsToDevicePixels="True"
                                                           cs:id="SchedulerItemsControl_0001">
-                                <dxschd:SchedulerItemsControl.ItemsPanel>
+                                <dxschi:SchedulerItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <dxschd:PixelSnappedUniformGrid x:Name="PixelSnapedAllDayArea"
-                                                                        dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), ElementName=AllDayAreaItemsControl}"
+                                        <dxschi:PixelSnappedUniformGrid x:Name="PixelSnapedAllDayArea"
+                                                                        dxschi:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschi:SchedulerItemsControl.ElementPosition), ElementName=AllDayAreaItemsControl}"
                                                                         Orientation="Horizontal"
                                                                         SnapsToDevicePixels="True"/>
                                     </ItemsPanelTemplate>
-                                </dxschd:SchedulerItemsControl.ItemsPanel>
-                            </dxschd:SchedulerItemsControl>
+                                </dxschi:SchedulerItemsControl.ItemsPanel>
+                            </dxschi:SchedulerItemsControl>
                         </DataTemplate>
-                    </dxschd:SchedulerItemsControl.ItemTemplate>
-                    <dxschd:SchedulerItemsControl.ItemsPanel>
+                    </dxschi:SchedulerItemsControl.ItemTemplate>
+                    <dxschi:SchedulerItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <dxschd:PixelSnappedUniformGrid Orientation="Horizontal" SnapsToDevicePixels="True"/>
+                            <dxschi:PixelSnappedUniformGrid Orientation="Horizontal" SnapsToDevicePixels="True"/>
                         </ItemsPanelTemplate>
-                    </dxschd:SchedulerItemsControl.ItemsPanel>
-                </dxschd:SchedulerItemsControl>
-            </dxschd:HeightLimitControl>
-            <dxschd:SchedulerItemsControl x:Name="MasterAllDayAreaContainerForBottomLine"
+                    </dxschi:SchedulerItemsControl.ItemsPanel>
+                </dxschi:SchedulerItemsControl>
+            </dxschi:HeightLimitControl>
+            <dxschi:SchedulerItemsControl x:Name="MasterAllDayAreaContainerForBottomLine"
                                           Background="Transparent"
-                                          dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
+                                          dxschi:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschi:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
                                           HorizontalAlignment="Stretch"
                                           IsHitTestVisible="False"
                                           ItemsSource="{Binding}"
                                           SnapsToDevicePixels="True"
                                           cs:id="SchedulerItemsControl_0002">
-                <dxschd:SchedulerItemsControl.ItemTemplate>
+                <dxschi:SchedulerItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <dxschd:SchedulerItemsControl Background="Transparent"
+                        <dxschi:SchedulerItemsControl Background="Transparent"
                                                       HorizontalAlignment="Stretch"
                                                       IsHitTestVisible="False"
                                                       ItemsSource="{Binding AllDayAreaContainers}"
                                                       SnapsToDevicePixels="True"
                                                       cs:id="SchedulerItemsControl_0003">
-                            <dxschd:SchedulerItemsControl.ItemTemplate>
+                            <dxschi:SchedulerItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Border Background="Transparent"
                                             BorderBrush="{Binding Cells.Last.Brushes.CellBorderDark}"
@@ -89,37 +89,37 @@
                                             UseLayoutRounding="True"
                                             cs:id="Border_0000"/>
                                 </DataTemplate>
-                            </dxschd:SchedulerItemsControl.ItemTemplate>
-                            <dxschd:SchedulerItemsControl.ItemsPanel>
+                            </dxschi:SchedulerItemsControl.ItemTemplate>
+                            <dxschi:SchedulerItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <dxschd:PixelSnappedUniformGrid Orientation="Horizontal" SnapsToDevicePixels="True"/>
+                                    <dxschi:PixelSnappedUniformGrid Orientation="Horizontal" SnapsToDevicePixels="True"/>
                                 </ItemsPanelTemplate>
-                            </dxschd:SchedulerItemsControl.ItemsPanel>
-                        </dxschd:SchedulerItemsControl>
+                            </dxschi:SchedulerItemsControl.ItemsPanel>
+                        </dxschi:SchedulerItemsControl>
                     </DataTemplate>
-                </dxschd:SchedulerItemsControl.ItemTemplate>
-                <dxschd:SchedulerItemsControl.ItemsPanel>
+                </dxschi:SchedulerItemsControl.ItemTemplate>
+                <dxschi:SchedulerItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <dxschd:PixelSnappedUniformGrid Orientation="Horizontal" SnapsToDevicePixels="True"/>
+                        <dxschi:PixelSnappedUniformGrid Orientation="Horizontal" SnapsToDevicePixels="True"/>
                     </ItemsPanelTemplate>
-                </dxschd:SchedulerItemsControl.ItemsPanel>
-            </dxschd:SchedulerItemsControl>
-            <dxschd:SchedulerItemsControl x:Name="MasterAllDayAreaContainerForBottomLine2"
+                </dxschi:SchedulerItemsControl.ItemsPanel>
+            </dxschi:SchedulerItemsControl>
+            <dxschi:SchedulerItemsControl x:Name="MasterAllDayAreaContainerForBottomLine2"
                                           Background="Transparent"
-                                          dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
+                                          dxschi:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschi:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
                                           Grid.Row="1"
                                           HorizontalAlignment="Stretch"
                                           ItemsSource="{Binding}"
                                           SnapsToDevicePixels="True"
                                           cs:id="SchedulerItemsControl_0004">
-                <dxschd:SchedulerItemsControl.ItemTemplate>
+                <dxschi:SchedulerItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <dxschd:SchedulerItemsControl Background="Transparent"
+                        <dxschi:SchedulerItemsControl Background="Transparent"
                                                       HorizontalAlignment="Stretch"
                                                       ItemsSource="{Binding AllDayAreaContainers}"
                                                       SnapsToDevicePixels="True"
                                                       cs:id="SchedulerItemsControl_0005">
-                            <dxschd:SchedulerItemsControl.ItemTemplate>
+                            <dxschi:SchedulerItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Border Background="{DynamicResource {dxscht:DayViewThemeKey ResourceKey=AllDayAreaBottomBorderBackground}}"
                                             BorderBrush="{Binding Cells.Last.Brushes.CellBorderDark}"
@@ -127,38 +127,38 @@
                                             SnapsToDevicePixels="True"
                                             UseLayoutRounding="True"/>
                                 </DataTemplate>
-                            </dxschd:SchedulerItemsControl.ItemTemplate>
-                            <dxschd:SchedulerItemsControl.ItemsPanel>
+                            </dxschi:SchedulerItemsControl.ItemTemplate>
+                            <dxschi:SchedulerItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <dxschd:PixelSnappedUniformGrid Orientation="Horizontal" SnapsToDevicePixels="True"/>
+                                    <dxschi:PixelSnappedUniformGrid Orientation="Horizontal" SnapsToDevicePixels="True"/>
                                 </ItemsPanelTemplate>
-                            </dxschd:SchedulerItemsControl.ItemsPanel>
-                        </dxschd:SchedulerItemsControl>
+                            </dxschi:SchedulerItemsControl.ItemsPanel>
+                        </dxschi:SchedulerItemsControl>
                     </DataTemplate>
-                </dxschd:SchedulerItemsControl.ItemTemplate>
-                <dxschd:SchedulerItemsControl.ItemsPanel>
+                </dxschi:SchedulerItemsControl.ItemTemplate>
+                <dxschi:SchedulerItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <dxschd:PixelSnappedUniformGrid Orientation="Horizontal" SnapsToDevicePixels="True"/>
+                        <dxschi:PixelSnappedUniformGrid Orientation="Horizontal" SnapsToDevicePixels="True"/>
                     </ItemsPanelTemplate>
-                </dxschd:SchedulerItemsControl.ItemsPanel>
-            </dxschd:SchedulerItemsControl>
+                </dxschi:SchedulerItemsControl.ItemsPanel>
+            </dxschi:SchedulerItemsControl>
             <!--
             -->
-            <dxschd:SharedSizePanel Grid.Column="1"
+            <dxschi:SharedSizePanel Grid.Column="1"
                                     IsBaseSizePanel="False"
                                     Orientation="Horizontal"
                                     SharedSizeGroup="VerticalScrollBarSizeGroup"
                                     SnapsToDevicePixels="True">
-                <dxschd:VisualAllDayAreaCell Content="{Binding Last.AllDayAreaContainers.Last.Cells.Last}"
-                                             dxschd:SchedulerItemsControl.ElementPosition="End, Start, Start, End, Start, End"
+                <dxschi:VisualAllDayAreaCell Content="{Binding Last.AllDayAreaContainers.Last.Cells.Last}"
+                                             dxschi:SchedulerItemsControl.ElementPosition="End, Start, Start, End, Start, End"
                                              IsEdgeItem="true"
                                              SnapsToDevicePixels="True"
                                              Style="{Binding Last.View.AllDayAreaCellStyle}">
-                    <dxschd:VisualAllDayAreaCell.ContentTemplate>
+                    <dxschi:VisualAllDayAreaCell.ContentTemplate>
                         <DataTemplate/>
-                    </dxschd:VisualAllDayAreaCell.ContentTemplate>
-                </dxschd:VisualAllDayAreaCell>
-            </dxschd:SharedSizePanel>
+                    </dxschi:VisualAllDayAreaCell.ContentTemplate>
+                </dxschi:VisualAllDayAreaCell>
+            </dxschi:SharedSizePanel>
             <Border Background="{DynamicResource {dxscht:DayViewThemeKey ResourceKey=AllDayAreaBottomBorderBackground}}"
                     BorderBrush="{Binding Last.AllDayAreaContainers.Last.Cells.Last.Brushes.CellBorderDark}"
                     BorderThickness="0,0,0,1"
@@ -181,60 +181,60 @@
                                MaxHeight="2"
                                MinHeight="2"/>
             </Grid.RowDefinitions>
-            <dxschd:HeightLimitControl Grid.ColumnSpan="2" OuterSizeSourceElement="{Binding ElementName=DayViewContainer}">
-                <dxschd:SchedulerScrollViewer HorizontalScrollBarVisibility="Hidden"
+            <dxschi:HeightLimitControl Grid.ColumnSpan="2" OuterSizeSourceElement="{Binding ElementName=DayViewContainer}">
+                <dxschi:SchedulerScrollViewer HorizontalScrollBarVisibility="Hidden"
                                               Style="{DynamicResource {dxscht:DayViewThemeKey ResourceKey=SchedulerScrollViewer}}"
                                               VerticalScrollBarVisibility="Visible">
-                    <dxschd:SchedulerItemsControl x:Name="MasterAllDayAreaContainer"
+                    <dxschi:SchedulerItemsControl x:Name="MasterAllDayAreaContainer"
                                                   Background="Transparent"
-                                                  dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
+                                                  dxschi:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschi:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
                                                   HorizontalAlignment="Stretch"
                                                   ItemsSource="{Binding}"
                                                   SnapsToDevicePixels="True"
                                                   cs:id="SchedulerItemsControl_0000">
-                        <dxschd:SchedulerItemsControl.ItemTemplate>
+                        <dxschi:SchedulerItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <dxschd:SchedulerItemsControl Background="Transparent"
+                                <dxschi:SchedulerItemsControl Background="Transparent"
                                                               HorizontalAlignment="Stretch"
                                                               ItemsSource="{Binding AllDayAreaContainers}"
                                                               ItemTemplate="{DynamicResource {dxscht:DayViewThemeKey ResourceKey=AllDayAreaTemplate}}"
                                                               SnapsToDevicePixels="True"
                                                               cs:id="SchedulerItemsControl_0001">
-                                    <dxschd:SchedulerItemsControl.ItemsPanel>
+                                    <dxschi:SchedulerItemsControl.ItemsPanel>
                                         <ItemsPanelTemplate>
-                                            <dxschd:PixelSnappedUniformGrid x:Name="AllDayAreaContainerPSUG"
+                                            <dxschi:PixelSnappedUniformGrid x:Name="AllDayAreaContainerPSUG"
                                                                             Orientation="Horizontal"
                                                                             SnapsToDevicePixels="True"/>
                                         </ItemsPanelTemplate>
-                                    </dxschd:SchedulerItemsControl.ItemsPanel>
-                                </dxschd:SchedulerItemsControl>
+                                    </dxschi:SchedulerItemsControl.ItemsPanel>
+                                </dxschi:SchedulerItemsControl>
                             </DataTemplate>
-                        </dxschd:SchedulerItemsControl.ItemTemplate>
-                        <dxschd:SchedulerItemsControl.ItemsPanel>
+                        </dxschi:SchedulerItemsControl.ItemTemplate>
+                        <dxschi:SchedulerItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <dxschd:PixelSnappedUniformGrid x:Name="MasterAllDayAreaContainerPSUG"
+                                <dxschi:PixelSnappedUniformGrid x:Name="MasterAllDayAreaContainerPSUG"
                                                                 Orientation="Horizontal"
                                                                 SnapsToDevicePixels="True"/>
                             </ItemsPanelTemplate>
-                        </dxschd:SchedulerItemsControl.ItemsPanel>
-                    </dxschd:SchedulerItemsControl>
-                </dxschd:SchedulerScrollViewer>
-            </dxschd:HeightLimitControl>
-            <dxschd:SchedulerItemsControl x:Name="MasterAllDayAreaContainerForBottomLine"
-                                          dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
+                        </dxschi:SchedulerItemsControl.ItemsPanel>
+                    </dxschi:SchedulerItemsControl>
+                </dxschi:SchedulerScrollViewer>
+            </dxschi:HeightLimitControl>
+            <dxschi:SchedulerItemsControl x:Name="MasterAllDayAreaContainerForBottomLine"
+                                          dxschi:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschi:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
                                           HorizontalAlignment="Stretch"
                                           IsHitTestVisible="False"
                                           ItemsSource="{Binding}"
                                           SnapsToDevicePixels="True">
-                <dxschd:SchedulerItemsControl.ItemTemplate>
+                <dxschi:SchedulerItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <dxschd:SchedulerItemsControl Background="Transparent"
+                        <dxschi:SchedulerItemsControl Background="Transparent"
                                                       HorizontalAlignment="Stretch"
                                                       IsHitTestVisible="False"
                                                       ItemsSource="{Binding AllDayAreaContainers}"
                                                       SnapsToDevicePixels="True"
                                                       cs:id="SchedulerItemsControl_0002">
-                            <dxschd:SchedulerItemsControl.ItemTemplate>
+                            <dxschi:SchedulerItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Border Background="Transparent"
                                             BorderBrush="{Binding Cells.Last.Brushes.CellBorderDark}"
@@ -243,22 +243,22 @@
                                             UseLayoutRounding="True"
                                             cs:id="Border_0000"/>
                                 </DataTemplate>
-                            </dxschd:SchedulerItemsControl.ItemTemplate>
-                            <dxschd:SchedulerItemsControl.ItemsPanel>
+                            </dxschi:SchedulerItemsControl.ItemTemplate>
+                            <dxschi:SchedulerItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <dxschd:PixelSnappedUniformGrid Orientation="Horizontal" SnapsToDevicePixels="True"/>
+                                    <dxschi:PixelSnappedUniformGrid Orientation="Horizontal" SnapsToDevicePixels="True"/>
                                 </ItemsPanelTemplate>
-                            </dxschd:SchedulerItemsControl.ItemsPanel>
-                        </dxschd:SchedulerItemsControl>
+                            </dxschi:SchedulerItemsControl.ItemsPanel>
+                        </dxschi:SchedulerItemsControl>
                     </DataTemplate>
-                </dxschd:SchedulerItemsControl.ItemTemplate>
-                <dxschd:SchedulerItemsControl.ItemsPanel>
+                </dxschi:SchedulerItemsControl.ItemTemplate>
+                <dxschi:SchedulerItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <dxschd:PixelSnappedUniformGrid Orientation="Horizontal" SnapsToDevicePixels="True"/>
+                        <dxschi:PixelSnappedUniformGrid Orientation="Horizontal" SnapsToDevicePixels="True"/>
                     </ItemsPanelTemplate>
-                </dxschd:SchedulerItemsControl.ItemsPanel>
-            </dxschd:SchedulerItemsControl>
-            <dxschd:SharedSizePanel Grid.Column="1"
+                </dxschi:SchedulerItemsControl.ItemsPanel>
+            </dxschi:SchedulerItemsControl>
+            <dxschi:SharedSizePanel Grid.Column="1"
                                     Grid.Row="1"
                                     IsBaseSizePanel="False"
                                     Orientation="Horizontal"
@@ -269,7 +269,7 @@
                         BorderThickness="0,0,0,1"
                         SnapsToDevicePixels="True"
                         UseLayoutRounding="True"/>
-            </dxschd:SharedSizePanel>
+            </dxschi:SharedSizePanel>
             <Border Background="Transparent"
                     BorderBrush="{Binding Last.AllDayAreaContainers.Last.Cells.Last.Brushes.CellBorder}"
                     BorderThickness="0,0,0,1"
@@ -278,22 +278,22 @@
                     SnapsToDevicePixels="True"
                     UseLayoutRounding="True"
                     cs:id="Border_0001"/>
-            <dxschd:SchedulerItemsControl x:Name="MasterAllDayAreaContainerForBottomLine2"
+            <dxschi:SchedulerItemsControl x:Name="MasterAllDayAreaContainerForBottomLine2"
                                           Background="Transparent"
-                                          dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
+                                          dxschi:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschi:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
                                           Grid.Row="1"
                                           HorizontalAlignment="Stretch"
                                           ItemsSource="{Binding }"
                                           SnapsToDevicePixels="True"
                                           cs:id="SchedulerItemsControl_0003">
-                <dxschd:SchedulerItemsControl.ItemTemplate>
+                <dxschi:SchedulerItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <dxschd:SchedulerItemsControl Background="Transparent"
+                        <dxschi:SchedulerItemsControl Background="Transparent"
                                                       HorizontalAlignment="Stretch"
                                                       ItemsSource="{Binding AllDayAreaContainers}"
                                                       SnapsToDevicePixels="True"
                                                       cs:id="SchedulerItemsControl_0004">
-                            <dxschd:SchedulerItemsControl.ItemTemplate>
+                            <dxschi:SchedulerItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Border Background="{DynamicResource {dxscht:DayViewThemeKey ResourceKey=AllDayAreaBottomBorderBackground}}"
                                             BorderBrush="{Binding Cells.Last.Brushes.CellBorderDark}"
@@ -301,21 +301,21 @@
                                             SnapsToDevicePixels="True"
                                             UseLayoutRounding="True"/>
                                 </DataTemplate>
-                            </dxschd:SchedulerItemsControl.ItemTemplate>
-                            <dxschd:SchedulerItemsControl.ItemsPanel>
+                            </dxschi:SchedulerItemsControl.ItemTemplate>
+                            <dxschi:SchedulerItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <dxschd:PixelSnappedUniformGrid Orientation="Horizontal" SnapsToDevicePixels="True"/>
+                                    <dxschi:PixelSnappedUniformGrid Orientation="Horizontal" SnapsToDevicePixels="True"/>
                                 </ItemsPanelTemplate>
-                            </dxschd:SchedulerItemsControl.ItemsPanel>
-                        </dxschd:SchedulerItemsControl>
+                            </dxschi:SchedulerItemsControl.ItemsPanel>
+                        </dxschi:SchedulerItemsControl>
                     </DataTemplate>
-                </dxschd:SchedulerItemsControl.ItemTemplate>
-                <dxschd:SchedulerItemsControl.ItemsPanel>
+                </dxschi:SchedulerItemsControl.ItemTemplate>
+                <dxschi:SchedulerItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <dxschd:PixelSnappedUniformGrid Orientation="Horizontal" SnapsToDevicePixels="True"/>
+                        <dxschi:PixelSnappedUniformGrid Orientation="Horizontal" SnapsToDevicePixels="True"/>
                     </ItemsPanelTemplate>
-                </dxschd:SchedulerItemsControl.ItemsPanel>
-            </dxschd:SchedulerItemsControl>
+                </dxschi:SchedulerItemsControl.ItemsPanel>
+            </dxschi:SchedulerItemsControl>
         </Grid>
     </DataTemplate>
 
@@ -327,19 +327,19 @@
                 <RowDefinition Height="AUTO"/>
                 <!--<RowDefinition Height="*"/>-->
             </Grid.RowDefinitions>
-            <dxschd:SchedulerDateHeaderItemsControl x:Name="dayHeaders"
-                                                    dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
+            <dxschi:SchedulerDateHeaderItemsControl x:Name="dayHeaders"
+                                                    dxschi:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschi:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
                                                     ItemContainerStyle="{Binding View.DateHeaderStyle}"
                                                     ItemsSource="{Binding SimpleIntervals}"
                                                     SnapsToDevicePixels="True">
-                <dxschd:SchedulerDateHeaderItemsControl.ItemsPanel>
+                <dxschi:SchedulerDateHeaderItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <dxschd:PixelSnappedUniformGrid dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), ElementName=dayHeaders}"
+                        <dxschi:PixelSnappedUniformGrid dxschi:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschi:SchedulerItemsControl.ElementPosition), ElementName=dayHeaders}"
                                                         Orientation="Horizontal"
                                                         SnapsToDevicePixels="True"/>
                     </ItemsPanelTemplate>
-                </dxschd:SchedulerDateHeaderItemsControl.ItemsPanel>
-            </dxschd:SchedulerDateHeaderItemsControl>
+                </dxschi:SchedulerDateHeaderItemsControl.ItemsPanel>
+            </dxschi:SchedulerDateHeaderItemsControl>
         </Grid>
     </DataTemplate>
 
@@ -351,25 +351,25 @@
                 <RowDefinition Height="AUTO"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <dxschd:SchedulerDateHeaderItemsControl x:Name="resourceDayViewHeader"
-                                                    dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
+            <dxschi:SchedulerDateHeaderItemsControl x:Name="resourceDayViewHeader"
+                                                    dxschi:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschi:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
                                                     ItemContainerStyle="{Binding View.DateHeaderStyle}"
                                                     ItemsSource="{Binding SimpleIntervals}"
                                                     SnapsToDevicePixels="True">
-                <dxschd:SchedulerDateHeaderItemsControl.ItemsPanel>
+                <dxschi:SchedulerDateHeaderItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <dxschd:PixelSnappedUniformGrid dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), ElementName=resourceDayViewHeader}"
+                        <dxschi:PixelSnappedUniformGrid dxschi:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschi:SchedulerItemsControl.ElementPosition), ElementName=resourceDayViewHeader}"
                                                         Orientation="Horizontal"
                                                         SnapsToDevicePixels="True"/>
                     </ItemsPanelTemplate>
-                </dxschd:SchedulerDateHeaderItemsControl.ItemsPanel>
-            </dxschd:SchedulerDateHeaderItemsControl>
+                </dxschi:SchedulerDateHeaderItemsControl.ItemsPanel>
+            </dxschi:SchedulerDateHeaderItemsControl>
         </Grid>
     </DataTemplate>
 
     <DataTemplate x:Key="{dxscht:DayViewThemeKey ResourceKey=GroupByResourceResourceHeaderTemplate}">
-        <dxschd:VisualResourceHeader Content="{Binding ResourceHeader}"
-                                     dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
+        <dxschi:VisualResourceHeader Content="{Binding ResourceHeader}"
+                                     dxschi:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschi:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
                                      SnapsToDevicePixels="True"
                                      Style="{Binding View.HorizontalResourceHeaderStyle}"/>
     </DataTemplate>
@@ -377,14 +377,14 @@
     <DataTemplate x:Key="{dxscht:DayViewThemeKey ResourceKey=GroupByResourceDayHeaderTemplate}">
         <dx:XPFContentControl Content="{Binding}"
                               ContentTemplate="{DynamicResource {dxscht:DayViewThemeKey ResourceKey=ResourceDayViewHeadersTemplate}}"
-                              dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource elementPositionDayViewConverter}}"
+                              dxschi:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschi:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource elementPositionDayViewConverter}}"
                               Grid.Row="1"
                               SnapsToDevicePixels="True">
             <ContentControl.Template>
                 <ControlTemplate TargetType="{x:Type ContentControl}">
                     <ContentPresenter Content="{TemplateBinding Content}"
                                       ContentTemplate="{TemplateBinding ContentTemplate}"
-                                      dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"/>
+                                      dxschi:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschi:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"/>
                 </ControlTemplate>
             </ContentControl.Template>
         </dx:XPFContentControl>
@@ -404,20 +404,20 @@
 
     <DataTemplate x:Key="{dxscht:DayViewThemeKey ResourceKey=GroupByDateDayViewHeadersTemplate}">
         <Grid>
-            <dxschd:SchedulerResourceHeaderItemsControl x:Name="GroupByDateDayViewHeadersTemplateResourceHeaders"
-                                                        dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
+            <dxschi:SchedulerResourceHeaderItemsControl x:Name="GroupByDateDayViewHeadersTemplateResourceHeaders"
+                                                        dxschi:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschi:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
                                                         Grid.Row="1"
                                                         HorizontalAlignment="Stretch"
                                                         HorizontalContentAlignment="Stretch"
                                                         ItemContainerStyle="{Binding View.HorizontalResourceHeaderStyle}"
                                                         ItemsSource="{Binding ResourceHeaders}"
                                                         VerticalContentAlignment="Stretch">
-                <dxschd:SchedulerResourceHeaderItemsControl.ItemsPanel>
+                <dxschi:SchedulerResourceHeaderItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <dxschd:PixelSnappedUniformGrid dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), ElementName=GroupByDateDayViewHeadersTemplateResourceHeaders}" Orientation="Horizontal"/>
+                        <dxschi:PixelSnappedUniformGrid dxschi:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschi:SchedulerItemsControl.ElementPosition), ElementName=GroupByDateDayViewHeadersTemplateResourceHeaders}" Orientation="Horizontal"/>
                     </ItemsPanelTemplate>
-                </dxschd:SchedulerResourceHeaderItemsControl.ItemsPanel>
-            </dxschd:SchedulerResourceHeaderItemsControl>
+                </dxschi:SchedulerResourceHeaderItemsControl.ItemsPanel>
+            </dxschi:SchedulerResourceHeaderItemsControl>
         </Grid>
     </DataTemplate>
 
@@ -452,28 +452,28 @@
                         <!--END WPF-->
                     </ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <dxschd:SchedulerItemsControl Grid.Column="0"
+                <dxschi:SchedulerItemsControl Grid.Column="0"
                                               HorizontalAlignment="Stretch"
                                               HorizontalContentAlignment="Stretch"
                                               ItemsSource="{Binding Intervals}"
                                               SnapsToDevicePixels="True">
-                    <dxschd:SchedulerItemsControl.ItemTemplate>
+                    <dxschi:SchedulerItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <dxschd:VisualDateHeader Content="{Binding FirstSimpleInterval}"
+                            <dxschi:VisualDateHeader Content="{Binding FirstSimpleInterval}"
                                                      DisableResourceColor="True"
-                                                     dxschd:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschd:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
+                                                     dxschi:SchedulerItemsControl.ElementPosition="{Binding Path=(dxschi:SchedulerItemsControl.ElementPosition), RelativeSource={RelativeSource TemplatedParent}}"
                                                      Style="{Binding View.DateHeaderStyle}"/>
                         </DataTemplate>
-                    </dxschd:SchedulerItemsControl.ItemTemplate>
-                    <dxschd:SchedulerItemsControl.ItemsPanel>
+                    </dxschi:SchedulerItemsControl.ItemTemplate>
+                    <dxschi:SchedulerItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <dxschd:PixelSnappedUniformGrid dxschd:SchedulerItemsControl.ElementPosition="Start,Start,Start,Both"
+                            <dxschi:PixelSnappedUniformGrid dxschi:SchedulerItemsControl.ElementPosition="Start,Start,Start,Both"
                                                             Orientation="Horizontal"
                                                             SnapsToDevicePixels="True"/>
                         </ItemsPanelTemplate>
-                    </dxschd:SchedulerItemsControl.ItemsPanel>
-                </dxschd:SchedulerItemsControl>
-                <dxschd:VisualDateHeader dxschd:SchedulerItemsControl.ElementPosition="End,Start,Both,Both"
+                    </dxschi:SchedulerItemsControl.ItemsPanel>
+                </dxschi:SchedulerItemsControl>
+                <dxschi:VisualDateHeader dxschi:SchedulerItemsControl.ElementPosition="End,Start,Both,Both"
                                          Grid.Column="1"
                                          SnapsToDevicePixels="True"
                                          Style="{Binding View.DateHeaderStyle}"/>
@@ -489,32 +489,32 @@
                         <!--END WPF-->
                     </ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <dxschd:SchedulerItemsControl Background="Transparent"
+                <dxschi:SchedulerItemsControl Background="Transparent"
                                               Grid.Column="0"
                                               HorizontalAlignment="Stretch"
                                               ItemsSource="{Binding Intervals}"
                                               ItemTemplate="{DynamicResource {dxscht:DayViewThemeKey ResourceKey=GroupByDateDayViewHeadersTemplate}}"
                                               SnapsToDevicePixels="True"
                                               cs:id="SchedulerItemsControl_0000">
-                    <dxschd:SchedulerItemsControl.ItemsPanel>
+                    <dxschi:SchedulerItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <dxschd:PixelSnappedUniformGrid dxschd:SchedulerItemsControl.ElementPosition="Start,Middle,Start,End"
+                            <dxschi:PixelSnappedUniformGrid dxschi:SchedulerItemsControl.ElementPosition="Start,Middle,Start,End"
                                                             HorizontalAlignment="Stretch"
                                                             Orientation="Horizontal"
                                                             SnapsToDevicePixels="True"/>
                         </ItemsPanelTemplate>
-                    </dxschd:SchedulerItemsControl.ItemsPanel>
-                </dxschd:SchedulerItemsControl>
-                <dxschd:VisualResourceHeader Content="{Binding Intervals.Last.ResourceHeaders.Last}"
-                                             dxschd:SchedulerItemsControl.ElementPosition="End,Middle,Both,End"
+                    </dxschi:SchedulerItemsControl.ItemsPanel>
+                </dxschi:SchedulerItemsControl>
+                <dxschi:VisualResourceHeader Content="{Binding Intervals.Last.ResourceHeaders.Last}"
+                                             dxschi:SchedulerItemsControl.ElementPosition="End,Middle,Both,End"
                                              Grid.Column="2"
                                              Grid.Row="1"
                                              SnapsToDevicePixels="True"
                                              Style="{Binding View.HorizontalResourceHeaderStyle}">
-                    <dxschd:VisualResourceHeader.ContentTemplate>
+                    <dxschi:VisualResourceHeader.ContentTemplate>
                         <DataTemplate/>
-                    </dxschd:VisualResourceHeader.ContentTemplate>
-                </dxschd:VisualResourceHeader>
+                    </dxschi:VisualResourceHeader.ContentTemplate>
+                </dxschi:VisualResourceHeader>
             </Grid>
         </Grid>
     </DataTemplate>
@@ -549,7 +549,7 @@
                     <!--END WPF-->
                 </ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <dxschd:SchedulerItemsControl Background="Transparent"
+            <dxschi:SchedulerItemsControl Background="Transparent"
                                           Grid.Column="0"
                                           Grid.Row="1"
                                           HorizontalAlignment="Stretch"
@@ -557,28 +557,28 @@
                                           ItemTemplate="{DynamicResource {dxscht:DayViewThemeKey ResourceKey=GroupByDateDayViewHeadersTemplate}}"
                                           SnapsToDevicePixels="True"
                                           cs:id="SchedulerItemsControl_0000">
-                <dxschd:SchedulerItemsControl.ItemsPanel>
+                <dxschi:SchedulerItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <dxschd:PixelSnappedUniformGrid dxschd:SchedulerItemsControl.ElementPosition="Start,Start,Start,Both"
+                        <dxschi:PixelSnappedUniformGrid dxschi:SchedulerItemsControl.ElementPosition="Start,Start,Start,Both"
                                                         HorizontalAlignment="Stretch"
                                                         Orientation="Horizontal"
                                                         SnapsToDevicePixels="True"/>
                     </ItemsPanelTemplate>
-                </dxschd:SchedulerItemsControl.ItemsPanel>
-            </dxschd:SchedulerItemsControl>
-            <dxschd:VisualResourceHeader Content="{Binding Intervals.Last.ResourceHeaders.Last}"
-                                         dxschd:SchedulerItemsControl.ElementPosition="End,Start,Both,Both"
+                </dxschi:SchedulerItemsControl.ItemsPanel>
+            </dxschi:SchedulerItemsControl>
+            <dxschi:VisualResourceHeader Content="{Binding Intervals.Last.ResourceHeaders.Last}"
+                                         dxschi:SchedulerItemsControl.ElementPosition="End,Start,Both,Both"
                                          Grid.Column="1"
                                          Grid.Row="1"
                                          SnapsToDevicePixels="True"
                                          Style="{Binding View.HorizontalResourceHeaderStyle}">
-                <dxschd:VisualResourceHeader.ContentTemplate>
+                <dxschi:VisualResourceHeader.ContentTemplate>
                     <DataTemplate/>
-                </dxschd:VisualResourceHeader.ContentTemplate>
-            </dxschd:VisualResourceHeader>
+                </dxschi:VisualResourceHeader.ContentTemplate>
+            </dxschi:VisualResourceHeader>
         </Grid>
     </DataTemplate>
 
-    <!--END TOSLONLY REPLACE 'dxschd:SchedulerScrollViewer'ScrollViewer'-->
+    <!--END TOSLONLY REPLACE 'dxschi:SchedulerScrollViewer'ScrollViewer'-->
 
 </ResourceDictionary>

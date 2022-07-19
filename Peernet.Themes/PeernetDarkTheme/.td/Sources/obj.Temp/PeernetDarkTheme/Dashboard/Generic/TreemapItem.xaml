@@ -1,7 +1,7 @@
-<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dasboardthemes="http://schemas.devexpress.com/winfx/2008/xaml/dashboard/themekeys" xmlns:dxdash="http://schemas.devexpress.com/winfx/2008/xaml/dashboard" xmlns:dxdashi="http://schemas.devexpress.com/winfx/2008/xaml/dashboard/internal" xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:dxtm="http://schemas.devexpress.com/winfx/2008/xaml/treemap" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core">
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dxdash="http://schemas.devexpress.com/winfx/2008/xaml/dashboard" xmlns:dxdashi="http://schemas.devexpress.com/winfx/2008/xaml/dashboard/internal" xmlns:dxdasht="http://schemas.devexpress.com/winfx/2008/xaml/dashboard/themekeys" xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:dxtm="http://schemas.devexpress.com/winfx/2008/xaml/treemap" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core">
 
     <DataTemplate x:Key="tooltipTemplate">
-        <TextBlock FontSize="{DynamicResource {dasboardthemes:TreemapItemThemeKey ResourceKey=ToolTipFontSize}}" FontWeight="{DynamicResource {dasboardthemes:TreemapItemThemeKey ResourceKey=ToolTipFontWeight}}" Foreground="{DynamicResource {dasboardthemes:TreemapItemThemeKey ResourceKey=ToolTipForeground}}" Margin="20,15,20,18" Text="{Binding Item.ToolTip}" TextWrapping="Wrap" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\TreemapItem.xaml;14;10" />
+        <TextBlock FontSize="{DynamicResource {dxdasht:TreemapItemThemeKey ResourceKey=ToolTipFontSize}}" FontWeight="{DynamicResource {dxdasht:TreemapItemThemeKey ResourceKey=ToolTipFontWeight}}" Foreground="{DynamicResource {dxdasht:TreemapItemThemeKey ResourceKey=ToolTipForeground}}" Margin="20,15,20,18" Text="{Binding Item.ToolTip}" TextWrapping="Wrap" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Dashboard\Generic\TreemapItem.xaml;14;10" />
     </DataTemplate>
 
     <DataTemplate x:Key="ColorizerKey">
@@ -12,7 +12,7 @@
 
     <dxdashi:TreemapMouseEventArgsConverter x:Key="TreemapMouseEventArgsConverter" />
 
-    <Style x:Key="{dasboardthemes:TreemapItemThemeKey ResourceKey=ViewStyle}" TargetType="{x:Type dxtm:TreeMapControl}">
+    <Style x:Key="{dxdasht:TreemapItemThemeKey ResourceKey=ViewStyle}" TargetType="{x:Type dxtm:TreeMapControl}">
         <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Dashboard\Generic\TreemapItem.xaml;30;6" /><Setter Property="LayoutAlgorithm" Value="{Binding LayoutAlgorithm}" />
         <Setter Property="ToolTipEnabled" Value="True" />
         <Setter Property="ToolTipContentTemplate" Value="{StaticResource tooltipTemplate}" />
@@ -47,7 +47,7 @@
         </Style.Resources>
     </Style>
 
-    <DataTemplate x:Key="{dasboardthemes:TreemapItemThemeKey ResourceKey=Template}">
+    <DataTemplate x:Key="{dxdasht:TreemapItemThemeKey ResourceKey=Template}">
         <dxtm:TreeMapControl Style="{Binding Path=(dxdash:DashboardLayoutItem.ViewStyle), RelativeSource={RelativeSource TemplatedParent}}" />
     </DataTemplate>
 

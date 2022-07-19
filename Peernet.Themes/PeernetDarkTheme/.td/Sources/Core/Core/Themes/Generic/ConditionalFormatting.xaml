@@ -3,45 +3,43 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core"
-                    xmlns:dxcinternal="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
                     xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxt:ResourceDictionaryEx Source="{dxcinternal:DynamicConditionalFormattingResourceExtension ConditionalFormatting.xaml, ShortPaths=True}"/>
+        <dxt:ResourceDictionaryEx Source="{dxi:DynamicConditionalFormattingResourceExtension ConditionalFormatting.xaml, ShortPaths=True}"/>
     </ResourceDictionary.MergedDictionaries>
 
-    <dxc:Format x:Key="{dxt:FormatThemeKey ResourceKey=LightRedFillWithDarkRedText}"
-                Background="{StaticResource {dxt:FormatThemeKey ResourceKey=FormatRedFillBrush}}"
-                Foreground="{StaticResource {dxt:FormatThemeKey ResourceKey=FormatRedTextBrush}}"/>
+    <dx:Format x:Key="{dxt:FormatThemeKey ResourceKey=LightRedFillWithDarkRedText}"
+               Background="{StaticResource {dxt:FormatThemeKey ResourceKey=FormatRedFillBrush}}"
+               Foreground="{StaticResource {dxt:FormatThemeKey ResourceKey=FormatRedTextBrush}}"/>
 
-    <dxc:Format x:Key="{dxt:FormatThemeKey ResourceKey=YellowFillWithDarkYellowText}"
-                Background="{StaticResource {dxt:FormatThemeKey ResourceKey=FormatYellowFillBrush}}"
-                Foreground="{StaticResource {dxt:FormatThemeKey ResourceKey=FormatYellowTextBrush}}"/>
+    <dx:Format x:Key="{dxt:FormatThemeKey ResourceKey=YellowFillWithDarkYellowText}"
+               Background="{StaticResource {dxt:FormatThemeKey ResourceKey=FormatYellowFillBrush}}"
+               Foreground="{StaticResource {dxt:FormatThemeKey ResourceKey=FormatYellowTextBrush}}"/>
 
-    <dxc:Format x:Key="{dxt:FormatThemeKey ResourceKey=GreenFillWithDarkGreenText}"
-                Background="{StaticResource {dxt:FormatThemeKey ResourceKey=FormatGreenFillBrush}}"
-                Foreground="{StaticResource {dxt:FormatThemeKey ResourceKey=FormatGreenTextBrush}}"/>
+    <dx:Format x:Key="{dxt:FormatThemeKey ResourceKey=GreenFillWithDarkGreenText}"
+               Background="{StaticResource {dxt:FormatThemeKey ResourceKey=FormatGreenFillBrush}}"
+               Foreground="{StaticResource {dxt:FormatThemeKey ResourceKey=FormatGreenTextBrush}}"/>
 
-    <dxc:Format x:Key="{dxt:FormatThemeKey ResourceKey=LightRedFill}" Background="{StaticResource {dxt:FormatThemeKey ResourceKey=FormatRedFillBrush}}"/>
+    <dx:Format x:Key="{dxt:FormatThemeKey ResourceKey=LightRedFill}" Background="{StaticResource {dxt:FormatThemeKey ResourceKey=FormatRedFillBrush}}"/>
 
-    <dxc:Format x:Key="{dxt:FormatThemeKey ResourceKey=LightGreenFill}" Background="{StaticResource {dxt:FormatThemeKey ResourceKey=FormatGreenFillBrush}}"/>
+    <dx:Format x:Key="{dxt:FormatThemeKey ResourceKey=LightGreenFill}" Background="{StaticResource {dxt:FormatThemeKey ResourceKey=FormatGreenFillBrush}}"/>
 
-    <dxc:Format x:Key="{dxt:FormatThemeKey ResourceKey=RedText}" Foreground="{StaticResource {dxt:FormatThemeKey ResourceKey=FormatRedTextBrush}}"/>
+    <dx:Format x:Key="{dxt:FormatThemeKey ResourceKey=RedText}" Foreground="{StaticResource {dxt:FormatThemeKey ResourceKey=FormatRedTextBrush}}"/>
 
-    <dxc:Format x:Key="{dxt:FormatThemeKey ResourceKey=GreenText}" Foreground="{StaticResource {dxt:FormatThemeKey ResourceKey=FormatGreenTextBrush}}"/>
+    <dx:Format x:Key="{dxt:FormatThemeKey ResourceKey=GreenText}" Foreground="{StaticResource {dxt:FormatThemeKey ResourceKey=FormatGreenTextBrush}}"/>
 
-    <dxc:Format x:Key="{dxt:FormatThemeKey ResourceKey=BoldText}" FontWeight="Bold"/>
+    <dx:Format x:Key="{dxt:FormatThemeKey ResourceKey=BoldText}" FontWeight="Bold"/>
 
-    <dxc:Format x:Key="{dxt:FormatThemeKey ResourceKey=ItalicText}" FontStyle="Italic"/>
+    <dx:Format x:Key="{dxt:FormatThemeKey ResourceKey=ItalicText}" FontStyle="Italic"/>
 
-    <dxc:Format x:Key="{dxt:FormatThemeKey ResourceKey=StrikethroughText}" TextDecorations="Strikethrough"/>
+    <dx:Format x:Key="{dxt:FormatThemeKey ResourceKey=StrikethroughText}" TextDecorations="Strikethrough"/>
 
-    <dxc:FormatInfoCollection x:Key="{dxt:ConditionalFormattingThemeKey ResourceKey=PredefinedFormats}">
+    <dx:FormatInfoCollection x:Key="{dxt:ConditionalFormattingThemeKey ResourceKey=PredefinedFormats}">
         <dxt:StandardFormatInfoExtension FormatName="LightRedFillWithDarkRedText"/>
         <dxt:StandardFormatInfoExtension FormatName="YellowFillWithDarkYellowText"/>
         <dxt:StandardFormatInfoExtension FormatName="GreenFillWithDarkGreenText"/>
@@ -52,63 +50,63 @@
         <dxt:StandardFormatInfoExtension FormatName="BoldText"/>
         <dxt:StandardFormatInfoExtension FormatName="ItalicText"/>
         <dxt:StandardFormatInfoExtension FormatName="StrikethroughText"/>
-    </dxc:FormatInfoCollection>
+    </dx:FormatInfoCollection>
 
-    <dxc:ColorScaleFormat x:Key="{dxt:FormatThemeKey ResourceKey=GreenYellowRedColorScale}"
-                          ColorMax="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleGreen}}"
-                          ColorMiddle="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleYellow}}"
-                          ColorMin="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleRed}}"/>
+    <dx:ColorScaleFormat x:Key="{dxt:FormatThemeKey ResourceKey=GreenYellowRedColorScale}"
+                         ColorMax="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleGreen}}"
+                         ColorMiddle="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleYellow}}"
+                         ColorMin="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleRed}}"/>
 
-    <dxc:ColorScaleFormat x:Key="{dxt:FormatThemeKey ResourceKey=RedYellowGreenColorScale}"
-                          ColorMax="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleRed}}"
-                          ColorMiddle="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleYellow}}"
-                          ColorMin="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleGreen}}"/>
+    <dx:ColorScaleFormat x:Key="{dxt:FormatThemeKey ResourceKey=RedYellowGreenColorScale}"
+                         ColorMax="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleRed}}"
+                         ColorMiddle="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleYellow}}"
+                         ColorMin="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleGreen}}"/>
 
-    <dxc:ColorScaleFormat x:Key="{dxt:FormatThemeKey ResourceKey=GreenWhiteRedColorScale}"
-                          ColorMax="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleGreen}}"
-                          ColorMiddle="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleWhite}}"
-                          ColorMin="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleRed}}"/>
+    <dx:ColorScaleFormat x:Key="{dxt:FormatThemeKey ResourceKey=GreenWhiteRedColorScale}"
+                         ColorMax="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleGreen}}"
+                         ColorMiddle="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleWhite}}"
+                         ColorMin="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleRed}}"/>
 
-    <dxc:ColorScaleFormat x:Key="{dxt:FormatThemeKey ResourceKey=RedWhiteGreenColorScale}"
-                          ColorMax="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleRed}}"
-                          ColorMiddle="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleWhite}}"
-                          ColorMin="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleGreen}}"/>
+    <dx:ColorScaleFormat x:Key="{dxt:FormatThemeKey ResourceKey=RedWhiteGreenColorScale}"
+                         ColorMax="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleRed}}"
+                         ColorMiddle="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleWhite}}"
+                         ColorMin="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleGreen}}"/>
 
-    <dxc:ColorScaleFormat x:Key="{dxt:FormatThemeKey ResourceKey=BlueWhiteRedColorScale}"
-                          ColorMax="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleBlue}}"
-                          ColorMiddle="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleWhite}}"
-                          ColorMin="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleRed}}"/>
+    <dx:ColorScaleFormat x:Key="{dxt:FormatThemeKey ResourceKey=BlueWhiteRedColorScale}"
+                         ColorMax="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleBlue}}"
+                         ColorMiddle="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleWhite}}"
+                         ColorMin="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleRed}}"/>
 
-    <dxc:ColorScaleFormat x:Key="{dxt:FormatThemeKey ResourceKey=RedWhiteBlueColorScale}"
-                          ColorMax="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleRed}}"
-                          ColorMiddle="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleWhite}}"
-                          ColorMin="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleBlue}}"/>
+    <dx:ColorScaleFormat x:Key="{dxt:FormatThemeKey ResourceKey=RedWhiteBlueColorScale}"
+                         ColorMax="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleRed}}"
+                         ColorMiddle="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleWhite}}"
+                         ColorMin="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleBlue}}"/>
 
-    <dxc:ColorScaleFormat x:Key="{dxt:FormatThemeKey ResourceKey=WhiteRedColorScale}"
-                          ColorMax="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleWhite}}"
-                          ColorMin="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleRed}}"/>
+    <dx:ColorScaleFormat x:Key="{dxt:FormatThemeKey ResourceKey=WhiteRedColorScale}"
+                         ColorMax="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleWhite}}"
+                         ColorMin="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleRed}}"/>
 
-    <dxc:ColorScaleFormat x:Key="{dxt:FormatThemeKey ResourceKey=RedWhiteColorScale}"
-                          ColorMax="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleRed}}"
-                          ColorMin="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleWhite}}"/>
+    <dx:ColorScaleFormat x:Key="{dxt:FormatThemeKey ResourceKey=RedWhiteColorScale}"
+                         ColorMax="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleRed}}"
+                         ColorMin="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleWhite}}"/>
 
-    <dxc:ColorScaleFormat x:Key="{dxt:FormatThemeKey ResourceKey=GreenWhiteColorScale}"
-                          ColorMax="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleGreen}}"
-                          ColorMin="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleWhite}}"/>
+    <dx:ColorScaleFormat x:Key="{dxt:FormatThemeKey ResourceKey=GreenWhiteColorScale}"
+                         ColorMax="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleGreen}}"
+                         ColorMin="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleWhite}}"/>
 
-    <dxc:ColorScaleFormat x:Key="{dxt:FormatThemeKey ResourceKey=WhiteGreenColorScale}"
-                          ColorMax="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleWhite}}"
-                          ColorMin="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleGreen}}"/>
+    <dx:ColorScaleFormat x:Key="{dxt:FormatThemeKey ResourceKey=WhiteGreenColorScale}"
+                         ColorMax="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleWhite}}"
+                         ColorMin="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleGreen}}"/>
 
-    <dxc:ColorScaleFormat x:Key="{dxt:FormatThemeKey ResourceKey=GreenYellowColorScale}"
-                          ColorMax="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleGreen}}"
-                          ColorMin="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleYellow}}"/>
+    <dx:ColorScaleFormat x:Key="{dxt:FormatThemeKey ResourceKey=GreenYellowColorScale}"
+                         ColorMax="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleGreen}}"
+                         ColorMin="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleYellow}}"/>
 
-    <dxc:ColorScaleFormat x:Key="{dxt:FormatThemeKey ResourceKey=YellowGreenColorScale}"
-                          ColorMax="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleYellow}}"
-                          ColorMin="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleGreen}}"/>
+    <dx:ColorScaleFormat x:Key="{dxt:FormatThemeKey ResourceKey=YellowGreenColorScale}"
+                         ColorMax="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleYellow}}"
+                         ColorMin="{StaticResource {dxt:FormatThemeKey ResourceKey=ColorScaleGreen}}"/>
 
-    <dxc:FormatInfoCollection x:Key="{dxt:ConditionalFormattingThemeKey ResourceKey=PredefinedColorScaleFormats}">
+    <dx:FormatInfoCollection x:Key="{dxt:ConditionalFormattingThemeKey ResourceKey=PredefinedColorScaleFormats}">
         <dxt:StandardColorScaleFormatInfoExtension FormatName="GreenYellowRedColorScale" Icon="{dxt:ConditionalFormattingMenuIcon GreenYellowRed_32x32.png, SvgIconName=GreenYellowRed.svg}"/>
         <dxt:StandardColorScaleFormatInfoExtension FormatName="RedYellowGreenColorScale" Icon="{dxt:ConditionalFormattingMenuIcon RedYellowGreen_32x32.png, SvgIconName=RedYellowGreen.svg}"/>
         <dxt:StandardColorScaleFormatInfoExtension FormatName="GreenWhiteRedColorScale" Icon="{dxt:ConditionalFormattingMenuIcon GreenWhiteRed_32x32.png, SvgIconName=GreenWhiteRed.svg}"/>
@@ -121,7 +119,7 @@
         <dxt:StandardColorScaleFormatInfoExtension FormatName="WhiteGreenColorScale" Icon="{dxt:ConditionalFormattingMenuIcon WhiteGreen_32x32.png, SvgIconName=WhiteGreen.svg}"/>
         <dxt:StandardColorScaleFormatInfoExtension FormatName="GreenYellowColorScale" Icon="{dxt:ConditionalFormattingMenuIcon GreenYellow_32x32.png, SvgIconName=GreenYellow.svg}"/>
         <dxt:StandardColorScaleFormatInfoExtension FormatName="YellowGreenColorScale" Icon="{dxt:ConditionalFormattingMenuIcon YellowGreen_32x32.png, SvgIconName=YellowGreen.svg}"/>
-    </dxc:FormatInfoCollection>
+    </dx:FormatInfoCollection>
 
     <SolidColorBrush x:Key="{dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}" Color="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeColor}}"/>
 
@@ -153,91 +151,91 @@
         </DrawingBrush.Drawing>
     </DrawingBrush>
 
-    <dxc:DataBarFormat x:Key="{dxt:FormatThemeKey ResourceKey=BlueSolidDataBar}"
-                       BorderBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarBlueBrush_Solid}}"
-                       BorderBrushNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
-                       Fill="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarBlueBrush_Solid}}"
-                       FillNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
-                       ZeroLineBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarZeroLineBrush}}"/>
+    <dx:DataBarFormat x:Key="{dxt:FormatThemeKey ResourceKey=BlueSolidDataBar}"
+                      BorderBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarBlueBrush_Solid}}"
+                      BorderBrushNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
+                      Fill="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarBlueBrush_Solid}}"
+                      FillNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
+                      ZeroLineBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarZeroLineBrush}}"/>
 
-    <dxc:DataBarFormat x:Key="{dxt:FormatThemeKey ResourceKey=GreenSolidDataBar}"
-                       BorderBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarGreenBrush_Solid}}"
-                       BorderBrushNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
-                       Fill="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarGreenBrush_Solid}}"
-                       FillNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
-                       ZeroLineBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarZeroLineBrush}}"/>
+    <dx:DataBarFormat x:Key="{dxt:FormatThemeKey ResourceKey=GreenSolidDataBar}"
+                      BorderBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarGreenBrush_Solid}}"
+                      BorderBrushNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
+                      Fill="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarGreenBrush_Solid}}"
+                      FillNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
+                      ZeroLineBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarZeroLineBrush}}"/>
 
-    <dxc:DataBarFormat x:Key="{dxt:FormatThemeKey ResourceKey=RedSolidDataBar}"
-                       BorderBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarRedBrush_Solid}}"
-                       BorderBrushNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
-                       Fill="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarRedBrush_Solid}}"
-                       FillNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
-                       ZeroLineBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarZeroLineBrush}}"/>
+    <dx:DataBarFormat x:Key="{dxt:FormatThemeKey ResourceKey=RedSolidDataBar}"
+                      BorderBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarRedBrush_Solid}}"
+                      BorderBrushNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
+                      Fill="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarRedBrush_Solid}}"
+                      FillNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
+                      ZeroLineBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarZeroLineBrush}}"/>
 
-    <dxc:DataBarFormat x:Key="{dxt:FormatThemeKey ResourceKey=OrangeSolidDataBar}"
-                       BorderBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarOrangeBrush_Solid}}"
-                       BorderBrushNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
-                       Fill="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarOrangeBrush_Solid}}"
-                       FillNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
-                       ZeroLineBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarZeroLineBrush}}"/>
+    <dx:DataBarFormat x:Key="{dxt:FormatThemeKey ResourceKey=OrangeSolidDataBar}"
+                      BorderBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarOrangeBrush_Solid}}"
+                      BorderBrushNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
+                      Fill="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarOrangeBrush_Solid}}"
+                      FillNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
+                      ZeroLineBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarZeroLineBrush}}"/>
 
-    <dxc:DataBarFormat x:Key="{dxt:FormatThemeKey ResourceKey=LightBlueSolidDataBar}"
-                       BorderBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarLightBlueBrush_Solid}}"
-                       BorderBrushNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
-                       Fill="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarLightBlueBrush_Solid}}"
-                       FillNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
-                       ZeroLineBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarZeroLineBrush}}"/>
+    <dx:DataBarFormat x:Key="{dxt:FormatThemeKey ResourceKey=LightBlueSolidDataBar}"
+                      BorderBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarLightBlueBrush_Solid}}"
+                      BorderBrushNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
+                      Fill="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarLightBlueBrush_Solid}}"
+                      FillNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
+                      ZeroLineBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarZeroLineBrush}}"/>
 
-    <dxc:DataBarFormat x:Key="{dxt:FormatThemeKey ResourceKey=PurpleSolidDataBar}"
-                       BorderBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarPurpleBrush_Solid}}"
-                       BorderBrushNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
-                       Fill="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarPurpleBrush_Solid}}"
-                       FillNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
-                       ZeroLineBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarZeroLineBrush}}"/>
+    <dx:DataBarFormat x:Key="{dxt:FormatThemeKey ResourceKey=PurpleSolidDataBar}"
+                      BorderBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarPurpleBrush_Solid}}"
+                      BorderBrushNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
+                      Fill="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarPurpleBrush_Solid}}"
+                      FillNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
+                      ZeroLineBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarZeroLineBrush}}"/>
 
-    <dxc:DataBarFormat x:Key="{dxt:FormatThemeKey ResourceKey=BlueGradientDataBar}"
-                       BorderBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarBlueBrush_Solid}}"
-                       BorderBrushNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
-                       Fill="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarBlueBrush_Gradient}}"
-                       FillNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Gradient}}"
-                       ZeroLineBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarZeroLineBrush}}"/>
+    <dx:DataBarFormat x:Key="{dxt:FormatThemeKey ResourceKey=BlueGradientDataBar}"
+                      BorderBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarBlueBrush_Solid}}"
+                      BorderBrushNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
+                      Fill="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarBlueBrush_Gradient}}"
+                      FillNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Gradient}}"
+                      ZeroLineBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarZeroLineBrush}}"/>
 
-    <dxc:DataBarFormat x:Key="{dxt:FormatThemeKey ResourceKey=GreenGradientDataBar}"
-                       BorderBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarGreenBrush_Solid}}"
-                       BorderBrushNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
-                       Fill="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarGreenBrush_Gradient}}"
-                       FillNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Gradient}}"
-                       ZeroLineBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarZeroLineBrush}}"/>
+    <dx:DataBarFormat x:Key="{dxt:FormatThemeKey ResourceKey=GreenGradientDataBar}"
+                      BorderBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarGreenBrush_Solid}}"
+                      BorderBrushNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
+                      Fill="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarGreenBrush_Gradient}}"
+                      FillNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Gradient}}"
+                      ZeroLineBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarZeroLineBrush}}"/>
 
-    <dxc:DataBarFormat x:Key="{dxt:FormatThemeKey ResourceKey=RedGradientDataBar}"
-                       BorderBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarRedBrush_Solid}}"
-                       BorderBrushNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
-                       Fill="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarRedBrush_Gradient}}"
-                       FillNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Gradient}}"
-                       ZeroLineBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarZeroLineBrush}}"/>
+    <dx:DataBarFormat x:Key="{dxt:FormatThemeKey ResourceKey=RedGradientDataBar}"
+                      BorderBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarRedBrush_Solid}}"
+                      BorderBrushNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
+                      Fill="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarRedBrush_Gradient}}"
+                      FillNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Gradient}}"
+                      ZeroLineBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarZeroLineBrush}}"/>
 
-    <dxc:DataBarFormat x:Key="{dxt:FormatThemeKey ResourceKey=OrangeGradientDataBar}"
-                       BorderBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarOrangeBrush_Solid}}"
-                       BorderBrushNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
-                       Fill="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarOrangeBrush_Gradient}}"
-                       FillNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Gradient}}"
-                       ZeroLineBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarZeroLineBrush}}"/>
+    <dx:DataBarFormat x:Key="{dxt:FormatThemeKey ResourceKey=OrangeGradientDataBar}"
+                      BorderBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarOrangeBrush_Solid}}"
+                      BorderBrushNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
+                      Fill="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarOrangeBrush_Gradient}}"
+                      FillNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Gradient}}"
+                      ZeroLineBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarZeroLineBrush}}"/>
 
-    <dxc:DataBarFormat x:Key="{dxt:FormatThemeKey ResourceKey=LightBlueGradientDataBar}"
-                       BorderBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarLightBlueBrush_Solid}}"
-                       BorderBrushNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
-                       Fill="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarLightBlueBrush_Gradient}}"
-                       FillNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Gradient}}"
-                       ZeroLineBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarZeroLineBrush}}"/>
+    <dx:DataBarFormat x:Key="{dxt:FormatThemeKey ResourceKey=LightBlueGradientDataBar}"
+                      BorderBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarLightBlueBrush_Solid}}"
+                      BorderBrushNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
+                      Fill="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarLightBlueBrush_Gradient}}"
+                      FillNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Gradient}}"
+                      ZeroLineBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarZeroLineBrush}}"/>
 
-    <dxc:DataBarFormat x:Key="{dxt:FormatThemeKey ResourceKey=PurpleGradientDataBar}"
-                       BorderBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarPurpleBrush_Solid}}"
-                       BorderBrushNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
-                       Fill="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarPurpleBrush_Gradient}}"
-                       FillNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Gradient}}"
-                       ZeroLineBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarZeroLineBrush}}"/>
+    <dx:DataBarFormat x:Key="{dxt:FormatThemeKey ResourceKey=PurpleGradientDataBar}"
+                      BorderBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarPurpleBrush_Solid}}"
+                      BorderBrushNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Solid}}"
+                      Fill="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarPurpleBrush_Gradient}}"
+                      FillNegative="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarNegativeBrush_Gradient}}"
+                      ZeroLineBrush="{StaticResource {dxt:FormatThemeKey ResourceKey=DataBarZeroLineBrush}}"/>
 
-    <dxc:FormatInfoCollection x:Key="{dxt:ConditionalFormattingThemeKey ResourceKey=PredefinedDataBarFormats}">
+    <dx:FormatInfoCollection x:Key="{dxt:ConditionalFormattingThemeKey ResourceKey=PredefinedDataBarFormats}">
         <dxt:StandardDataBarFormatInfoExtension FormatName="BlueGradientDataBar"
                                                 Group="GradientFillGroup"
                                                 Icon="{dxt:ConditionalFormattingMenuIcon GradientBlueDataBar_32x32.png, SvgIconName=GradientBlueDataBar.svg}"/>
@@ -274,7 +272,7 @@
         <dxt:StandardDataBarFormatInfoExtension FormatName="PurpleSolidDataBar"
                                                 Group="SolidFillGroup"
                                                 Icon="{dxt:ConditionalFormattingMenuIcon SolidPurpleDataBar_32x32.png, SvgIconName=SolidPurpleDataBar.svg}"/>
-    </dxc:FormatInfoCollection>
+    </dx:FormatInfoCollection>
 
     <dxt:QuickIconSetFormatExtension Name="Arrows3_"
                                      x:Key="{dxt:FormatThemeKey ResourceKey=Arrows3ColoredIconSet}"
@@ -416,37 +414,37 @@
                                      SvgPath="{x:Static dxt:QuickIconSetFormatExtension.SvgDefaultPath}"
                                      XlIconSetType="Boxes5"/>
 
-    <dxc:IconSetFormat x:Key="{dxt:FormatThemeKey ResourceKey=PositiveNegativeTrianglesIconSet}"
-                       ElementThresholdType="Number"
-                       IconSetType="Triangles3">
-        <dxc:IconSetElement Icon="{dxt:ConditionalFormattingIconSetIcon Triangles3_3.png, SvgIconName=Triangles3_3.svg}" Threshold="{x:Static sys:Double.NegativeInfinity}"/>
-        <dxc:IconSetElement Icon="{x:Null}" Threshold="0"/>
-        <dxc:IconSetElement Icon="{dxt:ConditionalFormattingIconSetIcon Triangles3_1.png, SvgIconName=Triangles3_1.svg}"
-                            Threshold="0"
-                            ThresholdComparisonType="Greater"/>
-    </dxc:IconSetFormat>
+    <dx:IconSetFormat x:Key="{dxt:FormatThemeKey ResourceKey=PositiveNegativeTrianglesIconSet}"
+                      ElementThresholdType="Number"
+                      IconSetType="Triangles3">
+        <dx:IconSetElement Icon="{dxt:ConditionalFormattingIconSetIcon Triangles3_3.png, SvgIconName=Triangles3_3.svg}" Threshold="{x:Static sys:Double.NegativeInfinity}"/>
+        <dx:IconSetElement Icon="{x:Null}" Threshold="0"/>
+        <dx:IconSetElement Icon="{dxt:ConditionalFormattingIconSetIcon Triangles3_1.png, SvgIconName=Triangles3_1.svg}"
+                           Threshold="0"
+                           ThresholdComparisonType="Greater"/>
+    </dx:IconSetFormat>
 
-    <dxc:IconSetFormat x:Key="{dxt:FormatThemeKey ResourceKey=PositiveNegativeArrowsGrayIconSet}"
-                       ElementThresholdType="Number"
-                       IconSetType="ArrowsGray3">
-        <dxc:IconSetElement Icon="{dxt:ConditionalFormattingIconSetIcon ArrowsGrey3_3.png, SvgIconName=ArrowsGrey3_3.svg}" Threshold="{x:Static sys:Double.NegativeInfinity}"/>
-        <dxc:IconSetElement Icon="{x:Null}" Threshold="0"/>
-        <dxc:IconSetElement Icon="{dxt:ConditionalFormattingIconSetIcon ArrowsGrey3_1.png, SvgIconName=ArrowsGrey3_1.svg}"
-                            Threshold="0"
-                            ThresholdComparisonType="Greater"/>
-    </dxc:IconSetFormat>
+    <dx:IconSetFormat x:Key="{dxt:FormatThemeKey ResourceKey=PositiveNegativeArrowsGrayIconSet}"
+                      ElementThresholdType="Number"
+                      IconSetType="ArrowsGray3">
+        <dx:IconSetElement Icon="{dxt:ConditionalFormattingIconSetIcon ArrowsGrey3_3.png, SvgIconName=ArrowsGrey3_3.svg}" Threshold="{x:Static sys:Double.NegativeInfinity}"/>
+        <dx:IconSetElement Icon="{x:Null}" Threshold="0"/>
+        <dx:IconSetElement Icon="{dxt:ConditionalFormattingIconSetIcon ArrowsGrey3_1.png, SvgIconName=ArrowsGrey3_1.svg}"
+                           Threshold="0"
+                           ThresholdComparisonType="Greater"/>
+    </dx:IconSetFormat>
 
-    <dxc:IconSetFormat x:Key="{dxt:FormatThemeKey ResourceKey=PositiveNegativeArrowsColoredIconSet}"
-                       ElementThresholdType="Number"
-                       IconSetType="Arrows3">
-        <dxc:IconSetElement Icon="{dxt:ConditionalFormattingIconSetIcon Arrows3_3.png, SvgIconName=Arrows3_3.svg}" Threshold="{x:Static sys:Double.NegativeInfinity}"/>
-        <dxc:IconSetElement Icon="{x:Null}" Threshold="0"/>
-        <dxc:IconSetElement Icon="{dxt:ConditionalFormattingIconSetIcon Arrows3_1.png, SvgIconName=Arrows3_1.svg}"
-                            Threshold="0"
-                            ThresholdComparisonType="Greater"/>
-    </dxc:IconSetFormat>
+    <dx:IconSetFormat x:Key="{dxt:FormatThemeKey ResourceKey=PositiveNegativeArrowsColoredIconSet}"
+                      ElementThresholdType="Number"
+                      IconSetType="Arrows3">
+        <dx:IconSetElement Icon="{dxt:ConditionalFormattingIconSetIcon Arrows3_3.png, SvgIconName=Arrows3_3.svg}" Threshold="{x:Static sys:Double.NegativeInfinity}"/>
+        <dx:IconSetElement Icon="{x:Null}" Threshold="0"/>
+        <dx:IconSetElement Icon="{dxt:ConditionalFormattingIconSetIcon Arrows3_1.png, SvgIconName=Arrows3_1.svg}"
+                           Threshold="0"
+                           ThresholdComparisonType="Greater"/>
+    </dx:IconSetFormat>
 
-    <dxc:FormatInfoCollection x:Key="{dxt:ConditionalFormattingThemeKey ResourceKey=PredefinedIconSetFormats}">
+    <dx:FormatInfoCollection x:Key="{dxt:ConditionalFormattingThemeKey ResourceKey=PredefinedIconSetFormats}">
         <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows3ColoredIconSet" Group="DirectionalGroup"/>
         <dxt:StandardIconSetFormatInfoExtension FormatName="Arrows3GrayIconSet" Group="DirectionalGroup"/>
         <dxt:StandardIconSetFormatInfoExtension FormatName="Triangles3IconSet" Group="DirectionalGroup"/>
@@ -470,9 +468,9 @@
         <dxt:StandardIconSetFormatInfoExtension FormatName="PositiveNegativeArrowsColoredIconSet" Group="PositiveNegativeGroup"/>
         <dxt:StandardIconSetFormatInfoExtension FormatName="PositiveNegativeArrowsGrayIconSet" Group="PositiveNegativeGroup"/>
         <dxt:StandardIconSetFormatInfoExtension FormatName="PositiveNegativeTrianglesIconSet" Group="PositiveNegativeGroup"/>
-    </dxc:FormatInfoCollection>
+    </dx:FormatInfoCollection>
 
-    <Style x:Key="ConditionalFormattingDialogStyle" TargetType="{x:Type dx:DXWindow}">
+    <Style x:Key="ConditionalFormattingDialogStyle" TargetType="{x:Type dx:ThemedWindow}">
         <Setter Property="SizeToContent" Value="WidthAndHeight"/>
         <Setter Property="ResizeMode" Value="NoResize"/>
         <Setter Property="ShowInTaskbar" Value="False"/>
@@ -483,25 +481,25 @@
 
     <DataTemplate x:Key="{dxt:ConditionalFormattingThemeKey ResourceKey=ApplyFormatConditionDialogTemplate}">
         <ContentControl>
-            <dxc:DialogService DialogStyle="{StaticResource ConditionalFormattingDialogStyle}" DialogWindowStartupLocation="CenterOwner">
-                <dxc:DialogService.ViewTemplate>
+            <dx:DialogService DialogStyle="{StaticResource ConditionalFormattingDialogStyle}" DialogWindowStartupLocation="CenterOwner">
+                <dx:DialogService.ViewTemplate>
                     <DataTemplate>
-                        <dxc:ConditionalFormattingDialogView/>
+                        <dx:ConditionalFormattingDialogView/>
                     </DataTemplate>
-                </dxc:DialogService.ViewTemplate>
-            </dxc:DialogService>
+                </dx:DialogService.ViewTemplate>
+            </dx:DialogService>
         </ContentControl>
     </DataTemplate>
 
     <DataTemplate x:Key="{dxt:ConditionalFormattingThemeKey ResourceKey=ConditionalFormattingManagerTemplate}">
         <ContentControl>
-            <dxc:DialogService DialogStyle="{StaticResource ConditionalFormattingDialogStyle}" DialogWindowStartupLocation="CenterOwner">
-                <dxc:DialogService.ViewTemplate>
+            <dx:DialogService DialogStyle="{StaticResource ConditionalFormattingDialogStyle}" DialogWindowStartupLocation="CenterOwner">
+                <dx:DialogService.ViewTemplate>
                     <DataTemplate>
-                        <dxc:ConditionalFormattingManagerView/>
+                        <dx:ConditionalFormattingManagerView/>
                     </DataTemplate>
-                </dxc:DialogService.ViewTemplate>
-            </dxc:DialogService>
+                </dx:DialogService.ViewTemplate>
+            </dx:DialogService>
         </ContentControl>
     </DataTemplate>
 
@@ -519,8 +517,8 @@
                                         <dxb:GalleryItem Caption="{Binding Icons, Mode=OneTime}"
                                                          Command="{Binding Command, Mode=OneTime}"
                                                          CommandParameter="{Binding FormatCondition, Mode=OneTime}"
-                                                         dxcinternal:SuperTipHelper.SuperTipContent="{Binding Description, Mode=OneTime}"
-                                                         dxcinternal:SuperTipHelper.SuperTipHeader="{Binding Name, Mode=OneTime}"/>
+                                                         dxi:SuperTipHelper.SuperTipContent="{Binding Description, Mode=OneTime}"
+                                                         dxi:SuperTipHelper.SuperTipHeader="{Binding Name, Mode=OneTime}"/>
                                     </ContentControl>
                                 </DataTemplate>
                             </dxb:GalleryItemGroup.ItemTemplate>

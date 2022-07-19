@@ -3,11 +3,11 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxcn="clr-namespace:DevExpress.Xpf.Core.Native;assembly=DevExpress.Xpf.Core.v21.2"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dxcn="clr-namespace:DevExpress.Xpf.Core.Native;assembly=DevExpress.Xpf.Core.v22.1"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxpg="http://schemas.devexpress.com/winfx/2008/xaml/pivotgrid"
                     xmlns:dxpgi="http://schemas.devexpress.com/winfx/2008/xaml/pivotgrid/internal"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
@@ -64,7 +64,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.PivotGrid.FieldValueElement}" TargetType="{x:Type dxpg:FieldValueElement}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.PivotGrid.FieldValueElement}" TargetType="{x:Type dxpg:FieldValueElement}">
         <Setter Property="BorderBrush" Value="{DynamicResource {dxpgi:AppearanceThemeKey ResourceKey=FieldValueBorderBrush}}"/>
         <Setter Property="FontWeight" Value="Normal"/>
         <Setter Property="dxpg:PivotGridPopupMenu.GridMenuType" Value="FieldValue"/>
@@ -126,8 +126,8 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.PivotGrid.LightweightFieldValueElement}"
-           BasedOn="{StaticResource {dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.PivotGrid.FieldValueElement}}"
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.PivotGrid.LightweightFieldValueElement}"
+           BasedOn="{StaticResource {dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.PivotGrid.FieldValueElement}}"
            TargetType="{x:Type dxpg:LightweightFieldValueElement}">
         <Setter Property="MinHeight" Value="10"/>
         <Style.Triggers>
@@ -205,7 +205,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.PivotGrid.Internal.FieldValueExpandButton}" TargetType="{x:Type dxpgi:FieldValueExpandButton}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.PivotGrid.Internal.FieldValueExpandButton}" TargetType="{x:Type dxpgi:FieldValueExpandButton}">
         <Setter Property="Margin" Value="{DynamicResource {dxpgi:ScrollableAreaThemeKey ResourceKey=ExpandButtonStyleRowMargin}}"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -225,11 +225,15 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.PivotGrid.Internal.SortBySummaryButton}" TargetType="{x:Type dxpgi:SortBySummaryButton}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.PivotGrid.Internal.SortBySummaryButton}" TargetType="{x:Type dxpgi:SortBySummaryButton}">
         <Setter Property="Template" Value="{DynamicResource {dxpgi:ScrollableAreaThemeKey ResourceKey=SortedByIndicatorTemplate}}"/>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.PivotGrid.Internal.GroupCollapseButton}" TargetType="{x:Type dxpgi:GroupCollapseButton}">
+    <Geometry x:Key="{dxpgi:FieldHeaderThemeKey ResourceKey=GroupButtonCollapseItemPathData}">F1 M 645,375L 641,379L 645,383L 645,375 Z</Geometry>
+
+    <Geometry x:Key="{dxpgi:FieldHeaderThemeKey ResourceKey=GroupButtonExpandItemPathData}">F1 M 653,383L 657,379L 653,375L 653,383 Z</Geometry>
+
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.PivotGrid.Internal.GroupCollapseButton}" TargetType="{x:Type dxpgi:GroupCollapseButton}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type dxpgi:GroupCollapseButton}">
@@ -238,11 +242,11 @@
                                     IsHitTestVisible="True"
                                     cs:id="SimplePanel_0000">
                         <Path x:Name="collapseItem"
-                              Data="F1 M 645,375L 641,379L 645,383L 645,375 Z"
+                              Data="{DynamicResource {dxpgi:FieldHeaderThemeKey ResourceKey=GroupButtonCollapseItemPathData}}"
                               Style="{DynamicResource {dxpgi:FieldHeaderThemeKey ResourceKey=GroupButtonCollapseItemStyle}}"
                               Visibility="Visible"/>
                         <Path x:Name="expandItem"
-                              Data="F1 M 653,383L 657,379L 653,375L 653,383 Z "
+                              Data="{DynamicResource {dxpgi:FieldHeaderThemeKey ResourceKey=GroupButtonExpandItemPathData}}"
                               Style="{DynamicResource {dxpgi:FieldHeaderThemeKey ResourceKey=GroupButtonExpandItemStyle}}"
                               Visibility="Collapsed"/>
                         <VisualStateManager.VisualStateGroups>

@@ -2,10 +2,10 @@
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxgn="http://schemas.devexpress.com/winfx/2008/xaml/gantt"
                     xmlns:dxgni="http://schemas.devexpress.com/winfx/2008/xaml/gantt/internal"
                     xmlns:dxgnt="http://schemas.devexpress.com/winfx/2008/xaml/gantt/themekeys"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
@@ -18,7 +18,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gantt.Native.GanttTaskInteractionAdornerControl}" TargetType="{x:Type dxgni:GanttTaskInteractionAdornerControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gantt.Native.GanttTaskInteractionAdornerControl}" TargetType="{x:Type dxgni:GanttTaskInteractionAdornerControl}">
         <Style.Triggers>
             <DataTrigger Binding="{Binding Node.TaskKind}" Value="Milestone">
                 <DataTrigger.Setters>
@@ -84,7 +84,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gantt.Native.OutputConnectorDragThumb}" TargetType="{x:Type dxgni:OutputConnectorDragThumb}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gantt.Native.OutputConnectorDragThumb}" TargetType="{x:Type dxgni:OutputConnectorDragThumb}">
         <Setter Property="Background" Value="{DynamicResource {dxgnt:GanttControlThemeKeys ResourceKey=RowBackground}}"/>
         <Setter Property="BorderThickness" Value="{DynamicResource {dxgnt:GanttItemsThemeKeys ResourceKey=ConnectorThumbsStrokeThickness}}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource {dxgnt:GanttItemsThemeKeys ResourceKey=TaskProgressBrush}}"/>
@@ -138,7 +138,7 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gantt.Native.GanttConnectorInteractionAdornerControl}" TargetType="{x:Type dxgni:GanttConnectorInteractionAdornerControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gantt.Native.GanttConnectorInteractionAdornerControl}" TargetType="{x:Type dxgni:GanttConnectorInteractionAdornerControl}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type dxgni:GanttConnectorInteractionAdornerControl}">
@@ -184,7 +184,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gantt.Native.GanttConnectorEditStateControl}" TargetType="{x:Type dxgni:GanttConnectorEditStateControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Gantt.Native.GanttConnectorEditStateControl}" TargetType="{x:Type dxgni:GanttConnectorEditStateControl}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type dxgni:GanttConnectorEditStateControl}">

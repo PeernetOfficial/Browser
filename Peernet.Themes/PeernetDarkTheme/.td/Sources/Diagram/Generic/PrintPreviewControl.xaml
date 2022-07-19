@@ -4,10 +4,9 @@
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
                     xmlns:dxdiag="http://schemas.devexpress.com/winfx/2008/xaml/diagram"
-                    xmlns:dxdiagcore="clr-namespace:DevExpress.Diagram.Core;assembly=DevExpress.Diagram.v21.2.Core"
-                    xmlns:dxdiagn="http://schemas.devexpress.com/winfx/2008/xaml/diagram/internal"
+                    xmlns:dxdiagcore="clr-namespace:DevExpress.Diagram.Core;assembly=DevExpress.Diagram.v22.1.Core"
+                    xmlns:dxdiagi="http://schemas.devexpress.com/winfx/2008/xaml/diagram/internal"
                     xmlns:dxdiagt="http://schemas.devexpress.com/winfx/2008/xaml/diagram/themekeys"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxdv="http://schemas.devexpress.com/winfx/2008/xaml/documentviewer"
                     xmlns:dxdvt="http://schemas.devexpress.com/winfx/2008/xaml/documentviewer/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
@@ -50,7 +49,7 @@
             <Setter Property="Content" Value="{dxdiag:DiagramControlLocalizedString PrintPreview_Zoom}"/>
             <Setter Property="Glyph" Value="{dxdiag:DiagramSvgImage Path=Images/Svg/Zoom.svg}"/>
             <Setter Property="LargeGlyph" Value="{dxdiag:DiagramSvgImage Path=Images/Svg/Zoom.svg}"/>
-            <Setter Property="IsEnabled" Value="{Binding Diagram, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagn:PrintPreviewControl}}, Converter={dxmvvm:ObjectToBooleanConverter}}"/>
+            <Setter Property="IsEnabled" Value="{Binding Diagram, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagi:PrintPreviewControl}}, Converter={dxmvvm:ObjectToBooleanConverter}}"/>
             <Setter Property="SuperTip" Value="{dxdiag:DiagramItemToolTipProvider CaptionId=PrintPreview_Zoom, DescriptionId=PrintPreview_Zoom_Description}"/>
             <Setter Property="ShowScreenTip" Value="True"/>
             <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
@@ -60,8 +59,8 @@
     <Style x:Key="{dxdiagt:PrintPreviewControlThemeKeys ResourceKey=ZoomSelectorItemStyle}" TargetType="{x:Type dxdiag:BarMouseCheckOnlyItem}">
         <Style.Setters>
             <Setter Property="GroupIndex" Value="200"/>
-            <Setter Property="Content" Value="{Binding Converter={dxdiagn:PrintPreviewZoomConverter}}"/>
-            <Setter Property="CustomizationContent" Value="{Binding Converter={dxdiagn:PrintPreviewZoomConverter}}"/>
+            <Setter Property="Content" Value="{Binding Converter={dxdiagi:PrintPreviewZoomConverter}}"/>
+            <Setter Property="CustomizationContent" Value="{Binding Converter={dxdiagi:PrintPreviewZoomConverter}}"/>
             <Setter Property="AllowUncheckInGroup" Value="True"/>
         </Style.Setters>
     </Style>
@@ -69,7 +68,7 @@
     <Style x:Key="{dxdiagt:PrintPreviewControlThemeKeys ResourceKey=BestFitButtonStyle}" TargetType="{x:Type dxdiag:BarMouseCheckOnlyItem}">
         <Style.Setters>
             <Setter Property="Content" Value="{dxdiag:DiagramControlLocalizedString PrintPreview_BestFit}"/>
-            <Setter Property="IsChecked" Value="{Binding PreviewZoomMode, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagn:PrintPreviewControl}}, Converter={dxdiagn:PreviewZoomModeConverter PreviewZoomMode=BestFit}}"/>
+            <Setter Property="IsChecked" Value="{Binding PreviewZoomMode, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagi:PrintPreviewControl}}, Converter={dxdiagi:PreviewZoomModeConverter PreviewZoomMode=BestFit}}"/>
             <Setter Property="GlyphSize" Value="Large"/>
             <Setter Property="Glyph" Value="{dxdiag:DiagramSvgImage Path=Images/Svg/BestFit.svg}"/>
             <Setter Property="LargeGlyph" Value="{dxdiag:DiagramSvgImage Path=Images/Svg/BestFit.svg}"/>
@@ -82,7 +81,7 @@
     <Style x:Key="{dxdiagt:PrintPreviewControlThemeKeys ResourceKey=ScaleButtonStyle}" TargetType="{x:Type dxb:BarButtonItem}">
         <Style.Setters>
             <Setter Property="Content" Value="{dxdiag:DiagramControlLocalizedString PrintPreview_Scale}"/>
-            <Setter Property="Command" Value="{Binding ScaleCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagn:PrintPreviewControl}}}"/>
+            <Setter Property="Command" Value="{Binding ScaleCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagi:PrintPreviewControl}}}"/>
             <Setter Property="GlyphSize" Value="Large"/>
             <Setter Property="Glyph" Value="{dxdiag:DiagramSvgImage Path=Images/Svg/Scale.svg}"/>
             <Setter Property="LargeGlyph" Value="{dxdiag:DiagramSvgImage Path=Images/Svg/Scale.svg}"/>
@@ -95,7 +94,7 @@
     <Style x:Key="{dxdiagt:PrintPreviewControlThemeKeys ResourceKey=PrintButtonStyle}" TargetType="{x:Type dxb:BarButtonItem}">
         <Style.Setters>
             <Setter Property="Content" Value="{dxdiag:DiagramControlLocalizedString DiagramCommand_Print}"/>
-            <Setter Property="Command" Value="{Binding PrintCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagn:PrintPreviewControl}}}"/>
+            <Setter Property="Command" Value="{Binding PrintCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagi:PrintPreviewControl}}}"/>
             <Setter Property="GlyphSize" Value="Large"/>
             <Setter Property="Glyph" Value="{dxdiag:DiagramSvgImage Path=Images/Svg/Print.svg}"/>
             <Setter Property="LargeGlyph" Value="{dxdiag:DiagramSvgImage Path=Images/Svg/Print.svg}"/>
@@ -109,7 +108,7 @@
     <Style x:Key="{dxdiagt:PrintPreviewControlThemeKeys ResourceKey=QuickPrintButtonStyle}" TargetType="{x:Type dxb:BarButtonItem}">
         <Style.Setters>
             <Setter Property="Content" Value="{dxdiag:DiagramControlLocalizedString DiagramCommand_QuickPrint}"/>
-            <Setter Property="Command" Value="{Binding QuickPrintCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagn:PrintPreviewControl}}}"/>
+            <Setter Property="Command" Value="{Binding QuickPrintCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagi:PrintPreviewControl}}}"/>
             <Setter Property="GlyphSize" Value="Large"/>
             <Setter Property="Glyph" Value="{dxdiag:DiagramSvgImage Path=Images/Svg/QuickPrint.svg}"/>
             <Setter Property="LargeGlyph" Value="{dxdiag:DiagramSvgImage Path=Images/Svg/QuickPrint.svg}"/>
@@ -122,7 +121,7 @@
     <Style x:Key="{dxdiagt:PrintPreviewControlThemeKeys ResourceKey=PageSetupButtonStyle}" TargetType="{x:Type dxb:BarButtonItem}">
         <Style.Setters>
             <Setter Property="Content" Value="{dxdiag:DiagramControlLocalizedString DiagramCommand_SetPageParameters_PageSize_Header}"/>
-            <Setter Property="Command" Value="{Binding PageSetupCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagn:PrintPreviewControl}}}"/>
+            <Setter Property="Command" Value="{Binding PageSetupCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagi:PrintPreviewControl}}}"/>
             <Setter Property="GlyphSize" Value="Large"/>
             <Setter Property="Glyph" Value="{dxdiag:DiagramSvgImage Path=Images/Svg/PageSize.svg}"/>
             <Setter Property="LargeGlyph" Value="{dxdiag:DiagramSvgImage Path=Images/Svg/PageSize.svg}"/>
@@ -135,7 +134,7 @@
     <Style x:Key="{dxdiagt:PrintPreviewControlThemeKeys ResourceKey=CloseButtonStyle}" TargetType="{x:Type dxb:BarButtonItem}">
         <Style.Setters>
             <Setter Property="Content" Value="{dxdiag:DiagramControlLocalizedString ContextMenu_Close}"/>
-            <Setter Property="Command" Value="{Binding ClosePreviewCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagn:PrintPreviewControl}}}"/>
+            <Setter Property="Command" Value="{Binding ClosePreviewCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagi:PrintPreviewControl}}}"/>
             <Setter Property="GlyphSize" Value="Large"/>
             <Setter Property="Glyph" Value="{dxdiag:DiagramSvgImage Path=Images/Svg/Close.svg}"/>
             <Setter Property="LargeGlyph" Value="{dxdiag:DiagramSvgImage Path=Images/Svg/Close.svg}"/>
@@ -145,7 +144,7 @@
         </Style.Setters>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.Native.PrintPreviewControl}" TargetType="{x:Type dxdiagn:PrintPreviewControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.Native.PrintPreviewControl}" TargetType="{x:Type dxdiagi:PrintPreviewControl}">
         <Setter Property="HorizontalPageSpacing" Value="20"/>
         <Setter Property="Template" Value="{DynamicResource {dxdvt:DocumentViewerThemeKey ResourceKey=Template}}"/>
         <Setter Property="BarsTemplate" Value="{DynamicResource {dxdvt:DocumentViewerThemeKey ResourceKey=BarsTemplate}}"/>
@@ -173,21 +172,21 @@
                                ToolbarShowCustomizationButton="False"
                                ToolbarShowMode="Hide">
                 <dxr:RibbonDefaultPageCategory>
-                    <dxr:RibbonPage Caption="{dxdiag:DiagramControlLocalizedString RibbonPage_PrintPreview}" dxdiagn:PrintPreviewControl.BarItemName="{x:Static dxdiagcore:PrintPreviewControlBarItemNames.PrintPreviewRibbonPage}">
-                        <dxr:RibbonPageGroup Caption="{dxdiag:DiagramControlLocalizedString PrintPreview_Print}" dxdiagn:PrintPreviewControl.BarItemName="{x:Static dxdiagcore:PrintPreviewControlBarItemNames.PrintGroup}">
+                    <dxr:RibbonPage Caption="{dxdiag:DiagramControlLocalizedString RibbonPage_PrintPreview}" dxdiagi:PrintPreviewControl.BarItemName="{x:Static dxdiagcore:PrintPreviewControlBarItemNames.PrintPreviewRibbonPage}">
+                        <dxr:RibbonPageGroup Caption="{dxdiag:DiagramControlLocalizedString PrintPreview_Print}" dxdiagi:PrintPreviewControl.BarItemName="{x:Static dxdiagcore:PrintPreviewControlBarItemNames.PrintGroup}">
                             <dxb:BarButtonItem dxdiag:DiagramDesignerControl.BarItemName="{x:Static dxdiagcore:PrintPreviewControlBarItemNames.Print}" Style="{DynamicResource {dxdiagt:PrintPreviewControlThemeKeys ResourceKey=PrintButtonStyle}}"/>
                             <dxb:BarButtonItem dxdiag:DiagramDesignerControl.BarItemName="{x:Static dxdiagcore:PrintPreviewControlBarItemNames.QuickPrint}" Style="{DynamicResource {dxdiagt:PrintPreviewControlThemeKeys ResourceKey=QuickPrintButtonStyle}}"/>
                             <dxb:BarButtonItem dxdiag:DiagramDesignerControl.BarItemName="{x:Static dxdiagcore:PrintPreviewControlBarItemNames.PageSetup}" Style="{DynamicResource {dxdiagt:PrintPreviewControlThemeKeys ResourceKey=PageSetupButtonStyle}}"/>
                         </dxr:RibbonPageGroup>
-                        <dxr:RibbonPageGroup Caption="{dxdiag:DiagramControlLocalizedString RibbonPageGroup_Zoom}" dxdiagn:PrintPreviewControl.BarItemName="{x:Static dxdiagcore:PrintPreviewControlBarItemNames.ZoomGroup}">
+                        <dxr:RibbonPageGroup Caption="{dxdiag:DiagramControlLocalizedString RibbonPageGroup_Zoom}" dxdiagi:PrintPreviewControl.BarItemName="{x:Static dxdiagcore:PrintPreviewControlBarItemNames.ZoomGroup}">
                             <dxb:BarButtonItem dxdiag:DiagramDesignerControl.BarItemName="{x:Static dxdiagcore:PrintPreviewControlBarItemNames.ZoomIn}" Style="{DynamicResource {dxdiagt:PrintPreviewControlThemeKeys ResourceKey=ZoomInButtonStyle}}"/>
                             <dxb:BarButtonItem dxdiag:DiagramDesignerControl.BarItemName="{x:Static dxdiagcore:PrintPreviewControlBarItemNames.ZoomOut}" Style="{DynamicResource {dxdiagt:PrintPreviewControlThemeKeys ResourceKey=ZoomOutButtonStyle}}"/>
                             <dxb:BarSubItem dxdiag:DiagramDesignerControl.BarItemName="{x:Static dxdiagcore:PrintPreviewControlBarItemNames.Zoom}" Style="{DynamicResource {dxdiagt:PrintPreviewControlThemeKeys ResourceKey=ZoomButtonStyle}}">
                                 <dxb:BarItemSelector AllowEmptySelection="True"
                                                      CustomizationContent="{dxdiag:DiagramControlLocalizedString PrintPreview_ZoomSelector}"
                                                      dxdiag:DiagramDesignerControl.BarItemName="{x:Static dxdiagcore:PrintPreviewControlBarItemNames.ZoomSelector}"
-                                                     ItemLinksSource="{x:Static dxdiagn:PrintPreviewControl.PredefinedZoomValues}"
-                                                     SelectedItem="{Binding ZoomFactor, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagn:PrintPreviewControl}}, Mode=TwoWay}">
+                                                     ItemLinksSource="{x:Static dxdiagi:PrintPreviewControl.PredefinedZoomValues}"
+                                                     SelectedItem="{Binding ZoomFactor, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagi:PrintPreviewControl}}, Mode=TwoWay}">
                                     <dxb:BarItemSelector.ItemTemplate>
                                         <DataTemplate>
                                             <ContentControl>
@@ -201,7 +200,7 @@
                             <dxdiag:BarMouseCheckOnlyItem dxdiag:DiagramDesignerControl.BarItemName="{x:Static dxdiagcore:PrintPreviewControlBarItemNames.BestFit}" Style="{DynamicResource {dxdiagt:PrintPreviewControlThemeKeys ResourceKey=BestFitButtonStyle}}"/>
                             <dxb:BarButtonItem dxdiag:DiagramDesignerControl.BarItemName="{x:Static dxdiagcore:PrintPreviewControlBarItemNames.Scale}" Style="{DynamicResource {dxdiagt:PrintPreviewControlThemeKeys ResourceKey=ScaleButtonStyle}}"/>
                         </dxr:RibbonPageGroup>
-                        <dxr:RibbonPageGroup Caption="{dxdiag:DiagramControlLocalizedString ContextMenu_Close}" dxdiagn:PrintPreviewControl.BarItemName="{x:Static dxdiagcore:PrintPreviewControlBarItemNames.CloseGroup}">
+                        <dxr:RibbonPageGroup Caption="{dxdiag:DiagramControlLocalizedString ContextMenu_Close}" dxdiagi:PrintPreviewControl.BarItemName="{x:Static dxdiagcore:PrintPreviewControlBarItemNames.CloseGroup}">
                             <dxb:BarButtonItem dxdiag:DiagramDesignerControl.BarItemName="{x:Static dxdiagcore:PrintPreviewControlBarItemNames.Close}" Style="{DynamicResource {dxdiagt:PrintPreviewControlThemeKeys ResourceKey=CloseButtonStyle}}"/>
                         </dxr:RibbonPageGroup>
                     </dxr:RibbonPage>
@@ -209,11 +208,11 @@
             </dxr:RibbonControl>
             <dxr:RibbonStatusBarControl DockPanel.Dock="Bottom">
                 <dxr:RibbonStatusBarControl.RightItems>
-                    <dxb:BarEditItem Content="{Binding ZoomFactor, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagn:PrintPreviewControl}}, Converter={dxmvvm:FormatStringConverter FormatString=P0}}"
+                    <dxb:BarEditItem Content="{Binding ZoomFactor, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagi:PrintPreviewControl}}, Converter={dxmvvm:FormatStringConverter FormatString=P0}}"
                                      CustomizationContent="{dxdiag:DiagramControlLocalizedString StatusBarZoomEditor}"
                                      dxdiag:DiagramDesignerControl.BarItemName="{x:Static dxdiagcore:PrintPreviewControlBarItemNames.StatusBarZoomEditor}"
                                      EditStyle="{StaticResource PrintPreviewZoomEditStyle}"
-                                     EditValue="{Binding ZoomFactor, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagn:PrintPreviewControl}}, Converter={dxdiagn:NonlinearZoomConverter}, Mode=TwoWay}"
+                                     EditValue="{Binding ZoomFactor, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagi:PrintPreviewControl}}, Converter={dxdiagi:NonlinearZoomConverter}, Mode=TwoWay}"
                                      EditWidth="100">
                         <dxb:BarEditItem.EditSettings>
                             <dxe:TrackBarEditSettings/>
@@ -223,17 +222,17 @@
                 <dxr:RibbonStatusBarControl.LeftItems>
                     <dxb:BarStaticItem dxdiag:DiagramDesignerControl.BarItemName="{x:Static dxdiagcore:PrintPreviewControlBarItemNames.PageNumber}"
                                        Focusable="False"
-                                       IsVisible="{Binding Diagram, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagn:PrintPreviewControl}}, Converter={dxmvvm:ObjectToBooleanConverter}}">
+                                       IsVisible="{Binding Diagram, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxdiagi:PrintPreviewControl}}, Converter={dxmvvm:ObjectToBooleanConverter}}">
                         <dxb:BarStaticItem.Content>
                             <MultiBinding>
                                 <MultiBinding.Bindings>
-                                    <Binding Path="CurrentPageNumber" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type dxdiagn:PrintPreviewControl}}"/>
+                                    <Binding Path="CurrentPageNumber" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type dxdiagi:PrintPreviewControl}}"/>
                                     <Binding Mode="OneWay"
                                              Path="PageCount"
-                                             RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type dxdiagn:PrintPreviewControl}}"/>
+                                             RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type dxdiagi:PrintPreviewControl}}"/>
                                 </MultiBinding.Bindings>
                                 <MultiBinding.Converter>
-                                    <dxdiagn:PageOfPagesConverter/>
+                                    <dxdiagi:PageOfPagesConverter/>
                                 </MultiBinding.Converter>
                             </MultiBinding>
                         </dxb:BarStaticItem.Content>
@@ -252,17 +251,17 @@
     <ControlTemplate x:Key="{dxdiagt:PrintPreviewControlThemeKeys ResourceKey=DocumentPresenterTemplate}" TargetType="{x:Type dxdv:DocumentPresenterControl}">
         <Grid>
             <dxe:NativeImage x:Name="PART_NativeImage" Focusable="False"/>
-            <dxdiagn:DocumentViewerItemsControl x:Name="PART_ItemsControl">
+            <dxdiagi:DocumentViewerItemsControl x:Name="PART_ItemsControl">
                 <dxdv:DocumentViewerItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <dxdv:DocumentViewerPanel x:Name="PART_DocumentViewerPanel" Background="{DynamicResource {dxdiagt:DiagramControlThemeKeys ResourceKey=DiagramControlBackground}}"/>
                     </ItemsPanelTemplate>
                 </dxdv:DocumentViewerItemsControl.ItemsPanel>
-            </dxdiagn:DocumentViewerItemsControl>
+            </dxdiagi:DocumentViewerItemsControl>
         </Grid>
     </ControlTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.Native.DocumentViewerItemsControl}" TargetType="{x:Type dxdiagn:DocumentViewerItemsControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.Native.DocumentViewerItemsControl}" TargetType="{x:Type dxdiagi:DocumentViewerItemsControl}">
         <Setter Property="Template" Value="{DynamicResource {dxdiagt:PrintPreviewControlThemeKeys ResourceKey=ItemsControlTemplate}}"/>
         <Setter Property="Focusable" Value="False"/>
     </Style>
@@ -365,7 +364,7 @@
         </Grid>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="{dxdiagt:PrintPreviewControlThemeKeys ResourceKey=ItemsControlTemplate}" TargetType="{x:Type dxdiagn:DocumentViewerItemsControl}">
+    <ControlTemplate x:Key="{dxdiagt:PrintPreviewControlThemeKeys ResourceKey=ItemsControlTemplate}" TargetType="{x:Type dxdiagi:DocumentViewerItemsControl}">
         <Border Name="Border" BorderThickness="0">
             <dxdv:DXScrollViewer x:Name="PART_ScrollViewer"
                                  CanContentScroll="True"
@@ -376,14 +375,14 @@
                                  Template="{StaticResource ScrollViewerTemplate}"
                                  VerticalScrollBarVisibility="Auto">
                 <dxmvvm:Interaction.Behaviors>
-                    <dxdiagn:PreviewCursorBehavior/>
+                    <dxdiagi:PreviewCursorBehavior/>
                 </dxmvvm:Interaction.Behaviors>
                 <ItemsPresenter x:Name="PART_ItemsPresenter" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
             </dxdv:DXScrollViewer>
         </Border>
     </ControlTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.Native.PageControl}" TargetType="{x:Type dxdiagn:PageControl}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.Native.PageControl}" TargetType="{x:Type dxdiagi:PageControl}">
         <Setter Property="Template" Value="{DynamicResource {dxdiagt:PrintPreviewControlThemeKeys ResourceKey=PageTemplate}}"/>
         <Setter Property="Focusable" Value="False"/>
         <Setter Property="ItemsPanel">
@@ -395,11 +394,11 @@
         </Setter>
     </Style>
 
-    <ControlTemplate x:Key="{dxdiagt:PrintPreviewControlThemeKeys ResourceKey=PageTemplate}" TargetType="{x:Type dxdiagn:PageControl}">
+    <ControlTemplate x:Key="{dxdiagt:PrintPreviewControlThemeKeys ResourceKey=PageTemplate}" TargetType="{x:Type dxdiagi:PageControl}">
         <ItemsPresenter x:Name="PART_ItemsPresenter"/>
     </ControlTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.Native.PageControlItem}" TargetType="{x:Type dxdiagn:PageControlItem}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Diagram.Native.PageControlItem}" TargetType="{x:Type dxdiagi:PageControlItem}">
         <Setter Property="Template" Value="{DynamicResource {dxdiagt:PrintPreviewControlThemeKeys ResourceKey=PageControlItemTemplate}}"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Focusable" Value="False"/>
@@ -416,7 +415,7 @@
         </Setter>
     </Style>
 
-    <ControlTemplate x:Key="{dxdiagt:PrintPreviewControlThemeKeys ResourceKey=PageControlItemTemplate}" TargetType="{x:Type dxdiagn:PageControlItem}">
+    <ControlTemplate x:Key="{dxdiagt:PrintPreviewControlThemeKeys ResourceKey=PageControlItemTemplate}" TargetType="{x:Type dxdiagi:PageControlItem}">
         <ContentControl x:Name="PART_ContentControl"
                         Background="White"
                         Focusable="False"
@@ -435,13 +434,13 @@
         <ContentControl>
             <dxmvvm:WindowService WindowShowMode="Dialog" WindowType="{x:Type dx:ThemedWindow}">
                 <dxmvvm:WindowService.WindowStyle>
-                    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/core.ThemedWindow}" TargetType="{x:Type dx:ThemedWindow}">
+                    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/core.ThemedWindow}" TargetType="{x:Type dx:ThemedWindow}">
                         <Setter Property="Icon" Value="{dxdiag:DiagramImageExtension Source='DevExpress.Diagram.Core.Images.Menu.PrintPreview_Title_16x16.png'}"/>
                     </Style>
                 </dxmvvm:WindowService.WindowStyle>
                 <dxmvvm:WindowService.ViewTemplate>
                     <DataTemplate>
-                        <dxdiagn:PrintPreviewControl Diagram="{Binding}"/>
+                        <dxdiagi:PrintPreviewControl Diagram="{Binding}"/>
                     </DataTemplate>
                 </dxmvvm:WindowService.ViewTemplate>
             </dxmvvm:WindowService>

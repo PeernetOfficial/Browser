@@ -13,7 +13,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v21.2;component/Docking/Office2019Black/UICore.xaml"/>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v22.1;component/Docking/Office2019Black/UICore.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <!-- General -->
@@ -62,7 +62,10 @@
                                                        DataContext="{Binding DataContext}"
                                                        Grid.ColumnSpan="3"
                                                        Grid.Row="1"
-                                                       Margin="12,0,12,12"/>
+                                                       ItemsSource="{Binding LayoutItem.ItemsInternal, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                       LastChildFill="{Binding LayoutItem.LastChildFill, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                       Margin="12,0,12,12"
+                                                       Orientation="{Binding LayoutItem.Orientation, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CaptionStates">
                                     <VisualState x:Name="CaptionVisible"/>
@@ -169,7 +172,10 @@
                                                        DataContext="{Binding DataContext}"
                                                        Grid.ColumnSpan="6"
                                                        Grid.Row="1"
-                                                       Margin="12,0,12,12"/>
+                                                       ItemsSource="{Binding LayoutItem.ItemsInternal, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                       LastChildFill="{Binding LayoutItem.LastChildFill, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                       Margin="12,0,12,12"
+                                                       Orientation="{Binding LayoutItem.Orientation, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CaptionStates">
                                     <VisualState x:Name="CaptionVisible"/>

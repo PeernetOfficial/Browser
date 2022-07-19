@@ -1,23 +1,22 @@
 <ResourceDictionary mc:Ignorable="cs"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
-                    xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core"
-                    xmlns:dxcn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
-                    xmlns:dxct="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+                    xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
                     xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
                     xmlns:dxri="http://schemas.devexpress.com/winfx/2008/xaml/ribbon/internal"
                     xmlns:dxrt="http://schemas.devexpress.com/winfx/2008/xaml/ribbon/themekeys"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <dxc:BoolInverseConverter x:Key="inverseConverter"/>
+    <dx:BoolInverseConverter x:Key="inverseConverter"/>
 
-    <dxc:BooleanToVisibilityConverter x:Key="boolToVisibilityConverter" Invert="False"/>
+    <dx:BooleanToVisibilityConverter x:Key="boolToVisibilityConverter" Invert="False"/>
 
-    <dxc:BooleanToVisibilityConverter x:Key="invertBoolToVisibilityConverter" Invert="True"/>
+    <dx:BooleanToVisibilityConverter x:Key="invertBoolToVisibilityConverter" Invert="True"/>
 
     <ControlTemplate x:Key="{dxrt:RibbonPageHeaderLinksControlThemeKey ResourceKey=ControlTemplate}" TargetType="{x:Type dxr:RibbonPageHeaderLinksControl}">
         <ItemsPresenter/>
@@ -79,9 +78,9 @@
                                           Padding="0,0,0,-3"
                                           VerticalContentAlignment="Stretch"
                                           VerticalScrollBarVisibility="Disabled">
-                <dxcn:SelectionIndicatorDecorator Style="{DynamicResource {dxrt:RibbonThemeKey ResourceKey=SelectionIndicatorStyle}}">
+                <dxi:SelectionIndicatorDecorator Style="{DynamicResource {dxrt:RibbonThemeKey ResourceKey=SelectionIndicatorStyle}}">
                     <ItemsPresenter Name="PART_ItemsPresenter" Margin="0,0,0,3"/>
-                </dxcn:SelectionIndicatorDecorator>
+                </dxi:SelectionIndicatorDecorator>
             </dxri:RibbonPagesScrollViewer>
             <dxr:RibbonPageHeaderControl x:Name="PART_OriginPageHeaderControl"
                                          Grid.ColumnSpan="3"
@@ -93,13 +92,13 @@
                 </dxr:RibbonPageHeaderControl.Page>
             </dxr:RibbonPageHeaderControl>
             <RepeatButton x:Name="PART_LeftRepeatButton"
-                          dxcn:WindowChrome.IsHitTestVisibleInChrome="True"
+                          dxi:WindowChrome.IsHitTestVisibleInChrome="True"
                           Grid.Column="0"
                           Grid.Row="2"
                           Style="{DynamicResource {dxrt:RibbonThemeKey ResourceKey=LeftRepeatButtonStyle}}"
                           Visibility="Hidden"/>
             <RepeatButton x:Name="PART_RightRepeatButton"
-                          dxcn:WindowChrome.IsHitTestVisibleInChrome="True"
+                          dxi:WindowChrome.IsHitTestVisibleInChrome="True"
                           Grid.Column="2"
                           Grid.Row="2"
                           Style="{DynamicResource {dxrt:RibbonThemeKey ResourceKey=RightRepeatButtonStyle}}"
@@ -241,12 +240,12 @@
                                         IsTabStop="False"
                                         Style="{DynamicResource {dxrt:RibbonThemeKey ResourceKey=ApplicationIconContainerStyle}}"
                                         Visibility="Collapsed">
-                            <dxc:PixelSnapper>
+                            <dx:PixelSnapper>
                                 <Image MaxHeight="16"
                                        MaxWidth="16"
                                        Source="{TemplateBinding ActualApplicationIcon}"
                                        Stretch="Uniform"/>
-                            </dxc:PixelSnapper>
+                            </dx:PixelSnapper>
                         </ContentControl>
                         <ContentControl x:Name="PART_ToolbarContainer"
                                         Background="Transparent"
@@ -260,7 +259,7 @@
                                         VerticalContentAlignment="Center"
                                         cs:id="ContentControl_0001"/>
                         <DockPanel x:Name="PART_RightTabContainer"
-                                   dxcn:WindowChrome.IsHitTestVisibleInChrome="True"
+                                   dxi:WindowChrome.IsHitTestVisibleInChrome="True"
                                    Grid.Column="3"
                                    Grid.Row="1"
                                    HorizontalAlignment="Right"
@@ -271,9 +270,9 @@
                                                            Style="{DynamicResource {dxrt:RibbonThemeKey ResourceKey=MinimizationButtonStyle}}"
                                                            Template="{DynamicResource {dxrt:RibbonThemeKey ResourceKey=MinimizationButtonTemplate}}"
                                                            Visibility="Collapsed"/>
-                            <dxc:DXContentPresenter x:Name="PART_PageHeaderLinksControlContainer"
-                                                    DockPanel.Dock="Right"
-                                                    VerticalAlignment="Center"/>
+                            <dx:DXContentPresenter x:Name="PART_PageHeaderLinksControlContainer"
+                                                   DockPanel.Dock="Right"
+                                                   VerticalAlignment="Center"/>
                         </DockPanel>
                     </Grid>
                     <ContentControl x:Name="PART_FooterToolbarContainer"
@@ -427,7 +426,7 @@
                         TargetName="PART_ToolbarContainer"
                         Value="{DynamicResource {dxrt:RibbonThemeKey ResourceKey=HeaderMinHeight}}"/>
             </Trigger>
-            <DataTrigger Binding="{Binding Path=(dxcn:DXWindowsHelper.Window).(dxc:ThemedWindow.ShowTitle), RelativeSource={RelativeSource Self}}" Value="False">
+            <DataTrigger Binding="{Binding Path=(dxi:DXWindowsHelper.Window).(dx:ThemedWindow.ShowTitle), RelativeSource={RelativeSource Self}}" Value="False">
                 <Setter Property="Visibility"
                         TargetName="PART_TitlePanel"
                         Value="Collapsed"/>
@@ -435,18 +434,16 @@
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding Path=IsInRibbonWindow, RelativeSource={RelativeSource Self}}" Value="True"/>
-                    <Condition Binding="{Binding Path=(dxcn:DXWindowsHelper.WindowKind), RelativeSource={RelativeSource Self}}" Value="{x:Static dxcn:DXWindowsHelper.ThemedWindow}"/>
-                    <Condition Binding="{Binding Path=(dxcn:DXWindowsHelper.Window).(dxc:ThemedWindow.ActualWindowKind), RelativeSource={RelativeSource Self}}" Value="Ribbon"/>
+                    <Condition Binding="{Binding Path=(dxi:DXWindowsHelper.WindowKind), RelativeSource={RelativeSource Self}}" Value="{x:Static dxi:DXWindowsHelper.ThemedWindow}"/>
+                    <Condition Binding="{Binding Path=(dxi:DXWindowsHelper.Window).(dx:ThemedWindow.ActualWindowKind), RelativeSource={RelativeSource Self}}" Value="Ribbon"/>
                 </MultiDataTrigger.Conditions>
                 <Setter Property="MinHeight"
                         TargetName="HeaderRow"
-                        Value="{Binding Path=(dxcn:WindowChrome.CaptionHeight), RelativeSource={RelativeSource AncestorType={x:Type dxc:ThemedWindow}}}"/>
+                        Value="{Binding Path=(dxi:WindowChrome.CaptionHeight), RelativeSource={RelativeSource AncestorType={x:Type dx:ThemedWindow}}}"/>
             </MultiDataTrigger>
-            <Trigger Property="IsApplicationIconVisible" Value="True">
-                <Setter Property="Visibility"
-                        TargetName="PART_ApplicationIconContainer"
-                        Value="Visible"/>
-            </Trigger>
+            <!-- <Trigger Property="IsApplicationIconVisible" Value="True"> -->
+            <!--     <Setter TargetName="PART_ApplicationIconContainer" Property="Visibility" Value="Visible"/> -->
+            <!-- </Trigger> -->
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="MinimizationButtonPosition" Value="PageHeader"/>
@@ -558,12 +555,12 @@
                                     IsTabStop="False"
                                     Style="{DynamicResource {dxrt:RibbonThemeKey ResourceKey=ApplicationIconContainerStyleInRibbonAeroWindow}}"
                                     Visibility="Collapsed">
-                        <dxc:PixelSnapper>
+                        <dx:PixelSnapper>
                             <Image MaxHeight="16"
                                    MaxWidth="16"
                                    Source="{TemplateBinding ActualApplicationIcon}"
                                    Stretch="Uniform"/>
-                        </dxc:PixelSnapper>
+                        </dx:PixelSnapper>
                     </ContentControl>
                     <ContentControl x:Name="PART_ToolbarContainer"
                                     Background="Transparent"
@@ -577,7 +574,7 @@
                                     VerticalContentAlignment="Center"
                                     cs:id="ContentControl_0000"/>
                     <DockPanel x:Name="PART_RightTabContainer"
-                               dxcn:WindowChrome.IsHitTestVisibleInChrome="True"
+                               dxi:WindowChrome.IsHitTestVisibleInChrome="True"
                                Grid.Column="3"
                                Grid.Row="1"
                                HorizontalAlignment="Right"
@@ -588,10 +585,10 @@
                                                        Style="{DynamicResource {dxrt:RibbonThemeKey ResourceKey=MinimizationButtonStyleInRibbonAeroWindow}}"
                                                        Template="{DynamicResource {dxrt:RibbonThemeKey ResourceKey=MinimizationButtonTemplateInRibbonAeroWindow}}"
                                                        Visibility="Collapsed"/>
-                        <dxc:DXContentPresenter x:Name="PART_PageHeaderLinksControlContainer"
-                                                DockPanel.Dock="Right"
-                                                VerticalAlignment="Stretch"
-                                                VerticalContentAlignment="Center"/>
+                        <dx:DXContentPresenter x:Name="PART_PageHeaderLinksControlContainer"
+                                               DockPanel.Dock="Right"
+                                               VerticalAlignment="Stretch"
+                                               VerticalContentAlignment="Center"/>
                     </DockPanel>
                 </Grid>
                 <ContentControl x:Name="PART_FooterToolbarContainer"
@@ -722,16 +719,14 @@
                         TargetName="PART_ToolbarContainer"
                         Value="{DynamicResource {dxrt:RibbonThemeKey ResourceKey=HeaderMinHeight}}"/>
             </Trigger>
-            <DataTrigger Binding="{Binding Path=(dxcn:DXWindowsHelper.Window).(dxc:ThemedWindow.ShowTitle), RelativeSource={RelativeSource Self}}" Value="True">
+            <DataTrigger Binding="{Binding Path=(dxi:DXWindowsHelper.Window).(dx:ThemedWindow.ShowTitle), RelativeSource={RelativeSource Self}}" Value="True">
                 <Setter Property="Visibility"
                         TargetName="PART_TitlePanel"
                         Value="Visible"/>
             </DataTrigger>
-            <Trigger Property="IsApplicationIconVisible" Value="True">
-                <Setter Property="Visibility"
-                        TargetName="PART_ApplicationIconContainer"
-                        Value="Visible"/>
-            </Trigger>
+            <!-- <Trigger Property="IsApplicationIconVisible" Value="True"> -->
+            <!--     <Setter TargetName="PART_ApplicationIconContainer" Property="Visibility" Value="Visible"/> -->
+            <!-- </Trigger> -->
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="MinimizationButtonPosition" Value="PageHeader"/>

@@ -1,55 +1,85 @@
 ﻿<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxgnt="http://schemas.devexpress.com/winfx/2008/xaml/gantt/themekeys" xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <ResourceDictionary.MergedDictionaries>
-    <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v21.2;component/Gantt/Generic/Resources.xaml" />
-    <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v21.2;component/UICore/UIData.xaml" />
-    <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v21.2;component/Gantt/Office2019White/UICustom.xaml" />
-    <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v21.2;component/Gantt/Office2019White/UIPreset.xaml" />
-  </ResourceDictionary.MergedDictionaries>
-  <!-- RowSelection -->
-  <SolidColorBrush x:Key="{dxgnt:GanttControlThemeKeys ResourceKey=RowSelectedBackground}" Color="#FFDEECF9" />
-  <SolidColorBrush x:Key="{dxgnt:GanttControlThemeKeys ResourceKey=RowFadeSelectionBackground}" Color="#FFEFF6FC" />
-  <!-- Ruler -->
-  <SolidColorBrush x:Key="{dxgnt:TimescaleThemeKeys ResourceKey=TickBrush}" Color="#FFC8C6C4" />
-  <SolidColorBrush x:Key="{dxgnt:TimescaleThemeKeys ResourceKey=BorderBrush}" Color="#FFC8C6C4" />
-  <!-- Task -->
-  <SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=TaskBrush}" Color="#FF106EBE" Opacity="0.62" />
-  <SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=TaskProgressBrush}" Color="#FF106EBE" />
-  <SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=TaskCriticalPathBrush}" Color="#FFC12600" Opacity="0.62" />
-  <SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=TaskCriticalPathProgressBrush}" Color="#FFC12600" />
-  <SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=TaskForeground}" Color="#FF444444" />
-  <!-- SummaryTask -->
-  <SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=SummaryTaskBrush}" Color="#FF106EBE" Opacity="0.62" />
-  <SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=SummaryTaskProgressBrush}" Color="#FF106EBE" />
-  <SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=SummaryTaskForeground}" Color="#FF444444" />
-  <SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=SummaryTaskBracketBrush}" Color="#FF444444" />
-  <!-- Milestone -->
-  <SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=MilestoneBrush}" Color="#FF106EBE" />
-  <SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=MilestoneCriticalPathBrush}" Color="#FFC12600" />
-  <!-- Baseline -->
-  <SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=TaskBaselineBrush}" Color="#FFC8C6C4" Opacity="0.62" />
-  <SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=SummaryTaskBaselineBrush}" Color="#FFC8C6C4" Opacity="0.62" />
-  <SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=MilestoneBaselineBrush}" Color="#FFC8C6C4" Opacity="0.62" />
-  <SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=MilestoneBaselineBorderBrush}" Color="#FFC8C6C4" Opacity="0.62" />
-  <!-- Edit Preview -->
-  <SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=TaskPreviewBrush}" Color="#FF106EBE" Opacity="0.62" />
-  <SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=TaskPreviewBorderBrush}" Color="#FF106EBE" />
-  <SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=SummaryTaskPreviewBrush}" Color="#FF106EBE" Opacity="0.62" />
-  <SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=SummaryTaskPreviewBorderBrush}" Color="#FF106EBE" />
-  <SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=MilestonePreviewBrush}" Color="#FF106EBE" Opacity="0.52" />
-  <SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=MilestonePreviewBorderBrush}" Color="#FF106EBE" />
-  <!-- Splitter -->
-  <SolidColorBrush x:Key="{dxgnt:GanttControlThemeKeys ResourceKey=SplitterBorderBrush}" Color="#FFC8C6C4" />
-  <SolidColorBrush x:Key="{dxgnt:GanttControlThemeKeys ResourceKey=SplitterBackground}" Color="#FFFFFFFF" />
-  <!-- Other -->
-  <SolidColorBrush x:Key="{dxgnt:GanttControlThemeKeys ResourceKey=RowBackground}" Color="#FFFFFFFF" />
-  <SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=ConnectorStroke}" Color="#FF106EBE" />
-  <SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=ConnectorHighlightedShadowBrush}" Color="#FF106EBE" Opacity="0.32" />
-  <SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=InvalidConnectorStroke}" Color="#FFFF0000" />
-  <SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=InvalidConnectorHighlightedShadowBrush}" Color="#30FF0000" />
-  <SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=ConnectorCriticalPathStroke}" Color="#FFC12600" />
-  <SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=CriticalPathConnectorHighlightedShadowBrush}" Color="#FFC12600" Opacity="0.32" />
-  <SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=NonWorkingTimeBrush}" Color="#FFE1DFDD" Opacity="0.25" />
-  <SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=GroupHighlightBrush}" Color="#FF92C0E0" Opacity="0.16" />
-  <SolidColorBrush x:Key="{dxgnt:GanttControlThemeKeys ResourceKey=StripLineBackground}" Color="#FF76A797" Opacity="0.25" />
-  <SolidColorBrush x:Key="{dxgnt:GanttControlThemeKeys ResourceKey=CurrentDateTimeStripLineBackground}" Color="#FFD86344" />
+    <ResourceDictionary.MergedDictionaries>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v22.1;component/Gantt/Generic/Resources.xaml" />
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v22.1;component/UICore/UIData.xaml" />
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v22.1;component/Gantt/Office2019White/UICustom.xaml" />
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v22.1;component/Gantt/Office2019White/UIPreset.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+<!-- RowSelection --><SolidColorBrush x:Key="{dxgnt:GanttControlThemeKeys ResourceKey=RowSelectedBackground}" Color="#FFDEECF9" />
+
+<SolidColorBrush x:Key="{dxgnt:GanttControlThemeKeys ResourceKey=RowFadeSelectionBackground}" Color="#FFEFF6FC" />
+
+<!-- Ruler --><SolidColorBrush x:Key="{dxgnt:TimescaleThemeKeys ResourceKey=TickBrush}" Color="#FFC8C6C4" />
+
+<SolidColorBrush x:Key="{dxgnt:TimescaleThemeKeys ResourceKey=BorderBrush}" Color="#FFC8C6C4" />
+
+<!-- Task --><SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=TaskBrush}" Color="#FF106EBE" Opacity="0.62" />
+
+<SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=TaskProgressBrush}" Color="#FF106EBE" />
+
+<SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=TaskCriticalPathBrush}" Color="#FFC12600" Opacity="0.62" />
+
+<SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=TaskCriticalPathProgressBrush}" Color="#FFC12600" />
+
+<SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=TaskForeground}" Color="#FF444444" />
+
+<!-- SummaryTask --><SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=SummaryTaskBrush}" Color="#FF106EBE" Opacity="0.62" />
+
+<SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=SummaryTaskProgressBrush}" Color="#FF106EBE" />
+
+<SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=SummaryTaskForeground}" Color="#FF444444" />
+
+<SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=SummaryTaskBracketBrush}" Color="#FF444444" />
+
+<!-- Milestone --><SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=MilestoneBrush}" Color="#FF106EBE" />
+
+<SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=MilestoneCriticalPathBrush}" Color="#FFC12600" />
+
+<!-- Baseline --><SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=TaskBaselineBrush}" Color="#FFC8C6C4" Opacity="0.62" />
+
+<SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=SummaryTaskBaselineBrush}" Color="#FFC8C6C4" Opacity="0.62" />
+
+<SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=MilestoneBaselineBrush}" Color="#FFC8C6C4" Opacity="0.62" />
+
+<SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=MilestoneBaselineBorderBrush}" Color="#FFC8C6C4" Opacity="0.62" />
+
+<!-- Edit Preview --><SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=TaskPreviewBrush}" Color="#FF106EBE" Opacity="0.62" />
+
+<SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=TaskPreviewBorderBrush}" Color="#FF106EBE" />
+
+<SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=SummaryTaskPreviewBrush}" Color="#FF106EBE" Opacity="0.62" />
+
+<SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=SummaryTaskPreviewBorderBrush}" Color="#FF106EBE" />
+
+<SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=MilestonePreviewBrush}" Color="#FF106EBE" Opacity="0.52" />
+
+<SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=MilestonePreviewBorderBrush}" Color="#FF106EBE" />
+
+<!-- Splitter --><SolidColorBrush x:Key="{dxgnt:GanttControlThemeKeys ResourceKey=SplitterBorderBrush}" Color="#FFC8C6C4" />
+
+<SolidColorBrush x:Key="{dxgnt:GanttControlThemeKeys ResourceKey=SplitterBackground}" Color="#FFFFFFFF" />
+
+<!-- Other --><SolidColorBrush x:Key="{dxgnt:GanttControlThemeKeys ResourceKey=RowBackground}" Color="#FFFFFFFF" />
+
+<SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=ConnectorStroke}" Color="#FF106EBE" />
+
+<SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=ConnectorHighlightedShadowBrush}" Color="#FF106EBE" Opacity="0.32" />
+
+<SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=InvalidConnectorStroke}" Color="#FFFF0000" />
+
+<SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=InvalidConnectorHighlightedShadowBrush}" Color="#30FF0000" />
+
+<SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=ConnectorCriticalPathStroke}" Color="#FFC12600" />
+
+<SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=CriticalPathConnectorHighlightedShadowBrush}" Color="#FFC12600" Opacity="0.32" />
+
+<SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=NonWorkingTimeBrush}" Color="#FFE1DFDD" Opacity="0.25" />
+
+<SolidColorBrush x:Key="{dxgnt:GanttItemsThemeKeys ResourceKey=GroupHighlightBrush}" Color="#FF92C0E0" Opacity="0.16" />
+
+<SolidColorBrush x:Key="{dxgnt:GanttControlThemeKeys ResourceKey=StripLineBackground}" Color="#FF76A797" Opacity="0.25" />
+
+<SolidColorBrush x:Key="{dxgnt:GanttControlThemeKeys ResourceKey=CurrentDateTimeStripLineBackground}" Color="#FFD86344" />
+
 </ResourceDictionary>

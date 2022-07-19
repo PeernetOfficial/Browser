@@ -10,8 +10,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v21.2;component/Core/Core/Themes/Generic/PseudoWindow.xaml"/>
-        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v21.2;component/Core/Core/Themes/UICore.xaml"/>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v22.1;component/Core/Core/Themes/Generic/PseudoWindow.xaml"/>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v22.1;component/Core/Core/Themes/UICore.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <!-- General -->
@@ -49,7 +49,21 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxt:FloatingContainerThemeKey ResourceKey=FloatingContainerCloseButtonBackgroundMouseOverState}">
-        <Border Background="$Window.CloseButton.HoverBackground" cs:id="Border_0000"/>
+        <Border x:Name="CloseButtonMouseOverState"
+                Background="$Window.CloseButton.HoverBackground"
+                cs:id="Border_0000"/>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=ActualRoundCorners, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type dx:ThemedWindow}}}" Value="true">
+                <Setter Property="CornerRadius"
+                        TargetName="CloseButtonMouseOverState"
+                        Value="0,7,0,0"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}" Value="Maximized">
+                <Setter Property="CornerRadius"
+                        TargetName="CloseButtonMouseOverState"
+                        Value="0,0,0,0"/>
+            </DataTrigger>
+        </ControlTemplate.Triggers>
     </ControlTemplate>
 
     <!-- IsPressed -->
@@ -59,7 +73,21 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxt:FloatingContainerThemeKey ResourceKey=FloatingContainerCloseButtonBackgroundPressedState}">
-        <Border Background="$Window.CloseButton.SelectionBackground" cs:id="Border_0000"/>
+        <Border x:Name="CloseButtonPressedState"
+                Background="$Window.CloseButton.SelectionBackground"
+                cs:id="Border_0000"/>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=ActualRoundCorners, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type dx:ThemedWindow}}}" Value="true">
+                <Setter Property="CornerRadius"
+                        TargetName="CloseButtonPressedState"
+                        Value="0,7,0,0"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}" Value="Maximized">
+                <Setter Property="CornerRadius"
+                        TargetName="CloseButtonPressedState"
+                        Value="0,0,0,0"/>
+            </DataTrigger>
+        </ControlTemplate.Triggers>
     </ControlTemplate>
 
 </ResourceDictionary>

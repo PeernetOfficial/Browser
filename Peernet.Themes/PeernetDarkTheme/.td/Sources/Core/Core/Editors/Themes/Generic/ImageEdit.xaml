@@ -4,18 +4,12 @@
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
                     xmlns:dxbt="http://schemas.devexpress.com/winfx/2008/xaml/bars/themekeys"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-                    xmlns:dxef="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-                    xmlns:dxeh="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal"
                     xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal"
-                    xmlns:dxep="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
+                    xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
-                    xmlns:dxmvvmi="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
-                    xmlns:dxn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
-                    xmlns:dxtEx="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
-                    xmlns:help="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
@@ -38,7 +32,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <dxep:CameraControl x:Name="PART_Camera" Visibility="{Binding HasCapture, Converter={StaticResource inverseBoolToVisibilityConverter}}"/>
+            <dxe:CameraControl x:Name="PART_Camera" Visibility="{Binding HasCapture, Converter={StaticResource inverseBoolToVisibilityConverter}}"/>
             <Image Source="{Binding Image}" Visibility="{Binding HasCapture, Converter={StaticResource boolToVisibilityConverter}}"/>
             <StackPanel Grid.Row="1"
                         HorizontalAlignment="Right"
@@ -74,22 +68,22 @@
                               Opacity="0"
                               Style="{DynamicResource {dxet:CameraControlThemeKey ResourceKey=SettingsButtonStyle}}"
                               Visibility="{Binding PropertyProvider.IsSettingsButtonVisible, Converter={StaticResource boolToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}"/>
-                <dxep:FlyoutControl AllowMoveAnimation="False"
-                                    HorizontalAlignment="Right"
-                                    IsOpen="{Binding ElementName=button, Path=IsChecked, Mode=TwoWay}"
-                                    PlacementTarget="{Binding ElementName=contentControl}"
-                                    VerticalAlignment="Top">
-                    <dxep:FlyoutControl.Settings>
-                        <dxep:FlyoutSettings Placement="Right"/>
-                    </dxep:FlyoutControl.Settings>
+                <dxe:FlyoutControl AllowMoveAnimation="False"
+                                   HorizontalAlignment="Right"
+                                   IsOpen="{Binding ElementName=button, Path=IsChecked, Mode=TwoWay}"
+                                   PlacementTarget="{Binding ElementName=contentControl}"
+                                   VerticalAlignment="Top">
+                    <dxe:FlyoutControl.Settings>
+                        <dxe:FlyoutSettings Placement="Right"/>
+                    </dxe:FlyoutControl.Settings>
                     <ContentPresenter Content="{Binding Path=PropertyProvider.Settings, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ContentTemplate="{DynamicResource {dxet:CameraControlThemeKey ResourceKey=CameraSettingsTemplate}}"/>
-                </dxep:FlyoutControl>
+                </dxe:FlyoutControl>
                 <StackPanel Orientation="Vertical"
                             VerticalAlignment="Center"
                             Visibility="{Binding PropertyProvider.IsBusy, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityConverter}}">
                     <Image Height="14"
                            HorizontalAlignment="Center"
-                           Source="{dx:ImageSelector Source='pack://application:,,,/DevExpress.Xpf.Core.v21.2;component/Editors/Images/error.png'}"
+                           Source="{dx:ImageSelector Source='pack://application:,,,/DevExpress.Xpf.Core.v22.1;component/Editors/Images/error.png'}"
                            Stretch="Fill"
                            Width="14"/>
                     <TextBlock HorizontalAlignment="Center"
@@ -105,7 +99,7 @@
                             Visibility="{Binding PropertyProvider.HasDevices, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource inverseBoolToVisibilityConverter}}">
                     <Image Height="14"
                            HorizontalAlignment="Center"
-                           Source="{dx:ImageSelector Source='pack://application:,,,/DevExpress.Xpf.Core.v21.2;component/Editors/Images/error.png'}"
+                           Source="{dx:ImageSelector Source='pack://application:,,,/DevExpress.Xpf.Core.v22.1;component/Editors/Images/error.png'}"
                            Stretch="Fill"
                            Width="14"/>
                     <TextBlock HorizontalAlignment="Center"
@@ -160,14 +154,14 @@
                             <ColumnDefinition Width="7*"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="{Binding Device.Caption}"/>
-                        <dxep:ComboBoxEdit AllowNullInput="True"
-                                           DisplayMember="Name"
-                                           EditValue="{Binding ActualDevice, UpdateSourceTrigger=PropertyChanged}"
-                                           EditValuePostMode="Immediate"
-                                           Grid.Column="1"
-                                           IsTextEditable="False"
-                                           ItemsSource="{Binding Device.AvaliableValues}"
-                                           ShowCustomItems="True"/>
+                        <dxe:ComboBoxEdit AllowNullInput="True"
+                                          DisplayMember="Name"
+                                          EditValue="{Binding ActualDevice, UpdateSourceTrigger=PropertyChanged}"
+                                          EditValuePostMode="Immediate"
+                                          Grid.Column="1"
+                                          IsTextEditable="False"
+                                          ItemsSource="{Binding Device.AvaliableValues}"
+                                          ShowCustomItems="True"/>
                     </Grid>
                     <StackPanel IsEnabled="{Binding EnableSettings}" Orientation="Vertical">
                         <Grid IsEnabled="{Binding IsResolutionEnabled}" Margin="0,10,0,0">
@@ -176,14 +170,14 @@
                                 <ColumnDefinition Width="7*"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{Binding Resolution.Caption}"/>
-                            <dxep:ComboBoxEdit DisplayMember="DisplayText"
-                                               EditValue="{Binding ActualResolution, UpdateSourceTrigger=PropertyChanged}"
-                                               EditValuePostMode="Immediate"
-                                               Grid.Column="1"
-                                               IsTextEditable="False"
-                                               ItemsSource="{Binding Resolution.AvaliableValues}"
-                                               ValidateOnTextInput="True"
-                                               ValueMember="Resolution"/>
+                            <dxe:ComboBoxEdit DisplayMember="DisplayText"
+                                              EditValue="{Binding ActualResolution, UpdateSourceTrigger=PropertyChanged}"
+                                              EditValuePostMode="Immediate"
+                                              Grid.Column="1"
+                                              IsTextEditable="False"
+                                              ItemsSource="{Binding Resolution.AvaliableValues}"
+                                              ValidateOnTextInput="True"
+                                              ValueMember="Resolution"/>
                         </Grid>
                         <Grid IsEnabled="{Binding IsBrightnessEnabled}" Margin="0,10,0,0">
                             <Grid.ColumnDefinitions>
@@ -191,13 +185,13 @@
                                 <ColumnDefinition Width="7*"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{Binding Brightness.Caption}"/>
-                            <dxep:TrackBarEdit EditValue="{Binding ActualBrightness, UpdateSourceTrigger=PropertyChanged}"
-                                               Grid.Column="1"
-                                               LargeStep="10"
-                                               Maximum="{Binding Brightness.MaxValue}"
-                                               Minimum="{Binding Brightness.MinValue}"
-                                               SmallStep="1"
-                                               TickPlacement="None"/>
+                            <dxe:TrackBarEdit EditValue="{Binding ActualBrightness, UpdateSourceTrigger=PropertyChanged}"
+                                              Grid.Column="1"
+                                              LargeStep="10"
+                                              Maximum="{Binding Brightness.MaxValue}"
+                                              Minimum="{Binding Brightness.MinValue}"
+                                              SmallStep="1"
+                                              TickPlacement="None"/>
                         </Grid>
                         <Grid IsEnabled="{Binding IsContastEnabled}" Margin="0,10,0,0">
                             <Grid.ColumnDefinitions>
@@ -205,13 +199,13 @@
                                 <ColumnDefinition Width="7*"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{Binding Contrast.Caption}"/>
-                            <dxep:TrackBarEdit EditValue="{Binding ActualContrast, UpdateSourceTrigger=PropertyChanged}"
-                                               Grid.Column="1"
-                                               LargeStep="10"
-                                               Maximum="{Binding Contrast.MaxValue}"
-                                               Minimum="{Binding Contrast.MinValue}"
-                                               SmallStep="1"
-                                               TickPlacement="None"/>
+                            <dxe:TrackBarEdit EditValue="{Binding ActualContrast, UpdateSourceTrigger=PropertyChanged}"
+                                              Grid.Column="1"
+                                              LargeStep="10"
+                                              Maximum="{Binding Contrast.MaxValue}"
+                                              Minimum="{Binding Contrast.MinValue}"
+                                              SmallStep="1"
+                                              TickPlacement="None"/>
                         </Grid>
                         <Grid IsEnabled="{Binding IsDesaturateEnabled}" Margin="0,10,0,10">
                             <Grid.ColumnDefinitions>
@@ -219,9 +213,9 @@
                                 <ColumnDefinition Width="7*"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{Binding Desaturate.Caption}"/>
-                            <dxep:CheckEdit EditValue="{Binding CanDesaturate, UpdateSourceTrigger=PropertyChanged}"
-                                            Grid.Column="1"
-                                            HorizontalAlignment="Center"/>
+                            <dxe:CheckEdit EditValue="{Binding CanDesaturate, UpdateSourceTrigger=PropertyChanged}"
+                                           Grid.Column="1"
+                                           HorizontalAlignment="Center"/>
                         </Grid>
                         <Button Command="{Binding ResetToDefaultCommand}"
                                 Content="{Binding Reset.Caption}"
@@ -283,12 +277,12 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             dx:FocusHelper2.Focusable="False"
-                            dxn:AppearanceOptions.BorderThickness="{Binding Path=(dxn:AppearanceOptions.BorderThickness), RelativeSource={RelativeSource TemplatedParent}}"
-                            dxn:AppearanceOptions.CornerRadius="{Binding Path=(dxn:AppearanceOptions.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
-                            dxn:AppearanceOptions.HasBorderThickness="{Binding Path=(dxn:AppearanceOptions.HasBorderThickness), RelativeSource={RelativeSource TemplatedParent}}"
-                            dxn:AppearanceOptions.HasCornerRadius="{Binding Path=(dxn:AppearanceOptions.HasCornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
-                            help:ControlHelper.IsReadOnly="{TemplateBinding IsReadOnly}"
-                            help:ControlHelper.ShowFocusedState="{Binding Path=IsKeyboardFocusWithin, RelativeSource={RelativeSource TemplatedParent}}"
+                            dxei:ControlHelper.IsReadOnly="{TemplateBinding IsReadOnly}"
+                            dxei:ControlHelper.ShowFocusedState="{Binding Path=IsKeyboardFocusWithin, RelativeSource={RelativeSource TemplatedParent}}"
+                            dxi:AppearanceOptions.BorderThickness="{Binding Path=(dxi:AppearanceOptions.BorderThickness), RelativeSource={RelativeSource TemplatedParent}}"
+                            dxi:AppearanceOptions.CornerRadius="{Binding Path=(dxi:AppearanceOptions.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
+                            dxi:AppearanceOptions.HasBorderThickness="{Binding Path=(dxi:AppearanceOptions.HasBorderThickness), RelativeSource={RelativeSource TemplatedParent}}"
+                            dxi:AppearanceOptions.HasCornerRadius="{Binding Path=(dxi:AppearanceOptions.HasCornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
                             HorizontalContentAlignment="Stretch"
                             Template="{TemplateBinding ActualBorderTemplate}"
                             VerticalContentAlignment="Stretch">
@@ -297,12 +291,12 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <dxep:ErrorControl x:Name="PART_ErrorPresenter" Grid.Column="0"/>
-                    <dxep:EditorControl x:Name="PART_Content"
-                                        Foreground="{TemplateBinding Foreground}"
-                                        Grid.Column="1"
-                                        Padding="{TemplateBinding Padding}"
-                                        Template="{TemplateBinding ActualEditorControlTemplate}"/>
+                    <dxe:ErrorControl x:Name="PART_ErrorPresenter" Grid.Column="0"/>
+                    <dxe:EditorControl x:Name="PART_Content"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       Grid.Column="1"
+                                       Padding="{TemplateBinding Padding}"
+                                       Template="{TemplateBinding ActualEditorControlTemplate}"/>
                 </Grid>
             </ContentControl>
         </Grid>
@@ -311,14 +305,14 @@
     <ControlTemplate x:Key="{dxet:ImageEditThemeKey ResourceKey=MenuTemplate}" TargetType="{x:Type ContentControl}">
         <StackPanel x:Name="PART_MenuContent" Orientation="Horizontal">
             <!--BEGIN WPF-->
-            <dxep:ImageEditCutToolButton/>
-            <dxep:ImageEditCopyToolButton/>
-            <dxep:ImageEditPasteToolButton/>
-            <dxep:ImageEditClearToolButton/>
-            <dxep:ImageEditToolSeparator/>
-            <dxep:ImageEditLoadToolButton/>
-            <dxep:ImageEditSaveToolButton/>
-            <dxep:ImageEditTakePictureButton/>
+            <dxe:ImageEditCutToolButton/>
+            <dxe:ImageEditCopyToolButton/>
+            <dxe:ImageEditPasteToolButton/>
+            <dxe:ImageEditClearToolButton/>
+            <dxe:ImageEditToolSeparator/>
+            <dxe:ImageEditLoadToolButton/>
+            <dxe:ImageEditSaveToolButton/>
+            <dxe:ImageEditTakePictureButton/>
             <!--END WPF-->
             <!--ONLY SL
                 <dxe:ImageEditClearToolButton />
@@ -330,34 +324,34 @@
     <ControlTemplate x:Key="{dxet:PopupImageEditThemeKey ResourceKey=MenuTemplate}" TargetType="{x:Type ContentControl}">
         <StackPanel x:Name="PART_MenuContent" Orientation="Horizontal">
             <!--BEGIN WPF-->
-            <dxep:ImageEditCutToolButton/>
-            <dxep:ImageEditCopyToolButton/>
-            <dxep:ImageEditPasteToolButton/>
-            <dxep:ImageEditClearToolButton/>
-            <dxep:ImageEditToolSeparator/>
-            <dxep:ImageEditLoadToolButton/>
-            <dxep:ImageEditSaveToolButton/>
-            <dxep:ImageEditTakePictureButton/>
+            <dxe:ImageEditCutToolButton/>
+            <dxe:ImageEditCopyToolButton/>
+            <dxe:ImageEditPasteToolButton/>
+            <dxe:ImageEditClearToolButton/>
+            <dxe:ImageEditToolSeparator/>
+            <dxe:ImageEditLoadToolButton/>
+            <dxe:ImageEditSaveToolButton/>
+            <dxe:ImageEditTakePictureButton/>
             <!--END WPF-->
             <!--ONLY SL
             <dxe:ImageEditClearToolButton />
             <dxe:ImageEditLoadToolButton />
             ONLY SL-->
-            <dxep:ImageEditToolSeparator/>
-            <dxep:PopupImageEditOKToolButton/>
-            <dxep:PopupImageEditCancelToolButton/>
+            <dxe:ImageEditToolSeparator/>
+            <dxe:PopupImageEditOKToolButton/>
+            <dxe:PopupImageEditCancelToolButton/>
         </StackPanel>
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxet:PopupImageEditThemeKey ResourceKey=PopupContentTemplate}" TargetType="{x:Type ContentControl}">
         <Grid SnapsToDevicePixels="True">
-            <dxep:ImageEdit x:Name="PART_PopupContent"
-                            Effect="{Binding Path=Tag.ImageEffect, RelativeSource={RelativeSource TemplatedParent}}"
-                            Foreground="{Binding Path=Tag.Foreground, RelativeSource={RelativeSource TemplatedParent}}"
-                            HorizontalAlignment="Stretch"
-                            ShowBorder="False"
-                            Stretch="{Binding Path=Tag.Stretch, RelativeSource={RelativeSource TemplatedParent}}"
-                            VerticalAlignment="Stretch"/>
+            <dxe:ImageEdit x:Name="PART_PopupContent"
+                           Effect="{Binding Path=Tag.ImageEffect, RelativeSource={RelativeSource TemplatedParent}}"
+                           Foreground="{Binding Path=Tag.Foreground, RelativeSource={RelativeSource TemplatedParent}}"
+                           HorizontalAlignment="Stretch"
+                           ShowBorder="False"
+                           Stretch="{Binding Path=Tag.Stretch, RelativeSource={RelativeSource TemplatedParent}}"
+                           VerticalAlignment="Stretch"/>
         </Grid>
     </ControlTemplate>
 
@@ -365,6 +359,7 @@
         <Grid x:Name="PART_Container"
               Background="Transparent"
               Margin="{TemplateBinding Padding}"
+              Style="{DynamicResource {dxet:ImageEditThemeKey ResourceKey=ContentStyle}}"
               cs:id="Grid_0000">
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -384,27 +379,27 @@
                     Visibility="{Binding Path=(dxe:BaseEdit.OwnerEdit).(dxe:ActualPropertyProvider.Properties).InplaceMenuVisibility, RelativeSource={RelativeSource TemplatedParent}}">
                 <ContentControl Template="{Binding Path=(dxe:BaseEdit.OwnerEdit).MenuTemplate, RelativeSource={RelativeSource TemplatedParent}}"/>
             </Border>
-            <dxep:FlyoutControl x:Name="PART_MenuFlyout"
-                                AnimationDuration="00:00:00.1"
-                                Background="Transparent"
-                                BorderThickness="0"
-                                HorizontalAlignment="Center"
-                                OpenOnHover="True"
-                                PlacementTarget="{Binding Path=(dxe:BaseEdit.OwnerEdit), RelativeSource={RelativeSource TemplatedParent}}"
-                                VerticalAlignment="Bottom"
-                                cs:id="FlyoutControl_0000">
-                <dxep:FlyoutControl.Settings>
-                    <dxep:FlyInSettings/>
-                </dxep:FlyoutControl.Settings>
-                <dxmvvmi:Interaction.Behaviors>
-                    <dxmvvmi:EventToCommand Command="{Binding Path=(dxe:BaseEdit.OwnerEdit).(dxe:ActualPropertyProvider.Properties).CanShowMenuPopupCommand, RelativeSource={RelativeSource TemplatedParent}}"
-                                            EventName="Opening"
-                                            PassEventArgsToCommand="True"/>
-                </dxmvvmi:Interaction.Behaviors>
+            <dxe:FlyoutControl x:Name="PART_MenuFlyout"
+                               AnimationDuration="00:00:00.1"
+                               Background="Transparent"
+                               BorderThickness="0"
+                               HorizontalAlignment="Center"
+                               OpenOnHover="True"
+                               PlacementTarget="{Binding Path=(dxe:BaseEdit.OwnerEdit), RelativeSource={RelativeSource TemplatedParent}}"
+                               VerticalAlignment="Bottom"
+                               cs:id="FlyoutControl_0000">
+                <dxe:FlyoutControl.Settings>
+                    <dxe:FlyInSettings/>
+                </dxe:FlyoutControl.Settings>
+                <dxmvvm:Interaction.Behaviors>
+                    <dxmvvm:EventToCommand Command="{Binding Path=(dxe:BaseEdit.OwnerEdit).(dxe:ActualPropertyProvider.Properties).CanShowMenuPopupCommand, RelativeSource={RelativeSource TemplatedParent}}"
+                                           EventName="Opening"
+                                           PassEventArgsToCommand="True"/>
+                </dxmvvm:Interaction.Behaviors>
                 <ContentControl Focusable="False" Template="{Binding Path=(dxe:BaseEdit.OwnerEdit).MenuContainerTemplate, RelativeSource={RelativeSource TemplatedParent}}">
                     <ContentControl Focusable="False" Template="{Binding Path=(dxe:BaseEdit.OwnerEdit).MenuTemplate, RelativeSource={RelativeSource TemplatedParent}}"/>
                 </ContentControl>
-            </dxep:FlyoutControl>
+            </dxe:FlyoutControl>
         </Grid>
     </ControlTemplate>
 
@@ -428,31 +423,31 @@
                     Visibility="{Binding Path=(dxe:BaseEdit.OwnerEdit).(dxe:ActualPropertyProvider.Properties).InplaceMenuVisibility, RelativeSource={RelativeSource TemplatedParent}}">
                 <ContentControl Template="{Binding Path=(dxe:BaseEdit.OwnerEdit).MenuTemplate, RelativeSource={RelativeSource TemplatedParent}}"/>
             </Border>
-            <dxep:FlyoutControl x:Name="PART_MenuFlyout"
-                                AnimationDuration="00:00:00.1"
-                                Background="Transparent"
-                                BorderThickness="0"
-                                HorizontalAlignment="Center"
-                                OpenOnHover="True"
-                                PlacementTarget="{Binding Path=(dxe:BaseEdit.OwnerEdit), RelativeSource={RelativeSource TemplatedParent}}"
-                                VerticalAlignment="Bottom"
-                                cs:id="FlyoutControl_0000">
-                <dxep:FlyoutControl.Settings>
-                    <dxep:FlyInSettings/>
-                </dxep:FlyoutControl.Settings>
-                <dxmvvmi:Interaction.Behaviors>
-                    <dxmvvmi:EventToCommand Command="{Binding Path=(dxe:BaseEdit.OwnerEdit).(dxe:ActualPropertyProvider.Properties).CanShowMenuPopupCommand, RelativeSource={RelativeSource TemplatedParent}}"
-                                            EventName="Opening"
-                                            PassEventArgsToCommand="True"/>
-                </dxmvvmi:Interaction.Behaviors>
+            <dxe:FlyoutControl x:Name="PART_MenuFlyout"
+                               AnimationDuration="00:00:00.1"
+                               Background="Transparent"
+                               BorderThickness="0"
+                               HorizontalAlignment="Center"
+                               OpenOnHover="True"
+                               PlacementTarget="{Binding Path=(dxe:BaseEdit.OwnerEdit), RelativeSource={RelativeSource TemplatedParent}}"
+                               VerticalAlignment="Bottom"
+                               cs:id="FlyoutControl_0000">
+                <dxe:FlyoutControl.Settings>
+                    <dxe:FlyInSettings/>
+                </dxe:FlyoutControl.Settings>
+                <dxmvvm:Interaction.Behaviors>
+                    <dxmvvm:EventToCommand Command="{Binding Path=(dxe:BaseEdit.OwnerEdit).(dxe:ActualPropertyProvider.Properties).CanShowMenuPopupCommand, RelativeSource={RelativeSource TemplatedParent}}"
+                                           EventName="Opening"
+                                           PassEventArgsToCommand="True"/>
+                </dxmvvm:Interaction.Behaviors>
                 <ContentControl Focusable="False" Template="{Binding Path=(dxe:BaseEdit.OwnerEdit).MenuContainerTemplate, RelativeSource={RelativeSource TemplatedParent}}">
                     <ContentControl Focusable="False" Template="{Binding Path=(dxe:BaseEdit.OwnerEdit).MenuTemplate, RelativeSource={RelativeSource TemplatedParent}}"/>
                 </ContentControl>
-            </dxep:FlyoutControl>
+            </dxe:FlyoutControl>
         </Grid>
     </ControlTemplate>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.ImageEditToolButton}" TargetType="{x:Type dxe:ImageEditToolButton}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.ImageEditToolButton}" TargetType="{x:Type dxe:ImageEditToolButton}">
         <Style.Setters>
             <Setter Property="Background"
                     Value="Transparent"

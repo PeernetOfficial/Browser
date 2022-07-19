@@ -4,7 +4,6 @@
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
                     xmlns:dxbt="http://schemas.devexpress.com/winfx/2008/xaml/bars/themekeys"
-                    xmlns:dxcn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
                     xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
                     xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
                     xmlns:dxri="http://schemas.devexpress.com/winfx/2008/xaml/ribbon/internal"
@@ -15,8 +14,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v21.2;component/Ribbon/Office2019Black/UICore.xaml"/>
-        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v21.2;component/Ribbon/Office2019Black/UIPreset.xaml"/>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v22.1;component/Ribbon/Office2019Black/UICore.xaml"/>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v22.1;component/Ribbon/Office2019Black/UIPreset.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <!-- General -->
@@ -84,31 +83,31 @@
                         TargetName="CategoryBackground"
                         Value="Collapsed"/>
             </DataTrigger>
-            <DataTrigger Binding="{Binding Path=(dxr:RibbonControl.Ribbon).(dxcn:AppearanceOptions.HasBackground), RelativeSource={RelativeSource Self}}" Value="True">
+            <DataTrigger Binding="{Binding Path=(dxr:RibbonControl.Ribbon).(dxi:AppearanceOptions.HasBackground), RelativeSource={RelativeSource Self}}" Value="True">
                 <Setter Property="Background"
                         TargetName="PageHeaderBackground"
-                        Value="{Binding Path=(dxr:RibbonControl.Ribbon).(dxcn:AppearanceOptions.Background), RelativeSource={RelativeSource Self}}"/>
+                        Value="{Binding Path=(dxr:RibbonControl.Ribbon).(dxi:AppearanceOptions.Background), RelativeSource={RelativeSource Self}}"/>
                 <Setter Property="Background"
                         TargetName="SeparatorBackground"
-                        Value="{Binding Path=(dxr:RibbonControl.Ribbon).(dxcn:AppearanceOptions.Background), RelativeSource={RelativeSource Self}}"/>
+                        Value="{Binding Path=(dxr:RibbonControl.Ribbon).(dxi:AppearanceOptions.Background), RelativeSource={RelativeSource Self}}"/>
             </DataTrigger>
-            <DataTrigger Binding="{Binding Path=(dxr:RibbonControl.Ribbon).(dxcn:AppearanceOptions.HasBorderThickness), RelativeSource={RelativeSource Self}}" Value="True">
+            <DataTrigger Binding="{Binding Path=(dxr:RibbonControl.Ribbon).(dxi:AppearanceOptions.HasBorderThickness), RelativeSource={RelativeSource Self}}" Value="True">
                 <Setter Property="BorderThickness"
                         TargetName="PageHeaderBackground"
-                        Value="{Binding Path=(dxr:RibbonControl.Ribbon).(dxcn:AppearanceOptions.BorderThickness), RelativeSource={RelativeSource Self}, Converter={StaticResource ThicknessConverter}, ConverterParameter=Top}"/>
+                        Value="{Binding Path=(dxr:RibbonControl.Ribbon).(dxi:AppearanceOptions.BorderThickness), RelativeSource={RelativeSource Self}, Converter={StaticResource ThicknessConverter}, ConverterParameter=Top}"/>
             </DataTrigger>
-            <DataTrigger Binding="{Binding Path=(dxr:RibbonControl.Ribbon).(dxcn:AppearanceOptions.HasBorderBrush), RelativeSource={RelativeSource Self}}" Value="True">
+            <DataTrigger Binding="{Binding Path=(dxr:RibbonControl.Ribbon).(dxi:AppearanceOptions.HasBorderBrush), RelativeSource={RelativeSource Self}}" Value="True">
                 <Setter Property="BorderBrush"
                         TargetName="PageHeaderBackground"
-                        Value="{Binding Path=(dxr:RibbonControl.Ribbon).(dxcn:AppearanceOptions.BorderBrush), RelativeSource={RelativeSource Self}}"/>
+                        Value="{Binding Path=(dxr:RibbonControl.Ribbon).(dxi:AppearanceOptions.BorderBrush), RelativeSource={RelativeSource Self}}"/>
             </DataTrigger>
-            <DataTrigger Binding="{Binding Path=(dxr:RibbonControl.Ribbon).(dxcn:AppearanceOptions.HasCornerRadius), RelativeSource={RelativeSource Self}}" Value="True">
+            <DataTrigger Binding="{Binding Path=(dxr:RibbonControl.Ribbon).(dxi:AppearanceOptions.HasCornerRadius), RelativeSource={RelativeSource Self}}" Value="True">
                 <Setter Property="Margin"
                         TargetName="SeparatorBackground"
-                        Value="{Binding Path=(dxr:RibbonControl.Ribbon).(dxcn:AppearanceOptions.CornerRadius), RelativeSource={RelativeSource Self}, Converter={StaticResource CornerRadiusToThicknessConverter}}"/>
+                        Value="{Binding Path=(dxr:RibbonControl.Ribbon).(dxi:AppearanceOptions.CornerRadius), RelativeSource={RelativeSource Self}, Converter={StaticResource CornerRadiusToThicknessConverter}}"/>
                 <Setter Property="CornerRadius"
                         TargetName="PageHeaderBackground"
-                        Value="{Binding Path=(dxr:RibbonControl.Ribbon).(dxcn:AppearanceOptions.CornerRadius), RelativeSource={RelativeSource Self}, Converter={StaticResource CornerRadiusConverter}, ConverterParameter=Top}"/>
+                        Value="{Binding Path=(dxr:RibbonControl.Ribbon).(dxi:AppearanceOptions.CornerRadius), RelativeSource={RelativeSource Self}, Converter={StaticResource CornerRadiusConverter}, ConverterParameter=Top}"/>
             </DataTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>

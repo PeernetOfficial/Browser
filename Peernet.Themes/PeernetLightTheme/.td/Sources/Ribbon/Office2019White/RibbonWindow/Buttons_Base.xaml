@@ -7,8 +7,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v21.2;component/UICore/UIData.xaml"/>
-        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v21.2;component/Core/Core/Themes/Office2019White/PseudoWindow/PseudoWindowCaption.xaml"/>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v22.1;component/UICore/UIData.xaml"/>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v22.1;component/Core/Core/Themes/Office2019White/PseudoWindow/PseudoWindowCaption.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <!--WARNING!
@@ -63,7 +63,21 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxt:RibbonHeaderItemsThemeKey ResourceKey=RibbonCloseButtonBackgroundMouseOverState}">
-        <Border Background="$Window.CloseButton.HoverBackground" cs:id="Border_0000"/>
+        <Border x:Name="CloseButtonMouseOverState"
+                Background="$Window.CloseButton.HoverBackground"
+                cs:id="Border_0000"/>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=ActualRoundCorners, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type dx:ThemedWindow}}}" Value="true">
+                <Setter Property="CornerRadius"
+                        TargetName="CloseButtonMouseOverState"
+                        Value="0,7,0,0"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}" Value="Maximized">
+                <Setter Property="CornerRadius"
+                        TargetName="CloseButtonMouseOverState"
+                        Value="0,0,0,0"/>
+            </DataTrigger>
+        </ControlTemplate.Triggers>
     </ControlTemplate>
 
     <!-- IsPressed -->
@@ -73,7 +87,21 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxt:RibbonHeaderItemsThemeKey ResourceKey=RibbonCloseButtonBackgroundPressedState}">
-        <Border Background="$Window.CloseButton.SelectionBackground" cs:id="Border_0000"/>
+        <Border x:Name="CloseButtonPressedState"
+                Background="$Window.CloseButton.SelectionBackground"
+                cs:id="Border_0000"/>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=ActualRoundCorners, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type dx:ThemedWindow}}}" Value="true">
+                <Setter Property="CornerRadius"
+                        TargetName="CloseButtonPressedState"
+                        Value="0,7,0,0"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}" Value="Maximized">
+                <Setter Property="CornerRadius"
+                        TargetName="CloseButtonPressedState"
+                        Value="0,0,0,0"/>
+            </DataTrigger>
+        </ControlTemplate.Triggers>
     </ControlTemplate>
 
     <!--RIBBON HEADER ITEMS STYLES-->

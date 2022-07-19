@@ -3,20 +3,17 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxbc="http://schemas.devexpress.com/winfx/2008/xaml/bars/internal"
+                    xmlns:dxbi="http://schemas.devexpress.com/winfx/2008/xaml/bars/internal"
                     xmlns:dxbt="http://schemas.devexpress.com/winfx/2008/xaml/bars/themekeys"
-                    xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/core"
-                    xmlns:dxcn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
                     xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
-                    xmlns:dxtEx="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <dxc:BooleanToVisibilityConverter x:Key="notInvertedBooleanToVisibilityConverter" Invert="False"/>
+    <dx:BooleanToVisibilityConverter x:Key="notInvertedBooleanToVisibilityConverter" Invert="False"/>
 
-    <dxc:BooleanToVisibilityConverter x:Key="invertedBooleanToVisibilityConverter" Invert="True"/>
+    <dx:BooleanToVisibilityConverter x:Key="invertedBooleanToVisibilityConverter" Invert="True"/>
 
     <sys:Double x:Key="{dxbt:BarItemThemeKey ResourceKey=DisableStateOpacityValue}">0.35</sys:Double>
 
@@ -29,9 +26,9 @@
     <Thickness x:Key="{dxbt:BarCheckItemThemeKey ResourceKey=BorderMarginInMenu}">-2</Thickness>
 
     <!--<DataTemplate x:Key="{dxbt:BarItemThemeKey ResourceKey=SnappedContentTemplate}">
-        <dxc:MeasurePixelSnapper SnapperType="Around">
+        <dx:MeasurePixelSnapper SnapperType="Around">
             <dx:DXContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{Binding Path=Link.ActualContentTemplate, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxb:BarItemLinkControl}}}"/>
-        </dxc:MeasurePixelSnapper>
+        </dx:MeasurePixelSnapper>
     </DataTemplate>-->
 
     <sys:Double x:Key="Double.NaN">NaN</sys:Double>
@@ -39,15 +36,15 @@
     <dxb:BooleanToIntegerConverter x:Key="booleanToIntegerConverter"/>
 
     <Style x:Key="{dxbt:BarSubItemThemeSelectorThemeKey ResourceKey=BarCheckItemStyle}" TargetType="dxb:BarCheckItem">
-        <Setter Property="Content" Value="{Binding Theme.FullName}"/>
-        <Setter Property="Glyph" Value="{Binding Theme.SmallGlyph}"/>
+        <Setter Property="Content" Value="{Binding Theme.FullName, Mode=OneTime}"/>
+        <Setter Property="Glyph" Value="{Binding Theme.SmallGlyph, Mode=OneTime}"/>
         <Setter Property="IsChecked" Value="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         <Style.Triggers>
             <DataTrigger Binding="{Binding UseSvgGlyphs}" Value="True">
-                <Setter Property="Glyph" Value="{Binding Theme.SvgGlyph, Converter={dx:SvgUriToImageSourceConverter}}"/>
+                <Setter Property="Glyph" Value="{Binding Theme.SvgGlyph, Mode=OneTime, Converter={dx:SvgUriToImageSourceConverter}}"/>
             </DataTrigger>
-            <DataTrigger Binding="{Binding Theme.SvgGlyph}" Value="{x:Null}">
-                <Setter Property="Glyph" Value="{Binding Theme.SmallGlyph}"/>
+            <DataTrigger Binding="{Binding Theme.SvgGlyph, Mode=OneTime}" Value="{x:Null}">
+                <Setter Property="Glyph" Value="{Binding Theme.SmallGlyph, Mode=OneTime}"/>
             </DataTrigger>
         </Style.Triggers>
     </Style>

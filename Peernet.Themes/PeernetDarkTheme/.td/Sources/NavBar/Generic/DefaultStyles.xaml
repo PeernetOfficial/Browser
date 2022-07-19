@@ -2,14 +2,14 @@
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
-                    xmlns:dxcn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
+                    xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
                     xmlns:dxn="http://schemas.devexpress.com/winfx/2008/xaml/navbar"
                     xmlns:dxnt="http://schemas.devexpress.com/winfx/2008/xaml/navbar/themekeys"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:xpf="clr-namespace:DevExpress.Xpf.NavBar.Platform;assembly=DevExpress.Xpf.NavBar.v21.2">
+                    xmlns:xpf="clr-namespace:DevExpress.Xpf.NavBar.Platform;assembly=DevExpress.Xpf.NavBar.v22.1">
 
     <Style x:Key="{dxnt:CommonElementsThemeKey ResourceKey=NavBarViewBaseStyle}" TargetType="dxn:NavBarViewBase">
         <Setter Property="ItemForeground" Value="{DynamicResource {dxnt:CommonElementsThemeKey ResourceKey=ItemForegroundBrush}}"/>
@@ -118,12 +118,12 @@
     <Style x:Key="NavPaneExpandButtonDefaultStyle" TargetType="{x:Type dxn:NavPaneExpandButton}">
         <Setter Property="Template" Value="{DynamicResource {dxnt:NavigationPaneHeaderThemeKey ResourceKey=ExpandButtonTemplate}}"/>
         <Setter Property="Focusable" Value="{Binding Path=NavBar.View.Focusable}"/>
-        <Setter Property="dxcn:RoutedCommandHelper.Command">
+        <Setter Property="dxi:RoutedCommandHelper.Command">
             <Setter.Value>
                 <dxn:ChangeNavPaneExpandedCommandProvider/>
             </Setter.Value>
         </Setter>
-        <Setter Property="dxcn:RoutedCommandHelper.CommandParameter" Value="{Binding}"/>
+        <Setter Property="dxi:RoutedCommandHelper.CommandParameter" Value="{Binding}"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
     </Style>
 
@@ -220,7 +220,7 @@
 
     <Style x:Key="NavBarItemsControlDefaultStyle" TargetType="{x:Type dxn:NavBarItemsControl}">
         <Style.BasedOn>
-            <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.NavBar.NavBarItemsControl}"
+            <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.NavBar.NavBarItemsControl}"
                    BasedOn="{StaticResource {x:Type ItemsControl}}"
                    TargetType="{x:Type dxn:NavBarItemsControl}"/>
         </Style.BasedOn>

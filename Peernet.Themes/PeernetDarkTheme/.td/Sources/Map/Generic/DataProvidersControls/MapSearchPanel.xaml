@@ -1,20 +1,20 @@
 <ResourceDictionary mc:Ignorable="cs"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:cs="colorscheme_ignorable_uri"
-                    xmlns:dxdst="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/map/themekeys"
-                    xmlns:local="http://schemas.devexpress.com/winfx/2008/xaml/map"
+                    xmlns:dxm="http://schemas.devexpress.com/winfx/2008/xaml/map"
+                    xmlns:dxmt="http://schemas.devexpress.com/winfx/2008/xaml/map/themekeys"
+                    xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <local:VisibilityToCornerRadiusConverter x:Key="CornerRadiusConverter"/>
+    <dxm:VisibilityToCornerRadiusConverter x:Key="CornerRadiusConverter"/>
 
-    <local:BoolToVisibilityConverter x:Key="VisibilityConverter"/>
+    <dxm:BoolToVisibilityConverter x:Key="VisibilityConverter"/>
 
-    <local:LocationInformationToTooltipConverter x:Key="LocationInformationToTooltipConverter"/>
+    <dxm:LocationInformationToTooltipConverter x:Key="LocationInformationToTooltipConverter"/>
 
-    <local:FixedWidthToWidthConverter x:Key="FixedWidthToWidthConverter"/>
+    <dxm:FixedWidthToWidthConverter x:Key="FixedWidthToWidthConverter"/>
 
     <Style x:Key="ClearButton" TargetType="Button">
         <Setter Property="Template">
@@ -48,7 +48,7 @@
                         </VisualStateManager.VisualStateGroups>
                         <Path x:Name="path"
                               Data="F1 M 25,69C 28.866,69 32,72.134 32,76C 32,79.866 28.866,83 25,83C 21.134,83 18,79.866 18,76C 18,72.134 21.134,69 25,69 Z M 29,73L 28,72L 25,75L 22,72L 21,73L 24,76L 21,79L 22,80L 25,77L 28,80L 29,79L 26,76L 29,73 Z "
-                              Fill="{DynamicResource {dxt:MapBrushesThemeKey ResourceKey=SearchPanelClearButtonFill}}"
+                              Fill="{DynamicResource {dxmt:MapBrushesThemeKey ResourceKey=SearchPanelClearButtonFill}}"
                               Margin="1"
                               Opacity="0.62"
                               Stretch="Fill"/>
@@ -87,7 +87,7 @@
                                 <RotateTransform/>
                             </Grid.RenderTransform>
                             <Path Data="F1 M 49,49C 52.866,49 56,52.134 56,56L 53,56C 53,53.7909 51.2091,52 49,52C 46.7908,52 45,53.7909 45,56L 42,56C 42,52.134 45.134,49 49,49 Z "
-                                  Fill="{DynamicResource {dxt:MapBrushesThemeKey ResourceKey=SearchPanelLoadingBrush}}"
+                                  Fill="{DynamicResource {dxmt:MapBrushesThemeKey ResourceKey=SearchPanelLoadingBrush}}"
                                   Height="7"
                                   Stretch="Fill"
                                   UseLayoutRounding="False"
@@ -254,7 +254,7 @@
                               Background="Transparent"
                               cs:id="Grid_0000">
                             <Border x:Name="Background"
-                                    Background="{DynamicResource {dxt:MapBrushesThemeKey ResourceKey=OverlayElementForeground}}"
+                                    Background="{DynamicResource {dxmt:MapBrushesThemeKey ResourceKey=OverlayElementForeground}}"
                                     CornerRadius="3"
                                     HorizontalAlignment="Center"
                                     Opacity="0.62"
@@ -482,7 +482,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Map.MapSearchListBoxItem}" TargetType="{x:Type local:MapSearchListBoxItem}">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Map.MapSearchListBoxItem}" TargetType="{x:Type dxm:MapSearchListBoxItem}">
         <Setter Property="Padding" Value="6,3"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -492,7 +492,7 @@
         <Setter Property="ToolTip" Value="{Binding Converter={StaticResource LocationInformationToTooltipConverter}}"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:MapSearchListBoxItem}">
+                <ControlTemplate TargetType="{x:Type dxm:MapSearchListBoxItem}">
                     <Grid Background="{TemplateBinding Background}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
@@ -543,7 +543,7 @@
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Border x:Name="fillColor"
-                                Background="{DynamicResource {dxt:MapBrushesThemeKey ResourceKey=OverlayElementForeground}}"
+                                Background="{DynamicResource {dxmt:MapBrushesThemeKey ResourceKey=OverlayElementForeground}}"
                                 CornerRadius="2"
                                 Opacity="0"/>
                         <ContentPresenter x:Name="contentPresenter"
@@ -561,12 +561,12 @@
         </Setter>
     </Style>
 
-    <Style x:Key="SearchListBoxStyle" TargetType="{x:Type local:MapSearchListBox}">
+    <Style x:Key="SearchListBoxStyle" TargetType="{x:Type dxm:MapSearchListBox}">
         <Setter Property="Padding" Value="6,0,0,6"/>
         <Setter Property="Background"
                 Value="Transparent"
                 cs:id="Setter_0000"/>
-        <Setter Property="Foreground" Value="{DynamicResource {dxt:MapBrushesThemeKey ResourceKey=OverlayElementForeground}}"/>
+        <Setter Property="Foreground" Value="{DynamicResource {dxmt:MapBrushesThemeKey ResourceKey=OverlayElementForeground}}"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="VerticalContentAlignment" Value="Top"/>
         <Setter Property="IsTabStop" Value="False"/>
@@ -575,7 +575,7 @@
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:MapSearchListBox}">
+                <ControlTemplate TargetType="{x:Type dxm:MapSearchListBox}">
                     <Grid>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="ValidationStates">
@@ -600,10 +600,10 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxdst:DefaultStyleThemeKey FullName=DevExpress.Xpf.Map.MapSearchPanel}" TargetType="local:MapSearchPanel">
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Map.MapSearchPanel}" TargetType="dxm:MapSearchPanel">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:MapSearchPanel">
+                <ControlTemplate TargetType="dxm:MapSearchPanel">
                     <Grid MaxWidth="{TemplateBinding FixedWidth, Converter={StaticResource FixedWidthToWidthConverter}}" MinWidth="250">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" MinHeight="30"/>
@@ -613,11 +613,11 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Border Background="{DynamicResource {dxt:MapBrushesThemeKey ResourceKey=OverlayBackground}}"
+                        <Border Background="{DynamicResource {dxmt:MapBrushesThemeKey ResourceKey=OverlayBackground}}"
                                 CornerRadius="{Binding ElementName=PART_ResultsList, Path=Visibility, Converter={StaticResource CornerRadiusConverter}}"
                                 Grid.ColumnSpan="2"
                                 Grid.RowSpan="2"/>
-                        <Border Background="{DynamicResource {dxt:MapBrushesThemeKey ResourceKey=SearchPanelBackground}}"
+                        <Border Background="{DynamicResource {dxmt:MapBrushesThemeKey ResourceKey=SearchPanelBackground}}"
                                 CornerRadius="11"
                                 Margin="3"/>
                         <Grid Margin="12,4,7,4">
@@ -626,8 +626,8 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <dxe:TextEdit x:Name="PART_TextInput"
-                                          Foreground="{DynamicResource {dxt:MapBrushesThemeKey ResourceKey=SearchPanelForeground}}"
-                                          NullTextForeground="{DynamicResource {dxt:MapBrushesThemeKey ResourceKey=SearchPanelNullTextForeground}}"
+                                          Foreground="{DynamicResource {dxmt:MapBrushesThemeKey ResourceKey=SearchPanelForeground}}"
+                                          NullTextForeground="{DynamicResource {dxmt:MapBrushesThemeKey ResourceKey=SearchPanelNullTextForeground}}"
                                           ShowBorder="False"
                                           ShowNullText="True"
                                           ShowNullTextForEmptyValue="True"
@@ -642,15 +642,15 @@
                                     Style="{StaticResource LoadingButton}"
                                     Visibility="{Binding Path=IsBusy, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource VisibilityConverter}}"/>
                         </Grid>
-                        <local:MapSearchListBox x:Name="PART_ResultsList"
-                                                Background="{DynamicResource {dxt:MapBrushesThemeKey ResourceKey=OverlayBackground}}"
-                                                Foreground="{DynamicResource {dxt:MapBrushesThemeKey ResourceKey=OverlayElementForeground}}"
-                                                Grid.ColumnSpan="2"
-                                                Grid.Row="1"
-                                                ItemsSource="{TemplateBinding SearchResults}"
-                                                MaxHeight="164"
-                                                Style="{StaticResource SearchListBoxStyle}"
-                                                Visibility="Collapsed"/>
+                        <dxm:MapSearchListBox x:Name="PART_ResultsList"
+                                              Background="{DynamicResource {dxmt:MapBrushesThemeKey ResourceKey=OverlayBackground}}"
+                                              Foreground="{DynamicResource {dxmt:MapBrushesThemeKey ResourceKey=OverlayElementForeground}}"
+                                              Grid.ColumnSpan="2"
+                                              Grid.Row="1"
+                                              ItemsSource="{TemplateBinding SearchResults}"
+                                              MaxHeight="164"
+                                              Style="{StaticResource SearchListBoxStyle}"
+                                              Visibility="Collapsed"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
