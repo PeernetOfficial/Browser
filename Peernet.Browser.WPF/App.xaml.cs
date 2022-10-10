@@ -73,10 +73,10 @@ namespace Peernet.Browser.WPF
             // Register and get NotificationsManager to be able to log exceptions before ServiceProvider is built
             notificationsManager = CreateAndRegisterNotificationsManager(services, logger);
             AssignExceptionHandlers();
-            
+
             // Plugins Load method is registering its services in the service collection. It may result in the exception.
             // To be able to capture it and log the NotificationsManager with exception handles needs to be available prior to
-            new PeernetPluginsManager(Settings).LoadPlugins(services);
+            new PeernetPluginsManager(Settings, notificationsManager).LoadPlugins(services);
             ServiceProvider = services.BuildServiceProvider();
             
             splashScreenManager.SetState("Services configuration completed.");
@@ -197,7 +197,7 @@ namespace Peernet.Browser.WPF
                 new LoggerConfiguration()
                 .MinimumLevel.Debug()
                 .WriteTo.Trace()
-                .WriteTo.File(logPath, LogEventLevel.Error)
+                .WriteTo.File(logPath, LogEventLevel.Information)
                 .CreateLogger();
             services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(logger, dispose: true));
 

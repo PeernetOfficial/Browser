@@ -51,6 +51,18 @@ namespace Peernet.Browser.Application
                     }
                     break;
 
+                case Severity.Warning:
+
+                    if (notification.Exception != null)
+                    {
+                        logger.Warning(notification.Exception, notification.Message);
+                    }
+                    else
+                    {
+                        logger.Warning(standardLogMessage);
+                    }
+                    break;
+
                 case Severity.Normal:
                     logger.Information(standardLogMessage);
                     break;
