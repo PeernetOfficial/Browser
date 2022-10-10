@@ -32,7 +32,7 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
                 var result = await blockchainService.UpdateFile(fileModel);
                 if (result.Status != BlockchainStatus.StatusOK)
                 {
-                    var message = "Failed to update the file. Status: {result.Status}";
+                    var message = $"Failed to update the file. Status: {result.Status}";
                     var details =
                         MessagingHelper.GetApiSummary(
                             $"{nameof(blockchainService)}.{nameof(blockchainService.UpdateFile)}") +

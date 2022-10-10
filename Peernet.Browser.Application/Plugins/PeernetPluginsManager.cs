@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Peernet.Browser.Application.ViewModels;
+using Peernet.Browser.Application.Exceptions;
 using Peernet.SDK.Common;
 using Peernet.SDK.Models.Plugins;
 using System;
@@ -40,7 +40,14 @@ namespace Peernet.Browser.Application.Plugins
                     {
                         var instance = (IPlugin)Activator.CreateInstance(type);
                         Plugins.Add(instance);
-                        instance.Load(services);
+                        try
+                        {
+                            instance.Load(services);
+                        }
+                        catch (Exception e)
+                        {
+                            throw new PluginLoadingException(type.Name, e);
+                        }
                     }
                 }
             }

@@ -1,5 +1,6 @@
 ﻿using DevExpress.Xpf.Core;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Peernet.Browser.Application;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Managers;
@@ -33,7 +34,6 @@ namespace Peernet.Browser.WPF
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-
     public partial class App : System.Windows.Application
     {
         private const string DXVersion = "v22.1";
@@ -63,13 +63,23 @@ namespace Peernet.Browser.WPF
         {
             var services = new ServiceCollection();
             splashScreenManager.SetState("Configuring services...");
+
+            // Register Services
             ConfigureServices(services);
+
+            // Register and get Logger to be able to create NotificationsManager
+            var logger = CreateAndRegisterLogger(services, Settings);
+
+            // Register and get NotificationsManager to be able to log exceptions before ServiceProvider is built
+            notificationsManager = CreateAndRegisterNotificationsManager(services, logger);
+            AssignExceptionHandlers();
+            
+            // Plugins Load method is registering its services in the service collection. It may result in the exception.
+            // To be able to capture it and log the NotificationsManager with exception handles needs to be available prior to
             new PeernetPluginsManager(Settings).LoadPlugins(services);
             ServiceProvider = services.BuildServiceProvider();
+            
             splashScreenManager.SetState("Services configuration completed.");
-
-            notificationsManager = ServiceProvider.GetRequiredService<INotificationsManager>();
-            AssignExceptionHandlers();
 
             Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
 
@@ -99,6 +109,17 @@ namespace Peernet.Browser.WPF
                 cmdRunner = new CmdRunner(settingsManager, ServiceProvider.GetRequiredService<IShutdownService>(), ServiceProvider.GetRequiredService<IApiService>());
                 cmdRunner.Run();
             }
+        }
+
+        private INotificationsManager CreateAndRegisterNotificationsManager(IServiceCollection services, Serilog.ILogger logger)
+        {
+            var notificationCollection = new NotificationCollection(logger);
+            services.AddSingleton(notificationCollection);
+
+            var notificationsManager = new NotificationsManager(notificationCollection);
+            services.AddSingleton<INotificationsManager, NotificationsManager>(sp => notificationsManager);
+
+            return notificationsManager;
         }
 
         public static void RaiseMainWindowClick(object sender, RoutedEventArgs e)
@@ -162,7 +183,7 @@ namespace Peernet.Browser.WPF
             RegisterDXTheme("PeernetLightTheme");
         }
 
-        private static void RegisterLogger(ServiceCollection services, ISettingsManager settings)
+        private static Serilog.ILogger CreateAndRegisterLogger(ServiceCollection services, ISettingsManager settings)
         {
             var backendPath = Path.GetFullPath(settings.Backend);
             var backendWorkingDirectory = Path.GetDirectoryName(backendPath);
@@ -172,13 +193,15 @@ namespace Peernet.Browser.WPF
                 logPath = Path.Combine(backendWorkingDirectory, settings.LogFile);
                 Directory.CreateDirectory(Path.GetDirectoryName(logPath));
             }
-
-            services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(
+            var logger =
                 new LoggerConfiguration()
                 .MinimumLevel.Debug()
                 .WriteTo.Trace()
                 .WriteTo.File(logPath, LogEventLevel.Error)
-                .CreateLogger(), dispose: true));
+                .CreateLogger();
+            services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(logger, dispose: true));
+
+            return logger;
         }
 
         private static void RegisterViewModels(ServiceCollection services)
@@ -219,10 +242,6 @@ namespace Peernet.Browser.WPF
 
         private void ConfigureServices(ServiceCollection services)
         {
-            RegisterLogger(services, Settings);
-
-            services.AddSingleton<NotificationCollection>();
-            services.AddSingleton<INotificationsManager, NotificationsManager>();
             services.AddSingleton(Settings);
             Action<HttpResponseMessage, string> onRequestFailure =
                 (response, details) => notificationsManager?.Notifications.Add(
