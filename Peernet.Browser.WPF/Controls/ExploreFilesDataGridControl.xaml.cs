@@ -1,5 +1,4 @@
-﻿using DevExpress.Xpf.Editors.DataPager;
-using DevExpress.Xpf.Grid;
+﻿using DevExpress.Xpf.Grid;
 using Microsoft.Extensions.DependencyInjection;
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.ViewModels;

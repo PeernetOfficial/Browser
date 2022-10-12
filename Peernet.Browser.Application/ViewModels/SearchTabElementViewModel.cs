@@ -17,7 +17,7 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly Func<DownloadModel, bool> isPlayerSupported;
         private readonly Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction;
         private ObservableCollection<DownloadModel> activeSearchResults;
-        private int pageIndex;
+        private int pageIndex = 1;
         private int pagesCount;
         private int pageSize = 15;
         private int totalResultsCount = 999;
@@ -157,22 +157,23 @@ namespace Peernet.Browser.Application.ViewModels
         public async Task Refresh()
         {
             Filters.SearchFilterResult.Limit = PageSize;
-            Filters.SearchFilterResult.Offset = PageIndex * PageSize;
+            Filters.SearchFilterResult.Offset = (PageIndex - 1) * PageSize;
 
-            var data = await refreshAction(Filters.SearchFilterResult);
-            data.Rows.ForEach(row => row.IsPlayerEnabled = isPlayerSupported.Invoke(row));
+            var searchResultModel = await refreshAction(Filters.SearchFilterResult);
+            searchResultModel.Rows.ForEach(row => row.IsPlayerEnabled = isPlayerSupported.Invoke(row));
 
-            Filters.UuId = data.Id;
+            Filters.UuId = searchResultModel.Id;
             UIThreadDispatcher.ExecuteOnMainThread(() =>
             {
-                ActiveSearchResults = new(data.Rows);
+                ActiveSearchResults = new(searchResultModel.Rows);
+                PagesCount = (int)Math.Ceiling(searchResultModel.Stats[Filters.SearchFilterResult.FilterType] / (double)PageSize);
             });
 
-            RefreshIconFilters(data.Stats, data.Filters.FilterType);
+            RefreshIconFilters(searchResultModel.Stats, searchResultModel.Filters.FilterType);
             if (ActiveSearchResults.IsNullOrEmpty())
             {
-                Loader.Set(GetStatusText(data.Status));
-                if (data.Status is SearchStatusEnum.KeepTrying)
+                Loader.Set(GetStatusText(searchResultModel.Status));
+                if (searchResultModel.Status is SearchStatusEnum.KeepTrying)
                 {
                     await Refresh();
                 }
@@ -201,14 +202,13 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        private async Task GoToFirstPage() => await GoToPage(0);
+        private async Task GoToFirstPage() => await GoToPage(1);
 
-        private async Task GoToLastPage() => await GoToPage((int)Math.Ceiling(totalResultsCount / (double)PageSize));
+        private async Task GoToLastPage() => await GoToPage(PagesCount);
 
         private async Task GoToNextPage()
         {
-            var lastPageIndex = (int)Math.Ceiling(totalResultsCount / (double)PageSize);
-            if (PageIndex < lastPageIndex)
+            if (PageIndex < PagesCount)
             {
                 await GoToPage(PageIndex + 1);
             }
@@ -222,7 +222,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         private async Task GoToPreviousPage()
         {
-            if (PageIndex > 0)
+            if (PageIndex > 1)
             {
                 await GoToPage(PageIndex - 1);
             }
