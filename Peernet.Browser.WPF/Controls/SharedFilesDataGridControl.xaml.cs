@@ -1,14 +1,10 @@
 ﻿using DevExpress.Xpf.Grid;
 using Microsoft.Extensions.DependencyInjection;
-using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Application.VirtualFileSystem;
-using Peernet.SDK.Models.Domain.Common;
-using Peernet.SDK.Models.Presentation.Footer;
 using System;
-using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,18 +21,12 @@ namespace Peernet.Browser.WPF.Controls
             InitializeComponent();
         }
 
-        private void CopyLinkToClipboard_OnClick(object sender, RoutedEventArgs e)
+        private void OpenFileWebGatewayReferenceWindow_OnClick(object sender, RoutedEventArgs e)
         {
             var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;
             var file = ((VirtualFileSystemEntity)cellData.RowData.Row).File;
 
-            Clipboard.SetText(CreateLink(file));
-            App.ServiceProvider.GetRequiredService<INotificationsManager>().Notifications.Add(new Notification("Copied to clipboard!"));
-        }
-
-        private static string CreateLink(ApiFile file)
-        {
-            return Path.Join(@"peer://", Convert.ToHexString(file.NodeId), Convert.ToHexString(file.Hash), file.Folder, file.Name).Replace(@"\", "/");
+            new FileWebGatewayReferenceWindow(file).Show();
         }
 
         private async void Open_OnClick(object sender, System.Windows.Input.MouseButtonEventArgs e)

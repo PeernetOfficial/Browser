@@ -72,6 +72,13 @@ namespace Peernet.Browser.WPF.Controls
             }
         }
 
+        private void OpenFileWebGatewayReferenceWindow_OnClick(object sender, RoutedEventArgs e)
+        {
+            var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;
+            var model = (DownloadModel)cellData.RowData.Row;
+            new FileWebGatewayReferenceWindow(model.File).Show();
+        }
+
         private void SearchResultsTable_ColumnChooserStateChanged(object sender, RoutedEventArgs e)
         {
             ((SearchTabElementViewModel)DataContext).ColumnsIconModel.IsSelected = SearchResultsTable.IsColumnChooserVisible;

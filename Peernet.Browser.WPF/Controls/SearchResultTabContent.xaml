@@ -177,7 +177,7 @@
                             <local:MapControl Panel.ZIndex="6" />
                         </dxg:GridColumn.ToolTip>
                     </dxg:GridColumn>
-                    <dxg:GridColumn Width="170">
+                    <dxg:GridColumn Width="Auto">
                         <dxg:GridColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -195,6 +195,11 @@
                                                 <Setter Property="ToolTip" Value="Play" />
                                             </Style>
                                         </Button.Style>
+                                    </Button>
+                                    <Button Style="{StaticResource DataGridActionButton}" Click="OpenFileWebGatewayReferenceWindow_OnClick" ToolTip="Share">
+                                        <Button.Background>
+                                            <ImageBrush ImageSource="{DynamicResource ShareDrawingImage}" />
+                                        </Button.Background>
                                     </Button>
                                     <Button Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.DownloadCommand, ElementName=SharedResultTab}" CommandParameter="{Binding RowData.Row}" Width="45" Height="44">
                                         <Button.Background>
