@@ -20,7 +20,6 @@ namespace Peernet.Browser.Application.ViewModels
         private int pageIndex = 1;
         private int pagesCount;
         private int pageSize = 15;
-        private int totalResultsCount = 999;
 
         public SearchTabElementViewModel(
             SearchFilterResultModel searchFilterResultModel,
@@ -118,7 +117,14 @@ namespace Peernet.Browser.Application.ViewModels
             get => pageIndex;
             set
             {
-                pageIndex = value;
+                if(value > PagesCount)
+                {
+                    pageIndex = PagesCount;
+                }
+                else
+                {
+                    pageIndex = value;
+                }
                 OnPropertyChanged(nameof(PageIndex));
             }
         }
@@ -139,6 +145,7 @@ namespace Peernet.Browser.Application.ViewModels
             set
             {
                 pageSize = value;
+                PageIndex = 1;
                 OnPropertyChanged(nameof(PageSize));
             }
         }

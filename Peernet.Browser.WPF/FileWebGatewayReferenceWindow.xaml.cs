@@ -16,7 +16,7 @@ namespace Peernet.Browser.WPF
     {
         public ApiFile File { get; set; }
 
-        public string WebGatewayResourceUrl => $"peer.ae/{Convert.ToHexString(File?.NodeId)}/{Convert.ToHexString(File?.Hash)}";
+        public Uri WebGatewayResourceUrl => GetWebGatewayResourceUrl();
 
         public FileWebGatewayReferenceWindow(ApiFile file)
         {
@@ -71,8 +71,18 @@ namespace Peernet.Browser.WPF
 
         private void CopyLinkToClipboard_OnClick(object sender, RoutedEventArgs e)
         {
-            Clipboard.SetText(WebGatewayResourceUrl);
+            Clipboard.SetText(WebGatewayResourceUrl.ToString());
             App.ServiceProvider.GetRequiredService<INotificationsManager>().Notifications.Add(new Notification("Copied to clipboard!"));
+        }
+
+        private Uri GetWebGatewayResourceUrl()
+        {
+            return new UriBuilder()
+            {
+                Scheme = Uri.UriSchemeHttps,
+                Host = "peer.ae",
+                Path = $"{Convert.ToHexString(File?.NodeId)}/{Convert.ToHexString(File?.Hash)}"
+            }.Uri;
         }
     }
 }
