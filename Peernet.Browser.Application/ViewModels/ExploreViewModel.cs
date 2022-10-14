@@ -33,16 +33,6 @@ namespace Peernet.Browser.Application.ViewModels
         private int pageSize = 15;
         private int totalResultsCount = 200;
 
-        public int TotalResultsCount
-        {
-            get => totalResultsCount;
-            set
-            {
-                totalResultsCount = value;
-                OnPropertyChanged(nameof(TotalResultsCount));
-            }
-        }
-
         public ExploreViewModel(IExploreService exploreService, IDownloadManager downloadManager, INavigationService navigationService, IEnumerable<IPlayButtonPlug> playButtonPlugs)
         {
             this.exploreService = exploreService;
@@ -82,7 +72,7 @@ namespace Peernet.Browser.Application.ViewModels
                     await downloadManager.QueueUpDownload(downloadModel);
                 });
 
-        public IAsyncCommand FirstPageCommand => new AsyncCommand(() => 
+        public IAsyncCommand FirstPageCommand => new AsyncCommand(() =>
         {
             GoToFirstPage();
             return Task.CompletedTask;
@@ -206,6 +196,16 @@ namespace Peernet.Browser.Application.ViewModels
                     return Task.CompletedTask;
                 });
 
+        public int TotalResultsCount
+        {
+            get => totalResultsCount;
+            set
+            {
+                totalResultsCount = value;
+                OnPropertyChanged(nameof(TotalResultsCount));
+            }
+        }
+
         public void FetchData(FetchPageAsyncArgs args)
         {
             args.Result = GetResults(args);
@@ -285,15 +285,6 @@ namespace Peernet.Browser.Application.ViewModels
             GoToPage(1);
         }
 
-        private void SetPlayerState(List<DownloadModel> results)
-        {
-            results.Foreach(r =>
-            {
-                r.IsPlayerEnabled = playButtonPlugs.Any(plug => plug?.IsSupported(r.File) == true);
-            });
-        }
-
-
         private void ReloadActiveResultsFromCache()
         {
             var startingIndex = (PageIndex - 1) * PageSize;
@@ -308,6 +299,14 @@ namespace Peernet.Browser.Application.ViewModels
             }
 
             ActiveSearchResults = new ObservableCollection<DownloadModel>(CachedSearchResults.GetRange(startingIndex, length));
+        }
+
+        private void SetPlayerState(List<DownloadModel> results)
+        {
+            results.Foreach(r =>
+            {
+                r.IsPlayerEnabled = playButtonPlugs.Any(plug => plug?.IsSupported(r.File) == true);
+            });
         }
     }
 }

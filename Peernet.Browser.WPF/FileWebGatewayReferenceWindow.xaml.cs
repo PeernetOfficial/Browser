@@ -6,6 +6,10 @@ using System;
 using Peernet.Browser.Application.Managers;
 using Peernet.SDK.Models.Presentation.Footer;
 using Microsoft.Extensions.DependencyInjection;
+using Peernet.SDK.Common;
+using DevExpress.Mvvm.Native;
+using System.Linq;
+using System.DirectoryServices.ActiveDirectory;
 
 namespace Peernet.Browser.WPF
 {
@@ -16,7 +20,7 @@ namespace Peernet.Browser.WPF
     {
         public ApiFile File { get; set; }
 
-        public Uri WebGatewayResourceUrl => GetWebGatewayResourceUrl();
+        public Uri[] WebGatewayResourceUris => GetWebGatewayResourceUris();
 
         public FileWebGatewayReferenceWindow(ApiFile file)
         {
@@ -71,18 +75,22 @@ namespace Peernet.Browser.WPF
 
         private void CopyLinkToClipboard_OnClick(object sender, RoutedEventArgs e)
         {
-            Clipboard.SetText(WebGatewayResourceUrl.ToString());
+            var webGatewayUri = ((FrameworkElement)e.OriginalSource)?.DataContext as Uri;
+            Clipboard.SetText(webGatewayUri?.ToString());
             App.ServiceProvider.GetRequiredService<INotificationsManager>().Notifications.Add(new Notification("Copied to clipboard!"));
         }
 
-        private Uri GetWebGatewayResourceUrl()
+        private Uri[] GetWebGatewayResourceUris()
         {
-            return new UriBuilder()
-            {
-                Scheme = Uri.UriSchemeHttps,
-                Host = "peer.ae",
-                Path = $"{Convert.ToHexString(File?.NodeId)}/{Convert.ToHexString(File?.Hash)}"
-            }.Uri;
+            var domains = App.ServiceProvider.GetRequiredService<ISettingsManager>().WebGatewayDomains;
+
+            return domains?.Select(domain =>
+                new UriBuilder
+                {
+                    Scheme = Uri.UriSchemeHttps,
+                    Host = domain,
+                    Path = $"{Convert.ToHexString(File?.NodeId)}/{Convert.ToHexString(File?.Hash)}"
+                }.Uri).ToArray();
         }
     }
 }
