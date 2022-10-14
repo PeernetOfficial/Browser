@@ -117,9 +117,13 @@ namespace Peernet.Browser.Application.ViewModels
             get => pageIndex;
             set
             {
-                if(value > PagesCount)
+                if (value > PagesCount)
                 {
                     pageIndex = PagesCount;
+                }
+                else if (value <= 0)
+                {
+                    pageIndex = 1;
                 }
                 else
                 {
@@ -145,6 +149,8 @@ namespace Peernet.Browser.Application.ViewModels
             set
             {
                 pageSize = value;
+
+                // Could be GoToPage(1) but I relay on PropertyChanged Handlers from code behind as they execute concurrently
                 PageIndex = 1;
                 OnPropertyChanged(nameof(PageSize));
             }

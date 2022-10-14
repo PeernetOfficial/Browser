@@ -21,6 +21,7 @@ namespace Peernet.Browser.Application.ViewModels
     public class ExploreViewModel : ViewModelBase
     {
         public ObservableCollection<DownloadModel> activeSearchResults;
+        public List<DownloadModel> cachedSearchResults;
         public bool isLoaded;
         private static readonly List<VirtualFileSystemCoreCategory> categoryTypes = GetCategoryTypes();
         private readonly IDownloadManager downloadManager;
@@ -29,9 +30,18 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IEnumerable<IPlayButtonPlug> playButtonPlugs;
 
         private int pageIndex;
-        private int pagesCount;
         private int pageSize = 15;
-        private int totalResultsCount = 999;
+        private int totalResultsCount = 200;
+
+        public int TotalResultsCount
+        {
+            get => totalResultsCount;
+            set
+            {
+                totalResultsCount = value;
+                OnPropertyChanged(nameof(TotalResultsCount));
+            }
+        }
 
         public ExploreViewModel(IExploreService exploreService, IDownloadManager downloadManager, INavigationService navigationService, IEnumerable<IPlayButtonPlug> playButtonPlugs)
         {
@@ -53,6 +63,16 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
+        public List<DownloadModel> CachedSearchResults
+        {
+            get => cachedSearchResults;
+            set
+            {
+                cachedSearchResults = value;
+                OnPropertyChanged(nameof(CachedSearchResults));
+            }
+        }
+
         public ObservableCollection<VirtualFileSystemCoreCategory> CategoryTypes => new(categoryTypes);
 
         public IAsyncCommand<DownloadModel> DownloadCommand =>
@@ -62,7 +82,11 @@ namespace Peernet.Browser.Application.ViewModels
                     await downloadManager.QueueUpDownload(downloadModel);
                 });
 
-        public IAsyncCommand FirstPageCommand => new AsyncCommand(GoToFirstPage);
+        public IAsyncCommand FirstPageCommand => new AsyncCommand(() => 
+        {
+            GoToFirstPage();
+            return Task.CompletedTask;
+        });
 
         public bool IsLoaded
         {
@@ -74,38 +98,53 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        public IAsyncCommand LastPageCommand => new AsyncCommand(GoToLastPage);
+        public IAsyncCommand LastPageCommand => new AsyncCommand(() =>
+        {
+            GoToLastPage();
+            return Task.CompletedTask;
+        });
 
-        public IAsyncCommand NextPageCommand => new AsyncCommand(GoToNextPage);
+        public IAsyncCommand NextPageCommand => new AsyncCommand(() =>
+        {
+            GoToNextPage();
+            return Task.CompletedTask;
+        });
 
-        public IAsyncCommand<DownloadModel> OpenCommand =>
-                            new AsyncCommand<DownloadModel>(
-                model =>
-                {
-                    var param = new FilePreviewViewModelParameter(model.File, async () => await downloadManager.QueueUpDownload(model), "Download");
-                    navigationService.Navigate<FilePreviewViewModel, FilePreviewViewModelParameter>(param);
+        public IAsyncCommand<DownloadModel> OpenCommand => new AsyncCommand<DownloadModel>(
+            model =>
+            {
+                var param = new FilePreviewViewModelParameter(model.File, async () => await downloadManager.QueueUpDownload(model), "Download");
+                navigationService.Navigate<FilePreviewViewModel, FilePreviewViewModelParameter>(param);
 
-                    return Task.CompletedTask;
-                });
+                return Task.CompletedTask;
+            });
 
         public int PageIndex
         {
             get => pageIndex;
             set
             {
-                pageIndex = value;
+                if (value > PagesCount)
+                {
+                    pageIndex = PagesCount;
+                }
+                else if (value <= 0)
+                {
+                    pageIndex = 1;
+                }
+                else
+                {
+                    pageIndex = value;
+                }
+
+                ReloadActiveResultsFromCache();
                 OnPropertyChanged(nameof(PageIndex));
             }
         }
 
         public int PagesCount
         {
-            get => pagesCount;
-            set
-            {
-                pagesCount = value;
-                OnPropertyChanged(nameof(PagesCount));
-            }
+            get => (int)Math.Ceiling(TotalResultsCount / (double)PageSize);
         }
 
         public int PageSize
@@ -114,18 +153,23 @@ namespace Peernet.Browser.Application.ViewModels
             set
             {
                 pageSize = value;
+                GoToPage(1);
                 OnPropertyChanged(nameof(PageSize));
+                OnPropertyChanged(nameof(PagesCount));
             }
         }
 
-        public IAsyncCommand PreviousPageCommand => new AsyncCommand(GoToPreviousPage);
+        public IAsyncCommand PreviousPageCommand => new AsyncCommand(() =>
+        {
+            GoToPreviousPage();
+            return Task.CompletedTask;
+        });
 
-        public IAsyncCommand<DownloadModel> ResumeCommand =>
-                                    new AsyncCommand<DownloadModel>(
-                async downloadModel =>
-                {
-                    await downloadManager.ResumeDownload(downloadModel.Id);
-                });
+        public IAsyncCommand<DownloadModel> ResumeCommand => new AsyncCommand<DownloadModel>(
+            async downloadModel =>
+            {
+                await downloadManager.ResumeDownload(downloadModel.Id);
+            });
 
         public IAsyncCommand<VirtualFileSystemCoreCategory> SelectCategoryCommand =>
             new AsyncCommand<VirtualFileSystemCoreCategory>(
@@ -142,7 +186,7 @@ namespace Peernet.Browser.Application.ViewModels
 
                     category.IsSelected = true;
 
-                    var results = await exploreService.GetFiles(200, (int)category.Type);
+                    var results = await exploreService.GetFiles(TotalResultsCount, (int)category.Type);
                     SetPlayerState(results);
                     ActiveSearchResults = new ObservableCollection<DownloadModel>(results);
                 });
@@ -175,9 +219,9 @@ namespace Peernet.Browser.Application.ViewModels
 
         public async Task ReloadResults()
         {
-            var exploreResult = await exploreService.GetFiles(200);
+            var exploreResult = await exploreService.GetFiles(TotalResultsCount);
             SetPlayerState(exploreResult);
-            ActiveSearchResults = new ObservableCollection<DownloadModel>(exploreResult);
+            CachedSearchResults = exploreResult;
         }
 
         private static VirtualFileSystemCoreCategory GetCategory(VirtualFileSystemEntityType type)
@@ -199,30 +243,28 @@ namespace Peernet.Browser.Application.ViewModels
             };
         }
 
-        private async Task GoToFirstPage() => await GoToPage(0);
+        private void GoToFirstPage() => GoToPage(1);
 
-        private async Task GoToLastPage() => await GoToPage((int)Math.Ceiling(totalResultsCount / (double)PageSize));
+        private void GoToLastPage() => GoToPage(PagesCount);
 
-        private async Task GoToNextPage()
+        private void GoToNextPage()
         {
-            var lastPageIndex = (int)Math.Ceiling(totalResultsCount / (double)PageSize);
-            if (PageIndex < lastPageIndex)
+            if (PageIndex < PagesCount)
             {
-                await GoToPage(PageIndex + 1);
+                GoToPage(PageIndex + 1);
             }
         }
 
-        private async Task GoToPage(int pageIndex)
+        private void GoToPage(int pageIndex)
         {
             PageIndex = pageIndex;
-            await ReloadResults();
         }
 
-        private async Task GoToPreviousPage()
+        private void GoToPreviousPage()
         {
-            if (PageIndex > 0)
+            if (PageIndex > 1)
             {
-                await GoToPage(PageIndex - 1);
+                GoToPage(PageIndex - 1);
             }
         }
 
@@ -232,14 +274,15 @@ namespace Peernet.Browser.Application.ViewModels
 
             for (int i = 0; i < 7 && results.IsNullOrEmpty(); i++)
             {
-                results = await exploreService.GetFiles(200);
+                results = await exploreService.GetFiles(TotalResultsCount);
                 Thread.Sleep(7000);
             }
 
             SetPlayerState(results);
 
             IsLoaded = true;
-            ActiveSearchResults = new ObservableCollection<DownloadModel>(results);
+            CachedSearchResults = results;
+            GoToPage(1);
         }
 
         private void SetPlayerState(List<DownloadModel> results)
@@ -248,6 +291,23 @@ namespace Peernet.Browser.Application.ViewModels
             {
                 r.IsPlayerEnabled = playButtonPlugs.Any(plug => plug?.IsSupported(r.File) == true);
             });
+        }
+
+
+        private void ReloadActiveResultsFromCache()
+        {
+            var startingIndex = (PageIndex - 1) * PageSize;
+            int length;
+            if ((startingIndex + PageSize) > CachedSearchResults.Count)
+            {
+                length = CachedSearchResults.Count - startingIndex;
+            }
+            else
+            {
+                length = PageSize;
+            }
+
+            ActiveSearchResults = new ObservableCollection<DownloadModel>(CachedSearchResults.GetRange(startingIndex, length));
         }
     }
 }
