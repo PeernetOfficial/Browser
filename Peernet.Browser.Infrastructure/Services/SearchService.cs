@@ -23,41 +23,36 @@ namespace Peernet.Browser.Infrastructure.Services
 
         public IDictionary<FilterType, int> GetEmptyStats() => GetStats(new SearchStatisticData());
 
-        public async Task<SearchResultModel> Search(SearchFilterResultModel model)
+        public async Task<SearchResultModel> Search(SearchFilterResultModel searchFilterResultModel)
         {
-            var res = new SearchResultModel { Filters = model };
-            var isNew = model.IsNewSearch;
+            var searchResultModel = new SearchResultModel { Filters = searchFilterResultModel };
+            var isNew = searchFilterResultModel.IsNewSearch;
             if (isNew)
             {
-                var response = await searchClient.SubmitSearch(Map<SearchRequest>(model));
+                var response = await searchClient.SubmitSearch(Map<SearchRequest>(searchFilterResultModel));
                 if (response is not { Status: SearchRequestResponseStatusEnum.Success })
                 {
-                    return res;
+                    return searchResultModel;
                 }
-                model.Uuid = response.Id;
+                searchFilterResultModel.Uuid = response.Id;
             }
-            var reqMod = Map<SearchGetRequest>(model);
-            if (model.ShouldReset)
+            var searchGetRequest = Map<SearchGetRequest>(searchFilterResultModel);
+            if (searchFilterResultModel.ShouldReset)
             {
-                reqMod.Reset = 1;
+                searchGetRequest.Reset = 1;
             }
 
-            var result = await searchClient.GetSearchResult(reqMod);
+            var result = await searchClient.GetSearchResult(searchGetRequest);
 
-            res.Id = result.Status == SearchStatusEnum.IdNotFound ? string.Empty : model.Uuid;
-            res.Status = result.Status;
-            res.Stats = GetStats(result.Statistic);
+            searchResultModel.Id = result.Status == SearchStatusEnum.IdNotFound ? string.Empty : searchFilterResultModel.Uuid;
+            searchResultModel.Status = result.Status;
+            searchResultModel.Stats = GetStats(result.Statistic);
             if (!result.Files.IsNullOrEmpty())
             {
-                res.Rows = result.Files.Select(f => new DownloadModel(f)).ToList();
+                searchResultModel.Rows = result.Files.Select(f => new DownloadModel(f)).ToList();
             }
 
-            //if (result.Status is SearchStatusEnum.NoMoreResults or SearchStatusEnum.IdNotFound)
-            //{
-            //    break;
-            //}
-
-            return res;
+            return searchResultModel;
         }
 
         public async Task Terminate(string id)

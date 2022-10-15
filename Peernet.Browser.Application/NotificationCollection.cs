@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Serilog;
 using Peernet.Browser.Application.Dispatchers;
 using Peernet.SDK.Models.Presentation.Footer;
 using System.Collections.ObjectModel;
@@ -9,9 +9,9 @@ namespace Peernet.Browser.Application
     public class NotificationCollection : ObservableCollection<Notification>
     {
         private readonly int timeout = 11000;
-        private readonly ILogger<NotificationCollection> logger;
+        private readonly ILogger logger;
 
-        public NotificationCollection(ILogger<NotificationCollection> logger)
+        public NotificationCollection(ILogger logger)
         {
             this.logger = logger;
         }
@@ -43,20 +43,32 @@ namespace Peernet.Browser.Application
                 case Severity.Error:
                     if (notification.Exception != null)
                     {
-                        logger.LogError(notification.Exception, notification.Message);
+                        logger.Error(notification.Exception, notification.Message);
                     }
                     else
                     {
-                        logger.LogError(standardLogMessage);
+                        logger.Error(standardLogMessage);
+                    }
+                    break;
+
+                case Severity.Warning:
+
+                    if (notification.Exception != null)
+                    {
+                        logger.Warning(notification.Exception, notification.Message);
+                    }
+                    else
+                    {
+                        logger.Warning(standardLogMessage);
                     }
                     break;
 
                 case Severity.Normal:
-                    logger.LogInformation(standardLogMessage);
+                    logger.Information(standardLogMessage);
                     break;
 
                 default:
-                    logger.LogDebug(standardLogMessage);
+                    logger.Debug(standardLogMessage);
                     break;
             }
         }

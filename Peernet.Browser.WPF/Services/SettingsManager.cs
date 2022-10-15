@@ -3,7 +3,7 @@ using Peernet.SDK.Common;
 using Peernet.SDK.Models.Presentation;
 using System;
 using System.Configuration;
-using System.IO;
+using System.Linq;
 using System.Windows;
 
 namespace Peernet.Browser.WPF.Services
@@ -59,6 +59,8 @@ namespace Peernet.Browser.WPF.Services
             get => Get(nameof(PluginsLocation));
             set => Set(nameof(PluginsLocation), value);
         }
+
+        public string[] WebGatewayDomains => Get(nameof(WebGatewayDomains))?.Split(',');
 
         public Uri SocketUrl => GetSocket();
 

@@ -1,5 +1,4 @@
-﻿using DevExpress.Xpf.Editors.DataPager;
-using DevExpress.Xpf.Grid;
+﻿using DevExpress.Xpf.Grid;
 using Microsoft.Extensions.DependencyInjection;
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.ViewModels;
@@ -19,7 +18,6 @@ namespace Peernet.Browser.WPF.Controls
         public ExploreFilesDataGridControl()
         {
             InitializeComponent();
-            pager.Loaded += Pager_Loaded;
         }
 
         private void Open_OnClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -33,18 +31,12 @@ namespace Peernet.Browser.WPF.Controls
             new FilePreviewWindow(filePreviewViewModel).Show();
         }
 
-        private void Pager_Loaded(object sender, RoutedEventArgs e)
-        {
-            pager.PageIndexChanged += Pager_OnChange;
-            pager.PageSizeChanged += Pager_OnChange;
-        }
 
-        private async void Pager_OnChange(object sender, EventArgs e)
+        private void OpenFileWebGatewayReferenceWindow_OnClick(object sender, RoutedEventArgs e)
         {
-            if (DataContext != null)
-            {
-                await (DataContext as ExploreViewModel)?.ReloadResults();
-            }
+            var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;
+            var model = (DownloadModel)cellData.RowData.Row;
+            new FileWebGatewayReferenceWindow(model.File).Show();
         }
     }
 }

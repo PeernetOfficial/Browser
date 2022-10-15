@@ -51,7 +51,7 @@
                                 <TextBlock Padding="5" Text="{Binding Content}" Foreground="{DynamicResource SelectedTabBrush}" />
                                 <Button Command="{Binding DataContext.RemoveFilterCommand, ElementName=SharedResultTab}"
                                     CommandParameter="{Binding Type}" Style="{DynamicResource PrimaryButton}">
-                                    <Image  Margin="10 0 10 0" Source="{DynamicResource CloseBtnDrawingImage}" />
+                                    <Image Margin="10 0 10 0" Source="{DynamicResource CloseBtnDrawingImage}" />
                                 </Button>
                             </DockPanel>
                         </DataTemplate>
@@ -177,7 +177,7 @@
                             <local:MapControl Panel.ZIndex="6" />
                         </dxg:GridColumn.ToolTip>
                     </dxg:GridColumn>
-                    <dxg:GridColumn Width="170">
+                    <dxg:GridColumn Width="Auto">
                         <dxg:GridColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -195,6 +195,11 @@
                                                 <Setter Property="ToolTip" Value="Play" />
                                             </Style>
                                         </Button.Style>
+                                    </Button>
+                                    <Button Style="{StaticResource DataGridActionButton}" Click="OpenFileWebGatewayReferenceWindow_OnClick" ToolTip="Share">
+                                        <Button.Background>
+                                            <ImageBrush ImageSource="{DynamicResource ShareDrawingImage}" />
+                                        </Button.Background>
                                     </Button>
                                     <Button Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.DownloadCommand, ElementName=SharedResultTab}" CommandParameter="{Binding RowData.Row}" Width="45" Height="44">
                                         <Button.Background>
@@ -216,7 +221,8 @@
                                 FirstPageCommand="{Binding FirstPageCommand}"
                                 NextPageCommand="{Binding NextPageCommand}"
                                 PreviousPageCommand="{Binding PreviousPageCommand}" 
-                                LastPageCommand="{Binding LastPageCommand}" />
+                                LastPageCommand="{Binding LastPageCommand}" 
+                                Margin="0, 5, 0, 0"/>
             <Separator Grid.Row="5" Style="{DynamicResource StandardSeparatorStyle}" VerticalAlignment="Top" />
         </Grid>
     </Grid>
