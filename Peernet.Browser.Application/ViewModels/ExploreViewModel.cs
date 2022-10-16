@@ -1,5 +1,6 @@
 ﻿using AsyncAwaitBestPractices.MVVM;
 using DevExpress.Mvvm.Xpf;
+using DevExpress.Utils.Serializing;
 using DevExpress.Xpf.Data;
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Services;
@@ -32,6 +33,7 @@ namespace Peernet.Browser.Application.ViewModels
         private int pageIndex;
         private int pageSize = 15;
         private int totalResultsCount = 200;
+        private const int minimumResultsLimit = 5;
 
         public ExploreViewModel(IExploreService exploreService, IDownloadManager downloadManager, INavigationService navigationService, IEnumerable<IPlayButtonPlug> playButtonPlugs)
         {
@@ -207,8 +209,16 @@ namespace Peernet.Browser.Application.ViewModels
             get => totalResultsCount;
             set
             {
-                totalResultsCount = value;
+                if (value > minimumResultsLimit)
+                {
+                    totalResultsCount = value;
+                }
+                else
+                {
+                    totalResultsCount = minimumResultsLimit;
+                }
                 OnPropertyChanged(nameof(TotalResultsCount));
+                ReloadResults();
             }
         }
 
