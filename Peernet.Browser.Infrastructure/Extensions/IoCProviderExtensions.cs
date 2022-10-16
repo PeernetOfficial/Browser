@@ -18,7 +18,7 @@ namespace Peernet.Browser.Infrastructure.Extensions
             provider.AddTransient<IProfileService, ProfileService>();
             provider.AddTransient<ISearchService, SearchService>();
             provider.AddTransient<IShutdownService, ShutdownService>();
-            provider.AddTransient<IApiService, ApiService>();
+            provider.AddTransient<IStatusService, StatusService>();
         }
     }
 }

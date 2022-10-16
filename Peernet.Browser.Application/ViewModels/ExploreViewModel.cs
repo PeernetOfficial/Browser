@@ -60,6 +60,7 @@ namespace Peernet.Browser.Application.ViewModels
             {
                 cachedSearchResults = value;
                 OnPropertyChanged(nameof(CachedSearchResults));
+                OnPropertyChanged(nameof(PagesCount));
             }
         }
 
@@ -134,7 +135,15 @@ namespace Peernet.Browser.Application.ViewModels
 
         public int PagesCount
         {
-            get => (int)Math.Ceiling(TotalResultsCount / (double)PageSize);
+            get
+            {
+                if (!CachedSearchResults.IsNullOrEmpty())
+                {
+                    return (int)Math.Ceiling(CachedSearchResults.Count / (double)PageSize);
+                }
+
+                return 1;
+            }
         }
 
         public int PageSize
@@ -171,14 +180,11 @@ namespace Peernet.Browser.Application.ViewModels
                         category.IsSelected = false;
                         return;
                     }
-
                     categoryTypes.ForEach(c => c.ResetSelection());
-
                     category.IsSelected = true;
-
-                    var results = await exploreService.GetFiles(TotalResultsCount, (int)category.Type);
-                    SetPlayerState(results);
-                    ActiveSearchResults = new ObservableCollection<DownloadModel>(results);
+                    
+                    await ReloadResults();
+                    ReloadActiveResultsFromCache();
                 });
 
         public IAsyncCommand<DownloadModel> StreamFileCommand =>
@@ -219,9 +225,12 @@ namespace Peernet.Browser.Application.ViewModels
 
         public async Task ReloadResults()
         {
-            var exploreResult = await exploreService.GetFiles(TotalResultsCount);
+            var category = categoryTypes.FirstOrDefault(ct => ct.IsSelected);
+            var type = category?.Type;
+            var exploreResult = await exploreService.GetFiles(TotalResultsCount, (int?)type);
             SetPlayerState(exploreResult);
             CachedSearchResults = exploreResult;
+            GoToFirstPage();
         }
 
         private static VirtualFileSystemCoreCategory GetCategory(VirtualFileSystemEntityType type)
@@ -285,20 +294,23 @@ namespace Peernet.Browser.Application.ViewModels
             GoToPage(1);
         }
 
-        private void ReloadActiveResultsFromCache()
+        public void ReloadActiveResultsFromCache()
         {
-            var startingIndex = (PageIndex - 1) * PageSize;
-            int length;
-            if ((startingIndex + PageSize) > CachedSearchResults.Count)
+            if (CachedSearchResults != null)
             {
-                length = CachedSearchResults.Count - startingIndex;
-            }
-            else
-            {
-                length = PageSize;
-            }
+                var startingIndex = (PageIndex - 1) * PageSize;
+                int length;
+                if ((startingIndex + PageSize) > CachedSearchResults.Count)
+                {
+                    length = CachedSearchResults.Count - startingIndex;
+                }
+                else
+                {
+                    length = PageSize;
+                }
 
-            ActiveSearchResults = new ObservableCollection<DownloadModel>(CachedSearchResults.GetRange(startingIndex, length));
+                ActiveSearchResults = new ObservableCollection<DownloadModel>(CachedSearchResults.GetRange(startingIndex, length));
+            }
         }
 
         private void SetPlayerState(List<DownloadModel> results)

@@ -16,7 +16,7 @@ namespace Peernet.Browser.Infrastructure.Tools
 {
     public class CmdRunner : IRunable, IDisposable
     {
-        private readonly IApiService apiService;
+        private readonly IStatusService apiService;
         private readonly bool fileExist;
         private readonly string processName;
         private readonly ISettingsManager settingsManager;
@@ -25,7 +25,7 @@ namespace Peernet.Browser.Infrastructure.Tools
         private bool wasRun;
         private static string reservedAddress;
 
-        public CmdRunner(ISettingsManager settingsManager, IShutdownService shutdownService, IApiService apiService)
+        public CmdRunner(ISettingsManager settingsManager, IShutdownService shutdownService, IStatusService apiService)
         {
             this.settingsManager = settingsManager;
             this.shutdownService = shutdownService;
@@ -51,6 +51,8 @@ namespace Peernet.Browser.Infrastructure.Tools
         public bool IsRunning { get; private set; }
 
         public static bool SelfHosted { get; private set; }
+
+        public IStatusService ApiService => apiService;
 
         public void Dispose()
         {
@@ -157,7 +159,7 @@ namespace Peernet.Browser.Infrastructure.Tools
             {
                 try
                 {
-                    ApiResponseStatus status = Task.Run(async () => await apiService.GetStatus()).Result;
+                    ApiResponseStatus status = Task.Run(async () => await ApiService.GetStatus()).Result;
                     if (status is { IsConnected: true })
                     {
                         break;

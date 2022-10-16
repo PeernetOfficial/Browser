@@ -88,7 +88,6 @@ namespace Peernet.Browser.WPF
                 CmdRunner.ReserveAddress(Settings);
             }
 
-
             PluginsContext.PlayButtonPlugEnabled = ServiceProvider.GetService<IPlayButtonPlug>() != null;
 
             splashScreenManager.SetState("Preparing Backend...");
@@ -106,7 +105,7 @@ namespace Peernet.Browser.WPF
             var settingsManager = ServiceProvider.GetRequiredService<ISettingsManager>();
             if (CmdRunner.SelfHosted)
             {
-                cmdRunner = new CmdRunner(settingsManager, ServiceProvider.GetRequiredService<IShutdownService>(), ServiceProvider.GetRequiredService<IApiService>());
+                cmdRunner = new CmdRunner(settingsManager, ServiceProvider.GetRequiredService<IShutdownService>(), ServiceProvider.GetRequiredService<IStatusService>());
                 cmdRunner.Run();
             }
         }
