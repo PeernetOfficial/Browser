@@ -52,6 +52,17 @@
                     </dxg:GridColumn.CellTemplate>
                 </dxg:GridColumn>
                 <dxg:GridColumn Header="SIZE" SortFieldName="File.Size" FieldName="File.Size" Width="110">
+                    <dxg:GridColumn.GroupValueTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}SIZE: {0}">
+                                        <Binding Path="RowData.Row.FileSize" Converter="{StaticResource BytesToSuffixConverter}" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </dxg:GridColumn.GroupValueTemplate>
                     <dxg:GridColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding RowData.Row.FileSize, Converter={StaticResource BytesToSuffixConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center" />
@@ -179,7 +190,7 @@
         </TextBlock>
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
         <controls:PagerControl x:Name="pager"
