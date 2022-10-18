@@ -118,13 +118,13 @@
     </DataTemplate>
 
     <DataTemplate x:Key="{dxt:DragDropThemeKey ResourceKey=DragDropHint}">
-        <dx:DXBorder Background="{DynamicResource {dxt:DragDropThemeKey ResourceKey=DragHintBackground}}" BorderBrush="{DynamicResource {dxt:DragDropThemeKey ResourceKey=DragHintBorderBrush}}" BorderThickness="1" MaxWidth="300" MinWidth="200" Padding="12,8,24,10" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\DragDrop.xaml;159;10">
-            <StackPanel dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\DragDrop.xaml;165;14">
-                <TextBlock x:Name="dragHeader" FontSize="{DynamicResource {dxt:DragDropThemeKey ResourceKey=DragHintCaptionFontSize}}" FontWeight="{DynamicResource {dxt:DragDropThemeKey ResourceKey=DragHintCaptionFontWeight}}" Foreground="{DynamicResource {dxt:DragDropThemeKey ResourceKey=DragHintCaptionForeground}}" Text="{Binding Path=Records, Converter={dx:DragHeaderConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\DragDrop.xaml;166;18" />
-                <ContentPresenter x:Name="dragDetail" Content="{Binding Path=Records, Converter={dx:DragDetailConverter}}" ContentTemplate="{DynamicResource {dxt:DragDropThemeKey ResourceKey=DragDropHintDetail}}" Margin="0,3,0,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\DragDrop.xaml;171;18">
+        <dx:DXBorder Background="{DynamicResource {dxt:DragDropThemeKey ResourceKey=DragHintBackground}}" BorderBrush="{DynamicResource {dxt:DragDropThemeKey ResourceKey=DragHintBorderBrush}}" BorderThickness="1" CornerRadius="{DynamicResource {dxt:DragDropThemeKey ResourceKey=DragHintCornerRadius}}" MaxWidth="300" MinWidth="200" Padding="12,8,24,10" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\DragDrop.xaml;159;10">
+            <StackPanel dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\DragDrop.xaml;166;14">
+                <TextBlock x:Name="dragHeader" FontSize="{DynamicResource {dxt:DragDropThemeKey ResourceKey=DragHintCaptionFontSize}}" FontWeight="{DynamicResource {dxt:DragDropThemeKey ResourceKey=DragHintCaptionFontWeight}}" Foreground="{DynamicResource {dxt:DragDropThemeKey ResourceKey=DragHintCaptionForeground}}" Text="{Binding Path=Records, Converter={dx:DragHeaderConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\DragDrop.xaml;167;18" />
+                <ContentPresenter x:Name="dragDetail" Content="{Binding Path=Records, Converter={dx:DragDetailConverter}}" ContentTemplate="{DynamicResource {dxt:DragDropThemeKey ResourceKey=DragDropHintDetail}}" Margin="0,3,0,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\DragDrop.xaml;172;18">
                     <ContentPresenter.Style>
                         <Style x:Key="{dxt:DefaultStyleThemeKey FullName=ContentPresenter}" TargetType="ContentPresenter">
-                            <Style.Setters><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Generic\DragDrop.xaml;176;26" />
+                            <Style.Setters><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Generic\DragDrop.xaml;177;26" />
                                 <Setter Property="TextBlock.Foreground" Value="{DynamicResource {dxt:DragDropThemeKey ResourceKey=DragHintDescriptionForeground}}" />
                             </Style.Setters>
                             <Style.Triggers>
@@ -137,7 +137,7 @@
                         </Style>
                     </ContentPresenter.Style>
                 </ContentPresenter>
-                <ContentPresenter Content="{Binding}" ContentTemplate="{DynamicResource {dxt:DragDropThemeKey ResourceKey=DragHintTargetInfo}}" Margin="0,8,0,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\DragDrop.xaml;190;18">
+                <ContentPresenter Content="{Binding}" ContentTemplate="{DynamicResource {dxt:DragDropThemeKey ResourceKey=DragHintTargetInfo}}" Margin="0,8,0,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\DragDrop.xaml;191;18">
                     <ContentPresenter.Visibility>
                         <Binding Path="ShowTargetInfoInDragDropHint">
                             <Binding.Converter>

@@ -23,6 +23,8 @@
 
     <!-- Button -->
 
+    <sys:Double x:Key="{dxwuit:AppBarElementsThemeKey ResourceKey=AppBarButtonStrokeThickness}">2</sys:Double>
+
     <ControlTemplate x:Key="{dxwuit:AppBarElementsThemeKey ResourceKey=AppBarButtonTemplate}" TargetType="dxwui:AppBarButton">
         <Grid x:Name="Root"
               Background="{TemplateBinding Background}"
@@ -37,7 +39,7 @@
                              CornerRadius="96"
                              EnableDPICorrection="False"
                              Height="{TemplateBinding EllipseDiameter}"
-                             Padding="2"
+                             Padding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=StrokeThickness}"
                              Width="{TemplateBinding EllipseDiameter}"
                              cs:id="Border_0000">
                     <dx:DXBorder x:Name="IsDefaultBackground"
@@ -84,27 +86,38 @@
                     <VisualState x:Name="Normal"/>
                     <VisualState x:Name="MouseOver">
                         <Storyboard>
-                            <ColorAnimation Duration="0"
-                                            Storyboard.TargetName="IsDefaultBorder"
-                                            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                            To="$Foreground"
-                                            cs:id="ColorAnimation_0000"/>
-                            <ColorAnimation Duration="0"
-                                            Storyboard.TargetName="IsDefaultBackground"
-                                            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                            To="$Backstage.HoverBackground"
-                                            cs:id="ColorAnimation_0001"/>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsDefaultBorder" Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <SolidColorBrush Color="$Foreground" cs:id="SolidColorBrush_0006"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsDefaultBackground" Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <SolidColorBrush Color="$Backstage.HoverBackground" cs:id="SolidColorBrush_0007"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentImage" Storyboard.TargetProperty="AccentColor">
                                 <DiscreteObjectKeyFrame KeyTime="0">
                                     <DiscreteObjectKeyFrame.Value>
-                                        <Color cs:id="Color_0000">$Foreground</Color>
+                                        <Color cs:id="Color_0000">$Backstage.Foreground</Color>
                                     </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
                             </ObjectAnimationUsingKeyFrames>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentShape" Storyboard.TargetProperty="AccentColor">
                                 <DiscreteObjectKeyFrame KeyTime="0">
                                     <DiscreteObjectKeyFrame.Value>
-                                        <Color cs:id="Color_0001">$Foreground</Color>
+                                        <Color cs:id="Color_0001">$Backstage.Foreground</Color>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentShape" Storyboard.TargetProperty="Foreground">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <SolidColorBrush Color="$Backstage.Foreground" cs:id="SolidColorBrush_00018"/>
                                     </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
                             </ObjectAnimationUsingKeyFrames>
@@ -112,16 +125,20 @@
                     </VisualState>
                     <VisualState x:Name="Pressed">
                         <Storyboard>
-                            <ColorAnimation Duration="0"
-                                            Storyboard.TargetName="IsDefaultBorder"
-                                            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                            To="$Foreground"
-                                            cs:id="ColorAnimation_0002"/>
-                            <ColorAnimation Duration="0"
-                                            Storyboard.TargetName="IsDefaultBackground"
-                                            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                            To="$Foreground"
-                                            cs:id="ColorAnimation_0003"/>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsDefaultBorder" Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <SolidColorBrush Color="$Foreground" cs:id="SolidColorBrush_0000"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsDefaultBackground" Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <SolidColorBrush Color="$Foreground" cs:id="SolidColorBrush_0001"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentShape" Storyboard.TargetProperty="AccentColor">
                                 <DiscreteObjectKeyFrame KeyTime="0">
                                     <DiscreteObjectKeyFrame.Value>
@@ -129,11 +146,13 @@
                                     </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
                             </ObjectAnimationUsingKeyFrames>
-                            <ColorAnimation Duration="0"
-                                            Storyboard.TargetName="ContentShape"
-                                            Storyboard.TargetProperty="Foreground.(SolidColorBrush.Color)"
-                                            To="$Backstage.Window.Background"
-                                            cs:id="ColorAnimation_0010"/>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentShape" Storyboard.TargetProperty="Foreground">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <SolidColorBrush Color="$Backstage.Window.Background" cs:id="SolidColorBrush_00017"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentImage" Storyboard.TargetProperty="AccentColor">
                                 <DiscreteObjectKeyFrame KeyTime="0">
                                     <DiscreteObjectKeyFrame.Value>
@@ -157,16 +176,20 @@
                     <VisualState x:Name="Checked">
                         <Storyboard>
                             <Storyboard>
-                                <ColorAnimation Duration="0"
-                                                Storyboard.TargetName="IsDefaultBorder"
-                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                To="$Foreground"
-                                                cs:id="ColorAnimation_0004"/>
-                                <ColorAnimation Duration="0"
-                                                Storyboard.TargetName="IsDefaultBackground"
-                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                To="$Foreground"
-                                                cs:id="ColorAnimation_0005"/>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsDefaultBorder" Storyboard.TargetProperty="Background">
+                                    <DiscreteObjectKeyFrame KeyTime="0">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <SolidColorBrush Color="$Foreground" cs:id="SolidColorBrush_0002"/>
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsDefaultBackground" Storyboard.TargetProperty="Background">
+                                    <DiscreteObjectKeyFrame KeyTime="0">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <SolidColorBrush Color="$Foreground" cs:id="SolidColorBrush_0003"/>
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                </ObjectAnimationUsingKeyFrames>
                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentImage" Storyboard.TargetProperty="AccentColor">
                                     <DiscreteObjectKeyFrame KeyTime="0">
                                         <DiscreteObjectKeyFrame.Value>
@@ -187,16 +210,20 @@
                     <VisualState x:Name="CheckedMouseOver">
                         <Storyboard>
                             <Storyboard>
-                                <ColorAnimation Duration="0"
-                                                Storyboard.TargetName="IsDefaultBorder"
-                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                To="$Foreground"
-                                                cs:id="ColorAnimation_0006"/>
-                                <ColorAnimation Duration="0"
-                                                Storyboard.TargetName="IsDefaultBackground"
-                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                To="$Foreground"
-                                                cs:id="ColorAnimation_0007"/>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsDefaultBorder" Storyboard.TargetProperty="Background">
+                                    <DiscreteObjectKeyFrame KeyTime="0">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <SolidColorBrush Color="$Foreground" cs:id="SolidColorBrush_0004"/>
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsDefaultBackground" Storyboard.TargetProperty="Background">
+                                    <DiscreteObjectKeyFrame KeyTime="0">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <SolidColorBrush Color="$Foreground" cs:id="SolidColorBrush_0005"/>
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                </ObjectAnimationUsingKeyFrames>
                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentImage" Storyboard.TargetProperty="AccentColor">
                                     <DiscreteObjectKeyFrame KeyTime="0">
                                         <DiscreteObjectKeyFrame.Value>
@@ -217,16 +244,20 @@
                     <VisualState x:Name="CheckedPressed">
                         <Storyboard>
                             <Storyboard>
-                                <ColorAnimation Duration="0"
-                                                Storyboard.TargetName="IsDefaultBorder"
-                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                To="$Foreground"
-                                                cs:id="ColorAnimation_0008"/>
-                                <ColorAnimation Duration="0"
-                                                Storyboard.TargetName="IsDefaultBackground"
-                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                To="$Foreground"
-                                                cs:id="ColorAnimation_0009"/>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsDefaultBorder" Storyboard.TargetProperty="Background">
+                                    <DiscreteObjectKeyFrame KeyTime="0">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <SolidColorBrush Color="$Foreground" cs:id="SolidColorBrush_0008"/>
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsDefaultBackground" Storyboard.TargetProperty="Background">
+                                    <DiscreteObjectKeyFrame KeyTime="0">
+                                        <DiscreteObjectKeyFrame.Value>
+                                            <SolidColorBrush Color="$Foreground" cs:id="SolidColorBrush_0009"/>
+                                        </DiscreteObjectKeyFrame.Value>
+                                    </DiscreteObjectKeyFrame>
+                                </ObjectAnimationUsingKeyFrames>
                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentImage" Storyboard.TargetProperty="AccentColor">
                                     <DiscreteObjectKeyFrame KeyTime="0">
                                         <DiscreteObjectKeyFrame.Value>
@@ -248,11 +279,19 @@
             </VisualStateManager.VisualStateGroups>
         </Grid>
         <ControlTemplate.Triggers>
-            <Trigger Property="IsEllipseEnabled" Value="False">
+            <Trigger Property="Padding"
+                     SourceName="IsDefaultBorder"
+                     Value="0">
                 <Setter Property="Background"
                         TargetName="IsDefaultBorder"
                         Value="Transparent"
                         cs:id="Setter_0000"/>
+            </Trigger>
+            <Trigger Property="IsEllipseEnabled" Value="False">
+                <Setter Property="Background"
+                        TargetName="IsDefaultBorder"
+                        Value="Transparent"
+                        cs:id="Setter_0001"/>
                 <Setter Property="Padding"
                         TargetName="IsDefaultBorder"
                         Value="2"/>

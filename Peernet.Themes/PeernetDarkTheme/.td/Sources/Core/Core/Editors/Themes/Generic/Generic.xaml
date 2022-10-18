@@ -571,6 +571,7 @@
            BasedOn="{StaticResource {dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.PopupBaseEdit}}"
            TargetType="{x:Type dxe:AutoSuggestEdit}">
         <Setter Property="PopupContentTemplate" Value="{DynamicResource {dxet:AutoSuggestEditThemeKey ResourceKey=PopupContentTemplate}}"/>
+        <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
@@ -1132,6 +1133,7 @@
     </Style>
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.Internal.TokenEditor}" TargetType="{x:Type dxei:TokenEditor}">
+        <Setter Property="IsTabStop" Value="{Binding Path=(dxe:BaseEdit.OwnerEdit).IsTabStop, RelativeSource={RelativeSource Self}}"/>
         <Setter Property="Background" Value="{Binding Path=(dxe:BaseEdit.OwnerEdit).Background, RelativeSource={RelativeSource Self}}"/>
         <Setter Property="Template" Value="{DynamicResource {dxet:TokenEditorThemeKey ResourceKey=Template}}"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>

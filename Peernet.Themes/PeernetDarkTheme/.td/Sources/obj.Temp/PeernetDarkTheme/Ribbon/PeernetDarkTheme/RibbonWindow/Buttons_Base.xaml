@@ -58,7 +58,7 @@
     <ControlTemplate x:Key="{dxt:RibbonHeaderItemsThemeKey ResourceKey=RibbonCloseButtonBackgroundMouseOverState}">
         <dx:DXBorder x:Name="CloseButtonMouseOverState" Background="#FFE81123" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019Black\RibbonWindow\Buttons_Base.xaml;66;10" x:Uid="@Background=Window.CloseButton.HoverBackground" />
         <ControlTemplate.Triggers>
-            <DataTrigger Binding="{Binding Path=ActualRoundCorners, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type dx:ThemedWindow}}}" Value="true">
+            <DataTrigger Binding="{Binding Path=ActualRoundCorners, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type dx:ThemedWindow}}, FallbackValue=False}" Value="true">
                 <Setter Property="CornerRadius" TargetName="CloseButtonMouseOverState" Value="0,7,0,0" />
             </DataTrigger>
             <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}" Value="Maximized">
@@ -76,7 +76,7 @@
     <ControlTemplate x:Key="{dxt:RibbonHeaderItemsThemeKey ResourceKey=RibbonCloseButtonBackgroundPressedState}">
         <dx:DXBorder x:Name="CloseButtonPressedState" Background="#FFF1707A" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019Black\RibbonWindow\Buttons_Base.xaml;90;10" x:Uid="@Background=Window.CloseButton.SelectionBackground" />
         <ControlTemplate.Triggers>
-            <DataTrigger Binding="{Binding Path=ActualRoundCorners, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type dx:ThemedWindow}}}" Value="true">
+            <DataTrigger Binding="{Binding Path=ActualRoundCorners, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type dx:ThemedWindow}}, FallbackValue=False}" Value="true">
                 <Setter Property="CornerRadius" TargetName="CloseButtonPressedState" Value="0,7,0,0" />
             </DataTrigger>
             <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}" Value="Maximized">

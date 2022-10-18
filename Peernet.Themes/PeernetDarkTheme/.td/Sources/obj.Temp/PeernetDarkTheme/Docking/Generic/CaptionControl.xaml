@@ -56,7 +56,7 @@
                             <dxdove:CaptionImage x:Name="PART_Image" Source="{Binding CaptionImage, RelativeSource={RelativeSource TemplatedParent}}" Style="{Binding CaptionImageStyle}" Visibility="{Binding IsCaptionImageVisible, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityConverter}}" />
                         </dxb:SplitLayoutPanel.Content1>
                         <dxb:SplitLayoutPanel.Content2>
-                            <ContentPresenter Content="{TemplateBinding ActualContent}" ContentTemplate="{TemplateBinding ActualContentTemplate}" ContentTemplateSelector="{TemplateBinding ActualContentTemplateSelector}" Cursor="{TemplateBinding Cursor}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\CaptionControl.xaml;114;30" />
+                            <ContentPresenter x:Name="PART_CaptionPresenter" Content="{TemplateBinding ActualContent}" ContentTemplate="{TemplateBinding ActualContentTemplate}" ContentTemplateSelector="{TemplateBinding ActualContentTemplateSelector}" Cursor="{TemplateBinding Cursor}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\CaptionControl.xaml;114;30" />
                         </dxb:SplitLayoutPanel.Content2>
                     </dxb:SplitLayoutPanel>
                 </ControlTemplate>
@@ -65,21 +65,21 @@
     </Style>
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.TemplatedCaptionControl}" BasedOn="{StaticResource TemplatedCaptionControlBaseStyle}" TargetType="{x:Type dxdove:TemplatedCaptionControl}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Generic\CaptionControl.xaml;127;6" /><Setter Property="CaptionControlTemplate">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Generic\CaptionControl.xaml;128;6" /><Setter Property="CaptionControlTemplate">
             <Setter.Value>
                 <ControlTemplate TargetType="dxdove:TemplatedCaptionControl">
-                    <dxdove:CaptionControl x:Name="PART_Caption" CaptionImage="{TemplateBinding CaptionImage}" FontWeight="{TemplateBinding FontWeight}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" ShowCaptionImage="{TemplateBinding IsCaptionImageVisible}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\CaptionControl.xaml;133;22" />
+                    <dxdove:CaptionControl x:Name="PART_Caption" CaptionImage="{TemplateBinding CaptionImage}" FontWeight="{TemplateBinding FontWeight}" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" ShowCaptionImage="{TemplateBinding IsCaptionImageVisible}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\CaptionControl.xaml;134;22" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.TemplatedTabCaptionControl}" BasedOn="{StaticResource TemplatedCaptionControlBaseStyle}" TargetType="{x:Type dxdove:TemplatedTabCaptionControl}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Generic\CaptionControl.xaml;146;6" /><Setter Property="Foreground" Value="#FF000000" cs:id="Setter_0000" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Docking\Generic\CaptionControl.xaml;147;6" /><Setter Property="Foreground" Value="#FF000000" cs:id="Setter_0000" />
         <Setter Property="CaptionControlTemplate">
             <Setter.Value>
                 <ControlTemplate TargetType="dxdove:TemplatedTabCaptionControl">
-                    <dxdove:TabCaptionControl x:Name="PART_Caption" CaptionImage="{TemplateBinding CaptionImage}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" ShowCaptionImage="{TemplateBinding IsCaptionImageVisible}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Width="{Binding TabCaptionWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\CaptionControl.xaml;155;22" />
+                    <dxdove:TabCaptionControl x:Name="PART_Caption" CaptionImage="{TemplateBinding CaptionImage}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" ShowCaptionImage="{TemplateBinding IsCaptionImageVisible}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Width="{Binding TabCaptionWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Generic\CaptionControl.xaml;156;22" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

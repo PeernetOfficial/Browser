@@ -121,7 +121,7 @@
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding Path=IsKeyboardFocused, RelativeSource={RelativeSource Self}}" Value="True" />
-                    <Condition Binding="{Binding Path=IsSingleItemVisible, RelativeSource={RelativeSource AncestorType=dxai:CollapsedAccordionVirtualizingPanel}}" Value="False" />
+                    <Condition Binding="{Binding Path=IsSingleItemVisible, RelativeSource={RelativeSource AncestorType=dxai:CollapsedAccordionVirtualizingPanel}, FallbackValue=False}" Value="False" />
                 </MultiDataTrigger.Conditions>
                 <Setter Property="Foreground" TargetName="Content" Value="#FFDADADA" cs:id="Setter_0002" x:Uid="@Value=Foreground" />
                 <Setter Property="Background" TargetName="IsDefault" Value="Transparent" cs:id="Setter_0001" />

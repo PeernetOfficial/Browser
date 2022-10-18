@@ -77,6 +77,15 @@
                     <Setter Property="Foreground" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=TextFocusedBrush}}" />
                 </MultiDataTrigger.Setters>
             </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding IsFocusedCell}" Value="True" />
+                    <Condition Binding="{Binding View.DataControl.SelectionMode}" Value="Row" />
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="Foreground" Value="#FFDADADA" cs:id="Setter_0002" x:Uid="@Value=Foreground" />
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
             <Trigger Property="dxg:TableView.IsFocusedRow" Value="False">
                 <Setter Property="Foreground" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=TextUnfocusedBrush}}" cs:id="Setter_0000" />
             </Trigger>
