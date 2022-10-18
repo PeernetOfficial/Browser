@@ -55,7 +55,7 @@
                         <dx:DXBorder x:Name="PART_SelectedItemImageBorder" Background="Transparent" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;109;26">
                             <dxcoi:BreadcrumbSelectedItemImage x:Name="PART_BreadcrumbSelectedItemImage" ImageSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path='SelectedNode.Image'}" Style="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=SelectedItemImageStyle}}" />
                         </dx:DXBorder>
-                        <dxcoi:BreadcrumbItemsControl x:Name="PART_BreadcrumbItemsControl" Grid.Column="1" ItemsSource="{TemplateBinding SelectedNodes}" ItemTemplate="{StaticResource SelectedItemTemplate}" PopupHeight="{TemplateBinding PopupHeight}" PopupMaxHeight="{TemplateBinding PopupMaxHeight}" PopupMaxWidth="{TemplateBinding PopupMaxWidth}" PopupMinHeight="{TemplateBinding PopupMinHeight}" PopupMinWidth="{TemplateBinding PopupMinWidth}" PopupWidth="{TemplateBinding PopupWidth}" ShowBorder="{TemplateBinding ShowBorder}" Style="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=ItemsControlStyle}}" SubItemTemplate="{StaticResource SubItemTemplate}" />
+                        <dxcoi:BreadcrumbItemsControl x:Name="PART_BreadcrumbItemsControl" Grid.Column="1" ItemsSource="{TemplateBinding SelectedNodes}" ItemTemplate="{StaticResource SelectedItemTemplate}" PopupHeight="{TemplateBinding PopupHeight}" PopupMaxHeight="{TemplateBinding PopupMaxHeight}" PopupMaxWidth="{TemplateBinding PopupMaxWidth}" PopupMinHeight="{TemplateBinding PopupMinHeight}" PopupMinWidth="{TemplateBinding PopupMinWidth}" PopupWidth="{TemplateBinding PopupWidth}" RightIndent="{Binding RightButtonsWidth, ElementName=PART_BreadcrumbPathEdit}" ShowBorder="{TemplateBinding ShowBorder}" Style="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=ItemsControlStyle}}" SubItemTemplate="{StaticResource SubItemTemplate}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="ShowItemImages" Value="False">
@@ -112,7 +112,7 @@
     </ControlTemplate>
 
     <Style x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=SelectedItemImageStyleBase}" TargetType="{x:Type dxcoi:BreadcrumbSelectedItemImage}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;208;6" /><Setter Property="Template" Value="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=SelectedItemImageTemplate}}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;209;6" /><Setter Property="Template" Value="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=SelectedItemImageTemplate}}" />
         <Setter Property="Margin" Value="4,2,2,2" />
         <Style.Triggers>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
@@ -124,10 +124,10 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=SelectedItemImageStyle}" BasedOn="{StaticResource {dxcot:BreadcrumbControlThemeKey ResourceKey=SelectedItemImageStyleBase}}" TargetType="{x:Type dxcoi:BreadcrumbSelectedItemImage}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;221;6" /></Style>
+    <Style x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=SelectedItemImageStyle}" BasedOn="{StaticResource {dxcot:BreadcrumbControlThemeKey ResourceKey=SelectedItemImageStyleBase}}" TargetType="{x:Type dxcoi:BreadcrumbSelectedItemImage}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;222;6" /></Style>
 
     <ControlTemplate x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=ItemsControlTemplate}" TargetType="{x:Type dxcoi:BreadcrumbItemsControl}">
-        <Grid MinWidth="60" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;226;10">
+        <Grid MinWidth="60" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;227;10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
@@ -150,7 +150,7 @@
     </ControlTemplate>
 
     <Style x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=ItemsControlStyleBase}" TargetType="{x:Type dxcoi:BreadcrumbItemsControl}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;264;6" /><Setter Property="Template" Value="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=ItemsControlTemplate}}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;265;6" /><Setter Property="Template" Value="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=ItemsControlTemplate}}" />
         <Setter Property="ItemContainerStyle" Value="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=ItemStyle}}" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Style.Triggers>
@@ -160,18 +160,18 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=ItemsControlStyle}" BasedOn="{StaticResource {dxcot:BreadcrumbControlThemeKey ResourceKey=ItemsControlStyleBase}}" TargetType="{x:Type dxcoi:BreadcrumbItemsControl}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;275;6" /></Style>
+    <Style x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=ItemsControlStyle}" BasedOn="{StaticResource {dxcot:BreadcrumbControlThemeKey ResourceKey=ItemsControlStyleBase}}" TargetType="{x:Type dxcoi:BreadcrumbItemsControl}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;276;6" /></Style>
 
     <ControlTemplate x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=ArrowTemplate}" TargetType="{x:Type dxcoi:BreadcrumbArrowControl}">
-        <dx:DXBorder Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}" Padding="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;280;10">
-            <Decorator Height="8" Width="8" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;285;14">
-                <Path Data="{TemplateBinding ArrowGeometry}" Fill="{TemplateBinding Foreground}" HorizontalAlignment="Center" LayoutTransform="{TemplateBinding GlyphTransform}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;286;18" />
+        <dx:DXBorder Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}" Padding="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;281;10">
+            <Decorator Height="8" Width="8" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;286;14">
+                <Path Data="{TemplateBinding ArrowGeometry}" Fill="{TemplateBinding Foreground}" HorizontalAlignment="Center" LayoutTransform="{TemplateBinding GlyphTransform}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;287;18" />
             </Decorator>
         </dx:DXBorder>
     </ControlTemplate>
 
     <Style x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=ArrowStyleBase}" TargetType="{x:Type dxcoi:BreadcrumbArrowControl}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;295;6" /><Setter Property="Template" Value="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=ArrowTemplate}}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;296;6" /><Setter Property="Template" Value="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=ArrowTemplate}}" />
         <Setter Property="Background" Value="Transparent" cs:id="Setter_0000" />
         <Setter Property="Padding" Value="3" />
         <Setter Property="BorderThickness" Value="0,1,1,1" />
@@ -186,22 +186,22 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=ArrowStyle}" BasedOn="{StaticResource {dxcot:BreadcrumbControlThemeKey ResourceKey=ArrowStyleBase}}" TargetType="{x:Type dxcoi:BreadcrumbArrowControl}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;313;6" /></Style>
+    <Style x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=ArrowStyle}" BasedOn="{StaticResource {dxcot:BreadcrumbControlThemeKey ResourceKey=ArrowStyleBase}}" TargetType="{x:Type dxcoi:BreadcrumbArrowControl}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;314;6" /></Style>
 
     <Style x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=RootItemArrowStyle}" BasedOn="{StaticResource {dxcot:BreadcrumbControlThemeKey ResourceKey=ArrowStyleBase}}" TargetType="{x:Type dxcoi:BreadcrumbArrowControl}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;317;6" /><Setter Property="BorderThickness" Value="1" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;318;6" /><Setter Property="BorderThickness" Value="1" />
     </Style>
 
     <ControlTemplate x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=ButtonStyleTemplate}" TargetType="{x:Type dxcoi:BreadcrumbButton}">
-        <dx:DXBorder Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}" Padding="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;324;10">
-            <dxcore_unique_xmlns:MeasurePixelSnapper SnapperType="Around" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;329;14">
-                <ContentPresenter Content="{Binding}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;330;18" />
+        <dx:DXBorder Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}" Padding="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;325;10">
+            <dxcore_unique_xmlns:MeasurePixelSnapper SnapperType="Around" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;330;14">
+                <ContentPresenter Content="{Binding}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;331;18" />
             </dxcore_unique_xmlns:MeasurePixelSnapper>
         </dx:DXBorder>
     </ControlTemplate>
 
     <Style x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=ButtonStyleBase}" TargetType="{x:Type dxcoi:BreadcrumbButton}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;337;6" /><Setter Property="Background" Value="Transparent" cs:id="Setter_0000" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;338;6" /><Setter Property="Background" Value="Transparent" cs:id="Setter_0000" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Padding" Value="3,1" />
         <Setter Property="Template" Value="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=ButtonStyleTemplate}}" />
@@ -215,24 +215,24 @@
         </Style.Triggers>
     </Style>
 
-    <Style x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=ItemButtonStyle}" BasedOn="{StaticResource {dxcot:BreadcrumbControlThemeKey ResourceKey=ButtonStyleBase}}" TargetType="{x:Type dxcoi:BreadcrumbButton}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;354;6" /></Style>
+    <Style x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=ItemButtonStyle}" BasedOn="{StaticResource {dxcot:BreadcrumbControlThemeKey ResourceKey=ButtonStyleBase}}" TargetType="{x:Type dxcoi:BreadcrumbButton}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;355;6" /></Style>
 
     <Style x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=SubItemButtonStyle}" BasedOn="{StaticResource {dxcot:BreadcrumbControlThemeKey ResourceKey=ButtonStyleBase}}" TargetType="{x:Type dxcoi:BreadcrumbButton}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;358;6" /><Setter Property="Padding" Value="4,4" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;359;6" /><Setter Property="Padding" Value="4,4" />
     </Style>
 
     <ControlTemplate x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=RootItemTemplate}" TargetType="{x:Type dxcoi:BreadcrumbRootItem}">
-        <Grid Background="{TemplateBinding Background}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;365;10">
+        <Grid Background="{TemplateBinding Background}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;366;10">
             <dxcoi:BreadcrumbArrowControl x:Name="PART_Arrow" BorderBrush="{TemplateBinding BorderBrush}" Foreground="{TemplateBinding Foreground}" GlyphTransform="{TemplateBinding ArrowGlyphTransform}" Grid.Column="1" Style="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=RootItemArrowStyle}}" Visibility="{TemplateBinding ShowArrow, Converter={StaticResource ResourceKey=VisibleIfTrueConverter}}" />
-            <dxb:PopupControlContainer x:Name="PART_Popup" MaxHeight="{TemplateBinding PopupMaxHeight}" Placement="Bottom" Width="{TemplateBinding PopupWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;373;14">
-                <Grid Background="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=PopupBackground}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;377;18">
+            <dxb:PopupControlContainer x:Name="PART_Popup" MaxHeight="{TemplateBinding PopupMaxHeight}" Placement="Bottom" Width="{TemplateBinding PopupWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;374;14">
+                <Grid Background="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=PopupBackground}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;378;18">
                     <Grid.RowDefinitions>
                         <RowDefinition />
                         <RowDefinition Height="Auto" />
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <dxcoi:BreadcrumbSubItemsControl x:Name="PART_SubItemsContainer" ItemsSource="{Binding SubItems, RelativeSource={RelativeSource TemplatedParent}}" ItemTemplate="{TemplateBinding SubItemTemplate}" ItemTemplateSelector="{TemplateBinding SubItemTemplateSelector}" Style="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=SubItemsControlStyle}}" />
-                    <Separator x:Name="PART_SubItemsSeparator" Grid.Row="1" Margin="1, 0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;388;22" />
+                    <Separator x:Name="PART_SubItemsSeparator" Grid.Row="1" Margin="1, 0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;389;22" />
                     <dxcoi:BreadcrumbSubItemsControl x:Name="PART_PredefinedSubItemsContainer" Grid.Row="2" ItemsSource="{TemplateBinding PredefinedSubItems}" ItemTemplate="{TemplateBinding SubItemTemplate}" ItemTemplateSelector="{TemplateBinding SubItemTemplateSelector}" Style="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=SubItemsControlStyle}}" Visibility="{TemplateBinding ShowPredefinedSubItems, Converter={StaticResource VisibleIfTrueConverter}}" />
                 </Grid>
             </dxb:PopupControlContainer>
@@ -265,21 +265,21 @@
     </ControlTemplate>
 
     <Style x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=RootItemStyleBase}" TargetType="{x:Type dxcoi:BreadcrumbRootItem}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;434;6" /><Setter Property="Template" Value="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=RootItemTemplate}}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;435;6" /><Setter Property="Template" Value="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=RootItemTemplate}}" />
     </Style>
 
-    <Style x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=RootItemStyle}" BasedOn="{StaticResource {dxcot:BreadcrumbControlThemeKey ResourceKey=RootItemStyleBase}}" TargetType="{x:Type dxcoi:BreadcrumbRootItem}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;438;6" /></Style>
+    <Style x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=RootItemStyle}" BasedOn="{StaticResource {dxcot:BreadcrumbControlThemeKey ResourceKey=RootItemStyleBase}}" TargetType="{x:Type dxcoi:BreadcrumbRootItem}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;439;6" /></Style>
 
     <ControlTemplate x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=SubItemsControlTemplate}" TargetType="{x:Type dxcoi:BreadcrumbSubItemsControl}">
-        <dx:DXBorder x:Name="PART_DropDown" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" MinWidth="{TemplateBinding ActualWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;443;10">
-            <ScrollViewer Padding="{TemplateBinding Padding}" VerticalScrollBarVisibility="Auto" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;448;14">
-                <ItemsPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;449;18" />
+        <dx:DXBorder x:Name="PART_DropDown" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" MinWidth="{TemplateBinding ActualWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;444;10">
+            <ScrollViewer Padding="{TemplateBinding Padding}" VerticalScrollBarVisibility="Auto" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;449;14">
+                <ItemsPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;450;18" />
             </ScrollViewer>
         </dx:DXBorder>
     </ControlTemplate>
 
     <Style x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=SubItemsControlStyleBase}" TargetType="{x:Type dxcoi:BreadcrumbSubItemsControl}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;454;6" /><Setter Property="Template" Value="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=SubItemsControlTemplate}}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;455;6" /><Setter Property="Template" Value="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=SubItemsControlTemplate}}" />
         <Setter Property="ItemContainerStyle" Value="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=SubItemStyle}}" />
         <Setter Property="ItemsPanel">
             <Setter.Value>
@@ -290,7 +290,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=SubItemsControlStyle}" BasedOn="{StaticResource {dxcot:BreadcrumbControlThemeKey ResourceKey=SubItemsControlStyleBase}}" TargetType="{x:Type dxcoi:BreadcrumbSubItemsControl}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;466;6" /></Style>
+    <Style x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=SubItemsControlStyle}" BasedOn="{StaticResource {dxcot:BreadcrumbControlThemeKey ResourceKey=SubItemsControlStyleBase}}" TargetType="{x:Type dxcoi:BreadcrumbSubItemsControl}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;467;6" /></Style>
 
     <ControlTemplate x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=SubItemTemplate}" TargetType="{x:Type dxcoi:BreadcrumbSubItem}">
         <dxcoi:BreadcrumbButton x:Name="PART_Button" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" ContentTemplate="{TemplateBinding ButtonContentTemplate}" ContentTemplateSelector="{TemplateBinding ButtonContentTemplateSelector}" Foreground="{TemplateBinding Foreground}" Style="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=SubItemButtonStyle}}" />
@@ -309,23 +309,23 @@
     </ControlTemplate>
 
     <Style x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=SubItemStyleBase}" TargetType="{x:Type dxcoi:BreadcrumbSubItem}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;492;6" /><Setter Property="Margin" Value="1" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;493;6" /><Setter Property="Margin" Value="1" />
         <Setter Property="Template" Value="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=SubItemTemplate}}" />
         <Setter Property="Background" Value="Transparent" cs:id="Setter_0000" />
         <Setter Property="Foreground" Value="{DynamicResource {dxcot:BreadcrumbItemThemeKey ResourceKey=Foreground}}" />
     </Style>
 
-    <Style x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=SubItemStyle}" BasedOn="{StaticResource {dxcot:BreadcrumbControlThemeKey ResourceKey=SubItemStyleBase}}" TargetType="{x:Type dxcoi:BreadcrumbSubItem}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;501;6" /></Style>
+    <Style x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=SubItemStyle}" BasedOn="{StaticResource {dxcot:BreadcrumbControlThemeKey ResourceKey=SubItemStyleBase}}" TargetType="{x:Type dxcoi:BreadcrumbSubItem}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;502;6" /></Style>
 
     <ControlTemplate x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=ItemTemplate}" TargetType="{x:Type dxcoi:BreadcrumbItem}">
-        <Grid Background="{TemplateBinding Background}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;506;10">
+        <Grid Background="{TemplateBinding Background}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;507;10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <dxcoi:BreadcrumbButton x:Name="PART_Button" BorderBrush="{TemplateBinding BorderBrush}" ContentTemplate="{TemplateBinding ButtonContentTemplate}" ContentTemplateSelector="{TemplateBinding ButtonContentTemplateSelector}" Foreground="{TemplateBinding Foreground}" Style="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=ItemButtonStyle}}" />
             <dxcoi:BreadcrumbArrowControl x:Name="PART_Arrow" BorderBrush="{TemplateBinding BorderBrush}" Foreground="{TemplateBinding Foreground}" GlyphTransform="{TemplateBinding ArrowGlyphTransform}" Grid.Column="1" Style="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=ArrowStyle}}" Visibility="{TemplateBinding ShowArrow, Converter={StaticResource ResourceKey=VisibleIfTrueConverter}}" />
-            <dxb:PopupControlContainer x:Name="PART_Popup" Height="{TemplateBinding PopupHeight}" MaxHeight="{TemplateBinding PopupMaxHeight}" MaxWidth="{TemplateBinding PopupMaxWidth}" MinHeight="{TemplateBinding PopupMinHeight}" MinWidth="{TemplateBinding PopupMinWidth}" Placement="Bottom" Width="{TemplateBinding PopupWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;524;14">
+            <dxb:PopupControlContainer x:Name="PART_Popup" Height="{TemplateBinding PopupHeight}" MaxHeight="{TemplateBinding PopupMaxHeight}" MaxWidth="{TemplateBinding PopupMaxWidth}" MinHeight="{TemplateBinding PopupMinHeight}" MinWidth="{TemplateBinding PopupMinWidth}" Placement="Bottom" Width="{TemplateBinding PopupWidth}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;525;14">
                 <dxcoi:BreadcrumbSubItemsControl x:Name="PART_SubItemsContainer" Background="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=PopupBackground}}" ItemTemplate="{TemplateBinding SubItemTemplate}" ItemTemplateSelector="{TemplateBinding SubItemTemplateSelector}" Style="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=SubItemsControlStyle}}" />
             </dxb:PopupControlContainer>
         </Grid>
@@ -365,10 +365,10 @@
     </ControlTemplate>
 
     <Style x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=ItemStyleBase}" TargetType="{x:Type dxcoi:BreadcrumbItem}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;584;6" /><Setter Property="Template" Value="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=ItemTemplate}}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;585;6" /><Setter Property="Template" Value="{DynamicResource {dxcot:BreadcrumbControlThemeKey ResourceKey=ItemTemplate}}" />
     </Style>
 
-    <Style x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=ItemStyle}" BasedOn="{StaticResource {dxcot:BreadcrumbControlThemeKey ResourceKey=ItemStyleBase}}" TargetType="{x:Type dxcoi:BreadcrumbItem}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;588;6" /></Style>
+    <Style x:Key="{dxcot:BreadcrumbControlThemeKey ResourceKey=ItemStyle}" BasedOn="{StaticResource {dxcot:BreadcrumbControlThemeKey ResourceKey=ItemStyleBase}}" TargetType="{x:Type dxcoi:BreadcrumbItem}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Controls\WindowsUI\Generic\BreadcrumbControlGeneric.xaml;589;6" /></Style>
 
     
 

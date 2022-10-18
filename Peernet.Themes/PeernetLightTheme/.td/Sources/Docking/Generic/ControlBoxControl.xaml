@@ -69,6 +69,11 @@
                                                           Width="{TemplateBinding ButtonWidth}"/>
                     </StackPanel>
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding LayoutItem.IsPinButtonVisible, RelativeSource={RelativeSource Mode=Self}}" Value="True">
+                            <Setter Property="Visibility"
+                                    TargetName="PART_PinButton"
+                                    Value="Visible"/>
+                        </DataTrigger>
                         <Trigger Property="CloseButtonTemplate" Value="{x:Null}">
                             <Setter Property="Visibility"
                                     TargetName="PART_CloseButton"

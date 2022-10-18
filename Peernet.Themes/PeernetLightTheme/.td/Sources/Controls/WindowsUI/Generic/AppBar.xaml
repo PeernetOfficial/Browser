@@ -8,6 +8,7 @@
                     xmlns:dxwuii="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/internal"
                     xmlns:dxwuit="http://schemas.devexpress.com/winfx/2008/xaml/windowsui/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ItemsPanelTemplate x:Key="AppBarPanel">
@@ -59,6 +60,8 @@
         <Setter Property="ClipToBounds" Value="True"/>
     </Style>
 
+    <sys:Double x:Key="{dxwuit:AppBarElementsThemeKey ResourceKey=AppBarButtonStrokeThickness}">3</sys:Double>
+
     <Style x:Key="AppBarButtonStyle" TargetType="{x:Type dxwui:AppBarButton}">
         <Setter Property="Template" Value="{DynamicResource {dxwuit:AppBarElementsThemeKey ResourceKey=AppBarButtonTemplate}}"/>
         <Setter Property="ContentFontFamily" Value="Segoe UI Symbol"/>
@@ -66,6 +69,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="dxb:ImageColorizer.Color" Value="{DynamicResource {dxwuit:AppBarElementsThemeKey ResourceKey=AppBarButtonForegroundColor}}"/>
         <Setter Property="Width" Value="{DynamicResource {dxwuit:AppBarElementsThemeKey ResourceKey=AppBarButtonDefaultWidth}}"/>
+        <Setter Property="StrokeThickness" Value="{DynamicResource {dxwuit:AppBarElementsThemeKey ResourceKey=AppBarButtonStrokeThickness}}"/>
         <Setter Property="Background"
                 Value="Transparent"
                 cs:id="Setter_0000"/>
