@@ -35,8 +35,13 @@
               dxdove:DockPane.HitTestType="Header"
               Visibility="{Binding Visibility}">
             <Grid.Resources>
-                <SolidColorBrush x:Key="UIBrush.Foreground.ColorOverlay" Color="{Binding TabColor, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ColorOverlayConverter}, ConverterParameter=#FFA2A2A2}"/>
-                <SolidColorBrush x:Key="UIBrush.Hot.ColorOverlay" Color="{Binding TabColor, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ColorOverlayConverter}, ConverterParameter=#FFD9D9D9}"/>
+                <SolidColorBrush x:Key="coloredHoverBackground" Color="{Binding TabColor, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ColorOverlayConverter}, ConverterParameter=#49D4D4D4}"/>
+                <SolidColorBrush x:Key="coloredSelectedBackround" Color="{Binding TabColor, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ColorOverlayConverter}, ConverterParameter=#FFE4E4E4}"/>
+                <SolidColorBrush x:Key="coloredInactiveBackground" Color="{Binding TabColor, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ColorOverlayConverter}, ConverterParameter=#FFD9D9D9}"/>
+                <SolidColorBrush x:Key="coloredUnselectedForeground" Color="{Binding TabColor, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ColorOverlayConverter}, ConverterParameter=#FF646464}"/>
+                <SolidColorBrush x:Key="coloredSelectedForeground" Color="{Binding TabColor, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ColorOverlayConverter}, ConverterParameter=#FF666666}"/>
+                <SolidColorBrush x:Key="coloredInactiveForeground" Color="{Binding TabColor, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ColorOverlayConverter}, ConverterParameter=#FF666666}"/>
+                <SolidColorBrush x:Key="coloredHoverForeground" Color="{Binding TabColor, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ColorOverlayConverter}, ConverterParameter=#FF707070}"/>
             </Grid.Resources>
             <dxdove:TabHeaderContainer BottomMargin="0,1,0,0"
                                        BottomSelectedMargin="0,-1,0,-1"
@@ -149,14 +154,21 @@
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsDefaultColored" Storyboard.TargetProperty="Background">
                                 <DiscreteObjectKeyFrame KeyTime="0">
                                     <DiscreteObjectKeyFrame.Value>
-                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource UIBrush.Hot.ColorOverlay}}"/>
+                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource coloredHoverBackground}}"/>
                                     </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
                             </ObjectAnimationUsingKeyFrames>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsDefaultColored" Storyboard.TargetProperty="BorderBrush">
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_CaptionControlPresenter" Storyboard.TargetProperty="Foreground">
                                 <DiscreteObjectKeyFrame KeyTime="0">
                                     <DiscreteObjectKeyFrame.Value>
-                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource UIBrush.Foreground.ColorOverlay}}"/>
+                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource coloredHoverForeground}}"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ControlBox" Storyboard.TargetProperty="Foreground">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource coloredHoverForeground}}"/>
                                     </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
                             </ObjectAnimationUsingKeyFrames>
@@ -167,7 +179,7 @@
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsDefaultColored" Storyboard.TargetProperty="Background">
                                 <DiscreteObjectKeyFrame KeyTime="0">
                                     <DiscreteObjectKeyFrame.Value>
-                                        <SolidColorBrush Color="$Window.Background" cs:id="SolidColorBrush_0005"/>
+                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource coloredSelectedBackround}}"/>
                                     </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
                             </ObjectAnimationUsingKeyFrames>
@@ -181,7 +193,14 @@
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_CaptionControlPresenter" Storyboard.TargetProperty="Foreground">
                                 <DiscreteObjectKeyFrame KeyTime="0">
                                     <DiscreteObjectKeyFrame.Value>
-                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource UIBrush.Foreground.ColorOverlay}}"/>
+                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource coloredSelectedForeground}}"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ControlBox" Storyboard.TargetProperty="Foreground">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource coloredSelectedForeground}}"/>
                                     </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
                             </ObjectAnimationUsingKeyFrames>
@@ -192,7 +211,14 @@
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_CaptionControlPresenter" Storyboard.TargetProperty="Foreground">
                                 <DiscreteObjectKeyFrame KeyTime="0">
                                     <DiscreteObjectKeyFrame.Value>
-                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource UIBrush.Foreground.ColorOverlay}}"/>
+                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource coloredUnselectedForeground}}"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ControlBox" Storyboard.TargetProperty="Foreground">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource coloredUnselectedForeground}}"/>
                                     </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
                             </ObjectAnimationUsingKeyFrames>
@@ -203,7 +229,7 @@
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsDefaultColored" Storyboard.TargetProperty="Background">
                                 <DiscreteObjectKeyFrame KeyTime="0">
                                     <DiscreteObjectKeyFrame.Value>
-                                        <SolidColorBrush Color="$Window.Background" cs:id="SolidColorBrush_0007"/>
+                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource coloredInactiveBackground}}"/>
                                     </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
                             </ObjectAnimationUsingKeyFrames>
@@ -217,7 +243,14 @@
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_CaptionControlPresenter" Storyboard.TargetProperty="Foreground">
                                 <DiscreteObjectKeyFrame KeyTime="0">
                                     <DiscreteObjectKeyFrame.Value>
-                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource UIBrush.Foreground.ColorOverlay}}"/>
+                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource coloredInactiveForeground}}"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ControlBox" Storyboard.TargetProperty="Foreground">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource coloredInactiveForeground}}"/>
                                     </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
                             </ObjectAnimationUsingKeyFrames>

@@ -6,6 +6,7 @@ using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.SDK.Common;
 using Peernet.SDK.Models.Domain.Download;
+using Peernet.SDK.Models.Domain.Status;
 using Peernet.SDK.Models.Presentation.Footer;
 using System;
 using System.Collections.ObjectModel;
@@ -19,7 +20,7 @@ namespace Peernet.Browser.Application.ViewModels
     public class FooterViewModel : ViewModelBase
     {
         private const int reconnectDelay = 2000;
-        private readonly IApiService apiService;
+        private readonly IStatusService statusService;
         private readonly IApplicationManager applicationManager;
         private readonly IBlockchainService blockchainService;
         private readonly DirectoryViewModel directoryViewModel;
@@ -32,10 +33,11 @@ namespace Peernet.Browser.Application.ViewModels
         private string commandLineInput;
         private string commandLineOutput;
         private ConnectionStatus connectionStatus = ConnectionStatus.Offline;
-        private string peers;
+        private int peers;
+        private ObservableCollection<PeerStatus> peerStatuses;
 
         public FooterViewModel(
-            IApiService apiService,
+            IStatusService apiService,
             INavigationService navigationService,
             IModalNavigationService modalNavigationService,
             IApplicationManager applicationManager,
@@ -46,7 +48,7 @@ namespace Peernet.Browser.Application.ViewModels
             INotificationsManager notificationsManager,
             DirectoryViewModel directoryViewModel)
         {
-            this.apiService = apiService;
+            this.statusService = apiService;
             this.navigationService = navigationService;
             this.modalNavigationService = modalNavigationService;
             this.applicationManager = applicationManager;
@@ -151,13 +153,23 @@ namespace Peernet.Browser.Application.ViewModels
                 await DownloadManager.PauseDownload(id);
             });
 
-        public string Peers
+        public int Peers
         {
             get => peers;
             set
             {
                 peers = value;
                 OnPropertyChanged(nameof(Peers));
+            }
+        }
+
+        public ObservableCollection<PeerStatus> PeerStatuses
+        {
+            get => peerStatuses;
+            set
+            {
+                peerStatuses = value;
+                OnPropertyChanged(nameof(PeerStatuses));
             }
         }
 
@@ -211,7 +223,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         private async Task<bool> GetPeernetStatus()
         {
-            var status = await apiService.GetStatus();
+            var status = await statusService.GetStatus();
 
             if (status == null)
             {
@@ -219,7 +231,7 @@ namespace Peernet.Browser.Application.ViewModels
             }
 
             ConnectionStatus = status.IsConnected ? ConnectionStatus.Online : ConnectionStatus.Offline;
-            Peers = status.CountPeerList.ToString();
+            Peers = status.CountPeerList;
             return status.IsConnected;
         }
 
@@ -227,8 +239,13 @@ namespace Peernet.Browser.Application.ViewModels
         {
             while (true)
             {
-                var status = await apiService.GetStatus();
-                Peers = status?.CountPeerList.ToString();
+                var status = await statusService.GetStatus();
+                if (status != null)
+                {
+                    Peers = status.CountPeerList;
+                    PeerStatuses = new (await statusService.GetPeersStatus());
+                }
+
                 await Task.Delay(3000);
             }
         }

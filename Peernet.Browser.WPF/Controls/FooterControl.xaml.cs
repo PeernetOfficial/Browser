@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using Peernet.Browser.Application.ViewModels;
+using System.Windows.Controls;
 
 namespace Peernet.Browser.WPF.Controls
 {
@@ -14,7 +15,7 @@ namespace Peernet.Browser.WPF.Controls
 
         private void GlobeButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            new PeersMapWindow().Show();
+            new PeersMapWindow(((MainViewModel)DataContext).Footer).Show();
         }
     }
 }

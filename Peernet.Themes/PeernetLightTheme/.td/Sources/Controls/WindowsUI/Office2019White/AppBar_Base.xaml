@@ -23,6 +23,8 @@
 
     <!-- General -->
 
+    <sys:Double x:Key="{dxwuit:AppBarElementsThemeKey ResourceKey=AppBarButtonStrokeThickness}">0</sys:Double>
+
     <ControlTemplate x:Key="{dxwuit:AppBarElementsThemeKey ResourceKey=AppBarSeparatorTemplate}" TargetType="dxwui:AppBarSeparator">
         <dx:DXBorder x:Name="Delimiter"
                      Background="$Delimiter"
@@ -69,33 +71,40 @@
                 <dxwuii:AnimatedPanelBehavior x:Name="animatedPanelBehavior" Width="{TemplateBinding Width}"/>
             </dxmvvmi:Interaction.Behaviors>
             <StackPanel Margin="{TemplateBinding Padding}" VerticalAlignment="Top">
-                <dx:DXBorder x:Name="IsDefault"
-                             Background="$Backstage.Button.Background"
+                <dx:DXBorder x:Name="BackBorder"
+                             Background="$Backstage.Foreground"
                              CornerRadius="96"
                              EnableDPICorrection="False"
                              Height="{TemplateBinding EllipseDiameter}"
+                             Padding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=StrokeThickness}"
                              Width="{TemplateBinding EllipseDiameter}"
                              cs:id="Border_0000">
-                    <Grid Height="{TemplateBinding GlyphHeight}" Width="{TemplateBinding GlyphWidth}">
-                        <dxwuii:ImagePresenter x:Name="Content"
-                                               AccentColor="{Binding Path=(dxb:ImageColorizer.Color), RelativeSource={RelativeSource TemplatedParent}}"
-                                               AllowAccent="{TemplateBinding AllowGlyphTheming}"
-                                               HorizontalAlignment="Center"
-                                               Opacity="0.62"
-                                               Source="{TemplateBinding Glyph}"
-                                               Stretch="{TemplateBinding GlyphStretch}"
-                                               VerticalAlignment="Center"
-                                               Visibility="{Binding IsGlyphVisible, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ResourceKey=BooleanToVisibilityConverter}}"
-                                               cs:id="ImagePresenter_0000"/>
-                        <dxwuii:ShapeContentPresenter AccentColor="{Binding Path=(dxb:ImageColorizer.Color), RelativeSource={RelativeSource TemplatedParent}}"
-                                                      FontFamily="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentFontFamily}"
-                                                      FontSize="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentFontSize}"
-                                                      Foreground="$Backstage.Foreground"
-                                                      HorizontalAlignment="Center"
-                                                      VerticalAlignment="Center"
-                                                      Visibility="{Binding IsGlyphVisible, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ResourceKey=boolToVisibilityInverseConverter}}"
-                                                      cs:id="ShapeContentPresenter_0000"/>
-                    </Grid>
+                    <dx:DXBorder x:Name="FrontBorder"
+                                 Background="$Backstage.Button.Background"
+                                 CornerRadius="96"
+                                 EnableDPICorrection="False"
+                                 cs:id="Border_0001">
+                        <Grid Height="{TemplateBinding GlyphHeight}" Width="{TemplateBinding GlyphWidth}">
+                            <dxwuii:ImagePresenter x:Name="Content"
+                                                   AccentColor="{Binding Path=(dxb:ImageColorizer.Color), RelativeSource={RelativeSource TemplatedParent}}"
+                                                   AllowAccent="{TemplateBinding AllowGlyphTheming}"
+                                                   HorizontalAlignment="Center"
+                                                   Opacity="0.62"
+                                                   Source="{TemplateBinding Glyph}"
+                                                   Stretch="{TemplateBinding GlyphStretch}"
+                                                   VerticalAlignment="Center"
+                                                   Visibility="{Binding IsGlyphVisible, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ResourceKey=BooleanToVisibilityConverter}}"
+                                                   cs:id="ImagePresenter_0000"/>
+                            <dxwuii:ShapeContentPresenter AccentColor="{Binding Path=(dxb:ImageColorizer.Color), RelativeSource={RelativeSource TemplatedParent}}"
+                                                          FontFamily="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentFontFamily}"
+                                                          FontSize="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ContentFontSize}"
+                                                          Foreground="$Backstage.Foreground"
+                                                          HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"
+                                                          Visibility="{Binding IsGlyphVisible, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ResourceKey=boolToVisibilityInverseConverter}}"
+                                                          cs:id="ShapeContentPresenter_0000"/>
+                        </Grid>
+                    </dx:DXBorder>
                 </dx:DXBorder>
                 <Grid Margin="0,5,0,0">
                     <dxwuii:ShapeContentPresenter x:Name="PART_Label"
@@ -115,11 +124,13 @@
                     <VisualState x:Name="Normal"/>
                     <VisualState x:Name="MouseOver">
                         <Storyboard>
-                            <ColorAnimation Duration="0"
-                                            Storyboard.TargetName="IsDefault"
-                                            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                            To="$Backstage.HoverBackground"
-                                            cs:id="ColorAnimation_0000"/>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FrontBorder" Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <SolidColorBrush Color="$Backstage.HoverBackground" cs:id="SolidColorBrush_0002"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
                             <DoubleAnimation Duration="0"
                                              Storyboard.TargetName="Content"
                                              Storyboard.TargetProperty="Opacity"
@@ -128,11 +139,13 @@
                     </VisualState>
                     <VisualState x:Name="Pressed">
                         <Storyboard>
-                            <ColorAnimation Duration="0"
-                                            Storyboard.TargetName="IsDefault"
-                                            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                            To="$Backstage.SelectionBackground"
-                                            cs:id="ColorAnimation_0001"/>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FrontBorder" Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <SolidColorBrush Color="$Backstage.SelectionBackground" cs:id="SolidColorBrush_0000"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
                             <DoubleAnimation Duration="0"
                                              Storyboard.TargetName="Content"
                                              Storyboard.TargetProperty="Opacity"
@@ -152,11 +165,13 @@
                     <VisualState x:Name="Unchecked"/>
                     <VisualState x:Name="Checked">
                         <Storyboard>
-                            <ColorAnimation Duration="0"
-                                            Storyboard.TargetName="IsDefault"
-                                            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                            To="$Backstage.SelectionBackground"
-                                            cs:id="ColorAnimation_0002"/>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FrontBorder" Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <SolidColorBrush Color="$Backstage.SelectionBackground" cs:id="SolidColorBrush_0001"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
                             <DoubleAnimation Duration="0"
                                              Storyboard.TargetName="Content"
                                              Storyboard.TargetProperty="Opacity"
@@ -165,11 +180,13 @@
                     </VisualState>
                     <VisualState x:Name="CheckedMouseOver">
                         <Storyboard>
-                            <ColorAnimation Duration="0"
-                                            Storyboard.TargetName="IsDefault"
-                                            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                            To="$Backstage.SelectionBackground"
-                                            cs:id="ColorAnimation_0003"/>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FrontBorder" Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <SolidColorBrush Color="$Backstage.SelectionBackground" cs:id="SolidColorBrush_0003"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
                             <DoubleAnimation Duration="0"
                                              Storyboard.TargetName="Content"
                                              Storyboard.TargetProperty="Opacity"
@@ -178,11 +195,13 @@
                     </VisualState>
                     <VisualState x:Name="CheckedPressed">
                         <Storyboard>
-                            <ColorAnimation Duration="0"
-                                            Storyboard.TargetName="IsDefault"
-                                            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                            To="$Backstage.SelectionBackground"
-                                            cs:id="ColorAnimation_0004"/>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FrontBorder" Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <SolidColorBrush Color="$Backstage.SelectionBackground" cs:id="SolidColorBrush_0004"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
                             <DoubleAnimation Duration="0"
                                              Storyboard.TargetName="Content"
                                              Storyboard.TargetProperty="Opacity"
@@ -192,6 +211,16 @@
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
         </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="Padding"
+                     SourceName="BackBorder"
+                     Value="0">
+                <Setter Property="Background"
+                        TargetName="BackBorder"
+                        Value="Transparent"
+                        cs:id="Setter_0000"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
     </ControlTemplate>
 
 </ResourceDictionary>

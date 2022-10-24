@@ -30,29 +30,35 @@
                     <VisualState x:Name="Normal"/>
                     <VisualState x:Name="Hover">
                         <Storyboard>
-                            <ColorAnimation Duration="0"
-                                            Storyboard.TargetName="IsDefault"
-                                            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                            To="$ControlLight.HoverBackground"
-                                            cs:id="ColorAnimation_0000"/>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <SolidColorBrush Color="$ControlLight.HoverBackground" cs:id="SolidColorBrush_0000"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Checked">
                         <Storyboard>
-                            <ColorAnimation Duration="0"
-                                            Storyboard.TargetName="IsDefault"
-                                            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                            To="$ControlLight.SelectionBackground"
-                                            cs:id="ColorAnimation_0001"/>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <SolidColorBrush Color="$ControlLight.SelectionBackground" cs:id="SolidColorBrush_0001"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Focused">
                         <Storyboard>
-                            <ColorAnimation Duration="0"
-                                            Storyboard.TargetName="IsDefault"
-                                            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                            To="$ControlLight.HoverBackground"
-                                            cs:id="ColorAnimation_0002"/>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <SolidColorBrush Color="$ControlLight.HoverBackground" cs:id="SolidColorBrush_0002"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                 </VisualStateGroup>

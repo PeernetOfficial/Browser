@@ -17,19 +17,24 @@
     <ControlTemplate x:Key="{dxdot:DocumentPaneElementsThemeKey ResourceKey=PageHeader}" TargetType="dxdove:DocumentPaneItem">
         <Grid x:Name="Root" dxdove:DockPane.HitTestType="Header" Visibility="{Binding Visibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\DocumentPane\Tabbed_Base.xaml;34;10">
             <Grid.Resources>
-                <SolidColorBrush x:Key="UIBrush.Foreground.ColorOverlay" Color="{Binding TabColor, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ColorOverlayConverter}, ConverterParameter=#FFA2A2A2}" />
-                <SolidColorBrush x:Key="UIBrush.Hot.ColorOverlay" Color="{Binding TabColor, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ColorOverlayConverter}, ConverterParameter=#FFD9D9D9}" />
+                <SolidColorBrush x:Key="coloredHoverBackground" Color="{Binding TabColor, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ColorOverlayConverter}, ConverterParameter=#49D4D4D4}" />
+                <SolidColorBrush x:Key="coloredSelectedBackround" Color="{Binding TabColor, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ColorOverlayConverter}, ConverterParameter=#FFE4E4E4}" />
+                <SolidColorBrush x:Key="coloredInactiveBackground" Color="{Binding TabColor, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ColorOverlayConverter}, ConverterParameter=#FFD9D9D9}" />
+                <SolidColorBrush x:Key="coloredUnselectedForeground" Color="{Binding TabColor, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ColorOverlayConverter}, ConverterParameter=#FF646464}" />
+                <SolidColorBrush x:Key="coloredSelectedForeground" Color="{Binding TabColor, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ColorOverlayConverter}, ConverterParameter=#FF666666}" />
+                <SolidColorBrush x:Key="coloredInactiveForeground" Color="{Binding TabColor, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ColorOverlayConverter}, ConverterParameter=#FF666666}" />
+                <SolidColorBrush x:Key="coloredHoverForeground" Color="{Binding TabColor, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource ColorOverlayConverter}, ConverterParameter=#FF707070}" />
             </Grid.Resources>
-            <dxdove:TabHeaderContainer BottomMargin="0,1,0,0" BottomSelectedMargin="0,-1,0,-1" CaptionLocation="{TemplateBinding CaptionLocation}" IsSelected="{TemplateBinding IsSelected}" LeftMargin="0,0,1,0" LeftSelectedMargin="-1,0,-1,0" RightMargin="1,0,0,0" RightSelectedMargin="-1,0,-1,0" TopMargin="0,0,0,1" TopSelectedMargin="0,-1,0,-1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\DocumentPane\Tabbed_Base.xaml;41;14">
+            <dxdove:TabHeaderContainer BottomMargin="0,1,0,0" BottomSelectedMargin="0,-1,0,-1" CaptionLocation="{TemplateBinding CaptionLocation}" IsSelected="{TemplateBinding IsSelected}" LeftMargin="0,0,1,0" LeftSelectedMargin="-1,0,-1,0" RightMargin="1,0,0,0" RightSelectedMargin="-1,0,-1,0" TopMargin="0,0,0,1" TopSelectedMargin="0,-1,0,-1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\DocumentPane\Tabbed_Base.xaml;46;14">
                 <dxdove:TabHeaderBackgroundPanel CaptionLocation="{TemplateBinding CaptionLocation}" CaptionOrientation="{TemplateBinding CaptionOrientation}">
-                    <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\DocumentPane\Tabbed_Base.xaml;52;22">
-                        <dx:DXBorder x:Name="IsDefault" Background="Transparent" BorderBrush="Transparent" BorderThickness="{TemplateBinding ActualBorderThickness}" Visibility="{Binding HasTabColor, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityInverseConverter}}" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\DocumentPane\Tabbed_Base.xaml;53;26" />
-                        <dx:DXBorder x:Name="IsDefaultColored" Background="Transparent" BorderBrush="Transparent" BorderThickness="{TemplateBinding ActualBorderThickness}" Visibility="{Binding HasTabColor, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" cs:id="Border_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\DocumentPane\Tabbed_Base.xaml;59;26" />
+                    <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\DocumentPane\Tabbed_Base.xaml;57;22">
+                        <dx:DXBorder x:Name="IsDefault" Background="Transparent" BorderBrush="Transparent" BorderThickness="{TemplateBinding ActualBorderThickness}" Visibility="{Binding HasTabColor, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToVisibilityInverseConverter}}" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\DocumentPane\Tabbed_Base.xaml;58;26" />
+                        <dx:DXBorder x:Name="IsDefaultColored" Background="Transparent" BorderBrush="Transparent" BorderThickness="{TemplateBinding ActualBorderThickness}" Visibility="{Binding HasTabColor, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" cs:id="Border_0002" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\DocumentPane\Tabbed_Base.xaml;64;26" />
                     </Grid>
                 </dxdove:TabHeaderBackgroundPanel>
             </dxdove:TabHeaderContainer>
-            <dxdove:TabHeaderTransformPanel CaptionLocation="{TemplateBinding CaptionLocation}" CaptionOrientation="{TemplateBinding CaptionOrientation}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\DocumentPane\Tabbed_Base.xaml;68;14">
-                <Grid x:Name="Content" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\DocumentPane\Tabbed_Base.xaml;69;18">
+            <dxdove:TabHeaderTransformPanel CaptionLocation="{TemplateBinding CaptionLocation}" CaptionOrientation="{TemplateBinding CaptionOrientation}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\DocumentPane\Tabbed_Base.xaml;73;14">
+                <Grid x:Name="Content" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\DocumentPane\Tabbed_Base.xaml;74;18">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
@@ -100,14 +105,21 @@
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsDefaultColored" Storyboard.TargetProperty="Background">
                                 <DiscreteObjectKeyFrame KeyTime="0">
                                     <DiscreteObjectKeyFrame.Value>
-                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource UIBrush.Hot.ColorOverlay}}" />
+                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource coloredHoverBackground}}" />
                                     </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
                             </ObjectAnimationUsingKeyFrames>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsDefaultColored" Storyboard.TargetProperty="BorderBrush">
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_CaptionControlPresenter" Storyboard.TargetProperty="Foreground">
                                 <DiscreteObjectKeyFrame KeyTime="0">
                                     <DiscreteObjectKeyFrame.Value>
-                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource UIBrush.Foreground.ColorOverlay}}" />
+                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource coloredHoverForeground}}" />
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ControlBox" Storyboard.TargetProperty="Foreground">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource coloredHoverForeground}}" />
                                     </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
                             </ObjectAnimationUsingKeyFrames>
@@ -118,7 +130,7 @@
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsDefaultColored" Storyboard.TargetProperty="Background">
                                 <DiscreteObjectKeyFrame KeyTime="0">
                                     <DiscreteObjectKeyFrame.Value>
-                                        <SolidColorBrush Color="#FF262626" cs:id="SolidColorBrush_0005" x:Uid="@Color=Window.Background" />
+                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource coloredSelectedBackround}}" />
                                     </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
                             </ObjectAnimationUsingKeyFrames>
@@ -132,7 +144,14 @@
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_CaptionControlPresenter" Storyboard.TargetProperty="Foreground">
                                 <DiscreteObjectKeyFrame KeyTime="0">
                                     <DiscreteObjectKeyFrame.Value>
-                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource UIBrush.Foreground.ColorOverlay}}" />
+                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource coloredSelectedForeground}}" />
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ControlBox" Storyboard.TargetProperty="Foreground">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource coloredSelectedForeground}}" />
                                     </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
                             </ObjectAnimationUsingKeyFrames>
@@ -143,7 +162,14 @@
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_CaptionControlPresenter" Storyboard.TargetProperty="Foreground">
                                 <DiscreteObjectKeyFrame KeyTime="0">
                                     <DiscreteObjectKeyFrame.Value>
-                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource UIBrush.Foreground.ColorOverlay}}" />
+                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource coloredUnselectedForeground}}" />
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ControlBox" Storyboard.TargetProperty="Foreground">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource coloredUnselectedForeground}}" />
                                     </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
                             </ObjectAnimationUsingKeyFrames>
@@ -154,7 +180,7 @@
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsDefaultColored" Storyboard.TargetProperty="Background">
                                 <DiscreteObjectKeyFrame KeyTime="0">
                                     <DiscreteObjectKeyFrame.Value>
-                                        <SolidColorBrush Color="#FF262626" cs:id="SolidColorBrush_0007" x:Uid="@Color=Window.Background" />
+                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource coloredInactiveBackground}}" />
                                     </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
                             </ObjectAnimationUsingKeyFrames>
@@ -168,7 +194,14 @@
                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_CaptionControlPresenter" Storyboard.TargetProperty="Foreground">
                                 <DiscreteObjectKeyFrame KeyTime="0">
                                     <DiscreteObjectKeyFrame.Value>
-                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource UIBrush.Foreground.ColorOverlay}}" />
+                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource coloredInactiveForeground}}" />
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ControlBox" Storyboard.TargetProperty="Foreground">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <SolidColorBrush Color="{Binding Color, Source={StaticResource coloredInactiveForeground}}" />
                                     </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
                             </ObjectAnimationUsingKeyFrames>
@@ -197,21 +230,21 @@
     
 
     <ControlTemplate x:Key="{dxdot:DocumentPaneElementsThemeKey ResourceKey=TabContainerTemplate}" TargetType="dxdove:DocumentTabContainer">
-        <dxdove:DockingSplitLayoutPanel x:Name="Root" Content1Location="{Binding CaptionLocation, Converter={StaticResource GroupCaptionLocationToDockConverter}}" DataContext="{Binding LayoutItem}" dxdove:DockPane.HitTestType="Bounds" Margin="{TemplateBinding ActualBorderMargin}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\DocumentPane\Tabbed_Base.xaml;259;10">
+        <dxdove:DockingSplitLayoutPanel x:Name="Root" Content1Location="{Binding CaptionLocation, Converter={StaticResource GroupCaptionLocationToDockConverter}}" DataContext="{Binding LayoutItem}" dxdove:DockPane.HitTestType="Bounds" Margin="{TemplateBinding ActualBorderMargin}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\DocumentPane\Tabbed_Base.xaml;292;10">
             <dxdove:DockingSplitLayoutPanel.Content1>
-                <dxdove:DockingSplitLayoutPanel x:Name="HeadersPanel" Background="Transparent" BottomContent2Margin="0,12,0,0" Canvas.ZIndex="1" Content1Location="{Binding CaptionLocation, Converter={StaticResource TabHeaderCaptionLocationToDockConverter}}" MaximizeContent1="True" RightContent2Margin="12,0,0,0" cs:id="DockingSplitLayoutPanel_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\DocumentPane\Tabbed_Base.xaml;265;18">
+                <dxdove:DockingSplitLayoutPanel x:Name="HeadersPanel" Background="Transparent" BottomContent2Margin="0,12,0,0" Canvas.ZIndex="1" Content1Location="{Binding CaptionLocation, Converter={StaticResource TabHeaderCaptionLocationToDockConverter}}" MaximizeContent1="True" RightContent2Margin="12,0,0,0" cs:id="DockingSplitLayoutPanel_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\DocumentPane\Tabbed_Base.xaml;298;18">
                     <dxdove:DockingSplitLayoutPanel.Content1>
-                        <ItemsPresenter x:Name="PART_HeadersPanelPresenter" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\DocumentPane\Tabbed_Base.xaml;274;26" />
+                        <ItemsPresenter x:Name="PART_HeadersPanelPresenter" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\DocumentPane\Tabbed_Base.xaml;307;26" />
                     </dxdove:DockingSplitLayoutPanel.Content1>
                     <dxdove:DockingSplitLayoutPanel.Content2>
-                        <dxdove:TabHeaderControlBoxControl x:Name="PART_ControlBox" ButtonHeight="16" ButtonStyle="{DynamicResource {dxdot:DocumentPaneElementsThemeKey ResourceKey=DocumentGroupButtonStyle}}" ButtonWidth="16" CloseButtonTemplate="{DynamicResource {dxdot:DocumentPaneElementsThemeKey ResourceKey=CloseButton}}" DropDownButtonTemplate="{DynamicResource {dxdot:DocumentPaneElementsThemeKey ResourceKey=DropDownButton}}" dxdove:DockPane.HitTestType="ControlBox" dxdove:TabHeaderControlBoxControl.Location="{Binding CaptionLocation}" HorizontalAlignment="Right" LayoutItem="{Binding}" ScrollNextButtonTemplate="{DynamicResource {dxdot:DocumentPaneElementsThemeKey ResourceKey=ScrollNextButton}}" ScrollPrevButtonTemplate="{DynamicResource {dxdot:DocumentPaneElementsThemeKey ResourceKey=ScrollPrevButton}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\DocumentPane\Tabbed_Base.xaml;277;26" />
+                        <dxdove:TabHeaderControlBoxControl x:Name="PART_ControlBox" ButtonHeight="16" ButtonStyle="{DynamicResource {dxdot:DocumentPaneElementsThemeKey ResourceKey=DocumentGroupButtonStyle}}" ButtonWidth="16" CloseButtonTemplate="{DynamicResource {dxdot:DocumentPaneElementsThemeKey ResourceKey=CloseButton}}" DropDownButtonTemplate="{DynamicResource {dxdot:DocumentPaneElementsThemeKey ResourceKey=DropDownButton}}" dxdove:DockPane.HitTestType="ControlBox" dxdove:TabHeaderControlBoxControl.Location="{Binding CaptionLocation}" HorizontalAlignment="Right" LayoutItem="{Binding}" ScrollNextButtonTemplate="{DynamicResource {dxdot:DocumentPaneElementsThemeKey ResourceKey=ScrollNextButton}}" ScrollPrevButtonTemplate="{DynamicResource {dxdot:DocumentPaneElementsThemeKey ResourceKey=ScrollPrevButton}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\DocumentPane\Tabbed_Base.xaml;310;26" />
                     </dxdove:DockingSplitLayoutPanel.Content2>
                 </dxdove:DockingSplitLayoutPanel>
             </dxdove:DockingSplitLayoutPanel.Content1>
             <dxdove:DockingSplitLayoutPanel.Content2>
-                <Grid x:Name="PART_SelectedPage" dxdove:DockPane.HitTestType="Content" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\DocumentPane\Tabbed_Base.xaml;293;18">
+                <Grid x:Name="PART_SelectedPage" dxdove:DockPane.HitTestType="Content" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\DocumentPane\Tabbed_Base.xaml;326;18">
                     <dxdove:DockDependentDecorator BottomMargin="0" CaptionLocation="{Binding CaptionLocation}" LeftMargin="0" RightMargin="0" TopMargin="0">
-                        <dx:DXBorder x:Name="HeaderPart" Background="{TemplateBinding ActualBackground}" BorderBrush="#FF686868" BorderThickness="{TemplateBinding ActualContentBorderThickness}" dxdove:DockPane.HitTestType="Content" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\DocumentPane\Tabbed_Base.xaml;299;26" x:Uid="@BorderBrush=Border">
+                        <dx:DXBorder x:Name="HeaderPart" Background="{TemplateBinding ActualBackground}" BorderBrush="#FF686868" BorderThickness="{TemplateBinding ActualContentBorderThickness}" dxdove:DockPane.HitTestType="Content" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\DocumentPane\Tabbed_Base.xaml;332;26" x:Uid="@BorderBrush=Border">
                             <dxdove:LayoutTabFastRenderPanel x:Name="PART_FastRenderPanel" dxdove:DockPane.HitTestType="Content" />
                         </dx:DXBorder>
                     </dxdove:DockDependentDecorator>
@@ -259,8 +292,8 @@
 
     <ControlTemplate x:Key="{dxdot:DocumentElementsThemeKey ResourceKey=FloatDocument}" TargetType="dxdove:FloatDocument">
         <dxdove:DocumentFormBorderContentControl IsActive="{Binding IsActive}">
-            <dx:DXBorder Background="{Binding Background}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\DocumentPane\Tabbed_Base.xaml;370;14">
-                <dxdove:DocumentContentPresenter x:Name="PART_ContentPresenter" Content="{Binding LayoutItemData}" dxdove:DockPane.HitTestType="Content" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\DocumentPane\Tabbed_Base.xaml;371;18" />
+            <dx:DXBorder Background="{Binding Background}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\DocumentPane\Tabbed_Base.xaml;403;14">
+                <dxdove:DocumentContentPresenter x:Name="PART_ContentPresenter" Content="{Binding LayoutItemData}" dxdove:DockPane.HitTestType="Content" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Docking\Office2019Black\DocumentPane\Tabbed_Base.xaml;404;18" />
             </dx:DXBorder>
         </dxdove:DocumentFormBorderContentControl>
     </ControlTemplate>

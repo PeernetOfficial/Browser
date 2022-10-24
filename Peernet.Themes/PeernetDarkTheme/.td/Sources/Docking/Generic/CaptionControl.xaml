@@ -111,7 +111,8 @@
                                                  Visibility="{Binding IsCaptionImageVisible, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityConverter}}"/>
                         </dxb:SplitLayoutPanel.Content1>
                         <dxb:SplitLayoutPanel.Content2>
-                            <ContentPresenter Content="{TemplateBinding ActualContent}"
+                            <ContentPresenter x:Name="PART_CaptionPresenter"
+                                              Content="{TemplateBinding ActualContent}"
                                               ContentTemplate="{TemplateBinding ActualContentTemplate}"
                                               ContentTemplateSelector="{TemplateBinding ActualContentTemplateSelector}"
                                               Cursor="{TemplateBinding Cursor}"

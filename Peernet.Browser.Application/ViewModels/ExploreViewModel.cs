@@ -1,5 +1,6 @@
 ﻿using AsyncAwaitBestPractices.MVVM;
 using DevExpress.Mvvm.Xpf;
+using DevExpress.Utils.Serializing;
 using DevExpress.Xpf.Data;
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Services;
@@ -32,6 +33,7 @@ namespace Peernet.Browser.Application.ViewModels
         private int pageIndex;
         private int pageSize = 15;
         private int totalResultsCount = 200;
+        private const int minimumResultsLimit = 5;
 
         public ExploreViewModel(IExploreService exploreService, IDownloadManager downloadManager, INavigationService navigationService, IEnumerable<IPlayButtonPlug> playButtonPlugs)
         {
@@ -60,6 +62,7 @@ namespace Peernet.Browser.Application.ViewModels
             {
                 cachedSearchResults = value;
                 OnPropertyChanged(nameof(CachedSearchResults));
+                OnPropertyChanged(nameof(PagesCount));
             }
         }
 
@@ -134,7 +137,15 @@ namespace Peernet.Browser.Application.ViewModels
 
         public int PagesCount
         {
-            get => (int)Math.Ceiling(TotalResultsCount / (double)PageSize);
+            get
+            {
+                if (!CachedSearchResults.IsNullOrEmpty())
+                {
+                    return (int)Math.Ceiling(CachedSearchResults.Count / (double)PageSize);
+                }
+
+                return 1;
+            }
         }
 
         public int PageSize
@@ -171,14 +182,11 @@ namespace Peernet.Browser.Application.ViewModels
                         category.IsSelected = false;
                         return;
                     }
-
                     categoryTypes.ForEach(c => c.ResetSelection());
-
                     category.IsSelected = true;
-
-                    var results = await exploreService.GetFiles(TotalResultsCount, (int)category.Type);
-                    SetPlayerState(results);
-                    ActiveSearchResults = new ObservableCollection<DownloadModel>(results);
+                    
+                    await ReloadResults();
+                    ReloadActiveResultsFromCache();
                 });
 
         public IAsyncCommand<DownloadModel> StreamFileCommand =>
@@ -201,8 +209,16 @@ namespace Peernet.Browser.Application.ViewModels
             get => totalResultsCount;
             set
             {
-                totalResultsCount = value;
+                if (value > minimumResultsLimit)
+                {
+                    totalResultsCount = value;
+                }
+                else
+                {
+                    totalResultsCount = minimumResultsLimit;
+                }
                 OnPropertyChanged(nameof(TotalResultsCount));
+                ReloadResults();
             }
         }
 
@@ -219,9 +235,12 @@ namespace Peernet.Browser.Application.ViewModels
 
         public async Task ReloadResults()
         {
-            var exploreResult = await exploreService.GetFiles(TotalResultsCount);
+            var category = categoryTypes.FirstOrDefault(ct => ct.IsSelected);
+            var type = category?.Type;
+            var exploreResult = await exploreService.GetFiles(TotalResultsCount, (int?)type);
             SetPlayerState(exploreResult);
             CachedSearchResults = exploreResult;
+            GoToFirstPage();
         }
 
         private static VirtualFileSystemCoreCategory GetCategory(VirtualFileSystemEntityType type)
@@ -285,20 +304,23 @@ namespace Peernet.Browser.Application.ViewModels
             GoToPage(1);
         }
 
-        private void ReloadActiveResultsFromCache()
+        public void ReloadActiveResultsFromCache()
         {
-            var startingIndex = (PageIndex - 1) * PageSize;
-            int length;
-            if ((startingIndex + PageSize) > CachedSearchResults.Count)
+            if (CachedSearchResults != null)
             {
-                length = CachedSearchResults.Count - startingIndex;
-            }
-            else
-            {
-                length = PageSize;
-            }
+                var startingIndex = (PageIndex - 1) * PageSize;
+                int length;
+                if ((startingIndex + PageSize) > CachedSearchResults.Count)
+                {
+                    length = CachedSearchResults.Count - startingIndex;
+                }
+                else
+                {
+                    length = PageSize;
+                }
 
-            ActiveSearchResults = new ObservableCollection<DownloadModel>(CachedSearchResults.GetRange(startingIndex, length));
+                ActiveSearchResults = new ObservableCollection<DownloadModel>(CachedSearchResults.GetRange(startingIndex, length));
+            }
         }
 
         private void SetPlayerState(List<DownloadModel> results)

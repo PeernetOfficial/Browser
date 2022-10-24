@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -123,21 +124,29 @@ namespace Peernet.Browser.WPF
             return fileModels;
         }
 
-        private void TabControlEx_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void TabControlEx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count != 0 && e.AddedItems[0] is TabItem tab)
             {
-                if (tab.Content is DirectoryView or ExploreView or AboutView)
+                switch (tab.Content)
                 {
-                    GlobalContext.IsLogoVisible = true;
-                }
-                else if (tab.Content is HomeView)
-                {
-                    GlobalContext.IsLogoVisible = App.ServiceProvider.GetService<HomeViewModel>().IsVisible;
-                }
-                else
-                {
-                    GlobalContext.IsLogoVisible = false;
+                    case DirectoryView:
+                        GlobalContext.IsLogoVisible = true;
+                        break;                    
+                    case AboutView:
+                        GlobalContext.IsLogoVisible = true;
+                        break;
+                    case ExploreView:
+                        GlobalContext.IsLogoVisible = true;
+                        var viewModel = tab.DataContext as ExploreViewModel;
+                        await viewModel?.ReloadResults();
+                        break;
+                    case HomeView:
+                        GlobalContext.IsLogoVisible = App.ServiceProvider.GetService<HomeViewModel>().IsVisible;
+                        break;
+                    default:
+                        GlobalContext.IsLogoVisible = false;
+                        break;
                 }
             }
         }

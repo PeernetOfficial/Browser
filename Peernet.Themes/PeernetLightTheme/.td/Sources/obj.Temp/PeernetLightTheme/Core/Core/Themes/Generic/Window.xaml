@@ -67,24 +67,24 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <ContentControl x:Name="Header" dxcore_unique_xmlns:HeaderItemControl.CloseTemplateProvider="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=HeaderItemControlCloseTemplateProvider}}" dxcore_unique_xmlns:HeaderItemControl.CommonTemplateProvider="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=HeaderItemControlCommonTemplateProvider}}" Focusable="False" Template="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=HeaderTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;136;18" />
-                <Grid x:Name="PART_ContentOffset" Grid.Row="1" Margin="{Binding Path=(dx:FloatingContainerControl.ContentOffset), RelativeSource={RelativeSource Self} }" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;141;18">
-                    <Control x:Name="PART_ContentBackground" Focusable="False" Template="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=FloatingBackground}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;144;22" />
-                    <Control x:Name="PART_InactiveContentBackground" Focusable="False" Template="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=InactiveFloatingBackground}}" Visibility="Collapsed" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;147;22" />
-                    <Grid Margin="1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;151;22">
+                <ContentControl x:Name="Header" dxcore_unique_xmlns:HeaderItemControl.CloseTemplateProvider="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=HeaderItemControlCloseTemplateProvider}}" dxcore_unique_xmlns:HeaderItemControl.CommonTemplateProvider="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=HeaderItemControlCommonTemplateProvider}}" dxi:WindowChrome.IsHitTestVisibleInChrome="True" Focusable="False" Template="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=HeaderTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;136;18" />
+                <Grid x:Name="PART_ContentOffset" Grid.Row="1" Margin="{Binding Path=(dx:FloatingContainerControl.ContentOffset), RelativeSource={RelativeSource Self} }" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;142;18">
+                    <Control x:Name="PART_ContentBackground" Focusable="False" Template="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=FloatingBackground}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;145;22" />
+                    <Control x:Name="PART_InactiveContentBackground" Focusable="False" Template="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=InactiveFloatingBackground}}" Visibility="Collapsed" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;148;22" />
+                    <Grid Margin="1" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;152;22">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <ContentPresenter x:Name="PART_ContainerContent" Content="{Binding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;156;26" />
+                        <ContentPresenter x:Name="PART_ContainerContent" Content="{Binding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;157;26" />
                     </Grid>
                 </Grid>
             </Grid>
-            <StackPanel x:Name="PART_StatusPanel" Grid.Row="0" Margin="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=SizeGripMargin}}" VerticalAlignment="Bottom" Visibility="Collapsed" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;160;14">
-                <Thumb x:Name="PART_SizeGrip" Cursor="SizeNWSE" Height="16" HorizontalAlignment="Right" Template="{DynamicResource {dxt:FloatingContainerThemeKey IsVisibleInBlend=True, ResourceKey=FloatingContainerSizeGripTemplate}}" VerticalAlignment="Bottom" Width="16" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;165;18" />
+            <StackPanel x:Name="PART_StatusPanel" Grid.Row="0" Margin="{DynamicResource {dxt:DXWindowThemeKey ResourceKey=SizeGripMargin}}" VerticalAlignment="Bottom" Visibility="Collapsed" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;161;14">
+                <Thumb x:Name="PART_SizeGrip" Cursor="SizeNWSE" Height="16" HorizontalAlignment="Right" Template="{DynamicResource {dxt:FloatingContainerThemeKey IsVisibleInBlend=True, ResourceKey=FloatingContainerSizeGripTemplate}}" VerticalAlignment="Bottom" Width="16" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;166;18" />
             </StackPanel>
-            <Control x:Name="PART_ResizeFrame" Focusable="False" Template="{DynamicResource {dxt:FloatingContainerThemeKey ResourceKey=FloatingContainerResizeFrame}}" Visibility="{Binding Path=(dx:FloatingContainer.IsMaximized), Converter={dx:BooleanToVisibilityConverter Invert=True}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;173;14" />
-            <Thumb x:Name="AdditionalDragWidget" Height="1" Template="{DynamicResource {dxt:FloatingContainerThemeKey IsVisibleInBlend=True, ResourceKey=FloatingContainerDragWidgetTemplate}}" VerticalAlignment="Top" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;177;14" />
+            <Control x:Name="PART_ResizeFrame" Focusable="False" Template="{DynamicResource {dxt:FloatingContainerThemeKey ResourceKey=FloatingContainerResizeFrame}}" Visibility="{Binding Path=(dx:FloatingContainer.IsMaximized), Converter={dx:BooleanToVisibilityConverter Invert=True}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;174;14" />
+            <Thumb x:Name="AdditionalDragWidget" Height="1" Template="{DynamicResource {dxt:FloatingContainerThemeKey IsVisibleInBlend=True, ResourceKey=FloatingContainerDragWidgetTemplate}}" VerticalAlignment="Top" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;178;14" />
         </Grid>
         <DataTemplate.Triggers>
             <MultiDataTrigger>
@@ -113,10 +113,10 @@
     
 
     <ControlTemplate x:Key="DXWindowTemplate" TargetType="{x:Type dx:DXWindow}">
-        <Grid x:Name="Root_Grid" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;228;10">
-            <dx:DXBorder BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;229;14">
-                <AdornerDecorator x:Name="PART_WindowAdornerDecorator" ClipToBounds="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;230;18">
-                    <ContentPresenter x:Name="PART_RootContentPresenter" ContentTemplate="{TemplateBinding ActualWindowTemplate}" DataContext="{TemplateBinding DataContext}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;231;22">
+        <Grid x:Name="Root_Grid" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;229;10">
+            <dx:DXBorder BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;230;14">
+                <AdornerDecorator x:Name="PART_WindowAdornerDecorator" ClipToBounds="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;231;18">
+                    <ContentPresenter x:Name="PART_RootContentPresenter" ContentTemplate="{TemplateBinding ActualWindowTemplate}" DataContext="{TemplateBinding DataContext}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;232;22">
                         <ContentPresenter.Content>
                             <dxcore_unique_xmlns:DXWindowBackgroundPanel DataContext="{TemplateBinding DataContext}" Focusable="False">
                                 <dxcore_unique_xmlns:DXWindowBackgroundPanel.ContentTemplate>
@@ -136,12 +136,12 @@
     
 
     <ControlTemplate x:Key="DXWindowEmptyTemplate" TargetType="{x:Type dx:DXWindow}">
-        <Grid x:Name="Root_Grid" Height="Auto" Margin="0,0,0,0" VerticalAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;253;10">
-            <dx:DXBorder BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;257;14">
-                <AdornerDecorator x:Name="PART_WindowAdornerDecorator" ClipToBounds="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;258;18">
-                    <ContentPresenter x:Name="PART_RootContentPresenter" ContentTemplate="{TemplateBinding ActualWindowTemplate}" Height="Auto" Width="Auto" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;259;22">
+        <Grid x:Name="Root_Grid" Height="Auto" Margin="0,0,0,0" VerticalAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;254;10">
+            <dx:DXBorder BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;258;14">
+                <AdornerDecorator x:Name="PART_WindowAdornerDecorator" ClipToBounds="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;259;18">
+                    <ContentPresenter x:Name="PART_RootContentPresenter" ContentTemplate="{TemplateBinding ActualWindowTemplate}" Height="Auto" Width="Auto" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;260;22">
                         <ContentPresenter.Content>
-                            <dx:DXBorder dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;264;30" />
+                            <dx:DXBorder dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;265;30" />
                         </ContentPresenter.Content>
                     </ContentPresenter>
                 </AdornerDecorator>
@@ -156,7 +156,7 @@
     
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Core.DXWindow}" TargetType="{x:Type dx:DXWindow}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Generic\Window.xaml;290;6" /><Setter Property="MinHeight" Value="42" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Generic\Window.xaml;291;6" /><Setter Property="MinHeight" Value="42" />
         
         
         <Setter Property="ResizeMode" Value="CanResize" />
@@ -184,12 +184,12 @@
     
 
     <ControlTemplate x:Key="DXDialogTemplate" TargetType="{x:Type dx:DXDialog}">
-        <Grid x:Name="Root_Grid" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;322;10">
-            <dx:DXBorder BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;323;14">
-                <AdornerDecorator x:Name="PART_WindowAdornerDecorator" ClipToBounds="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;324;18">
-                    <ContentPresenter x:Name="PART_RootContentPresenter" ContentTemplate="{TemplateBinding ActualWindowTemplate}" DataContext="{TemplateBinding DataContext}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;325;22">
+        <Grid x:Name="Root_Grid" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;323;10">
+            <dx:DXBorder BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;324;14">
+                <AdornerDecorator x:Name="PART_WindowAdornerDecorator" ClipToBounds="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;325;18">
+                    <ContentPresenter x:Name="PART_RootContentPresenter" ContentTemplate="{TemplateBinding ActualWindowTemplate}" DataContext="{TemplateBinding DataContext}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;326;22">
                         <ContentPresenter.Content>
-                            <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;329;30">
+                            <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;330;30">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="Auto" />
@@ -202,11 +202,11 @@
                                         <Binding Path="Content" RelativeSource="{RelativeSource TemplatedParent}" />
                                     </dxcore_unique_xmlns:DXWindowBackgroundPanel.Content>
                                 </dxcore_unique_xmlns:DXWindowBackgroundPanel>
-                                <StackPanel x:Name="Footer" Grid.Row="2" HorizontalAlignment="Right" Margin="12" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;342;34">
-                                    <Button x:Name="YesButton" Content="{dx:DXMessageBoxStringId StringId=Yes}" IsDefault="True" Margin="6,0,0,0" MinHeight="22" MinWidth="65" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;347;38" />
-                                    <Button x:Name="NoButton" Content="{dx:DXMessageBoxStringId StringId=No}" IsCancel="True" Margin="6,0,0,0" MinHeight="22" MinWidth="65" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;353;38" />
-                                    <Button x:Name="OkButton" Content="{dx:DXMessageBoxStringId StringId=Ok}" IsDefault="True" Margin="6,0,0,0" MinHeight="22" MinWidth="65" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;359;38" />
-                                    <Button x:Name="CancelButton" Content="{dx:DXMessageBoxStringId StringId=Cancel}" IsCancel="True" Margin="6,0,0,0" MinHeight="22" MinWidth="65" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;365;38" />
+                                <StackPanel x:Name="Footer" Grid.Row="2" HorizontalAlignment="Right" Margin="12" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;343;34">
+                                    <Button x:Name="YesButton" Content="{dx:DXMessageBoxStringId StringId=Yes}" IsDefault="True" Margin="6,0,0,0" MinHeight="22" MinWidth="65" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;348;38" />
+                                    <Button x:Name="NoButton" Content="{dx:DXMessageBoxStringId StringId=No}" IsCancel="True" Margin="6,0,0,0" MinHeight="22" MinWidth="65" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;354;38" />
+                                    <Button x:Name="OkButton" Content="{dx:DXMessageBoxStringId StringId=Ok}" IsDefault="True" Margin="6,0,0,0" MinHeight="22" MinWidth="65" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;360;38" />
+                                    <Button x:Name="CancelButton" Content="{dx:DXMessageBoxStringId StringId=Cancel}" IsCancel="True" Margin="6,0,0,0" MinHeight="22" MinWidth="65" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;366;38" />
                                 </StackPanel>
                             </Grid>
                         </ContentPresenter.Content>
@@ -220,18 +220,18 @@
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Core.DXDialog}" BasedOn="{StaticResource {dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Core.DXWindow}}" TargetType="{x:Type dx:DXDialog}">
         
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Generic\Window.xaml;382;6" /><Setter Property="Template" Value="{StaticResource DXDialogTemplate}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Generic\Window.xaml;383;6" /><Setter Property="Template" Value="{StaticResource DXDialogTemplate}" />
     </Style>
 
     
 
     <ControlTemplate x:Key="DXDialogWindowTemplate" TargetType="{x:Type dx:DXDialogWindow}">
-        <Grid x:Name="Root_Grid" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;395;10">
-            <dx:DXBorder BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;396;14">
-                <AdornerDecorator x:Name="PART_WindowAdornerDecorator" ClipToBounds="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;397;18">
-                    <ContentPresenter x:Name="PART_RootContentPresenter" ContentTemplate="{TemplateBinding ActualWindowTemplate}" DataContext="{TemplateBinding DataContext}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;398;22">
+        <Grid x:Name="Root_Grid" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;396;10">
+            <dx:DXBorder BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;397;14">
+                <AdornerDecorator x:Name="PART_WindowAdornerDecorator" ClipToBounds="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;398;18">
+                    <ContentPresenter x:Name="PART_RootContentPresenter" ContentTemplate="{TemplateBinding ActualWindowTemplate}" DataContext="{TemplateBinding DataContext}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;399;22">
                         <ContentPresenter.Content>
-                            <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;402;30">
+                            <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;403;30">
                                 <Grid.Resources>
                                     <dxmvvm:BooleanToObjectConverter x:Key="DialogFooterMarginConverter">
                                         <dxmvvm:BooleanToObjectConverter.TrueValue>
@@ -257,9 +257,9 @@
                                         </PriorityBinding>
                                     </dxcore_unique_xmlns:DXWindowBackgroundPanel.Content>
                                 </dxcore_unique_xmlns:DXWindowBackgroundPanel>
-                                <ItemsControl x:Name="Footer" Focusable="False" Grid.Row="1" ItemsPanel="{Binding CommandButtonsPanel, RelativeSource={RelativeSource TemplatedParent}}" ItemsSource="{Binding CommandButtons, RelativeSource={RelativeSource TemplatedParent}}" Visibility="{Binding Path=CommandButtons.Count, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NumericToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;428;34" />
-                                <ContentControl x:Name="FooterContainer" Focusable="False" Grid.Row="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;434;34">
-                                    <dxcore_unique_xmlns:NonLogicalDecorator x:Name="FooterPresenter" DataContext="{x:Null}" Margin="{Binding HasFooterButtons, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource DialogFooterMarginConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;439;38" />
+                                <ItemsControl x:Name="Footer" Focusable="False" Grid.Row="1" ItemsPanel="{Binding CommandButtonsPanel, RelativeSource={RelativeSource TemplatedParent}}" ItemsSource="{Binding CommandButtons, RelativeSource={RelativeSource TemplatedParent}}" Visibility="{Binding Path=CommandButtons.Count, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource NumericToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;429;34" />
+                                <ContentControl x:Name="FooterContainer" Focusable="False" Grid.Row="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;435;34">
+                                    <dxcore_unique_xmlns:NonLogicalDecorator x:Name="FooterPresenter" DataContext="{x:Null}" Margin="{Binding HasFooterButtons, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource DialogFooterMarginConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;440;38" />
                                 </ContentControl>
                             </Grid>
                         </ContentPresenter.Content>
@@ -272,7 +272,7 @@
     
 
     <Style x:Key="DXDialogWindowCommandButtonStyle" TargetType="Button">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Generic\Window.xaml;453;6" /><Setter Property="MinWidth" Value="65" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Generic\Window.xaml;454;6" /><Setter Property="MinWidth" Value="65" />
         <Setter Property="MinHeight" Value="22" />
         <Setter Property="Margin" Value="6,0,0,0" />
         <Setter Property="ContentTemplate" Value="{Binding ContentTemplate, RelativeSource={RelativeSource TemplatedParent}}" />
@@ -283,12 +283,12 @@
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Core.DXDialogWindow}" BasedOn="{StaticResource {dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Core.DXWindow}}" TargetType="{x:Type dx:DXDialogWindow}">
         
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Generic\Window.xaml;463;6" /><Setter Property="Template" Value="{StaticResource DXDialogWindowTemplate}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Generic\Window.xaml;464;6" /><Setter Property="Template" Value="{StaticResource DXDialogWindowTemplate}" />
         <Setter Property="CommandButtonStyle" Value="{StaticResource DXDialogWindowCommandButtonStyle}" />
         <Setter Property="CommandButtonsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <StackPanel HorizontalAlignment="Right" Margin="12" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;475;22" />
+                    <StackPanel HorizontalAlignment="Right" Margin="12" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;476;22" />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
@@ -302,12 +302,12 @@
     
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Core.DialogButton}" TargetType="dx:DialogButton">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Generic\Window.xaml;490;6" /><Setter Property="Focusable" Value="False" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Generic\Window.xaml;491;6" /><Setter Property="Focusable" Value="False" />
         <Setter Property="CommandButtonStyle" Value="{StaticResource DXDialogWindowCommandButtonStyle}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="dx:DialogButton">
-                    <Button Command="{Binding ActualCommand, RelativeSource={RelativeSource TemplatedParent}}" Content="{Binding ActualContent, RelativeSource={RelativeSource TemplatedParent}}" IsCancel="{Binding ActualIsCancel, RelativeSource={RelativeSource TemplatedParent}}" IsDefault="{Binding ActualIsDefault, RelativeSource={RelativeSource TemplatedParent}}" Style="{Binding CommandButtonStyle, RelativeSource={RelativeSource TemplatedParent}}" Visibility="{Binding CommandButtonVisibility, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;496;22" />
+                    <Button Command="{Binding ActualCommand, RelativeSource={RelativeSource TemplatedParent}}" Content="{Binding ActualContent, RelativeSource={RelativeSource TemplatedParent}}" IsCancel="{Binding ActualIsCancel, RelativeSource={RelativeSource TemplatedParent}}" IsDefault="{Binding ActualIsDefault, RelativeSource={RelativeSource TemplatedParent}}" Style="{Binding CommandButtonStyle, RelativeSource={RelativeSource TemplatedParent}}" Visibility="{Binding CommandButtonVisibility, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;497;22" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -316,20 +316,20 @@
     
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Core.DialogButtonsControl}" TargetType="dx:DialogButtonsControl">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Generic\Window.xaml;509;6" /><Setter Property="Focusable" Value="False" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Generic\Window.xaml;510;6" /><Setter Property="Focusable" Value="False" />
         <Setter Property="ItemsSource" Value="{Binding Path=(dx:DialogButtonsControl.CommandsSource), RelativeSource={RelativeSource Self}}" />
         <Setter Property="HorizontalAlignment" Value="Right" />
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;516;22" />
+                    <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;517;22" />
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="dx:DialogButtonsControl">
-                    <ItemsPresenter Margin="{TemplateBinding Padding}" Visibility="{Binding HasItems, Converter={dxmvvm:BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;523;22" />
+                    <ItemsPresenter Margin="{TemplateBinding Padding}" Visibility="{Binding HasItems, Converter={dxmvvm:BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;524;22" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -338,10 +338,10 @@
     
 
     <ControlTemplate x:Key="{dxt:FloatingContainerThemeKey ResourceKey=FloatingContainerHeaderButtonTemplate}" TargetType="{x:Type dx:HeaderItemControl}">
-        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;532;10">
-            <Control Name="PART_Background" Focusable="False" Template="{Binding Path=TemplateProvider.NormalBackgroundTemplate, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;533;14" />
-            <dx:DXBorder Name="MarginBorder" Background="Transparent" Margin="4,0" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;536;14">
-                <ContentPresenter x:Name="PART_ContentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;540;18" />
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;533;10">
+            <Control Name="PART_Background" Focusable="False" Template="{Binding Path=TemplateProvider.NormalBackgroundTemplate, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;534;14" />
+            <dx:DXBorder Name="MarginBorder" Background="Transparent" Margin="4,0" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;537;14">
+                <ContentPresenter x:Name="PART_ContentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Window.xaml;541;18" />
             </dx:DXBorder>
         </Grid>
         <ControlTemplate.Triggers>

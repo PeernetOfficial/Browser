@@ -15,17 +15,35 @@
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="Hover">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FF005A9E" cs:id="ColorAnimation_0000" x:Uid="@To=Backstage.HoverBackground" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <SolidColorBrush Color="#FF005A9E" cs:id="SolidColorBrush_0000" x:Uid="@Color=Backstage.HoverBackground" />
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Checked">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FF004578" cs:id="ColorAnimation_0001" x:Uid="@To=Backstage.SelectionBackground" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <SolidColorBrush Color="#FF004578" cs:id="SolidColorBrush_0001" x:Uid="@Color=Backstage.SelectionBackground" />
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                     <VisualState x:Name="Focused">
                         <Storyboard>
-                            <ColorAnimation Duration="0" Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" To="#FFFCFCFC" cs:id="ColorAnimation_0002" x:Uid="@To=Button.Background" />
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsDefault" Storyboard.TargetProperty="Background">
+                                <DiscreteObjectKeyFrame KeyTime="0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <SolidColorBrush Color="#FFFCFCFC" cs:id="SolidColorBrush_0002" x:Uid="@Color=Button.Background" />
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
                     </VisualState>
                 </VisualStateGroup>
@@ -41,9 +59,9 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxrt:ApplicationButtonThemeKey ResourceKey=BorderTemplate2010InPopup}" TargetType="{x:Type ContentControl}">
-        <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonApplicationMenu\ApplicationButton2010.xaml;77;10">
-            <dx:DXBorder x:Name="IsDefault" Background="#FF004578" BorderBrush="#FF004578" BorderThickness="1,1,1,0" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonApplicationMenu\ApplicationButton2010.xaml;78;14" x:Uid="@Background=Backstage.SelectionBackground;BorderBrush=Backstage.SelectionBackground" />
-            <ContentPresenter x:Name="Content" Margin="14,7,14,7" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonApplicationMenu\ApplicationButton2010.xaml;83;14" />
+        <Grid x:Name="Root" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonApplicationMenu\ApplicationButton2010.xaml;83;10">
+            <dx:DXBorder x:Name="IsDefault" Background="#FF004578" BorderBrush="#FF004578" BorderThickness="1,1,1,0" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonApplicationMenu\ApplicationButton2010.xaml;84;14" x:Uid="@Background=Backstage.SelectionBackground;BorderBrush=Backstage.SelectionBackground" />
+            <ContentPresenter x:Name="Content" Margin="14,7,14,7" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Ribbon\Office2019White\RibbonApplicationMenu\ApplicationButton2010.xaml;89;14" />
         </Grid>
         <ControlTemplate.Triggers>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">

@@ -1,6 +1,6 @@
 ﻿<UserControl x:Class="Peernet.Browser.WPF.Controls.ExploreFilesDataGridControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:u="clr-namespace:Peernet.Browser.WPF.Utilities"
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -52,6 +52,17 @@
                     </dxg:GridColumn.CellTemplate>
                 </dxg:GridColumn>
                 <dxg:GridColumn Header="SIZE" SortFieldName="File.Size" FieldName="File.Size" Width="110">
+                    <dxg:GridColumn.GroupValueTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}SIZE: {0}">
+                                        <Binding Path="RowData.Row.FileSize" Converter="{StaticResource BytesToSuffixConverter}" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </dxg:GridColumn.GroupValueTemplate>
                     <dxg:GridColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding RowData.Row.FileSize, Converter={StaticResource BytesToSuffixConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center" />
@@ -177,8 +188,13 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
         <controls:PagerControl x:Name="pager"
-                               Grid.Row="4"
+                               Grid.Column="0"
                                PageSize="{Binding PageSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                PageIndex="{Binding PageIndex, Mode=TwoWay}"
                                PagesCount="{Binding PagesCount}"
@@ -187,6 +203,22 @@
                                PreviousPageCommand="{Binding PreviousPageCommand}" 
                                LastPageCommand="{Binding LastPageCommand}"
                                Margin="0, 5, 0, 0" />
+            <StackPanel Margin="0, 5, 0, 0"
+                        DockPanel.Dock="Left"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        Grid.Column="1">
+                <TextBlock Text="Limit:" VerticalAlignment="Center" />
+                <TextBox HorizontalContentAlignment="Center"
+                         VerticalContentAlignment="Center"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         Text="{Binding TotalResultsCount, Mode=TwoWay}"
+                         Grid.Column="1"
+                         Margin="5, 0"
+                         u:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text" />
+            </StackPanel>
 
+        </Grid>
     </Grid>
 </UserControl>
