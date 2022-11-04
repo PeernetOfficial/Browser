@@ -29,7 +29,7 @@ namespace Peernet.Browser.WPF.Controls
             new FileWebGatewayReferenceWindow(file).Show();
         }
 
-        private async void Open_OnClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private async void Open_OnClick(object sender, RoutedEventArgs e)
         {
             var viewmodel = (DirectoryViewModel)DataContext;
             var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;

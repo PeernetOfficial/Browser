@@ -83,5 +83,12 @@ namespace Peernet.Browser.WPF.Controls
         {
             ((SearchTabElementViewModel)DataContext).ColumnsIconModel.IsSelected = SearchResultsTable.IsColumnChooserVisible;
         }
+
+        private void OpenPeersMap(object sender, RoutedEventArgs e)
+        {
+            var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;
+            var model = (DownloadModel)cellData.RowData.Row;
+            new PeersMapWindow(model.GeoPoints).Show();
+        }
     }
 }
