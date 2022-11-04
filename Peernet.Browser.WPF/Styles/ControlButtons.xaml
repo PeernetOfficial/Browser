@@ -122,12 +122,23 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border Height="Auto" Cursor="Hand" Grid.Row="1" Grid.Column="1" BorderThickness="0" BorderBrush="Transparent" CornerRadius="{DynamicResource MainRadius}">
-                        <Border.Background>
-                            <SolidColorBrush Color="{DynamicResource MainContentColor}" />
-                        </Border.Background>
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource MainContentSecondaryBrush}">
-                        <ContentPresenter />
+                            <ContentPresenter />
                         </TextBlock>
+                        <Border.Style>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="{DynamicResource MainContentColor}" />
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Background" Value="{DynamicResource DarkGrayBrush}" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
