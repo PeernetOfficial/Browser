@@ -22,6 +22,7 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly INotificationsManager notificationsManager;
         private readonly DirectoryViewModel directoryViewModel;
         private FileModel selected;
+        private bool finishedProcessing = true;
 
         public GenericFileViewModel(
             INavigationService navigationService,
@@ -108,6 +109,16 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
+        public bool FinishedProcessing
+        {
+            get => finishedProcessing;
+            private set
+            {
+                finishedProcessing = value;
+                OnPropertyChanged(nameof(FinishedProcessing));
+            }
+        }
+
         public string Title => Parameter.ModalTitle;
 
         public override async Task Prepare(TParameter parameter)
@@ -146,7 +157,9 @@ namespace Peernet.Browser.Application.ViewModels
 
         private async Task Confirm()
         {
+            FinishedProcessing = false;
             await Parameter.Confirm(Files.ToArray());
+            FinishedProcessing = true;
             Cancel();
         }
 
