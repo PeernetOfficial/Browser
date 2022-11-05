@@ -17,7 +17,6 @@ namespace Peernet.Browser.WPF
             InitializeComponent();
             this.geoPoints = geoPoints;
             Loaded += PeersMapWindow_Loaded;
-
         }
 
         private void PeersMapWindow_Loaded(object sender, RoutedEventArgs e)
@@ -28,7 +27,7 @@ namespace Peernet.Browser.WPF
                 {
                     var item = new MapPushpin()
                     {
-                        Location = new GeoPoint(point.Latitude, point.Longitude),
+                        Location = new GeoPoint(point.Latitude, point.Longitude)
                     };
 
                     mapItems.Items.Add(item);

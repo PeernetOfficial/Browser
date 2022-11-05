@@ -167,8 +167,8 @@ namespace Peernet.Browser.Infrastructure.Services
                 }
                 if (searchGetRequest != null)
                 {
-                    searchGetRequest.DateFrom = range.from.ToString(format);
-                    searchGetRequest.DateTo = range.to.ToString(format);
+                    searchGetRequest.From = range.from.ToString(format);
+                    searchGetRequest.To = range.to.ToString(format);
                 }
             }
             if (model.SizeFrom.HasValue)
