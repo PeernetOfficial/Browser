@@ -1,6 +1,5 @@
 ﻿using AsyncAwaitBestPractices.MVVM;
 using DevExpress.Mvvm.Xpf;
-using DevExpress.Utils.Serializing;
 using DevExpress.Xpf.Data;
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Services;
