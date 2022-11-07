@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -36,6 +37,11 @@ namespace Peernet.Browser.WPF
             {
                 main.OpenAboutTab = () => AboutTab.IsSelected = true;
             }
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            UIThreadDispatcher.SetUIContext(SynchronizationContext.Current);
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
@@ -68,11 +74,7 @@ namespace Peernet.Browser.WPF
                     var selected = directoryViewModel.VirtualFileSystem.GetCurrentlySelected();
                     if (selected is not VirtualFileSystemCoreCategory && selected is not VirtualFileSystemCoreTier { Name: "Recent" } && selected is not VirtualFileSystemCoreTier { Name: "All files" })
                     {
-                        foreach (var fileModel in fileModels)
-                        {
-                            var pathForTrimming = fileModel.Directory != null ? Path.Combine(selected.AbsolutePath, fileModel.Directory) : selected.AbsolutePath;
-                            fileModel.Directory = ChangeFileLocationViewModel.TrimUnsopportedSegments(pathForTrimming);
-                        }
+                        fileModels.ForEach(fm => fm.Directory = ChangeFileLocationViewModel.TrimUnsopportedSegments(selected.AbsolutePath));
                     }
                 }
 
@@ -88,6 +90,21 @@ namespace Peernet.Browser.WPF
                 };
 
                 modalNavigationService.Navigate<ShareFileViewModel, ShareFileViewModelParameter>(parameter);
+            }
+        }
+
+        private void MainWindow_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            App.RaiseMainWindowClick(sender, e);
+            Keyboard.ClearFocus();
+            Main.Focus();
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                DragMove();
             }
         }
 
@@ -107,18 +124,6 @@ namespace Peernet.Browser.WPF
             return fileModels;
         }
 
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            UIThreadDispatcher.SetUIContext(SynchronizationContext.Current);
-        }
-
-        private void MainWindow_OnMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            App.RaiseMainWindowClick(sender, e);
-            Keyboard.ClearFocus();
-            Main.Focus();
-        }
-
         private async void TabControlEx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count != 0 && e.AddedItems[0] is TabItem tab)
@@ -127,34 +132,22 @@ namespace Peernet.Browser.WPF
                 {
                     case DirectoryView:
                         GlobalContext.IsLogoVisible = true;
-                        break;
-
+                        break;                    
                     case AboutView:
                         GlobalContext.IsLogoVisible = true;
                         break;
-
                     case ExploreView:
                         GlobalContext.IsLogoVisible = true;
                         var viewModel = tab.DataContext as ExploreViewModel;
                         await viewModel?.ReloadResults();
                         break;
-
                     case HomeView:
                         GlobalContext.IsLogoVisible = App.ServiceProvider.GetService<HomeViewModel>().IsVisible;
                         break;
-
                     default:
                         GlobalContext.IsLogoVisible = false;
                         break;
                 }
-            }
-        }
-
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                DragMove();
             }
         }
     }
