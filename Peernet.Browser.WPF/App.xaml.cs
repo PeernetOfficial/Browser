@@ -1,6 +1,5 @@
 ﻿using DevExpress.Xpf.Core;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Peernet.Browser.Application;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Managers;
@@ -182,7 +181,7 @@ namespace Peernet.Browser.WPF
             RegisterDXTheme("PeernetLightTheme");
         }
 
-        private static Serilog.ILogger CreateAndRegisterLogger(ServiceCollection services, ISettingsManager settings)
+        private static ILogger CreateAndRegisterLogger(ServiceCollection services, ISettingsManager settings)
         {
             var backendPath = Path.GetFullPath(settings.Backend);
             var backendWorkingDirectory = Path.GetDirectoryName(backendPath);

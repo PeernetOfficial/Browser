@@ -1,11 +1,11 @@
 ﻿<UserControl x:Class="Peernet.Browser.WPF.Controls.ExploreFilesDataGridControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:u="clr-namespace:Peernet.Browser.WPF.Utilities"
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls"
+             xmlns:u="clr-namespace:Peernet.Browser.WPF.Utilities"
              xmlns:download="clr-namespace:Peernet.SDK.Models.Domain.Download;assembly=Peernet.SDK"
              mc:Ignorable="d"
              x:Name="ExploreFilesDataGrid">
@@ -22,18 +22,22 @@
                 <dxg:GridColumn Header="NAME" SortFieldName="File.Name" FieldName="File.Name" Width="*" HeaderStyle="{StaticResource ShiftedDataGridColumnHeaderStyle}" HorizontalHeaderContentAlignment="Left">
                     <dxg:GridColumn.CellTemplate>
                         <DataTemplate>
-                            <Grid Margin="20, 0, 0, 0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Image Width="13.71" Height="20" Grid.Column="0" Style="{StaticResource DownloadItemImageStyle}" DataContext="{Binding RowData.Row}" />
-                                <TextBlock Grid.Column="1" Text="{Binding RowData.Row.File.Name}" Margin="25,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Left" Cursor="Hand" Style="{StaticResource Underlined}">
-                                    <TextBlock.InputBindings>
-                                        <MouseBinding Command="{Binding DataContext.StreamFileCommand, ElementName=ExploreFilesDataGrid}" CommandParameter="{Binding RowData.Row}" MouseAction="LeftClick" />
-                                    </TextBlock.InputBindings>
-                                </TextBlock>
-                            </Grid>
+                            <Button Margin="20, 0, 0, 0"
+                                    Command="{Binding DataContext.StreamFileCommand, ElementName=ExploreFilesDataGrid}"
+                                    CommandParameter="{Binding RowData.Row}"
+                                    Style="{StaticResource ButtonBaseStyle}"
+                                    Background="Transparent" Width="Auto"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Width="13.71" Height="20" Grid.Column="0" Style="{StaticResource DownloadItemImageStyle}" DataContext="{Binding RowData.Row}" />
+                                    <TextBlock Grid.Column="1" Text="{Binding RowData.Row.File.Name}" Margin="25,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource Underlined}" />
+                                </Grid>
+                            </Button>
                         </DataTemplate>
                     </dxg:GridColumn.CellTemplate>
                 </dxg:GridColumn>
@@ -72,33 +76,39 @@
                 <dxg:GridColumn Header="SHARED BY" SortFieldName="File.SharedByCount" FieldName="File.SharedByCount" Width="100">
                     <dxg:GridColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Margin="5, 0"
-                                       Background="Transparent"
-                                       Text="{Binding RowData.Row.File.SharedByCount, StringFormat={}{0} Peers}"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Center"
-                                       ToolTipService.ShowOnDisabled="False"
-                                       ToolTipService.IsEnabled="{Binding RowData.Row.IsMapEnabled}"
-                                       ToolTipService.InitialShowDelay="0"
-                                       ToolTipService.BetweenShowDelay="0"
-                                       ToolTipService.VerticalOffset="127"
-                                       ToolTipService.Placement="Center">
-                                <TextBlock.ToolTip>
-                                    <ToolTip>
-                                        <ToolTip.Style>
-                                            <Style TargetType="{x:Type ToolTip}">
-                                                <Setter Property="Template">
-                                                    <Setter.Value>
-                                                        <ControlTemplate TargetType="{x:Type ToolTip}">
-                                                            <controls:MapControl Panel.ZIndex="6" DataContext="{Binding RowData.Row}" />
-                                                        </ControlTemplate>
-                                                    </Setter.Value>
-                                                </Setter>
-                                            </Style>
-                                        </ToolTip.Style>
-                                    </ToolTip>
-                                </TextBlock.ToolTip>
-                            </TextBlock>
+                            <Button Margin="5, 0"
+                                    Style="{StaticResource ButtonBaseStyle}"
+                                    Background="Transparent"
+                                    Width="Auto"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center">
+                                <TextBlock Background="Transparent"
+                                           Text="{Binding RowData.Row.File.SharedByCount, StringFormat={}{0} Peers}"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           ToolTipService.ShowOnDisabled="False"
+                                           ToolTipService.IsEnabled="{Binding RowData.Row.IsMapEnabled}"
+                                           ToolTipService.InitialShowDelay="0"
+                                           ToolTipService.BetweenShowDelay="0"
+                                           ToolTipService.VerticalOffset="127"
+                                           ToolTipService.Placement="Center">
+                                    <TextBlock.ToolTip>
+                                        <ToolTip>
+                                            <ToolTip.Style>
+                                                <Style TargetType="{x:Type ToolTip}">
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type ToolTip}">
+                                                                <controls:MapControl Panel.ZIndex="6" DataContext="{Binding RowData.Row}" />
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </ToolTip.Style>
+                                        </ToolTip>
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
+                            </Button>
                         </DataTemplate>
                     </dxg:GridColumn.CellTemplate>
                 </dxg:GridColumn>
@@ -193,14 +203,14 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-        <controls:PagerControl x:Name="pager"
+            <controls:PagerControl x:Name="pager"
                                Grid.Column="0"
                                PageSize="{Binding PageSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                PageIndex="{Binding PageIndex, Mode=TwoWay}"
                                PagesCount="{Binding PagesCount}"
                                FirstPageCommand="{Binding FirstPageCommand}"
                                NextPageCommand="{Binding NextPageCommand}"
-                               PreviousPageCommand="{Binding PreviousPageCommand}" 
+                               PreviousPageCommand="{Binding PreviousPageCommand}"
                                LastPageCommand="{Binding LastPageCommand}"
                                Margin="0, 5, 0, 0" />
             <StackPanel Margin="0, 5, 0, 0"
@@ -218,7 +228,6 @@
                          Margin="5, 0"
                          u:InputBindingsManager.UpdatePropertySourceWhenEnterPressed="TextBox.Text" />
             </StackPanel>
-
         </Grid>
     </Grid>
 </UserControl>

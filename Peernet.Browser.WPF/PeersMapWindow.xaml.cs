@@ -1,6 +1,4 @@
 ﻿using DevExpress.Xpf.Map;
-using Peernet.Browser.Application.ViewModels;
-using Peernet.SDK.Models.Domain.Status;
 using Peernet.SDK.WPF;
 using System.Collections.Generic;
 using System.Windows;
@@ -12,27 +10,24 @@ namespace Peernet.Browser.WPF
     /// </summary>
     public partial class PeersMapWindow : PeernetWindow
     {
-        private readonly FooterViewModel footerViewModel;
+        private readonly List<SDK.Models.Presentation.Home.GeoPoint> geoPoints;
 
-        public PeersMapWindow(FooterViewModel viewModel)
+        public PeersMapWindow(List<SDK.Models.Presentation.Home.GeoPoint> geoPoints)
         {
             InitializeComponent();
-            footerViewModel = viewModel;
+            this.geoPoints = geoPoints;
             Loaded += PeersMapWindow_Loaded;
-
         }
 
         private void PeersMapWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            foreach (var status in footerViewModel.PeerStatuses)
+            foreach (var point in geoPoints)
             {
-                var point = status.GetGeoIP();
                 if (point != null)
                 {
                     var item = new MapPushpin()
                     {
-                        Location = new GeoPoint(point.Latitude, point.Longitude),
-                        ToolTipPattern = $"{nameof(status.PeerId)}: {status.PeerId}"
+                        Location = new GeoPoint(point.Latitude, point.Longitude)
                     };
 
                     mapItems.Items.Add(item);
