@@ -1,7 +1,6 @@
 ﻿using Peernet.SDK.Models.Domain.Common;
 using System.Windows;
 using System.Windows.Controls;
-using Peernet.SDK.Models.Plugins;
 using Peernet.SDK.Client.Http;
 using Peernet.SDK.Common;
 using System.Collections.Generic;
@@ -30,6 +29,7 @@ namespace Peernet.Browser.WPF.Controls
         {
             var settings = App.ServiceProvider.GetService(typeof(ISettingsManager)) as ISettingsManager;
             Player.Source = GetFileSource(settings, File);
+            LoadPreview(Player);
         }
 
         public ApiFile File
@@ -134,6 +134,18 @@ namespace Peernet.Browser.WPF.Controls
 
             var requestMessage = HttpHelper.PrepareMessage(uriBase, HttpMethod.Get, parameters, null);
             return requestMessage.RequestUri;
+        }
+
+        private static void LoadPreview(MediaElement Player)
+        {
+            Player.ScrubbingEnabled = true;
+            Player.Position = TimeSpan.FromMilliseconds(1);
+            Player.Volume = 0;
+            Player.IsMuted = true;
+            Player.Play();
+            Player.Stop();
+            Player.IsMuted = false;
+            Player.Volume = 0.5;
         }
     }
 }
