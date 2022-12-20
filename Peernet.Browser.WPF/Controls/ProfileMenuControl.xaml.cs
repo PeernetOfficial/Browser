@@ -12,6 +12,8 @@ namespace Peernet.Browser.WPF.Controls
     /// </summary>
     public partial class ProfileMenuControl : UserControl
     {
+        private WidgetsWindow widgetsWindow;
+
         public ProfileMenuControl()
         {
             InitializeComponent();
@@ -36,7 +38,7 @@ namespace Peernet.Browser.WPF.Controls
             }
         }
 
-        private void TextBlock_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void About_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (DataContext is MainViewModel main)
             {
@@ -44,6 +46,21 @@ namespace Peernet.Browser.WPF.Controls
             }
 
             GlobalContext.IsProfileMenuVisible = false;
+        }
+
+        private void WidgetsSettings_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (widgetsWindow == null)
+            {
+                widgetsWindow = new WidgetsWindow(DataContext as MainViewModel);
+                widgetsWindow.Closing += (sender, e) =>
+                {
+                    e.Cancel = true;
+                    widgetsWindow.Visibility = Visibility.Hidden;
+                };
+            }
+
+            widgetsWindow.Show();
         }
     }
 }

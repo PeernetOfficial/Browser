@@ -8,6 +8,7 @@ using Peernet.Browser.Application.Plugins;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels;
 using Peernet.Browser.Application.VirtualFileSystem;
+using Peernet.Browser.Application.Widgets;
 using Peernet.Browser.Infrastructure.Extensions;
 using Peernet.Browser.Infrastructure.Tools;
 using Peernet.Browser.WPF.Services;
@@ -252,8 +253,9 @@ namespace Peernet.Browser.WPF
             services.AddSingleton<IUserContext, UserContext>();
             services.AddTransient<IVirtualFileSystemFactory, VirtualFileSystemFactory>();
             services.AddTransient<IFilesToCategoryBinder, FilesToCategoryBinder>();
+            services.AddSingleton<IWidgetsService, WidgetsService>();
 
-            services.AddSingleton<IPlayButtonPlug>(sp => null);
+            // services.AddSingleton<IPlayButtonPlug>(sp => null);
 
             RegisterViewModels(services);
             RegisterWindows(services);

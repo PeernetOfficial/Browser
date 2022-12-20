@@ -1,0 +1,24 @@
+﻿<sdk:PeernetWindow 
+    xmlns:sdk="clr-namespace:Peernet.SDK.WPF;assembly=Peernet.SDK"
+    x:Class="Peernet.Browser.WPF.WidgetsWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Widgets"
+    Width="300"
+    SizeToContent="Height"
+    Style="{DynamicResource StandardPeernetWindowStyle}">
+    <StackPanel>
+        <ItemsControl ItemsSource="{Binding WidgetsService.Widgets}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="15, 10">
+                        <CheckBox Foreground="{DynamicResource MainContentBrush}" Content="{Binding Name}" IsChecked="{Binding IsSelected}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </StackPanel>
+</sdk:PeernetWindow>

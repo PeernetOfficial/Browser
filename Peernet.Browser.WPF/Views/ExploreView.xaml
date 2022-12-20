@@ -5,6 +5,36 @@
              x:Name="ExplorePage"
              UseLayoutRounding="True"
              SnapsToDevicePixels="True">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style TargetType="{x:Type TabItem}">
+                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="HeaderTemplate">
+                    <Setter.Value>
+                        <DataTemplate DataType="{x:Type TabItem}">
+                            <Border x:Name="PART_Border" Background="Transparent" BorderThickness="1" BorderBrush="Transparent" Padding="0" >
+                                <TextBlock Margin="10 10 10 10" Foreground="{DynamicResource MainContentBrush}" FontSize="14" FontFamily="{StaticResource InterThin}" x:Name="PART_title" Text="{Binding Name}" TextTrimming="CharacterEllipsis" MaxWidth="180" HorizontalAlignment="Center" />
+                            </Border>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                    <Setter TargetName="PART_title" Property="FontWeight" Value="SemiBold" />
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="ContentTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <controls:DailyFeedWidget Results="{Binding Path=DataContext.ActiveSearchResults, IsAsync=True, Source={x:Reference ExplorePage}}"
+                                                      SelectedItem="{Binding Path=DataContext.SelectedItem, IsAsync=True, Source={x:Reference ExplorePage}}" />
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Border Background="{DynamicResource ViewBackgroundBrush}" BorderThickness="0" VerticalAlignment="Stretch">
         <Grid Margin="0,20, 0, 0">
             <Grid.RowDefinitions>
@@ -12,6 +42,8 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="5" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="55" />
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Style="{StaticResource Active}" FontWeight="Medium" FontSize="21" Text="What we found for you" Margin="68, 0, 10, 0" />
@@ -51,7 +83,28 @@
             </StackPanel>
             <Separator Style="{StaticResource StandardSeparatorStyle}" Grid.Row="2" />
             <controls:ExploreFilesDataGridControl Grid.Row="3" />
-            <Separator Style="{StaticResource StandardSeparatorStyle}" Grid.Row="4" VerticalAlignment="Top" />
+            <GridSplitter Grid.Row="4" Height="5" HorizontalAlignment="Stretch" />
+
+            <controls:TabControlEx Grid.Row="5"
+                                   Margin="0, 0, 4, 0" 
+                                   Foreground="{DynamicResource MainContentBrush}"
+                                   ItemsSource="{Binding WidgetsService.SelectedWidgets, IsAsync=True}"
+                                   SelectedIndex="0"
+                                   HorizontalAlignment="Stretch" 
+                                   HorizontalContentAlignment="Left"
+                                   VerticalAlignment="Bottom" >
+                <controls:TabControlEx.Style>
+                    <Style TargetType="{x:Type controls:TabControlEx}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding WidgetsService.SelectedWidgets.Count}" Value="0">
+                                <Setter Property="Height" Value="Auto" />
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </controls:TabControlEx.Style>
+            </controls:TabControlEx>
+            <Separator Style="{StaticResource StandardSeparatorStyle}" Grid.Row="6" VerticalAlignment="Top" />
         </Grid>
     </Border>
 </UserControl>

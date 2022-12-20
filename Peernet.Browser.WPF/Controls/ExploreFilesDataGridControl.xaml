@@ -14,7 +14,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <dxg:GridControl ItemsSource="{Binding ActiveSearchResults, IsAsync=True}" Visibility="{Binding IsLoaded, Converter={StaticResource BoolToVisibility}}">
+        <dxg:GridControl ItemsSource="{Binding ActiveSearchResults, IsAsync=True}" Visibility="{Binding IsLoaded, Converter={StaticResource BoolToVisibility}}" SelectedItem="{Binding SelectedItem}">
             <dxg:GridControl.View>
                 <dxg:TableView ShowGroupPanel="False" />
             </dxg:GridControl.View>

@@ -1,7 +1,11 @@
 ﻿using AsyncAwaitBestPractices.MVVM;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Navigation;
+using Peernet.Browser.Application.Widgets;
+using Peernet.SDK.Models.Presentation.Widgets;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
@@ -12,6 +16,7 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IModalNavigationService modalNavigationService;
         private readonly INotificationsManager notificationsManager;
         private readonly IApplicationManager applicationManager;
+        private readonly IWidgetsService widgetsService;
         private readonly FooterViewModel footerViewModel;
         private readonly NavigationBarViewModel navigationBarViewModel;
 
@@ -25,7 +30,8 @@ namespace Peernet.Browser.Application.ViewModels
             INavigationService navigationService,
             IModalNavigationService modalNavigationService,
             INotificationsManager notificationsManager,
-            IApplicationManager applicationManager)
+            IApplicationManager applicationManager,
+            IWidgetsService widgetsService)
         {
             this.footerViewModel = footerViewModel;
             this.navigationBarViewModel = navigationBarViewModel;
@@ -33,6 +39,7 @@ namespace Peernet.Browser.Application.ViewModels
             this.modalNavigationService = modalNavigationService;
             this.notificationsManager = notificationsManager;
             this.applicationManager = applicationManager;
+            this.widgetsService = widgetsService;
 
             AboutViewModel = aboutViewModel;
             DirectoryViewModel = directoryViewModel;
@@ -54,6 +61,8 @@ namespace Peernet.Browser.Application.ViewModels
         public NotificationCollection Notifications => notificationsManager.Notifications;
 
         public FooterViewModel Footer => footerViewModel;
+
+        public IWidgetsService WidgetsService => widgetsService;
 
         public NavigationBarViewModel NavBar => navigationBarViewModel;
 

@@ -5,6 +5,7 @@ using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Application.VirtualFileSystem;
+using Peernet.Browser.Application.Widgets;
 using Peernet.SDK.Models.Extensions;
 using Peernet.SDK.Models.Plugins;
 using Peernet.SDK.Models.Presentation.Footer;
@@ -22,26 +23,39 @@ namespace Peernet.Browser.Application.ViewModels
     {
         public ObservableCollection<DownloadModel> activeSearchResults;
         public List<DownloadModel> cachedSearchResults;
+        public DownloadModel selectedItem;
         public bool isLoaded;
         private static readonly List<VirtualFileSystemCoreCategory> categoryTypes = GetCategoryTypes();
         private readonly IDownloadManager downloadManager;
         private readonly IExploreService exploreService;
         private readonly INavigationService navigationService;
         private readonly IEnumerable<IPlayButtonPlug> playButtonPlugs;
+        private readonly IWidgetsService widgetsService;
 
         private int pageIndex;
         private int pageSize = 15;
         private int totalResultsCount = 200;
         private const int minimumResultsLimit = 5;
 
-        public ExploreViewModel(IExploreService exploreService, IDownloadManager downloadManager, INavigationService navigationService, IEnumerable<IPlayButtonPlug> playButtonPlugs)
+        public ExploreViewModel(IWidgetsService widgetsService, IExploreService exploreService, IDownloadManager downloadManager, INavigationService navigationService, IEnumerable<IPlayButtonPlug> playButtonPlugs)
         {
             this.exploreService = exploreService;
             this.downloadManager = downloadManager;
             this.navigationService = navigationService;
             this.playButtonPlugs = playButtonPlugs;
+            this.widgetsService = widgetsService;
 
             Task.Run(() => LoadResults().ConfigureAwait(false).GetAwaiter().GetResult());
+        }
+
+        public DownloadModel SelectedItem
+        {
+            get => selectedItem;
+            set
+            {
+                selectedItem = value;
+                OnPropertyChanged(nameof(SelectedItem));
+            }
         }
 
         public ObservableCollection<DownloadModel> ActiveSearchResults
@@ -220,6 +234,8 @@ namespace Peernet.Browser.Application.ViewModels
                 ReloadResults();
             }
         }
+
+        public IWidgetsService WidgetsService => widgetsService;
 
         public void FetchData(FetchPageAsyncArgs args)
         {
