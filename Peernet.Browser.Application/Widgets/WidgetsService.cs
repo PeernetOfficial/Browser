@@ -1,4 +1,5 @@
-﻿using Peernet.SDK.Models.Extensions;
+﻿using Peernet.SDK.Common;
+using Peernet.SDK.Models.Extensions;
 using Peernet.SDK.Models.Presentation.Footer;
 using Peernet.SDK.Models.Presentation.Widgets;
 using System.Collections.Generic;
@@ -11,22 +12,22 @@ namespace Peernet.Browser.Application.Widgets
     public class WidgetsService : IWidgetsService, INotifyPropertyChanged
     {
         private DownloadModel selectedItem;
+        private readonly ISettingsManager settingsManager;
 
-        public WidgetsService()
+        public WidgetsService(ISettingsManager settingsManager)
         {
+            this.settingsManager = settingsManager;
             Widgets = new ObservableCollection<WidgetModel>(GetWidgets());
-            Widgets.Foreach(w => w.SelectionChanged += Widget_SelectionChanged);
         }
 
         private void Widget_SelectionChanged(object sender, System.EventArgs e)
         {
-            SelectedWidgets = new(Widgets.Where(w => w.IsSelected));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedWidgets)));
         }
 
         public ObservableCollection<WidgetModel> Widgets { get; set; }
 
-        public ObservableCollection<WidgetModel> SelectedWidgets { get; set; }
+        public ObservableCollection<WidgetModel> SelectedWidgets => new(Widgets?.Where(w => w.IsSelected));
 
         public DownloadModel SelectedItem
         {
@@ -42,7 +43,7 @@ namespace Peernet.Browser.Application.Widgets
 
         private IEnumerable<WidgetModel> GetWidgets()
         {
-            return new List<WidgetModel> { new WidgetModel() { Name = "Daily Feed" } };
+            return new List<WidgetModel> { new WidgetModel(Widget_SelectionChanged, "Daily Feed", settingsManager.DailyFeedWidgetEnabled) };
         }
     }
 }

@@ -22,6 +22,7 @@ using Serilog.Events;
 using System;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
@@ -143,7 +144,10 @@ namespace Peernet.Browser.WPF
 
         protected override void OnExit(ExitEventArgs e)
         {
-            ServiceProvider.GetRequiredService<ISettingsManager>().DefaultTheme = GlobalContext.VisualMode;
+            var settingsManager = ServiceProvider.GetRequiredService<ISettingsManager>();
+            settingsManager.DefaultTheme = GlobalContext.VisualMode;
+            var widgetsService = ServiceProvider.GetRequiredService<IWidgetsService>();
+            settingsManager.DailyFeedWidgetEnabled = widgetsService.Widgets.FirstOrDefault(w => w.Name == "Daily Feed")?.IsSelected ?? false;
             cmdRunner?.Dispose();
             base.OnExit(e);
         }

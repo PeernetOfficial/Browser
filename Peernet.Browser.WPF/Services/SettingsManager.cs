@@ -64,6 +64,12 @@ namespace Peernet.Browser.WPF.Services
 
         public Uri SocketUrl => GetSocket();
 
+        public bool DailyFeedWidgetEnabled
+        {
+            get => bool.Parse(Get(nameof(DailyFeedWidgetEnabled)));
+            set => Set(nameof(DailyFeedWidgetEnabled), value.ToString());
+        }
+
         public void Save()
         {
             config.Save();
