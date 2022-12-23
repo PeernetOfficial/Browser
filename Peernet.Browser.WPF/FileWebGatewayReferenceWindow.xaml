@@ -2,6 +2,7 @@
                    x:Class="Peernet.Browser.WPF.FileWebGatewayReferenceWindow"
                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:models="clr-namespace:Peernet.SDK.Models.Domain.Common;assembly=Peernet.SDK"
                    xmlns:sdk="clr-namespace:Peernet.SDK.WPF;assembly=Peernet.SDK"
                    SizeToContent="Height"
                    Width="450"
@@ -9,6 +10,7 @@
                    UseLayoutRounding="True">
     <Grid Margin="10">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -55,5 +57,115 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+
+        <StackPanel x:Name="xmasPanel" Grid.Row="2">
+            <StackPanel.Style>
+                <Style TargetType="{x:Type StackPanel}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding File.Format}" Value="{x:Static models:HighLevelFileType.Video}">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+            <TextBlock VerticalAlignment="Center" Margin="0, 10, 0, 10">
+                <Run Foreground="{DynamicResource MainContentBrush}"
+                     Text="Send it as an"
+                     FontWeight="Normal"
+                     FontSize="12" />
+                <Run Foreground="PaleVioletRed"
+                     Text="X-Mas Card:"
+                     FontWeight="Bold"
+                     FontSize="13" />
+                <Run Text="🎄"
+                     FontWeight="Bold"
+                     Foreground="Green"
+                     FontSize="13" />
+            </TextBlock>
+
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0"
+                         BorderBrush="{DynamicResource BorderBrush}"
+                         BorderThickness="1"
+                         Style="{StaticResource ReadonlySelectableTextBox}"
+                         Text="{Binding XmasWebGatewayResourceUris., Mode=OneWay}"
+                         FontWeight="SemiBold"
+                         VerticalAlignment="Center"
+                         FontSize="14" />
+
+                <Button Grid.Column="1"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Width="38"
+                        Height="24"
+                        Margin="20,0,0,5"
+                        Click="CopyXmasLinkToClipboard_OnClick"
+                        Style="{StaticResource ButtonBaseStyle}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="{DynamicResource CopyDrawingImage}" />
+                    </Button.Background>
+                </Button>
+            </Grid>
+        </StackPanel>
+
+        <StackPanel x:Name="newYearsEvePanel" Grid.Row="2">
+            <StackPanel.Style>
+                <Style TargetType="{x:Type StackPanel}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding File.Format}" Value="{x:Static models:HighLevelFileType.Video}">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+            <TextBlock VerticalAlignment="Center" Margin="0, 10, 0, 10">
+                <Run Foreground="{DynamicResource MainContentBrush}"
+                     Text="Send it as a"
+                     FontWeight="Normal"
+                     FontSize="12" />
+                <Run Foreground="Green"
+                     Text="New Year's Eve Card:"
+                     FontWeight="Bold"
+                     FontSize="13" />
+                <Run Text="🎊"
+                     FontWeight="Bold"
+                     Foreground="Green"
+                     FontSize="13" />
+            </TextBlock>
+
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0"
+                         BorderBrush="{DynamicResource BorderBrush}"
+                         BorderThickness="1"
+                         Style="{StaticResource ReadonlySelectableTextBox}"
+                         Text="{Binding NewYearsEveWebGatewayResourceUris, Mode=OneWay}"
+                         FontWeight="SemiBold"
+                         VerticalAlignment="Center"
+                         FontSize="14" />
+
+                <Button Grid.Column="1"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Width="38"
+                        Height="24"
+                        Margin="20,0,0,5"
+                        Click="CopyNewYearsEveLinkToClipboard_OnClick"
+                        Style="{StaticResource ButtonBaseStyle}">
+                    <Button.Background>
+                        <ImageBrush ImageSource="{DynamicResource CopyDrawingImage}" />
+                    </Button.Background>
+                </Button>
+            </Grid>
+        </StackPanel>
     </Grid>
 </sdk:PeernetWindow>

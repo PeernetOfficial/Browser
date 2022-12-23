@@ -60,9 +60,15 @@ namespace Peernet.Browser.WPF.Services
             set => Set(nameof(PluginsLocation), value);
         }
 
+        public Uri SocketUrl => GetSocket();
+
         public string[] WebGatewayDomains => Get(nameof(WebGatewayDomains))?.Split(',');
 
-        public Uri SocketUrl => GetSocket();
+        public string XmasWebGatewayDomains => Get(nameof(XmasWebGatewayDomains));
+
+        public string NewYearsEveWebGatewayDomains => Get(nameof(NewYearsEveWebGatewayDomains));
+
+        public bool DailyFeedWidgetEnabled { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public void Save()
         {
