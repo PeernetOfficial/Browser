@@ -8,7 +8,7 @@
                     xmlns:dxfuii="http://schemas.devexpress.com/winfx/2008/xaml/core/filteringui/internal"
                     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
                     xmlns:dxgi="http://schemas.devexpress.com/winfx/2008/xaml/grid/internal"
-                    xmlns:dxgn="clr-namespace:DevExpress.Xpf.Grid.Native;assembly=DevExpress.Xpf.Grid.v22.1"
+                    xmlns:dxgn="clr-namespace:DevExpress.Xpf.Grid.Native;assembly=DevExpress.Xpf.Grid.v22.2"
                     xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys"
                     xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
                     xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
@@ -17,7 +17,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v22.1;component/Grid/Office2019Black/UICore.xaml"/>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v22.2;component/Grid/Office2019Black/UICore.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <!-- General -->
@@ -43,6 +43,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <ContentControl dxg:GridControl.CurrentView="{Binding Path=(dxg:GridControl.CurrentView), RelativeSource={RelativeSource TemplatedParent}}"
                             Grid.Row="0"
@@ -58,9 +59,9 @@
             <Border x:Name="PART_FooterItemsControlBorder"
                     Background="$Window.Background"
                     BorderBrush="$Border"
-                    BorderThickness="0,0,0,1"
+                    BorderThickness="{Binding Path=(dxg:GridControl.CurrentView).TotalSummaryPosition, RelativeSource={RelativeSource TemplatedParent}, Converter={dxgi:CardViewTotalSummaryPanelBorderThicknessConverter}}"
                     Grid.ColumnSpan="2"
-                    Grid.Row="2"
+                    Grid.Row="{Binding Path=(dxg:GridControl.CurrentView).TotalSummaryPosition, RelativeSource={RelativeSource TemplatedParent}, Converter={dxgi:TotalSummaryPositionToRowConverter TopRow=2, BottomRow=4}}"
                     Visibility="{Binding Path=(dxg:DataControlBase.ActiveView).ShowTotalSummary, RelativeSource={RelativeSource Self}, Converter={StaticResource BooleanToVisibilityConverter}}"
                     cs:id="Border_0002">
                 <dxg:GridViewHitInfoBase.HitTestAcceptor>
@@ -69,7 +70,7 @@
                 <dxg:TotalSummaryItemsControl x:Name="footerItemsControl"
                                               HorizontalAlignment="Right"
                                               Margin="3"
-                                              Style="{DynamicResource {dxgt:CardViewThemeKey IsVisibleInBlend=True,                                                                                              ResourceKey=TotalSummaryItemsControlStyle}}"
+                                              Style="{DynamicResource {dxgt:CardViewThemeKey IsVisibleInBlend=True, ResourceKey=TotalSummaryItemsControlStyle}}"
                                               Visibility="Collapsed"/>
             </Border>
             <Grid Grid.ColumnSpan="2" Grid.Row="3">
@@ -199,7 +200,7 @@
                            dx:DragManager.DropTargetFactory="{x:Static dx:EmptyDropTarget.Instance}"
                            dxg:GridControl.CurrentView="{Binding Path=(dxg:GridControl.CurrentView), RelativeSource={RelativeSource TemplatedParent}}"
                            Grid.ColumnSpan="2"
-                           Grid.RowSpan="7"
+                           Grid.RowSpan="8"
                            HorizontalAlignment="Right"
                            HorizontalExpand="None"
                            MaxHeight="{Binding Path=(dx:OrderPanelBase.Panel).ActualHeight, ElementName=headerItemsControl, Converter={dx:AddDoubleValueConverter}, ConverterParameter=39}"
@@ -268,20 +269,20 @@
                                                    dxg:GridControl.CurrentView="{Binding Path=(dxg:GridControl.CurrentView), RelativeSource={RelativeSource TemplatedParent}}"
                                                    dxg:GridPopupMenu.GridMenuType="FixedTotalSummary"
                                                    Grid.ColumnSpan="2"
-                                                   Grid.Row="4"
+                                                   Grid.Row="5"
                                                    Visibility="{Binding Path=(dxg:GridControl.CurrentView).ShowFixedTotalSummary, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
             <dxfuii:FilterPanelControlAdapter x:Name="PART_FilterPanel"
                                               Context="{Binding Path=DataControl.FilteringContext}"
                                               DataContext="{Binding Path=(dxg:GridControl.ActiveView), RelativeSource={RelativeSource Self}}"
                                               FilteringPanelStyle="{Binding Path=FilteringPanelStyle}"
                                               Grid.ColumnSpan="2"
-                                              Grid.Row="5"
+                                              Grid.Row="6"
                                               LegacyFilterPanelType="{x:Type dxg:FilterPanelControl}"
                                               UseLegacyFilterPanel="{Binding Path=UseLegacyFilterPanel}"
                                               Visibility="{Binding Path=ActualShowFilterPanel, Converter={StaticResource BooleanToVisibilityConverter}}"/>
             <dxg:FocusRectPresenter x:Name="PART_FocusRectPresenter"
                                     Grid.ColumnSpan="2"
-                                    Grid.RowSpan="7"
+                                    Grid.RowSpan="8"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
                                     View="{Binding Path=(dxg:GridControl.CurrentView), RelativeSource={RelativeSource TemplatedParent}}"/>

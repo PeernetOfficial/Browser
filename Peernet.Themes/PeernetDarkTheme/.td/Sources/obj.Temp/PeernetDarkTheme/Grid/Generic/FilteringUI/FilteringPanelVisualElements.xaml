@@ -15,13 +15,13 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <ContentPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;27;26" />
-                        <Button Command="{TemplateBinding DeleteCommand}" Grid.Column="1" Margin="0,0,-2,0" Visibility="{Binding AllowDelete, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:BooleanToVisibilityConverter HiddenInsteadOfCollapsed=True}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;28;26">
+                        <Button Command="{TemplateBinding DeleteCommand}" CommandParameter="{TemplateBinding DeleteCommandParameter}" Grid.Column="1" Margin="0,0,-2,0" Visibility="{Binding AllowDelete, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:BooleanToVisibilityConverter HiddenInsteadOfCollapsed=True}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;28;26">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
-                                    <ContentPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;34;38" />
+                                    <ContentPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;35;38" />
                                 </ControlTemplate>
                             </Button.Template>
-                            <dxcore_unique_xmlns:DXImage Source="pack://application:,,,/DevExpress.Xpf.Grid.v22.1;component/FilteringUI/FilteringPanel/Images/Remove.svg" Stretch="None" VerticalAlignment="Top" />
+                            <dxcore_unique_xmlns:DXImage Source="pack://application:,,,/DevExpress.Xpf.Grid.v22.2;component/FilteringUI/FilteringPanel/Images/Remove.svg" Stretch="None" VerticalAlignment="Top" />
                         </Button>
                     </Grid>
                 </ControlTemplate>
@@ -30,13 +30,13 @@
     </Style>
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Core.FilteringUI.Native.FilteringPanelElementPadding}" TargetType="{x:Type dxfuii:FilteringPanelElementPadding}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;47;6" /><Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;48;6" /><Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Padding" Value="1,0" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type dxfuii:FilteringPanelElementPadding}">
-                    <dx:DXBorder Background="Transparent" BorderBrush="Transparent" BorderThickness="{TemplateBinding Padding}" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;53;22">
-                        <ContentPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;57;26" />
+                    <dx:DXBorder Background="Transparent" BorderBrush="Transparent" BorderThickness="{TemplateBinding Padding}" cs:id="Border_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;54;22">
+                        <ContentPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;58;26" />
                     </dx:DXBorder>
                 </ControlTemplate>
             </Setter.Value>
@@ -49,16 +49,16 @@
     </Style>
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Core.FilteringUI.Native.FilteringPanelBracketElement}" TargetType="{x:Type dxfuii:FilteringPanelBracketElement}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;69;6" /><Setter Property="BorderBrush" Value="{DynamicResource {dxfuit:FilteringPanelThemeKey ResourceKey=BracketBorderBrush}}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;70;6" /><Setter Property="BorderBrush" Value="{DynamicResource {dxfuit:FilteringPanelThemeKey ResourceKey=BracketBorderBrush}}" />
         <Setter Property="Foreground" Value="#FF484848" cs:id="Setter_0000" />
         <Setter Property="Padding" Value="3,3,0,3" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type dxfuii:FilteringPanelBracketElement}">
-                    <Grid Background="{TemplateBinding Background}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;79;22">
-                        <dx:DXBorder x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1,1,0,1" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Width="4" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;80;26" />
-                        <ContentPresenter Margin="{TemplateBinding ActualPadding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;85;26" />
+                    <Grid Background="{TemplateBinding Background}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;80;22">
+                        <dx:DXBorder x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1,1,0,1" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Width="4" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;81;26" />
+                        <ContentPresenter Margin="{TemplateBinding ActualPadding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;86;26" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="HorizontalContentAlignment" Value="Right">
@@ -76,16 +76,16 @@
     </Style>
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Core.FilteringUI.Native.FilteringPanelBracketPairElement}" TargetType="{x:Type dxfuii:FilteringPanelBracketPairElement}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;104;6" /><Setter Property="BorderBrush" Value="{DynamicResource {dxfuit:FilteringPanelThemeKey ResourceKey=BracketBorderBrush}}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;105;6" /><Setter Property="BorderBrush" Value="{DynamicResource {dxfuit:FilteringPanelThemeKey ResourceKey=BracketBorderBrush}}" />
         <Setter Property="Foreground" Value="#FF484848" cs:id="Setter_0000" />
         <Setter Property="Padding" Value="3" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type dxfuii:FilteringPanelBracketPairElement}">
-                    <Grid Background="{TemplateBinding Background}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;113;22">
-                        <dx:DXBorder BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1,1,0,1" HorizontalAlignment="Left" Width="4" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;114;26" />
-                        <ContentPresenter Margin="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;118;26" />
-                        <dx:DXBorder BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,1,1,1" HorizontalAlignment="Right" Width="4" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;119;26" />
+                    <Grid Background="{TemplateBinding Background}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;114;22">
+                        <dx:DXBorder BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1,1,0,1" HorizontalAlignment="Left" Width="4" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;115;26" />
+                        <ContentPresenter Margin="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;119;26" />
+                        <dx:DXBorder BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,1,1,1" HorizontalAlignment="Right" Width="4" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;120;26" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -93,14 +93,14 @@
     </Style>
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Core.FilteringUI.Native.FilteringPanelContentElement}" TargetType="{x:Type dxfuii:FilteringPanelContentElement}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;129;6" /><Setter Property="Background" Value="{DynamicResource {dxfuit:FilteringPanelThemeKey ResourceKey=PropertyBackground}}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;130;6" /><Setter Property="Background" Value="{DynamicResource {dxfuit:FilteringPanelThemeKey ResourceKey=PropertyBackground}}" />
         <Setter Property="Padding" Value="{DynamicResource {dxfuit:FilteringPanelThemeKey ResourceKey=ElementPadding}}" />
         <Setter Property="Foreground" Value="{DynamicResource {dxfuit:FilteringPanelThemeKey ResourceKey=ElementForeground}}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type dxfuii:FilteringPanelContentElement}">
-                    <dx:DXBorder Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{DynamicResource {dxfuit:FilteringPanelThemeKey ResourceKey=ElementCornerRadius}}" Padding="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;136;22">
-                        <ContentPresenter MinHeight="14" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;141;26" />
+                    <dx:DXBorder Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{DynamicResource {dxfuit:FilteringPanelThemeKey ResourceKey=ElementCornerRadius}}" Padding="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;137;22">
+                        <ContentPresenter MinHeight="14" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;142;26" />
                     </dx:DXBorder>
                 </ControlTemplate>
             </Setter.Value>
@@ -113,41 +113,41 @@
     </Style>
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Core.FilteringUI.Native.FilteringPanelOperatorElement}" TargetType="{x:Type dxfuii:FilteringPanelOperatorElement}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;153;6" /><Setter Property="dx:WpfSvgPalette.Palette" Value="{DynamicResource {dxfuit:FilteringPanelThemeKey ResourceKey=SvgPalette}}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;154;6" /><Setter Property="dx:WpfSvgPalette.Palette" Value="{DynamicResource {dxfuit:FilteringPanelThemeKey ResourceKey=SvgPalette}}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type dxfuii:FilteringPanelOperatorElement}">
-                    <dxcore_unique_xmlns:DXImage x:Name="image" Source="pack://application:,,,/DevExpress.Xpf.Grid.v22.1.Core;component/FilteringUI/FilterEditor/Images/Equals.svg" Width="16" />
+                    <dxcore_unique_xmlns:DXImage x:Name="image" Source="pack://application:,,,/DevExpress.Xpf.Grid.v22.2.Core;component/FilteringUI/FilterEditor/Images/Equals.svg" Width="16" />
                     <ControlTemplate.Triggers>
                         <Trigger Property="OperatorType" Value="NotEqual">
-                            <Setter Property="Source" TargetName="image" Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.1.Core;component/FilteringUI/FilterEditor/Images/DoesNotEqual.svg" />
+                            <Setter Property="Source" TargetName="image" Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.2.Core;component/FilteringUI/FilterEditor/Images/DoesNotEqual.svg" />
                         </Trigger>
                         <Trigger Property="OperatorType" Value="Greater">
-                            <Setter Property="Source" TargetName="image" Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.1.Core;component/FilteringUI/FilterEditor/Images/Greater.svg" />
+                            <Setter Property="Source" TargetName="image" Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.2.Core;component/FilteringUI/FilterEditor/Images/Greater.svg" />
                         </Trigger>
                         <Trigger Property="OperatorType" Value="Less">
-                            <Setter Property="Source" TargetName="image" Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.1.Core;component/FilteringUI/FilterEditor/Images/Less.svg" />
+                            <Setter Property="Source" TargetName="image" Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.2.Core;component/FilteringUI/FilterEditor/Images/Less.svg" />
                         </Trigger>
                         <Trigger Property="OperatorType" Value="LessOrEqual">
-                            <Setter Property="Source" TargetName="image" Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.1.Core;component/FilteringUI/FilterEditor/Images/LessOrEqual.svg" />
+                            <Setter Property="Source" TargetName="image" Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.2.Core;component/FilteringUI/FilterEditor/Images/LessOrEqual.svg" />
                         </Trigger>
                         <Trigger Property="OperatorType" Value="GreaterOrEqual">
-                            <Setter Property="Source" TargetName="image" Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.1.Core;component/FilteringUI/FilterEditor/Images/GreaterOrEqual.svg" />
+                            <Setter Property="Source" TargetName="image" Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.2.Core;component/FilteringUI/FilterEditor/Images/GreaterOrEqual.svg" />
                         </Trigger>
                         <Trigger Property="OperatorType" Value="Divide">
-                            <Setter Property="Source" TargetName="image" Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.1;component/FilteringUI/FilteringPanel/Images/division.svg" />
+                            <Setter Property="Source" TargetName="image" Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.2;component/FilteringUI/FilteringPanel/Images/division.svg" />
                         </Trigger>
                         <Trigger Property="OperatorType" Value="Modulo">
-                            <Setter Property="Source" TargetName="image" Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.1;component/FilteringUI/FilteringPanel/Images/percent.svg" />
+                            <Setter Property="Source" TargetName="image" Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.2;component/FilteringUI/FilteringPanel/Images/percent.svg" />
                         </Trigger>
                         <Trigger Property="OperatorType" Value="Multiply">
-                            <Setter Property="Source" TargetName="image" Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.1;component/FilteringUI/FilteringPanel/Images/multiplication.svg" />
+                            <Setter Property="Source" TargetName="image" Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.2;component/FilteringUI/FilteringPanel/Images/multiplication.svg" />
                         </Trigger>
                         <Trigger Property="OperatorType" Value="Plus">
-                            <Setter Property="Source" TargetName="image" Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.1;component/FilteringUI/FilteringPanel/Images/plus.svg" />
+                            <Setter Property="Source" TargetName="image" Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.2;component/FilteringUI/FilteringPanel/Images/plus.svg" />
                         </Trigger>
                         <Trigger Property="OperatorType" Value="Minus">
-                            <Setter Property="Source" TargetName="image" Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.1;component/FilteringUI/FilteringPanel/Images/minus.svg" />
+                            <Setter Property="Source" TargetName="image" Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.2;component/FilteringUI/FilteringPanel/Images/minus.svg" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -156,14 +156,14 @@
     </Style>
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Core.FilteringUI.Native.FilteringPanelTextElement}" TargetType="{x:Type dxfuii:FilteringPanelTextElement}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;218;6" /><Setter Property="Background" Value="Transparent" cs:id="Setter_0000" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;219;6" /><Setter Property="Background" Value="Transparent" cs:id="Setter_0000" />
         <Setter Property="Padding" Value="{DynamicResource {dxfuit:FilteringPanelThemeKey ResourceKey=ElementPadding}}" />
         <Setter Property="Foreground" Value="{DynamicResource {dxfuit:FilteringPanelThemeKey ResourceKey=Foreground}}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type dxfuii:FilteringPanelTextElement}">
-                    <dx:DXBorder Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{DynamicResource {dxfuit:FilteringPanelThemeKey ResourceKey=ElementCornerRadius}}" Padding="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;227;22">
-                        <TextBlock x:Name="text" Text="{TemplateBinding Text}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;232;26" />
+                    <dx:DXBorder Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{DynamicResource {dxfuit:FilteringPanelThemeKey ResourceKey=ElementCornerRadius}}" Padding="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;228;22">
+                        <TextBlock x:Name="text" Text="{TemplateBinding Text}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilteringPanelVisualElements.xaml;233;26" />
                     </dx:DXBorder>
                 </ControlTemplate>
             </Setter.Value>

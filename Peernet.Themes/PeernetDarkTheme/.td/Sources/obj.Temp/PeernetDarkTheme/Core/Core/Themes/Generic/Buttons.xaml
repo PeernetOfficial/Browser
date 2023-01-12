@@ -110,33 +110,34 @@
                 <dxi:RenderSetter Property="Dock" TargetName="PART_Arrow" Value="Bottom" />
                 <dxi:RenderSetter Property="Placement" TargetName="PART_ArrowBorder" Value="Bottom" />
             </dxi:RenderTrigger>
+            <dxi:RenderBinding Converter="{dx:BooleanToVisibilityConverter Invert=True}" ConverterParamenter="HiddenOnFalse" DependencyProperty="{x:Static dx:SimpleButton.IsAsyncOperationInProgressProperty}" TargetName="PART_ContentPresenter" TargetProperty="Visibility" ValueSource="TemplatedParent" />
         </dxi:RenderTemplate.Triggers>
     </dxi:RenderTemplate>
 
     
 
     <dxi:RenderTemplate x:Key="{dxt:DropDownButtonThemeKey ResourceKey=RenderSplitButtonTemplate}">
-        <dxi:RenderPanel Name="PART_GlyphContentAndArrow" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;275;10">
+        <dxi:RenderPanel Name="PART_GlyphContentAndArrow" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;281;10">
             <dxi:RenderButtonBorder Name="PART_GlyphContentAndArrowBorder" RenderTemplate="{StaticResource ResourceKey={dxt:DropDownButtonThemeKey ResourceKey=BorderTemplate}}" Visibility="Visible" />
-            <dxi:RenderPanel Name="PART_RootPanel" LayoutProvider="{dxi:DockPanelLayoutProvider LastChildFill=True}" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;279;14">
-                <dxi:RenderPanel Name="PART_Arrow" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;280;18">
+            <dxi:RenderPanel Name="PART_RootPanel" LayoutProvider="{dxi:DockPanelLayoutProvider LastChildFill=True}" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;285;14">
+                <dxi:RenderPanel Name="PART_Arrow" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;286;18">
                     <dxi:RenderButtonBorder Name="PART_ArrowBorder" RenderTemplate="{StaticResource ResourceKey={dxt:DropDownButtonThemeKey ResourceKey=ArrowBorderTemplate}}" />
-                    <dxi:RenderBorder Name="PART_ArrowThicknessBorder" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;282;22">
-                        <dxi:RenderPanel Name="PART_ArrowRenderPanel" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;283;26">
-                            <dxi:RenderImage Name="PART_ArrowGlyph" HorizontalAlignment="Center" ShouldCalcDpiAwareThickness="False" Stretch="None" VerticalAlignment="Center" Visibility="Visible" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;284;30" />
-                            <dxi:RenderControl Name="PART_DefaultArrowGlyph" HorizontalAlignment="Center" RenderTemplateSelector="{dxi:RenderDropDownArrowTemplateSelector}" ShouldCalcDpiAwareThickness="False" VerticalAlignment="Center" Visibility="Collapsed" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;290;30" />
+                    <dxi:RenderBorder Name="PART_ArrowThicknessBorder" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;288;22">
+                        <dxi:RenderPanel Name="PART_ArrowRenderPanel" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;289;26">
+                            <dxi:RenderImage Name="PART_ArrowGlyph" HorizontalAlignment="Center" ShouldCalcDpiAwareThickness="False" Stretch="None" VerticalAlignment="Center" Visibility="Visible" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;290;30" />
+                            <dxi:RenderControl Name="PART_DefaultArrowGlyph" HorizontalAlignment="Center" RenderTemplateSelector="{dxi:RenderDropDownArrowTemplateSelector}" ShouldCalcDpiAwareThickness="False" VerticalAlignment="Center" Visibility="Collapsed" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;296;30" />
                         </dxi:RenderPanel>
                     </dxi:RenderBorder>
                 </dxi:RenderPanel>
                 <dxi:RenderButtonBorder Name="PART_SeparatorBorder" RenderTemplate="{StaticResource ResourceKey={dxt:DropDownButtonThemeKey ResourceKey=SeparatorBorderTemplate}}" />
-                <dxi:RenderPanel Name="PART_GlyphAndContent" HorizontalAlignment="Stretch" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;300;18">
+                <dxi:RenderPanel Name="PART_GlyphAndContent" HorizontalAlignment="Stretch" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;306;18">
                     <dxi:RenderButtonBorder Name="PART_GlyphAndContentBorder" RenderTemplate="{StaticResource ResourceKey={dxt:DropDownButtonThemeKey ResourceKey=ContentBorderTemplate}}" />
-                    <dxi:RenderBorder Name="PART_ContentThicknessBorder" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;302;22">
-                        <dxi:RenderBorder Name="PART_ContentPaddingBorder" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;303;26">
-                            <dxi:RenderPanel Name="PART_ContentRenderPanel" HorizontalAlignment="Stretch" LayoutProvider="{dxi:DockPanelLayoutProvider LastChildFill=True}" ShouldCalcDpiAwareThickness="False" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;304;30">
-                                <dxi:RenderImage Name="PART_Glyph" Dock="Left" HorizontalAlignment="Center" Stretch="Uniform" StretchDirection="DownOnly" VerticalAlignment="Center" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;308;34" />
-                                <dxi:RenderBorder Name="PART_Offset" Dock="Left" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;314;34" />
-                                <dxi:RenderContentPresenter Name="PART_ContentPresenter" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;315;34" />
+                    <dxi:RenderBorder Name="PART_ContentThicknessBorder" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;308;22">
+                        <dxi:RenderBorder Name="PART_ContentPaddingBorder" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;309;26">
+                            <dxi:RenderPanel Name="PART_ContentRenderPanel" HorizontalAlignment="Stretch" LayoutProvider="{dxi:DockPanelLayoutProvider LastChildFill=True}" ShouldCalcDpiAwareThickness="False" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;310;30">
+                                <dxi:RenderImage Name="PART_Glyph" Dock="Left" HorizontalAlignment="Center" Stretch="Uniform" StretchDirection="DownOnly" VerticalAlignment="Center" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;314;34" />
+                                <dxi:RenderBorder Name="PART_Offset" Dock="Left" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;320;34" />
+                                <dxi:RenderContentPresenter Name="PART_ContentPresenter" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;321;34" />
                             </dxi:RenderPanel>
                         </dxi:RenderBorder>
                     </dxi:RenderBorder>
@@ -217,21 +218,22 @@
                 <dxi:RenderSetter Property="Dock" TargetName="PART_Arrow" Value="Bottom" />
                 <dxi:RenderSetter Property="Placement" TargetName="PART_ArrowBorder" Value="Bottom" />
             </dxi:RenderTrigger>
+            <dxi:RenderBinding Converter="{dx:BooleanToVisibilityConverter Invert=True}" ConverterParamenter="HiddenOnFalse" DependencyProperty="{x:Static dx:SimpleButton.IsAsyncOperationInProgressProperty}" TargetName="PART_ContentPresenter" TargetProperty="Visibility" ValueSource="TemplatedParent" />
         </dxi:RenderTemplate.Triggers>
     </dxi:RenderTemplate>
 
     
 
     <dxi:RenderTemplate x:Key="{dxt:ButtonThemeKey ResourceKey=RenderTemplate}">
-        <dxi:RenderPanel Name="PART_GlyphAndContent" LayoutProvider="{x:Static dxi:LayoutProvider.GridInstance}" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;548;10">
+        <dxi:RenderPanel Name="PART_GlyphAndContent" LayoutProvider="{x:Static dxi:LayoutProvider.GridInstance}" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;560;10">
             <dxi:RenderButtonBorder Name="PART_GlyphAndContentBorder" RenderTemplate="{StaticResource ResourceKey={dxt:DropDownButtonThemeKey ResourceKey=BorderTemplate}}" />
-            <dxi:RenderBorder Name="PART_OffsetThicknessBorder" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;550;14">
-                <dxi:RenderPanel Name="PART_RootPanel" HorizontalAlignment="Stretch" ShouldCalcDpiAwareThickness="False" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;551;18">
-                    <dxi:RenderBorder Name="PART_PaddingBorder" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;554;22">
-                        <dxi:RenderPanel Name="PART_ContentRenderPanel" LayoutProvider="{dxi:DockPanelLayoutProvider LastChildFill=True}" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;555;26">
-                            <dxi:RenderImage Name="PART_Glyph" Dock="Left" HorizontalAlignment="Center" Stretch="Uniform" StretchDirection="DownOnly" VerticalAlignment="Center" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;556;30" />
-                            <dxi:RenderBorder Name="PART_Offset" Dock="Left" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;562;30" />
-                            <dxi:RenderContentPresenter Name="PART_ContentPresenter" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;563;30" />
+            <dxi:RenderBorder Name="PART_OffsetThicknessBorder" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;562;14">
+                <dxi:RenderPanel Name="PART_RootPanel" HorizontalAlignment="Stretch" ShouldCalcDpiAwareThickness="False" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;563;18">
+                    <dxi:RenderBorder Name="PART_PaddingBorder" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;566;22">
+                        <dxi:RenderPanel Name="PART_ContentRenderPanel" LayoutProvider="{dxi:DockPanelLayoutProvider LastChildFill=True}" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;567;26">
+                            <dxi:RenderImage Name="PART_Glyph" Dock="Left" HorizontalAlignment="Center" Stretch="Uniform" StretchDirection="DownOnly" VerticalAlignment="Center" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;568;30" />
+                            <dxi:RenderBorder Name="PART_Offset" Dock="Left" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;574;30" />
+                            <dxi:RenderContentPresenter Name="PART_ContentPresenter" ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;575;30" />
                         </dxi:RenderPanel>
                     </dxi:RenderBorder>
                 </dxi:RenderPanel>
@@ -251,6 +253,7 @@
             <dxi:RenderBinding DependencyProperty="{x:Static dx:SimpleButton.HorizontalContentAlignmentProperty}" TargetName="PART_RootPanel" TargetProperty="HorizontalAlignment" ValueSource="TemplatedParent" />
             <dxi:RenderBinding DependencyProperty="{x:Static ContentControl.PaddingProperty}" TargetName="PART_PaddingBorder" TargetProperty="Margin" ValueSource="TemplatedParent" />
             <dxi:RenderBinding DependencyProperty="{x:Static dx:SimpleButton.BorderThicknessProperty}" TargetName="PART_OffsetThicknessBorder" TargetProperty="Margin" ValueSource="TemplatedParent" />
+            <dxi:RenderBinding Converter="{dx:BooleanToVisibilityConverter Invert=True}" ConverterParamenter="HiddenOnFalse" DependencyProperty="{x:Static dx:SimpleButton.IsAsyncOperationInProgressProperty}" TargetName="PART_ContentPresenter" TargetProperty="Visibility" ValueSource="TemplatedParent" />
             <dxi:RenderTrigger DependencyProperty="{x:Static dx:SimpleButton.GlyphAlignmentProperty}" Value="Left" ValueSource="TemplatedParent">
                 <dxi:RenderSetter Property="Dock" TargetName="PART_Glyph" Value="Left" />
                 <dxi:RenderSetter Property="Dock" TargetName="PART_Offset" Value="Left" />
@@ -291,7 +294,7 @@
     
 
     <ControlTemplate x:Key="{dxt:ButtonThemeKey ResourceKey=ButtonBaseControlTemplate}" TargetType="{x:Type ButtonBase}">
-        <dxi:ButtonChrome x:Name="PART_Owner" RenderTemplate="{StaticResource ResourceKey={dxt:ButtonThemeKey ResourceKey=RenderTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;706;10" />
+        <dxi:ButtonChrome x:Name="PART_Owner" RenderTemplate="{StaticResource ResourceKey={dxt:ButtonThemeKey ResourceKey=RenderTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;724;10" />
         <ControlTemplate.Triggers>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Opacity" TargetName="PART_Owner" Value="{StaticResource ResourceKey={dxt:DropDownButtonThemeKey ResourceKey=ButtonOpacity}}" />
@@ -300,7 +303,7 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxt:ButtonThemeKey ResourceKey=ButtonControlTemplate}" TargetType="{x:Type Button}">
-        <dxi:ButtonChrome x:Name="PART_Owner" IsDefaulted="{Binding Path=IsDefaulted, RelativeSource={RelativeSource TemplatedParent}}" RenderTemplate="{StaticResource ResourceKey={dxt:ButtonThemeKey ResourceKey=RenderTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;717;10" />
+        <dxi:ButtonChrome x:Name="PART_Owner" IsDefaulted="{Binding Path=IsDefaulted, RelativeSource={RelativeSource TemplatedParent}}" RenderTemplate="{StaticResource ResourceKey={dxt:ButtonThemeKey ResourceKey=RenderTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;735;10" />
         <ControlTemplate.Triggers>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Opacity" TargetName="PART_Owner" Value="{StaticResource ResourceKey={dxt:DropDownButtonThemeKey ResourceKey=ButtonOpacity}}" />
@@ -325,5 +328,119 @@
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxt:DropDownButtonThemeKey ResourceKey=AsyncDropDownButtonTemplate}" TargetType="{x:Type dx:DropDownButton}">
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;770;10">
+            <dxi:DropDownButtonChrome x:Name="PART_Owner" RenderTemplate="{StaticResource ResourceKey={dxt:DropDownButtonThemeKey ResourceKey=RenderDropDownButtonTemplate}}" />
+            <dxi:AsyncButtonContentControl x:Name="PART_AsyncIndicator" CancelCommand="{Binding Command.CancelCommand, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Collapsed" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" TargetName="PART_Owner" Value="{StaticResource ResourceKey={dxt:DropDownButtonThemeKey ResourceKey=ButtonOpacity}}" />
+            </Trigger>
+            <Trigger Property="IsAsyncOperationInProgress" Value="True">
+                <Setter Property="Visibility" TargetName="PART_AsyncIndicator" Value="Visible" />
+            </Trigger>
+            <Trigger Property="AsyncDisplayMode" Value="WaitCancel">
+                <Setter Property="ShouldShowCancelButton" TargetName="PART_AsyncIndicator" Value="True" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxt:DropDownButtonThemeKey ResourceKey=AsyncSplitButtonTemplate}" TargetType="{x:Type dx:SplitButton}">
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;798;10">
+            <dxi:DropDownButtonChrome x:Name="PART_Owner" RenderTemplate="{StaticResource ResourceKey={dxt:DropDownButtonThemeKey ResourceKey=RenderSplitButtonTemplate}}" />
+            <dxi:AsyncButtonContentControl x:Name="PART_AsyncIndicator" CancelCommand="{Binding Command.CancelCommand, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Collapsed" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" TargetName="PART_Owner" Value="{StaticResource ResourceKey={dxt:DropDownButtonThemeKey ResourceKey=ButtonOpacity}}" />
+            </Trigger>
+            <Trigger Property="IsAsyncOperationInProgress" Value="True">
+                <Setter Property="Visibility" TargetName="PART_AsyncIndicator" Value="Visible" />
+            </Trigger>
+            <Trigger Property="AsyncDisplayMode" Value="WaitCancel">
+                <Setter Property="ShouldShowCancelButton" TargetName="PART_AsyncIndicator" Value="True" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxt:ButtonThemeKey ResourceKey=AsyncButtonTemplate}" TargetType="{x:Type dx:SimpleButton}">
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;826;10">
+            <dxi:ButtonChrome x:Name="PART_Owner" IsDefaulted="{Binding Path=IsDefaulted, RelativeSource={RelativeSource TemplatedParent}}" RenderTemplate="{StaticResource ResourceKey={dxt:ButtonThemeKey ResourceKey=RenderTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;827;14" />
+            <dxi:AsyncButtonContentControl x:Name="PART_AsyncIndicator" CancelCommand="{Binding Command.CancelCommand, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="Collapsed" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" TargetName="PART_Owner" Value="{StaticResource ResourceKey={dxt:DropDownButtonThemeKey ResourceKey=ButtonOpacity}}" />
+            </Trigger>
+            <Trigger Property="IsAsyncOperationInProgress" Value="True">
+                <Setter Property="Visibility" TargetName="PART_AsyncIndicator" Value="Visible" />
+            </Trigger>
+            <Trigger Property="AsyncDisplayMode" Value="WaitCancel">
+                <Setter Property="ShouldShowCancelButton" TargetName="PART_AsyncIndicator" Value="True" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxt:ButtonThemeKey ResourceKey=AsyncButtonCancelTemplate}" TargetType="{x:Type Button}">
+        <dxcore_unique_xmlns:DXImage Height="{Binding ActualHeight, ElementName=PART_LoadingIndicator}" Source="{dx:SvgImageSource Uri={dx:UtilsResource Core/Images/Cancel.svg}}" Stretch="Uniform" Width="{Binding ActualWidth, ElementName=PART_LoadingIndicator}" />
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxt:ButtonThemeKey ResourceKey=AsyncButtonRetryTemplate}" TargetType="{x:Type Button}">
+        <dxcore_unique_xmlns:DXImage Height="{Binding ActualHeight, ElementName=PART_LoadingIndicator}" Source="{dx:SvgImageSource Uri={dx:UtilsResource Core/Images/Reload.svg}}" Stretch="Uniform" Width="{Binding ActualWidth, ElementName=PART_LoadingIndicator}" />
+    </ControlTemplate>
+
+    <dxi:ButtonAsyncIndicationSizeConverter x:Key="buttonAsyncIndicationSizeConverter" />
+
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Core.Native.AsyncButtonContentControl}" TargetType="{x:Type dxi:AsyncButtonContentControl}">
+        <Style.Setters><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Generic\Buttons.xaml;871;6" />
+            <Setter Property="Width">
+                <Setter.Value>
+                    <MultiBinding Converter="{StaticResource buttonAsyncIndicationSizeConverter}">
+                        <Binding Path="ActualWidth" RelativeSource="{RelativeSource TemplatedParent}" />
+                        <Binding Path="ActualHeight" RelativeSource="{RelativeSource TemplatedParent}" />
+                    </MultiBinding>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Height">
+                <Setter.Value>
+                    <MultiBinding Converter="{StaticResource buttonAsyncIndicationSizeConverter}">
+                        <Binding Path="ActualWidth" RelativeSource="{RelativeSource TemplatedParent}" />
+                        <Binding Path="ActualHeight" RelativeSource="{RelativeSource TemplatedParent}" />
+                    </MultiBinding>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="Transparent" cs:id="Setter_0000" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type dxi:AsyncButtonContentControl}">
+                        <dx:DXBorder Background="{TemplateBinding Background}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;895;26">
+                            <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;898;30">
+                                <dxcore_unique_xmlns:WaitIndicator x:Name="PART_LoadingIndicator" DeferedVisibility="True" IsTabStop="False" Margin="1" Template="{DynamicResource {dxt:ButtonThemeKey ResourceKey=ButtonWaitIndicatorTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;899;34" />
+                                <Button x:Name="PART_LoadingIndicatorCancel" Command="{TemplateBinding CancelCommand}" CommandParameter="{TemplateBinding CancelCommandParameter}" Margin="1" Template="{DynamicResource {dxt:ButtonThemeKey ResourceKey=AsyncButtonCancelTemplate}}" Visibility="Collapsed" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;904;34" />
+                                <Button x:Name="PART_LoadingIndicatorRetry" Command="{TemplateBinding RetryCommand}" CommandParameter="{TemplateBinding RetryCommandParameter}" Margin="1" Template="{DynamicResource {dxt:ButtonThemeKey ResourceKey=AsyncButtonRetryTemplate}}" Visibility="Collapsed" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Themes\Generic\Buttons.xaml;910;34" />
+                            </Grid>
+                        </dx:DXBorder>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="True" />
+                                    <Condition Property="ShouldShowCancelButton" Value="True" />
+                                    <Condition Property="ShowRetryButton" Value="False" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Visibility" TargetName="PART_LoadingIndicatorCancel" Value="Visible" />
+                                <Setter Property="DeferedVisibility" TargetName="PART_LoadingIndicator" Value="False" />
+                            </MultiTrigger>
+                            <Trigger Property="ShowRetryButton" Value="True">
+                                <Setter Property="Visibility" TargetName="PART_LoadingIndicatorRetry" Value="Visible" />
+                                <Setter Property="DeferedVisibility" TargetName="PART_LoadingIndicator" Value="False" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
 
 </ResourceDictionary>

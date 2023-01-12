@@ -254,28 +254,49 @@
     </DataTemplate>
 
     <DataTemplate x:Key="FilterEditorVariadicTemplate">
-        <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;354;10">
-            <ItemsControl ItemsSource="{Binding Items}" ItemTemplate="{StaticResource FilterEditorVariadicItemTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;355;14">
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;354;10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <ItemsControl x:Name="filterItems" ItemsSource="{Binding Items}" ItemTemplate="{StaticResource FilterEditorVariadicItemTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;359;14">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;358;26" />
+                        <VirtualizingStackPanel ClipToBounds="True" IsVirtualizing="True" MaxWidth="3000" Orientation="Horizontal" VirtualizationMode="Recycling" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;364;26">
+                            <dxmvvm:Interaction.Behaviors>
+                                <dxfuii:AttachParentScrollViewerBehavior />
+                            </dxmvvm:Interaction.Behaviors>
+                        </VirtualizingStackPanel>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
+                <ItemsControl.Template>
+                    <ControlTemplate TargetType="ItemsControl">
+                        <ItemsPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;377;26" />
+                    </ControlTemplate>
+                </ItemsControl.Template>
                 <dxmvvm:Interaction.Behaviors>
                     <dxfui:FilterEditorVariadicBehavior AddCommand="{Binding AddCommand}" />
                 </dxmvvm:Interaction.Behaviors>
             </ItemsControl>
-            <Button x:Name="AddButton" Command="{Binding AddCommand}" Style="{StaticResource addChildButtonStyle}" Template="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=NewOperandButtonControlTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;365;14">
+            <Rectangle Focusable="False" HorizontalAlignment="Right" IsHitTestVisible="False" VerticalAlignment="Stretch" Visibility="{Binding ActualWidth, ElementName=filterItems, Converter={dxfuii:ValueEqualsParameterToVisibilityConverter}, ConverterParameter=3000}" Width="40" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;384;14">
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="1,0" StartPoint="0,0" cs:id="LinearGradientBrush_0000">
+                        <GradientStop Color="Transparent" Offset="0" cs:id="GradientStop_0000" />
+                        <GradientStop Color="White" Offset="1" cs:id="GradientStop_0001" />
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Button x:Name="AddButton" Command="{Binding AddCommand}" Grid.Column="1" Style="{StaticResource addChildButtonStyle}" Template="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=NewOperandButtonControlTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;403;14">
                 <ToolTipService.ToolTip>
-                    <ToolTip dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;370;22">
-                        <StackPanel Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;371;26">
-                            <TextBlock FontWeight="Bold" Margin="0,0,0,4" Text="{dxe:EditorStringId FilterToolTipKeysAdd}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;372;30" />
-                            <TextBlock Text="{dxe:EditorStringId FilterToolTipElementAdd}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;375;30" />
+                    <ToolTip dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;409;22">
+                        <StackPanel Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;410;26">
+                            <TextBlock FontWeight="Bold" Margin="0,0,0,4" Text="{dxe:EditorStringId FilterToolTipKeysAdd}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;411;30" />
+                            <TextBlock Text="{dxe:EditorStringId FilterToolTipElementAdd}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;414;30" />
                         </StackPanel>
                     </ToolTip>
                 </ToolTipService.ToolTip>
             </Button>
-        </StackPanel>
+        </Grid>
     </DataTemplate>
 
     <DataTemplate x:Key="FilterEditorPredefinedFormatConditionTemplate">
@@ -297,7 +318,7 @@
                                     <dxmvvm:MapItem Source="Percent" Target="{dxe:EditorStringId TopBottomValueTypePercent}" />
                                 </dxmvvm:ObjectToObjectConverter>
                             </DataTemplate.Resources>
-                            <TextBlock Text="{Binding Converter={StaticResource TopBottomValueTypeConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;411;30" />
+                            <TextBlock Text="{Binding Converter={StaticResource TopBottomValueTypeConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;450;30" />
                         </DataTemplate>
                     </dxe:ComboBoxEditSettings.ItemTemplate>
                     <dxe:ComboBoxEditSettings.ItemsSource>
@@ -311,20 +332,20 @@
             <dxfuii:FormatConditionValueEditSettingsConverter x:Key="valueEditSettingsConverter" EditSettingsItemTemplate="{StaticResource valueEditSettingsItemsTemplate}" EditSettingsPercentTemplate="{StaticResource valueEditSettingsPercentTemplate}" />
             <dxfuii:FormatConditionValueTypeEditSettingsConverter x:Key="valueTypeEditSettingsConverter" EditSettingsTemplate="{StaticResource valueTypeEditSettingsTemplate}" />
             <Style x:Key="editorCellStyle" TargetType="{x:Type dxfui:InplaceEditorCell}">
-                <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;426;14" /><Setter Property="FilterModel" Value="{Binding Path=(dxfuii:FilterElementHelper.FilterModel), RelativeSource={RelativeSource Self}}" />
+                <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;465;14" /><Setter Property="FilterModel" Value="{Binding Path=(dxfuii:FilterElementHelper.FilterModel), RelativeSource={RelativeSource Self}}" />
                 <Setter Property="Margin" Value="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=FilterEditorItemMargin}}" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="dxfui:InplaceEditorCell">
-                            <dx:DXBorder Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=ItemCornerRadius}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;432;30">
-                                <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;436;34" />
+                            <dx:DXBorder Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=ItemCornerRadius}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;471;30">
+                                <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;475;34" />
                             </dx:DXBorder>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
             </Style>
         </DataTemplate.Resources>
-        <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;443;10">
+        <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;482;10">
             <dxfui:InplaceEditorCell x:Name="PART_Value" dxfui:FilterEditorNavigation.Index="0" EditSettings="{Binding ValueType, Converter={StaticResource valueEditSettingsConverter}}" Style="{StaticResource editorCellStyle}" Value="{Binding Value, Mode=TwoWay, Converter={dxmvvm:TypeCastConverter}}" />
             <dxfui:InplaceEditorCell x:Name="PART_ValueType" dxfui:FilterEditorNavigation.Index="1" EditSettings="{Binding Converter={StaticResource valueTypeEditSettingsConverter}}" Style="{StaticResource editorCellStyle}" Value="{Binding ValueType, Mode=TwoWay}" />
         </StackPanel>
@@ -337,12 +358,12 @@
     
 
     <ControlTemplate x:Key="propertySelectorPopupContentTemplate">
-        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;469;10">
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;508;10">
             <Grid.Resources>
                 <ControlTemplate x:Key="{dxgt:GridRowThemeKey ResourceKey=RowTemplate, IsThemeIndependent=True}" TargetType="dxg:RowControl">
-                    <Grid Margin="1,0,1,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;472;22">
-                        <dx:DXBorder x:Name="Background" Background="{TemplateBinding Background}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;473;26" />
-                        <Grid x:Name="PART_LayoutPanel" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;474;26" />
+                    <Grid Margin="1,0,1,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;511;22">
+                        <dx:DXBorder x:Name="Background" Background="{TemplateBinding Background}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;512;26" />
+                        <Grid x:Name="PART_LayoutPanel" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;513;26" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="FadeSelection" Value="True">
@@ -355,26 +376,26 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <dx:DXBorder Background="{DynamicResource ResourceKey={dxfuit:ExcelStyleFilterElementThemeKey ResourceKey=FilterValueContainerTopAreaBackground}}" BorderBrush="{DynamicResource ResourceKey={dxfuit:ExcelStyleFilterElementThemeKey ResourceKey=FilterValueContainerTopAreaBorderColor}}" BorderThickness="0,0,0,1" Visibility="{Binding ShowSearchPanel, Converter={dxmvvm:BooleanToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;489;14">
+            <dx:DXBorder Background="{DynamicResource ResourceKey={dxfuit:ExcelStyleFilterElementThemeKey ResourceKey=FilterValueContainerTopAreaBackground}}" BorderBrush="{DynamicResource ResourceKey={dxfuit:ExcelStyleFilterElementThemeKey ResourceKey=FilterValueContainerTopAreaBorderColor}}" BorderThickness="0,0,0,1" Visibility="{Binding ShowSearchPanel, Converter={dxmvvm:BooleanToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;528;14">
                 <dxg:GridSearchControl Margin="4" View="{Binding ElementName=view}" />
             </dx:DXBorder>
-            <dxg:GridControl x:Name="PART_GridControl" Grid.Row="1" MinHeight="50" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;495;14">
+            <dxg:GridControl x:Name="PART_GridControl" Grid.Row="1" MinHeight="50" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;534;14">
                 <dxg:GridControl.Columns>
                     <dxg:GridColumn FieldName="ContentString">
                         <dxg:GridColumn.CellTemplate>
                             <DataTemplate>
-                                <ContentPresenter Content="{Binding RowData.Row.Content}" ContentTemplateSelector="{Binding DataContext.RowData.Row.CaptionTemplateSelector, RelativeSource={RelativeSource Mode=TemplatedParent}}" Margin="3" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;502;34" />
+                                <ContentPresenter Content="{Binding RowData.Row.Content}" ContentTemplateSelector="{Binding DataContext.RowData.Row.CaptionTemplateSelector, RelativeSource={RelativeSource Mode=TemplatedParent}}" Margin="3" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;541;34" />
                             </DataTemplate>
                         </dxg:GridColumn.CellTemplate>
                     </dxg:GridColumn>
                 </dxg:GridControl.Columns>
                 <dxg:GridControl.View>
-                    <dxg:TreeListView x:Name="view" AutoExpandAllNodes="True" AutoWidth="True" FilterMode="Extended" KeyFieldName="ID" ParentFieldName="ParentID" RowMinHeight="22" SearchDelay="0" ShowColumnHeaders="False" ShowEmptyText="True" ShowExpandButtons="False" ShowHorizontalLines="False" ShowIndicator="False" ShowRootIndent="False" ShowSearchPanelMode="Never" ShowVerticalLines="False" TreeLineStyle="Solid" VerticalScrollbarVisibility="Auto" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;511;22">
+                    <dxg:TreeListView x:Name="view" AutoExpandAllNodes="True" AutoWidth="True" FilterMode="Extended" KeyFieldName="ID" ParentFieldName="ParentID" RowMinHeight="22" SearchDelay="0" ShowColumnHeaders="False" ShowEmptyText="True" ShowExpandButtons="False" ShowHorizontalLines="False" ShowIndicator="False" ShowRootIndent="False" ShowSearchPanelMode="Never" ShowVerticalLines="False" TreeLineStyle="Solid" VerticalScrollbarVisibility="Auto" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;550;22">
                         <dxg:TreeListView.Style>
-                            <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.TreeListView}" TargetType="{x:Type dxg:TreeListView}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;530;30" />
+                            <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.TreeListView}" TargetType="{x:Type dxg:TreeListView}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;569;30" />
                                 <Style.Resources>
                                     <Style x:Key="{dxgt:TableViewThemeKey ResourceKey=NoRecordsControlStyle}" TargetType="{x:Type dxg:NoRecordsControl}">
-                                        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;532;38" /><Setter Property="NoRecordsFoundText" Value="{DXBinding '$dxe:EditorLocalizer.GetString($dxe:EditorStringId.FilterNoPropertiesFoundText)'}" />
+                                        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;571;38" /><Setter Property="NoRecordsFoundText" Value="{DXBinding '$dxe:EditorLocalizer.GetString($dxe:EditorStringId.FilterNoPropertiesFoundText)'}" />
                                     </Style>
                                 </Style.Resources>
                                 <Style.Triggers>
@@ -391,7 +412,7 @@
     </ControlTemplate>
 
     <Style x:Key="{dxfuit:FilterEditorThemeKey ResourceKey=PropertySelectorStyle}" TargetType="dxfui:FilterEditorPropertySelector">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;549;6" /><Setter Property="AutoPopulateColumns" Value="False" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;588;6" /><Setter Property="AutoPopulateColumns" Value="False" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="PopupContentTemplate" Value="{StaticResource propertySelectorPopupContentTemplate}" />
         <Setter Property="FilterCondition" Value="Contains" />
@@ -408,12 +429,12 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type dxfui:FilterEditorPropertySelector}">
-                    <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;567;22">
-                        <TextBlock Text="{TemplateBinding NullText}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Visibility="{Binding EditValue, Converter={dx:NullableToVisibilityConverter Invert=True}, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;568;26" />
-                        <ContentPresenter Content="{Binding Path=EditValue.Content, RelativeSource={RelativeSource TemplatedParent}}" ContentTemplateSelector="{Binding Path=EditValue.SelectedCaptionTemplateSelector, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Visibility="{Binding Path=EditValue, Converter={dx:NullableToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;571;26" />
+                    <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;606;22">
+                        <TextBlock Text="{TemplateBinding NullText}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Visibility="{Binding EditValue, Converter={dx:NullableToVisibilityConverter Invert=True}, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;607;26" />
+                        <ContentPresenter Content="{Binding Path=EditValue.Content, RelativeSource={RelativeSource TemplatedParent}}" ContentTemplateSelector="{Binding Path=EditValue.SelectedCaptionTemplateSelector, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Visibility="{Binding Path=EditValue, Converter={dx:NullableToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;610;26" />
                         <Grid.Style>
                             <Style x:Key="{dxt:DefaultStyleThemeKey FullName=FrameworkElement}" TargetType="{x:Type FrameworkElement}">
-                                <Style.Setters><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;576;30" />
+                                <Style.Setters><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;615;30" />
                                     <Setter Property="Margin" Value="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=PropertySelectorContentMargin}}" />
                                 </Style.Setters>
                                 <Style.Triggers>
@@ -443,11 +464,11 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxfuit:FilterEditorThemeKey ResourceKey=NewOperandButtonControlTemplate}" TargetType="Button">
-        <dx:DXBorder Background="Transparent" MinWidth="16" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;609;10">
-            <Path dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;612;14">
+        <dx:DXBorder Background="Transparent" MinWidth="16" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;648;10">
+            <Path dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;651;14">
                 <Path.Style>
                     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=Path}" TargetType="{x:Type Path}">
-                        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;614;22" /><Setter Property="Data" Value="F1 M 0,3 3,3 3,0 5,0 5,3 8,3 8,5 5,5 5,8 3,8 3,5 0,5 0,3 Z " />
+                        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;653;22" /><Setter Property="Data" Value="F1 M 0,3 3,3 3,0 5,0 5,3 8,3 8,5 5,5 5,8 3,8 3,5 0,5 0,3 Z " />
                         <Setter Property="Fill" Value="#7B7B7B" cs:id="Setter_0000" />
                         <Setter Property="Height" Value="8" />
                         <Setter Property="HorizontalAlignment" Value="Center" />
@@ -499,7 +520,7 @@
                     <dxg:FormatPreviewControl Content="{Binding FormatCondition.Format}" PreviewString="Aa">
                         <dxg:FormatPreviewControl.SimpleFormatTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding PreviewString, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxg:FormatPreviewControl}}}" TextDecorations="{Binding TextDecorations}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;678;34" />
+                                <TextBlock Text="{Binding PreviewString, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxg:FormatPreviewControl}}}" TextDecorations="{Binding TextDecorations}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;717;34" />
                             </DataTemplate>
                         </dxg:FormatPreviewControl.SimpleFormatTemplate>
                     </dxg:FormatPreviewControl>
@@ -507,7 +528,7 @@
             </dxb:BarButtonItem.GlyphTemplate>
             <dxb:BarButtonItem.ContentTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;686;22">
+                    <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;725;22">
                         <dxg:FormatPreviewControl Background="Transparent" Content="{Binding Format}" DataContext="{Binding FormatCondition}" Margin="0,0,2,0" Visibility="{Binding Format.Icon, Converter={dx:NullableToVisibilityConverter}}" cs:id="FormatPreviewControl_0000">
                             <dxg:FormatPreviewControl.Template>
                                 <ControlTemplate TargetType="{x:Type dxg:FormatPreviewControl}">
@@ -515,7 +536,7 @@
                                 </ControlTemplate>
                             </dxg:FormatPreviewControl.Template>
                         </dxg:FormatPreviewControl>
-                        <TextBlock Text="{Binding DisplayName}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;701;26" />
+                        <TextBlock Text="{Binding DisplayName}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;740;26" />
                     </StackPanel>
                 </DataTemplate>
             </dxb:BarButtonItem.ContentTemplate>
@@ -523,7 +544,7 @@
     </DataTemplate>
 
     <ControlTemplate x:Key="{dxfuit:FilterEditorThemeKey ResourceKey=RowControlTemplate}" TargetType="ContentControl">
-        <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;709;10" />
+        <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;748;10" />
     </ControlTemplate>
 
     <dxfui:NodeModelTemplateSelector x:Key="FilterEditorNodeTemplateSelector">
@@ -545,14 +566,14 @@
     </dxfui:NodeModelTemplateSelector>
 
     <Style x:Key="{dxfuit:FilterEditorThemeKey ResourceKey=FilterEditorItemStyle}" TargetType="ContentControl">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;734;6" /><Setter Property="Template">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;773;6" /><Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ContentControl">
-                    <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;738;22">
-                        <dx:DXBorder x:Name="BackgroundBorder" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=ItemCornerRadius}}" TextBlock.Foreground="{TemplateBinding Foreground}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;739;26">
-                            <ContentPresenter x:Name="Content" Content="{TemplateBinding Content}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;745;30" />
+                    <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;777;22">
+                        <dx:DXBorder x:Name="BackgroundBorder" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=ItemCornerRadius}}" TextBlock.Foreground="{TemplateBinding Foreground}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;778;26">
+                            <ContentPresenter x:Name="Content" Content="{TemplateBinding Content}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;784;30" />
                         </dx:DXBorder>
-                        <dx:DXBorder x:Name="BottomBorder" BorderBrush="{TemplateBinding Background}" BorderThickness="0,0,0,2" CornerRadius="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=ItemCornerRadius}}" IsHitTestVisible="False" Visibility="Collapsed" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;747;26" />
+                        <dx:DXBorder x:Name="BottomBorder" BorderBrush="{TemplateBinding Background}" BorderThickness="0,0,0,2" CornerRadius="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=ItemCornerRadius}}" IsHitTestVisible="False" Visibility="Collapsed" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;786;26" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -573,29 +594,29 @@
     </Style>
 
     <DataTemplate x:Key="{dxfuit:FilterEditorThemeKey ResourceKey=LeafTemplate}">
-        <Grid Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;779;10">
-            <StackPanel dxfui:FilterEditorNavigation.Node="{Binding}" Margin="{StaticResource filterEditorRowMargin}" MinHeight="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=RowMinHeight}}" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;780;14">
-                <ContentControl Background="{DynamicResource ResourceKey={dxfuit:FilterEditorThemeKey ResourceKey=PropertySelectorBackground}}" Margin="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=FilterEditorItemMargin}}" Style="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=FilterEditorItemStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;784;18">
+        <Grid Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;818;10">
+            <StackPanel dxfui:FilterEditorNavigation.Node="{Binding}" Margin="{StaticResource filterEditorRowMargin}" MinHeight="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=RowMinHeight}}" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;819;14">
+                <ContentControl Background="{DynamicResource ResourceKey={dxfuit:FilterEditorThemeKey ResourceKey=PropertySelectorBackground}}" Margin="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=FilterEditorItemMargin}}" Style="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=FilterEditorItemStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;823;18">
                     <dxfui:FilterEditorPropertySelector x:Name="PropertySelector" dxfui:FilterEditorNavigation.Index="0" EditValue="{Binding SelectedProperty}" IsEnabled="{DXBinding Expr='Properties.Count gt 0'}" ItemsSource="{Binding Properties}" SelectedItem="{Binding SelectedProperty}" Style="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=PropertySelectorStyle}}" />
                 </ContentControl>
-                <ContentControl Background="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=OperatorSelectorBackground}}" Foreground="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=OperatorSelectorForeground}}" Margin="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=FilterEditorItemMargin}}" Style="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=FilterEditorItemStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;795;18">
-                    <StackPanel x:Name="OperatorSelector" dxfui:FilterEditorNavigation.Index="1" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;799;22">
+                <ContentControl Background="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=OperatorSelectorBackground}}" Foreground="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=OperatorSelectorForeground}}" Margin="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=FilterEditorItemMargin}}" Style="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=FilterEditorItemStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;834;18">
+                    <StackPanel x:Name="OperatorSelector" dxfui:FilterEditorNavigation.Index="1" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;838;22">
                         <StackPanel.Style>
                             <Style x:Key="{dxt:DefaultStyleThemeKey FullName=FrameworkElement}" BasedOn="{StaticResource menuOwner}" TargetType="{x:Type FrameworkElement}">
                                 <Style.Resources>
                                     <DataTemplate x:Key="operatorMenuSubItemTemplate">
                                         <dxb:BarSplitButtonItem ActAsDropDown="True" Content="{Binding DisplayName}">
-                                            <dxb:PopupMenu ItemLinksSource="{Binding Children}" ItemTemplateSelector="{DynamicResource operatorMenuTemplateSelector}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;809;46" />
+                                            <dxb:PopupMenu ItemLinksSource="{Binding Children}" ItemTemplateSelector="{DynamicResource operatorMenuTemplateSelector}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;848;46" />
                                         </dxb:BarSplitButtonItem>
                                     </DataTemplate>
                                     <dxfui:MenuItemTemplateSelector x:Key="operatorMenuTemplateSelector" Button="{StaticResource MenuItemTemplate}" FormatConditionButton="{StaticResource FormatConditionMenuItemTemplate}" Group="{StaticResource operatorMenuSubItemTemplate}" />
                                 </Style.Resources>
-                                <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;803;30" /><Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                                <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;842;30" /><Setter Property="FocusVisualStyle" Value="{x:Null}" />
                                 <Style.Triggers>
                                     <Trigger Property="dxfui:FilterEditorNavigation.IsFocused" Value="True">
                                         <Setter Property="dxb:BarManager.DXContextMenu">
                                             <Setter.Value>
-                                                <dxb:PopupMenu ItemLinksSource="{Binding MultiModel.ItemsMenu}" ItemTemplateSelector="{StaticResource operatorMenuTemplateSelector}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;822;50" />
+                                                <dxb:PopupMenu ItemLinksSource="{Binding MultiModel.ItemsMenu}" ItemTemplateSelector="{StaticResource operatorMenuTemplateSelector}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;861;50" />
                                             </Setter.Value>
                                         </Setter>
                                     </Trigger>
@@ -606,11 +627,11 @@
                             <dxfui:FilterEditorContextMenuBehavior />
                         </dxmvvm:Interaction.Behaviors>
                         <dxg:FormatPreviewControl x:Name="FormatPreviewControl" BorderBrush="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=OperatorSelectorBackground}}" Content="{Binding Format}" CornerRadius="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=FormatConditionCornerRadius}}" DataContext="{Binding MultiModel.SelectedItem.FormatCondition}" PreviewString="Aa" Visibility="{Binding Converter={dx:NullableToVisibilityConverter}}" />
-                        <dxe:TextEdit EditMode="InplaceInactive" EditValue="{Binding MultiModel.SelectedItem.DisplayName, Mode=OneWay}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;839;26" />
+                        <dxe:TextEdit EditMode="InplaceInactive" EditValue="{Binding MultiModel.SelectedItem.DisplayName, Mode=OneWay}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;878;26" />
                     </StackPanel>
                 </ContentControl>
-                <ContentPresenter Content="{Binding MultiModel.Model}" ContentTemplateSelector="{Binding DataContext.MultiModel.ModelTemplateSelector, RelativeSource={RelativeSource Mode=TemplatedParent}}" dxfui:FilterEditorNavigation.Index="2" dxfuii:FilterElementHelper.FilterModel="{Binding}" VerticalAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;842;18" />
-                <Button x:Name="RemoveButton" Command="{Binding RemoveCommand}" Margin="4,0,0,0" MinWidth="18" Style="{StaticResource removeButtonStyle}" Template="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=RemoveButtonControlTemplate}}" Visibility="Hidden" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;847;18" />
+                <ContentPresenter Content="{Binding MultiModel.Model}" ContentTemplateSelector="{Binding DataContext.MultiModel.ModelTemplateSelector, RelativeSource={RelativeSource Mode=TemplatedParent}}" dxfui:FilterEditorNavigation.Index="2" dxfuii:FilterElementHelper.FilterModel="{Binding}" VerticalAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;881;18" />
+                <Button x:Name="RemoveButton" Command="{Binding RemoveCommand}" Margin="4,0,0,0" MinWidth="18" Style="{StaticResource removeButtonStyle}" Template="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=RemoveButtonControlTemplate}}" Visibility="Hidden" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;886;18" />
             </StackPanel>
         </Grid>
         <DataTemplate.Triggers>
@@ -633,26 +654,26 @@
     </DataTemplate>
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Core.FilteringUI.FilterEditorLeafControl}" TargetType="{x:Type dxfui:FilterEditorLeafControl}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;883;6" /><Setter Property="ContentTemplate" Value="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=LeafTemplate}}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;922;6" /><Setter Property="ContentTemplate" Value="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=LeafTemplate}}" />
         <Setter Property="Template" Value="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=RowControlTemplate}}" />
     </Style>
 
     <DataTemplate x:Key="{dxfuit:FilterEditorThemeKey ResourceKey=GroupTemplate}">
-        <StackPanel Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;889;10">
-            <ContentPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;890;14">
+        <StackPanel Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;928;10">
+            <ContentPresenter dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;929;14">
                 <ContentPresenter.ContentTemplate>
                     <DataTemplate>
-                        <Grid Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;893;26">
-                            <StackPanel dxfui:FilterEditorNavigation.Node="{Binding}" Margin="{StaticResource filterEditorRowMargin}" MinHeight="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=RowMinHeight}}" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;894;30">
-                                <ContentControl Background="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=GroupOperatorSelectorBackground}}" Foreground="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=GroupOperatorSelectorForeground}}" Margin="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=FilterEditorItemMargin}}" Style="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=FilterEditorItemStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;898;34">
-                                    <dxe:TextEdit x:Name="OperatorSelector" dxfui:FilterEditorNavigation.Index="0" EditMode="InplaceInactive" EditValue="{Binding GroupOperator.DisplayName, Mode=OneWay}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;902;38">
+                        <Grid Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;932;26">
+                            <StackPanel dxfui:FilterEditorNavigation.Node="{Binding}" Margin="{StaticResource filterEditorRowMargin}" MinHeight="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=RowMinHeight}}" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;933;30">
+                                <ContentControl Background="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=GroupOperatorSelectorBackground}}" Foreground="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=GroupOperatorSelectorForeground}}" Margin="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=FilterEditorItemMargin}}" Style="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=FilterEditorItemStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;937;34">
+                                    <dxe:TextEdit x:Name="OperatorSelector" dxfui:FilterEditorNavigation.Index="0" EditMode="InplaceInactive" EditValue="{Binding GroupOperator.DisplayName, Mode=OneWay}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;941;38">
                                         <dxe:TextEdit.Style>
-                                            <Style x:Key="{dxt:DefaultStyleThemeKey FullName=FrameworkElement}" BasedOn="{StaticResource menuOwner}" TargetType="{x:Type FrameworkElement}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;907;46" />
+                                            <Style x:Key="{dxt:DefaultStyleThemeKey FullName=FrameworkElement}" BasedOn="{StaticResource menuOwner}" TargetType="{x:Type FrameworkElement}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;946;46" />
                                                 <Style.Triggers>
                                                     <Trigger Property="dxfui:FilterEditorNavigation.IsFocused" Value="True">
                                                         <Setter Property="dxb:BarManager.DXContextMenu">
                                                             <Setter.Value>
-                                                                <dxb:PopupMenu ItemLinksSource="{Binding OperatorTypeMenu}" ItemTemplate="{StaticResource MenuItemTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;914;66" />
+                                                                <dxb:PopupMenu ItemLinksSource="{Binding OperatorTypeMenu}" ItemTemplate="{StaticResource MenuItemTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;953;66" />
                                                             </Setter.Value>
                                                         </Setter>
                                                     </Trigger>
@@ -664,23 +685,23 @@
                                         </dxmvvm:Interaction.Behaviors>
                                     </dxe:TextEdit>
                                 </ContentControl>
-                                <Button x:Name="AddButton" Command="{Binding AddCommand}" Style="{StaticResource addChildButtonStyle}" Template="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=AddButtonControlTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;926;34">
+                                <Button x:Name="AddButton" Command="{Binding AddCommand}" Style="{StaticResource addChildButtonStyle}" Template="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=AddButtonControlTemplate}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;965;34">
                                     <ToolTipService.ToolTip>
-                                        <ToolTip dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;931;42">
-                                            <StackPanel Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;932;46">
-                                                <TextBlock FontWeight="Bold" Margin="0,0,0,4" Text="{dxe:EditorStringId FilterToolTipKeysAdd}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;933;50" />
-                                                <TextBlock Text="{dxe:EditorStringId FilterToolTipNodeAdd}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;936;50" />
+                                        <ToolTip dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;970;42">
+                                            <StackPanel Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;971;46">
+                                                <TextBlock FontWeight="Bold" Margin="0,0,0,4" Text="{dxe:EditorStringId FilterToolTipKeysAdd}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;972;50" />
+                                                <TextBlock Text="{dxe:EditorStringId FilterToolTipNodeAdd}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;975;50" />
                                             </StackPanel>
                                         </ToolTip>
                                     </ToolTipService.ToolTip>
                                 </Button>
-                                <dx:DXBorder x:Name="AddChildSplitButton" Background="Transparent" MinWidth="12" Style="{StaticResource menuOwner}" Visibility="{DXBinding Expr='AddChildMenu.Count gt 0 ? `Visible` : `Collapsed`'}" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;941;34">
+                                <dx:DXBorder x:Name="AddChildSplitButton" Background="Transparent" MinWidth="12" Style="{StaticResource menuOwner}" Visibility="{DXBinding Expr='AddChildMenu.Count gt 0 ? `Visible` : `Collapsed`'}" cs:id="Border_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;980;34">
                                     <dxb:BarManager.DXContextMenu>
-                                        <dxb:PopupMenu ItemLinksSource="{Binding AddChildMenu}" ItemTemplate="{StaticResource MenuItemTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;948;42" />
+                                        <dxb:PopupMenu ItemLinksSource="{Binding AddChildMenu}" ItemTemplate="{StaticResource MenuItemTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;987;42" />
                                     </dxb:BarManager.DXContextMenu>
-                                    <Path Style="{DynamicResource ResourceKey={dxfuit:FilterEditorThemeKey ResourceKey=AddChildSplitButtonPathStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;950;38" />
+                                    <Path Style="{DynamicResource ResourceKey={dxfuit:FilterEditorThemeKey ResourceKey=AddChildSplitButtonPathStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;989;38" />
                                 </dx:DXBorder>
-                                <Button x:Name="RemoveButton" Command="{Binding RemoveCommand}" Margin="4,0,0,0" MinWidth="18" Style="{StaticResource removeButtonStyle}" Template="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=RemoveButtonControlTemplate}}" Visibility="Hidden" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;952;34" />
+                                <Button x:Name="RemoveButton" Command="{Binding RemoveCommand}" Margin="4,0,0,0" MinWidth="18" Style="{StaticResource removeButtonStyle}" Template="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=RemoveButtonControlTemplate}}" Visibility="Hidden" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;991;34" />
                             </StackPanel>
                         </Grid>
                         <DataTemplate.Triggers>
@@ -697,21 +718,21 @@
                     </DataTemplate>
                 </ContentPresenter.ContentTemplate>
             </ContentPresenter>
-            <ItemsControl ItemsSource="{Binding Children}" ItemTemplateSelector="{StaticResource FilterEditorNodeTemplateSelector}" Margin="24,0,0,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;979;14" />
+            <ItemsControl ItemsSource="{Binding Children}" ItemTemplateSelector="{StaticResource FilterEditorNodeTemplateSelector}" Margin="24,0,0,0" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1018;14" />
         </StackPanel>
     </DataTemplate>
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Core.FilteringUI.FilterEditorGroupControl}" TargetType="{x:Type dxfui:FilterEditorGroupControl}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;985;6" /><Setter Property="ContentTemplate" Value="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=GroupTemplate}}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;1024;6" /><Setter Property="ContentTemplate" Value="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=GroupTemplate}}" />
         <Setter Property="Template" Value="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=RowControlTemplate}}" />
     </Style>
 
     <DataTemplate x:Key="{dxfuit:FilterEditorThemeKey ResourceKey=CustomExpressionNodeBehaviorsTemplate}">
-        <ItemsControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;991;10">
+        <ItemsControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1030;10">
             <dxcore_unique_xmlns:DialogService DialogWindowStartupLocation="CenterOwner">
                 <dxcore_unique_xmlns:DialogService.DialogStyle>
                     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=Window}" TargetType="{x:Type Window}">
-                        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;994;22" /><Setter Property="ShowInTaskbar" Value="False" />
+                        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;1033;22" /><Setter Property="ShowInTaskbar" Value="False" />
                         <Setter Property="WindowStyle" Value="ToolWindow" />
                         <Setter Property="UseLayoutRounding" Value="True" />
                         <Setter Property="Width" Value="600" />
@@ -728,10 +749,10 @@
     </DataTemplate>
 
     <DataTemplate x:Key="{dxfuit:FilterEditorThemeKey ResourceKey=CustomExpressionTemplate}">
-        <Grid Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1012;10">
-            <StackPanel dxfui:FilterEditorNavigation.Node="{Binding}" dxmvvm:Interaction.BehaviorsTemplate="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=CustomExpressionNodeBehaviorsTemplate}}" Margin="{StaticResource filterEditorRowMargin}" MinHeight="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=RowMinHeight}}" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1013;14">
-                <ContentControl BorderBrush="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=InplaceEditorInactiveBorderBrush}}" BorderThickness="1" Style="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=FilterEditorItemStyle}}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1018;18">
-                    <dxe:TextEdit x:Name="CustomFilterTextEdit" dxfui:FilterEditorNavigation.Index="0" EditMode="InplaceInactive" EditValue="{Binding FilterText, Mode=OneWay}" IsReadOnly="True" NullText="{dxe:EditorStringId FilterExpressionEmptyValueText}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1022;22" />
+        <Grid Background="Transparent" cs:id="Grid_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1051;10">
+            <StackPanel dxfui:FilterEditorNavigation.Node="{Binding}" dxmvvm:Interaction.BehaviorsTemplate="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=CustomExpressionNodeBehaviorsTemplate}}" Margin="{StaticResource filterEditorRowMargin}" MinHeight="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=RowMinHeight}}" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1052;14">
+                <ContentControl BorderBrush="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=InplaceEditorInactiveBorderBrush}}" BorderThickness="1" Style="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=FilterEditorItemStyle}}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1057;18">
+                    <dxe:TextEdit x:Name="CustomFilterTextEdit" dxfui:FilterEditorNavigation.Index="0" EditMode="InplaceInactive" EditValue="{Binding FilterText, Mode=OneWay}" IsReadOnly="True" NullText="{dxe:EditorStringId FilterExpressionEmptyValueText}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1061;22" />
                     <ContentControl.InputBindings>
                         <KeyBinding Command="{Binding ShowExpressionEditorCommand}" Key="Space" />
                         <KeyBinding Command="{Binding ShowExpressionEditorCommand}" Key="Enter" />
@@ -740,7 +761,7 @@
                         <dxmvvm:EventToCommand Command="{Binding ShowExpressionEditorCommand}" EventName="MouseLeftButtonDown" />
                     </dxmvvm:Interaction.Behaviors>
                 </ContentControl>
-                <Button x:Name="RemoveButton" Command="{Binding RemoveCommand}" Margin="4,0,0,0" MinWidth="18" Style="{StaticResource removeButtonStyle}" Template="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=RemoveButtonControlTemplate}}" Visibility="Hidden" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1036;18" />
+                <Button x:Name="RemoveButton" Command="{Binding RemoveCommand}" Margin="4,0,0,0" MinWidth="18" Style="{StaticResource removeButtonStyle}" Template="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=RemoveButtonControlTemplate}}" Visibility="Hidden" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1075;18" />
             </StackPanel>
         </Grid>
         <DataTemplate.Triggers>
@@ -757,25 +778,25 @@
     </DataTemplate>
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Core.FilteringUI.FilterEditorCustomExpressionControl}" TargetType="{x:Type dxfui:FilterEditorCustomExpressionControl}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;1062;6" /><Setter Property="ContentTemplate" Value="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=CustomExpressionTemplate}}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;1101;6" /><Setter Property="ContentTemplate" Value="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=CustomExpressionTemplate}}" />
         <Setter Property="Template" Value="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=RowControlTemplate}}" />
     </Style>
 
     
 
     <ControlTemplate x:Key="{dxfuit:FilterEditorThemeKey ResourceKey=ControlTemplate}" TargetType="{x:Type dxfui:FilterEditorControl}">
-        <dx:DXBorder Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1070;10">
-            <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1073;14">
-                <ScrollViewer x:Name="PART_ScrollViewer" Focusable="False" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Visibility="{TemplateBinding AllowEditFilter, Converter={dxmvvm:BooleanToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1074;18">
-                    <ContentPresenter Content="{Binding RootNode, RelativeSource={RelativeSource Mode=TemplatedParent}}" ContentTemplateSelector="{StaticResource FilterEditorNodeTemplateSelector}" Margin="{StaticResource filterEditorMargin}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1079;22" />
+        <dx:DXBorder Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1109;10">
+            <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1112;14">
+                <ScrollViewer x:Name="PART_ScrollViewer" Focusable="False" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Visibility="{TemplateBinding AllowEditFilter, Converter={dxmvvm:BooleanToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1113;18">
+                    <ContentPresenter Content="{Binding RootNode, RelativeSource={RelativeSource Mode=TemplatedParent}}" ContentTemplateSelector="{StaticResource FilterEditorNodeTemplateSelector}" Margin="{StaticResource filterEditorMargin}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1118;22" />
                 </ScrollViewer>
-                <TextBlock x:Name="PART_Placeholder" HorizontalAlignment="Center" Text="{dxg:GridControlStringIdExtension FilterEditorNotEditableMessage}" VerticalAlignment="Center" Visibility="{TemplateBinding AllowEditFilter, Converter={dxmvvm:BooleanToVisibilityConverter Inverse=True}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1083;18" />
+                <TextBlock x:Name="PART_Placeholder" HorizontalAlignment="Center" Text="{dxg:GridControlStringIdExtension FilterEditorNotEditableMessage}" VerticalAlignment="Center" Visibility="{TemplateBinding AllowEditFilter, Converter={dxmvvm:BooleanToVisibilityConverter Inverse=True}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1122;18" />
             </Grid>
         </dx:DXBorder>
     </ControlTemplate>
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Core.FilteringUI.FilterEditorControl}" TargetType="{x:Type dxfui:FilterEditorControl}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;1092;6" /><Setter Property="Template" Value="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=ControlTemplate}}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;1131;6" /><Setter Property="Template" Value="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=ControlTemplate}}" />
         <Setter Property="Background" Value="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=Background}}" />
         <Setter Property="BorderBrush" Value="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=BorderBrush}}" />
         <Setter Property="Foreground" Value="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=Foreground}}" />
@@ -786,7 +807,7 @@
     </DataTemplate>
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Core.FilteringUI.InplaceEditorCell}" TargetType="{x:Type dxfui:InplaceEditorCell}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;1106;6" /><Setter Property="TextElement.Foreground" Value="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=InplaceEditorInactiveForeground}}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;1145;6" /><Setter Property="TextElement.Foreground" Value="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=InplaceEditorInactiveForeground}}" />
         <Setter Property="EditorTemplate" Value="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=InplaceEditorTemplate}}" />
         <Setter Property="MinHeight" Value="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=RowMinHeight}}" />
         <Setter Property="MinWidth" Value="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=InplaceEditorCellMinWidth}}" />
@@ -796,8 +817,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="dxfui:InplaceEditorCell">
-                    <dx:DXBorder Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=ItemCornerRadius}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1117;22">
-                        <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1121;26" />
+                    <dx:DXBorder Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=ItemCornerRadius}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1156;22">
+                        <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1160;26" />
                     </dx:DXBorder>
                 </ControlTemplate>
             </Setter.Value>
@@ -827,7 +848,7 @@
     </Style>
 
     <Style x:Key="{dxfuit:FilterEditorThemeKey ResourceKey=FilterEditorStyle}" TargetType="{x:Type dxfui:FilterEditorControl}">
-        <Style.Setters><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;1150;6" />
+        <Style.Setters><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;1189;6" />
             <Setter Property="Context" Value="{Binding Context}" />
             <Setter Property="PropertyName" Value="{Binding PropertyName}" />
             <Setter Property="RespondToContextFiltersChanges" Value="False" />
@@ -835,7 +856,7 @@
             <Setter Property="dxmvvm:Interaction.BehaviorsTemplate">
                 <Setter.Value>
                     <DataTemplate>
-                        <ItemsControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1159;26">
+                        <ItemsControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1198;26">
                             <dxfui:FilterEditorApplyService />
                             <dxmvvm:EventToCommand Command="{DXCommand Execute='@a($dxfui:FilterEditorControl).Focus()'}" Event="Loaded" />
                         </ItemsControl>
@@ -851,17 +872,17 @@
 
     <DataTemplate x:Key="{dxfuit:FilterEditorThemeKey ResourceKey=FilterEditorDialogServiceViewTemplate}">
         <DataTemplate.Resources>
-            <Style x:Key="{x:Type dxfui:FilterEditorControl}" BasedOn="{StaticResource {dxfuit:FilterEditorThemeKey ResourceKey=FilterEditorStyle}}" TargetType="{x:Type dxfui:FilterEditorControl}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;1175;14" /></Style>
+            <Style x:Key="{x:Type dxfui:FilterEditorControl}" BasedOn="{StaticResource {dxfuit:FilterEditorThemeKey ResourceKey=FilterEditorStyle}}" TargetType="{x:Type dxfui:FilterEditorControl}"><Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;1214;14" /></Style>
         </DataTemplate.Resources>
-        <ContentPresenter Content="{Binding}" ContentTemplate="{Binding FilterEditorTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1179;10" />
+        <ContentPresenter Content="{Binding}" ContentTemplate="{Binding FilterEditorTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1218;10" />
     </DataTemplate>
 
     <DataTemplate x:Key="{dxfuit:FilterEditorThemeKey ResourceKey=FilterEditorDialogServiceTemplate}">
-        <ContentControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1183;10">
+        <ContentControl dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\FilteringUI\FilterEditor.xaml;1222;10">
             <dxcore_unique_xmlns:DialogService DialogWindowStartupLocation="CenterOwner" ViewTemplate="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=FilterEditorDialogServiceViewTemplate}}">
                 <dxcore_unique_xmlns:DialogService.DialogStyle>
                     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/core.ThemedWindow}" TargetType="{x:Type dx:ThemedWindow}">
-                        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;1186;22" /><Setter Property="dxi:ThemedWindowOptions.ShowOverPopups" Value="True" />
+                        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\FilteringUI\FilterEditor.xaml;1225;22" /><Setter Property="dxi:ThemedWindowOptions.ShowOverPopups" Value="True" />
                         <Setter Property="ShowInTaskbar" Value="False" />
                         <Setter Property="WindowStyle" Value="ToolWindow" />
                         <Setter Property="ShowIcon" Value="False" />

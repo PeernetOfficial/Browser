@@ -12,7 +12,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v22.1;component/Core/Core/Editors/Themes/Generic/Common.xaml"/>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v22.2;component/Core/Core/Editors/Themes/Generic/Common.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <Thickness x:Key="{dxet:ButtonsThemeKey ResourceKey=DateEditButtonPadding}">0</Thickness>
@@ -46,6 +46,23 @@
     <Style x:Key="{dxet:ButtonsThemeKey ResourceKey=ImageButtonGlyphStyle}" TargetType="{x:Type Image}">
         <Setter Property="Width" Value="16"/>
         <Setter Property="Height" Value="16"/>
+    </Style>
+
+    <Style x:Key="{dxet:BrowsePathThemeKey ResourceKey=IconStyle}" TargetType="{x:Type dx:DXImage}">
+        <Setter Property="Margin" Value="4,0,0,0"/>
+        <Setter Property="Width" Value="16"/>
+        <Setter Property="Height" Value="16"/>
+        <Style.Triggers>
+            <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
+                <Setter Property="Margin" Value="14,0,0,0"/>
+            </Trigger>
+            <Trigger Property="dx:ThemeManager.IsTouchlineTheme" Value="True">
+                <Setter Property="Margin" Value="14,0,0,0"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Opacity" Value="0.35"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <dxei:BrushToSvgPaletteConverter x:Key="BrushToSvgPaletteConverter"/>
@@ -343,5 +360,83 @@
     <DataTemplate x:Key="{dxet:ButtonsThemeKey ResourceKey=LoadingButtonInfoTemplate}">
         <Button Style="{DynamicResource {dxet:ComboBoxEditThemeKey ResourceKey=LoadingButtonStyle}}" Visibility="{Binding Path=Visibility}"/>
     </DataTemplate>
+
+    <ControlTemplate x:Key="{dxet:BrowsePathThemeKey ResourceKey=Template}" TargetType="{x:Type dxe:BrowsePathEdit}">
+        <ContentControl x:Name="PART_Root"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        dx:FocusHelper2.Focusable="False"
+                        dxe:EditorAppearanceProperties.FocusedBorderBrush="{Binding Path=(dxe:EditorAppearanceProperties.FocusedBorderBrush), RelativeSource={RelativeSource TemplatedParent}}"
+                        dxe:EditorAppearanceProperties.ReadOnlyBackground="{Binding Path=(dxe:EditorAppearanceProperties.ReadOnlyBackground), RelativeSource={RelativeSource TemplatedParent}}"
+                        dxe:EditorAppearanceProperties.ReadOnlyBorderBrush="{Binding Path=(dxe:EditorAppearanceProperties.ReadOnlyBorderBrush), RelativeSource={RelativeSource TemplatedParent}}"
+                        dxei:ControlHelper.IsReadOnly="{TemplateBinding IsReadOnly}"
+                        dxei:ControlHelper.ShowFocusedState="{Binding Path=IsKeyboardFocusWithin, RelativeSource={RelativeSource TemplatedParent}}"
+                        dxi:AppearanceOptions.BorderThickness="{Binding Path=(dxi:AppearanceOptions.BorderThickness), RelativeSource={RelativeSource TemplatedParent}}"
+                        dxi:AppearanceOptions.CornerRadius="{Binding Path=(dxi:AppearanceOptions.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
+                        dxi:AppearanceOptions.HasBorderThickness="{Binding Path=(dxi:AppearanceOptions.HasBorderThickness), RelativeSource={RelativeSource TemplatedParent}}"
+                        dxi:AppearanceOptions.HasCornerRadius="{Binding Path=(dxi:AppearanceOptions.HasCornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
+                        HorizontalContentAlignment="Stretch"
+                        Template="{TemplateBinding ActualBorderTemplate}"
+                        VerticalContentAlignment="Stretch">
+            <Grid x:Name="ButtonEditGrid" SnapsToDevicePixels="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <dxe:ErrorControl x:Name="PART_ErrorPresenter"/>
+                <dxe:ButtonsControl x:Name="PART_LeftButtons"
+                                    Grid.Column="1"
+                                    ItemsSource="{TemplateBinding LeftButtons}"
+                                    Visibility="{Binding Path=ActualShowLeftButtons, Converter={StaticResource BoolToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}"/>
+                <dx:DXImage x:Name="PART_Icon"
+                            Grid.Column="2"
+                            Source="{TemplateBinding PathIcon}"
+                            Style="{DynamicResource {dxet:BrowsePathThemeKey ResourceKey=IconStyle}}"
+                            Visibility="{TemplateBinding ShowIcon, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                <dxe:EditorControl x:Name="PART_Content"
+                                   dx:FocusHelper2.Focusable="False"
+                                   Grid.Column="3"
+                                   Template="{TemplateBinding ActualEditorControlTemplate}"
+                                   VerticalAlignment="Stretch"/>
+                <dxe:ButtonsControl x:Name="PART_RightButtons"
+                                    Grid.Column="4"
+                                    ItemsSource="{TemplateBinding RightButtons}"
+                                    Visibility="{Binding Path=ActualShowRightButtons, Converter={StaticResource BoolToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}"/>
+            </Grid>
+        </ContentControl>
+        <ControlTemplate.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=(dxe:BaseEdit.OwnerEdit).(dxe:ActualPropertyProvider.Properties).IsTextEditable, RelativeSource={RelativeSource Self}}" Value="true"/>
+                    <Condition Binding="{Binding Path=EditMode, RelativeSource={RelativeSource Self}}" Value="Standalone"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="Template"
+                            TargetName="PART_Content"
+                            Value="{Binding Path=EditTemplate, RelativeSource={RelativeSource TemplatedParent}}"/>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=(dxe:BaseEdit.OwnerEdit).(dxe:ActualPropertyProvider.Properties).IsTextEditable, RelativeSource={RelativeSource Self}}" Value="false"/>
+                    <Condition Binding="{Binding Path=EditMode, RelativeSource={RelativeSource Self}}" Value="Standalone"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="Template"
+                            TargetName="PART_Content"
+                            Value="{Binding Path=EditNonEditableTemplate, RelativeSource={RelativeSource TemplatedParent}}"/>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+            <DataTrigger Binding="{Binding Path=ShowBorder, RelativeSource={RelativeSource Self}}" Value="true">
+                <Setter Property="dx:WpfSvgPalette.Palette"
+                        TargetName="PART_ErrorPresenter"
+                        Value="{DynamicResource {dxet:InplaceBaseEditThemeKey ResourceKey=ValidationErrorSvgPalette}}"/>
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
 
 </ResourceDictionary>
