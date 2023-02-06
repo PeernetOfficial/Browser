@@ -43,38 +43,6 @@
         </Setter>
     </Style>
 
-    <ImageBrush x:Key="DirectoryTabImageBrush" ImageSource="{DynamicResource DirectoryDrawingImage}" />
-    <ImageBrush x:Key="FocusedDirectoryTabImageBrush" ImageSource="{DynamicResource Directory_FocusedDrawingImage}" />
-
-    <Style x:Key="DirectoryNavBarButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonBaseStyle}">
-        <Setter Property="Background" Value="{StaticResource DirectoryTabImageBrush}" />
-        <Setter Property="Padding" Value="12" />
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding Path=(contexts:GlobalContext.CurrentViewModel)}" Value="DirectoryViewModel">
-                <Setter Property="Background" Value="{StaticResource FocusedDirectoryTabImageBrush}" />
-            </DataTrigger>
-            <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Background" Value="{StaticResource FocusedDirectoryTabImageBrush}" />
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
-    <ImageBrush x:Key="HomeTabImageBrush" ImageSource="{DynamicResource HomeDrawingImage}" />
-    <ImageBrush x:Key="FocusedHomeTabImageBrush" ImageSource="{DynamicResource Home_FocusedDrawingImage}" />
-
-    <Style x:Key="HomeNavBarButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonBaseStyle}">
-        <Setter Property="Background" Value="{StaticResource HomeTabImageBrush}" />
-        <Setter Property="Padding" Value="12" />
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding Path=(contexts:GlobalContext.CurrentViewModel)}" Value="HomeViewModel">
-                <Setter Property="Background" Value="{StaticResource FocusedHomeTabImageBrush}" />
-            </DataTrigger>
-            <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Background" Value="{StaticResource FocusedHomeTabImageBrush}" />
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
     <ImageBrush x:Key="UserTabImageBrush" ImageSource="{DynamicResource UserDrawingImage}" />
     <ImageBrush x:Key="FocusedUserTabImageBrush" ImageSource="{DynamicResource User_FocusedDrawingImage}" />
 
@@ -88,22 +56,6 @@
             </DataTrigger>
             <Trigger Property="IsMouseOver" Value="true">
                 <Setter Property="Background" Value="{StaticResource FocusedUserTabImageBrush}" />
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
-    <ImageBrush x:Key="ExploreTabImageBrush" ImageSource="{DynamicResource ExploreDrawingImage}" />
-    <ImageBrush x:Key="FocusedExploreTabImageBrush" ImageSource="{DynamicResource Explore_FocusedDrawingImage}" />
-
-    <Style x:Key="ExploreNavBarButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonBaseStyle}">
-        <Setter Property="Background" Value="{StaticResource ExploreTabImageBrush}" />
-        <Setter Property="Padding" Value="12" />
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding Path=(contexts:GlobalContext.CurrentViewModel)}" Value="ExploreViewModel">
-                <Setter Property="Background" Value="{StaticResource FocusedExploreTabImageBrush}" />
-            </DataTrigger>
-            <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Background" Value="{StaticResource FocusedExploreTabImageBrush}" />
             </Trigger>
         </Style.Triggers>
     </Style>

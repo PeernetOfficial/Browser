@@ -1,6 +1,7 @@
 ﻿using DevExpress.Xpf.Grid;
 using Microsoft.Extensions.DependencyInjection;
 using Peernet.Browser.Application.Download;
+using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.ViewModels;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.SDK.Models.Presentation.Footer;
@@ -43,6 +44,16 @@ namespace Peernet.Browser.WPF.Controls
             var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;
             var model = (DownloadModel)cellData.RowData.Row;
             new PeersMapWindow(model.GeoPoints).Show();
+        }
+
+        private async void TextBlock_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var directoryViewModel = App.ServiceProvider.GetRequiredService<DirectoryViewModel>();
+            var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;
+            var model = (DownloadModel)cellData.RowData.Row;
+            var nodeId = Convert.ToHexString(model.File.NodeId);
+            await directoryViewModel.AddTab(nodeId);
+            var x = App.ServiceProvider.GetRequiredService<MainViewModel>();
         }
     }
 }

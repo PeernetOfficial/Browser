@@ -23,7 +23,7 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IStatusService statusService;
         private readonly IApplicationManager applicationManager;
         private readonly IBlockchainService blockchainService;
-        private readonly DirectoryViewModel directoryViewModel;
+        private readonly CurrentUserDirectoryViewModel currentUserDirectoryViewModel;
         private readonly IModalNavigationService modalNavigationService;
         private readonly INavigationService navigationService;
         private readonly INotificationsManager notificationsManager;
@@ -56,7 +56,7 @@ namespace Peernet.Browser.Application.ViewModels
             this.blockchainService = blockchainService;
             this.settingsManager = settingsManager;
             this.notificationsManager = notificationsManager;
-            this.directoryViewModel = directoryViewModel;
+            this.currentUserDirectoryViewModel = directoryViewModel.CurrentUserDirectoryViewModel;
 
             DownloadManager = downloadManager;
             DownloadManager.downloadsChanged += GetLastDownloadItem;
@@ -256,7 +256,7 @@ namespace Peernet.Browser.Application.ViewModels
 
             if (fileModels.Count != 0)
             {
-                var parameter = new ShareFileViewModelParameter(warehouseService, blockchainService, navigationService, notificationsManager, directoryViewModel)
+                var parameter = new ShareFileViewModelParameter(warehouseService, blockchainService, navigationService, notificationsManager, currentUserDirectoryViewModel)
                 {
                     FileModels = fileModels
                 };

@@ -44,7 +44,7 @@
                 <dxg:GridColumn Header="User" SortFieldName="File.NodeId" FieldName="File.NodeId" Width="140">
                     <dxg:GridColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding RowData.Row.File.NodeId, Converter={StaticResource ByteArrayToHexStringConverter}}" Style="{StaticResource Underlined}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            <TextBlock Text="{Binding RowData.Row.File.NodeId, Converter={StaticResource ByteArrayToHexStringConverter}}" Style="{StaticResource Underlined}" VerticalAlignment="Center" HorizontalAlignment="Left" PreviewMouseLeftButtonDown="TextBlock_PreviewMouseLeftButtonDown" />
                         </DataTemplate>
                     </dxg:GridColumn.CellTemplate>
                 </dxg:GridColumn>

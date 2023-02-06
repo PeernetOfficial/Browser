@@ -31,7 +31,7 @@ namespace Peernet.Browser.WPF.Controls
 
         private async void Open_OnClick(object sender, RoutedEventArgs e)
         {
-            var viewmodel = (DirectoryViewModel)DataContext;
+            var viewmodel = (DirectoryTabViewModel)DataContext;
             var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;
             var entity = (VirtualFileSystemEntity)cellData.RowData.Row;
             if (entity is VirtualFileSystemCoreEntity coreTier)

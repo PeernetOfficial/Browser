@@ -65,7 +65,7 @@ namespace Peernet.Browser.WPF
                 var directoryViewModel = App.ServiceProvider.GetRequiredService<DirectoryViewModel>();
                 if (DirectoryTab.IsSelected)
                 {
-                    var selected = directoryViewModel.VirtualFileSystem.GetCurrentlySelected();
+                    var selected = directoryViewModel.CurrentUserDirectoryViewModel.VirtualFileSystem.GetCurrentlySelected();
                     if (selected is not VirtualFileSystemCoreCategory && selected is not VirtualFileSystemCoreTier { Name: "Recent" } && selected is not VirtualFileSystemCoreTier { Name: "All files" })
                     {
                         foreach (var fileModel in fileModels)
@@ -82,7 +82,7 @@ namespace Peernet.Browser.WPF
                     App.ServiceProvider.GetRequiredService<IBlockchainService>(),
                     modalNavigationService,
                     App.ServiceProvider.GetRequiredService<INotificationsManager>(),
-                    directoryViewModel)
+                    directoryViewModel.CurrentUserDirectoryViewModel)
                 {
                     FileModels = fileModels
                 };
