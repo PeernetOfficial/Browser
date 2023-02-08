@@ -21,8 +21,11 @@ namespace Peernet.Browser.WPF.Views
             {
                 var context = (DirectoryViewModel)DataContext;
                 var tab = (FrameworkElement)e.OriginalSource;
-                var tabContext = (DirectoryTabViewModel)tab.DataContext;
-                context.CloseTab(tabContext);
+
+                if (tab.DataContext is UserDirectoryViewModel userTab)
+                {
+                    context.CloseTab(userTab);
+                }
             }
         }
     }
