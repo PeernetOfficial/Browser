@@ -1,7 +1,7 @@
 ﻿using DevExpress.Xpf.Grid;
 using Microsoft.Extensions.DependencyInjection;
+using Peernet.Browser.Application.Dispatchers;
 using Peernet.Browser.Application.Download;
-using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.ViewModels;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.SDK.Models.Presentation.Footer;
@@ -53,7 +53,8 @@ namespace Peernet.Browser.WPF.Controls
             var model = (DownloadModel)cellData.RowData.Row;
             var nodeId = Convert.ToHexString(model.File.NodeId);
             await directoryViewModel.AddTab(nodeId);
-            var x = App.ServiceProvider.GetRequiredService<MainViewModel>();
+            directoryViewModel.Navigate.Invoke();
+            e.Handled = true;
         }
     }
 }

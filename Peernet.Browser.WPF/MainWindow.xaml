@@ -59,7 +59,8 @@
         <Border Panel.ZIndex="3" Visibility="{Binding IsModalOpened, Converter={StaticResource BoolToVisibility}}" Grid.Row="1" Grid.RowSpan="2">
             <ContentControl Content="{Binding CurrentModalViewModel}" />
         </Border>
-        <controls:TabControlEx Background="Transparent"
+        <controls:TabControlEx x:Name="TabControl"
+                               Background="Transparent"
                                BorderThickness="0"
                                Margin="0 12 0 0"
                                HorizontalAlignment="Stretch"

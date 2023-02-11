@@ -4,6 +4,7 @@ using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.SDK.Models.Plugins;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -24,6 +25,8 @@ namespace Peernet.Browser.Application.ViewModels
         public CurrentUserDirectoryViewModel CurrentUserDirectoryViewModel { get; private set; }
 
         public DirectoryTabViewModel Content => SelectedIndex < 0 ? null : DirectoryTabs[SelectedIndex];
+
+        public Action Navigate { get; set; }
 
         public int SelectedIndex
         {
@@ -53,10 +56,12 @@ namespace Peernet.Browser.Application.ViewModels
             DirectoryTabs = new ObservableCollection<DirectoryTabViewModel>(new List<DirectoryTabViewModel> { CurrentUserDirectoryViewModel });
         }
 
-        public async Task AddTab(string nodeId)
+        public Task AddTab(string nodeId)
         {
             UserDirectoryViewModel tab = new(nodeId, blockchainService, CloseTab, virtualFileSystemFactory, modalNavigationService, notificationsManager, playButtonPlugs);
             DirectoryTabs.Add(tab);
+
+            return Task.CompletedTask;
         }
 
         public Task CloseTab(DirectoryTabViewModel tab)

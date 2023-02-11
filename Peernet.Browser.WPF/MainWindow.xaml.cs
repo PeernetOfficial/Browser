@@ -35,6 +35,10 @@ namespace Peernet.Browser.WPF
             if (DataContext is MainViewModel main)
             {
                 main.OpenAboutTab = () => AboutTab.IsSelected = true;
+                main.DirectoryViewModel.Navigate = () =>
+                {
+                    DirectoryTab.IsSelected = true;
+                };
             }
         }
 
@@ -148,6 +152,8 @@ namespace Peernet.Browser.WPF
                         break;
                 }
             }
+
+            e.Handled = true;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

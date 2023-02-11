@@ -177,8 +177,8 @@ namespace Peernet.Browser.Application.ViewModels
                 {
                     if (category.IsSelected)
                     {
-                        await ReloadResults();
                         category.IsSelected = false;
+                        await ReloadResults();
                         return;
                     }
                     categoryTypes.ForEach(c => c.ResetSelection());
