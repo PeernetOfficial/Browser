@@ -1,4 +1,5 @@
-﻿using Peernet.Browser.Application.Contexts;
+﻿using DevExpress.Mvvm.Native;
+using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
@@ -59,18 +60,23 @@ namespace Peernet.Browser.Application.ViewModels
 
         public Task AddTab(byte[] node)
         {
-            if (!ContainsTab(node))
+            DirectoryTabViewModel tab;
+
+            if (!ContainsTab(node, out tab))
             {
-                UserDirectoryViewModel tab = new(node, blockchainService, CloseTab, virtualFileSystemFactory, modalNavigationService, notificationsManager, playButtonPlugs);
+                tab = new UserDirectoryViewModel(node, blockchainService, CloseTab, virtualFileSystemFactory, modalNavigationService, notificationsManager, playButtonPlugs);
                 DirectoryTabs.Add(tab);
             }
+
+            ChangeTabSelection(tab);
 
             return Task.CompletedTask;
         }
 
-        private bool ContainsTab(byte[] node)
+        private bool ContainsTab(byte[] node, out DirectoryTabViewModel tab)
         {
-            return DirectoryTabs.Any(t => t.Title == Convert.ToHexString(node));
+            tab = DirectoryTabs.FirstOrDefault(t => t.Title == Convert.ToHexString(node));
+            return tab != null;
         }
 
         public Task CloseTab(DirectoryTabViewModel tab)
@@ -78,6 +84,11 @@ namespace Peernet.Browser.Application.ViewModels
             DirectoryTabs.Remove(tab);
 
             return Task.CompletedTask;
+        }
+
+        private void ChangeTabSelection(DirectoryTabViewModel tab)
+        {
+            SelectedIndex = DirectoryTabs.IndexOf(tab);
         }
     }
 }

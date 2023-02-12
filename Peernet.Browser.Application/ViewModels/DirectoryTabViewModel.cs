@@ -66,7 +66,6 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-
         public IAsyncCommand<VirtualFileSystemEntity> DeleteFileCommand =>
             new AsyncCommand<VirtualFileSystemEntity>(
                 async entity =>
@@ -113,7 +112,7 @@ namespace Peernet.Browser.Application.ViewModels
         }
 
         public IAsyncCommand<VirtualFileSystemEntity> OpenCommand =>
-            new AsyncCommand<VirtualFileSystemEntity>(
+                    new AsyncCommand<VirtualFileSystemEntity>(
                 async entity =>
                 {
                     if (entity == null)
