@@ -13,12 +13,10 @@ namespace Peernet.Browser.Infrastructure.Services
     internal class BlockchainService : IBlockchainService
     {
         private readonly IBlockchainClient blockchainClient;
-        private readonly IExploreClient exploreClient;
 
-        public BlockchainService(IBlockchainClient blockchainClient, IExploreClient exploreClient)
+        public BlockchainService(IBlockchainClient blockchainClient)
         {
             this.blockchainClient = blockchainClient;
-            this.exploreClient = exploreClient;
         }
 
         public async Task<ApiBlockchainBlockStatus> DeleteFile(ApiFile apiFile)
@@ -75,9 +73,9 @@ namespace Peernet.Browser.Infrastructure.Services
             return await blockchainClient.AddFiles(new ApiBlockchainAddFiles { Files = data });
         }
 
-        public async Task<List<ApiFile>> GetFilesForNode(string nodeId)
+        public async Task<List<ApiFile>> GetFilesForNode(byte[] node)
         {
-            return (await exploreClient.GetFilesForNode(nodeId))?.Files ?? new();
+            return (await blockchainClient.View(node))?.Files ?? new();
         }
     }
 }

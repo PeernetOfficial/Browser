@@ -51,8 +51,7 @@ namespace Peernet.Browser.WPF.Controls
             var directoryViewModel = App.ServiceProvider.GetRequiredService<DirectoryViewModel>();
             var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;
             var model = (DownloadModel)cellData.RowData.Row;
-            var nodeId = Convert.ToHexString(model.File.NodeId);
-            await directoryViewModel.AddTab(nodeId);
+            await directoryViewModel.AddTab(model.File.NodeId);
             directoryViewModel.Navigate.Invoke();
             e.Handled = true;
         }

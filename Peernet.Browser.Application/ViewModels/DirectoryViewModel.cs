@@ -7,6 +7,7 @@ using Peernet.SDK.Models.Plugins;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
@@ -56,12 +57,20 @@ namespace Peernet.Browser.Application.ViewModels
             DirectoryTabs = new ObservableCollection<DirectoryTabViewModel>(new List<DirectoryTabViewModel> { CurrentUserDirectoryViewModel });
         }
 
-        public Task AddTab(string nodeId)
+        public Task AddTab(byte[] node)
         {
-            UserDirectoryViewModel tab = new(nodeId, blockchainService, CloseTab, virtualFileSystemFactory, modalNavigationService, notificationsManager, playButtonPlugs);
-            DirectoryTabs.Add(tab);
+            if (!ContainsTab(node))
+            {
+                UserDirectoryViewModel tab = new(node, blockchainService, CloseTab, virtualFileSystemFactory, modalNavigationService, notificationsManager, playButtonPlugs);
+                DirectoryTabs.Add(tab);
+            }
 
             return Task.CompletedTask;
+        }
+
+        private bool ContainsTab(byte[] node)
+        {
+            return DirectoryTabs.Any(t => t.Title == Convert.ToHexString(node));
         }
 
         public Task CloseTab(DirectoryTabViewModel tab)
