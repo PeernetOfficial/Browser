@@ -31,7 +31,7 @@ namespace Peernet.Browser.Application.ViewModels
 
             foreach (var segment in currentLocation.Split("\\"))
             {
-                if (segment == "Your Files")
+                if (segment == "Files")
                 {
                     continue;
                 }
@@ -141,7 +141,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         public static string TrimUnsopportedSegments(string path)
         {
-            return path.Replace("Your Files\\", string.Empty).Replace("Home", string.Empty).Replace("\\\\", "\\").Trim('\\');
+            return path.Replace("Files\\", string.Empty).Replace("Home", string.Empty).Replace("\\\\", "\\").Trim('\\');
         }
 
         public void ChangeSelectedEntity(VirtualFileSystemCoreEntity coreEntity)
