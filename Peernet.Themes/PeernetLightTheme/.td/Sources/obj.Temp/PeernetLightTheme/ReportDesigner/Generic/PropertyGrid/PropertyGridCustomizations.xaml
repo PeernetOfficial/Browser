@@ -39,7 +39,7 @@
         <TextBlock Margin="0,0,18,0" Text="{Binding}" VerticalAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="ReportDesigner\Generic\PropertyGrid\PropertyGridCustomizations.xaml;64;10" />
     </DataTemplate>
 
-    <dxmvvm:BooleanToObjectConverter x:Key="propertiesGlyphConverter" FalseValue="{dx:SvgImageSource Uri='/DevExpress.Xpf.ReportDesigner.v22.1;component/Images/SVG/PropertyGrid/Properties.svg'}" TrueValue="{dx:SvgImageSource Uri='/DevExpress.Xpf.ReportDesigner.v22.1;component/Images/SVG/PropertyGrid/FavoriteProperties.svg'}" />
+    <dxmvvm:BooleanToObjectConverter x:Key="propertiesGlyphConverter" FalseValue="{dx:SvgImageSource Uri='/DevExpress.Xpf.ReportDesigner.v22.2;component/Images/SVG/PropertyGrid/Properties.svg'}" TrueValue="{dx:SvgImageSource Uri='/DevExpress.Xpf.ReportDesigner.v22.2;component/Images/SVG/PropertyGrid/FavoriteProperties.svg'}" />
 
     <DataTemplate x:Key="commonPanelTemplate">
         <dxb:ToolBarControl AllowCustomizationMenu="False" AllowHide="False" AllowQuickCustomization="False" ShowBackground="False" ShowDragWidget="False" Visibility="{Binding Path=(dxprg:PropertyGridHelper.PropertyGrid).ShowToolPanel, RelativeSource={RelativeSource Self}, Converter={dx:BooleanToVisibilityConverter}}">
@@ -58,7 +58,7 @@
                 </dxb:BarCheckItem.GlyphTemplate>
             </dxb:BarCheckItem>
             <dxb:BarItemSeparator />
-            <dxb:BarSplitCheckItem Glyph="{dx:SvgImageSource Uri='/DevExpress.Xpf.ReportDesigner.v22.1;component/Images/SVG/PropertyGrid/FavoriteProperties.svg'}" Hint="Show Favorite Properties" IsChecked="{Binding Path=(dxprg:PropertyGridHelper.PropertyGrid).ShowFavoriteProperties, RelativeSource={RelativeSource Self}}" IsVisible="{Binding Path=(dxrudi:XtraReportDiagramItem.ReportModel).DataBindingMode, RelativeSource={RelativeSource Self}, Converter={dxrudi:BindingModeAndExpressionsToBooleanConverter Inverse=True}, FallbackValue=False}">
+            <dxb:BarSplitCheckItem Glyph="{dx:SvgImageSource Uri='/DevExpress.Xpf.ReportDesigner.v22.2;component/Images/SVG/PropertyGrid/FavoriteProperties.svg'}" Hint="Show Favorite Properties" IsChecked="{Binding Path=(dxprg:PropertyGridHelper.PropertyGrid).ShowFavoriteProperties, RelativeSource={RelativeSource Self}}" IsVisible="{Binding Path=(dxrudi:XtraReportDiagramItem.ReportModel).DataBindingMode, RelativeSource={RelativeSource Self}, Converter={dxrudi:BindingModeAndExpressionsToBooleanConverter Inverse=True}, FallbackValue=False}">
                 <dxb:BarSplitCheckItem.PopupControl>
                     <dxb:PopupMenu dxcore_unique_xmlns:BlendHelper2.ThemeInfo="ReportDesigner\Generic\PropertyGrid\PropertyGridCustomizations.xaml;114;22">
                         <dxb:BarButtonItem Command="{Binding Path=(dxrud:ReportDesigner.Designer).ActualCommands.EditFavoritePropertiesCommand, RelativeSource={RelativeSource Self}}" Content="Edit Favorite Properties..." ContentTemplate="{StaticResource popupMenuItemContentTemplate}" />
@@ -68,12 +68,12 @@
             <dxb:BarSplitCheckItem Glyph="{Binding Path=(dxprg:PropertyGridHelper.PropertyGrid).ShowFavoriteProperties, RelativeSource={RelativeSource Self}, Converter={StaticResource propertiesGlyphConverter}}" GroupIndex="52416" Hint="{dxrud:ReportDesignerStringId StringId=Properties}" IsChecked="{Binding Path=(dxprg:PropertyGridHelper.PropertyGrid).ExpressionTabIsActive, RelativeSource={RelativeSource Self}, FallbackValue=False, Converter={dxmvvm:BooleanNegationConverter}}" IsVisible="{Binding Path=(dxrudi:XtraReportDiagramItem.ReportModel).DataBindingMode, RelativeSource={RelativeSource Self}, Converter={dxrudi:BindingModeAndExpressionsToBooleanConverter}}">
                 <dxb:BarSplitCheckItem.PopupControl>
                     <dxb:PopupMenu dxcore_unique_xmlns:BlendHelper2.ThemeInfo="ReportDesigner\Generic\PropertyGrid\PropertyGridCustomizations.xaml;127;22">
-                        <dxb:BarCheckItem Content="Show Favorite Properties" ContentTemplate="{StaticResource popupMenuItemContentTemplate}" Glyph="{dx:SvgImageSource Uri='/DevExpress.Xpf.ReportDesigner.v22.1;component/Images/SVG/PropertyGrid/FavoriteProperties.svg'}" IsChecked="{Binding Path=(dxprg:PropertyGridHelper.PropertyGrid).ShowFavoriteProperties, RelativeSource={RelativeSource Self}}" />
+                        <dxb:BarCheckItem Content="Show Favorite Properties" ContentTemplate="{StaticResource popupMenuItemContentTemplate}" Glyph="{dx:SvgImageSource Uri='/DevExpress.Xpf.ReportDesigner.v22.2;component/Images/SVG/PropertyGrid/FavoriteProperties.svg'}" IsChecked="{Binding Path=(dxprg:PropertyGridHelper.PropertyGrid).ShowFavoriteProperties, RelativeSource={RelativeSource Self}}" />
                         <dxb:BarButtonItem Command="{Binding Path=(dxrud:ReportDesigner.Designer).ActualCommands.EditFavoritePropertiesCommand, RelativeSource={RelativeSource Self}}" Content="Edit Favorite Properties..." ContentTemplate="{StaticResource popupMenuItemContentTemplate}" />
                     </dxb:PopupMenu>
                 </dxb:BarSplitCheckItem.PopupControl>
             </dxb:BarSplitCheckItem>
-            <dxb:BarCheckItem Glyph="{dx:SvgImageSource Uri='/DevExpress.Xpf.ReportDesigner.v22.1;component/Images/SVG/PropertyGrid/Expressions.svg'}" GroupIndex="52416" Hint="{dxrud:ReportDesignerStringId StringId=PropertyGrid_TabExpressions}">
+            <dxb:BarCheckItem Glyph="{dx:SvgImageSource Uri='/DevExpress.Xpf.ReportDesigner.v22.2;component/Images/SVG/PropertyGrid/Expressions.svg'}" GroupIndex="52416" Hint="{dxrud:ReportDesignerStringId StringId=PropertyGrid_TabExpressions}">
                 <dxb:BarCheckItem.IsVisible>
                     <MultiBinding Converter="{dxrudi:BindingModeAndExpressionsToBooleanConverter}">
                         <Binding Path="(dxrudi:XtraReportDiagramItem.ReportModel).DataBindingMode" RelativeSource="{RelativeSource Self}" />

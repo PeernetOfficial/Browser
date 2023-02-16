@@ -266,6 +266,12 @@
                                   TargetName="PART_ArrowBorder"
                                   Value="Bottom"/>
             </dxi:RenderTrigger>
+            <dxi:RenderBinding Converter="{dx:BooleanToVisibilityConverter Invert=True}"
+                               ConverterParamenter="HiddenOnFalse"
+                               DependencyProperty="{x:Static dx:SimpleButton.IsAsyncOperationInProgressProperty}"
+                               TargetName="PART_ContentPresenter"
+                               TargetProperty="Visibility"
+                               ValueSource="TemplatedParent"/>
         </dxi:RenderTemplate.Triggers>
     </dxi:RenderTemplate>
 
@@ -539,6 +545,12 @@
                                   TargetName="PART_ArrowBorder"
                                   Value="Bottom"/>
             </dxi:RenderTrigger>
+            <dxi:RenderBinding Converter="{dx:BooleanToVisibilityConverter Invert=True}"
+                               ConverterParamenter="HiddenOnFalse"
+                               DependencyProperty="{x:Static dx:SimpleButton.IsAsyncOperationInProgressProperty}"
+                               TargetName="PART_ContentPresenter"
+                               TargetProperty="Visibility"
+                               ValueSource="TemplatedParent"/>
         </dxi:RenderTemplate.Triggers>
     </dxi:RenderTemplate>
 
@@ -615,6 +627,12 @@
             <dxi:RenderBinding DependencyProperty="{x:Static dx:SimpleButton.BorderThicknessProperty}"
                                TargetName="PART_OffsetThicknessBorder"
                                TargetProperty="Margin"
+                               ValueSource="TemplatedParent"/>
+            <dxi:RenderBinding Converter="{dx:BooleanToVisibilityConverter Invert=True}"
+                               ConverterParamenter="HiddenOnFalse"
+                               DependencyProperty="{x:Static dx:SimpleButton.IsAsyncOperationInProgressProperty}"
+                               TargetName="PART_ContentPresenter"
+                               TargetProperty="Visibility"
                                ValueSource="TemplatedParent"/>
             <dxi:RenderTrigger DependencyProperty="{x:Static dx:SimpleButton.GlyphAlignmentProperty}"
                                Value="Left"
@@ -747,5 +765,183 @@
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxt:DropDownButtonThemeKey ResourceKey=AsyncDropDownButtonTemplate}" TargetType="{x:Type dx:DropDownButton}">
+        <Grid>
+            <dxi:DropDownButtonChrome x:Name="PART_Owner" RenderTemplate="{StaticResource ResourceKey={dxt:DropDownButtonThemeKey ResourceKey=RenderDropDownButtonTemplate}}"/>
+            <dxi:AsyncButtonContentControl x:Name="PART_AsyncIndicator"
+                                           CancelCommand="{Binding Command.CancelCommand, RelativeSource={RelativeSource TemplatedParent}}"
+                                           HorizontalAlignment="Stretch"
+                                           VerticalAlignment="Stretch"
+                                           Visibility="Collapsed"/>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity"
+                        TargetName="PART_Owner"
+                        Value="{StaticResource ResourceKey={dxt:DropDownButtonThemeKey ResourceKey=ButtonOpacity}}"/>
+            </Trigger>
+            <Trigger Property="IsAsyncOperationInProgress" Value="True">
+                <Setter Property="Visibility"
+                        TargetName="PART_AsyncIndicator"
+                        Value="Visible"/>
+            </Trigger>
+            <Trigger Property="AsyncDisplayMode" Value="WaitCancel">
+                <Setter Property="ShouldShowCancelButton"
+                        TargetName="PART_AsyncIndicator"
+                        Value="True"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxt:DropDownButtonThemeKey ResourceKey=AsyncSplitButtonTemplate}" TargetType="{x:Type dx:SplitButton}">
+        <Grid>
+            <dxi:DropDownButtonChrome x:Name="PART_Owner" RenderTemplate="{StaticResource ResourceKey={dxt:DropDownButtonThemeKey ResourceKey=RenderSplitButtonTemplate}}"/>
+            <dxi:AsyncButtonContentControl x:Name="PART_AsyncIndicator"
+                                           CancelCommand="{Binding Command.CancelCommand, RelativeSource={RelativeSource TemplatedParent}}"
+                                           HorizontalAlignment="Stretch"
+                                           VerticalAlignment="Stretch"
+                                           Visibility="Collapsed"/>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity"
+                        TargetName="PART_Owner"
+                        Value="{StaticResource ResourceKey={dxt:DropDownButtonThemeKey ResourceKey=ButtonOpacity}}"/>
+            </Trigger>
+            <Trigger Property="IsAsyncOperationInProgress" Value="True">
+                <Setter Property="Visibility"
+                        TargetName="PART_AsyncIndicator"
+                        Value="Visible"/>
+            </Trigger>
+            <Trigger Property="AsyncDisplayMode" Value="WaitCancel">
+                <Setter Property="ShouldShowCancelButton"
+                        TargetName="PART_AsyncIndicator"
+                        Value="True"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxt:ButtonThemeKey ResourceKey=AsyncButtonTemplate}" TargetType="{x:Type dx:SimpleButton}">
+        <Grid>
+            <dxi:ButtonChrome x:Name="PART_Owner"
+                              IsDefaulted="{Binding Path=IsDefaulted, RelativeSource={RelativeSource TemplatedParent}}"
+                              RenderTemplate="{StaticResource ResourceKey={dxt:ButtonThemeKey ResourceKey=RenderTemplate}}"/>
+            <dxi:AsyncButtonContentControl x:Name="PART_AsyncIndicator"
+                                           CancelCommand="{Binding Command.CancelCommand, RelativeSource={RelativeSource TemplatedParent}}"
+                                           HorizontalAlignment="Stretch"
+                                           VerticalAlignment="Stretch"
+                                           Visibility="Collapsed"/>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity"
+                        TargetName="PART_Owner"
+                        Value="{StaticResource ResourceKey={dxt:DropDownButtonThemeKey ResourceKey=ButtonOpacity}}"/>
+            </Trigger>
+            <Trigger Property="IsAsyncOperationInProgress" Value="True">
+                <Setter Property="Visibility"
+                        TargetName="PART_AsyncIndicator"
+                        Value="Visible"/>
+            </Trigger>
+            <Trigger Property="AsyncDisplayMode" Value="WaitCancel">
+                <Setter Property="ShouldShowCancelButton"
+                        TargetName="PART_AsyncIndicator"
+                        Value="True"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxt:ButtonThemeKey ResourceKey=AsyncButtonCancelTemplate}" TargetType="{x:Type Button}">
+        <dx:DXImage Height="{Binding ActualHeight, ElementName=PART_LoadingIndicator}"
+                    Source="{dx:SvgImageSource Uri={dx:UtilsResource Core/Images/Cancel.svg}}"
+                    Stretch="Uniform"
+                    Width="{Binding ActualWidth, ElementName=PART_LoadingIndicator}"/>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="{dxt:ButtonThemeKey ResourceKey=AsyncButtonRetryTemplate}" TargetType="{x:Type Button}">
+        <dx:DXImage Height="{Binding ActualHeight, ElementName=PART_LoadingIndicator}"
+                    Source="{dx:SvgImageSource Uri={dx:UtilsResource Core/Images/Reload.svg}}"
+                    Stretch="Uniform"
+                    Width="{Binding ActualWidth, ElementName=PART_LoadingIndicator}"/>
+    </ControlTemplate>
+
+    <dxi:ButtonAsyncIndicationSizeConverter x:Key="buttonAsyncIndicationSizeConverter"/>
+
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Core.Native.AsyncButtonContentControl}" TargetType="{x:Type dxi:AsyncButtonContentControl}">
+        <Style.Setters>
+            <Setter Property="Width">
+                <Setter.Value>
+                    <MultiBinding Converter="{StaticResource buttonAsyncIndicationSizeConverter}">
+                        <Binding Path="ActualWidth" RelativeSource="{RelativeSource TemplatedParent}"/>
+                        <Binding Path="ActualHeight" RelativeSource="{RelativeSource TemplatedParent}"/>
+                    </MultiBinding>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Height">
+                <Setter.Value>
+                    <MultiBinding Converter="{StaticResource buttonAsyncIndicationSizeConverter}">
+                        <Binding Path="ActualWidth" RelativeSource="{RelativeSource TemplatedParent}"/>
+                        <Binding Path="ActualHeight" RelativeSource="{RelativeSource TemplatedParent}"/>
+                    </MultiBinding>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background"
+                    Value="Transparent"
+                    cs:id="Setter_0000"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type dxi:AsyncButtonContentControl}">
+                        <Border Background="{TemplateBinding Background}"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch">
+                            <Grid>
+                                <dx:WaitIndicator x:Name="PART_LoadingIndicator"
+                                                  DeferedVisibility="True"
+                                                  IsTabStop="False"
+                                                  Margin="1"
+                                                  Template="{DynamicResource {dxt:ButtonThemeKey ResourceKey=ButtonWaitIndicatorTemplate}}"/>
+                                <Button x:Name="PART_LoadingIndicatorCancel"
+                                        Command="{TemplateBinding CancelCommand}"
+                                        CommandParameter="{TemplateBinding CancelCommandParameter}"
+                                        Margin="1"
+                                        Template="{DynamicResource {dxt:ButtonThemeKey ResourceKey=AsyncButtonCancelTemplate}}"
+                                        Visibility="Collapsed"/>
+                                <Button x:Name="PART_LoadingIndicatorRetry"
+                                        Command="{TemplateBinding RetryCommand}"
+                                        CommandParameter="{TemplateBinding RetryCommandParameter}"
+                                        Margin="1"
+                                        Template="{DynamicResource {dxt:ButtonThemeKey ResourceKey=AsyncButtonRetryTemplate}}"
+                                        Visibility="Collapsed"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                    <Condition Property="ShouldShowCancelButton" Value="True"/>
+                                    <Condition Property="ShowRetryButton" Value="False"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Visibility"
+                                        TargetName="PART_LoadingIndicatorCancel"
+                                        Value="Visible"/>
+                                <Setter Property="DeferedVisibility"
+                                        TargetName="PART_LoadingIndicator"
+                                        Value="False"/>
+                            </MultiTrigger>
+                            <Trigger Property="ShowRetryButton" Value="True">
+                                <Setter Property="Visibility"
+                                        TargetName="PART_LoadingIndicatorRetry"
+                                        Value="Visible"/>
+                                <Setter Property="DeferedVisibility"
+                                        TargetName="PART_LoadingIndicator"
+                                        Value="False"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
 
 </ResourceDictionary>

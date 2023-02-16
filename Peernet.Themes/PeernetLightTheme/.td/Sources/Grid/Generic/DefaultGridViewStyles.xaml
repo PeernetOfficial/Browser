@@ -1,20 +1,20 @@
 <ResourceDictionary mc:Ignorable="cs"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:core="clr-namespace:DevExpress.Xpf.Core;assembly=DevExpress.Data.v22.1"
+                    xmlns:core="clr-namespace:DevExpress.Xpf.Core;assembly=DevExpress.Data.v22.2"
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-                    xmlns:dxd="clr-namespace:DevExpress.Data;assembly=DevExpress.Data.v22.1"
+                    xmlns:dxd="clr-namespace:DevExpress.Data;assembly=DevExpress.Data.v22.2"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-                    xmlns:dxe_helpers="clr-namespace:DevExpress.Xpf.Editors.Helpers;assembly=DevExpress.Xpf.Core.v22.1"
-                    xmlns:dxe1="clr-namespace:DevExpress.Xpf.Editors.Filtering;assembly=DevExpress.Xpf.Core.v22.1"
+                    xmlns:dxe_helpers="clr-namespace:DevExpress.Xpf.Editors.Helpers;assembly=DevExpress.Xpf.Core.v22.2"
+                    xmlns:dxe1="clr-namespace:DevExpress.Xpf.Editors.Filtering;assembly=DevExpress.Xpf.Core.v22.2"
                     xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal"
                     xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
                     xmlns:dxfuii="http://schemas.devexpress.com/winfx/2008/xaml/core/filteringui/internal"
                     xmlns:dxfuit="http://schemas.devexpress.com/winfx/2008/xaml/core/filteringui/themekeys"
                     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
-                    xmlns:dxgcore="clr-namespace:DevExpress.Xpf.Grid;assembly=DevExpress.Xpf.Grid.v22.1.Core"
-                    xmlns:dxgh="clr-namespace:DevExpress.Xpf.Grid.Hierarchy;assembly=DevExpress.Xpf.Grid.v22.1.Core"
+                    xmlns:dxgcore="clr-namespace:DevExpress.Xpf.Grid;assembly=DevExpress.Xpf.Grid.v22.2.Core"
+                    xmlns:dxgh="clr-namespace:DevExpress.Xpf.Grid.Hierarchy;assembly=DevExpress.Xpf.Grid.v22.2.Core"
                     xmlns:dxgi="http://schemas.devexpress.com/winfx/2008/xaml/grid/internal"
                     xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys"
                     xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
@@ -51,6 +51,10 @@
     <dxg:SortOrderConverter x:Key="SortOrderConverter"/>
 
     <dxg:IsTreeViewConverter x:Key="IsTreeViewConverter"/>
+
+    <dxgi:TotalSummaryPositionToMarginConverter x:Key="TotalSummaryPositionToMarginConverter"
+                                                BottomMargin="0,0,0,0"
+                                                TopMargin="0,-1,0,1"/>
 
     <DataTemplate x:Key="{dxgt:GridColumnHeaderThemeKey ResourceKey=DragElementTemplate}">
         <Grid DataContext="{Binding Path=Content.Column, RelativeSource={RelativeSource TemplatedParent}}"
@@ -738,6 +742,8 @@
         </Style.Triggers>
     </Style>
 
+    <dxi:ButtonAsyncIndicationSizeConverter x:Key="buttonAsyncIndicationSizeConverter"/>
+
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.RowMarginControl}" TargetType="{x:Type dxg:RowMarginControl}">
         <Setter Property="Foreground" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=TextUnfocusedBrush}}"/>
         <Setter Property="Background" Value="{DynamicResource {dxgt:TreeListViewThemeKey ResourceKey=RowMarginBackgroundBrush}}"/>
@@ -751,7 +757,32 @@
                         <Path x:Name="PART_TreeLinePath"
                               Stroke="{TemplateBinding BorderBrush}"
                               StrokeThickness="1"/>
-                        <dxg:IndentsPanel HorizontalAlignment="Right" RowIndent="{Binding View.RowIndent}">
+                        <dxg:IndentsPanel x:Name="PART_IndentsPanel"
+                                          HorizontalAlignment="Right"
+                                          RowIndent="{Binding View.RowIndent}">
+                            <dxi:AsyncButtonContentControl x:Name="PART_AsyncIndicator"
+                                                           Background="{DynamicResource {dxgt:TreeListViewThemeKey ResourceKey=RowMarginBackgroundBrush}}"
+                                                           CancelCommand="{Binding View.TreeListCommands.CancelChildNodesFetching}"
+                                                           CancelCommandParameter="{Binding RowHandle.Value}"
+                                                           RetryCommand="{Binding View.TreeListCommands.ChangeNodeExpanded}"
+                                                           RetryCommandParameter="{Binding RowHandle.Value}"
+                                                           ShouldShowCancelButton="True"
+                                                           Visibility="Collapsed">
+                                <dxi:AsyncButtonContentControl.Width>
+                                    <MultiBinding Converter="{StaticResource buttonAsyncIndicationSizeConverter}">
+                                        <Binding ElementName="PART_IndentsPanel" Path="ActualWidth"/>
+                                        <Binding ElementName="PART_IndentsPanel" Path="ActualHeight"/>
+                                        <Binding ElementName="PART_ImageSnapper" Path="ActualWidth"/>
+                                    </MultiBinding>
+                                </dxi:AsyncButtonContentControl.Width>
+                                <dxi:AsyncButtonContentControl.Height>
+                                    <MultiBinding Converter="{StaticResource buttonAsyncIndicationSizeConverter}">
+                                        <Binding ElementName="PART_IndentsPanel" Path="ActualWidth"/>
+                                        <Binding ElementName="PART_IndentsPanel" Path="ActualHeight"/>
+                                        <Binding ElementName="PART_ImageSnapper" Path="ActualWidth"/>
+                                    </MultiBinding>
+                                </dxi:AsyncButtonContentControl.Height>
+                            </dxi:AsyncButtonContentControl>
                             <dxg:TreeListNodeExpandButton x:Name="PART_ExpandButton"
                                                           Command="{Binding View.Commands.ChangeNodeExpanded}"
                                                           CommandParameter="{Binding RowHandle.Value}"
@@ -769,7 +800,7 @@
                                     <dxg:TreeListNodeCheckboxHitTestAcceptor/>
                                 </dxg:GridViewHitInfoBase.HitTestAcceptor>
                             </dxe:CheckEdit>
-                            <dx:MeasurePixelSnapper Visibility="{Binding IsImageVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <dx:MeasurePixelSnapper x:Name="PART_ImageSnapper" Visibility="{Binding IsImageVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
                                 <dx:DXImage x:Name="PART_NodeImage"
                                             Focusable="False"
                                             Height="{Binding Path=View.NodeImageSize.Height}"
@@ -1387,6 +1418,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Setter Property="Margin" Value="{Binding Path=(dxg:GridControl.CurrentView).TotalSummaryPosition, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource TotalSummaryPositionToMarginConverter}}"/>
     </Style>
 
     <dxg:DefaultStyle x:Key="{dxgt:GridRowThemeKey ResourceKey=CellStyle}" TargetType="{x:Type dxgcore:CellContentPresenter}">

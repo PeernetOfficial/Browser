@@ -30,6 +30,14 @@
 
     <dxg:FootersPanelMarginConverter x:Key="FootersPanelMarginConverter"/>
 
+    <dxgi:TotalSummaryPositionToRowConverter x:Key="TotalSummaryPositionToRowConverter"
+                                             BottomRow="3"
+                                             TopRow="0"/>
+
+    <dxgi:TotalSummaryPositionToVisibilityConverter x:Key="TotalSummaryPositionToVisibilityConverter"/>
+
+    <dxgi:TotalSummaryPositionToBooleanConverter x:Key="TotalSummaryPositionToBooleanConverter"/>
+
     <!--<Style x:Key="SearchPanelContentControlStyle" TargetType="ContentControl">
         <Setter Property="Template">
             <Setter.Value>
@@ -930,6 +938,7 @@
                   Margin="{DynamicResource {dxgt:TableViewThemeKey ResourceKey=RowPresenterGridMargin}}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -943,8 +952,8 @@
                                   Content="{Binding Path=(dxg:GridControl.CurrentView).HeadersData, RelativeSource={RelativeSource TemplatedParent}}"
                                   ContentTemplate="{Binding Path=(dxg:GridControl.CurrentView).FooterTemplate, RelativeSource={RelativeSource TemplatedParent}}"
                                   dxg:GridControl.CurrentView="{Binding Path=(dxg:GridControl.CurrentView), RelativeSource={RelativeSource TemplatedParent}}"
-                                  Grid.Row="2"
-                                  Visibility="{Binding Path=(dxg:GridControl.CurrentView).ShowTotalSummary, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                  Grid.Row="{Binding Path=(dxg:GridControl.CurrentView).TotalSummaryPosition, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource TotalSummaryPositionToRowConverter}}"
+                                  Visibility="{Binding Path=(dxg:GridControl.CurrentView).TotalSummaryPosition, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource TotalSummaryPositionToVisibilityConverter}}">
                     <!--BEGIN WPF-->
                     <Grid.ColumnSpan>2</Grid.ColumnSpan>
                     <!--END WPF-->
@@ -952,7 +961,9 @@
                         <dxgi:TotalSummaryPanelTableViewHitTestAcceptor/>
                     </dxg:GridViewHitInfoBase.HitTestAcceptor>
                 </ContentPresenter>
-                <ContentControl Margin="{DynamicResource {dxgt:TableViewThemeKey ResourceKey=IndicatorMargin}}" Visibility="{Binding Path=(dxg:GridControl.CurrentView).ShowColumnHeaders, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverterInverted}}">
+                <ContentControl Grid.Row="1"
+                                Margin="{DynamicResource {dxgt:TableViewThemeKey ResourceKey=IndicatorMargin}}"
+                                Visibility="{Binding Path=(dxg:GridControl.CurrentView).ShowColumnHeaders, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverterInverted}}">
                     <!--BEGIN WPF-->
                     <Grid.ColumnSpan>
                         <Binding Path="(dx:ScrollBarExtensions.ScrollBarMode)" RelativeSource="{RelativeSource TemplatedParent}">
@@ -967,7 +978,7 @@
                     </Grid.ColumnSpan>
                     <!--END WPF-->
                 </ContentControl>
-                <Grid Grid.Row="1">
+                <Grid Grid.Row="2">
                     <Grid.ColumnSpan>
                         <Binding Path="(dx:ScrollBarExtensions.ScrollBarMode)" RelativeSource="{RelativeSource TemplatedParent}">
                             <Binding.Converter>
@@ -1037,13 +1048,14 @@
                     </dxg:FixedGroupsAdorner>
                 </Grid>
                 <Grid Grid.Column="1"
+                      Grid.Row="1"
                       HorizontalAlignment="Right"
                       Visibility="{Binding ComputedVerticalScrollBarVisibility, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}">
                     <Grid.RowSpan>
                         <MultiBinding>
                             <MultiBinding.Bindings>
                                 <Binding Path="(dx:ScrollBarExtensions.ScrollBarMode)" RelativeSource="{RelativeSource TemplatedParent}"/>
-                                <Binding Path="(dxg:GridControl.CurrentView).ShowTotalSummary" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                <Binding Path="(dxg:GridControl.CurrentView).TotalSummaryPosition" RelativeSource="{RelativeSource TemplatedParent}"/>
                             </MultiBinding.Bindings>
                             <MultiBinding.Converter>
                                 <dxg:VerticalScrollBarRowSpanConverter/>
@@ -1073,7 +1085,7 @@
                 <Grid x:Name="gridTouchModeDataNavigator"
                       Background="{DynamicResource {dxgt:TableViewThemeKey ResourceKey=DataNavigatorBackground}}"
                       Grid.ColumnSpan="2"
-                      Grid.Row="4"
+                      Grid.Row="5"
                       VerticalAlignment="Stretch"
                       Visibility="Collapsed">
                     <Grid.RowDefinitions>
@@ -1101,7 +1113,7 @@
                         <MultiBinding>
                             <MultiBinding.Bindings>
                                 <Binding Path="(dx:ScrollBarExtensions.ScrollBarMode)" RelativeSource="{RelativeSource TemplatedParent}"/>
-                                <Binding Path="(dxg:GridControl.CurrentView).ShowTotalSummary" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                <Binding Path="(dxg:GridControl.CurrentView).TotalSummaryPosition" RelativeSource="{RelativeSource TemplatedParent}"/>
                             </MultiBinding.Bindings>
                             <MultiBinding.Converter>
                                 <dxg:HorizontalScrollBarRowConverter/>
@@ -1112,7 +1124,7 @@
                         <MultiBinding>
                             <MultiBinding.Bindings>
                                 <Binding Path="(dx:ScrollBarExtensions.ScrollBarMode)" RelativeSource="{RelativeSource TemplatedParent}"/>
-                                <Binding Path="(dxg:GridControl.CurrentView).ShowTotalSummary" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                <Binding Path="(dxg:GridControl.CurrentView).TotalSummaryPosition" RelativeSource="{RelativeSource TemplatedParent}"/>
                             </MultiBinding.Bindings>
                             <MultiBinding.Converter>
                                 <dxg:HorizontalScrollBarRowSpanConverter/>
@@ -1122,7 +1134,7 @@
                     <Grid.ColumnSpan>
                         <MultiBinding>
                             <MultiBinding.Bindings>
-                                <Binding Path="(dxg:GridControl.CurrentView).ShowTotalSummary" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                <Binding Path="(dxg:GridControl.CurrentView).TotalSummaryPosition" RelativeSource="{RelativeSource TemplatedParent}"/>
                                 <Binding Path="(dxg:GridControl.CurrentView).FixedRightContentWidth" RelativeSource="{RelativeSource TemplatedParent}"/>
                                 <Binding Path="(dx:ScrollBarExtensions.ScrollBarMode)" RelativeSource="{RelativeSource TemplatedParent}"/>
                                 <Binding Path="(dxg:GridControl.CurrentView).ExtendScrollBarToFixedColumns" RelativeSource="{RelativeSource TemplatedParent}"/>
@@ -1161,7 +1173,7 @@
                             <Border.BorderThickness>
                                 <MultiBinding>
                                     <MultiBinding.Bindings>
-                                        <Binding Path="(dxg:GridControl.CurrentView).ShowTotalSummary" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                        <Binding Path="(dxg:GridControl.CurrentView).TotalSummaryPosition" RelativeSource="{RelativeSource TemplatedParent}"/>
                                         <Binding Path="(dxg:GridControl.CurrentView).FixedLeftContentWidth" RelativeSource="{RelativeSource TemplatedParent}"/>
                                         <Binding Path="(dxg:GridControl.CurrentView).ExtendScrollBarToFixedColumns" RelativeSource="{RelativeSource TemplatedParent}"/>
                                         <Binding Path="(dxg:GridControl.CurrentView).ShowDataNavigator" RelativeSource="{RelativeSource TemplatedParent}"/>
@@ -1177,7 +1189,7 @@
                                 <MultiBinding>
                                     <MultiBinding.Bindings>
                                         <Binding Path="(dxg:GridControl.CurrentView).ShowIndicator" RelativeSource="{RelativeSource TemplatedParent}"/>
-                                        <Binding Path="(dxg:GridControl.CurrentView).ShowTotalSummary" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                        <Binding Path="(dxg:GridControl.CurrentView).TotalSummaryPosition" RelativeSource="{RelativeSource TemplatedParent}"/>
                                         <Binding Path="(dxg:GridControl.CurrentView).FixedLeftContentWidth" RelativeSource="{RelativeSource TemplatedParent}"/>
                                         <Binding Path="(dxg:GridControl.CurrentView).ExtendScrollBarToFixedColumns" RelativeSource="{RelativeSource TemplatedParent}"/>
                                         <Binding Path="(dxg:GridControl.CurrentView).ShowDataNavigator" RelativeSource="{RelativeSource TemplatedParent}"/>
@@ -1194,7 +1206,7 @@
                             </Border.Visibility>
                         </Border>
                         <Border x:Name="scrollFixedLeftThumb"
-                                dxg:GridBorderHelper.ShowBorder="{Binding Path=(dxg:GridControl.CurrentView).ShowTotalSummary, RelativeSource={RelativeSource TemplatedParent}}"
+                                dxg:GridBorderHelper.ShowBorder="{Binding Path=(dxg:GridControl.CurrentView).TotalSummaryPosition, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource TotalSummaryPositionToBooleanConverter}}"
                                 Grid.Column="1"
                                 Style="{DynamicResource {dxgt:ScrollBarThemeKey ResourceKey=ScrollingFixedLeftThumbStyle}}">
                             <!--BEGIN WPF-->
@@ -1221,7 +1233,7 @@
                                 <!--BEGIN WPF-->
                                 <MultiBinding>
                                     <MultiBinding.Bindings>
-                                        <Binding Path="(dxg:GridControl.CurrentView).ShowTotalSummary" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                        <Binding Path="(dxg:GridControl.CurrentView).TotalSummaryPosition" RelativeSource="{RelativeSource TemplatedParent}"/>
                                         <Binding Path="(dxg:GridControl.CurrentView).FixedLeftContentWidth" RelativeSource="{RelativeSource TemplatedParent}"/>
                                         <Binding Path="(dxg:GridControl.CurrentView).ExtendScrollBarToFixedColumns" RelativeSource="{RelativeSource TemplatedParent}"/>
                                         <Binding Path="(dxg:GridControl.CurrentView).ShowDataNavigator" RelativeSource="{RelativeSource TemplatedParent}"/>
@@ -1238,7 +1250,7 @@
                             </Border.Visibility>
                         </Border>
                         <Border x:Name="scrollFixedLeftLine"
-                                dxg:GridBorderHelper.ShowBorder="{Binding Path=(dxg:GridControl.CurrentView).ShowTotalSummary, RelativeSource={RelativeSource TemplatedParent}}"
+                                dxg:GridBorderHelper.ShowBorder="{Binding Path=(dxg:GridControl.CurrentView).TotalSummaryPosition, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource TotalSummaryPositionToBooleanConverter}}"
                                 Grid.Column="2"
                                 Style="{DynamicResource {dxgt:ScrollBarThemeKey ResourceKey=ScrollingFixedLineStyle}}"
                                 Width="{Binding Path=(dxg:GridControl.CurrentView).FixedLineWidth, RelativeSource={RelativeSource TemplatedParent}}">
@@ -1253,7 +1265,7 @@
                                 <!--BEGIN WPF-->
                                 <MultiBinding>
                                     <MultiBinding.Bindings>
-                                        <Binding Path="(dxg:GridControl.CurrentView).ShowTotalSummary" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                        <Binding Path="(dxg:GridControl.CurrentView).TotalSummaryPosition" RelativeSource="{RelativeSource TemplatedParent}"/>
                                         <Binding Path="(dxg:GridControl.CurrentView).FixedLeftContentWidth" RelativeSource="{RelativeSource TemplatedParent}"/>
                                         <Binding Path="(dxg:GridControl.CurrentView).ExtendScrollBarToFixedColumns" RelativeSource="{RelativeSource TemplatedParent}"/>
                                         <Binding Path="(dxg:GridControl.CurrentView).ShowDataNavigator" RelativeSource="{RelativeSource TemplatedParent}"/>
@@ -1270,7 +1282,7 @@
                             </Border.Visibility>
                         </Border>
                         <Border x:Name="scrollFixedRightLine"
-                                dxg:GridBorderHelper.ShowBorder="{Binding Path=(dxg:GridControl.CurrentView).ShowTotalSummary, RelativeSource={RelativeSource TemplatedParent}}"
+                                dxg:GridBorderHelper.ShowBorder="{Binding Path=(dxg:GridControl.CurrentView).TotalSummaryPosition, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource TotalSummaryPositionToBooleanConverter}}"
                                 Grid.Column="4"
                                 Style="{DynamicResource {dxgt:ScrollBarThemeKey ResourceKey=ScrollingFixedLineStyle}}"
                                 Width="{Binding Path=(dxg:GridControl.CurrentView).FixedLineWidth, RelativeSource={RelativeSource TemplatedParent}}">
@@ -1285,7 +1297,7 @@
                                 <!--BEGIN WPF-->
                                 <MultiBinding>
                                     <MultiBinding.Bindings>
-                                        <Binding Path="(dxg:GridControl.CurrentView).ShowTotalSummary" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                        <Binding Path="(dxg:GridControl.CurrentView).TotalSummaryPosition" RelativeSource="{RelativeSource TemplatedParent}"/>
                                         <Binding Path="(dxg:GridControl.CurrentView).FixedRightContentWidth" RelativeSource="{RelativeSource TemplatedParent}"/>
                                         <Binding Path="(dxg:GridControl.CurrentView).ExtendScrollBarToFixedColumns" RelativeSource="{RelativeSource TemplatedParent}"/>
                                         <Binding Path="(dxg:GridControl.CurrentView).ShowDataNavigator" RelativeSource="{RelativeSource TemplatedParent}"/>
@@ -1302,7 +1314,7 @@
                             </Border.Visibility>
                         </Border>
                         <Border x:Name="scrollFixedRightThumb"
-                                dxg:GridBorderHelper.ShowBorder="{Binding Path=(dxg:GridControl.CurrentView).ShowTotalSummary, RelativeSource={RelativeSource TemplatedParent}}"
+                                dxg:GridBorderHelper.ShowBorder="{Binding Path=(dxg:GridControl.CurrentView).TotalSummaryPosition, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource TotalSummaryPositionToBooleanConverter}}"
                                 Grid.Column="5"
                                 Style="{DynamicResource {dxgt:ScrollBarThemeKey ResourceKey=ScrollingFixedRightThumbStyle}}"
                                 Width="{Binding Path=(dxg:GridControl.CurrentView).FixedRightContentWidth, RelativeSource={RelativeSource TemplatedParent}}">
@@ -1317,7 +1329,7 @@
                                 <!--BEGIN WPF-->
                                 <MultiBinding>
                                     <MultiBinding.Bindings>
-                                        <Binding Path="(dxg:GridControl.CurrentView).ShowTotalSummary" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                        <Binding Path="(dxg:GridControl.CurrentView).TotalSummaryPosition" RelativeSource="{RelativeSource TemplatedParent}"/>
                                         <Binding Path="(dxg:GridControl.CurrentView).FixedRightContentWidth" RelativeSource="{RelativeSource TemplatedParent}"/>
                                         <Binding Path="(dxg:GridControl.CurrentView).ExtendScrollBarToFixedColumns" RelativeSource="{RelativeSource TemplatedParent}"/>
                                         <Binding Path="(dxg:GridControl.CurrentView).ShowDataNavigator" RelativeSource="{RelativeSource TemplatedParent}"/>
@@ -1357,13 +1369,13 @@
                         </Grid>
                     </Grid>
                 </DockPanel>
-                <dxg:FitContentContainer Grid.Column="1" Grid.Row="3">
+                <dxg:FitContentContainer Grid.Column="1" Grid.Row="4">
                     <!--BEGIN WPF-->
                     <dxg:FitContentContainer.Visibility>
                         <MultiBinding>
                             <MultiBinding.Bindings>
                                 <Binding Path="(dx:ScrollBarExtensions.ScrollBarMode)" RelativeSource="{RelativeSource TemplatedParent}"/>
-                                <Binding Path="(dxg:GridControl.CurrentView).ShowTotalSummary" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                <Binding Path="(dxg:GridControl.CurrentView).TotalSummaryPosition" RelativeSource="{RelativeSource TemplatedParent}"/>
                                 <Binding Path="(dxg:GridControl.CurrentView).FixedRightContentWidth" RelativeSource="{RelativeSource TemplatedParent}"/>
                                 <Binding Path="(dxg:GridControl.CurrentView).ExtendScrollBarToFixedColumns" RelativeSource="{RelativeSource TemplatedParent}"/>
                                 <Binding Path="ComputedVerticalScrollBarVisibility" RelativeSource="{RelativeSource TemplatedParent}"/>
@@ -1375,7 +1387,7 @@
                     </dxg:FitContentContainer.Visibility>
                     <!--END WPF-->
                     <Border x:Name="PART_HorizontalScrollCorner"
-                            dxg:GridBorderHelper.ShowBorder="{Binding Path=(dxg:GridControl.CurrentView).ShowTotalSummary, RelativeSource={RelativeSource TemplatedParent}}"
+                            dxg:GridBorderHelper.ShowBorder="{Binding Path=(dxg:GridControl.CurrentView).TotalSummaryPosition, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource TotalSummaryPositionToBooleanConverter}}"
                             dxg:GridScrollBarHelper.ExtendScrollBarToFixedColumns="{Binding Path=(dxg:GridControl.CurrentView).ExtendScrollBarToFixedColumns, RelativeSource={RelativeSource TemplatedParent}}"
                             Style="{DynamicResource {dxgt:ScrollBarThemeKey ResourceKey=ScrollingCornerStyle}}">
                         <!--BEGIN WPF-->

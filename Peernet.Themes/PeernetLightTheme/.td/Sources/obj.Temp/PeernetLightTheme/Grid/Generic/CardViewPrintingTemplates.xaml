@@ -1,4 +1,4 @@
-<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxgp="clr-namespace:DevExpress.Xpf.Grid.Printing" xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys" xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:dxp="http://schemas.devexpress.com/winfx/2008/xaml/printing" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxgi="http://schemas.devexpress.com/winfx/2008/xaml/grid/internal" xmlns:dxgp="clr-namespace:DevExpress.Xpf.Grid.Printing" xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys" xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:dxp="http://schemas.devexpress.com/winfx/2008/xaml/printing" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
 
     <dxcore_unique_xmlns:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
@@ -26,20 +26,28 @@
 
     <dxg:PrintTotalSummaryCellConverter x:Key="PrintTotalSummaryCellConverter" BorderThickness="1,0,1,0" SkipEmptySummaries="True" />
 
+    <dxgi:TotalSummaryPositionToVisibilityConverter x:Key="HeaderTotalSummaryPositionToVisibilityConverter" VisiblePosition="Top" />
+
+    <dxgi:TotalSummaryPositionToVisibilityConverter x:Key="FooterTotalSummaryPositionToVisibilityConverter" VisiblePosition="Bottom" />
+
+    <dxgi:TotalSummaryPositionToMarginConverter x:Key="TotalSummaryPositionToPrintPaddingConverter" BottomMargin="0,9,0,9" TopMargin="0,0,0,9" />
+
+    <dxgi:TotalSummaryPositionToMarginConverter x:Key="TotalSummaryPositionPrintMarginConverter" BottomMargin="0,15,0,0" TopMargin="0,0,0,15" />
+
     <SolidColorBrush x:Key="PrintHeaderBackColor" Color="#FFC0C0C0" />
 
     <Style x:Key="{dxgt:CardViewThemeKey ResourceKey=DefaultPrintStyleBase}" TargetType="dxe:BaseEdit">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\CardViewPrintingTemplates.xaml;58;6" /><Setter Property="Padding" Value="2" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\CardViewPrintingTemplates.xaml;71;6" /><Setter Property="Padding" Value="2" />
         <Setter Property="IsPrintingMode" Value="True" />
         <Setter Property="BorderBrush" Value="Black" cs:id="Setter_0000" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
 
     <Style x:Key="{dxgt:CardViewThemeKey ResourceKey=DefaultPrintRowIndentStyle}" TargetType="Control">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\CardViewPrintingTemplates.xaml;67;6" /><Setter Property="Template">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\CardViewPrintingTemplates.xaml;80;6" /><Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
-                    <dxe:TextEdit Name="PART_Edit" Background="Transparent" BorderThickness="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).PrintDataIndentBorderThickness}" dxp:ExportSettings.TargetType="None" dxp:TextExportSettings.NoTextExport="True" Margin="0" Style="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).PrintGroupRowStyle}" Width="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).PrintDataIndent}" cs:id="TextEdit_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;71;22" />
+                    <dxe:TextEdit Name="PART_Edit" Background="Transparent" BorderThickness="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).PrintDataIndentBorderThickness}" dxp:ExportSettings.TargetType="None" dxp:TextExportSettings.NoTextExport="True" Margin="0" Style="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).PrintGroupRowStyle}" Width="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).PrintDataIndent}" cs:id="TextEdit_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;84;22" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -47,16 +55,14 @@
     </Style>
 
     <Style x:Key="{dxgt:CardViewThemeKey ResourceKey=DefaultPrintTotalSummaryStyle}" BasedOn="{StaticResource {dxgt:CardViewThemeKey ResourceKey=DefaultPrintStyleBase}}" TargetType="dxe:BaseEdit">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\CardViewPrintingTemplates.xaml;86;6" /><Setter Property="Padding" Value="0" />
-        <Setter Property="Margin" Value="0,0,0,9" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\CardViewPrintingTemplates.xaml;99;6" /><Setter Property="Padding" Value="0" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="dxp:TextExportSettings.TextTrimming" Value="None" />
         <Setter Property="HorizontalContentAlignment" Value="Right" />
     </Style>
 
     <Style x:Key="{dxgt:CardViewThemeKey ResourceKey=DefaultPrintTotalSummarySeparatorStyle}" BasedOn="{StaticResource {dxgt:CardViewThemeKey ResourceKey=DefaultPrintStyleBase}}" TargetType="dxe:BaseEdit">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\CardViewPrintingTemplates.xaml;96;6" /><Setter Property="Padding" Value="0" />
-        <Setter Property="Margin" Value="0,0,0,9" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\CardViewPrintingTemplates.xaml;108;6" /><Setter Property="Padding" Value="0" />
         <Setter Property="Foreground" Value="#FFBFBFBF" cs:id="Setter_0000" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="dxp:TextExportSettings.TextTrimming" Value="None" />
@@ -64,20 +70,20 @@
     </Style>
 
     <Style x:Key="{dxgt:CardViewThemeKey ResourceKey=DefaultPrintFixedTotalSummaryStyle}" BasedOn="{StaticResource {dxgt:CardViewThemeKey ResourceKey=DefaultPrintStyleBase}}" TargetType="dxe:TextEdit">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\CardViewPrintingTemplates.xaml;109;6" /><Setter Property="Padding" Value="0" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\CardViewPrintingTemplates.xaml;120;6" /><Setter Property="Padding" Value="0" />
         <Setter Property="Margin" Value="0,22,0,0" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="dxp:TextExportSettings.TextTrimming" Value="None" />
     </Style>
 
     <DataTemplate x:Key="{dxgt:CardViewThemeKey ResourceKey=DefaultPrintCardContentTemplate}">
-        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;119;10">
+        <Grid dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;130;10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition SharedSizeGroup="cardViewHeader" />
                 <ColumnDefinition Width="6" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <dxe:TextEdit x:Name="columnHedaer" AllowUpdateTextBlockWhenPrinting="False" DataContext="{Binding Path=Column.HeaderCaption}" DisplayFormatString="{}{0}:" EditValue="{Binding Mode=OneWay}" IsPrintingMode="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;125;14" />
+            <dxe:TextEdit x:Name="columnHedaer" AllowUpdateTextBlockWhenPrinting="False" DataContext="{Binding Path=Column.HeaderCaption}" DisplayFormatString="{}{0}:" EditValue="{Binding Mode=OneWay}" IsPrintingMode="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;136;14" />
             <dxg:CardPrintCellContentPresenter x:Name="cell" Column="{Binding Column, Mode=OneWay}" Grid.Column="2" RowData="{Binding RowData, Mode=OneWay}">
                 <dxg:CardPrintCellContentPresenter.Template>
                     <ControlTemplate>
@@ -89,11 +95,11 @@
     </DataTemplate>
 
     <DataTemplate x:Key="{dxgt:CardViewThemeKey ResourceKey=DefaultPrintCardHeaderTemplate}">
-        <dxe:TextEdit AllowUpdateTextBlockWhenPrinting="False" Background="#FFDCDCDC" BorderBrush="#FF989898" BorderThickness="0,0,0,1" dxp:ExportSettings.Background="#FFDCDCDC" EditValue="{Binding Path=Value, Mode=OneWay}" IsPrintingMode="True" Padding="7,3,7,3" cs:id="TextEdit_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;145;10" />
+        <dxe:TextEdit AllowUpdateTextBlockWhenPrinting="False" Background="#FFDCDCDC" BorderBrush="#FF989898" BorderThickness="0,0,0,1" dxp:ExportSettings.Background="#FFDCDCDC" EditValue="{Binding Path=Value, Mode=OneWay}" IsPrintingMode="True" Padding="7,3,7,3" cs:id="TextEdit_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;156;10" />
     </DataTemplate>
 
     <DataTemplate x:Key="{dxgt:CardViewThemeKey ResourceKey=DefaultPrintCardTemplate}">
-        <ContentControl Content="{Binding}" ContentTemplate="{Binding Path=(dxg:CardViewPrintingHelper.PrintCardInfo).PrintCardViewItemTemplate}" dxp:ExportSettings.Background="White" dxp:ExportSettings.TargetType="Panel" Width="{Binding Path=(dxg:CardViewPrintingHelper.PrintCardInfo).PrintCardWidth}" cs:id="ContentControl_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;157;10">
+        <ContentControl Content="{Binding}" ContentTemplate="{Binding Path=(dxg:CardViewPrintingHelper.PrintCardInfo).PrintCardViewItemTemplate}" dxp:ExportSettings.Background="White" dxp:ExportSettings.TargetType="Panel" Width="{Binding Path=(dxg:CardViewPrintingHelper.PrintCardInfo).PrintCardWidth}" cs:id="ContentControl_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;168;10">
             <ContentControl.Margin>
                 <MultiBinding Converter="{StaticResource PrintCardMarginConverter}">
                     <Binding Path="(dxg:CardViewPrintingHelper.PrintCardInfo).PrintCardMargin" />
@@ -104,13 +110,13 @@
     </DataTemplate>
 
     <DataTemplate x:Key="{dxgt:CardViewThemeKey ResourceKey=DefaultPrintCardViewItemTemplate}">
-        <StackPanel dxp:ExportSettings.BorderColor="#FF989898" dxp:ExportSettings.BorderThickness="1" dxp:ExportSettings.TargetType="Panel" cs:id="StackPanel_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;173;10">
-            <ContentControl Content="{Binding Path=CardHeaderData, Mode=OneWay}" ContentTemplate="{Binding Path=(dxg:CardViewPrintingHelper.PrintCardInfo).PrintCardHeaderTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;177;14" />
-            <Grid dxp:ExportSettings.TargetType="Panel" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;178;14">
+        <StackPanel dxp:ExportSettings.BorderColor="#FF989898" dxp:ExportSettings.BorderThickness="1" dxp:ExportSettings.TargetType="Panel" cs:id="StackPanel_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;184;10">
+            <ContentControl Content="{Binding Path=CardHeaderData, Mode=OneWay}" ContentTemplate="{Binding Path=(dxg:CardViewPrintingHelper.PrintCardInfo).PrintCardHeaderTemplate}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;188;14" />
+            <Grid dxp:ExportSettings.TargetType="Panel" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;189;14">
                 <dxg:CardViewPrintingCellItemsControl Grid.IsSharedSizeScope="True" ItemsSource="{Binding Path=CellData, Mode=OneWay}" ItemTemplate="{Binding Path=(dxg:CardViewPrintingHelper.PrintCardInfo).PrintCardContentTemplate}" Margin="8,4,8,4">
                     <dxg:CardViewPrintingCellItemsControl.ItemsPanel>
                         <ControlTemplate>
-                            <dxcore_unique_xmlns:StackVisibleIndexPanel ArrangeAccordingToVisibleIndex="True" Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;185;30" />
+                            <dxcore_unique_xmlns:StackVisibleIndexPanel ArrangeAccordingToVisibleIndex="True" Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;196;30" />
                         </ControlTemplate>
                     </dxg:CardViewPrintingCellItemsControl.ItemsPanel>
                 </dxg:CardViewPrintingCellItemsControl>
@@ -119,68 +125,74 @@
     </DataTemplate>
 
     <DataTemplate x:Key="{dxgt:CardViewThemeKey ResourceKey=DefaultPrintCardRowIndentTemplate}">
-        <dxg:CellFillControl Style="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).PrintRowIndentStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;194;10" />
+        <dxg:CellFillControl Style="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).PrintRowIndentStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;205;10" />
     </DataTemplate>
 
     <DataTemplate x:Key="{dxgt:CardViewThemeKey ResourceKey=DefaultPrintCardRowTemplate}">
         <dxg:CardViewPrintRowPanel ItemTemplate="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).PrintCardTemplate, Mode=OneWay}" PrintAutoCardWidth="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).PrintAutoCardWidth}" PrintMaximumCardColumns="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).PrintMaximumCardColumns}" Row="{Binding Content.Row, Mode=OneWay}" RowData="{Binding Path=Content, Mode=OneWay}" RowIndentControlTemplate="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).PrintCardRowIndentTemplate}" Width="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).PrintCardsRowWidth}" />
     </DataTemplate>
 
-    <DataTemplate x:Key="{dxgt:CardViewThemeKey ResourceKey=DefaultPrintHeaderTemplate}">
-        <ItemsControl dxp:ExportSettings.BorderColor="#FFBFBFBF" dxp:ExportSettings.BorderThickness="0,0,0,1" dxp:ExportSettings.TargetType="Panel" HorizontalAlignment="Right" HorizontalContentAlignment="Right" ItemsSource="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).TotalSummaries}" Margin="0,0,0,15" Visibility="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).TotalSummaries.Count, Mode=OneWay, Converter={StaticResource IntToVisibilityConverter}}" Width="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).TotalHeaderWidth}" cs:id="ItemsControl_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;208;10">
+    <DataTemplate x:Key="defaultPrintHeaderFooterTemplate">
+        <ItemsControl dxp:ExportSettings.BorderColor="#FFBFBFBF" dxp:ExportSettings.BorderThickness="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).TotalSummaryPosition, Mode=OneWay, Converter={dxgi:CardViewTotalSummaryPanelBorderThicknessConverter}}" dxp:ExportSettings.TargetType="Panel" HorizontalAlignment="Right" HorizontalContentAlignment="Right" ItemsSource="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).TotalSummaries}" Margin="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).TotalSummaryPosition, Converter={StaticResource TotalSummaryPositionPrintMarginConverter}}" Padding="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).TotalSummaryPosition, Converter={StaticResource TotalSummaryPositionToPrintPaddingConverter}}" Visibility="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).TotalSummaries.Count, Mode=OneWay, Converter={StaticResource IntToVisibilityConverter}}" Width="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).TotalHeaderWidth}" cs:id="ItemsControl_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;219;10">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <dxe:TextEdit x:Name="PART_TotalSummary" EditValue="{Binding Path=TotalSummaryText, Mode=OneWay}" Style="{Binding Path=PrintTotalSummaryStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;220;22" />
+                    <dxe:TextEdit x:Name="PART_TotalSummary" EditValue="{Binding Path=TotalSummaryText, Mode=OneWay}" Style="{Binding Path=PrintTotalSummaryStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;232;22" />
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;227;22" />
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;239;22" />
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
     </DataTemplate>
 
+    <DataTemplate x:Key="{dxgt:CardViewThemeKey ResourceKey=DefaultPrintHeaderTemplate}">
+        <ContentPresenter ContentTemplate="{StaticResource defaultPrintHeaderFooterTemplate}" Visibility="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).TotalSummaryPosition, Mode=OneWay, Converter={StaticResource HeaderTotalSummaryPositionToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;246;10" />
+    </DataTemplate>
+
     <DataTemplate x:Key="{dxgt:CardViewThemeKey ResourceKey=DefaultPrintGroupRowTemplate}">
-        <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;234;10">
+        <StackPanel Orientation="Horizontal" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;250;10">
             <StackPanel.Margin>
                 <MultiBinding Converter="{StaticResource GroupRowOuterMarginConverter}">
                     <Binding Path="Content.(dxg:GridPrintingHelper.PrintGroupRowInfo).IsLast" />
                     <Binding Path="Content.(dxg:GridPrintingHelper.PrintGroupRowInfo).IsExpanded" />
                 </MultiBinding>
             </StackPanel.Margin>
-            <StackPanel dxp:ExportSettings.BorderColor="#FFBFBFBF" dxp:ExportSettings.TargetType="Panel" cs:id="StackPanel_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;241;14">
+            <StackPanel dxp:ExportSettings.BorderColor="#FFBFBFBF" dxp:ExportSettings.TargetType="Panel" cs:id="StackPanel_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;257;14">
                 <dxp:ExportSettings.BorderThickness>
                     <MultiBinding Converter="{StaticResource GroupRowIndentThicknessConverter}">
                         <Binding Path="Content.(dxg:GridPrintingHelper.PrintGroupRowInfo).IsLast" />
                         <Binding Path="Content.(dxg:GridPrintingHelper.PrintGroupRowInfo).IsExpanded" />
                     </MultiBinding>
                 </dxp:ExportSettings.BorderThickness>
-                <dxg:CellFillControl Style="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).PrintRowIndentStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;250;18" />
+                <dxg:CellFillControl Style="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).PrintRowIndentStyle}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;266;18" />
             </StackPanel>
-            <StackPanel dxp:ExportSettings.BorderColor="#FFBFBFBF" dxp:ExportSettings.BorderThickness="{Binding Path=Content.(dxg:GridPrintingHelper.PrintGroupRowInfo).IsExpanded, Converter={StaticResource BooleanToThicknessConverter}}" dxp:ExportSettings.TargetType="Panel" Orientation="Vertical" Width="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).TotalHeaderWidth}" cs:id="StackPanel_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;252;14">
-                <StackPanel Margin="{Binding Path=Content.(dxg:GridPrintingHelper.PrintGroupRowInfo).IsExpanded, Converter={StaticResource IsExpandedMarginConverter}}" Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;258;18">
-                    <dxe:TextEdit x:Name="PART_GroupHeader" EditValue="{Binding Path=Content.(dxg:GridPrintingHelper.PrintGroupRowInfo).CaptionCell.Text, Mode=OneWay}" FontSize="18" Foreground="#FF262626" Style="{Binding Path=Content.(dxg:GridPrintingHelper.PrintGroupRowInfo).CaptionCell.PrintGroupRowStyle}" cs:id="TextEdit_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;259;22" />
-                    <dxe:TextEdit x:Name="PART_GroupSummary" EditValue="{Binding Path=Content.(dxg:GridPrintingHelper.PrintGroupRowInfo).FirstColumnCell.Text, Mode=OneWay}" Style="{Binding Path=Content.(dxg:GridPrintingHelper.PrintGroupRowInfo).FirstColumnCell.PrintGroupRowStyle}" Visibility="{Binding EditValue, RelativeSource={RelativeSource Self}, Converter={StaticResource StringToVisibitityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;265;22" />
+            <StackPanel dxp:ExportSettings.BorderColor="#FFBFBFBF" dxp:ExportSettings.BorderThickness="{Binding Path=Content.(dxg:GridPrintingHelper.PrintGroupRowInfo).IsExpanded, Converter={StaticResource BooleanToThicknessConverter}}" dxp:ExportSettings.TargetType="Panel" Orientation="Vertical" Width="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).TotalHeaderWidth}" cs:id="StackPanel_0001" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;268;14">
+                <StackPanel Margin="{Binding Path=Content.(dxg:GridPrintingHelper.PrintGroupRowInfo).IsExpanded, Converter={StaticResource IsExpandedMarginConverter}}" Orientation="Vertical" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;274;18">
+                    <dxe:TextEdit x:Name="PART_GroupHeader" EditValue="{Binding Path=Content.(dxg:GridPrintingHelper.PrintGroupRowInfo).CaptionCell.Text, Mode=OneWay}" FontSize="18" Foreground="#FF262626" Style="{Binding Path=Content.(dxg:GridPrintingHelper.PrintGroupRowInfo).CaptionCell.PrintGroupRowStyle}" cs:id="TextEdit_0000" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;275;22" />
+                    <dxe:TextEdit x:Name="PART_GroupSummary" EditValue="{Binding Path=Content.(dxg:GridPrintingHelper.PrintGroupRowInfo).FirstColumnCell.Text, Mode=OneWay}" Style="{Binding Path=Content.(dxg:GridPrintingHelper.PrintGroupRowInfo).FirstColumnCell.PrintGroupRowStyle}" Visibility="{Binding EditValue, RelativeSource={RelativeSource Self}, Converter={StaticResource StringToVisibitityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;281;22" />
                 </StackPanel>
             </StackPanel>
         </StackPanel>
     </DataTemplate>
 
     <Style x:Key="{dxgt:CardViewThemeKey ResourceKey=DefaultPrintCellStyle}" BasedOn="{StaticResource {dxgt:CardViewThemeKey ResourceKey=DefaultPrintStyleBase}}" TargetType="dxe:BaseEdit">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\CardViewPrintingTemplates.xaml;274;6" /><Setter Property="AllowUpdateTextBlockWhenPrinting" Value="False" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\CardViewPrintingTemplates.xaml;290;6" /><Setter Property="AllowUpdateTextBlockWhenPrinting" Value="False" />
         <Setter Property="dxp:TextExportSettings.TextTrimming" Value="None" />
         <Setter Property="dxp:TextExportSettings.TextWrapping" Value="Wrap" />
     </Style>
 
     <Style x:Key="{dxgt:CardViewThemeKey ResourceKey=DefaultPrintGroupRowStyle}" BasedOn="{StaticResource {dxgt:CardViewThemeKey ResourceKey=DefaultPrintStyleBase}}" TargetType="dxe:BaseEdit">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\CardViewPrintingTemplates.xaml;282;6" /><Setter Property="dxp:TextExportSettings.TextTrimming" Value="None" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Grid\Generic\CardViewPrintingTemplates.xaml;298;6" /><Setter Property="dxp:TextExportSettings.TextTrimming" Value="None" />
         <Setter Property="Foreground" Value="#FF666666" cs:id="Setter_0000" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
     </Style>
 
-    <DataTemplate x:Key="{dxgt:CardViewThemeKey ResourceKey=DefaultPrintFooterTemplate}" />
+    <DataTemplate x:Key="{dxgt:CardViewThemeKey ResourceKey=DefaultPrintFooterTemplate}">
+        <ContentPresenter ContentTemplate="{StaticResource defaultPrintHeaderFooterTemplate}" Visibility="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).TotalSummaryPosition, Mode=OneWay, Converter={StaticResource FooterTotalSummaryPositionToVisibilityConverter}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Grid\Generic\CardViewPrintingTemplates.xaml;310;10" />
+    </DataTemplate>
 
     <DataTemplate x:Key="{dxgt:CardViewThemeKey ResourceKey=DefaultPrintFixedFooterTemplate}">
         <dxg:FixedTotalSummaryPrintPanel dxp:ExportSettings.BorderColor="#FFBFBFBF" dxp:ExportSettings.BorderThickness="0,1,0,0" dxp:ExportSettings.TargetType="Panel" Width="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).TotalHeaderWidth}" cs:id="FixedTotalSummaryPrintPanel_0000">

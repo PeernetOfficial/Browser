@@ -1,4 +1,4 @@
-<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxec="clr-namespace:DevExpress.Xpf.Editors.Controls;assembly=DevExpress.Xpf.Core.v22.1" xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal" xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys" xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
+<ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxec="clr-namespace:DevExpress.Xpf.Editors.Controls;assembly=DevExpress.Xpf.Core.v22.2" xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal" xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys" xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
 
     <DataTemplate x:Key="{dxet:ComboBoxEditThemeKey ResourceKey=LoadingButtonTemplate}">
         <Button Command="{Binding Command}" CommandParameter="{Binding CommandParameter}" Opacity="{Binding Tag}" Style="{DynamicResource {dxet:ComboBoxEditThemeKey ResourceKey=LoadingButtonStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;16;10" />
@@ -37,7 +37,7 @@
             <Grid.Resources>
                 <dxei:PopupListBoxDisplayMemberPathConverter x:Key="DisplayMemberPathConverter" />
             </Grid.Resources>
-            <dxe:PopupListBox x:Name="PART_Content" AllowItemHighlighting="{Binding Path=(dxe:BaseEdit.OwnerEdit).AllowItemHighlighting, RelativeSource={RelativeSource TemplatedParent} }" BorderBrush="{x:Null}" BorderThickness="0,0,0,0" DisplayMemberPath="{Binding Path=Tag, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource DisplayMemberPathConverter}}" dxcore_unique_xmlns:FocusHelper2.Focusable="False" FocusVisualStyle="{x:Null}" HorizontalContentAlignment="{Binding Path=Tag.HorizontalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}" ItemsPanel="{Binding Path=Tag.ItemsPanel, RelativeSource={RelativeSource TemplatedParent}}" ItemTemplate="{Binding Path=Tag.ItemTemplate, RelativeSource={RelativeSource TemplatedParent}}" Style="{DynamicResource {dxet:EditorListBoxThemeKey ResourceKey=PopupStyle}}" VerticalContentAlignment="{Binding Path=Tag.VerticalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;61;14">
+            <dxe:PopupListBox x:Name="PART_Content" AllowItemHighlighting="{Binding Path=(dxe:BaseEdit.OwnerEdit).AllowItemHighlighting, RelativeSource={RelativeSource TemplatedParent} }" BorderBrush="{x:Null}" BorderThickness="0,0,0,0" DisplayMemberPath="{Binding Path=Tag, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource DisplayMemberPathConverter}}" dxcore_unique_xmlns:FocusHelper2.Focusable="False" FocusVisualStyle="{x:Null}" HorizontalContentAlignment="{Binding Path=Tag.HorizontalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}" ItemsPanel="{Binding Path=Tag.ItemsPanel, RelativeSource={RelativeSource TemplatedParent}}" ItemTemplate="{Binding Path=Tag.ItemTemplate, RelativeSource={RelativeSource TemplatedParent}}" Style="{DynamicResource {dxet:EditorListBoxThemeKey ResourceKey=PopupStyle}}" VerticalContentAlignment="{Binding Path=Tag.VerticalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}" VirtualizingPanel.VirtualizationMode="{Binding Path=Tag.(VirtualizingPanel.VirtualizationMode), RelativeSource={RelativeSource TemplatedParent}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;61;14">
                 <dxe:PopupListBox.ItemTemplateSelector>
                     <Binding Path="Tag.ItemTemplateSelector" RelativeSource="{RelativeSource TemplatedParent}" />
                 </dxe:PopupListBox.ItemTemplateSelector>
@@ -46,9 +46,9 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxet:ComboBoxEditThemeKey ResourceKey=SelectedItemImageTemplate}">
-        <DockPanel HorizontalAlignment="{Binding Path=(dxe:BaseEdit.OwnerEdit).HorizontalContentAlignment, RelativeSource={RelativeSource Self}}" LastChildFill="True" Margin="{Binding Path=(dxe:BaseEdit.OwnerEdit).Padding, RelativeSource={RelativeSource Self}}" MinHeight="{StaticResource MinTextHeight}" VerticalAlignment="{Binding Path=(dxe:BaseEdit.OwnerEdit).VerticalContentAlignment, RelativeSource={RelativeSource Self}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;81;10">
+        <DockPanel HorizontalAlignment="{Binding Path=(dxe:BaseEdit.OwnerEdit).HorizontalContentAlignment, RelativeSource={RelativeSource Self}}" LastChildFill="True" Margin="{Binding Path=(dxe:BaseEdit.OwnerEdit).Padding, RelativeSource={RelativeSource Self}}" MinHeight="{StaticResource MinTextHeight}" VerticalAlignment="{Binding Path=(dxe:BaseEdit.OwnerEdit).VerticalContentAlignment, RelativeSource={RelativeSource Self}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;82;10">
             <dxei:ImagePresenter DataContext="{Binding Path=(dxe:BaseEdit.OwnerEdit).SelectedItem, RelativeSource={RelativeSource Self}}" DockPanel.Dock="Left" Padding="{DynamicResource {dxet:ComboBoxEditThemeKey ResourceKey=SelectedItemImagePadding}}" />
-            <dxei:EditItemContentPresenter x:Name="PART_Editor" Content="{Binding Path=(dxe:BaseEdit.OwnerEdit).SelectedItemValue, RelativeSource={RelativeSource Self}}" ContentTemplate="{Binding Path=(dxe:BaseEdit.OwnerEdit).ItemTemplate, RelativeSource={RelativeSource Self}}" Margin="{DynamicResource {dxet:ComboBoxEditThemeKey ResourceKey=SelectedItemContentPadding}}" VerticalContentAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;89;14">
+            <dxei:EditItemContentPresenter x:Name="PART_Editor" Content="{Binding Path=(dxe:BaseEdit.OwnerEdit).SelectedItemValue, RelativeSource={RelativeSource Self}}" ContentTemplate="{Binding Path=(dxe:BaseEdit.OwnerEdit).ItemTemplate, RelativeSource={RelativeSource Self}}" Margin="{DynamicResource {dxet:ComboBoxEditThemeKey ResourceKey=SelectedItemContentPadding}}" VerticalContentAlignment="Center" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;90;14">
                 <dxei:EditItemContentPresenter.ContentTemplateSelector>
                     <Binding Path="(dxe:BaseEdit.OwnerEdit).ItemTemplateSelector" RelativeSource="{RelativeSource Self}" />
                 </dxei:EditItemContentPresenter.ContentTemplateSelector>
@@ -62,8 +62,8 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="{dxet:ComboBoxEditThemeKey ResourceKey=SelectedItemTemplate}">
-        <Grid Margin="{Binding Path=(dxe:BaseEdit.OwnerEdit).Padding, RelativeSource={RelativeSource Self}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;109;10">
-            <dxei:EditItemContentPresenter x:Name="PART_Editor" Content="{Binding Path=(dxe:BaseEdit.OwnerEdit).SelectedItemValue, RelativeSource={RelativeSource Self}}" ContentTemplate="{Binding Path=(dxe:BaseEdit.OwnerEdit).ItemTemplate, RelativeSource={RelativeSource Self}}" HorizontalAlignment="{Binding Path=(dxe:BaseEdit.OwnerEdit).HorizontalContentAlignment, RelativeSource={RelativeSource Self}}" Margin="{DynamicResource {dxet:ComboBoxEditThemeKey ResourceKey=SelectedItemContentPadding}}" VerticalAlignment="{Binding Path=(dxe:BaseEdit.OwnerEdit).VerticalContentAlignment, RelativeSource={RelativeSource Self}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;110;14">
+        <Grid Margin="{Binding Path=(dxe:BaseEdit.OwnerEdit).Padding, RelativeSource={RelativeSource Self}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;110;10">
+            <dxei:EditItemContentPresenter x:Name="PART_Editor" Content="{Binding Path=(dxe:BaseEdit.OwnerEdit).SelectedItemValue, RelativeSource={RelativeSource Self}}" ContentTemplate="{Binding Path=(dxe:BaseEdit.OwnerEdit).ItemTemplate, RelativeSource={RelativeSource Self}}" HorizontalAlignment="{Binding Path=(dxe:BaseEdit.OwnerEdit).HorizontalContentAlignment, RelativeSource={RelativeSource Self}}" Margin="{DynamicResource {dxet:ComboBoxEditThemeKey ResourceKey=SelectedItemContentPadding}}" VerticalAlignment="{Binding Path=(dxe:BaseEdit.OwnerEdit).VerticalContentAlignment, RelativeSource={RelativeSource Self}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;111;14">
                 <ContentPresenter.ContentTemplateSelector>
                     <Binding Path="(dxe:BaseEdit.OwnerEdit).ItemTemplateSelector" RelativeSource="{RelativeSource Self}" />
                 </ContentPresenter.ContentTemplateSelector>
@@ -89,8 +89,8 @@
     </ControlTemplate>
 
     <DataTemplate x:Key="SearchPanelButtonTemplate">
-        <dx:DXBorder Margin="{Binding Path=ActualMargin}" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;164;10">
-            <Button x:Name="PART_Item" AutomationProperties.AutomationId="{Binding Path=(AutomationProperties.AutomationId)}" AutomationProperties.Name="{Binding Path=(AutomationProperties.Name)}" Style="{DynamicResource {dxet:ButtonsThemeKey ResourceKey=ButtonStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;165;14" />
+        <dx:DXBorder Margin="{Binding Path=ActualMargin}" UseLayoutRounding="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;165;10">
+            <Button x:Name="PART_Item" AutomationProperties.AutomationId="{Binding Path=(AutomationProperties.AutomationId)}" AutomationProperties.Name="{Binding Path=(AutomationProperties.Name)}" Style="{DynamicResource {dxet:ButtonsThemeKey ResourceKey=ButtonStyle}}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;166;14" />
         </dx:DXBorder>
     </DataTemplate>
 
@@ -107,7 +107,7 @@
     <dxcore_unique_xmlns:SearchInfoConverter x:Key="searchInfoConverter" />
 
     <Style x:Key="{dxet:SearchControlThemeKey ResourceKey=FindButtonStyle}" TargetType="{x:Type Button}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;184;6" /><Setter Property="Margin" Value="0,0,6,0" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;185;6" /><Setter Property="Margin" Value="0,0,6,0" />
         <Setter Property="dx:FocusHelper2.Focusable" Value="False" />
         <Setter Property="AutomationProperties.Name" Value="Find" />
         <Setter Property="AutomationProperties.AutomationId" Value="SearchFindButton" />
@@ -115,7 +115,7 @@
     </Style>
 
     <Style x:Key="{dxet:SearchControlThemeKey ResourceKey=CloseButtonStyle}" TargetType="{x:Type Button}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;192;6" /><Setter Property="dx:FocusHelper2.Focusable" Value="False" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;193;6" /><Setter Property="dx:FocusHelper2.Focusable" Value="False" />
         <Setter Property="AutomationProperties.Name" Value="Close" />
         <Setter Property="AutomationProperties.AutomationId" Value="SearchCloseButton" />
         <Setter Property="ToolTip" Value="{Binding Path=IsTabStop, RelativeSource={RelativeSource Self}, ConverterParameter=LookUpClose, Converter={StaticResource EditorStringIdConverter}}" />
@@ -140,7 +140,7 @@
     </Style>
 
     <Style x:Key="{dxet:SearchControlThemeKey ResourceKey=ShowButtonStyle}" TargetType="{x:Type Button}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;217;6" /><Setter Property="dx:FocusHelper2.Focusable" Value="False" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;218;6" /><Setter Property="dx:FocusHelper2.Focusable" Value="False" />
         <Setter Property="AutomationProperties.Name" Value="ShowSearchPanel" />
         <Setter Property="AutomationProperties.AutomationId" Value="SearchPanelShowButton" />
         <Setter Property="ToolTip" Value="{Binding Path=IsTabStop, RelativeSource={RelativeSource Self}, ConverterParameter=LookUpShow, Converter={StaticResource EditorStringIdConverter}}" />
@@ -165,7 +165,7 @@
     </Style>
 
     <Style x:Key="{dxet:SearchControlThemeKey ResourceKey=NextButtonStyle}" TargetType="{x:Type Button}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;242;6" /><Setter Property="dx:FocusHelper2.Focusable" Value="False" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;243;6" /><Setter Property="dx:FocusHelper2.Focusable" Value="False" />
         <Setter Property="AutomationProperties.Name" Value="Next" />
         <Setter Property="AutomationProperties.AutomationId" Value="SearchNextButton" />
         <Setter Property="ToolTip" Value="{Binding Path=IsTabStop, RelativeSource={RelativeSource Self}, ConverterParameter=LookUpNext, Converter={StaticResource EditorStringIdConverter}}" />
@@ -190,7 +190,7 @@
     </Style>
 
     <Style x:Key="{dxet:SearchControlThemeKey ResourceKey=PrevButtonStyle}" TargetType="{x:Type Button}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;267;6" /><Setter Property="dx:FocusHelper2.Focusable" Value="False" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;268;6" /><Setter Property="dx:FocusHelper2.Focusable" Value="False" />
         <Setter Property="AutomationProperties.Name" Value="Previous" />
         <Setter Property="AutomationProperties.AutomationId" Value="SearchPreviousButton" />
         <Setter Property="ToolTip" Value="{Binding Path=IsTabStop, RelativeSource={RelativeSource Self}, ConverterParameter=LookUpPrevious, Converter={StaticResource EditorStringIdConverter}}" />
@@ -222,8 +222,8 @@
     <dxcore_unique_xmlns:BooleanToVisibilityConverter x:Key="boolToVisibilityConverter" />
 
     <ControlTemplate x:Key="{dxet:SearchControlThemeKey ResourceKey=Template}" TargetType="dxe:SearchControl">
-        <ContentControl Background="{TemplateBinding Background}" dxcore_unique_xmlns:FocusHelper2.Focusable="False" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;300;10">
-            <Grid Margin="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;304;14">
+        <ContentControl Background="{TemplateBinding Background}" dxcore_unique_xmlns:FocusHelper2.Focusable="False" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;301;10">
+            <Grid Margin="{TemplateBinding Padding}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;305;14">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
@@ -231,7 +231,7 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <dxei:ChildMinWidthPanel ChildMinWidth="{Binding Path=SearchTextBoxMinWidth, RelativeSource={RelativeSource TemplatedParent}}">
-                    <dxe:ComboBoxEdit x:Name="editor" AllowDefaultButton="False" AutomationProperties.AutomationId="SearchComboBox" AutomationProperties.Name="SearchComboBox" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}" dxe:EditorAppearanceProperties.FocusedBorderBrush="{Binding Path=(dxe:EditorAppearanceProperties.FocusedBorderBrush), RelativeSource={RelativeSource TemplatedParent}}" dxei:MVVMFocusBehavior.IsFocused="{Binding Path=IsKeyboardFocusWithin, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}" EditValue="{Binding Path=SearchControlPropertyProvider.SearchText, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" EditValuePostDelay="{Binding Path=SearchTextPostDelay, RelativeSource={RelativeSource TemplatedParent}}" EditValuePostMode="{Binding Path=SearchControlPropertyProvider.ActualPostMode, RelativeSource={RelativeSource TemplatedParent}}" ImmediatePopup="{Binding Path= SearchControlPropertyProvider.ActualImmediateMRUPopup, RelativeSource={RelativeSource TemplatedParent}}" IncrementalFiltering="False" IsCaseSensitiveSearch="True" IsTabStop="{Binding IsEditorTabStop, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Path=MRU, RelativeSource={RelativeSource TemplatedParent}}" Margin="0" MinHeight="22" NullTextForeground="{Binding Path=NullTextForeground, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}" ShowBorder="{TemplateBinding ShowEditorBorder}" ShowNullText="{Binding Path=SearchControlPropertyProvider.ActualShowFindButton, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolInverseConverter}}" ValidateOnEnterKeyPressed="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;312;22">
+                    <dxe:ComboBoxEdit x:Name="editor" AllowDefaultButton="False" AutomationProperties.AutomationId="SearchComboBox" AutomationProperties.Name="SearchComboBox" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}" dxe:EditorAppearanceProperties.FocusedBorderBrush="{Binding Path=(dxe:EditorAppearanceProperties.FocusedBorderBrush), RelativeSource={RelativeSource TemplatedParent}}" dxei:MVVMFocusBehavior.IsFocused="{Binding Path=IsKeyboardFocusWithin, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}" EditValue="{Binding Path=SearchControlPropertyProvider.SearchText, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" EditValuePostDelay="{Binding Path=SearchTextPostDelay, RelativeSource={RelativeSource TemplatedParent}}" EditValuePostMode="{Binding Path=SearchControlPropertyProvider.ActualPostMode, RelativeSource={RelativeSource TemplatedParent}}" ImmediatePopup="{Binding Path= SearchControlPropertyProvider.ActualImmediateMRUPopup, RelativeSource={RelativeSource TemplatedParent}}" IncrementalFiltering="False" IsCaseSensitiveSearch="True" IsTabStop="{Binding IsEditorTabStop, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Path=MRU, RelativeSource={RelativeSource TemplatedParent}}" Margin="0" MinHeight="22" NullTextForeground="{Binding Path=NullTextForeground, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}" ShowBorder="{TemplateBinding ShowEditorBorder}" ShowNullText="{Binding Path=SearchControlPropertyProvider.ActualShowFindButton, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource boolInverseConverter}}" ValidateOnEnterKeyPressed="True" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;313;22">
                         <dxe:ComboBoxEdit.NullText>
                             <MultiBinding>
                                 <Binding Path="NullText" RelativeSource="{RelativeSource TemplatedParent}" />
@@ -252,7 +252,7 @@
                                 </dxe:ButtonInfo.Content>
                                 <dxe:ButtonInfo.Template>
                                     <DataTemplate>
-                                        <TextBlock x:Name="textBlockResultInfo" Foreground="{DynamicResource {dxet:TextEditThemeKey ResourceKey=NullTextForeground}}" Margin="2,0,2,0" Text="{Binding Content}" VerticalAlignment="Center" Visibility="{Binding Visibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;362;42" />
+                                        <TextBlock x:Name="textBlockResultInfo" Foreground="{DynamicResource {dxet:TextEditThemeKey ResourceKey=NullTextForeground}}" Margin="2,0,2,0" Text="{Binding Content}" VerticalAlignment="Center" Visibility="{Binding Visibility}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;363;42" />
                                     </DataTemplate>
                                 </dxe:ButtonInfo.Template>
                             </dxe:ButtonInfo>
@@ -268,19 +268,19 @@
                         </dxe:ComboBoxEdit.Buttons>
                     </dxe:ComboBoxEdit>
                 </dxei:ChildMinWidthPanel>
-                <Button x:Name="buttonPrev" Command="{Binding PrevCommand, RelativeSource={RelativeSource AncestorType=dxe:SearchControl}, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Style="{DynamicResource {dxet:SearchControlThemeKey ResourceKey=PrevButtonStyle}}" Visibility="{Binding Path=ShowSearchPanelNavigationButtons, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;401;18">
+                <Button x:Name="buttonPrev" Command="{Binding PrevCommand, RelativeSource={RelativeSource AncestorType=dxe:SearchControl}, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Style="{DynamicResource {dxet:SearchControlThemeKey ResourceKey=PrevButtonStyle}}" Visibility="{Binding Path=ShowSearchPanelNavigationButtons, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;402;18">
                     <Button.Content>
-                        <Path Data="F1 M 1.41188,4.23969L 0,5.65157L 1.41421,7.06578L 5.65685,2.82314L 9.89949,7.06579L 11.3137,5.65157L 9.90244,4.2403L 9.9001,4.24264L 5.65746,-3.12924e-007" Fill="{Binding Path=(TextElement.Foreground), RelativeSource={RelativeSource Self}}" Height="7.06579" HorizontalAlignment="Center" Stretch="Fill" VerticalAlignment="Center" Width="11.3137" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;407;26" />
+                        <Path Data="F1 M 1.41188,4.23969L 0,5.65157L 1.41421,7.06578L 5.65685,2.82314L 9.89949,7.06579L 11.3137,5.65157L 9.90244,4.2403L 9.9001,4.24264L 5.65746,-3.12924e-007" Fill="{Binding Path=(TextElement.Foreground), RelativeSource={RelativeSource Self}}" Height="7.06579" HorizontalAlignment="Center" Stretch="Fill" VerticalAlignment="Center" Width="11.3137" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;408;26" />
                     </Button.Content>
                 </Button>
-                <Button x:Name="buttonNext" Command="{Binding NextCommand, RelativeSource={RelativeSource AncestorType=dxe:SearchControl}, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Style="{DynamicResource {dxet:SearchControlThemeKey ResourceKey=NextButtonStyle}}" Visibility="{Binding Path=ShowSearchPanelNavigationButtons, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;416;18">
+                <Button x:Name="buttonNext" Command="{Binding NextCommand, RelativeSource={RelativeSource AncestorType=dxe:SearchControl}, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Style="{DynamicResource {dxet:SearchControlThemeKey ResourceKey=NextButtonStyle}}" Visibility="{Binding Path=ShowSearchPanelNavigationButtons, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;417;18">
                     <Button.Content>
-                        <Path Data="F1 M 1.41188,2.82609L 0,1.41422L 1.41421,3.50177e-006L 5.65685,4.24264L 9.89949,6.4075e-007L 11.3137,1.41421L 9.90244,2.82548L 9.9001,2.82315L 5.65746,7.06579" Fill="{Binding Path=(TextElement.Foreground), RelativeSource={RelativeSource Self}}" Height="7.06579" HorizontalAlignment="Center" Stretch="Fill" VerticalAlignment="Center" Width="11.3137" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;422;26" />
+                        <Path Data="F1 M 1.41188,2.82609L 0,1.41422L 1.41421,3.50177e-006L 5.65685,4.24264L 9.89949,6.4075e-007L 11.3137,1.41421L 9.90244,2.82548L 9.9001,2.82315L 5.65746,7.06579" Fill="{Binding Path=(TextElement.Foreground), RelativeSource={RelativeSource Self}}" Height="7.06579" HorizontalAlignment="Center" Stretch="Fill" VerticalAlignment="Center" Width="11.3137" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;423;26" />
                     </Button.Content>
                 </Button>
-                <Button x:Name="SearchCloseButton" Command="{Binding Path=SearchControlPropertyProvider.CloseCommandInternal, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" Style="{DynamicResource {dxet:SearchControlThemeKey ResourceKey=CloseButtonStyle}}" Visibility="{Binding Path=ShowCloseButton, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;431;18">
+                <Button x:Name="SearchCloseButton" Command="{Binding Path=SearchControlPropertyProvider.CloseCommandInternal, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" Style="{DynamicResource {dxet:SearchControlThemeKey ResourceKey=CloseButtonStyle}}" Visibility="{Binding Path=ShowCloseButton, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource boolToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;432;18">
                     <Button.Content>
-                        <Path Data="F1 M 9.89949,0L 11.3137,1.41421L 7.07106,5.65685L 11.3137,9.89949L 9.89949,11.3137L 5.65685,7.07107L 1.41421,11.3137L 0,9.89949L 4.24264,5.65685L -1.49012e-007,1.41422L 1.41421,2.86102e-006L 5.65685,4.24264L 9.89949,0 Z " Fill="{Binding Path=(TextElement.Foreground), RelativeSource={RelativeSource Self}}" Height="11.3137" HorizontalAlignment="Center" Stretch="Fill" VerticalAlignment="Center" Width="11.3137" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;437;26" />
+                        <Path Data="F1 M 9.89949,0L 11.3137,1.41421L 7.07106,5.65685L 11.3137,9.89949L 9.89949,11.3137L 5.65685,7.07107L 1.41421,11.3137L 0,9.89949L 4.24264,5.65685L -1.49012e-007,1.41422L 1.41421,2.86102e-006L 5.65685,4.24264L 9.89949,0 Z " Fill="{Binding Path=(TextElement.Foreground), RelativeSource={RelativeSource Self}}" Height="11.3137" HorizontalAlignment="Center" Stretch="Fill" VerticalAlignment="Center" Width="11.3137" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Core\Core\Editors\Themes\Generic\ComboBoxEdit.xaml;438;26" />
                     </Button.Content>
                 </Button>
             </Grid>

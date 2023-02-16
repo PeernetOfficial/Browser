@@ -8,7 +8,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v22.1;component/Core/Core/Themes/UICore.xaml"/>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v22.2;component/Core/Core/Themes/UICore.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <!-- General -->
@@ -305,11 +305,14 @@
         <!-- <Setter Property="GlyphToContentOffset" Value="5"/> -->
         <!-- <Setter Property="HorizontalContentAlignment" Value="Center"/> -->
         <Setter Property="Padding" Value="10,3,10,3"/>
-        <Setter Property="Template" Value="{DynamicResource {dxt:DropDownButtonThemeKey ResourceKey=DropDownButtonTemplate}}"/>
+        <Setter Property="Template" Value="{DynamicResource {dxt:DropDownButtonThemeKey ResourceKey=AsyncDropDownButtonTemplate}}"/>
         <!-- <Setter Property="dx:WpfSvgPalette.Palette" Value="{DynamicResource {dxt:BrushesThemeKey ResourceKey=ContrastSvgPalette}}"/> -->
         <!-- <Setter Property="VerticalContentAlignment" Value="Center"/> -->
         <!-- <Setter Property="FocusVisualStyle" Value="{x:Null}"/> -->
         <Style.Triggers>
+            <Trigger Property="AsyncDisplayMode" Value="None">
+                <Setter Property="Template" Value="{DynamicResource ResourceKey={dxt:DropDownButtonThemeKey ResourceKey=DropDownButtonTemplate}}"/>
+            </Trigger>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                 <Setter Property="ArrowPadding" Value="0,13,27,13"/>
                 <Setter Property="Padding" Value="14,13,14,13"/>
@@ -345,11 +348,14 @@
         <Setter Property="Padding" Value="10,3,10,3"/>
         <Setter Property="ArrowBorderThickness" Value="1"/>
         <Setter Property="SeparatorThickness" Value="1"/>
-        <Setter Property="Template" Value="{DynamicResource {dxt:DropDownButtonThemeKey ResourceKey=SplitButtonTemplate}}"/>
+        <Setter Property="Template" Value="{DynamicResource {dxt:DropDownButtonThemeKey ResourceKey=AsyncSplitButtonTemplate}}"/>
         <!-- <Setter Property="dx:WpfSvgPalette.Palette" Value="{DynamicResource {dxt:BrushesThemeKey ResourceKey=ContrastSvgPalette}}"/> -->
         <!-- <Setter Property="VerticalContentAlignment" Value="Center"/> -->
         <!-- <Setter Property="FocusVisualStyle" Value="{x:Null}"/> -->
         <Style.Triggers>
+            <Trigger Property="AsyncDisplayMode" Value="None">
+                <Setter Property="Template" Value="{DynamicResource ResourceKey={dxt:DropDownButtonThemeKey ResourceKey=SplitButtonTemplate}}"/>
+            </Trigger>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                 <Setter Property="Padding" Value="14,11,14,11"/>
             </Trigger>
@@ -389,9 +395,12 @@
         <!-- <Setter Property="HorizontalContentAlignment" Value="Center"/> -->
         <!-- <Setter Property="VerticalContentAlignment" Value="Center"/> -->
         <Setter Property="Padding" Value="10,3,10,3"/>
-        <Setter Property="Template" Value="{DynamicResource {dxt:ButtonThemeKey ResourceKey=ButtonControlTemplate}}"/>
+        <Setter Property="Template" Value="{DynamicResource {dxt:ButtonThemeKey ResourceKey=AsyncButtonTemplate}}"/>
         <!-- <Setter Property="dx:WpfSvgPalette.Palette" Value="{DynamicResource {dxt:BrushesThemeKey ResourceKey=ContrastSvgPalette}}"/> -->
         <Style.Triggers>
+            <Trigger Property="AsyncDisplayMode" Value="None">
+                <Setter Property="Template" Value="{DynamicResource ResourceKey={dxt:ButtonThemeKey ResourceKey=ButtonControlTemplate}}"/>
+            </Trigger>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                 <Setter Property="Padding" Value="14,13,14,13"/>
             </Trigger>
@@ -429,6 +438,7 @@
         <Setter Property="Margin" Value="2,0,2,0"/>
         <Setter Property="AutomationProperties.AutomationId" Value="{Binding Path=Content, RelativeSource={RelativeSource Self}, Converter={dx:ThemedDialogButtonNameConverter}, FallbackValue={x:Static sys:String.Empty}, TargetNullValue={x:Static sys:String.Empty}}"/>
         <Setter Property="AutomationProperties.Name" Value="{Binding Path=Content, RelativeSource={RelativeSource Self}, FallbackValue={x:Static sys:String.Empty}, TargetNullValue={x:Static sys:String.Empty}}"/>
+        <Setter Property="GlyphHeight" Value="16"/>
     </Style>
 
 </ResourceDictionary>

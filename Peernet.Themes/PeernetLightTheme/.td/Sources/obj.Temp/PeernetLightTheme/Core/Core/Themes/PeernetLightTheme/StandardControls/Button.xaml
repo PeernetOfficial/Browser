@@ -1,7 +1,7 @@
 <ResourceDictionary mc:Ignorable="cs" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cs="colorscheme_ignorable_uri" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:dxcore_unique_xmlns="http://schemas.devexpress.com/winfx/2008/xaml/core">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.PeernetLightTheme.v22.1;component/Core/Core/Themes/UICore.xaml" />
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.PeernetLightTheme.v22.2;component/Core/Core/Themes/UICore.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     
@@ -212,11 +212,14 @@
         
         
         <Setter Property="Padding" Value="10,3,10,3" />
-        <Setter Property="Template" Value="{DynamicResource {dxt:DropDownButtonThemeKey ResourceKey=DropDownButtonTemplate}}" />
+        <Setter Property="Template" Value="{DynamicResource {dxt:DropDownButtonThemeKey ResourceKey=AsyncDropDownButtonTemplate}}" />
         
         
         
         <Style.Triggers>
+            <Trigger Property="AsyncDisplayMode" Value="None">
+                <Setter Property="Template" Value="{DynamicResource ResourceKey={dxt:DropDownButtonThemeKey ResourceKey=DropDownButtonTemplate}}" />
+            </Trigger>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                 <Setter Property="ArrowPadding" Value="0,13,27,13" />
                 <Setter Property="Padding" Value="14,13,14,13" />
@@ -242,7 +245,7 @@
     </Style>
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Core.SplitButton}" BasedOn="{StaticResource simpleButtonBaseStyle}" TargetType="{x:Type dx:SplitButton}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Office2019White\StandardControls\Button.xaml;337;6" /><Setter Property="ArrowAlignment" Value="Right" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Office2019White\StandardControls\Button.xaml;340;6" /><Setter Property="ArrowAlignment" Value="Right" />
         <Setter Property="ArrowPadding" Value="10,3,10,3" />
         
         
@@ -250,11 +253,14 @@
         <Setter Property="Padding" Value="10,3,10,3" />
         <Setter Property="ArrowBorderThickness" Value="1" />
         <Setter Property="SeparatorThickness" Value="1" />
-        <Setter Property="Template" Value="{DynamicResource {dxt:DropDownButtonThemeKey ResourceKey=SplitButtonTemplate}}" />
+        <Setter Property="Template" Value="{DynamicResource {dxt:DropDownButtonThemeKey ResourceKey=AsyncSplitButtonTemplate}}" />
         
         
         
         <Style.Triggers>
+            <Trigger Property="AsyncDisplayMode" Value="None">
+                <Setter Property="Template" Value="{DynamicResource ResourceKey={dxt:DropDownButtonThemeKey ResourceKey=SplitButtonTemplate}}" />
+            </Trigger>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                 <Setter Property="Padding" Value="14,11,14,11" />
             </Trigger>
@@ -291,10 +297,13 @@
         
         
         
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Office2019White\StandardControls\Button.xaml;382;6" /><Setter Property="Padding" Value="10,3,10,3" />
-        <Setter Property="Template" Value="{DynamicResource {dxt:ButtonThemeKey ResourceKey=ButtonControlTemplate}}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Office2019White\StandardControls\Button.xaml;388;6" /><Setter Property="Padding" Value="10,3,10,3" />
+        <Setter Property="Template" Value="{DynamicResource {dxt:ButtonThemeKey ResourceKey=AsyncButtonTemplate}}" />
         
         <Style.Triggers>
+            <Trigger Property="AsyncDisplayMode" Value="None">
+                <Setter Property="Template" Value="{DynamicResource ResourceKey={dxt:ButtonThemeKey ResourceKey=ButtonControlTemplate}}" />
+            </Trigger>
             <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
                 <Setter Property="Padding" Value="14,13,14,13" />
             </Trigger>
@@ -325,11 +334,12 @@
     
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Core.ThemedWindowDialogButton}" BasedOn="{StaticResource {dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Core.SimpleButton}}" TargetType="{x:Type dx:ThemedWindowDialogButton}">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Office2019White\StandardControls\Button.xaml;424;6" /><Setter Property="MinHeight" Value="22" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Core\Core\Themes\Office2019White\StandardControls\Button.xaml;433;6" /><Setter Property="MinHeight" Value="22" />
         <Setter Property="MinWidth" Value="70" />
         <Setter Property="Margin" Value="2,0,2,0" />
         <Setter Property="AutomationProperties.AutomationId" Value="{Binding Path=Content, RelativeSource={RelativeSource Self}, Converter={dx:ThemedDialogButtonNameConverter}, FallbackValue={x:Static sys:String.Empty}, TargetNullValue={x:Static sys:String.Empty}}" />
         <Setter Property="AutomationProperties.Name" Value="{Binding Path=Content, RelativeSource={RelativeSource Self}, FallbackValue={x:Static sys:String.Empty}, TargetNullValue={x:Static sys:String.Empty}}" />
+        <Setter Property="GlyphHeight" Value="16" />
     </Style>
 
 </ResourceDictionary>

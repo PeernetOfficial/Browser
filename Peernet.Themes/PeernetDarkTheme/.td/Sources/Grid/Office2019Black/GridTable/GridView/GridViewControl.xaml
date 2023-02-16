@@ -15,23 +15,27 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v22.1;component/Grid/Generic/HeaderFooterItemsControlStyles.xaml"/>
-        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v22.1;component/Grid/Office2019Black/UICore.xaml"/>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v22.2;component/Grid/Generic/HeaderFooterItemsControlStyles.xaml"/>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v22.2;component/Grid/Office2019Black/UICore.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <!-- General -->
 
     <ControlTemplate x:Key="{dxgt:TotalSummaryThemeKey ResourceKey=FootersContentTemplate}" TargetType="{x:Type ContentControl}">
-        <Grid>
+        <Grid x:Name="footersContent">
             <Border x:Name="PART_Background"
                     Background="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=FixedSummaryFillBrush}}"
                     BorderBrush="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=TotalSummaryBorderBrush}}">
                 <Border.BorderThickness>
-                    <Binding Path="View.IsRootView">
-                        <Binding.Converter>
-                            <dx:BoolToObjectConverter FalseValue="0,0,0,1" TrueValue="0,1,0,0"/>
-                        </Binding.Converter>
-                    </Binding>
+                    <MultiBinding>
+                        <MultiBinding.Bindings>
+                            <Binding Path="View.TotalSummaryPosition"/>
+                            <Binding Path="View.IsRootView"/>
+                        </MultiBinding.Bindings>
+                        <MultiBinding.Converter>
+                            <dxgi:TableViewTotalSummaryPanelBorderThicknessConverter/>
+                        </MultiBinding.Converter>
+                    </MultiBinding>
                 </Border.BorderThickness>
             </Border>
             <ContentPresenter/>

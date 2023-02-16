@@ -351,19 +351,58 @@
     </DataTemplate>
 
     <DataTemplate x:Key="FilterEditorVariadicTemplate">
-        <StackPanel Orientation="Horizontal">
-            <ItemsControl ItemsSource="{Binding Items}" ItemTemplate="{StaticResource FilterEditorVariadicItemTemplate}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <ItemsControl x:Name="filterItems"
+                          ItemsSource="{Binding Items}"
+                          ItemTemplate="{StaticResource FilterEditorVariadicItemTemplate}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal"/>
+                        <VirtualizingStackPanel ClipToBounds="True"
+                                                IsVirtualizing="True"
+                                                MaxWidth="3000"
+                                                Orientation="Horizontal"
+                                                VirtualizationMode="Recycling">
+                            <dxmvvm:Interaction.Behaviors>
+                                <dxfuii:AttachParentScrollViewerBehavior/>
+                            </dxmvvm:Interaction.Behaviors>
+                        </VirtualizingStackPanel>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
+                <ItemsControl.Template>
+                    <ControlTemplate TargetType="ItemsControl">
+                        <ItemsPresenter/>
+                    </ControlTemplate>
+                </ItemsControl.Template>
                 <dxmvvm:Interaction.Behaviors>
                     <dxfui:FilterEditorVariadicBehavior AddCommand="{Binding AddCommand}"/>
                 </dxmvvm:Interaction.Behaviors>
             </ItemsControl>
+            <Rectangle Focusable="False"
+                       HorizontalAlignment="Right"
+                       IsHitTestVisible="False"
+                       VerticalAlignment="Stretch"
+                       Visibility="{Binding ActualWidth, ElementName=filterItems, Converter={dxfuii:ValueEqualsParameterToVisibilityConverter}, ConverterParameter=3000}"
+                       Width="40">
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="1,0"
+                                         StartPoint="0,0"
+                                         cs:id="LinearGradientBrush_0000">
+                        <GradientStop Color="Transparent"
+                                      Offset="0"
+                                      cs:id="GradientStop_0000"/>
+                        <GradientStop Color="White"
+                                      Offset="1"
+                                      cs:id="GradientStop_0001"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
             <Button x:Name="AddButton"
                     Command="{Binding AddCommand}"
+                    Grid.Column="1"
                     Style="{StaticResource addChildButtonStyle}"
                     Template="{DynamicResource {dxfuit:FilterEditorThemeKey ResourceKey=NewOperandButtonControlTemplate}}">
                 <ToolTipService.ToolTip>
@@ -377,7 +416,7 @@
                     </ToolTip>
                 </ToolTipService.ToolTip>
             </Button>
-        </StackPanel>
+        </Grid>
     </DataTemplate>
 
     <DataTemplate x:Key="FilterEditorPredefinedFormatConditionTemplate">

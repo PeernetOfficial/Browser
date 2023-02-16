@@ -4,7 +4,7 @@
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal"
-                    xmlns:dxep="clr-namespace:DevExpress.Xpf.Editors.Popups;assembly=DevExpress.Xpf.Core.v22.1"
+                    xmlns:dxep="clr-namespace:DevExpress.Xpf.Editors.Popups;assembly=DevExpress.Xpf.Core.v22.2"
                     xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
                     xmlns:dxfui="http://schemas.devexpress.com/winfx/2008/xaml/core/filteringui"
                     xmlns:dxfuii="http://schemas.devexpress.com/winfx/2008/xaml/core/filteringui/internal"
@@ -17,7 +17,7 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <CornerRadius x:Key="{dxfuit:FilteringPanelThemeKey ResourceKey=ButtonCornerRaidus}">0</CornerRadius>
+    <CornerRadius x:Key="{dxfuit:FilteringPanelThemeKey ResourceKey=ButtonCornerRadius}">0</CornerRadius>
 
     <Thickness x:Key="{dxfuit:FilteringPanelThemeKey ResourceKey=PanelPadding}">1,0,1,0</Thickness>
 
@@ -49,7 +49,7 @@
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="{DynamicResource {dxfuit:FilteringPanelThemeKey ResourceKey=ButtonCornerRaidus}}"
+                            CornerRadius="{DynamicResource {dxfuit:FilteringPanelThemeKey ResourceKey=ButtonCornerRadius}}"
                             SnapsToDevicePixels="true">
                         <ContentPresenter x:Name="contentPresenter"
                                           Focusable="False"
@@ -168,6 +168,27 @@
                                     </LinearGradientBrush>
                                 </Border.OpacityMask>
                             </Border>
+                            <Border x:Name="borderFadeVertical"
+                                    Background="{DynamicResource {dxfuit:FilteringPanelThemeKey ResourceKey=ControlBackground}}"
+                                    Focusable="False"
+                                    Grid.ColumnSpan="7"
+                                    Height="40"
+                                    HorizontalAlignment="Stretch"
+                                    IsHitTestVisible="False"
+                                    VerticalAlignment="Bottom">
+                                <Border.OpacityMask>
+                                    <LinearGradientBrush EndPoint="0,1"
+                                                         StartPoint="0,0"
+                                                         cs:id="LinearGradientBrush_0001">
+                                        <GradientStop Color="Transparent"
+                                                      Offset="0"
+                                                      cs:id="GradientStop_0002"/>
+                                        <GradientStop Color="White"
+                                                      Offset="1"
+                                                      cs:id="GradientStop_0003"/>
+                                    </LinearGradientBrush>
+                                </Border.OpacityMask>
+                            </Border>
                             <Border x:Name="borderButtonExpand"
                                     Background="{DynamicResource {dxfuit:FilteringPanelThemeKey ResourceKey=ControlBackground}}"
                                     Grid.Column="3"
@@ -178,7 +199,7 @@
                                         Command="{TemplateBinding ExpandCommand}"
                                         Style="{DynamicResource {dxfuit:FilteringPanelThemeKey ResourceKey=ToolbarButton}}"
                                         ToolTip="{Binding IsTabStop, RelativeSource={RelativeSource Self}, ConverterParameter=FilterPanelExpand, Converter={StaticResource EditorStringIdConverter}}">
-                                    <dx:DXImage Source="pack://application:,,,/DevExpress.Xpf.Grid.v22.1;component/FilteringUI/FilteringPanel/Images/Expand.svg" Stretch="None"/>
+                                    <dx:DXImage Source="pack://application:,,,/DevExpress.Xpf.Grid.v22.2;component/FilteringUI/FilteringPanel/Images/Expand.svg" Stretch="None"/>
                                 </Button>
                             </Border>
                             <Button x:Name="buttonCollapse"
@@ -187,7 +208,7 @@
                                     Grid.Column="3"
                                     Style="{DynamicResource {dxfuit:FilteringPanelThemeKey ResourceKey=ToolbarButton}}"
                                     ToolTip="{Binding IsTabStop, RelativeSource={RelativeSource Self}, ConverterParameter=FilterPanelCollapse, Converter={StaticResource EditorStringIdConverter}}">
-                                <dx:DXImage Source="pack://application:,,,/DevExpress.Xpf.Grid.v22.1;component/FilteringUI/FilteringPanel/Images/Collapse.svg" Stretch="None"/>
+                                <dx:DXImage Source="pack://application:,,,/DevExpress.Xpf.Grid.v22.2;component/FilteringUI/FilteringPanel/Images/Collapse.svg" Stretch="None"/>
                             </Button>
                             <Grid x:Name="mru" Grid.Column="4">
                                 <dxe:ComboBoxEdit x:Name="PART_MRUList"
@@ -200,7 +221,32 @@
                                                   Width="30">
                                     <dxe:ComboBoxEdit.ItemTemplate>
                                         <DataTemplate>
-                                            <dxfuii:FilteringPanelFilterPresenter Filter="{Binding}"/>
+                                            <Grid>
+                                                <dxfuii:FilteringPanelFilterPresenter x:Name="filterPresenter"
+                                                                                      Filter="{Binding}"
+                                                                                      MaxWidth="1000"/>
+                                                <Border x:Name="borderFade"
+                                                        Background="{DynamicResource {dxfuit:FilteringPanelThemeKey ResourceKey=ControlBackground}}"
+                                                        Focusable="False"
+                                                        HorizontalAlignment="Right"
+                                                        IsHitTestVisible="False"
+                                                        VerticalAlignment="Stretch"
+                                                        Visibility="{Binding Path=IsTrimmed, ElementName=filterPresenter, Converter={dx:BooleanToVisibilityConverter}}"
+                                                        Width="40">
+                                                    <Border.OpacityMask>
+                                                        <LinearGradientBrush EndPoint="1,0"
+                                                                             StartPoint="0,0"
+                                                                             cs:id="LinearGradientBrush_0002">
+                                                            <GradientStop Color="Transparent"
+                                                                          Offset="0"
+                                                                          cs:id="GradientStop_0004"/>
+                                                            <GradientStop Color="White"
+                                                                          Offset="1"
+                                                                          cs:id="GradientStop_0005"/>
+                                                        </LinearGradientBrush>
+                                                    </Border.OpacityMask>
+                                                </Border>
+                                            </Grid>
                                         </DataTemplate>
                                     </dxe:ComboBoxEdit.ItemTemplate>
                                     <dxe:ComboBoxEdit.Resources>
@@ -281,7 +327,7 @@
                                               IsChecked="{Binding IsPopupOpen, ElementName=PART_MRUList}"
                                               Style="{DynamicResource {dxfuit:FilteringPanelThemeKey ResourceKey=ToolbarButton}}"
                                               ToolTip="{Binding IsTabStop, RelativeSource={RelativeSource Self}, ConverterParameter=FilterPanelMRU, Converter={StaticResource EditorStringIdConverter}}">
-                                    <dx:DXImage Source="pack://application:,,,/DevExpress.Xpf.Grid.v22.1;component/FilteringUI/FilteringPanel/Images/MRU.svg" Stretch="None"/>
+                                    <dx:DXImage Source="pack://application:,,,/DevExpress.Xpf.Grid.v22.2;component/FilteringUI/FilteringPanel/Images/MRU.svg" Stretch="None"/>
                                 </ToggleButton>
                             </Grid>
                             <Button x:Name="buttonEditFilter"
@@ -290,7 +336,7 @@
                                     Grid.Column="5"
                                     Style="{DynamicResource {dxfuit:FilteringPanelThemeKey ResourceKey=ToolbarButton}}"
                                     ToolTip="{Binding IsTabStop, RelativeSource={RelativeSource Self}, ConverterParameter=FilterPanelEditFilter, Converter={StaticResource EditorStringIdConverter}}">
-                                <dx:DXImage Source="pack://application:,,,/DevExpress.Xpf.Grid.v22.1;component/FilteringUI/FilteringPanel/Images/Edit.svg" Stretch="None"/>
+                                <dx:DXImage Source="pack://application:,,,/DevExpress.Xpf.Grid.v22.2;component/FilteringUI/FilteringPanel/Images/Edit.svg" Stretch="None"/>
                             </Button>
                             <Button x:Name="buttonClearFilter"
                                     AutomationProperties.Name="ClearFilter"
@@ -298,7 +344,7 @@
                                     Grid.Column="6"
                                     Style="{DynamicResource {dxfuit:FilteringPanelThemeKey ResourceKey=ToolbarButton}}"
                                     ToolTip="{Binding IsTabStop, RelativeSource={RelativeSource Self}, ConverterParameter=FilterPanelClearFilter, Converter={StaticResource EditorStringIdConverter}}">
-                                <dx:DXImage Source="pack://application:,,,/DevExpress.Xpf.Grid.v22.1;component/FilteringUI/FilteringPanel/Images/Close.svg" Stretch="None"/>
+                                <dx:DXImage Source="pack://application:,,,/DevExpress.Xpf.Grid.v22.2;component/FilteringUI/FilteringPanel/Images/Close.svg" Stretch="None"/>
                             </Button>
                         </Grid>
                     </Border>
@@ -320,6 +366,16 @@
                                     Value="Collapsed"/>
                             <Setter Property="Visibility"
                                     TargetName="borderFade"
+                                    Value="Collapsed"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsTrimmedVertical, ElementName=filteringPanelFilterPresenter}" Value="True">
+                            <Setter Property="Visibility"
+                                    TargetName="borderFadeVertical"
+                                    Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsTrimmedVertical, ElementName=filteringPanelFilterPresenter}" Value="False">
+                            <Setter Property="Visibility"
+                                    TargetName="borderFadeVertical"
                                     Value="Collapsed"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding ActualLineCount, ElementName=filteringPanelFilterPresenter}" Value="0">
