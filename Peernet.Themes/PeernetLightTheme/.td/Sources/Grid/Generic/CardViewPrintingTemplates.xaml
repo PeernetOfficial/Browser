@@ -4,6 +4,7 @@
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+                    xmlns:dxgi="http://schemas.devexpress.com/winfx/2008/xaml/grid/internal"
                     xmlns:dxgp="clr-namespace:DevExpress.Xpf.Grid.Printing"
                     xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
@@ -53,6 +54,18 @@
                                         BorderThickness="1,0,1,0"
                                         SkipEmptySummaries="True"/>
 
+    <dxgi:TotalSummaryPositionToVisibilityConverter x:Key="HeaderTotalSummaryPositionToVisibilityConverter" VisiblePosition="Top"/>
+
+    <dxgi:TotalSummaryPositionToVisibilityConverter x:Key="FooterTotalSummaryPositionToVisibilityConverter" VisiblePosition="Bottom"/>
+
+    <dxgi:TotalSummaryPositionToMarginConverter x:Key="TotalSummaryPositionToPrintPaddingConverter"
+                                                BottomMargin="0,9,0,9"
+                                                TopMargin="0,0,0,9"/>
+
+    <dxgi:TotalSummaryPositionToMarginConverter x:Key="TotalSummaryPositionPrintMarginConverter"
+                                                BottomMargin="0,15,0,0"
+                                                TopMargin="0,0,0,15"/>
+
     <SolidColorBrush x:Key="PrintHeaderBackColor" Color="#FFC0C0C0"/>
 
     <Style x:Key="{dxgt:CardViewThemeKey ResourceKey=DefaultPrintStyleBase}" TargetType="dxe:BaseEdit">
@@ -87,7 +100,6 @@
            BasedOn="{StaticResource {dxgt:CardViewThemeKey ResourceKey=DefaultPrintStyleBase}}"
            TargetType="dxe:BaseEdit">
         <Setter Property="Padding" Value="0"/>
-        <Setter Property="Margin" Value="0,0,0,9"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="dxp:TextExportSettings.TextTrimming" Value="None"/>
         <Setter Property="HorizontalContentAlignment" Value="Right"/>
@@ -97,7 +109,6 @@
            BasedOn="{StaticResource {dxgt:CardViewThemeKey ResourceKey=DefaultPrintStyleBase}}"
            TargetType="dxe:BaseEdit">
         <Setter Property="Padding" Value="0"/>
-        <Setter Property="Margin" Value="0,0,0,9"/>
         <Setter Property="Foreground"
                 Value="#FFBFBFBF"
                 cs:id="Setter_0000"/>
@@ -204,14 +215,15 @@
                                    Width="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).PrintCardsRowWidth}"/>
     </DataTemplate>
 
-    <DataTemplate x:Key="{dxgt:CardViewThemeKey ResourceKey=DefaultPrintHeaderTemplate}">
+    <DataTemplate x:Key="defaultPrintHeaderFooterTemplate">
         <ItemsControl dxp:ExportSettings.BorderColor="#FFBFBFBF"
-                      dxp:ExportSettings.BorderThickness="0,0,0,1"
+                      dxp:ExportSettings.BorderThickness="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).TotalSummaryPosition, Mode=OneWay, Converter={dxgi:CardViewTotalSummaryPanelBorderThicknessConverter}}"
                       dxp:ExportSettings.TargetType="Panel"
                       HorizontalAlignment="Right"
                       HorizontalContentAlignment="Right"
                       ItemsSource="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).TotalSummaries}"
-                      Margin="0,0,0,15"
+                      Margin="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).TotalSummaryPosition, Converter={StaticResource TotalSummaryPositionPrintMarginConverter}}"
+                      Padding="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).TotalSummaryPosition, Converter={StaticResource TotalSummaryPositionToPrintPaddingConverter}}"
                       Visibility="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).TotalSummaries.Count, Mode=OneWay, Converter={StaticResource IntToVisibilityConverter}}"
                       Width="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).TotalHeaderWidth}"
                       cs:id="ItemsControl_0000">
@@ -228,6 +240,10 @@
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
+    </DataTemplate>
+
+    <DataTemplate x:Key="{dxgt:CardViewThemeKey ResourceKey=DefaultPrintHeaderTemplate}">
+        <ContentPresenter ContentTemplate="{StaticResource defaultPrintHeaderFooterTemplate}" Visibility="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).TotalSummaryPosition, Mode=OneWay, Converter={StaticResource HeaderTotalSummaryPositionToVisibilityConverter}}"/>
     </DataTemplate>
 
     <DataTemplate x:Key="{dxgt:CardViewThemeKey ResourceKey=DefaultPrintGroupRowTemplate}">
@@ -290,7 +306,9 @@
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
     </Style>
 
-    <DataTemplate x:Key="{dxgt:CardViewThemeKey ResourceKey=DefaultPrintFooterTemplate}"/>
+    <DataTemplate x:Key="{dxgt:CardViewThemeKey ResourceKey=DefaultPrintFooterTemplate}">
+        <ContentPresenter ContentTemplate="{StaticResource defaultPrintHeaderFooterTemplate}" Visibility="{Binding Path=Content.(dxg:CardViewPrintingHelper.PrintCardInfo).TotalSummaryPosition, Mode=OneWay, Converter={StaticResource FooterTotalSummaryPositionToVisibilityConverter}}"/>
+    </DataTemplate>
 
     <DataTemplate x:Key="{dxgt:CardViewThemeKey ResourceKey=DefaultPrintFixedFooterTemplate}">
         <dxg:FixedTotalSummaryPrintPanel dxp:ExportSettings.BorderColor="#FFBFBFBF"

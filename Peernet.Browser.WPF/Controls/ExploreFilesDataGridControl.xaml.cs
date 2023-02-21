@@ -31,7 +31,6 @@ namespace Peernet.Browser.WPF.Controls
             new FilePreviewWindow(filePreviewViewModel).Show();
         }
 
-
         private void OpenFileWebGatewayReferenceWindow_OnClick(object sender, RoutedEventArgs e)
         {
             var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;

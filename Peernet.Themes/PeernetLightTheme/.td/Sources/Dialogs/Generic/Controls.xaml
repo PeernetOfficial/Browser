@@ -9,6 +9,7 @@
                     xmlns:dxdlgt="http://schemas.devexpress.com/winfx/2008/xaml/dialogs/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+                    xmlns:dxgh="clr-namespace:DevExpress.Xpf.Grid.Hierarchy;assembly=DevExpress.Xpf.Grid.v22.2.Core"
                     xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys"
                     xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
                     xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
@@ -53,111 +54,141 @@
         <Setter Property="MinHeight" Value="380"/>
     </Style>
 
+    <Style x:Key="{dxdlgt:DialogsThemeKey ResourceKey=FoldersViewerViewStyle}" TargetType="{x:Type dxdlgi:DialogTreeListView}">
+        <Style.Resources>
+            <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Grid.Hierarchy.HierarchyPanel}" TargetType="{x:Type dxgh:HierarchyPanel}">
+                <Setter Property="Margin" Value="10, 0"/>
+            </Style>
+        </Style.Resources>
+        <Setter Property="AllowEditing" Value="True"/>
+        <Setter Property="AllowScrollingOnDrag" Value="True"/>
+        <Setter Property="AllowTreeIndentScrolling" Value="True"/>
+        <Setter Property="FetchSublevelChildrenOnExpand" Value="False"/>
+        <Setter Property="NavigationStyle" Value="Row"/>
+        <Setter Property="ShowColumnHeaders" Value="False"/>
+        <Setter Property="ShowIndicator" Value="False"/>
+        <Setter Property="ShowHorizontalLines" Value="False"/>
+        <Setter Property="ShowNodeImages" Value="True"/>
+        <Setter Property="ShowVerticalLines" Value="False"/>
+        <Setter Property="ShowFocusedRectangle" Value="False"/>
+        <Setter Property="TreeLineStyle" Value="None"/>
+        <Setter Property="TreeDerivationMode" Value="ChildNodesSelector"/>
+        <Setter Property="VerticalScrollbarVisibility" Value="Auto"/>
+        <Setter Property="dx:ScrollBarExtensions.ScrollBarMode" Value="TouchOverlap"/>
+    </Style>
+
     <!--#region view styles-->
 
     <Style x:Key="ViewBaseStyle" TargetType="{x:Type dxdlgi:DialogCardView}">
         <Style.Resources>
-            <ResourceDictionary>
-                <!--region Image Style-->
-                <Style x:Key="ImageStyle" TargetType="{x:Type dxe:ImageEdit}">
-                    <Setter Property="IsReadOnly" Value="True"/>
-                    <Setter Property="EditMode" Value="InplaceInactive"/>
-                    <Setter Property="ShowMenu" Value="False"/>
-                    <Setter Property="ShowBorder" Value="False"/>
-                    <Setter Property="SnapsToDevicePixels" Value="True"/>
-                    <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>
-                </Style>
-                <!--endregion-->
-                <!--#region Name Styles-->
-                <Style x:Key="PropertyValueStyle" TargetType="{x:Type dxg:CardCellContentPresenter}">
-                    <Setter Property="Foreground" Value="{dxi:ThemeResource {dxgt:GridRowThemeKey ResourceKey=TextUnfocusedBrush}}"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Border}}" Value="True">
-                            <Setter Property="Foreground" Value="{dxi:ThemeResource {dxgt:GridRowThemeKey ResourceKey=TextRowSelectedBrush}}"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                            <Setter Property="Foreground" Value="{dxi:ThemeResource {dxgt:GridRowThemeKey ResourceKey=TextFocusedBrush}}"/>
-                        </DataTrigger>
-                        <Trigger Property="IsFocusedCell" Value="True">
-                            <Setter Property="Foreground" Value="{dxi:ThemeResource {dxgt:GridRowThemeKey ResourceKey=TextUnfocusedBrush}}"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-                <Style x:Key="EditablePropertyValueStyle"
-                       BasedOn="{StaticResource PropertyValueStyle}"
-                       TargetType="{x:Type dxg:CardCellContentPresenter}">
-                    <Setter Property="NavigationIndex" Value="0"/>
-                    <Setter Property="FieldName" Value="DisplayText"/>
-                </Style>
-                <Style x:Key="PropertyNameStyle" TargetType="{x:Type TextBlock}">
-                    <Setter Property="Margin" Value="5, 4"/>
-                    <Setter Property="Foreground" Value="{dxi:ThemeResource {dxgt:GridRowThemeKey ResourceKey=TextUnfocusedBrush}}"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Border}}" Value="True">
-                            <Setter Property="Foreground" Value="{dxi:ThemeResource {dxgt:GridRowThemeKey ResourceKey=TextRowSelectedBrush}}"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                            <Setter Property="Foreground" Value="{dxi:ThemeResource {dxgt:GridRowThemeKey ResourceKey=TextFocusedBrush}}"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-                <!--#endregion-->
-                <!--#region Card Container Template-->
-                <Style x:Key="CardBorderStyle" TargetType="{x:Type Border}">
-                    <Setter Property="Background" Value="{dxi:ThemeResource {dxgt:GridRowThemeKey ResourceKey=BorderNoneBrush}}"/>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{dxi:ThemeResource {dxgt:GridRowThemeKey ResourceKey=BorderSelectedBrush}}"/>
-                        </Trigger>
-                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                            <Setter Property="Background" Value="{dxi:ThemeResource {dxgt:GridRowThemeKey ResourceKey=BorderFocusedBrush}}"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-                <ControlTemplate x:Key="CardContainerTemplate" TargetType="{x:Type ContentControl}">
-                    <Grid ClipToBounds="False"
-                          Height="Auto"
-                          HorizontalAlignment="Stretch"
-                          VerticalAlignment="Top"
-                          Width="Auto">
-                        <Border x:Name="borderCard"
-                                Height="Auto"
-                                Style="{StaticResource CardBorderStyle}"
-                                Width="Auto">
-                            <ContentPresenter/>
-                        </Border>
-                    </Grid>
-                </ControlTemplate>
-                <!--#endregion-->
-                <!--#region Card Header Template-->
-                <ControlTemplate x:Key="{dxgt:GridCardThemeKey ResourceKey=HeaderPanelTemplate, IsThemeIndependent=True }" TargetType="{x:Type dxg:GridCardHeaderControl}">
-                    <ContentPresenter Visibility="Collapsed"/>
-                </ControlTemplate>
-                <!--#endregion-->
-                <!--#region GridCard Style-->
-                <Style x:Key="{dxt:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/grid.GridCard}" TargetType="{x:Type dxg:GridCard}">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <ContentControl x:Name="card"
+            <!--region Image Style-->
+            <Style x:Key="ImageStyle" TargetType="{x:Type dxe:ImageEdit}">
+                <Setter Property="IsReadOnly" Value="True"/>
+                <Setter Property="EditMode" Value="InplaceInactive"/>
+                <Setter Property="ShowMenu" Value="False"/>
+                <Setter Property="ShowBorder" Value="False"/>
+                <Setter Property="SnapsToDevicePixels" Value="True"/>
+                <Setter Property="dxmvvm:Interaction.BehaviorsTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <ItemsControl>
+                                <dxdlgi:DialogCardViewQueryImageBehavior ImageSelector="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxdlgi:DialogViewModeViewBase}}}" Item="{Binding Path=Row}"/>
+                            </ItemsControl>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>
+            </Style>
+            <!--endregion-->
+            <!--#region Name Styles-->
+            <Style x:Key="PropertyValueStyle" TargetType="{x:Type dxg:CardCellContentPresenter}">
+                <Setter Property="Foreground" Value="{dxi:ThemeResource {dxgt:GridRowThemeKey ResourceKey=TextUnfocusedBrush}}"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Border}}" Value="True">
+                        <Setter Property="Foreground" Value="{dxi:ThemeResource {dxgt:GridRowThemeKey ResourceKey=TextRowSelectedBrush}}"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                        <Setter Property="Foreground" Value="{dxi:ThemeResource {dxgt:GridRowThemeKey ResourceKey=TextFocusedBrush}}"/>
+                    </DataTrigger>
+                    <Trigger Property="IsFocusedCell" Value="True">
+                        <Setter Property="Foreground" Value="{dxi:ThemeResource {dxgt:GridRowThemeKey ResourceKey=TextUnfocusedBrush}}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="EditablePropertyValueStyle"
+                   BasedOn="{StaticResource PropertyValueStyle}"
+                   TargetType="{x:Type dxg:CardCellContentPresenter}">
+                <Setter Property="NavigationIndex" Value="0"/>
+                <Setter Property="FieldName" Value="Name"/>
+            </Style>
+            <Style x:Key="PropertyNameStyle" TargetType="{x:Type TextBlock}">
+                <Setter Property="Margin" Value="5, 4"/>
+                <Setter Property="Foreground" Value="{dxi:ThemeResource {dxgt:GridRowThemeKey ResourceKey=TextUnfocusedBrush}}"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Border}}" Value="True">
+                        <Setter Property="Foreground" Value="{dxi:ThemeResource {dxgt:GridRowThemeKey ResourceKey=TextRowSelectedBrush}}"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                        <Setter Property="Foreground" Value="{dxi:ThemeResource {dxgt:GridRowThemeKey ResourceKey=TextFocusedBrush}}"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <!--#endregion-->
+            <!--#region Card Container Template-->
+            <Style x:Key="CardBorderStyle" TargetType="{x:Type Border}">
+                <Setter Property="Background" Value="{dxi:ThemeResource {dxgt:GridRowThemeKey ResourceKey=BorderNoneBrush}}"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="{dxi:ThemeResource {dxgt:GridRowThemeKey ResourceKey=BorderSelectedBrush}}"/>
+                    </Trigger>
+                    <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                        <Setter Property="Background" Value="{dxi:ThemeResource {dxgt:GridRowThemeKey ResourceKey=BorderFocusedBrush}}"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <ControlTemplate x:Key="CardContainerTemplate" TargetType="{x:Type ContentControl}">
+                <Grid ClipToBounds="False"
+                      Height="Auto"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Top"
+                      Width="Auto">
+                    <Border x:Name="borderCard"
+                            Height="Auto"
+                            Style="{StaticResource CardBorderStyle}"
+                            Width="Auto">
+                        <ContentPresenter/>
+                    </Border>
+                </Grid>
+            </ControlTemplate>
+            <!--#endregion-->
+            <!--#region Card Header Template-->
+            <ControlTemplate x:Key="{dxgt:GridCardThemeKey ResourceKey=HeaderPanelTemplate, IsThemeIndependent=True }" TargetType="{x:Type dxg:GridCardHeaderControl}">
+                <ContentPresenter Visibility="Collapsed"/>
+            </ControlTemplate>
+            <!--#endregion-->
+            <!--#region GridCard Style-->
+            <Style x:Key="{dxt:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/grid.GridCard}" TargetType="{x:Type dxg:GridCard}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <ContentControl x:Name="card"
+                                            Focusable="False"
+                                            FocusVisualStyle="{x:Null}"
+                                            Style="{Binding Path=(dxg:GridControl.ActiveView).CardStyle, RelativeSource={RelativeSource TemplatedParent}}"
+                                            Template="{StaticResource CardContainerTemplate}">
+                                <ContentControl ClipToBounds="False"
                                                 Focusable="False"
-                                                FocusVisualStyle="{x:Null}"
-                                                Style="{Binding Path=(dxg:GridControl.ActiveView).CardStyle, RelativeSource={RelativeSource TemplatedParent}}"
-                                                Template="{StaticResource CardContainerTemplate}">
-                                    <ContentControl ClipToBounds="False"
-                                                    Focusable="False"
-                                                    FocusVisualStyle="{x:Null}">
-                                        <dxg:GridCardContentPresenter x:Name="presenter"
-                                                                      ClipToBounds="False"
-                                                                      Margin="3, 0"/>
-                                    </ContentControl>
+                                                FocusVisualStyle="{x:Null}">
+                                    <dxg:GridCardContentPresenter x:Name="presenter"
+                                                                  ClipToBounds="False"
+                                                                  Margin="3, 0"/>
                                 </ContentControl>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-                <!--#endregion-->
-            </ResourceDictionary>
+                            </ContentControl>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!--#endregion-->
         </Style.Resources>
         <Setter Property="IsColumnChooserVisible" Value="False"/>
         <Setter Property="NavigationStyle" Value="Row"/>
@@ -180,26 +211,15 @@
                 <!--#region IconViewCardTemplate-->
                 <DataTemplate x:Key="IconViewCardTemplate">
                     <ContentControl Background="Transparent" cs:id="ContentControl_0000">
-                        <Grid ClipToBounds="False" UseLayoutRounding="True">
+                        <Grid ClipToBounds="False">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <dxe:ImageEdit x:Name="lblImage"
                                            Grid.Column="1"
-                                           Height="{Binding Path=IconSize, RelativeSource={RelativeSource AncestorType={x:Type dxdlgi:DialogViewModeViewBase}}, Mode=OneWay}"
                                            Margin="6,1"
-                                           Style="{StaticResource ImageStyle}"
-                                           Width="{Binding Path=IconSize, RelativeSource={RelativeSource AncestorType={x:Type dxdlgi:DialogViewModeViewBase}}, Mode=OneWay}">
-                                <dxe:ImageEdit.EditValue>
-                                    <MultiBinding Converter="{dxdlgi:IconViewImageConverter}">
-                                        <Binding Mode="OneWay" Path="Row"/>
-                                        <Binding Mode="OneWay"
-                                                 Path="IconSize"
-                                                 RelativeSource="{RelativeSource AncestorType={x:Type dxdlgi:DialogViewModeViewBase}}"/>
-                                    </MultiBinding>
-                                </dxe:ImageEdit.EditValue>
-                            </dxe:ImageEdit>
+                                           Style="{StaticResource ImageStyle}"/>
                             <dxg:CardCellContentPresenter x:Name="lblFileName"
                                                           Grid.Row="1"
                                                           MaxHeight="60"
@@ -232,18 +252,7 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <dxe:ImageEdit Height="{Binding Path=IconSize, RelativeSource={RelativeSource AncestorType={x:Type dxdlgi:DialogViewModeViewBase}}, Mode=OneWay}"
-                                           Style="{StaticResource ImageStyle}"
-                                           Width="{Binding Path=IconSize, RelativeSource={RelativeSource AncestorType={x:Type dxdlgi:DialogViewModeViewBase}}, Mode=OneWay}">
-                                <dxe:ImageEdit.EditValue>
-                                    <MultiBinding Converter="{dxdlgi:IconViewImageConverter}">
-                                        <Binding Mode="OneWay" Path="Row"/>
-                                        <Binding Mode="OneWay"
-                                                 Path="IconSize"
-                                                 RelativeSource="{RelativeSource AncestorType={x:Type dxdlgi:DialogViewModeViewBase}}"/>
-                                    </MultiBinding>
-                                </dxe:ImageEdit.EditValue>
-                            </dxe:ImageEdit>
+                            <dxe:ImageEdit Style="{StaticResource ImageStyle}"/>
                             <dxg:CardCellContentPresenter x:Name="lblFileName"
                                                           Grid.Column="1"
                                                           Style="{StaticResource EditablePropertyValueStyle}"/>
@@ -271,7 +280,7 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <dxe:ImageEdit EditValue="{Binding Path=Row, Mode=OneWay, Converter={dxdlgi:CardImageConverter}, ConverterParameter=List}" Style="{StaticResource ImageStyle}"/>
+                            <dxe:ImageEdit Style="{StaticResource ImageStyle}"/>
                             <dxg:CardCellContentPresenter x:Name="lblFileName"
                                                           Grid.Column="1"
                                                           Style="{StaticResource EditablePropertyValueStyle}"/>
@@ -307,9 +316,7 @@
                                 <ColumnDefinition Width="5"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <dxe:ImageEdit EditValue="{Binding Path=Row, Mode=OneWay, Converter={dxdlgi:CardImageConverter}, ConverterParameter=Tiles}"
-                                           Grid.RowSpan="3"
-                                           Style="{StaticResource ImageStyle}"/>
+                            <dxe:ImageEdit Grid.RowSpan="3" Style="{StaticResource ImageStyle}"/>
                             <dxg:CardCellContentPresenter x:Name="lblFileName"
                                                           Grid.Column="2"
                                                           Grid.Row="0"
@@ -353,9 +360,7 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="210"/>
                             </Grid.ColumnDefinitions>
-                            <dxe:ImageEdit EditValue="{Binding Path=Row, Mode=OneWay, Converter={dxdlgi:CardImageConverter}, ConverterParameter=Content}"
-                                           Margin="0, 0, 5, 0"
-                                           Style="{StaticResource ImageStyle}"/>
+                            <dxe:ImageEdit Margin="0, 0, 5, 0" Style="{StaticResource ImageStyle}"/>
                             <Grid Grid.Column="1">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -437,13 +442,8 @@
         <Setter Property="ShowFocusedRectangle" Value="False"/>
         <Setter Property="ShowSelectionRectangle" Value="True"/>
         <Setter Property="ShowRootIndent" Value="False"/>
-        <Setter Property="TreeDerivationMode" Value="Selfreference"/>
         <Setter Property="TreeLineStyle" Value="None"/>
-        <Setter Property="NodeImageSelector">
-            <Setter.Value>
-                <dxdlgi:DetailsNodeImageSelector/>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="dx:ScrollBarExtensions.ScrollBarMode" Value="TouchOverlap"/>
     </Style>
 
     <!--#endregion view styles-->
@@ -486,283 +486,6 @@
                                 <dxdlgi:ViewModeBarButton x:Name="PART_ContentButton" ViewMode="Content"/>
                             </dxb:PopupMenu>
                         </dxb:MenuBarControl>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <DataTemplate x:Key="BarButtonContentTemplate">
-        <TextBlock Margin="0, 0, 20, 0"
-                   MaxWidth="200"
-                   Text="{Binding}"
-                   TextTrimming="CharacterEllipsis"
-                   ToolTip="{Binding}"/>
-    </DataTemplate>
-
-    <DataTemplate x:Key="BreadCrumbButtonContentTemplate">
-        <TextBlock Text="{Binding}"
-                   TextTrimming="CharacterEllipsis"
-                   ToolTip="{Binding}"/>
-    </DataTemplate>
-
-    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Dialogs.Native.BreadCrumbSplitButtonItemLinkControl}" TargetType="{x:Type dxdlgi:BreadCrumbSplitButtonItemLinkControl}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type dxdlgi:BreadCrumbSplitButtonItemLinkControl}">
-                    <Grid>
-                        <dxdlgi:BreadCrumbItemLayoutPanel x:Name="PART_LayoutPanel"/>
-                        <dx:NonLogicalDecorator x:Name="PART_PopupPlacementTarget"/>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Dialogs.Native.BreadCrumbCrumbButtonItemLinkControl}" TargetType="{x:Type dxdlgi:BreadCrumbCrumbButtonItemLinkControl}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type dxdlgi:BreadCrumbCrumbButtonItemLinkControl}">
-                    <dxdlgi:BreadCrumbItemLayoutPanel x:Name="PART_LayoutPanel"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Dialogs.Native.BreadCrumbCrumbsBox}" TargetType="{x:Type dxdlgi:BreadCrumbCrumbsBox}">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type dxdlgi:BreadCrumbCrumbsBox}">
-                    <Grid>
-                        <Grid.Resources>
-                            <ItemsPanelTemplate x:Key="{dxbt:BarControlThemeKey ResourceKey=ItemsPanelTemplate, IsThemeIndependent=True}">
-                                <dxdlgi:BreadCrumbCrumbsPanel CollapsedCrumbsCount="{Binding CollapsedCrumbsCount, RelativeSource={RelativeSource AncestorType={x:Type dxdlgi:BreadCrumbCrumbsBox}}, Mode=TwoWay}" Margin="0, 0, 60, 0"/>
-                            </ItemsPanelTemplate>
-                        </Grid.Resources>
-                        <dxdlgi:BreadCrumbPathBox x:Name="PART_BreadCrumbPathBox"
-                                                  AutoComplete="False"
-                                                  ClearSelectionOnBackspace="True"
-                                                  EditValue="{Binding Path=(dxdlgi:BreadCrumbControl.BreadCrumb).CurrentPath, RelativeSource={RelativeSource Self}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                  Grid.ColumnSpan="2"
-                                                  Height="{Binding RelativeSource={RelativeSource Self}, Converter={dxdlgi:BreadCrumbsPathBoxHeightConverter}}"
-                                                  ImmediatePopup="True"
-                                                  IncrementalFiltering="True"
-                                                  ItemsSource="{Binding Path=(dxdlgi:BreadCrumbControl.BreadCrumb).PathBoxSource, RelativeSource={RelativeSource Self}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                                                  PathBoxText="{Binding Path=(dxdlgi:BreadCrumbControl.BreadCrumb).PathBoxText, RelativeSource={RelativeSource Self}, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
-                                                  SelectAllOnGotFocus="True"
-                                                  SelectAllOnMouseUp="True"
-                                                  ShowSizeGrip="False"
-                                                  TypedPaths="{Binding Path=(dxdlgi:BreadCrumbControl.BreadCrumb).TypedPaths, RelativeSource={RelativeSource Self}, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                                                  ValidateOnEnterKeyPressed="False"
-                                                  ValidateOnTextInput="False">
-                            <dxdlgi:BreadCrumbPathBox.EditTemplate>
-                                <ControlTemplate>
-                                    <TextBox x:Name="PART_Editor"
-                                             BorderThickness="0"
-                                             Visibility="{Binding Path=State, RelativeSource={RelativeSource AncestorType={x:Type dxdlgi:BreadCrumbCrumbsBox}}, Converter={dxdlgi:BreadCrumbsBoxStateToVisibilityConverter InvisibleState=Crumbs}}"/>
-                                </ControlTemplate>
-                            </dxdlgi:BreadCrumbPathBox.EditTemplate>
-                            <dxdlgi:BreadCrumbPathBox.PopupContentTemplate>
-                                <ControlTemplate>
-                                    <Grid DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type dxdlgi:BreadCrumbPathBox}}}">
-                                        <Grid.Resources>
-                                            <ControlTemplate x:Key="{dx:WaitIndicatorThemeKey ResourceKey=WaitIndicatorContainerTemplate, IsThemeIndependent=True}" TargetType="{x:Type dx:WaitIndicatorContainer}">
-                                                <ContentPresenter/>
-                                            </ControlTemplate>
-                                        </Grid.Resources>
-                                        <dxg:GridControl Name="PART_GridControl" Grid.Row="0">
-                                            <dxg:GridControl.View>
-                                                <dxg:TableView AutoWidth="True"
-                                                               NavigationStyle="Row"
-                                                               ShowColumnHeaders="False"
-                                                               ShowHorizontalLines="False"
-                                                               ShowIndicator="False"
-                                                               ShowVerticalLines="False"/>
-                                            </dxg:GridControl.View>
-                                        </dxg:GridControl>
-                                        <dx:WaitIndicator x:Name="PART_LoadingIndicator"
-                                                          DeferedVisibility="True"
-                                                          Visibility="{Binding Path=ItemsSource, Converter={dxdlgi:EnumerableToVisibilityConverter IsEmptyVisible=True}}"/>
-                                    </Grid>
-                                </ControlTemplate>
-                            </dxdlgi:BreadCrumbPathBox.PopupContentTemplate>
-                        </dxdlgi:BreadCrumbPathBox>
-                        <Grid x:Name="PART_CrumbsBox"
-                              ClipToBounds="True"
-                              HorizontalAlignment="Left"
-                              Margin="1, 0"
-                              VerticalAlignment="Center"
-                              Visibility="{Binding State, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay, Converter={dxdlgi:BreadCrumbsBoxStateToVisibilityConverter InvisibleState=Path}}">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Image x:Name="PART_Icon"
-                                   Grid.Column="0"
-                                   Height="16"
-                                   HorizontalAlignment="Center"
-                                   Margin="3, 0"
-                                   Source="{Binding Path=(dxdlgi:BreadCrumbControl.BreadCrumb).CurrentNode.ImageSource, RelativeSource={RelativeSource Self}}"
-                                   VerticalAlignment="Center"
-                                   Width="16"/>
-                            <dxdlgi:BreadCrumbCrumbsContainer x:Name="PART_BreadCrumbsContainer"
-                                                              Grid.Column="1"
-                                                              ItemsSource="{TemplateBinding SourceInfo}"
-                                                              VerticalAlignment="Stretch">
-                                <dxdlgi:BreadCrumbCrumbsContainer.ItemTemplateSelector>
-                                    <dxdlgi:BreadCrumbCrumbsTemplateSelector>
-                                        <dxdlgi:BreadCrumbCrumbsTemplateSelector.SpecialTypeCrumbTemplate>
-                                            <DataTemplate>
-                                                <ContentControl>
-                                                    <dxdlgi:BreadCrumbRootSplitButtonItem ActAsDropDown="True"
-                                                                                          CloseSubMenuOnClick="False"
-                                                                                          CollapsedCrumbsCount="{Binding CollapsedCrumbsCount, RelativeSource={RelativeSource AncestorType={x:Type dxdlgi:BreadCrumbCrumbsBox}}}">
-                                                        <dxdlgi:BreadCrumbRootSplitButtonItem.PopupControl>
-                                                            <dxdlgi:BreadCrumbPopupMenu dxb:BarManagerHelper.ShowPopupWithDelay="True"
-                                                                                        IsOpen="{Binding IsExpanded, Mode=OneWayToSource}"
-                                                                                        MaxHeight="400">
-                                                                <dxb:BarItemMenuHeader IsVisible="{Binding Children, Converter={dxdlgi:EnumerableToBooleanConverter IsEmptyVisible=True}}">
-                                                                    <dxb:BarItemMenuHeader.ContentTemplate>
-                                                                        <DataTemplate>
-                                                                            <dx:ColumnWaitIndicator IsHitTestVisible="True" IsIndeterminate="True"/>
-                                                                        </DataTemplate>
-                                                                    </dxb:BarItemMenuHeader.ContentTemplate>
-                                                                </dxb:BarItemMenuHeader>
-                                                                <dxb:BarLinkContainerItem ItemLinksSource="{Binding Children}" ItemLinksSourceElementGeneratesUniqueBarItem="True">
-                                                                    <dxb:BarLinkContainerItem.ItemTemplateSelector>
-                                                                        <dxdlgi:BreadCrumbRootNodeChildrenTemplateSelector>
-                                                                            <dxdlgi:BreadCrumbRootNodeChildrenTemplateSelector.SpecialTypeCrumbTemplate>
-                                                                                <DataTemplate>
-                                                                                    <ContentControl>
-                                                                                        <dxb:BarItemSeparator/>
-                                                                                    </ContentControl>
-                                                                                </DataTemplate>
-                                                                            </dxdlgi:BreadCrumbRootNodeChildrenTemplateSelector.SpecialTypeCrumbTemplate>
-                                                                            <dxdlgi:BreadCrumbRootNodeChildrenTemplateSelector.DefaultCrumbTemplate>
-                                                                                <DataTemplate>
-                                                                                    <ContentControl>
-                                                                                        <dxb:BarButtonItem Command="{Binding Path=(dxdlgi:BreadCrumbControl.BreadCrumb).NavigateToBreadCrumbCommand, RelativeSource={RelativeSource Self}, Mode=OneWay}"
-                                                                                                           CommandParameter="{Binding }"
-                                                                                                           Content="{Binding DisplayData}"
-                                                                                                           ContentTemplate="{StaticResource BarButtonContentTemplate}"
-                                                                                                           Glyph="{Binding ImageSource}"/>
-                                                                                    </ContentControl>
-                                                                                </DataTemplate>
-                                                                            </dxdlgi:BreadCrumbRootNodeChildrenTemplateSelector.DefaultCrumbTemplate>
-                                                                        </dxdlgi:BreadCrumbRootNodeChildrenTemplateSelector>
-                                                                    </dxb:BarLinkContainerItem.ItemTemplateSelector>
-                                                                </dxb:BarLinkContainerItem>
-                                                            </dxdlgi:BreadCrumbPopupMenu>
-                                                        </dxdlgi:BreadCrumbRootSplitButtonItem.PopupControl>
-                                                    </dxdlgi:BreadCrumbRootSplitButtonItem>
-                                                </ContentControl>
-                                            </DataTemplate>
-                                        </dxdlgi:BreadCrumbCrumbsTemplateSelector.SpecialTypeCrumbTemplate>
-                                        <dxdlgi:BreadCrumbCrumbsTemplateSelector.DefaultCrumbTemplate>
-                                            <DataTemplate>
-                                                <ContentControl>
-                                                    <dxdlgi:BreadCrumbSplitButtonItem Command="{Binding Path=(dxdlgi:BreadCrumbControl.BreadCrumb).NavigateToBreadCrumbCommand, RelativeSource={RelativeSource Self}, Mode=OneWay}"
-                                                                                      CommandParameter="{Binding }"
-                                                                                      Content="{Binding DisplayData}"
-                                                                                      ContentTemplate="{StaticResource BreadCrumbButtonContentTemplate}">
-                                                        <dxdlgi:BreadCrumbSplitButtonItem.PopupControl>
-                                                            <dxdlgi:BreadCrumbPopupMenu dxb:BarManagerHelper.ShowPopupWithDelay="True"
-                                                                                        IsOpen="{Binding IsExpanded, Mode=OneWayToSource}"
-                                                                                        MaxHeight="400">
-                                                                <dxb:BarItemMenuHeader IsVisible="{Binding Children, Converter={dxdlgi:EnumerableToBooleanConverter IsEmptyVisible=True}}">
-                                                                    <dxb:BarItemMenuHeader.ContentTemplate>
-                                                                        <DataTemplate>
-                                                                            <dx:ColumnWaitIndicator IsHitTestVisible="True" IsIndeterminate="True"/>
-                                                                        </DataTemplate>
-                                                                    </dxb:BarItemMenuHeader.ContentTemplate>
-                                                                </dxb:BarItemMenuHeader>
-                                                                <dxb:BarLinkContainerItem ItemLinksSource="{Binding Children}" ItemLinksSourceElementGeneratesUniqueBarItem="True">
-                                                                    <dxb:BarLinkContainerItem.ItemTemplate>
-                                                                        <DataTemplate>
-                                                                            <ContentControl>
-                                                                                <dxb:BarButtonItem Command="{Binding Path=(dxdlgi:BreadCrumbControl.BreadCrumb).NavigateToBreadCrumbCommand, RelativeSource={RelativeSource Self}, Mode=OneWay}"
-                                                                                                   CommandParameter="{Binding }"
-                                                                                                   Content="{Binding DisplayData}"
-                                                                                                   ContentTemplate="{StaticResource BarButtonContentTemplate}"
-                                                                                                   Glyph="{Binding ImageSource}"/>
-                                                                            </ContentControl>
-                                                                        </DataTemplate>
-                                                                    </dxb:BarLinkContainerItem.ItemTemplate>
-                                                                </dxb:BarLinkContainerItem>
-                                                            </dxdlgi:BreadCrumbPopupMenu>
-                                                        </dxdlgi:BreadCrumbSplitButtonItem.PopupControl>
-                                                    </dxdlgi:BreadCrumbSplitButtonItem>
-                                                </ContentControl>
-                                            </DataTemplate>
-                                        </dxdlgi:BreadCrumbCrumbsTemplateSelector.DefaultCrumbTemplate>
-                                        <dxdlgi:BreadCrumbCrumbsTemplateSelector.CrumbWithoutChildrenTemplate>
-                                            <DataTemplate>
-                                                <ContentControl>
-                                                    <dxdlgi:BreadCrumbCrumbButtonItem Command="{Binding Path=(dxdlgi:BreadCrumbControl.BreadCrumb).NavigateToBreadCrumbCommand, RelativeSource={RelativeSource Self}, Mode=OneWay}"
-                                                                                      CommandParameter="{Binding }"
-                                                                                      Content="{Binding DisplayData}"
-                                                                                      ContentTemplate="{StaticResource BreadCrumbButtonContentTemplate}"/>
-                                                </ContentControl>
-                                            </DataTemplate>
-                                        </dxdlgi:BreadCrumbCrumbsTemplateSelector.CrumbWithoutChildrenTemplate>
-                                    </dxdlgi:BreadCrumbCrumbsTemplateSelector>
-                                </dxdlgi:BreadCrumbCrumbsContainer.ItemTemplateSelector>
-                            </dxdlgi:BreadCrumbCrumbsContainer>
-                        </Grid>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Dialogs.Native.BreadCrumbControl}" TargetType="{x:Type dxdlgi:BreadCrumbControl}">
-        <Setter Property="IsTabStop" Value="False"/>
-        <Setter Property="Focusable" Value="False"/>
-        <Setter Property="VerticalAlignment" Value="Top"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type dxdlgi:BreadCrumbControl}">
-                    <Grid Margin="{TemplateBinding Margin}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.Resources>
-                            <ItemsPanelTemplate x:Key="{dxbt:BarControlThemeKey ResourceKey=ItemsPanelTemplate, IsThemeIndependent=True}">
-                                <StackPanel Orientation="Horizontal"/>
-                            </ItemsPanelTemplate>
-                        </Grid.Resources>
-                        <dxdlgi:FileDialogToolbar x:Name="PART_NavigationBox" VerticalAlignment="Center">
-                            <dxdlgi:BreadCrumbButtonItem x:Name="PART_GoBackwardButton"
-                                                         Command="{Binding Path=GoBackwardCommand, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
-                                                         Glyph="{dxdlgi:DialogsSvgImageExtension Path=Images/Svg/Backward.svg}"/>
-                            <dxdlgi:BreadCrumbButtonItem x:Name="PART_GoForwardButton"
-                                                         Command="{Binding Path=GoForwardCommand, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
-                                                         Glyph="{dxdlgi:DialogsSvgImageExtension Path=Images/Svg/Forward.svg}"/>
-                            <dxdlgi:BreadCrumbSubItem x:Name="PART_HistoryButton"
-                                                      IsEnabled="{Binding Path=History, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay, Converter={dxdlgi:BreadCrumbHistoryEnabledConverter}}"
-                                                      ItemLinksSource="{Binding Path=History, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}">
-                                <dxdlgi:BreadCrumbSubItem.ItemTemplate>
-                                    <DataTemplate>
-                                        <ContentControl>
-                                            <dxb:BarButtonItem Command="{Binding Path=(dxdlgi:BreadCrumbControl.BreadCrumb).GoToRecentLocationCommand, RelativeSource={RelativeSource Self}, Mode=OneWay}"
-                                                               CommandParameter="{Binding Node}"
-                                                               Content="{Binding Node.DisplayData}"
-                                                               ContentTemplate="{StaticResource BarButtonContentTemplate}"
-                                                               Glyph="{Binding Type, Converter={dxdlgi:BreadCrumbHistoryButtonGlyphConverter}}"/>
-                                        </ContentControl>
-                                    </DataTemplate>
-                                </dxdlgi:BreadCrumbSubItem.ItemTemplate>
-                            </dxdlgi:BreadCrumbSubItem>
-                            <dxdlgi:BreadCrumbButtonItem x:Name="PART_GoUpButton"
-                                                         Command="{Binding Path=GoUpCommand, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
-                                                         Glyph="{dxdlgi:DialogsSvgImageExtension Path=Images/Svg/Up.svg}"/>
-                        </dxdlgi:FileDialogToolbar>
-                        <dxdlgi:BreadCrumbCrumbsBox x:Name="PART_BreadCrumbCrumbsBox"
-                                                    BreadCrumbs="{TemplateBinding BreadCrumbs}"
-                                                    FocusVisualStyle="{x:Null}"
-                                                    Grid.Column="1"
-                                                    VerticalAlignment="Stretch"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

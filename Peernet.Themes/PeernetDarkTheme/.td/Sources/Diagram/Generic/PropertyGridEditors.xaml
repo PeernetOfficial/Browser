@@ -3,7 +3,7 @@
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
                     xmlns:dxdiag="http://schemas.devexpress.com/winfx/2008/xaml/diagram"
-                    xmlns:dxdiagcore="clr-namespace:DevExpress.Diagram.Core;assembly=DevExpress.Diagram.v22.1.Core"
+                    xmlns:dxdiagcore="clr-namespace:DevExpress.Diagram.Core;assembly=DevExpress.Diagram.v22.2.Core"
                     xmlns:dxdiagi="http://schemas.devexpress.com/winfx/2008/xaml/diagram/internal"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
                     xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal"
@@ -24,7 +24,6 @@
         <Setter Property="ItemContainerStyle">
             <Setter.Value>
                 <Style x:Key="{dxt:DefaultStyleThemeKey FullName=http://schemas.devexpress.com/winfx/2008/xaml/editors.ListBoxEditItem}" TargetType="dxe:ListBoxEditItem">
-                    <Setter Property="Height" Value="{Binding Path=ActualHeight, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxe:ComboBoxEdit}}}"/>
                     <Setter Property="Width" Value="{Binding Path=ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxe:ComboBoxEdit}}}"/>
                     <Setter Property="VerticalContentAlignment" Value="Stretch"/>
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -254,9 +253,9 @@
                 <DataTemplate>
                     <dxdiagi:PopupColorEdit x:Name="PART_Editor"
                                             Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxprg:PropertyGridControl}}}"
-                                            DiagramColor="{Binding Value, Mode=TwoWay}"
                                             DisplayTemplate="{StaticResource PropertyGridBackgroundColorDisplayTemplate}"
                                             EditTemplate="{StaticResource PropertyGridBackgroundColorDisplayTemplate}"
+                                            EditValue="{Binding Value, Mode=TwoWay}"
                                             IsReadOnly="True">
                         <dxdiagi:PopupColorEdit.PopupContentTemplate>
                             <ControlTemplate>
@@ -265,7 +264,7 @@
                                                            ShowDefaultColorButton="False">
                                     <dxmvvm:Interaction.Behaviors>
                                         <dxdiagi:PopupColorEditBehavior Diagram="{Binding Diagram, ElementName=PART_Editor}"
-                                                                        DiagramColor="{Binding DiagramColor, ElementName=PART_Editor, Mode=TwoWay}"
+                                                                        DiagramColor="{Binding EditValue, ElementName=PART_Editor, Mode=TwoWay}"
                                                                         EditablePropertyName="{x:Static dxdiagcore:DiagramItemController.BackgroundPropertyName}"/>
                                     </dxmvvm:Interaction.Behaviors>
                                 </dxdiagi:ExtendedColorEdit>
@@ -283,9 +282,9 @@
                 <DataTemplate>
                     <dxdiagi:PopupColorEdit x:Name="PART_Editor"
                                             Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxprg:PropertyGridControl}}}"
-                                            DiagramColor="{Binding Value, Mode=TwoWay}"
                                             DisplayTemplate="{StaticResource PropertyGridStrokeColorDisplayTemplate}"
                                             EditTemplate="{StaticResource PropertyGridStrokeColorDisplayTemplate}"
+                                            EditValue="{Binding Value, Mode=TwoWay}"
                                             IsReadOnly="True">
                         <dxdiagi:PopupColorEdit.PopupContentTemplate>
                             <ControlTemplate>
@@ -294,7 +293,7 @@
                                                            ShowDefaultColorButton="False">
                                     <dxmvvm:Interaction.Behaviors>
                                         <dxdiagi:PopupColorEditBehavior Diagram="{Binding Diagram, ElementName=PART_Editor}"
-                                                                        DiagramColor="{Binding DiagramColor, ElementName=PART_Editor, Mode=TwoWay}"
+                                                                        DiagramColor="{Binding EditValue, ElementName=PART_Editor, Mode=TwoWay}"
                                                                         EditablePropertyName="{x:Static dxdiagcore:DiagramItemController.StrokePropertyName}"/>
                                     </dxmvvm:Interaction.Behaviors>
                                 </dxdiagi:ExtendedColorEdit>
@@ -312,9 +311,9 @@
                 <DataTemplate>
                     <dxdiagi:PopupColorEdit x:Name="PART_Editor"
                                             Diagram="{Binding Path=(dxdiag:DiagramControl.Diagram), RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type dxprg:PropertyGridControl}}}"
-                                            DiagramColor="{Binding Value, Mode=TwoWay}"
                                             DisplayTemplate="{StaticResource PropertyGridForegroundColorDisplayTemplate}"
                                             EditTemplate="{StaticResource PropertyGridForegroundColorDisplayTemplate}"
+                                            EditValue="{Binding Value, Mode=TwoWay}"
                                             IsReadOnly="True">
                         <dxe:PopupBaseEdit.PopupContentTemplate>
                             <ControlTemplate>
@@ -323,7 +322,7 @@
                                                            ShowDefaultColorButton="False">
                                     <dxmvvm:Interaction.Behaviors>
                                         <dxdiagi:PopupColorEditBehavior Diagram="{Binding Diagram, ElementName=PART_Editor}"
-                                                                        DiagramColor="{Binding DiagramColor, ElementName=PART_Editor, Mode=TwoWay}"
+                                                                        DiagramColor="{Binding EditValue, ElementName=PART_Editor, Mode=TwoWay}"
                                                                         EditablePropertyName="{x:Static dxdiagcore:DiagramItemController.ForegroundPropertyName}"/>
                                     </dxmvvm:Interaction.Behaviors>
                                 </dxdiagi:ExtendedColorEdit>

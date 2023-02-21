@@ -4,6 +4,7 @@
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts"
                     xmlns:dxct="http://schemas.devexpress.com/winfx/2008/xaml/charts/themekeys"
+                    xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
                     xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
@@ -453,27 +454,47 @@
                 <ControlTemplate TargetType="{x:Type dxc:FunnelSeriesPresentation}">
                     <dxc:TitlesLayoutControl x:Name="FunnelSeries2DTitlesControl" Titles="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Series.Titles}">
                         <dxc:TitlesLayoutControl.MasterElement>
-                            <dxc:FunnelSeries2DItemsControl x:Name="funnelSeries2DItemsControl"
-                                                            Series="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Series}"
-                                                            SeriesLabel="{Binding Path=Series.ActualLabel, RelativeSource={RelativeSource TemplatedParent}}"
-                                                            SeriesLabelItems="{Binding Path=Series.ActualLabel.Items, RelativeSource={RelativeSource TemplatedParent}}">
-                                <dxc:FunnelSeries2DItemsControl.PointsContainer>
-                                    <dxc:PointsContainer x:Name="PART_PointsContainer"
-                                                         DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Series}"
-                                                         ItemsSource="{Binding Path=SeriesItem.VisiblePointItems, RelativeSource={RelativeSource TemplatedParent}}">
-                                        <dxc:ChartItemsControl.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <dxc:FunnelSeries2DPointsPanel x:Name="PART_PointsPanel"/>
-                                            </ItemsPanelTemplate>
-                                        </dxc:ChartItemsControl.ItemsPanel>
-                                    </dxc:PointsContainer>
-                                </dxc:FunnelSeries2DItemsControl.PointsContainer>
-                                <dxc:FunnelSeries2DItemsControl.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <dxc:FunnelSeries2DPanel/>
-                                    </ItemsPanelTemplate>
-                                </dxc:FunnelSeries2DItemsControl.ItemsPanel>
-                            </dxc:FunnelSeries2DItemsControl>
+                            <Grid>
+                                <dxc:FunnelSeries2DItemsControl x:Name="funnelSeries2DItemsControl"
+                                                                Series="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Series}"
+                                                                SeriesLabel="{Binding Path=Series.ActualLabel, RelativeSource={RelativeSource TemplatedParent}}"
+                                                                SeriesLabelItems="{Binding Path=Series.ActualLabel.Items, RelativeSource={RelativeSource TemplatedParent}}">
+                                    <dxc:FunnelSeries2DItemsControl.PointsContainer>
+                                        <dxc:PointsContainer x:Name="PART_PointsContainer"
+                                                             DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Series}"
+                                                             ItemsSource="{Binding Path=SeriesItem.VisiblePointItems, RelativeSource={RelativeSource TemplatedParent}}">
+                                            <dxc:ChartItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <dxc:FunnelSeries2DPointsPanel x:Name="PART_PointsPanel"/>
+                                                </ItemsPanelTemplate>
+                                            </dxc:ChartItemsControl.ItemsPanel>
+                                        </dxc:PointsContainer>
+                                    </dxc:FunnelSeries2DItemsControl.PointsContainer>
+                                    <dxc:FunnelSeries2DItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <dxc:FunnelSeries2DPanel/>
+                                        </ItemsPanelTemplate>
+                                    </dxc:FunnelSeries2DItemsControl.ItemsPanel>
+                                </dxc:FunnelSeries2DItemsControl>
+                                <Grid x:Name="exclamationMessage"
+                                      Background="#26FFFFFF"
+                                      Visibility="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SeriesItem.ShowExclamation, Converter={dxmvvm:BooleanToVisibilityConverter}}"
+                                      cs:id="Grid_0000">
+                                    <Viewbox MaxWidth="500">
+                                        <TextBlock FontSize="24"
+                                                   FontWeight="Regular"
+                                                   Foreground="#FF333333"
+                                                   HorizontalAlignment="Center"
+                                                   LineHeight="32"
+                                                   Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SeriesItem.ExclamationMessage}"
+                                                   TextAlignment="Center"
+                                                   TextWrapping="Wrap"
+                                                   VerticalAlignment="Center"
+                                                   Width="500"
+                                                   cs:id="TextBlock_0000"/>
+                                    </Viewbox>
+                                </Grid>
+                            </Grid>
                         </dxc:TitlesLayoutControl.MasterElement>
                     </dxc:TitlesLayoutControl>
                 </ControlTemplate>

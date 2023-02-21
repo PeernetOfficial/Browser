@@ -134,30 +134,37 @@
         <Setter Property="PressedCornerRadius" Value="{StaticResource DateNavigationPanelButton.CornerRadius}" />
         <Setter Property="DisabledBackground" Value="{StaticResource DateNavigationPanelButton.DisabledBackground}" />
         <Setter Property="DisabledBorderBrush" Value="{StaticResource DateNavigationPanelButton.DisabledBorderBrush}" />
+        <Style.Triggers>
+            <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
+                <Setter Property="Width" Value="{StaticResource Touch.DateNavigationPanelButton.Width}" />
+                <Setter Property="Height" Value="{StaticResource Touch.DateNavigationPanelButton.Height}" />
+                <Setter Property="Margin" Value="{StaticResource Touch.DateNavigationPanelButton.Margin}" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="{dxscht:SchedulerButtonThemeKey ResourceKey=MoreButton_UpStyle}" BasedOn="{StaticResource MoreButton.BaseStyle}" TargetType="dxschv:SchedulerButton">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;149;6" /><Setter Property="ContentTemplate">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;156;6" /><Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Style="{StaticResource UIShape.Up}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;155;22" />
+                    <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Style="{StaticResource UIShape.Up}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;162;22" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
     <Style x:Key="{dxscht:SchedulerButtonThemeKey ResourceKey=MoreButton_DownStyle}" BasedOn="{StaticResource MoreButton.BaseStyle}" TargetType="dxschv:SchedulerButton">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;161;6" /><Setter Property="ContentTemplate">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;168;6" /><Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Style="{StaticResource UIShape.Down}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;167;22" />
+                    <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Style="{StaticResource UIShape.Down}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;174;22" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
     <Style x:Key="{dxscht:SchedulerButtonThemeKey ResourceKey=NavigationButton_BackwardStyle}" BasedOn="{StaticResource NavigationButton.BaseStyle}" TargetType="dxschv:SchedulerButton">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;173;6" /><Setter Property="Margin" Value="{StaticResource NavigationButton.Backward.Margin}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;180;6" /><Setter Property="Margin" Value="{StaticResource NavigationButton.Backward.Margin}" />
         <Setter Property="CornerRadius" Value="{StaticResource NavigationButton.Backward.CornerRadius}" />
         <Setter Property="HoverCornerRadius" Value="{StaticResource NavigationButton.Backward.CornerRadius}" />
         <Setter Property="PressedCornerRadius" Value="{StaticResource NavigationButton.Backward.CornerRadius}" />
@@ -165,8 +172,8 @@
             <Setter.Value>
                 <DataTemplate>
                     <dxschv:NavigationButtonPanel>
-                        <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Margin="4,12,4,12" Style="{StaticResource UIShape.NavigationButton.Prev}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;184;26" />
-                        <TextBlock HorizontalAlignment="Center" Margin="4,0,4,24" Text="{dxsch:SchedulerLocalizer StringId=Caption_PrevAppointment}" TextAlignment="Center" VerticalAlignment="Center" Width="118" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;187;26">
+                        <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Margin="4,12,4,12" Style="{StaticResource UIShape.NavigationButton.Prev}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;191;26" />
+                        <TextBlock HorizontalAlignment="Center" Margin="4,0,4,24" Text="{dxsch:SchedulerLocalizer StringId=Caption_PrevAppointment}" TextAlignment="Center" VerticalAlignment="Center" Width="118" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;194;26">
                             <TextBlock.LayoutTransform>
                                 <RotateTransform Angle="-90" />
                             </TextBlock.LayoutTransform>
@@ -178,7 +185,7 @@
     </Style>
 
     <Style x:Key="{dxscht:SchedulerButtonThemeKey ResourceKey=NavigationButton_ForwardStyle}" BasedOn="{StaticResource NavigationButton.BaseStyle}" TargetType="dxschv:SchedulerButton">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;203;6" /><Setter Property="Margin" Value="{StaticResource NavigationButton.Forward.Margin}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;210;6" /><Setter Property="Margin" Value="{StaticResource NavigationButton.Forward.Margin}" />
         <Setter Property="CornerRadius" Value="{StaticResource NavigationButton.Forward.CornerRadius}" />
         <Setter Property="HoverCornerRadius" Value="{StaticResource NavigationButton.Forward.CornerRadius}" />
         <Setter Property="PressedCornerRadius" Value="{StaticResource NavigationButton.Forward.CornerRadius}" />
@@ -186,8 +193,8 @@
             <Setter.Value>
                 <DataTemplate>
                     <dxschv:NavigationButtonPanel>
-                        <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Margin="4,12,4,12" Style="{StaticResource UIShape.NavigationButton.Next}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;214;26" />
-                        <TextBlock HorizontalAlignment="Center" Margin="4,0,4,24" Text="{dxsch:SchedulerLocalizer StringId=Caption_NextAppointment}" TextAlignment="Center" VerticalAlignment="Center" Width="118" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;217;26">
+                        <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Margin="4,12,4,12" Style="{StaticResource UIShape.NavigationButton.Next}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;221;26" />
+                        <TextBlock HorizontalAlignment="Center" Margin="4,0,4,24" Text="{dxsch:SchedulerLocalizer StringId=Caption_NextAppointment}" TextAlignment="Center" VerticalAlignment="Center" Width="118" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;224;26">
                             <TextBlock.LayoutTransform>
                                 <RotateTransform Angle="-90" />
                             </TextBlock.LayoutTransform>
@@ -199,117 +206,128 @@
     </Style>
 
     <Style x:Key="{dxscht:SchedulerButtonThemeKey ResourceKey=ResourceNavigatorButton_FirstStyle}" BasedOn="{StaticResource ResourceNavigatorButton.BaseStyle}" TargetType="dxschv:SchedulerButton">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;233;6" /><Setter Property="ToolTip" Value="{dxsch:SchedulerLocalizer StringId=Caption_FirstVisibleResources}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;240;6" /><Setter Property="ToolTip" Value="{dxsch:SchedulerLocalizer StringId=Caption_FirstVisibleResources}" />
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Style="{StaticResource UIShape.Navigation.First}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;240;22" />
+                    <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Style="{StaticResource UIShape.Navigation.First}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;247;22" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
     <Style x:Key="{dxscht:SchedulerButtonThemeKey ResourceKey=ResourceNavigatorButton_PrevPageStyle}" BasedOn="{StaticResource ResourceNavigatorButton.BaseStyle}" TargetType="dxschv:SchedulerButton">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;246;6" /><Setter Property="ToolTip" Value="{dxsch:SchedulerLocalizer StringId=Caption_PrevVisibleResourcesPage}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;253;6" /><Setter Property="ToolTip" Value="{dxsch:SchedulerLocalizer StringId=Caption_PrevVisibleResourcesPage}" />
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Style="{StaticResource UIShape.Navigation.PrevPage}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;253;22" />
+                    <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Style="{StaticResource UIShape.Navigation.PrevPage}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;260;22" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
     <Style x:Key="{dxscht:SchedulerButtonThemeKey ResourceKey=ResourceNavigatorButton_PrevItemStyle}" BasedOn="{StaticResource ResourceNavigatorButton.BaseStyle}" TargetType="dxschv:SchedulerButton">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;259;6" /><Setter Property="ToolTip" Value="{dxsch:SchedulerLocalizer StringId=Caption_PrevVisibleResources}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;266;6" /><Setter Property="ToolTip" Value="{dxsch:SchedulerLocalizer StringId=Caption_PrevVisibleResources}" />
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Style="{StaticResource UIShape.Navigation.PrevItem}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;266;22" />
+                    <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Style="{StaticResource UIShape.Navigation.PrevItem}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;273;22" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
     <Style x:Key="{dxscht:SchedulerButtonThemeKey ResourceKey=ResourceNavigatorButton_NextItemStyle}" BasedOn="{StaticResource ResourceNavigatorButton.BaseStyle}" TargetType="dxschv:SchedulerButton">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;272;6" /><Setter Property="ToolTip" Value="{dxsch:SchedulerLocalizer StringId=Caption_NextVisibleResources}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;279;6" /><Setter Property="ToolTip" Value="{dxsch:SchedulerLocalizer StringId=Caption_NextVisibleResources}" />
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Style="{StaticResource UIShape.Navigation.NextItem}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;279;22" />
+                    <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Style="{StaticResource UIShape.Navigation.NextItem}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;286;22" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
     <Style x:Key="{dxscht:SchedulerButtonThemeKey ResourceKey=ResourceNavigatorButton_NextPageStyle}" BasedOn="{StaticResource ResourceNavigatorButton.BaseStyle}" TargetType="dxschv:SchedulerButton">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;285;6" /><Setter Property="ToolTip" Value="{dxsch:SchedulerLocalizer StringId=Caption_NextVisibleResourcesPage}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;292;6" /><Setter Property="ToolTip" Value="{dxsch:SchedulerLocalizer StringId=Caption_NextVisibleResourcesPage}" />
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Style="{StaticResource UIShape.Navigation.NextPage}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;292;22" />
+                    <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Style="{StaticResource UIShape.Navigation.NextPage}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;299;22" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
     <Style x:Key="{dxscht:SchedulerButtonThemeKey ResourceKey=ResourceNavigatorButton_LastStyle}" BasedOn="{StaticResource ResourceNavigatorButton.BaseStyle}" TargetType="dxschv:SchedulerButton">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;298;6" /><Setter Property="ToolTip" Value="{dxsch:SchedulerLocalizer StringId=Caption_LastVisibleResources}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;305;6" /><Setter Property="ToolTip" Value="{dxsch:SchedulerLocalizer StringId=Caption_LastVisibleResources}" />
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Style="{StaticResource UIShape.Navigation.Last}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;305;22" />
+                    <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Style="{StaticResource UIShape.Navigation.Last}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;312;22" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
     <Style x:Key="{dxscht:SchedulerButtonThemeKey ResourceKey=ResourceNavigatorButton_PlusStyle}" BasedOn="{StaticResource ResourceNavigatorButton.BaseStyle}" TargetType="dxschv:SchedulerButton">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;311;6" /><Setter Property="ToolTip" Value="{dxsch:SchedulerLocalizer StringId=Caption_IncreaseVisibleResourcesCount}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;318;6" /><Setter Property="ToolTip" Value="{dxsch:SchedulerLocalizer StringId=Caption_IncreaseVisibleResourcesCount}" />
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Style="{StaticResource UIShape.Navigation.Plus}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;318;22" />
+                    <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Style="{StaticResource UIShape.Navigation.Plus}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;325;22" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
     <Style x:Key="{dxscht:SchedulerButtonThemeKey ResourceKey=ResourceNavigatorButton_MinusStyle}" BasedOn="{StaticResource ResourceNavigatorButton.BaseStyle}" TargetType="dxschv:SchedulerButton">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;324;6" /><Setter Property="ToolTip" Value="{dxsch:SchedulerLocalizer StringId=Caption_DecreaseVisibleResourcesCount}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;331;6" /><Setter Property="ToolTip" Value="{dxsch:SchedulerLocalizer StringId=Caption_DecreaseVisibleResourcesCount}" />
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Style="{StaticResource UIShape.Navigation.Minus}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;331;22" />
+                    <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Style="{StaticResource UIShape.Navigation.Minus}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;338;22" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
     <Style x:Key="{dxscht:SchedulerButtonThemeKey ResourceKey=DateNavigationPanelButton_BackStyle}" BasedOn="{StaticResource DateNavigationPanelButton.BaseStyle}" TargetType="dxschv:SchedulerButton">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;337;6" /><Setter Property="ToolTip" Value="{dxsch:SchedulerLocalizer StringId=MenuCmd_NavigateBackward}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;344;6" /><Setter Property="ToolTip" Value="{dxsch:SchedulerLocalizer StringId=MenuCmd_NavigateBackward}" />
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Style="{StaticResource UIShape.Left}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;344;22" />
+                    <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Style="{StaticResource UIShape.Left}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;351;22" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
     <Style x:Key="{dxscht:SchedulerButtonThemeKey ResourceKey=DateNavigationPanelButton_NextStyle}" BasedOn="{StaticResource DateNavigationPanelButton.BaseStyle}" TargetType="dxschv:SchedulerButton">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;350;6" /><Setter Property="ToolTip" Value="{dxsch:SchedulerLocalizer StringId=MenuCmd_NavigateForward}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;357;6" /><Setter Property="ToolTip" Value="{dxsch:SchedulerLocalizer StringId=MenuCmd_NavigateForward}" />
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Style="{StaticResource UIShape.Right}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;357;22" />
+                    <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Style="{StaticResource UIShape.Right}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;364;22" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="{dxscht:SchedulerButtonThemeKey ResourceKey=DateNavigationPanelButton_CalendarButtonStyle}" BasedOn="{StaticResource DateNavigationPanelButton.BaseStyle}" TargetType="dxschv:SchedulerButton">
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;370;6" /><Setter Property="Margin" Value="6,0" />
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Style="{StaticResource UIShape.Down}" dxcore_unique_xmlns:BlendHelper2.ThemeInfo="Scheduling\Generic\Controls\Buttons.xaml;377;22" />
                 </DataTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
     <Style x:Key="SchedulerButton.DefaultStyle" TargetType="dxschv:SchedulerButton">
-        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;363;6" /><Setter Property="StyleTextButton" Value="{StaticResource TextButton.Style}" />
+        <Setter Property="dxcore_unique_xmlns:BlendHelper2.StyleInfo" Value="Scheduling\Generic\Controls\Buttons.xaml;383;6" /><Setter Property="StyleTextButton" Value="{StaticResource TextButton.Style}" />
         <Setter Property="StyleMoreButtonUp" Value="{DynamicResource {dxscht:SchedulerButtonThemeKey ResourceKey=MoreButton_UpStyle}}" />
         <Setter Property="StyleMoreButtonDown" Value="{DynamicResource {dxscht:SchedulerButtonThemeKey ResourceKey=MoreButton_DownStyle}}" />
         <Setter Property="StyleNavigationButtonBackward" Value="{DynamicResource {dxscht:SchedulerButtonThemeKey ResourceKey=NavigationButton_BackwardStyle}}" />
@@ -324,6 +342,7 @@
         <Setter Property="StyleResourceNavigatorButtonMinus" Value="{DynamicResource {dxscht:SchedulerButtonThemeKey ResourceKey=ResourceNavigatorButton_MinusStyle}}" />
         <Setter Property="StyleDateNavigationPanelButtonBack" Value="{DynamicResource {dxscht:SchedulerButtonThemeKey ResourceKey=DateNavigationPanelButton_BackStyle}}" />
         <Setter Property="StyleDateNavigationPanelButtonNext" Value="{DynamicResource {dxscht:SchedulerButtonThemeKey ResourceKey=DateNavigationPanelButton_NextStyle}}" />
+        <Setter Property="StyleDateNavigationPanelButtonCalendar" Value="{DynamicResource {dxscht:SchedulerButtonThemeKey ResourceKey=DateNavigationPanelButton_CalendarButtonStyle}}" />
     </Style>
 
 </ResourceDictionary>

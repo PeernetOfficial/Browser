@@ -23,7 +23,8 @@
                                                      ContentTemplate="{TemplateBinding ActualContentTemplate}"
                                                      Grid.Row="0"
                                                      Style="{DynamicResource ResourceKey={dxbt:BarItemLinkMenuHeaderThemeKey ResourceKey=HeaderStyle}}"
-                                                     Template="{DynamicResource ResourceKey={dxbt:BarItemLinkMenuHeaderThemeKey ResourceKey=HeaderTemplate}}"/>
+                                                     Template="{DynamicResource ResourceKey={dxbt:BarItemLinkMenuHeaderThemeKey ResourceKey=HeaderTemplate}}"
+                                                     Visibility="{Binding Path=ActualShowContentHeader, RelativeSource={RelativeSource TemplatedParent}, Converter={dx:BooleanToVisibilityConverter}}"/>
             <Grid Grid.Row="1" Visibility="{Binding IsEmpty, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource booleanToVisibilityInvertedConverter}}">
                 <dxb:GlyphSideControl x:Name="PART_GlyphSideControl"
                                       HorizontalAlignment="Left"

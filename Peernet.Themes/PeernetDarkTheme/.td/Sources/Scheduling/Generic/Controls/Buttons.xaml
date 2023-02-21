@@ -144,6 +144,13 @@
         <Setter Property="PressedCornerRadius" Value="{StaticResource DateNavigationPanelButton.CornerRadius}"/>
         <Setter Property="DisabledBackground" Value="{StaticResource DateNavigationPanelButton.DisabledBackground}"/>
         <Setter Property="DisabledBorderBrush" Value="{StaticResource DateNavigationPanelButton.DisabledBorderBrush}"/>
+        <Style.Triggers>
+            <Trigger Property="dx:ThemeManager.IsTouchEnabled" Value="True">
+                <Setter Property="Width" Value="{StaticResource Touch.DateNavigationPanelButton.Width}"/>
+                <Setter Property="Height" Value="{StaticResource Touch.DateNavigationPanelButton.Height}"/>
+                <Setter Property="Margin" Value="{StaticResource Touch.DateNavigationPanelButton.Margin}"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="{dxscht:SchedulerButtonThemeKey ResourceKey=MoreButton_UpStyle}"
@@ -360,6 +367,19 @@
         </Setter>
     </Style>
 
+    <Style x:Key="{dxscht:SchedulerButtonThemeKey ResourceKey=DateNavigationPanelButton_CalendarButtonStyle}"
+           BasedOn="{StaticResource DateNavigationPanelButton.BaseStyle}"
+           TargetType="dxschv:SchedulerButton">
+        <Setter Property="Margin" Value="6,0"/>
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Path Fill="{Binding '(TextBlock.Foreground)', RelativeSource={RelativeSource Self}}" Style="{StaticResource UIShape.Down}"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="SchedulerButton.DefaultStyle" TargetType="dxschv:SchedulerButton">
         <Setter Property="StyleTextButton" Value="{StaticResource TextButton.Style}"/>
         <Setter Property="StyleMoreButtonUp" Value="{DynamicResource {dxscht:SchedulerButtonThemeKey ResourceKey=MoreButton_UpStyle}}"/>
@@ -376,6 +396,7 @@
         <Setter Property="StyleResourceNavigatorButtonMinus" Value="{DynamicResource {dxscht:SchedulerButtonThemeKey ResourceKey=ResourceNavigatorButton_MinusStyle}}"/>
         <Setter Property="StyleDateNavigationPanelButtonBack" Value="{DynamicResource {dxscht:SchedulerButtonThemeKey ResourceKey=DateNavigationPanelButton_BackStyle}}"/>
         <Setter Property="StyleDateNavigationPanelButtonNext" Value="{DynamicResource {dxscht:SchedulerButtonThemeKey ResourceKey=DateNavigationPanelButton_NextStyle}}"/>
+        <Setter Property="StyleDateNavigationPanelButtonCalendar" Value="{DynamicResource {dxscht:SchedulerButtonThemeKey ResourceKey=DateNavigationPanelButton_CalendarButtonStyle}}"/>
     </Style>
 
 </ResourceDictionary>

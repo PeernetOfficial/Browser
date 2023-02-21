@@ -26,6 +26,7 @@
                         </Grid.ColumnDefinitions>
                         <ContentPresenter/>
                         <Button Command="{TemplateBinding DeleteCommand}"
+                                CommandParameter="{TemplateBinding DeleteCommandParameter}"
                                 Grid.Column="1"
                                 Margin="0,0,-2,0"
                                 Visibility="{Binding AllowDelete, RelativeSource={RelativeSource TemplatedParent}, Converter={dxmvvm:BooleanToVisibilityConverter HiddenInsteadOfCollapsed=True}}">
@@ -34,7 +35,7 @@
                                     <ContentPresenter/>
                                 </ControlTemplate>
                             </Button.Template>
-                            <dx:DXImage Source="pack://application:,,,/DevExpress.Xpf.Grid.v22.1;component/FilteringUI/FilteringPanel/Images/Remove.svg"
+                            <dx:DXImage Source="pack://application:,,,/DevExpress.Xpf.Grid.v22.2;component/FilteringUI/FilteringPanel/Images/Remove.svg"
                                         Stretch="None"
                                         VerticalAlignment="Top"/>
                         </Button>
@@ -156,58 +157,58 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type dxfuii:FilteringPanelOperatorElement}">
                     <dx:DXImage x:Name="image"
-                                Source="pack://application:,,,/DevExpress.Xpf.Grid.v22.1.Core;component/FilteringUI/FilterEditor/Images/Equals.svg"
+                                Source="pack://application:,,,/DevExpress.Xpf.Grid.v22.2.Core;component/FilteringUI/FilterEditor/Images/Equals.svg"
                                 Width="16"/>
                     <ControlTemplate.Triggers>
                         <Trigger Property="OperatorType" Value="NotEqual">
                             <Setter Property="Source"
                                     TargetName="image"
-                                    Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.1.Core;component/FilteringUI/FilterEditor/Images/DoesNotEqual.svg"/>
+                                    Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.2.Core;component/FilteringUI/FilterEditor/Images/DoesNotEqual.svg"/>
                         </Trigger>
                         <Trigger Property="OperatorType" Value="Greater">
                             <Setter Property="Source"
                                     TargetName="image"
-                                    Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.1.Core;component/FilteringUI/FilterEditor/Images/Greater.svg"/>
+                                    Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.2.Core;component/FilteringUI/FilterEditor/Images/Greater.svg"/>
                         </Trigger>
                         <Trigger Property="OperatorType" Value="Less">
                             <Setter Property="Source"
                                     TargetName="image"
-                                    Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.1.Core;component/FilteringUI/FilterEditor/Images/Less.svg"/>
+                                    Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.2.Core;component/FilteringUI/FilterEditor/Images/Less.svg"/>
                         </Trigger>
                         <Trigger Property="OperatorType" Value="LessOrEqual">
                             <Setter Property="Source"
                                     TargetName="image"
-                                    Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.1.Core;component/FilteringUI/FilterEditor/Images/LessOrEqual.svg"/>
+                                    Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.2.Core;component/FilteringUI/FilterEditor/Images/LessOrEqual.svg"/>
                         </Trigger>
                         <Trigger Property="OperatorType" Value="GreaterOrEqual">
                             <Setter Property="Source"
                                     TargetName="image"
-                                    Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.1.Core;component/FilteringUI/FilterEditor/Images/GreaterOrEqual.svg"/>
+                                    Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.2.Core;component/FilteringUI/FilterEditor/Images/GreaterOrEqual.svg"/>
                         </Trigger>
                         <Trigger Property="OperatorType" Value="Divide">
                             <Setter Property="Source"
                                     TargetName="image"
-                                    Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.1;component/FilteringUI/FilteringPanel/Images/division.svg"/>
+                                    Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.2;component/FilteringUI/FilteringPanel/Images/division.svg"/>
                         </Trigger>
                         <Trigger Property="OperatorType" Value="Modulo">
                             <Setter Property="Source"
                                     TargetName="image"
-                                    Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.1;component/FilteringUI/FilteringPanel/Images/percent.svg"/>
+                                    Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.2;component/FilteringUI/FilteringPanel/Images/percent.svg"/>
                         </Trigger>
                         <Trigger Property="OperatorType" Value="Multiply">
                             <Setter Property="Source"
                                     TargetName="image"
-                                    Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.1;component/FilteringUI/FilteringPanel/Images/multiplication.svg"/>
+                                    Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.2;component/FilteringUI/FilteringPanel/Images/multiplication.svg"/>
                         </Trigger>
                         <Trigger Property="OperatorType" Value="Plus">
                             <Setter Property="Source"
                                     TargetName="image"
-                                    Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.1;component/FilteringUI/FilteringPanel/Images/plus.svg"/>
+                                    Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.2;component/FilteringUI/FilteringPanel/Images/plus.svg"/>
                         </Trigger>
                         <Trigger Property="OperatorType" Value="Minus">
                             <Setter Property="Source"
                                     TargetName="image"
-                                    Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.1;component/FilteringUI/FilteringPanel/Images/minus.svg"/>
+                                    Value="pack://application:,,,/DevExpress.Xpf.Grid.v22.2;component/FilteringUI/FilteringPanel/Images/minus.svg"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

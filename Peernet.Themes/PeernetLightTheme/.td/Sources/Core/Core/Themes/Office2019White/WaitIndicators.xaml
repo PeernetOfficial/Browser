@@ -9,7 +9,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v22.1;component/Core/Core/Themes/UICore.xaml"/>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v22.2;component/Core/Core/Themes/UICore.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <!-- General -->
@@ -168,5 +168,32 @@
         <Setter Property="Template" Value="{DynamicResource {dx:WaitIndicatorThemeKey ResourceKey=WaitIndicatorTemplate}}"/>
         <Setter Property="UseLayoutRounding" Value="True"/>
     </Style>
+
+    <dxi:WaitIndicatorSizeToPointSizeConverter x:Key="waitIndicatorSizeToPointSizeConverter"/>
+
+    <ControlTemplate x:Key="{dxt:ButtonThemeKey ResourceKey=ButtonWaitIndicatorTemplate}" TargetType="{x:Type dx:WaitIndicator}">
+        <Grid>
+            <ContentPresenter x:Name="content" Content="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"/>
+            <Grid x:Name="root" Visibility="Collapsed">
+                <ProgressBar x:Name="progressBar"
+                             IsEnabled="True"
+                             IsIndeterminate="True"
+                             MinHeight="{Binding ActualHeight, RelativeSource={RelativeSource Self}, Converter={StaticResource waitIndicatorSizeToPointSizeConverter}}"
+                             MinWidth="{Binding ActualWidth, RelativeSource={RelativeSource Self}, Converter={StaticResource waitIndicatorSizeToPointSizeConverter}}"
+                             Template="{StaticResource DefaultWaitIndicator}">
+                </ProgressBar>
+            </Grid>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="DeferedVisibility" Value="True">
+                <Setter Property="Visibility"
+                        TargetName="root"
+                        Value="Visible"/>
+                <Setter Property="Visibility"
+                        TargetName="content"
+                        Value="Collapsed"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
 
 </ResourceDictionary>

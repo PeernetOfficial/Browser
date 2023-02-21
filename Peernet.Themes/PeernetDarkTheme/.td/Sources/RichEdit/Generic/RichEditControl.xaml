@@ -14,7 +14,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.RichEdit.v22.1;component/Themes/Generic/Ruler.xaml"/>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.RichEdit.v22.2;component/Themes/Generic/Ruler.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <ControlTemplate x:Key="InvisibleBorderTemplate" TargetType="{x:Type ContentControl}">
@@ -349,6 +349,11 @@
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="dx:ScrollBarExtensions.ScrollBehavior">
+            <Setter.Value>
+                <dxre:RichEditControlScrollBehavior/>
             </Setter.Value>
         </Setter>
     </Style>

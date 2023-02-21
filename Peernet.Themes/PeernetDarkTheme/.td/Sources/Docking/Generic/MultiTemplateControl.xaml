@@ -6,9 +6,42 @@
                     xmlns:dxdop="http://schemas.devexpress.com/winfx/2008/xaml/docking/platform"
                     xmlns:dxdot="http://schemas.devexpress.com/winfx/2008/xaml/docking/themekeys"
                     xmlns:dxdove="http://schemas.devexpress.com/winfx/2008/xaml/docking/visualelements"
+                    xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
                     xmlns:dxt="http://schemas.devexpress.com/winfx/2008/xaml/core/themekeys"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.Platform.FloatingPaneWindow}" TargetType="{x:Type dxdop:FloatingPaneWindow}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type dxdop:FloatingPaneWindow}">
+                    <Border Name="PART_Root">
+                        <AdornerDecorator>
+                            <ContentPresenter/>
+                        </AdornerDecorator>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="dx:ThemeManager.IsWin11Theme" Value="True">
+                            <Setter Property="CornerRadius"
+                                    TargetName="PART_Root"
+                                    Value="7"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="dxi:WindowChrome.WindowChrome">
+            <Setter.Value>
+                <dxi:WindowChrome/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="dxi:WindowChrome.RegionMargin" Value="7"/>
+        <Style.Triggers>
+            <Trigger Property="dx:ThemeManager.IsWin11Theme" Value="True">
+                <Setter Property="dxi:WindowChrome.UseRoundedRegion" Value="True"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Docking.VisualElements.MultiTemplateControl}" TargetType="{x:Type dxdove:MultiTemplateControl}">
         <Setter Property="EmptyTemplate" Value="{x:Null}"/>

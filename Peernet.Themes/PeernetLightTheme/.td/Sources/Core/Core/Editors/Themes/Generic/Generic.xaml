@@ -1,12 +1,12 @@
 <ResourceDictionary mc:Ignorable="cs"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:core="clr-namespace:DevExpress.Xpf.Core;assembly=DevExpress.Data.Desktop.v22.1"
+                    xmlns:core="clr-namespace:DevExpress.Xpf.Core;assembly=DevExpress.Data.Desktop.v22.2"
                     xmlns:cs="colorscheme_ignorable_uri"
                     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
                     xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
                     xmlns:dxbt="http://schemas.devexpress.com/winfx/2008/xaml/bars/themekeys"
                     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-                    xmlns:dxec="clr-namespace:DevExpress.Xpf.Editors.Controls;assembly=DevExpress.Xpf.Core.v22.1"
+                    xmlns:dxec="clr-namespace:DevExpress.Xpf.Editors.Controls;assembly=DevExpress.Xpf.Core.v22.2"
                     xmlns:dxei="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal"
                     xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
                     xmlns:dxi="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
@@ -15,9 +15,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v22.1;component/Core/Core/Editors/Themes/Generic/PopupListBox.xaml"/>
-        <!--<ResourceDictionary Source="/DevExpress.Xpf.Themes.Office2019White.v22.1;component/Core/Core/Editors/Themes/Generic/SparklineEdit.xaml"/>-->
-        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v22.1;component/Core/Core/Editors/Themes/Generic/FilterPanelControlBase.xaml"/>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v22.2;component/Core/Core/Editors/Themes/Generic/PopupListBox.xaml"/>
+        <!--<ResourceDictionary Source="/DevExpress.Xpf.Themes.Office2019White.v22.2;component/Core/Core/Editors/Themes/Generic/SparklineEdit.xaml"/>-->
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019White.v22.2;component/Core/Core/Editors/Themes/Generic/FilterPanelControlBase.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.BaseEdit}" TargetType="{x:Type dxe:BaseEdit}">
@@ -254,6 +254,7 @@
         <Setter Property="Template" Value="{DynamicResource {dxet:PasswordBoxEditThemeKey ResourceKey=Template}}"/>
         <Setter Property="BorderTemplate" Value="{DynamicResource {dxet:BaseEditThemeKey ResourceKey=TextEditBorderTemplate}}"/>
         <Setter Property="CapsLockWarningToolTipTemplate" Value="{DynamicResource {dxet:PasswordBoxEditThemeKey ResourceKey=CapsLockWarningToolTipTemplate}}"/>
+        <Setter Property="ShowPasswordButtonTemplate" Value="{DynamicResource {dxet:PasswordBoxEditThemeKey ResourceKey=ShowPasswordButtonTemplate}}"/>
         <Style.Triggers>
             <Trigger Property="EditMode" Value="InplaceActive">
                 <Setter Property="EditTemplate" Value="{DynamicResource {dxet:PasswordBoxEditThemeKey ResourceKey=EditTemplate}}"/>
@@ -406,6 +407,12 @@
                 </MultiDataTrigger.Setters>
             </MultiDataTrigger>
         </Style.Triggers>
+    </Style>
+
+    <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.BrowsePathEdit}"
+           BasedOn="{StaticResource {dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.ButtonEdit}}"
+           TargetType="{x:Type dxe:BrowsePathEdit}">
+        <Setter Property="Template" Value="{DynamicResource {dxet:BrowsePathThemeKey ResourceKey=Template}}"/>
     </Style>
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.PopupBaseEdit}"
@@ -1174,6 +1181,14 @@
         <Setter Property="Foreground"
                 Value="Black"
                 cs:id="Setter_0001"/>
+        <Style.Triggers>
+            <Trigger Property="IsVisible" Value="True">
+                <Setter Property="Foreground"
+                        Value="Black"
+                        cs:id="Setter_0002"/>
+                <!-- the smells code, but I need to override the basestyle's trigger -->
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="{dxt:DefaultStyleThemeKey FullName=DevExpress.Xpf.Editors.CameraControl}" TargetType="{x:Type dxe:CameraControl}">
@@ -1273,6 +1288,7 @@
     </Style>
 
     <Style x:Key="ButtonStyleBase" TargetType="{x:Type ButtonBase}">
+        <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
         <Setter Property="Cursor" Value="{Binding Path=Cursor}"/>
         <Setter Property="dx:FocusHelper2.Focusable" Value="False"/>
         <Setter Property="Foreground" Value="{Binding Path=Foreground}"/>

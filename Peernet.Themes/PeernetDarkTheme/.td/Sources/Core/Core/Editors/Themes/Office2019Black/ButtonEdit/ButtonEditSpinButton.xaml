@@ -12,8 +12,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v22.1;component/Core/Core/Editors/Themes/Generic/ButtonEdit.xaml"/>
-        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v22.1;component/Core/Core/Editors/Themes/Office2019Black/UICore.xaml"/>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v22.2;component/Core/Core/Editors/Themes/Generic/ButtonEdit.xaml"/>
+        <dxt:ResourceDictionaryEx Source="/DevExpress.Xpf.Themes.Office2019Black.v22.2;component/Core/Core/Editors/Themes/Office2019Black/UICore.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <!-- General -->
@@ -186,6 +186,41 @@
                     cs:id="Border_0000"/>
             <ContentPresenter x:Name="Content" ContentTemplate="{TemplateBinding ContentTemplate}"/>
         </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background"
+                        TargetName="IsDefault"
+                        Value="$ControlLight.HoverBackground"
+                        cs:id="Setter_0004"/>
+                <Setter Property="BorderBrush"
+                        TargetName="IsDefault"
+                        Value="$ControlLight.HoverBackground"
+                        cs:id="Setter_0005"/>
+                <Setter Property="TextElement.Foreground"
+                        TargetName="Content"
+                        Value="$Foreground"
+                        cs:id="Setter_0006"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background"
+                        TargetName="IsDefault"
+                        Value="$ControlLight.SelectionBackground"
+                        cs:id="Setter_0007"/>
+                <Setter Property="BorderBrush"
+                        TargetName="IsDefault"
+                        Value="$ControlLight.SelectionBackground"
+                        cs:id="Setter_0008"/>
+                <Setter Property="TextElement.Foreground"
+                        TargetName="Content"
+                        Value="$Foreground"
+                        cs:id="Setter_0009"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity"
+                        TargetName="Root"
+                        Value="0.38"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
     </ControlTemplate>
 
 </ResourceDictionary>
