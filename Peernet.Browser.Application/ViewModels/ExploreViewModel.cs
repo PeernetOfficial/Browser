@@ -8,6 +8,7 @@ using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.Browser.Application.Widgets;
 using Peernet.SDK.Models.Extensions;
 using Peernet.SDK.Models.Plugins;
+using Peernet.SDK.Models.Presentation;
 using Peernet.SDK.Models.Presentation.Footer;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ namespace Peernet.Browser.Application.ViewModels
         public ObservableCollection<DownloadModel> activeSearchResults;
         public List<DownloadModel> cachedSearchResults;
         public DownloadModel selectedItem;
+        public ViewType viewType;
         public bool isLoaded;
         private static readonly List<VirtualFileSystemCoreCategory> categoryTypes = GetCategoryTypes();
         private readonly IDownloadManager downloadManager;
@@ -55,6 +57,16 @@ namespace Peernet.Browser.Application.ViewModels
             {
                 selectedItem = value;
                 OnPropertyChanged(nameof(SelectedItem));
+            }
+        }
+
+        public ViewType ViewType
+        {
+            get => viewType;
+            set
+            {
+                viewType = value;
+                OnPropertyChanged(nameof(ViewType));
             }
         }
 
@@ -213,6 +225,15 @@ namespace Peernet.Browser.Application.ViewModels
                             await plug?.Execute(model.File);
                         }
                     });
+
+                    return Task.CompletedTask;
+                });
+
+        public IAsyncCommand<ViewType> ChangeViewCommand =>
+            new AsyncCommand<ViewType>(
+                viewType =>
+                {
+                    ViewType = viewType;
 
                     return Task.CompletedTask;
                 });

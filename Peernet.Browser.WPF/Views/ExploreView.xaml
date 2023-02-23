@@ -2,6 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls"
+             xmlns:presentationModels="clr-namespace:Peernet.SDK.Models.Presentation;assembly=Peernet.SDK"
              x:Name="ExplorePage"
              UseLayoutRounding="True"
              SnapsToDevicePixels="True">
@@ -42,13 +43,15 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="5" />
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="55" />
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Style="{StaticResource Active}" FontWeight="Medium" FontSize="21" Text="What we found for you" Margin="68, 0, 10, 0" />
-            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="47, 9, 0, 16" HorizontalAlignment="Left">
-                <ItemsControl ItemsSource="{Binding CategoryTypes}">
+            <Grid Grid.Row="1" Margin="47, 9, 0, 16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <ItemsControl Grid.Column="0" ItemsSource="{Binding CategoryTypes}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Horizontal" />
@@ -80,31 +83,75 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-            </StackPanel>
+                <Border Grid.Column="1" BorderBrush="{DynamicResource ToggleSwitchBorderBrush}" BorderThickness="1" CornerRadius="5" Margin="20, 0">
+                    <StackPanel Orientation="Horizontal">
+                        <Button HorizontalAlignment="Left" Grid.ColumnSpan="2" Command="{Binding ChangeViewCommand}" CommandParameter="{x:Static presentationModels:ViewType.ListView}" Height="25" Margin="0, 2">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xEA37;" FontSize="15" Foreground="{DynamicResource MainTextBrush}" />
+                            <Button.Style>
+                                <Style BasedOn="{StaticResource ButtonBaseStyle}" TargetType="{x:Type Button}">
+                                    <Setter Property="Padding" Value="5 0" />
+                                    <Setter Property="Width" Value="Auto" />
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#60FFFFFF" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <Button HorizontalAlignment="Left" Command="{Binding ChangeViewCommand}" CommandParameter="{x:Static presentationModels:ViewType.MediaView}" Height="25" Margin="0, 2">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xEA69;" FontSize="15" Foreground="{DynamicResource MainTextBrush}" />
+                            <Button.Style>
+                                <Style BasedOn="{StaticResource ButtonBaseStyle}" TargetType="{x:Type Button}">
+                                    <Setter Property="Padding" Value="5 0" />
+                                    <Setter Property="Width" Value="Auto" />
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#60FFFFFF" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </StackPanel>
+                </Border>
+            </Grid>
             <Separator Style="{StaticResource StandardSeparatorStyle}" Grid.Row="2" />
-            <controls:ExploreFilesDataGridControl Grid.Row="3" />
-            <GridSplitter Grid.Row="4" Height="5" HorizontalAlignment="Stretch" />
-
-            <controls:TabControlEx Grid.Row="5"
+            <controls:ExploreFilesDataGridControl Grid.Row="3">
+                <controls:ExploreFilesDataGridControl.Style>
+                    <Style TargetType="{x:Type controls:ExploreFilesDataGridControl}">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ViewType}" Value="{x:Static presentationModels:ViewType.ListView}">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </controls:ExploreFilesDataGridControl.Style>
+            </controls:ExploreFilesDataGridControl>
+            
+            <controls:TabControlEx Grid.Row="3"
                                    Margin="0, 0, 4, 0" 
                                    Foreground="{DynamicResource MainContentBrush}"
                                    ItemsSource="{Binding WidgetsService.SelectedWidgets, IsAsync=True}"
                                    SelectedIndex="0"
                                    HorizontalAlignment="Stretch" 
                                    HorizontalContentAlignment="Left"
-                                   VerticalAlignment="Bottom" >
+                                   VerticalAlignment="Bottom">
                 <controls:TabControlEx.Style>
                     <Style TargetType="{x:Type controls:TabControlEx}">
+                        <Setter Property="Visibility" Value="Collapsed" />
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding WidgetsService.SelectedWidgets.Count}" Value="0">
-                                <Setter Property="Height" Value="Auto" />
-                                <Setter Property="Visibility" Value="Collapsed" />
+                            <DataTrigger Binding="{Binding ViewType}" Value="{x:Static presentationModels:ViewType.MediaView}">
+                                <Setter Property="Visibility" Value="Visible" />
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </controls:TabControlEx.Style>
             </controls:TabControlEx>
-            <Separator Style="{StaticResource StandardSeparatorStyle}" Grid.Row="6" VerticalAlignment="Top" />
+            <Separator Style="{StaticResource StandardSeparatorStyle}" Grid.Row="4" VerticalAlignment="Top" />
         </Grid>
     </Border>
 </UserControl>

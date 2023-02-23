@@ -3,7 +3,6 @@ using Peernet.SDK.Common;
 using Peernet.SDK.Models.Presentation;
 using System;
 using System.Configuration;
-using System.Linq;
 using System.Windows;
 
 namespace Peernet.Browser.WPF.Services
