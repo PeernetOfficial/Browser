@@ -13,13 +13,13 @@ namespace Peernet.Browser.WPF.Controls
     /// <summary>
     /// Interaction logic for EmbededPluginsControl.xaml
     /// </summary>
-    public partial class EmbededPluginsControl : UserControl
+    public partial class MediaControl : UserControl
     {
         public static readonly DependencyProperty FileProperty =
             DependencyProperty.Register("File", typeof(ApiFile),
-        typeof(EmbededPluginsControl), null);
+        typeof(MediaControl), null);
 
-        public EmbededPluginsControl()
+        public MediaControl()
         {
             InitializeComponent();
             Loaded += EmbededPluginsControl_Loaded;

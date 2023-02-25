@@ -9,7 +9,7 @@
     <local:ListBoxScroll x:Name="WidgetsFeed" Grid.Row="5" ItemsSource="{Binding Results, IsAsync=True, ElementName=DailyFeed}" SelectedItem="{Binding SelectedItem, ElementName=DailyFeed}">
         <local:ListBoxScroll.ItemTemplate>
             <DataTemplate>
-                <local:EmbededPluginsControl File="{Binding File}" />
+                <local:DailyFeedWidgetItemControl File="{Binding File}" />
             </DataTemplate>
         </local:ListBoxScroll.ItemTemplate>
     </local:ListBoxScroll>
