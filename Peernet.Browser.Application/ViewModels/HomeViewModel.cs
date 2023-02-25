@@ -4,6 +4,7 @@ using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels.Parameters;
+using Peernet.Browser.Application.Widgets;
 using Peernet.SDK.Models.Extensions;
 using Peernet.SDK.Models.Plugins;
 using Peernet.SDK.Models.Presentation.Footer;
@@ -23,12 +24,20 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly INavigationService navigationService;
         private readonly IEnumerable<IPlayButtonPlug> playButtonPlugs;
         private readonly ISearchService searchService;
+        private readonly IWidgetsService widgetsService;
         private bool filtersActive;
         private string searchInput;
         private int selectedIndex = -1;
 
-        public HomeViewModel(ISearchService searchService, IDownloadManager downloadManager, INavigationService navigationService, IModalNavigationService modalNavigationService, IEnumerable<IPlayButtonPlug> playButtonPlugs)
+        public HomeViewModel(
+            IWidgetsService widgetsService,
+            ISearchService searchService,
+            IDownloadManager downloadManager,
+            INavigationService navigationService,
+            IModalNavigationService modalNavigationService,
+            IEnumerable<IPlayButtonPlug> playButtonPlugs)
         {
+            this.widgetsService = widgetsService;
             this.searchService = searchService;
             this.downloadManager = downloadManager;
             this.navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
@@ -46,6 +55,7 @@ namespace Peernet.Browser.Application.ViewModels
         }
 
         public AdvancedFilterModel AdvancedFilter { get; set; } = new();
+
         public Alignments Alignment => IsVisible ? Alignments.Stretch : Alignments.Center;
 
         public SearchTabElementViewModel Content => SelectedIndex < 0 ? null : Tabs[SelectedIndex];
@@ -64,7 +74,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         public bool IsVisible => Tabs.Any();
 
-        public IAsyncCommand OpenAdvancedOptionsCommand => 
+        public IAsyncCommand OpenAdvancedOptionsCommand =>
             new AsyncCommand(async () =>
             {
                 await modalNavigationService.Navigate<AdvancedSearchOptionsViewModel, AdvancedFilterModel>(AdvancedFilter);
@@ -94,6 +104,15 @@ namespace Peernet.Browser.Application.ViewModels
         }
 
         public ObservableCollection<SearchTabElementViewModel> Tabs { get; } = new ObservableCollection<SearchTabElementViewModel>();
+
+        public SearchFilterResultModel CreateNewSearchFilter()
+        {
+            return new SearchFilterResultModel
+            {
+                InputText = SearchInput,
+                AdvancedFilter = AdvancedFilter
+            };
+        }
 
         public async Task RemoveTab(SearchTabElementViewModel e)
         {
@@ -131,22 +150,13 @@ namespace Peernet.Browser.Application.ViewModels
 
         private Task Search()
         {
-            var toAdd = new SearchTabElementViewModel(CreateNewSearchFilter(), RemoveTab, searchService.Search, DownloadFile, OpenFile, ExecutePlayButtonPlug, DoesSupportPlaying);
+            var toAdd = new SearchTabElementViewModel(widgetsService, CreateNewSearchFilter(), RemoveTab, searchService.Search, DownloadFile, OpenFile, ExecutePlayButtonPlug, DoesSupportPlaying);
 
             Tabs.Add(toAdd);
             SelectedIndex = Tabs.Count - 1;
             SearchInput = string.Empty;
 
             return Task.CompletedTask;
-        }
-
-        public SearchFilterResultModel CreateNewSearchFilter()
-        {
-            return new SearchFilterResultModel
-            {
-                InputText = SearchInput,
-                AdvancedFilter = AdvancedFilter
-            };
         }
     }
 }

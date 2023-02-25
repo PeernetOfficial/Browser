@@ -32,7 +32,6 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IExploreService exploreService;
         private readonly INavigationService navigationService;
         private readonly IEnumerable<IPlayButtonPlug> playButtonPlugs;
-        private readonly IWidgetsService widgetsService;
 
         private int pageIndex;
         private int pageSize = 15;
@@ -45,7 +44,7 @@ namespace Peernet.Browser.Application.ViewModels
             this.downloadManager = downloadManager;
             this.navigationService = navigationService;
             this.playButtonPlugs = playButtonPlugs;
-            this.widgetsService = widgetsService;
+            WidgetsService = widgetsService;
 
             Task.Run(() => LoadResults().ConfigureAwait(false).GetAwaiter().GetResult());
         }
@@ -209,7 +208,7 @@ namespace Peernet.Browser.Application.ViewModels
                     }
                     categoryTypes.ForEach(c => c.ResetSelection());
                     category.IsSelected = true;
-                    
+
                     await ReloadResults();
                     ReloadActiveResultsFromCache();
                 });
@@ -256,7 +255,7 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        public IWidgetsService WidgetsService => widgetsService;
+        public IWidgetsService WidgetsService { get; }
 
         public void FetchData(FetchPageAsyncArgs args)
         {

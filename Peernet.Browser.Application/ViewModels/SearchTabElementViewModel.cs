@@ -1,7 +1,9 @@
 ﻿using AsyncAwaitBestPractices.MVVM;
 using Peernet.Browser.Application.Dispatchers;
+using Peernet.Browser.Application.Widgets;
 using Peernet.SDK.Models.Domain.Search;
 using Peernet.SDK.Models.Extensions;
+using Peernet.SDK.Models.Presentation;
 using Peernet.SDK.Models.Presentation.Footer;
 using Peernet.SDK.Models.Presentation.Home;
 using System;
@@ -20,8 +22,10 @@ namespace Peernet.Browser.Application.ViewModels
         private int pageIndex = 1;
         private int pagesCount;
         private int pageSize = 15;
+        private ViewType viewType;
 
         public SearchTabElementViewModel(
+            IWidgetsService widgetsService,
             SearchFilterResultModel searchFilterResultModel,
             Func<SearchTabElementViewModel, Task> deleteAction,
             Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction,
@@ -30,6 +34,7 @@ namespace Peernet.Browser.Application.ViewModels
             Action<DownloadModel> executePlugAction,
             Func<DownloadModel, bool> isPlayerSupported)
         {
+            WidgetsService = widgetsService;
             this.refreshAction = refreshAction;
             this.isPlayerSupported = isPlayerSupported;
 
@@ -90,6 +95,15 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
+        public IAsyncCommand<ViewType> ChangeViewCommand =>
+            new AsyncCommand<ViewType>(
+                viewType =>
+                {
+                    ViewType = viewType;
+
+                    return Task.CompletedTask;
+                });
+
         public IAsyncCommand ClearCommand { get; }
 
         public ObservableCollection<CustomCheckBoxModel> ColumnsCheckboxes { get; } = new ObservableCollection<CustomCheckBoxModel>();
@@ -99,6 +113,7 @@ namespace Peernet.Browser.Application.ViewModels
         public IAsyncCommand DeleteCommand { get; }
 
         public IAsyncCommand<DownloadModel> DownloadCommand { get; }
+
         public ObservableCollection<IconModel> FilterIconModels { get; } = new ObservableCollection<IconModel>();
 
         public FiltersModel Filters { get; }
@@ -108,8 +123,11 @@ namespace Peernet.Browser.Application.ViewModels
         public IAsyncCommand FirstPageCommand => new AsyncCommand(GoToFirstPage);
 
         public IAsyncCommand LastPageCommand => new AsyncCommand(GoToLastPage);
+
         public LoadingModel Loader { get; } = new LoadingModel();
+
         public IAsyncCommand NextPageCommand => new AsyncCommand(GoToNextPage);
+
         public IAsyncCommand<DownloadModel> OpenCommand { get; }
 
         public int PageIndex
@@ -157,10 +175,24 @@ namespace Peernet.Browser.Application.ViewModels
         }
 
         public IAsyncCommand PreviousPageCommand => new AsyncCommand(GoToPreviousPage);
+
         public IAsyncCommand<SearchFiltersType> RemoveFilterCommand { get; }
 
         public IAsyncCommand<DownloadModel> StreamFileCommand { get; }
+
         public string Title { get; }
+
+        public ViewType ViewType
+        {
+            get => viewType;
+            set
+            {
+                viewType = value;
+                OnPropertyChanged(nameof(ViewType));
+            }
+        }
+
+        public IWidgetsService WidgetsService { get; }
 
         public async Task Initialize()
         {
