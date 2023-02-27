@@ -1,16 +1,24 @@
 ﻿<UserControl x:Class="Peernet.Browser.WPF.Controls.DailyFeedWidget"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:behaviors="clr-namespace:Peernet.Browser.WPF.Behaviors"
              xmlns:local="clr-namespace:Peernet.Browser.WPF.Controls"
-             mc:Ignorable="d"
+             xmlns:i="clr-namespace:DevExpress.Mvvm.UI.Interactivity;assembly=DevExpress.Xpf.Core.v22.2"
              x:Name="DailyFeed">
-    <local:ListBoxScroll x:Name="WidgetsFeed" Grid.Row="5" ItemsSource="{Binding Results, IsAsync=True, ElementName=DailyFeed}" SelectedItem="{Binding SelectedItem, ElementName=DailyFeed}">
-        <local:ListBoxScroll.ItemTemplate>
+    <ListBox x:Name="WidgetsFeed"
+             ItemsSource="{Binding Results, IsAsync=True, ElementName=DailyFeed}"
+             SelectedItem="{Binding SelectedItem, Mode=TwoWay, ElementName=DailyFeed}"
+             VirtualizingStackPanel.IsVirtualizing="True"
+             VirtualizingStackPanel.VirtualizationMode="Standard"
+             ScrollViewer.IsDeferredScrollingEnabled="True"
+             ScrollViewer.CanContentScroll="False">
+        <i:Interaction.Behaviors>
+            <behaviors:ListBoxScrollIntoViewBehavior/>
+        </i:Interaction.Behaviors>
+        <ListBox.ItemTemplate>
             <DataTemplate>
                 <local:DailyFeedWidgetItemControl File="{Binding File}" />
             </DataTemplate>
-        </local:ListBoxScroll.ItemTemplate>
-    </local:ListBoxScroll>
+        </ListBox.ItemTemplate>
+    </ListBox>
 </UserControl>

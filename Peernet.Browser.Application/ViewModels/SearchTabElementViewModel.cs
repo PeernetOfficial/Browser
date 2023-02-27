@@ -23,6 +23,7 @@ namespace Peernet.Browser.Application.ViewModels
         private int pagesCount;
         private int pageSize = 15;
         private ViewType viewType;
+        private DownloadModel selectedItem;
 
         public SearchTabElementViewModel(
             IWidgetsService widgetsService,
@@ -129,6 +130,16 @@ namespace Peernet.Browser.Application.ViewModels
         public IAsyncCommand NextPageCommand => new AsyncCommand(GoToNextPage);
 
         public IAsyncCommand<DownloadModel> OpenCommand { get; }
+
+        public DownloadModel SelectedItem
+        {
+            get => selectedItem;
+            set
+            {
+                selectedItem = value;
+                OnPropertyChanged(nameof(SelectedItem));
+            }
+        }
 
         public int PageIndex
         {

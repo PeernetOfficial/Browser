@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:Peernet.Browser.WPF.Controls"
              xmlns:presentationModels="clr-namespace:Peernet.SDK.Models.Presentation;assembly=Peernet.SDK"
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
-             Name="SharedResultTab">
+             Name="SearchResultTab">
     <UserControl.Resources>
         <ResourceDictionary>
             <Style TargetType="{x:Type TabItem}">
@@ -27,8 +27,8 @@
                 <Setter Property="ContentTemplate">
                     <Setter.Value>
                         <DataTemplate>
-                            <local:DailyFeedWidget Results="{Binding Path=DataContext.ActiveSearchResults, IsAsync=True, Source={x:Reference SharedResultTab}}"
-                                                      SelectedItem="{Binding Path=DataContext.SelectedItem, IsAsync=True, Source={x:Reference SharedResultTab}}" />
+                            <local:DailyFeedWidget Results="{Binding Path=DataContext.ActiveSearchResults, IsAsync=True, Source={x:Reference SearchResultTab}}"
+                                                      SelectedItem="{Binding Path=DataContext.SelectedItem, IsAsync=True, Source={x:Reference SearchResultTab}}" />
                         </DataTemplate>
                     </Setter.Value>
                 </Setter>
@@ -81,7 +81,7 @@
                         <DataTemplate>
                             <DockPanel Margin="10 0 0 0" VerticalAlignment="Center" Background="{DynamicResource LightGray2Brush}">
                                 <TextBlock Padding="5" Text="{Binding Content}" Foreground="{DynamicResource SelectedTabBrush}" />
-                                <Button Command="{Binding DataContext.RemoveFilterCommand, ElementName=SharedResultTab}"
+                                <Button Command="{Binding DataContext.RemoveFilterCommand, ElementName=SearchResultTab}"
                                     CommandParameter="{Binding Type}" Style="{DynamicResource PrimaryButton}">
                                     <Image Margin="10 0 10 0" Source="{DynamicResource CloseBtnDrawingImage}" />
                                 </Button>
@@ -93,11 +93,14 @@
             </DockPanel>
 
             <dxg:GridControl x:Name="SearchResultsGrid"
-                             Visibility="{Binding Loader.IsNotLoading, Converter={StaticResource BoolToVisibility}}"
                              Padding="25 10 15 0"
                              HorizontalAlignment="Stretch"
                              Grid.Row="3"
-                             ItemsSource="{Binding ActiveSearchResults, IsAsync=True}">
+                             ItemsSource="{Binding ActiveSearchResults, IsAsync=True}"
+                             SelectedItem="{Binding SelectedItem}"
+                             Background="Transparent"
+                             EnableSmartColumnsGeneration="False"
+                             AutoGenerateColumns="None">
                 <dxg:GridControl.View>
                     <dxg:TableView x:Name="SearchResultsTable" />
                 </dxg:GridControl.View>
@@ -114,7 +117,7 @@
                             <DataTemplate>
                                 <Button DataContext="{Binding Path=RowData.Row}"
                                         Margin="20, 0, 0, 0"
-                                    Command="{Binding DataContext.StreamFileCommand, ElementName=SharedResultTab}"
+                                    Command="{Binding DataContext.StreamFileCommand, ElementName=SearchResultTab}"
                                     CommandParameter="{Binding }"
                                     Style="{StaticResource ButtonBaseStyle}"
                                     Background="Transparent" Width="Auto"
@@ -234,7 +237,7 @@
                                             <ImageBrush ImageSource="{DynamicResource InfoDrawingImage}" />
                                         </Button.Background>
                                     </Button>
-                                    <Button Command="{Binding DataContext.StreamFileCommand, ElementName=SharedResultTab}" CommandParameter="{Binding RowData.Row}" Height="39" Width="37" IsEnabled="{Binding RowData.Row.IsPlayerEnabled}">
+                                    <Button Command="{Binding DataContext.StreamFileCommand, ElementName=SearchResultTab}" CommandParameter="{Binding RowData.Row}" Height="39" Width="37" IsEnabled="{Binding RowData.Row.IsPlayerEnabled}">
                                         <Button.Background>
                                             <ImageBrush ImageSource="{DynamicResource PlayDrawingImage}" />
                                         </Button.Background>
@@ -249,7 +252,7 @@
                                             <ImageBrush ImageSource="{DynamicResource ShareDrawingImage}" />
                                         </Button.Background>
                                     </Button>
-                                    <Button Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.DownloadCommand, ElementName=SharedResultTab}" CommandParameter="{Binding RowData.Row}" Width="45" Height="44">
+                                    <Button Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.DownloadCommand, ElementName=SearchResultTab}" CommandParameter="{Binding RowData.Row}" Width="45" Height="44">
                                         <Button.Background>
                                             <ImageBrush ImageSource="{DynamicResource DownloadDrawingImage}" />
                                         </Button.Background>
@@ -263,29 +266,37 @@
                     <Style TargetType="{x:Type dxg:GridControl}">
                         <Setter Property="Visibility" Value="Collapsed" />
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding ViewType}" Value="{x:Static presentationModels:ViewType.ListView}">
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding ViewType}" Value="{x:Static presentationModels:ViewType.ListView}" />
+                                    <Condition Binding="{Binding Loader.IsLoading}" Value="False" />
+                                </MultiDataTrigger.Conditions>
                                 <Setter Property="Visibility" Value="Visible" />
-                            </DataTrigger>
+                            </MultiDataTrigger>
                         </Style.Triggers>
                     </Style>
                 </dxg:GridControl.Style>
             </dxg:GridControl>
 
             <local:TabControlEx Grid.Row="3"
-                                   Margin="0, 0, 4, 0" 
-                                   Foreground="{DynamicResource MainContentBrush}"
-                                   ItemsSource="{Binding WidgetsService.SelectedWidgets, IsAsync=True}"
-                                   SelectedIndex="0"
-                                   HorizontalAlignment="Stretch" 
-                                   HorizontalContentAlignment="Left"
-                                   VerticalAlignment="Stretch" Visibility="Collapsed">
+                                Margin="0, 0, 4, 0" 
+                                Foreground="{DynamicResource MainContentBrush}"
+                                ItemsSource="{Binding WidgetsService.SelectedWidgets, IsAsync=True}"
+                                SelectedIndex="0"
+                                HorizontalAlignment="Stretch" 
+                                HorizontalContentAlignment="Left"
+                                VerticalAlignment="Stretch">
                 <local:TabControlEx.Style>
                     <Style TargetType="{x:Type local:TabControlEx}">
                         <Setter Property="Visibility" Value="Collapsed" />
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding ViewType}" Value="{x:Static presentationModels:ViewType.MediaView}">
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding ViewType}" Value="{x:Static presentationModels:ViewType.MediaView}" />
+                                    <Condition Binding="{Binding Loader.IsLoading}" Value="False" />
+                                </MultiDataTrigger.Conditions>
                                 <Setter Property="Visibility" Value="Visible" />
-                            </DataTrigger>
+                            </MultiDataTrigger>
                         </Style.Triggers>
                     </Style>
                 </local:TabControlEx.Style>
