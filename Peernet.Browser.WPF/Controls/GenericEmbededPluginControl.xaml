@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Peernet.Browser.WPF.Controls"
              xmlns:common="clr-namespace:Peernet.SDK.Models.Domain.Common;assembly=Peernet.SDK"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
+             Height="400"
              x:Name="EmbededControl" Padding="10">
     <Grid>
         <Grid.RowDefinitions>
@@ -18,7 +18,7 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding File.Name}" Margin="10 5" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" MaxWidth="100" ToolTip="{Binding File.Name}" />
-        <Image Grid.Row="1" Grid.Column="0" Width="90" Height="90">
+        <Image Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
                     <Setter Property="Source" Value="{DynamicResource Document_SelectedDrawingImage}" />
