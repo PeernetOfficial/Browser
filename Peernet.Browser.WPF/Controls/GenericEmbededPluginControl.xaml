@@ -11,6 +11,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -47,7 +48,7 @@
                 </Style>
             </Image.Style>
         </Image>
-        <TextBox Grid.RowSpan="1" Grid.Column="1" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="10 0" VerticalAlignment="Center">
+        <TextBox Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="10 0" VerticalAlignment="Center">
             <TextBox.Style>
                 <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource ReadonlySelectableTextBox}">
                     <Setter Property="Text" Value="{Binding File.Description}" />
@@ -64,12 +65,15 @@
                 </Style>
             </TextBox.Style>
         </TextBox>
-        <Button Grid.Row="2" Grid.Column="1" Width="140" Height="44" HorizontalAlignment="Center" Command="{Binding OpenFileCommand, ElementName=EmbededControl}" CommandParameter="{Binding File, ElementName=EmbededControl}" Style="{StaticResource AcceptButton}" VerticalAlignment="Bottom">
-            <Button.ContentTemplate>
-                <DataTemplate>
-                    <TextBlock Text="Open file" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                </DataTemplate>
-            </Button.ContentTemplate>
+        <Button Grid.Row="2" Grid.Column="1" Width="60" Height="60" HorizontalAlignment="Center" Command="{Binding StreamFileCommand, ElementName=EmbededControl}" CommandParameter="{Binding File, ElementName=EmbededControl}" IsEnabled="{Binding IsPlayerEnabled}" VerticalAlignment="Bottom">
+            <Button.Background>
+                <ImageBrush ImageSource="{DynamicResource PlayDrawingImage}" />
+            </Button.Background>
+            <Button.Style>
+                <Style BasedOn="{StaticResource DataGridActionButton}" TargetType="{x:Type Button}">
+                    <Setter Property="ToolTip" Value="Play" />
+                </Style>
+            </Button.Style>
         </Button>
     </Grid>
 </UserControl>
