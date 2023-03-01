@@ -1,4 +1,5 @@
-﻿using Peernet.SDK.Models.Domain.Common;
+﻿using AsyncAwaitBestPractices.MVVM;
+using Peernet.SDK.Models.Presentation.Footer;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -12,7 +13,14 @@ namespace Peernet.Browser.WPF.Controls
         public static readonly DependencyProperty FileProperty =
             DependencyProperty.Register(
                 "File",
-                typeof(ApiFile),
+                typeof(DownloadModel),
+                typeof(GenericEmbededPluginControl),
+                null);
+
+        public static readonly DependencyProperty OpenFileCommandProperty =
+            DependencyProperty.Register(
+                "OpenFileCommand",
+                typeof(IAsyncCommand<DownloadModel>),
                 typeof(GenericEmbededPluginControl),
                 null);
 
@@ -21,10 +29,16 @@ namespace Peernet.Browser.WPF.Controls
             InitializeComponent();
         }
 
-        public ApiFile File
+        public DownloadModel File
         {
-            get => (ApiFile)GetValue(FileProperty);
+            get => (DownloadModel)GetValue(FileProperty);
             set => SetValue(FileProperty, value);
+        }
+
+        public IAsyncCommand<DownloadModel> OpenFileCommand
+        {
+            get => (IAsyncCommand<DownloadModel>)GetValue(OpenFileCommandProperty);
+            set => SetValue(OpenFileCommandProperty, value);
         }
     }
 }

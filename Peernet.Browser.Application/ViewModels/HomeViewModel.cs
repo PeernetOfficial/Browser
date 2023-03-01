@@ -144,7 +144,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         private void OpenFile(DownloadModel model)
         {
-            var param = new FilePreviewViewModelParameter(model.File, async () => await downloadManager.QueueUpDownload(model), "Download");
+            var param = new FilePreviewViewModelParameter(model.File, async () => await DownloadFile(model), "Download");
             navigationService.Navigate<FilePreviewViewModel, FilePreviewViewModelParameter>(param);
         }
 

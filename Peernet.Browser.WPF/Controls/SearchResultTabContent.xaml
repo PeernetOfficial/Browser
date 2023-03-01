@@ -28,7 +28,8 @@
                     <Setter.Value>
                         <DataTemplate>
                             <local:DailyFeedWidget Results="{Binding Path=DataContext.ActiveSearchResults, IsAsync=True, Source={x:Reference SearchResultTab}}"
-                                                      SelectedItem="{Binding Path=DataContext.SelectedItem, IsAsync=True, Source={x:Reference SearchResultTab}}" />
+                                                   SelectedItem="{Binding Path=DataContext.SelectedItem, IsAsync=True, Source={x:Reference SearchResultTab}}"
+                                                   OpenFileCommand="{Binding Path=DataContext.StreamFileCommand, IsAsync=True, Source={x:Reference SearchResultTab}}" />
                         </DataTemplate>
                     </Setter.Value>
                 </Setter>

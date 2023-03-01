@@ -1,7 +1,10 @@
-﻿using Peernet.SDK.Models.Presentation.Footer;
+﻿using AsyncAwaitBestPractices.MVVM;
+using Peernet.SDK.Models.Domain.Common;
+using Peernet.SDK.Models.Presentation.Footer;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Peernet.Browser.WPF.Controls
 {
@@ -14,6 +17,13 @@ namespace Peernet.Browser.WPF.Controls
         {
             InitializeComponent();
         }
+
+        public static readonly DependencyProperty OpenFileCommandProperty =
+            DependencyProperty.Register(
+                "OpenFileCommand",
+                typeof(IAsyncCommand<DownloadModel>),
+                typeof(DailyFeedWidget),
+                null);
 
         public static readonly DependencyProperty ResultsProperty = DependencyProperty.Register("Results", typeof(ObservableCollection<DownloadModel>), typeof(DailyFeedWidget), null);
 
@@ -33,6 +43,12 @@ namespace Peernet.Browser.WPF.Controls
         {
             get => (DownloadModel)GetValue(SelectedItemProperty);
             set => SetValue(SelectedItemProperty, value);
+        }
+
+        public IAsyncCommand<DownloadModel> OpenFileCommand
+        {
+            get => (IAsyncCommand<DownloadModel>)GetValue(OpenFileCommandProperty);
+            set => SetValue(OpenFileCommandProperty, value);
         }
     }
 }
