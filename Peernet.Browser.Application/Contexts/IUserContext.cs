@@ -6,6 +6,10 @@ namespace Peernet.Browser.Application.Contexts
     {
         bool HasUserChanged { get; set; }
 
+        string PeerId { get; set; }
+        
+        string NodeId { get; set; }
+
         User User { get; set; }
 
         void ReloadContext();

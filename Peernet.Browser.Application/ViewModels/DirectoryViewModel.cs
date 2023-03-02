@@ -18,6 +18,7 @@ namespace Peernet.Browser.Application.ViewModels
         public ObservableCollection<DirectoryTabViewModel> DirectoryTabs { get; set; }
 
         private readonly IBlockchainService blockchainService;
+        private readonly IUserContext userContext;
         private readonly IModalNavigationService modalNavigationService;
         private readonly INotificationsManager notificationsManager;
         private readonly IEnumerable<IPlayButtonPlug> playButtonPlugs;
@@ -42,12 +43,14 @@ namespace Peernet.Browser.Application.ViewModels
         }
 
         public DirectoryViewModel(
+            IUserContext userContext,
             IBlockchainService blockchainService,
             IVirtualFileSystemFactory virtualFileSystemFactory,
             IModalNavigationService modalNavigationService,
             INotificationsManager notificationsManager,
             IEnumerable<IPlayButtonPlug> playButtonPlugs)
         {
+            this.userContext = userContext;
             this.blockchainService = blockchainService;
             this.virtualFileSystemFactory = virtualFileSystemFactory;
             this.modalNavigationService = modalNavigationService;
@@ -58,25 +61,29 @@ namespace Peernet.Browser.Application.ViewModels
             DirectoryTabs = new ObservableCollection<DirectoryTabViewModel>(new List<DirectoryTabViewModel> { CurrentUserDirectoryViewModel });
         }
 
-        public Task AddTab(byte[] node)
+        public async Task AddTab(byte[] node)
         {
-            DirectoryTabViewModel tab;
+            DirectoryTabViewModel tab = await FindTab(node);
 
-            if (!ContainsTab(node, out tab))
+            if (tab == null)
             {
                 tab = new UserDirectoryViewModel(node, blockchainService, CloseTab, virtualFileSystemFactory, modalNavigationService, notificationsManager, playButtonPlugs);
                 DirectoryTabs.Add(tab);
             }
 
             ChangeTabSelection(tab);
-
-            return Task.CompletedTask;
         }
 
-        private bool ContainsTab(byte[] node, out DirectoryTabViewModel tab)
+        private async Task<DirectoryTabViewModel?> FindTab(byte[] node)
         {
-            tab = DirectoryTabs.FirstOrDefault(t => t.Title == Convert.ToHexString(node));
-            return tab != null;
+            var hexNode = Convert.ToHexString(node);
+            var currentUserPeerId = userContext.NodeId;
+            if (string.Equals(hexNode, currentUserPeerId, StringComparison.OrdinalIgnoreCase))
+            {
+                return CurrentUserDirectoryViewModel;
+            }
+
+            return DirectoryTabs.FirstOrDefault(t => t.Title == hexNode);
         }
 
         public Task CloseTab(DirectoryTabViewModel tab)
