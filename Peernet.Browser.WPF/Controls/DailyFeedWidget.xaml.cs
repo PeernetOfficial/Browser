@@ -25,6 +25,13 @@ namespace Peernet.Browser.WPF.Controls
                 typeof(DailyFeedWidget),
                 null);
 
+        public static readonly DependencyProperty DownloadFileCommandProperty =
+            DependencyProperty.Register(
+                "DownloadFileCommand",
+                typeof(IAsyncCommand<DownloadModel>),
+                typeof(DailyFeedWidget),
+                null);
+
         public static readonly DependencyProperty ResultsProperty = DependencyProperty.Register("Results", typeof(ObservableCollection<DownloadModel>), typeof(DailyFeedWidget), null);
 
         public static readonly DependencyProperty SelectedItemProperty = DependencyProperty.Register(
@@ -49,6 +56,12 @@ namespace Peernet.Browser.WPF.Controls
         {
             get => (IAsyncCommand<DownloadModel>)GetValue(StreamFileCommandProperty);
             set => SetValue(StreamFileCommandProperty, value);
+        }
+        
+        public IAsyncCommand<DownloadModel> DownloadFileCommand
+        {
+            get => (IAsyncCommand<DownloadModel>)GetValue(DownloadFileCommandProperty);
+            set => SetValue(DownloadFileCommandProperty, value);
         }
     }
 }

@@ -8,7 +8,9 @@
             <Style TargetType="{x:Type local:DailyFeedWidgetItemControl}">
                 <Setter Property="Content">
                     <Setter.Value>
-                    <local:GenericEmbededPluginControl File="{Binding File, ElementName=DailyFeedItemControl}" StreamFileCommand="{Binding StreamFileCommand, ElementName=DailyFeedItemControl}" />
+                    <local:GenericEmbededPluginControl File="{Binding File, ElementName=DailyFeedItemControl}"
+                                                       StreamFileCommand="{Binding StreamFileCommand, ElementName=DailyFeedItemControl}"
+                                                       DownloadFileCommand="{Binding DownloadFileCommand, ElementName=DailyFeedItemControl}" />
                     </Setter.Value>
                 </Setter>
                 <Style.Triggers>

@@ -30,7 +30,8 @@
                         <DataTemplate>
                             <controls:DailyFeedWidget Results="{Binding Path=DataContext.ActiveSearchResults, IsAsync=True, Source={x:Reference ExplorePage}}"
                                                       SelectedItem="{Binding Path=DataContext.SelectedItem, IsAsync=True, Source={x:Reference ExplorePage}}"
-                                                      StreamFileCommand="{Binding Path=DataContext.StreamFileCommand, IsAsync=True, Source={x:Reference ExplorePage}}"/>
+                                                      StreamFileCommand="{Binding Path=DataContext.StreamFileCommand, IsAsync=True, Source={x:Reference ExplorePage}}"
+                                                      DownloadFileCommand="{Binding Path=DataContext.DownloadCommand, IsAsync=True, Source={x:Reference ExplorePage}}" />
                         </DataTemplate>
                     </Setter.Value>
                 </Setter>

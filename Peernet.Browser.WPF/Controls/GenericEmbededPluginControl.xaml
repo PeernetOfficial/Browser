@@ -1,23 +1,38 @@
 ﻿<UserControl x:Class="Peernet.Browser.WPF.Controls.GenericEmbededPluginControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:common="clr-namespace:Peernet.SDK.Models.Domain.Common;assembly=Peernet.SDK"
-             mc:Ignorable="d" 
+             xmlns:download="clr-namespace:Peernet.SDK.Models.Domain.Download;assembly=Peernet.SDK"
              Height="400"
-             x:Name="EmbededControl" Padding="10">
+             x:Name="EmbededControl">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding File.Name}" Margin="10 5" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" MaxWidth="100" ToolTip="{Binding File.Name}" />
+        <TextBox Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Width="360" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="10 0" VerticalAlignment="Top" BorderThickness="1">
+            <TextBox.Style>
+                <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource ReadonlySelectableTextBox}">
+                    <Setter Property="Text" Value="{Binding File.Description}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding File.Description}" Value="{x:Null}">
+                            <Setter Property="Text" Value="The file has no description." />
+                            <Setter Property="Foreground" Value="{DynamicResource LightGray2Brush}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding File.Description}" Value="">
+                            <Setter Property="Text" Value="The file has no description." />
+                            <Setter Property="Foreground" Value="{DynamicResource LightGray2Brush}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
         <Image Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <Image.Style>
                 <Style TargetType="{x:Type Image}">
@@ -48,32 +63,35 @@
                 </Style>
             </Image.Style>
         </Image>
-        <TextBox Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="10 0" VerticalAlignment="Center">
-            <TextBox.Style>
-                <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource ReadonlySelectableTextBox}">
-                    <Setter Property="Text" Value="{Binding File.Description}" />
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding File.Description}" Value="{x:Null}">
-                            <Setter Property="Text" Value="The file has no description." />
-                            <Setter Property="Foreground" Value="{DynamicResource LightGray2Brush}" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding File.Description}" Value="">
-                            <Setter Property="Text" Value="The file has no description." />
-                            <Setter Property="Foreground" Value="{DynamicResource LightGray2Brush}" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBox.Style>
-        </TextBox>
-        <Button Grid.Row="2" Grid.Column="1" Width="60" Height="60" HorizontalAlignment="Center" Command="{Binding StreamFileCommand, ElementName=EmbededControl}" CommandParameter="{Binding File, ElementName=EmbededControl}" IsEnabled="{Binding IsPlayerEnabled}" VerticalAlignment="Bottom">
-            <Button.Background>
-                <ImageBrush ImageSource="{DynamicResource PlayDrawingImage}" />
-            </Button.Background>
-            <Button.Style>
-                <Style BasedOn="{StaticResource DataGridActionButton}" TargetType="{x:Type Button}">
-                    <Setter Property="ToolTip" Value="Play" />
-                </Style>
-            </Button.Style>
-        </Button>
+        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Margin="2 0" Command="{Binding StreamFileCommand, ElementName=EmbededControl}" CommandParameter="{Binding File, ElementName=EmbededControl}" IsEnabled="{Binding IsPlayerEnabled}" Height="39" Width="37">
+                <Button.Background>
+                    <ImageBrush ImageSource="{DynamicResource PlayDrawingImage}" />
+                </Button.Background>
+                <Button.Style>
+                    <Style BasedOn="{StaticResource DataGridActionButton}" TargetType="{x:Type Button}">
+                        <Setter Property="ToolTip" Value="Play" />
+                    </Style>
+                </Button.Style>
+            </Button>
+
+            <Button Margin="2 0" Style="{StaticResource DataGridActionButton}" Click="ShowInfo_OnClick" ToolTip="Details">
+                <Button.Background>
+                    <ImageBrush ImageSource="{DynamicResource InfoDrawingImage}" />
+                </Button.Background>
+            </Button>
+
+            <Button Margin="2 0" Style="{StaticResource DataGridActionButton}" Click="OpenFileWebGatewayReferenceWindow_OnClick" ToolTip="Share">
+                <Button.Background>
+                    <ImageBrush ImageSource="{DynamicResource ShareDrawingImage}" />
+                </Button.Background>
+            </Button>
+
+            <Button Margin="20, 0" Width="45" Height="44" Style="{StaticResource DataGridActionButton}" Command="{Binding DownloadFileCommand, ElementName=EmbededControl}" CommandParameter="{Binding File, ElementName=EmbededControl}">
+                <Button.Background>
+                    <ImageBrush ImageSource="{DynamicResource DownloadDrawingImage}" />
+                </Button.Background>
+            </Button>
+        </StackPanel>
     </Grid>
 </UserControl>

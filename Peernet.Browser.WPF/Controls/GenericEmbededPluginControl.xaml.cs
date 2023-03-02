@@ -24,6 +24,13 @@ namespace Peernet.Browser.WPF.Controls
                 typeof(GenericEmbededPluginControl),
                 null);
 
+        public static readonly DependencyProperty DownloadFileCommandProperty =
+            DependencyProperty.Register(
+                "DownloadFileCommand",
+                typeof(IAsyncCommand<DownloadModel>),
+                typeof(GenericEmbededPluginControl),
+                null);
+
         public GenericEmbededPluginControl()
         {
             InitializeComponent();
@@ -39,6 +46,22 @@ namespace Peernet.Browser.WPF.Controls
         {
             get => (IAsyncCommand<DownloadModel>)GetValue(StreamFileCommandProperty);
             set => SetValue(StreamFileCommandProperty, value);
+        }
+
+        public IAsyncCommand<DownloadModel> DownloadFileCommand
+        {
+            get => (IAsyncCommand<DownloadModel>)GetValue(DownloadFileCommandProperty);
+            set => SetValue(DownloadFileCommandProperty, value);
+        }
+
+        private void ShowInfo_OnClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+        
+        private void OpenFileWebGatewayReferenceWindow_OnClick(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

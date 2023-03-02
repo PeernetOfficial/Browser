@@ -1,9 +1,7 @@
 ﻿using AsyncAwaitBestPractices.MVVM;
-using Peernet.SDK.Models.Domain.Common;
 using Peernet.SDK.Models.Presentation.Footer;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace Peernet.Browser.WPF.Controls
 {
@@ -26,6 +24,13 @@ namespace Peernet.Browser.WPF.Controls
                 typeof(DailyFeedWidgetItemControl),
                 null);
 
+        public static readonly DependencyProperty DownloadFileCommandProperty =
+            DependencyProperty.Register(
+                "DownloadFileCommand",
+                typeof(IAsyncCommand<DownloadModel>),
+                typeof(DailyFeedWidgetItemControl),
+                null);
+
         public DailyFeedWidgetItemControl()
         {
             InitializeComponent();
@@ -41,6 +46,12 @@ namespace Peernet.Browser.WPF.Controls
         {
             get => (IAsyncCommand<DownloadModel>)GetValue(StreamFileCommandProperty);
             set => SetValue(StreamFileCommandProperty, value);
+        }
+
+        public IAsyncCommand<DownloadModel> DownloadFileCommand
+        {
+            get => (IAsyncCommand<DownloadModel>)GetValue(DownloadFileCommandProperty);
+            set => SetValue(DownloadFileCommandProperty, value);
         }
     }
 }

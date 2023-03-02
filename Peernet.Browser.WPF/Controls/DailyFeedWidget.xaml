@@ -17,7 +17,9 @@
         </i:Interaction.Behaviors>
         <ListBox.ItemTemplate>
             <DataTemplate>
-                <local:DailyFeedWidgetItemControl File="{Binding }" StreamFileCommand="{Binding StreamFileCommand, ElementName=DailyFeed}" />
+                <local:DailyFeedWidgetItemControl File="{Binding }"
+                                                  StreamFileCommand="{Binding StreamFileCommand, ElementName=DailyFeed}"
+                                                  DownloadFileCommand="{Binding DownloadFileCommand, ElementName=DailyFeed}" />
             </DataTemplate>
         </ListBox.ItemTemplate>
     </ListBox>
