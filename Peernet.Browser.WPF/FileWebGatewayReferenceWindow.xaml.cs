@@ -9,7 +9,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Peernet.SDK.Common;
 using DevExpress.Mvvm.Native;
 using System.Linq;
-using System.DirectoryServices.ActiveDirectory;
 
 namespace Peernet.Browser.WPF
 {

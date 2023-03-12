@@ -16,15 +16,14 @@
                 <dxg:GridColumn Header="NAME" SortFieldName="Name" FieldName="Name" Width="*" MinWidth="150" HeaderStyle="{DynamicResource ShiftedDataGridColumnHeaderStyle}" HorizontalHeaderContentAlignment="Left">
                     <dxg:GridColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Margin="20, 0, 0, 0"
-                                    Click="Open_OnClick"
+                            <Button Click="Open_OnClick"
                                     Style="{StaticResource ButtonBaseStyle}"
                                     Background="Transparent" Width="Auto"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal" >
                                     <Image Width="13.71" Height="20" Style="{StaticResource VirtualFileSystemEntityImageStyle}" DataContext="{Binding Path=RowData.Row}" />
-                                    <TextBlock Text="{Binding Path=RowData.Row.Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource Underlined}" />
+                                    <TextBlock Text="{Binding Path=RowData.Row.Name}" Margin="22,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource Underlined}" />
                                 </StackPanel>
                             </Button>
                         </DataTemplate>

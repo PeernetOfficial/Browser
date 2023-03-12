@@ -41,7 +41,7 @@
         <local:FiltersControl Grid.Row="0" Panel.ZIndex="1" Margin="0 0 30 0" HorizontalAlignment="Right" VerticalAlignment="Top" />
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="55" />
+                <RowDefinition Height="50" />
                 <RowDefinition Height="5" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -49,28 +49,43 @@
                 <RowDefinition Height="55" />
             </Grid.RowDefinitions>
 
-            <ItemsControl Margin="50 0 0 0" Grid.Row="0" VerticalContentAlignment="Center" ItemsSource="{Binding FilterIconModels, IsAsync=True}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <local:FilterIconControl Margin="0 0 15 0" Height="41" DataContext="{Binding}" />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
 
-            <DockPanel Panel.ZIndex="2"  Margin="0 0 50 0" LastChildFill="False" Grid.Row="0" HorizontalAlignment="Right">
-                <local:ContentViewTypeControl HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <local:FilterIconControl Height="40" DataContext="{Binding ColumnsIconModel}" PreviewMouseDown="FilterIconControl_PreviewMouseDown" />
-                <local:FilterIconControl Height="40" DataContext="{Binding FiltersIconModel}" />
+            <DockPanel Grid.Row="0" Grid.Column="0" Panel.ZIndex="2" Margin="9 0" LastChildFill="False" HorizontalAlignment="Left">
+                <Button Margin="3, 13" Command="{Binding }" Height="25" Padding="5, 0" Width="Auto" Style="{StaticResource ButtonBaseStyle}" Background="Transparent" VerticalAlignment="Top">
+                    <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE77B;" FontSize="16" Foreground="{DynamicResource MainTextBrush}" />
+                </Button>
+                <Button Margin="3, 4" Style="{StaticResource DataGridActionButton}" ToolTip="Share the search result" VerticalAlignment="Top">
+                    <Button.Background>
+                        <ImageBrush ImageSource="{DynamicResource ShareDrawingImage}" />
+                    </Button.Background>
+                </Button>
+                <ItemsControl VerticalContentAlignment="Center" ItemsSource="{Binding FilterIconModels, IsAsync=True}" Margin="0 3">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel  />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <local:FilterIconControl Margin="5 0" Height="41" DataContext="{Binding}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </DockPanel>
+            
+            <DockPanel Grid.Row="0" Grid.Column="1" Panel.ZIndex="2" Margin="0 0 30 0" LastChildFill="False" HorizontalAlignment="Right">
+                    <local:FilterIconControl Height="40" DataContext="{Binding ColumnsIconModel}" PreviewMouseDown="FilterIconControl_PreviewMouseDown"  />
+                    <local:FilterIconControl Height="40" DataContext="{Binding FiltersIconModel}" />
+                    <local:ContentViewTypeControl HorizontalAlignment="Center" VerticalAlignment="Center" />
             </DockPanel>
 
-            <Separator Grid.Row="1" Style="{DynamicResource StandardSeparatorStyle}" />
+            <Separator Grid.Row="1" Grid.ColumnSpan="2" Style="{DynamicResource StandardSeparatorStyle}" />
 
-            <DockPanel Visibility="{Binding Filters.IsVisible, Converter={StaticResource BoolToVisibility}}" Margin="14" Grid.Row="2">
+            <DockPanel Visibility="{Binding Filters.IsVisible, Converter={StaticResource BoolToVisibility}}" Margin="14" Grid.Row="2" Grid.ColumnSpan="2">
                 <TextBlock Margin="10" FontSize="14" Foreground="{DynamicResource MainContentBrush}">Your filters:</TextBlock>
 
                 <ItemsControl ItemsSource="{Binding Filters.Results}">
@@ -98,6 +113,7 @@
                              Padding="25 10 15 0"
                              HorizontalAlignment="Stretch"
                              Grid.Row="3"
+                             Grid.ColumnSpan="2"
                              ItemsSource="{Binding ActiveSearchResults, IsAsync=True}"
                              SelectedItem="{Binding SelectedItem}"
                              Background="Transparent"
@@ -118,7 +134,6 @@
                         <dxg:GridColumn.CellTemplate>
                             <DataTemplate>
                                 <Button DataContext="{Binding Path=RowData.Row}"
-                                        Margin="20, 0, 0, 0"
                                     Command="{Binding DataContext.StreamFileCommand, ElementName=SearchResultTab}"
                                     CommandParameter="{Binding }"
                                     Style="{StaticResource ButtonBaseStyle}"
@@ -131,7 +146,7 @@
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
                                         <Image Width="13.71" Height="20" Style="{StaticResource DownloadItemImageStyle}" DataContext="{Binding}" />
-                                        <TextBlock Grid.Column="1" Text="{Binding File.Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource Underlined}" />
+                                        <TextBlock Grid.Column="1" Text="{Binding File.Name}" Margin="22,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource Underlined}" />
                                     </Grid>
                                 </Button>
                             </DataTemplate>

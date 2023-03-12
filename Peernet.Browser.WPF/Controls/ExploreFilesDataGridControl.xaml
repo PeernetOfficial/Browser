@@ -22,8 +22,7 @@
                 <dxg:GridColumn Header="NAME" SortFieldName="File.Name" FieldName="File.Name" Width="*" HeaderStyle="{StaticResource ShiftedDataGridColumnHeaderStyle}" HorizontalHeaderContentAlignment="Left">
                     <dxg:GridColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Margin="20, 0, 0, 0"
-                                    Command="{Binding DataContext.StreamFileCommand, ElementName=ExploreFilesDataGrid}"
+                            <Button Command="{Binding DataContext.StreamFileCommand, ElementName=ExploreFilesDataGrid}"
                                     CommandParameter="{Binding RowData.Row}"
                                     Style="{StaticResource ButtonBaseStyle}"
                                     Background="Transparent" Width="Auto"
@@ -35,7 +34,7 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <Image Width="13.71" Height="20" Grid.Column="0" Style="{StaticResource DownloadItemImageStyle}" DataContext="{Binding RowData.Row}" />
-                                    <TextBlock Grid.Column="1" Text="{Binding RowData.Row.File.Name}" Margin="25,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource Underlined}" />
+                                    <TextBlock Grid.Column="1" Text="{Binding RowData.Row.File.Name}" Margin="22,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource Underlined}" />
                                 </Grid>
                             </Button>
                         </DataTemplate>
