@@ -4,6 +4,7 @@
         xmlns:contexts="clr-namespace:Peernet.Browser.Application.Contexts;assembly=Application"
         xmlns:viewmodels="clr-namespace:Peernet.Browser.Application.ViewModels;assembly=Application"
         xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
         xmlns:views="clr-namespace:Peernet.Browser.WPF.Views"
         Height="900" Width="1441" WindowStartupLocation="CenterScreen"
         Background="{DynamicResource MainBackgroundBrush}"
@@ -33,7 +34,12 @@
             <RowDefinition Height="40" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
+        <Image Panel.ZIndex="4" Grid.RowSpan="2" Stretch="UniformToFill" x:Name="Intro" gif:ImageBehavior.AnimatedSource="Resources/PeernetIntro.gif" gif:ImageBehavior.AnimationCompleted="Intro_AnimationCompleted" gif:ImageBehavior.AutoStart="True" gif:ImageBehavior.RepeatBehavior="{Binding RepeatBehavior, ElementName=Main}">
+            <Image.OpacityMask>
+                <ImageBrush ImageSource="Resources/PeernetIntro.gif"/>
+            </Image.OpacityMask>
+        </Image>
+        
         <Border Panel.ZIndex="3" Grid.RowSpan="2" BorderThickness="0" BorderBrush="Transparent"
                         CornerRadius="{StaticResource Main2Radius}">
             <Border.Style>

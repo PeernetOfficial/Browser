@@ -7,9 +7,11 @@ using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Application.VirtualFileSystem;
+using Peernet.Browser.WPF.Services;
 using Peernet.Browser.WPF.Views;
 using Peernet.SDK.Models.Extensions;
 using Peernet.SDK.Models.Presentation.Footer;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,6 +19,8 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
+using System.Windows.Threading;
 
 namespace Peernet.Browser.WPF
 {
@@ -157,5 +161,12 @@ namespace Peernet.Browser.WPF
                 DragMove();
             }
         }
+
+        private void Intro_AnimationCompleted(object sender, RoutedEventArgs e)
+        {
+            Intro.Visibility = Visibility.Collapsed;
+        }
+
+        public RepeatBehavior RepeatBehavior => new RepeatBehavior(1);
     }
 }

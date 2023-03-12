@@ -15,7 +15,7 @@ namespace Peernet.Browser.WPF
             set
             {
                 SetValue(CurrentStateProperty, value);
-            }
+             }
         }
 
         public PeernetSplashScreen()

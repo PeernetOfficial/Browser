@@ -152,10 +152,9 @@ namespace Peernet.Browser.WPF
             splashScreenManager.SetState("Application startup complete. Opening MainWindow...");
             var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
             App.Current.MainWindow = mainWindow;
-            mainWindow.Show();
-
             splashScreenManager.Exit();
 
+            mainWindow.Show();
             BindingOperations.EnableCollectionSynchronization(ServiceProvider.GetRequiredService<INotificationsManager>().Notifications, lockObject);
 
             base.OnStartup(e);
