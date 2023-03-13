@@ -161,12 +161,5 @@ namespace Peernet.Browser.WPF
                 DragMove();
             }
         }
-
-        private void Intro_AnimationCompleted(object sender, RoutedEventArgs e)
-        {
-            Intro.Visibility = Visibility.Collapsed;
-        }
-
-        public RepeatBehavior RepeatBehavior => new RepeatBehavior(1);
     }
 }
