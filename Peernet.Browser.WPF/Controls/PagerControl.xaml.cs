@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -12,6 +13,12 @@ namespace Peernet.Browser.WPF.Controls
     {
         public event EventHandler PageSizeChanged;
         public event EventHandler PageIndexChanged;
+
+        private static readonly Regex _regex = new Regex("[^0-9]+"); //regex that matches disallowed text
+        private static bool IsTextAllowed(string text)
+        {
+            return !_regex.IsMatch(text);
+        }
 
         public static readonly DependencyProperty PageIndexProperty =
             DependencyProperty.Register("PageIndex", typeof(int),
@@ -120,6 +127,11 @@ namespace Peernet.Browser.WPF.Controls
         {
             var value = (int)((FrameworkElement)e.OriginalSource).DataContext;
             PageSize = value;
+        }
+
+        private void ComboBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsTextAllowed(e.Text);
         }
     }
 }
