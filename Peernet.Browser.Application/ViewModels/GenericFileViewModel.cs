@@ -1,8 +1,10 @@
 ﻿using AsyncAwaitBestPractices.MVVM;
+using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels.Parameters;
+using Peernet.SDK.Client.Clients;
 using Peernet.SDK.Models.Presentation.Footer;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -17,28 +19,31 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IModalNavigationService modalNavigationService;
         private readonly INavigationService navigationService;
         private readonly IBlockchainService blockchainService;
-        private readonly IWarehouseService warehouseService;
+        private readonly IWarehouseClient warehouseClient;
         private readonly IFileService fileService;
         private readonly INotificationsManager notificationsManager;
+        private readonly IDataTransferManager dataTransferManager;
         private readonly DirectoryViewModel directoryViewModel;
         private FileModel selected;
         private bool finishedProcessing = true;
 
         public GenericFileViewModel(
+            IDataTransferManager dataTransferManager,
             INavigationService navigationService,
             IModalNavigationService modalNavigationService,
             IApplicationManager applicationManager,
-            IBlockchainService blockchainService,
-            IWarehouseService warehouseService,
+            IBlockchainService blockchainClient,
+            IWarehouseClient warehouseClient,
             IFileService fileService,
             INotificationsManager notificationsManager,
             DirectoryViewModel directoryViewModel)
         {
+            this.dataTransferManager = dataTransferManager;
             this.modalNavigationService = modalNavigationService;
             this.navigationService = navigationService;
             this.applicationManager = applicationManager;
-            this.blockchainService = blockchainService;
-            this.warehouseService = warehouseService;
+            this.blockchainService = blockchainClient;
+            this.warehouseClient = warehouseClient;
             this.fileService = fileService;
             this.notificationsManager = notificationsManager;
             this.directoryViewModel = directoryViewModel;
@@ -146,7 +151,7 @@ namespace Peernet.Browser.Application.ViewModels
             var files = applicationManager.OpenFileDialog();
             if (files.Length != 0)
             {
-                var parameter = new ShareFileViewModelParameter(warehouseService, blockchainService, navigationService, notificationsManager, directoryViewModel)
+                var parameter = new ShareFileViewModelParameter(dataTransferManager, warehouseClient, blockchainService, navigationService, notificationsManager, directoryViewModel)
                 {
                     FileModels = files.Select(f => new FileModel(f)).ToList()
                 };
@@ -155,12 +160,15 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        private async Task Confirm()
+        private Task Confirm()
         {
             FinishedProcessing = false;
-            await Parameter.Confirm(Files.ToArray());
+            Task.Run(() => Parameter.Confirm(Files.ToArray()));
+            
             FinishedProcessing = true;
             Cancel();
+
+            return Task.CompletedTask;
         }
 
         private void Cancel()
