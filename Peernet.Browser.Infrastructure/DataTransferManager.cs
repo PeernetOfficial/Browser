@@ -44,7 +44,7 @@ namespace Peernet.Browser.Infrastructure
             {
                 case DownloadStatus.DownloadCanceled:
                     ActiveFileDownloads.Remove(dataTransfer);
-                    NotifyChange($"Data transfer canceled!");
+                    NotifyChange($"{dataTransfer.Name} transfer canceled!");
                     break;
 
                 case DownloadStatus.DownloadFinished:
@@ -79,23 +79,16 @@ namespace Peernet.Browser.Infrastructure
                 ActiveFileDownloads.Add(dataTransfer);
                 downloadsChanged?.Invoke(this, EventArgs.Empty);
             });
-            await dataTransfer.Start();
-            //var strippedFileName = UtilityHelper.StripInvalidWindowsCharactersFromFileName(downloadModel.File.Name);
-            //var status = await downloadClient.Start($"{settingsManager.DownloadPath}/{strippedFileName}", downloadModel.File.Hash, downloadModel.File.NodeId);
+            var transferStatus = await dataTransfer.Start();
 
-
-            //if (responseStatus.APIStatus == APIStatus.DownloadResponseSuccess)
-            //{
-            //    ActiveFileDownloads.Add(dataTransfer);
-            //}
-            //else
-            //{
-            //    //var details =
-            //    //    MessagingHelper.GetApiSummary($"{nameof(downloadClient)}.{nameof(downloadClient.Start)}") +
-            //    //    MessagingHelper.GetInOutSummary(dataTransfer.File, responseStatus);
-            //    //notificationsManager.Notifications.Add(new Notification(
-            //    //    $"Failed to start file download. Status: {responseStatus.APIStatus}", details, Severity.Error));
-            //}
+            if (transferStatus.APIStatus != APIStatus.DownloadResponseSuccess)
+            {
+                var details =
+                    MessagingHelper.GetApiSummary($"{nameof(dataTransfer)}.{nameof(dataTransfer.Start)}") +
+                    MessagingHelper.GetInOutSummary(dataTransfer, transferStatus);
+                notificationsManager.Notifications.Add(new Notification(
+                    $"Failed to start file download. Status: {transferStatus.APIStatus}", details, Severity.Error));
+            }
         }
 
         private void DataTransfer_Completed(object sender, EventArgs e)
@@ -113,24 +106,6 @@ namespace Peernet.Browser.Infrastructure
             return await dataTransfer.Resume();
         }
 
-        //private async Task<ApiResponseDownloadStatus> ExecuteDownload(DownloadModel download, DownloadAction action)
-        //{
-        //    var responseStatus = await downloadClient.GetAction(download.Id, action);
-        //    download.Status = responseStatus.DownloadStatus;
-        //    downloadsChanged?.Invoke(this, EventArgs.Empty);
-
-        //    if (responseStatus.APIStatus != APIStatus.DownloadResponseSuccess)
-        //    {
-        //        var details =
-        //            MessagingHelper.GetApiSummary($"{nameof(downloadClient)}.{nameof(downloadClient.GetAction)}") +
-        //            MessagingHelper.GetInOutSummary(download.Id, responseStatus);
-        //        notificationsManager.Notifications.Add(new Notification(
-        //            $"Failed to {action} file download. Status: {responseStatus.APIStatus}", details, Severity.Error));
-        //    }
-
-        //    return responseStatus;
-        //}
-
         private void NotifyChange(string message)
         {
             downloadsChanged?.Invoke(this, EventArgs.Empty);
@@ -143,8 +118,6 @@ namespace Peernet.Browser.Infrastructure
             {
                 var copy = ActiveFileDownloads.ToList();
                 await Task.WhenAll(copy.Where(dataTransfer => !dataTransfer.IsCompleted).Select(dataTransfer => dataTransfer.UpdateStatus()));
-                // Add 'Completed' event and in handler: UIThreadDispatcher.ExecuteOnMainThread(() => NotifyChange($"{download.File.Name} downloading completed!"));
-
                 await Task.Delay(1000);
             }
         }
