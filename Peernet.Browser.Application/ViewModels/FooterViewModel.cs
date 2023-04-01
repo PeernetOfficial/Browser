@@ -126,7 +126,7 @@ namespace Peernet.Browser.Application.ViewModels
         public IAsyncCommand<SDK.Models.Presentation.Download> OpenFileCommand => new AsyncCommand<SDK.Models.Presentation.Download>(
             download =>
             {
-                if (download.Status == DownloadStatus.DownloadFinished)
+                if (download.Status == DataTransferStatus.Finished)
                 {
                     var path = Path.Combine(settingsManager.DownloadPath, download.File.Name);
                     OpenWithDefaultProgram(path);

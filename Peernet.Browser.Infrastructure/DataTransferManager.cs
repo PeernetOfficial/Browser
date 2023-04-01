@@ -3,7 +3,6 @@ using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Utilities;
 using Peernet.SDK.Common;
-using Peernet.SDK.Models.Domain.Download;
 using Peernet.SDK.Models.Presentation;
 using Peernet.SDK.Models.Presentation.Footer;
 using System;
@@ -35,25 +34,24 @@ namespace Peernet.Browser.Infrastructure
 
         public ObservableCollection<DataTransfer> ActiveFileDownloads { get; set; } = new();
 
-        public async Task<ApiResponseDownloadStatus> CancelTransfer(string id)
+        public async Task CancelTransfer(string id)
         {
             var dataTransfer = ActiveFileDownloads.First(d => d.Id == id);
-            var responseStatus = await dataTransfer.Cancel();
+            await dataTransfer.Cancel();
+            var status = dataTransfer.Status;
 
-            switch (responseStatus.DownloadStatus)
+            switch (status)
             {
-                case DownloadStatus.DownloadCanceled:
+                case DataTransferStatus.Canceled:
                     ActiveFileDownloads.Remove(dataTransfer);
                     NotifyChange($"{dataTransfer.Name} transfer canceled!");
                     break;
 
-                case DownloadStatus.DownloadFinished:
+                case DataTransferStatus.Finished:
                     ActiveFileDownloads.Remove(dataTransfer);
                     downloadsChanged?.Invoke(this, EventArgs.Empty);
                     break;
             }
-
-            return responseStatus;
         }
 
         public void OpenFileLocation(string name)
@@ -65,10 +63,10 @@ namespace Peernet.Browser.Infrastructure
             }
         }
 
-        public async Task<ApiResponseDownloadStatus> PauseTransfer(string id)
+        public async Task PauseTransfer(string id)
         {
             var download = ActiveFileDownloads.First(d => d.Id == id);
-            return await download.Pause();
+            await download.Pause();
         }
 
         public async Task QueueUp(DataTransfer dataTransfer)
@@ -79,15 +77,16 @@ namespace Peernet.Browser.Infrastructure
                 ActiveFileDownloads.Add(dataTransfer);
                 downloadsChanged?.Invoke(this, EventArgs.Empty);
             });
-            var transferStatus = await dataTransfer.Start();
+            await dataTransfer.Start();
+            var status = dataTransfer.Status;
 
-            if (transferStatus.APIStatus != APIStatus.DownloadResponseSuccess)
+            if (status == DataTransferStatus.Failed)
             {
                 var details =
                     MessagingHelper.GetApiSummary($"{nameof(dataTransfer)}.{nameof(dataTransfer.Start)}") +
-                    MessagingHelper.GetInOutSummary(dataTransfer, transferStatus);
+                    MessagingHelper.GetInOutSummary(dataTransfer, status);
                 notificationsManager.Notifications.Add(new Notification(
-                    $"Failed to start file download. Status: {transferStatus.APIStatus}", details, Severity.Error));
+                    $"Failed to start file download. Status: {status}", details, Severity.Error));
             }
         }
 
@@ -100,10 +99,10 @@ namespace Peernet.Browser.Infrastructure
             });
         }
 
-        public async Task<ApiResponseDownloadStatus> ResumeTransfer(string id)
+        public async Task ResumeTransfer(string id)
         {
             var dataTransfer = ActiveFileDownloads.First(d => d.Id == id);
-            return await dataTransfer.Resume();
+            await dataTransfer.Resume();
         }
 
         private void NotifyChange(string message)
