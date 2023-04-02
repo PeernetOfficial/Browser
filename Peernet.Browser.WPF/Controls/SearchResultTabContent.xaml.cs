@@ -1,11 +1,14 @@
 ﻿using DevExpress.Xpf.Grid;
 using Microsoft.Extensions.DependencyInjection;
 using Peernet.Browser.Application.Download;
+using Peernet.Browser.Application.Utilities;
 using Peernet.Browser.Application.ViewModels;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.WPF.Extensions;
+using Peernet.SDK.Client.Clients;
 using Peernet.SDK.Models.Presentation.Footer;
 using Peernet.SDK.Models.Presentation.Home;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -51,8 +54,11 @@ namespace Peernet.Browser.WPF.Controls
         {
             var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;
             var model = (DownloadModel)cellData.RowData.Row;
-            var downloadManager = App.ServiceProvider.GetRequiredService<IDownloadManager>();
-            var param = new FilePreviewViewModelParameter(model.File, async () => await downloadManager.QueueUpDownload(model), "Download");
+            var dataTransferManager = App.ServiceProvider.GetRequiredService<IDataTransferManager>();
+            var downloadClient = App.ServiceProvider.GetRequiredService<IDownloadClient>();
+            var filePath = Path.Combine(App.Settings.DownloadPath, UtilityHelper.StripInvalidWindowsCharactersFromFileName(model.File.Name));
+            var download = new SDK.Models.Presentation.Download(downloadClient, model.File, filePath);
+            var param = new FilePreviewViewModelParameter(model.File, async () => await dataTransferManager.QueueUp(download), "Download");
             var filePreviewViewModel = new FilePreviewViewModel();
             filePreviewViewModel.Prepare(param);
             new FilePreviewWindow(filePreviewViewModel).Show();
