@@ -4,6 +4,7 @@ using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.VirtualFileSystem;
+using Peernet.SDK.Client.Clients;
 using Peernet.SDK.Models.Plugins;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace Peernet.Browser.Application.ViewModels
         public ObservableCollection<DirectoryTabViewModel> DirectoryTabs { get; set; }
 
         private readonly IBlockchainService blockchainService;
+        private readonly IMergeClient mergeClient;
         private readonly IUserContext userContext;
         private readonly IModalNavigationService modalNavigationService;
         private readonly INotificationsManager notificationsManager;
@@ -44,6 +46,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         public DirectoryViewModel(
             IUserContext userContext,
+            IMergeClient mergeClient,
             IBlockchainService blockchainService,
             IVirtualFileSystemFactory virtualFileSystemFactory,
             IModalNavigationService modalNavigationService,
@@ -51,19 +54,20 @@ namespace Peernet.Browser.Application.ViewModels
             IEnumerable<IPlayButtonPlug> playButtonPlugs)
         {
             this.userContext = userContext;
+            this.mergeClient = mergeClient;
             this.blockchainService = blockchainService;
             this.virtualFileSystemFactory = virtualFileSystemFactory;
             this.modalNavigationService = modalNavigationService;
             this.notificationsManager = notificationsManager;
             this.playButtonPlugs = playButtonPlugs;
 
-            CurrentUserDirectoryViewModel = new CurrentUserDirectoryViewModel(blockchainService, CloseTab, virtualFileSystemFactory, modalNavigationService, notificationsManager, playButtonPlugs);
+            CurrentUserDirectoryViewModel = new CurrentUserDirectoryViewModel(blockchainService, virtualFileSystemFactory, modalNavigationService, notificationsManager, playButtonPlugs);
             DirectoryTabs = new ObservableCollection<DirectoryTabViewModel>(new List<DirectoryTabViewModel> { CurrentUserDirectoryViewModel });
         }
 
         public async Task AddTab(byte[] node)
         {
-            DirectoryTabViewModel tab = await FindTab(node);
+            DirectoryTabViewModel tab = await FindTab(Convert.ToHexString(node));
 
             if (tab == null)
             {
@@ -74,9 +78,17 @@ namespace Peernet.Browser.Application.ViewModels
             ChangeTabSelection(tab);
         }
 
-        private async Task<DirectoryTabViewModel?> FindTab(byte[] node)
+        public void AddMergedTab(byte[] hash)
         {
-            var hexNode = Convert.ToHexString(node);
+            var tab = new UserMergedDirectoryViewModel(hash, mergeClient, blockchainService, CloseTab, virtualFileSystemFactory, modalNavigationService, notificationsManager, playButtonPlugs);
+            DirectoryTabs.Add(tab);
+
+            ChangeTabSelection(tab);
+        }
+
+
+        private async Task<DirectoryTabViewModel?> FindTab(string hexNode)
+        {
             var currentUserPeerId = userContext.NodeId;
             if (string.Equals(hexNode, currentUserPeerId, StringComparison.OrdinalIgnoreCase))
             {

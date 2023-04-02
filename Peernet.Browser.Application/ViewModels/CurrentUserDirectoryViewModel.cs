@@ -1,11 +1,9 @@
-﻿using Peernet.Browser.Application.Contexts;
-using Peernet.Browser.Application.Managers;
+﻿using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.SDK.Models.Domain.Common;
 using Peernet.SDK.Models.Plugins;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -15,12 +13,11 @@ namespace Peernet.Browser.Application.ViewModels
     {
         public CurrentUserDirectoryViewModel(
             IBlockchainService blockchainService,
-            Func<DirectoryTabViewModel, Task> removeTabAction,
             IVirtualFileSystemFactory virtualFileSystemFactory,
             IModalNavigationService modalNavigationService,
             INotificationsManager notificationsManager,
             IEnumerable<IPlayButtonPlug> playButtonPlugs)
-            : base("My Directory", GetFiles, blockchainService, virtualFileSystemFactory, modalNavigationService, notificationsManager, playButtonPlugs)
+            : base("My Directory", async () => await GetFiles(blockchainService), blockchainService, virtualFileSystemFactory, modalNavigationService, notificationsManager, playButtonPlugs)
         {
         }
 

@@ -46,12 +46,22 @@ namespace Peernet.Browser.WPF.Controls
             new PeersMapWindow(model.GeoPoints).Show();
         }
 
-        private async void TextBlock_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private async void AddDirectoryTab(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var directoryViewModel = App.ServiceProvider.GetRequiredService<DirectoryViewModel>();
             var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;
             var model = (DownloadModel)cellData.RowData.Row;
             await directoryViewModel.AddTab(model.File.NodeId);
+            directoryViewModel.Navigate.Invoke();
+            e.Handled = true;
+        }
+
+        private void AddMergedDirectoryTab(object sender, RoutedEventArgs e)
+        {
+            var directoryViewModel = App.ServiceProvider.GetRequiredService<DirectoryViewModel>();
+            var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;
+            var model = (DownloadModel)cellData.RowData.Row;
+            directoryViewModel.AddMergedTab(model.File.Hash);
             directoryViewModel.Navigate.Invoke();
             e.Handled = true;
         }

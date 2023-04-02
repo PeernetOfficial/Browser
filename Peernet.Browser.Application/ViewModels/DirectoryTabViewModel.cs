@@ -23,7 +23,7 @@ namespace Peernet.Browser.Application.ViewModels
         private const string LibrariesSegment = "Libraries";
         private const string YourFilesSegment = "Files";
         private readonly IBlockchainService blockchainService;
-        private readonly Func<IBlockchainService, Task<List<ApiFile>>> filesProvider;
+        private readonly Func<Task<List<ApiFile>>> filesProvider;
         private readonly IModalNavigationService modalNavigationService;
         private readonly INotificationsManager notificationsManager;
         private readonly IEnumerable<IPlayButtonPlug> playButtonPlugs;
@@ -36,7 +36,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         public DirectoryTabViewModel(
             string title,
-            Func<IBlockchainService, Task<List<ApiFile>>> filesProvider,
+            Func<Task<List<ApiFile>>> filesProvider,
             IBlockchainService blockchainService,
             IVirtualFileSystemFactory virtualFileSystemFactory,
             IModalNavigationService modalNavigationService,
@@ -222,7 +222,7 @@ namespace Peernet.Browser.Application.ViewModels
         public async Task ReloadVirtualFileSystem(bool restoreState = true)
         {
             IsLoaded = false;
-            var files = await filesProvider(blockchainService);
+            var files = await filesProvider();
 
             var sharedFiles = (files ?? new()).Select(f => new VirtualFileSystemEntity(f)).ToList();
             SetPlayerState(sharedFiles);

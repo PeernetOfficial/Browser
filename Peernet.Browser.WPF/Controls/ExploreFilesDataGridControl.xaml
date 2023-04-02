@@ -45,7 +45,7 @@
                 <dxg:GridColumn Header="User" SortFieldName="File.NodeId" Binding="{Binding RowData.Row.File.NodeId, Converter={StaticResource ByteArrayToHexStringConverter}}" FieldName="File.NodeId" ColumnFilterMode="DisplayText" Width="140">
                     <dxg:GridColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding RowData.Row.File.NodeId, Converter={StaticResource ByteArrayToHexStringConverter}}" Style="{StaticResource Underlined}" VerticalAlignment="Center" HorizontalAlignment="Left" PreviewMouseLeftButtonDown="TextBlock_PreviewMouseLeftButtonDown" />
+                            <TextBlock Text="{Binding RowData.Row.File.NodeId, Converter={StaticResource ByteArrayToHexStringConverter}}" Style="{StaticResource Underlined}" VerticalAlignment="Center" HorizontalAlignment="Left" PreviewMouseLeftButtonDown="AddDirectoryTab" />
                         </DataTemplate>
                     </dxg:GridColumn.CellTemplate>
                 </dxg:GridColumn>
@@ -82,7 +82,8 @@
                                     Background="Transparent"
                                     Width="Auto"
                                     HorizontalAlignment="Left"
-                                    VerticalAlignment="Center">
+                                    VerticalAlignment="Center"
+                                    Click="AddMergedDirectoryTab">
                                 <TextBlock Background="Transparent"
                                            Text="{Binding RowData.Row.File.SharedByCount, StringFormat={}{0} Peers}"
                                            VerticalAlignment="Center"
