@@ -2,6 +2,7 @@
 using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.SDK.Models.Extensions;
 using Peernet.SDK.Models.Presentation.Footer;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -12,16 +13,16 @@ namespace Peernet.Browser.Application.ViewModels
     public class ChangeFileLocationViewModel : ViewModelBase
     {
         private ObservableCollection<VirtualFileSystemEntity> activeSearchResults;
-        private FileModel model;
+        private Action<string> changeDirectory;
         private ObservableCollection<VirtualFileSystemCoreEntity> pathElements;
         private VirtualFileSystem.VirtualFileSystem virtualFileSystem;
 
-        public ChangeFileLocationViewModel(VirtualFileSystem.VirtualFileSystem virtualFileSystem, string currentLocation, FileModel model)
+        public ChangeFileLocationViewModel(VirtualFileSystem.VirtualFileSystem virtualFileSystem, string currentLocation, Action<string> changeDirectory)
         {
             VirtualFileSystem = virtualFileSystem;
             PathElements = new(ParseIntoPath(currentLocation));
             ActiveSearchResults = virtualFileSystem.GetCurrentlySelected().VirtualFileSystemEntities;
-            this.model = model;
+            this.changeDirectory = changeDirectory;
         }
 
         private List<VirtualFileSystemCoreEntity> ParseIntoPath(string currentLocation)
@@ -112,7 +113,7 @@ namespace Peernet.Browser.Application.ViewModels
             new AsyncCommand(() =>
             {
                 var selected = virtualFileSystem.GetCurrentlySelected();
-                model.Directory = TrimUnsopportedSegments(selected.AbsolutePath);
+                changeDirectory(TrimUnsopportedSegments(selected.AbsolutePath));
 
                 return Task.CompletedTask;
             });

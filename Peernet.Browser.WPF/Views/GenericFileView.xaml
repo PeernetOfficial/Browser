@@ -50,8 +50,8 @@
                 <DockPanel Grid.Row="1" Grid.Column="0" LastChildFill="False" Margin="0 15">
                     <Image Margin="0 0 7 0" Width="11" Source="{DynamicResource DirectorySmallDrawingImage}" />
                     <TextBlock Foreground="{StaticResource LightGrayBrush}" VerticalAlignment="Center">Folder:</TextBlock>
-                    <TextBox x:Name="virtualDirectoryPath" Foreground="{DynamicResource MainContentBrush}" Text="{Binding Selected.Directory, Mode=TwoWay, TargetNullValue='/'}" Width="470" KeyDown="ConfirmChange_OnKeyDown" CaretBrush="{DynamicResource MainTextBrush}" Margin="5, 0, 0, 0" />
-                    <Button DockPanel.Dock="Right" Content="Change" Style="{StaticResource LinkButton}" Click="ChangeVirtualDirectory_OnClick" DataContext="{Binding Selected}" />
+                    <TextBox x:Name="virtualDirectoryPath" Foreground="{DynamicResource MainContentBrush}" Text="{Binding FilesDirectory, Mode=TwoWay, TargetNullValue='/'}" Width="470" KeyDown="ConfirmChange_OnKeyDown" CaretBrush="{DynamicResource MainTextBrush}" Margin="5, 0, 0, 0" />
+                    <Button DockPanel.Dock="Right" Content="Change" Style="{StaticResource LinkButton}" Click="ChangeVirtualDirectory_OnClick" DataContext="{Binding .}" />
                 </DockPanel>
 
                 <StackPanel Grid.Row="2" MaxWidth="600">

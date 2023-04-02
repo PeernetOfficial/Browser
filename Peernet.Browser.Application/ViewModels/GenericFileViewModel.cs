@@ -5,6 +5,7 @@ using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.SDK.Client.Clients;
+using Peernet.SDK.Models.Extensions;
 using Peernet.SDK.Models.Presentation.Footer;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IDataTransferManager dataTransferManager;
         private readonly DirectoryViewModel directoryViewModel;
         private FileModel selected;
+        private string filesDirectory;
         private bool finishedProcessing = true;
 
         public GenericFileViewModel(
@@ -114,6 +116,17 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
+        public string FilesDirectory
+        {
+            get => filesDirectory;
+            set
+            {
+                filesDirectory = value;
+                UpdateFilesDirectory();
+                OnPropertyChanged(nameof(FilesDirectory));
+            }
+        }
+
         public bool FinishedProcessing
         {
             get => finishedProcessing;
@@ -141,6 +154,7 @@ namespace Peernet.Browser.Application.ViewModels
                     await UpdateFileFormat(f);
                 }
 
+                filesDirectory = f.Directory;
                 Files.Add(f);
             }
             Selected = Files.First();
@@ -219,6 +233,11 @@ namespace Peernet.Browser.Application.ViewModels
                 fileModel.Format = format.FileFormat;
                 fileModel.Type = format.FileType;
             }
+        }
+
+        private void UpdateFilesDirectory()
+        {
+            Files.Foreach(f => f.Directory = FilesDirectory);
         }
     }
 }
