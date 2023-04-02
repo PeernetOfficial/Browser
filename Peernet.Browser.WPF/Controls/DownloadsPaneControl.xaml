@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:download="clr-namespace:Peernet.SDK.Models.Domain.Download;assembly=Peernet.SDK"
+             xmlns:presentationModels="clr-namespace:Peernet.SDK.Models.Presentation;assembly=Peernet.SDK"
              mc:Ignorable="d"
              x:Name="Footer">
 
@@ -16,7 +17,7 @@
                 <ItemsControl x:Name="DownloadsList">
                     <ItemsControl.Style>
                         <Style TargetType="{x:Type ItemsControl}">
-                            <Setter Property="ItemsSource" Value="{Binding Footer.DownloadManager.ActiveFileDownloads}" />
+                            <Setter Property="ItemsSource" Value="{Binding Footer.DataTransferManager.ActiveFileDownloads}" />
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding Footer.AreDownloadsCollapsed}" Value="True">
                                     <Setter Property="ItemsSource" Value="{Binding Footer.ListedFileDownloads}" />
@@ -36,27 +37,30 @@
                                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <Image Grid.Column="0" Height="20" Width="15" Style="{StaticResource DownloadItemImageStyle}" />
-                                <TextBlock Grid.Column="1" Text="{Binding DisplayName}" FontWeight="SemiBold" VerticalAlignment="Center" ToolTip="{Binding File.Name}" Margin="5,0,0,0" HorizontalAlignment="Left">
-                                    <TextBlock.InputBindings>
-                                        <MouseBinding MouseAction="LeftClick" Command="{Binding DataContext.Footer.OpenFileCommand, ElementName=Footer}" CommandParameter="{Binding}" />
-                                    </TextBlock.InputBindings>
-                                    <TextBlock.Style>
-                                        <Style BasedOn="{StaticResource Active}" TargetType="{x:Type TextBlock}">
+                                <Button Grid.Column="1" VerticalAlignment="Center" Margin="5,0,0,0" HorizontalAlignment="Left" Width="Auto" Background="Transparent">
+                                    <TextBlock Text="{Binding Name}" FontWeight="SemiBold" ToolTip="{Binding Name}" Style="{StaticResource Active}" />
+                                    <Button.Style>
+                                        <Style BasedOn="{StaticResource ButtonBaseStyle}" TargetType="{x:Type Button}">
+                                            <Setter Property="Cursor" Value="Arrow" />
                                             <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Status}" Value="{x:Static download:DownloadStatus.DownloadFinished}">
+                                                <DataTrigger Binding="{Binding IsCompleted}" Value="True">
                                                     <Setter Property="Cursor" Value="Hand" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding .,Converter={StaticResource DataTypeConverter}}" Value="{x:Type presentationModels:Download}">
+                                                    <Setter Property="Command" Value="{Binding DataContext.Footer.OpenFileCommand, ElementName=Footer}" />
+                                                    <Setter Property="CommandParameter" Value="{Binding}" />
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
-                                    </TextBlock.Style>
-                                </TextBlock>
+                                    </Button.Style>
+                                </Button>
                                 <TextBlock x:Name="ProgressValue" Grid.Column="2" VerticalAlignment="Center" FontWeight="SemiBold">
                                     <TextBlock.Style>
                                         <Style BasedOn="{StaticResource Active}" TargetType="{x:Type TextBlock}">
                                             <Setter Property="Text" Value="{Binding Progress, StringFormat={}{0}%}" />
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding IsCompleted}" Value="True">
-                                                    <Setter Property="Text" Value="Downloading completed!" />
+                                                    <Setter Property="Text" Value="Data transfer completed!" />
                                                     <Setter Property="Grid.ColumnSpan" Value="2" />
                                                 </DataTrigger>
                                             </Style.Triggers>
@@ -88,15 +92,21 @@
                                             </Style>
                                         </Button.Style>
                                     </Button>
-                                    <Button Cursor="Hand" Foreground="{StaticResource MainContentBrush}" CommandParameter="{Binding File.Name}" Command="{Binding DataContext.Footer.OpenFileLocationCommand, ElementName=Footer}">
+                                    <Button Cursor="Hand" Foreground="{StaticResource MainContentBrush}">
                                         <Button.Style>
                                             <Style BasedOn="{StaticResource CaptionButtonStyle}" TargetType="{x:Type Button}">
                                                 <Setter Property="Visibility" Value="Collapsed" />
                                                 <Setter Property="Content" Value="&#xED25;" />
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding IsCompleted}" Value="True">
+                                                    <MultiDataTrigger>
+                                                        <MultiDataTrigger.Conditions>
+                                                            <Condition Binding="{Binding IsCompleted}" Value="True" />
+                                                            <Condition Binding="{Binding .,Converter={StaticResource DataTypeConverter}}" Value="{x:Type presentationModels:Download}" />
+                                                        </MultiDataTrigger.Conditions>
                                                         <Setter Property="Visibility" Value="Visible" />
-                                                    </DataTrigger>
+                                                        <Setter Property="Command" Value="{Binding DataContext.Footer.OpenFileLocationCommand, ElementName=Footer}" />
+                                                        <Setter Property="CommandParameter" Value="{Binding File.Name}" />
+                                                    </MultiDataTrigger>
                                                 </Style.Triggers>
                                             </Style>
                                         </Button.Style>
@@ -120,7 +130,7 @@
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Background" Value="#60FFFFFF" />
                                 </Trigger>
-                                <DataTrigger Binding="{Binding Footer.DownloadManager.ActiveFileDownloads.Count}" Value="1">
+                                <DataTrigger Binding="{Binding Footer.DataTransferManager.ActiveFileDownloads.Count}" Value="1">
                                     <Setter Property="Visibility" Value="Hidden" />
                                 </DataTrigger>
                             </Style.Triggers>
@@ -132,7 +142,7 @@
         <Border.Style>
             <Style TargetType="{x:Type Border}">
                 <Style.Triggers>
-                    <DataTrigger Binding="{Binding Footer.DownloadManager.ActiveFileDownloads.Count}" Value="0">
+                    <DataTrigger Binding="{Binding Footer.DataTransferManager.ActiveFileDownloads.Count}" Value="0">
                         <Setter Property="Visibility" Value="Hidden" />
                     </DataTrigger>
                 </Style.Triggers>

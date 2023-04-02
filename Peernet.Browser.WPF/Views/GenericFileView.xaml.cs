@@ -2,7 +2,7 @@
 using Peernet.Browser.Application;
 using Peernet.Browser.Application.Extensions;
 using Peernet.Browser.Application.ViewModels;
-using Peernet.SDK.Models.Presentation.Footer;
+using Peernet.Browser.Application.ViewModels.Parameters;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,8 +20,19 @@ namespace Peernet.Browser.WPF.Views
         private void ChangeVirtualDirectory_OnClick(object sender, RoutedEventArgs e)
         {
             var directoryViewModel = App.ServiceProvider.GetRequiredService<DirectoryViewModel>();
-            var model = (FileModel)((FrameworkElement)e.OriginalSource).DataContext;
-            var changeFileLocationViewModel = new ChangeFileLocationViewModel(directoryViewModel.VirtualFileSystem.DeepClone(), directoryViewModel.PathElements.Last().AbsolutePath, model);
+
+            dynamic context = null;
+            if (((FrameworkElement)e.OriginalSource).DataContext is EditFileViewModel editFileViewModel)
+            {
+                context = editFileViewModel;
+            }
+            else if (((FrameworkElement)e.OriginalSource).DataContext is ShareFileViewModel shareFileViewModel)
+            {
+                context = shareFileViewModel;
+            }
+
+            var changeDirectoryAction = (string directory) => { context.FilesDirectory = directory; }; 
+            var changeFileLocationViewModel = new ChangeFileLocationViewModel(directoryViewModel.VirtualFileSystem.DeepClone(), directoryViewModel.PathElements.Last().AbsolutePath, changeDirectoryAction);
             new ChangleFileLocationWindow(changeFileLocationViewModel).Show();
         }
 
