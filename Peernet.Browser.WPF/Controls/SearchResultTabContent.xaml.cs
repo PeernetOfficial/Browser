@@ -102,5 +102,15 @@ namespace Peernet.Browser.WPF.Controls
             directoryViewModel.Navigate.Invoke();
             e.Handled = true;
         }
+
+        private void AddMergedDirectoryTab(object sender, RoutedEventArgs e)
+        {
+            var directoryViewModel = App.ServiceProvider.GetRequiredService<DirectoryViewModel>();
+            var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;
+            var model = (DownloadModel)cellData.RowData.Row;
+            directoryViewModel.AddMergedTab(model.File.Hash);
+            directoryViewModel.Navigate.Invoke();
+            e.Handled = true;
+        }
     }
 }

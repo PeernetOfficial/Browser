@@ -4,6 +4,7 @@ using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.SDK.Client.Clients;
+using Peernet.SDK.Models.Domain.Common;
 using Peernet.SDK.Models.Plugins;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    internal class UserMergedDirectoryViewModel : DirectoryTabViewModel
+    public class UserMergedDirectoryViewModel : DirectoryTabViewModel
     {
         public UserMergedDirectoryViewModel(
             byte[] hash,
@@ -24,7 +25,7 @@ namespace Peernet.Browser.Application.ViewModels
             IEnumerable<IPlayButtonPlug> playButtonPlugs)
             : base(
                   Convert.ToHexString(hash),
-                  async () => (await mergeClient.GetDirectoryContent(hash)).Files,
+                  async () => await GetAndStructureFilesPerNode(hash, mergeClient),
                   blockchainService,
                   virtualFileSystemFactory,
                   modalNavigationService,
@@ -35,5 +36,16 @@ namespace Peernet.Browser.Application.ViewModels
                 }
 
         public IAsyncCommand DeleteCommand { get; }
+
+        private static async Task<List<ApiFile>> GetAndStructureFilesPerNode(byte[] hash, IMergeClient mergeClient)
+        {
+            var result = await mergeClient.GetDirectoryContent(hash);
+            result.Files.ForEach(file =>
+            {
+                file.Folder = $"{Convert.ToHexString(file.NodeId)}/{file.Folder}"; 
+            });
+
+            return result.Files;
+        }
     }
 }

@@ -79,6 +79,10 @@
                                                 <Setter Property="Command" Value="{Binding DeleteCommand}" />
                                                 <Setter Property="Visibility" Value="Visible" />
                                             </DataTrigger>
+                                            <DataTrigger Binding="{Binding .,Converter={StaticResource DataTypeConverter}}" Value="{x:Type viewmodels:UserMergedDirectoryViewModel}">
+                                                <Setter Property="Command" Value="{Binding DeleteCommand}" />
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
                                 </Button.Style>
