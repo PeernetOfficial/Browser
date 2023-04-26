@@ -9,7 +9,7 @@ namespace Peernet.Browser.Infrastructure.Extensions
     {
         public static void RegisterPeernetServices(this ServiceCollection provider)
         {
-            provider.AddSingleton<IDownloadManager, DownloadManager>();
+            provider.AddSingleton<IDataTransferManager, DataTransferManager>();
             provider.AddTransient<IFileService, FileService>();
             provider.AddTransient<IAccountService, AccountService>();
             provider.AddTransient<IBlockchainService, BlockchainService>();

@@ -19,6 +19,10 @@
     <None Remove="Properties\**" />
     <Page Remove="Properties\**" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\PeernetIntro.gif" />
+    <None Remove="Resources\PeernetIntroDark.gif" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="DevExpress.Wpf.Grid" Version="22.2.*" />
@@ -27,6 +31,7 @@
     <PackageReference Include="Serilog.Extensions.Logging" Version="3.0.1" />
     <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
     <PackageReference Include="Serilog.Sinks.Trace" Version="3.0.0" />
+    <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,6 +49,15 @@
     <Reference Include="Peernet.SDK">
       <HintPath>..\lib\Peernet.SDK.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\PeernetIntro.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\PeernetIntroDark.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>

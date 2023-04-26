@@ -2,10 +2,12 @@
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.Utilities;
 using Peernet.SDK.Client.Clients;
+using Peernet.SDK.Client.Http;
 using Peernet.SDK.Common;
 using Peernet.SDK.Models.Domain.Common;
 using Peernet.SDK.Models.Domain.Warehouse;
 using Peernet.SDK.Models.Presentation.Footer;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -24,10 +26,10 @@ namespace Peernet.Browser.Infrastructure.Services
             this.notificationsManager = notificationsManager;
         }
 
-        public async Task<WarehouseResult> Create(FileModel file)
+        public async Task<WarehouseResult> Create(Guid id, FileModel file)
         {
             var stream = File.OpenRead(file.FullPath);
-            return await warehouseClient.Create(stream);
+            return await warehouseClient.Create(id, stream);
         }
 
         public async Task<WarehouseResult> ReadPath(ApiFile file)
