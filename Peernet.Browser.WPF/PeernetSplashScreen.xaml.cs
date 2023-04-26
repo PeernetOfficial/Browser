@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System.Windows;
+using System.Windows.Media.Animation;
 
 namespace Peernet.Browser.WPF
 {
@@ -7,26 +9,19 @@ namespace Peernet.Browser.WPF
     /// </summary>
     public partial class PeernetSplashScreen : Window
     {
-        public static readonly DependencyProperty CurrentStateProperty = DependencyProperty.Register("CurrentState", typeof(string), typeof(PeernetSplashScreen), new PropertyMetadata("Preparing for startup..."));
-
-        public string CurrentState
-        {
-            get => (string)GetValue(CurrentStateProperty);
-            set
-            {
-                SetValue(CurrentStateProperty, value);
-            }
-        }
-
         public PeernetSplashScreen()
         {
-            Loaded += PeernetSplashScreen_Loaded;
             InitializeComponent();
         }
 
-        private void PeernetSplashScreen_Loaded(object sender, RoutedEventArgs e)
+        public RepeatBehavior RepeatBehavior => new RepeatBehavior(1);
+
+        private void Intro_AnimationCompleted(object sender, RoutedEventArgs e)
         {
-            UpdateLayout();
+            var mainWindow = App.ServiceProvider.GetRequiredService<MainWindow>();
+            App.Current.MainWindow = mainWindow;
+            mainWindow.Show();
+            this.Close();
         }
     }
 }
