@@ -186,7 +186,7 @@ namespace Peernet.Browser.Application.ViewModels
         public IAsyncCommand<DownloadModel> ResumeCommand => new AsyncCommand<DownloadModel>(
             async downloadModel =>
             {
-                await dataTransferManager.ResumeTransfer(downloadModel.Id);
+                await dataTransferManager.ResumeTransfer(new Guid(downloadModel.Id));
             });
 
         public IAsyncCommand<VirtualFileSystemCoreCategory> SelectCategoryCommand =>

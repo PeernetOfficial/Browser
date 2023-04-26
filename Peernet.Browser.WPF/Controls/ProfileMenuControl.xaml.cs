@@ -3,6 +3,7 @@ using Peernet.Browser.Application.ViewModels;
 using Peernet.Browser.WPF.Extensions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Media;
 
 namespace Peernet.Browser.WPF.Controls
@@ -22,7 +23,7 @@ namespace Peernet.Browser.WPF.Controls
         {
             var dependencyObject = (DependencyObject)e.OriginalSource;
             FrameworkElement templatedParentFrameworkElement = null;
-            if (VisualTreeHelper.GetChildrenCount(dependencyObject) > 0)
+            if (dependencyObject is not Run && VisualTreeHelper.GetChildrenCount(dependencyObject) > 0)
             {
                 var child = VisualTreeHelper.GetChild(dependencyObject, 0);
                 var childFrameworkElement = child as FrameworkElement;
