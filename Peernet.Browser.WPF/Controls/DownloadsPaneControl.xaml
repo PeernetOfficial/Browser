@@ -88,6 +88,9 @@
                                                     <DataTrigger Binding="{Binding IsCompleted}" Value="True">
                                                         <Setter Property="Visibility" Value="Collapsed" />
                                                     </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ., Converter={StaticResource DataTypeConverter}}" Value="{x:Type presentationModels:Upload}">
+                                                        <Setter Property="Visibility" Value="Hidden" />
+                                                    </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
                                         </Button.Style>

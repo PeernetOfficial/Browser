@@ -13,11 +13,11 @@ namespace Peernet.Browser.Application.Download
 
         Task QueueUp(DataTransfer dataTransfer);
 
-        Task PauseTransfer(string id);
+        Task PauseTransfer(Guid id);
 
-        Task ResumeTransfer(string id);
+        Task ResumeTransfer(Guid id);
 
-        Task CancelTransfer(string id);
+        Task CancelTransfer(Guid id);
 
         void OpenFileLocation(string name);
     }

@@ -26,10 +26,10 @@ namespace Peernet.Browser.Infrastructure.Services
             this.notificationsManager = notificationsManager;
         }
 
-        public async Task<WarehouseResult> Create(FileModel file, Progress<UploadProgress> progress)
+        public async Task<WarehouseResult> Create(Guid id, FileModel file)
         {
             var stream = File.OpenRead(file.FullPath);
-            return await warehouseClient.Create(stream, progress);
+            return await warehouseClient.Create(id, stream);
         }
 
         public async Task<WarehouseResult> ReadPath(ApiFile file)

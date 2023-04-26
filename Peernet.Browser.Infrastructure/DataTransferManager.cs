@@ -34,7 +34,7 @@ namespace Peernet.Browser.Infrastructure
 
         public ObservableCollection<DataTransfer> ActiveFileDownloads { get; set; } = new();
 
-        public async Task CancelTransfer(string id)
+        public async Task CancelTransfer(Guid id)
         {
             var dataTransfer = ActiveFileDownloads.First(d => d.Id == id);
             await dataTransfer.Cancel();
@@ -63,7 +63,7 @@ namespace Peernet.Browser.Infrastructure
             }
         }
 
-        public async Task PauseTransfer(string id)
+        public async Task PauseTransfer(Guid id)
         {
             var download = ActiveFileDownloads.First(d => d.Id == id);
             await download.Pause();
@@ -99,7 +99,7 @@ namespace Peernet.Browser.Infrastructure
             });
         }
 
-        public async Task ResumeTransfer(string id)
+        public async Task ResumeTransfer(Guid id)
         {
             var dataTransfer = ActiveFileDownloads.First(d => d.Id == id);
             await dataTransfer.Resume();

@@ -80,7 +80,7 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        public IAsyncCommand<string> CancelDownloadCommand => new AsyncCommand<string>(DataTransferManager.CancelTransfer);
+        public IAsyncCommand<Guid> CancelDownloadCommand => new AsyncCommand<Guid>(DataTransferManager.CancelTransfer);
 
         public IAsyncCommand CollapseExpandDownloadsCommand => new AsyncCommand(
             () =>
@@ -143,7 +143,7 @@ namespace Peernet.Browser.Application.ViewModels
                 return Task.CompletedTask;
             });
 
-        public IAsyncCommand<string> PauseDownloadCommand => new AsyncCommand<string>(DataTransferManager.PauseTransfer);
+        public IAsyncCommand<Guid> PauseDownloadCommand => new AsyncCommand<Guid>(DataTransferManager.PauseTransfer);
 
         public int Peers
         {
@@ -165,12 +165,7 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        public IAsyncCommand<string> ResumeDownloadCommand => new AsyncCommand<string>(
-            async id =>
-            {
-                // Make API call and validate result
-                await DataTransferManager.ResumeTransfer(id);
-            });
+        public IAsyncCommand<Guid> ResumeDownloadCommand => new AsyncCommand<Guid>(DataTransferManager.ResumeTransfer);
 
         public IAsyncCommand UploadCommand { get; }
 

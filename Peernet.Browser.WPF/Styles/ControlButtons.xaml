@@ -41,7 +41,7 @@
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding ., Converter={StaticResource DataTypeConverter}}" Value="{x:Type presentationModels:Download}" />
-                    <Condition Binding="{Binding Status}" Value="{x:Static download:DownloadStatus.DownloadPause}" />
+                    <Condition Binding="{Binding Status}" Value="{x:Static presentationModels:DataTransferStatus.Pause}" />
                 </MultiDataTrigger.Conditions>
                 <Setter Property="Content" Value="&#xE768;" />
                 <Setter Property="Command" Value="{Binding DataContext.Footer.ResumeDownloadCommand, ElementName=Footer}" />

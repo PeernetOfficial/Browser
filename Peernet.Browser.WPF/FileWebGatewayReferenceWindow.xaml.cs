@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Peernet.SDK.Common;
 using DevExpress.Mvvm.Native;
 using System.Linq;
-using System.DirectoryServices.ActiveDirectory;
+using System.Diagnostics;
 
 namespace Peernet.Browser.WPF
 {
@@ -91,6 +91,15 @@ namespace Peernet.Browser.WPF
                     Host = domain,
                     Path = $"{Convert.ToHexString(File?.NodeId)}/{Convert.ToHexString(File?.Hash)}"
                 }.Uri).ToArray();
+        }
+
+        private void TextBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var uri = (Uri)((FrameworkElement)e.OriginalSource).DataContext;
+            var processInfo = new ProcessStartInfo(uri.ToString());
+            processInfo.UseShellExecute = true;
+            Process.Start(processInfo);
+            e.Handled = true;
         }
     }
 }

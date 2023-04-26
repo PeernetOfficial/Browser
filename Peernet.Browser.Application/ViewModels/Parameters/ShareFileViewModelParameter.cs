@@ -5,25 +5,21 @@ using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.Utilities;
 using Peernet.SDK.Client.Clients;
-using Peernet.SDK.Client.Http;
 using Peernet.SDK.Models.Domain.Blockchain;
 using Peernet.SDK.Models.Presentation;
 using Peernet.SDK.Models.Presentation.Footer;
-using System;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels.Parameters
 {
     public class ShareFileViewModelParameter : FileParameterModel
     {
-        private readonly IDataTransferManager dataTransferManager;
-        private readonly IWarehouseClient warehouseClient;
         private readonly IBlockchainService blockchainService;
+        private readonly IDataTransferManager dataTransferManager;
+        private readonly DirectoryViewModel directoryViewModel;
         private readonly INavigationService navigationService;
         private readonly INotificationsManager notificationsManager;
-        private readonly DirectoryViewModel directoryViewModel;
-
-        public int Progress { get; set; }
+        private readonly IWarehouseClient warehouseClient;
 
         public ShareFileViewModelParameter(IDataTransferManager dataTransferManager, IWarehouseClient warehouseClient, IBlockchainService blockchainService, INavigationService navigationService, INotificationsManager notificationsManager, DirectoryViewModel directoryViewModel)
         {
@@ -36,15 +32,14 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
         }
 
         public override string ModalTitle => "Share File";
-
+        public int Progress { get; set; }
         public override bool ShouldUpdateFormat => true;
 
         public override async Task Confirm(FileModel[] files)
         {
             foreach (var file in files)
             {
-                var progress = new Progress<UploadProgress>();
-                var upload = new Upload(warehouseClient, file, progress);
+                var upload = new Upload(warehouseClient, file);
                 await dataTransferManager.QueueUp(upload);
 
                 if (file.Hash != null)
@@ -62,6 +57,6 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
                     UIThreadDispatcher.ExecuteOnMainThread(async () => await directoryViewModel.ReloadVirtualFileSystem());
                 }
             }
-        }        
+        }
     }
 }
