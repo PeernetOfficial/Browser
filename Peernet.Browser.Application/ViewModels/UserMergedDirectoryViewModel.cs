@@ -31,9 +31,9 @@ namespace Peernet.Browser.Application.ViewModels
                   modalNavigationService,
                   notificationsManager,
                   playButtonPlugs)
-                {
-                    DeleteCommand = new AsyncCommand(async () => await removeTabAction(this));
-                }
+        {
+            DeleteCommand = new AsyncCommand(async () => await removeTabAction(this));
+        }
 
         public IAsyncCommand DeleteCommand { get; }
 
