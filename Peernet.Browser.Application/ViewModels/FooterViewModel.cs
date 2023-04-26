@@ -4,9 +4,11 @@ using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels.Parameters;
+using Peernet.SDK.Client.Clients;
 using Peernet.SDK.Common;
 using Peernet.SDK.Models.Domain.Download;
 using Peernet.SDK.Models.Domain.Status;
+using Peernet.SDK.Models.Presentation;
 using Peernet.SDK.Models.Presentation.Footer;
 using System;
 using System.Collections.ObjectModel;
@@ -28,7 +30,7 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly INavigationService navigationService;
         private readonly INotificationsManager notificationsManager;
         private readonly ISettingsManager settingsManager;
-        private readonly IWarehouseService warehouseService;
+        private readonly IWarehouseClient warehouseClient;
         private bool areDownloadsCollapsed;
         private string commandLineInput;
         private string commandLineOutput;
@@ -41,8 +43,8 @@ namespace Peernet.Browser.Application.ViewModels
             INavigationService navigationService,
             IModalNavigationService modalNavigationService,
             IApplicationManager applicationManager,
-            IDownloadManager downloadManager,
-            IWarehouseService warehouseService,
+            IDataTransferManager dataTransferManager,
+            IWarehouseClient warehouseClient,
             IBlockchainService blockchainService,
             ISettingsManager settingsManager,
             INotificationsManager notificationsManager,
@@ -52,16 +54,16 @@ namespace Peernet.Browser.Application.ViewModels
             this.navigationService = navigationService;
             this.modalNavigationService = modalNavigationService;
             this.applicationManager = applicationManager;
-            this.warehouseService = warehouseService;
+            this.warehouseClient = warehouseClient;
             this.blockchainService = blockchainService;
             this.settingsManager = settingsManager;
             this.notificationsManager = notificationsManager;
             this.directoryViewModel = directoryViewModel;
 
-            DownloadManager = downloadManager;
-            DownloadManager.downloadsChanged += GetLastDownloadItem;
+            DataTransferManager = dataTransferManager;
+            DataTransferManager.downloadsChanged += GetLastDownloadItem;
+            DataTransferManager.downloadsChanged += CollapseWhenSingleItem;
             UploadCommand = new AsyncCommand(UploadFiles);
-            DownloadManager.downloadsChanged += CollapseWhenSingleItem;
 
             Task.Run(ConnectToPeernetAPI).ConfigureAwait(false).GetAwaiter().GetResult();
 
@@ -78,12 +80,7 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        public IAsyncCommand<string> CancelDownloadCommand => new AsyncCommand<string>(
-            async id =>
-            {
-                // Make API call and validate result
-                await DownloadManager.CancelDownload(id);
-            });
+        public IAsyncCommand<Guid> CancelDownloadCommand => new AsyncCommand<Guid>(DataTransferManager.CancelTransfer);
 
         public IAsyncCommand CollapseExpandDownloadsCommand => new AsyncCommand(
             () =>
@@ -122,16 +119,16 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        public IDownloadManager DownloadManager { get; }
+        public IDataTransferManager DataTransferManager { get; }
 
-        public ObservableCollection<DownloadModel> ListedFileDownloads { get; set; } = new();
+        public ObservableCollection<DataTransfer> ListedFileDownloads { get; set; } = new();
 
-        public IAsyncCommand<DownloadModel> OpenFileCommand => new AsyncCommand<DownloadModel>(
-            model =>
+        public IAsyncCommand<SDK.Models.Presentation.Download> OpenFileCommand => new AsyncCommand<SDK.Models.Presentation.Download>(
+            download =>
             {
-                if (model.Status == DownloadStatus.DownloadFinished)
+                if (download.Status == DataTransferStatus.Finished)
                 {
-                    var path = Path.Combine(settingsManager.DownloadPath, model.File.Name);
+                    var path = Path.Combine(settingsManager.DownloadPath, download.File.Name);
                     OpenWithDefaultProgram(path);
                 }
 
@@ -141,17 +138,12 @@ namespace Peernet.Browser.Application.ViewModels
         public IAsyncCommand<string> OpenFileLocationCommand => new AsyncCommand<string>(
             name =>
             {
-                DownloadManager.OpenFileLocation(name);
+                DataTransferManager.OpenFileLocation(name);
 
                 return Task.CompletedTask;
             });
 
-        public IAsyncCommand<string> PauseDownloadCommand => new AsyncCommand<string>(
-            async id =>
-            {
-                // Make API call and validate result
-                await DownloadManager.PauseDownload(id);
-            });
+        public IAsyncCommand<Guid> PauseDownloadCommand => new AsyncCommand<Guid>(DataTransferManager.PauseTransfer);
 
         public int Peers
         {
@@ -173,12 +165,7 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        public IAsyncCommand<string> ResumeDownloadCommand => new AsyncCommand<string>(
-            async id =>
-            {
-                // Make API call and validate result
-                await DownloadManager.ResumeDownload(id);
-            });
+        public IAsyncCommand<Guid> ResumeDownloadCommand => new AsyncCommand<Guid>(DataTransferManager.ResumeTransfer);
 
         public IAsyncCommand UploadCommand { get; }
 
@@ -193,7 +180,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         private void CollapseWhenSingleItem(object sender, EventArgs e)
         {
-            if (DownloadManager.ActiveFileDownloads.Count == 1)
+            if (DataTransferManager.ActiveFileDownloads.Count == 1)
             {
                 AreDownloadsCollapsed = true;
             }
@@ -218,7 +205,7 @@ namespace Peernet.Browser.Application.ViewModels
         {
             var copy = ListedFileDownloads.ToList();
             copy.ForEach(i => ListedFileDownloads.Remove(i));
-            ListedFileDownloads.Add(DownloadManager.ActiveFileDownloads.LastOrDefault());
+            ListedFileDownloads.Add(DataTransferManager.ActiveFileDownloads.LastOrDefault());
         }
 
         private async Task<bool> GetPeernetStatus()
@@ -256,7 +243,7 @@ namespace Peernet.Browser.Application.ViewModels
 
             if (fileModels.Count != 0)
             {
-                var parameter = new ShareFileViewModelParameter(warehouseService, blockchainService, navigationService, notificationsManager, directoryViewModel)
+                var parameter = new ShareFileViewModelParameter(DataTransferManager, warehouseClient, blockchainService, navigationService, notificationsManager, directoryViewModel)
                 {
                     FileModels = fileModels
                 };

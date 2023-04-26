@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Dispatchers;
+using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
@@ -9,6 +10,7 @@ using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.Browser.WPF.Services;
 using Peernet.Browser.WPF.Views;
+using Peernet.SDK.Client.Clients;
 using Peernet.SDK.Models.Extensions;
 using Peernet.SDK.Models.Presentation.Footer;
 using System;
@@ -82,7 +84,8 @@ namespace Peernet.Browser.WPF
 
                 var modalNavigationService = App.ServiceProvider.GetRequiredService<IModalNavigationService>();
                 var parameter = new ShareFileViewModelParameter(
-                    App.ServiceProvider.GetRequiredService<IWarehouseService>(),
+                    App.ServiceProvider.GetRequiredService<IDataTransferManager>(),
+                    App.ServiceProvider.GetRequiredService<IWarehouseClient>(),
                     App.ServiceProvider.GetRequiredService<IBlockchainService>(),
                     modalNavigationService,
                     App.ServiceProvider.GetRequiredService<INotificationsManager>(),
