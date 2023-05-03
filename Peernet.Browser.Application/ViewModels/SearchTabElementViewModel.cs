@@ -19,14 +19,13 @@ using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class SearchTabElementViewModel : ViewModelBase
+    public abstract class SearchTabElementViewModel : ViewModelBase
     {
         private readonly IBlockchainService blockchainService;
         private readonly IDataTransferManager dataTransferManager;
         private readonly Func<SearchTabElementViewModel, Task> deleteAction;
         private readonly IDownloadClient downloadClient;
         private readonly Action<DownloadModel> executePlugAction;
-        private readonly Func<DownloadModel, bool> isPlayerSupported;
         private readonly Action<DownloadModel> openAction;
         private readonly ISearchService searchService;
         private readonly ISettingsManager settingsManager;
@@ -42,7 +41,6 @@ namespace Peernet.Browser.Application.ViewModels
             IDownloadClient downloadClient,
             Action<DownloadModel> openAction,
             Action<DownloadModel> executePlugAction,
-            Func<DownloadModel, bool> isPlayerSupported,
             ISearchService searchService,
             IWarehouseClient warehouseClient,
             IDataTransferManager dataTransferManager,
@@ -53,11 +51,9 @@ namespace Peernet.Browser.Application.ViewModels
             this.warehouseClient = warehouseClient;
             this.dataTransferManager = dataTransferManager;
             this.blockchainService = blockchainService;
-            this.isPlayerSupported = isPlayerSupported;
             this.searchService = searchService;
             this.deleteAction = deleteAction;
             this.openAction = openAction;
-            this.isPlayerSupported = isPlayerSupported;
             this.executePlugAction = executePlugAction;
 
             ColumnsIconModel = new IconModel(FilterType.Columns, true);
@@ -182,29 +178,7 @@ namespace Peernet.Browser.Application.ViewModels
             return fileModel;
         }
 
-        public virtual async Task Refresh()
-        {
-            SearchResult.Rows.ForEach(row => row.IsPlayerEnabled = isPlayerSupported.Invoke(row));
-
-            Filters.UuId = SearchResult.Id;
-
-            ActiveSearchResults = new(SearchResult.Rows);
-            PagesCount = (int)Math.Ceiling(SearchResult.Stats[Filters.SearchFilterResult.FilterType] / (double)PageSize);
-
-            RefreshIconFilters(SearchResult.Stats, SearchResult.Filters.FilterType);
-            if (ActiveSearchResults.IsNullOrEmpty())
-            {
-                Loader.Set(GetStatusText(SearchResult.Status));
-                if (SearchResult.Status is SearchStatusEnum.KeepTrying)
-                {
-                    await Refresh();
-                }
-            }
-            else
-            {
-                Loader.Reset();
-            }
-        }
+        public abstract Task Refresh();
 
         protected void InitIcons()
         {
@@ -232,7 +206,7 @@ namespace Peernet.Browser.Application.ViewModels
             await dataTransferManager.QueueUp(new SDK.Models.Presentation.Download(downloadClient, model.File, filePath));
         }
 
-        private string GetStatusText(SearchStatusEnum status)
+        protected string GetStatusText(SearchStatusEnum status)
         {
             switch (status)
             {

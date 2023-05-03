@@ -2,15 +2,20 @@
 using Peernet.Browser.Application.Services;
 using Peernet.SDK.Client.Clients;
 using Peernet.SDK.Common;
+using Peernet.SDK.Models.Domain.Search;
+using Peernet.SDK.Models.Extensions;
 using Peernet.SDK.Models.Presentation.Footer;
 using Peernet.SDK.Models.Presentation.Home;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
     public class SnapshotSearchTabElementViewModel : SearchTabElementViewModel
     {
+        private readonly Func<DownloadModel, bool> isPlayerSupported;
+
         public SnapshotSearchTabElementViewModel(
             SearchResultModel searchResult,
             Func<SearchTabElementViewModel, Task> deleteAction,
@@ -23,13 +28,14 @@ namespace Peernet.Browser.Application.ViewModels
             IWarehouseClient warehouseClient,
             IDataTransferManager dataTransferManager,
             IBlockchainService blockchainService)
-            : base(deleteAction, settingsManager, downloadClient, openAction, executePlugAction, isPlayerSupported, searchService, warehouseClient, dataTransferManager, blockchainService)
+            : base(deleteAction, settingsManager, downloadClient, openAction, executePlugAction, searchService, warehouseClient, dataTransferManager, blockchainService)
         {
+            this.isPlayerSupported = isPlayerSupported;
+
             SearchResult = searchResult;
             Filters = new FiltersModel(new SearchFilterResultModel());
             InitIcons();
             Title = searchResult.Id;
-            Loader.Set("Searching...");
             Task.Run(Refresh);
         }
 
@@ -37,7 +43,15 @@ namespace Peernet.Browser.Application.ViewModels
         {
             Filters.SearchFilterResult.Limit = PageSize;
             Filters.SearchFilterResult.Offset = (PageIndex - 1) * PageSize;
-            return base.Refresh();
+            Filters.UuId = SearchResult.Id;
+
+            SearchResult.Rows.ForEach(row => row.IsPlayerEnabled = isPlayerSupported.Invoke(row));
+            ActiveSearchResults = new(SearchResult.Rows.Take(new Range(PageSize * (PageIndex - 1), PageSize * PageIndex)));
+            PagesCount = (int)Math.Ceiling(SearchResult.Rows.Count / (double)PageSize);
+
+            RefreshIconFilters(SearchResult.Stats, SearchResult.Filters.FilterType);
+
+            return Task.CompletedTask;
         }
     }
 }
