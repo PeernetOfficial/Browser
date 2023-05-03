@@ -1,6 +1,5 @@
 ﻿using DevExpress.Xpf.Grid;
 using Microsoft.Extensions.DependencyInjection;
-using Peernet.Browser.Application.Dispatchers;
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Utilities;
 using Peernet.Browser.Application.ViewModels;
@@ -117,6 +116,13 @@ namespace Peernet.Browser.WPF.Controls
             directoryViewModel.AddMergedTab(model.File.Hash);
             directoryViewModel.Navigate.Invoke();
             e.Handled = true;
+        }
+
+        private async void ShareResultsButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dataContext = (SearchTabElementViewModel)((FrameworkElement)e.OriginalSource).DataContext;
+            var fileModel = await dataContext.CreateResultsSnapshot();
+            // new Window(fileModel).Show();
         }
     }
 }

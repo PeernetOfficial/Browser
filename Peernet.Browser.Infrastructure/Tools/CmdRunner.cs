@@ -39,6 +39,7 @@ namespace Peernet.Browser.Infrastructure.Tools
             process.StartInfo = new ProcessStartInfo($"{fullPath}")
             {
                 UseShellExecute = false,
+                CreateNoWindow = true,
                 WorkingDirectory = Path.GetDirectoryName(fullPath),
                 Arguments = $"-webapi={reservedAddress} -apikey={settingsManager.ApiKey} -watchpid={currentProcess.Id}"
             };

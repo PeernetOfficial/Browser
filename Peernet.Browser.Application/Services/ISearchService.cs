@@ -11,5 +11,7 @@ namespace Peernet.Browser.Application.Services
         Task Terminate(string id);
 
         IDictionary<FilterType, int> GetEmptyStats();
+
+        Task<string> CreateSnapshot(SearchResultModel searchResultModel);
     }
 }

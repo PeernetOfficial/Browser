@@ -28,6 +28,8 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly INavigationService navigationService;
         private readonly IEnumerable<IPlayButtonPlug> playButtonPlugs;
         private readonly ISearchService searchService;
+        private readonly IWarehouseClient warehouseClient;
+        private readonly IBlockchainService blockchainService;
         private readonly IDownloadClient downloadClient;
         private readonly ISettingsManager settingsManager;
         private bool filtersActive;
@@ -38,6 +40,8 @@ namespace Peernet.Browser.Application.ViewModels
             IDownloadClient downloadClient,
             ISettingsManager settingsManager,
             ISearchService searchService,
+            IWarehouseClient warehouseClient,
+            IBlockchainService blockchainService,
             IDataTransferManager dataTransferManager,
             INavigationService navigationService,
             IModalNavigationService modalNavigationService,
@@ -46,6 +50,8 @@ namespace Peernet.Browser.Application.ViewModels
             this.downloadClient = downloadClient;
             this.settingsManager = settingsManager;
             this.searchService = searchService;
+            this.warehouseClient = warehouseClient;
+            this.blockchainService = blockchainService;
             this.dataTransferManager = dataTransferManager;
             this.navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             this.modalNavigationService = modalNavigationService ?? throw new ArgumentNullException(nameof(modalNavigationService));
@@ -118,17 +124,12 @@ namespace Peernet.Browser.Application.ViewModels
             SelectedIndex = IsVisible ? 0 : -1;
         }
 
-        private bool DoesSupportPlaying(DownloadModel model)
+        public bool DoesSupportPlaying(DownloadModel model)
         {
             return playButtonPlugs.Any(plugin => plugin?.IsSupported(model.File) == true);
         }
-        private async Task DownloadFile(DownloadModel model)
-        {
-            var filePath = Path.Combine(settingsManager.DownloadPath, UtilityHelper.StripInvalidWindowsCharactersFromFileName(model.File.Name));
-            await dataTransferManager.QueueUp(new SDK.Models.Presentation.Download(downloadClient ,model.File, filePath));
-        }
 
-        private void ExecutePlayButtonPlug(DownloadModel model)
+        public void ExecutePlayButtonPlug(DownloadModel model)
         {
             playButtonPlugs.Foreach(async plug =>
             {
@@ -139,7 +140,7 @@ namespace Peernet.Browser.Application.ViewModels
             });
         }
 
-        private void OpenFile(DownloadModel model)
+        public void OpenFile(DownloadModel model)
         {
             var filePath = Path.Combine(settingsManager.DownloadPath, UtilityHelper.StripInvalidWindowsCharactersFromFileName(model.File.Name));
             var download = new SDK.Models.Presentation.Download(downloadClient, model.File, filePath);
@@ -149,13 +150,28 @@ namespace Peernet.Browser.Application.ViewModels
 
         private Task Search()
         {
-            var toAdd = new SearchTabElementViewModel(CreateNewSearchFilter(), RemoveTab, searchService.Search, DownloadFile, OpenFile, ExecutePlayButtonPlug, DoesSupportPlaying);
+            var toAdd = new ActiveSearchTabElementViewModel(
+                CreateNewSearchFilter(),
+                RemoveTab,
+                settingsManager,
+                downloadClient,
+                OpenFile,
+                ExecutePlayButtonPlug,
+                DoesSupportPlaying,
+                searchService,
+                warehouseClient,
+                dataTransferManager,
+                blockchainService);
 
-            Tabs.Add(toAdd);
+            AddNewTab(toAdd);
+            return Task.CompletedTask;
+        }
+
+        public void AddNewTab(SearchTabElementViewModel tab)
+        {
+            Tabs.Add(tab);
             SelectedIndex = Tabs.Count - 1;
             SearchInput = string.Empty;
-
-            return Task.CompletedTask;
         }
 
         public SearchFilterResultModel CreateNewSearchFilter()

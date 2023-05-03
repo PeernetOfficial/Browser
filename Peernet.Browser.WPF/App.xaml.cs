@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Peernet.Browser.Application;
 using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.Application.Handlers;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Plugins;
@@ -87,6 +88,11 @@ namespace Peernet.Browser.WPF
             PluginsContext.PlayButtonPlugEnabled = ServiceProvider.GetService<IPlayButtonPlug>() != null;
 
             InitializeBackend();
+            string[] args = Environment.GetCommandLineArgs();
+            if(args.Length > 1 )
+            {
+                ServiceProvider.GetService<IUriSchemeHandler>().Handle(args[1]).Wait();
+            }
         }
 
         public static event RoutedEventHandler MainWindowClicked = delegate { };
@@ -238,6 +244,7 @@ namespace Peernet.Browser.WPF
             services.AddSingleton<INavigationService, NavigationService>();
             services.AddSingleton<IModalNavigationService, ModalNavigationService>();
             services.AddSingleton<IUserContext, UserContext>();
+            services.AddSingleton<IUriSchemeHandler, UriSchemeHandler>();
             services.AddTransient<IVirtualFileSystemFactory, VirtualFileSystemFactory>();
             services.AddTransient<IFilesToCategoryBinder, FilesToCategoryBinder>();
 
