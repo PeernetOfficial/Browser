@@ -1,4 +1,5 @@
-﻿using Peernet.Browser.Application.Download;
+﻿using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Services;
 using Peernet.SDK.Client.Clients;
 using Peernet.SDK.Common;
@@ -27,8 +28,9 @@ namespace Peernet.Browser.Application.ViewModels
             ISearchService searchService,
             IWarehouseClient warehouseClient,
             IDataTransferManager dataTransferManager,
-            IBlockchainService blockchainService)
-            : base(deleteAction, settingsManager, downloadClient, openAction, executePlugAction, searchService, warehouseClient, dataTransferManager, blockchainService)
+            IBlockchainService blockchainService,
+            IUserContext userContext)
+            : base(deleteAction, settingsManager, downloadClient, openAction, executePlugAction, searchService, warehouseClient, dataTransferManager, blockchainService, userContext)
         {
             this.searchService = searchService;
             this.isPlayerSupported = isPlayerSupported;

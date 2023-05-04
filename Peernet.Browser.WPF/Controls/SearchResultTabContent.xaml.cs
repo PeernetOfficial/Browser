@@ -122,7 +122,7 @@ namespace Peernet.Browser.WPF.Controls
         {
             var dataContext = (SearchTabElementViewModel)((FrameworkElement)e.OriginalSource).DataContext;
             var fileModel = await dataContext.CreateResultsSnapshot();
-            // new Window(fileModel).Show();
+            new SearchResultsSharingWindow(fileModel).Show();
         }
     }
 }

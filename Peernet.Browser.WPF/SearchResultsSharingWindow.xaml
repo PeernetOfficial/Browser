@@ -1,0 +1,39 @@
+﻿<sdk:PeernetWindow Style="{DynamicResource StandardPeernetWindowStyle}"
+                   x:Class="Peernet.Browser.WPF.SearchResultsSharingWindow"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:sdk="clr-namespace:Peernet.SDK.WPF;assembly=Peernet.SDK"
+                   SizeToContent="Height"
+                   Width="450"
+                   Title="{Binding FileModel.FileNameWithoutExtension}"
+                   UseLayoutRounding="True">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <TextBox Grid.Column="0"
+                 BorderBrush="{DynamicResource BorderBrush}"
+                 BorderThickness="1"
+                 Style="{StaticResource ReadonlySelectableTextBox}"
+                 Text="{Binding Path=PeernetSchemaSearchUri, Mode=OneWay}"
+                 FontWeight="SemiBold"
+                 VerticalAlignment="Center"
+                 FontSize="14" 
+                 PreviewMouseLeftButtonDown="TextBox_PreviewMouseLeftButtonDown" 
+                 Cursor="Hand" />
+
+        <Button Grid.Column="1"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Width="38"
+                Height="24"
+                Margin="20,0,0,5"
+                Click="CopyLinkToClipboard_OnClick"
+                Style="{StaticResource ButtonBaseStyle}">
+            <Button.Background>
+                <ImageBrush ImageSource="{DynamicResource CopyDrawingImage}" />
+            </Button.Background>
+        </Button>
+    </Grid>
+</sdk:PeernetWindow>

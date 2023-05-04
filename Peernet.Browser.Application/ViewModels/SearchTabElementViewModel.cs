@@ -1,4 +1,5 @@
 ﻿using AsyncAwaitBestPractices.MVVM;
+using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Dispatchers;
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Services;
@@ -30,6 +31,7 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly ISearchService searchService;
         private readonly ISettingsManager settingsManager;
         private readonly IWarehouseClient warehouseClient;
+        private readonly IUserContext userContext;
         private ObservableCollection<DownloadModel> activeSearchResults;
         private int pageIndex = 1;
         private int pagesCount;
@@ -44,7 +46,8 @@ namespace Peernet.Browser.Application.ViewModels
             ISearchService searchService,
             IWarehouseClient warehouseClient,
             IDataTransferManager dataTransferManager,
-            IBlockchainService blockchainService)
+            IBlockchainService blockchainService,
+            IUserContext userContext)
         {
             this.settingsManager = settingsManager;
             this.downloadClient = downloadClient;
@@ -55,6 +58,7 @@ namespace Peernet.Browser.Application.ViewModels
             this.deleteAction = deleteAction;
             this.openAction = openAction;
             this.executePlugAction = executePlugAction;
+            this.userContext = userContext;
 
             ColumnsIconModel = new IconModel(FilterType.Columns, true);
             FiltersIconModel = new IconModel(FilterType.Filters, true, OpenCloseFilters);
@@ -173,6 +177,10 @@ namespace Peernet.Browser.Application.ViewModels
             if (upload.File.Hash != null)
             {
                 await blockchainService.AddFiles(new[] { fileModel });
+                upload.File.NodeId = Enumerable.Range(0, userContext.NodeId.Length)
+                     .Where(x => x % 2 == 0)
+                     .Select(x => Convert.ToByte(userContext.NodeId.Substring(x, 2), 16))
+                     .ToArray();
             }
 
             return fileModel;

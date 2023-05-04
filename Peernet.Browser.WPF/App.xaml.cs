@@ -66,6 +66,8 @@ namespace Peernet.Browser.WPF
             // Register Services
             ConfigureServices(services);
 
+            Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
+
             // Register and get Logger to be able to create NotificationsManager
             var logger = CreateAndRegisterLogger(services, Settings);
 
@@ -91,6 +93,7 @@ namespace Peernet.Browser.WPF
             string[] args = Environment.GetCommandLineArgs();
             if(args.Length > 1 )
             {
+                logger.Information(args[1]);
                 ServiceProvider.GetService<IUriSchemeHandler>().Handle(args[1]).Wait();
             }
         }

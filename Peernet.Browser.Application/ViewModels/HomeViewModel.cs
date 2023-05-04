@@ -32,6 +32,7 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IBlockchainService blockchainService;
         private readonly IDownloadClient downloadClient;
         private readonly ISettingsManager settingsManager;
+        private readonly IUserContext userContext;
         private bool filtersActive;
         private string searchInput;
         private int selectedIndex = -1;
@@ -45,7 +46,8 @@ namespace Peernet.Browser.Application.ViewModels
             IDataTransferManager dataTransferManager,
             INavigationService navigationService,
             IModalNavigationService modalNavigationService,
-            IEnumerable<IPlayButtonPlug> playButtonPlugs)
+            IEnumerable<IPlayButtonPlug> playButtonPlugs,
+            IUserContext userContext)
         {
             this.downloadClient = downloadClient;
             this.settingsManager = settingsManager;
@@ -56,6 +58,7 @@ namespace Peernet.Browser.Application.ViewModels
             this.navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             this.modalNavigationService = modalNavigationService ?? throw new ArgumentNullException(nameof(modalNavigationService));
             this.playButtonPlugs = playButtonPlugs;
+            this.userContext = userContext;
 
             SearchCommand = new AsyncCommand(Search);
             Tabs.CollectionChanged += (o, s) =>
@@ -161,7 +164,8 @@ namespace Peernet.Browser.Application.ViewModels
                 searchService,
                 warehouseClient,
                 dataTransferManager,
-                blockchainService);
+                blockchainService,
+                userContext);
 
             AddNewTab(toAdd);
             return Task.CompletedTask;

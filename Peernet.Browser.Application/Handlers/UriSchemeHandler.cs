@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels;
@@ -21,6 +22,7 @@ namespace Peernet.Browser.Application.Handlers
         private readonly IWarehouseClient warehouseClient;
         private readonly IDataTransferManager dataTransferManager;
         private readonly IBlockchainService blockchainService;
+        private readonly IUserContext userContext;
         private const string pattern = "peernet:search\\?hash=(?<hash>\\w+)&node=(?<node>\\w+)";
 
         public UriSchemeHandler(
@@ -31,7 +33,8 @@ namespace Peernet.Browser.Application.Handlers
             ISearchService searchService,
             IWarehouseClient warehouseClient,
             IDataTransferManager dataTransferManager,
-            IBlockchainService blockchainService)
+            IBlockchainService blockchainService,
+            IUserContext userContext)
         {
             this.homeViewModel = homeViewModel;
             this.settingsManager = settingsManager;
@@ -41,28 +44,33 @@ namespace Peernet.Browser.Application.Handlers
             this.warehouseClient = warehouseClient;
             this.dataTransferManager = dataTransferManager;
             this.blockchainService = blockchainService;
+            this.userContext = userContext;
         }
 
         public async Task Handle(string url)
         {
             var peernetScheme = Parse(url);
             var stream = await fileClient.Read(peernetScheme.Hash, peernetScheme.Node);
-            var reader = new StreamReader(stream);
-            var content = await reader.ReadToEndAsync();
-            var searchResultModel = JsonConvert.DeserializeObject<SearchResultModel>(content);
-            var searchTabElementViewModel = new SnapshotSearchTabElementViewModel(
-                searchResultModel,
-                homeViewModel.RemoveTab,
-                settingsManager,
-                downloadClient,
-                homeViewModel.OpenFile,
-                homeViewModel.ExecutePlayButtonPlug,
-                homeViewModel.DoesSupportPlaying,
-                searchService,
-                warehouseClient,
-                dataTransferManager,
-                blockchainService);
-            homeViewModel.AddNewTab(searchTabElementViewModel);
+            if(stream != null)
+            {
+                var reader = new StreamReader(stream);
+                var content = await reader.ReadToEndAsync();
+                var searchResultModel = JsonConvert.DeserializeObject<SearchResultModel>(content);
+                var searchTabElementViewModel = new SnapshotSearchTabElementViewModel(
+                    searchResultModel,
+                    homeViewModel.RemoveTab,
+                    settingsManager,
+                    downloadClient,
+                    homeViewModel.OpenFile,
+                    homeViewModel.ExecutePlayButtonPlug,
+                    homeViewModel.DoesSupportPlaying,
+                    searchService,
+                    warehouseClient,
+                    dataTransferManager,
+                    blockchainService,
+                    userContext);
+                homeViewModel.AddNewTab(searchTabElementViewModel);
+            }
         }
 
         private PeernetScheme Parse(string url)
