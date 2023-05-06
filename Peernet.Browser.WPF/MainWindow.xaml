@@ -16,18 +16,6 @@
     <WindowChrome.WindowChrome>
         <WindowChrome ResizeBorderThickness="5" GlassFrameThickness="0" CaptionHeight="40" CornerRadius="0" />
     </WindowChrome.WindowChrome>
-    <Window.Resources>
-        <ResourceDictionary>
-            <Style x:Key="HomeViewStyle" TargetType="{x:Type UserControl}">
-                <Setter Property="Visibility" Value="Hidden" />
-                <Style.Triggers>
-                    <DataTrigger Binding="{Binding CurrentViewModel}" Value="{x:Type viewmodels:HomeViewModel}">
-                        <Setter Property="Visibility" Value="Visible" />
-                    </DataTrigger>
-                </Style.Triggers>
-            </Style>
-        </ResourceDictionary>
-    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
@@ -70,7 +58,8 @@
         <Border Panel.ZIndex="3" Visibility="{Binding IsModalOpened, Converter={StaticResource BoolToVisibility}}" Grid.Row="1" Grid.RowSpan="2">
             <ContentControl Content="{Binding CurrentModalViewModel}" />
         </Border>
-        <controls:TabControlEx Background="Transparent"
+        <controls:TabControlEx x:Name="TabControl"
+                               Background="Transparent"
                                BorderThickness="0"
                                Margin="0 12 0 0"
                                HorizontalAlignment="Stretch"

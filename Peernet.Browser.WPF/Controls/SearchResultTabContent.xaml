@@ -16,18 +16,28 @@
                 <RowDefinition Height="55" />
             </Grid.RowDefinitions>
 
-            <ItemsControl Margin="50 0 0 0" Grid.Row="0" VerticalContentAlignment="Center" ItemsSource="{Binding FilterIconModels, IsAsync=True}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <local:FilterIconControl Margin="0 0 15 0" Height="41" DataContext="{Binding}" />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            <DockPanel Grid.Row="0" Grid.Column="0" Panel.ZIndex="2" Margin="9 0" LastChildFill="False" HorizontalAlignment="Left">
+                <Button Margin="3, 13" Command="{Binding }" Height="25" Padding="5, 0" Width="Auto" Style="{StaticResource ButtonBaseStyle}" Background="Transparent" VerticalAlignment="Top" ToolTip="Filter for my content">
+                    <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE77B;" FontSize="16" Foreground="{DynamicResource MainContentBrush}" />
+                </Button>
+                <Button Margin="3, 4" Style="{StaticResource DataGridActionButton}" ToolTip="Share the search result" VerticalAlignment="Top">
+                    <Button.Background>
+                        <ImageBrush ImageSource="{DynamicResource ShareDrawingImage}" />
+                    </Button.Background>
+                </Button>
+                <ItemsControl VerticalContentAlignment="Center" ItemsSource="{Binding FilterIconModels, IsAsync=True}" Margin="0 3">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel  />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <local:FilterIconControl Margin="5 0" Height="41" DataContext="{Binding}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </DockPanel>
 
             <DockPanel Panel.ZIndex="2"  Margin="0 0 50 0" LastChildFill="False" Grid.Row="0"  HorizontalAlignment="Right">
                 <local:FilterIconControl Height="40" DataContext="{Binding ColumnsIconModel}" PreviewMouseDown="FilterIconControl_PreviewMouseDown" />
@@ -107,10 +117,10 @@
                             </DataTemplate>
                         </dxg:GridColumn.CellTemplate>
                     </dxg:GridColumn>
-                    <dxg:GridColumn Header="User" SortFieldName="File.NodeId" FieldName="File.NodeId" Width="140">
+                    <dxg:GridColumn Header="User" SortFieldName="File.NodeId" Binding="{Binding RowData.Row.File.NodeId, Converter={StaticResource ByteArrayToHexStringConverter}}" FieldName="File.NodeId" ColumnFilterMode="DisplayText" Width="140">
                         <dxg:GridColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding RowData.Row.File.NodeId, Converter={StaticResource ByteArrayToHexStringConverter}}" Style="{StaticResource Underlined}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                                <TextBlock Text="{Binding RowData.Row.File.NodeId, Converter={StaticResource ByteArrayToHexStringConverter}}" Style="{StaticResource Underlined}" VerticalAlignment="Center" HorizontalAlignment="Left" PreviewMouseLeftButtonDown="TextBlock_PreviewMouseLeftButtonDown" />
                             </DataTemplate>
                         </dxg:GridColumn.CellTemplate>
                     </dxg:GridColumn>
@@ -162,7 +172,8 @@
                                         Width="Auto"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Center"
-                                        IsEnabled="True">
+                                        IsEnabled="True"
+                                        Click="AddMergedDirectoryTab">
                                     <TextBlock Background="Transparent"
                                                Text="{Binding RowData.Row.File.SharedByCount, StringFormat={}{0} Peers}"
                                                ToolTipService.IsEnabled="{Binding RowData.Row.IsMapEnabled}"

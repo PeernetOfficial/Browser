@@ -1,4 +1,7 @@
-﻿using System.Windows.Controls;
+﻿using Peernet.Browser.Application.ViewModels;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Peernet.Browser.WPF.Views
 {
@@ -10,6 +13,20 @@ namespace Peernet.Browser.WPF.Views
         public DirectoryView()
         {
             InitializeComponent();
+        }
+
+        private void TabControl_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Middle && e.ButtonState == MouseButtonState.Pressed)
+            {
+                var context = (DirectoryViewModel)DataContext;
+                var tab = (FrameworkElement)e.OriginalSource;
+
+                if (tab.DataContext is UserDirectoryViewModel or UserMergedDirectoryViewModel)
+                {
+                    context.CloseTab(tab.DataContext as DirectoryTabViewModel);
+                }
+            }
         }
     }
 }

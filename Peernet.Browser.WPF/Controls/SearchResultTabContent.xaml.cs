@@ -1,5 +1,6 @@
 ﻿using DevExpress.Xpf.Grid;
 using Microsoft.Extensions.DependencyInjection;
+using Peernet.Browser.Application.Dispatchers;
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Utilities;
 using Peernet.Browser.Application.ViewModels;
@@ -9,6 +10,7 @@ using Peernet.SDK.Client.Clients;
 using Peernet.SDK.Models.Presentation.Footer;
 using Peernet.SDK.Models.Presentation.Home;
 using System.IO;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -95,6 +97,26 @@ namespace Peernet.Browser.WPF.Controls
             var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;
             var model = (DownloadModel)cellData.RowData.Row;
             new PeersMapWindow(model.GeoPoints).Show();
+        }
+
+        private async void TextBlock_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var directoryViewModel = App.ServiceProvider.GetRequiredService<DirectoryViewModel>();
+            var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;
+            var model = (DownloadModel)cellData.RowData.Row;
+            await directoryViewModel.AddTab(model.File.NodeId);
+            directoryViewModel.Navigate.Invoke();
+            e.Handled = true;
+        }
+
+        private void AddMergedDirectoryTab(object sender, RoutedEventArgs e)
+        {
+            var directoryViewModel = App.ServiceProvider.GetRequiredService<DirectoryViewModel>();
+            var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;
+            var model = (DownloadModel)cellData.RowData.Row;
+            directoryViewModel.AddMergedTab(model.File.Hash);
+            directoryViewModel.Navigate.Invoke();
+            e.Handled = true;
         }
     }
 }

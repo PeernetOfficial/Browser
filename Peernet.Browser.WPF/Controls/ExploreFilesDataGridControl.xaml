@@ -7,6 +7,7 @@
              xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls"
              xmlns:u="clr-namespace:Peernet.Browser.WPF.Utilities"
              xmlns:download="clr-namespace:Peernet.SDK.Models.Domain.Download;assembly=Peernet.SDK"
+             xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
              mc:Ignorable="d"
              x:Name="ExploreFilesDataGrid">
     <Grid>
@@ -41,10 +42,10 @@
                         </DataTemplate>
                     </dxg:GridColumn.CellTemplate>
                 </dxg:GridColumn>
-                <dxg:GridColumn Header="User" SortFieldName="File.NodeId" FieldName="File.NodeId" Width="140">
+                <dxg:GridColumn Header="User" SortFieldName="File.NodeId" Binding="{Binding RowData.Row.File.NodeId, Converter={StaticResource ByteArrayToHexStringConverter}}" FieldName="File.NodeId" ColumnFilterMode="DisplayText" Width="140">
                     <dxg:GridColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding RowData.Row.File.NodeId, Converter={StaticResource ByteArrayToHexStringConverter}}" Style="{StaticResource Underlined}" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            <TextBlock Text="{Binding RowData.Row.File.NodeId, Converter={StaticResource ByteArrayToHexStringConverter}}" Style="{StaticResource Underlined}" VerticalAlignment="Center" HorizontalAlignment="Left" PreviewMouseLeftButtonDown="AddDirectoryTab" />
                         </DataTemplate>
                     </dxg:GridColumn.CellTemplate>
                 </dxg:GridColumn>
@@ -81,7 +82,8 @@
                                     Background="Transparent"
                                     Width="Auto"
                                     HorizontalAlignment="Left"
-                                    VerticalAlignment="Center">
+                                    VerticalAlignment="Center"
+                                    Click="AddMergedDirectoryTab">
                                 <TextBlock Background="Transparent"
                                            Text="{Binding RowData.Row.File.SharedByCount, StringFormat={}{0} Peers}"
                                            VerticalAlignment="Center"

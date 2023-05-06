@@ -72,5 +72,10 @@ namespace Peernet.Browser.Infrastructure.Services
 
             return await blockchainClient.AddFiles(new ApiBlockchainAddFiles { Files = data });
         }
+
+        public async Task<List<ApiFile>> GetFilesForNode(byte[] node)
+        {
+            return (await blockchainClient.View(node))?.Files ?? new();
+        }
     }
 }

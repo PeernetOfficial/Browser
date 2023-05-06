@@ -83,7 +83,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
         {
             // materialize
             var sharedFilesList = sharedFiles.ToList();
-            var homeTier = new VirtualFileSystemCoreTier(nameof(Home), VirtualFileSystemEntityType.Directory, Path.Combine("Your Files"))
+            var homeTier = new VirtualFileSystemCoreTier(nameof(Home), VirtualFileSystemEntityType.Directory, Path.Combine("Files"))
             {
                 IsSelected = isCurrentSelection
             };
@@ -113,7 +113,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
             VirtualFileSystemCoreTier higherTier = null;
             for (int i = 0; i < totalDepth; i++)
             {
-                var absolutePath = Path.Combine("Your Files", nameof(Home), Path.Combine(directories.Take(i).ToArray()));
+                var absolutePath = Path.Combine("Files", nameof(Home), Path.Combine(directories.Take(i).ToArray()));
                 var tier = new VirtualFileSystemCoreTier(directories[i], VirtualFileSystemEntityType.Directory, absolutePath);
 
                 if (coreTier == null)

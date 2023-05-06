@@ -9,11 +9,15 @@ namespace Peernet.Browser.Application.Contexts
 {
     public class UserContext : INotifyPropertyChanged, IUserContext
     {
+        private readonly IAccountService accountService;
         private readonly IProfileService profileService;
         private User user;
+        private string nodeId;
+        private string peerId;
 
-        public UserContext(IProfileService profileService)
+        public UserContext(IAccountService accountService, IProfileService profileService)
         {
+            this.accountService = accountService;
             this.profileService = profileService;
 
             try
@@ -42,9 +46,32 @@ namespace Peernet.Browser.Application.Contexts
             }
         }
 
+        public string PeerId
+        {
+            get => peerId;
+            set 
+            {
+                peerId = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PeerId)));
+            }
+        }
+
+        public string NodeId
+        {
+            get => nodeId;
+            set
+            {
+                nodeId = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(NodeId)));
+            }
+        }
+
         public void ReloadContext()
         {
             // Needs to be placed on the ThreadPool to avoid deadlock
+            var selfPeer = Task.Run(async () => await accountService.Info()).GetResultBlockingWithoutContextSynchronization();
+            PeerId = selfPeer.PeerId;
+            NodeId = selfPeer.NodeId;
             User = Task.Run(async () => await profileService.GetUser()).GetResultBlockingWithoutContextSynchronization();
             HasUserChanged = false;
         }

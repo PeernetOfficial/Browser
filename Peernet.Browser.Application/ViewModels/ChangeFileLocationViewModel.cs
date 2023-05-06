@@ -13,16 +13,16 @@ namespace Peernet.Browser.Application.ViewModels
     public class ChangeFileLocationViewModel : ViewModelBase
     {
         private ObservableCollection<VirtualFileSystemEntity> activeSearchResults;
-        private Action<string> changeDirectory;
+        private FileModel model;
         private ObservableCollection<VirtualFileSystemCoreEntity> pathElements;
         private VirtualFileSystem.VirtualFileSystem virtualFileSystem;
 
-        public ChangeFileLocationViewModel(VirtualFileSystem.VirtualFileSystem virtualFileSystem, string currentLocation, Action<string> changeDirectory)
+        public ChangeFileLocationViewModel(VirtualFileSystem.VirtualFileSystem virtualFileSystem, string currentLocation, FileModel model)
         {
             VirtualFileSystem = virtualFileSystem;
             PathElements = new(ParseIntoPath(currentLocation));
             ActiveSearchResults = virtualFileSystem.GetCurrentlySelected().VirtualFileSystemEntities;
-            this.changeDirectory = changeDirectory;
+            this.model = model;
         }
 
         private List<VirtualFileSystemCoreEntity> ParseIntoPath(string currentLocation)
@@ -32,7 +32,7 @@ namespace Peernet.Browser.Application.ViewModels
 
             foreach (var segment in currentLocation.Split("\\"))
             {
-                if (segment == "Your Files")
+                if (segment == "Files")
                 {
                     continue;
                 }
@@ -113,7 +113,7 @@ namespace Peernet.Browser.Application.ViewModels
             new AsyncCommand(() =>
             {
                 var selected = virtualFileSystem.GetCurrentlySelected();
-                changeDirectory(TrimUnsopportedSegments(selected.AbsolutePath));
+                model.Directory = TrimUnsopportedSegments(selected.AbsolutePath);
 
                 return Task.CompletedTask;
             });
@@ -142,7 +142,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         public static string TrimUnsopportedSegments(string path)
         {
-            return path.Replace("Your Files\\", string.Empty).Replace("Home", string.Empty).Replace("\\\\", "\\").Trim('\\');
+            return path.Replace("Files\\", string.Empty).Replace("Home", string.Empty).Replace("\\\\", "\\").Trim('\\');
         }
 
         public void ChangeSelectedEntity(VirtualFileSystemCoreEntity coreEntity)

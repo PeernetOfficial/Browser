@@ -1,14 +1,12 @@
-﻿using AsyncAwaitBestPractices.MVVM;
+﻿using DevExpress.Mvvm.Native;
+using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
-using Peernet.Browser.Application.Utilities;
-using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Application.VirtualFileSystem;
-using Peernet.SDK.Models.Domain.Blockchain;
-using Peernet.SDK.Models.Extensions;
+using Peernet.SDK.Client.Clients;
 using Peernet.SDK.Models.Plugins;
-using Peernet.SDK.Models.Presentation.Footer;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -18,328 +16,98 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public class DirectoryViewModel : ViewModelBase
     {
-        private const string LibrariesSegment = "Libraries";
-        private const string YourFilesSegment = "Your Files";
+        public ObservableCollection<DirectoryTabViewModel> DirectoryTabs { get; set; }
+
         private readonly IBlockchainService blockchainService;
+        private readonly IMergeClient mergeClient;
+        private readonly IUserContext userContext;
         private readonly IModalNavigationService modalNavigationService;
         private readonly INotificationsManager notificationsManager;
         private readonly IEnumerable<IPlayButtonPlug> playButtonPlugs;
         private readonly IVirtualFileSystemFactory virtualFileSystemFactory;
-        private ObservableCollection<VirtualFileSystemEntity> activeSearchResults;
-        private bool isLoaded = false;
-        private ObservableCollection<VirtualFileSystemCoreEntity> pathElements;
-        private VirtualFileSystem.VirtualFileSystem virtualFileSystem;
+        private int selectedIndex = 0;
+
+        public CurrentUserDirectoryViewModel CurrentUserDirectoryViewModel { get; private set; }
+
+        public DirectoryTabViewModel Content => SelectedIndex < 0 ? null : DirectoryTabs[SelectedIndex];
+
+        public Action Navigate { get; set; }
+
+        public int SelectedIndex
+        {
+            get => selectedIndex;
+            set
+            {
+                selectedIndex = value;
+                OnPropertyChanged(nameof(SelectedIndex));
+                OnPropertyChanged(nameof(Content));
+            }
+        }
 
         public DirectoryViewModel(
+            IUserContext userContext,
+            IMergeClient mergeClient,
             IBlockchainService blockchainService,
             IVirtualFileSystemFactory virtualFileSystemFactory,
             IModalNavigationService modalNavigationService,
             INotificationsManager notificationsManager,
             IEnumerable<IPlayButtonPlug> playButtonPlugs)
         {
+            this.userContext = userContext;
+            this.mergeClient = mergeClient;
             this.blockchainService = blockchainService;
             this.virtualFileSystemFactory = virtualFileSystemFactory;
             this.modalNavigationService = modalNavigationService;
             this.notificationsManager = notificationsManager;
             this.playButtonPlugs = playButtonPlugs;
 
-            Task.Run(async () => await ReloadVirtualFileSystem(false)).ConfigureAwait(false).GetAwaiter().GetResult();
-            InitializePath(VirtualFileSystem?.Home);
-            OpenCommand.Execute(VirtualFileSystem?.Home);
+            CurrentUserDirectoryViewModel = new CurrentUserDirectoryViewModel(blockchainService, virtualFileSystemFactory, modalNavigationService, notificationsManager, playButtonPlugs);
+            DirectoryTabs = new ObservableCollection<DirectoryTabViewModel>(new List<DirectoryTabViewModel> { CurrentUserDirectoryViewModel });
         }
 
-        public ObservableCollection<VirtualFileSystemEntity> ActiveSearchResults
+        public async Task AddTab(byte[] node)
         {
-            get => new(activeSearchResults?.OrderBy(e => (int)e.Type)?.ToList() ?? Enumerable.Empty<VirtualFileSystemEntity>());
-            set
+            DirectoryTabViewModel tab = await FindTab(Convert.ToHexString(node));
+
+            if (tab == null)
             {
-                activeSearchResults = value;
-                OnPropertyChanged(nameof(ActiveSearchResults));
-            }
-        }
-
-        public IAsyncCommand<VirtualFileSystemEntity> DeleteCommand =>
-            new AsyncCommand<VirtualFileSystemEntity>(
-                async entity =>
-                {
-                    var result = await blockchainService.DeleteFile(entity.File);
-                    if (result.Status != BlockchainStatus.StatusOK)
-                    {
-                        var logMessage = $"Failed to delete file. Status: {result.Status}";
-                        var details =
-                            MessagingHelper.GetApiSummary($"{nameof(blockchainService)}.{nameof(blockchainService.DeleteFile)}") +
-                            MessagingHelper.GetInOutSummary(entity.File, result);
-                        notificationsManager.Notifications.Add(new Notification(logMessage, details, Severity.Error));
-                        return;
-                    }
-
-                    await ReloadVirtualFileSystem();
-                });
-
-        public IAsyncCommand<VirtualFileSystemEntity> EditCommand =>
-            new AsyncCommand<VirtualFileSystemEntity>(
-                entity =>
-                {
-                    var parameter = new EditFileViewModelParameter(blockchainService, notificationsManager, async () => await ReloadVirtualFileSystem())
-                    {
-                        FileModels = new List<FileModel>
-                        {
-                            new(entity.File)
-                        }
-                    };
-
-                    modalNavigationService.Navigate<EditFileViewModel, EditFileViewModelParameter>(parameter);
-
-                    return Task.CompletedTask;
-                });
-
-        public bool IsLoaded
-        {
-            get => isLoaded;
-            set
-            {
-                isLoaded = value;
-                OnPropertyChanged(nameof(IsLoaded));
-            }
-        }
-
-        public IAsyncCommand<VirtualFileSystemEntity> OpenCommand =>
-            new AsyncCommand<VirtualFileSystemEntity>(
-                async entity =>
-                {
-                    if (entity == null)
-                    {
-                        return;
-                    }
-
-                    if (entity is VirtualFileSystemCoreEntity coreTier)
-                    {
-                        await UpdateActiveSearchResults.ExecuteAsync(coreTier);
-                        SetPath(coreTier);
-                    }
-                });
-
-        public IAsyncCommand<VirtualFileSystemCoreEntity> OpenTreeItemCommand =>
-            new AsyncCommand<VirtualFileSystemCoreEntity>(
-                async entity =>
-                {
-                    InitializePath(entity);
-                    await OpenCommand.ExecuteAsync(entity);
-                });
-
-        public ObservableCollection<VirtualFileSystemCoreEntity> PathElements
-        {
-            get => pathElements;
-            set
-            {
-                pathElements = value;
-                OnPropertyChanged(nameof(PathElements));
-            }
-        }
-
-        public IAsyncCommand SearchCommand =>
-            new AsyncCommand(async () =>
-            {
-                await UpdateActiveSearchResults.ExecuteAsync(PathElements?.Last());
-            });
-
-        public IAsyncCommand<VirtualFileSystemEntity> StreamFileCommand =>
-            new AsyncCommand<VirtualFileSystemEntity>(
-                entity =>
-                {
-                    playButtonPlugs.Foreach(async plug =>
-                    {
-                        if (plug?.IsSupported(entity.File) == true)
-                        {
-                            await plug?.Execute(entity.File);
-                        }
-                    });
-
-                    return Task.CompletedTask;
-                });
-
-        public IAsyncCommand<VirtualFileSystemCoreEntity> UpdateActiveSearchResults =>
-            new AsyncCommand<VirtualFileSystemCoreEntity>(
-                entity =>
-                {
-                    if (entity != null)
-                    {
-                        var refreshedEntity = VirtualFileSystem.Find(entity, VirtualFileSystem.VirtualFileSystemTiers) ?? VirtualFileSystem.Find(entity, VirtualFileSystem.VirtualFileSystemCategories);
-                        ActiveSearchResults = new(refreshedEntity?.VirtualFileSystemEntities);
-                    }
-
-                    return Task.CompletedTask;
-                });
-
-        public VirtualFileSystem.VirtualFileSystem VirtualFileSystem
-        {
-            get => virtualFileSystem;
-            set
-            {
-                virtualFileSystem = value;
-                OnPropertyChanged(nameof(VirtualFileSystem));
-            }
-        }
-
-        public void ChangeSelectedEntity(VirtualFileSystemCoreEntity coreEntity)
-        {
-            VirtualFileSystem.ResetSelection();
-            coreEntity.IsSelected = true;
-        }
-
-        public void InitializePath(VirtualFileSystemEntity entity)
-        {
-            if (entity == null)
-            {
-                return;
+                tab = new UserDirectoryViewModel(node, blockchainService, CloseTab, virtualFileSystemFactory, modalNavigationService, notificationsManager, playButtonPlugs);
+                DirectoryTabs.Add(tab);
             }
 
-            var name = entity is VirtualFileSystemCoreCategory ? LibrariesSegment : YourFilesSegment;
-
-            PathElements = new ObservableCollection<VirtualFileSystemCoreEntity>(
-                new List<VirtualFileSystemCoreEntity>
-                    { new(name, VirtualFileSystemEntityType.Directory) });
+            ChangeTabSelection(tab);
         }
 
-        public async Task ReloadVirtualFileSystem(bool restoreState = true)
+        public void AddMergedTab(byte[] hash)
         {
-            var header = await blockchainService.GetHeader();
-            if (header == null)
+            var tab = new UserMergedDirectoryViewModel(hash, mergeClient, blockchainService, CloseTab, virtualFileSystemFactory, modalNavigationService, notificationsManager, playButtonPlugs);
+            DirectoryTabs.Add(tab);
+
+            ChangeTabSelection(tab);
+        }
+
+
+        private async Task<DirectoryTabViewModel?> FindTab(string hexNode)
+        {
+            var currentUserPeerId = userContext.NodeId;
+            if (string.Equals(hexNode, currentUserPeerId, StringComparison.OrdinalIgnoreCase))
             {
-                return;
+                return CurrentUserDirectoryViewModel;
             }
 
-            IsLoaded = false;
-            var files = await blockchainService.GetList();
-
-            var sharedFiles = (files ?? new()).Select(f => new VirtualFileSystemEntity(f)).ToList();
-            SetPlayerState(sharedFiles);
-            var selected = restoreState ? VirtualFileSystem?.GetCurrentlySelected() : null;
-
-            VirtualFileSystem = virtualFileSystemFactory.CreateVirtualFileSystem(files, selected?.Name == nameof(VirtualFileSystem.Home));
-            SetPlayerStateRecursively(VirtualFileSystem.Home.VirtualFileSystemEntities.ToList());
-            VirtualFileSystem.VirtualFileSystemCategories.Foreach(c => SetPlayerState(c.VirtualFileSystemEntities.ToList()));
-            AddRecentTier(sharedFiles);
-            AddAllFilesTier(sharedFiles);
-            RefreshPathObjects();
-            if (selected != null)
-            {
-                VirtualFileSystemCoreEntity matchingEntity = null;
-                if (VirtualFileSystem.VirtualFileSystemTiers != null && VirtualFileSystem.VirtualFileSystemCategories != null)
-                {
-                    matchingEntity =
-                        VirtualFileSystem.Find(selected, VirtualFileSystem.VirtualFileSystemTiers) ?? VirtualFileSystem.Find(selected, VirtualFileSystem.VirtualFileSystemCategories);
-                }
-
-                if (matchingEntity != null)
-                {
-                    ChangeSelectedEntity(matchingEntity);
-                    UpdateActiveSearchResults.Execute(matchingEntity);
-                }
-                else
-                {
-                    OpenCommand.Execute(DetermineHigherTier() ?? VirtualFileSystem.Home);
-                }
-            }
-
-            IsLoaded = true;
+            return DirectoryTabs.FirstOrDefault(t => t.Title == hexNode);
         }
 
-        public void SetPath(VirtualFileSystemCoreEntity entity)
+        public Task CloseTab(DirectoryTabViewModel tab)
         {
-            var index = PathElements.IndexOf(entity);
-            if (index == -1)
-            {
-                PathElements.Add(entity);
-            }
-            else
-            {
-                for (int i = PathElements.Count - 1; i > index; i--)
-                {
-                    PathElements.RemoveAt(i);
-                }
-            }
+            DirectoryTabs.Remove(tab);
 
-            ChangeSelectedEntity(PathElements.Last());
+            return Task.CompletedTask;
         }
 
-        private void AddAllFilesTier(IEnumerable<VirtualFileSystemEntity> entities)
+        private void ChangeTabSelection(DirectoryTabViewModel tab)
         {
-            AddTier("All files", VirtualFileSystemEntityType.All, entities);
-        }
-
-        private void AddRecentTier(IEnumerable<VirtualFileSystemEntity> entities)
-        {
-            var filtered = entities.OrderByDescending(f => f.File.Date).Take(10);
-            AddTier("Recent", VirtualFileSystemEntityType.Recent, filtered);
-        }
-
-        private void AddTier(string name, VirtualFileSystemEntityType type, IEnumerable<VirtualFileSystemEntity> entities)
-        {
-            var tier = new VirtualFileSystemCoreTier(name, type, name);
-            entities.Foreach(e => tier.VirtualFileSystemEntities.Add(e));
-            VirtualFileSystem.VirtualFileSystemTiers.Add(tier);
-        }
-
-        private VirtualFileSystemCoreEntity DetermineHigherTier()
-        {
-            for (int i = 1; i < PathElements.Count; i++)
-            {
-                var higherTier = PathElements.ElementAt(PathElements.Count - 1 - i);
-                var matchingTier = VirtualFileSystem.Find(higherTier, VirtualFileSystem.VirtualFileSystemTiers);
-                if (matchingTier != null && !matchingTier.VirtualFileSystemEntities.IsNullOrEmpty())
-                {
-                    return matchingTier;
-                }
-            }
-
-            return null;
-        }
-
-        private void RefreshPathObjects()
-        {
-            List<VirtualFileSystemCoreEntity> refreshedPath = new();
-            if (PathElements != null)
-            {
-                foreach (var element in PathElements)
-                {
-                    if (element == null)
-                    {
-                        continue;
-                    }
-
-                    if (element.Name is YourFilesSegment or LibrariesSegment)
-                    {
-                        refreshedPath.Add(element);
-                        continue;
-                    }
-
-                    refreshedPath.Add(VirtualFileSystem.Find(element, VirtualFileSystem.VirtualFileSystemTiers) ??
-                                                 VirtualFileSystem.Find(element, VirtualFileSystem.VirtualFileSystemCategories));
-                }
-            }
-
-            PathElements = new ObservableCollection<VirtualFileSystemCoreEntity>(refreshedPath);
-        }
-
-        private void SetPlayerState(List<VirtualFileSystemEntity> results)
-        {
-            results.Foreach(r =>
-            {
-                r.IsPlayerEnabled = playButtonPlugs.Any(plug => plug?.IsSupported(r.File) == true);
-            });
-        }
-
-        private void SetPlayerStateRecursively(List<VirtualFileSystemEntity> results)
-        {
-            SetPlayerState(results);
-            results.Foreach(r =>
-            {
-                if (r is VirtualFileSystemCoreEntity coreEntity)
-                {
-                    SetPlayerStateRecursively(coreEntity.VirtualFileSystemEntities.ToList());
-                }
-            });
+            SelectedIndex = DirectoryTabs.IndexOf(tab);
         }
     }
 }

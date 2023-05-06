@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:common="clr-namespace:Peernet.Browser.Application.VirtualFileSystem;assembly=Application"
+             xmlns:viewmodels="clr-namespace:Peernet.Browser.Application.ViewModels;assembly=Application"
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
@@ -80,10 +81,22 @@
                     <dxg:GridColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <Button Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.EditCommand, ElementName=SharedFilesDataGrid}" CommandParameter="{Binding RowData.Row}" ToolTip="Edit">
+                                <Button ToolTip="Edit">
                                     <Button.Background>
                                         <ImageBrush ImageSource="{DynamicResource EditDrawingImage}" />
                                     </Button.Background>
+                                    <Button.Style>
+                                        <Style BasedOn="{StaticResource DataGridActionButton}" TargetType="{x:Type Button}">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding DataContext, ElementName=SharedFilesDataGrid, Converter={StaticResource DataTypeConverter}}" Value="{x:Type viewmodels:CurrentUserDirectoryViewModel}">
+                                                    <Setter Property="Visibility" Value="Visible" />
+                                                    <Setter Property="Command" Value="{Binding DataContext.EditCommand, ElementName=SharedFilesDataGrid}" />
+                                                    <Setter Property="CommandParameter" Value="{Binding RowData.Row}"  />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
                                 </Button>
                                 <Button Style="{StaticResource DataGridActionButton}" PreviewMouseLeftButtonDown="OpenInfo_OnClick" ToolTip="Details">
                                     <Button.Background>
@@ -105,10 +118,22 @@
                                         <ImageBrush ImageSource="{DynamicResource ShareDrawingImage}" />
                                     </Button.Background>
                                 </Button>
-                                <Button Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.DeleteCommand, ElementName=SharedFilesDataGrid}" CommandParameter="{Binding RowData.Row}" ToolTip="Delete">
+                                <Button ToolTip="Delete">
                                     <Button.Background>
                                         <ImageBrush ImageSource="{DynamicResource BinDrawingImage}" />
                                     </Button.Background>
+                                    <Button.Style>
+                                        <Style BasedOn="{StaticResource DataGridActionButton}" TargetType="{x:Type Button}">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding DataContext, ElementName=SharedFilesDataGrid, Converter={StaticResource DataTypeConverter}}" Value="{x:Type viewmodels:CurrentUserDirectoryViewModel}">
+                                                    <Setter Property="Visibility" Value="Visible" />
+                                                    <Setter Property="Command" Value="{Binding DataContext.DeleteFileCommand, ElementName=SharedFilesDataGrid}" />
+                                                    <Setter Property="CommandParameter" Value="{Binding RowData.Row}"  />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
                                 </Button>
                                 <StackPanel.Style>
                                     <Style TargetType="{x:Type StackPanel}">

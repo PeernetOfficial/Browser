@@ -16,19 +16,19 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
     {
         private readonly IBlockchainService blockchainService;
         private readonly IDataTransferManager dataTransferManager;
-        private readonly DirectoryViewModel directoryViewModel;
         private readonly INavigationService navigationService;
         private readonly INotificationsManager notificationsManager;
         private readonly IWarehouseClient warehouseClient;
+        private readonly DirectoryTabViewModel directoryTabViewModel;
 
-        public ShareFileViewModelParameter(IDataTransferManager dataTransferManager, IWarehouseClient warehouseClient, IBlockchainService blockchainService, INavigationService navigationService, INotificationsManager notificationsManager, DirectoryViewModel directoryViewModel)
+        public ShareFileViewModelParameter(IDataTransferManager dataTransferManager, IWarehouseClient warehouseClient, IBlockchainService blockchainService, INavigationService navigationService, INotificationsManager notificationsManager, DirectoryTabViewModel directoryTabViewModel)
         {
             this.dataTransferManager = dataTransferManager;
             this.warehouseClient = warehouseClient;
             this.blockchainService = blockchainService;
             this.navigationService = navigationService;
             this.notificationsManager = notificationsManager;
-            this.directoryViewModel = directoryViewModel;
+            this.directoryTabViewModel = directoryTabViewModel;
         }
 
         public override string ModalTitle => "Share File";
@@ -54,7 +54,7 @@ namespace Peernet.Browser.Application.ViewModels.Parameters
                         notificationsManager.Notifications.Add(new Notification($"Failed to add files. Status: {result.Status}", details, Severity.Error));
                     }
 
-                    UIThreadDispatcher.ExecuteOnMainThread(async () => await directoryViewModel.ReloadVirtualFileSystem());
+                    UIThreadDispatcher.ExecuteOnMainThread(async () => await directoryTabViewModel.ReloadVirtualFileSystem());
                 }
             }
         }

@@ -24,7 +24,7 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IFileService fileService;
         private readonly INotificationsManager notificationsManager;
         private readonly IDataTransferManager dataTransferManager;
-        private readonly DirectoryViewModel directoryViewModel;
+        private readonly CurrentUserDirectoryViewModel currentUserDirectoryViewModel;
         private FileModel selected;
         private string filesDirectory;
         private bool finishedProcessing = true;
@@ -48,7 +48,7 @@ namespace Peernet.Browser.Application.ViewModels
             this.warehouseClient = warehouseClient;
             this.fileService = fileService;
             this.notificationsManager = notificationsManager;
-            this.directoryViewModel = directoryViewModel;
+            this.currentUserDirectoryViewModel = directoryViewModel.CurrentUserDirectoryViewModel;
 
             ConfirmCommand = new AsyncCommand(Confirm);
             CancelCommand = new AsyncCommand(() =>
@@ -165,7 +165,7 @@ namespace Peernet.Browser.Application.ViewModels
             var files = applicationManager.OpenFileDialog();
             if (files.Length != 0)
             {
-                var parameter = new ShareFileViewModelParameter(dataTransferManager, warehouseClient, blockchainService, navigationService, notificationsManager, directoryViewModel)
+                var parameter = new ShareFileViewModelParameter(dataTransferManager, warehouseClient, blockchainService, navigationService, notificationsManager, currentUserDirectoryViewModel)
                 {
                     FileModels = files.Select(f => new FileModel(f)).ToList()
                 };
