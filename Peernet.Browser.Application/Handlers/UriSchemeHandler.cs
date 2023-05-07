@@ -23,7 +23,7 @@ namespace Peernet.Browser.Application.Handlers
         private readonly IDataTransferManager dataTransferManager;
         private readonly IBlockchainService blockchainService;
         private readonly IUserContext userContext;
-        private const string pattern = "peernet:search\\?hash=(?<hash>\\w+)&node=(?<node>\\w+)";
+        private const string pattern = "peernet:\\/\\/search\\?hash=(?<hash>\\w+)&node=(?<node>\\w+)";
 
         public UriSchemeHandler(
             HomeViewModel homeViewModel,

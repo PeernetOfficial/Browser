@@ -16,7 +16,7 @@ namespace Peernet.Browser.WPF
     {
         public FileModel FileModel { get; set; }
 
-        public string PeernetSchemaSearchUri => $"peernet:search?hash={Convert.ToHexString(FileModel.Hash)}&node={Convert.ToHexString(FileModel.NodeId)}"; 
+        public string PeernetSchemaSearchUri => $"peernet://search?hash={Convert.ToHexString(FileModel.Hash)}&node={Convert.ToHexString(FileModel.NodeId)}"; 
 
         public SearchResultsSharingWindow(FileModel fileModel)
         {
