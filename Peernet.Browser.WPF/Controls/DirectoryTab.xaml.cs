@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Peernet.Browser.Application.Interfaces;
+using Peernet.Browser.Application.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,17 @@ namespace Peernet.Browser.WPF.Controls
         public DirectoryTab()
         {
             InitializeComponent();
+        }
+
+        private async void ShareDirectoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dataContext = ((FrameworkElement)e.OriginalSource).DataContext;
+            var shareableContent = dataContext as IShareableContent;
+            if (shareableContent != null)
+            {
+                var fileModel = await shareableContent.CreateResultsSnapshot();
+                new ResultsSharingWindow("directory", fileModel).Show();
+            }
         }
     }
 }

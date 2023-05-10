@@ -5,6 +5,7 @@ using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels;
 using Peernet.SDK.Client.Clients;
 using Peernet.SDK.Common;
+using Peernet.SDK.Models.Domain.Search;
 using Peernet.SDK.Models.Presentation.Home;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -14,18 +15,19 @@ namespace Peernet.Browser.Application.Handlers
 {
     public class UriSchemeHandler : IUriSchemeHandler
     {
-        private readonly HomeViewModel homeViewModel;
-        private readonly IFileClient fileClient;
-        private readonly ISettingsManager settingsManager;
-        private readonly IDownloadClient downloadClient;
-        private readonly ISearchService searchService;
-        private readonly IWarehouseClient warehouseClient;
-        private readonly IDataTransferManager dataTransferManager;
+        private const string pattern = "peernet:\\/\\/(?<view>\\w+)\\?hash=(?<hash>\\w+)&node=(?<node>\\w+)";
         private readonly IBlockchainService blockchainService;
+        private readonly IDataTransferManager dataTransferManager;
+        private readonly IDownloadClient downloadClient;
+        private readonly IFileClient fileClient;
+        private readonly MainViewModel mainViewModel;
+        private readonly HomeViewModel homeViewModel;
+        private readonly ISearchService searchService;
+        private readonly ISettingsManager settingsManager;
         private readonly IUserContext userContext;
-        private const string pattern = "peernet:\\/\\/search\\?hash=(?<hash>\\w+)&node=(?<node>\\w+)";
-
+        private readonly IWarehouseClient warehouseClient;
         public UriSchemeHandler(
+            MainViewModel mainViewModel,
             HomeViewModel homeViewModel,
             IFileClient fileClient,
             ISettingsManager settingsManager,
@@ -36,6 +38,7 @@ namespace Peernet.Browser.Application.Handlers
             IBlockchainService blockchainService,
             IUserContext userContext)
         {
+            this.mainViewModel = mainViewModel;
             this.homeViewModel = homeViewModel;
             this.settingsManager = settingsManager;
             this.fileClient = fileClient;
@@ -50,26 +53,39 @@ namespace Peernet.Browser.Application.Handlers
         public async Task Handle(string url)
         {
             var peernetScheme = Parse(url);
+
             var stream = await fileClient.Read(peernetScheme.Hash, peernetScheme.Node);
-            if(stream != null)
+            if (stream != null)
             {
                 var reader = new StreamReader(stream);
                 var content = await reader.ReadToEndAsync();
                 var searchResultModel = JsonConvert.DeserializeObject<SearchResultModel>(content);
-                var searchTabElementViewModel = new SnapshotSearchTabElementViewModel(
-                    searchResultModel,
-                    homeViewModel.RemoveTab,
-                    settingsManager,
-                    downloadClient,
-                    homeViewModel.OpenFile,
-                    homeViewModel.ExecutePlayButtonPlug,
-                    homeViewModel.DoesSupportPlaying,
-                    searchService,
-                    warehouseClient,
-                    dataTransferManager,
-                    blockchainService,
-                    userContext);
-                homeViewModel.AddNewTab(searchTabElementViewModel);
+
+                switch (peernetScheme.View)
+                {
+                    case "search":
+                        var searchTabElementViewModel = new SnapshotSearchTabElementViewModel(
+                            searchResultModel,
+                            homeViewModel.RemoveTab,
+                            settingsManager,
+                            downloadClient,
+                            homeViewModel.OpenFile,
+                            homeViewModel.ExecutePlayButtonPlug,
+                            homeViewModel.DoesSupportPlaying,
+                            searchService,
+                            warehouseClient,
+                            dataTransferManager,
+                            blockchainService,
+                            userContext);
+                        homeViewModel.AddNewTab(searchTabElementViewModel);
+                        break;
+
+                    case "directory":
+                        var searchResult = JsonConvert.DeserializeObject<SearchResult>(searchResultModel.Snapshot);
+                        await mainViewModel.DirectoryViewModel.AddTab(searchResult);
+                        mainViewModel.SelectedIndex = mainViewModel.DirectoryViewModel.GetNavigationIndex();
+                        break;
+                }
             }
         }
 
@@ -80,23 +96,24 @@ namespace Peernet.Browser.Application.Handlers
             if (match.Success)
             {
                 var groups = match.Groups;
-                return new PeernetScheme(groups["hash"].Value, groups["node"].Value);
+                return new PeernetScheme(groups["view"].Value, groups["hash"].Value, groups["node"].Value);
             }
 
             return null;
         }
     }
 
-    class PeernetScheme
+    internal class PeernetScheme
     {
-        public PeernetScheme(string hash, string node)
+        public PeernetScheme(string view, string hash, string node)
         {
+            View = view;
             Hash = hash;
             Node = node;
         }
 
         public string Hash { get; set; }
-
         public string Node { get; set; }
+        public string View { get; set; }
     }
 }

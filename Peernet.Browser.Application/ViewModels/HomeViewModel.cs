@@ -17,22 +17,21 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class HomeViewModel : ViewModelBase
+    public class HomeViewModel : NavigationItemViewModelBase
     {
+        private readonly IBlockchainService blockchainService;
         private readonly IDataTransferManager dataTransferManager;
+        private readonly IDownloadClient downloadClient;
         private readonly IModalNavigationService modalNavigationService;
         private readonly INavigationService navigationService;
         private readonly IEnumerable<IPlayButtonPlug> playButtonPlugs;
         private readonly ISearchService searchService;
-        private readonly IWarehouseClient warehouseClient;
-        private readonly IBlockchainService blockchainService;
-        private readonly IDownloadClient downloadClient;
         private readonly ISettingsManager settingsManager;
         private readonly IUserContext userContext;
+        private readonly IWarehouseClient warehouseClient;
         private bool filtersActive;
         private string searchInput;
         private int selectedIndex = -1;
@@ -71,6 +70,7 @@ namespace Peernet.Browser.Application.ViewModels
         }
 
         public AdvancedFilterModel AdvancedFilter { get; set; } = new();
+
         public Alignments Alignment => IsVisible ? Alignments.Stretch : Alignments.Center;
 
         public SearchTabElementViewModel Content => SelectedIndex < 0 ? null : Tabs[SelectedIndex];
@@ -89,7 +89,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         public bool IsVisible => Tabs.Any();
 
-        public IAsyncCommand OpenAdvancedOptionsCommand => 
+        public IAsyncCommand OpenAdvancedOptionsCommand =>
             new AsyncCommand(async () =>
             {
                 await modalNavigationService.Navigate<AdvancedSearchOptionsViewModel, AdvancedFilterModel>(AdvancedFilter);
@@ -120,11 +120,20 @@ namespace Peernet.Browser.Application.ViewModels
 
         public ObservableCollection<SearchTabElementViewModel> Tabs { get; } = new ObservableCollection<SearchTabElementViewModel>();
 
-        public async Task RemoveTab(SearchTabElementViewModel e)
+        public void AddNewTab(SearchTabElementViewModel tab)
         {
-            await searchService.Terminate(e.Filters.UuId);
-            Tabs.Remove(e);
-            SelectedIndex = IsVisible ? 0 : -1;
+            Tabs.Add(tab);
+            SelectedIndex = Tabs.Count - 1;
+            SearchInput = string.Empty;
+        }
+
+        public SearchFilterResultModel CreateNewSearchFilter()
+        {
+            return new SearchFilterResultModel
+            {
+                InputText = SearchInput,
+                AdvancedFilter = AdvancedFilter
+            };
         }
 
         public bool DoesSupportPlaying(DownloadModel model)
@@ -151,6 +160,15 @@ namespace Peernet.Browser.Application.ViewModels
             navigationService.Navigate<FilePreviewViewModel, FilePreviewViewModelParameter>(param);
         }
 
+        public async Task RemoveTab(SearchTabElementViewModel e)
+        {
+            await searchService.Terminate(e.Filters.UuId);
+            Tabs.Remove(e);
+            SelectedIndex = IsVisible ? 0 : -1;
+        }
+
+        public override int GetNavigationIndex() => 0;
+
         private Task Search()
         {
             var toAdd = new ActiveSearchTabElementViewModel(
@@ -169,22 +187,6 @@ namespace Peernet.Browser.Application.ViewModels
 
             AddNewTab(toAdd);
             return Task.CompletedTask;
-        }
-
-        public void AddNewTab(SearchTabElementViewModel tab)
-        {
-            Tabs.Add(tab);
-            SelectedIndex = Tabs.Count - 1;
-            SearchInput = string.Empty;
-        }
-
-        public SearchFilterResultModel CreateNewSearchFilter()
-        {
-            return new SearchFilterResultModel
-            {
-                InputText = SearchInput,
-                AdvancedFilter = AdvancedFilter
-            };
         }
     }
 }

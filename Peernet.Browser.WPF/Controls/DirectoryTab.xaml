@@ -52,7 +52,14 @@
                 <RowDefinition Height="55" />
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Style="{StaticResource Active}" FontWeight="Medium" FontSize="21" Text="Your shared files" Margin="68, 0, 0, 0" VerticalAlignment="Center" />
+            <DockPanel Grid.Row="0" Margin="68, 0, 0, 0" VerticalAlignment="Center">
+                <TextBlock Style="{StaticResource Active}" FontWeight="Medium" FontSize="21" Text="Shared files" VerticalAlignment="Center" />
+                <Button Margin="3, 4" Style="{StaticResource DataGridActionButton}" ToolTip="Share the search result" VerticalAlignment="Top" Click="ShareDirectoryButton_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="{DynamicResource ShareDrawingImage}" />
+                    </Button.Background>
+                </Button>
+            </DockPanel>
 
             <StackPanel Grid.Row="1" Grid.Column="0" Width="233" HorizontalAlignment="Center" Margin="0,28,0,0">
                 <TextBlock Text="Files" HorizontalAlignment="Center" Foreground="{DynamicResource MainContentBrush}" FontWeight="Medium" FontSize="16" />

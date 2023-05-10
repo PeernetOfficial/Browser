@@ -3,8 +3,6 @@ using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Services;
 using Peernet.SDK.Client.Clients;
 using Peernet.SDK.Common;
-using Peernet.SDK.Models.Domain.Search;
-using Peernet.SDK.Models.Extensions;
 using Peernet.SDK.Models.Presentation.Footer;
 using Peernet.SDK.Models.Presentation.Home;
 using System;

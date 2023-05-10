@@ -10,15 +10,16 @@ using System.Windows.Input;
 namespace Peernet.Browser.WPF
 {
     /// <summary>
-    /// Interaction logic for SearchResultsSharingWindow.xaml
+    /// Interaction logic for ResultsSharingWindow.xaml
     /// </summary>
-    public partial class SearchResultsSharingWindow : PeernetWindow
+    public partial class ResultsSharingWindow : PeernetWindow
     {
+        private string view;
         public FileModel FileModel { get; set; }
 
-        public string PeernetSchemaSearchUri => $"peernet://search?hash={Convert.ToHexString(FileModel.Hash)}&node={Convert.ToHexString(FileModel.NodeId)}"; 
+        public string PeernetSchemaUri => $"peernet://{view}?hash={Convert.ToHexString(FileModel.Hash)}&node={Convert.ToHexString(FileModel.NodeId)}"; 
 
-        public SearchResultsSharingWindow(FileModel fileModel)
+        public ResultsSharingWindow(string view, FileModel fileModel)
         {
             Initialized += Window_Initialized;
             ContentRendered += Window_ContentRendered;
@@ -28,6 +29,7 @@ namespace Peernet.Browser.WPF
             InitializeComponent();
             MouseDown += Window_MouseDown;
             DataContext = this;
+            this.view = view;
             FileModel = fileModel;
         }
 
@@ -71,13 +73,13 @@ namespace Peernet.Browser.WPF
 
         private void CopyLinkToClipboard_OnClick(object sender, RoutedEventArgs e)
         {
-            Clipboard.SetText(PeernetSchemaSearchUri);
+            Clipboard.SetText(PeernetSchemaUri);
             App.ServiceProvider.GetRequiredService<INotificationsManager>().Notifications.Add(new Notification("Copied to clipboard!"));
         }
 
         private void TextBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            var processInfo = new ProcessStartInfo(PeernetSchemaSearchUri.ToString());
+            var processInfo = new ProcessStartInfo(PeernetSchemaUri.ToString());
             processInfo.UseShellExecute = true;
             Process.Start(processInfo);
             e.Handled = true;

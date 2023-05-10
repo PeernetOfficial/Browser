@@ -65,7 +65,7 @@
                                HorizontalAlignment="Stretch"
                                VerticalAlignment="Stretch"
                                Grid.Row="1"
-                               SelectedIndex="0"
+                               SelectedIndex="{Binding DataContext.SelectedIndex, ElementName=Main}"
                                Visibility="{Binding Path=(contexts:GlobalContext.IsConnected), Converter={StaticResource BoolToVisibility}}"
                                SelectionChanged="TabControlEx_SelectionChanged">
             <controls:TabControlEx.Resources>

@@ -13,6 +13,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Threading.Tasks;
 
 namespace Peernet.Browser.WPF.Controls
 {
@@ -108,12 +109,12 @@ namespace Peernet.Browser.WPF.Controls
             e.Handled = true;
         }
 
-        private void AddMergedDirectoryTab(object sender, RoutedEventArgs e)
+        private async void AddMergedDirectoryTab(object sender, RoutedEventArgs e)
         {
             var directoryViewModel = App.ServiceProvider.GetRequiredService<DirectoryViewModel>();
             var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;
             var model = (DownloadModel)cellData.RowData.Row;
-            directoryViewModel.AddMergedTab(model.File.Hash);
+            await directoryViewModel.AddMergedTab(model.File.Hash);
             directoryViewModel.Navigate.Invoke();
             e.Handled = true;
         }
@@ -122,7 +123,7 @@ namespace Peernet.Browser.WPF.Controls
         {
             var dataContext = (SearchTabElementViewModel)((FrameworkElement)e.OriginalSource).DataContext;
             var fileModel = await dataContext.CreateResultsSnapshot();
-            new SearchResultsSharingWindow(fileModel).Show();
+            new ResultsSharingWindow("search", fileModel).Show();
         }
     }
 }

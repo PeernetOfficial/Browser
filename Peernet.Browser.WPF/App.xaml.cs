@@ -90,6 +90,7 @@ namespace Peernet.Browser.WPF
             PluginsContext.PlayButtonPlugEnabled = ServiceProvider.GetService<IPlayButtonPlug>() != null;
 
             InitializeBackend();
+
             string[] args = Environment.GetCommandLineArgs();
             if(args.Length > 1 )
             {

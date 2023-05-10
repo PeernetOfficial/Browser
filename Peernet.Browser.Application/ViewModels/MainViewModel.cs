@@ -8,12 +8,13 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        private readonly INavigationService navigationService;
-        private readonly IModalNavigationService modalNavigationService;
-        private readonly INotificationsManager notificationsManager;
         private readonly IApplicationManager applicationManager;
         private readonly FooterViewModel footerViewModel;
+        private readonly IModalNavigationService modalNavigationService;
         private readonly NavigationBarViewModel navigationBarViewModel;
+        private readonly INavigationService navigationService;
+        private readonly INotificationsManager notificationsManager;
+        private int selectedIndex = 0;
 
         public MainViewModel(
             FooterViewModel footerViewModel,
@@ -45,46 +46,7 @@ namespace Peernet.Browser.Application.ViewModels
             navigationService.Navigate<HomeViewModel>();
         }
 
-        public ViewModelBase CurrentViewModel => navigationService.CurrentViewModel;
-
-        public ViewModelBase CurrentModalViewModel => modalNavigationService.CurrentViewModel;
-
-        public bool IsModalOpened => modalNavigationService.IsOpen;
-
-        public NotificationCollection Notifications => notificationsManager.Notifications;
-
-        public FooterViewModel Footer => footerViewModel;
-
-        public NavigationBarViewModel NavBar => navigationBarViewModel;
-
         public AboutViewModel AboutViewModel { get; private set; }
-
-        public DirectoryViewModel DirectoryViewModel { get; private set; }
-
-        public HomeViewModel HomeViewModel { get; private set; }
-
-        public ExploreViewModel ExploreViewModel { get; private set; }
-
-        public Action OpenAboutTab { get; set; }
-
-        public override void Dispose()
-        {
-            navigationService.StateChanged -= Navigated;
-            modalNavigationService.StateChanged -= ModalNavigated;
-
-            base.Dispose();
-        }
-
-        private void Navigated()
-        {
-            OnPropertyChanged(nameof(CurrentViewModel));
-        }
-
-        private void ModalNavigated()
-        {
-            OnPropertyChanged(nameof(CurrentModalViewModel));
-            OnPropertyChanged(nameof(IsModalOpened));
-        }
 
         public IAsyncCommand CloseAppCommand
         {
@@ -98,6 +60,20 @@ namespace Peernet.Browser.Application.ViewModels
                 });
             }
         }
+
+        public ViewModelBase CurrentModalViewModel => modalNavigationService.CurrentViewModel;
+
+        public ViewModelBase CurrentViewModel => navigationService.CurrentViewModel;
+
+        public DirectoryViewModel DirectoryViewModel { get; private set; }
+
+        public ExploreViewModel ExploreViewModel { get; private set; }
+
+        public FooterViewModel Footer => footerViewModel;
+
+        public HomeViewModel HomeViewModel { get; private set; }
+
+        public bool IsModalOpened => modalNavigationService.IsOpen;
 
         public IAsyncCommand MaximizeCommand
         {
@@ -125,6 +101,30 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
+        public NavigationBarViewModel NavBar => navigationBarViewModel;
+
+        public NotificationCollection Notifications => notificationsManager.Notifications;
+
+        public Action OpenAboutTab { get; set; }
+
+        public int SelectedIndex
+        {
+            get => selectedIndex;
+            set
+            {
+                selectedIndex = value;
+                OnPropertyChanged(nameof(SelectedIndex));
+            }
+        }
+
+        public override void Dispose()
+        {
+            navigationService.StateChanged -= Navigated;
+            modalNavigationService.StateChanged -= ModalNavigated;
+
+            base.Dispose();
+        }
+
         private void CloseApp()
         {
             applicationManager.Shutdown();
@@ -145,6 +145,17 @@ namespace Peernet.Browser.Application.ViewModels
         private void Minimize()
         {
             applicationManager.Minimize();
+        }
+
+        private void ModalNavigated()
+        {
+            OnPropertyChanged(nameof(CurrentModalViewModel));
+            OnPropertyChanged(nameof(IsModalOpened));
+        }
+
+        private void Navigated()
+        {
+            OnPropertyChanged(nameof(CurrentViewModel));
         }
     }
 }
