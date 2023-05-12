@@ -14,9 +14,9 @@ namespace Peernet.Browser.WPF.Controls
     /// <summary>
     /// Interaction logic for SharedFilesDataGridControl.xaml
     /// </summary>
-    public partial class SharedFilesDataGridControl : UserControl
+    public partial class CurrentUserDataGridControl : UserControl
     {
-        public SharedFilesDataGridControl()
+        public CurrentUserDataGridControl()
         {
             InitializeComponent();
         }

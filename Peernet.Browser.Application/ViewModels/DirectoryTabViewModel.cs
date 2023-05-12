@@ -1,7 +1,4 @@
 ﻿using AsyncAwaitBestPractices.MVVM;
-using Peernet.Browser.Application.Managers;
-using Peernet.Browser.Application.Navigation;
-using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.SDK.Models.Domain.Common;
 using Peernet.SDK.Models.Extensions;
@@ -13,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class DirectoryTabViewModel : ViewModelBase
+    public abstract class DirectoryTabViewModel : ViewModelBase
     {
         private const string LibrariesSegment = "Libraries";
         private const string YourFilesSegment = "Files";
@@ -47,7 +44,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         protected List<ApiFile> Files { get; set; }
 
-
+        public abstract bool IsReadOnly { get; }
 
         public bool IsLoaded
         {

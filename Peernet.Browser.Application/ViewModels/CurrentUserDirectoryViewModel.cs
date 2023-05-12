@@ -75,6 +75,8 @@ namespace Peernet.Browser.Application.ViewModels
                     return Task.CompletedTask;
                 });
 
+        public override bool IsReadOnly => false;
+
         public async Task ReloadVirtualFileSystem(bool restoreState = true)
         {
             IsLoaded = false;

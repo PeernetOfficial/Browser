@@ -39,6 +39,8 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IAsyncCommand DeleteCommand { get; }
 
+        public override bool IsReadOnly => true;
+
         public Task<FileModel> CreateResultsSnapshot() => createResultsSnapshot(searchResult);
 
         private void Initialize()
