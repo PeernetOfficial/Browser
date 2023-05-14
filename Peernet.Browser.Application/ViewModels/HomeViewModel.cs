@@ -32,6 +32,7 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly ISettingsManager settingsManager;
         private readonly IUserContext userContext;
         private readonly IWarehouseClient warehouseClient;
+        private readonly DirectoryViewModel directoryViewModel;
         private bool filtersActive;
         private string searchInput;
         private int selectedIndex = -1;
@@ -46,7 +47,8 @@ namespace Peernet.Browser.Application.ViewModels
             INavigationService navigationService,
             IModalNavigationService modalNavigationService,
             IEnumerable<IPlayButtonPlug> playButtonPlugs,
-            IUserContext userContext)
+            IUserContext userContext,
+            DirectoryViewModel directoryViewModel)
         {
             this.downloadClient = downloadClient;
             this.settingsManager = settingsManager;
@@ -58,6 +60,7 @@ namespace Peernet.Browser.Application.ViewModels
             this.modalNavigationService = modalNavigationService ?? throw new ArgumentNullException(nameof(modalNavigationService));
             this.playButtonPlugs = playButtonPlugs;
             this.userContext = userContext;
+            this.directoryViewModel = directoryViewModel;
 
             SearchCommand = new AsyncCommand(Search);
             Tabs.CollectionChanged += (o, s) =>
@@ -183,7 +186,8 @@ namespace Peernet.Browser.Application.ViewModels
                 warehouseClient,
                 dataTransferManager,
                 blockchainService,
-                userContext);
+                userContext,
+                directoryViewModel.CurrentUserDirectoryViewModel);
 
             AddNewTab(toAdd);
             return Task.CompletedTask;

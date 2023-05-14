@@ -27,8 +27,9 @@ namespace Peernet.Browser.Application.ViewModels
             IWarehouseClient warehouseClient,
             IDataTransferManager dataTransferManager,
             IBlockchainService blockchainService,
-            IUserContext userContext)
-            : base(deleteAction, settingsManager, downloadClient, openAction, executePlugAction, searchService, warehouseClient, dataTransferManager, blockchainService, userContext)
+            IUserContext userContext,
+            CurrentUserDirectoryViewModel currentUserDirectoryViewModel)
+            : base(deleteAction, settingsManager, downloadClient, openAction, executePlugAction, searchService, warehouseClient, dataTransferManager, blockchainService, userContext, currentUserDirectoryViewModel)
         {
             this.isPlayerSupported = isPlayerSupported;
 

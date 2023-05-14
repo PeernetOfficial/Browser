@@ -12,13 +12,14 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public class UserDirectoryViewModel : DirectoryTabViewModel, IShareableContent
     {
-        private Func<SearchResult, Task<FileModel>> createResultsSnapshot;
+        private readonly string title;
+        private Func<string, SearchResult, Task<FileModel>> createResultsSnapshot;
         private SearchResult searchResult;
 
         public UserDirectoryViewModel(
             string title,
             SearchResult searchResult,
-            Func<SearchResult, Task<FileModel>> createResultsSnapshot,
+            Func<string, SearchResult, Task<FileModel>> createResultsSnapshot,
             Func<DirectoryTabViewModel, Task> removeTabAction,
             IVirtualFileSystemFactory virtualFileSystemFactory,
             IEnumerable<IPlayButtonPlug> playButtonPlugs)
@@ -27,6 +28,7 @@ namespace Peernet.Browser.Application.ViewModels
                   virtualFileSystemFactory,
                   playButtonPlugs)
         {
+            this.title = title;
             this.searchResult = searchResult;
             this.createResultsSnapshot = createResultsSnapshot;
 
@@ -41,7 +43,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         public override bool IsReadOnly => true;
 
-        public Task<FileModel> CreateResultsSnapshot() => createResultsSnapshot(searchResult);
+        public Task<FileModel> CreateResultsSnapshot() => createResultsSnapshot(title, searchResult);
 
         private void Initialize()
         {

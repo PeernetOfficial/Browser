@@ -134,10 +134,10 @@ namespace Peernet.Browser.Application.ViewModels
             SelectedIndex = DirectoryTabs.IndexOf(tab);
         }
 
-        private async Task<FileModel> CreateResultsSnapshot(SearchResult searchResult)
+        private async Task<FileModel> CreateResultsSnapshot(string name, SearchResult searchResult)
         {
             var searchResultModel = new SearchResultModel();
-
+            searchResultModel.Id = name;
             searchResultModel.Snapshot = JsonConvert.SerializeObject(searchResult);
             searchResultModel.Status = searchResult.Status;
             if (!searchResult.Files.IsNullOrEmpty())
@@ -157,6 +157,7 @@ namespace Peernet.Browser.Application.ViewModels
                      .Where(x => x % 2 == 0)
                      .Select(x => Convert.ToByte(userContext.NodeId.Substring(x, 2), 16))
                      .ToArray();
+                await CurrentUserDirectoryViewModel.ReloadVirtualFileSystem();
             }
 
             return fileModel;

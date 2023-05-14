@@ -33,6 +33,7 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IWarehouseClient warehouseClient;
         private readonly IUserContext userContext;
         private ObservableCollection<DownloadModel> activeSearchResults;
+        private readonly CurrentUserDirectoryViewModel currentUserDirectoryViewModel;
         private int pageIndex = 1;
         private int pagesCount;
         private int pageSize = 15;
@@ -47,7 +48,8 @@ namespace Peernet.Browser.Application.ViewModels
             IWarehouseClient warehouseClient,
             IDataTransferManager dataTransferManager,
             IBlockchainService blockchainService,
-            IUserContext userContext)
+            IUserContext userContext,
+            CurrentUserDirectoryViewModel currentUserDirectoryViewModel)
         {
             this.settingsManager = settingsManager;
             this.downloadClient = downloadClient;
@@ -64,6 +66,7 @@ namespace Peernet.Browser.Application.ViewModels
             FiltersIconModel = new IconModel(FilterType.Filters, true, OpenCloseFilters);
 
             InitIcons();
+            this.currentUserDirectoryViewModel = currentUserDirectoryViewModel;
         }
 
         public ObservableCollection<DownloadModel> ActiveSearchResults
@@ -181,6 +184,7 @@ namespace Peernet.Browser.Application.ViewModels
                      .Where(x => x % 2 == 0)
                      .Select(x => Convert.ToByte(userContext.NodeId.Substring(x, 2), 16))
                      .ToArray();
+                await currentUserDirectoryViewModel.ReloadVirtualFileSystem();
             }
 
             return fileModel;

@@ -22,6 +22,7 @@ namespace Peernet.Browser.Application.Handlers
         private readonly IFileClient fileClient;
         private readonly MainViewModel mainViewModel;
         private readonly HomeViewModel homeViewModel;
+        private readonly DirectoryViewModel directoryViewModel;
         private readonly ISearchService searchService;
         private readonly ISettingsManager settingsManager;
         private readonly IUserContext userContext;
@@ -29,6 +30,7 @@ namespace Peernet.Browser.Application.Handlers
         public UriSchemeHandler(
             MainViewModel mainViewModel,
             HomeViewModel homeViewModel,
+            DirectoryViewModel directoryViewModel,
             IFileClient fileClient,
             ISettingsManager settingsManager,
             IDownloadClient downloadClient,
@@ -40,6 +42,7 @@ namespace Peernet.Browser.Application.Handlers
         {
             this.mainViewModel = mainViewModel;
             this.homeViewModel = homeViewModel;
+            this.directoryViewModel = directoryViewModel;
             this.settingsManager = settingsManager;
             this.fileClient = fileClient;
             this.downloadClient = downloadClient;
@@ -76,7 +79,8 @@ namespace Peernet.Browser.Application.Handlers
                             warehouseClient,
                             dataTransferManager,
                             blockchainService,
-                            userContext);
+                            userContext,
+                            directoryViewModel.CurrentUserDirectoryViewModel);
                         homeViewModel.AddNewTab(searchTabElementViewModel);
                         break;
 
