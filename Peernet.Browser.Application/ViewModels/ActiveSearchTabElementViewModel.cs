@@ -1,4 +1,5 @@
-﻿using Peernet.Browser.Application.Contexts;
+﻿using AsyncAwaitBestPractices.MVVM;
+using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Services;
 using Peernet.SDK.Client.Clients;
@@ -15,6 +16,7 @@ namespace Peernet.Browser.Application.ViewModels
     public class ActiveSearchTabElementViewModel : SearchTabElementViewModel
     {
         private readonly ISearchService searchService;
+        private readonly IUserContext userContext;
         private readonly Func<DownloadModel, bool> isPlayerSupported;
 
         public ActiveSearchTabElementViewModel(
@@ -34,6 +36,7 @@ namespace Peernet.Browser.Application.ViewModels
             : base(deleteAction, settingsManager, downloadClient, openAction, executePlugAction, searchService, warehouseClient, dataTransferManager, blockchainService, userContext, currentUserDirectoryViewModel)
         {
             this.searchService = searchService;
+            this.userContext = userContext;
             this.isPlayerSupported = isPlayerSupported;
 
             Title = searchFilterResultModel.InputText;
@@ -75,5 +78,11 @@ namespace Peernet.Browser.Application.ViewModels
                 Loader.Reset();
             }
         }
+
+        public IAsyncCommand FilterOwnFiles => new AsyncCommand(async () =>
+        {
+            Filters.SearchFilterResult.NodeId = userContext.NodeId;
+            await Refresh();
+        });
     }
 }

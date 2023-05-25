@@ -164,6 +164,7 @@ namespace Peernet.Browser.Infrastructure.Services
             {
                 searchGetRequest.Limit = model.Limit;
                 searchGetRequest.Offset = model.Offset;
+                searchGetRequest.Node = model.NodeId;
             }
             if (model.Uuid.IsNullOrEmpty() && searchRequest != null)
             {

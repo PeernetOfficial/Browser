@@ -49,9 +49,9 @@ namespace Peernet.Browser.Infrastructure.Services
             return await blockchainClient.GetHeader();
         }
 
-        public async Task<List<ApiFile>> GetList()
+        public async Task<List<ApiFile>> GetList(HighLevelFileType? fileFormat = null)
         {
-            return (await blockchainClient.GetList())?.Files ?? new List<ApiFile>();
+            return (await blockchainClient.GetList(fileFormat))?.Files ?? new List<ApiFile>();
         }
 
         public async Task<ApiBlockchainBlockStatus> AddFiles(IEnumerable<FileModel> files)

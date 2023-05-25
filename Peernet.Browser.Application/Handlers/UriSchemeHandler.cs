@@ -27,6 +27,7 @@ namespace Peernet.Browser.Application.Handlers
         private readonly ISettingsManager settingsManager;
         private readonly IUserContext userContext;
         private readonly IWarehouseClient warehouseClient;
+
         public UriSchemeHandler(
             MainViewModel mainViewModel,
             HomeViewModel homeViewModel,

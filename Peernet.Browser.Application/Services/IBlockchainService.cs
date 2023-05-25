@@ -15,7 +15,7 @@ namespace Peernet.Browser.Application.Services
 
         Task<ApiBlockchainHeader> GetHeader();
 
-        Task<List<ApiFile>> GetList();
+        Task<List<ApiFile>> GetList(HighLevelFileType? fileFormat = null);
 
         Task<ApiBlockchainBlockStatus> UpdateFile(FileModel fileModel);
 

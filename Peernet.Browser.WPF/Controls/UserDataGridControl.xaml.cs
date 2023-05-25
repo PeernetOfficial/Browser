@@ -49,7 +49,7 @@ namespace Peernet.Browser.WPF.Controls
             var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;
             var entity = (VirtualFileSystemEntity)cellData.RowData.Row;
             var warehouseService = App.ServiceProvider.GetRequiredService<IWarehouseService>();
-            var param = new FilePreviewViewModelParameter(entity.File, () => warehouseService.ReadPath(entity.File), "Save To File");
+            var param = new FilePreviewViewModelParameter(entity.File, () => warehouseService.ReadPath(entity.File), "Download");
             var filePreviewViewModel = new FilePreviewViewModel();
             await filePreviewViewModel.Prepare(param);
             var previewWindow = new FilePreviewWindow(filePreviewViewModel);
