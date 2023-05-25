@@ -48,6 +48,11 @@ namespace Peernet.Browser.Application.VirtualFileSystem
                             AddCategory("Ebook", f => f.File.Type == LowLevelFileType.Ebook);
                             break;
                         }
+                    case VirtualFileSystemEntityType.PeernetSearch:
+                        {
+                            AddCategory("Peernet Shared", f => f.File.Format == HighLevelFileType.PeernetSearch);
+                            break;
+                        }
                 }
 
                 void AddCategory(

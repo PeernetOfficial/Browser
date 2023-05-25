@@ -133,6 +133,9 @@
             <DataTrigger Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.Picture}">
                 <Setter Property="Source" Value="{DynamicResource PictureDrawingImage}" />
             </DataTrigger>
+            <DataTrigger Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.PeernetSearch}">
+                <Setter Property="Source" Value="{DynamicResource ShareDrawingImage}" />
+            </DataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.Picture}" />
