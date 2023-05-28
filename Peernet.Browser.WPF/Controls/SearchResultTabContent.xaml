@@ -22,7 +22,7 @@
                 </Button>
                 <Button Margin="3, 4" Style="{StaticResource DataGridActionButton}" ToolTip="Share the search result" VerticalAlignment="Top" Click="ShareResultsButton_Click">
                     <Button.Background>
-                        <ImageBrush ImageSource="{DynamicResource ShareDrawingImage}" />
+                        <ImageBrush ImageSource="{DynamicResource Share_SelectedDrawingImage}" />
                     </Button.Background>
                 </Button>
                 <ItemsControl VerticalContentAlignment="Center" ItemsSource="{Binding FilterIconModels, IsAsync=True}" Margin="0 3">
@@ -225,7 +225,7 @@
                                     </Button>
                                     <Button Style="{StaticResource DataGridActionButton}" Click="OpenFileWebGatewayReferenceWindow_OnClick" ToolTip="Share">
                                         <Button.Background>
-                                            <ImageBrush ImageSource="{DynamicResource ShareDrawingImage}" />
+                                            <ImageBrush ImageSource="{DynamicResource Share_SelectedDrawingImage}" />
                                         </Button.Background>
                                     </Button>
                                     <Button Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.DownloadCommand, ElementName=SharedResultTab}" CommandParameter="{Binding RowData.Row}" Width="45" Height="44">

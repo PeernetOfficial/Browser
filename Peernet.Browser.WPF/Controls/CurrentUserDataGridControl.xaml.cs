@@ -29,7 +29,7 @@ namespace Peernet.Browser.WPF.Controls
 
             if(file.Format == SDK.Models.Domain.Common.HighLevelFileType.PeernetSearch)
             {
-                new ResultsSharingWindow("search", new FileModel(file)).Show();
+                new ResultsSharingWindow(new FileModel(file)).Show();
             }
             else
             {

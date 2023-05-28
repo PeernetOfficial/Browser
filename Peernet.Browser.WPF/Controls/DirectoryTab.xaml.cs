@@ -34,7 +34,7 @@ namespace Peernet.Browser.WPF.Controls
             if (shareableContent != null)
             {
                 var fileModel = await shareableContent.CreateResultsSnapshot();
-                new ResultsSharingWindow("directory", fileModel).Show();
+                new ResultsSharingWindow(fileModel).Show();
             }
         }
     }

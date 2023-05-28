@@ -31,6 +31,7 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly ISearchService searchService;
         private readonly ISettingsManager settingsManager;
         private readonly IWarehouseClient warehouseClient;
+        private readonly IFileClient fileClient;
         private readonly IUserContext userContext;
         private ObservableCollection<DownloadModel> activeSearchResults;
         private readonly CurrentUserDirectoryViewModel currentUserDirectoryViewModel;
@@ -46,6 +47,7 @@ namespace Peernet.Browser.Application.ViewModels
             Action<DownloadModel> executePlugAction,
             ISearchService searchService,
             IWarehouseClient warehouseClient,
+            IFileClient fileClient,
             IDataTransferManager dataTransferManager,
             IBlockchainService blockchainService,
             IUserContext userContext,
@@ -54,6 +56,7 @@ namespace Peernet.Browser.Application.ViewModels
             this.settingsManager = settingsManager;
             this.downloadClient = downloadClient;
             this.warehouseClient = warehouseClient;
+            this.fileClient = fileClient;
             this.dataTransferManager = dataTransferManager;
             this.blockchainService = blockchainService;
             this.searchService = searchService;
@@ -172,13 +175,23 @@ namespace Peernet.Browser.Application.ViewModels
 
         public async Task<FileModel> CreateResultsSnapshot()
         {
-            var path = await searchService.CreateSnapshot(SearchResult);
+            var snapshot = new ResultsSnapshot
+            {
+                Title = Title,
+                SearchResultModel = SearchResult,
+                PeernetSchemaViewType = PeernetSchemaViewType.Search
+            };
+
+            var path = await searchService.CreateSnapshot(snapshot);
             var fileModel = new FileModel(path);
             var upload = new Upload(warehouseClient, fileModel);
             await dataTransferManager.QueueUp(upload);
 
             if (upload.File.Hash != null)
             {
+                var format = await fileClient.GetFormat(path);
+                upload.File.Format = format.FileFormat;
+                upload.File.Type = format.FileType;
                 await blockchainService.AddFiles(new[] { fileModel });
                 upload.File.NodeId = Enumerable.Range(0, userContext.NodeId.Length)
                      .Where(x => x % 2 == 0)

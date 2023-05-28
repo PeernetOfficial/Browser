@@ -58,10 +58,22 @@
 
             <DockPanel Grid.Row="0" Margin="68, 0, 0, 0" VerticalAlignment="Center">
                 <TextBlock Style="{StaticResource Active}" FontWeight="Medium" FontSize="21" Text="Shared files" VerticalAlignment="Center" />
-                <Button Margin="3, 4" Style="{StaticResource DataGridActionButton}" ToolTip="Share the search result" VerticalAlignment="Top" Click="ShareDirectoryButton_Click">
-                    <Button.Background>
-                        <ImageBrush ImageSource="{DynamicResource ShareDrawingImage}" />
-                    </Button.Background>
+                <Button Margin="3, 4" ToolTip="Share the search result" VerticalAlignment="Top" Click="ShareDirectoryButton_Click">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource DataGridActionButton}">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="{DynamicResource Share_SelectedDrawingImage}" />
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Visibility" Value="Hidden" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding DataContext, ElementName=DirectoryViewTab, Converter={StaticResource DataTypeConverter}}" Value="{x:Type viewmodels:UserDirectoryViewModel}">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
                 </Button>
             </DockPanel>
 

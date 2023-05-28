@@ -29,11 +29,24 @@ namespace Peernet.Browser.Application.ViewModels
             Func<DownloadModel, bool> isPlayerSupported,
             ISearchService searchService,
             IWarehouseClient warehouseClient,
+            IFileClient fileClient,
             IDataTransferManager dataTransferManager,
             IBlockchainService blockchainService,
             IUserContext userContext,
             CurrentUserDirectoryViewModel currentUserDirectoryViewModel)
-            : base(deleteAction, settingsManager, downloadClient, openAction, executePlugAction, searchService, warehouseClient, dataTransferManager, blockchainService, userContext, currentUserDirectoryViewModel)
+            : base(
+                  deleteAction,
+                  settingsManager,
+                  downloadClient,
+                  openAction,
+                  executePlugAction,
+                  searchService,
+                  warehouseClient,
+                  fileClient,
+                  dataTransferManager,
+                  blockchainService,
+                  userContext,
+                  currentUserDirectoryViewModel)
         {
             this.searchService = searchService;
             this.userContext = userContext;

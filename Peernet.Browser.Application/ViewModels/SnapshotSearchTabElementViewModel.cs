@@ -16,6 +16,7 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly Func<DownloadModel, bool> isPlayerSupported;
 
         public SnapshotSearchTabElementViewModel(
+            string title,
             SearchResultModel searchResult,
             Func<SearchTabElementViewModel, Task> deleteAction,
             ISettingsManager settingsManager,
@@ -25,18 +26,31 @@ namespace Peernet.Browser.Application.ViewModels
             Func<DownloadModel, bool> isPlayerSupported,
             ISearchService searchService,
             IWarehouseClient warehouseClient,
+            IFileClient fileClient,
             IDataTransferManager dataTransferManager,
             IBlockchainService blockchainService,
             IUserContext userContext,
             CurrentUserDirectoryViewModel currentUserDirectoryViewModel)
-            : base(deleteAction, settingsManager, downloadClient, openAction, executePlugAction, searchService, warehouseClient, dataTransferManager, blockchainService, userContext, currentUserDirectoryViewModel)
+            : base(
+                  deleteAction,
+                  settingsManager,
+                  downloadClient,
+                  openAction,
+                  executePlugAction,
+                  searchService,
+                  warehouseClient,
+                  fileClient,
+                  dataTransferManager,
+                  blockchainService,
+                  userContext,
+                  currentUserDirectoryViewModel)
         {
             this.isPlayerSupported = isPlayerSupported;
 
             SearchResult = searchResult;
             Filters = new FiltersModel(new SearchFilterResultModel());
             InitIcons();
-            Title = searchResult.Id;
+            Title = title;
             Task.Run(Refresh);
         }
 

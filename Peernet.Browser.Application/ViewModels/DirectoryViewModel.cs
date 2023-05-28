@@ -23,11 +23,10 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public class DirectoryViewModel : NavigationItemViewModelBase
     {
+        private readonly IFileClient fileClient;
         private readonly IBlockchainService blockchainService;
         private readonly IDataTransferManager dataTransferManager;
         private readonly IMergeClient mergeClient;
-        private readonly IModalNavigationService modalNavigationService;
-        private readonly INotificationsManager notificationsManager;
         private readonly IEnumerable<IPlayButtonPlug> playButtonPlugs;
         private readonly ISearchService searchService;
         private readonly IUserContext userContext;
@@ -45,17 +44,17 @@ namespace Peernet.Browser.Application.ViewModels
             IEnumerable<IPlayButtonPlug> playButtonPlugs,
             ISearchService searchService,
             IWarehouseClient warehouseClient,
+            IFileClient fileClient,
             IDataTransferManager dataTransferManager)
         {
             this.userContext = userContext;
             this.mergeClient = mergeClient;
             this.blockchainService = blockchainService;
             this.virtualFileSystemFactory = virtualFileSystemFactory;
-            this.modalNavigationService = modalNavigationService;
-            this.notificationsManager = notificationsManager;
             this.playButtonPlugs = playButtonPlugs;
             this.searchService = searchService;
             this.warehouseClient = warehouseClient;
+            this.fileClient = fileClient;
             this.dataTransferManager = dataTransferManager;
 
             CurrentUserDirectoryViewModel = new CurrentUserDirectoryViewModel(blockchainService, virtualFileSystemFactory, modalNavigationService, notificationsManager, playButtonPlugs);
@@ -87,9 +86,9 @@ namespace Peernet.Browser.Application.ViewModels
             ChangeTabSelection(tab);
         }
 
-        public async Task AddTab(SearchResult searchResult)
+        public async Task AddTab(string title, SearchResult searchResult)
         {
-            var tab = new UserDirectoryViewModel("Shared directory", searchResult, CreateResultsSnapshot, CloseTab, virtualFileSystemFactory, playButtonPlugs);
+            var tab = new UserDirectoryViewModel(title, searchResult, CreateResultsSnapshot, CloseTab, virtualFileSystemFactory, playButtonPlugs);
             DirectoryTabs.Add(tab);
 
             ChangeTabSelection(tab);
@@ -145,13 +144,23 @@ namespace Peernet.Browser.Application.ViewModels
                 searchResultModel.Rows = searchResult.Files.Select(f => new DownloadModel(f)).ToList();
             }
 
-            var path = await searchService.CreateSnapshot(searchResultModel);
+            var snapshot = new ResultsSnapshot
+            {
+                Title = name,
+                SearchResultModel = searchResultModel,
+                PeernetSchemaViewType = PeernetSchemaViewType.Directory
+            };
+
+            var path = await searchService.CreateSnapshot(snapshot);
             var fileModel = new FileModel(path);
             var upload = new Upload(warehouseClient, fileModel);
             await dataTransferManager.QueueUp(upload);
 
             if (upload.File.Hash != null)
             {
+                var format = await fileClient.GetFormat(path);
+                upload.File.Format = format.FileFormat;
+                upload.File.Type = format.FileType;
                 await blockchainService.AddFiles(new[] { fileModel });
                 upload.File.NodeId = Enumerable.Range(0, userContext.NodeId.Length)
                      .Where(x => x % 2 == 0)

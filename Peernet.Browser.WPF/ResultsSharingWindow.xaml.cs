@@ -14,12 +14,11 @@ namespace Peernet.Browser.WPF
     /// </summary>
     public partial class ResultsSharingWindow : PeernetWindow
     {
-        private string view;
         public FileModel FileModel { get; set; }
 
-        public string PeernetSchemaUri => $"peernet://{view}?hash={Convert.ToHexString(FileModel.Hash)}&node={Convert.ToHexString(FileModel.NodeId)}"; 
+        public string PeernetSchemaUri => $"peernet://hash={Convert.ToHexString(FileModel.Hash)}&node={Convert.ToHexString(FileModel.NodeId)}"; 
 
-        public ResultsSharingWindow(string view, FileModel fileModel)
+        public ResultsSharingWindow(FileModel fileModel)
         {
             Initialized += Window_Initialized;
             ContentRendered += Window_ContentRendered;
@@ -29,7 +28,6 @@ namespace Peernet.Browser.WPF
             InitializeComponent();
             MouseDown += Window_MouseDown;
             DataContext = this;
-            this.view = view;
             FileModel = fileModel;
         }
 

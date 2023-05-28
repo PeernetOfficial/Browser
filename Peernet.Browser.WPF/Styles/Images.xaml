@@ -206,6 +206,14 @@
                 </MultiDataTrigger.Conditions>
                 <Setter Property="Source" Value="{DynamicResource Recent_SelectedDrawingImage}" />
             </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Type}" Value="{x:Static vfs:VirtualFileSystemEntityType.PeernetSearch}" />
+                    <Condition Binding="{Binding IsSelected}" Value="True" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Source" Value="{DynamicResource Share_SelectedDrawingImage}" />
+            </MultiDataTrigger>
+
         </Style.Triggers>
     </Style>
 

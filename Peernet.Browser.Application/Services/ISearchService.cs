@@ -1,4 +1,5 @@
-﻿using Peernet.SDK.Models.Presentation.Home;
+﻿using Peernet.SDK.Models.Presentation;
+using Peernet.SDK.Models.Presentation.Home;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -12,6 +13,6 @@ namespace Peernet.Browser.Application.Services
 
         IDictionary<FilterType, int> GetEmptyStats();
 
-        Task<string> CreateSnapshot(SearchResultModel searchResultModel);
+        Task<string> CreateSnapshot(ResultsSnapshot resultsSnapshot);
     }
 }

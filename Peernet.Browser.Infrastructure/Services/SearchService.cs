@@ -5,6 +5,7 @@ using Peernet.SDK.Common;
 using Peernet.SDK.Models.Domain.Common;
 using Peernet.SDK.Models.Domain.Search;
 using Peernet.SDK.Models.Extensions;
+using Peernet.SDK.Models.Presentation;
 using Peernet.SDK.Models.Presentation.Footer;
 using Peernet.SDK.Models.Presentation.Home;
 using System;
@@ -24,12 +25,12 @@ namespace Peernet.Browser.Infrastructure.Services
             this.searchClient = searchClient;
         }
 
-        public async Task<string> CreateSnapshot(SearchResultModel searchResultModel)
+        public async Task<string> CreateSnapshot(ResultsSnapshot resultsSnapshot)
         {
-            var serializedObject = JsonConvert.SerializeObject(searchResultModel);
+            var serializedObject = JsonConvert.SerializeObject(resultsSnapshot);
             var targetDirectory = Path.Combine(Directory.GetCurrentDirectory(), "data", "snapshots");
             Directory.CreateDirectory(targetDirectory);
-            var filePath = Path.Combine(targetDirectory, $"{searchResultModel.Id}.pnsearch");
+            var filePath = Path.Combine(targetDirectory, $"{resultsSnapshot.SearchResultModel.Id}.pnsearch");
             var file = File.Create(filePath);
             using var writer = new StreamWriter(file);
             await writer.WriteAsync(serializedObject);

@@ -32,6 +32,7 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly ISettingsManager settingsManager;
         private readonly IUserContext userContext;
         private readonly IWarehouseClient warehouseClient;
+        private readonly IFileClient fileClient;
         private readonly DirectoryViewModel directoryViewModel;
         private bool filtersActive;
         private string searchInput;
@@ -42,6 +43,7 @@ namespace Peernet.Browser.Application.ViewModels
             ISettingsManager settingsManager,
             ISearchService searchService,
             IWarehouseClient warehouseClient,
+            IFileClient fileClient,
             IBlockchainService blockchainService,
             IDataTransferManager dataTransferManager,
             INavigationService navigationService,
@@ -54,6 +56,7 @@ namespace Peernet.Browser.Application.ViewModels
             this.settingsManager = settingsManager;
             this.searchService = searchService;
             this.warehouseClient = warehouseClient;
+            this.fileClient = fileClient;
             this.blockchainService = blockchainService;
             this.dataTransferManager = dataTransferManager;
             this.navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
@@ -184,6 +187,7 @@ namespace Peernet.Browser.Application.ViewModels
                 DoesSupportPlaying,
                 searchService,
                 warehouseClient,
+                fileClient,
                 dataTransferManager,
                 blockchainService,
                 userContext,
