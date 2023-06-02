@@ -1,10 +1,10 @@
 ﻿<UserControl x:Class="Peernet.Browser.WPF.Controls.CurrentUserDataGridControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:common="clr-namespace:Peernet.Browser.Application.VirtualFileSystem;assembly=Application"
-             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:common="clr-namespace:Peernet.Browser.Application.VirtualFileSystem;assembly=Application"
              mc:Ignorable="d"
              x:Name="currentUserDataGridControl">
     <Grid>
@@ -22,7 +22,7 @@
                                     Background="Transparent" Width="Auto"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Center">
-                                <StackPanel Orientation="Horizontal" >
+                                <StackPanel Orientation="Horizontal">
                                     <Image Width="13.71" Height="20" Style="{StaticResource VirtualFileSystemEntityImageStyle}" DataContext="{Binding Path=RowData.Row}" />
                                     <TextBlock Text="{Binding Path=RowData.Row.Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource Underlined}" />
                                 </StackPanel>

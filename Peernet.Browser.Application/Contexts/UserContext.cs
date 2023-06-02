@@ -49,7 +49,7 @@ namespace Peernet.Browser.Application.Contexts
         public string PeerId
         {
             get => peerId;
-            set 
+            set
             {
                 peerId = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PeerId)));

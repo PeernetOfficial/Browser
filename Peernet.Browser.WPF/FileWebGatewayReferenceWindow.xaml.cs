@@ -1,15 +1,15 @@
-﻿using Peernet.SDK.Models.Domain.Common;
-using Peernet.SDK.WPF;
-using System.Windows.Input;
-using System.Windows;
-using System;
-using Peernet.Browser.Application.Managers;
-using Peernet.SDK.Models.Presentation.Footer;
+﻿using DevExpress.Mvvm.Native;
 using Microsoft.Extensions.DependencyInjection;
+using Peernet.Browser.Application.Managers;
 using Peernet.SDK.Common;
-using DevExpress.Mvvm.Native;
-using System.Linq;
+using Peernet.SDK.Models.Domain.Common;
+using Peernet.SDK.Models.Presentation.Footer;
+using Peernet.SDK.WPF;
+using System;
 using System.Diagnostics;
+using System.Linq;
+using System.Windows;
+using System.Windows.Input;
 
 namespace Peernet.Browser.WPF
 {

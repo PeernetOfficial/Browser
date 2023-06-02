@@ -27,7 +27,7 @@ namespace Peernet.Browser.WPF.Controls
             var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;
             var file = ((VirtualFileSystemEntity)cellData.RowData.Row).File;
 
-            if(file.Format == SDK.Models.Domain.Common.HighLevelFileType.PeernetSearch)
+            if (file.Format == SDK.Models.Domain.Common.HighLevelFileType.PeernetSearch)
             {
                 new ResultsSharingWindow(new FileModel(file)).Show();
             }

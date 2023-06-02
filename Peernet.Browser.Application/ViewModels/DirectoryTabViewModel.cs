@@ -164,8 +164,6 @@ namespace Peernet.Browser.Application.ViewModels
                     { new(name, VirtualFileSystemEntityType.Directory) });
         }
 
-
-
         public void SetPath(VirtualFileSystemCoreEntity entity)
         {
             var index = PathElements.IndexOf(entity);
@@ -275,7 +273,6 @@ namespace Peernet.Browser.Application.ViewModels
                 }
             }
         }
-
 
         private void SetPlayerState(List<VirtualFileSystemEntity> results)
         {

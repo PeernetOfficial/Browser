@@ -69,7 +69,7 @@ namespace Peernet.Browser.Application.ViewModels
             Filters.SearchFilterResult.Limit = PageSize;
             Filters.SearchFilterResult.Offset = (PageIndex - 1) * PageSize;
             SearchResult = await searchService.Search(Filters.SearchFilterResult);
-            
+
             SearchResult.Rows.ForEach(row => row.IsPlayerEnabled = isPlayerSupported.Invoke(row));
 
             Filters.UuId = SearchResult.Id;

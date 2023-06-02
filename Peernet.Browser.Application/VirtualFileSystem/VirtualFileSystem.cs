@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using Peernet.SDK.Models.Domain.Common;
+﻿using Peernet.SDK.Models.Domain.Common;
 using Peernet.SDK.Models.Extensions;
 using System;
 using System.Collections.Generic;

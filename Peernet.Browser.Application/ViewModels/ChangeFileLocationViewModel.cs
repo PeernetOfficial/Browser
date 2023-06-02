@@ -2,7 +2,6 @@
 using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.SDK.Models.Extensions;
 using Peernet.SDK.Models.Presentation.Footer;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -48,7 +47,7 @@ namespace Peernet.Browser.Application.ViewModels
                     set = matching.SubTiers;
                 }
             }
-            
+
             return result;
         }
 

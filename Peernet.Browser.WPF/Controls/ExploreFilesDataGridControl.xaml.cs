@@ -1,11 +1,9 @@
 ﻿using DevExpress.Xpf.Grid;
 using Microsoft.Extensions.DependencyInjection;
-using Peernet.Browser.Application.Dispatchers;
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Utilities;
 using Peernet.Browser.Application.ViewModels;
 using Peernet.Browser.Application.ViewModels.Parameters;
-using Peernet.Browser.WPF.Services;
 using Peernet.SDK.Client.Clients;
 using Peernet.SDK.Models.Presentation.Footer;
 using System;

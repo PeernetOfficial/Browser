@@ -2,6 +2,6 @@
 {
     public class NavigationItemViewModelBase : ViewModelBase
     {
-        public virtual int GetNavigationIndex() => 0; 
+        public virtual int GetNavigationIndex() => 0;
     }
 }

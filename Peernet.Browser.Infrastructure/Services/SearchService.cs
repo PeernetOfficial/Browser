@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Peernet.Browser.Application.Services;
 using Peernet.SDK.Client.Clients;
-using Peernet.SDK.Common;
 using Peernet.SDK.Models.Domain.Common;
 using Peernet.SDK.Models.Domain.Search;
 using Peernet.SDK.Models.Extensions;

@@ -22,9 +22,9 @@ namespace Peernet.Browser.Infrastructure.Services
             await profileClient.DeleteUserImage();
         }
 
-        public async Task<User> GetUser()
+        public async Task<User> GetUser(byte[]? node = null)
         {
-            var profileData = await profileClient.GetProfileData();
+            var profileData = await profileClient.GetProfileData(node);
             var name = profileData?.Fields?.FirstOrDefault(f => f.Type == ProfileField.ProfileFieldName)?.Text;
             var image = profileData?.Fields?.FirstOrDefault(f => f.Type == ProfileField.ProfilePicture)?.Blob;
 

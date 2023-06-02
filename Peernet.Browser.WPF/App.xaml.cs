@@ -79,7 +79,7 @@ namespace Peernet.Browser.WPF
             // To be able to capture it and log the NotificationsManager with exception handles needs to be available prior to
             new PeernetPluginsManager(Settings, notificationsManager).LoadPlugins(services);
             ServiceProvider = services.BuildServiceProvider();
-            
+
             Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
 
             if (Settings.ApiUrl == null)
@@ -92,7 +92,7 @@ namespace Peernet.Browser.WPF
             InitializeBackend();
 
             string[] args = Environment.GetCommandLineArgs();
-            if(args.Length > 1 )
+            if (args.Length > 1)
             {
                 logger.Information(args[1]);
                 ServiceProvider.GetService<IUriSchemeHandler>().Handle(args[1]).Wait();

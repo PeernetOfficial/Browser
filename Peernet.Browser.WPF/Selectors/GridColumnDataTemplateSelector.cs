@@ -1,6 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using Peernet.Browser.Application.ViewModels;
 using System.Windows;
-using Peernet.Browser.Application.ViewModels;
+using System.Windows.Controls;
 
 namespace Peernet.Browser.WPF.Selectors
 {
