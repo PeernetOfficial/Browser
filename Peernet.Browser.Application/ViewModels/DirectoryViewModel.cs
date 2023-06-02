@@ -32,6 +32,7 @@ namespace Peernet.Browser.Application.ViewModels
         private readonly IUserContext userContext;
         private readonly IVirtualFileSystemFactory virtualFileSystemFactory;
         private readonly IWarehouseClient warehouseClient;
+        private readonly IProfileService profileService;
         private int selectedIndex = 0;
 
         public DirectoryViewModel(
@@ -45,7 +46,8 @@ namespace Peernet.Browser.Application.ViewModels
             ISearchService searchService,
             IWarehouseClient warehouseClient,
             IFileClient fileClient,
-            IDataTransferManager dataTransferManager)
+            IDataTransferManager dataTransferManager,
+            IProfileService profileService)
         {
             this.userContext = userContext;
             this.mergeClient = mergeClient;
@@ -56,8 +58,9 @@ namespace Peernet.Browser.Application.ViewModels
             this.warehouseClient = warehouseClient;
             this.fileClient = fileClient;
             this.dataTransferManager = dataTransferManager;
+            this.profileService = profileService;
 
-            CurrentUserDirectoryViewModel = new CurrentUserDirectoryViewModel(blockchainService, virtualFileSystemFactory, modalNavigationService, notificationsManager, playButtonPlugs);
+            CurrentUserDirectoryViewModel = new CurrentUserDirectoryViewModel(userContext.User, blockchainService, virtualFileSystemFactory, modalNavigationService, notificationsManager, playButtonPlugs);
             DirectoryTabs = new ObservableCollection<DirectoryTabViewModel>(new List<DirectoryTabViewModel> { CurrentUserDirectoryViewModel });
         }
 
@@ -80,7 +83,7 @@ namespace Peernet.Browser.Application.ViewModels
         public async Task AddMergedTab(byte[] hash)
         {
             var searchResult = await GetAndStructureFilesPerNode(hash, mergeClient);
-            var tab = new UserDirectoryViewModel(Convert.ToHexString(hash), searchResult, CreateResultsSnapshot, CloseTab, virtualFileSystemFactory, playButtonPlugs);
+            var tab = new UserDirectoryViewModel(null, Convert.ToHexString(hash), searchResult, CreateResultsSnapshot, CloseTab, virtualFileSystemFactory, playButtonPlugs);
             DirectoryTabs.Add(tab);
 
             ChangeTabSelection(tab);
@@ -88,7 +91,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         public async Task AddTab(string title, SearchResult searchResult)
         {
-            var tab = new UserDirectoryViewModel(title, searchResult, CreateResultsSnapshot, CloseTab, virtualFileSystemFactory, playButtonPlugs);
+            var tab = new UserDirectoryViewModel(null, title, searchResult, CreateResultsSnapshot, CloseTab, virtualFileSystemFactory, playButtonPlugs);
             DirectoryTabs.Add(tab);
 
             ChangeTabSelection(tab);
@@ -101,7 +104,8 @@ namespace Peernet.Browser.Application.ViewModels
             if (tab == null)
             {
                 var searchResult = await blockchainService.GetFilesForNode(node);
-                tab = new UserDirectoryViewModel(Convert.ToHexString(node), searchResult, CreateResultsSnapshot, CloseTab, virtualFileSystemFactory, playButtonPlugs);
+                var user = await profileService.GetUser(node);
+                tab = new UserDirectoryViewModel(user, Convert.ToHexString(node), searchResult, CreateResultsSnapshot, CloseTab, virtualFileSystemFactory, playButtonPlugs);
                 DirectoryTabs.Add(tab);
             }
 

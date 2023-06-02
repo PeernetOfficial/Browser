@@ -1,6 +1,8 @@
 ﻿using DevExpress.Xpf.Grid;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.VisualBasic.ApplicationServices;
 using Peernet.Browser.Application.Download;
+using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.Utilities;
 using Peernet.Browser.Application.ViewModels;
 using Peernet.Browser.Application.ViewModels.Parameters;
@@ -10,6 +12,7 @@ using System;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Peernet.Browser.WPF.Controls
 {
@@ -54,21 +57,34 @@ namespace Peernet.Browser.WPF.Controls
         private async void AddDirectoryTab(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var directoryViewModel = App.ServiceProvider.GetRequiredService<DirectoryViewModel>();
-            var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;
-            var model = (DownloadModel)cellData.RowData.Row;
+            var model = (DownloadModel)((FrameworkElement)e.OriginalSource).DataContext;
             await directoryViewModel.AddTab(model.File.NodeId);
             directoryViewModel.Navigate.Invoke();
             e.Handled = true;
         }
 
-        private void AddMergedDirectoryTab(object sender, RoutedEventArgs e)
+        private async void AddMergedDirectoryTab(object sender, RoutedEventArgs e)
         {
             var directoryViewModel = App.ServiceProvider.GetRequiredService<DirectoryViewModel>();
             var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;
             var model = (DownloadModel)cellData.RowData.Row;
-            directoryViewModel.AddMergedTab(model.File.Hash);
+            await directoryViewModel.AddMergedTab(model.File.Hash);
             directoryViewModel.Navigate.Invoke();
             e.Handled = true;
+        }
+
+        private async void TextBlock_MouseEnter(object sender, MouseEventArgs e)
+        {
+            var dataContext = (DownloadModel)((FrameworkElement)e.OriginalSource).DataContext;
+            var profileService = App.ServiceProvider.GetRequiredService<IProfileService>();
+            var textBlock = sender as TextBlock;
+            var textBlockTooltipElement = (FrameworkElement)textBlock.ToolTip;
+            if (textBlockTooltipElement.DataContext is not User)
+            {
+                var user = await profileService.GetUser(dataContext.File.NodeId);
+                textBlockTooltipElement.DataContext = user;
+                textBlockTooltipElement.Visibility = Visibility.Visible;
+            }
         }
     }
 }

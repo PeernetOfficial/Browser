@@ -137,6 +137,7 @@ namespace Peernet.Browser.WPF.Controls
             {
                 var user = await profileService.GetUser(dataContext.File.NodeId);
                 textBlockTooltipElement.DataContext = user;
+                textBlockTooltipElement.Visibility = Visibility.Visible;
             }
         }
     }

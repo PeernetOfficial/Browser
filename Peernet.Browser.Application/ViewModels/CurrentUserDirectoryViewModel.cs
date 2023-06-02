@@ -9,6 +9,7 @@ using Peernet.SDK.Models.Domain.Blockchain;
 using Peernet.SDK.Models.Domain.Common;
 using Peernet.SDK.Models.Plugins;
 using Peernet.SDK.Models.Presentation.Footer;
+using Peernet.SDK.Models.Presentation.Profile;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -23,12 +24,13 @@ namespace Peernet.Browser.Application.ViewModels
         private Func<Task<List<ApiFile>>> filesProvider;
 
         public CurrentUserDirectoryViewModel(
+            User user,
             IBlockchainService blockchainService,
             IVirtualFileSystemFactory virtualFileSystemFactory,
             IModalNavigationService modalNavigationService,
             INotificationsManager notificationsManager,
             IEnumerable<IPlayButtonPlug> playButtonPlugs)
-            : base("My Directory", virtualFileSystemFactory, playButtonPlugs)
+            : base(user, "My Directory", virtualFileSystemFactory, playButtonPlugs)
         {
             this.blockchainService = blockchainService;
             this.modalNavigationService = modalNavigationService;

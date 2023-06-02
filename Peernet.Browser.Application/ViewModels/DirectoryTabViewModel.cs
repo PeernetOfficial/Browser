@@ -3,6 +3,7 @@ using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.SDK.Models.Domain.Common;
 using Peernet.SDK.Models.Extensions;
 using Peernet.SDK.Models.Plugins;
+using Peernet.SDK.Models.Presentation.Profile;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -20,14 +21,17 @@ namespace Peernet.Browser.Application.ViewModels
         private bool isLoaded = false;
         private ObservableCollection<VirtualFileSystemCoreEntity> pathElements;
         private string title;
+        private User user;
         private VirtualFileSystem.VirtualFileSystem virtualFileSystem;
 
         public DirectoryTabViewModel(
+            User? user,
             string title,
             IVirtualFileSystemFactory virtualFileSystemFactory,
             IEnumerable<IPlayButtonPlug> playButtonPlugs)
         {
-            Title = title;
+            User = user;
+            Title = user.Name ?? title;
             this.virtualFileSystemFactory = virtualFileSystemFactory;
             this.playButtonPlugs = playButtonPlugs;
         }
@@ -118,6 +122,16 @@ namespace Peernet.Browser.Application.ViewModels
             {
                 title = value;
                 OnPropertyChanged(nameof(Title));
+            }
+        }
+        
+        public User User
+        {
+            get => user;
+            set
+            {
+                user = value;
+                OnPropertyChanged(nameof(User));
             }
         }
 

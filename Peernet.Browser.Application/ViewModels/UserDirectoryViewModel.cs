@@ -4,6 +4,7 @@ using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.SDK.Models.Domain.Search;
 using Peernet.SDK.Models.Plugins;
 using Peernet.SDK.Models.Presentation.Footer;
+using Peernet.SDK.Models.Presentation.Profile;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -17,18 +18,20 @@ namespace Peernet.Browser.Application.ViewModels
         private SearchResult searchResult;
 
         public UserDirectoryViewModel(
-            string title,
+            User? user,
+            string nodeId,
             SearchResult searchResult,
             Func<string, SearchResult, Task<FileModel>> createResultsSnapshot,
             Func<DirectoryTabViewModel, Task> removeTabAction,
             IVirtualFileSystemFactory virtualFileSystemFactory,
             IEnumerable<IPlayButtonPlug> playButtonPlugs)
             : base(
-                  title,
+                  user,
+                  nodeId,
                   virtualFileSystemFactory,
                   playButtonPlugs)
         {
-            this.title = title;
+            this.title = user.Name ?? nodeId;
             this.searchResult = searchResult;
             this.createResultsSnapshot = createResultsSnapshot;
 
