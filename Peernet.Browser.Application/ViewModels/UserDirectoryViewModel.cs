@@ -31,7 +31,7 @@ namespace Peernet.Browser.Application.ViewModels
                   virtualFileSystemFactory,
                   playButtonPlugs)
         {
-            this.title = user.Name ?? nodeId;
+            this.title = user?.Name ?? nodeId;
             this.searchResult = searchResult;
             this.createResultsSnapshot = createResultsSnapshot;
 

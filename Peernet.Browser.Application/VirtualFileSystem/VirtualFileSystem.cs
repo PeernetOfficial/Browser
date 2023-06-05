@@ -87,7 +87,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
                 IsSelected = isCurrentSelection
             };
 
-            foreach (var coreTier in sharedFilesList.Select(StructureTheFile))
+            foreach (var coreTier in sharedFilesList.Where(f => f.Format != HighLevelFileType.PeernetSearch).Select(StructureTheFile))
             {
                 AddFileToTheSystem(coreTier, homeTier.VirtualFileSystemEntities);
             }

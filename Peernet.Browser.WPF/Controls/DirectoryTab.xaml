@@ -59,7 +59,7 @@
             <DockPanel Grid.Row="0" Margin="40, 0, 0, 0" VerticalAlignment="Center">
                 <Ellipse Height="100" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 10">
                     <Ellipse.Fill>
-                        <ImageBrush AlignmentX="Center" AlignmentY="Center" ImageSource="{Binding User.Image, Converter={StaticResource NullImageConverter}}" />
+                        <ImageBrush AlignmentX="Center" AlignmentY="Center" ImageSource="{Binding User.Image, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource NullImageConverter}}" />
                     </Ellipse.Fill>
                 </Ellipse>
                 <Button Margin="3, 4" ToolTip="Share the search result" VerticalAlignment="Top" Click="ShareDirectoryButton_Click">

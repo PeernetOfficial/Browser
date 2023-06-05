@@ -137,7 +137,7 @@
                                                                         <TextBlock Grid.Row="0" Margin="0, 5" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource Underlined}" />
                                                                         <Border Grid.Row="1" Height="250" Width="180">
                                                                             <Border.Background>
-                                                                                <ImageBrush ImageSource="{Binding Image, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource NullImageConverter}}" />
+                                                                                <ImageBrush Stretch="Uniform" ImageSource="{Binding Image, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource NullImageConverter}, ConverterParameter={StaticResource DefaultProfileImageDrawingImage}}" />
                                                                             </Border.Background>
                                                                         </Border>
                                                                     </Grid>
