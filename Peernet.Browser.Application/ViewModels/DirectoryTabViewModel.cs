@@ -20,18 +20,18 @@ namespace Peernet.Browser.Application.ViewModels
         private ObservableCollection<VirtualFileSystemEntity> activeSearchResults;
         private bool isLoaded = false;
         private ObservableCollection<VirtualFileSystemCoreEntity> pathElements;
-        private string title;
+        private string identifier;
         private User user;
         private VirtualFileSystem.VirtualFileSystem virtualFileSystem;
 
         public DirectoryTabViewModel(
             User? user,
-            string title,
+            string identifier,
             IVirtualFileSystemFactory virtualFileSystemFactory,
             IEnumerable<IPlayButtonPlug> playButtonPlugs)
         {
             User = user;
-            Title = user?.Name ?? title;
+            Identifier = identifier;
             this.virtualFileSystemFactory = virtualFileSystemFactory;
             this.playButtonPlugs = playButtonPlugs;
         }
@@ -115,16 +115,20 @@ namespace Peernet.Browser.Application.ViewModels
                     return Task.CompletedTask;
                 });
 
-        public string Title
+        public string Title => User?.Name ?? Identifier;
+
+        public string Identifier
         {
-            get => title;
+            get => identifier;
             set
             {
-                title = value;
+                identifier = value;
+                OnPropertyChanged(nameof(Identifier));
                 OnPropertyChanged(nameof(Title));
             }
         }
-        
+
+
         public User User
         {
             get => user;
@@ -132,6 +136,7 @@ namespace Peernet.Browser.Application.ViewModels
             {
                 user = value;
                 OnPropertyChanged(nameof(User));
+                OnPropertyChanged(nameof(Title));
             }
         }
 

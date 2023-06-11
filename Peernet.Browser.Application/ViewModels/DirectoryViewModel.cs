@@ -103,8 +103,8 @@ namespace Peernet.Browser.Application.ViewModels
 
             if (tab == null)
             {
-                var searchResult = await blockchainService.GetFilesForNode(node);
                 var user = await profileService.GetUser(node);
+                var searchResult = await blockchainService.GetFilesForNode(node);
                 tab = new UserDirectoryViewModel(user, Convert.ToHexString(node), searchResult, CreateResultsSnapshot, CloseTab, virtualFileSystemFactory, playButtonPlugs);
                 DirectoryTabs.Add(tab);
             }
@@ -184,7 +184,7 @@ namespace Peernet.Browser.Application.ViewModels
                 return CurrentUserDirectoryViewModel;
             }
 
-            return DirectoryTabs.FirstOrDefault(t => t.Title == hexNode);
+            return DirectoryTabs.FirstOrDefault(t => t.Identifier == hexNode);
         }
     }
 }
