@@ -101,7 +101,6 @@ namespace Peernet.Browser.Infrastructure.Tools
                     finally
                     {
                         settingsManager.ApiUrl = null;
-                        settingsManager.Save();
                     }
 
                     for (var i = 0; i < 25 && !process.HasExited; i++)

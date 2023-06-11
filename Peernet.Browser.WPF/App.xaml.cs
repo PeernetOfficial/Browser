@@ -147,8 +147,10 @@ namespace Peernet.Browser.WPF
 
         protected override void OnExit(ExitEventArgs e)
         {
-            ServiceProvider.GetRequiredService<ISettingsManager>().DefaultTheme = GlobalContext.VisualMode;
+            var settingsManager = ServiceProvider.GetRequiredService<ISettingsManager>();
+            settingsManager.DefaultTheme = GlobalContext.VisualMode;
             cmdRunner?.Dispose();
+            settingsManager.Save();
             base.OnExit(e);
         }
 
