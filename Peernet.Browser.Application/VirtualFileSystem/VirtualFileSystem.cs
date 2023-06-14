@@ -81,7 +81,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
         private void CreateHomeCoreTier(IEnumerable<ApiFile> sharedFiles, bool isCurrentSelection)
         {
             // materialize
-            var sharedFilesList = sharedFiles.ToList();
+            var sharedFilesList = sharedFiles?.ToList() ?? new();
             var homeTier = new VirtualFileSystemCoreTier(nameof(Home), VirtualFileSystemEntityType.Directory, Path.Combine("Files"))
             {
                 IsSelected = isCurrentSelection

@@ -124,7 +124,7 @@ namespace Peernet.Browser.Application.ViewModels
         private static async Task<SearchResult> GetAndStructureFilesPerNode(byte[] hash, IMergeClient mergeClient)
         {
             var result = await mergeClient.GetDirectoryContent(hash);
-            result.Files.ForEach(file =>
+            result.Files?.ForEach(file =>
             {
                 file.Folder = $"{Convert.ToHexString(file.NodeId)}/{file.Folder}";
             });

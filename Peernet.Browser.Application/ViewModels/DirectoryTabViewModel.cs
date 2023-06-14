@@ -262,7 +262,7 @@ namespace Peernet.Browser.Application.ViewModels
 
         protected void CreateVirtualFileSystem(bool restoreState = true)
         {
-            var sharedFiles = (Files.Where(f => f.Format != HighLevelFileType.PeernetSearch).ToList() ?? new()).Select(f => new VirtualFileSystemEntity(f)).ToList();
+            var sharedFiles = (Files?.Where(f => f.Format != HighLevelFileType.PeernetSearch).ToList() ?? new()).Select(f => new VirtualFileSystemEntity(f)).ToList();
             SetPlayerState(sharedFiles);
             var selected = restoreState ? VirtualFileSystem?.GetCurrentlySelected() : null;
 
