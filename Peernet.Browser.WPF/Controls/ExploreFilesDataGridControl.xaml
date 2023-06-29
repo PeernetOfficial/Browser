@@ -41,10 +41,34 @@
                         </DataTemplate>
                     </dxg:GridColumn.CellTemplate>
                 </dxg:GridColumn>
-                <dxg:GridColumn Header="User" SortFieldName="File.NodeId" Binding="{Binding RowData.Row.File.NodeId, Converter={StaticResource ByteArrayToHexStringConverter}}" FieldName="File.NodeId" ColumnFilterMode="DisplayText" Width="140">
+                <dxg:GridColumn Header="User" SortFieldName="File.Username" Binding="{Binding RowData.Row.File.Username}" FieldName="File.Username" ColumnFilterMode="DisplayText" Width="140">
                     <dxg:GridColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock DataContext="{Binding RowData.Row}" Text="{Binding File.NodeId, Converter={StaticResource ByteArrayToHexStringConverter}}" Style="{StaticResource Underlined}" VerticalAlignment="Center" HorizontalAlignment="Left" PreviewMouseLeftButtonDown="AddDirectoryTab" MouseEnter="TextBlock_MouseEnter">
+                            <TextBlock DataContext="{Binding RowData.Row}" VerticalAlignment="Center" HorizontalAlignment="Left" PreviewMouseLeftButtonDown="AddDirectoryTab" MouseEnter="TextBlock_MouseEnter">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource Underlined}">
+                                        <Setter Property="Text">
+                                            <Setter.Value>
+                                                <MultiBinding StringFormat="{}{0} ({1})">
+                                                    <Binding Path="File.NodeId" Converter="{StaticResource ByteArrayToHexStringConverter}" />
+                                                    <Binding Path="File.Username" />
+                                                </MultiBinding>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding File.Username}" Value="">
+                                                <Setter Property="Text">
+                                                    <Setter.Value>
+                                                        <MultiBinding StringFormat="{}{0}">
+                                                            <Binding Path="File.NodeId" Converter="{StaticResource ByteArrayToHexStringConverter}" />
+                                                            <Binding Path="File.Username" />
+                                                        </MultiBinding>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
                                 <TextBlock.ToolTip>
                                     <ToolTip ToolTipService.InitialShowDelay="0" ToolTipService.BetweenShowDelay="0" Visibility="Hidden">
                                         <ToolTip.Style>

@@ -45,11 +45,18 @@
                     </Border.InputBindings>
                 </Border>
                 <StackPanel Grid.Column="1" Margin="8,0,0,0" Orientation="Horizontal">
-                    <TextBlock Foreground="{DynamicResource MainContentBrush}" FontFamily="Inter" FontSize="14" FontWeight="Medium" Text="{Binding NavBar.UserContext.User.Name}" Cursor="Hand" TextTrimming="CharacterEllipsis" Width="90">
-                        <TextBlock.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding NavBar.EditProfileCommand}" />
-                        </TextBlock.InputBindings>
-                    </TextBlock>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Foreground="{DynamicResource MainContentBrush}" FontFamily="Inter" FontSize="14" FontWeight="Medium" Text="{Binding NavBar.UserContext.User.Name}" Cursor="Hand" TextTrimming="CharacterEllipsis" Width="90">
+                            <TextBlock.InputBindings>
+                                <MouseBinding Command="{Binding NavBar.EditProfileCommand}" MouseAction="LeftClick" />
+                            </TextBlock.InputBindings>
+                        </TextBlock>
+                        <TextBlock Grid.Row="1" Margin="0, 5, 0, 0" Foreground="{DynamicResource GrayedOutItemBrush}" FontFamily="Inter" FontSize="14" FontWeight="Light" Text="{Binding NavBar.UserContext.PeerId}" ToolTip="{Binding NavBar.UserContext.PeerId}" Cursor="Arrow" TextTrimming="CharacterEllipsis" Width="90" />
+                    </Grid>
                     <Button Padding="7" VerticalAlignment="Top" HorizontalAlignment="Right" Width="30" Height="30" Margin="0,-7,0,0" Command="{Binding NavBar.EditProfileCommand}" Style="{StaticResource ButtonBaseStyle}">
                         <Button.Background>
                             <ImageBrush ImageSource="{DynamicResource EditDrawingImage}" />

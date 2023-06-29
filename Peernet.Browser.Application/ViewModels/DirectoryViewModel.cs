@@ -126,7 +126,8 @@ namespace Peernet.Browser.Application.ViewModels
             var result = await mergeClient.GetDirectoryContent(hash);
             result.Files?.ForEach(file =>
             {
-                file.Folder = $"{Convert.ToHexString(file.NodeId)}/{file.Folder}";
+                var rootSegment = !string.IsNullOrEmpty(file.Username) ? file.Username : Convert.ToHexString(file.NodeId);
+                file.Folder = $"{rootSegment}/{file.Folder}";
             });
 
             return result;

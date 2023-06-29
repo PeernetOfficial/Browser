@@ -66,6 +66,16 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Grid Margin="20, 0 , 0, 0">
+                                <Grid.Style>
+                                    <Style TargetType="{x:Type Grid}">
+                                        <Setter Property="Cursor" Value="Wait" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsCompleted}" Value="True">
+                                                <Setter Property="Cursor" Value="Hand" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Grid.Style>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="24"></ColumnDefinition>
                                     <ColumnDefinition Width="190"></ColumnDefinition>
@@ -79,7 +89,7 @@
                                     <TextBlock Text="{Binding Name}" FontWeight="SemiBold" ToolTip="{Binding Name}" Style="{StaticResource Active}" />
                                     <Button.Style>
                                         <Style BasedOn="{StaticResource ButtonBaseStyle}" TargetType="{x:Type Button}">
-                                            <Setter Property="Cursor" Value="Arrow" />
+                                            <Setter Property="Cursor" Value="Wait" />
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding IsCompleted}" Value="True">
                                                     <Setter Property="Cursor" Value="Hand" />
@@ -101,11 +111,27 @@
                                                     <Setter Property="Text" Value="Data transfer completed!" />
                                                     <Setter Property="Grid.ColumnSpan" Value="2" />
                                                 </DataTrigger>
+                                                <MultiDataTrigger>
+                                                    <MultiDataTrigger.Conditions>
+                                                        <Condition Binding="{Binding IsCompleted}" Value="False" />
+                                                        <Condition Binding="{Binding Progress}" Value="0" />
+                                                        <Condition Binding="{Binding Status}" Value="{x:Static presentationModels:DataTransferStatus.Active}" />
+                                                    </MultiDataTrigger.Conditions>
+                                                    <Setter Property="Text" Value="Loading..." />
+                                                </MultiDataTrigger>
+                                                <MultiDataTrigger>
+                                                    <MultiDataTrigger.Conditions>
+                                                        <Condition Binding="{Binding IsCompleted}" Value="False" />
+                                                        <Condition Binding="{Binding Progress}" Value="100" />
+                                                        <Condition Binding="{Binding Status}" Value="{x:Static presentationModels:DataTransferStatus.Active}" />
+                                                    </MultiDataTrigger.Conditions>
+                                                    <Setter Property="Text" Value="Finishing..." />
+                                                </MultiDataTrigger>
                                             </Style.Triggers>
                                         </Style>
                                     </TextBlock.Style>
                                 </TextBlock>
-                                <ProgressBar x:Name="ProgressBar" Grid.Column="3" Margin="12,0,0,0" Minimum="0" Maximum="100" Value="{Binding Progress}" Width="100" Background="#F2F2F2" Foreground="{DynamicResource MainContentBrush}" BorderThickness="0" Height="1" VerticalAlignment="Center">
+                                <ProgressBar x:Name="ProgressBar" Grid.Column="3" Margin="12,0,0,0" Minimum="0" Maximum="100" Value="{Binding Progress}" Width="100" Foreground="{DynamicResource MainContentBrush}" Background="{DynamicResource GrayedOutBackgroundBrush}" BorderThickness="0" Height="5" VerticalAlignment="Center">
                                     <ProgressBar.Style>
                                         <Style TargetType="{x:Type ProgressBar}">
                                             <Setter Property="Visibility" Value="Visible" />
@@ -113,6 +139,22 @@
                                                 <DataTrigger Binding="{Binding IsCompleted}" Value="True">
                                                     <Setter Property="Visibility" Value="Collapsed" />
                                                 </DataTrigger>
+                                                <MultiDataTrigger>
+                                                    <MultiDataTrigger.Conditions>
+                                                        <Condition Binding="{Binding IsCompleted}" Value="False" />
+                                                        <Condition Binding="{Binding Progress}" Value="0" />
+                                                        <Condition Binding="{Binding Status}" Value="{x:Static presentationModels:DataTransferStatus.Active}" />
+                                                    </MultiDataTrigger.Conditions>
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                </MultiDataTrigger>
+                                                <MultiDataTrigger>
+                                                    <MultiDataTrigger.Conditions>
+                                                        <Condition Binding="{Binding IsCompleted}" Value="False" />
+                                                        <Condition Binding="{Binding Progress}" Value="100" />
+                                                        <Condition Binding="{Binding Status}" Value="{x:Static presentationModels:DataTransferStatus.Active}" />
+                                                    </MultiDataTrigger.Conditions>
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                </MultiDataTrigger>
                                             </Style.Triggers>
                                         </Style>
                                     </ProgressBar.Style>
