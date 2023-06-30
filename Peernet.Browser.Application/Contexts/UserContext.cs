@@ -1,4 +1,5 @@
-﻿using Peernet.Browser.Application.Extensions;
+﻿using Peernet.Browser.Application.Dispatchers;
+using Peernet.Browser.Application.Extensions;
 using Peernet.Browser.Application.Services;
 using Peernet.SDK.Models.Presentation.Profile;
 using System.ComponentModel;
@@ -33,8 +34,6 @@ namespace Peernet.Browser.Application.Contexts
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public bool HasUserChanged { get; set; }
-
         public User User
         {
             get => user;
@@ -42,7 +41,6 @@ namespace Peernet.Browser.Application.Contexts
             {
                 user = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(User)));
-                User.PropertyChanged += SubscribeToUserModifications;
             }
         }
 
@@ -73,12 +71,6 @@ namespace Peernet.Browser.Application.Contexts
             PeerId = selfPeer.PeerId;
             NodeId = selfPeer.NodeId;
             User = Task.Run(async () => await profileService.GetUser()).GetResultBlockingWithoutContextSynchronization();
-            HasUserChanged = false;
-        }
-
-        public void SubscribeToUserModifications(object sender, PropertyChangedEventArgs e)
-        {
-            HasUserChanged = true;
         }
     }
 }

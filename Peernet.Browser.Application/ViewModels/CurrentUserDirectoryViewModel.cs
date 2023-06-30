@@ -18,6 +18,7 @@ namespace Peernet.Browser.Application.ViewModels
 {
     public class CurrentUserDirectoryViewModel : DirectoryTabViewModel
     {
+        private const string TabIdentifier = "My Directory";
         private readonly IBlockchainService blockchainService;
         private readonly INotificationsManager notificationsManager;
         private readonly IModalNavigationService modalNavigationService;
@@ -30,11 +31,12 @@ namespace Peernet.Browser.Application.ViewModels
             IModalNavigationService modalNavigationService,
             INotificationsManager notificationsManager,
             IEnumerable<IPlayButtonPlug> playButtonPlugs)
-            : base(user, "My Directory", virtualFileSystemFactory, playButtonPlugs)
+            : base(user, TabIdentifier, virtualFileSystemFactory, playButtonPlugs)
         {
             this.blockchainService = blockchainService;
             this.modalNavigationService = modalNavigationService;
             this.notificationsManager = notificationsManager;
+            Title = TabIdentifier;
             filesProvider = async () => await GetFiles(blockchainService);
 
             Task.Run(async () => await ReloadVirtualFileSystem(false)).ConfigureAwait(false).GetAwaiter().GetResult();

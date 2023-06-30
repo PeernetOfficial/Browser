@@ -1,6 +1,7 @@
 ﻿using DevExpress.Mvvm.Native;
 using Newtonsoft.Json;
 using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.Application.Dispatchers;
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Navigation;
@@ -13,6 +14,7 @@ using Peernet.SDK.Models.Plugins;
 using Peernet.SDK.Models.Presentation;
 using Peernet.SDK.Models.Presentation.Footer;
 using Peernet.SDK.Models.Presentation.Home;
+using Peernet.SDK.Models.Presentation.Profile;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -60,8 +62,15 @@ namespace Peernet.Browser.Application.ViewModels
             this.dataTransferManager = dataTransferManager;
             this.profileService = profileService;
 
+            // It is not the best solution - check why provided userContext.User does not notify changes inside CurrentUserDirectoryViewModel
+            userContext.PropertyChanged += UserContext_PropertyChanged;
             CurrentUserDirectoryViewModel = new CurrentUserDirectoryViewModel(userContext.User, blockchainService, virtualFileSystemFactory, modalNavigationService, notificationsManager, playButtonPlugs);
             DirectoryTabs = new ObservableCollection<DirectoryTabViewModel>(new List<DirectoryTabViewModel> { CurrentUserDirectoryViewModel });
+        }
+
+        private void UserContext_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            CurrentUserDirectoryViewModel.User = userContext.User;
         }
 
         public DirectoryTabViewModel Content => SelectedIndex < 0 ? null : DirectoryTabs[SelectedIndex];

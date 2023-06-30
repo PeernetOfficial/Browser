@@ -32,8 +32,14 @@ namespace Peernet.Browser.Application.ViewModels
         {
             User = user;
             Identifier = identifier;
+            Title = User?.Name ?? Identifier;
             this.virtualFileSystemFactory = virtualFileSystemFactory;
             this.playButtonPlugs = playButtonPlugs;
+        }
+
+        private void User_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
 
         public ObservableCollection<VirtualFileSystemEntity> ActiveSearchResults
@@ -115,7 +121,7 @@ namespace Peernet.Browser.Application.ViewModels
                     return Task.CompletedTask;
                 });
 
-        public string Title => User?.Name ?? Identifier;
+        public string Title { get; protected set; }
 
         public string Identifier
         {

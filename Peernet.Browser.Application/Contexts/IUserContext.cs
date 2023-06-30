@@ -1,10 +1,11 @@
 ﻿using Peernet.SDK.Models.Presentation.Profile;
+using System.ComponentModel;
 
 namespace Peernet.Browser.Application.Contexts
 {
     public interface IUserContext
     {
-        bool HasUserChanged { get; set; }
+        event PropertyChangedEventHandler PropertyChanged;
 
         string PeerId { get; set; }
 
