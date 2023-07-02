@@ -12,19 +12,23 @@
         <local:FiltersControl Grid.Row="0" Panel.ZIndex="1" Margin="0 0 30 0" HorizontalAlignment="Right" VerticalAlignment="Top" />
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="55" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="5" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="55" />
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
             <DockPanel Grid.Row="0" Grid.Column="0" Panel.ZIndex="2" Margin="9 0" LastChildFill="False" HorizontalAlignment="Left">
-                <Button Margin="3, 13" Command="{Binding FilterOwnFiles}" Height="25" Padding="5, 0" Width="Auto" Style="{StaticResource ButtonBaseStyle}" Background="Transparent" VerticalAlignment="Top" ToolTip="Filter for my content">
+                <Button Margin="3, 0" Command="{Binding FilterOwnFiles}" Height="25" Padding="5, 0" Width="Auto" Style="{StaticResource ButtonBaseStyle}" Background="Transparent" VerticalAlignment="Center" ToolTip="Filter for my content">
                     <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE77B;" FontSize="16" Foreground="{DynamicResource MainContentBrush}" />
                 </Button>
-                <Button Margin="3, 4" Style="{StaticResource DataGridActionButton}" ToolTip="Share the search result" VerticalAlignment="Top" Click="ShareResultsButton_Click">
+                <Button Margin="3, 0" Style="{StaticResource DataGridActionButton}" ToolTip="Share the search result" VerticalAlignment="Center" Click="ShareResultsButton_Click">
                     <Button.Background>
                         <ImageBrush ImageSource="{DynamicResource Share_SelectedDrawingImage}" />
                     </Button.Background>
@@ -43,7 +47,7 @@
                 </ItemsControl>
             </DockPanel>
 
-            <DockPanel Panel.ZIndex="2"  Margin="0 0 50 0" LastChildFill="False" Grid.Row="0"  HorizontalAlignment="Right">
+            <DockPanel Panel.ZIndex="2"  Margin="0 0 50 0" LastChildFill="False" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right">
                 <local:FilterIconControl Height="40" DataContext="{Binding ColumnsIconModel}" PreviewMouseDown="FilterIconControl_PreviewMouseDown" />
                 <local:FilterIconControl Height="40" DataContext="{Binding FiltersIconModel}" />
             </DockPanel>
@@ -79,6 +83,7 @@
                              Padding="25 10 15 0"
                              HorizontalAlignment="Stretch"
                              Grid.Row="3"
+                             Grid.ColumnSpan="2"
                              ItemsSource="{Binding ActiveSearchResults, IsAsync=True}">
                 <dxg:GridControl.View>
                     <dxg:TableView x:Name="SearchResultsTable" />
@@ -296,9 +301,10 @@
                     </dxg:GridColumn>
                 </dxg:GridControl.Columns>
             </dxg:GridControl>
-            <TextBlock FontSize="14" Foreground="{DynamicResource MainContentBrush}" Visibility="{Binding Loader.IsLoading, Converter={StaticResource BoolToVisibility}}" Margin="60 40" Grid.Row="3" Text="{Binding Loader.Text}" />
+            <TextBlock FontSize="14" Foreground="{DynamicResource MainContentBrush}" Visibility="{Binding Loader.IsLoading, Converter={StaticResource BoolToVisibility}}" Margin="60 40" Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding Loader.Text}" />
             <local:PagerControl x:Name="pager"
                                 Grid.Row="4"
+                                Grid.ColumnSpan="2"
                                 PageSize="{Binding PageSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                 PageIndex="{Binding PageIndex, Mode=TwoWay}"
                                 PagesCount="{Binding PagesCount}"
@@ -307,7 +313,7 @@
                                 PreviousPageCommand="{Binding PreviousPageCommand}"
                                 LastPageCommand="{Binding LastPageCommand}"
                                 Margin="0, 5, 0, 0" />
-            <Separator Grid.Row="5" Style="{DynamicResource StandardSeparatorStyle}" VerticalAlignment="Top" />
+            <Separator Grid.Row="5" Grid.ColumnSpan="2" Style="{DynamicResource StandardSeparatorStyle}" VerticalAlignment="Top" />
         </Grid>
     </Grid>
 </UserControl>
