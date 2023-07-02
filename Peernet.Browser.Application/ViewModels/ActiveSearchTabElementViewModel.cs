@@ -94,7 +94,15 @@ namespace Peernet.Browser.Application.ViewModels
 
         public IAsyncCommand FilterOwnFiles => new AsyncCommand(async () =>
         {
-            Filters.SearchFilterResult.NodeId = userContext.NodeId;
+            if (Filters.SearchFilterResult.NodeId == userContext.NodeId)
+            {
+                Filters.SearchFilterResult.NodeId = null;
+            }
+            else
+            {
+                Filters.SearchFilterResult.NodeId = userContext.NodeId;
+            }
+
             await Refresh();
         });
     }

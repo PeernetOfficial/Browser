@@ -7,7 +7,6 @@ using Peernet.Browser.Application.Utilities;
 using Peernet.SDK.Models.Domain.Blockchain;
 using Peernet.SDK.Models.Presentation.Footer;
 using Peernet.SDK.Models.Presentation.Profile;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
@@ -46,9 +45,7 @@ namespace Peernet.Browser.Application.ViewModels
         
         public IAsyncCommand SaveChangesCommand => new AsyncCommand(async () =>
            {
-               var x = userContext.User.Image.SequenceEqual(User.Image);
-
-               if (!userContext.User.Equals(User))
+               if (userContext.User != User)
                {
                    var result = await profileService.UpdateUser(User.Name, User.Image);
                    if (result is not { Status: BlockchainStatus.StatusOK })
@@ -60,9 +57,10 @@ namespace Peernet.Browser.Application.ViewModels
                            MessagingHelper.GetInOutSummary(User, result);
                        notificationsManager.Notifications.Add(new Notification(message, details, Severity.Error));
                    }
+                   
+                   userContext.ReloadContext();
                }
                
-               userContext.ReloadContext();
                modalNavigationService.Close();
            });
 
