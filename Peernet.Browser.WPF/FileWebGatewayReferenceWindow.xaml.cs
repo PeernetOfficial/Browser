@@ -8,6 +8,7 @@ using Peernet.SDK.WPF;
 using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Web;
 using System.Windows;
 using System.Windows.Input;
 
@@ -20,7 +21,7 @@ namespace Peernet.Browser.WPF
     {
         public ApiFile File { get; set; }
 
-        public Uri[] WebGatewayResourceUris => GetWebGatewayResourceUris();
+        public string[] WebGatewayResourceUris => GetWebGatewayResourceUris();
 
         public FileWebGatewayReferenceWindow(ApiFile file)
         {
@@ -75,28 +76,29 @@ namespace Peernet.Browser.WPF
 
         private void CopyLinkToClipboard_OnClick(object sender, RoutedEventArgs e)
         {
-            var webGatewayUri = ((FrameworkElement)e.OriginalSource)?.DataContext as Uri;
-            Clipboard.SetText(webGatewayUri?.ToString());
+            var webGatewayUri = ((FrameworkElement)e.OriginalSource)?.DataContext as string;
+            Clipboard.SetText(webGatewayUri);
             App.ServiceProvider.GetRequiredService<INotificationsManager>().Notifications.Add(new Notification("Copied to clipboard!"));
         }
 
-        private Uri[] GetWebGatewayResourceUris()
+        private string[] GetWebGatewayResourceUris()
         {
             var domains = App.ServiceProvider.GetRequiredService<ISettingsManager>().WebGatewayDomains;
 
             return domains?.Select(domain =>
+            HttpUtility.UrlDecode(
                 new UriBuilder
                 {
                     Scheme = Uri.UriSchemeHttps,
                     Host = domain,
-                    Path = $"{Convert.ToHexString(File?.NodeId)}/{Convert.ToHexString(File?.Hash)}"
-                }.Uri).ToArray();
+                    Path = $"{Convert.ToHexString(File?.NodeId)}/{Convert.ToHexString(File?.Hash)}?fileName={File.Name}"
+                }.ToString())).ToArray();
         }
 
         private void TextBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            var uri = (Uri)((FrameworkElement)e.OriginalSource).DataContext;
-            var processInfo = new ProcessStartInfo(uri.ToString());
+            var uri = (string)((FrameworkElement)e.OriginalSource).DataContext;
+            var processInfo = new ProcessStartInfo(uri);
             processInfo.UseShellExecute = true;
             Process.Start(processInfo);
             e.Handled = true;
