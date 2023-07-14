@@ -73,7 +73,11 @@ namespace Peernet.Browser.Application.ViewModels
                 OnPropertyChanged(nameof(Alignment));
                 GlobalContext.IsLogoVisible = IsVisible;
             };
+
+            Bookmarks = new ObservableCollection<string>(new[] { "SpaceX", "News", "NFX", "World" });
         }
+
+        public ObservableCollection<string> Bookmarks { get; }
 
         public AdvancedFilterModel AdvancedFilter { get; set; } = new();
 
