@@ -178,7 +178,7 @@ namespace Peernet.Browser.Application.ViewModels
         {
             FinishedProcessing = false;
             Task.Run(() => Parameter.Confirm(Files.ToArray()));
-            
+
             FinishedProcessing = true;
             Cancel();
 

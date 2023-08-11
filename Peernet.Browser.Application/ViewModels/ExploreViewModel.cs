@@ -201,7 +201,7 @@ namespace Peernet.Browser.Application.ViewModels
                     }
                     categoryTypes.ForEach(c => c.ResetSelection());
                     category.IsSelected = true;
-                    
+
                     await ReloadResults();
                     ReloadActiveResultsFromCache();
                 });

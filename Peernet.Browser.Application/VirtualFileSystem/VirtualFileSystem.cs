@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using Peernet.SDK.Models.Domain.Common;
+﻿using Peernet.SDK.Models.Domain.Common;
 using Peernet.SDK.Models.Extensions;
 using System;
 using System.Collections.Generic;
@@ -82,13 +81,13 @@ namespace Peernet.Browser.Application.VirtualFileSystem
         private void CreateHomeCoreTier(IEnumerable<ApiFile> sharedFiles, bool isCurrentSelection)
         {
             // materialize
-            var sharedFilesList = sharedFiles.ToList();
+            var sharedFilesList = sharedFiles?.ToList() ?? new();
             var homeTier = new VirtualFileSystemCoreTier(nameof(Home), VirtualFileSystemEntityType.Directory, Path.Combine("Files"))
             {
                 IsSelected = isCurrentSelection
             };
 
-            foreach (var coreTier in sharedFilesList.Select(StructureTheFile))
+            foreach (var coreTier in sharedFilesList.Where(f => f.Format != HighLevelFileType.PeernetSearch).Select(StructureTheFile))
             {
                 AddFileToTheSystem(coreTier, homeTier.VirtualFileSystemEntities);
             }

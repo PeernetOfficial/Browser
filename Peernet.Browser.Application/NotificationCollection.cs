@@ -1,6 +1,6 @@
-﻿using Serilog;
-using Peernet.Browser.Application.Dispatchers;
+﻿using Peernet.Browser.Application.Dispatchers;
 using Peernet.SDK.Models.Presentation.Footer;
+using Serilog;
 using System.Collections.ObjectModel;
 using System.Threading;
 

@@ -6,7 +6,6 @@ using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.SDK.Client.Clients;
 using Peernet.SDK.Common;
-using Peernet.SDK.Models.Domain.Download;
 using Peernet.SDK.Models.Domain.Status;
 using Peernet.SDK.Models.Presentation;
 using Peernet.SDK.Models.Presentation.Footer;
@@ -230,7 +229,7 @@ namespace Peernet.Browser.Application.ViewModels
                 if (status != null)
                 {
                     Peers = status.CountPeerList;
-                    PeerStatuses = new (await statusService.GetPeersStatus());
+                    PeerStatuses = new(await statusService.GetPeersStatus());
                 }
 
                 await Task.Delay(3000);

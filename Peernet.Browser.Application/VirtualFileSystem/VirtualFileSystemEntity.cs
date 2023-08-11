@@ -9,7 +9,7 @@ namespace Peernet.Browser.Application.VirtualFileSystem
     {
         private readonly VirtualFileSystemEntityType? type;
         private string name;
-        
+
         // For serialization
         public VirtualFileSystemEntity()
         {

@@ -1,0 +1,141 @@
+﻿<UserControl x:Class="Peernet.Browser.WPF.Controls.CurrentUserDataGridControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:common="clr-namespace:Peernet.Browser.Application.VirtualFileSystem;assembly=Application"
+             mc:Ignorable="d"
+             x:Name="currentUserDataGridControl">
+    <Grid>
+        <dxg:GridControl ItemsSource="{Binding ActiveSearchResults, IsAsync=True}">
+            <dxg:GridControl.View>
+                <dxg:TableView />
+            </dxg:GridControl.View>
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn Header="NAME" SortFieldName="Name" FieldName="Name" Width="*" MinWidth="150" HeaderStyle="{DynamicResource ShiftedDataGridColumnHeaderStyle}" HorizontalHeaderContentAlignment="Left">
+                    <dxg:GridColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Margin="20, 0, 0, 0"
+                                    Click="Open_OnClick"
+                                    Style="{StaticResource ButtonBaseStyle}"
+                                    Background="Transparent" Width="Auto"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Width="13.71" Height="20" Style="{StaticResource VirtualFileSystemEntityImageStyle}" DataContext="{Binding Path=RowData.Row}" />
+                                    <TextBlock Text="{Binding Path=RowData.Row.Name}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource Underlined}" />
+                                </StackPanel>
+                            </Button>
+                        </DataTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                </dxg:GridColumn>
+                <dxg:GridColumn Header="FOLDER" SortFieldName="Folder" FieldName="Folder" Width="90" Visible="False">
+                    <dxg:GridColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=RowData.Row.Folder}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </DataTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                </dxg:GridColumn>
+                <dxg:GridColumn Header="TYPE" SortFieldName="Type" FieldName="Type" Width="70">
+                    <dxg:GridColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=RowData.Row.Type}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </DataTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                </dxg:GridColumn>
+                <dxg:GridColumn Header="DATA FORMAT" SortFieldName="DataFormat" FieldName="DataFormat" Width="100" Visible="False">
+                    <dxg:GridColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=RowData.Row.DataFormat}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </DataTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                </dxg:GridColumn>
+                <dxg:GridColumn Header="DATE" SortFieldName="Date" FieldName="Date" Width="100">
+                    <dxg:GridColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=RowData.Row.Date, StringFormat=d}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </DataTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                </dxg:GridColumn>
+                <dxg:GridColumn Header="SIZE" SortFieldName="File.Size" FieldName="File.Size" Width="100">
+                    <dxg:GridColumn.GroupValueTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}SIZE: {0}">
+                                        <Binding Path="RowData.Row.FileSize" Converter="{StaticResource BytesToSuffixConverter}" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </dxg:GridColumn.GroupValueTemplate>
+                    <dxg:GridColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=RowData.Row.FileSize, Converter={StaticResource BytesToSuffixConverter}}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </DataTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                </dxg:GridColumn>
+                <dxg:GridColumn Width="Auto">
+                    <dxg:GridColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button ToolTip="Edit" Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.EditCommand, ElementName=currentUserDataGridControl}" CommandParameter="{Binding RowData.Row}">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="{DynamicResource EditDrawingImage}" />
+                                    </Button.Background>
+                                </Button>
+                                <Button Style="{StaticResource DataGridActionButton}" PreviewMouseLeftButtonDown="OpenInfo_OnClick" ToolTip="Details">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="{DynamicResource InfoDrawingImage}" />
+                                    </Button.Background>
+                                </Button>
+                                <Button Command="{Binding DataContext.StreamFileCommand, ElementName=currentUserDataGridControl}" CommandParameter="{Binding RowData.Row}" Height="39" Width="37" IsEnabled="{Binding RowData.Row.IsPlayerEnabled}">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="{DynamicResource PlayDrawingImage}" />
+                                    </Button.Background>
+                                    <Button.Style>
+                                        <Style BasedOn="{StaticResource DataGridActionButton}" TargetType="{x:Type Button}">
+                                            <Setter Property="ToolTip" Value="Play" />
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                                <Button Style="{StaticResource DataGridActionButton}" Click="Share_Click" ToolTip="Share">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="{DynamicResource Share_SelectedDrawingImage}" />
+                                    </Button.Background>
+                                </Button>
+                                <Button ToolTip="Delete" Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.DeleteFileCommand, ElementName=currentUserDataGridControl}" CommandParameter="{Binding RowData.Row}">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="{DynamicResource BinDrawingImage}" />
+                                    </Button.Background>
+                                </Button>
+                                <StackPanel.Style>
+                                    <Style TargetType="{x:Type StackPanel}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=RowData.Row.Type}" Value="{x:Static common:VirtualFileSystemEntityType.Directory}">
+                                                <Setter Property="Visibility" Value="Hidden" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </StackPanel.Style>
+                            </StackPanel>
+                        </DataTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                </dxg:GridColumn>
+            </dxg:GridControl.Columns>
+        </dxg:GridControl>
+        <TextBlock FontSize="14" Foreground="{DynamicResource MainContentBrush}" Text="Loading..." Background="Transparent" Margin="60 40">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Hidden" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsLoaded}" Value="False">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+    </Grid>
+</UserControl>

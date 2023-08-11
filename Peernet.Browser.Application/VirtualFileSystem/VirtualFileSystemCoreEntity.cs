@@ -35,7 +35,6 @@ namespace Peernet.Browser.Application.VirtualFileSystem
 
         public ObservableCollection<VirtualFileSystemEntity> VirtualFileSystemEntities { get; set; } = new();
 
-
         public VirtualFileSystemCoreEntity GetSelected()
         {
             if (IsSelected)

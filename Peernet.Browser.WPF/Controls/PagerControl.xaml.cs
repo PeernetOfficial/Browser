@@ -12,9 +12,11 @@ namespace Peernet.Browser.WPF.Controls
     public partial class PagerControl : UserControl
     {
         public event EventHandler PageSizeChanged;
+
         public event EventHandler PageIndexChanged;
 
         private static readonly Regex _regex = new Regex("[^0-9]+"); //regex that matches disallowed text
+
         private static bool IsTextAllowed(string text)
         {
             return !_regex.IsMatch(text);
@@ -27,11 +29,11 @@ namespace Peernet.Browser.WPF.Controls
         public static readonly DependencyProperty PageSizeProperty =
                     DependencyProperty.Register("PageSize", typeof(int),
                 typeof(PagerControl), new PropertyMetadata(OnPageSizeChangedCallBack));
-        
+
         public static readonly DependencyProperty PagesCountProperty =
                     DependencyProperty.Register("PagesCount", typeof(int),
                 typeof(PagerControl), null);
-        
+
         public static readonly DependencyProperty FirstPageCommandProperty =
                     DependencyProperty.Register("FirstPageCommand", typeof(ICommand),
                 typeof(PagerControl), null);
@@ -74,7 +76,7 @@ namespace Peernet.Browser.WPF.Controls
             get => (ICommand)GetValue(LastPageCommandProperty);
             set => SetValue(LastPageCommandProperty, value);
         }
-        
+
         public ICommand PreviousPageCommand
         {
             get => (ICommand)GetValue(PreviousPageCommandProperty);
@@ -113,7 +115,7 @@ namespace Peernet.Browser.WPF.Controls
                 pc?.PageSizeChanged?.Invoke(sender, new());
             }
         }
-        
+
         private static void OnPageIndexChangedCallBack(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             PagerControl pc = sender as PagerControl;

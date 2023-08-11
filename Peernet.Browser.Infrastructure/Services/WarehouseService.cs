@@ -2,7 +2,6 @@
 using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.Utilities;
 using Peernet.SDK.Client.Clients;
-using Peernet.SDK.Client.Http;
 using Peernet.SDK.Common;
 using Peernet.SDK.Models.Domain.Common;
 using Peernet.SDK.Models.Domain.Warehouse;

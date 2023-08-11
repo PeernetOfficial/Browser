@@ -1,34 +1,42 @@
 ﻿<UserControl x:Class="Peernet.Browser.WPF.Controls.SearchResultTabContent"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Peernet.Browser.WPF.Controls"
-             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:profile="clr-namespace:Peernet.SDK.Models.Presentation.Profile;assembly=Peernet.SDK"
              Name="SharedResultTab">
     <Grid>
         <local:FiltersControl Grid.Row="0" Panel.ZIndex="1" Margin="0 0 30 0" HorizontalAlignment="Right" VerticalAlignment="Top" />
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="55" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="5" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="55" />
             </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
             <DockPanel Grid.Row="0" Grid.Column="0" Panel.ZIndex="2" Margin="9 0" LastChildFill="False" HorizontalAlignment="Left">
-                <Button Margin="3, 13" Command="{Binding }" Height="25" Padding="5, 0" Width="Auto" Style="{StaticResource ButtonBaseStyle}" Background="Transparent" VerticalAlignment="Top" ToolTip="Filter for my content">
+                <Button Margin="3, 0" Command="{Binding FilterOwnFiles}" Height="25" Padding="5, 0" Width="Auto" Style="{StaticResource ButtonBaseStyle}" Background="Transparent" VerticalAlignment="Center" ToolTip="Filter for my content">
                     <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE77B;" FontSize="16" Foreground="{DynamicResource MainContentBrush}" />
                 </Button>
-                <Button Margin="3, 4" Style="{StaticResource DataGridActionButton}" ToolTip="Share the search result" VerticalAlignment="Top">
+                <Button Margin="3, 0" Style="{StaticResource DataGridActionButton}" ToolTip="Share the search result" VerticalAlignment="Center" Click="ShareResultsButton_Click">
                     <Button.Background>
-                        <ImageBrush ImageSource="{DynamicResource ShareDrawingImage}" />
+                        <ImageBrush ImageSource="{DynamicResource Share_SelectedDrawingImage}" />
                     </Button.Background>
                 </Button>
                 <ItemsControl VerticalContentAlignment="Center" ItemsSource="{Binding FilterIconModels, IsAsync=True}" Margin="0 3">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <WrapPanel  />
+                            <WrapPanel />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
@@ -39,7 +47,7 @@
                 </ItemsControl>
             </DockPanel>
 
-            <DockPanel Panel.ZIndex="2"  Margin="0 0 50 0" LastChildFill="False" Grid.Row="0"  HorizontalAlignment="Right">
+            <DockPanel Panel.ZIndex="2"  Margin="0 0 50 0" LastChildFill="False" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right">
                 <local:FilterIconControl Height="40" DataContext="{Binding ColumnsIconModel}" PreviewMouseDown="FilterIconControl_PreviewMouseDown" />
                 <local:FilterIconControl Height="40" DataContext="{Binding FiltersIconModel}" />
             </DockPanel>
@@ -75,6 +83,7 @@
                              Padding="25 10 15 0"
                              HorizontalAlignment="Stretch"
                              Grid.Row="3"
+                             Grid.ColumnSpan="2"
                              ItemsSource="{Binding ActiveSearchResults, IsAsync=True}">
                 <dxg:GridControl.View>
                     <dxg:TableView x:Name="SearchResultsTable" />
@@ -120,7 +129,60 @@
                     <dxg:GridColumn Header="User" SortFieldName="File.NodeId" Binding="{Binding RowData.Row.File.NodeId, Converter={StaticResource ByteArrayToHexStringConverter}}" FieldName="File.NodeId" ColumnFilterMode="DisplayText" Width="140">
                         <dxg:GridColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding RowData.Row.File.NodeId, Converter={StaticResource ByteArrayToHexStringConverter}}" Style="{StaticResource Underlined}" VerticalAlignment="Center" HorizontalAlignment="Left" PreviewMouseLeftButtonDown="TextBlock_PreviewMouseLeftButtonDown" />
+                                <TextBlock DataContext="{Binding RowData.Row}" VerticalAlignment="Center" HorizontalAlignment="Left" PreviewMouseLeftButtonDown="TextBlock_PreviewMouseLeftButtonDown" MouseEnter="TextBlock_MouseEnter">
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource Underlined}">
+                                            <Setter Property="Text">
+                                                <Setter.Value>
+                                                    <MultiBinding StringFormat="{}{0} ({1})">
+                                                        <Binding Path="File.NodeId" Converter="{StaticResource ByteArrayToHexStringConverter}" />
+                                                        <Binding Path="File.Username" />
+                                                    </MultiBinding>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding File.Username}" Value="">
+                                                    <Setter Property="Text">
+                                                        <Setter.Value>
+                                                            <MultiBinding StringFormat="{}{0}">
+                                                                <Binding Path="File.NodeId" Converter="{StaticResource ByteArrayToHexStringConverter}" />
+                                                                <Binding Path="File.Username" />
+                                                            </MultiBinding>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                    <TextBlock.ToolTip>
+                                        <ToolTip ToolTipService.InitialShowDelay="0" ToolTipService.BetweenShowDelay="0" Visibility="Hidden" d:DataContext="{d:DesignInstance Type=profile:User}">
+                                            <ToolTip.Style>
+                                                <Style TargetType="{x:Type ToolTip}">
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type ToolTip}">
+                                                                <Border Panel.ZIndex="6" BorderThickness="1" Background="{DynamicResource ModalBackgroundBrush}" BorderBrush="{DynamicResource BorderBrush}" CornerRadius="3" Padding="3" >
+                                                                    <Grid>
+                                                                        <Grid.RowDefinitions>
+                                                                            <RowDefinition Height="Auto" />
+                                                                            <RowDefinition Height="*" />
+                                                                        </Grid.RowDefinitions>
+                                                                        <TextBlock Grid.Row="0" Margin="0, 5" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource Underlined}" />
+                                                                        <Border Grid.Row="1" Height="250" Width="180">
+                                                                            <Border.Background>
+                                                                                <ImageBrush Stretch="Uniform" ImageSource="{Binding Image, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource NullImageConverter}, ConverterParameter={StaticResource DefaultProfileImageDrawingImage}}" />
+                                                                            </Border.Background>
+                                                                        </Border>
+                                                                    </Grid>
+                                                                </Border>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </ToolTip.Style>
+                                        </ToolTip>
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
                             </DataTemplate>
                         </dxg:GridColumn.CellTemplate>
                     </dxg:GridColumn>
@@ -225,7 +287,7 @@
                                     </Button>
                                     <Button Style="{StaticResource DataGridActionButton}" Click="OpenFileWebGatewayReferenceWindow_OnClick" ToolTip="Share">
                                         <Button.Background>
-                                            <ImageBrush ImageSource="{DynamicResource ShareDrawingImage}" />
+                                            <ImageBrush ImageSource="{DynamicResource Share_SelectedDrawingImage}" />
                                         </Button.Background>
                                     </Button>
                                     <Button Style="{StaticResource DataGridActionButton}" Command="{Binding DataContext.DownloadCommand, ElementName=SharedResultTab}" CommandParameter="{Binding RowData.Row}" Width="45" Height="44">
@@ -239,18 +301,19 @@
                     </dxg:GridColumn>
                 </dxg:GridControl.Columns>
             </dxg:GridControl>
-            <TextBlock FontSize="14" Foreground="{DynamicResource MainContentBrush}"  Visibility="{Binding Loader.IsLoading, Converter={StaticResource BoolToVisibility}}" Margin="60 40" Grid.Row="3" Text="{Binding Loader.Text}" />
+            <TextBlock FontSize="14" Foreground="{DynamicResource MainContentBrush}" Visibility="{Binding Loader.IsLoading, Converter={StaticResource BoolToVisibility}}" Margin="60 40" Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding Loader.Text}" />
             <local:PagerControl x:Name="pager"
                                 Grid.Row="4"
+                                Grid.ColumnSpan="2"
                                 PageSize="{Binding PageSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                 PageIndex="{Binding PageIndex, Mode=TwoWay}"
                                 PagesCount="{Binding PagesCount}"
                                 FirstPageCommand="{Binding FirstPageCommand}"
                                 NextPageCommand="{Binding NextPageCommand}"
-                                PreviousPageCommand="{Binding PreviousPageCommand}" 
-                                LastPageCommand="{Binding LastPageCommand}" 
-                                Margin="0, 5, 0, 0"/>
-            <Separator Grid.Row="5" Style="{DynamicResource StandardSeparatorStyle}" VerticalAlignment="Top" />
+                                PreviousPageCommand="{Binding PreviousPageCommand}"
+                                LastPageCommand="{Binding LastPageCommand}"
+                                Margin="0, 5, 0, 0" />
+            <Separator Grid.Row="5" Grid.ColumnSpan="2" Style="{DynamicResource StandardSeparatorStyle}" VerticalAlignment="Top" />
         </Grid>
     </Grid>
 </UserControl>

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Peernet.Browser.Application;
 using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.Application.Handlers;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Plugins;
@@ -65,6 +66,8 @@ namespace Peernet.Browser.WPF
             // Register Services
             ConfigureServices(services);
 
+            Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
+
             // Register and get Logger to be able to create NotificationsManager
             var logger = CreateAndRegisterLogger(services, Settings);
 
@@ -76,7 +79,7 @@ namespace Peernet.Browser.WPF
             // To be able to capture it and log the NotificationsManager with exception handles needs to be available prior to
             new PeernetPluginsManager(Settings, notificationsManager).LoadPlugins(services);
             ServiceProvider = services.BuildServiceProvider();
-            
+
             Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
 
             if (Settings.ApiUrl == null)
@@ -87,6 +90,13 @@ namespace Peernet.Browser.WPF
             PluginsContext.PlayButtonPlugEnabled = ServiceProvider.GetService<IPlayButtonPlug>() != null;
 
             InitializeBackend();
+
+            string[] args = Environment.GetCommandLineArgs();
+            if (args.Length > 1)
+            {
+                logger.Information(args[1]);
+                ServiceProvider.GetService<IUriSchemeHandler>().Handle(args[1]).Wait();
+            }
         }
 
         public static event RoutedEventHandler MainWindowClicked = delegate { };
@@ -137,8 +147,10 @@ namespace Peernet.Browser.WPF
 
         protected override void OnExit(ExitEventArgs e)
         {
-            ServiceProvider.GetRequiredService<ISettingsManager>().DefaultTheme = GlobalContext.VisualMode;
+            var settingsManager = ServiceProvider.GetRequiredService<ISettingsManager>();
+            settingsManager.DefaultTheme = GlobalContext.VisualMode;
             cmdRunner?.Dispose();
+            settingsManager.Save();
             base.OnExit(e);
         }
 
@@ -238,6 +250,7 @@ namespace Peernet.Browser.WPF
             services.AddSingleton<INavigationService, NavigationService>();
             services.AddSingleton<IModalNavigationService, ModalNavigationService>();
             services.AddSingleton<IUserContext, UserContext>();
+            services.AddSingleton<IUriSchemeHandler, UriSchemeHandler>();
             services.AddTransient<IVirtualFileSystemFactory, VirtualFileSystemFactory>();
             services.AddTransient<IFilesToCategoryBinder, FilesToCategoryBinder>();
 

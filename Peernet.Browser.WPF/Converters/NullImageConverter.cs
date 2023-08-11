@@ -9,7 +9,7 @@ namespace Peernet.Browser.WPF.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value ?? DependencyProperty.UnsetValue;
+            return value ?? parameter;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

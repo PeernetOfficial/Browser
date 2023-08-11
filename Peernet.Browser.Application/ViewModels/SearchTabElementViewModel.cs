@@ -1,83 +1,75 @@
 ﻿using AsyncAwaitBestPractices.MVVM;
+using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Dispatchers;
+using Peernet.Browser.Application.Download;
+using Peernet.Browser.Application.Services;
+using Peernet.Browser.Application.Utilities;
+using Peernet.SDK.Client.Clients;
+using Peernet.SDK.Common;
 using Peernet.SDK.Models.Domain.Search;
 using Peernet.SDK.Models.Extensions;
+using Peernet.SDK.Models.Presentation;
 using Peernet.SDK.Models.Presentation.Footer;
 using Peernet.SDK.Models.Presentation.Home;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class SearchTabElementViewModel : ViewModelBase
+    public abstract class SearchTabElementViewModel : ViewModelBase
     {
-        private readonly Func<DownloadModel, bool> isPlayerSupported;
-        private readonly Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction;
+        private readonly IBlockchainService blockchainService;
+        private readonly IDataTransferManager dataTransferManager;
+        private readonly Func<SearchTabElementViewModel, Task> deleteAction;
+        private readonly IDownloadClient downloadClient;
+        private readonly Action<DownloadModel> executePlugAction;
+        private readonly Action<DownloadModel> openAction;
+        private readonly ISearchService searchService;
+        private readonly ISettingsManager settingsManager;
+        private readonly IWarehouseClient warehouseClient;
+        private readonly IFileClient fileClient;
+        private readonly IUserContext userContext;
         private ObservableCollection<DownloadModel> activeSearchResults;
+        private readonly CurrentUserDirectoryViewModel currentUserDirectoryViewModel;
         private int pageIndex = 1;
         private int pagesCount;
         private int pageSize = 15;
 
         public SearchTabElementViewModel(
-            SearchFilterResultModel searchFilterResultModel,
             Func<SearchTabElementViewModel, Task> deleteAction,
-            Func<SearchFilterResultModel, Task<SearchResultModel>> refreshAction,
-            Func<DownloadModel, Task> downloadAction,
+            ISettingsManager settingsManager,
+            IDownloadClient downloadClient,
             Action<DownloadModel> openAction,
             Action<DownloadModel> executePlugAction,
-            Func<DownloadModel, bool> isPlayerSupported)
+            ISearchService searchService,
+            IWarehouseClient warehouseClient,
+            IFileClient fileClient,
+            IDataTransferManager dataTransferManager,
+            IBlockchainService blockchainService,
+            IUserContext userContext,
+            CurrentUserDirectoryViewModel currentUserDirectoryViewModel)
         {
-            this.refreshAction = refreshAction;
-            this.isPlayerSupported = isPlayerSupported;
-
-            Title = searchFilterResultModel.InputText;
-
-            Filters = new FiltersModel(searchFilterResultModel);
-            Filters.PropertyChanged += async (sender, args) =>
-            {
-                await Refresh();
-            };
-
-            ClearCommand = new AsyncCommand(async () =>
-            {
-                Filters.Reset(true);
-                await Refresh();
-            });
-            DownloadCommand = new AsyncCommand<DownloadModel>(async (row) => await downloadAction(row));
-            DeleteCommand = new AsyncCommand(async () => { await deleteAction(this); });
-            OpenCommand = new AsyncCommand<DownloadModel>(
-                    model =>
-                    {
-                        if (openAction != null)
-                        {
-                            openAction?.Invoke(model);
-                        }
-
-                        return Task.CompletedTask;
-                    });
-
-            RemoveFilterCommand = new AsyncCommand<SearchFiltersType>(async (type) =>
-            {
-                Filters.RemoveAction(type);
-                await Refresh();
-            });
-
-            StreamFileCommand = new AsyncCommand<DownloadModel>(model =>
-            {
-                executePlugAction.Invoke(model);
-
-                return Task.CompletedTask;
-            });
+            this.settingsManager = settingsManager;
+            this.downloadClient = downloadClient;
+            this.warehouseClient = warehouseClient;
+            this.fileClient = fileClient;
+            this.dataTransferManager = dataTransferManager;
+            this.blockchainService = blockchainService;
+            this.searchService = searchService;
+            this.deleteAction = deleteAction;
+            this.openAction = openAction;
+            this.executePlugAction = executePlugAction;
+            this.userContext = userContext;
 
             ColumnsIconModel = new IconModel(FilterType.Columns, true);
             FiltersIconModel = new IconModel(FilterType.Filters, true, OpenCloseFilters);
 
             InitIcons();
-            Loader.Set("Searching...");
-            Task.Run(async () => await Refresh());
+            this.currentUserDirectoryViewModel = currentUserDirectoryViewModel;
         }
 
         public ObservableCollection<DownloadModel> ActiveSearchResults
@@ -90,27 +82,34 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        public IAsyncCommand ClearCommand { get; }
+        public IAsyncCommand ClearCommand => new AsyncCommand(async () =>
+        {
+            Filters.Reset(true);
+            await Refresh();
+        });
 
         public ObservableCollection<CustomCheckBoxModel> ColumnsCheckboxes { get; } = new ObservableCollection<CustomCheckBoxModel>();
-
-        public IconModel ColumnsIconModel { get; }
-
-        public IAsyncCommand DeleteCommand { get; }
-
-        public IAsyncCommand<DownloadModel> DownloadCommand { get; }
+        public IconModel ColumnsIconModel { get; set; }
+        public IAsyncCommand DeleteCommand => new AsyncCommand(async () => { await deleteAction(this); });
+        public IAsyncCommand<DownloadModel> DownloadCommand => new AsyncCommand<DownloadModel>(DownloadFile);
         public ObservableCollection<IconModel> FilterIconModels { get; } = new ObservableCollection<IconModel>();
-
-        public FiltersModel Filters { get; }
-
-        public IconModel FiltersIconModel { get; }
-
+        public FiltersModel Filters { get; protected set; }
+        public IconModel FiltersIconModel { get; protected set; }
         public IAsyncCommand FirstPageCommand => new AsyncCommand(GoToFirstPage);
-
         public IAsyncCommand LastPageCommand => new AsyncCommand(GoToLastPage);
         public LoadingModel Loader { get; } = new LoadingModel();
         public IAsyncCommand NextPageCommand => new AsyncCommand(GoToNextPage);
-        public IAsyncCommand<DownloadModel> OpenCommand { get; }
+
+        public IAsyncCommand<DownloadModel> OpenCommand => new AsyncCommand<DownloadModel>(
+                    model =>
+                    {
+                        if (openAction != null)
+                        {
+                            openAction?.Invoke(model);
+                        }
+
+                        return Task.CompletedTask;
+                    });
 
         public int PageIndex
         {
@@ -157,47 +156,82 @@ namespace Peernet.Browser.Application.ViewModels
         }
 
         public IAsyncCommand PreviousPageCommand => new AsyncCommand(GoToPreviousPage);
-        public IAsyncCommand<SearchFiltersType> RemoveFilterCommand { get; }
 
-        public IAsyncCommand<DownloadModel> StreamFileCommand { get; }
-        public string Title { get; }
-
-        public async Task Initialize()
+        public IAsyncCommand<SearchFiltersType> RemoveFilterCommand => new AsyncCommand<SearchFiltersType>(async (type) =>
         {
+            Filters.RemoveAction(type);
             await Refresh();
+        });
+
+        public IAsyncCommand<DownloadModel> StreamFileCommand => new AsyncCommand<DownloadModel>(model =>
+        {
+            executePlugAction.Invoke(model);
+
+            return Task.CompletedTask;
+        });
+
+        public string Title { get; protected set; }
+        protected SearchResultModel SearchResult { get; set; }
+
+        public async Task<FileModel> CreateResultsSnapshot()
+        {
+            var snapshot = new ResultsSnapshot
+            {
+                Title = Title,
+                SearchResultModel = SearchResult,
+                PeernetSchemaViewType = PeernetSchemaViewType.Search
+            };
+
+            var path = await searchService.CreateSnapshot(snapshot);
+            var fileModel = new FileModel(path);
+            var upload = new Upload(warehouseClient, fileModel);
+            await dataTransferManager.QueueUp(upload);
+
+            if (upload.File.Hash != null)
+            {
+                var format = await fileClient.GetFormat(path);
+                upload.File.Format = format.FileFormat;
+                upload.File.Type = format.FileType;
+                await blockchainService.AddFiles(new[] { fileModel });
+                upload.File.NodeId = Enumerable.Range(0, userContext.NodeId.Length)
+                     .Where(x => x % 2 == 0)
+                     .Select(x => Convert.ToByte(userContext.NodeId.Substring(x, 2), 16))
+                     .ToArray();
+                await currentUserDirectoryViewModel.ReloadVirtualFileSystem();
+            }
+
+            return fileModel;
         }
 
-        public async Task Refresh()
+        public abstract Task Refresh();
+
+        protected void InitIcons()
         {
-            Filters.SearchFilterResult.Limit = PageSize;
-            Filters.SearchFilterResult.Offset = (PageIndex - 1) * PageSize;
+            RefreshIconFilters(SearchResultModel.GetDefaultStats().ToDictionary(x => x, y => 0), FilterType.All);
+        }
 
-            var searchResultModel = await refreshAction(Filters.SearchFilterResult);
-            searchResultModel.Rows.ForEach(row => row.IsPlayerEnabled = isPlayerSupported.Invoke(row));
+        protected Task OpenCloseFilters(IconModel m)
+        {
+            Filters.BindFromSearchFilterResult();
+            return Task.CompletedTask;
+        }
 
-            Filters.UuId = searchResultModel.Id;
+        protected void RefreshIconFilters(IDictionary<FilterType, int> stats, FilterType selected)
+        {
             UIThreadDispatcher.ExecuteOnMainThread(() =>
             {
-                ActiveSearchResults = new(searchResultModel.Rows);
-                PagesCount = (int)Math.Ceiling(searchResultModel.Stats[Filters.SearchFilterResult.FilterType] / (double)PageSize);
+                FilterIconModels.Clear();
+                stats.Foreach(x => FilterIconModels.Add(new IconModel(x.Key, onClick: OnFilterIconClick, count: x.Value) { IsSelected = x.Key == selected }));
             });
-
-            RefreshIconFilters(searchResultModel.Stats, searchResultModel.Filters.FilterType);
-            if (ActiveSearchResults.IsNullOrEmpty())
-            {
-                Loader.Set(GetStatusText(searchResultModel.Status));
-                if (searchResultModel.Status is SearchStatusEnum.KeepTrying)
-                {
-                    await Refresh();
-                }
-            }
-            else
-            {
-                Loader.Reset();
-            }
         }
 
-        private string GetStatusText(SearchStatusEnum status)
+        private async Task DownloadFile(DownloadModel model)
+        {
+            var filePath = Path.Combine(settingsManager.DownloadPath, UtilityHelper.StripInvalidWindowsCharactersFromFileName(model.File.Name));
+            await dataTransferManager.QueueUp(new SDK.Models.Presentation.Download(downloadClient, model.File, filePath));
+        }
+
+        protected string GetStatusText(SearchStatusEnum status)
         {
             switch (status)
             {
@@ -241,11 +275,6 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
-        private void InitIcons()
-        {
-            RefreshIconFilters(SearchResultModel.GetDefaultStats().ToDictionary(x => x, y => 0), FilterType.All);
-        }
-
         private async Task OnFilterIconClick(IconModel i)
         {
             FilterIconModels.Where(x => x != i).Foreach(x => x.IsSelected = false);
@@ -253,21 +282,6 @@ namespace Peernet.Browser.Application.ViewModels
             Filters.SearchFilterResult.FilterType = i.FilterType;
             Filters.SearchFilterResult.ShouldReset = true;
             await Refresh();
-        }
-
-        private Task OpenCloseFilters(IconModel m)
-        {
-            Filters.BindFromSearchFilterResult();
-            return Task.CompletedTask;
-        }
-
-        private void RefreshIconFilters(IDictionary<FilterType, int> stats, FilterType selected)
-        {
-            UIThreadDispatcher.ExecuteOnMainThread(() =>
-            {
-                FilterIconModels.Clear();
-                stats.Foreach(x => FilterIconModels.Add(new IconModel(x.Key, onClick: OnFilterIconClick, count: x.Value) { IsSelected = x.Key == selected }));
-            });
         }
     }
 }

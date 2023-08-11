@@ -6,7 +6,7 @@ namespace Peernet.Browser.Application.Services
 {
     public interface IProfileService
     {
-        Task<User> GetUser();
+        Task<User> GetUser(byte[]? node = null);
 
         Task<ApiBlockchainBlockStatus> UpdateUser(string name, byte[] image);
 

@@ -6,13 +6,11 @@ namespace Peernet.Browser.WPF.Utilities
 {
     public static class InputBindingsManager
     {
-
         public static readonly DependencyProperty UpdatePropertySourceWhenEnterPressedProperty = DependencyProperty.RegisterAttached(
                 "UpdatePropertySourceWhenEnterPressed", typeof(DependencyProperty), typeof(InputBindingsManager), new PropertyMetadata(null, OnUpdatePropertySourceWhenEnterPressedPropertyChanged));
 
         static InputBindingsManager()
         {
-
         }
 
         public static void SetUpdatePropertySourceWhenEnterPressed(DependencyObject dp, DependencyProperty value)
@@ -45,7 +43,7 @@ namespace Peernet.Browser.WPF.Utilities
             }
         }
 
-        static void HandlePreviewKeyDown(object sender, KeyEventArgs e)
+        private static void HandlePreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
@@ -53,7 +51,7 @@ namespace Peernet.Browser.WPF.Utilities
             }
         }
 
-        static void DoUpdateSource(object source)
+        private static void DoUpdateSource(object source)
         {
             DependencyProperty property =
                 GetUpdatePropertySourceWhenEnterPressed(source as DependencyObject);
