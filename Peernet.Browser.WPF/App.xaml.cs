@@ -13,8 +13,10 @@ using Peernet.Browser.Infrastructure.Extensions;
 using Peernet.Browser.Infrastructure.Tools;
 using Peernet.Browser.WPF.Services;
 using Peernet.Browser.WPF.Styles;
+using Peernet.SDK.Client.Clients;
 using Peernet.SDK.Client.Extensions;
 using Peernet.SDK.Common;
+using Peernet.SDK.Models.Domain.Status;
 using Peernet.SDK.Models.Plugins;
 using Peernet.SDK.Models.Presentation.Footer;
 using Serilog;
@@ -91,6 +93,12 @@ namespace Peernet.Browser.WPF
 
             InitializeBackend();
 
+            // Load Peernet Configuration in the background with low priority
+            Task.Run(async () =>
+            {
+                PeernetConfiguration = await ServiceProvider.GetRequiredService<IStatusClient>().GetConfig();
+            });
+
             string[] args = Environment.GetCommandLineArgs();
             if (args.Length > 1)
             {
@@ -103,6 +111,7 @@ namespace Peernet.Browser.WPF
 
         public static IServiceProvider ServiceProvider { get; private set; }
         public static ISettingsManager Settings { get; private set; }
+        public static PeernetConfiguration PeernetConfiguration { get; private set; }
 
         public static void InitializeBackend()
         {
@@ -112,17 +121,6 @@ namespace Peernet.Browser.WPF
                 cmdRunner = new CmdRunner(settingsManager, ServiceProvider.GetRequiredService<IShutdownService>(), ServiceProvider.GetRequiredService<IStatusService>());
                 cmdRunner.Run();
             }
-        }
-
-        private INotificationsManager CreateAndRegisterNotificationsManager(IServiceCollection services, Serilog.ILogger logger)
-        {
-            var notificationCollection = new NotificationCollection(logger);
-            services.AddSingleton(notificationCollection);
-
-            var notificationsManager = new NotificationsManager(notificationCollection);
-            services.AddSingleton<INotificationsManager, NotificationsManager>(sp => notificationsManager);
-
-            return notificationsManager;
         }
 
         public static void RaiseMainWindowClick(object sender, RoutedEventArgs e)
@@ -168,19 +166,6 @@ namespace Peernet.Browser.WPF
                 new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
         }
 
-        private static void RegisterDXTheme(string name)
-        {
-            var theme = new Theme(name);
-            theme.AssemblyName = $"DevExpress.Xpf.Themes.{name}.{DXVersion}";
-            Theme.RegisterTheme(theme);
-        }
-
-        private static void RegisterDXThemes()
-        {
-            RegisterDXTheme("PeernetDarkTheme");
-            RegisterDXTheme("PeernetLightTheme");
-        }
-
         private static ILogger CreateAndRegisterLogger(ServiceCollection services, ISettingsManager settings)
         {
             var backendPath = Path.GetFullPath(settings.Backend);
@@ -200,6 +185,19 @@ namespace Peernet.Browser.WPF
             services.AddLogging(loggingBuilder => loggingBuilder.AddSerilog(logger, dispose: true));
 
             return logger;
+        }
+
+        private static void RegisterDXTheme(string name)
+        {
+            var theme = new Theme(name);
+            theme.AssemblyName = $"DevExpress.Xpf.Themes.{name}.{DXVersion}";
+            Theme.RegisterTheme(theme);
+        }
+
+        private static void RegisterDXThemes()
+        {
+            RegisterDXTheme("PeernetDarkTheme");
+            RegisterDXTheme("PeernetLightTheme");
         }
 
         private static void RegisterViewModels(ServiceCollection services)
@@ -258,6 +256,17 @@ namespace Peernet.Browser.WPF
 
             RegisterViewModels(services);
             RegisterWindows(services);
+        }
+
+        private INotificationsManager CreateAndRegisterNotificationsManager(IServiceCollection services, Serilog.ILogger logger)
+        {
+            var notificationCollection = new NotificationCollection(logger);
+            services.AddSingleton(notificationCollection);
+
+            var notificationsManager = new NotificationsManager(notificationCollection);
+            services.AddSingleton<INotificationsManager, NotificationsManager>(sp => notificationsManager);
+
+            return notificationsManager;
         }
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)

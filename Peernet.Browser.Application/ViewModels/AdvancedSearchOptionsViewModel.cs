@@ -11,6 +11,8 @@ namespace Peernet.Browser.Application.ViewModels
     public class AdvancedSearchOptionsViewModel : GenericViewModelBase<AdvancedFilterModel>
     {
         private readonly IModalNavigationService modalNavigationService;
+        private DataGridSortingNameEnum sortByColumn;
+        private DataGridSortingTypeEnum sortingDirection;
 
         public AdvancedSearchOptionsViewModel(IModalNavigationService modalNavigationService)
         {
@@ -38,9 +40,25 @@ namespace Peernet.Browser.Application.ViewModels
 
         private AdvancedFilterModel AdvancedFilter;
         public List<DataGridSortingNameEnum> SortableColumns { get; set; }
-        public DataGridSortingNameEnum SortByColumn { get; set; }
+        public DataGridSortingNameEnum SortByColumn
+        {
+            get => sortByColumn;
+            set
+            {
+                sortByColumn = value;
+                OnPropertyChanged(nameof(SortByColumn));
+            }
+        }
 
-        public DataGridSortingTypeEnum SortingDirection { get; set; }
+        public DataGridSortingTypeEnum SortingDirection
+        {
+            get => sortingDirection;
+            set
+            {
+                sortingDirection = value;
+                OnPropertyChanged(nameof(SortingDirection));
+            }
+        }
         public List<DataGridSortingTypeEnum> SortingDirections { get; set; }
 
         public override Task Prepare(AdvancedFilterModel parameter)

@@ -25,8 +25,24 @@
             </Grid.ColumnDefinitions>
 
             <DockPanel Grid.Row="0" Grid.Column="0" Panel.ZIndex="2" Margin="9 0" LastChildFill="False" HorizontalAlignment="Left">
-                <Button Margin="3, 0" Command="{Binding FilterOwnFiles}" Height="25" Padding="5, 0" Width="Auto" Style="{StaticResource ButtonBaseStyle}" Background="Transparent" VerticalAlignment="Center" ToolTip="Filter for my content">
-                    <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE77B;" FontSize="16" Foreground="{DynamicResource MainContentBrush}" />
+                <Button Margin="3, 0" Command="{Binding FilterOwnFiles}" Height="27" Width="27" Padding="3" VerticalAlignment="Center" ToolTip="Filter for my content">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonBaseStyle}">
+                            <Setter Property="Background" Value="{StaticResource FocusedUserTabImageBrush}" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Filters.SearchFilterResult.NodeId}" Value="{x:Null}">
+                                    <Setter Property="Background" Value="{StaticResource UserTabImageBrush}" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Filters.SearchFilterResult.NodeId}" Value="">
+                                    <Setter Property="Background" Value="{StaticResource UserTabImageBrush}" />
+                                </DataTrigger>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="Background" Value="{StaticResource FocusedUserTabImageBrush}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    <!--<TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE77B;" FontSize="16" Foreground="{DynamicResource MainContentBrush}" />-->
+                    </Button.Style>
                 </Button>
                 <Button Margin="3, 0" Style="{StaticResource DataGridActionButton}" ToolTip="Share the search result" VerticalAlignment="Center" Click="ShareResultsButton_Click">
                     <Button.Background>

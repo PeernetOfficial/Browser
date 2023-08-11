@@ -35,10 +35,11 @@
                 </Grid.RowDefinitions>
 
                 <TextBox Grid.Row="0" Grid.Column="0" Text="Sort by" Style="{StaticResource ReadonlySelectableTextBox}" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding SortableColumns}" SelectedItem="{Binding SortByColumn}" Height="20" />
+                <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding SortableColumns}" SelectedItem="{Binding SortByColumn, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="20" />
+
 
                 <TextBox Grid.Row="1" Grid.Column="0" Text="Sorting direction" Style="{StaticResource ReadonlySelectableTextBox}" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding SortingDirections}" SelectedItem="{Binding SortingDirection}" Height="20" />
+                <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding SortingDirections}" SelectedItem="{Binding SortingDirection, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Height="20" />
             </Grid>
 
             <Grid Grid.Row="2" Grid.Column="1" Margin="0, 15, 0, 0">

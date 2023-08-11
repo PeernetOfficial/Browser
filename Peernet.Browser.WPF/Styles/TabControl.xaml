@@ -3,7 +3,9 @@
                     xmlns:viewmodels="clr-namespace:Peernet.Browser.Application.ViewModels;assembly=Application"
                     xmlns:local="clr-namespace:Peernet.Browser.WPF.Controls"
                     xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls"
-                    xmlns:converters="clr-namespace:Peernet.Browser.WPF.Converters">
+                    xmlns:converters="clr-namespace:Peernet.Browser.WPF.Converters"
+                    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+>
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="ScrollViewer.xaml" />
     </ResourceDictionary.MergedDictionaries>
@@ -43,8 +45,21 @@
                 <ControlTemplate TargetType="{x:Type TabItem}">
                     <Border Margin="0 0 0 0" x:Name="PART_Border" Background="Transparent" BorderThickness="1" BorderBrush="Transparent" Padding="0">
                         <DockPanel>
-                            <TextBlock Margin="10 10 2 10" Foreground="{DynamicResource MainContentBrush}" FontSize="14" FontFamily="{StaticResource InterThin}" x:Name="PART_title" Text="{Binding Title}" TextTrimming="CharacterEllipsis" MaxWidth="180" HorizontalAlignment="Center" />
-                            <Button Style="{DynamicResource PrimaryButton}" Margin="7" Command="{Binding DeleteCommand}">
+                            <TextBlock Margin="10 10 2 10"
+                                       Foreground="{DynamicResource MainContentBrush}"
+                                       FontSize="14"
+                                       FontFamily="{StaticResource InterThin}"
+                                       x:Name="PART_title"
+                                       Text="{Binding Title}"
+                                       TextTrimming="CharacterEllipsis"
+                                       MaxWidth="180"
+                                       HorizontalAlignment="Center" />
+                            <Button Style="{DynamicResource PrimaryButton}" Margin="7">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                                        <b:InvokeCommandAction Command="{Binding DeleteCommand}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
                                 <Image Margin="6"  Source="{DynamicResource CloseBtnDrawingImage}" />
                             </Button>
                         </DockPanel>
@@ -71,12 +86,16 @@
                         <DockPanel>
                             <TextBlock Margin="10" Foreground="{DynamicResource MainContentBrush}" FontSize="14" FontFamily="{StaticResource InterThin}" x:Name="PART_title" Text="{Binding Title}" TextTrimming="CharacterEllipsis" MaxWidth="180" HorizontalAlignment="Center" />
                             <Button Margin="7">
+                                <b:Interaction.Triggers>
+                                    <b:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                                        <b:InvokeCommandAction Command="{Binding DeleteCommand}" />
+                                    </b:EventTrigger>
+                                </b:Interaction.Triggers>
                                 <Button.Style>
                                     <Style BasedOn="{StaticResource PrimaryButton}" TargetType="{x:Type Button}">
                                         <Setter Property="Visibility" Value="Collapsed" />
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding .,Converter={StaticResource DataTypeConverter}}" Value="{x:Type viewmodels:UserDirectoryViewModel}">
-                                                <Setter Property="Command" Value="{Binding DeleteCommand}" />
                                                 <Setter Property="Visibility" Value="Visible" />
                                             </DataTrigger>
                                         </Style.Triggers>
