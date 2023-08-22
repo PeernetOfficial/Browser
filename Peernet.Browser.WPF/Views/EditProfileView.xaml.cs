@@ -24,7 +24,7 @@ namespace Peernet.Browser.WPF.Views
                 var file = dialog.FileName;
                 var content = File.ReadAllBytes(file);
 
-                ((EditProfileViewModel)DataContext).UserContext.User.Image = content;
+                ((EditProfileViewModel)DataContext).User.Image = content;
             }
         }
 

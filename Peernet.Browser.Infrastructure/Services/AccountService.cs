@@ -1,5 +1,6 @@
 ﻿using Peernet.Browser.Application.Services;
 using Peernet.SDK.Client.Clients;
+using Peernet.SDK.Models.Domain.Account;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Infrastructure.Services
@@ -16,6 +17,11 @@ namespace Peernet.Browser.Infrastructure.Services
         public async Task Delete(bool confirm)
         {
             await accountClient.Delete(confirm);
+        }
+
+        public async Task<ApiResponsePeerSelf> Info()
+        {
+            return await accountClient.Info();
         }
     }
 }

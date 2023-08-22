@@ -9,7 +9,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ImageBrush x:Key="DefaultProfileImage" ImageSource="{DynamicResource DefaultProfileImageDrawingImage}" />
-            <ImageBrush x:Key="SourcedProfileImage" ImageSource="{Binding UserContext.User.Image, Converter={StaticResource NullImageConverter}}" Stretch="Uniform" />
+            <ImageBrush x:Key="SourcedProfileImage" ImageSource="{Binding User.Image, Converter={StaticResource NullImageConverter}}" Stretch="Uniform" />
         </ResourceDictionary>
     </UserControl.Resources>
     <Border BorderThickness="1">
@@ -42,7 +42,7 @@
                                 <Style TargetType="{x:Type Border}">
                                     <Setter Property="Background" Value="{StaticResource SourcedProfileImage}" />
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding UserContext.User.Image}" Value="{x:Null}">
+                                        <DataTrigger Binding="{Binding User.Image}" Value="{x:Null}">
                                             <Setter Property="Background" Value="{StaticResource DefaultProfileImage}" />
                                             <Setter Property="Width" Value="36" />
                                             <Setter Property="Height" Value="36" />
@@ -62,7 +62,7 @@
                                         </Setter>
                                         <Setter Property="Margin" Value="0" />
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding UserContext.User.Image}" Value="{x:Null}">
+                                            <DataTrigger Binding="{Binding User.Image}" Value="{x:Null}">
                                                 <Setter Property="Background">
                                                     <Setter.Value>
                                                         <ImageBrush ImageSource="{DynamicResource PlusDrawingImage}" />
@@ -84,7 +84,7 @@
                     <Border.Background>
                         <SolidColorBrush Color="{DynamicResource PopupMenuBackground}" />
                     </Border.Background>
-                    <TextBox Text="{Binding UserContext.User.Name}"
+                    <TextBox Text="{Binding User.Name}"
                                  VerticalContentAlignment="Center"
                                  HorizontalContentAlignment="Left"
                                  Foreground="{DynamicResource MainContentBrush}"

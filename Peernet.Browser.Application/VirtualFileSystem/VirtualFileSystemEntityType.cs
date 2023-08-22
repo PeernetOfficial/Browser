@@ -11,6 +11,7 @@
         Audio = 4,
         Document = 5,
         Text = 1,
-        Ebook = 10
+        Ebook = 10,
+        PeernetSearch = 11
     }
 }

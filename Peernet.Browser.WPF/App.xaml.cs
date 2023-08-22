@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Peernet.Browser.Application;
 using Peernet.Browser.Application.Contexts;
+using Peernet.Browser.Application.Handlers;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Plugins;
@@ -39,7 +40,6 @@ namespace Peernet.Browser.WPF
     {
         private const string DXVersion = "v22.2";
         private static CmdRunner cmdRunner;
-        private static Services.SplashScreenManager splashScreenManager = new();
         private readonly object lockObject = new();
         private readonly INotificationsManager notificationsManager;
 
@@ -50,7 +50,8 @@ namespace Peernet.Browser.WPF
             Settings = new SettingsManager();
             GlobalContext.VisualMode = Settings.DefaultTheme;
 
-            splashScreenManager?.Start();
+            var splashScreen = new PeernetSplashScreen();
+            splashScreen.Show();
             if (!Settings.Validate())
             {
                 var message = "Invalid or missing configuration!";
@@ -63,10 +64,11 @@ namespace Peernet.Browser.WPF
         public App()
         {
             var services = new ServiceCollection();
-            splashScreenManager.SetState("Configuring services...");
 
             // Register Services
             ConfigureServices(services);
+
+            Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
 
             // Register and get Logger to be able to create NotificationsManager
             var logger = CreateAndRegisterLogger(services, Settings);
@@ -79,8 +81,6 @@ namespace Peernet.Browser.WPF
             // To be able to capture it and log the NotificationsManager with exception handles needs to be available prior to
             new PeernetPluginsManager(Settings, notificationsManager).LoadPlugins(services);
             ServiceProvider = services.BuildServiceProvider();
-            
-            splashScreenManager.SetState("Services configuration completed.");
 
             Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
 
@@ -91,9 +91,14 @@ namespace Peernet.Browser.WPF
 
             PluginsContext.PlayButtonPlugEnabled = ServiceProvider.GetService<IPlayButtonPlug>() != null;
 
-            splashScreenManager.SetState("Preparing Backend...");
             InitializeBackend();
-            splashScreenManager.SetState("Backend Started...");
+
+            string[] args = Environment.GetCommandLineArgs();
+            if (args.Length > 1)
+            {
+                logger.Information(args[1]);
+                ServiceProvider.GetService<IUriSchemeHandler>().Handle(args[1]).Wait();
+            }
         }
 
         public static event RoutedEventHandler MainWindowClicked = delegate { };
@@ -149,18 +154,12 @@ namespace Peernet.Browser.WPF
             var widgetsService = ServiceProvider.GetRequiredService<IWidgetsService>();
             settingsManager.DailyFeedWidgetEnabled = widgetsService.Widgets.FirstOrDefault(w => w.Name == "Daily Feed")?.IsSelected ?? false;
             cmdRunner?.Dispose();
+            settingsManager.Save();
             base.OnExit(e);
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            splashScreenManager.SetState("Application startup complete. Opening MainWindow...");
-            var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
-            App.Current.MainWindow = mainWindow;
-            mainWindow.Show();
-
-            splashScreenManager.Exit();
-
             BindingOperations.EnableCollectionSynchronization(ServiceProvider.GetRequiredService<INotificationsManager>().Notifications, lockObject);
 
             base.OnStartup(e);
@@ -255,6 +254,7 @@ namespace Peernet.Browser.WPF
             services.AddSingleton<INavigationService, NavigationService>();
             services.AddSingleton<IModalNavigationService, ModalNavigationService>();
             services.AddSingleton<IUserContext, UserContext>();
+            services.AddSingleton<IUriSchemeHandler, UriSchemeHandler>();
             services.AddTransient<IVirtualFileSystemFactory, VirtualFileSystemFactory>();
             services.AddTransient<IFilesToCategoryBinder, FilesToCategoryBinder>();
             services.AddSingleton<IWidgetsService, WidgetsService>();

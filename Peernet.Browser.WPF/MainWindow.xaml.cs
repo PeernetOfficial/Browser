@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Dispatchers;
+using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Managers;
 using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
@@ -8,8 +9,10 @@ using Peernet.Browser.Application.ViewModels;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.Browser.WPF.Views;
+using Peernet.SDK.Client.Clients;
 using Peernet.SDK.Models.Extensions;
 using Peernet.SDK.Models.Presentation.Footer;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -35,6 +38,10 @@ namespace Peernet.Browser.WPF
             if (DataContext is MainViewModel main)
             {
                 main.OpenAboutTab = () => AboutTab.IsSelected = true;
+                main.DirectoryViewModel.Navigate = () =>
+                {
+                    DirectoryTab.IsSelected = true;
+                };
             }
         }
 
@@ -65,7 +72,7 @@ namespace Peernet.Browser.WPF
                 var directoryViewModel = App.ServiceProvider.GetRequiredService<DirectoryViewModel>();
                 if (DirectoryTab.IsSelected)
                 {
-                    var selected = directoryViewModel.VirtualFileSystem.GetCurrentlySelected();
+                    var selected = directoryViewModel.CurrentUserDirectoryViewModel.VirtualFileSystem.GetCurrentlySelected();
                     if (selected is not VirtualFileSystemCoreCategory && selected is not VirtualFileSystemCoreTier { Name: "Recent" } && selected is not VirtualFileSystemCoreTier { Name: "All files" })
                     {
                         foreach (var fileModel in fileModels)
@@ -78,11 +85,12 @@ namespace Peernet.Browser.WPF
 
                 var modalNavigationService = App.ServiceProvider.GetRequiredService<IModalNavigationService>();
                 var parameter = new ShareFileViewModelParameter(
-                    App.ServiceProvider.GetRequiredService<IWarehouseService>(),
+                    App.ServiceProvider.GetRequiredService<IDataTransferManager>(),
+                    App.ServiceProvider.GetRequiredService<IWarehouseClient>(),
                     App.ServiceProvider.GetRequiredService<IBlockchainService>(),
                     modalNavigationService,
                     App.ServiceProvider.GetRequiredService<INotificationsManager>(),
-                    directoryViewModel)
+                    directoryViewModel.CurrentUserDirectoryViewModel)
                 {
                     FileModels = fileModels
                 };
@@ -148,6 +156,8 @@ namespace Peernet.Browser.WPF
                         break;
                 }
             }
+
+            e.Handled = true;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

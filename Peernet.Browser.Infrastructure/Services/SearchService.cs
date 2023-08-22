@@ -1,12 +1,15 @@
-﻿using Peernet.Browser.Application.Services;
+﻿using Newtonsoft.Json;
+using Peernet.Browser.Application.Services;
 using Peernet.SDK.Client.Clients;
 using Peernet.SDK.Models.Domain.Common;
 using Peernet.SDK.Models.Domain.Search;
 using Peernet.SDK.Models.Extensions;
+using Peernet.SDK.Models.Presentation;
 using Peernet.SDK.Models.Presentation.Footer;
 using Peernet.SDK.Models.Presentation.Home;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,6 +22,19 @@ namespace Peernet.Browser.Infrastructure.Services
         public SearchService(ISearchClient searchClient)
         {
             this.searchClient = searchClient;
+        }
+
+        public async Task<string> CreateSnapshot(ResultsSnapshot resultsSnapshot)
+        {
+            var serializedObject = JsonConvert.SerializeObject(resultsSnapshot);
+            var targetDirectory = Path.Combine(Directory.GetCurrentDirectory(), "data", "snapshots");
+            Directory.CreateDirectory(targetDirectory);
+            var filePath = Path.Combine(targetDirectory, $"{resultsSnapshot.SearchResultModel.Id}.pnsearch");
+            var file = File.Create(filePath);
+            using var writer = new StreamWriter(file);
+            await writer.WriteAsync(serializedObject);
+
+            return filePath;
         }
 
         public IDictionary<FilterType, int> GetEmptyStats() => GetStats(new SearchStatisticData());
@@ -44,6 +60,7 @@ namespace Peernet.Browser.Infrastructure.Services
 
             var result = await searchClient.GetSearchResult(searchGetRequest);
 
+            searchResultModel.Snapshot = JsonConvert.SerializeObject(result);
             searchResultModel.Id = result.Status == SearchStatusEnum.IdNotFound ? string.Empty : searchFilterResultModel.Uuid;
             searchResultModel.Status = result.Status;
             searchResultModel.Stats = GetStats(result.Statistic);
@@ -147,6 +164,7 @@ namespace Peernet.Browser.Infrastructure.Services
             {
                 searchGetRequest.Limit = model.Limit;
                 searchGetRequest.Offset = model.Offset;
+                searchGetRequest.Node = model.NodeId;
             }
             if (model.Uuid.IsNullOrEmpty() && searchRequest != null)
             {

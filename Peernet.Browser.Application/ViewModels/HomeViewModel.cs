@@ -3,7 +3,10 @@ using Peernet.Browser.Application.Contexts;
 using Peernet.Browser.Application.Download;
 using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
+using Peernet.Browser.Application.Utilities;
 using Peernet.Browser.Application.ViewModels.Parameters;
+using Peernet.SDK.Client.Clients;
+using Peernet.SDK.Common;
 using Peernet.Browser.Application.Widgets;
 using Peernet.SDK.Models.Extensions;
 using Peernet.SDK.Models.Plugins;
@@ -12,18 +15,26 @@ using Peernet.SDK.Models.Presentation.Home;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Peernet.Browser.Application.ViewModels
 {
-    public class HomeViewModel : ViewModelBase
+    public class HomeViewModel : NavigationItemViewModelBase
     {
-        private readonly IDownloadManager downloadManager;
+        private readonly IBlockchainService blockchainService;
+        private readonly IDataTransferManager dataTransferManager;
+        private readonly IDownloadClient downloadClient;
         private readonly IModalNavigationService modalNavigationService;
         private readonly INavigationService navigationService;
         private readonly IEnumerable<IPlayButtonPlug> playButtonPlugs;
         private readonly ISearchService searchService;
+        private readonly ISettingsManager settingsManager;
+        private readonly IUserContext userContext;
+        private readonly IWarehouseClient warehouseClient;
+        private readonly IFileClient fileClient;
+        private readonly DirectoryViewModel directoryViewModel;
         private readonly IWidgetsService widgetsService;
         private bool filtersActive;
         private string searchInput;
@@ -31,18 +42,32 @@ namespace Peernet.Browser.Application.ViewModels
 
         public HomeViewModel(
             IWidgetsService widgetsService,
+            IDownloadClient downloadClient,
+            ISettingsManager settingsManager,
             ISearchService searchService,
-            IDownloadManager downloadManager,
+            IWarehouseClient warehouseClient,
+            IFileClient fileClient,
+            IBlockchainService blockchainService,
+            IDataTransferManager dataTransferManager,
             INavigationService navigationService,
             IModalNavigationService modalNavigationService,
-            IEnumerable<IPlayButtonPlug> playButtonPlugs)
+            IEnumerable<IPlayButtonPlug> playButtonPlugs,
+            IUserContext userContext,
+            DirectoryViewModel directoryViewModel)
         {
+            this.downloadClient = downloadClient;
+            this.settingsManager = settingsManager;
             this.widgetsService = widgetsService;
             this.searchService = searchService;
-            this.downloadManager = downloadManager;
+            this.warehouseClient = warehouseClient;
+            this.fileClient = fileClient;
+            this.blockchainService = blockchainService;
+            this.dataTransferManager = dataTransferManager;
             this.navigationService = navigationService ?? throw new ArgumentNullException(nameof(navigationService));
             this.modalNavigationService = modalNavigationService ?? throw new ArgumentNullException(nameof(modalNavigationService));
             this.playButtonPlugs = playButtonPlugs;
+            this.userContext = userContext;
+            this.directoryViewModel = directoryViewModel;
 
             SearchCommand = new AsyncCommand(Search);
             Tabs.CollectionChanged += (o, s) =>
@@ -105,6 +130,13 @@ namespace Peernet.Browser.Application.ViewModels
 
         public ObservableCollection<SearchTabElementViewModel> Tabs { get; } = new ObservableCollection<SearchTabElementViewModel>();
 
+        public void AddNewTab(SearchTabElementViewModel tab)
+        {
+            Tabs.Add(tab);
+            SelectedIndex = Tabs.Count - 1;
+            SearchInput = string.Empty;
+        }
+
         public SearchFilterResultModel CreateNewSearchFilter()
         {
             return new SearchFilterResultModel
@@ -114,24 +146,12 @@ namespace Peernet.Browser.Application.ViewModels
             };
         }
 
-        public async Task RemoveTab(SearchTabElementViewModel e)
-        {
-            await searchService.Terminate(e.Filters.UuId);
-            Tabs.Remove(e);
-            SelectedIndex = IsVisible ? 0 : -1;
-        }
-
-        private bool DoesSupportPlaying(DownloadModel model)
+        public bool DoesSupportPlaying(DownloadModel model)
         {
             return playButtonPlugs.Any(plugin => plugin?.IsSupported(model.File) == true);
         }
 
-        private async Task DownloadFile(DownloadModel model)
-        {
-            await downloadManager.QueueUpDownload(model);
-        }
-
-        private void ExecutePlayButtonPlug(DownloadModel model)
+        public void ExecutePlayButtonPlug(DownloadModel model)
         {
             playButtonPlugs.Foreach(async plug =>
             {
@@ -142,20 +162,43 @@ namespace Peernet.Browser.Application.ViewModels
             });
         }
 
-        private void OpenFile(DownloadModel model)
+        public void OpenFile(DownloadModel model)
         {
-            var param = new FilePreviewViewModelParameter(model.File, async () => await DownloadFile(model), "Download");
+            var filePath = Path.Combine(settingsManager.DownloadPath, UtilityHelper.StripInvalidWindowsCharactersFromFileName(model.File.Name));
+            var download = new SDK.Models.Presentation.Download(downloadClient, model.File, filePath);
+            var param = new FilePreviewViewModelParameter(model.File, async () => await dataTransferManager.QueueUp(download), "Download");
             navigationService.Navigate<FilePreviewViewModel, FilePreviewViewModelParameter>(param);
         }
 
+        public async Task RemoveTab(SearchTabElementViewModel e)
+        {
+            await searchService.Terminate(e.Filters.UuId);
+            Tabs.Remove(e);
+            SelectedIndex = IsVisible ? 0 : -1;
+        }
+
+        public override int GetNavigationIndex() => 0;
+
         private Task Search()
         {
-            var toAdd = new SearchTabElementViewModel(widgetsService, CreateNewSearchFilter(), RemoveTab, searchService.Search, DownloadFile, OpenFile, ExecutePlayButtonPlug, DoesSupportPlaying);
+            var toAdd = new ActiveSearchTabElementViewModel(
+                widgetsService,
+                CreateNewSearchFilter(),
+                RemoveTab,
+                settingsManager,
+                downloadClient,
+                OpenFile,
+                ExecutePlayButtonPlug,
+                DoesSupportPlaying,
+                searchService,
+                warehouseClient,
+                fileClient,
+                dataTransferManager,
+                blockchainService,
+                userContext,
+                directoryViewModel.CurrentUserDirectoryViewModel);
 
-            Tabs.Add(toAdd);
-            SelectedIndex = Tabs.Count - 1;
-            SearchInput = string.Empty;
-
+            AddNewTab(toAdd);
             return Task.CompletedTask;
         }
     }

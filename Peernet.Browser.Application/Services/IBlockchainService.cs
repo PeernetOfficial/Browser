@@ -1,5 +1,6 @@
 ﻿using Peernet.SDK.Models.Domain.Blockchain;
 using Peernet.SDK.Models.Domain.Common;
+using Peernet.SDK.Models.Domain.Search;
 using Peernet.SDK.Models.Presentation.Footer;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,8 +15,10 @@ namespace Peernet.Browser.Application.Services
 
         Task<ApiBlockchainHeader> GetHeader();
 
-        Task<List<ApiFile>> GetList();
+        Task<List<ApiFile>> GetList(HighLevelFileType? fileFormat = null);
 
         Task<ApiBlockchainBlockStatus> UpdateFile(FileModel fileModel);
+
+        Task<SearchResult> GetFilesForNode(byte[] node);
     }
 }

@@ -2,10 +2,14 @@
 using DevExpress.Mvvm.Xpf;
 using DevExpress.Xpf.Data;
 using Peernet.Browser.Application.Download;
+using Peernet.Browser.Application.Navigation;
 using Peernet.Browser.Application.Services;
+using Peernet.Browser.Application.Utilities;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Application.VirtualFileSystem;
 using Peernet.Browser.Application.Widgets;
+using Peernet.SDK.Client.Clients;
+using Peernet.SDK.Common;
 using Peernet.SDK.Models.Extensions;
 using Peernet.SDK.Models.Plugins;
 using Peernet.SDK.Models.Presentation;
@@ -13,10 +17,10 @@ using Peernet.SDK.Models.Presentation.Footer;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using INavigationService = Peernet.Browser.Application.Navigation.INavigationService;
 
 namespace Peernet.Browser.Application.ViewModels
 {
@@ -24,49 +28,39 @@ namespace Peernet.Browser.Application.ViewModels
     {
         public ObservableCollection<DownloadModel> activeSearchResults;
         public List<DownloadModel> cachedSearchResults;
+        public bool isLoaded;
         public DownloadModel selectedItem;
         public ViewType viewType;
-        public bool isLoaded;
+        private const int minimumResultsLimit = 5;
         private static readonly List<VirtualFileSystemCoreCategory> categoryTypes = GetCategoryTypes();
-        private readonly IDownloadManager downloadManager;
+        private readonly IDataTransferManager dataTransferManager;
+        private readonly IDownloadClient downloadClient;
         private readonly IExploreService exploreService;
         private readonly INavigationService navigationService;
         private readonly IEnumerable<IPlayButtonPlug> playButtonPlugs;
-
+        private readonly ISettingsManager settingsManager;
         private int pageIndex;
         private int pageSize = 15;
         private int totalResultsCount = 200;
-        private const int minimumResultsLimit = 5;
 
-        public ExploreViewModel(IWidgetsService widgetsService, IExploreService exploreService, IDownloadManager downloadManager, INavigationService navigationService, IEnumerable<IPlayButtonPlug> playButtonPlugs)
+        public ExploreViewModel(
+            IWidgetsService widgetsService,
+            IDownloadClient downloadClient,
+            ISettingsManager settingsManager,
+            IExploreService exploreService,
+            IDataTransferManager dataTransferManager,
+            INavigationService navigationService,
+            IEnumerable<IPlayButtonPlug> playButtonPlugs)
         {
+            this.downloadClient = downloadClient;
+            this.settingsManager = settingsManager;
             this.exploreService = exploreService;
-            this.downloadManager = downloadManager;
+            this.dataTransferManager = dataTransferManager;
             this.navigationService = navigationService;
             this.playButtonPlugs = playButtonPlugs;
             WidgetsService = widgetsService;
 
             Task.Run(() => LoadResults().ConfigureAwait(false).GetAwaiter().GetResult());
-        }
-
-        public DownloadModel SelectedItem
-        {
-            get => selectedItem;
-            set
-            {
-                selectedItem = value;
-                OnPropertyChanged(nameof(SelectedItem));
-            }
-        }
-
-        public ViewType ViewType
-        {
-            get => viewType;
-            set
-            {
-                viewType = value;
-                OnPropertyChanged(nameof(ViewType));
-            }
         }
 
         public ObservableCollection<DownloadModel> ActiveSearchResults
@@ -92,11 +86,22 @@ namespace Peernet.Browser.Application.ViewModels
 
         public ObservableCollection<VirtualFileSystemCoreCategory> CategoryTypes => new(categoryTypes);
 
+        public IAsyncCommand<ViewType> ChangeViewCommand =>
+            new AsyncCommand<ViewType>(
+                viewType =>
+                {
+                    ViewType = viewType;
+
+                    return Task.CompletedTask;
+                });
+
         public IAsyncCommand<DownloadModel> DownloadCommand =>
             new AsyncCommand<DownloadModel>(
                 async downloadModel =>
                 {
-                    await downloadManager.QueueUpDownload(downloadModel);
+                    var filePath = Path.Combine(settingsManager.DownloadPath, UtilityHelper.StripInvalidWindowsCharactersFromFileName(downloadModel.File.Name));
+                    var download = new SDK.Models.Presentation.Download(downloadClient, downloadModel.File, filePath);
+                    await dataTransferManager.QueueUp(download);
                 });
 
         public IAsyncCommand FirstPageCommand => new AsyncCommand(() =>
@@ -130,7 +135,9 @@ namespace Peernet.Browser.Application.ViewModels
         public IAsyncCommand<DownloadModel> OpenCommand => new AsyncCommand<DownloadModel>(
             model =>
             {
-                var param = new FilePreviewViewModelParameter(model.File, async () => await downloadManager.QueueUpDownload(model), "Download");
+                var filePath = Path.Combine(settingsManager.DownloadPath, UtilityHelper.StripInvalidWindowsCharactersFromFileName(model.File.Name));
+                var download = new SDK.Models.Presentation.Download(downloadClient, model.File, filePath);
+                var param = new FilePreviewViewModelParameter(model.File, async () => await dataTransferManager.QueueUp(download), "Download");
                 navigationService.Navigate<FilePreviewViewModel, FilePreviewViewModelParameter>(param);
 
                 return Task.CompletedTask;
@@ -193,7 +200,7 @@ namespace Peernet.Browser.Application.ViewModels
         public IAsyncCommand<DownloadModel> ResumeCommand => new AsyncCommand<DownloadModel>(
             async downloadModel =>
             {
-                await downloadManager.ResumeDownload(downloadModel.Id);
+                await dataTransferManager.ResumeTransfer(new Guid(downloadModel.Id));
             });
 
         public IAsyncCommand<VirtualFileSystemCoreCategory> SelectCategoryCommand =>
@@ -202,8 +209,8 @@ namespace Peernet.Browser.Application.ViewModels
                 {
                     if (category.IsSelected)
                     {
-                        await ReloadResults();
                         category.IsSelected = false;
+                        await ReloadResults();
                         return;
                     }
                     categoryTypes.ForEach(c => c.ResetSelection());
@@ -212,6 +219,16 @@ namespace Peernet.Browser.Application.ViewModels
                     await ReloadResults();
                     ReloadActiveResultsFromCache();
                 });
+
+        public DownloadModel SelectedItem
+        {
+            get => selectedItem;
+            set
+            {
+                selectedItem = value;
+                OnPropertyChanged(nameof(SelectedItem));
+            }
+        }
 
         public IAsyncCommand<DownloadModel> StreamFileCommand =>
             new AsyncCommand<DownloadModel>(
@@ -224,15 +241,6 @@ namespace Peernet.Browser.Application.ViewModels
                             await plug?.Execute(model.File);
                         }
                     });
-
-                    return Task.CompletedTask;
-                });
-
-        public IAsyncCommand<ViewType> ChangeViewCommand =>
-            new AsyncCommand<ViewType>(
-                viewType =>
-                {
-                    ViewType = viewType;
 
                     return Task.CompletedTask;
                 });
@@ -255,6 +263,16 @@ namespace Peernet.Browser.Application.ViewModels
             }
         }
 
+        public ViewType ViewType
+        {
+            get => viewType;
+            set
+            {
+                viewType = value;
+                OnPropertyChanged(nameof(ViewType));
+            }
+        }
+
         public IWidgetsService WidgetsService { get; }
 
         public void FetchData(FetchPageAsyncArgs args)
@@ -266,6 +284,25 @@ namespace Peernet.Browser.Application.ViewModels
         {
             var files = (await exploreService.GetPagedFiles(args.Skip / args.Take, args.Take)).ToArray();
             return new FetchRowsResult(files, true);
+        }
+
+        public void ReloadActiveResultsFromCache()
+        {
+            if (CachedSearchResults != null)
+            {
+                var startingIndex = (PageIndex - 1) * PageSize;
+                int length;
+                if ((startingIndex + PageSize) > CachedSearchResults.Count)
+                {
+                    length = CachedSearchResults.Count - startingIndex;
+                }
+                else
+                {
+                    length = PageSize;
+                }
+
+                ActiveSearchResults = new ObservableCollection<DownloadModel>(CachedSearchResults.GetRange(startingIndex, length));
+            }
         }
 
         public async Task ReloadResults()
@@ -337,25 +374,6 @@ namespace Peernet.Browser.Application.ViewModels
             IsLoaded = true;
             CachedSearchResults = results;
             GoToPage(1);
-        }
-
-        public void ReloadActiveResultsFromCache()
-        {
-            if (CachedSearchResults != null)
-            {
-                var startingIndex = (PageIndex - 1) * PageSize;
-                int length;
-                if ((startingIndex + PageSize) > CachedSearchResults.Count)
-                {
-                    length = CachedSearchResults.Count - startingIndex;
-                }
-                else
-                {
-                    length = PageSize;
-                }
-
-                ActiveSearchResults = new ObservableCollection<DownloadModel>(CachedSearchResults.GetRange(startingIndex, length));
-            }
         }
 
         private void SetPlayerState(List<DownloadModel> results)

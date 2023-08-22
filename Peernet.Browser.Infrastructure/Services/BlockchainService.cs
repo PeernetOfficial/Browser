@@ -2,6 +2,7 @@
 using Peernet.SDK.Client.Clients;
 using Peernet.SDK.Models.Domain.Blockchain;
 using Peernet.SDK.Models.Domain.Common;
+using Peernet.SDK.Models.Domain.Search;
 using Peernet.SDK.Models.Presentation.Footer;
 using System;
 using System.Collections.Generic;
@@ -48,9 +49,9 @@ namespace Peernet.Browser.Infrastructure.Services
             return await blockchainClient.GetHeader();
         }
 
-        public async Task<List<ApiFile>> GetList()
+        public async Task<List<ApiFile>> GetList(HighLevelFileType? fileFormat = null)
         {
-            return (await blockchainClient.GetList())?.Files ?? new List<ApiFile>();
+            return (await blockchainClient.GetList(fileFormat))?.Files ?? new List<ApiFile>();
         }
 
         public async Task<ApiBlockchainBlockStatus> AddFiles(IEnumerable<FileModel> files)
@@ -71,6 +72,11 @@ namespace Peernet.Browser.Infrastructure.Services
                 .ToList();
 
             return await blockchainClient.AddFiles(new ApiBlockchainAddFiles { Files = data });
+        }
+
+        public async Task<SearchResult> GetFilesForNode(byte[] node)
+        {
+            return await blockchainClient.View(node);
         }
     }
 }

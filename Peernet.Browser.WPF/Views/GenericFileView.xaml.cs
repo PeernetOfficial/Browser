@@ -21,7 +21,8 @@ namespace Peernet.Browser.WPF.Views
         {
             var directoryViewModel = App.ServiceProvider.GetRequiredService<DirectoryViewModel>();
             var model = (FileModel)((FrameworkElement)e.OriginalSource).DataContext;
-            var changeFileLocationViewModel = new ChangeFileLocationViewModel(directoryViewModel.VirtualFileSystem.DeepClone(), directoryViewModel.PathElements.Last().AbsolutePath, model);
+            var currentUserDirectoryViewModel = directoryViewModel.CurrentUserDirectoryViewModel;
+            var changeFileLocationViewModel = new ChangeFileLocationViewModel(currentUserDirectoryViewModel.VirtualFileSystem.DeepClone(), currentUserDirectoryViewModel.PathElements.Last().AbsolutePath, model);
             new ChangleFileLocationWindow(changeFileLocationViewModel).Show();
         }
 

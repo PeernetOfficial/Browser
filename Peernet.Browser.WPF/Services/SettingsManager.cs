@@ -51,6 +51,16 @@ namespace Peernet.Browser.WPF.Services
             set => Set(nameof(DownloadPath), value);
         }
 
+        public long? HttpClientTimeoutInSeconds
+        {
+            get
+            {
+                var timeout = Get(nameof(HttpClientTimeoutInSeconds));
+                return timeout == null ? default(long?) : long.Parse(timeout);
+            }
+            set => Set(nameof(HttpClientTimeoutInSeconds), value.ToString());
+        }
+
         public string LogFile => Get(nameof(LogFile));
 
         public string PluginsLocation
@@ -59,9 +69,8 @@ namespace Peernet.Browser.WPF.Services
             set => Set(nameof(PluginsLocation), value);
         }
 
-        public string[] WebGatewayDomains => Get(nameof(WebGatewayDomains))?.Split(',');
-
         public Uri SocketUrl => GetSocket();
+        public string[] WebGatewayDomains => Get(nameof(WebGatewayDomains))?.Split(',');
 
         public bool DailyFeedWidgetEnabled
         {

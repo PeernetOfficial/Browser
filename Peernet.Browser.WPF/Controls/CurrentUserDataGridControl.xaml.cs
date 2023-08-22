@@ -4,6 +4,7 @@ using Peernet.Browser.Application.Services;
 using Peernet.Browser.Application.ViewModels;
 using Peernet.Browser.Application.ViewModels.Parameters;
 using Peernet.Browser.Application.VirtualFileSystem;
+using Peernet.SDK.Models.Presentation.Footer;
 using System;
 using System.Runtime.InteropServices;
 using System.Windows;
@@ -14,24 +15,31 @@ namespace Peernet.Browser.WPF.Controls
     /// <summary>
     /// Interaction logic for SharedFilesDataGridControl.xaml
     /// </summary>
-    public partial class SharedFilesDataGridControl : UserControl
+    public partial class CurrentUserDataGridControl : UserControl
     {
-        public SharedFilesDataGridControl()
+        public CurrentUserDataGridControl()
         {
             InitializeComponent();
         }
 
-        private void OpenFileWebGatewayReferenceWindow_OnClick(object sender, RoutedEventArgs e)
+        private void Share_Click(object sender, RoutedEventArgs e)
         {
             var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;
             var file = ((VirtualFileSystemEntity)cellData.RowData.Row).File;
 
-            new FileWebGatewayReferenceWindow(file).Show();
+            if (file.Format == SDK.Models.Domain.Common.HighLevelFileType.PeernetSearch)
+            {
+                new ResultsSharingWindow(new FileModel(file)).Show();
+            }
+            else
+            {
+                new FileWebGatewayReferenceWindow(file).Show();
+            }
         }
 
         private async void Open_OnClick(object sender, RoutedEventArgs e)
         {
-            var viewmodel = (DirectoryViewModel)DataContext;
+            var viewmodel = (DirectoryTabViewModel)DataContext;
             var cellData = (EditGridCellData)((FrameworkElement)e.OriginalSource).DataContext;
             var entity = (VirtualFileSystemEntity)cellData.RowData.Row;
             if (entity is VirtualFileSystemCoreEntity coreTier)
