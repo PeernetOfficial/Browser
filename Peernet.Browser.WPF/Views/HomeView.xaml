@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls">
     <Grid VerticalAlignment="{Binding Alignment, Converter={StaticResource VerticalAlignmentConverter}}">
-        <StackPanel Width="600">
+        <StackPanel Width="600" Margin="0, 0, 0, 175">
             <Image Source="{DynamicResource LogoDrawingImage}" Height="65" Visibility="{Binding IsNotVisible, Converter={StaticResource BoolToVisibility}}" Margin="0, 0, 0, 77" />
             <Border BorderBrush="{DynamicResource LightGray2Brush}" BorderThickness="1" Margin="0 15 0 0" CornerRadius="{DynamicResource MainRadius}">
                 <Border.Background>
@@ -49,7 +49,7 @@
                     <Image Cursor="Hand" Margin="0 0 13 0" HorizontalAlignment="Right" Source="{DynamicResource SearchDrawingImage}" Height="14.22" Width="14.22" MouseLeftButtonDown="Image_MouseLeftButtonDown" />
                 </Grid>
             </Border>
-            <TextBlock VerticalAlignment="Top" HorizontalAlignment="Right" Text="Advanced" Margin="0, 5, 0, 220" Padding="5">
+            <TextBlock VerticalAlignment="Top" HorizontalAlignment="Right" Text="Advanced" Margin="0, 5" Padding="5">
                 <TextBlock.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding OpenAdvancedOptionsCommand}" />
                 </TextBlock.InputBindings>
@@ -63,6 +63,48 @@
                     </Style>
                 </TextBlock.Style>
             </TextBlock>
+            <DockPanel VerticalAlignment="Top" HorizontalAlignment="Left">
+                <ItemsControl ItemsSource="{Binding Bookmarks}" VerticalAlignment="Center" DockPanel.Dock="Left">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="10, 0" Cursor="Hand" Background="Transparent" Padding="10">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="15" VerticalAlignment="Center" TextAlignment="Left">
+                                        <TextBlock.Style>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Setter Property="Text" Value="{Binding }" />
+                                                <Setter Property="Foreground" Value="{DynamicResource LightGrayBrush}" />
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Foreground" Value="{DynamicResource MainContentBrush}" />
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <TextBlock Cursor="Hand" Margin="10, 0" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Text="&#xECC8;" FontSize="23" DockPanel.Dock="Right">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Foreground" Value="{DynamicResource LightGrayBrush}" />
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="{DynamicResource MainContentBrush}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </DockPanel>
         </StackPanel>
 
         <controls:TabControlEx Visibility="{Binding IsVisible, Converter={StaticResource BoolToVisibility}}"

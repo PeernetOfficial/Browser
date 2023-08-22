@@ -130,6 +130,14 @@ namespace Peernet.Browser.Application.ViewModels
 
         public ObservableCollection<SearchTabElementViewModel> Tabs { get; } = new ObservableCollection<SearchTabElementViewModel>();
 
+        public ObservableCollection<string> Bookmarks => new ObservableCollection<string>
+        {
+            "NFX",
+            "Russia",
+            "News",
+            "SpaceX"
+        };
+
         public void AddNewTab(SearchTabElementViewModel tab)
         {
             Tabs.Add(tab);
