@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="Peernet.Browser.WPF.Controls.ChatControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="chat"
+             HorizontalContentAlignment="Stretch"
+             HorizontalAlignment="Stretch">
+    <Border Background="{DynamicResource DarkGrayBrush}">
+        <ScrollViewer>
+            <DockPanel>
+                <Button Content="Join chat" Command="{Binding JoinChatCommand, ElementName=chat}" CommandParameter="{Binding File, ElementName=chat}" DockPanel.Dock="Top" />
+                <ItemsControl ItemsSource="{Binding Chat.ChatMessages, UpdateSourceTrigger=PropertyChanged}"
+                              Margin="0, 10, 0, 0"
+                              VerticalContentAlignment="Stretch"
+                              VerticalAlignment="Stretch"
+                              ScrollViewer.VerticalScrollBarVisibility="Auto"
+                              DockPanel.Dock="Top">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel  />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <DockPanel Margin="0, 4">
+                                <Ellipse Grid.Column="0" Height="40" Width="40" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Ellipse.Fill>
+                                        <ImageBrush AlignmentX="Center" AlignmentY="Center" ImageSource="{Binding Author.Image, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource NullImageConverter}, ConverterParameter={StaticResource DefaultProfileImageDrawingImage}}" />
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <Grid Margin="8, 0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Author.Name, UpdateSourceTrigger=PropertyChanged}" FontSize="14" FontWeight="SemiBold" Foreground="White" />
+                                    <TextBlock Grid.Row="1" Text="{Binding Content, UpdateSourceTrigger=PropertyChanged}" FontSize="12" FontWeight="Normal" Foreground="White" TextWrapping="Wrap" />
+                                </Grid>
+                            </DockPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <Border BorderBrush="{DynamicResource LightGray2Brush}"
+                        BorderThickness="1"
+                        Margin="0 15 0 0"
+                        CornerRadius="{DynamicResource MainRadius}"
+                        DockPanel.Dock="Bottom"
+                        Height="25">
+                    <Border.Background>
+                        <SolidColorBrush Color="{DynamicResource ViewBackgroundColor}" />
+                    </Border.Background>
+                    <Grid>
+                        <TextBox FontSize="16"
+                                 TextAlignment="Left"
+                                 VerticalAlignment="Center"
+                                 FontFamily="Inter"
+                                 Text="{Binding ChatInput, UpdateSourceTrigger=PropertyChanged}"
+                                 Foreground="{DynamicResource MainTextBrush}"
+                                 BorderThickness="0"
+                                 CaretBrush="{DynamicResource MainTextBrush}"
+                                 Padding="13"
+                                 Cursor="IBeam">
+                            <TextBox.Style>
+                                <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Style.Resources>
+                                        <VisualBrush x:Key="BannerBrush" AlignmentX="Center" AlignmentY="Center" Stretch="None">
+                                            <VisualBrush.Visual>
+                                                <Label FontSize="14" Content="Type message" Foreground="{DynamicResource LightGray2Brush}" />
+                                            </VisualBrush.Visual>
+                                        </VisualBrush>
+                                    </Style.Resources>
+                                    <Style.Triggers>
+                                        <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                                            <Setter Property="Background" Value="{StaticResource BannerBrush}" />
+                                        </Trigger>
+                                        <Trigger Property="Text" Value="{x:Null}">
+                                            <Setter Property="Background" Value="{StaticResource BannerBrush}" />
+                                        </Trigger>
+                                        <Trigger Property="IsKeyboardFocused" Value="True">
+                                            <Setter Property="Background" Value="Transparent" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                        <Image Cursor="Hand" Margin="0 0 13 0" HorizontalAlignment="Right" Source="{DynamicResource SearchDrawingImage}" Height="14.22" Width="14.22" />
+                    </Grid>
+                </Border>
+            </DockPanel>
+        </ScrollViewer>
+    </Border>
+</UserControl>

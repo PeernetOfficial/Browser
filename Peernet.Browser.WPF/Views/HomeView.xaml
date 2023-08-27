@@ -4,7 +4,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:Peernet.Browser.WPF.Controls">
     <Grid VerticalAlignment="{Binding Alignment, Converter={StaticResource VerticalAlignmentConverter}}">
-        <StackPanel Width="600" Margin="0, 0, 0, 175">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Width="600">
             <Image Source="{DynamicResource LogoDrawingImage}" Height="65" Visibility="{Binding IsNotVisible, Converter={StaticResource BoolToVisibility}}" Margin="0, 0, 0, 77" />
             <Border BorderBrush="{DynamicResource LightGray2Brush}" BorderThickness="1" Margin="0 15 0 0" CornerRadius="{DynamicResource MainRadius}">
                 <Border.Background>
@@ -49,7 +53,7 @@
                     <Image Cursor="Hand" Margin="0 0 13 0" HorizontalAlignment="Right" Source="{DynamicResource SearchDrawingImage}" Height="14.22" Width="14.22" MouseLeftButtonDown="Image_MouseLeftButtonDown" />
                 </Grid>
             </Border>
-            <TextBlock VerticalAlignment="Top" HorizontalAlignment="Right" Text="Advanced" Margin="0, 5" Padding="5">
+            <TextBlock VerticalAlignment="Top" HorizontalAlignment="Right" Text="Advanced" Margin="0, 3" Padding="5">
                 <TextBlock.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding OpenAdvancedOptionsCommand}" />
                 </TextBlock.InputBindings>
@@ -107,13 +111,22 @@
             </DockPanel>
         </StackPanel>
 
-        <controls:TabControlEx Visibility="{Binding IsVisible, Converter={StaticResource BoolToVisibility}}"
+        <controls:TabControlEx Grid.Row="1"
+                               Visibility="{Binding IsVisible, Converter={StaticResource BoolToVisibility}}"
                                SelectedIndex="{Binding SelectedIndex}"
                                Foreground="{DynamicResource MainContentBrush}"
-                               Margin="0 105 0 0"
                                ItemsSource="{Binding Tabs, IsAsync=True}"
                                Style="{StaticResource SearchResultTabs}"
                                ItemContainerStyle="{StaticResource SearchResultTabItem}"
                                PreviewMouseDown="TabControl_PreviewMouseDown" />
+        <Grid.Style>
+            <Style TargetType="{x:Type Grid}">
+                <Style.Triggers>
+                    <Trigger Property="VerticalAlignment" Value="Center">
+                        <Setter Property="Margin" Value="0, 0, 0, 175" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
     </Grid>
 </UserControl>

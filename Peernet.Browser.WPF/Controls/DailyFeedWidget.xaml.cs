@@ -1,10 +1,8 @@
 ﻿using AsyncAwaitBestPractices.MVVM;
-using Peernet.SDK.Models.Domain.Common;
 using Peernet.SDK.Models.Presentation.Footer;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace Peernet.Browser.WPF.Controls
 {
@@ -28,6 +26,13 @@ namespace Peernet.Browser.WPF.Controls
         public static readonly DependencyProperty DownloadFileCommandProperty =
             DependencyProperty.Register(
                 "DownloadFileCommand",
+                typeof(IAsyncCommand<DownloadModel>),
+                typeof(DailyFeedWidget),
+                null);
+        
+        public static readonly DependencyProperty JoinChatCommandProperty =
+            DependencyProperty.Register(
+                "JoinChatCommand",
                 typeof(IAsyncCommand<DownloadModel>),
                 typeof(DailyFeedWidget),
                 null);
@@ -62,6 +67,12 @@ namespace Peernet.Browser.WPF.Controls
         {
             get => (IAsyncCommand<DownloadModel>)GetValue(DownloadFileCommandProperty);
             set => SetValue(DownloadFileCommandProperty, value);
+        }
+        
+        public IAsyncCommand<DownloadModel> JoinChatCommand
+        {
+            get => (IAsyncCommand<DownloadModel>)GetValue(JoinChatCommandProperty);
+            set => SetValue(JoinChatCommandProperty, value);
         }
     }
 }

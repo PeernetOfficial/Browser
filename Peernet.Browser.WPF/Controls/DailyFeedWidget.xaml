@@ -5,22 +5,34 @@
              xmlns:local="clr-namespace:Peernet.Browser.WPF.Controls"
              xmlns:i="clr-namespace:DevExpress.Mvvm.UI.Interactivity;assembly=DevExpress.Xpf.Core.v22.2"
              x:Name="DailyFeed">
-    <ListBox x:Name="WidgetsFeed"
-             ItemsSource="{Binding Results, IsAsync=True, ElementName=DailyFeed}"
-             SelectedItem="{Binding SelectedItem, Mode=TwoWay, ElementName=DailyFeed}"
-             VirtualizingStackPanel.IsVirtualizing="True"
-             VirtualizingStackPanel.VirtualizationMode="Standard"
-             ScrollViewer.IsDeferredScrollingEnabled="True"
-             ScrollViewer.CanContentScroll="False">
-        <i:Interaction.Behaviors>
-            <behaviors:ListBoxScrollIntoViewBehavior/>
-        </i:Interaction.Behaviors>
-        <ListBox.ItemTemplate>
-            <DataTemplate>
-                <local:DailyFeedWidgetItemControl File="{Binding }"
-                                                  StreamFileCommand="{Binding StreamFileCommand, ElementName=DailyFeed}"
-                                                  DownloadFileCommand="{Binding DownloadFileCommand, ElementName=DailyFeed}" />
-            </DataTemplate>
-        </ListBox.ItemTemplate>
-    </ListBox>
+    <DockPanel>
+        <ListBox x:Name="WidgetsFeed"
+                 ItemsSource="{Binding Results, IsAsync=True, ElementName=DailyFeed}"
+                 SelectedItem="{Binding SelectedItem, Mode=TwoWay, ElementName=DailyFeed}"
+                 VirtualizingStackPanel.IsVirtualizing="True"
+                 VirtualizingStackPanel.VirtualizationMode="Standard"
+                 ScrollViewer.IsDeferredScrollingEnabled="True"
+                 ScrollViewer.CanContentScroll="False"
+                 HorizontalContentAlignment="Stretch"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <i:Interaction.Behaviors>
+                <behaviors:ListBoxScrollIntoViewBehavior />
+            </i:Interaction.Behaviors>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel Height="400">
+                        <local:DailyFeedWidgetItemControl File="{Binding }"
+                                                          StreamFileCommand="{Binding StreamFileCommand, ElementName=DailyFeed}"
+                                                          DownloadFileCommand="{Binding DownloadFileCommand, ElementName=DailyFeed}"
+                                                          Margin="2, 0" 
+                                                          DockPanel.Dock="Left"/>
+                        <local:ChatControl File="{Binding }"
+                                       DockPanel.Dock="Right"
+                                       JoinChatCommand="{Binding JoinChatCommand, ElementName=DailyFeed}"
+                                       Margin="2, 0" />
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </DockPanel>
 </UserControl>
